@@ -3689,14 +3689,13 @@ strncat:
 	push	edi
 	push	esi
 	push	ebx
-	sub	esp, 12
+	sub	esp, 24
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
 	mov	esi, DWORD PTR [ebp+8]
 	mov	edi, DWORD PTR [ebp+12]
 	mov	ebx, DWORD PTR [ebp+16]
-	sub	esp, 12
 	push	esi
 	call	strlen
 	add	esp, 16
@@ -3840,13 +3839,12 @@ strstr:
 	push	edi
 	push	esi
 	push	ebx
-	sub	esp, 28
+	sub	esp, 40
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
 	mov	ebx, DWORD PTR [ebp+8]
 	mov	edi, DWORD PTR [ebp+12]
-	sub	esp, 12
 	push	edi
 	call	strlen
 	add	esp, 16
@@ -4026,10 +4024,9 @@ mempcpy:
 	mov	ebp, esp
 	.cfi_def_cfa_register 5
 	push	ebx
-	sub	esp, 4
+	sub	esp, 8
 	.cfi_offset 3, -12
 	mov	ebx, DWORD PTR [ebp+16]
-	sub	esp, 4
 	push	ebx
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]

@@ -2897,8 +2897,7 @@ _Qp_itoq:
 	move.l %d2,-(%sp)
 	move.l 12(%fp),-(%sp)
 	jsr __floatsidf
-	addq.l #4,%sp
-	move.l %d1,-(%sp)
+	move.l %d1,(%sp)
 	move.l %d0,-(%sp)
 	lea (-12,%fp),%a1
 	jsr __extenddfxf2
