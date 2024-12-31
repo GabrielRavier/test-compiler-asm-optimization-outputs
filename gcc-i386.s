@@ -2148,8 +2148,8 @@ bsearch:
 	push	DWORD PTR [ebp+8]
 	mov	eax, DWORD PTR [ebp+24]
 	call	eax
-	add	esp, 16
 	mov	DWORD PTR [ebp-16], eax
+	add	esp, 16
 	cmp	DWORD PTR [ebp-16], 0
 	jns	.L270
 	mov	eax, DWORD PTR [ebp+16]
@@ -2215,8 +2215,8 @@ bsearch_r:
 	push	DWORD PTR [ebp+8]
 	mov	eax, DWORD PTR [ebp+24]
 	call	eax
-	add	esp, 16
 	mov	DWORD PTR [ebp-24], eax
+	add	esp, 16
 	cmp	DWORD PTR [ebp-24], 0
 	jne	.L276
 	mov	eax, DWORD PTR [ebp-20]
@@ -4368,9 +4368,9 @@ mempcpy:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	memcpy
-	add	esp, 12
 	mov	edx, DWORD PTR [ebp+16]
 	add	eax, edx
+	add	esp, 12
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -5693,8 +5693,8 @@ __divsi3:
 	push	edx
 	push	eax
 	call	__udivmodsi4
-	add	esp, 12
 	mov	DWORD PTR [ebp-8], eax
+	add	esp, 12
 	cmp	DWORD PTR [ebp-4], 0
 	je	.L692
 	neg	DWORD PTR [ebp-8]
@@ -5734,8 +5734,8 @@ __modsi3:
 	push	edx
 	push	eax
 	call	__udivmodsi4
-	add	esp, 12
 	mov	DWORD PTR [ebp-8], eax
+	add	esp, 12
 	cmp	DWORD PTR [ebp-4], 0
 	je	.L697
 	neg	DWORD PTR [ebp-8]
@@ -6314,8 +6314,8 @@ __aeabi_lcmp:
 	push	DWORD PTR [ebp-4]
 	push	DWORD PTR [ebp-8]
 	call	__cmpdi2
-	add	esp, 16
 	sub	eax, 1
+	add	esp, 16
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -6648,7 +6648,6 @@ __muldi3_compiler_rt:
 	push	edx
 	push	eax
 	call	__muldsi3
-	add	esp, 8
 	mov	DWORD PTR [ebp-32], eax
 	mov	DWORD PTR [ebp-28], edx
 	mov	eax, DWORD PTR [ebp-28]
@@ -6665,6 +6664,7 @@ __muldi3_compiler_rt:
 	mov	DWORD PTR [ebp-28], eax
 	mov	eax, DWORD PTR [ebp-32]
 	mov	edx, DWORD PTR [ebp-28]
+	add	esp, 8
 	mov	ebx, DWORD PTR [ebp-4]
 	leave
 	.cfi_restore 5
@@ -7120,8 +7120,8 @@ __aeabi_ulcmp:
 	push	edx
 	push	eax
 	call	__ucmpdi2
-	add	esp, 16
 	sub	eax, 1
+	add	esp, 16
 	mov	ebx, DWORD PTR [ebp-4]
 	leave
 	.cfi_restore 5
