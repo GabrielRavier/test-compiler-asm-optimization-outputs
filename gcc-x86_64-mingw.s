@@ -5965,12 +5965,9 @@ __popcountti2:
 	and	rdx, rbx
 	mov	QWORD PTR 32[rsp], rax
 	mov	QWORD PTR 40[rsp], rdx
-	mov	rcx, QWORD PTR 32[rsp]
 	mov	rax, QWORD PTR 32[rsp]
 	mov	rdx, QWORD PTR 40[rsp]
-	mov	rax, rdx
-	xor	edx, edx
-	add	rax, rcx
+	add	rax, rdx
 	mov	QWORD PTR 24[rsp], rax
 	mov	rax, QWORD PTR 24[rsp]
 	mov	edx, eax

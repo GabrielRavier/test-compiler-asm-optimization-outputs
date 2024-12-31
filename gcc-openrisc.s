@@ -1267,8 +1267,8 @@ fdim:
 	l.bnf	.L172
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L163
 	 l.nop
 
@@ -1286,8 +1286,8 @@ fdim:
 	l.bnf	.L173
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L163
 	 l.nop
 
@@ -1312,24 +1312,24 @@ fdim:
 	l.jal	__subdf3
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
+	l.or	r17, r21, r21
 	l.j	.L163
 	 l.nop
 
 .L174:
 	l.movhi	r21, ha(.LC0)
-	l.lwz	r17, lo(.LC0)(r21)
-	l.addi	r21, r21, lo(.LC0)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.lwz	r19, lo(.LC0)(r21)
+	l.addi	r17, r21, lo(.LC0)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 .L163:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 16(r1)
 	l.addi	r1, r1, 20
 	l.jr	r9
@@ -1437,8 +1437,8 @@ fmax:
 	l.bnf	.L207
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L195
 	 l.nop
 
@@ -1456,8 +1456,8 @@ fmax:
 	l.bnf	.L208
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L195
 	 l.nop
 
@@ -1482,14 +1482,14 @@ fmax:
 	l.bf	.L199
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L195
 	 l.nop
 
 .L199:
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L195
 	 l.nop
 
@@ -1507,19 +1507,19 @@ fmax:
 	l.bnf	.L209
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L195
 	 l.nop
 
 .L209:
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 .L195:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 16(r1)
 	l.addi	r1, r1, 20
 	l.jr	r9
@@ -1645,8 +1645,8 @@ fmaxl:
 	l.bnf	.L245
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L233
 	 l.nop
 
@@ -1664,8 +1664,8 @@ fmaxl:
 	l.bnf	.L246
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L233
 	 l.nop
 
@@ -1690,14 +1690,14 @@ fmaxl:
 	l.bf	.L237
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L233
 	 l.nop
 
 .L237:
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L233
 	 l.nop
 
@@ -1715,19 +1715,19 @@ fmaxl:
 	l.bnf	.L247
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L233
 	 l.nop
 
 .L247:
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 .L233:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 16(r1)
 	l.addi	r1, r1, 20
 	l.jr	r9
@@ -1757,8 +1757,8 @@ fmin:
 	l.bnf	.L264
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L252
 	 l.nop
 
@@ -1776,8 +1776,8 @@ fmin:
 	l.bnf	.L265
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L252
 	 l.nop
 
@@ -1802,14 +1802,14 @@ fmin:
 	l.bf	.L256
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L252
 	 l.nop
 
 .L256:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L252
 	 l.nop
 
@@ -1827,19 +1827,19 @@ fmin:
 	l.bnf	.L266
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L252
 	 l.nop
 
 .L266:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 .L252:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 16(r1)
 	l.addi	r1, r1, 20
 	l.jr	r9
@@ -1965,8 +1965,8 @@ fminl:
 	l.bnf	.L302
 	 l.nop
 
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L290
 	 l.nop
 
@@ -1984,8 +1984,8 @@ fminl:
 	l.bnf	.L303
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L290
 	 l.nop
 
@@ -2010,14 +2010,14 @@ fminl:
 	l.bf	.L294
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L290
 	 l.nop
 
 .L294:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 	l.j	.L290
 	 l.nop
 
@@ -2035,19 +2035,19 @@ fminl:
 	l.bnf	.L304
 	 l.nop
 
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 	l.j	.L290
 	 l.nop
 
 .L304:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
 .L290:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 16(r1)
 	l.addi	r1, r1, 20
 	l.jr	r9
@@ -2118,17 +2118,15 @@ l64a:
 srand:
 	l.addi	r1, r1, -4
 	l.sw	0(r1), r3
-	l.lwz	r21, 0(r1)
-	l.addi	r21, r21, -1
-	l.or	r19, r21, r21
-	l.movhi	r17, hi(0)
-	l.movhi	r21, ha(seed)
-	l.or	r23, r17, r17
-	l.sw	lo(seed)(r21), r23
-	l.addi	r21, r21, lo(seed)
-	l.addi	r21, r21, 4
-	l.or	r17, r19, r19
-	l.sw	0(r21), r17
+	l.lwz	r17, 0(r1)
+	l.addi	r17, r17, -1
+	l.or	r19, r17, r17
+	l.movhi	r21, hi(0)
+	l.movhi	r17, ha(seed)
+	l.sw	lo(seed)(r17), r21
+	l.addi	r17, r17, lo(seed)
+	l.addi	r17, r17, 4
+	l.sw	0(r17), r19
 	l.nop
 	l.addi	r1, r1, 4
 	l.jr	r9
@@ -2139,40 +2137,30 @@ srand:
 	.global	rand
 	.type	rand, @function
 rand:
-	l.addi	r1, r1, -52
-	l.sw	16(r1), r16
-	l.sw	20(r1), r18
-	l.sw	24(r1), r20
-	l.sw	28(r1), r22
-	l.sw	32(r1), r24
-	l.sw	36(r1), r26
-	l.sw	40(r1), r28
-	l.sw	44(r1), r30
-	l.sw	48(r1), r9
-	l.movhi	r21, ha(seed)
-	l.lwz	r17, lo(seed)(r21)
-	l.addi	r21, r21, lo(seed)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.addi	r1, r1, -4
+	l.sw	0(r1), r9
+	l.movhi	r17, ha(seed)
+	l.lwz	r19, lo(seed)(r17)
+	l.addi	r17, r17, lo(seed)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 	l.movhi	r5, hi(1481703424)
 	l.ori	r5, r5, 62509
 	l.movhi	r6, hi(1284833280)
 	l.ori	r6, r6, 32557
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__muldi3
 	 l.nop
 
-	l.sw	8(r1), r11
-	l.sw	12(r1), r12
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
-	l.or	r16, r17, r17
-	l.or	r18, r19, r19
-	l.movhi	r20, hi(0)
-	l.ori	r22, r0, 1
-	l.add	r19, r18, r22
-	l.sfltu	r19, r18
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r27, r19, r19
+	l.or	r21, r17, r17
+	l.movhi	r25, hi(0)
+	l.ori	r23, r0, 1
+	l.add	r19, r21, r23
+	l.sfltu	r19, r21
 	l.ori	r21, r0, 1
 	l.or	r21, r21, r21
 	l.bf	.L316
@@ -2180,40 +2168,21 @@ rand:
 
 	l.movhi	r21, hi(0)
 .L316:
-	l.add	r17, r16, r20
-	l.add	r21, r21, r17
-	l.or	r17, r21, r21
-	l.sw	0(r1), r17
-	l.sw	4(r1), r19
+	l.add	r17, r27, r25
+	l.add	r17, r21, r17
+	l.or	r21, r17, r17
 	l.movhi	r17, ha(seed)
-	l.lwz	r21, 0(r1)
-	l.lwz	r23, 4(r1)
-	l.or	r19, r21, r21
-	l.sw	lo(seed)(r17), r19
+	l.sw	lo(seed)(r17), r21
 	l.addi	r17, r17, lo(seed)
 	l.addi	r17, r17, 4
-	l.or	r19, r23, r23
 	l.sw	0(r17), r19
 	l.movhi	r17, ha(seed)
-	l.lwz	r24, lo(seed)(r17)
-	l.addi	r17, r17, lo(seed)
-	l.addi	r17, r17, 4
-	l.lwz	r26, 0(r17)
-	l.ori	r17, r0, 1
-	l.srl	r30, r24, r17
-	l.movhi	r28, hi(0)
-	l.or	r17, r30, r30
+	l.lwz	r17, lo(seed)(r17)
+	l.ori	r19, r0, 1
+	l.srl	r17, r17, r19
 	l.or	r11, r17, r17
-	l.lwz	r16, 16(r1)
-	l.lwz	r18, 20(r1)
-	l.lwz	r20, 24(r1)
-	l.lwz	r22, 28(r1)
-	l.lwz	r24, 32(r1)
-	l.lwz	r26, 36(r1)
-	l.lwz	r28, 40(r1)
-	l.lwz	r30, 44(r1)
-	l.lwz	r9, 48(r1)
-	l.addi	r1, r1, 52
+	l.lwz	r9, 0(r1)
+	l.addi	r1, r1, 4
 	l.jr	r9
 	 l.nop
 
@@ -2325,17 +2294,9 @@ lsearch:
 	l.sw	4(r1), r6
 	l.sw	0(r1), r7
 	l.lwz	r16, 4(r1)
-	l.or	r25, r16, r16
-	l.addi	r25, r16, -1
-	l.sw	28(r1), r25
-	l.or	r23, r16, r16
-	l.movhi	r21, hi(0)
-	l.ori	r25, r0, 29
-	l.srl	r25, r16, r25
-	l.ori	r27, r0, 3
-	l.sll	r17, r21, r27
-	l.or	r17, r25, r17
-	l.sll	r19, r16, r27
+	l.or	r17, r16, r16
+	l.addi	r17, r16, -1
+	l.sw	28(r1), r17
 	l.lwz	r17, 12(r1)
 	l.sw	24(r1), r17
 	l.lwz	r17, 8(r1)
@@ -2417,17 +2378,9 @@ lfind:
 	l.sw	4(r1), r6
 	l.sw	0(r1), r7
 	l.lwz	r16, 4(r1)
-	l.or	r25, r16, r16
-	l.addi	r25, r16, -1
-	l.sw	28(r1), r25
-	l.or	r23, r16, r16
-	l.movhi	r21, hi(0)
-	l.ori	r25, r0, 29
-	l.srl	r25, r16, r25
-	l.ori	r27, r0, 3
-	l.sll	r17, r21, r27
-	l.or	r17, r25, r17
-	l.sll	r19, r16, r27
+	l.or	r17, r16, r16
+	l.addi	r17, r16, -1
+	l.sw	28(r1), r17
 	l.lwz	r17, 12(r1)
 	l.sw	24(r1), r17
 	l.lwz	r17, 8(r1)
@@ -2722,34 +2675,26 @@ atol:
 	.global	atoll
 	.type	atoll, @function
 atoll:
-	l.addi	r1, r1, -96
-	l.sw	56(r1), r14
-	l.sw	60(r1), r16
-	l.sw	64(r1), r18
-	l.sw	68(r1), r20
-	l.sw	72(r1), r22
-	l.sw	76(r1), r24
-	l.sw	80(r1), r26
-	l.sw	84(r1), r28
-	l.sw	88(r1), r30
-	l.sw	92(r1), r9
-	l.sw	40(r1), r3
-	l.sw	48(r1), r0
-	l.sw	52(r1), r0
-	l.sw	44(r1), r0
+	l.addi	r1, r1, -24
+	l.sw	16(r1), r16
+	l.sw	20(r1), r9
+	l.sw	0(r1), r3
+	l.sw	8(r1), r0
+	l.sw	12(r1), r0
+	l.sw	4(r1), r0
 	l.j	.L365
 	 l.nop
 
 .L366:
-	l.lwz	r17, 40(r1)
+	l.lwz	r17, 0(r1)
 	l.addi	r17, r17, 1
-	l.sw	40(r1), r17
+	l.sw	0(r1), r17
 .L365:
-	l.lwz	r17, 40(r1)
+	l.lwz	r17, 0(r1)
 	l.lbz	r17, 0(r17)
-	l.ori	r14, r0, 24
-	l.sll	r17, r17, r14
-	l.sra	r17, r17, r14
+	l.ori	r16, r0, 24
+	l.sll	r17, r17, r16
+	l.sra	r17, r17, r16
 	l.or	r3, r17, r17
 	l.jal	isspace
 	 l.nop
@@ -2760,10 +2705,10 @@ atoll:
 	l.bf	.L366
 	 l.nop
 
-	l.lwz	r17, 40(r1)
+	l.lwz	r17, 0(r1)
 	l.lbz	r17, 0(r17)
-	l.sll	r17, r17, r14
-	l.sra	r17, r17, r14
+	l.sll	r17, r17, r16
+	l.sra	r17, r17, r16
 	l.ori	r19, r0, 43
 	l.sfeq	r17, r19
 	l.bf	.L367
@@ -2775,77 +2720,68 @@ atoll:
 	 l.nop
 
 	l.ori	r17, r0, 1
-	l.sw	44(r1), r17
+	l.sw	4(r1), r17
 .L367:
-	l.lwz	r17, 40(r1)
+	l.lwz	r17, 0(r1)
 	l.addi	r17, r17, 1
-	l.sw	40(r1), r17
+	l.sw	0(r1), r17
 	l.j	.L369
 	 l.nop
 
 .L370:
-	l.lwz	r20, 48(r1)
-	l.lwz	r22, 52(r1)
-	l.or	r16, r20, r20
-	l.or	r18, r22, r22
-	l.ori	r17, r0, 30
-	l.srl	r17, r18, r17
-	l.ori	r19, r0, 2
-	l.sll	r24, r16, r19
-	l.or	r24, r17, r24
-	l.sll	r26, r18, r19
-	l.or	r16, r24, r24
-	l.or	r18, r26, r26
-	l.add	r19, r18, r22
-	l.sfltu	r19, r18
-	l.ori	r21, r0, 1
-	l.or	r21, r21, r21
+	l.lwz	r25, 8(r1)
+	l.lwz	r27, 12(r1)
+	l.or	r19, r25, r25
+	l.or	r17, r27, r27
+	l.ori	r21, r0, 30
+	l.srl	r21, r17, r21
+	l.ori	r23, r0, 2
+	l.sll	r19, r19, r23
+	l.or	r19, r21, r19
+	l.sll	r17, r17, r23
+	l.add	r23, r17, r27
+	l.sfltu	r23, r17
+	l.ori	r17, r0, 1
+	l.or	r17, r17, r17
 	l.bf	.L375
 	 l.nop
 
-	l.movhi	r21, hi(0)
+	l.movhi	r17, hi(0)
 .L375:
-	l.add	r17, r16, r20
-	l.add	r21, r21, r17
-	l.or	r17, r21, r21
-	l.or	r16, r17, r17
-	l.or	r18, r19, r19
-	l.add	r19, r18, r18
-	l.sfltu	r19, r18
-	l.ori	r21, r0, 1
-	l.or	r21, r21, r21
+	l.add	r21, r19, r25
+	l.add	r17, r17, r21
+	l.or	r21, r17, r17
+	l.or	r19, r21, r21
+	l.or	r17, r23, r23
+	l.add	r23, r17, r17
+	l.sfltu	r23, r17
+	l.ori	r17, r0, 1
+	l.or	r17, r17, r17
 	l.bf	.L376
 	 l.nop
 
-	l.movhi	r21, hi(0)
+	l.movhi	r17, hi(0)
 .L376:
-	l.add	r17, r16, r16
-	l.add	r21, r21, r17
-	l.or	r17, r21, r21
-	l.or	r16, r17, r17
-	l.or	r18, r19, r19
-	l.sw	8(r1), r16
-	l.sw	12(r1), r18
-	l.lwz	r17, 40(r1)
+	l.add	r21, r19, r19
+	l.add	r17, r17, r21
+	l.or	r21, r17, r17
+	l.or	r19, r21, r21
+	l.or	r17, r23, r23
+	l.or	r25, r19, r19
+	l.or	r21, r17, r17
+	l.lwz	r17, 0(r1)
 	l.addi	r19, r17, 1
-	l.sw	40(r1), r19
+	l.sw	0(r1), r19
 	l.lbz	r17, 0(r17)
 	l.ori	r19, r0, 24
 	l.sll	r17, r17, r19
 	l.sra	r17, r17, r19
 	l.addi	r17, r17, -48
-	l.sw	20(r1), r17
+	l.or	r27, r17, r17
 	l.ori	r19, r0, 31
 	l.sra	r17, r17, r19
-	l.sw	16(r1), r17
-	l.lwz	r23, 8(r1)
-	l.lwz	r25, 12(r1)
-	l.or	r21, r25, r25
-	l.lwz	r27, 16(r1)
-	l.lwz	r29, 20(r1)
-	l.or	r31, r29, r29
-	l.sub	r19, r21, r31
-	l.or	r21, r25, r25
+	l.or	r23, r17, r17
+	l.sub	r19, r21, r27
 	l.sfgtu	r19, r21
 	l.ori	r21, r0, 1
 	l.or	r21, r21, r21
@@ -2854,16 +2790,12 @@ atoll:
 
 	l.movhi	r21, hi(0)
 .L377:
-	l.or	r25, r27, r27
-	l.sub	r17, r23, r25
-	l.sub	r21, r17, r21
-	l.or	r17, r21, r21
-	l.or	r21, r17, r17
-	l.sw	48(r1), r21
-	l.or	r17, r19, r19
-	l.sw	52(r1), r17
+	l.sub	r17, r25, r23
+	l.sub	r17, r17, r21
+	l.sw	8(r1), r17
+	l.sw	12(r1), r19
 .L369:
-	l.lwz	r17, 40(r1)
+	l.lwz	r17, 0(r1)
 	l.lbz	r17, 0(r17)
 	l.ori	r19, r0, 24
 	l.sll	r17, r17, r19
@@ -2874,21 +2806,17 @@ atoll:
 	l.bf	.L370
 	 l.nop
 
-	l.lwz	r17, 44(r1)
+	l.lwz	r17, 4(r1)
 	l.movhi	r19, hi(0)
 	l.sfne	r17, r19
 	l.bf	.L371
 	 l.nop
 
-	l.sw	32(r1), r0
-	l.sw	36(r1), r0
-	l.lwz	r28, 48(r1)
-	l.lwz	r30, 52(r1)
-	l.lwz	r23, 32(r1)
-	l.lwz	r25, 36(r1)
-	l.or	r21, r25, r25
-	l.sub	r19, r21, r30
-	l.or	r21, r25, r25
+	l.movhi	r27, hi(0)
+	l.movhi	r21, hi(0)
+	l.lwz	r23, 8(r1)
+	l.lwz	r25, 12(r1)
+	l.sub	r19, r21, r25
 	l.sfgtu	r19, r21
 	l.ori	r21, r0, 1
 	l.or	r21, r21, r21
@@ -2897,41 +2825,23 @@ atoll:
 
 	l.movhi	r21, hi(0)
 .L378:
-	l.sub	r17, r23, r28
-	l.sub	r21, r17, r21
-	l.or	r17, r21, r21
-	l.sw	0(r1), r17
-	l.sw	4(r1), r19
+	l.sub	r17, r27, r23
+	l.sub	r17, r17, r21
+	l.or	r21, r17, r17
+	l.or	r17, r19, r19
 	l.j	.L373
 	 l.nop
 
 .L371:
-	l.lwz	r17, 48(r1)
-	l.sw	0(r1), r17
-	l.lwz	r17, 52(r1)
-	l.sw	4(r1), r17
+	l.lwz	r21, 8(r1)
+	l.lwz	r17, 12(r1)
 .L373:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.sw	24(r1), r21
-	l.or	r17, r19, r19
-	l.sw	28(r1), r17
-	l.lwz	r17, 24(r1)
-	l.lwz	r19, 28(r1)
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
-	l.lwz	r14, 56(r1)
-	l.lwz	r16, 60(r1)
-	l.lwz	r18, 64(r1)
-	l.lwz	r20, 68(r1)
-	l.lwz	r22, 72(r1)
-	l.lwz	r24, 76(r1)
-	l.lwz	r26, 80(r1)
-	l.lwz	r28, 84(r1)
-	l.lwz	r30, 88(r1)
-	l.lwz	r9, 92(r1)
-	l.addi	r1, r1, 96
+	l.or	r19, r21, r21
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.lwz	r16, 16(r1)
+	l.lwz	r9, 20(r1)
+	l.addi	r1, r1, 24
 	l.jr	r9
 	 l.nop
 
@@ -3145,29 +3055,28 @@ imaxabs:
 	l.bf	.L398
 	 l.nop
 
-	l.movhi	r25, hi(0)
 	l.movhi	r27, hi(0)
-	l.sub	r23, r27, r19
-	l.sfgtu	r23, r27
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.movhi	r25, hi(0)
+	l.sub	r23, r25, r19
+	l.sfgtu	r23, r25
+	l.ori	r19, r0, 1
+	l.or	r19, r19, r19
 	l.bf	.L402
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r19, hi(0)
 .L402:
-	l.sub	r21, r25, r17
-	l.sub	r25, r21, r15
-	l.or	r21, r25, r25
+	l.sub	r21, r27, r17
+	l.sub	r17, r21, r19
+	l.or	r21, r17, r17
 	l.or	r17, r21, r21
 	l.or	r19, r23, r23
 .L398:
+	l.or	r21, r17, r17
+	l.or	r17, r19, r19
+	l.or	r19, r21, r21
+	l.or	r11, r19, r19
 	l.or	r12, r17, r17
-	l.or	r13, r19, r19
-	l.or	r29, r12, r12
-	l.or	r31, r13, r13
-	l.or	r11, r29, r29
-	l.or	r12, r31, r31
 	l.addi	r1, r1, 8
 	l.jr	r9
 	 l.nop
@@ -3177,68 +3086,54 @@ imaxabs:
 	.global	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	l.addi	r1, r1, -80
-	l.sw	44(r1), r16
-	l.sw	48(r1), r18
-	l.sw	52(r1), r20
-	l.sw	56(r1), r22
-	l.sw	60(r1), r24
-	l.sw	64(r1), r26
-	l.sw	68(r1), r28
-	l.sw	72(r1), r30
-	l.sw	76(r1), r9
-	l.sw	24(r1), r3
-	l.sw	16(r1), r4
-	l.sw	20(r1), r5
-	l.sw	8(r1), r6
-	l.sw	12(r1), r7
-	l.lwz	r5, 8(r1)
-	l.lwz	r6, 12(r1)
-	l.lwz	r3, 16(r1)
-	l.lwz	r4, 20(r1)
+	l.addi	r1, r1, -48
+	l.sw	36(r1), r16
+	l.sw	40(r1), r18
+	l.sw	44(r1), r9
+	l.sw	16(r1), r3
+	l.sw	8(r1), r4
+	l.sw	12(r1), r5
+	l.sw	0(r1), r6
+	l.sw	4(r1), r7
+	l.lwz	r5, 0(r1)
+	l.lwz	r6, 4(r1)
+	l.lwz	r3, 8(r1)
+	l.lwz	r4, 12(r1)
 	l.jal	__divdi3
 	 l.nop
 
-	l.sw	0(r1), r11
-	l.sw	4(r1), r12
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r24, r17, r17
-	l.or	r26, r19, r19
-	l.lwz	r16, 16(r1)
-	l.lwz	r18, 20(r1)
-	l.lwz	r5, 8(r1)
-	l.lwz	r6, 12(r1)
-	l.or	r3, r16, r16
-	l.or	r4, r18, r18
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r18, r19, r19
+	l.or	r16, r17, r17
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.lwz	r5, 0(r1)
+	l.lwz	r6, 4(r1)
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__moddi3
 	 l.nop
 
-	l.or	r28, r11, r11
-	l.or	r30, r12, r12
-	l.or	r20, r28, r28
-	l.or	r22, r30, r30
-	l.lwz	r17, 24(r1)
-	l.or	r19, r24, r24
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r23, r19, r19
+	l.or	r21, r17, r17
+	l.lwz	r17, 16(r1)
+	l.or	r19, r18, r18
 	l.sw	0(r17), r19
-	l.or	r19, r26, r26
+	l.or	r19, r16, r16
 	l.sw	4(r17), r19
-	l.lwz	r17, 24(r1)
-	l.or	r19, r20, r20
+	l.lwz	r17, 16(r1)
+	l.or	r19, r23, r23
 	l.sw	8(r17), r19
-	l.or	r19, r22, r22
+	l.or	r19, r21, r21
 	l.sw	12(r17), r19
-	l.lwz	r11, 24(r1)
-	l.lwz	r16, 44(r1)
-	l.lwz	r18, 48(r1)
-	l.lwz	r20, 52(r1)
-	l.lwz	r22, 56(r1)
-	l.lwz	r24, 60(r1)
-	l.lwz	r26, 64(r1)
-	l.lwz	r28, 68(r1)
-	l.lwz	r30, 72(r1)
-	l.lwz	r9, 76(r1)
-	l.addi	r1, r1, 80
+	l.lwz	r11, 16(r1)
+	l.lwz	r16, 36(r1)
+	l.lwz	r18, 40(r1)
+	l.lwz	r9, 44(r1)
+	l.addi	r1, r1, 48
 	l.jr	r9
 	 l.nop
 
@@ -3304,29 +3199,28 @@ llabs:
 	l.bf	.L414
 	 l.nop
 
-	l.movhi	r25, hi(0)
 	l.movhi	r27, hi(0)
-	l.sub	r23, r27, r19
-	l.sfgtu	r23, r27
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.movhi	r25, hi(0)
+	l.sub	r23, r25, r19
+	l.sfgtu	r23, r25
+	l.ori	r19, r0, 1
+	l.or	r19, r19, r19
 	l.bf	.L418
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r19, hi(0)
 .L418:
-	l.sub	r21, r25, r17
-	l.sub	r25, r21, r15
-	l.or	r21, r25, r25
+	l.sub	r21, r27, r17
+	l.sub	r17, r21, r19
+	l.or	r21, r17, r17
 	l.or	r17, r21, r21
 	l.or	r19, r23, r23
 .L414:
+	l.or	r21, r17, r17
+	l.or	r17, r19, r19
+	l.or	r19, r21, r21
+	l.or	r11, r19, r19
 	l.or	r12, r17, r17
-	l.or	r13, r19, r19
-	l.or	r29, r12, r12
-	l.or	r31, r13, r13
-	l.or	r11, r29, r29
-	l.or	r12, r31, r31
 	l.addi	r1, r1, 8
 	l.jr	r9
 	 l.nop
@@ -3336,68 +3230,54 @@ llabs:
 	.global	lldiv
 	.type	lldiv, @function
 lldiv:
-	l.addi	r1, r1, -80
-	l.sw	44(r1), r16
-	l.sw	48(r1), r18
-	l.sw	52(r1), r20
-	l.sw	56(r1), r22
-	l.sw	60(r1), r24
-	l.sw	64(r1), r26
-	l.sw	68(r1), r28
-	l.sw	72(r1), r30
-	l.sw	76(r1), r9
-	l.sw	24(r1), r3
-	l.sw	16(r1), r4
-	l.sw	20(r1), r5
-	l.sw	8(r1), r6
-	l.sw	12(r1), r7
-	l.lwz	r5, 8(r1)
-	l.lwz	r6, 12(r1)
-	l.lwz	r3, 16(r1)
-	l.lwz	r4, 20(r1)
+	l.addi	r1, r1, -48
+	l.sw	36(r1), r16
+	l.sw	40(r1), r18
+	l.sw	44(r1), r9
+	l.sw	16(r1), r3
+	l.sw	8(r1), r4
+	l.sw	12(r1), r5
+	l.sw	0(r1), r6
+	l.sw	4(r1), r7
+	l.lwz	r5, 0(r1)
+	l.lwz	r6, 4(r1)
+	l.lwz	r3, 8(r1)
+	l.lwz	r4, 12(r1)
 	l.jal	__divdi3
 	 l.nop
 
-	l.sw	0(r1), r11
-	l.sw	4(r1), r12
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r24, r17, r17
-	l.or	r26, r19, r19
-	l.lwz	r16, 16(r1)
-	l.lwz	r18, 20(r1)
-	l.lwz	r5, 8(r1)
-	l.lwz	r6, 12(r1)
-	l.or	r3, r16, r16
-	l.or	r4, r18, r18
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r18, r19, r19
+	l.or	r16, r17, r17
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.lwz	r5, 0(r1)
+	l.lwz	r6, 4(r1)
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__moddi3
 	 l.nop
 
-	l.or	r28, r11, r11
-	l.or	r30, r12, r12
-	l.or	r20, r28, r28
-	l.or	r22, r30, r30
-	l.lwz	r17, 24(r1)
-	l.or	r19, r24, r24
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r23, r19, r19
+	l.or	r21, r17, r17
+	l.lwz	r17, 16(r1)
+	l.or	r19, r18, r18
 	l.sw	0(r17), r19
-	l.or	r19, r26, r26
+	l.or	r19, r16, r16
 	l.sw	4(r17), r19
-	l.lwz	r17, 24(r1)
-	l.or	r19, r20, r20
+	l.lwz	r17, 16(r1)
+	l.or	r19, r23, r23
 	l.sw	8(r17), r19
-	l.or	r19, r22, r22
+	l.or	r19, r21, r21
 	l.sw	12(r17), r19
-	l.lwz	r11, 24(r1)
-	l.lwz	r16, 44(r1)
-	l.lwz	r18, 48(r1)
-	l.lwz	r20, 52(r1)
-	l.lwz	r22, 56(r1)
-	l.lwz	r24, 60(r1)
-	l.lwz	r26, 64(r1)
-	l.lwz	r28, 68(r1)
-	l.lwz	r30, 72(r1)
-	l.lwz	r9, 76(r1)
-	l.addi	r1, r1, 80
+	l.lwz	r11, 16(r1)
+	l.lwz	r16, 36(r1)
+	l.lwz	r18, 40(r1)
+	l.lwz	r9, 44(r1)
+	l.addi	r1, r1, 48
 	l.jr	r9
 	 l.nop
 
@@ -4077,89 +3957,85 @@ bcopy:
 	.global	rotl64
 	.type	rotl64, @function
 rotl64:
-	l.addi	r1, r1, -16
-	l.sw	12(r1), r9
+	l.addi	r1, r1, -12
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
 	l.lwz	r17, 4(r1)
 	l.lwz	r19, 8(r1)
-	l.lwz	r13, 0(r1)
-	l.addi	r13, r13, -32
-	l.sll	r7, r19, r13
-	l.movhi	r6, hi(0)
-	l.ori	r15, r0, 1
-	l.srl	r12, r19, r15
-	l.ori	r11, r0, 31
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r11, r15
-	l.srl	r15, r12, r15
-	l.lwz	r12, 0(r1)
-	l.sll	r25, r17, r12
-	l.or	r25, r15, r25
-	l.lwz	r15, 0(r1)
-	l.sll	r27, r19, r15
-	l.xori	r15, r0, -1
-	l.sfgts	r13, r15
+	l.lwz	r21, 0(r1)
+	l.addi	r23, r21, -32
+	l.sll	r29, r19, r23
+	l.movhi	r31, hi(0)
+	l.ori	r21, r0, 1
+	l.srl	r25, r19, r21
+	l.ori	r27, r0, 31
+	l.lwz	r21, 0(r1)
+	l.sub	r21, r27, r21
+	l.srl	r25, r25, r21
+	l.lwz	r21, 0(r1)
+	l.sll	r21, r17, r21
+	l.or	r21, r25, r21
+	l.lwz	r25, 0(r1)
+	l.sll	r27, r19, r25
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L509
 	 l.nop
 
-	l.or	r25, r7, r7
+	l.or	r21, r29, r29
 .L509:
-	l.xori	r15, r0, -1
-	l.sfgts	r13, r15
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L510
 	 l.nop
 
-	l.or	r27, r6, r6
+	l.or	r27, r31, r31
 .L510:
-	l.lwz	r13, 0(r1)
-	l.sub	r13, r0, r13
-	l.andi	r13, r13, 63
-	l.addi	r13, r13, -32
-	l.srl	r7, r17, r13
-	l.movhi	r6, hi(0)
-	l.ori	r15, r0, 1
-	l.sll	r12, r17, r15
-	l.ori	r11, r0, 31
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.sub	r15, r11, r15
-	l.sll	r12, r12, r15
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.srl	r23, r19, r15
-	l.or	r23, r12, r23
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.srl	r21, r17, r15
-	l.xori	r17, r0, -1
-	l.sfgts	r13, r17
+	l.lwz	r23, 0(r1)
+	l.sub	r23, r0, r23
+	l.andi	r23, r23, 63
+	l.addi	r23, r23, -32
+	l.srl	r13, r17, r23
+	l.movhi	r15, hi(0)
+	l.ori	r25, r0, 1
+	l.sll	r29, r17, r25
+	l.ori	r31, r0, 31
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.sub	r25, r31, r25
+	l.sll	r29, r29, r25
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.srl	r19, r19, r25
+	l.or	r19, r29, r19
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.srl	r17, r17, r25
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L511
 	 l.nop
 
-	l.or	r23, r7, r7
+	l.or	r19, r13, r13
 .L511:
-	l.xori	r17, r0, -1
-	l.sfgts	r13, r17
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L512
 	 l.nop
 
-	l.or	r21, r6, r6
+	l.or	r17, r15, r15
 .L512:
-	l.or	r29, r21, r25
-	l.or	r31, r23, r27
-	l.or	r21, r29, r29
-	l.or	r23, r31, r31
-	l.or	r8, r21, r21
-	l.or	r9, r23, r23
-	l.or	r11, r8, r8
-	l.or	r12, r9, r9
-	l.lwz	r9, 12(r1)
-	l.addi	r1, r1, 16
+	l.or	r17, r17, r21
+	l.or	r19, r19, r27
+	l.or	r21, r17, r17
+	l.or	r17, r19, r19
+	l.or	r11, r21, r21
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 12
 	l.jr	r9
 	 l.nop
 
@@ -4168,89 +4044,83 @@ rotl64:
 	.global	rotr64
 	.type	rotr64, @function
 rotr64:
-	l.addi	r1, r1, -16
-	l.sw	12(r1), r9
+	l.addi	r1, r1, -12
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.lwz	r13, 0(r1)
-	l.addi	r13, r13, -32
-	l.srl	r7, r17, r13
-	l.movhi	r6, hi(0)
-	l.ori	r15, r0, 1
-	l.sll	r12, r17, r15
-	l.ori	r11, r0, 31
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r11, r15
-	l.sll	r15, r12, r15
-	l.lwz	r12, 0(r1)
-	l.srl	r27, r19, r12
-	l.or	r27, r15, r27
-	l.lwz	r15, 0(r1)
-	l.srl	r25, r17, r15
-	l.xori	r15, r0, -1
-	l.sfgts	r13, r15
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.lwz	r21, 0(r1)
+	l.addi	r23, r21, -32
+	l.srl	r29, r19, r23
+	l.movhi	r31, hi(0)
+	l.ori	r21, r0, 1
+	l.sll	r25, r19, r21
+	l.ori	r27, r0, 31
+	l.lwz	r21, 0(r1)
+	l.sub	r21, r27, r21
+	l.sll	r25, r25, r21
+	l.lwz	r21, 0(r1)
+	l.srl	r21, r17, r21
+	l.or	r21, r25, r21
+	l.lwz	r25, 0(r1)
+	l.srl	r27, r19, r25
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L516
 	 l.nop
 
-	l.or	r27, r7, r7
+	l.or	r21, r29, r29
 .L516:
-	l.xori	r15, r0, -1
-	l.sfgts	r13, r15
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L517
 	 l.nop
 
-	l.or	r25, r6, r6
+	l.or	r27, r31, r31
 .L517:
-	l.lwz	r13, 0(r1)
-	l.sub	r13, r0, r13
-	l.andi	r13, r13, 63
-	l.addi	r13, r13, -32
-	l.sll	r7, r19, r13
-	l.movhi	r6, hi(0)
-	l.ori	r15, r0, 1
-	l.srl	r12, r19, r15
-	l.ori	r11, r0, 31
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.sub	r15, r11, r15
-	l.srl	r12, r12, r15
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.sll	r21, r17, r15
-	l.or	r21, r12, r21
-	l.lwz	r15, 0(r1)
-	l.sub	r15, r0, r15
-	l.andi	r15, r15, 63
-	l.sll	r23, r19, r15
-	l.xori	r17, r0, -1
-	l.sfgts	r13, r17
+	l.lwz	r23, 0(r1)
+	l.sub	r23, r0, r23
+	l.andi	r23, r23, 63
+	l.addi	r23, r23, -32
+	l.sll	r13, r17, r23
+	l.movhi	r15, hi(0)
+	l.ori	r25, r0, 1
+	l.srl	r29, r17, r25
+	l.ori	r31, r0, 31
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.sub	r25, r31, r25
+	l.srl	r29, r29, r25
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.sll	r19, r19, r25
+	l.or	r19, r29, r19
+	l.lwz	r25, 0(r1)
+	l.sub	r25, r0, r25
+	l.andi	r25, r25, 63
+	l.sll	r17, r17, r25
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L518
 	 l.nop
 
-	l.or	r21, r7, r7
+	l.or	r19, r13, r13
 .L518:
-	l.xori	r17, r0, -1
-	l.sfgts	r13, r17
+	l.xori	r25, r0, -1
+	l.sfgts	r23, r25
 	l.bnf	.L519
 	 l.nop
 
-	l.or	r23, r6, r6
+	l.or	r17, r15, r15
 .L519:
-	l.or	r29, r21, r25
-	l.or	r31, r23, r27
-	l.or	r21, r29, r29
-	l.or	r23, r31, r31
-	l.or	r8, r21, r21
-	l.or	r9, r23, r23
-	l.or	r11, r8, r8
-	l.or	r12, r9, r9
-	l.lwz	r9, 12(r1)
-	l.addi	r1, r1, 16
+	l.or	r19, r19, r27
+	l.or	r17, r17, r21
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 12
 	l.jr	r9
 	 l.nop
 
@@ -4512,266 +4382,109 @@ bswap_32:
 	.global	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	l.addi	r1, r1, -224
-	l.sw	184(r1), r14
-	l.sw	188(r1), r16
-	l.sw	192(r1), r18
-	l.sw	196(r1), r20
-	l.sw	200(r1), r22
-	l.sw	204(r1), r24
-	l.sw	208(r1), r26
-	l.sw	212(r1), r28
-	l.sw	216(r1), r30
-	l.sw	220(r1), r9
-	l.sw	168(r1), r3
-	l.sw	172(r1), r4
-	l.movhi	r21, hi(0)
-	l.ori	r23, r0, 255
-	l.or	r17, r21, r21
-	l.sw	176(r1), r17
-	l.or	r17, r23, r23
-	l.sw	180(r1), r17
-	l.lwz	r17, 180(r1)
-	l.ori	r23, r0, 24
-	l.sll	r25, r17, r23
-	l.movhi	r27, hi(0)
-	l.lwz	r17, 168(r1)
-	l.and	r6, r17, r25
-	l.lwz	r17, 172(r1)
-	l.and	r7, r17, r27
-	l.srl	r17, r6, r23
-	l.sw	28(r1), r17
-	l.sw	24(r1), r0
-	l.lwz	r17, 180(r1)
-	l.ori	r11, r0, 16
-	l.sll	r12, r17, r11
-	l.movhi	r13, hi(0)
-	l.lwz	r17, 168(r1)
-	l.and	r17, r17, r12
-	l.sw	32(r1), r17
-	l.lwz	r17, 172(r1)
-	l.and	r17, r17, r13
-	l.sw	36(r1), r17
-	l.lwz	r17, 32(r1)
-	l.ori	r27, r0, 8
-	l.srl	r18, r17, r27
-	l.movhi	r16, hi(0)
-	l.lwz	r17, 24(r1)
-	l.lwz	r19, 28(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r21, r16
-	l.sw	40(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r17, r18
-	l.sw	44(r1), r17
-	l.lwz	r17, 180(r1)
+	l.addi	r1, r1, -16
+	l.sw	0(r1), r3
+	l.sw	4(r1), r4
+	l.movhi	r19, hi(0)
+	l.ori	r17, r0, 255
+	l.sw	8(r1), r19
+	l.sw	12(r1), r17
+	l.lwz	r17, 12(r1)
+	l.ori	r27, r0, 24
 	l.sll	r17, r17, r27
-	l.sw	48(r1), r17
-	l.sw	52(r1), r0
-	l.lwz	r17, 168(r1)
-	l.lwz	r19, 48(r1)
-	l.lwz	r21, 52(r1)
-	l.or	r25, r19, r19
-	l.and	r8, r17, r25
-	l.lwz	r17, 172(r1)
-	l.or	r19, r21, r21
-	l.and	r9, r17, r19
-	l.sll	r17, r8, r27
-	l.srl	r31, r9, r23
-	l.or	r31, r17, r31
-	l.srl	r29, r8, r23
-	l.lwz	r17, 40(r1)
-	l.lwz	r19, 44(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r21, r29
-	l.sw	56(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r17, r31
-	l.sw	60(r1), r17
-	l.lwz	r17, 180(r1)
+	l.lwz	r19, 0(r1)
+	l.and	r17, r19, r17
+	l.srl	r19, r17, r27
+	l.movhi	r23, hi(0)
+	l.lwz	r17, 12(r1)
+	l.ori	r31, r0, 16
+	l.sll	r17, r17, r31
+	l.lwz	r21, 0(r1)
+	l.and	r17, r21, r17
+	l.ori	r29, r0, 8
+	l.srl	r17, r17, r29
+	l.movhi	r21, hi(0)
+	l.or	r21, r23, r21
+	l.or	r23, r19, r17
+	l.lwz	r17, 12(r1)
+	l.sll	r17, r17, r29
+	l.movhi	r25, hi(0)
+	l.lwz	r19, 0(r1)
+	l.and	r19, r19, r17
+	l.lwz	r17, 4(r1)
+	l.and	r17, r17, r25
+	l.sll	r25, r19, r29
+	l.srl	r17, r17, r27
+	l.or	r17, r25, r17
+	l.srl	r19, r19, r27
+	l.or	r21, r21, r19
+	l.or	r23, r23, r17
+	l.lwz	r17, 12(r1)
 	l.movhi	r19, hi(0)
 	l.sll	r17, r17, r19
-	l.sw	64(r1), r17
-	l.sw	68(r1), r0
-	l.lwz	r17, 168(r1)
-	l.lwz	r19, 64(r1)
-	l.lwz	r21, 68(r1)
-	l.or	r25, r19, r19
-	l.and	r24, r17, r25
-	l.lwz	r17, 172(r1)
-	l.or	r19, r21, r21
-	l.and	r26, r17, r19
-	l.sll	r17, r24, r23
-	l.srl	r22, r26, r27
-	l.or	r22, r17, r22
-	l.srl	r20, r24, r27
-	l.lwz	r17, 56(r1)
-	l.lwz	r19, 60(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r21, r20
-	l.sw	72(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r17, r22
-	l.sw	76(r1), r17
-	l.lwz	r17, 180(r1)
-	l.srl	r19, r17, r27
-	l.lwz	r17, 176(r1)
-	l.or	r25, r23, r23
-	l.sll	r17, r17, r25
-	l.sw	0(r1), r17
-	l.lwz	r17, 0(r1)
-	l.or	r17, r19, r17
-	l.sw	0(r1), r17
-	l.lwz	r17, 180(r1)
-	l.sll	r17, r17, r25
-	l.sw	4(r1), r17
-	l.lwz	r17, 168(r1)
+	l.movhi	r25, hi(0)
 	l.lwz	r19, 0(r1)
-	l.lwz	r21, 4(r1)
-	l.or	r23, r19, r19
-	l.and	r17, r17, r23
-	l.sw	80(r1), r17
-	l.lwz	r17, 172(r1)
-	l.or	r19, r21, r21
-	l.and	r17, r17, r19
-	l.sw	84(r1), r17
-	l.lwz	r19, 80(r1)
-	l.lwz	r21, 84(r1)
-	l.or	r17, r21, r21
-	l.srl	r17, r17, r25
-	l.or	r23, r19, r19
-	l.sll	r23, r23, r27
-	l.sw	8(r1), r23
-	l.lwz	r23, 8(r1)
-	l.or	r17, r17, r23
-	l.sw	8(r1), r17
-	l.or	r17, r21, r21
-	l.sll	r17, r17, r27
-	l.sw	12(r1), r17
-	l.lwz	r21, 72(r1)
-	l.lwz	r23, 76(r1)
-	l.or	r29, r21, r21
+	l.and	r19, r19, r17
+	l.lwz	r17, 4(r1)
+	l.and	r17, r17, r25
+	l.sll	r25, r19, r27
+	l.srl	r17, r17, r29
+	l.or	r17, r25, r17
+	l.srl	r19, r19, r29
+	l.or	r21, r21, r19
+	l.or	r23, r23, r17
+	l.lwz	r17, 12(r1)
+	l.srl	r19, r17, r29
 	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
-	l.or	r31, r17, r17
-	l.or	r29, r29, r31
-	l.sw	88(r1), r29
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r17, r21, r17
-	l.sw	92(r1), r17
-	l.lwz	r17, 180(r1)
-	l.srl	r17, r17, r11
-	l.lwz	r19, 176(r1)
-	l.sll	r19, r19, r11
-	l.sw	16(r1), r19
-	l.lwz	r19, 16(r1)
-	l.or	r17, r17, r19
-	l.sw	16(r1), r17
-	l.lwz	r17, 180(r1)
-	l.sll	r17, r17, r11
-	l.sw	20(r1), r17
-	l.lwz	r17, 168(r1)
-	l.lwz	r19, 16(r1)
-	l.lwz	r21, 20(r1)
-	l.or	r23, r19, r19
-	l.and	r17, r17, r23
-	l.sw	96(r1), r17
-	l.lwz	r17, 172(r1)
-	l.or	r19, r21, r21
-	l.and	r17, r17, r19
-	l.sw	100(r1), r17
-	l.lwz	r19, 96(r1)
-	l.lwz	r21, 100(r1)
-	l.or	r17, r21, r21
-	l.srl	r17, r17, r27
-	l.or	r23, r19, r19
-	l.sll	r14, r23, r25
-	l.or	r14, r17, r14
-	l.or	r17, r21, r21
-	l.sll	r15, r17, r25
-	l.lwz	r17, 88(r1)
-	l.lwz	r19, 92(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r21, r14
-	l.sw	104(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r17, r15
-	l.sw	108(r1), r17
-	l.lwz	r17, 180(r1)
-	l.srl	r17, r17, r25
-	l.lwz	r19, 176(r1)
-	l.sll	r28, r19, r27
-	l.or	r28, r17, r28
-	l.lwz	r17, 180(r1)
-	l.sll	r30, r17, r27
-	l.lwz	r17, 168(r1)
-	l.and	r17, r17, r28
-	l.sw	112(r1), r17
-	l.lwz	r17, 172(r1)
-	l.and	r17, r17, r30
-	l.sw	116(r1), r17
-	l.lwz	r17, 116(r1)
 	l.sll	r17, r17, r27
-	l.sw	120(r1), r17
-	l.sw	124(r1), r0
-	l.lwz	r21, 104(r1)
-	l.lwz	r23, 108(r1)
-	l.or	r27, r21, r21
-	l.lwz	r17, 120(r1)
-	l.lwz	r19, 124(r1)
-	l.or	r29, r17, r17
-	l.or	r27, r27, r29
-	l.sw	128(r1), r27
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r17, r21, r17
-	l.sw	132(r1), r17
-	l.lwz	r19, 168(r1)
-	l.lwz	r17, 176(r1)
-	l.and	r17, r19, r17
-	l.sw	136(r1), r17
-	l.lwz	r19, 172(r1)
-	l.lwz	r17, 180(r1)
-	l.and	r17, r19, r17
-	l.sw	140(r1), r17
-	l.lwz	r17, 140(r1)
-	l.sll	r17, r17, r25
-	l.sw	144(r1), r17
-	l.sw	148(r1), r0
-	l.lwz	r21, 128(r1)
-	l.lwz	r23, 132(r1)
-	l.or	r25, r21, r21
-	l.lwz	r17, 144(r1)
-	l.lwz	r19, 148(r1)
-	l.or	r27, r17, r17
-	l.or	r25, r25, r27
-	l.sw	152(r1), r25
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r17, r21, r17
-	l.sw	156(r1), r17
-	l.lwz	r17, 152(r1)
-	l.lwz	r19, 156(r1)
-	l.or	r21, r17, r17
-	l.sw	160(r1), r21
-	l.or	r17, r19, r19
-	l.sw	164(r1), r17
-	l.lwz	r17, 160(r1)
-	l.lwz	r19, 164(r1)
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
-	l.lwz	r14, 184(r1)
-	l.lwz	r16, 188(r1)
-	l.lwz	r18, 192(r1)
-	l.lwz	r20, 196(r1)
-	l.lwz	r22, 200(r1)
-	l.lwz	r24, 204(r1)
-	l.lwz	r26, 208(r1)
-	l.lwz	r28, 212(r1)
-	l.lwz	r30, 216(r1)
-	l.lwz	r9, 220(r1)
-	l.addi	r1, r1, 224
+	l.or	r17, r19, r17
+	l.lwz	r19, 12(r1)
+	l.sll	r19, r19, r27
+	l.lwz	r25, 0(r1)
+	l.and	r17, r25, r17
+	l.lwz	r25, 4(r1)
+	l.and	r19, r25, r19
+	l.srl	r25, r19, r27
+	l.sll	r17, r17, r29
+	l.or	r17, r25, r17
+	l.sll	r19, r19, r29
+	l.or	r21, r21, r17
+	l.or	r23, r23, r19
+	l.lwz	r17, 12(r1)
+	l.srl	r19, r17, r31
+	l.lwz	r17, 8(r1)
+	l.sll	r17, r17, r31
+	l.or	r17, r19, r17
+	l.lwz	r19, 12(r1)
+	l.sll	r19, r19, r31
+	l.lwz	r25, 0(r1)
+	l.and	r17, r25, r17
+	l.lwz	r25, 4(r1)
+	l.and	r19, r25, r19
+	l.srl	r25, r19, r29
+	l.sll	r17, r17, r27
+	l.or	r17, r25, r17
+	l.sll	r19, r19, r27
+	l.or	r21, r21, r17
+	l.or	r17, r23, r19
+	l.lwz	r19, 12(r1)
+	l.sll	r19, r19, r29
+	l.lwz	r23, 4(r1)
+	l.and	r19, r23, r19
+	l.sll	r19, r19, r29
+	l.movhi	r23, hi(0)
+	l.or	r21, r21, r19
+	l.or	r17, r17, r23
+	l.lwz	r23, 4(r1)
+	l.lwz	r19, 12(r1)
+	l.and	r19, r23, r19
+	l.sll	r19, r19, r27
+	l.movhi	r23, hi(0)
+	l.or	r19, r21, r19
+	l.or	r17, r17, r23
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 16
 	l.jr	r9
 	 l.nop
 
@@ -5061,12 +4774,11 @@ _Qp_itoq:
 	l.jal	__floatsidf
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
+	l.or	r19, r11, r11
+	l.or	r21, r12, r12
 	l.lwz	r17, 4(r1)
-	l.or	r19, r21, r21
 	l.sw	0(r17), r19
-	l.or	r19, r23, r23
+	l.or	r19, r21, r21
 	l.sw	4(r17), r19
 	l.nop
 	l.lwz	r9, 8(r1)
@@ -5220,21 +4932,21 @@ ldexp:
 	l.bf	.L607
 	 l.nop
 
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r5, r17, r17
-	l.or	r6, r19, r19
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.or	r5, r19, r19
+	l.or	r6, r17, r17
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__adddf3
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
-	l.or	r5, r17, r17
-	l.or	r6, r19, r19
+	l.or	r17, r21, r21
+	l.or	r5, r19, r19
+	l.or	r6, r17, r17
 	l.lwz	r3, 4(r1)
 	l.lwz	r4, 8(r1)
 	l.jal	__nedf2
@@ -5253,23 +4965,21 @@ ldexp:
 	 l.nop
 
 	l.movhi	r21, ha(.LC10)
-	l.lwz	r17, lo(.LC10)(r21)
-	l.addi	r21, r21, lo(.LC10)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.lwz	r19, lo(.LC10)(r21)
+	l.addi	r17, r21, lo(.LC10)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 	l.j	.L610
 	 l.nop
 
 .L609:
 	l.movhi	r21, ha(.LC11)
-	l.lwz	r17, lo(.LC11)(r21)
-	l.addi	r21, r21, lo(.LC11)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.lwz	r19, lo(.LC11)(r21)
+	l.addi	r17, r21, lo(.LC11)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 .L610:
-	l.or	r21, r17, r17
-	l.sw	12(r1), r21
-	l.or	r17, r19, r19
+	l.sw	12(r1), r19
 	l.sw	16(r1), r17
 .L613:
 	l.lwz	r17, 0(r1)
@@ -5288,8 +4998,7 @@ ldexp:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	4(r1), r21
+	l.sw	4(r1), r17
 	l.or	r17, r19, r19
 	l.sw	8(r1), r17
 .L611:
@@ -5315,8 +5024,7 @@ ldexp:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	12(r1), r21
+	l.sw	12(r1), r17
 	l.or	r17, r19, r19
 	l.sw	16(r1), r17
 	l.j	.L613
@@ -5325,12 +5033,12 @@ ldexp:
 .L616:
 	l.nop
 .L607:
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r21, r17, r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 20(r1)
 	l.addi	r1, r1, 24
 	l.jr	r9
@@ -5369,21 +5077,21 @@ ldexpl:
 	l.bf	.L619
 	 l.nop
 
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r5, r17, r17
-	l.or	r6, r19, r19
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.or	r5, r19, r19
+	l.or	r6, r17, r17
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__adddf3
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
-	l.or	r5, r17, r17
-	l.or	r6, r19, r19
+	l.or	r17, r21, r21
+	l.or	r5, r19, r19
+	l.or	r6, r17, r17
 	l.lwz	r3, 4(r1)
 	l.lwz	r4, 8(r1)
 	l.jal	__nedf2
@@ -5402,23 +5110,21 @@ ldexpl:
 	 l.nop
 
 	l.movhi	r21, ha(.LC12)
-	l.lwz	r17, lo(.LC12)(r21)
-	l.addi	r21, r21, lo(.LC12)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.lwz	r19, lo(.LC12)(r21)
+	l.addi	r17, r21, lo(.LC12)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 	l.j	.L622
 	 l.nop
 
 .L621:
 	l.movhi	r21, ha(.LC13)
-	l.lwz	r17, lo(.LC13)(r21)
-	l.addi	r21, r21, lo(.LC13)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
+	l.lwz	r19, lo(.LC13)(r21)
+	l.addi	r17, r21, lo(.LC13)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
 .L622:
-	l.or	r21, r17, r17
-	l.sw	12(r1), r21
-	l.or	r17, r19, r19
+	l.sw	12(r1), r19
 	l.sw	16(r1), r17
 .L625:
 	l.lwz	r17, 0(r1)
@@ -5437,8 +5143,7 @@ ldexpl:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	4(r1), r21
+	l.sw	4(r1), r17
 	l.or	r17, r19, r19
 	l.sw	8(r1), r17
 .L623:
@@ -5464,8 +5169,7 @@ ldexpl:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	12(r1), r21
+	l.sw	12(r1), r17
 	l.or	r17, r19, r19
 	l.sw	16(r1), r17
 	l.j	.L625
@@ -5474,12 +5178,12 @@ ldexpl:
 .L628:
 	l.nop
 .L619:
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r21, r17, r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 20(r1)
 	l.addi	r1, r1, 24
 	l.jr	r9
@@ -5841,10 +5545,8 @@ strstr:
 	.global	copysign
 	.type	copysign, @function
 copysign:
-	l.addi	r1, r1, -28
-	l.sw	16(r1), r16
-	l.sw	20(r1), r18
-	l.sw	24(r1), r9
+	l.addi	r1, r1, -20
+	l.sw	16(r1), r9
 	l.sw	8(r1), r3
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
@@ -5917,23 +5619,21 @@ copysign:
 .L672:
 	l.lwz	r19, 8(r1)
 	l.movhi	r17, hi(-2147483648)
-	l.xor	r16, r19, r17
-	l.lwz	r18, 12(r1)
+	l.xor	r19, r19, r17
+	l.lwz	r17, 12(r1)
 	l.j	.L676
 	 l.nop
 
 .L673:
-	l.lwz	r16, 8(r1)
-	l.lwz	r18, 12(r1)
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
 .L676:
-	l.or	r17, r16, r16
-	l.or	r19, r18, r18
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
-	l.lwz	r16, 16(r1)
-	l.lwz	r18, 20(r1)
-	l.lwz	r9, 24(r1)
-	l.addi	r1, r1, 28
+	l.or	r23, r19, r19
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
+	l.lwz	r9, 16(r1)
+	l.addi	r1, r1, 20
 	l.jr	r9
 	 l.nop
 
@@ -6095,12 +5795,8 @@ mempcpy:
 	.global	frexp
 	.type	frexp, @function
 frexp:
-	l.addi	r1, r1, -40
-	l.sw	20(r1), r16
-	l.sw	24(r1), r18
-	l.sw	28(r1), r20
-	l.sw	32(r1), r22
-	l.sw	36(r1), r9
+	l.addi	r1, r1, -24
+	l.sw	20(r1), r9
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
@@ -6124,11 +5820,9 @@ frexp:
 
 	l.lwz	r19, 4(r1)
 	l.movhi	r17, hi(-2147483648)
-	l.xor	r20, r19, r17
-	l.lwz	r22, 8(r1)
-	l.or	r17, r20, r20
-	l.sw	4(r1), r17
-	l.or	r17, r22, r22
+	l.xor	r19, r19, r17
+	l.lwz	r17, 8(r1)
+	l.sw	4(r1), r19
 	l.sw	8(r1), r17
 	l.ori	r17, r0, 1
 	l.sw	16(r1), r17
@@ -6168,8 +5862,7 @@ frexp:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	4(r1), r21
+	l.sw	4(r1), r17
 	l.or	r17, r19, r19
 	l.sw	8(r1), r17
 .L697:
@@ -6232,19 +5925,18 @@ frexp:
 	l.lwz	r17, 12(r1)
 	l.addi	r17, r17, -1
 	l.sw	12(r1), r17
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r5, r17, r17
-	l.or	r6, r19, r19
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.or	r5, r19, r19
+	l.or	r6, r17, r17
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__adddf3
 	 l.nop
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	4(r1), r21
+	l.sw	4(r1), r17
 	l.or	r17, r19, r19
 	l.sw	8(r1), r17
 .L702:
@@ -6276,25 +5968,19 @@ frexp:
 
 	l.lwz	r19, 4(r1)
 	l.movhi	r17, hi(-2147483648)
-	l.xor	r16, r19, r17
-	l.lwz	r18, 8(r1)
-	l.or	r17, r16, r16
-	l.sw	4(r1), r17
-	l.or	r17, r18, r18
+	l.xor	r19, r19, r17
+	l.lwz	r17, 8(r1)
+	l.sw	4(r1), r19
 	l.sw	8(r1), r17
 .L704:
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
-	l.or	r21, r17, r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
-	l.lwz	r16, 20(r1)
-	l.lwz	r18, 24(r1)
-	l.lwz	r20, 28(r1)
-	l.lwz	r22, 32(r1)
-	l.lwz	r9, 36(r1)
-	l.addi	r1, r1, 40
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
+	l.lwz	r9, 20(r1)
+	l.addi	r1, r1, 24
 	l.jr	r9
 	 l.nop
 
@@ -6303,112 +5989,91 @@ frexp:
 	.global	__muldi3
 	.type	__muldi3, @function
 __muldi3:
-	l.addi	r1, r1, -52
-	l.sw	32(r1), r16
-	l.sw	36(r1), r18
-	l.sw	40(r1), r20
-	l.sw	44(r1), r22
-	l.sw	48(r1), r9
+	l.addi	r1, r1, -32
 	l.sw	8(r1), r3
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
 	l.sw	4(r1), r6
 	l.sw	24(r1), r0
 	l.sw	28(r1), r0
-	l.lwz	r21, 8(r1)
-	l.lwz	r23, 12(r1)
-	l.or	r15, r21, r21
-	l.sw	16(r1), r21
-	l.or	r21, r23, r23
-	l.sw	20(r1), r23
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.sw	16(r1), r19
+	l.sw	20(r1), r17
 	l.j	.L713
 	 l.nop
 
 .L716:
-	l.lwz	r21, 16(r1)
-	l.andi	r8, r21, 0
-	l.lwz	r21, 20(r1)
-	l.andi	r9, r21, 1
-	l.or	r21, r8, r8
-	l.or	r21, r21, r9
-	l.movhi	r23, hi(0)
-	l.sfeq	r21, r23
+	l.lwz	r17, 16(r1)
+	l.andi	r21, r17, 0
+	l.lwz	r17, 20(r1)
+	l.andi	r19, r17, 1
+	l.or	r17, r21, r21
+	l.or	r17, r17, r19
+	l.movhi	r19, hi(0)
+	l.sfeq	r17, r19
 	l.bf	.L714
 	 l.nop
 
 	l.lwz	r25, 24(r1)
-	l.lwz	r27, 28(r1)
-	l.lwz	r12, 0(r1)
-	l.lwz	r13, 4(r1)
-	l.add	r23, r27, r13
-	l.sfltu	r23, r27
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.lwz	r21, 28(r1)
+	l.lwz	r23, 0(r1)
+	l.lwz	r27, 4(r1)
+	l.add	r19, r21, r27
+	l.sfltu	r19, r21
+	l.ori	r21, r0, 1
+	l.or	r21, r21, r21
 	l.bf	.L719
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r21, hi(0)
 .L719:
-	l.add	r21, r25, r12
-	l.add	r15, r15, r21
-	l.or	r21, r15, r15
-	l.or	r15, r21, r21
-	l.sw	24(r1), r15
-	l.or	r21, r23, r23
-	l.sw	28(r1), r21
+	l.add	r17, r25, r23
+	l.add	r17, r21, r17
+	l.sw	24(r1), r17
+	l.sw	28(r1), r19
 .L714:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.add	r23, r19, r19
-	l.sfltu	r23, r19
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.lwz	r23, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.add	r21, r17, r17
+	l.sfltu	r21, r17
+	l.ori	r17, r0, 1
+	l.or	r17, r17, r17
 	l.bf	.L720
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r17, hi(0)
 .L720:
-	l.add	r21, r17, r17
-	l.add	r15, r15, r21
-	l.or	r21, r15, r15
-	l.or	r15, r21, r21
-	l.sw	0(r1), r15
-	l.or	r21, r23, r23
+	l.add	r19, r23, r23
+	l.add	r17, r17, r19
+	l.or	r19, r17, r17
+	l.sw	0(r1), r19
 	l.sw	4(r1), r21
-	l.lwz	r21, 16(r1)
-	l.ori	r23, r0, 31
-	l.sll	r21, r21, r23
-	l.lwz	r23, 20(r1)
-	l.ori	r15, r0, 1
-	l.srl	r31, r23, r15
-	l.or	r31, r21, r31
-	l.lwz	r21, 16(r1)
-	l.srl	r29, r21, r15
-	l.or	r21, r29, r29
-	l.sw	16(r1), r21
-	l.or	r21, r31, r31
-	l.sw	20(r1), r21
+	l.lwz	r17, 16(r1)
+	l.ori	r19, r0, 31
+	l.sll	r19, r17, r19
+	l.lwz	r17, 20(r1)
+	l.ori	r21, r0, 1
+	l.srl	r17, r17, r21
+	l.or	r17, r19, r17
+	l.lwz	r19, 16(r1)
+	l.srl	r19, r19, r21
+	l.sw	16(r1), r19
+	l.sw	20(r1), r17
 .L713:
-	l.lwz	r21, 16(r1)
-	l.lwz	r23, 20(r1)
-	l.or	r21, r21, r23
-	l.movhi	r23, hi(0)
-	l.sfne	r21, r23
+	l.lwz	r17, 16(r1)
+	l.lwz	r19, 20(r1)
+	l.or	r17, r17, r19
+	l.movhi	r19, hi(0)
+	l.sfne	r17, r19
 	l.bf	.L716
 	 l.nop
 
-	l.lwz	r16, 24(r1)
-	l.lwz	r18, 28(r1)
-	l.or	r20, r16, r16
-	l.or	r22, r18, r18
-	l.or	r11, r20, r20
-	l.or	r12, r22, r22
-	l.lwz	r16, 32(r1)
-	l.lwz	r18, 36(r1)
-	l.lwz	r20, 40(r1)
-	l.lwz	r22, 44(r1)
-	l.lwz	r9, 48(r1)
-	l.addi	r1, r1, 52
+	l.lwz	r19, 24(r1)
+	l.lwz	r17, 28(r1)
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 32
 	l.jr	r9
 	 l.nop
 
@@ -6569,26 +6234,24 @@ __clrsbdi2:
 	l.sw	12(r1), r9
 	l.sw	0(r1), r3
 	l.sw	4(r1), r4
-	l.lwz	r27, 0(r1)
-	l.xori	r25, r0, -1
-	l.sfgts	r27, r25
+	l.lwz	r19, 0(r1)
+	l.xori	r17, r0, -1
+	l.sfgts	r19, r17
 	l.bf	.L737
 	 l.nop
 
-	l.lwz	r25, 0(r1)
-	l.xori	r21, r25, -1
-	l.lwz	r25, 4(r1)
-	l.xori	r23, r25, -1
-	l.or	r25, r21, r21
-	l.sw	0(r1), r25
-	l.or	r21, r23, r23
-	l.sw	4(r1), r21
+	l.lwz	r17, 0(r1)
+	l.xori	r19, r17, -1
+	l.lwz	r17, 4(r1)
+	l.xori	r17, r17, -1
+	l.sw	0(r1), r19
+	l.sw	4(r1), r17
 .L737:
-	l.lwz	r21, 0(r1)
-	l.lwz	r23, 4(r1)
-	l.or	r21, r21, r23
-	l.movhi	r23, hi(0)
-	l.sfne	r21, r23
+	l.lwz	r17, 0(r1)
+	l.lwz	r19, 4(r1)
+	l.or	r17, r17, r19
+	l.movhi	r19, hi(0)
+	l.sfne	r17, r19
 	l.bf	.L739
 	 l.nop
 
@@ -6597,10 +6260,10 @@ __clrsbdi2:
 	 l.nop
 
 .L739:
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__clzdi2
 	 l.nop
 
@@ -6669,29 +6332,29 @@ __cmovd:
 	l.sw	8(r1), r3
 	l.sw	4(r1), r4
 	l.sw	0(r1), r5
-	l.lwz	r21, 0(r1)
-	l.ori	r23, r0, 3
-	l.srl	r21, r21, r23
-	l.sw	20(r1), r21
-	l.lwz	r23, 0(r1)
-	l.xori	r21, r0, -8
-	l.and	r21, r23, r21
-	l.sw	24(r1), r21
-	l.lwz	r21, 8(r1)
-	l.sw	16(r1), r21
-	l.lwz	r21, 4(r1)
-	l.sw	12(r1), r21
-	l.lwz	r23, 16(r1)
-	l.lwz	r21, 12(r1)
-	l.sfltu	r23, r21
+	l.lwz	r17, 0(r1)
+	l.ori	r19, r0, 3
+	l.srl	r17, r17, r19
+	l.sw	20(r1), r17
+	l.lwz	r19, 0(r1)
+	l.xori	r17, r0, -8
+	l.and	r17, r19, r17
+	l.sw	24(r1), r17
+	l.lwz	r17, 8(r1)
+	l.sw	16(r1), r17
+	l.lwz	r17, 4(r1)
+	l.sw	12(r1), r17
+	l.lwz	r19, 16(r1)
+	l.lwz	r17, 12(r1)
+	l.sfltu	r19, r17
 	l.bf	.L749
 	 l.nop
 
-	l.lwz	r23, 12(r1)
-	l.lwz	r21, 0(r1)
-	l.add	r21, r23, r21
-	l.lwz	r23, 16(r1)
-	l.sfleu	r23, r21
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 0(r1)
+	l.add	r17, r19, r17
+	l.lwz	r19, 16(r1)
+	l.sfleu	r19, r17
 	l.bf	.L756
 	 l.nop
 
@@ -6701,28 +6364,26 @@ __cmovd:
 	 l.nop
 
 .L752:
-	l.lwz	r21, 28(r1)
-	l.ori	r25, r0, 3
-	l.sll	r21, r21, r25
-	l.lwz	r23, 4(r1)
-	l.add	r23, r23, r21
-	l.lwz	r21, 28(r1)
-	l.sll	r21, r21, r25
-	l.lwz	r25, 8(r1)
-	l.add	r21, r25, r21
-	l.lwz	r17, 0(r23)
-	l.lwz	r19, 4(r23)
-	l.or	r23, r17, r17
-	l.sw	0(r21), r23
-	l.or	r23, r19, r19
-	l.sw	4(r21), r23
-	l.lwz	r21, 28(r1)
-	l.addi	r21, r21, 1
-	l.sw	28(r1), r21
+	l.lwz	r17, 28(r1)
+	l.ori	r21, r0, 3
+	l.sll	r17, r17, r21
+	l.lwz	r19, 4(r1)
+	l.add	r19, r19, r17
+	l.lwz	r17, 28(r1)
+	l.sll	r17, r17, r21
+	l.lwz	r21, 8(r1)
+	l.add	r17, r21, r17
+	l.lwz	r21, 0(r19)
+	l.lwz	r19, 4(r19)
+	l.sw	0(r17), r21
+	l.sw	4(r17), r19
+	l.lwz	r17, 28(r1)
+	l.addi	r17, r17, 1
+	l.sw	28(r1), r17
 .L751:
-	l.lwz	r23, 28(r1)
-	l.lwz	r21, 20(r1)
-	l.sfltu	r23, r21
+	l.lwz	r19, 28(r1)
+	l.lwz	r17, 20(r1)
+	l.sfltu	r19, r17
 	l.bf	.L752
 	 l.nop
 
@@ -7044,12 +6705,12 @@ __uitod:
 	l.jal	__floatunsidf
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
+	l.or	r17, r21, r21
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.lwz	r9, 4(r1)
 	l.addi	r1, r1, 8
 	l.jr	r9
@@ -7089,12 +6750,12 @@ __ulltod:
 	l.jal	__floatundidf
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
+	l.or	r17, r21, r21
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.lwz	r9, 8(r1)
 	l.addi	r1, r1, 12
 	l.jr	r9
@@ -7669,48 +7330,31 @@ __mspabi_cmpd:
 	.global	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
-	l.addi	r1, r1, -36
-	l.sw	8(r1), r16
-	l.sw	12(r1), r18
-	l.sw	16(r1), r20
-	l.sw	20(r1), r22
-	l.sw	24(r1), r24
-	l.sw	28(r1), r26
-	l.sw	32(r1), r9
+	l.addi	r1, r1, -12
+	l.sw	8(r1), r9
 	l.sw	4(r1), r3
 	l.sw	0(r1), r4
-	l.lwz	r25, 4(r1)
-	l.or	r19, r25, r25
-	l.ori	r27, r0, 31
-	l.sra	r25, r25, r27
-	l.or	r17, r25, r25
-	l.lwz	r25, 0(r1)
-	l.or	r23, r25, r25
-	l.sra	r25, r25, r27
-	l.or	r21, r25, r25
-	l.or	r5, r21, r21
+	l.lwz	r17, 4(r1)
+	l.or	r19, r17, r17
+	l.ori	r25, r0, 31
+	l.sra	r17, r17, r25
+	l.or	r21, r17, r17
+	l.lwz	r17, 0(r1)
+	l.or	r23, r17, r17
+	l.sra	r17, r17, r25
+	l.or	r5, r17, r17
 	l.or	r6, r23, r23
-	l.or	r3, r17, r17
+	l.or	r3, r21, r21
 	l.or	r4, r19, r19
 	l.jal	__muldi3
 	 l.nop
 
-	l.or	r24, r11, r11
-	l.or	r26, r12, r12
-	l.or	r20, r24, r24
-	l.or	r22, r26, r26
-	l.or	r16, r20, r20
-	l.or	r18, r22, r22
-	l.or	r11, r16, r16
-	l.or	r12, r18, r18
-	l.lwz	r16, 8(r1)
-	l.lwz	r18, 12(r1)
-	l.lwz	r20, 16(r1)
-	l.lwz	r22, 20(r1)
-	l.lwz	r24, 24(r1)
-	l.lwz	r26, 28(r1)
-	l.lwz	r9, 32(r1)
-	l.addi	r1, r1, 36
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.lwz	r9, 8(r1)
+	l.addi	r1, r1, 12
 	l.jr	r9
 	 l.nop
 
@@ -7719,45 +7363,28 @@ __mspabi_mpysll:
 	.global	__mspabi_mpyull
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
-	l.addi	r1, r1, -36
-	l.sw	8(r1), r16
-	l.sw	12(r1), r18
-	l.sw	16(r1), r20
-	l.sw	20(r1), r22
-	l.sw	24(r1), r24
-	l.sw	28(r1), r26
-	l.sw	32(r1), r9
+	l.addi	r1, r1, -12
+	l.sw	8(r1), r9
 	l.sw	4(r1), r3
 	l.sw	0(r1), r4
-	l.lwz	r25, 4(r1)
-	l.or	r19, r25, r25
-	l.movhi	r17, hi(0)
-	l.lwz	r25, 0(r1)
-	l.or	r23, r25, r25
+	l.lwz	r17, 4(r1)
+	l.or	r19, r17, r17
 	l.movhi	r21, hi(0)
-	l.or	r5, r21, r21
-	l.or	r6, r23, r23
-	l.or	r3, r17, r17
+	l.lwz	r17, 0(r1)
+	l.movhi	r23, hi(0)
+	l.or	r5, r23, r23
+	l.or	r6, r17, r17
+	l.or	r3, r21, r21
 	l.or	r4, r19, r19
 	l.jal	__muldi3
 	 l.nop
 
-	l.or	r24, r11, r11
-	l.or	r26, r12, r12
-	l.or	r20, r24, r24
-	l.or	r22, r26, r26
-	l.or	r16, r20, r20
-	l.or	r18, r22, r22
-	l.or	r11, r16, r16
-	l.or	r12, r18, r18
-	l.lwz	r16, 8(r1)
-	l.lwz	r18, 12(r1)
-	l.lwz	r20, 16(r1)
-	l.lwz	r22, 20(r1)
-	l.lwz	r24, 24(r1)
-	l.lwz	r26, 28(r1)
-	l.lwz	r9, 32(r1)
-	l.addi	r1, r1, 36
+	l.or	r19, r11, r11
+	l.or	r17, r12, r12
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.lwz	r9, 8(r1)
+	l.addi	r1, r1, 12
 	l.jr	r9
 	 l.nop
 
@@ -8184,68 +7811,64 @@ __ashldi3:
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
-	l.ori	r29, r0, 32
-	l.sw	28(r1), r29
-	l.lwz	r21, 4(r1)
-	l.lwz	r23, 8(r1)
-	l.or	r29, r21, r21
-	l.sw	20(r1), r21
-	l.or	r21, r23, r23
-	l.sw	24(r1), r23
-	l.lwz	r23, 0(r1)
-	l.lwz	r21, 28(r1)
-	l.and	r21, r23, r21
-	l.movhi	r23, hi(0)
-	l.sfeq	r21, r23
+	l.ori	r17, r0, 32
+	l.sw	28(r1), r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.sw	20(r1), r19
+	l.sw	24(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.and	r17, r19, r17
+	l.movhi	r19, hi(0)
+	l.sfeq	r17, r19
 	l.bf	.L929
 	 l.nop
 
 	l.sw	16(r1), r0
-	l.lwz	r23, 24(r1)
-	l.lwz	r29, 0(r1)
-	l.lwz	r21, 28(r1)
-	l.sub	r21, r29, r21
-	l.sll	r21, r23, r21
-	l.sw	12(r1), r21
+	l.lwz	r19, 24(r1)
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.sub	r17, r21, r17
+	l.sll	r17, r19, r17
+	l.sw	12(r1), r17
 	l.j	.L930
 	 l.nop
 
 .L929:
-	l.lwz	r21, 0(r1)
-	l.movhi	r23, hi(0)
-	l.sfne	r21, r23
+	l.lwz	r17, 0(r1)
+	l.movhi	r19, hi(0)
+	l.sfne	r17, r19
 	l.bf	.L931
 	 l.nop
 
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.j	.L933
 	 l.nop
 
 .L931:
-	l.lwz	r23, 24(r1)
-	l.lwz	r21, 0(r1)
-	l.sll	r21, r23, r21
-	l.sw	16(r1), r21
-	l.lwz	r21, 20(r1)
-	l.or	r23, r21, r21
-	l.lwz	r21, 0(r1)
-	l.sll	r23, r23, r21
-	l.lwz	r29, 24(r1)
-	l.lwz	r31, 28(r1)
-	l.lwz	r21, 0(r1)
-	l.sub	r21, r31, r21
-	l.srl	r21, r29, r21
-	l.or	r21, r23, r21
-	l.sw	12(r1), r21
+	l.lwz	r19, 24(r1)
+	l.lwz	r17, 0(r1)
+	l.sll	r17, r19, r17
+	l.sw	16(r1), r17
+	l.lwz	r17, 20(r1)
+	l.or	r19, r17, r17
+	l.lwz	r17, 0(r1)
+	l.sll	r19, r19, r17
+	l.lwz	r21, 24(r1)
+	l.lwz	r23, 28(r1)
+	l.lwz	r17, 0(r1)
+	l.sub	r17, r23, r17
+	l.srl	r17, r21, r17
+	l.or	r17, r19, r17
+	l.sw	12(r1), r17
 .L930:
-	l.lwz	r17, 12(r1)
-	l.lwz	r19, 16(r1)
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 16(r1)
 .L933:
-	l.or	r25, r17, r17
-	l.or	r27, r19, r19
-	l.or	r11, r25, r25
-	l.or	r12, r27, r27
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.addi	r1, r1, 32
 	l.jr	r9
 	 l.nop
@@ -8259,72 +7882,68 @@ __ashrdi3:
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
-	l.ori	r29, r0, 32
-	l.sw	28(r1), r29
-	l.lwz	r21, 4(r1)
-	l.lwz	r23, 8(r1)
-	l.or	r29, r21, r21
-	l.sw	20(r1), r21
-	l.or	r21, r23, r23
-	l.sw	24(r1), r23
-	l.lwz	r23, 0(r1)
-	l.lwz	r21, 28(r1)
-	l.and	r21, r23, r21
-	l.movhi	r23, hi(0)
-	l.sfeq	r21, r23
+	l.ori	r17, r0, 32
+	l.sw	28(r1), r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.sw	20(r1), r19
+	l.sw	24(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.and	r17, r19, r17
+	l.movhi	r19, hi(0)
+	l.sfeq	r17, r19
 	l.bf	.L936
 	 l.nop
 
-	l.lwz	r23, 20(r1)
-	l.lwz	r21, 28(r1)
-	l.addi	r21, r21, -1
-	l.sra	r21, r23, r21
-	l.sw	12(r1), r21
-	l.lwz	r23, 20(r1)
-	l.lwz	r29, 0(r1)
-	l.lwz	r21, 28(r1)
-	l.sub	r21, r29, r21
-	l.sra	r21, r23, r21
-	l.sw	16(r1), r21
+	l.lwz	r19, 20(r1)
+	l.lwz	r17, 28(r1)
+	l.addi	r17, r17, -1
+	l.sra	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r19, 20(r1)
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.sub	r17, r21, r17
+	l.sra	r17, r19, r17
+	l.sw	16(r1), r17
 	l.j	.L937
 	 l.nop
 
 .L936:
-	l.lwz	r21, 0(r1)
-	l.movhi	r23, hi(0)
-	l.sfne	r21, r23
+	l.lwz	r17, 0(r1)
+	l.movhi	r19, hi(0)
+	l.sfne	r17, r19
 	l.bf	.L938
 	 l.nop
 
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.j	.L940
 	 l.nop
 
 .L938:
-	l.lwz	r23, 20(r1)
-	l.lwz	r21, 0(r1)
-	l.sra	r21, r23, r21
-	l.sw	12(r1), r21
-	l.lwz	r21, 20(r1)
-	l.or	r29, r21, r21
-	l.lwz	r23, 28(r1)
-	l.lwz	r21, 0(r1)
-	l.sub	r21, r23, r21
-	l.sll	r23, r29, r21
-	l.lwz	r29, 24(r1)
-	l.lwz	r21, 0(r1)
-	l.srl	r21, r29, r21
-	l.or	r21, r23, r21
-	l.sw	16(r1), r21
+	l.lwz	r19, 20(r1)
+	l.lwz	r17, 0(r1)
+	l.sra	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r17, 20(r1)
+	l.or	r21, r17, r17
+	l.lwz	r19, 28(r1)
+	l.lwz	r17, 0(r1)
+	l.sub	r17, r19, r17
+	l.sll	r19, r21, r17
+	l.lwz	r21, 24(r1)
+	l.lwz	r17, 0(r1)
+	l.srl	r17, r21, r17
+	l.or	r17, r19, r17
+	l.sw	16(r1), r17
 .L937:
-	l.lwz	r17, 12(r1)
-	l.lwz	r19, 16(r1)
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 16(r1)
 .L940:
-	l.or	r25, r17, r17
-	l.or	r27, r19, r19
-	l.or	r11, r25, r25
-	l.or	r12, r27, r27
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.addi	r1, r1, 32
 	l.jr	r9
 	 l.nop
@@ -8334,167 +7953,83 @@ __ashrdi3:
 	.global	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	l.addi	r1, r1, -136
-	l.sw	96(r1), r14
-	l.sw	100(r1), r16
-	l.sw	104(r1), r18
-	l.sw	108(r1), r20
-	l.sw	112(r1), r22
-	l.sw	116(r1), r24
-	l.sw	120(r1), r26
-	l.sw	124(r1), r28
-	l.sw	128(r1), r30
-	l.sw	132(r1), r9
-	l.sw	88(r1), r3
-	l.sw	92(r1), r4
-	l.lwz	r17, 88(r1)
-	l.ori	r11, r0, 24
-	l.srl	r7, r17, r11
-	l.movhi	r6, hi(0)
-	l.lwz	r17, 88(r1)
-	l.ori	r19, r0, 8
-	l.srl	r27, r17, r19
-	l.movhi	r25, hi(0)
-	l.andi	r21, r25, 0
-	l.andi	r23, r27, 65280
-	l.or	r17, r6, r21
-	l.sw	0(r1), r17
-	l.or	r17, r7, r23
-	l.sw	4(r1), r17
-	l.lwz	r17, 88(r1)
-	l.or	r27, r19, r19
-	l.sll	r19, r17, r27
-	l.lwz	r17, 92(r1)
-	l.or	r25, r11, r11
-	l.srl	r31, r17, r25
-	l.or	r31, r19, r31
-	l.lwz	r17, 88(r1)
-	l.srl	r29, r17, r25
-	l.andi	r20, r29, 0
-	l.movhi	r17, hi(16711680)
-	l.and	r22, r31, r17
+	l.addi	r1, r1, -8
+	l.sw	0(r1), r3
+	l.sw	4(r1), r4
 	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r21, r20
-	l.sw	8(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r17, r22
-	l.sw	12(r1), r17
-	l.lwz	r17, 88(r1)
-	l.sll	r19, r17, r25
-	l.lwz	r17, 92(r1)
-	l.srl	r18, r17, r27
-	l.or	r18, r19, r18
-	l.lwz	r17, 88(r1)
-	l.srl	r16, r17, r27
-	l.andi	r17, r16, 0
-	l.sw	16(r1), r17
-	l.movhi	r17, hi(-16777216)
-	l.and	r17, r18, r17
-	l.sw	20(r1), r17
-	l.lwz	r21, 8(r1)
-	l.lwz	r23, 12(r1)
-	l.or	r29, r21, r21
-	l.lwz	r17, 16(r1)
-	l.lwz	r19, 20(r1)
-	l.or	r31, r17, r17
-	l.or	r29, r29, r31
-	l.sw	24(r1), r29
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r17, r21, r17
-	l.sw	28(r1), r17
-	l.lwz	r17, 92(r1)
-	l.srl	r17, r17, r25
-	l.lwz	r19, 88(r1)
-	l.sll	r8, r19, r27
-	l.or	r8, r17, r8
-	l.lwz	r17, 92(r1)
-	l.sll	r9, r17, r27
-	l.andi	r17, r8, 255
-	l.sw	32(r1), r17
-	l.andi	r17, r9, 0
-	l.sw	36(r1), r17
-	l.lwz	r21, 24(r1)
-	l.lwz	r23, 28(r1)
-	l.or	r29, r21, r21
-	l.lwz	r17, 32(r1)
-	l.lwz	r19, 36(r1)
-	l.or	r31, r17, r17
-	l.or	r29, r29, r31
-	l.sw	40(r1), r29
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r17, r21, r17
-	l.sw	44(r1), r17
-	l.lwz	r17, 92(r1)
+	l.ori	r27, r0, 24
+	l.srl	r19, r17, r27
+	l.movhi	r23, hi(0)
+	l.lwz	r17, 0(r1)
+	l.ori	r29, r0, 8
+	l.srl	r17, r17, r29
+	l.movhi	r21, hi(0)
+	l.andi	r21, r21, 0
+	l.andi	r17, r17, 65280
+	l.or	r23, r23, r21
+	l.or	r19, r19, r17
+	l.lwz	r17, 0(r1)
+	l.sll	r21, r17, r29
+	l.lwz	r17, 4(r1)
 	l.srl	r17, r17, r27
-	l.lwz	r19, 88(r1)
-	l.sll	r12, r19, r25
-	l.or	r12, r17, r12
-	l.lwz	r17, 92(r1)
-	l.sll	r13, r17, r25
-	l.andi	r17, r12, 65280
-	l.sw	48(r1), r17
-	l.andi	r17, r13, 0
-	l.sw	52(r1), r17
-	l.lwz	r21, 40(r1)
-	l.lwz	r23, 44(r1)
-	l.or	r29, r21, r21
-	l.lwz	r17, 48(r1)
-	l.lwz	r19, 52(r1)
-	l.or	r31, r17, r17
-	l.or	r14, r29, r31
-	l.or	r21, r23, r23
-	l.or	r17, r19, r19
-	l.or	r15, r21, r17
-	l.lwz	r17, 92(r1)
+	l.or	r17, r21, r17
+	l.lwz	r21, 0(r1)
+	l.srl	r21, r21, r27
+	l.andi	r21, r21, 0
+	l.movhi	r25, hi(16711680)
+	l.and	r17, r17, r25
+	l.or	r23, r23, r21
+	l.or	r19, r19, r17
+	l.lwz	r17, 0(r1)
+	l.sll	r21, r17, r27
+	l.lwz	r17, 4(r1)
+	l.srl	r17, r17, r29
+	l.or	r17, r21, r17
+	l.lwz	r21, 0(r1)
+	l.srl	r21, r21, r29
+	l.andi	r21, r21, 0
+	l.movhi	r25, hi(-16777216)
+	l.and	r17, r17, r25
+	l.or	r23, r23, r21
+	l.or	r19, r19, r17
+	l.lwz	r17, 4(r1)
+	l.srl	r21, r17, r27
+	l.lwz	r17, 0(r1)
+	l.sll	r17, r17, r29
+	l.or	r17, r21, r17
+	l.lwz	r21, 4(r1)
+	l.sll	r25, r21, r29
+	l.andi	r21, r17, 255
+	l.andi	r17, r25, 0
+	l.or	r23, r23, r21
+	l.or	r19, r19, r17
+	l.lwz	r17, 4(r1)
+	l.srl	r21, r17, r29
+	l.lwz	r17, 0(r1)
 	l.sll	r17, r17, r27
-	l.sw	56(r1), r17
-	l.sw	60(r1), r0
+	l.or	r17, r21, r17
+	l.lwz	r21, 4(r1)
+	l.sll	r25, r21, r27
+	l.andi	r21, r17, 65280
+	l.andi	r17, r25, 0
+	l.or	r23, r23, r21
+	l.or	r19, r19, r17
+	l.lwz	r17, 4(r1)
+	l.sll	r21, r17, r29
+	l.movhi	r25, hi(0)
 	l.movhi	r17, hi(16711680)
-	l.lwz	r19, 56(r1)
-	l.lwz	r21, 60(r1)
-	l.or	r23, r19, r19
-	l.and	r28, r23, r17
-	l.or	r17, r21, r21
-	l.andi	r30, r17, 0
-	l.or	r24, r14, r28
-	l.or	r26, r15, r30
-	l.lwz	r17, 92(r1)
-	l.sll	r17, r17, r25
-	l.sw	64(r1), r17
-	l.sw	68(r1), r0
-	l.lwz	r17, 64(r1)
-	l.lwz	r19, 68(r1)
-	l.or	r21, r17, r17
-	l.or	r21, r24, r21
-	l.sw	72(r1), r21
-	l.or	r17, r19, r19
-	l.or	r17, r26, r17
-	l.sw	76(r1), r17
-	l.lwz	r17, 72(r1)
-	l.lwz	r19, 76(r1)
-	l.or	r21, r17, r17
-	l.sw	80(r1), r21
-	l.or	r17, r19, r19
-	l.sw	84(r1), r17
-	l.lwz	r17, 80(r1)
-	l.lwz	r19, 84(r1)
-	l.or	r11, r17, r17
-	l.or	r12, r19, r19
-	l.lwz	r14, 96(r1)
-	l.lwz	r16, 100(r1)
-	l.lwz	r18, 104(r1)
-	l.lwz	r20, 108(r1)
-	l.lwz	r22, 112(r1)
-	l.lwz	r24, 116(r1)
-	l.lwz	r26, 120(r1)
-	l.lwz	r28, 124(r1)
-	l.lwz	r30, 128(r1)
-	l.lwz	r9, 132(r1)
-	l.addi	r1, r1, 136
+	l.and	r21, r21, r17
+	l.andi	r17, r25, 0
+	l.or	r21, r23, r21
+	l.or	r17, r19, r17
+	l.lwz	r19, 4(r1)
+	l.sll	r19, r19, r27
+	l.movhi	r23, hi(0)
+	l.or	r19, r21, r19
+	l.or	r17, r17, r23
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 8
 	l.jr	r9
 	 l.nop
 
@@ -8666,18 +8201,14 @@ __cmpdi2:
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
 	l.sw	4(r1), r6
-	l.lwz	r21, 8(r1)
-	l.lwz	r23, 12(r1)
-	l.or	r25, r21, r21
-	l.sw	24(r1), r21
-	l.or	r21, r23, r23
-	l.sw	28(r1), r23
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.sw	16(r1), r17
-	l.or	r17, r19, r19
-	l.sw	20(r1), r19
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.sw	24(r1), r19
+	l.sw	28(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.sw	16(r1), r19
+	l.sw	20(r1), r17
 	l.lwz	r19, 24(r1)
 	l.lwz	r17, 16(r1)
 	l.sfges	r19, r17
@@ -8883,69 +8414,63 @@ __lshrdi3:
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
-	l.ori	r13, r0, 32
-	l.sw	28(r1), r13
-	l.lwz	r25, 4(r1)
-	l.lwz	r27, 8(r1)
-	l.or	r13, r25, r25
-	l.sw	20(r1), r25
-	l.or	r25, r27, r27
-	l.sw	24(r1), r27
-	l.lwz	r27, 0(r1)
-	l.lwz	r25, 28(r1)
-	l.and	r25, r27, r25
-	l.movhi	r27, hi(0)
-	l.sfeq	r25, r27
+	l.ori	r17, r0, 32
+	l.sw	28(r1), r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
+	l.sw	20(r1), r19
+	l.sw	24(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.and	r17, r19, r17
+	l.movhi	r19, hi(0)
+	l.sfeq	r17, r19
 	l.bf	.L983
 	 l.nop
 
 	l.sw	12(r1), r0
-	l.lwz	r27, 20(r1)
-	l.lwz	r13, 0(r1)
-	l.lwz	r25, 28(r1)
-	l.sub	r25, r13, r25
-	l.srl	r25, r27, r25
-	l.sw	16(r1), r25
+	l.lwz	r19, 20(r1)
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 28(r1)
+	l.sub	r17, r21, r17
+	l.srl	r17, r19, r17
+	l.sw	16(r1), r17
 	l.j	.L984
 	 l.nop
 
 .L983:
-	l.lwz	r25, 0(r1)
-	l.movhi	r27, hi(0)
-	l.sfne	r25, r27
+	l.lwz	r17, 0(r1)
+	l.movhi	r19, hi(0)
+	l.sfne	r17, r19
 	l.bf	.L985
 	 l.nop
 
-	l.lwz	r17, 4(r1)
-	l.lwz	r19, 8(r1)
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 8(r1)
 	l.j	.L987
 	 l.nop
 
 .L985:
-	l.lwz	r27, 20(r1)
-	l.lwz	r25, 0(r1)
-	l.srl	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r27, 20(r1)
-	l.lwz	r13, 28(r1)
-	l.lwz	r25, 0(r1)
-	l.sub	r25, r13, r25
-	l.sll	r27, r27, r25
-	l.lwz	r13, 24(r1)
-	l.lwz	r25, 0(r1)
-	l.srl	r25, r13, r25
-	l.or	r25, r27, r25
-	l.sw	16(r1), r25
+	l.lwz	r19, 20(r1)
+	l.lwz	r17, 0(r1)
+	l.srl	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r19, 20(r1)
+	l.lwz	r21, 28(r1)
+	l.lwz	r17, 0(r1)
+	l.sub	r17, r21, r17
+	l.sll	r19, r19, r17
+	l.lwz	r21, 24(r1)
+	l.lwz	r17, 0(r1)
+	l.srl	r17, r21, r17
+	l.or	r17, r19, r17
+	l.sw	16(r1), r17
 .L984:
-	l.lwz	r21, 12(r1)
-	l.lwz	r23, 16(r1)
-	l.or	r17, r21, r21
-	l.or	r19, r23, r23
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 16(r1)
 .L987:
-	l.or	r29, r17, r17
-	l.or	r31, r19, r19
-	l.or	r11, r29, r29
-	l.or	r12, r31, r31
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.addi	r1, r1, 32
 	l.jr	r9
 	 l.nop
@@ -8958,100 +8483,98 @@ __muldsi3:
 	l.addi	r1, r1, -28
 	l.sw	4(r1), r3
 	l.sw	0(r1), r4
-	l.ori	r25, r0, 16
-	l.sw	24(r1), r25
-	l.xori	r27, r0, -1
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r27, r25
-	l.sw	20(r1), r25
-	l.lwz	r27, 4(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r27, r27, r25
-	l.lwz	r29, 0(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r25, r29, r25
-	l.mul	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r27, r25
-	l.sw	16(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r27, 4(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r27, r27, r25
-	l.lwz	r29, 0(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r25, r29, r25
-	l.mul	r25, r27, r25
-	l.lwz	r27, 16(r1)
-	l.add	r25, r27, r25
-	l.sw	16(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r29, 16(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r29, r29, r25
-	l.lwz	r25, 24(r1)
-	l.sll	r25, r29, r25
-	l.add	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r27, 16(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r27, r25
-	l.sw	8(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r27, r25
-	l.sw	16(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r27, 0(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r27, r27, r25
-	l.lwz	r29, 4(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r25, r29, r25
-	l.mul	r25, r27, r25
-	l.lwz	r27, 16(r1)
-	l.add	r25, r27, r25
-	l.sw	16(r1), r25
-	l.lwz	r27, 12(r1)
-	l.lwz	r29, 16(r1)
-	l.lwz	r25, 20(r1)
-	l.and	r29, r29, r25
-	l.lwz	r25, 24(r1)
-	l.sll	r25, r29, r25
-	l.add	r25, r27, r25
-	l.sw	12(r1), r25
-	l.lwz	r25, 8(r1)
-	l.or	r29, r25, r25
-	l.lwz	r27, 16(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r27, r25
-	l.add	r25, r29, r25
-	l.sw	8(r1), r25
-	l.lwz	r25, 8(r1)
-	l.or	r31, r25, r25
-	l.lwz	r27, 4(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r27, r27, r25
-	l.lwz	r29, 0(r1)
-	l.lwz	r25, 24(r1)
-	l.srl	r25, r29, r25
-	l.mul	r25, r27, r25
-	l.add	r25, r31, r25
-	l.sw	8(r1), r25
-	l.lwz	r17, 8(r1)
+	l.ori	r17, r0, 16
+	l.sw	24(r1), r17
+	l.xori	r19, r0, -1
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r19, r17
+	l.sw	20(r1), r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r19, r19, r17
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r17, r21, r17
+	l.mul	r17, r19, r17
+	l.sw	12(r1), r17
 	l.lwz	r19, 12(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r19, r17
+	l.sw	16(r1), r17
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r19, r19, r17
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r17, r21, r17
+	l.mul	r17, r19, r17
+	l.lwz	r19, 16(r1)
+	l.add	r17, r19, r17
+	l.sw	16(r1), r17
+	l.lwz	r19, 12(r1)
+	l.lwz	r21, 16(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r21, r21, r17
+	l.lwz	r17, 24(r1)
+	l.sll	r17, r21, r17
+	l.add	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r19, 16(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r19, r17
+	l.sw	8(r1), r17
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r19, r17
+	l.sw	16(r1), r17
+	l.lwz	r19, 12(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r19, r19, r17
+	l.lwz	r21, 4(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r17, r21, r17
+	l.mul	r17, r19, r17
+	l.lwz	r19, 16(r1)
+	l.add	r17, r19, r17
+	l.sw	16(r1), r17
+	l.lwz	r19, 12(r1)
+	l.lwz	r21, 16(r1)
+	l.lwz	r17, 20(r1)
+	l.and	r21, r21, r17
+	l.lwz	r17, 24(r1)
+	l.sll	r17, r21, r17
+	l.add	r17, r19, r17
+	l.sw	12(r1), r17
+	l.lwz	r17, 8(r1)
 	l.or	r21, r17, r17
-	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.lwz	r19, 16(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r19, r17
+	l.add	r17, r21, r17
+	l.sw	8(r1), r17
+	l.lwz	r17, 8(r1)
+	l.or	r23, r17, r17
+	l.lwz	r19, 4(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r19, r19, r17
+	l.lwz	r21, 0(r1)
+	l.lwz	r17, 24(r1)
+	l.srl	r17, r21, r17
+	l.mul	r17, r19, r17
+	l.add	r17, r23, r17
+	l.sw	8(r1), r17
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
 	l.addi	r1, r1, 28
 	l.jr	r9
 	 l.nop
@@ -9061,29 +8584,19 @@ __muldsi3:
 	.global	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	l.addi	r1, r1, -68
-	l.sw	40(r1), r16
-	l.sw	44(r1), r18
-	l.sw	48(r1), r20
-	l.sw	52(r1), r22
-	l.sw	56(r1), r24
-	l.sw	60(r1), r26
-	l.sw	64(r1), r9
+	l.addi	r1, r1, -44
+	l.sw	40(r1), r9
 	l.sw	8(r1), r3
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
 	l.sw	4(r1), r6
-	l.lwz	r21, 8(r1)
-	l.lwz	r23, 12(r1)
-	l.or	r25, r21, r21
-	l.sw	32(r1), r25
-	l.or	r21, r23, r23
-	l.sw	36(r1), r21
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.sw	24(r1), r21
-	l.or	r17, r19, r19
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.sw	32(r1), r19
+	l.sw	36(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.sw	24(r1), r19
 	l.sw	28(r1), r17
 	l.lwz	r17, 36(r1)
 	l.lwz	r19, 28(r1)
@@ -9092,11 +8605,10 @@ __muldi3_compiler_rt:
 	l.jal	__muldsi3
 	 l.nop
 
-	l.or	r24, r11, r11
-	l.or	r26, r12, r12
-	l.or	r17, r24, r24
+	l.or	r17, r11, r11
+	l.or	r19, r12, r12
 	l.sw	16(r1), r17
-	l.or	r17, r26, r26
+	l.or	r17, r19, r19
 	l.sw	20(r1), r17
 	l.lwz	r17, 16(r1)
 	l.or	r21, r17, r17
@@ -9110,20 +8622,12 @@ __muldi3_compiler_rt:
 	l.add	r17, r19, r17
 	l.add	r17, r21, r17
 	l.sw	16(r1), r17
-	l.lwz	r16, 16(r1)
-	l.lwz	r18, 20(r1)
-	l.or	r20, r16, r16
-	l.or	r22, r18, r18
-	l.or	r11, r20, r20
-	l.or	r12, r22, r22
-	l.lwz	r16, 40(r1)
-	l.lwz	r18, 44(r1)
-	l.lwz	r20, 48(r1)
-	l.lwz	r22, 52(r1)
-	l.lwz	r24, 56(r1)
-	l.lwz	r26, 60(r1)
-	l.lwz	r9, 64(r1)
-	l.addi	r1, r1, 68
+	l.lwz	r19, 16(r1)
+	l.lwz	r17, 20(r1)
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.lwz	r9, 40(r1)
+	l.addi	r1, r1, 44
 	l.jr	r9
 	 l.nop
 
@@ -9132,36 +8636,30 @@ __muldi3_compiler_rt:
 	.global	__negdi2
 	.type	__negdi2, @function
 __negdi2:
-	l.addi	r1, r1, -12
-	l.sw	8(r1), r9
+	l.addi	r1, r1, -8
 	l.sw	0(r1), r3
 	l.sw	4(r1), r4
-	l.lwz	r21, 0(r1)
-	l.lwz	r23, 4(r1)
-	l.movhi	r25, hi(0)
+	l.lwz	r23, 0(r1)
+	l.lwz	r25, 4(r1)
 	l.movhi	r27, hi(0)
-	l.sub	r19, r27, r23
-	l.sfgtu	r19, r27
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.movhi	r21, hi(0)
+	l.sub	r19, r21, r25
+	l.sfgtu	r19, r21
+	l.ori	r21, r0, 1
+	l.or	r21, r21, r21
 	l.bf	.L998
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r21, hi(0)
 .L998:
-	l.sub	r17, r25, r21
-	l.sub	r21, r17, r15
-	l.or	r17, r21, r21
-	l.or	r8, r17, r17
-	l.or	r9, r19, r19
-	l.or	r12, r8, r8
-	l.or	r13, r9, r9
-	l.or	r29, r12, r12
-	l.or	r31, r13, r13
-	l.or	r11, r29, r29
-	l.or	r12, r31, r31
-	l.lwz	r9, 8(r1)
-	l.addi	r1, r1, 12
+	l.sub	r17, r27, r23
+	l.sub	r17, r17, r21
+	l.or	r21, r17, r17
+	l.or	r17, r19, r19
+	l.or	r19, r21, r21
+	l.or	r11, r19, r19
+	l.or	r12, r17, r17
+	l.addi	r1, r1, 8
 	l.jr	r9
 	 l.nop
 
@@ -9173,11 +8671,9 @@ __paritydi2:
 	l.addi	r1, r1, -20
 	l.sw	0(r1), r3
 	l.sw	4(r1), r4
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.sw	8(r1), r21
-	l.or	r17, r19, r19
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.sw	8(r1), r19
 	l.sw	12(r1), r17
 	l.lwz	r17, 8(r1)
 	l.or	r19, r17, r17
@@ -9254,135 +8750,116 @@ __paritysi2:
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	l.addi	r1, r1, -56
-	l.sw	20(r1), r16
-	l.sw	24(r1), r18
-	l.sw	28(r1), r20
-	l.sw	32(r1), r22
-	l.sw	36(r1), r24
-	l.sw	40(r1), r26
-	l.sw	44(r1), r28
-	l.sw	48(r1), r30
-	l.sw	52(r1), r9
+	l.addi	r1, r1, -20
 	l.sw	0(r1), r3
 	l.sw	4(r1), r4
-	l.lwz	r24, 0(r1)
-	l.lwz	r26, 4(r1)
-	l.or	r15, r24, r24
-	l.sw	12(r1), r15
-	l.or	r15, r26, r26
-	l.sw	16(r1), r15
-	l.lwz	r15, 12(r1)
-	l.ori	r11, r0, 31
-	l.sll	r15, r15, r11
-	l.lwz	r11, 16(r1)
-	l.ori	r5, r0, 1
-	l.srl	r23, r11, r5
-	l.or	r23, r15, r23
-	l.lwz	r15, 12(r1)
-	l.srl	r21, r15, r5
-	l.movhi	r15, hi(1431633920)
-	l.ori	r15, r15, 21845
-	l.and	r16, r21, r15
-	l.movhi	r15, hi(1431633920)
-	l.ori	r15, r15, 21845
-	l.and	r18, r23, r15
-	l.lwz	r12, 12(r1)
-	l.lwz	r13, 16(r1)
-	l.sub	r23, r13, r18
-	l.sfgtu	r23, r13
-	l.ori	r15, r0, 1
-	l.or	r15, r15, r15
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.sw	12(r1), r19
+	l.sw	16(r1), r17
+	l.lwz	r17, 12(r1)
+	l.ori	r19, r0, 31
+	l.sll	r17, r17, r19
+	l.lwz	r19, 16(r1)
+	l.ori	r21, r0, 1
+	l.srl	r19, r19, r21
+	l.or	r19, r17, r19
+	l.lwz	r17, 12(r1)
+	l.srl	r21, r17, r21
+	l.movhi	r17, hi(1431633920)
+	l.ori	r17, r17, 21845
+	l.and	r23, r21, r17
+	l.movhi	r17, hi(1431633920)
+	l.ori	r17, r17, 21845
+	l.and	r27, r19, r17
+	l.lwz	r25, 12(r1)
+	l.lwz	r21, 16(r1)
+	l.sub	r19, r21, r27
+	l.sfgtu	r19, r21
+	l.ori	r21, r0, 1
+	l.or	r21, r21, r21
 	l.bf	.L1008
 	 l.nop
 
-	l.movhi	r15, hi(0)
+	l.movhi	r21, hi(0)
 .L1008:
-	l.sub	r21, r12, r16
-	l.sub	r13, r21, r15
-	l.or	r21, r13, r13
-	l.or	r13, r21, r21
-	l.sw	12(r1), r13
-	l.or	r21, r23, r23
-	l.sw	16(r1), r21
-	l.lwz	r21, 12(r1)
-	l.ori	r23, r0, 30
-	l.sll	r21, r21, r23
-	l.lwz	r23, 16(r1)
-	l.ori	r13, r0, 2
-	l.srl	r27, r23, r13
-	l.or	r27, r21, r27
-	l.lwz	r21, 12(r1)
-	l.srl	r25, r21, r13
-	l.movhi	r21, hi(858980352)
-	l.ori	r21, r21, 13107
-	l.and	r29, r25, r21
-	l.movhi	r21, hi(858980352)
-	l.ori	r21, r21, 13107
-	l.and	r31, r27, r21
-	l.lwz	r23, 12(r1)
-	l.movhi	r21, hi(858980352)
-	l.ori	r21, r21, 13107
-	l.and	r6, r23, r21
-	l.lwz	r23, 16(r1)
-	l.movhi	r21, hi(858980352)
-	l.ori	r21, r21, 13107
-	l.and	r7, r23, r21
-	l.add	r23, r31, r7
-	l.sfltu	r23, r31
-	l.ori	r25, r0, 1
-	l.or	r25, r25, r25
+	l.sub	r17, r25, r23
+	l.sub	r17, r17, r21
+	l.sw	12(r1), r17
+	l.sw	16(r1), r19
+	l.lwz	r17, 12(r1)
+	l.ori	r19, r0, 30
+	l.sll	r17, r17, r19
+	l.lwz	r19, 16(r1)
+	l.ori	r21, r0, 2
+	l.srl	r19, r19, r21
+	l.or	r19, r17, r19
+	l.lwz	r17, 12(r1)
+	l.srl	r21, r17, r21
+	l.movhi	r17, hi(858980352)
+	l.ori	r17, r17, 13107
+	l.and	r25, r21, r17
+	l.movhi	r17, hi(858980352)
+	l.ori	r17, r17, 13107
+	l.and	r21, r19, r17
+	l.lwz	r19, 12(r1)
+	l.movhi	r17, hi(858980352)
+	l.ori	r17, r17, 13107
+	l.and	r23, r19, r17
+	l.lwz	r19, 16(r1)
+	l.movhi	r17, hi(858980352)
+	l.ori	r17, r17, 13107
+	l.and	r27, r19, r17
+	l.add	r19, r21, r27
+	l.sfltu	r19, r21
+	l.ori	r21, r0, 1
+	l.or	r21, r21, r21
 	l.bf	.L1009
 	 l.nop
 
-	l.movhi	r25, hi(0)
+	l.movhi	r21, hi(0)
 .L1009:
-	l.add	r21, r29, r6
-	l.add	r25, r25, r21
-	l.or	r21, r25, r25
-	l.or	r25, r21, r21
-	l.sw	12(r1), r25
-	l.or	r21, r23, r23
-	l.sw	16(r1), r21
-	l.lwz	r21, 12(r1)
-	l.ori	r23, r0, 28
-	l.sll	r21, r21, r23
-	l.lwz	r23, 16(r1)
-	l.ori	r25, r0, 4
-	l.srl	r19, r23, r25
-	l.or	r19, r21, r19
-	l.lwz	r21, 12(r1)
-	l.srl	r17, r21, r25
-	l.lwz	r8, 12(r1)
-	l.lwz	r9, 16(r1)
-	l.add	r23, r19, r9
-	l.sfltu	r23, r19
-	l.ori	r25, r0, 1
-	l.or	r25, r25, r25
+	l.add	r17, r25, r23
+	l.add	r17, r21, r17
+	l.sw	12(r1), r17
+	l.sw	16(r1), r19
+	l.lwz	r17, 12(r1)
+	l.ori	r19, r0, 28
+	l.sll	r19, r17, r19
+	l.lwz	r17, 16(r1)
+	l.ori	r21, r0, 4
+	l.srl	r17, r17, r21
+	l.or	r17, r19, r17
+	l.lwz	r19, 12(r1)
+	l.srl	r25, r19, r21
+	l.lwz	r23, 12(r1)
+	l.lwz	r27, 16(r1)
+	l.add	r21, r17, r27
+	l.sfltu	r21, r17
+	l.ori	r17, r0, 1
+	l.or	r17, r17, r17
 	l.bf	.L1010
 	 l.nop
 
-	l.movhi	r25, hi(0)
+	l.movhi	r17, hi(0)
 .L1010:
-	l.add	r21, r17, r8
-	l.add	r17, r25, r21
-	l.or	r21, r17, r17
-	l.or	r20, r21, r21
-	l.or	r22, r23, r23
+	l.add	r19, r25, r23
+	l.add	r17, r17, r19
+	l.or	r19, r17, r17
+	l.or	r23, r19, r19
+	l.or	r19, r21, r21
 	l.movhi	r17, hi(252641280)
 	l.ori	r17, r17, 3855
-	l.and	r17, r20, r17
+	l.and	r17, r23, r17
 	l.sw	12(r1), r17
 	l.movhi	r17, hi(252641280)
 	l.ori	r17, r17, 3855
-	l.and	r17, r22, r17
+	l.and	r17, r19, r17
 	l.sw	16(r1), r17
 	l.lwz	r17, 16(r1)
 	l.lwz	r19, 12(r1)
 	l.movhi	r21, hi(0)
-	l.srl	r30, r19, r21
-	l.movhi	r28, hi(0)
-	l.or	r19, r30, r30
+	l.srl	r19, r19, r21
 	l.add	r17, r17, r19
 	l.sw	8(r1), r17
 	l.lwz	r17, 8(r1)
@@ -9398,16 +8875,7 @@ __popcountdi2:
 	l.add	r17, r19, r17
 	l.andi	r17, r17, 127
 	l.or	r11, r17, r17
-	l.lwz	r16, 20(r1)
-	l.lwz	r18, 24(r1)
-	l.lwz	r20, 28(r1)
-	l.lwz	r22, 32(r1)
-	l.lwz	r24, 36(r1)
-	l.lwz	r26, 40(r1)
-	l.lwz	r28, 44(r1)
-	l.lwz	r30, 48(r1)
-	l.lwz	r9, 52(r1)
-	l.addi	r1, r1, 56
+	l.addi	r1, r1, 20
 	l.jr	r9
 	 l.nop
 
@@ -9483,19 +8951,17 @@ __powidf2:
 	l.sw	4(r1), r3
 	l.sw	8(r1), r4
 	l.sw	0(r1), r5
-	l.lwz	r21, 0(r1)
-	l.ori	r23, r0, 31
-	l.srl	r21, r21, r23
-	l.andi	r21, r21, 0xff
-	l.sw	12(r1), r21
-	l.movhi	r21, ha(.LC20)
-	l.lwz	r17, lo(.LC20)(r21)
-	l.addi	r21, r21, lo(.LC20)
-	l.addi	r21, r21, 4
-	l.lwz	r19, 0(r21)
-	l.or	r21, r17, r17
-	l.sw	16(r1), r21
-	l.or	r17, r19, r19
+	l.lwz	r17, 0(r1)
+	l.ori	r19, r0, 31
+	l.srl	r17, r17, r19
+	l.andi	r17, r17, 0xff
+	l.sw	12(r1), r17
+	l.movhi	r17, ha(.LC20)
+	l.lwz	r19, lo(.LC20)(r17)
+	l.addi	r17, r17, lo(.LC20)
+	l.addi	r17, r17, 4
+	l.lwz	r17, 0(r17)
+	l.sw	16(r1), r19
 	l.sw	20(r1), r17
 .L1018:
 	l.lwz	r17, 0(r1)
@@ -9514,8 +8980,7 @@ __powidf2:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	16(r1), r21
+	l.sw	16(r1), r17
 	l.or	r17, r19, r19
 	l.sw	20(r1), r17
 .L1015:
@@ -9541,8 +9006,7 @@ __powidf2:
 
 	l.or	r17, r11, r11
 	l.or	r19, r12, r12
-	l.or	r21, r17, r17
-	l.sw	4(r1), r21
+	l.sw	4(r1), r17
 	l.or	r17, r19, r19
 	l.sw	8(r1), r17
 	l.j	.L1018
@@ -9566,21 +9030,21 @@ __powidf2:
 	l.jal	__divdf3
 	 l.nop
 
-	l.or	r21, r11, r11
-	l.or	r23, r12, r12
-	l.or	r17, r21, r21
+	l.or	r23, r11, r11
+	l.or	r21, r12, r12
 	l.or	r19, r23, r23
+	l.or	r17, r21, r21
 	l.j	.L1021
 	 l.nop
 
 .L1019:
-	l.lwz	r17, 16(r1)
-	l.lwz	r19, 20(r1)
+	l.lwz	r19, 16(r1)
+	l.lwz	r17, 20(r1)
 .L1021:
-	l.or	r21, r17, r17
 	l.or	r23, r19, r19
-	l.or	r11, r21, r21
-	l.or	r12, r23, r23
+	l.or	r21, r17, r17
+	l.or	r11, r23, r23
+	l.or	r12, r21, r21
 	l.lwz	r9, 24(r1)
 	l.addi	r1, r1, 28
 	l.jr	r9
@@ -9686,18 +9150,14 @@ __ucmpdi2:
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
 	l.sw	4(r1), r6
-	l.lwz	r21, 8(r1)
-	l.lwz	r23, 12(r1)
-	l.or	r25, r21, r21
-	l.sw	24(r1), r21
-	l.or	r21, r23, r23
-	l.sw	28(r1), r23
-	l.lwz	r17, 0(r1)
-	l.lwz	r19, 4(r1)
-	l.or	r21, r17, r17
-	l.sw	16(r1), r17
-	l.or	r17, r19, r19
-	l.sw	20(r1), r19
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.sw	24(r1), r19
+	l.sw	28(r1), r17
+	l.lwz	r19, 0(r1)
+	l.lwz	r17, 4(r1)
+	l.sw	16(r1), r19
+	l.sw	20(r1), r17
 	l.lwz	r19, 24(r1)
 	l.lwz	r17, 16(r1)
 	l.sfgeu	r19, r17
@@ -9760,14 +9220,14 @@ __aeabi_ulcmp:
 	l.sw	12(r1), r4
 	l.sw	0(r1), r5
 	l.sw	4(r1), r6
-	l.lwz	r17, 8(r1)
-	l.lwz	r19, 12(r1)
-	l.lwz	r21, 0(r1)
-	l.lwz	r23, 4(r1)
-	l.or	r5, r21, r21
-	l.or	r6, r23, r23
-	l.or	r3, r17, r17
-	l.or	r4, r19, r19
+	l.lwz	r19, 8(r1)
+	l.lwz	r17, 12(r1)
+	l.lwz	r23, 0(r1)
+	l.lwz	r21, 4(r1)
+	l.or	r5, r23, r23
+	l.or	r6, r21, r21
+	l.or	r3, r19, r19
+	l.or	r4, r17, r17
 	l.jal	__ucmpdi2
 	 l.nop
 

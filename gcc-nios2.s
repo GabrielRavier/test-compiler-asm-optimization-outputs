@@ -869,8 +869,8 @@ fdim:
 	ldw	r5, 12(sp)
 	call	__unorddf2
 	beq	r2, zero, .L163
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L154
 .L163:
 	ldw	r6, 0(sp)
@@ -879,8 +879,8 @@ fdim:
 	ldw	r5, 4(sp)
 	call	__unorddf2
 	beq	r2, zero, .L164
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L154
 .L164:
 	ldw	r6, 0(sp)
@@ -894,19 +894,19 @@ fdim:
 	ldw	r4, 8(sp)
 	ldw	r5, 12(sp)
 	call	__subdf3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r3, r5
+	mov	r2, r4
 	br	.L154
 .L165:
-	mov	r2, zero
 	mov	r3, zero
+	mov	r2, zero
 .L154:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 16(sp)
 	addi	sp, sp, 20
 	ret
@@ -968,8 +968,8 @@ fmax:
 	ldw	r5, 12(sp)
 	call	__unorddf2
 	beq	r2, zero, .L198
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L186
 .L198:
 	ldw	r6, 0(sp)
@@ -978,8 +978,8 @@ fmax:
 	ldw	r5, 4(sp)
 	call	__unorddf2
 	beq	r2, zero, .L199
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L186
 .L199:
 	ldw	r2, 12(sp)
@@ -991,12 +991,12 @@ fmax:
 	ldw	r2, 12(sp)
 	andhi	r2, r2, 32768
 	beq	r2, zero, .L190
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L186
 .L190:
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L186
 .L189:
 	ldw	r6, 0(sp)
@@ -1005,17 +1005,17 @@ fmax:
 	ldw	r5, 12(sp)
 	call	__ltdf2
 	bge	r2, zero, .L200
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L186
 .L200:
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 .L186:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 16(sp)
 	addi	sp, sp, 20
 	ret
@@ -1088,8 +1088,8 @@ fmaxl:
 	ldw	r5, 12(sp)
 	call	__unorddf2
 	beq	r2, zero, .L236
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L224
 .L236:
 	ldw	r6, 0(sp)
@@ -1098,8 +1098,8 @@ fmaxl:
 	ldw	r5, 4(sp)
 	call	__unorddf2
 	beq	r2, zero, .L237
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L224
 .L237:
 	ldw	r2, 12(sp)
@@ -1111,12 +1111,12 @@ fmaxl:
 	ldw	r2, 12(sp)
 	andhi	r2, r2, 32768
 	beq	r2, zero, .L228
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L224
 .L228:
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L224
 .L227:
 	ldw	r6, 0(sp)
@@ -1125,17 +1125,17 @@ fmaxl:
 	ldw	r5, 12(sp)
 	call	__ltdf2
 	bge	r2, zero, .L238
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L224
 .L238:
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 .L224:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 16(sp)
 	addi	sp, sp, 20
 	ret
@@ -1156,8 +1156,8 @@ fmin:
 	ldw	r5, 12(sp)
 	call	__unorddf2
 	beq	r2, zero, .L255
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L243
 .L255:
 	ldw	r6, 0(sp)
@@ -1166,8 +1166,8 @@ fmin:
 	ldw	r5, 4(sp)
 	call	__unorddf2
 	beq	r2, zero, .L256
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L243
 .L256:
 	ldw	r2, 12(sp)
@@ -1179,12 +1179,12 @@ fmin:
 	ldw	r2, 12(sp)
 	andhi	r2, r2, 32768
 	beq	r2, zero, .L247
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L243
 .L247:
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L243
 .L246:
 	ldw	r6, 0(sp)
@@ -1193,17 +1193,17 @@ fmin:
 	ldw	r5, 12(sp)
 	call	__ltdf2
 	bge	r2, zero, .L257
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L243
 .L257:
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 .L243:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 16(sp)
 	addi	sp, sp, 20
 	ret
@@ -1276,8 +1276,8 @@ fminl:
 	ldw	r5, 12(sp)
 	call	__unorddf2
 	beq	r2, zero, .L293
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L281
 .L293:
 	ldw	r6, 0(sp)
@@ -1286,8 +1286,8 @@ fminl:
 	ldw	r5, 4(sp)
 	call	__unorddf2
 	beq	r2, zero, .L294
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L281
 .L294:
 	ldw	r2, 12(sp)
@@ -1299,12 +1299,12 @@ fminl:
 	ldw	r2, 12(sp)
 	andhi	r2, r2, 32768
 	beq	r2, zero, .L285
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L281
 .L285:
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	br	.L281
 .L284:
 	ldw	r6, 0(sp)
@@ -1313,17 +1313,17 @@ fminl:
 	ldw	r5, 12(sp)
 	call	__ltdf2
 	bge	r2, zero, .L295
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	br	.L281
 .L295:
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 .L281:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 16(sp)
 	addi	sp, sp, 20
 	ret
@@ -1382,12 +1382,12 @@ seed:
 srand:
 	addi	sp, sp, -4
 	stw	r4, 0(sp)
-	ldw	r4, 0(sp)
-	addi	r4, r4, -1
-	mov	r2, r4
-	mov	r3, zero
-	stw	r2, %gprel(seed)(gp)
-	stw	r3, %gprel(seed+4)(gp)
+	ldw	r2, 0(sp)
+	addi	r2, r2, -1
+	mov	r3, r2
+	mov	r2, zero
+	stw	r3, %gprel(seed)(gp)
+	stw	r2, %gprel(seed+4)(gp)
 	nop
 	addi	sp, sp, 4
 	ret
@@ -1396,43 +1396,35 @@ srand:
 	.global	rand
 	.type	rand, @function
 rand:
-	addi	sp, sp, -12
-	stw	ra, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
-	ldw	r2, %gprel(seed)(gp)
-	ldw	r3, %gprel(seed+4)(gp)
+	addi	sp, sp, -4
+	stw	ra, 0(sp)
+	ldw	r3, %gprel(seed)(gp)
+	ldw	r2, %gprel(seed+4)(gp)
 	movhi	r6, 19605
 	addi	r6, r6, 32557
 	movhi	r7, 22610
 	addi	r7, r7, -3027
-	mov	r4, r2
-	mov	r5, r3
+	mov	r4, r3
+	mov	r5, r2
 	call	__muldi3
 	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
-	movi	r6, 1
-	mov	r7, zero
-	add	r2, r4, r6
-	cmpltu	r8, r2, r4
-	add	r3, r5, r7
-	add	r4, r8, r3
-	mov	r3, r4
-	mov	r4, r2
 	mov	r5, r3
-	stw	r4, %gprel(seed)(gp)
-	stw	r5, %gprel(seed+4)(gp)
-	ldw	r2, %gprel(seed)(gp)
-	ldw	r3, %gprel(seed+4)(gp)
-	srli	r16, r3, 1
-	mov	r17, zero
-	mov	r2, r16
-	ldw	ra, 8(sp)
-	ldw	r17, 4(sp)
-	ldw	r16, 0(sp)
-	addi	sp, sp, 12
+	mov	r4, r6
+	mov	r7, r5
+	movi	r5, 1
+	mov	r6, zero
+	add	r3, r4, r5
+	cmpltu	r4, r3, r4
+	add	r2, r7, r6
+	add	r2, r4, r2
+	mov	r5, r3
+	mov	r4, r2
+	stw	r5, %gprel(seed)(gp)
+	stw	r4, %gprel(seed+4)(gp)
+	ldw	r2, %gprel(seed+4)(gp)
+	srli	r2, r2, 1
+	ldw	ra, 0(sp)
+	addi	sp, sp, 4
 	ret
 	.size	rand, .-rand
 	.align	2
@@ -1519,15 +1511,9 @@ lsearch:
 	stw	r6, 4(sp)
 	stw	r7, 0(sp)
 	ldw	r16, 0(sp)
-	mov	r4, r16
-	addi	r4, r16, -1
-	stw	r4, 24(sp)
-	mov	r8, r16
-	mov	r9, zero
-	srli	r4, r16, 29
-	slli	r3, r9, 3
-	or	r3, r4, r3
-	slli	r2, r16, 3
+	mov	r2, r16
+	addi	r2, r16, -1
+	stw	r2, 24(sp)
 	ldw	r2, 8(sp)
 	stw	r2, 20(sp)
 	ldw	r2, 4(sp)
@@ -1588,15 +1574,9 @@ lfind:
 	stw	r6, 4(sp)
 	stw	r7, 0(sp)
 	ldw	r16, 0(sp)
-	mov	r4, r16
-	addi	r4, r16, -1
-	stw	r4, 24(sp)
-	mov	r8, r16
-	mov	r9, zero
-	srli	r4, r16, 29
-	slli	r3, r9, 3
-	or	r3, r4, r3
-	slli	r2, r16, 3
+	mov	r2, r16
+	addi	r2, r16, -1
+	stw	r2, 24(sp)
 	ldw	r2, 8(sp)
 	stw	r2, 20(sp)
 	ldw	r2, 4(sp)
@@ -1797,10 +1777,8 @@ atol:
 	.global	atoll
 	.type	atoll, @function
 atoll:
-	addi	sp, sp, -28
-	stw	ra, 24(sp)
-	stw	r17, 20(sp)
-	stw	r16, 16(sp)
+	addi	sp, sp, -20
+	stw	ra, 16(sp)
 	stw	r4, 0(sp)
 	stw	zero, 8(sp)
 	stw	zero, 12(sp)
@@ -1841,10 +1819,10 @@ atoll:
 	ldw	r4, 8(sp)
 	ldw	r5, 12(sp)
 	call	__muldi3
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
+	mov	r7, r2
+	mov	r5, r3
+	mov	r4, r7
+	mov	r6, r5
 	ldw	r2, 0(sp)
 	addi	r3, r2, 1
 	stw	r3, 0(sp)
@@ -1853,16 +1831,15 @@ atoll:
 	xori	r2, r2, 128
 	addi	r2, r2, -128
 	addi	r2, r2, -48
-	mov	r16, r2
+	mov	r7, r2
 	srai	r2, r2, 31
-	mov	r17, r2
-	sub	r2, r4, r16
-	cmpltu	r6, r4, r2
-	sub	r3, r5, r17
-	sub	r4, r3, r6
-	mov	r3, r4
-	stw	r2, 8(sp)
-	stw	r3, 12(sp)
+	mov	r5, r2
+	sub	r3, r4, r7
+	cmpltu	r4, r4, r3
+	sub	r2, r6, r5
+	sub	r2, r2, r4
+	stw	r3, 8(sp)
+	stw	r2, 12(sp)
 .L359:
 	ldw	r2, 0(sp)
 	ldbu	r2, 0(r2)
@@ -1874,30 +1851,25 @@ atoll:
 	bne	r2, zero, .L360
 	ldw	r2, 4(sp)
 	bne	r2, zero, .L361
-	mov	r6, zero
+	mov	r4, zero
 	mov	r7, zero
-	ldw	r4, 8(sp)
+	ldw	r6, 8(sp)
 	ldw	r5, 12(sp)
-	sub	r2, r6, r4
-	cmpltu	r8, r6, r2
-	sub	r3, r7, r5
-	sub	r4, r3, r8
-	mov	r3, r4
-	mov	r4, r2
+	sub	r3, r4, r6
+	cmpltu	r4, r4, r3
+	sub	r2, r7, r5
+	sub	r2, r2, r4
 	mov	r5, r3
+	mov	r4, r2
 	br	.L363
 .L361:
-	ldw	r4, 8(sp)
-	ldw	r5, 12(sp)
+	ldw	r5, 8(sp)
+	ldw	r4, 12(sp)
 .L363:
-	mov	r6, r4
-	mov	r7, r5
-	mov	r2, r6
-	mov	r3, r7
-	ldw	ra, 24(sp)
-	ldw	r17, 20(sp)
-	ldw	r16, 16(sp)
-	addi	sp, sp, 28
+	mov	r2, r5
+	mov	r3, r4
+	ldw	ra, 16(sp)
+	addi	sp, sp, 20
 	ret
 	.size	atoll, .-atoll
 	.align	2
@@ -2017,32 +1989,26 @@ bsearch_r:
 	.global	div
 	.type	div, @function
 div:
-	addi	sp, sp, -24
-	stw	ra, 20(sp)
-	stw	r18, 16(sp)
-	stw	r17, 12(sp)
+	addi	sp, sp, -16
+	stw	ra, 12(sp)
 	stw	r16, 8(sp)
 	stw	r4, 4(sp)
 	stw	r5, 0(sp)
 	ldw	r5, 0(sp)
 	ldw	r4, 4(sp)
 	call	__divsi3
-	mov	r18, r2
+	mov	r16, r2
 	ldw	r2, 4(sp)
 	ldw	r5, 0(sp)
 	mov	r4, r2
 	call	__modsi3
-	mov	r16, r18
-	mov	r17, r2
-	mov	r4, r16
-	mov	r5, r17
-	mov	r2, r4
-	mov	r3, r5
-	ldw	ra, 20(sp)
-	ldw	r18, 16(sp)
-	ldw	r17, 12(sp)
+	mov	r5, r16
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
+	ldw	ra, 12(sp)
 	ldw	r16, 8(sp)
-	addi	sp, sp, 24
+	addi	sp, sp, 16
 	ret
 	.size	div, .-div
 	.align	2
@@ -2052,25 +2018,23 @@ imaxabs:
 	addi	sp, sp, -8
 	stw	r4, 0(sp)
 	stw	r5, 4(sp)
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
-	bge	r3, zero, .L384
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
+	bge	r2, zero, .L384
 	mov	r6, zero
 	mov	r7, zero
-	sub	r4, r6, r2
-	cmpltu	r8, r6, r4
-	sub	r5, r7, r3
-	sub	r2, r5, r8
-	mov	r5, r2
-	mov	r2, r4
+	sub	r5, r6, r3
+	cmpltu	r3, r6, r5
+	sub	r4, r7, r2
+	sub	r2, r4, r3
+	mov	r4, r2
 	mov	r3, r5
+	mov	r2, r4
 .L384:
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r3
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 8
 	ret
 	.size	imaxabs, .-imaxabs
@@ -2091,27 +2055,27 @@ imaxdiv:
 	ldw	r4, 0(sp)
 	ldw	r5, 4(sp)
 	call	__divdi3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r16, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r17, r5
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	mov	r16, r4
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	ldw	r6, 40(sp)
 	ldw	r7, 44(sp)
-	mov	r4, r2
-	mov	r5, r3
+	mov	r4, r3
+	mov	r5, r2
 	call	__moddi3
-	mov	r4, r2
+	mov	r6, r2
 	mov	r5, r3
-	mov	r2, r4
+	mov	r4, r6
 	mov	r3, r5
-	ldw	r4, 8(sp)
-	stw	r16, 0(r4)
-	stw	r17, 4(r4)
-	ldw	r4, 8(sp)
-	stw	r2, 8(r4)
-	stw	r3, 12(r4)
+	ldw	r2, 8(sp)
+	stw	r17, 0(r2)
+	stw	r16, 4(r2)
+	ldw	r2, 8(sp)
+	stw	r4, 8(r2)
+	stw	r3, 12(r2)
 	ldw	r2, 8(sp)
 	ldw	ra, 36(sp)
 	ldw	r17, 32(sp)
@@ -2136,32 +2100,26 @@ labs:
 	.global	ldiv
 	.type	ldiv, @function
 ldiv:
-	addi	sp, sp, -24
-	stw	ra, 20(sp)
-	stw	r18, 16(sp)
-	stw	r17, 12(sp)
+	addi	sp, sp, -16
+	stw	ra, 12(sp)
 	stw	r16, 8(sp)
 	stw	r4, 4(sp)
 	stw	r5, 0(sp)
 	ldw	r5, 0(sp)
 	ldw	r4, 4(sp)
 	call	__divsi3
-	mov	r18, r2
+	mov	r16, r2
 	ldw	r2, 4(sp)
 	ldw	r5, 0(sp)
 	mov	r4, r2
 	call	__modsi3
-	mov	r16, r18
-	mov	r17, r2
-	mov	r4, r16
-	mov	r5, r17
-	mov	r2, r4
-	mov	r3, r5
-	ldw	ra, 20(sp)
-	ldw	r18, 16(sp)
-	ldw	r17, 12(sp)
+	mov	r5, r16
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
+	ldw	ra, 12(sp)
 	ldw	r16, 8(sp)
-	addi	sp, sp, 24
+	addi	sp, sp, 16
 	ret
 	.size	ldiv, .-ldiv
 	.align	2
@@ -2171,25 +2129,23 @@ llabs:
 	addi	sp, sp, -8
 	stw	r4, 0(sp)
 	stw	r5, 4(sp)
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
-	bge	r3, zero, .L399
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
+	bge	r2, zero, .L399
 	mov	r6, zero
 	mov	r7, zero
-	sub	r4, r6, r2
-	cmpltu	r8, r6, r4
-	sub	r5, r7, r3
-	sub	r2, r5, r8
-	mov	r5, r2
-	mov	r2, r4
+	sub	r5, r6, r3
+	cmpltu	r3, r6, r5
+	sub	r4, r7, r2
+	sub	r2, r4, r3
+	mov	r4, r2
 	mov	r3, r5
+	mov	r2, r4
 .L399:
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r3
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 8
 	ret
 	.size	llabs, .-llabs
@@ -2210,27 +2166,27 @@ lldiv:
 	ldw	r4, 0(sp)
 	ldw	r5, 4(sp)
 	call	__divdi3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r16, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r17, r5
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
+	mov	r16, r4
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
 	ldw	r6, 40(sp)
 	ldw	r7, 44(sp)
-	mov	r4, r2
-	mov	r5, r3
+	mov	r4, r3
+	mov	r5, r2
 	call	__moddi3
-	mov	r4, r2
+	mov	r6, r2
 	mov	r5, r3
-	mov	r2, r4
+	mov	r4, r6
 	mov	r3, r5
-	ldw	r4, 8(sp)
-	stw	r16, 0(r4)
-	stw	r17, 4(r4)
-	ldw	r4, 8(sp)
-	stw	r2, 8(r4)
-	stw	r3, 12(r4)
+	ldw	r2, 8(sp)
+	stw	r17, 0(r2)
+	stw	r16, 4(r2)
+	ldw	r2, 8(sp)
+	stw	r4, 8(r2)
+	stw	r3, 12(r2)
 	ldw	r2, 8(sp)
 	ldw	ra, 36(sp)
 	ldw	r17, 32(sp)
@@ -2698,59 +2654,58 @@ rotl64:
 	stw	r5, 8(sp)
 	stw	r6, 0(sp)
 	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	ldw	r4, 0(sp)
-	addi	r4, r4, -32
-	blt	r4, zero, .L489
-	sll	r11, r2, r4
-	mov	r10, zero
+	ldw	r4, 8(sp)
+	ldw	r3, 0(sp)
+	addi	r3, r3, -32
+	blt	r3, zero, .L489
+	sll	r3, r2, r3
+	mov	r6, zero
 	br	.L490
 .L489:
 	srli	r5, r2, 1
 	movi	r6, 31
-	ldw	r4, 0(sp)
-	sub	r4, r6, r4
-	srl	r4, r5, r4
+	ldw	r3, 0(sp)
+	sub	r3, r6, r3
+	srl	r5, r5, r3
+	ldw	r3, 0(sp)
+	sll	r3, r4, r3
+	or	r3, r5, r3
 	ldw	r5, 0(sp)
-	sll	r11, r3, r5
-	or	r11, r4, r11
-	ldw	r4, 0(sp)
-	sll	r10, r2, r4
+	sll	r6, r2, r5
 .L490:
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	addi	r4, r4, -32
-	blt	r4, zero, .L491
-	srl	r8, r3, r4
-	mov	r9, zero
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	addi	r5, r5, -32
+	blt	r5, zero, .L491
+	srl	r2, r4, r5
+	mov	r4, zero
 	br	.L492
 .L491:
-	slli	r5, r3, 1
-	movi	r6, 31
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	sub	r4, r6, r4
-	sll	r5, r5, r4
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	srl	r8, r2, r4
-	or	r8, r5, r8
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	srl	r9, r3, r4
+	slli	r7, r4, 1
+	movi	r8, 31
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	sub	r5, r8, r5
+	sll	r7, r7, r5
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	srl	r2, r2, r5
+	or	r2, r7, r2
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	srl	r4, r4, r5
 .L492:
-	or	r12, r8, r10
-	or	r13, r9, r11
-	mov	r8, r12
-	mov	r9, r13
-	mov	r4, r8
-	mov	r5, r9
-	mov	r2, r4
-	mov	r3, r5
+	or	r5, r2, r6
+	or	r3, r4, r3
+	mov	r2, r5
+	mov	r4, r3
+	mov	r5, r2
+	mov	r3, r4
+	mov	r2, r5
 	addi	sp, sp, 12
 	ret
 	.size	rotl64, .-rotl64
@@ -2762,60 +2717,59 @@ rotr64:
 	stw	r4, 4(sp)
 	stw	r5, 8(sp)
 	stw	r6, 0(sp)
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	ldw	r4, 0(sp)
-	addi	r4, r4, -32
-	blt	r4, zero, .L496
-	srl	r10, r3, r4
-	mov	r11, zero
+	ldw	r4, 4(sp)
+	ldw	r2, 8(sp)
+	ldw	r3, 0(sp)
+	addi	r3, r3, -32
+	blt	r3, zero, .L496
+	srl	r3, r2, r3
+	mov	r6, zero
 	br	.L497
 .L496:
-	slli	r5, r3, 1
+	slli	r5, r2, 1
 	movi	r6, 31
-	ldw	r4, 0(sp)
-	sub	r4, r6, r4
-	sll	r4, r5, r4
+	ldw	r3, 0(sp)
+	sub	r3, r6, r3
+	sll	r5, r5, r3
+	ldw	r3, 0(sp)
+	srl	r3, r4, r3
+	or	r3, r5, r3
 	ldw	r5, 0(sp)
-	srl	r10, r2, r5
-	or	r10, r4, r10
-	ldw	r4, 0(sp)
-	srl	r11, r3, r4
+	srl	r6, r2, r5
 .L497:
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	addi	r4, r4, -32
-	blt	r4, zero, .L498
-	sll	r9, r2, r4
-	mov	r8, zero
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	addi	r5, r5, -32
+	blt	r5, zero, .L498
+	sll	r2, r4, r5
+	mov	r4, zero
 	br	.L499
 .L498:
-	srli	r5, r2, 1
-	movi	r6, 31
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	sub	r4, r6, r4
-	srl	r5, r5, r4
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	sll	r9, r3, r4
-	or	r9, r5, r9
-	ldw	r4, 0(sp)
-	sub	r4, zero, r4
-	andi	r4, r4, 63
-	sll	r8, r2, r4
+	srli	r7, r4, 1
+	movi	r8, 31
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	sub	r5, r8, r5
+	srl	r7, r7, r5
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	sll	r2, r2, r5
+	or	r2, r7, r2
+	ldw	r5, 0(sp)
+	sub	r5, zero, r5
+	andi	r5, r5, 63
+	sll	r4, r4, r5
 .L499:
-	or	r12, r8, r10
-	or	r13, r9, r11
-	mov	r8, r12
-	mov	r9, r13
-	mov	r4, r8
-	mov	r5, r9
-	mov	r2, r4
-	mov	r3, r5
+	or	r5, r4, r3
+	or	r3, r2, r6
+	mov	r4, r5
+	mov	r2, r3
+	mov	r5, r4
+	mov	r3, r2
+	mov	r2, r5
 	addi	sp, sp, 12
 	ret
 	.size	rotr64, .-rotr64
@@ -3016,224 +2970,105 @@ bswap_32:
 	.global	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	addi	sp, sp, -216
-	stw	r21, 212(sp)
-	stw	r20, 208(sp)
-	stw	r19, 204(sp)
-	stw	r18, 200(sp)
-	stw	r17, 196(sp)
-	stw	r16, 192(sp)
-	stw	r4, 176(sp)
-	stw	r5, 180(sp)
+	addi	sp, sp, -16
+	stw	r4, 0(sp)
+	stw	r5, 4(sp)
 	movi	r2, 255
-	stw	r2, 184(sp)
-	stw	zero, 188(sp)
-	ldw	r2, 184(sp)
-	slli	r7, r2, 24
-	mov	r6, zero
-	ldw	r2, 176(sp)
-	and	r10, r2, r6
-	ldw	r2, 180(sp)
-	and	r11, r2, r7
-	srli	r2, r11, 24
-	stw	r2, 56(sp)
-	stw	zero, 60(sp)
-	ldw	r2, 184(sp)
-	slli	r13, r2, 16
-	mov	r12, zero
-	ldw	r2, 176(sp)
-	and	r2, r2, r12
-	stw	r2, 152(sp)
-	ldw	r2, 180(sp)
-	and	r2, r2, r13
-	stw	r2, 156(sp)
-	ldw	r2, 156(sp)
-	srli	r16, r2, 8
-	mov	r17, zero
-	ldw	r2, 56(sp)
-	or	r2, r2, r16
-	stw	r2, 64(sp)
-	ldw	r2, 60(sp)
-	or	r2, r2, r17
-	stw	r2, 68(sp)
-	ldw	r2, 184(sp)
-	slli	r2, r2, 8
-	stw	r2, 76(sp)
-	stw	zero, 72(sp)
-	ldw	r2, 176(sp)
-	ldw	r3, 72(sp)
-	and	r14, r2, r3
-	ldw	r2, 180(sp)
-	ldw	r3, 76(sp)
-	and	r15, r2, r3
-	slli	r2, r15, 8
-	srli	r8, r14, 24
-	or	r8, r2, r8
-	srli	r9, r15, 24
-	ldw	r2, 64(sp)
-	or	r2, r2, r8
-	stw	r2, 80(sp)
-	ldw	r2, 68(sp)
-	or	r2, r2, r9
-	stw	r2, 84(sp)
-	ldw	r2, 184(sp)
-	sll	r2, r2, zero
-	stw	r2, 92(sp)
-	stw	zero, 88(sp)
-	ldw	r2, 176(sp)
-	ldw	r3, 88(sp)
-	and	r20, r2, r3
-	ldw	r2, 180(sp)
-	ldw	r3, 92(sp)
-	and	r21, r2, r3
-	slli	r2, r21, 24
-	srli	r18, r20, 8
-	or	r18, r2, r18
-	srli	r19, r21, 8
-	ldw	r2, 80(sp)
-	or	r2, r2, r18
-	stw	r2, 96(sp)
-	ldw	r2, 84(sp)
-	or	r2, r2, r19
-	stw	r2, 100(sp)
-	ldw	r2, 184(sp)
-	srli	r3, r2, 8
-	ldw	r2, 188(sp)
-	slli	r2, r2, 24
-	stw	r2, 4(sp)
-	ldw	r2, 4(sp)
-	or	r2, r3, r2
-	stw	r2, 4(sp)
-	ldw	r2, 184(sp)
-	slli	r2, r2, 24
-	stw	r2, 0(sp)
-	ldw	r2, 176(sp)
-	ldw	r3, 0(sp)
-	and	r2, r2, r3
-	stw	r2, 40(sp)
-	ldw	r2, 180(sp)
-	ldw	r3, 4(sp)
-	and	r2, r2, r3
-	stw	r2, 44(sp)
-	ldw	r2, 40(sp)
-	srli	r2, r2, 24
-	ldw	r3, 44(sp)
-	slli	r3, r3, 8
-	stw	r3, 12(sp)
-	ldw	r3, 12(sp)
-	or	r2, r2, r3
-	stw	r2, 12(sp)
-	ldw	r2, 40(sp)
-	slli	r2, r2, 8
 	stw	r2, 8(sp)
-	ldw	r2, 96(sp)
-	ldw	r3, 8(sp)
-	or	r2, r2, r3
-	stw	r2, 104(sp)
-	ldw	r2, 100(sp)
-	ldw	r3, 12(sp)
-	or	r2, r2, r3
-	stw	r2, 108(sp)
-	ldw	r2, 184(sp)
-	srli	r3, r2, 16
-	ldw	r2, 188(sp)
+	stw	zero, 12(sp)
+	ldw	r2, 8(sp)
+	slli	r2, r2, 24
+	ldw	r3, 4(sp)
+	and	r2, r3, r2
+	srli	r3, r2, 24
+	mov	r6, zero
+	ldw	r2, 8(sp)
 	slli	r2, r2, 16
-	stw	r2, 20(sp)
-	ldw	r2, 20(sp)
-	or	r2, r3, r2
-	stw	r2, 20(sp)
-	ldw	r2, 184(sp)
-	slli	r2, r2, 16
-	stw	r2, 16(sp)
-	ldw	r2, 176(sp)
-	ldw	r3, 16(sp)
-	and	r2, r2, r3
-	stw	r2, 48(sp)
-	ldw	r2, 180(sp)
-	ldw	r3, 20(sp)
-	and	r2, r2, r3
-	stw	r2, 52(sp)
-	ldw	r2, 48(sp)
+	ldw	r4, 4(sp)
+	and	r2, r4, r2
 	srli	r2, r2, 8
-	ldw	r3, 52(sp)
-	slli	r3, r3, 24
-	stw	r3, 28(sp)
-	ldw	r3, 28(sp)
-	or	r2, r2, r3
-	stw	r2, 28(sp)
-	ldw	r2, 48(sp)
-	slli	r2, r2, 24
-	stw	r2, 24(sp)
-	ldw	r2, 104(sp)
-	ldw	r3, 24(sp)
-	or	r2, r2, r3
-	stw	r2, 112(sp)
-	ldw	r2, 108(sp)
-	ldw	r3, 28(sp)
-	or	r2, r2, r3
-	stw	r2, 116(sp)
-	ldw	r2, 184(sp)
+	mov	r5, zero
+	or	r4, r3, r2
+	or	r5, r6, r5
+	ldw	r2, 8(sp)
+	slli	r3, r2, 8
+	mov	r6, zero
+	ldw	r2, 0(sp)
+	and	r2, r2, r6
+	ldw	r6, 4(sp)
+	and	r3, r6, r3
+	slli	r6, r3, 8
 	srli	r2, r2, 24
-	ldw	r3, 188(sp)
-	slli	r3, r3, 8
-	stw	r3, 36(sp)
-	ldw	r3, 36(sp)
-	or	r2, r2, r3
-	stw	r2, 36(sp)
-	ldw	r2, 184(sp)
-	slli	r2, r2, 8
-	stw	r2, 32(sp)
-	ldw	r2, 176(sp)
-	ldw	r3, 32(sp)
-	and	r2, r2, r3
-	stw	r2, 160(sp)
-	ldw	r2, 180(sp)
-	ldw	r3, 36(sp)
-	and	r2, r2, r3
-	stw	r2, 164(sp)
-	ldw	r2, 160(sp)
-	slli	r2, r2, 8
-	stw	r2, 124(sp)
-	stw	zero, 120(sp)
-	ldw	r2, 112(sp)
-	ldw	r3, 120(sp)
-	or	r2, r2, r3
-	stw	r2, 128(sp)
-	ldw	r2, 116(sp)
-	ldw	r3, 124(sp)
-	or	r2, r2, r3
-	stw	r2, 132(sp)
-	ldw	r3, 176(sp)
-	ldw	r2, 184(sp)
-	and	r2, r3, r2
-	stw	r2, 168(sp)
-	ldw	r3, 180(sp)
-	ldw	r2, 188(sp)
-	and	r2, r3, r2
-	stw	r2, 172(sp)
-	ldw	r2, 168(sp)
+	or	r2, r6, r2
+	srli	r3, r3, 24
+	or	r4, r4, r2
+	or	r5, r5, r3
+	ldw	r2, 8(sp)
+	sll	r3, r2, zero
+	mov	r6, zero
+	ldw	r2, 0(sp)
+	and	r2, r2, r6
+	ldw	r6, 4(sp)
+	and	r3, r6, r3
+	slli	r6, r3, 24
+	srli	r2, r2, 8
+	or	r2, r6, r2
+	srli	r3, r3, 8
+	or	r4, r4, r2
+	or	r5, r5, r3
+	ldw	r2, 8(sp)
+	srli	r3, r2, 8
+	ldw	r2, 12(sp)
 	slli	r2, r2, 24
-	stw	r2, 140(sp)
-	stw	zero, 136(sp)
-	ldw	r2, 128(sp)
-	ldw	r3, 136(sp)
-	or	r2, r2, r3
-	stw	r2, 144(sp)
-	ldw	r2, 132(sp)
-	ldw	r3, 140(sp)
-	or	r2, r2, r3
-	stw	r2, 148(sp)
-	ldw	r4, 144(sp)
-	ldw	r5, 148(sp)
-	mov	r2, r4
-	mov	r3, r5
-	ldw	r21, 212(sp)
-	ldw	r20, 208(sp)
-	ldw	r19, 204(sp)
-	ldw	r18, 200(sp)
-	ldw	r17, 196(sp)
-	ldw	r16, 192(sp)
-	addi	sp, sp, 216
+	or	r2, r3, r2
+	ldw	r3, 8(sp)
+	slli	r3, r3, 24
+	ldw	r6, 0(sp)
+	and	r3, r6, r3
+	ldw	r6, 4(sp)
+	and	r2, r6, r2
+	srli	r6, r3, 24
+	slli	r2, r2, 8
+	or	r2, r6, r2
+	slli	r3, r3, 8
+	or	r4, r4, r3
+	or	r5, r5, r2
+	ldw	r2, 8(sp)
+	srli	r3, r2, 16
+	ldw	r2, 12(sp)
+	slli	r2, r2, 16
+	or	r2, r3, r2
+	ldw	r3, 8(sp)
+	slli	r3, r3, 16
+	ldw	r6, 0(sp)
+	and	r3, r6, r3
+	ldw	r6, 4(sp)
+	and	r2, r6, r2
+	srli	r6, r3, 8
+	slli	r2, r2, 24
+	or	r2, r6, r2
+	slli	r3, r3, 24
+	or	r4, r4, r3
+	or	r3, r5, r2
+	ldw	r2, 8(sp)
+	slli	r2, r2, 8
+	ldw	r5, 0(sp)
+	and	r2, r5, r2
+	slli	r2, r2, 8
+	mov	r5, zero
+	or	r4, r4, r5
+	or	r3, r3, r2
+	ldw	r5, 0(sp)
+	ldw	r2, 8(sp)
+	and	r2, r5, r2
+	slli	r2, r2, 24
+	mov	r5, zero
+	or	r4, r4, r5
+	or	r2, r3, r2
+	mov	r5, r4
+	mov	r3, r2
+	mov	r2, r5
+	addi	sp, sp, 16
 	ret
 	.size	bswap_64, .-bswap_64
 	.align	2
@@ -3391,11 +3226,11 @@ _Qp_itoq:
 	stw	r5, 0(sp)
 	ldw	r4, 0(sp)
 	call	__floatsidf
-	mov	r4, r2
-	mov	r5, r3
+	mov	r5, r2
+	mov	r4, r3
 	ldw	r2, 4(sp)
-	stw	r4, 0(r2)
-	stw	r5, 4(r2)
+	stw	r5, 0(r2)
+	stw	r4, 4(r2)
 	nop
 	ldw	ra, 8(sp)
 	addi	sp, sp, 12
@@ -3479,34 +3314,34 @@ ldexp:
 	ldw	r5, 8(sp)
 	call	__unorddf2
 	bne	r2, zero, .L586
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r2
-	mov	r5, r3
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
+	mov	r6, r3
+	mov	r7, r2
+	mov	r4, r3
+	mov	r5, r2
 	call	__adddf3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r3, r5
-	mov	r6, r2
-	mov	r7, r3
+	mov	r2, r4
+	mov	r6, r3
+	mov	r7, r2
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__eqdf2
 	beq	r2, zero, .L586
 	ldw	r2, 0(sp)
 	bge	r2, zero, .L587
-	mov	r2, zero
-	movhi	r3, 16352
+	mov	r3, zero
+	movhi	r2, 16352
 	br	.L588
 .L587:
-	mov	r2, zero
-	movhi	r3, 16384
+	mov	r3, zero
+	movhi	r2, 16384
 .L588:
-	stw	r2, 12(sp)
-	stw	r3, 16(sp)
+	stw	r3, 12(sp)
+	stw	r2, 16(sp)
 .L591:
 	ldw	r2, 0(sp)
 	andi	r2, r2, 1
@@ -3516,10 +3351,10 @@ ldexp:
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 4(sp)
-	stw	r5, 8(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 4(sp)
+	stw	r4, 8(sp)
 .L589:
 	ldw	r2, 0(sp)
 	srli	r3, r2, 31
@@ -3533,20 +3368,20 @@ ldexp:
 	ldw	r4, 12(sp)
 	ldw	r5, 16(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 12(sp)
-	stw	r5, 16(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 12(sp)
+	stw	r4, 16(sp)
 	br	.L591
 .L593:
 	nop
 .L586:
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r4, r2
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 20(sp)
 	addi	sp, sp, 24
 	ret
@@ -3566,34 +3401,34 @@ ldexpl:
 	ldw	r5, 8(sp)
 	call	__unorddf2
 	bne	r2, zero, .L596
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r2
-	mov	r5, r3
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
+	mov	r6, r3
+	mov	r7, r2
+	mov	r4, r3
+	mov	r5, r2
 	call	__adddf3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r3, r5
-	mov	r6, r2
-	mov	r7, r3
+	mov	r2, r4
+	mov	r6, r3
+	mov	r7, r2
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__eqdf2
 	beq	r2, zero, .L596
 	ldw	r2, 0(sp)
 	bge	r2, zero, .L597
-	mov	r2, zero
-	movhi	r3, 16352
+	mov	r3, zero
+	movhi	r2, 16352
 	br	.L598
 .L597:
-	mov	r2, zero
-	movhi	r3, 16384
+	mov	r3, zero
+	movhi	r2, 16384
 .L598:
-	stw	r2, 12(sp)
-	stw	r3, 16(sp)
+	stw	r3, 12(sp)
+	stw	r2, 16(sp)
 .L601:
 	ldw	r2, 0(sp)
 	andi	r2, r2, 1
@@ -3603,10 +3438,10 @@ ldexpl:
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 4(sp)
-	stw	r5, 8(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 4(sp)
+	stw	r4, 8(sp)
 .L599:
 	ldw	r2, 0(sp)
 	srli	r3, r2, 31
@@ -3620,20 +3455,20 @@ ldexpl:
 	ldw	r4, 12(sp)
 	ldw	r5, 16(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 12(sp)
-	stw	r5, 16(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 12(sp)
+	stw	r4, 16(sp)
 	br	.L601
 .L603:
 	nop
 .L596:
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r4, r2
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 20(sp)
 	addi	sp, sp, 24
 	ret
@@ -3882,10 +3717,8 @@ strstr:
 	.global	copysign
 	.type	copysign, @function
 copysign:
-	addi	sp, sp, -28
-	stw	ra, 24(sp)
-	stw	r17, 20(sp)
-	stw	r16, 16(sp)
+	addi	sp, sp, -20
+	stw	ra, 16(sp)
 	stw	r4, 8(sp)
 	stw	r5, 12(sp)
 	stw	r6, 0(sp)
@@ -3916,22 +3749,20 @@ copysign:
 	call	__ltdf2
 	bge	r2, zero, .L648
 .L647:
-	ldw	r16, 8(sp)
+	ldw	r3, 8(sp)
 	ldw	r2, 12(sp)
-	xorhi	r17, r2, 32768
+	xorhi	r2, r2, 32768
 	br	.L651
 .L648:
-	ldw	r16, 8(sp)
-	ldw	r17, 12(sp)
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 .L651:
-	mov	r4, r16
-	mov	r5, r17
-	mov	r2, r4
-	mov	r3, r5
-	ldw	ra, 24(sp)
-	ldw	r17, 20(sp)
-	ldw	r16, 16(sp)
-	addi	sp, sp, 28
+	mov	r5, r3
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
+	ldw	ra, 16(sp)
+	addi	sp, sp, 20
 	ret
 	.size	copysign, .-copysign
 	.align	2
@@ -4029,12 +3860,8 @@ mempcpy:
 	.global	frexp
 	.type	frexp, @function
 frexp:
-	addi	sp, sp, -40
-	stw	ra, 36(sp)
-	stw	r19, 32(sp)
-	stw	r18, 28(sp)
-	stw	r17, 24(sp)
-	stw	r16, 20(sp)
+	addi	sp, sp, -24
+	stw	ra, 20(sp)
 	stw	r4, 4(sp)
 	stw	r5, 8(sp)
 	stw	r6, 0(sp)
@@ -4046,11 +3873,11 @@ frexp:
 	ldw	r5, 8(sp)
 	call	__ltdf2
 	bge	r2, zero, .L667
-	ldw	r18, 4(sp)
+	ldw	r3, 4(sp)
 	ldw	r2, 8(sp)
-	xorhi	r19, r2, 32768
-	stw	r18, 4(sp)
-	stw	r19, 8(sp)
+	xorhi	r2, r2, 32768
+	stw	r3, 4(sp)
+	stw	r2, 8(sp)
 	movi	r2, 1
 	stw	r2, 16(sp)
 .L667:
@@ -4070,10 +3897,10 @@ frexp:
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__divdf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 4(sp)
-	stw	r5, 8(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 4(sp)
+	stw	r4, 8(sp)
 .L671:
 	mov	r6, zero
 	movhi	r7, 16368
@@ -4100,17 +3927,17 @@ frexp:
 	ldw	r2, 12(sp)
 	addi	r2, r2, -1
 	stw	r2, 12(sp)
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r2
-	mov	r5, r3
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
+	mov	r6, r3
+	mov	r7, r2
+	mov	r4, r3
+	mov	r5, r2
 	call	__adddf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 4(sp)
-	stw	r5, 8(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 4(sp)
+	stw	r4, 8(sp)
 .L675:
 	mov	r6, zero
 	movhi	r7, 16352
@@ -4124,24 +3951,20 @@ frexp:
 	stw	r3, 0(r2)
 	ldw	r2, 16(sp)
 	beq	r2, zero, .L677
-	ldw	r16, 4(sp)
+	ldw	r3, 4(sp)
 	ldw	r2, 8(sp)
-	xorhi	r17, r2, 32768
-	stw	r16, 4(sp)
-	stw	r17, 8(sp)
+	xorhi	r2, r2, 32768
+	stw	r3, 4(sp)
+	stw	r2, 8(sp)
 .L677:
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	mov	r4, r2
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
-	ldw	ra, 36(sp)
-	ldw	r19, 32(sp)
-	ldw	r18, 28(sp)
-	ldw	r17, 24(sp)
-	ldw	r16, 20(sp)
-	addi	sp, sp, 40
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
+	ldw	ra, 20(sp)
+	addi	sp, sp, 24
 	ret
 	.size	frexp, .-frexp
 	.align	2
@@ -4162,53 +3985,52 @@ __muldi3:
 	br	.L685
 .L688:
 	ldw	r2, 16(sp)
-	andi	r12, r2, 1
+	andi	r4, r2, 1
 	ldw	r2, 20(sp)
-	and	r13, r2, zero
-	mov	r2, r12
-	or	r2, r2, r13
+	and	r3, r2, zero
+	mov	r2, r4
+	or	r2, r2, r3
 	beq	r2, zero, .L686
 	ldw	r4, 24(sp)
-	ldw	r5, 28(sp)
-	ldw	r6, 0(sp)
-	ldw	r7, 4(sp)
-	add	r2, r4, r6
-	cmpltu	r14, r2, r4
-	add	r3, r5, r7
-	add	r4, r14, r3
-	mov	r3, r4
-	stw	r2, 24(sp)
-	stw	r3, 28(sp)
+	ldw	r6, 28(sp)
+	ldw	r7, 0(sp)
+	ldw	r5, 4(sp)
+	add	r3, r4, r7
+	cmpltu	r4, r3, r4
+	add	r2, r6, r5
+	add	r2, r4, r2
+	stw	r3, 24(sp)
+	stw	r2, 28(sp)
 .L686:
 	ldw	r2, 0(sp)
-	srli	r2, r2, 31
-	ldw	r3, 4(sp)
-	slli	r9, r3, 1
-	or	r9, r2, r9
-	ldw	r2, 0(sp)
-	slli	r8, r2, 1
-	stw	r8, 0(sp)
-	stw	r9, 4(sp)
+	srli	r3, r2, 31
+	ldw	r2, 4(sp)
+	slli	r2, r2, 1
+	or	r2, r3, r2
+	ldw	r3, 0(sp)
+	slli	r3, r3, 1
+	stw	r3, 0(sp)
+	stw	r2, 4(sp)
 	ldw	r2, 20(sp)
-	slli	r2, r2, 31
-	ldw	r3, 16(sp)
-	srli	r10, r3, 1
-	or	r10, r2, r10
-	ldw	r2, 20(sp)
-	srli	r11, r2, 1
-	stw	r10, 16(sp)
-	stw	r11, 20(sp)
+	slli	r3, r2, 31
+	ldw	r2, 16(sp)
+	srli	r2, r2, 1
+	or	r2, r3, r2
+	ldw	r3, 20(sp)
+	srli	r3, r3, 1
+	stw	r2, 16(sp)
+	stw	r3, 20(sp)
 .L685:
 	ldw	r2, 16(sp)
 	ldw	r3, 20(sp)
 	or	r2, r2, r3
 	bne	r2, zero, .L688
-	ldw	r2, 24(sp)
-	ldw	r3, 28(sp)
-	mov	r4, r2
+	ldw	r3, 24(sp)
+	ldw	r2, 28(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 32
 	ret
 	.size	__muldi3, .-__muldi3
@@ -4311,14 +4133,14 @@ __clrsbdi2:
 	stw	ra, 12(sp)
 	stw	r4, 0(sp)
 	stw	r5, 4(sp)
-	ldw	r4, 4(sp)
-	bge	r4, zero, .L707
-	ldw	r4, 0(sp)
-	nor	r2, zero, r4
-	ldw	r4, 4(sp)
-	nor	r3, zero, r4
-	stw	r2, 0(sp)
-	stw	r3, 4(sp)
+	ldw	r2, 4(sp)
+	bge	r2, zero, .L707
+	ldw	r2, 0(sp)
+	nor	r3, zero, r2
+	ldw	r2, 4(sp)
+	nor	r2, zero, r2
+	stw	r3, 0(sp)
+	stw	r2, 4(sp)
 .L707:
 	ldw	r2, 0(sp)
 	ldw	r3, 4(sp)
@@ -4327,10 +4149,10 @@ __clrsbdi2:
 	movi	r2, 63
 	br	.L710
 .L709:
-	ldw	r2, 0(sp)
-	ldw	r3, 4(sp)
-	mov	r4, r2
-	mov	r5, r3
+	ldw	r3, 0(sp)
+	ldw	r2, 4(sp)
+	mov	r4, r3
+	mov	r5, r2
 	call	__clzdi2
 	stw	r2, 8(sp)
 	ldw	r2, 8(sp)
@@ -4405,15 +4227,15 @@ __cmovd:
 	ldw	r2, 28(sp)
 	slli	r2, r2, 3
 	ldw	r3, 4(sp)
-	add	r5, r3, r2
+	add	r3, r3, r2
 	ldw	r2, 28(sp)
 	slli	r2, r2, 3
-	ldw	r3, 8(sp)
-	add	r4, r3, r2
-	ldw	r2, 0(r5)
-	ldw	r3, 4(r5)
-	stw	r2, 0(r4)
-	stw	r3, 4(r4)
+	ldw	r4, 8(sp)
+	add	r2, r4, r2
+	ldw	r5, 0(r3)
+	ldw	r4, 4(r3)
+	stw	r5, 0(r2)
+	stw	r4, 4(r2)
 	ldw	r2, 28(sp)
 	addi	r2, r2, 1
 	stw	r2, 28(sp)
@@ -4650,12 +4472,10 @@ __uitod:
 	stw	r4, 0(sp)
 	ldw	r4, 0(sp)
 	call	__floatunsidf
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r2
+	mov	r4, r3
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 4(sp)
 	addi	sp, sp, 8
 	ret
@@ -4686,12 +4506,10 @@ __ulltod:
 	ldw	r4, 0(sp)
 	ldw	r5, 4(sp)
 	call	__floatundidf
-	mov	r6, r2
-	mov	r7, r3
-	mov	r4, r6
-	mov	r5, r7
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r2
+	mov	r4, r3
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 8(sp)
 	addi	sp, sp, 12
 	ret
@@ -5080,27 +4898,23 @@ __mspabi_mpysll:
 	stw	ra, 8(sp)
 	stw	r4, 4(sp)
 	stw	r5, 0(sp)
-	ldw	r4, 4(sp)
-	mov	r2, r4
-	srai	r4, r4, 31
-	mov	r3, r4
-	ldw	r4, 0(sp)
-	mov	r8, r4
-	srai	r4, r4, 31
-	mov	r9, r4
-	mov	r6, r8
-	mov	r7, r9
+	ldw	r2, 4(sp)
 	mov	r4, r2
+	srai	r2, r2, 31
+	mov	r3, r2
+	ldw	r2, 0(sp)
+	mov	r5, r2
+	srai	r2, r2, 31
+	mov	r6, r5
+	mov	r7, r2
 	mov	r5, r3
 	call	__muldi3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r2
+	mov	r4, r3
+	mov	r7, r5
+	mov	r6, r4
+	mov	r2, r7
+	mov	r3, r6
 	ldw	ra, 8(sp)
 	addi	sp, sp, 12
 	ret
@@ -5113,25 +4927,22 @@ __mspabi_mpyull:
 	stw	ra, 8(sp)
 	stw	r4, 4(sp)
 	stw	r5, 0(sp)
-	ldw	r4, 4(sp)
-	mov	r2, r4
-	mov	r3, zero
-	ldw	r4, 0(sp)
-	mov	r8, r4
-	mov	r9, zero
-	mov	r6, r8
-	mov	r7, r9
+	ldw	r2, 4(sp)
 	mov	r4, r2
+	mov	r3, zero
+	ldw	r2, 0(sp)
+	mov	r5, r2
+	mov	r2, zero
+	mov	r6, r5
+	mov	r7, r2
 	mov	r5, r3
 	call	__muldi3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r5, r2
+	mov	r4, r3
+	mov	r7, r5
+	mov	r6, r4
+	mov	r2, r7
+	mov	r3, r6
 	ldw	ra, 8(sp)
 	addi	sp, sp, 12
 	ret
@@ -5435,8 +5246,8 @@ __ashldi3:
 .L897:
 	ldw	r2, 0(sp)
 	bne	r2, zero, .L899
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	br	.L901
 .L899:
 	ldw	r3, 20(sp)
@@ -5455,13 +5266,13 @@ __ashldi3:
 	or	r2, r3, r2
 	stw	r2, 16(sp)
 .L898:
-	ldw	r2, 12(sp)
-	ldw	r3, 16(sp)
+	ldw	r3, 12(sp)
+	ldw	r2, 16(sp)
 .L901:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 32
 	ret
 	.size	__ashldi3, .-__ashldi3
@@ -5498,8 +5309,8 @@ __ashrdi3:
 .L904:
 	ldw	r2, 0(sp)
 	bne	r2, zero, .L906
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	br	.L908
 .L906:
 	ldw	r3, 24(sp)
@@ -5518,13 +5329,13 @@ __ashrdi3:
 	or	r2, r3, r2
 	stw	r2, 12(sp)
 .L905:
-	ldw	r2, 12(sp)
-	ldw	r3, 16(sp)
+	ldw	r3, 12(sp)
+	ldw	r2, 16(sp)
 .L908:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 32
 	ret
 	.size	__ashrdi3, .-__ashrdi3
@@ -5532,140 +5343,79 @@ __ashrdi3:
 	.global	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	addi	sp, sp, -136
-	stw	r21, 132(sp)
-	stw	r20, 128(sp)
-	stw	r19, 124(sp)
-	stw	r18, 120(sp)
-	stw	r17, 116(sp)
-	stw	r16, 112(sp)
-	stw	r4, 104(sp)
-	stw	r5, 108(sp)
-	ldw	r2, 108(sp)
-	srli	r12, r2, 24
-	mov	r13, zero
-	ldw	r2, 108(sp)
-	srli	r8, r2, 8
-	mov	r9, zero
-	andi	r6, r8, 65280
-	and	r7, r9, zero
-	or	r2, r12, r6
-	stw	r2, 0(sp)
-	or	r2, r13, r7
-	stw	r2, 4(sp)
-	ldw	r2, 108(sp)
-	slli	r3, r2, 8
-	ldw	r2, 104(sp)
-	srli	r10, r2, 24
-	or	r10, r3, r10
-	ldw	r2, 108(sp)
-	srli	r11, r2, 24
-	andhi	r16, r10, 255
-	and	r17, r11, zero
-	ldw	r2, 0(sp)
-	or	r2, r2, r16
-	stw	r2, 8(sp)
+	addi	sp, sp, -8
+	stw	r4, 0(sp)
+	stw	r5, 4(sp)
 	ldw	r2, 4(sp)
-	or	r2, r2, r17
-	stw	r2, 12(sp)
-	ldw	r2, 108(sp)
-	slli	r3, r2, 24
-	ldw	r2, 104(sp)
-	srli	r14, r2, 8
-	or	r14, r3, r14
-	ldw	r2, 108(sp)
-	srli	r15, r2, 8
-	andhi	r2, r14, 65280
-	stw	r2, 16(sp)
-	and	r2, r15, zero
-	stw	r2, 20(sp)
-	ldw	r2, 8(sp)
-	ldw	r3, 16(sp)
-	or	r2, r2, r3
-	stw	r2, 24(sp)
-	ldw	r2, 12(sp)
-	ldw	r3, 20(sp)
-	or	r2, r2, r3
-	stw	r2, 28(sp)
-	ldw	r2, 104(sp)
-	srli	r3, r2, 24
-	ldw	r2, 108(sp)
-	slli	r21, r2, 8
-	or	r21, r3, r21
-	ldw	r2, 104(sp)
-	slli	r20, r2, 8
-	and	r2, r20, zero
-	stw	r2, 32(sp)
-	andi	r2, r21, 255
-	stw	r2, 36(sp)
-	ldw	r2, 24(sp)
-	ldw	r3, 32(sp)
-	or	r2, r2, r3
-	stw	r2, 40(sp)
-	ldw	r2, 28(sp)
-	ldw	r3, 36(sp)
-	or	r2, r2, r3
-	stw	r2, 44(sp)
-	ldw	r2, 104(sp)
+	srli	r4, r2, 24
+	mov	r6, zero
+	ldw	r2, 4(sp)
 	srli	r2, r2, 8
-	ldw	r3, 108(sp)
-	slli	r19, r3, 24
-	or	r19, r2, r19
-	ldw	r2, 104(sp)
-	slli	r18, r2, 24
-	and	r2, r18, zero
-	stw	r2, 48(sp)
-	andi	r2, r19, 65280
-	stw	r2, 52(sp)
-	ldw	r2, 40(sp)
-	ldw	r3, 48(sp)
-	or	r2, r2, r3
-	stw	r2, 56(sp)
-	ldw	r2, 44(sp)
-	ldw	r3, 52(sp)
-	or	r2, r2, r3
-	stw	r2, 60(sp)
-	ldw	r2, 104(sp)
+	mov	r5, zero
+	andi	r3, r2, 65280
+	and	r2, r5, zero
+	or	r5, r4, r3
+	or	r3, r6, r2
+	ldw	r2, 4(sp)
+	slli	r4, r2, 8
+	ldw	r2, 0(sp)
+	srli	r2, r2, 24
+	or	r2, r4, r2
+	ldw	r4, 4(sp)
+	srli	r6, r4, 24
+	andhi	r4, r2, 255
+	and	r2, r6, zero
+	or	r5, r5, r4
+	or	r3, r3, r2
+	ldw	r2, 4(sp)
+	slli	r4, r2, 24
+	ldw	r2, 0(sp)
+	srli	r2, r2, 8
+	or	r2, r4, r2
+	ldw	r4, 4(sp)
+	srli	r6, r4, 8
+	andhi	r4, r2, 65280
+	and	r2, r6, zero
+	or	r5, r5, r4
+	or	r3, r3, r2
+	ldw	r2, 0(sp)
+	srli	r4, r2, 24
+	ldw	r2, 4(sp)
 	slli	r2, r2, 8
-	stw	r2, 68(sp)
-	stw	zero, 64(sp)
-	ldw	r2, 64(sp)
-	and	r2, r2, zero
-	stw	r2, 72(sp)
-	ldw	r2, 68(sp)
-	andhi	r2, r2, 255
-	stw	r2, 76(sp)
-	ldw	r2, 56(sp)
-	ldw	r3, 72(sp)
-	or	r2, r2, r3
-	stw	r2, 80(sp)
-	ldw	r2, 60(sp)
-	ldw	r3, 76(sp)
-	or	r2, r2, r3
-	stw	r2, 84(sp)
-	ldw	r2, 104(sp)
+	or	r2, r4, r2
+	ldw	r4, 0(sp)
+	slli	r4, r4, 8
+	and	r4, r4, zero
+	andi	r2, r2, 255
+	or	r5, r5, r4
+	or	r3, r3, r2
+	ldw	r2, 0(sp)
+	srli	r4, r2, 8
+	ldw	r2, 4(sp)
 	slli	r2, r2, 24
-	stw	r2, 92(sp)
-	stw	zero, 88(sp)
-	ldw	r2, 80(sp)
-	ldw	r3, 88(sp)
-	or	r2, r2, r3
-	stw	r2, 96(sp)
-	ldw	r2, 84(sp)
-	ldw	r3, 92(sp)
-	or	r2, r2, r3
-	stw	r2, 100(sp)
-	ldw	r4, 96(sp)
-	ldw	r5, 100(sp)
-	mov	r2, r4
-	mov	r3, r5
-	ldw	r21, 132(sp)
-	ldw	r20, 128(sp)
-	ldw	r19, 124(sp)
-	ldw	r18, 120(sp)
-	ldw	r17, 116(sp)
-	ldw	r16, 112(sp)
-	addi	sp, sp, 136
+	or	r2, r4, r2
+	ldw	r4, 0(sp)
+	slli	r4, r4, 24
+	and	r4, r4, zero
+	andi	r2, r2, 65280
+	or	r5, r5, r4
+	or	r3, r3, r2
+	ldw	r2, 0(sp)
+	slli	r2, r2, 8
+	mov	r4, zero
+	and	r4, r4, zero
+	andhi	r2, r2, 255
+	or	r4, r5, r4
+	or	r3, r3, r2
+	ldw	r2, 0(sp)
+	slli	r2, r2, 24
+	mov	r5, zero
+	or	r4, r4, r5
+	or	r2, r3, r2
+	mov	r5, r4
+	mov	r3, r2
+	mov	r2, r5
+	addi	sp, sp, 8
 	ret
 	.size	__bswapdi2, .-__bswapdi2
 	.align	2
@@ -5952,10 +5702,10 @@ __lshrdi3:
 	stw	r6, 0(sp)
 	movi	r2, 32
 	stw	r2, 28(sp)
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
-	stw	r2, 20(sp)
-	stw	r3, 24(sp)
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
+	stw	r3, 20(sp)
+	stw	r2, 24(sp)
 	ldw	r3, 0(sp)
 	ldw	r2, 28(sp)
 	and	r2, r3, r2
@@ -5971,8 +5721,8 @@ __lshrdi3:
 .L950:
 	ldw	r2, 0(sp)
 	bne	r2, zero, .L952
-	ldw	r2, 4(sp)
-	ldw	r3, 8(sp)
+	ldw	r3, 4(sp)
+	ldw	r2, 8(sp)
 	br	.L954
 .L952:
 	ldw	r3, 24(sp)
@@ -5990,15 +5740,15 @@ __lshrdi3:
 	or	r2, r3, r2
 	stw	r2, 12(sp)
 .L951:
-	ldw	r4, 12(sp)
-	ldw	r5, 16(sp)
-	mov	r2, r4
+	ldw	r5, 12(sp)
+	ldw	r4, 16(sp)
 	mov	r3, r5
+	mov	r2, r4
 .L954:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 32
 	ret
 	.size	__lshrdi3, .-__lshrdi3
@@ -6097,12 +5847,12 @@ __muldsi3:
 	mul	r2, r3, r2
 	add	r2, r5, r2
 	stw	r2, 12(sp)
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
-	mov	r4, r2
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	addi	sp, sp, 28
 	ret
 	.size	__muldsi3, .-__muldsi3
@@ -6129,10 +5879,10 @@ __muldi3_compiler_rt:
 	mov	r5, r3
 	mov	r4, r2
 	call	__muldsi3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 16(sp)
-	stw	r5, 20(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 16(sp)
+	stw	r4, 20(sp)
 	ldw	r2, 20(sp)
 	mov	r4, r2
 	ldw	r2, 36(sp)
@@ -6145,12 +5895,12 @@ __muldi3_compiler_rt:
 	add	r2, r3, r2
 	add	r2, r4, r2
 	stw	r2, 20(sp)
-	ldw	r2, 16(sp)
-	ldw	r3, 20(sp)
-	mov	r4, r2
+	ldw	r3, 16(sp)
+	ldw	r2, 20(sp)
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 40(sp)
 	addi	sp, sp, 44
 	ret
@@ -6162,23 +5912,20 @@ __negdi2:
 	addi	sp, sp, -8
 	stw	r4, 0(sp)
 	stw	r5, 4(sp)
-	ldw	r4, 0(sp)
+	ldw	r6, 0(sp)
 	ldw	r5, 4(sp)
-	mov	r6, zero
+	mov	r4, zero
 	mov	r7, zero
-	sub	r2, r6, r4
-	cmpltu	r8, r6, r2
-	sub	r3, r7, r5
-	sub	r4, r3, r8
+	sub	r3, r4, r6
+	cmpltu	r4, r4, r3
+	sub	r2, r7, r5
+	sub	r2, r2, r4
+	mov	r7, r3
+	mov	r6, r2
+	mov	r5, r7
+	mov	r4, r6
+	mov	r2, r5
 	mov	r3, r4
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
 	addi	sp, sp, 8
 	ret
 	.size	__negdi2, .-__negdi2
@@ -6256,85 +6003,80 @@ __paritysi2:
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	addi	sp, sp, -32
-	stw	r18, 28(sp)
-	stw	r17, 24(sp)
-	stw	r16, 20(sp)
+	addi	sp, sp, -20
 	stw	r4, 0(sp)
 	stw	r5, 4(sp)
-	ldw	r4, 0(sp)
-	stw	r4, 12(sp)
-	ldw	r4, 4(sp)
-	stw	r4, 16(sp)
-	ldw	r4, 16(sp)
-	slli	r4, r4, 31
-	ldw	r5, 12(sp)
-	srli	r2, r5, 1
-	or	r2, r4, r2
-	ldw	r4, 16(sp)
-	srli	r3, r4, 1
-	movhi	r4, 21845
-	addi	r4, r4, 21845
-	and	r14, r2, r4
-	movhi	r4, 21845
-	addi	r4, r4, 21845
-	and	r15, r3, r4
-	ldw	r4, 12(sp)
-	ldw	r5, 16(sp)
-	sub	r2, r4, r14
-	cmpltu	r18, r4, r2
-	sub	r3, r5, r15
-	sub	r4, r3, r18
-	mov	r3, r4
+	ldw	r2, 0(sp)
 	stw	r2, 12(sp)
-	stw	r3, 16(sp)
+	ldw	r2, 4(sp)
+	stw	r2, 16(sp)
+	ldw	r2, 16(sp)
+	slli	r2, r2, 31
+	ldw	r3, 12(sp)
+	srli	r3, r3, 1
+	or	r3, r2, r3
+	ldw	r2, 16(sp)
+	srli	r4, r2, 1
+	movhi	r2, 21845
+	addi	r2, r2, 21845
+	and	r7, r3, r2
+	movhi	r2, 21845
+	addi	r2, r2, 21845
+	and	r5, r4, r2
+	ldw	r4, 12(sp)
+	ldw	r6, 16(sp)
+	sub	r3, r4, r7
+	cmpltu	r4, r4, r3
+	sub	r2, r6, r5
+	sub	r2, r2, r4
+	stw	r3, 12(sp)
+	stw	r2, 16(sp)
 	ldw	r2, 16(sp)
 	slli	r2, r2, 30
 	ldw	r3, 12(sp)
-	srli	r8, r3, 2
-	or	r8, r2, r8
+	srli	r3, r3, 2
+	or	r3, r2, r3
 	ldw	r2, 16(sp)
-	srli	r9, r2, 2
+	srli	r5, r2, 2
 	movhi	r2, 13107
 	addi	r2, r2, 13107
-	and	r10, r8, r2
+	and	r4, r3, r2
 	movhi	r2, 13107
 	addi	r2, r2, 13107
-	and	r11, r9, r2
+	and	r6, r5, r2
 	ldw	r3, 12(sp)
 	movhi	r2, 13107
 	addi	r2, r2, 13107
-	and	r12, r3, r2
+	and	r7, r3, r2
 	ldw	r3, 16(sp)
 	movhi	r2, 13107
 	addi	r2, r2, 13107
-	and	r13, r3, r2
-	add	r2, r10, r12
-	cmpltu	r4, r2, r10
-	add	r3, r11, r13
-	add	r4, r4, r3
-	mov	r3, r4
-	stw	r2, 12(sp)
-	stw	r3, 16(sp)
+	and	r5, r3, r2
+	add	r3, r4, r7
+	cmpltu	r4, r3, r4
+	add	r2, r6, r5
+	add	r2, r4, r2
+	stw	r3, 12(sp)
+	stw	r2, 16(sp)
 	ldw	r2, 16(sp)
-	slli	r2, r2, 28
-	ldw	r3, 12(sp)
+	slli	r3, r2, 28
+	ldw	r2, 12(sp)
+	srli	r2, r2, 4
+	or	r2, r3, r2
+	ldw	r3, 16(sp)
 	srli	r6, r3, 4
-	or	r6, r2, r6
-	ldw	r2, 16(sp)
-	srli	r7, r2, 4
-	ldw	r4, 12(sp)
+	ldw	r7, 12(sp)
 	ldw	r5, 16(sp)
-	add	r2, r6, r4
-	cmpltu	r8, r2, r6
-	add	r3, r7, r5
-	add	r4, r8, r3
-	mov	r3, r4
-	mov	r4, r2
+	add	r4, r2, r7
+	cmpltu	r2, r4, r2
+	add	r3, r6, r5
+	add	r2, r2, r3
+	mov	r3, r2
+	mov	r6, r4
 	mov	r5, r3
 	movhi	r2, 3855
 	addi	r2, r2, 3855
-	and	r2, r4, r2
+	and	r2, r6, r2
 	stw	r2, 12(sp)
 	movhi	r2, 3855
 	addi	r2, r2, 3855
@@ -6342,9 +6084,7 @@ __popcountdi2:
 	stw	r2, 16(sp)
 	ldw	r2, 12(sp)
 	ldw	r3, 16(sp)
-	srl	r16, r3, zero
-	mov	r17, zero
-	mov	r3, r16
+	srl	r3, r3, zero
 	add	r2, r2, r3
 	stw	r2, 8(sp)
 	ldw	r2, 8(sp)
@@ -6357,10 +6097,7 @@ __popcountdi2:
 	ldw	r2, 8(sp)
 	add	r2, r3, r2
 	andi	r2, r2, 127
-	ldw	r18, 28(sp)
-	ldw	r17, 24(sp)
-	ldw	r16, 20(sp)
-	addi	sp, sp, 32
+	addi	sp, sp, 20
 	ret
 	.size	__popcountdi2, .-__popcountdi2
 	.align	2
@@ -6436,10 +6173,10 @@ __powidf2:
 	ldw	r4, 16(sp)
 	ldw	r5, 20(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 16(sp)
-	stw	r5, 20(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 16(sp)
+	stw	r4, 20(sp)
 .L978:
 	ldw	r2, 0(sp)
 	srli	r3, r2, 31
@@ -6453,10 +6190,10 @@ __powidf2:
 	ldw	r4, 4(sp)
 	ldw	r5, 8(sp)
 	call	__muldf3
-	mov	r4, r2
-	mov	r5, r3
-	stw	r4, 4(sp)
-	stw	r5, 8(sp)
+	mov	r5, r2
+	mov	r4, r3
+	stw	r5, 4(sp)
+	stw	r4, 8(sp)
 	br	.L981
 .L986:
 	nop
@@ -6467,19 +6204,19 @@ __powidf2:
 	mov	r4, zero
 	movhi	r5, 16368
 	call	__divdf3
-	mov	r4, r2
-	mov	r5, r3
-	mov	r2, r4
+	mov	r5, r2
+	mov	r4, r3
 	mov	r3, r5
+	mov	r2, r4
 	br	.L984
 .L982:
-	ldw	r2, 16(sp)
-	ldw	r3, 20(sp)
+	ldw	r3, 16(sp)
+	ldw	r2, 20(sp)
 .L984:
-	mov	r4, r2
 	mov	r5, r3
-	mov	r2, r4
-	mov	r3, r5
+	mov	r4, r2
+	mov	r2, r5
+	mov	r3, r4
 	ldw	ra, 24(sp)
 	addi	sp, sp, 28
 	ret
@@ -6596,14 +6333,14 @@ __aeabi_ulcmp:
 	stw	r5, 12(sp)
 	stw	r6, 0(sp)
 	stw	r7, 4(sp)
-	ldw	r2, 8(sp)
-	ldw	r3, 12(sp)
-	ldw	r4, 0(sp)
-	ldw	r5, 4(sp)
-	mov	r6, r4
-	mov	r7, r5
-	mov	r4, r2
-	mov	r5, r3
+	ldw	r3, 8(sp)
+	ldw	r2, 12(sp)
+	ldw	r5, 0(sp)
+	ldw	r4, 4(sp)
+	mov	r6, r5
+	mov	r7, r4
+	mov	r4, r3
+	mov	r5, r2
 	call	__ucmpdi2
 	addi	r2, r2, -1
 	ldw	ra, 16(sp)

@@ -6,7 +6,6 @@
 	.proc	05
 make_ti:
 	.register	%g2, #scratch
-	.register	%g3, #scratch
 	save	%sp, -192, %sp
 	stx	%i0, [%fp+2175]
 	stx	%i1, [%fp+2183]
@@ -15,9 +14,9 @@ make_ti:
 	ldx	[%fp+2183], %g1
 	stx	%g1, [%fp+2039]
 	ldx	[%fp+2031], %g2
-	ldx	[%fp+2039], %g3
+	ldx	[%fp+2039], %g1
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	make_ti, .-make_ti
@@ -34,9 +33,9 @@ make_tu:
 	ldx	[%fp+2183], %g1
 	stx	%g1, [%fp+2039]
 	ldx	[%fp+2031], %g2
-	ldx	[%fp+2039], %g3
+	ldx	[%fp+2039], %g1
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	make_tu, .-make_tu
@@ -45,6 +44,7 @@ make_tu:
 	.type	memmove, #function
 	.proc	0120
 memmove:
+	.register	%g3, #scratch
 	save	%sp, -192, %sp
 	stx	%i0, [%fp+2175]
 	stx	%i1, [%fp+2183]
@@ -1877,12 +1877,6 @@ lsearch:
 	mov	%i5, %g1
 	add	%g1, -1, %g1
 	stx	%g1, [%fp+2031]
-	mov	%i5, %g5
-	mov	0, %g4
-	srlx	%g5, 61, %g1
-	sllx	%g4, 3, %g2
-	or	%g1, %g2, %g2
-	sllx	%g5, 3, %g3
 	ldx	[%fp+2183], %g1
 	stx	%g1, [%fp+2023]
 	ldx	[%fp+2191], %g1
@@ -1955,12 +1949,6 @@ lfind:
 	mov	%i5, %g1
 	add	%g1, -1, %g1
 	stx	%g1, [%fp+2031]
-	mov	%i5, %g5
-	mov	0, %g4
-	srlx	%g5, 61, %g1
-	sllx	%g4, 3, %g2
-	or	%g1, %g2, %g2
-	sllx	%g5, 3, %g3
 	ldx	[%fp+2183], %g1
 	stx	%g1, [%fp+2023]
 	ldx	[%fp+2191], %g1
@@ -6258,7 +6246,7 @@ __ashlti3:
 	bne	%icc, .L720
 	 nop
 	ldx	[%fp+2175], %g2
-	ldx	[%fp+2183], %g3
+	ldx	[%fp+2183], %g1
 	ba,pt	%xcc, .L722
 	 nop
 .L720:
@@ -6279,10 +6267,10 @@ __ashlti3:
 	stx	%g1, [%fp+1999]
 .L719:
 	ldx	[%fp+1999], %g2
-	ldx	[%fp+2007], %g3
+	ldx	[%fp+2007], %g1
 .L722:
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__ashlti3, .-__ashlti3
@@ -6390,7 +6378,7 @@ __ashrti3:
 	bne	%icc, .L732
 	 nop
 	ldx	[%fp+2175], %g2
-	ldx	[%fp+2183], %g3
+	ldx	[%fp+2183], %g1
 	ba,pt	%xcc, .L734
 	 nop
 .L732:
@@ -6411,10 +6399,10 @@ __ashrti3:
 	stx	%g1, [%fp+2007]
 .L731:
 	ldx	[%fp+1999], %g2
-	ldx	[%fp+2007], %g3
+	ldx	[%fp+2007], %g1
 .L734:
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__ashrti3, .-__ashrti3
@@ -7077,7 +7065,7 @@ __lshrti3:
 	bne	%icc, .L793
 	 nop
 	ldx	[%fp+2175], %g2
-	ldx	[%fp+2183], %g3
+	ldx	[%fp+2183], %g1
 	ba,pt	%xcc, .L795
 	 nop
 .L793:
@@ -7097,10 +7085,10 @@ __lshrti3:
 	stx	%g1, [%fp+2007]
 .L792:
 	ldx	[%fp+1999], %g2
-	ldx	[%fp+2007], %g3
+	ldx	[%fp+2007], %g1
 .L795:
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__lshrti3, .-__lshrti3
@@ -7344,9 +7332,9 @@ __mulddi3:
 	add	%g4, %g1, %g1
 	stx	%g1, [%fp+1999]
 	ldx	[%fp+1999], %g2
-	ldx	[%fp+2007], %g3
+	ldx	[%fp+2007], %g1
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__mulddi3, .-__mulddi3
@@ -7391,9 +7379,9 @@ __multi3:
 	add	%g3, %g1, %g1
 	stx	%g1, [%fp+1999]
 	ldx	[%fp+1999], %g2
-	ldx	[%fp+2007], %g3
+	ldx	[%fp+2007], %g1
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__multi3, .-__multi3
@@ -7418,19 +7406,20 @@ __negti2:
 	save	%sp, -176, %sp
 	stx	%i0, [%fp+2175]
 	stx	%i1, [%fp+2183]
-	ldx	[%fp+2175], %i4
-	ldx	[%fp+2183], %i5
-	mov	0, %g4
-	mov	0, %g5
-	sub	%g5, %i5, %g3
-	cmp	%g3, %g5
+	ldx	[%fp+2175], %g4
+	ldx	[%fp+2183], %g5
+	mov	0, %i5
+	mov	0, %g1
+	sub	%g1, %g5, %g3
+	cmp	%g3, %g1
 	mov	0, %g1
 	movgu	%xcc, 1, %g1
-	sub	%g4, %i4, %g2
+	sub	%i5, %g4, %g2
 	sub	%g2, %g1, %g1
 	mov	%g1, %g2
+	mov	%g3, %g1
 	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%g1, %i1
 	return	%i7+8
 	 nop
 	.size	__negti2, .-__negti2
@@ -7691,127 +7680,122 @@ __popcountti2:
 	save	%sp, -208, %sp
 	stx	%i0, [%fp+2175]
 	stx	%i1, [%fp+2183]
-	ldx	[%fp+2175], %i0
-	ldx	[%fp+2183], %i1
-	stx	%i0, [%fp+2031]
-	stx	%i1, [%fp+2039]
+	ldx	[%fp+2175], %g2
+	ldx	[%fp+2183], %g3
+	stx	%g2, [%fp+2031]
+	stx	%g3, [%fp+2039]
 	ldx	[%fp+2031], %g1
-	sllx	%g1, 63, %g1
-	ldx	[%fp+2039], %i1
-	srlx	%i1, 1, %i5
-	or	%g1, %i5, %i5
+	sllx	%g1, 63, %g2
+	ldx	[%fp+2039], %g1
+	srlx	%g1, 1, %g1
+	or	%g2, %g1, %g1
+	ldx	[%fp+2031], %g2
+	srlx	%g2, 1, %g3
+	sethi	%hi(1431655424), %g2
+	or	%g2, 341, %g2
+	sllx	%g2, 32, %g4
+	sethi	%hi(1431655424), %g2
+	or	%g2, 341, %g2
+	add	%g4, %g2, %g2
+	and	%g3, %g2, %g4
+	sethi	%hi(1431655424), %g2
+	or	%g2, 341, %g2
+	sllx	%g2, 32, %g3
+	sethi	%hi(1431655424), %g2
+	or	%g2, 341, %g2
+	add	%g3, %g2, %g2
+	and	%g1, %g2, %i5
+	ldx	[%fp+2031], %g5
+	ldx	[%fp+2039], %g2
+	sub	%g2, %i5, %g3
+	cmp	%g3, %g2
+	mov	0, %g2
+	movgu	%xcc, 1, %g2
+	sub	%g5, %g4, %g1
+	sub	%g1, %g2, %g1
+	stx	%g1, [%fp+2031]
+	stx	%g3, [%fp+2039]
 	ldx	[%fp+2031], %g1
-	srlx	%g1, 1, %i4
-	sethi	%hi(1431655424), %g1
-	or	%g1, 341, %g1
-	sllx	%g1, 32, %i1
-	sethi	%hi(1431655424), %g1
-	or	%g1, 341, %g1
-	add	%i1, %g1, %g1
-	and	%i4, %g1, %o2
-	sethi	%hi(1431655424), %g1
-	or	%g1, 341, %g1
-	sllx	%g1, 32, %i1
-	sethi	%hi(1431655424), %g1
-	or	%g1, 341, %g1
-	add	%i1, %g1, %g1
-	and	%i5, %g1, %o3
-	ldx	[%fp+2031], %i0
-	ldx	[%fp+2039], %i1
-	sub	%i1, %o3, %i5
-	cmp	%i5, %i1
-	mov	0, %g1
-	movgu	%xcc, 1, %g1
-	sub	%i0, %o2, %i4
-	sub	%i4, %g1, %g1
-	mov	%g1, %i4
-	stx	%i4, [%fp+2031]
-	stx	%i5, [%fp+2039]
-	ldx	[%fp+2031], %g1
-	sllx	%g1, 62, %g1
-	ldx	[%fp+2039], %i5
-	srlx	%i5, 2, %g5
-	or	%g1, %g5, %g5
-	ldx	[%fp+2031], %g1
-	srlx	%g1, 2, %g4
+	sllx	%g1, 62, %g2
+	ldx	[%fp+2039], %g1
+	srlx	%g1, 2, %g1
+	or	%g2, %g1, %g1
+	ldx	[%fp+2031], %g2
+	srlx	%g2, 2, %g3
+	sethi	%hi(858992640), %g2
+	or	%g2, 819, %g2
+	sllx	%g2, 32, %g4
+	sethi	%hi(858992640), %g2
+	or	%g2, 819, %g2
+	add	%g4, %g2, %g2
+	and	%g3, %g2, %g5
+	sethi	%hi(858992640), %g2
+	or	%g2, 819, %g2
+	sllx	%g2, 32, %g3
+	sethi	%hi(858992640), %g2
+	or	%g2, 819, %g2
+	add	%g3, %g2, %g2
+	and	%g1, %g2, %g2
+	ldx	[%fp+2031], %g3
 	sethi	%hi(858992640), %g1
 	or	%g1, 819, %g1
-	sllx	%g1, 32, %i5
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	add	%i5, %g1, %g1
-	and	%g4, %g1, %i2
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	sllx	%g1, 32, %i5
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	add	%i5, %g1, %g1
-	and	%g5, %g1, %i3
-	ldx	[%fp+2031], %g4
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	sllx	%g1, 32, %g5
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	add	%g5, %g1, %g1
-	and	%g4, %g1, %o4
-	ldx	[%fp+2039], %g4
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	sllx	%g1, 32, %g5
-	sethi	%hi(858992640), %g1
-	or	%g1, 819, %g1
-	add	%g5, %g1, %g1
-	and	%g4, %g1, %o5
-	add	%i3, %o5, %g5
-	cmp	%g5, %i3
-	mov	0, %g1
-	movlu	%xcc, 1, %g1
-	add	%i2, %o4, %g4
-	add	%g1, %g4, %g1
-	mov	%g1, %g4
-	stx	%g4, [%fp+2031]
-	stx	%g5, [%fp+2039]
-	ldx	[%fp+2031], %g1
-	sllx	%g1, 60, %g1
-	ldx	[%fp+2039], %g4
-	srlx	%g4, 4, %g3
-	or	%g1, %g3, %g3
-	ldx	[%fp+2031], %g1
-	srlx	%g1, 4, %g2
-	ldx	[%fp+2031], %i4
-	ldx	[%fp+2039], %i5
-	add	%g3, %i5, %g5
-	cmp	%g5, %g3
-	mov	0, %g1
-	movlu	%xcc, 1, %g1
-	add	%g2, %i4, %g4
-	add	%g1, %g4, %g1
-	mov	%g1, %g4
-	mov	%g4, %g2
-	mov	%g5, %g3
-	sethi	%hi(252644352), %g1
-	or	%g1, 783, %g1
 	sllx	%g1, 32, %g4
+	sethi	%hi(858992640), %g1
+	or	%g1, 819, %g1
+	add	%g4, %g1, %g1
+	and	%g3, %g1, %g4
+	ldx	[%fp+2039], %g3
+	sethi	%hi(858992640), %g1
+	or	%g1, 819, %g1
+	sllx	%g1, 32, %i5
+	sethi	%hi(858992640), %g1
+	or	%g1, 819, %g1
+	add	%i5, %g1, %g1
+	and	%g3, %g1, %i5
+	add	%g2, %i5, %g3
+	cmp	%g3, %g2
+	mov	0, %g2
+	movlu	%xcc, 1, %g2
+	add	%g5, %g4, %g1
+	add	%g2, %g1, %g1
+	stx	%g1, [%fp+2031]
+	stx	%g3, [%fp+2039]
+	ldx	[%fp+2031], %g1
+	sllx	%g1, 60, %g2
+	ldx	[%fp+2039], %g1
+	srlx	%g1, 4, %g1
+	or	%g2, %g1, %g1
+	ldx	[%fp+2031], %g2
+	srlx	%g2, 4, %g5
+	ldx	[%fp+2031], %g4
+	ldx	[%fp+2039], %i5
+	add	%g1, %i5, %g3
+	cmp	%g3, %g1
+	mov	0, %g1
+	movlu	%xcc, 1, %g1
+	add	%g5, %g4, %g2
+	add	%g1, %g2, %g1
+	mov	%g1, %g2
+	mov	%g2, %g4
 	sethi	%hi(252644352), %g1
 	or	%g1, 783, %g1
-	add	%g4, %g1, %g1
-	and	%g2, %g1, %g1
+	sllx	%g1, 32, %g2
+	sethi	%hi(252644352), %g1
+	or	%g1, 783, %g1
+	add	%g2, %g1, %g1
+	and	%g4, %g1, %g1
 	stx	%g1, [%fp+2031]
 	sethi	%hi(252644352), %g1
 	or	%g1, 783, %g1
-	sllx	%g1, 32, %g4
+	sllx	%g1, 32, %g2
 	sethi	%hi(252644352), %g1
 	or	%g1, 783, %g1
-	add	%g4, %g1, %g1
+	add	%g2, %g1, %g1
 	and	%g3, %g1, %g1
 	stx	%g1, [%fp+2039]
 	ldx	[%fp+2039], %g1
 	ldx	[%fp+2031], %g2
-	srlx	%g2, 0, %o1
-	mov	0, %o0
-	mov	%o1, %g2
+	srlx	%g2, 0, %g2
 	add	%g1, %g2, %g1
 	stx	%g1, [%fp+2023]
 	ldx	[%fp+2023], %g1

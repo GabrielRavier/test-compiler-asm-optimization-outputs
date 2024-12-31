@@ -15,9 +15,9 @@ make_ti:
 	ld 9,-8(1)
 	std 9,-32(1)
 	ld 10,-32(1)
-	ld 11,-24(1)
+	ld 9,-24(1)
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -37,9 +37,9 @@ make_tu:
 	ld 9,-8(1)
 	std 9,-32(1)
 	ld 10,-32(1)
-	ld 11,-24(1)
+	ld 9,-24(1)
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -1850,15 +1850,9 @@ lsearch:
 	std 6,88(1)
 	std 7,96(1)
 	ld 31,88(1)
-	mr 7,31
-	addi 7,31,-1
-	std 7,40(1)
-	mr 10,31
-	li 11,0
-	srdi 7,31,61
-	sldi 9,11,3
-	or 9,7,9
-	sldi 8,31,3
+	mr 9,31
+	addi 9,31,-1
+	std 9,40(1)
 	ld 9,72(1)
 	std 9,48(1)
 	ld 9,80(1)
@@ -1948,15 +1942,9 @@ lfind:
 	std 6,88(1)
 	std 7,96(1)
 	ld 31,88(1)
-	mr 7,31
-	addi 7,31,-1
-	std 7,40(1)
-	mr 10,31
-	li 11,0
-	srdi 7,31,61
-	sldi 9,11,3
-	or 9,7,9
-	sldi 8,31,3
+	mr 9,31
+	addi 9,31,-1
+	std 9,40(1)
 	ld 9,72(1)
 	std 9,48(1)
 	ld 9,80(1)
@@ -2527,19 +2515,16 @@ imaxdiv:
 	std 4,-8(1)
 	ld 10,-16(1)
 	ld 9,-8(1)
-	divd 5,10,9
+	divd 7,10,9
 	ld 9,-16(1)
 	ld 10,-8(1)
 	divd 8,9,10
 	ld 10,-8(1)
 	mulld 10,8,10
 	subf 9,10,9
-	mr 6,5
-	mr 7,9
-	mr 11,7
-	mr 10,6
+	mr 10,7
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -2575,19 +2560,16 @@ ldiv:
 	std 4,-8(1)
 	ld 10,-16(1)
 	ld 9,-8(1)
-	divd 5,10,9
+	divd 7,10,9
 	ld 9,-16(1)
 	ld 10,-8(1)
 	divd 8,9,10
 	ld 10,-8(1)
 	mulld 10,8,10
 	subf 9,10,9
-	mr 6,5
-	mr 7,9
-	mr 11,7
-	mr 10,6
+	mr 10,7
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -2623,19 +2605,16 @@ lldiv:
 	std 4,-8(1)
 	ld 10,-16(1)
 	ld 9,-8(1)
-	divd 5,10,9
+	divd 7,10,9
 	ld 9,-16(1)
 	ld 10,-8(1)
 	divd 8,9,10
 	ld 10,-8(1)
 	mulld 10,8,10
 	subf 9,10,9
-	mr 6,5
-	mr 7,9
-	mr 11,7
-	mr 10,6
+	mr 10,7
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -6271,7 +6250,7 @@ __ashlti3:
 	bne 0,.L736
 	addi 9,1,-32
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 	b .L738
 .L736:
 	ld 10,-64(1)
@@ -6292,10 +6271,10 @@ __ashlti3:
 .L735:
 	addi 9,1,-48
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 .L738:
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -6406,7 +6385,7 @@ __ashrti3:
 	bne 0,.L748
 	addi 9,1,-32
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 	b .L750
 .L748:
 	ld 10,-56(1)
@@ -6427,10 +6406,10 @@ __ashrti3:
 .L747:
 	addi 9,1,-48
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 .L750:
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -7099,7 +7078,7 @@ __lshrti3:
 	bne 0,.L810
 	addi 9,1,-32
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 	b .L812
 .L810:
 	ld 10,-56(1)
@@ -7119,10 +7098,10 @@ __lshrti3:
 .L809:
 	addi 9,1,-48
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 .L812:
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -7389,9 +7368,9 @@ __mulddi3:
 	std 9,-24(1)
 	addi 9,1,-32
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -7454,9 +7433,9 @@ __multi3:
 	std 9,72(1)
 	addi 9,1,64
 	ld 10,0(9)
-	ld 11,8(9)
+	ld 9,8(9)
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	addi 1,1,112
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
@@ -7493,13 +7472,11 @@ __negti2:
 	std 3,-16(1)
 	std 4,-8(1)
 	ld 10,-16(1)
-	ld 11,-8(1)
-	subfic 8,10,0
-	subfze 9,11
-	mr 11,9
-	mr 10,8
+	ld 9,-8(1)
+	subfic 10,10,0
+	subfze 9,9
 	mr 3,10
-	mr 4,11
+	mr 4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,1
@@ -7764,14 +7741,6 @@ __popcountsi2:
 __popcountti2:
 .LFB160:
 	.cfi_startproc
-	std 16,-128(1)
-	std 17,-120(1)
-	std 18,-112(1)
-	std 19,-104(1)
-	std 20,-96(1)
-	std 21,-88(1)
-	std 22,-80(1)
-	std 23,-72(1)
 	std 24,-64(1)
 	std 25,-56(1)
 	std 26,-48(1)
@@ -7780,14 +7749,6 @@ __popcountti2:
 	std 29,-24(1)
 	std 30,-16(1)
 	std 31,-8(1)
-	.cfi_offset 16, -128
-	.cfi_offset 17, -120
-	.cfi_offset 18, -112
-	.cfi_offset 19, -104
-	.cfi_offset 20, -96
-	.cfi_offset 21, -88
-	.cfi_offset 22, -80
-	.cfi_offset 23, -72
 	.cfi_offset 24, -64
 	.cfi_offset 25, -56
 	.cfi_offset 26, -48
@@ -7796,126 +7757,116 @@ __popcountti2:
 	.cfi_offset 29, -24
 	.cfi_offset 30, -16
 	.cfi_offset 31, -8
-	addi 5,1,-144
+	addi 5,1,-80
 	std 3,0(5)
 	std 4,8(5)
-	addi 5,1,-144
+	addi 5,1,-80
 	ld 4,0(5)
 	ld 5,8(5)
-	std 4,-176(1)
-	std 5,-168(1)
-	ld 5,-168(1)
+	std 4,-112(1)
+	std 5,-104(1)
+	ld 5,-104(1)
 	sldi 5,5,63
-	ld 4,-176(1)
-	srdi 6,4,1
-	or 6,5,6
-	ld 5,-168(1)
-	srdi 7,5,1
+	ld 4,-112(1)
+	srdi 8,4,1
+	or 8,5,8
+	ld 5,-104(1)
+	srdi 9,5,1
 	lis 5,0x5555
 	ori 5,5,0x5555
-	rldimi 5,5,32,0
-	mr 19,5
-	lis 5,0x5555
-	ori 5,5,0x5555
-	rldimi 5,5,32,0
-	mr 18,5
-	and 4,6,18
-	and 5,7,19
-	ld 6,-176(1)
-	ld 7,-168(1)
-	subfc 20,4,6
-	subfe 21,5,7
-	std 20,-176(1)
-	std 21,-168(1)
-	ld 7,-168(1)
-	sldi 7,7,62
-	ld 6,-176(1)
-	srdi 8,6,2
-	or 8,7,8
-	ld 7,-168(1)
-	srdi 9,7,2
-	lis 7,0x3333
-	ori 7,7,0x3333
-	rldimi 7,7,32,0
-	mr 23,7
-	lis 7,0x3333
-	ori 7,7,0x3333
-	rldimi 7,7,32,0
-	mr 22,7
-	and 6,8,22
-	and 7,9,23
-	ld 8,-176(1)
-	ld 9,-168(1)
-	lis 5,0x3333
-	ori 5,5,0x3333
 	rldimi 5,5,32,0
 	mr 25,5
-	lis 5,0x3333
-	ori 5,5,0x3333
+	lis 5,0x5555
+	ori 5,5,0x5555
 	rldimi 5,5,32,0
 	mr 24,5
 	and 8,8,24
 	and 9,9,25
-	addc 26,6,8
-	adde 27,7,9
-	std 26,-176(1)
-	std 27,-168(1)
-	ld 9,-168(1)
-	sldi 9,9,60
-	ld 8,-176(1)
-	srdi 10,8,4
+	ld 5,-112(1)
+	ld 4,-104(1)
+	subfc 5,8,5
+	subfe 9,9,4
+	std 5,-112(1)
+	std 9,-104(1)
+	ld 9,-104(1)
+	sldi 9,9,62
+	ld 8,-112(1)
+	srdi 10,8,2
 	or 10,9,10
-	ld 9,-168(1)
-	srdi 11,9,4
-	ld 8,-176(1)
-	ld 9,-168(1)
-	addc 28,10,8
-	adde 29,11,9
+	ld 9,-104(1)
+	srdi 11,9,2
+	lis 9,0x3333
+	ori 9,9,0x3333
+	rldimi 9,9,32,0
+	mr 27,9
+	lis 9,0x3333
+	ori 9,9,0x3333
+	rldimi 9,9,32,0
+	mr 26,9
+	and 8,10,26
+	and 9,11,27
+	ld 10,-112(1)
+	ld 11,-104(1)
+	lis 5,0x3333
+	ori 5,5,0x3333
+	rldimi 5,5,32,0
+	mr 29,5
+	lis 5,0x3333
+	ori 5,5,0x3333
+	rldimi 5,5,32,0
+	mr 28,5
+	and 10,10,28
+	and 11,11,29
+	addc 5,8,10
+	adde 9,9,11
+	std 5,-112(1)
+	std 9,-104(1)
+	ld 9,-104(1)
+	sldi 10,9,60
+	ld 9,-112(1)
+	srdi 9,9,4
+	or 9,10,9
+	ld 10,-104(1)
+	srdi 8,10,4
+	ld 5,-112(1)
+	ld 10,-104(1)
+	addc 30,9,5
+	adde 31,8,10
 	lis 9,0xf0f
 	ori 9,9,0xf0f
 	rldimi 9,9,32,0
-	mr 31,9
+	mr 7,9
 	lis 9,0xf0f
 	ori 9,9,0xf0f
 	rldimi 9,9,32,0
-	mr 30,9
-	and 10,28,30
-	and 11,29,31
-	std 10,-176(1)
-	std 11,-168(1)
-	ld 9,-176(1)
-	ld 10,-168(1)
-	srdi 16,10,0
-	li 17,0
-	mr 10,16
+	mr 6,9
+	and 10,30,6
+	and 11,31,7
+	std 10,-112(1)
+	std 11,-104(1)
+	ld 9,-112(1)
+	ld 10,-104(1)
+	srdi 10,10,0
 	add 9,9,10
-	std 9,-160(1)
-	ld 9,-160(1)
+	std 9,-96(1)
+	ld 9,-96(1)
 	mr 10,9
-	ld 9,-160(1)
+	ld 9,-96(1)
 	srdi 9,9,32
 	add 9,10,9
-	stw 9,-152(1)
-	lwz 9,-152(1)
+	stw 9,-88(1)
+	lwz 9,-88(1)
 	srwi 9,9,16
-	lwz 10,-152(1)
+	lwz 10,-88(1)
 	add 9,10,9
-	stw 9,-152(1)
-	lwz 9,-152(1)
+	stw 9,-88(1)
+	lwz 9,-88(1)
 	srwi 10,9,8
-	lwz 9,-152(1)
+	lwz 9,-88(1)
 	add 9,10,9
 	rlwinm 9,9,0,24,31
 	extsw 9,9
 	mr 3,9
-	ld 16,-128(1)
-	ld 17,-120(1)
-	ld 18,-112(1)
-	ld 19,-104(1)
-	ld 20,-96(1)
-	ld 21,-88(1)
-	ld 22,-80(1)
-	ld 23,-72(1)
 	ld 24,-64(1)
 	ld 25,-56(1)
 	ld 26,-48(1)
@@ -7932,17 +7883,9 @@ __popcountti2:
 	.cfi_restore 26
 	.cfi_restore 25
 	.cfi_restore 24
-	.cfi_restore 23
-	.cfi_restore 22
-	.cfi_restore 21
-	.cfi_restore 20
-	.cfi_restore 19
-	.cfi_restore 18
-	.cfi_restore 17
-	.cfi_restore 16
 	blr
 	.long 0
-	.byte 0,0,0,0,0,16,0,1
+	.byte 0,0,0,0,0,8,0,1
 	.cfi_endproc
 .LFE160:
 	.size	__popcountti2,.-__popcountti2

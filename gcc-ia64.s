@@ -28,12 +28,13 @@ make_ti:
 	ld8 r14 = [r14]
 	;;
 	st8 [r12] = r14
-	ld8 r14 = [r12], 8
+	ld8 r15 = [r12]
+	adds r14 = 8, r12
 	;;
-	ld8 r15 = [r12], -8
-	mov r8 = r14
+	ld8 r14 = [r14]
+	mov r8 = r15
 	;;
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
@@ -66,12 +67,13 @@ make_tu:
 	ld8 r14 = [r14]
 	;;
 	st8 [r12] = r14
-	ld8 r14 = [r12], 8
+	ld8 r15 = [r12]
+	adds r14 = 8, r12
 	;;
-	ld8 r15 = [r12], -8
-	mov r8 = r14
+	ld8 r14 = [r14]
+	mov r8 = r15
 	;;
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
@@ -2697,16 +2699,19 @@ remque:
 	.type	lsearch#, @function
 	.proc lsearch#
 lsearch:
-	.prologue 12, 38
-	.save ar.pfs, r39
-	alloc r39 = ar.pfs, 5, 4, 3, 0
-	.fframe 80
-	adds r12 = -80, r12
-	.save rp, r38
-	mov r38 = b0
-	mov r40 = r1
-	.body
+	.prologue 12, 37
+	.save ar.pfs, r38
+	alloc r38 = ar.pfs, 5, 3, 3, 0
+	mov r16 = r12
+	.fframe 96
+	adds r12 = -96, r12
+	.save rp, r37
+	mov r37 = b0
+	mov r39 = r1
 	;;
+	.save.f 0x1
+	stf.spill [r16] = f2
+	.body
 	adds r14 = 48, r12
 	;;
 	st8 [r14] = r32
@@ -2724,9 +2729,9 @@ lsearch:
 	st8 [r14] = r36
 	adds r14 = 72, r12
 	;;
-	ld8 r37 = [r14]
+	ldf8 f2 = [r14]
 	;;
-	mov r14 = r37
+	getf.sig r14 = f2
 	;;
 	adds r14 = -1, r14
 	;;
@@ -2734,8 +2739,6 @@ lsearch:
 	adds r14 = 24, r12
 	;;
 	st8 [r14] = r15
-	mov r16 = r37
-	mov r17 = r0
 	adds r14 = 32, r12
 	adds r15 = 56, r12
 	;;
@@ -2759,11 +2762,10 @@ lsearch:
 	adds r15 = 16, r12
 	;;
 	ld8 r14 = [r15]
-	setf.sig f6 = r37
 	;;
-	setf.sig f7 = r14
+	setf.sig f6 = r14
 	;;
-	xmpy.l f6 = f6, f7
+	xmpy.l f6 = f2, f6
 	;;
 	getf.sig r15 = f6
 	adds r14 = 32, r12
@@ -2775,8 +2777,8 @@ lsearch:
 	adds r14 = 80, r12
 	;;
 	ld8 r14 = [r14]
-	mov r42 = r16
-	ld8 r41 = [r15]
+	mov r41 = r16
+	ld8 r40 = [r15]
 	;;
 	ld8 r15 = [r14], 8
 	;;
@@ -2784,7 +2786,7 @@ lsearch:
 	ld8 r1 = [r14]
 	br.call.sptk.many b0 = b6
 	;;
-	mov r1 = r40
+	mov r1 = r39
 	mov r14 = r8
 	;;
 	cmp4.ne p6, p7 = 0, r14
@@ -2792,11 +2794,10 @@ lsearch:
 	adds r16 = 16, r12
 	;;
 	ld8 r14 = [r16]
-	setf.sig f6 = r37
 	;;
-	setf.sig f7 = r14
+	setf.sig f6 = r14
 	;;
-	xmpy.l f6 = f6, f7
+	xmpy.l f6 = f2, f6
 	;;
 	getf.sig r15 = f6
 	adds r14 = 32, r12
@@ -2837,11 +2838,10 @@ lsearch:
 	adds r14 = 40, r12
 	;;
 	ld8 r14 = [r14]
-	setf.sig f6 = r37
 	;;
-	setf.sig f7 = r14
+	setf.sig f6 = r14
 	;;
-	xmpy.l f6 = f6, f7
+	xmpy.l f6 = f2, f6
 	;;
 	getf.sig r15 = f6
 	adds r14 = 32, r12
@@ -2852,19 +2852,22 @@ lsearch:
 	adds r15 = 72, r12
 	adds r14 = 48, r12
 	;;
-	ld8 r43 = [r15]
-	ld8 r42 = [r14]
-	mov r41 = r16
+	ld8 r42 = [r15]
+	ld8 r41 = [r14]
+	mov r40 = r16
 	br.call.sptk.many b0 = memcpy#
-	mov r1 = r40
+	mov r1 = r39
 	mov r14 = r8
 .L233:
 	;;
 	mov r8 = r14
-	mov ar.pfs = r39
-	mov b0 = r38
+	adds r17 = 96, r12
+	mov ar.pfs = r38
+	mov b0 = r37
+	;;
+	ldf.fill f2 = [r17]
 	.restore sp
-	adds r12 = 80, r12
+	adds r12 = 96, r12
 	br.ret.sptk.many b0
 	;;
 	.endp lsearch#
@@ -2910,8 +2913,6 @@ lfind:
 	adds r14 = 24, r12
 	;;
 	st8 [r14] = r15
-	mov r16 = r37
-	mov r17 = r0
 	adds r14 = 32, r12
 	adds r15 = 56, r12
 	;;
@@ -3894,14 +3895,14 @@ imaxabs:
 	.type	imaxdiv#, @function
 	.proc imaxdiv#
 imaxdiv:
-	.prologue 12, 37
-	.save ar.pfs, r38
-	alloc r38 = ar.pfs, 2, 6, 2, 0
+	.prologue 12, 35
+	.save ar.pfs, r36
+	alloc r36 = ar.pfs, 2, 4, 2, 0
 	.fframe 48
 	adds r12 = -48, r12
-	.save rp, r37
-	mov r37 = b0
-	mov r39 = r1
+	.save rp, r35
+	mov r35 = b0
+	mov r37 = r1
 	.body
 	;;
 	adds r14 = 48, r12
@@ -3913,28 +3914,28 @@ imaxdiv:
 	adds r14 = 48, r12
 	adds r15 = 56, r12
 	;;
-	ld8 r41 = [r15]
-	ld8 r40 = [r14]
+	ld8 r39 = [r15]
+	ld8 r38 = [r14]
 	br.call.sptk.many b0 = __divdi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
-	mov r36 = r14
+	mov r34 = r14
 	adds r15 = 48, r12
 	adds r14 = 56, r12
 	;;
 	ld8 r15 = [r15]
-	ld8 r41 = [r14]
+	ld8 r39 = [r14]
 	;;
-	mov r40 = r15
+	mov r38 = r15
 	br.call.sptk.many b0 = __moddi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
 	mov r15 = r14
 	adds r14 = 16, r12
 	;;
-	st8 [r14] = r36
+	st8 [r14] = r34
 	adds r14 = 24, r12
 	;;
 	st8 [r14] = r15
@@ -3947,17 +3948,11 @@ imaxdiv:
 	adds r14 = 24, r12
 	;;
 	ld8 r14 = [r14]
-	mov r34 = r15
+	mov r8 = r15
 	;;
-	mov r35 = r14
-	mov r14 = r34
-	;;
-	mov r15 = r35
-	mov r8 = r14
-	;;
-	mov r9 = r15
-	mov ar.pfs = r38
-	mov b0 = r37
+	mov r9 = r14
+	mov ar.pfs = r36
+	mov b0 = r35
 	.restore sp
 	adds r12 = 48, r12
 	br.ret.sptk.many b0
@@ -3986,14 +3981,14 @@ labs:
 	.type	ldiv#, @function
 	.proc ldiv#
 ldiv:
-	.prologue 12, 37
-	.save ar.pfs, r38
-	alloc r38 = ar.pfs, 2, 6, 2, 0
+	.prologue 12, 35
+	.save ar.pfs, r36
+	alloc r36 = ar.pfs, 2, 4, 2, 0
 	.fframe 48
 	adds r12 = -48, r12
-	.save rp, r37
-	mov r37 = b0
-	mov r39 = r1
+	.save rp, r35
+	mov r35 = b0
+	mov r37 = r1
 	.body
 	;;
 	adds r14 = 48, r12
@@ -4005,28 +4000,28 @@ ldiv:
 	adds r14 = 48, r12
 	adds r15 = 56, r12
 	;;
-	ld8 r41 = [r15]
-	ld8 r40 = [r14]
+	ld8 r39 = [r15]
+	ld8 r38 = [r14]
 	br.call.sptk.many b0 = __divdi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
-	mov r36 = r14
+	mov r34 = r14
 	adds r15 = 48, r12
 	adds r14 = 56, r12
 	;;
 	ld8 r15 = [r15]
-	ld8 r41 = [r14]
+	ld8 r39 = [r14]
 	;;
-	mov r40 = r15
+	mov r38 = r15
 	br.call.sptk.many b0 = __moddi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
 	mov r15 = r14
 	adds r14 = 16, r12
 	;;
-	st8 [r14] = r36
+	st8 [r14] = r34
 	adds r14 = 24, r12
 	;;
 	st8 [r14] = r15
@@ -4039,17 +4034,11 @@ ldiv:
 	adds r14 = 24, r12
 	;;
 	ld8 r14 = [r14]
-	mov r34 = r15
+	mov r8 = r15
 	;;
-	mov r35 = r14
-	mov r14 = r34
-	;;
-	mov r15 = r35
-	mov r8 = r14
-	;;
-	mov r9 = r15
-	mov ar.pfs = r38
-	mov b0 = r37
+	mov r9 = r14
+	mov ar.pfs = r36
+	mov b0 = r35
 	.restore sp
 	adds r12 = 48, r12
 	br.ret.sptk.many b0
@@ -4078,14 +4067,14 @@ llabs:
 	.type	lldiv#, @function
 	.proc lldiv#
 lldiv:
-	.prologue 12, 37
-	.save ar.pfs, r38
-	alloc r38 = ar.pfs, 2, 6, 2, 0
+	.prologue 12, 35
+	.save ar.pfs, r36
+	alloc r36 = ar.pfs, 2, 4, 2, 0
 	.fframe 48
 	adds r12 = -48, r12
-	.save rp, r37
-	mov r37 = b0
-	mov r39 = r1
+	.save rp, r35
+	mov r35 = b0
+	mov r37 = r1
 	.body
 	;;
 	adds r14 = 48, r12
@@ -4097,28 +4086,28 @@ lldiv:
 	adds r14 = 48, r12
 	adds r15 = 56, r12
 	;;
-	ld8 r41 = [r15]
-	ld8 r40 = [r14]
+	ld8 r39 = [r15]
+	ld8 r38 = [r14]
 	br.call.sptk.many b0 = __divdi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
-	mov r36 = r14
+	mov r34 = r14
 	adds r15 = 48, r12
 	adds r14 = 56, r12
 	;;
 	ld8 r15 = [r15]
-	ld8 r41 = [r14]
+	ld8 r39 = [r14]
 	;;
-	mov r40 = r15
+	mov r38 = r15
 	br.call.sptk.many b0 = __moddi3#
-	mov r1 = r39
+	mov r1 = r37
 	mov r14 = r8
 	;;
 	mov r15 = r14
 	adds r14 = 16, r12
 	;;
-	st8 [r14] = r36
+	st8 [r14] = r34
 	adds r14 = 24, r12
 	;;
 	st8 [r14] = r15
@@ -4131,17 +4120,11 @@ lldiv:
 	adds r14 = 24, r12
 	;;
 	ld8 r14 = [r14]
-	mov r34 = r15
+	mov r8 = r15
 	;;
-	mov r35 = r14
-	mov r14 = r34
-	;;
-	mov r15 = r35
-	mov r8 = r14
-	;;
-	mov r9 = r15
-	mov ar.pfs = r38
-	mov b0 = r37
+	mov r9 = r14
+	mov ar.pfs = r36
+	mov b0 = r35
 	.restore sp
 	adds r12 = 48, r12
 	br.ret.sptk.many b0
@@ -9977,9 +9960,8 @@ __ashlti3:
 	(p6) br.cond.dptk .L712
 	adds r14 = 48, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 	br .L714
@@ -10033,15 +10015,14 @@ __ashlti3:
 .L711:
 	adds r14 = 32, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 .L714:
+	mov r8 = r15
 	;;
-	mov r8 = r14
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 64, r12
 	br.ret.sptk.many b0
@@ -10295,9 +10276,8 @@ __ashrti3:
 	(p6) br.cond.dptk .L724
 	adds r14 = 48, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 	br .L726
@@ -10353,15 +10333,14 @@ __ashrti3:
 .L723:
 	adds r14 = 32, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 .L726:
+	mov r8 = r15
 	;;
-	mov r8 = r14
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 64, r12
 	br.ret.sptk.many b0
@@ -11587,9 +11566,8 @@ __lshrti3:
 	(p6) br.cond.dptk .L785
 	adds r14 = 48, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 	br .L787
@@ -11641,15 +11619,14 @@ __lshrti3:
 .L784:
 	adds r14 = 32, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
-	;;
-	ld8 r15 = [r14], -8
 	;;
 	ld8 r14 = [r14]
 .L787:
+	mov r8 = r15
 	;;
-	mov r8 = r14
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 64, r12
 	br.ret.sptk.many b0
@@ -12326,14 +12303,13 @@ __mulddi3:
 	st8 [r14] = r15
 	adds r14 = 32, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
 	;;
-	ld8 r15 = [r14], -8
-	;;
 	ld8 r14 = [r14]
+	mov r8 = r15
 	;;
-	mov r8 = r14
-	mov r9 = r15
+	mov r9 = r14
 	.restore sp
 	adds r12 = 48, r12
 	br.ret.sptk.many b0
@@ -12459,14 +12435,13 @@ __multi3:
 	st8 [r14] = r15
 	adds r14 = 48, r12
 	;;
+	ld8 r15 = [r14]
 	adds r14 = 8, r14
 	;;
-	ld8 r15 = [r14], -8
-	;;
 	ld8 r14 = [r14]
+	mov r8 = r15
 	;;
-	mov r8 = r14
-	mov r9 = r15
+	mov r9 = r14
 	mov ar.pfs = r37
 	mov b0 = r36
 	.restore sp
@@ -12510,12 +12485,12 @@ __negti2:
 	(p7) sub r17 = -1, r15
 	;;
 	(p6) sub r17 = 0, r15
-	mov r14 = r16
+	mov r15 = r16
 	;;
-	mov r15 = r17
-	mov r8 = r14
+	mov r14 = r17
+	mov r8 = r15
 	;;
-	mov r9 = r15
+	mov r9 = r14
 	br.ret.sptk.many b0
 	;;
 	.endp __negti2#

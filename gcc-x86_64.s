@@ -1871,15 +1871,11 @@ imaxdiv:
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rsi, rax
+	mov	rcx, rax
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rax, rdx
-	mov	rcx, rsi
-	mov	rbx, rax
 	mov	rax, rcx
-	mov	rdx, rbx
 	pop	rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -1913,15 +1909,11 @@ ldiv:
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rsi, rax
+	mov	rcx, rax
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rax, rdx
-	mov	rcx, rsi
-	mov	rbx, rax
 	mov	rax, rcx
-	mov	rdx, rbx
 	pop	rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -1955,15 +1947,11 @@ lldiv:
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rsi, rax
+	mov	rcx, rax
 	mov	rax, QWORD PTR [rsp-8]
 	cqo
 	idiv	QWORD PTR [rsp-16]
-	mov	rax, rdx
-	mov	rcx, rsi
-	mov	rbx, rax
 	mov	rax, rcx
-	mov	rdx, rbx
 	pop	rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -5960,12 +5948,9 @@ __popcountti2:
 	and	rdx, rbx
 	mov	QWORD PTR [rsp-16], rax
 	mov	QWORD PTR [rsp-8], rdx
-	mov	rcx, QWORD PTR [rsp-16]
 	mov	rax, QWORD PTR [rsp-16]
 	mov	rdx, QWORD PTR [rsp-8]
-	mov	rax, rdx
-	xor	edx, edx
-	add	rax, rcx
+	add	rax, rdx
 	mov	QWORD PTR [rsp-24], rax
 	mov	rax, QWORD PTR [rsp-24]
 	mov	edx, eax

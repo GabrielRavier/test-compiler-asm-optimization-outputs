@@ -2242,12 +2242,6 @@ $lsearch..ng:
 	mov $9,$1
 	lda $1,-1($1)
 	stq $1,24($30)
-	mov $9,$4
-	mov $31,$5
-	srl $4,61,$1
-	s8addq $5,0,$3
-	bis $1,$3,$3
-	s8addq $4,0,$2
 	ldq $1,56($30)
 	stq $1,32($30)
 	ldq $1,64($30)
@@ -2338,12 +2332,6 @@ $lfind..ng:
 	mov $9,$1
 	lda $1,-1($1)
 	stq $1,24($30)
-	mov $9,$4
-	mov $31,$5
-	srl $4,61,$1
-	s8addq $5,0,$3
-	bis $1,$3,$3
-	s8addq $4,0,$2
 	ldq $1,56($30)
 	stq $1,32($30)
 	ldq $1,64($30)
@@ -8519,10 +8507,12 @@ $L793:
 	stq $1,32($30)
 $L792:
 	ldq $2,32($30)
-	ldq $3,40($30)
+	ldq $1,40($30)
+	mov $2,$3
+	mov $1,$2
 	ldq $1,48($30)
-	stq $2,0($1)
-	stq $3,8($1)
+	stq $3,0($1)
+	stq $2,8($1)
 $L795:
 	ldq $0,48($30)
 	lda $30,80($30)
@@ -8976,18 +8966,19 @@ $LFB154:
 	stq $16,0($30)
 	stq $17,16($30)
 	stq $18,24($30)
-	ldq $6,16($30)
-	ldq $7,24($30)
-	mov $31,$4
-	mov $31,$5
-	subq $4,$6,$2
-	cmpult $4,$2,$1
-	subq $5,$7,$3
-	subq $3,$1,$1
-	mov $1,$3
+	ldq $5,16($30)
+	ldq $4,24($30)
+	mov $31,$3
+	mov $31,$6
+	subq $3,$5,$2
+	cmpult $3,$2,$3
+	subq $6,$4,$1
+	subq $1,$3,$1
+	mov $2,$3
+	mov $1,$2
 	ldq $1,0($30)
-	stq $2,0($1)
-	stq $3,8($1)
+	stq $3,0($1)
+	stq $2,8($1)
 	ldq $0,0($30)
 	lda $30,32($30)
 	.cfi_def_cfa_offset 0
@@ -9319,136 +9310,121 @@ $LFE159:
 	.globl __popcountti2
 	.ent __popcountti2
 __popcountti2:
-	.frame $30,64,$26,0
-	.mask 0x4000200,-64
+	.frame $30,48,$26,0
 $LFB160:
 	.cfi_startproc
 	ldah $29,0($27)		!gpdisp!127
 	lda $29,0($29)		!gpdisp!127
 $__popcountti2..ng:
-	lda $30,-64($30)
-	.cfi_def_cfa_offset 64
-	stq $26,0($30)
-	stq $9,8($30)
-	.cfi_offset 26, -64
-	.cfi_offset 9, -56
+	lda $30,-48($30)
+	.cfi_def_cfa_offset 48
 	.prologue 1
-	stq $16,48($30)
-	stq $17,56($30)
-	ldq $0,48($30)
-	ldq $1,56($30)
-	stq $0,16($30)
-	stq $1,24($30)
-	ldq $1,24($30)
-	sll $1,63,$1
-	ldq $28,16($30)
-	srl $28,1,$6
-	bis $1,$6,$6
-	ldq $1,24($30)
-	srl $1,1,$7
+	stq $16,32($30)
+	stq $17,40($30)
+	ldq $2,32($30)
+	ldq $3,40($30)
+	stq $2,0($30)
+	stq $3,8($30)
+	ldq $1,8($30)
+	sll $1,63,$2
+	ldq $1,0($30)
+	srl $1,1,$1
+	bis $2,$1,$1
+	ldq $2,8($30)
+	srl $2,1,$2
+	ldah $3,$LC15($29)		!gprelhigh
+	ldq $3,$LC15($3)		!gprellow
+	and $1,$3,$6
 	ldah $1,$LC15($29)		!gprelhigh
 	ldq $1,$LC15($1)		!gprellow
-	and $6,$1,$24
-	ldah $1,$LC15($29)		!gprelhigh
-	ldq $1,$LC15($1)		!gprellow
-	and $7,$1,$25
-	ldq $0,16($30)
-	ldq $1,24($30)
-	subq $0,$24,$6
-	cmpult $0,$6,$28
-	subq $1,$25,$7
-	subq $7,$28,$1
-	mov $1,$7
-	stq $6,16($30)
-	stq $7,24($30)
-	ldq $1,24($30)
-	sll $1,62,$1
-	ldq $6,16($30)
-	srl $6,2,$4
-	bis $1,$4,$4
-	ldq $1,24($30)
-	srl $1,2,$5
+	and $2,$1,$4
+	ldq $3,0($30)
+	ldq $5,8($30)
+	subq $3,$6,$2
+	cmpult $3,$2,$3
+	subq $5,$4,$1
+	subq $1,$3,$1
+	stq $2,0($30)
+	stq $1,8($30)
+	ldq $1,8($30)
+	sll $1,62,$2
+	ldq $1,0($30)
+	srl $1,2,$1
+	bis $2,$1,$1
+	ldq $2,8($30)
+	srl $2,2,$2
+	ldah $3,$LC16($29)		!gprelhigh
+	ldq $3,$LC16($3)		!gprellow
+	and $1,$3,$3
 	ldah $1,$LC16($29)		!gprelhigh
 	ldq $1,$LC16($1)		!gprellow
-	and $4,$1,$8
+	and $2,$1,$5
+	ldq $2,0($30)
 	ldah $1,$LC16($29)		!gprelhigh
 	ldq $1,$LC16($1)		!gprellow
-	and $5,$1,$9
-	ldq $4,16($30)
+	and $2,$1,$6
+	ldq $2,8($30)
 	ldah $1,$LC16($29)		!gprelhigh
 	ldq $1,$LC16($1)		!gprellow
-	and $4,$1,$22
-	ldq $4,24($30)
-	ldah $1,$LC16($29)		!gprelhigh
-	ldq $1,$LC16($1)		!gprellow
-	and $4,$1,$23
-	addq $8,$22,$4
-	cmpult $4,$8,$1
-	addq $9,$23,$5
-	addq $1,$5,$1
-	mov $1,$5
-	stq $4,16($30)
-	stq $5,24($30)
-	ldq $1,24($30)
-	sll $1,60,$1
-	ldq $4,16($30)
-	srl $4,4,$2
-	bis $1,$2,$2
-	ldq $1,24($30)
-	srl $1,4,$3
-	ldq $6,16($30)
-	ldq $7,24($30)
-	addq $2,$6,$4
-	cmpult $4,$2,$1
-	addq $3,$7,$5
-	addq $1,$5,$1
-	mov $1,$5
-	mov $4,$2
-	mov $5,$3
-	ldah $1,$LC17($29)		!gprelhigh
-	ldq $1,$LC17($1)		!gprellow
-	and $2,$1,$1
-	stq $1,16($30)
+	and $2,$1,$4
+	addq $3,$6,$2
+	cmpult $2,$3,$3
+	addq $5,$4,$1
+	addq $3,$1,$1
+	stq $2,0($30)
+	stq $1,8($30)
+	ldq $1,8($30)
+	sll $1,60,$2
+	ldq $1,0($30)
+	srl $1,4,$1
+	bis $2,$1,$1
+	ldq $2,8($30)
+	srl $2,4,$5
+	ldq $6,0($30)
+	ldq $4,8($30)
+	addq $1,$6,$3
+	cmpult $3,$1,$1
+	addq $5,$4,$2
+	addq $1,$2,$1
+	mov $1,$2
 	ldah $1,$LC17($29)		!gprelhigh
 	ldq $1,$LC17($1)		!gprellow
 	and $3,$1,$1
-	stq $1,24($30)
-	ldq $1,16($30)
-	ldq $2,24($30)
-	srl $2,0,$20
-	mov $31,$21
-	mov $20,$2
+	stq $1,0($30)
+	ldah $1,$LC17($29)		!gprelhigh
+	ldq $1,$LC17($1)		!gprellow
+	and $2,$1,$1
+	stq $1,8($30)
+	ldq $1,0($30)
+	ldq $2,8($30)
+	srl $2,0,$2
 	addq $1,$2,$1
-	stq $1,32($30)
-	ldq $1,32($30)
+	stq $1,16($30)
+	ldq $1,16($30)
 	addl $31,$1,$2
-	ldq $1,32($30)
+	ldq $1,16($30)
 	srl $1,32,$1
 	addl $31,$1,$1
 	addl $2,$1,$1
-	stl $1,40($30)
-	ldl $1,40($30)
+	stl $1,24($30)
+	ldl $1,24($30)
 	zapnot $1,15,$1
 	srl $1,16,$1
 	addl $31,$1,$1
-	ldl $2,40($30)
+	ldl $2,24($30)
 	addl $2,$1,$1
-	stl $1,40($30)
-	ldl $1,40($30)
+	stl $1,24($30)
+	ldl $1,24($30)
 	zapnot $1,15,$1
 	srl $1,8,$1
 	addl $31,$1,$1
-	ldl $2,40($30)
+	ldl $2,24($30)
 	addl $2,$1,$1
 	addl $31,$1,$1
 	and $1,255,$1
 	addl $31,$1,$1
 	mov $1,$0
-	ldq $26,0($30)
-	ldq $9,8($30)
-	lda $30,64($30)
-	.cfi_restore 9
-	.cfi_restore 26
+	lda $30,48($30)
 	.cfi_def_cfa_offset 0
 	ret $31,($26),1
 	.cfi_endproc

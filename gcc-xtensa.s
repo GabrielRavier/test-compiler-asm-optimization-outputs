@@ -1446,13 +1446,13 @@ l64a:
 srand:
 	entry	sp, 48
 	s32i	a2, sp, 0
-	l32i	a10, sp, 0
-	addi.n	a10, a10, -1
-	mov.n	a9, a10
-	movi.n	a8, 0
-	l32r	a10, .LC38
-	s32i	a8, a10, 0
-	s32i	a9, a10, 4
+	l32i	a8, sp, 0
+	addi.n	a8, a8, -1
+	mov.n	a10, a8
+	movi.n	a9, 0
+	l32r	a8, .LC38
+	s32i	a9, a8, 0
+	s32i	a10, a8, 4
 	nop.n
 	retw.n
 	.size	srand, .-srand
@@ -1465,42 +1465,35 @@ srand:
 	.global	rand
 	.type	rand, @function
 rand:
-	entry	sp, 48
+	entry	sp, 32
 	l32r	a8, .LC39
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	l32r	a10, .LC40
-	mull	a11, a8, a10
-	l32r	a10, .LC41
-	mull	a10, a9, a10
-	add.n	a10, a11, a10
-	s32i	a10, sp, 0
-	l32r	a10, .LC40
-	mov.n	a11, a10
-	mov.n	a10, a9
+	l32i	a10, a8, 0
+	l32i	a8, a8, 4
+	l32r	a9, .LC40
+	mull	a10, a10, a9
+	l32r	a9, .LC41
+	mull	a9, a8, a9
+	add.n	a7, a10, a9
+	l32r	a9, .LC40
+	mov.n	a11, a9
+	mov.n	a10, a8
 	l32r	a8, .LC42
 	callx8	a8
 	mov.n	a8, a10
-	mov.n	a9, a11
-	l32i	a10, sp, 0
-	add.n	a10, a10, a8
-	mov.n	a8, a10
-	movi.n	a5, 1
-	movi.n	a4, 0
-	add.n	a6, a8, a4
-	add.n	a7, a9, a5
-	bgeu	a7, a5, .L275
-	addi.n	a6, a6, 1
+	add.n	a8, a7, a8
+	movi.n	a9, 1
+	movi.n	a10, 0
+	add.n	a8, a8, a10
+	add.n	a10, a11, a9
+	bgeu	a10, a9, .L275
+	addi.n	a8, a8, 1
 .L275:
+	l32r	a9, .LC39
+	s32i	a8, a9, 0
+	s32i	a10, a9, 4
 	l32r	a8, .LC39
-	s32i	a6, a8, 0
-	s32i	a7, a8, 4
-	l32r	a8, .LC39
-	l32i	a9, a8, 4
 	l32i	a8, a8, 0
-	srli	a3, a8, 1
-	movi.n	a2, 0
-	mov.n	a8, a3
+	srli	a8, a8, 1
 	mov.n	a2, a8
 	retw.n
 	.size	rand, .-rand
@@ -1588,15 +1581,9 @@ lsearch:
 	s32i	a5, sp, 28
 	s32i	a6, sp, 32
 	l32i	a7, sp, 28
-	mov.n	a12, a7
-	addi.n	a12, a12, -1
-	s32i	a12, sp, 4
-	mov.n	a9, a7
-	movi.n	a8, 0
-	extui	a12, a9, 29, 3
-	slli	a10, a8, 3
-	or	a10, a12, a10
-	slli	a11, a9, 3
+	mov.n	a8, a7
+	addi.n	a8, a8, -1
+	s32i	a8, sp, 4
 	l32i	a8, sp, 20
 	s32i	a8, sp, 8
 	l32i	a8, sp, 24
@@ -1658,15 +1645,9 @@ lfind:
 	s32i	a5, sp, 28
 	s32i	a6, sp, 32
 	l32i	a7, sp, 28
-	mov.n	a12, a7
-	addi.n	a12, a12, -1
-	s32i	a12, sp, 4
-	mov.n	a9, a7
-	movi.n	a8, 0
-	extui	a12, a9, 29, 3
-	slli	a10, a8, 3
-	or	a10, a12, a10
-	slli	a11, a9, 3
+	mov.n	a8, a7
+	addi.n	a8, a8, -1
+	s32i	a8, sp, 4
 	l32i	a8, sp, 20
 	s32i	a8, sp, 8
 	l32i	a8, sp, 24
@@ -1858,7 +1839,7 @@ atol:
 	.global	atoll
 	.type	atoll, @function
 atoll:
-	entry	sp, 80
+	entry	sp, 64
 	s32i	a2, sp, 16
 	movi.n	a8, 0
 	movi.n	a9, 0
@@ -1899,7 +1880,7 @@ atoll:
 	l32i	a10, sp, 4
 	movi.n	a8, 0
 	mull	a8, a10, a8
-	add.n	a3, a9, a8
+	add.n	a7, a9, a8
 	l32i	a8, sp, 4
 	movi.n	a9, 0xa
 	mov.n	a11, a9
@@ -1907,35 +1888,20 @@ atoll:
 	l32r	a8, .LC48
 	callx8	a8
 	mov.n	a8, a10
-	mov.n	a9, a11
-	add.n	a10, a3, a8
-	mov.n	a8, a10
-	l32i	a10, sp, 16
-	addi.n	a11, a10, 1
-	s32i	a11, sp, 16
-	l8ui	a10, a10, 0
-	addi	a10, a10, -48
-	s32i	a10, sp, 36
-	srai	a10, a10, 31
-	s32i	a10, sp, 32
-	addi	a10, sp, 32
-	l32i	a11, a10, 4
-	l32i	a10, a10, 0
-	mov.n	a12, a10
-	sub	a12, a8, a12
-	s32i	a12, sp, 24
 	mov.n	a10, a11
-	bgeu	a9, a10, .L322
-	l32i	a10, sp, 24
-	addi.n	a10, a10, -1
-	s32i	a10, sp, 24
+	add.n	a8, a7, a8
+	l32i	a9, sp, 16
+	addi.n	a11, a9, 1
+	s32i	a11, sp, 16
+	l8ui	a9, a9, 0
+	addi	a11, a9, -48
+	mov.n	a9, a11
+	srai	a11, a11, 31
+	sub	a8, a8, a11
+	bgeu	a10, a9, .L322
+	addi.n	a8, a8, -1
 .L322:
-	l32i	a10, sp, 36
-	sub	a8, a9, a10
-	s32i	a8, sp, 28
-	addi	a8, sp, 24
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
+	sub	a9, a10, a9
 	s32i	a8, sp, 0
 	s32i	a9, sp, 4
 .L321:
@@ -1945,24 +1911,24 @@ atoll:
 	bltui	a8, 10, .L323
 	l32i	a8, sp, 8
 	bnez.n	a8, .L324
-	movi.n	a5, 0
-	movi.n	a4, 0
+	movi.n	a10, 0
+	movi.n	a11, 0
 	l32i	a8, sp, 0
 	l32i	a9, sp, 4
-	sub	a6, a4, a8
-	bgeu	a5, a9, .L325
-	addi.n	a6, a6, -1
+	sub	a8, a11, a8
+	bgeu	a10, a9, .L325
+	addi.n	a8, a8, -1
 .L325:
-	sub	a7, a5, a9
+	sub	a9, a10, a9
 	j	.L327
 .L324:
-	l32i	a6, sp, 0
-	l32i	a7, sp, 4
+	l32i	a8, sp, 0
+	l32i	a9, sp, 4
 .L327:
-	mov.n	a8, a6
-	mov.n	a9, a7
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a10, a8
+	mov.n	a8, a9
+	mov.n	a2, a10
+	mov.n	a3, a8
 	retw.n
 	.size	atoll, .-atoll
 	.align	4
@@ -2095,12 +2061,8 @@ div:
 	s32i	a8, sp, 4
 	l32i	a9, sp, 0
 	l32i	a8, sp, 4
-	mov.n	a12, a9
-	mov.n	a13, a8
-	mov.n	a8, a12
-	mov.n	a9, a13
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	div, .-div
 	.align	4
@@ -2110,25 +2072,23 @@ imaxabs:
 	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
-	l32i	a14, sp, 0
-	srai	a9, a14, 31
-	l32i	a14, sp, 0
-	srai	a8, a14, 31
-	l32i	a14, sp, 0
-	xor	a10, a14, a8
-	l32i	a14, sp, 4
-	xor	a11, a14, a9
-	sub	a12, a10, a8
-	bgeu	a11, a9, .L345
-	addi.n	a12, a12, -1
+	l32i	a8, sp, 0
+	srai	a8, a8, 31
+	l32i	a9, sp, 0
+	srai	a11, a9, 31
+	l32i	a9, sp, 0
+	xor	a10, a9, a11
+	l32i	a9, sp, 4
+	xor	a9, a9, a8
+	sub	a10, a10, a11
+	bgeu	a9, a8, .L345
+	addi.n	a10, a10, -1
 .L345:
-	sub	a13, a11, a9
-	mov.n	a10, a12
-	mov.n	a11, a13
-	mov.n	a8, a10
-	mov.n	a9, a11
-	mov.n	a2, a8
-	mov.n	a3, a9
+	sub	a8, a9, a8
+	mov.n	a9, a8
+	mov.n	a8, a9
+	mov.n	a2, a10
+	mov.n	a3, a8
 	retw.n
 	.size	imaxabs, .-imaxabs
 	.literal_position
@@ -2138,7 +2098,7 @@ imaxabs:
 	.global	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	entry	sp, 96
+	entry	sp, 80
 	s32i	a2, sp, 32
 	s32i	a3, sp, 36
 	s32i	a4, sp, 40
@@ -2149,10 +2109,10 @@ imaxdiv:
 	l32i	a10, sp, 32
 	l32i	a11, sp, 36
 	callx8	a8
-	mov.n	a8, a10
-	mov.n	a9, a11
-	mov.n	a6, a8
-	mov.n	a7, a9
+	mov.n	a9, a10
+	mov.n	a8, a11
+	mov.n	a6, a9
+	mov.n	a7, a8
 	l32i	a8, sp, 32
 	l32i	a9, sp, 36
 	l32r	a14, .LC50
@@ -2161,28 +2121,28 @@ imaxdiv:
 	mov.n	a10, a8
 	mov.n	a11, a9
 	callx8	a14
-	mov.n	a8, a10
-	mov.n	a9, a11
+	mov.n	a9, a10
+	mov.n	a8, a11
 	s32i	a6, sp, 0
 	s32i	a7, sp, 4
-	s32i	a8, sp, 8
-	s32i	a9, sp, 12
+	s32i	a9, sp, 8
+	s32i	a8, sp, 12
 	l32i	a11, sp, 0
 	l32i	a10, sp, 4
 	l32i	a9, sp, 8
 	l32i	a8, sp, 12
-	s32i	a11, sp, 48
-	s32i	a10, sp, 52
-	s32i	a9, sp, 56
-	s32i	a8, sp, 60
-	l32i	a8, sp, 48
-	l32i	a9, sp, 52
-	l32i	a10, sp, 56
-	l32i	a11, sp, 60
-	mov.n	a2, a8
-	mov.n	a3, a9
-	mov.n	a4, a10
-	mov.n	a5, a11
+	mov.n	a15, a11
+	mov.n	a14, a10
+	mov.n	a13, a9
+	mov.n	a12, a8
+	mov.n	a11, a15
+	mov.n	a10, a14
+	mov.n	a9, a13
+	mov.n	a8, a12
+	mov.n	a2, a11
+	mov.n	a3, a10
+	mov.n	a4, a9
+	mov.n	a5, a8
 	retw.n
 	.size	imaxdiv, .-imaxdiv
 	.align	4
@@ -2213,12 +2173,8 @@ ldiv:
 	s32i	a8, sp, 4
 	l32i	a9, sp, 0
 	l32i	a8, sp, 4
-	mov.n	a12, a9
-	mov.n	a13, a8
-	mov.n	a8, a12
-	mov.n	a9, a13
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	ldiv, .-ldiv
 	.align	4
@@ -2228,25 +2184,23 @@ llabs:
 	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
-	l32i	a14, sp, 0
-	srai	a9, a14, 31
-	l32i	a14, sp, 0
-	srai	a8, a14, 31
-	l32i	a14, sp, 0
-	xor	a10, a14, a8
-	l32i	a14, sp, 4
-	xor	a11, a14, a9
-	sub	a12, a10, a8
-	bgeu	a11, a9, .L355
-	addi.n	a12, a12, -1
+	l32i	a8, sp, 0
+	srai	a8, a8, 31
+	l32i	a9, sp, 0
+	srai	a11, a9, 31
+	l32i	a9, sp, 0
+	xor	a10, a9, a11
+	l32i	a9, sp, 4
+	xor	a9, a9, a8
+	sub	a10, a10, a11
+	bgeu	a9, a8, .L355
+	addi.n	a10, a10, -1
 .L355:
-	sub	a13, a11, a9
-	mov.n	a10, a12
-	mov.n	a11, a13
-	mov.n	a8, a10
-	mov.n	a9, a11
-	mov.n	a2, a8
-	mov.n	a3, a9
+	sub	a8, a9, a8
+	mov.n	a9, a8
+	mov.n	a8, a9
+	mov.n	a2, a10
+	mov.n	a3, a8
 	retw.n
 	.size	llabs, .-llabs
 	.literal_position
@@ -2256,7 +2210,7 @@ llabs:
 	.global	lldiv
 	.type	lldiv, @function
 lldiv:
-	entry	sp, 96
+	entry	sp, 80
 	s32i	a2, sp, 32
 	s32i	a3, sp, 36
 	s32i	a4, sp, 40
@@ -2267,10 +2221,10 @@ lldiv:
 	l32i	a10, sp, 32
 	l32i	a11, sp, 36
 	callx8	a8
-	mov.n	a8, a10
-	mov.n	a9, a11
-	mov.n	a6, a8
-	mov.n	a7, a9
+	mov.n	a9, a10
+	mov.n	a8, a11
+	mov.n	a6, a9
+	mov.n	a7, a8
 	l32i	a8, sp, 32
 	l32i	a9, sp, 36
 	l32r	a14, .LC52
@@ -2279,28 +2233,28 @@ lldiv:
 	mov.n	a10, a8
 	mov.n	a11, a9
 	callx8	a14
-	mov.n	a8, a10
-	mov.n	a9, a11
+	mov.n	a9, a10
+	mov.n	a8, a11
 	s32i	a6, sp, 0
 	s32i	a7, sp, 4
-	s32i	a8, sp, 8
-	s32i	a9, sp, 12
+	s32i	a9, sp, 8
+	s32i	a8, sp, 12
 	l32i	a11, sp, 0
 	l32i	a10, sp, 4
 	l32i	a9, sp, 8
 	l32i	a8, sp, 12
-	s32i	a11, sp, 48
-	s32i	a10, sp, 52
-	s32i	a9, sp, 56
-	s32i	a8, sp, 60
-	l32i	a8, sp, 48
-	l32i	a9, sp, 52
-	l32i	a10, sp, 56
-	l32i	a11, sp, 60
-	mov.n	a2, a8
-	mov.n	a3, a9
-	mov.n	a4, a10
-	mov.n	a5, a11
+	mov.n	a15, a11
+	mov.n	a14, a10
+	mov.n	a13, a9
+	mov.n	a12, a8
+	mov.n	a11, a15
+	mov.n	a10, a14
+	mov.n	a9, a13
+	mov.n	a8, a12
+	mov.n	a2, a11
+	mov.n	a3, a10
+	mov.n	a4, a9
+	mov.n	a5, a8
 	retw.n
 	.size	lldiv, .-lldiv
 	.align	4
@@ -2770,60 +2724,60 @@ rotl64:
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
 	s32i	a4, sp, 8
-	l32i	a12, sp, 0
-	l32i	a13, sp, 4
-	l32i	a15, sp, 8
-	movi.n	a14, 0x20
-	and	a14, a15, a14
-	movi.n	a15, 0
-	srli	a4, a13, 1
-	l32i	a3, sp, 8
-	movi.n	a5, -1
-	xor	a5, a3, a5
-	ssr	a5
-	srl	a5, a4
-	l32i	a4, sp, 8
-	ssl	a4
-	sll	a10, a12
-	or	a10, a5, a10
-	l32i	a5, sp, 8
-	ssl	a5
-	sll	a11, a13
-	movnez	a10, a11, a14
-	movnez	a11, a15, a14
+	l32i	a10, sp, 0
+	l32i	a12, sp, 4
+	l32i	a9, sp, 8
+	movi.n	a8, 0x20
+	and	a8, a9, a8
+	movi.n	a13, 0
+	srli	a11, a12, 1
 	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	movi.n	a15, 0x20
-	and	a15, a14, a15
-	movi.n	a5, 0
-	add.n	a4, a12, a12
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	movi.n	a3, -1
-	xor	a14, a14, a3
-	ssl	a14
-	sll	a4, a4
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	ssr	a14
-	srl	a9, a13
-	or	a9, a4, a9
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	ssr	a14
+	movi.n	a9, -1
+	xor	a9, a14, a9
+	ssr	a9
+	srl	a11, a11
+	l32i	a9, sp, 8
+	ssl	a9
+	sll	a9, a10
+	or	a9, a11, a9
+	l32i	a11, sp, 8
+	ssl	a11
+	sll	a11, a12
+	movnez	a9, a11, a8
+	movnez	a11, a13, a8
+	l32i	a8, sp, 8
+	neg	a8, a8
+	extui	a8, a8, 0, 6
+	movi.n	a13, 0x20
+	and	a13, a8, a13
+	movi.n	a14, 0
+	add.n	a15, a10, a10
+	l32i	a8, sp, 8
+	neg	a8, a8
+	extui	a8, a8, 0, 6
+	movi.n	a7, -1
+	xor	a8, a8, a7
+	ssl	a8
+	sll	a15, a15
+	l32i	a8, sp, 8
+	neg	a8, a8
+	extui	a8, a8, 0, 6
+	ssr	a8
 	srl	a8, a12
-	movnez	a9, a8, a15
-	movnez	a8, a5, a15
-	or	a6, a8, a10
-	or	a7, a9, a11
-	mov.n	a8, a6
-	mov.n	a9, a7
-	mov.n	a2, a8
-	mov.n	a3, a9
+	or	a8, a15, a8
+	l32i	a12, sp, 8
+	neg	a12, a12
+	extui	a12, a12, 0, 6
+	ssr	a12
+	srl	a10, a10
+	movnez	a8, a10, a13
+	movnez	a10, a14, a13
+	or	a9, a10, a9
+	or	a8, a8, a11
+	mov.n	a10, a9
+	mov.n	a9, a10
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	rotl64, .-rotl64
 	.align	4
@@ -2834,60 +2788,61 @@ rotr64:
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
 	s32i	a4, sp, 8
-	l32i	a12, sp, 0
-	l32i	a13, sp, 4
-	l32i	a15, sp, 8
-	movi.n	a14, 0x20
-	and	a14, a15, a14
-	movi.n	a15, 0
-	add.n	a4, a12, a12
-	l32i	a3, sp, 8
-	movi.n	a5, -1
-	xor	a5, a3, a5
-	ssl	a5
-	sll	a5, a4
-	l32i	a4, sp, 8
-	ssr	a4
-	srl	a11, a13
-	or	a11, a5, a11
-	l32i	a5, sp, 8
-	ssr	a5
-	srl	a10, a12
-	movnez	a11, a10, a14
-	movnez	a10, a15, a14
+	l32i	a8, sp, 0
+	l32i	a12, sp, 4
+	l32i	a10, sp, 8
+	movi.n	a9, 0x20
+	and	a10, a10, a9
+	movi.n	a13, 0
+	add.n	a11, a8, a8
 	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	movi.n	a15, 0x20
-	and	a15, a14, a15
-	movi.n	a5, 0
-	srli	a4, a13, 1
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	movi.n	a3, -1
-	xor	a14, a14, a3
-	ssr	a14
-	srl	a4, a4
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	ssl	a14
-	sll	a8, a12
-	or	a8, a4, a8
-	l32i	a14, sp, 8
-	neg	a14, a14
-	extui	a14, a14, 0, 6
-	ssl	a14
-	sll	a9, a13
-	movnez	a8, a9, a15
-	movnez	a9, a5, a15
-	or	a6, a8, a10
-	or	a7, a9, a11
-	mov.n	a8, a6
-	mov.n	a9, a7
-	mov.n	a2, a8
-	mov.n	a3, a9
+	movi.n	a9, -1
+	xor	a9, a14, a9
+	ssl	a9
+	sll	a11, a11
+	l32i	a9, sp, 8
+	ssr	a9
+	srl	a9, a12
+	or	a9, a11, a9
+	l32i	a11, sp, 8
+	ssr	a11
+	srl	a11, a8
+	movnez	a9, a11, a10
+	movnez	a11, a13, a10
+	l32i	a10, sp, 8
+	neg	a10, a10
+	extui	a10, a10, 0, 6
+	movi.n	a13, 0x20
+	and	a13, a10, a13
+	movi.n	a14, 0
+	srli	a15, a12, 1
+	l32i	a10, sp, 8
+	neg	a10, a10
+	extui	a10, a10, 0, 6
+	movi.n	a7, -1
+	xor	a10, a10, a7
+	ssr	a10
+	srl	a15, a15
+	l32i	a10, sp, 8
+	neg	a10, a10
+	extui	a10, a10, 0, 6
+	ssl	a10
+	sll	a8, a8
+	or	a8, a15, a8
+	l32i	a10, sp, 8
+	neg	a10, a10
+	extui	a10, a10, 0, 6
+	ssl	a10
+	sll	a10, a12
+	movnez	a8, a10, a13
+	movnez	a10, a14, a13
+	or	a8, a8, a11
+	or	a9, a10, a9
+	mov.n	a10, a9
+	mov.n	a9, a8
+	mov.n	a8, a10
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	rotr64, .-rotr64
 	.align	4
@@ -3110,7 +3065,7 @@ bswap_32:
 	.global	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	entry	sp, 256
+	entry	sp, 64
 	s32i	a2, sp, 16
 	s32i	a3, sp, 20
 	movi.n	a8, 0
@@ -3118,296 +3073,97 @@ bswap_64:
 	s32i	a8, sp, 0
 	s32i	a9, sp, 4
 	l32i	a8, sp, 4
-	slli	a10, a8, 24
-	movi.n	a11, 0
-	l32i	a8, sp, 16
-	and	a6, a8, a10
-	l32i	a8, sp, 20
-	and	a7, a8, a11
-	extui	a8, a6, 24, 8
-	s32i	a8, sp, 76
-	movi.n	a10, 0
-	s32i	a10, sp, 72
-	l32i	a8, sp, 4
-	slli	a12, a8, 16
-	movi.n	a13, 0
-	l32i	a8, sp, 16
-	and	a8, a8, a12
-	s32i	a8, sp, 80
-	l32i	a8, sp, 20
-	and	a8, a8, a13
-	s32i	a8, sp, 84
-	l32i	a8, sp, 80
-	srli	a15, a8, 8
-	movi.n	a14, 0
-	addi	a8, sp, 72
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a11, a8
-	or	a11, a11, a14
-	s32i	a11, sp, 88
-	mov.n	a8, a9
-	or	a8, a8, a15
-	s32i	a8, sp, 92
-	l32i	a8, sp, 4
-	slli	a8, a8, 8
-	s32i	a8, sp, 96
-	mov.n	a12, a10
-	s32i	a12, sp, 100
-	l32i	a8, sp, 16
-	addi	a9, sp, 96
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a8, a9
-	s32i	a8, sp, 104
-	l32i	a8, sp, 20
-	mov.n	a9, a11
-	and	a8, a8, a9
-	s32i	a8, sp, 108
-	addi	a8, sp, 104
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a8, a10
-	slli	a8, a8, 8
-	mov.n	a9, a11
-	extui	a5, a9, 24, 8
-	or	a5, a8, a5
-	mov.n	a8, a10
-	extui	a4, a8, 24, 8
-	addi	a8, sp, 88
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a10, a8
-	or	a10, a10, a4
-	s32i	a10, sp, 112
-	mov.n	a8, a9
-	or	a8, a8, a5
-	s32i	a8, sp, 116
-	l32i	a8, sp, 4
-	slli	a8, a8, 0
-	s32i	a8, sp, 120
-	s32i	a12, sp, 124
-	l32i	a8, sp, 16
-	addi	a9, sp, 120
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a8, a9
-	s32i	a8, sp, 128
-	l32i	a8, sp, 20
-	mov.n	a9, a11
-	and	a8, a8, a9
-	s32i	a8, sp, 132
-	movi	a8, 0x80
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a8, a10
 	slli	a8, a8, 24
-	mov.n	a9, a11
-	srli	a9, a9, 8
-	s32i	a9, sp, 28
-	l32i	a9, sp, 28
-	or	a8, a8, a9
-	s32i	a8, sp, 28
-	mov.n	a8, a10
+	l32i	a9, sp, 16
+	and	a8, a9, a8
+	extui	a9, a8, 24, 8
+	movi.n	a11, 0
+	l32i	a8, sp, 4
+	slli	a8, a8, 16
+	l32i	a10, sp, 16
+	and	a8, a10, a8
 	srli	a8, a8, 8
-	s32i	a8, sp, 24
-	addi	a8, sp, 112
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a13, a10
-	addi	a8, sp, 24
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a14, a8
-	or	a13, a13, a14
-	s32i	a13, sp, 136
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 140
+	movi.n	a10, 0
+	or	a11, a11, a10
+	or	a10, a9, a8
+	l32i	a8, sp, 4
+	slli	a9, a8, 8
+	movi.n	a8, 0
+	l32i	a12, sp, 16
+	and	a9, a12, a9
+	l32i	a12, sp, 20
+	and	a8, a12, a8
+	slli	a12, a9, 8
+	extui	a8, a8, 24, 8
+	or	a8, a12, a8
+	extui	a9, a9, 24, 8
+	or	a11, a11, a9
+	or	a10, a10, a8
+	l32i	a8, sp, 4
+	slli	a9, a8, 0
+	movi.n	a8, 0
+	l32i	a12, sp, 16
+	and	a9, a12, a9
+	l32i	a12, sp, 20
+	and	a8, a12, a8
+	slli	a12, a9, 24
+	srli	a8, a8, 8
+	or	a8, a12, a8
+	srli	a9, a9, 8
+	or	a11, a11, a9
+	or	a10, a10, a8
 	l32i	a8, sp, 4
 	srli	a9, a8, 8
 	l32i	a8, sp, 0
 	slli	a8, a8, 24
-	s32i	a8, sp, 32
-	l32i	a8, sp, 32
 	or	a8, a9, a8
-	s32i	a8, sp, 32
-	l32i	a8, sp, 4
-	slli	a8, a8, 24
-	s32i	a8, sp, 36
-	l32i	a8, sp, 16
-	addi	a9, sp, 32
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a8, a9
-	s32i	a8, sp, 144
-	l32i	a8, sp, 20
-	mov.n	a9, a11
-	and	a8, a8, a9
-	s32i	a8, sp, 148
-	movi	a8, 0x90
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a8, a11
-	extui	a8, a8, 24, 8
-	mov.n	a9, a10
-	slli	a9, a9, 8
-	s32i	a9, sp, 40
-	l32i	a9, sp, 40
-	or	a8, a8, a9
-	s32i	a8, sp, 40
-	mov.n	a8, a11
+	l32i	a9, sp, 4
+	slli	a9, a9, 24
+	l32i	a12, sp, 16
+	and	a8, a12, a8
+	l32i	a12, sp, 20
+	and	a9, a12, a9
+	extui	a12, a9, 24, 8
 	slli	a8, a8, 8
-	s32i	a8, sp, 44
-	movi	a8, 0x88
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a13, a10
-	addi	a8, sp, 40
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a14, a8
-	or	a13, a13, a14
-	s32i	a13, sp, 152
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 156
+	or	a8, a12, a8
+	slli	a9, a9, 8
+	or	a11, a11, a8
+	or	a10, a10, a9
 	l32i	a8, sp, 4
 	extui	a9, a8, 16, 16
 	l32i	a8, sp, 0
 	slli	a8, a8, 16
-	s32i	a8, sp, 48
-	l32i	a8, sp, 48
 	or	a8, a9, a8
-	s32i	a8, sp, 48
-	l32i	a8, sp, 4
-	slli	a8, a8, 16
-	s32i	a8, sp, 52
-	l32i	a8, sp, 16
-	addi	a9, sp, 48
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a8, a9
-	s32i	a8, sp, 160
-	l32i	a8, sp, 20
-	mov.n	a9, a11
-	and	a8, a8, a9
-	s32i	a8, sp, 164
-	movi	a8, 0xa0
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a8, a11
-	srli	a8, a8, 8
-	mov.n	a9, a10
+	l32i	a9, sp, 4
+	slli	a9, a9, 16
+	l32i	a12, sp, 16
+	and	a8, a12, a8
+	l32i	a12, sp, 20
+	and	a9, a12, a9
+	srli	a12, a9, 8
+	slli	a8, a8, 24
+	or	a8, a12, a8
 	slli	a9, a9, 24
-	s32i	a9, sp, 56
-	l32i	a9, sp, 56
-	or	a8, a8, a9
-	s32i	a8, sp, 56
-	mov.n	a8, a11
-	slli	a8, a8, 24
-	s32i	a8, sp, 60
-	movi	a8, 0x98
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a13, a10
-	addi	a8, sp, 56
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a14, a8
-	or	a13, a13, a14
-	s32i	a13, sp, 168
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 172
+	or	a11, a11, a8
+	or	a9, a10, a9
 	l32i	a8, sp, 4
-	extui	a9, a8, 24, 8
-	l32i	a8, sp, 0
 	slli	a8, a8, 8
-	s32i	a8, sp, 64
-	l32i	a8, sp, 64
+	l32i	a10, sp, 20
+	and	a8, a10, a8
+	slli	a10, a8, 8
+	movi.n	a8, 0
+	or	a11, a11, a10
+	or	a9, a9, a8
+	l32i	a10, sp, 20
+	l32i	a8, sp, 4
+	and	a8, a10, a8
+	slli	a10, a8, 24
+	movi.n	a8, 0
+	or	a10, a11, a10
 	or	a8, a9, a8
-	s32i	a8, sp, 64
-	l32i	a8, sp, 4
-	slli	a8, a8, 8
-	s32i	a8, sp, 68
-	l32i	a8, sp, 16
-	addi	a9, sp, 64
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
 	mov.n	a9, a10
-	and	a8, a8, a9
-	s32i	a8, sp, 176
-	l32i	a8, sp, 20
-	mov.n	a9, a11
-	and	a8, a8, a9
-	s32i	a8, sp, 180
-	l32i	a8, sp, 180
-	slli	a8, a8, 8
-	s32i	a8, sp, 184
-	s32i	a12, sp, 188
-	movi	a8, 0xa8
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a13, a10
-	movi	a8, 0xb8
-	add.n	a8, a8, sp
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a14, a8
-	or	a13, a13, a14
-	s32i	a13, sp, 192
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 196
-	l32i	a9, sp, 16
-	l32i	a8, sp, 0
-	and	a8, a9, a8
-	s32i	a8, sp, 200
-	l32i	a9, sp, 20
-	l32i	a8, sp, 4
-	and	a8, a9, a8
-	s32i	a8, sp, 204
-	l32i	a8, sp, 204
-	slli	a8, a8, 24
-	s32i	a8, sp, 208
-	s32i	a12, sp, 212
-	movi	a8, 0xc0
-	add.n	a8, a8, sp
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a12, a10
-	movi	a8, 0xd0
-	add.n	a8, a8, sp
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a13, a8
-	or	a12, a12, a13
-	s32i	a12, sp, 216
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 220
-	movi	a8, 0xd8
-	add.n	a8, a8, sp
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	bswap_64, .-bswap_64
 	.align	4
@@ -4381,63 +4137,63 @@ __muldi3:
 	s32i	a3, sp, 20
 	s32i	a4, sp, 24
 	s32i	a5, sp, 28
-	movi.n	a14, 0
-	movi.n	a15, 0
-	s32i	a14, sp, 0
-	s32i	a15, sp, 4
-	l32i	a14, sp, 16
-	l32i	a15, sp, 20
-	s32i	a14, sp, 8
-	s32i	a15, sp, 12
+	movi.n	a8, 0
+	movi.n	a9, 0
+	s32i	a8, sp, 0
+	s32i	a9, sp, 4
+	l32i	a8, sp, 16
+	l32i	a9, sp, 20
+	s32i	a8, sp, 8
+	s32i	a9, sp, 12
 	j	.L597
 .L601:
-	l32i	a15, sp, 8
-	movi.n	a14, 0
-	and	a6, a15, a14
-	l32i	a14, sp, 12
-	extui	a7, a14, 0, 1
-	mov.n	a14, a6
-	or	a14, a14, a7
-	beqz.n	a14, .L598
-	l32i	a4, sp, 0
-	l32i	a5, sp, 4
-	l32i	a14, sp, 24
-	l32i	a15, sp, 28
-	add.n	a8, a4, a14
-	add.n	a9, a5, a15
-	bgeu	a9, a15, .L600
+	l32i	a9, sp, 8
+	movi.n	a8, 0
+	and	a10, a9, a8
+	l32i	a8, sp, 12
+	extui	a9, a8, 0, 1
+	mov.n	a8, a10
+	or	a8, a8, a9
+	beqz.n	a8, .L598
+	l32i	a11, sp, 0
+	l32i	a9, sp, 4
+	l32i	a8, sp, 24
+	l32i	a10, sp, 28
+	add.n	a8, a11, a8
+	add.n	a9, a9, a10
+	bgeu	a9, a10, .L600
 	addi.n	a8, a8, 1
 .L600:
 	s32i	a8, sp, 0
 	s32i	a9, sp, 4
 .L598:
-	l32i	a14, sp, 28
-	extui	a15, a14, 31, 1
-	l32i	a14, sp, 24
-	add.n	a10, a14, a14
-	or	a10, a15, a10
-	l32i	a14, sp, 28
-	add.n	a11, a14, a14
-	s32i	a10, sp, 24
-	s32i	a11, sp, 28
-	l32i	a14, sp, 8
-	slli	a14, a14, 31
-	l32i	a15, sp, 12
-	srli	a13, a15, 1
-	or	a13, a14, a13
-	l32i	a14, sp, 8
-	srli	a12, a14, 1
-	s32i	a12, sp, 8
-	s32i	a13, sp, 12
+	l32i	a8, sp, 28
+	extui	a9, a8, 31, 1
+	l32i	a8, sp, 24
+	add.n	a8, a8, a8
+	or	a8, a9, a8
+	l32i	a9, sp, 28
+	add.n	a9, a9, a9
+	s32i	a8, sp, 24
+	s32i	a9, sp, 28
+	l32i	a8, sp, 8
+	slli	a9, a8, 31
+	l32i	a8, sp, 12
+	srli	a8, a8, 1
+	or	a8, a9, a8
+	l32i	a9, sp, 8
+	srli	a9, a9, 1
+	s32i	a9, sp, 8
+	s32i	a8, sp, 12
 .L597:
-	l32i	a14, sp, 8
-	l32i	a15, sp, 12
-	or	a14, a14, a15
-	bnez.n	a14, .L601
-	l32i	a8, sp, 0
-	l32i	a9, sp, 4
-	mov.n	a2, a8
-	mov.n	a3, a9
+	l32i	a8, sp, 8
+	l32i	a9, sp, 12
+	or	a8, a8, a9
+	bnez.n	a8, .L601
+	l32i	a9, sp, 0
+	l32i	a8, sp, 4
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__muldi3, .-__muldi3
 	.align	4
@@ -4530,16 +4286,16 @@ __clrsbdi2:
 	entry	sp, 64
 	s32i	a2, sp, 16
 	s32i	a3, sp, 20
-	l32i	a10, sp, 16
-	bgez	a10, .L616
-	l32i	a11, sp, 16
-	movi.n	a10, -1
-	xor	a8, a11, a10
-	l32i	a11, sp, 20
-	movi.n	a10, -1
-	xor	a9, a11, a10
-	s32i	a8, sp, 16
-	s32i	a9, sp, 20
+	l32i	a8, sp, 16
+	bgez	a8, .L616
+	l32i	a9, sp, 16
+	movi.n	a8, -1
+	xor	a9, a9, a8
+	l32i	a10, sp, 20
+	movi.n	a8, -1
+	xor	a8, a10, a8
+	s32i	a9, sp, 16
+	s32i	a8, sp, 20
 .L616:
 	l32i	a8, sp, 16
 	l32i	a9, sp, 20
@@ -5324,26 +5080,25 @@ __mspabi_mpysll:
 	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
-	l32i	a12, sp, 0
-	mov.n	a9, a12
-	srai	a12, a12, 31
-	mov.n	a8, a12
-	l32i	a12, sp, 4
-	mov.n	a11, a12
-	srai	a12, a12, 31
-	mov.n	a10, a12
-	mull	a13, a8, a11
-	mull	a12, a10, a9
-	add.n	a7, a13, a12
-	mov.n	a10, a9
+	l32i	a8, sp, 0
+	mov.n	a10, a8
+	srai	a8, a8, 31
+	mov.n	a9, a8
+	l32i	a8, sp, 4
+	mov.n	a11, a8
+	srai	a8, a8, 31
+	mull	a9, a9, a11
+	mull	a8, a8, a10
+	add.n	a7, a9, a8
 	l32r	a8, .LC135
 	callx8	a8
 	mov.n	a8, a10
-	mov.n	a9, a11
-	add.n	a10, a7, a8
+	mov.n	a10, a11
+	add.n	a8, a7, a8
+	mov.n	a9, a8
 	mov.n	a8, a10
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
 	.literal_position
@@ -5355,24 +5110,24 @@ __mspabi_mpyull:
 	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
-	l32i	a12, sp, 0
-	mov.n	a9, a12
+	l32i	a8, sp, 0
+	mov.n	a10, a8
+	movi.n	a9, 0
+	l32i	a8, sp, 4
+	mov.n	a11, a8
 	movi.n	a8, 0
-	l32i	a12, sp, 4
-	mov.n	a11, a12
-	movi.n	a10, 0
-	mull	a13, a8, a11
-	mull	a12, a10, a9
-	add.n	a7, a13, a12
-	mov.n	a10, a9
+	mull	a9, a9, a11
+	mull	a8, a8, a10
+	add.n	a7, a9, a8
 	l32r	a8, .LC136
 	callx8	a8
 	mov.n	a8, a10
-	mov.n	a9, a11
-	add.n	a10, a7, a8
+	mov.n	a10, a11
+	add.n	a8, a7, a8
+	mov.n	a9, a8
 	mov.n	a8, a10
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
 	.align	4
@@ -5687,8 +5442,8 @@ __ashldi3:
 .L780:
 	l32i	a8, sp, 40
 	bnez.n	a8, .L782
-	l32i	a8, sp, 32
-	l32i	a9, sp, 36
+	l32i	a9, sp, 32
+	l32i	a8, sp, 36
 	j	.L784
 .L782:
 	l32i	a9, sp, 12
@@ -5710,11 +5465,11 @@ __ashldi3:
 	or	a8, a9, a8
 	s32i	a8, sp, 16
 .L781:
-	l32i	a8, sp, 16
-	l32i	a9, sp, 20
+	l32i	a9, sp, 16
+	l32i	a8, sp, 20
 .L784:
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__ashldi3, .-__ashldi3
 	.align	4
@@ -5752,8 +5507,8 @@ __ashrdi3:
 .L786:
 	l32i	a8, sp, 40
 	bnez.n	a8, .L788
-	l32i	a8, sp, 32
-	l32i	a9, sp, 36
+	l32i	a9, sp, 32
+	l32i	a8, sp, 36
 	j	.L790
 .L788:
 	l32i	a9, sp, 8
@@ -5775,11 +5530,11 @@ __ashrdi3:
 	or	a8, a9, a8
 	s32i	a8, sp, 20
 .L787:
-	l32i	a8, sp, 16
-	l32i	a9, sp, 20
+	l32i	a9, sp, 16
+	l32i	a8, sp, 20
 .L790:
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__ashrdi3, .-__ashrdi3
 	.literal_position
@@ -5790,204 +5545,89 @@ __ashrdi3:
 	.global	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	entry	sp, 176
+	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
 	l32i	a8, sp, 0
-	extui	a7, a8, 24, 8
-	movi.n	a6, 0
+	extui	a9, a8, 24, 8
+	movi.n	a11, 0
 	l32i	a8, sp, 0
-	srli	a11, a8, 8
+	srli	a12, a8, 8
 	movi.n	a10, 0
 	movi.n	a8, 0
-	and	a12, a10, a8
+	and	a10, a10, a8
 	l32r	a8, .LC139
-	and	a13, a11, a8
-	or	a8, a6, a12
-	s32i	a8, sp, 32
-	or	a8, a7, a13
-	s32i	a8, sp, 36
+	and	a8, a12, a8
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 0
-	slli	a9, a8, 8
+	slli	a10, a8, 8
 	l32i	a8, sp, 4
-	extui	a15, a8, 24, 8
-	or	a15, a9, a15
+	extui	a8, a8, 24, 8
+	or	a8, a10, a8
+	l32i	a10, sp, 0
+	extui	a12, a10, 24, 8
+	movi.n	a10, 0
+	and	a10, a12, a10
+	l32r	a12, .LC140
+	and	a8, a8, a12
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 0
-	extui	a14, a8, 24, 8
-	movi.n	a8, 0
-	and	a4, a14, a8
-	l32r	a8, .LC140
-	and	a5, a15, a8
-	addi	a8, sp, 32
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a10, a8
-	or	a10, a10, a4
-	s32i	a10, sp, 40
-	mov.n	a8, a9
-	or	a8, a8, a5
-	s32i	a8, sp, 44
-	l32i	a8, sp, 0
-	slli	a9, a8, 24
+	slli	a10, a8, 24
 	l32i	a8, sp, 4
 	srli	a8, a8, 8
-	s32i	a8, sp, 12
-	l32i	a8, sp, 12
-	or	a8, a9, a8
-	s32i	a8, sp, 12
-	l32i	a8, sp, 0
-	srli	a8, a8, 8
-	s32i	a8, sp, 8
-	movi.n	a8, 0
-	addi.n	a9, sp, 8
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a9, a8
-	s32i	a8, sp, 48
-	l32r	a8, .LC141
-	mov.n	a9, a11
-	and	a8, a9, a8
-	s32i	a8, sp, 52
-	addi	a8, sp, 40
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a12, a10
-	addi	a8, sp, 48
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a13, a8
-	or	a12, a12, a13
-	s32i	a12, sp, 56
-	mov.n	a10, a11
-	mov.n	a8, a9
 	or	a8, a10, a8
-	s32i	a8, sp, 60
+	l32i	a10, sp, 0
+	srli	a12, a10, 8
+	movi.n	a10, 0
+	and	a10, a12, a10
+	l32r	a12, .LC141
+	and	a8, a8, a12
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 4
-	extui	a9, a8, 24, 8
+	extui	a10, a8, 24, 8
 	l32i	a8, sp, 0
 	slli	a8, a8, 8
-	s32i	a8, sp, 16
-	l32i	a8, sp, 16
-	or	a8, a9, a8
-	s32i	a8, sp, 16
-	l32i	a8, sp, 4
-	slli	a8, a8, 8
-	s32i	a8, sp, 20
-	addi	a8, sp, 16
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a8, a10
-	extui	a8, a8, 0, 8
-	s32i	a8, sp, 64
-	movi.n	a8, 0
-	mov.n	a9, a11
-	and	a8, a9, a8
-	s32i	a8, sp, 68
-	addi	a8, sp, 56
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a12, a10
-	addi	a8, sp, 64
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a13, a8
-	or	a12, a12, a13
-	s32i	a12, sp, 72
-	mov.n	a10, a11
-	mov.n	a8, a9
 	or	a8, a10, a8
-	s32i	a8, sp, 76
+	l32i	a10, sp, 4
+	slli	a12, a10, 8
+	extui	a10, a8, 0, 8
+	movi.n	a8, 0
+	and	a8, a12, a8
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 4
-	srli	a9, a8, 8
+	srli	a10, a8, 8
 	l32i	a8, sp, 0
 	slli	a8, a8, 24
-	s32i	a8, sp, 24
-	l32i	a8, sp, 24
-	or	a8, a9, a8
-	s32i	a8, sp, 24
-	l32i	a8, sp, 4
-	slli	a8, a8, 24
-	s32i	a8, sp, 28
-	l32r	a8, .LC139
-	addi	a9, sp, 24
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a9, a8
-	s32i	a8, sp, 80
-	movi.n	a8, 0
-	mov.n	a9, a11
-	and	a8, a9, a8
-	s32i	a8, sp, 84
-	addi	a8, sp, 72
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a12, a10
-	addi	a8, sp, 80
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a13, a8
-	or	a12, a12, a13
-	s32i	a12, sp, 88
-	mov.n	a10, a11
-	mov.n	a8, a9
 	or	a8, a10, a8
-	s32i	a8, sp, 92
+	l32i	a10, sp, 4
+	slli	a12, a10, 24
+	l32r	a10, .LC139
+	and	a10, a8, a10
+	movi.n	a8, 0
+	and	a8, a12, a8
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 4
-	slli	a8, a8, 8
-	s32i	a8, sp, 96
+	slli	a10, a8, 8
 	movi.n	a12, 0
-	s32i	a12, sp, 100
 	l32r	a8, .LC140
-	addi	a9, sp, 96
-	l32i	a10, a9, 0
-	l32i	a11, a9, 4
-	mov.n	a9, a10
-	and	a8, a9, a8
-	s32i	a8, sp, 104
+	and	a10, a10, a8
 	movi.n	a8, 0
-	mov.n	a9, a11
-	and	a8, a9, a8
-	s32i	a8, sp, 108
-	addi	a8, sp, 88
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a13, a10
-	addi	a8, sp, 104
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a14, a8
-	or	a13, a13, a14
-	s32i	a13, sp, 112
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 116
+	and	a8, a12, a8
+	or	a11, a11, a10
+	or	a9, a9, a8
 	l32i	a8, sp, 4
-	slli	a8, a8, 24
-	s32i	a8, sp, 120
-	s32i	a12, sp, 124
-	addi	a8, sp, 112
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a12, a10
-	addi	a8, sp, 120
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a13, a8
-	or	a12, a12, a13
-	s32i	a12, sp, 128
-	mov.n	a10, a11
-	mov.n	a8, a9
-	or	a8, a10, a8
-	s32i	a8, sp, 132
-	movi	a8, 0x80
-	add.n	a8, a8, sp
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a2, a8
-	mov.n	a3, a9
+	slli	a10, a8, 24
+	movi.n	a8, 0
+	or	a10, a11, a10
+	or	a8, a9, a8
+	mov.n	a9, a10
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__bswapdi2, .-__bswapdi2
 	.literal_position
@@ -6325,8 +5965,8 @@ __lshrdi3:
 .L825:
 	l32i	a8, sp, 40
 	bnez.n	a8, .L827
-	l32i	a8, sp, 32
-	l32i	a9, sp, 36
+	l32i	a9, sp, 32
+	l32i	a8, sp, 36
 	j	.L829
 .L827:
 	l32i	a9, sp, 8
@@ -6347,11 +5987,11 @@ __lshrdi3:
 	or	a8, a9, a8
 	s32i	a8, sp, 20
 .L826:
-	l32i	a8, sp, 16
-	l32i	a9, sp, 20
+	l32i	a9, sp, 16
+	l32i	a8, sp, 20
 .L829:
-	mov.n	a2, a8
-	mov.n	a3, a9
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__lshrdi3, .-__lshrdi3
 	.align	4
@@ -6460,10 +6100,10 @@ __muldsi3:
 	mull	a8, a9, a8
 	add.n	a8, a11, a8
 	s32i	a8, sp, 16
-	l32i	a8, sp, 16
-	l32i	a9, sp, 20
-	mov.n	a2, a8
-	mov.n	a3, a9
+	l32i	a9, sp, 16
+	l32i	a8, sp, 20
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__muldsi3, .-__muldsi3
 	.literal_position
@@ -6507,10 +6147,10 @@ __muldi3_compiler_rt:
 	add.n	a8, a9, a8
 	add.n	a8, a10, a8
 	s32i	a8, sp, 16
-	l32i	a8, sp, 16
-	l32i	a9, sp, 20
-	mov.n	a2, a8
-	mov.n	a3, a9
+	l32i	a9, sp, 16
+	l32i	a8, sp, 20
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align	4
@@ -6520,19 +6160,20 @@ __negdi2:
 	entry	sp, 48
 	s32i	a2, sp, 0
 	s32i	a3, sp, 4
-	l32i	a12, sp, 0
-	l32i	a13, sp, 4
-	movi.n	a9, 0
-	movi.n	a8, 0
-	sub	a10, a8, a12
-	bgeu	a9, a13, .L835
-	addi.n	a10, a10, -1
+	l32i	a8, sp, 0
+	l32i	a9, sp, 4
+	movi.n	a10, 0
+	movi.n	a11, 0
+	sub	a8, a11, a8
+	bgeu	a10, a9, .L835
+	addi.n	a8, a8, -1
 .L835:
-	sub	a11, a9, a13
-	mov.n	a8, a10
-	mov.n	a9, a11
-	mov.n	a2, a8
-	mov.n	a3, a9
+	sub	a9, a10, a9
+	mov.n	a10, a8
+	mov.n	a8, a9
+	mov.n	a9, a10
+	mov.n	a2, a9
+	mov.n	a3, a8
 	retw.n
 	.size	__negdi2, .-__negdi2
 	.literal_position
@@ -6619,7 +6260,7 @@ __paritysi2:
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	entry	sp, 96
+	entry	sp, 64
 	s32i	a2, sp, 16
 	s32i	a3, sp, 20
 	l32i	a8, sp, 16
@@ -6629,104 +6270,70 @@ __popcountdi2:
 	l32i	a8, sp, 0
 	slli	a9, a8, 31
 	l32i	a8, sp, 4
-	srli	a11, a8, 1
-	or	a11, a9, a11
+	srli	a8, a8, 1
+	or	a8, a9, a8
+	l32i	a9, sp, 0
+	srli	a10, a9, 1
+	l32r	a9, .LC150
+	and	a11, a10, a9
+	l32r	a9, .LC150
+	and	a9, a8, a9
 	l32i	a8, sp, 0
-	srli	a10, a8, 1
-	l32r	a8, .LC150
-	and	a8, a10, a8
-	s32i	a8, sp, 32
-	l32r	a8, .LC150
-	and	a8, a11, a8
-	s32i	a8, sp, 36
-	l32i	a8, sp, 0
-	l32i	a9, sp, 4
-	addi	a10, sp, 32
-	l32i	a11, a10, 4
-	l32i	a10, a10, 0
-	mov.n	a3, a10
-	sub	a3, a8, a3
-	s32i	a3, sp, 24
-	mov.n	a10, a11
-	bgeu	a9, a10, .L842
-	l32i	a10, sp, 24
-	addi.n	a10, a10, -1
-	s32i	a10, sp, 24
+	l32i	a10, sp, 4
+	sub	a8, a8, a11
+	bgeu	a10, a9, .L842
+	addi.n	a8, a8, -1
 .L842:
-	l32i	a10, sp, 36
-	sub	a8, a9, a10
-	s32i	a8, sp, 28
-	addi	a8, sp, 24
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
+	sub	a9, a10, a9
 	s32i	a8, sp, 0
 	s32i	a9, sp, 4
 	l32i	a8, sp, 0
 	slli	a9, a8, 30
 	l32i	a8, sp, 4
-	srli	a5, a8, 2
-	or	a5, a9, a5
-	l32i	a8, sp, 0
-	srli	a4, a8, 2
-	l32r	a8, .LC151
-	and	a8, a4, a8
-	s32i	a8, sp, 40
-	l32r	a8, .LC151
-	and	a8, a5, a8
-	s32i	a8, sp, 44
+	srli	a8, a8, 2
+	or	a8, a9, a8
 	l32i	a9, sp, 0
+	srli	a10, a9, 2
+	l32r	a9, .LC151
+	and	a11, a10, a9
+	l32r	a9, .LC151
+	and	a9, a8, a9
+	l32i	a10, sp, 0
 	l32r	a8, .LC151
-	and	a8, a9, a8
-	s32i	a8, sp, 48
-	l32i	a9, sp, 4
-	l32r	a8, .LC151
-	and	a8, a9, a8
-	s32i	a8, sp, 52
-	addi	a8, sp, 40
-	l32i	a10, a8, 0
-	l32i	a11, a8, 4
-	mov.n	a5, a10
-	addi	a8, sp, 48
-	l32i	a9, a8, 4
-	l32i	a8, a8, 0
-	mov.n	a4, a8
-	add.n	a6, a5, a4
-	mov.n	a10, a11
-	mov.n	a11, a9
-	add.n	a7, a10, a11
-	mov.n	a8, a9
-	bgeu	a7, a8, .L843
-	addi.n	a6, a6, 1
+	and	a8, a10, a8
+	l32i	a12, sp, 4
+	l32r	a10, .LC151
+	and	a10, a12, a10
+	add.n	a8, a11, a8
+	add.n	a9, a9, a10
+	bgeu	a9, a10, .L843
+	addi.n	a8, a8, 1
 .L843:
-	s32i	a6, sp, 0
-	s32i	a7, sp, 4
+	s32i	a8, sp, 0
+	s32i	a9, sp, 4
 	l32i	a8, sp, 0
 	slli	a8, a8, 28
 	l32i	a9, sp, 4
-	srli	a15, a9, 4
-	or	a15, a8, a15
+	srli	a9, a9, 4
+	or	a9, a8, a9
 	l32i	a8, sp, 0
-	srli	a14, a8, 4
+	srli	a11, a8, 4
 	l32i	a8, sp, 0
-	l32i	a9, sp, 4
-	add.n	a12, a14, a8
-	add.n	a13, a15, a9
-	bgeu	a13, a9, .L844
-	addi.n	a12, a12, 1
+	l32i	a10, sp, 4
+	add.n	a8, a11, a8
+	add.n	a9, a9, a10
+	bgeu	a9, a10, .L844
+	addi.n	a8, a8, 1
 .L844:
-	l32r	a8, .LC152
-	and	a8, a12, a8
+	l32r	a10, .LC152
+	and	a8, a8, a10
 	s32i	a8, sp, 0
 	l32r	a8, .LC152
-	and	a8, a13, a8
+	and	a8, a9, a8
 	s32i	a8, sp, 4
 	l32i	a8, sp, 4
 	l32i	a9, sp, 0
 	srli	a9, a9, 0
-	s32i	a9, sp, 60
-	movi.n	a9, 0
-	s32i	a9, sp, 56
-	l32i	a9, sp, 60
 	add.n	a8, a8, a9
 	s32i	a8, sp, 8
 	l32i	a8, sp, 8

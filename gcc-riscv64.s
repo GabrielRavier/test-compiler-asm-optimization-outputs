@@ -1924,12 +1924,6 @@ lsearch:
 	mv	a5,s0
 	addi	a5,s0,-1
 	sd	a5,64(sp)
-	mv	t1,s0
-	li	t2,0
-	srli	a5,s0,61
-	slli	a7,t2,3
-	or	a7,a5,a7
-	slli	a6,s0,3
 	ld	a5,32(sp)
 	sd	a5,56(sp)
 	ld	a5,24(sp)
@@ -2007,12 +2001,6 @@ lfind:
 	mv	a5,s0
 	addi	a5,s0,-1
 	sd	a5,64(sp)
-	mv	t1,s0
-	li	t2,0
-	srli	a5,s0,61
-	slli	a7,t2,3
-	or	a7,a5,a7
-	slli	a6,s0,3
 	ld	a5,32(sp)
 	sd	a5,56(sp)
 	ld	a5,24(sp)
@@ -2549,9 +2537,9 @@ imaxdiv:
 	ld	a4,8(sp)
 	ld	a5,0(sp)
 	div	a4,a4,a5
-	ld	a1,8(sp)
+	ld	a3,8(sp)
 	ld	a5,0(sp)
-	rem	a5,a1,a5
+	rem	a5,a3,a5
 	sd	a4,32(sp)
 	sd	a5,40(sp)
 	ld	a4,32(sp)
@@ -2602,9 +2590,9 @@ ldiv:
 	ld	a4,8(sp)
 	ld	a5,0(sp)
 	div	a4,a4,a5
-	ld	a1,8(sp)
+	ld	a3,8(sp)
 	ld	a5,0(sp)
-	rem	a5,a1,a5
+	rem	a5,a3,a5
 	sd	a4,32(sp)
 	sd	a5,40(sp)
 	ld	a4,32(sp)
@@ -2655,9 +2643,9 @@ lldiv:
 	ld	a4,8(sp)
 	ld	a5,0(sp)
 	div	a4,a4,a5
-	ld	a1,8(sp)
+	ld	a3,8(sp)
 	ld	a5,0(sp)
-	rem	a5,a1,a5
+	rem	a5,a3,a5
 	sd	a4,32(sp)
 	sd	a5,40(sp)
 	ld	a4,32(sp)
@@ -3897,11 +3885,11 @@ _Qp_itoq:
 	fcvt.d.w	fa5,a5
 	fmv.d	fa0,fa5
 	call	__extenddftf2
-	mv	a4,a0
-	mv	a5,a1
-	ld	a3,8(sp)
-	sd	a4,0(a3)
-	sd	a5,8(a3)
+	mv	a3,a0
+	mv	a4,a1
+	ld	a5,8(sp)
+	sd	a3,0(a5)
+	sd	a4,8(a5)
 	nop
 	ld	ra,24(sp)
 	.cfi_restore 1
@@ -7595,22 +7583,21 @@ __negti2:
 	.cfi_def_cfa_offset 16
 	sd	a0,0(sp)
 	sd	a1,8(sp)
-	ld	a2,0(sp)
-	ld	a3,8(sp)
+	ld	a1,0(sp)
+	ld	a2,8(sp)
+	li	a4,0
 	li	a0,0
-	li	a1,0
-	sub	a4,a0,a2
-	mv	a6,a4
-	sgtu	a6,a6,a0
-	slli	a6,a6,32
-	srli	a6,a6,32
-	sub	a5,a1,a3
-	sub	a3,a5,a6
+	sub	a3,a4,a1
 	mv	a5,a3
-	mv	a0,a4
-	mv	a1,a5
-	mv	a2,a0
-	mv	a3,a1
+	sgtu	a5,a5,a4
+	slli	a4,a5,32
+	srli	a4,a4,32
+	sub	a5,a0,a2
+	sub	a5,a5,a4
+	mv	a1,a3
+	mv	a4,a5
+	mv	a2,a1
+	mv	a3,a4
 	mv	a4,a2
 	mv	a5,a3
 	mv	a0,a4
@@ -7918,106 +7905,98 @@ __popcountsi2:
 __popcountti2:
 .LFB160:
 	.cfi_startproc
-	addi	sp,sp,-64
-	.cfi_def_cfa_offset 64
-	sd	s0,56(sp)
-	sd	s1,48(sp)
-	.cfi_offset 8, -8
-	.cfi_offset 9, -16
+	addi	sp,sp,-48
+	.cfi_def_cfa_offset 48
 	sd	a0,0(sp)
 	sd	a1,8(sp)
-	ld	a1,0(sp)
-	sd	a1,32(sp)
-	ld	a1,8(sp)
-	sd	a1,40(sp)
-	ld	a1,40(sp)
-	slli	a1,a1,63
-	ld	a0,32(sp)
-	srli	a4,a0,1
-	or	a4,a1,a4
-	ld	a1,40(sp)
-	srli	a5,a1,1
-	lui	a1,%hi(.LC15)
-	ld	a1,%lo(.LC15)(a1)
-	and	t5,a4,a1
-	lui	a1,%hi(.LC15)
-	ld	a1,%lo(.LC15)(a1)
-	and	t6,a5,a1
-	ld	a0,32(sp)
-	ld	a1,40(sp)
-	sub	a4,a0,t5
-	mv	t0,a4
-	sgtu	t0,t0,a0
-	slli	t0,t0,32
-	srli	t0,t0,32
-	sub	a5,a1,t6
-	sub	a1,a5,t0
-	mv	a5,a1
-	sd	a4,32(sp)
+	ld	a5,0(sp)
+	sd	a5,32(sp)
+	ld	a5,8(sp)
 	sd	a5,40(sp)
 	ld	a5,40(sp)
-	slli	a5,a5,62
+	slli	a4,a5,63
+	ld	a5,32(sp)
+	srli	a5,a5,1
+	or	a5,a4,a5
+	ld	a4,40(sp)
+	srli	a4,a4,1
+	lui	a3,%hi(.LC15)
+	ld	a3,%lo(.LC15)(a3)
+	and	a0,a5,a3
+	lui	a5,%hi(.LC15)
+	ld	a5,%lo(.LC15)(a5)
+	and	a2,a4,a5
 	ld	a4,32(sp)
-	srli	a6,a4,2
-	or	a6,a5,a6
+	ld	a1,40(sp)
+	sub	a3,a4,a0
+	mv	a5,a3
+	sgtu	a5,a5,a4
+	slli	a4,a5,32
+	srli	a4,a4,32
+	sub	a5,a1,a2
+	sub	a5,a5,a4
+	sd	a3,32(sp)
+	sd	a5,40(sp)
 	ld	a5,40(sp)
-	srli	a7,a5,2
+	slli	a4,a5,62
+	ld	a5,32(sp)
+	srli	a5,a5,2
+	or	a5,a4,a5
+	ld	a4,40(sp)
+	srli	a4,a4,2
+	lui	a3,%hi(.LC16)
+	ld	a3,%lo(.LC16)(a3)
+	and	a3,a5,a3
 	lui	a5,%hi(.LC16)
 	ld	a5,%lo(.LC16)(a5)
-	and	t1,a6,a5
-	lui	a5,%hi(.LC16)
-	ld	a5,%lo(.LC16)(a5)
-	and	t2,a7,a5
+	and	a1,a4,a5
 	ld	a4,32(sp)
 	lui	a5,%hi(.LC16)
 	ld	a5,%lo(.LC16)(a5)
-	and	t3,a4,a5
+	and	a0,a4,a5
 	ld	a4,40(sp)
 	lui	a5,%hi(.LC16)
 	ld	a5,%lo(.LC16)(a5)
-	and	t4,a4,a5
-	add	a4,t1,t3
-	mv	a1,a4
-	sltu	a1,a1,t1
-	slli	a1,a1,32
-	srli	a1,a1,32
-	add	a5,t2,t4
-	add	a1,a1,a5
-	mv	a5,a1
+	and	a2,a4,a5
+	add	a4,a3,a0
+	mv	a5,a4
+	sltu	a5,a5,a3
+	slli	a3,a5,32
+	srli	a3,a3,32
+	add	a5,a1,a2
+	add	a5,a3,a5
 	sd	a4,32(sp)
 	sd	a5,40(sp)
 	ld	a5,40(sp)
-	slli	a5,a5,60
-	ld	a4,32(sp)
-	srli	a2,a4,4
-	or	a2,a5,a2
-	ld	a5,40(sp)
-	srli	a3,a5,4
+	slli	a4,a5,60
+	ld	a5,32(sp)
+	srli	a5,a5,4
+	or	a5,a4,a5
+	ld	a4,40(sp)
+	srli	a1,a4,4
 	ld	a0,32(sp)
-	ld	a1,40(sp)
-	add	a4,a2,a0
-	mv	a6,a4
-	sltu	a6,a6,a2
-	slli	a6,a6,32
-	srli	a6,a6,32
-	add	a5,a3,a1
-	add	a3,a6,a5
-	mv	a5,a3
+	ld	a2,40(sp)
+	add	a3,a5,a0
+	mv	a4,a3
+	sltu	a5,a4,a5
+	slli	a5,a5,32
+	srli	a5,a5,32
+	add	a4,a1,a2
+	add	a5,a5,a4
+	mv	a4,a5
+	mv	a1,a3
 	mv	a2,a4
-	mv	a3,a5
 	lui	a5,%hi(.LC17)
 	ld	a5,%lo(.LC17)(a5)
-	and	a5,a2,a5
+	and	a5,a1,a5
 	sd	a5,32(sp)
 	lui	a5,%hi(.LC17)
 	ld	a5,%lo(.LC17)(a5)
-	and	a5,a3,a5
+	and	a5,a2,a5
 	sd	a5,40(sp)
 	ld	a5,32(sp)
 	ld	a4,40(sp)
-	srli	s0,a4,0
-	li	s1,0
-	mv	a4,s0
+	srli	a4,a4,0
 	add	a5,a5,a4
 	sd	a5,24(sp)
 	ld	a5,24(sp)
@@ -8042,11 +8021,7 @@ __popcountti2:
 	andi	a5,a5,255
 	sext.w	a5,a5
 	mv	a0,a5
-	ld	s0,56(sp)
-	.cfi_restore 8
-	ld	s1,48(sp)
-	.cfi_restore 9
-	addi	sp,sp,64
+	addi	sp,sp,48
 	.cfi_def_cfa_offset 0
 	jr	ra
 	.cfi_endproc
