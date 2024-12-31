@@ -2090,7 +2090,7 @@ _bsearch:
 	[FP+12] = R1;
 	[FP+16] = R2;
 	jump.s .L317;
-.L321:
+.L322:
 	R0 = [FP+16];
 	R1 = R0 >> 1;
 	R0 = [FP+20];
@@ -2114,7 +2114,7 @@ _bsearch:
 .L318:
 	R0 = [FP+-8];
 	cc =R0<=0;
-	if cc jump .L319;
+	if cc jump .L320;
 	R1 = [FP+-4];
 	R0 = [FP+20];
 	R0 = R1 + R0;
@@ -2126,15 +2126,15 @@ _bsearch:
 	R0 += -1;
 	[FP+16] = R0;
 	jump.s .L317;
-.L319:
+.L320:
 	R0 = [FP+-4];
-	jump.s .L320;
+	jump.s .L321;
 .L317:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L321;
+	if !cc jump .L322;
 	R0 = 0 (X);
-.L320:
+.L321:
 	UNLINK;
 	rts;
 	.size	_bsearch, .-_bsearch
@@ -2150,8 +2150,8 @@ _bsearch_r:
 	[FP+-4] = R0;
 	R0 = [FP+16];
 	[FP+-8] = R0;
-	jump.s .L323;
-.L327:
+	jump.s .L324;
+.L328:
 	R0 = [FP+-8];
 	R0 >>>= 1;
 	R1 = R0;
@@ -2170,13 +2170,13 @@ _bsearch_r:
 	[FP+-16] = R0;
 	R0 = [FP+-16];
 	cc =R0==0;
-	if !cc jump .L324;
+	if !cc jump .L325;
 	R0 = [FP+-12];
-	jump.s .L325;
-.L324:
+	jump.s .L326;
+.L325:
 	R0 = [FP+-16];
 	cc =R0<=0;
-	if cc jump .L326;
+	if cc jump .L327;
 	R1 = [FP+-12];
 	R0 = [FP+20];
 	R0 = R1 + R0;
@@ -2184,16 +2184,16 @@ _bsearch_r:
 	R0 = [FP+-8];
 	R0 += -1;
 	[FP+-8] = R0;
-.L326:
+.L327:
 	R0 = [FP+-8];
 	R0 >>>= 1;
 	[FP+-8] = R0;
-.L323:
+.L324:
 	R0 = [FP+-8];
 	cc =R0==0;
-	if !cc jump .L327;
+	if !cc jump .L328;
 	R0 = 0 (X);
-.L325:
+.L326:
 	UNLINK;
 	rts;
 	.size	_bsearch_r, .-_bsearch_r
@@ -2236,7 +2236,7 @@ _imaxabs:
 	R0 = [FP+20];
 	R1 = [FP+24];
 	cc =R1<0;
-	if !cc jump .L331;
+	if !cc jump .L332;
 	R6 = 0 (X);
 	R7 = 0 (X);
 	R2 = R6 - R0; cc = ac0;
@@ -2246,7 +2246,7 @@ _imaxabs:
 	R3 = R3 - R5;
 	R0 = R2;
 	R1 = R3;
-.L331:
+.L332:
 	[FP+-8] = R0;
 	[FP+-4] = R1;
 	R0 = [FP+-8];
@@ -2357,7 +2357,7 @@ _llabs:
 	R0 = [FP+20];
 	R1 = [FP+24];
 	cc =R1<0;
-	if !cc jump .L341;
+	if !cc jump .L342;
 	R6 = 0 (X);
 	R7 = 0 (X);
 	R2 = R6 - R0; cc = ac0;
@@ -2367,7 +2367,7 @@ _llabs:
 	R3 = R3 - R5;
 	R0 = R2;
 	R1 = R3;
-.L341:
+.L342:
 	[FP+-8] = R0;
 	[FP+-4] = R1;
 	R0 = [FP+-8];
@@ -2435,35 +2435,35 @@ _wcschr:
 	LINK 0;
 	[FP+8] = R0;
 	[FP+12] = R1;
-	jump.s .L347;
-.L349:
+	jump.s .L348;
+.L350:
 	R0 = [FP+8];
 	R0 += 4;
 	[FP+8] = R0;
-.L347:
+.L348:
 	P2 = [FP+8];
 	R0 = [P2];
 	cc =R0==0;
-	if cc jump .L348;
+	if cc jump .L349;
 	nop;
 	nop;
 	P2 = [FP+8];
 	R0 = [P2];
 	R1 = [FP+12];
 	cc =R1==R0;
-	if !cc jump .L349;
+	if !cc jump .L350;
 	nop;
 	nop;
-.L348:
+.L349:
 	P2 = [FP+8];
 	R0 = [P2];
 	cc =R0==0;
-	if cc jump .L350;
+	if cc jump .L351;
 	R0 = [FP+8];
-	jump.s .L352;
-.L350:
+	jump.s .L353;
+.L351:
 	R0 = 0 (X);
-.L352:
+.L353:
 	UNLINK;
 	rts;
 	.size	_wcschr, .-_wcschr
@@ -2474,42 +2474,42 @@ _wcscmp:
 	LINK 0;
 	[FP+8] = R0;
 	[FP+12] = R1;
-	jump.s .L354;
-.L356:
+	jump.s .L355;
+.L357:
 	R0 = [FP+8];
 	R0 += 4;
 	[FP+8] = R0;
 	R0 = [FP+12];
 	R0 += 4;
 	[FP+12] = R0;
-.L354:
-	P2 = [FP+8];
-	R1 = [P2];
-	P2 = [FP+12];
-	R0 = [P2];
-	cc =R1==R0;
-	if !cc jump .L355;
-	nop;
-	nop;
-	P2 = [FP+8];
-	R0 = [P2];
-	cc =R0==0;
-	if cc jump .L355;
-	nop;
-	nop;
-	P2 = [FP+12];
-	R0 = [P2];
-	cc =R0==0;
-	if !cc jump .L356;
-	nop;
-	nop;
 .L355:
 	P2 = [FP+8];
 	R1 = [P2];
 	P2 = [FP+12];
 	R0 = [P2];
+	cc =R1==R0;
+	if !cc jump .L356;
+	nop;
+	nop;
+	P2 = [FP+8];
+	R0 = [P2];
+	cc =R0==0;
+	if cc jump .L356;
+	nop;
+	nop;
+	P2 = [FP+12];
+	R0 = [P2];
+	cc =R0==0;
+	if !cc jump .L357;
+	nop;
+	nop;
+.L356:
+	P2 = [FP+8];
+	R1 = [P2];
+	P2 = [FP+12];
+	R0 = [P2];
 	cc =R1<R0;
-	if cc jump .L357;
+	if cc jump .L358;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2519,10 +2519,10 @@ _wcscmp:
 	cc =R1<R0;
 	R0 = CC;
 	R0 = R0.B (Z);
-	jump.s .L359;
-.L357:
+	jump.s .L360;
+.L358:
 	R0 = -1 (X);
-.L359:
+.L360:
 	UNLINK;
 	rts;
 	.size	_wcscmp, .-_wcscmp
@@ -2536,7 +2536,7 @@ _wcscpy:
 	R0 = [FP+8];
 	[FP+-4] = R0;
 	nop;
-.L361:
+.L362:
 	P1 = [FP+12];
 	R0 = P1;
 	R0 += 4;
@@ -2549,7 +2549,7 @@ _wcscpy:
 	[P2] = R0;
 	R0 = [P2];
 	cc =R0==0;
-	if !cc jump .L361;
+	if !cc jump .L362;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -2562,16 +2562,16 @@ _wcslen:
 	[FP+8] = R0;
 	R0 = [FP+8];
 	[FP+-4] = R0;
-	jump.s .L364;
-.L365:
+	jump.s .L365;
+.L366:
 	R0 = [FP+8];
 	R0 += 4;
 	[FP+8] = R0;
-.L364:
+.L365:
 	P2 = [FP+8];
 	R0 = [P2];
 	cc =R0==0;
-	if !cc jump .L365;
+	if !cc jump .L366;
 	R1 = [FP+8];
 	R0 = [FP+-4];
 	R0 = R1 - R0;
@@ -2587,8 +2587,8 @@ _wcsncmp:
 	[FP+8] = R0;
 	[FP+12] = R1;
 	[FP+16] = R2;
-	jump.s .L368;
-.L370:
+	jump.s .L369;
+.L371:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
@@ -2598,10 +2598,10 @@ _wcsncmp:
 	R0 = [FP+12];
 	R0 += 4;
 	[FP+12] = R0;
-.L368:
+.L369:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L369;
+	if cc jump .L370;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2609,23 +2609,23 @@ _wcsncmp:
 	P2 = [FP+12];
 	R0 = [P2];
 	cc =R1==R0;
-	if !cc jump .L369;
+	if !cc jump .L370;
 	nop;
 	nop;
 	P2 = [FP+8];
 	R0 = [P2];
 	cc =R0==0;
-	if cc jump .L369;
+	if cc jump .L370;
 	nop;
 	nop;
 	P2 = [FP+12];
 	R0 = [P2];
 	cc =R0==0;
-	if !cc jump .L370;
-.L369:
+	if !cc jump .L371;
+.L370:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L371;
+	if cc jump .L372;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2633,7 +2633,7 @@ _wcsncmp:
 	P2 = [FP+12];
 	R0 = [P2];
 	cc =R1<R0;
-	if cc jump .L372;
+	if cc jump .L373;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2643,13 +2643,13 @@ _wcsncmp:
 	cc =R1<R0;
 	R0 = CC;
 	R0 = R0.B (Z);
-	jump.s .L375;
-.L372:
+	jump.s .L376;
+.L373:
 	R0 = -1 (X);
-	jump.s .L375;
-.L371:
+	jump.s .L376;
+.L372:
 	R0 = 0 (X);
-.L375:
+.L376:
 	UNLINK;
 	rts;
 	.size	_wcsncmp, .-_wcsncmp
@@ -2661,34 +2661,34 @@ _wmemchr:
 	[FP+8] = R0;
 	[FP+12] = R1;
 	[FP+16] = R2;
-	jump.s .L377;
-.L379:
+	jump.s .L378;
+.L380:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
 	R0 = [FP+8];
 	R0 += 4;
 	[FP+8] = R0;
-.L377:
+.L378:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L378;
+	if cc jump .L379;
 	nop;
 	nop;
 	P2 = [FP+8];
 	R0 = [P2];
 	R1 = [FP+12];
 	cc =R1==R0;
-	if !cc jump .L379;
-.L378:
+	if !cc jump .L380;
+.L379:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L380;
+	if cc jump .L381;
 	R0 = [FP+8];
-	jump.s .L382;
-.L380:
+	jump.s .L383;
+.L381:
 	R0 = 0 (X);
-.L382:
+.L383:
 	UNLINK;
 	rts;
 	.size	_wmemchr, .-_wmemchr
@@ -2700,8 +2700,8 @@ _wmemcmp:
 	[FP+8] = R0;
 	[FP+12] = R1;
 	[FP+16] = R2;
-	jump.s .L384;
-.L386:
+	jump.s .L385;
+.L387:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
@@ -2711,10 +2711,10 @@ _wmemcmp:
 	R0 = [FP+12];
 	R0 += 4;
 	[FP+12] = R0;
-.L384:
+.L385:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L385;
+	if cc jump .L386;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2722,11 +2722,11 @@ _wmemcmp:
 	P2 = [FP+12];
 	R0 = [P2];
 	cc =R1==R0;
-	if cc jump .L386;
-.L385:
+	if cc jump .L387;
+.L386:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L387;
+	if cc jump .L388;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2734,7 +2734,7 @@ _wmemcmp:
 	P2 = [FP+12];
 	R0 = [P2];
 	cc =R1<R0;
-	if cc jump .L388;
+	if cc jump .L389;
 	nop;
 	nop;
 	P2 = [FP+8];
@@ -2744,13 +2744,13 @@ _wmemcmp:
 	cc =R1<R0;
 	R0 = CC;
 	R0 = R0.B (Z);
-	jump.s .L391;
-.L388:
+	jump.s .L392;
+.L389:
 	R0 = -1 (X);
-	jump.s .L391;
-.L387:
+	jump.s .L392;
+.L388:
 	R0 = 0 (X);
-.L391:
+.L392:
 	UNLINK;
 	rts;
 	.size	_wmemcmp, .-_wmemcmp
@@ -2764,8 +2764,8 @@ _wmemcpy:
 	[FP+16] = R2;
 	R0 = [FP+8];
 	[FP+-4] = R0;
-	jump.s .L393;
-.L394:
+	jump.s .L394;
+.L395:
 	P1 = [FP+12];
 	R0 = P1;
 	R0 += 4;
@@ -2776,13 +2776,13 @@ _wmemcpy:
 	[FP+8] = R0;
 	R0 = [P1];
 	[P2] = R0;
-.L393:
+.L394:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L394;
+	if !cc jump .L395;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -2800,19 +2800,19 @@ _wmemmove:
 	R1 = [FP+8];
 	R0 = [FP+12];
 	cc =R1==R0;
-	if !cc jump .L397;
+	if !cc jump .L398;
 	R0 = [FP+8];
-	jump.s .L398;
-.L397:
+	jump.s .L399;
+.L398:
 	R1 = [FP+8];
 	R0 = [FP+12];
 	R1 = R1 - R0;
 	R0 = [FP+16];
 	R0 <<= 2;
 	cc =R1<R0 (iu);
-	if !cc jump .L403;
-	jump.s .L400;
-.L401:
+	if !cc jump .L404;
+	jump.s .L401;
+.L402:
 	R0 = [FP+16];
 	R0 <<= 2;
 	R1 = [FP+12];
@@ -2825,15 +2825,15 @@ _wmemmove:
 	P2 = R1;
 	R0 = [P1];
 	[P2] = R0;
-.L400:
+.L401:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L401;
-	jump.s .L402;
-.L404:
+	if !cc jump .L402;
+	jump.s .L403;
+.L405:
 	P1 = [FP+12];
 	R0 = P1;
 	R0 += 4;
@@ -2844,16 +2844,16 @@ _wmemmove:
 	[FP+8] = R0;
 	R0 = [P1];
 	[P2] = R0;
-.L403:
+.L404:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L404;
-.L402:
+	if !cc jump .L405;
+.L403:
 	R0 = [FP+-4];
-.L398:
+.L399:
 	UNLINK;
 	rts;
 	.size	_wmemmove, .-_wmemmove
@@ -2867,21 +2867,21 @@ _wmemset:
 	[FP+16] = R2;
 	R0 = [FP+8];
 	[FP+-4] = R0;
-	jump.s .L406;
-.L407:
+	jump.s .L407;
+.L408:
 	P2 = [FP+8];
 	R0 = P2;
 	R0 += 4;
 	[FP+8] = R0;
 	R0 = [FP+12];
 	[P2] = R0;
-.L406:
+.L407:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L407;
+	if !cc jump .L408;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -2901,7 +2901,7 @@ _bcopy:
 	R1 = [FP+-4];
 	R0 = [FP+-8];
 	cc =R1<R0 (iu);
-	if !cc jump .L410;
+	if !cc jump .L411;
 	R1 = [FP+-4];
 	R0 = [FP+16];
 	R0 = R1 + R0;
@@ -2910,8 +2910,8 @@ _bcopy:
 	R0 = [FP+16];
 	R0 = R1 + R0;
 	[FP+-8] = R0;
-	jump.s .L411;
-.L412:
+	jump.s .L412;
+.L413:
 	R0 = [FP+-4];
 	R0 += -1;
 	[FP+-4] = R0;
@@ -2925,18 +2925,18 @@ _bcopy:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
-.L411:
+.L412:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L412;
-	jump.s .L416;
-.L410:
+	if !cc jump .L413;
+	jump.s .L417;
+.L411:
 	R1 = [FP+-4];
 	R0 = [FP+-8];
 	cc =R1==R0;
-	if cc jump .L416;
-	jump.s .L414;
-.L415:
+	if cc jump .L417;
+	jump.s .L415;
+.L416:
 	P1 = [FP+-4];
 	R0 = P1;
 	R0 += 1;
@@ -2950,11 +2950,11 @@ _bcopy:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
-.L414:
+.L415:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L415;
-.L416:
+	if !cc jump .L416;
+.L417:
 	nop;
 	UNLINK;
 	rts;
@@ -3596,29 +3596,29 @@ _ffs:
 	[FP+8] = R0;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L444;
-.L447:
+	jump.s .L445;
+.L448:
 	R1 = [FP+8];
 	R0 = [FP+-4];
 	R1 >>= R0;
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L445;
+	if cc jump .L446;
 	R0 = [FP+-4];
 	R0 += 1;
-	jump.s .L446;
-.L445:
+	jump.s .L447;
+.L446:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L444:
+.L445:
 	R0 = [FP+-4];
 	R1 = 31 (X);
 	cc =R0<=R1 (iu);
-	if cc jump .L447;
+	if cc jump .L448;
 	R0 = 0 (X);
-.L446:
+.L447:
 	UNLINK;
 	rts;
 	.size	_ffs, .-_ffs
@@ -3630,22 +3630,22 @@ _libiberty_ffs:
 
 	LINK 0;
 	cc =R0==0;
-	if !cc jump .L449;
+	if !cc jump .L450;
 	R0 = 0 (X);
-	jump.s .L450;
-.L449:
-	R7 = 1 (X);
 	jump.s .L451;
-.L452:
+.L450:
+	R7 = 1 (X);
+	jump.s .L452;
+.L453:
 	R0 >>>= 1;
 	R7 += 1;
-.L451:
+.L452:
 	R1 = 1 (X);
 	R1 = R0 & R1;
 	cc =R1==0;
-	if cc jump .L452;
+	if cc jump .L453;
 	R0 = R7;
-.L450:
+.L451:
 	UNLINK;
 	( r7:7 ) = [sp++];
 
@@ -3662,19 +3662,19 @@ _gl_isinff:
 	R0 = [FP+8];
 	call ___ltsf2;
 	cc =R0<0;
-	if cc jump .L454;
+	if cc jump .L455;
 	R1 = -1 (X);
 	R1.H = 32639;
 	R0 = [FP+8];
 	call ___gtsf2;
 	cc =R0<=0;
-	if cc jump .L459;
-.L454:
+	if cc jump .L460;
+.L455:
 	R0 = 1 (X);
-	jump.s .L458;
-.L459:
+	jump.s .L459;
+.L460:
 	R0 = 0 (X);
-.L458:
+.L459:
 	UNLINK;
 	rts;
 	.size	_gl_isinff, .-_gl_isinff
@@ -3693,7 +3693,7 @@ _gl_isinfd:
 	R1 = [FP+12];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L461;
+	if cc jump .L462;
 	R0 = -1 (X);
 	R0.H = 32751;
 	[SP+12] = R0;
@@ -3702,13 +3702,13 @@ _gl_isinfd:
 	R1 = [FP+12];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L466;
-.L461:
+	if cc jump .L467;
+.L462:
 	R0 = 1 (X);
-	jump.s .L465;
-.L466:
+	jump.s .L466;
+.L467:
 	R0 = 0 (X);
-.L465:
+.L466:
 	UNLINK;
 	rts;
 	.size	_gl_isinfd, .-_gl_isinfd
@@ -3727,7 +3727,7 @@ _gl_isinfl:
 	R1 = [FP+12];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L468;
+	if cc jump .L469;
 	R0 = -1 (X);
 	R0.H = 32751;
 	[SP+12] = R0;
@@ -3736,13 +3736,13 @@ _gl_isinfl:
 	R1 = [FP+12];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L473;
-.L468:
+	if cc jump .L474;
+.L469:
 	R0 = 1 (X);
-	jump.s .L472;
-.L473:
+	jump.s .L473;
+.L474:
 	R0 = 0 (X);
-.L472:
+.L473:
 	UNLINK;
 	rts;
 	.size	_gl_isinfl, .-_gl_isinfl
@@ -3777,7 +3777,7 @@ _ldexpf:
 	R0 = [FP+8];
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L476;
+	if !cc jump .L477;
 	R0 = [FP+8];
 	R1 = R0;
 	call ___addsf3;
@@ -3785,29 +3785,29 @@ _ldexpf:
 	R0 = [FP+8];
 	call ___nesf2;
 	cc =R0==0;
-	if cc jump .L476;
+	if cc jump .L477;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L478;
+	if !cc jump .L479;
 	R0 = 63 (X);
 	R0 <<= 24;
-	jump.s .L479;
-.L478:
+	jump.s .L480;
+.L479:
 	R0 = 1 (X);
 	R0 <<= 30;
-.L479:
+.L480:
 	[FP+-4] = R0;
-.L482:
+.L483:
 	R1 = [FP+12];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L480;
+	if cc jump .L481;
 	R1 = [FP+-4];
 	R0 = [FP+8];
 	call ___mulsf3;
 	[FP+8] = R0;
-.L480:
+.L481:
 	R0 = [FP+12];
 	R1 = R0 >> 31;
 	R0 = R1 + R0;
@@ -3815,15 +3815,15 @@ _ldexpf:
 	[FP+12] = R0;
 	R0 = [FP+12];
 	cc =R0==0;
-	if cc jump .L485;
+	if cc jump .L486;
 	R1 = [FP+-4];
 	R0 = [FP+-4];
 	call ___mulsf3;
 	[FP+-4] = R0;
-	jump.s .L482;
-.L485:
+	jump.s .L483;
+.L486:
 	nop;
-.L476:
+.L477:
 	R0 = [FP+8];
 	UNLINK;
 	rts;
@@ -3843,7 +3843,7 @@ _ldexp:
 	R1 = [FP+12];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L487;
+	if !cc jump .L488;
 	R0 = [FP+8];
 	R1 = [FP+12];
 	[FP+-24] = R0;
@@ -3865,27 +3865,27 @@ _ldexp:
 	R1 = [FP+12];
 	call ___nedf2;
 	cc =R0==0;
-	if cc jump .L487;
+	if cc jump .L488;
 	R0 = [FP+16];
 	cc =R0<0;
-	if !cc jump .L489;
+	if !cc jump .L490;
 	R0 = 0 (X);
 	R1 = 511 (X);
 	R1 <<= 21;
-	jump.s .L490;
-.L489:
+	jump.s .L491;
+.L490:
 	R0 = 0 (X);
 	R1 = 1 (X);
 	R1 <<= 30;
-.L490:
+.L491:
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-.L493:
+.L494:
 	R1 = [FP+16];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L491;
+	if cc jump .L492;
 	R0 = [FP+-4];
 	[SP+12] = R0;
 	R2 = [FP+-8];
@@ -3898,7 +3898,7 @@ _ldexp:
 	R1 = [FP+-36];
 	[FP+8] = R0;
 	[FP+12] = R1;
-.L491:
+.L492:
 	R0 = [FP+16];
 	R1 = R0 >> 31;
 	R0 = R1 + R0;
@@ -3906,7 +3906,7 @@ _ldexp:
 	[FP+16] = R0;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L496;
+	if cc jump .L497;
 	R0 = [FP+-4];
 	[SP+12] = R0;
 	R2 = [FP+-8];
@@ -3919,10 +3919,10 @@ _ldexp:
 	R1 = [FP+-44];
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-	jump.s .L493;
-.L496:
+	jump.s .L494;
+.L497:
 	nop;
-.L487:
+.L488:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	[FP+-16] = R0;
@@ -3947,7 +3947,7 @@ _ldexpl:
 	R1 = [FP+12];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L498;
+	if !cc jump .L499;
 	R0 = [FP+8];
 	R1 = [FP+12];
 	[FP+-24] = R0;
@@ -3969,27 +3969,27 @@ _ldexpl:
 	R1 = [FP+12];
 	call ___nedf2;
 	cc =R0==0;
-	if cc jump .L498;
+	if cc jump .L499;
 	R0 = [FP+16];
 	cc =R0<0;
-	if !cc jump .L500;
+	if !cc jump .L501;
 	R0 = 0 (X);
 	R1 = 511 (X);
 	R1 <<= 21;
-	jump.s .L501;
-.L500:
+	jump.s .L502;
+.L501:
 	R0 = 0 (X);
 	R1 = 1 (X);
 	R1 <<= 30;
-.L501:
+.L502:
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-.L504:
+.L505:
 	R1 = [FP+16];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L502;
+	if cc jump .L503;
 	R0 = [FP+-4];
 	[SP+12] = R0;
 	R2 = [FP+-8];
@@ -4002,7 +4002,7 @@ _ldexpl:
 	R1 = [FP+-36];
 	[FP+8] = R0;
 	[FP+12] = R1;
-.L502:
+.L503:
 	R0 = [FP+16];
 	R1 = R0 >> 31;
 	R0 = R1 + R0;
@@ -4010,7 +4010,7 @@ _ldexpl:
 	[FP+16] = R0;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L507;
+	if cc jump .L508;
 	R0 = [FP+-4];
 	[SP+12] = R0;
 	R2 = [FP+-8];
@@ -4023,10 +4023,10 @@ _ldexpl:
 	R1 = [FP+-44];
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-	jump.s .L504;
-.L507:
+	jump.s .L505;
+.L508:
 	nop;
-.L498:
+.L499:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	[FP+-16] = R0;
@@ -4048,8 +4048,8 @@ _memxor:
 	[FP+-4] = R0;
 	R0 = [FP+8];
 	[FP+-8] = R0;
-	jump.s .L509;
-.L510:
+	jump.s .L510;
+.L511:
 	P2 = [FP+-4];
 	R0 = P2;
 	R0 += 1;
@@ -4065,10 +4065,10 @@ _memxor:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
-.L509:
+.L510:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L510;
+	if !cc jump .L511;
 	R0 = [FP+8];
 	UNLINK;
 	rts;
@@ -4088,8 +4088,8 @@ _strncat:
 	R1 = P2;
 	R0 = R0 + R1;
 	[FP+-4] = R0;
-	jump.s .L513;
-.L515:
+	jump.s .L514;
+.L516:
 	R0 = [FP+12];
 	R0 += 1;
 	[FP+12] = R0;
@@ -4099,10 +4099,10 @@ _strncat:
 	R0 = [FP+16];
 	R0 += -1;
 	[FP+16] = R0;
-.L513:
+.L514:
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L514;
+	if cc jump .L515;
 	nop;
 	nop;
 	P2 = [FP+12];
@@ -4113,15 +4113,15 @@ _strncat:
 	R0 = B [P2] (X);
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L515;
-.L514:
+	if !cc jump .L516;
+.L515:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L516;
+	if !cc jump .L517;
 	P2 = [FP+-4];
 	R0 = 0 (X);
 	B [P2] = R0;
-.L516:
+.L517:
 	R0 = [FP+8];
 	UNLINK;
 	rts;
@@ -4135,17 +4135,17 @@ _strnlen:
 	[FP+12] = R1;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L519;
-.L524:
+	jump.s .L520;
+.L525:
 	nop;
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L519:
+.L520:
 	R1 = [FP+-4];
 	R0 = [FP+12];
 	cc =R1<R0 (iu);
-	if !cc jump .L520;
+	if !cc jump .L521;
 	R1 = [FP+8];
 	R0 = [FP+-4];
 	R0 = R1 + R0;
@@ -4153,8 +4153,8 @@ _strnlen:
 	R0 = B [P2] (X);
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L524;
-.L520:
+	if !cc jump .L525;
+.L521:
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -4166,12 +4166,12 @@ _strpbrk:
 	LINK 4;
 	[FP+8] = R0;
 	[FP+12] = R1;
-	jump.s .L526;
-.L530:
+	jump.s .L527;
+.L531:
 	R0 = [FP+12];
 	[FP+-4] = R0;
-	jump.s .L527;
-.L529:
+	jump.s .L528;
+.L530:
 	P2 = [FP+-4];
 	R0 = P2;
 	R0 += 1;
@@ -4182,26 +4182,26 @@ _strpbrk:
 	R1 = R1.B (X);
 	R0 = R0.B (X);
 	cc =R1==R0;
-	if !cc jump .L527;
+	if !cc jump .L528;
 	R0 = [FP+8];
-	jump.s .L528;
-.L527:
+	jump.s .L529;
+.L528:
 	P2 = [FP+-4];
 	R0 = B [P2] (X);
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L529;
+	if !cc jump .L530;
 	R0 = [FP+8];
 	R0 += 1;
 	[FP+8] = R0;
-.L526:
+.L527:
 	P2 = [FP+8];
 	R0 = B [P2] (X);
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L530;
+	if !cc jump .L531;
 	R0 = 0 (X);
-.L528:
+.L529:
 	UNLINK;
 	rts;
 	.size	_strpbrk, .-_strpbrk
@@ -4214,21 +4214,21 @@ _strrchr:
 	[FP+12] = R1;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-.L533:
+.L534:
 	R0 = B [P2] (X);
 	R0 = R0.B (X);
 	R1 = [FP+12];
 	cc =R1==R0;
-	if !cc jump .L532;
+	if !cc jump .L533;
 	[FP+-4] = P2;
-.L532:
+.L533:
 	P1 = P2;
 	P2 = P1;
 	P2 += 1;
 	R0 = B [P1] (X);
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L533;
+	if !cc jump .L534;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -4247,23 +4247,23 @@ _strstr:
 	[FP+-8] = R0;
 	R0 = [FP+-8];
 	cc =R0==0;
-	if !cc jump .L538;
+	if !cc jump .L539;
 	R0 = [FP+8];
-	jump.s .L537;
-.L540:
+	jump.s .L538;
+.L541:
 	R2 = [FP+-8];
 	R1 = [FP+12];
 	R0 = [FP+-4];
 	call _strncmp;
 	cc =R0==0;
-	if !cc jump .L539;
+	if !cc jump .L540;
 	R0 = [FP+-4];
-	jump.s .L537;
-.L539:
+	jump.s .L538;
+.L540:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L538:
+.L539:
 	P2 = [FP+12];
 	R0 = B [P2] (X);
 	R1 = R0.B (X);
@@ -4272,9 +4272,9 @@ _strstr:
 	[FP+-4] = R0;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if !cc jump .L540;
+	if !cc jump .L541;
 	R0 = 0 (X);
-.L537:
+.L538:
 	UNLINK;
 	rts;
 	.size	_strstr, .-_strstr
@@ -4295,7 +4295,7 @@ _copysign:
 	R1 = [FP+20];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L542;
+	if !cc jump .L543;
 	R0 = 0 (X);
 	[SP+12] = R0;
 	R2 = 0 (X);
@@ -4303,8 +4303,8 @@ _copysign:
 	R1 = [FP+28];
 	call ___gtdf2;
 	cc =R0<=0;
-	if !cc jump .L544;
-.L542:
+	if !cc jump .L545;
+.L543:
 	R0 = 0 (X);
 	[SP+12] = R0;
 	R2 = 0 (X);
@@ -4312,7 +4312,7 @@ _copysign:
 	R1 = [FP+20];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L545;
+	if cc jump .L546;
 	R0 = 0 (X);
 	[SP+12] = R0;
 	R2 = 0 (X);
@@ -4320,17 +4320,17 @@ _copysign:
 	R1 = [FP+28];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L545;
-.L544:
+	if !cc jump .L546;
+.L545:
 	R6 = [FP+16];
 	R0 = [FP+20];
 	R7 = R0;
 	BITTGL (R7, 31);
-	jump.s .L548;
-.L545:
+	jump.s .L549;
+.L546:
 	R6 = [FP+16];
 	R7 = [FP+20];
-.L548:
+.L549:
 	[FP+-8] = R6;
 	[FP+-4] = R7;
 	R0 = [FP+-8];
@@ -4356,24 +4356,24 @@ _memmem:
 	[FP+-8] = R0;
 	R0 = [FP+20];
 	cc =R0==0;
-	if !cc jump .L552;
+	if !cc jump .L553;
 	R0 = [FP+8];
-	jump.s .L553;
-.L552:
+	jump.s .L554;
+.L553:
 	R1 = [FP+12];
 	R0 = [FP+20];
 	cc =R1<R0 (iu);
 	R0 = CC;
 	R0 = R0.B (Z);
 	cc =R0==0;
-	if cc jump .L554;
+	if cc jump .L555;
 	R0 = 0 (X);
-	jump.s .L553;
-.L554:
+	jump.s .L554;
+.L555:
 	R0 = [FP+8];
 	[FP+-4] = R0;
-	jump.s .L555;
-.L557:
+	jump.s .L556;
+.L558:
 	P2 = [FP+-4];
 	R1 = B [P2] (X);
 	P2 = [FP+16];
@@ -4381,7 +4381,7 @@ _memmem:
 	R1 = R1.B (X);
 	R0 = R0.B (X);
 	cc =R1==R0;
-	if !cc jump .L556;
+	if !cc jump .L557;
 	R0 = [FP+-4];
 	R3 = R0;
 	R3 += 1;
@@ -4394,20 +4394,20 @@ _memmem:
 	R0 = R3;
 	call _memcmp;
 	cc =R0==0;
-	if !cc jump .L556;
+	if !cc jump .L557;
 	R0 = [FP+-4];
-	jump.s .L553;
-.L556:
+	jump.s .L554;
+.L557:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L555:
+.L556:
 	R1 = [FP+-4];
 	R0 = [FP+-8];
 	cc =R1<=R0 (iu);
-	if cc jump .L557;
+	if cc jump .L558;
 	R0 = 0 (X);
-.L553:
+.L554:
 	UNLINK;
 	rts;
 	.size	_memmem, .-_memmem
@@ -4454,7 +4454,7 @@ _frexp:
 	R1 = [FP+28];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L561;
+	if !cc jump .L562;
 	R4 = [FP+24];
 	R0 = [FP+28];
 	R5 = R0;
@@ -4463,7 +4463,7 @@ _frexp:
 	[FP+28] = R5;
 	R0 = 1 (X);
 	[FP+-4] = R0;
-.L561:
+.L562:
 	R0 = 1023 (X);
 	R0 <<= 20;
 	[SP+12] = R0;
@@ -4472,9 +4472,9 @@ _frexp:
 	R1 = [FP+28];
 	call ___gedf2;
 	cc =R0<0;
-	if cc jump .L578;
-	jump.s .L565;
-.L566:
+	if cc jump .L579;
+	jump.s .L566;
+.L567:
 	R0 = [FP+-8];
 	R0 += 1;
 	[FP+-8] = R0;
@@ -4491,7 +4491,7 @@ _frexp:
 	R1 = [FP+-20];
 	[FP+24] = R0;
 	[FP+28] = R1;
-.L565:
+.L566:
 	R0 = 1023 (X);
 	R0 <<= 20;
 	[SP+12] = R0;
@@ -4500,9 +4500,9 @@ _frexp:
 	R1 = [FP+28];
 	call ___gedf2;
 	cc =R0<0;
-	if !cc jump .L566;
-	jump.s .L567;
-.L578:
+	if !cc jump .L567;
+	jump.s .L568;
+.L579:
 	R0 = 511 (X);
 	R0 <<= 21;
 	[SP+12] = R0;
@@ -4511,7 +4511,7 @@ _frexp:
 	R1 = [FP+28];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L567;
+	if !cc jump .L568;
 	R0 = 0 (X);
 	[SP+12] = R0;
 	R2 = 0 (X);
@@ -4519,9 +4519,9 @@ _frexp:
 	R1 = [FP+28];
 	call ___nedf2;
 	cc =R0==0;
-	if cc jump .L567;
-	jump.s .L570;
-.L571:
+	if cc jump .L568;
+	jump.s .L571;
+.L572:
 	R0 = [FP+-8];
 	R0 += -1;
 	[FP+-8] = R0;
@@ -4541,7 +4541,7 @@ _frexp:
 	R1 = [FP+-36];
 	[FP+24] = R0;
 	[FP+28] = R1;
-.L570:
+.L571:
 	R0 = 511 (X);
 	R0 <<= 21;
 	[SP+12] = R0;
@@ -4550,21 +4550,21 @@ _frexp:
 	R1 = [FP+28];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L571;
-.L567:
+	if cc jump .L572;
+.L568:
 	P2 = [FP+32];
 	R0 = [FP+-8];
 	[P2] = R0;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L572;
+	if cc jump .L573;
 	R6 = [FP+24];
 	R0 = [FP+28];
 	R7 = R0;
 	BITTGL (R7, 31);
 	[FP+24] = R6;
 	[FP+28] = R7;
-.L572:
+.L573:
 	R0 = [FP+24];
 	R1 = [FP+28];
 	[FP+-16] = R0;
@@ -4594,8 +4594,8 @@ ___muldi3:
 	R1 = [FP+24];
 	[FP+-16] = R0;
 	[FP+-12] = R1;
-	jump.s .L580;
-.L583:
+	jump.s .L581;
+.L584:
 	R2 = [FP+-16];
 	R3 = [FP+-12];
 	R7 = 1 (X);
@@ -4605,7 +4605,7 @@ ___muldi3:
 	R2 = R0;
 	R2 = R2 | R1;
 	cc =R2==0;
-	if cc jump .L581;
+	if cc jump .L582;
 	R6 = [FP+-8];
 	R7 = [FP+-4];
 	R2 = [FP+28];
@@ -4616,7 +4616,7 @@ ___muldi3:
 	R1 = R1 + R5;
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-.L581:
+.L582:
 	R0 = [FP+28];
 	R1 = [FP+32];
 	CC = R0 < R0;
@@ -4631,12 +4631,12 @@ ___muldi3:
 	R0 = ROT R0 BY -1;
 	[FP+-16] = R0;
 	[FP+-12] = R1;
-.L580:
+.L581:
 	R0 = [FP+-16];
 	R1 = [FP+-12];
 	R0 = R0 | R1;
 	cc =R0==0;
-	if !cc jump .L583;
+	if !cc jump .L584;
 	R0 = [FP+-8];
 	R1 = [FP+-4];
 	[FP+-24] = R0;
@@ -4660,31 +4660,31 @@ _udivmodsi4:
 	[FP+-4] = R0;
 	R0 = 0 (X);
 	[FP+-8] = R0;
-	jump.s .L586;
-.L588:
+	jump.s .L587;
+.L589:
 	R0 = [FP+12];
 	R0 <<= 1;
 	[FP+12] = R0;
 	R0 = [FP+-4];
 	R0 <<= 1;
 	[FP+-4] = R0;
-.L586:
+.L587:
 	R1 = [FP+12];
 	R0 = [FP+8];
 	cc =R1<R0 (iu);
-	if !cc jump .L589;
+	if !cc jump .L590;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L589;
+	if cc jump .L590;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L588;
-	jump.s .L589;
-.L591:
+	if !cc jump .L589;
+	jump.s .L590;
+.L592:
 	R1 = [FP+8];
 	R0 = [FP+12];
 	cc =R1<R0 (iu);
-	if cc jump .L590;
+	if cc jump .L591;
 	R1 = [FP+8];
 	R0 = [FP+12];
 	R0 = R1 - R0;
@@ -4693,25 +4693,25 @@ _udivmodsi4:
 	R0 = [FP+-4];
 	R0 = R1 | R0;
 	[FP+-8] = R0;
-.L590:
+.L591:
 	R0 = [FP+-4];
 	R0 >>= 1;
 	[FP+-4] = R0;
 	R0 = [FP+12];
 	R0 >>= 1;
 	[FP+12] = R0;
-.L589:
+.L590:
 	R0 = [FP+-4];
 	cc =R0==0;
-	if !cc jump .L591;
+	if !cc jump .L592;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L592;
+	if cc jump .L593;
 	R0 = [FP+8];
-	jump.s .L593;
-.L592:
-	R0 = [FP+-8];
+	jump.s .L594;
 .L593:
+	R0 = [FP+-8];
+.L594:
 	UNLINK;
 	rts;
 	.size	_udivmodsi4, .-_udivmodsi4
@@ -4723,24 +4723,24 @@ ___clrsbqi2:
 	B [FP+8] = R0;
 	R0 = B [FP+8] (X);
 	cc =R0<0;
-	if !cc jump .L595;
+	if !cc jump .L596;
 	R0 = B [FP+8] (X);
 	R0 = ~R0;
 	B [FP+8] = R0;
-.L595:
+.L596:
 	R0 = B [FP+8] (X);
 	cc =R0==0;
-	if !cc jump .L596;
+	if !cc jump .L597;
 	R0 = 7 (X);
-	jump.s .L597;
-.L596:
+	jump.s .L598;
+.L597:
 	R0 = B [FP+8] (X);
 	R0 <<= 8;
 	call ___clzsi2;
 	[FP+-4] = R0;
 	R0 = [FP+-4];
 	R0 += -1;
-.L597:
+.L598:
 	UNLINK;
 	rts;
 	.size	___clrsbqi2, .-___clrsbqi2
@@ -4753,22 +4753,22 @@ ___clrsbdi2:
 	[FP+12] = R1;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L599;
+	if !cc jump .L600;
 	R0 = [FP+8];
 	R2 = ~R0;
 	R0 = [FP+12];
 	R3 = ~R0;
 	[FP+8] = R2;
 	[FP+12] = R3;
-.L599:
+.L600:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	R0 = R0 | R1;
 	cc =R0==0;
-	if !cc jump .L601;
+	if !cc jump .L602;
 	R0 = 63 (X);
-	jump.s .L602;
-.L601:
+	jump.s .L603;
+.L602:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	[FP+-12] = R0;
@@ -4779,7 +4779,7 @@ ___clrsbdi2:
 	[FP+-4] = R0;
 	R0 = [FP+-4];
 	R0 += -1;
-.L602:
+.L603:
 	UNLINK;
 	rts;
 	.size	___clrsbdi2, .-___clrsbdi2
@@ -4792,28 +4792,28 @@ ___mulsi3:
 	[FP+12] = R1;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L604;
-.L606:
+	jump.s .L605;
+.L607:
 	R1 = [FP+8];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L605;
+	if cc jump .L606;
 	R1 = [FP+-4];
 	R0 = [FP+12];
 	R0 = R1 + R0;
 	[FP+-4] = R0;
-.L605:
+.L606:
 	R0 = [FP+8];
 	R0 >>= 1;
 	[FP+8] = R0;
 	R0 = [FP+12];
 	R0 <<= 1;
 	[FP+12] = R0;
-.L604:
+.L605:
 	R0 = [FP+8];
 	cc =R0==0;
-	if !cc jump .L606;
+	if !cc jump .L607;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -4840,18 +4840,18 @@ ___cmovd:
 	R1 = [FP+-16];
 	R0 = [FP+-20];
 	cc =R1<R0 (iu);
-	if cc jump .L609;
+	if cc jump .L610;
 	R1 = [FP+-20];
 	R0 = [FP+16];
 	R0 = R1 + R0;
 	R1 = [FP+-16];
 	cc =R1<=R0 (iu);
-	if cc jump .L616;
-.L609:
+	if cc jump .L617;
+.L610:
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L611;
-.L612:
+	jump.s .L612;
+.L613:
 	R0 = [FP+-4];
 	R0 <<= 3;
 	R1 = [FP+12];
@@ -4869,13 +4869,13 @@ ___cmovd:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L611:
+.L612:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<R0 (iu);
-	if cc jump .L612;
-	jump.s .L613;
-.L614:
+	if cc jump .L613;
+	jump.s .L614;
+.L615:
 	R1 = [FP+-20];
 	R0 = [FP+-8];
 	R0 = R1 + R0;
@@ -4889,13 +4889,13 @@ ___cmovd:
 	R0 = [FP+-8];
 	R0 += 1;
 	[FP+-8] = R0;
-.L613:
+.L614:
 	R1 = [FP+16];
 	R0 = [FP+-8];
 	cc =R1<=R0 (iu);
-	if !cc jump .L614;
-	jump.s .L615;
-.L617:
+	if !cc jump .L615;
+	jump.s .L616;
+.L618:
 	R1 = [FP+-20];
 	R0 = [FP+16];
 	R0 = R1 + R0;
@@ -4906,15 +4906,15 @@ ___cmovd:
 	P2 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
-.L616:
+.L617:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L617;
+	if !cc jump .L618;
 	nop;
-.L615:
+.L616:
 	nop;
 	UNLINK;
 	rts;
@@ -4937,18 +4937,18 @@ ___cmovh:
 	R1 = [FP+-12];
 	R0 = [FP+-16];
 	cc =R1<R0 (iu);
-	if cc jump .L619;
+	if cc jump .L620;
 	R1 = [FP+-16];
 	R0 = [FP+16];
 	R0 = R1 + R0;
 	R1 = [FP+-12];
 	cc =R1<=R0 (iu);
-	if cc jump .L625;
-.L619:
+	if cc jump .L626;
+.L620:
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L621;
-.L622:
+	jump.s .L622;
+.L623:
 	R0 = [FP+-4];
 	R0 <<= 1;
 	R1 = [FP+12];
@@ -4964,16 +4964,16 @@ ___cmovh:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L621:
+.L622:
 	R1 = [FP+-4];
 	R0 = [FP+-8];
 	cc =R1<R0 (iu);
-	if cc jump .L622;
+	if cc jump .L623;
 	R1 = [FP+16];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L624;
+	if cc jump .L625;
 	R0 = [FP+16];
 	R0 += -1;
 	R1 = [FP+-16];
@@ -4986,8 +4986,8 @@ ___cmovh:
 	P2 = R1;
 	R0 = B [P1] (X);
 	B [P2] = R0;
-	jump.s .L624;
-.L626:
+	jump.s .L625;
+.L627:
 	R1 = [FP+-16];
 	R0 = [FP+16];
 	R0 = R1 + R0;
@@ -4998,15 +4998,15 @@ ___cmovh:
 	P2 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
-.L625:
+.L626:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L626;
+	if !cc jump .L627;
 	nop;
-.L624:
+.L625:
 	nop;
 	UNLINK;
 	rts;
@@ -5033,18 +5033,18 @@ ___cmovw:
 	R1 = [FP+-16];
 	R0 = [FP+-20];
 	cc =R1<R0 (iu);
-	if cc jump .L628;
+	if cc jump .L629;
 	R1 = [FP+-20];
 	R0 = [FP+16];
 	R0 = R1 + R0;
 	R1 = [FP+-16];
 	cc =R1<=R0 (iu);
-	if cc jump .L635;
-.L628:
+	if cc jump .L636;
+.L629:
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L630;
-.L631:
+	jump.s .L631;
+.L632:
 	R0 = [FP+-4];
 	R0 <<= 2;
 	R1 = [FP+12];
@@ -5060,13 +5060,13 @@ ___cmovw:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L630:
+.L631:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<R0 (iu);
-	if cc jump .L631;
-	jump.s .L632;
-.L633:
+	if cc jump .L632;
+	jump.s .L633;
+.L634:
 	R1 = [FP+-20];
 	R0 = [FP+-8];
 	R0 = R1 + R0;
@@ -5080,13 +5080,13 @@ ___cmovw:
 	R0 = [FP+-8];
 	R0 += 1;
 	[FP+-8] = R0;
-.L632:
+.L633:
 	R1 = [FP+16];
 	R0 = [FP+-8];
 	cc =R1<=R0 (iu);
-	if !cc jump .L633;
-	jump.s .L634;
-.L636:
+	if !cc jump .L634;
+	jump.s .L635;
+.L637:
 	R1 = [FP+-20];
 	R0 = [FP+16];
 	R0 = R1 + R0;
@@ -5097,15 +5097,15 @@ ___cmovw:
 	P2 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
-.L635:
+.L636:
 	R0 = [FP+16];
 	R1 = R0;
 	R1 += -1;
 	[FP+16] = R1;
 	cc =R0==0;
-	if !cc jump .L636;
+	if !cc jump .L637;
 	nop;
-.L634:
+.L635:
 	nop;
 	UNLINK;
 	rts;
@@ -5208,8 +5208,8 @@ ___clzhi2:
 	W [FP+8] = R0;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L650;
-.L653:
+	jump.s .L651;
+.L654:
 	R1 = W [FP+8] (Z);
 	R2 = 15 (X);
 	R0 = [FP+-4];
@@ -5218,19 +5218,19 @@ ___clzhi2:
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L655;
+	if !cc jump .L656;
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L650:
+.L651:
 	R0 = [FP+-4];
 	R1 = 15 (X);
 	cc =R0<=R1;
-	if cc jump .L653;
-	jump.s .L652;
-.L655:
+	if cc jump .L654;
+	jump.s .L653;
+.L656:
 	nop;
-.L652:
+.L653:
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -5243,27 +5243,27 @@ ___ctzhi2:
 	W [FP+8] = R0;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L657;
-.L660:
+	jump.s .L658;
+.L661:
 	R1 = W [FP+8] (Z);
 	R0 = [FP+-4];
 	R1 >>>= R0;
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L662;
+	if !cc jump .L663;
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L657:
+.L658:
 	R0 = [FP+-4];
 	R1 = 15 (X);
 	cc =R0<=R1;
-	if cc jump .L660;
-	jump.s .L659;
-.L662:
+	if cc jump .L661;
+	jump.s .L660;
+.L663:
 	nop;
-.L659:
+.L660:
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -5279,7 +5279,7 @@ ___fixunssfsi:
 	R0 = [FP+8];
 	call ___gesf2;
 	cc =R0<0;
-	if cc jump .L668;
+	if cc jump .L669;
 	R1 = 71 (X);
 	R1 <<= 24;
 	R0 = [FP+8];
@@ -5289,12 +5289,12 @@ ___fixunssfsi:
 	P2.H = 0;
 	P2.L = 32768;
 	P2 = P1 + P2;
-	jump.s .L666;
-.L668:
+	jump.s .L667;
+.L669:
 	R0 = [FP+8];
 	call ___fixsfsi;
 	P2 = R0;
-.L666:
+.L667:
 	R0 = P2;
 	UNLINK;
 	rts;
@@ -5309,27 +5309,27 @@ ___parityhi2:
 	[FP+-8] = R0;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L670;
-.L672:
+	jump.s .L671;
+.L673:
 	R1 = W [FP+8] (Z);
 	R0 = [FP+-4];
 	R1 >>>= R0;
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L671;
+	if cc jump .L672;
 	R0 = [FP+-8];
 	R0 += 1;
 	[FP+-8] = R0;
-.L671:
+.L672:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L670:
+.L671:
 	R0 = [FP+-4];
 	R1 = 15 (X);
 	cc =R0<=R1;
-	if cc jump .L672;
+	if cc jump .L673;
 	R1 = [FP+-8];
 	R0 = 1 (X);
 	R0 = R1 & R0;
@@ -5346,27 +5346,27 @@ ___popcounthi2:
 	[FP+-8] = R0;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L675;
-.L677:
+	jump.s .L676;
+.L678:
 	R1 = W [FP+8] (Z);
 	R0 = [FP+-4];
 	R1 >>>= R0;
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L676;
+	if cc jump .L677;
 	R0 = [FP+-8];
 	R0 += 1;
 	[FP+-8] = R0;
-.L676:
+.L677:
 	R0 = [FP+-4];
 	R0 += 1;
 	[FP+-4] = R0;
-.L675:
+.L676:
 	R0 = [FP+-4];
 	R1 = 15 (X);
 	cc =R0<=R1;
-	if cc jump .L677;
+	if cc jump .L678;
 	R0 = [FP+-8];
 	UNLINK;
 	rts;
@@ -5380,28 +5380,28 @@ ___mulsi3_iq2000:
 	[FP+12] = R1;
 	R0 = 0 (X);
 	[FP+-4] = R0;
-	jump.s .L680;
-.L682:
+	jump.s .L681;
+.L683:
 	R1 = [FP+8];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L681;
+	if cc jump .L682;
 	R1 = [FP+-4];
 	R0 = [FP+12];
 	R0 = R1 + R0;
 	[FP+-4] = R0;
-.L681:
+.L682:
 	R0 = [FP+8];
 	R0 >>= 1;
 	[FP+8] = R0;
 	R0 = [FP+12];
 	R0 <<= 1;
 	[FP+12] = R0;
-.L680:
+.L681:
 	R0 = [FP+8];
 	cc =R0==0;
-	if !cc jump .L682;
+	if !cc jump .L683;
 	R0 = [FP+-4];
 	UNLINK;
 	rts;
@@ -5417,32 +5417,32 @@ ___mulsi3_lm32:
 	[FP+-4] = R0;
 	R0 = [FP+8];
 	cc =R0==0;
-	if !cc jump .L687;
+	if !cc jump .L688;
 	R0 = 0 (X);
-	jump.s .L686;
-.L689:
+	jump.s .L687;
+.L690:
 	R1 = [FP+12];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L688;
+	if cc jump .L689;
 	R1 = [FP+-4];
 	R0 = [FP+8];
 	R0 = R1 + R0;
 	[FP+-4] = R0;
-.L688:
+.L689:
 	R0 = [FP+8];
 	R0 <<= 1;
 	[FP+8] = R0;
 	R0 = [FP+12];
 	R0 >>= 1;
 	[FP+12] = R0;
-.L687:
+.L688:
 	R0 = [FP+12];
 	cc =R0==0;
-	if !cc jump .L689;
+	if !cc jump .L690;
 	R0 = [FP+-4];
-.L686:
+.L687:
 	UNLINK;
 	rts;
 	.size	___mulsi3_lm32, .-___mulsi3_lm32
@@ -5458,31 +5458,31 @@ ___udivmodsi4:
 	[FP+-4] = R0;
 	R0 = 0 (X);
 	[FP+-8] = R0;
-	jump.s .L691;
-.L693:
+	jump.s .L692;
+.L694:
 	R0 = [FP+12];
 	R0 <<= 1;
 	[FP+12] = R0;
 	R0 = [FP+-4];
 	R0 <<= 1;
 	[FP+-4] = R0;
-.L691:
+.L692:
 	R1 = [FP+12];
 	R0 = [FP+8];
 	cc =R1<R0 (iu);
-	if !cc jump .L694;
+	if !cc jump .L695;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L694;
+	if cc jump .L695;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L693;
-	jump.s .L694;
-.L696:
+	if !cc jump .L694;
+	jump.s .L695;
+.L697:
 	R1 = [FP+8];
 	R0 = [FP+12];
 	cc =R1<R0 (iu);
-	if cc jump .L695;
+	if cc jump .L696;
 	R1 = [FP+8];
 	R0 = [FP+12];
 	R0 = R1 - R0;
@@ -5491,25 +5491,25 @@ ___udivmodsi4:
 	R0 = [FP+-4];
 	R0 = R1 | R0;
 	[FP+-8] = R0;
-.L695:
+.L696:
 	R0 = [FP+-4];
 	R0 >>= 1;
 	[FP+-4] = R0;
 	R0 = [FP+12];
 	R0 >>= 1;
 	[FP+12] = R0;
-.L694:
+.L695:
 	R0 = [FP+-4];
 	cc =R0==0;
-	if !cc jump .L696;
+	if !cc jump .L697;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L697;
+	if cc jump .L698;
 	R0 = [FP+8];
-	jump.s .L698;
-.L697:
-	R0 = [FP+-8];
+	jump.s .L699;
 .L698:
+	R0 = [FP+-8];
+.L699:
 	UNLINK;
 	rts;
 	.size	___udivmodsi4, .-___udivmodsi4
@@ -5524,20 +5524,20 @@ ___mspabi_cmpf:
 	R0 = [FP+8];
 	call ___ltsf2;
 	cc =R0<0;
-	if !cc jump .L707;
+	if !cc jump .L708;
 	R0 = -1 (X);
-	jump.s .L702;
-.L707:
+	jump.s .L703;
+.L708:
 	R1 = [FP+12];
 	R0 = [FP+8];
 	call ___gtsf2;
 	cc =R0<=0;
-	if cc jump .L708;
+	if cc jump .L709;
 	R0 = 1 (X);
-	jump.s .L702;
-.L708:
+	jump.s .L703;
+.L709:
 	R0 = 0 (X);
-.L702:
+.L703:
 	UNLINK;
 	rts;
 	.size	___mspabi_cmpf, .-___mspabi_cmpf
@@ -5556,10 +5556,10 @@ ___mspabi_cmpd:
 	R1 = [FP+12];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L717;
+	if !cc jump .L718;
 	R0 = -1 (X);
-	jump.s .L712;
-.L717:
+	jump.s .L713;
+.L718:
 	R0 = [FP+20];
 	[SP+12] = R0;
 	R2 = [FP+16];
@@ -5567,12 +5567,12 @@ ___mspabi_cmpd:
 	R1 = [FP+12];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L718;
+	if cc jump .L719;
 	R0 = 1 (X);
-	jump.s .L712;
-.L718:
+	jump.s .L713;
+.L719:
 	R0 = 0 (X);
-.L712:
+.L713:
 	UNLINK;
 	rts;
 	.size	___mspabi_cmpd, .-___mspabi_cmpd
@@ -5652,27 +5652,27 @@ ___mulhi3:
 	[FP+-12] = R0;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L724;
+	if !cc jump .L725;
 	R0 = [FP+12];
 	R0 = -R0;
 	[FP+12] = R0;
 	R0 = 1 (X);
 	[FP+-8] = R0;
-.L724:
+.L725:
 	R0 = 0 (X);
 	B [FP+-1] = R0;
-	jump.s .L725;
-.L728:
+	jump.s .L726;
+.L729:
 	R1 = [FP+12];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L726;
+	if cc jump .L727;
 	R1 = [FP+-12];
 	R0 = [FP+8];
 	R0 = R1 + R0;
 	[FP+-12] = R0;
-.L726:
+.L727:
 	R0 = [FP+8];
 	R0 <<= 1;
 	[FP+8] = R0;
@@ -5682,25 +5682,25 @@ ___mulhi3:
 	R0 = B [FP+-1] (X);
 	R0 += 1;
 	B [FP+-1] = R0;
-.L725:
+.L726:
 	R0 = [FP+12];
 	cc =R0==0;
-	if cc jump .L727;
+	if cc jump .L728;
 	R0 = B [FP+-1] (X);
 	R0 = R0.B (Z);
 	R1 = 31 (X);
 	cc =R0<=R1 (iu);
-	if cc jump .L728;
-.L727:
+	if cc jump .L729;
+.L728:
 	R0 = [FP+-8];
 	cc =R0==0;
-	if cc jump .L729;
+	if cc jump .L730;
 	R0 = [FP+-12];
 	R0 = -R0;
-	jump.s .L731;
-.L729:
+	jump.s .L732;
+.L730:
 	R0 = [FP+-12];
-.L731:
+.L732:
 	UNLINK;
 	rts;
 	.size	___mulhi3, .-___mulhi3
@@ -5715,7 +5715,7 @@ ___divsi3:
 	[FP+-4] = R0;
 	R0 = [FP+8];
 	cc =R0<0;
-	if !cc jump .L733;
+	if !cc jump .L734;
 	R0 = [FP+8];
 	R0 = -R0;
 	[FP+8] = R0;
@@ -5724,10 +5724,10 @@ ___divsi3:
 	R0 = CC;
 	R0 = R0.B (Z);
 	[FP+-4] = R0;
-.L733:
+.L734:
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L734;
+	if !cc jump .L735;
 	R0 = [FP+12];
 	R0 = -R0;
 	[FP+12] = R0;
@@ -5736,7 +5736,7 @@ ___divsi3:
 	R0 = CC;
 	R0 = R0.B (Z);
 	[FP+-4] = R0;
-.L734:
+.L735:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	R2 = 0 (X);
@@ -5744,11 +5744,11 @@ ___divsi3:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L735;
+	if cc jump .L736;
 	R0 = [FP+-8];
 	R0 = -R0;
 	[FP+-8] = R0;
-.L735:
+.L736:
 	R0 = [FP+-8];
 	UNLINK;
 	rts;
@@ -5764,20 +5764,20 @@ ___modsi3:
 	[FP+-4] = R0;
 	R0 = [FP+8];
 	cc =R0<0;
-	if !cc jump .L738;
+	if !cc jump .L739;
 	R0 = [FP+8];
 	R0 = -R0;
 	[FP+8] = R0;
 	R0 = 1 (X);
 	[FP+-4] = R0;
-.L738:
+.L739:
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L739;
+	if !cc jump .L740;
 	R0 = [FP+12];
 	R0 = -R0;
 	[FP+12] = R0;
-.L739:
+.L740:
 	R0 = [FP+8];
 	R1 = [FP+12];
 	R2 = 1 (X);
@@ -5785,11 +5785,11 @@ ___modsi3:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L740;
+	if cc jump .L741;
 	R0 = [FP+-8];
 	R0 = -R0;
 	[FP+-8] = R0;
-.L740:
+.L741:
 	R0 = [FP+-8];
 	UNLINK;
 	rts;
@@ -5806,32 +5806,32 @@ ___udivmodhi4:
 	W [FP+-2] = R0;
 	R0 = 0 (X);
 	W [FP+-4] = R0;
-	jump.s .L743;
-.L745:
+	jump.s .L744;
+.L746:
 	R0 = W [FP+12] (X);
 	R0 <<= 1;
 	W [FP+12] = R0;
 	R0 = W [FP+-2] (X);
 	R0 <<= 1;
 	W [FP+-2] = R0;
-.L743:
+.L744:
 	R1 = W [FP+12] (Z);
 	R0 = W [FP+8] (Z);
 	cc =R1<R0 (iu);
-	if !cc jump .L746;
+	if !cc jump .L747;
 	R0 = W [FP+-2] (Z);
 	cc =R0==0;
-	if cc jump .L746;
+	if cc jump .L747;
 	R0 = W [FP+12] (X);
 	R0 = R0.L (X);
 	cc =R0<0;
-	if !cc jump .L745;
-	jump.s .L746;
-.L748:
+	if !cc jump .L746;
+	jump.s .L747;
+.L749:
 	R1 = W [FP+8] (Z);
 	R0 = W [FP+12] (Z);
 	cc =R1<R0 (iu);
-	if cc jump .L747;
+	if cc jump .L748;
 	R1 = W [FP+8] (X);
 	R0 = W [FP+12] (X);
 	R0 = R1 - R0;
@@ -5840,25 +5840,25 @@ ___udivmodhi4:
 	R0 = W [FP+-2] (X);
 	R0 = R1 | R0;
 	W [FP+-4] = R0;
-.L747:
+.L748:
 	R0 = W [FP+-2] (Z);
 	R0 >>= 1;
 	W [FP+-2] = R0;
 	R0 = W [FP+12] (Z);
 	R0 >>= 1;
 	W [FP+12] = R0;
-.L746:
+.L747:
 	R0 = W [FP+-2] (Z);
 	cc =R0==0;
-	if !cc jump .L748;
+	if !cc jump .L749;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L749;
+	if cc jump .L750;
 	R0 = W [FP+8] (X);
-	jump.s .L750;
-.L749:
-	R0 = W [FP+-4] (X);
+	jump.s .L751;
 .L750:
+	R0 = W [FP+-4] (X);
+.L751:
 	UNLINK;
 	rts;
 	.size	___udivmodhi4, .-___udivmodhi4
@@ -5874,31 +5874,31 @@ ___udivmodsi4_libgcc:
 	[FP+-4] = R0;
 	R0 = 0 (X);
 	[FP+-8] = R0;
-	jump.s .L752;
-.L754:
+	jump.s .L753;
+.L755:
 	R0 = [FP+12];
 	R0 <<= 1;
 	[FP+12] = R0;
 	R0 = [FP+-4];
 	R0 <<= 1;
 	[FP+-4] = R0;
-.L752:
+.L753:
 	R1 = [FP+12];
 	R0 = [FP+8];
 	cc =R1<R0 (iu);
-	if !cc jump .L755;
+	if !cc jump .L756;
 	R0 = [FP+-4];
 	cc =R0==0;
-	if cc jump .L755;
+	if cc jump .L756;
 	R0 = [FP+12];
 	cc =R0<0;
-	if !cc jump .L754;
-	jump.s .L755;
-.L757:
+	if !cc jump .L755;
+	jump.s .L756;
+.L758:
 	R1 = [FP+8];
 	R0 = [FP+12];
 	cc =R1<R0 (iu);
-	if cc jump .L756;
+	if cc jump .L757;
 	R1 = [FP+8];
 	R0 = [FP+12];
 	R0 = R1 - R0;
@@ -5907,25 +5907,25 @@ ___udivmodsi4_libgcc:
 	R0 = [FP+-4];
 	R0 = R1 | R0;
 	[FP+-8] = R0;
-.L756:
+.L757:
 	R0 = [FP+-4];
 	R0 >>= 1;
 	[FP+-4] = R0;
 	R0 = [FP+12];
 	R0 >>= 1;
 	[FP+12] = R0;
-.L755:
+.L756:
 	R0 = [FP+-4];
 	cc =R0==0;
-	if !cc jump .L757;
+	if !cc jump .L758;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L758;
+	if cc jump .L759;
 	R0 = [FP+8];
-	jump.s .L759;
-.L758:
-	R0 = [FP+-8];
+	jump.s .L760;
 .L759:
+	R0 = [FP+-8];
+.L760:
 	UNLINK;
 	rts;
 	.size	___udivmodsi4_libgcc, .-___udivmodsi4_libgcc
@@ -5947,7 +5947,7 @@ ___ashldi3:
 	R0 = [FP+-4];
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L761;
+	if cc jump .L762;
 	R0 = 0 (X);
 	[FP+-20] = R0;
 	R1 = [FP+-12];
@@ -5957,15 +5957,15 @@ ___ashldi3:
 	R1 <<= R0;
 	R0 = R1;
 	[FP+-16] = R0;
-	jump.s .L762;
-.L761:
+	jump.s .L763;
+.L762:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L763;
+	if !cc jump .L764;
 	R0 = [FP+8];
 	R1 = [FP+12];
-	jump.s .L765;
-.L763:
+	jump.s .L766;
+.L764:
 	R0 = [FP+-12];
 	R1 = [FP+16];
 	R0 <<= R1;
@@ -5981,10 +5981,10 @@ ___ashldi3:
 	R0 >>= R2;
 	R0 = R1 | R0;
 	[FP+-16] = R0;
-.L762:
+.L763:
 	R0 = [FP+-20];
 	R1 = [FP+-16];
-.L765:
+.L766:
 	[FP+-28] = R0;
 	[FP+-24] = R1;
 	R0 = [FP+-28];
@@ -6010,7 +6010,7 @@ ___ashrdi3:
 	R0 = [FP+-4];
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L767;
+	if cc jump .L768;
 	R0 = [FP+-8];
 	R1 = [FP+-4];
 	R1 += -1;
@@ -6023,15 +6023,15 @@ ___ashrdi3:
 	R1 >>>= R0;
 	R0 = R1;
 	[FP+-20] = R0;
-	jump.s .L768;
-.L767:
+	jump.s .L769;
+.L768:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L769;
+	if !cc jump .L770;
 	R0 = [FP+8];
 	R1 = [FP+12];
-	jump.s .L771;
-.L769:
+	jump.s .L772;
+.L770:
 	R0 = [FP+-8];
 	R1 = [FP+16];
 	R0 >>>= R1;
@@ -6048,10 +6048,10 @@ ___ashrdi3:
 	R0 >>= R2;
 	R0 = R1 | R0;
 	[FP+-20] = R0;
-.L768:
+.L769:
 	R0 = [FP+-20];
 	R1 = [FP+-16];
-.L771:
+.L772:
 	[FP+-28] = R0;
 	[FP+-24] = R1;
 	R0 = [FP+-28];
@@ -6236,12 +6236,12 @@ ___clzsi2:
 	R0 = [FP+-4];
 	R1 = 65535 (Z);
 	cc =R0<=R1 (iu);
-	if !cc jump .L777;
+	if !cc jump .L778;
 	R0 = 16 (X);
-	jump.s .L778;
-.L777:
-	R0 = 0 (X);
+	jump.s .L779;
 .L778:
+	R0 = 0 (X);
+.L779:
 	[FP+-8] = R0;
 	R1 = 16 (X);
 	R0 = [FP+-8];
@@ -6255,12 +6255,12 @@ ___clzsi2:
 	R0 = 65280 (Z);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L779;
+	if !cc jump .L780;
 	R0 = 8 (X);
-	jump.s .L780;
-.L779:
-	R0 = 0 (X);
+	jump.s .L781;
 .L780:
+	R0 = 0 (X);
+.L781:
 	[FP+-8] = R0;
 	R1 = 8 (X);
 	R0 = [FP+-8];
@@ -6276,12 +6276,12 @@ ___clzsi2:
 	R0 = 240 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L781;
+	if !cc jump .L782;
 	R0 = 4 (X);
-	jump.s .L782;
-.L781:
-	R0 = 0 (X);
+	jump.s .L783;
 .L782:
+	R0 = 0 (X);
+.L783:
 	[FP+-8] = R0;
 	R1 = 4 (X);
 	R0 = [FP+-8];
@@ -6297,12 +6297,12 @@ ___clzsi2:
 	R0 = 12 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L783;
+	if !cc jump .L784;
 	R0 = 2 (X);
-	jump.s .L784;
-.L783:
-	R0 = 0 (X);
+	jump.s .L785;
 .L784:
+	R0 = 0 (X);
+.L785:
 	[FP+-8] = R0;
 	R1 = 2 (X);
 	R0 = [FP+-8];
@@ -6352,33 +6352,33 @@ ___cmpdi2:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<R0;
-	if !cc jump .L787;
+	if !cc jump .L788;
 	R0 = 0 (X);
-	jump.s .L792;
-.L787:
+	jump.s .L793;
+.L788:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<=R0;
-	if cc jump .L789;
+	if cc jump .L790;
 	R0 = 2 (X);
-	jump.s .L792;
-.L789:
-	R1 = [FP+-8];
-	R0 = [FP+-16];
-	cc =R1<R0 (iu);
-	if !cc jump .L790;
-	R0 = 0 (X);
-	jump.s .L792;
+	jump.s .L793;
 .L790:
 	R1 = [FP+-8];
 	R0 = [FP+-16];
-	cc =R1<=R0 (iu);
-	if cc jump .L791;
-	R0 = 2 (X);
-	jump.s .L792;
+	cc =R1<R0 (iu);
+	if !cc jump .L791;
+	R0 = 0 (X);
+	jump.s .L793;
 .L791:
-	R0 = 1 (X);
+	R1 = [FP+-8];
+	R0 = [FP+-16];
+	cc =R1<=R0 (iu);
+	if cc jump .L792;
+	R0 = 2 (X);
+	jump.s .L793;
 .L792:
+	R0 = 1 (X);
+.L793:
 	UNLINK;
 	rts;
 	.size	___cmpdi2, .-___cmpdi2
@@ -6417,12 +6417,12 @@ ___ctzsi2:
 	R0 = [FP+-4];
 	R0 = R0.L (Z);
 	cc =R0==0;
-	if !cc jump .L796;
+	if !cc jump .L797;
 	R0 = 16 (X);
-	jump.s .L797;
-.L796:
-	R0 = 0 (X);
+	jump.s .L798;
 .L797:
+	R0 = 0 (X);
+.L798:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	R1 = [FP+-8];
@@ -6433,12 +6433,12 @@ ___ctzsi2:
 	R0 = [FP+-4];
 	R0 = R0.B (Z);
 	cc =R0==0;
-	if !cc jump .L798;
+	if !cc jump .L799;
 	R0 = 8 (X);
-	jump.s .L799;
-.L798:
-	R0 = 0 (X);
+	jump.s .L800;
 .L799:
+	R0 = 0 (X);
+.L800:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	R1 = [FP+-8];
@@ -6452,12 +6452,12 @@ ___ctzsi2:
 	R0 = 15 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L800;
+	if !cc jump .L801;
 	R0 = 4 (X);
-	jump.s .L801;
-.L800:
-	R0 = 0 (X);
+	jump.s .L802;
 .L801:
+	R0 = 0 (X);
+.L802:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	R1 = [FP+-8];
@@ -6471,12 +6471,12 @@ ___ctzsi2:
 	R0 = 3 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if !cc jump .L802;
+	if !cc jump .L803;
 	R0 = 2 (X);
-	jump.s .L803;
-.L802:
-	R0 = 0 (X);
+	jump.s .L804;
 .L803:
+	R0 = 0 (X);
+.L804:
 	[FP+-8] = R0;
 	R0 = [FP+-4];
 	R1 = [FP+-8];
@@ -6525,7 +6525,7 @@ ___lshrdi3:
 	R0 = [FP+-4];
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L806;
+	if cc jump .L807;
 	R0 = 0 (X);
 	[FP+-16] = R0;
 	R0 = [FP+-8];
@@ -6534,15 +6534,15 @@ ___lshrdi3:
 	R1 = R2 - R1;
 	R0 >>= R1;
 	[FP+-20] = R0;
-	jump.s .L807;
-.L806:
+	jump.s .L808;
+.L807:
 	R0 = [FP+16];
 	cc =R0==0;
-	if !cc jump .L808;
+	if !cc jump .L809;
 	R0 = [FP+8];
 	R1 = [FP+12];
-	jump.s .L810;
-.L808:
+	jump.s .L811;
+.L809:
 	R0 = [FP+-8];
 	R1 = [FP+16];
 	R0 >>= R1;
@@ -6557,10 +6557,10 @@ ___lshrdi3:
 	R0 >>= R2;
 	R0 = R1 | R0;
 	[FP+-20] = R0;
-.L807:
+.L808:
 	R0 = [FP+-20];
 	R1 = [FP+-16];
-.L810:
+.L811:
 	[FP+-28] = R0;
 	[FP+-24] = R1;
 	R0 = [FP+-28];
@@ -7021,12 +7021,12 @@ ___powidf2:
 	R1 <<= 20;
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-.L829:
+.L830:
 	R1 = [FP+16];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L826;
+	if cc jump .L827;
 	R0 = [FP+12];
 	[SP+12] = R0;
 	R2 = [FP+8];
@@ -7039,7 +7039,7 @@ ___powidf2:
 	R1 = [FP+-24];
 	[FP+-8] = R0;
 	[FP+-4] = R1;
-.L826:
+.L827:
 	R0 = [FP+16];
 	R1 = R0 >> 31;
 	R0 = R1 + R0;
@@ -7047,7 +7047,7 @@ ___powidf2:
 	[FP+16] = R0;
 	R0 = [FP+16];
 	cc =R0==0;
-	if cc jump .L834;
+	if cc jump .L835;
 	R0 = [FP+12];
 	[SP+12] = R0;
 	R2 = [FP+8];
@@ -7060,12 +7060,12 @@ ___powidf2:
 	R1 = [FP+-32];
 	[FP+8] = R0;
 	[FP+12] = R1;
-	jump.s .L829;
-.L834:
+	jump.s .L830;
+.L835:
 	nop;
 	R0 = [FP+-12];
 	cc =R0==0;
-	if cc jump .L830;
+	if cc jump .L831;
 	R0 = [FP+-4];
 	[SP+12] = R0;
 	R2 = [FP+-8];
@@ -7077,11 +7077,11 @@ ___powidf2:
 	[FP+-40] = R1;
 	R0 = [FP+-44];
 	R1 = [FP+-40];
-	jump.s .L832;
-.L830:
+	jump.s .L833;
+.L831:
 	R0 = [FP+-8];
 	R1 = [FP+-4];
-.L832:
+.L833:
 	[FP+-20] = R0;
 	[FP+-16] = R1;
 	R0 = [FP+-20];
@@ -7103,17 +7103,17 @@ ___powisf2:
 	R0 = 127 (X);
 	R0 <<= 23;
 	[FP+-4] = R0;
-.L839:
+.L840:
 	R1 = [FP+12];
 	R0 = 1 (X);
 	R0 = R1 & R0;
 	cc =R0==0;
-	if cc jump .L836;
+	if cc jump .L837;
 	R1 = [FP+8];
 	R0 = [FP+-4];
 	call ___mulsf3;
 	[FP+-4] = R0;
-.L836:
+.L837:
 	R0 = [FP+12];
 	R1 = R0 >> 31;
 	R0 = R1 + R0;
@@ -7121,25 +7121,25 @@ ___powisf2:
 	[FP+12] = R0;
 	R0 = [FP+12];
 	cc =R0==0;
-	if cc jump .L844;
+	if cc jump .L845;
 	R1 = [FP+8];
 	R0 = [FP+8];
 	call ___mulsf3;
 	[FP+8] = R0;
-	jump.s .L839;
-.L844:
+	jump.s .L840;
+.L845:
 	nop;
 	R0 = [FP+-8];
 	cc =R0==0;
-	if cc jump .L840;
+	if cc jump .L841;
 	R1 = [FP+-4];
 	R0 = 127 (X);
 	R0 <<= 23;
 	call ___divsf3;
-	jump.s .L842;
-.L840:
+	jump.s .L843;
+.L841:
 	R0 = [FP+-4];
-.L842:
+.L843:
 	UNLINK;
 	rts;
 	.size	___powisf2, .-___powisf2
@@ -7162,33 +7162,33 @@ ___ucmpdi2:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<R0 (iu);
-	if !cc jump .L846;
+	if !cc jump .L847;
 	R0 = 0 (X);
-	jump.s .L851;
-.L846:
+	jump.s .L852;
+.L847:
 	R1 = [FP+-4];
 	R0 = [FP+-12];
 	cc =R1<=R0 (iu);
-	if cc jump .L848;
+	if cc jump .L849;
 	R0 = 2 (X);
-	jump.s .L851;
-.L848:
-	R1 = [FP+-8];
-	R0 = [FP+-16];
-	cc =R1<R0 (iu);
-	if !cc jump .L849;
-	R0 = 0 (X);
-	jump.s .L851;
+	jump.s .L852;
 .L849:
 	R1 = [FP+-8];
 	R0 = [FP+-16];
-	cc =R1<=R0 (iu);
-	if cc jump .L850;
-	R0 = 2 (X);
-	jump.s .L851;
+	cc =R1<R0 (iu);
+	if !cc jump .L850;
+	R0 = 0 (X);
+	jump.s .L852;
 .L850:
-	R0 = 1 (X);
+	R1 = [FP+-8];
+	R0 = [FP+-16];
+	cc =R1<=R0 (iu);
+	if cc jump .L851;
+	R0 = 2 (X);
+	jump.s .L852;
 .L851:
+	R0 = 1 (X);
+.L852:
 	UNLINK;
 	rts;
 	.size	___ucmpdi2, .-___ucmpdi2
