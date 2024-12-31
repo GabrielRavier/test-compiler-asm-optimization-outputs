@@ -583,8 +583,6 @@ swab:
 .L70:
 	cmp	DWORD PTR [ebp+16], 1
 	jg	.L71
-	nop
-	nop
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -1151,7 +1149,6 @@ fmax:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L145
 	fld	QWORD PTR [ebp-16]
 	jmp	.L142
@@ -1222,7 +1219,6 @@ fmaxf:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L157
 	fld	DWORD PTR [ebp+12]
 	jmp	.L154
@@ -1293,7 +1289,6 @@ fmaxl:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L169
 	fld	TBYTE PTR [ebp+20]
 	jmp	.L166
@@ -1374,7 +1369,6 @@ fmin:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L181
 	fld	QWORD PTR [ebp-8]
 	jmp	.L178
@@ -1445,7 +1439,6 @@ fminf:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L193
 	fld	DWORD PTR [ebp+8]
 	jmp	.L190
@@ -1516,7 +1509,6 @@ fminl:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L205
 	fld	TBYTE PTR [ebp+8]
 	jmp	.L202
@@ -1726,14 +1718,13 @@ remque:
 	mov	eax, DWORD PTR [ebp-4]
 	mov	eax, DWORD PTR [eax+4]
 	test	eax, eax
-	je	.L225
+	je	.L222
 	mov	eax, DWORD PTR [ebp-4]
 	mov	eax, DWORD PTR [eax+4]
 	mov	edx, DWORD PTR [ebp-4]
 	mov	edx, DWORD PTR [edx]
 	mov	DWORD PTR [eax], edx
-.L225:
-	nop
+.L222:
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -2632,7 +2623,6 @@ wcscpy:
 	sub	esp, 16
 	mov	eax, DWORD PTR [ebp+8]
 	mov	DWORD PTR [ebp-4], eax
-	nop
 .L309:
 	mov	edx, DWORD PTR [ebp+12]
 	lea	eax, [edx+4]
@@ -3011,11 +3001,11 @@ bcopy:
 .L359:
 	cmp	DWORD PTR [ebp+16], 0
 	jne	.L360
-	jmp	.L364
+	jmp	.L357
 .L358:
 	mov	eax, DWORD PTR [ebp-4]
 	cmp	eax, DWORD PTR [ebp-8]
-	je	.L364
+	je	.L357
 	jmp	.L362
 .L363:
 	mov	edx, DWORD PTR [ebp-4]
@@ -3030,8 +3020,7 @@ bcopy:
 .L362:
 	cmp	DWORD PTR [ebp+16], 0
 	jne	.L363
-.L364:
-	nop
+.L357:
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -3587,7 +3576,6 @@ ffs:
 	shr	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L397
 	mov	eax, DWORD PTR [ebp-4]
 	add	eax, 1
@@ -3632,7 +3620,6 @@ libiberty_ffs:
 .L403:
 	mov	edx, eax
 	and	edx, 1
-	test	edx, edx
 	je	.L404
 	mov	eax, ebx
 .L402:
@@ -3816,7 +3803,6 @@ ldexpf:
 .L434:
 	mov	eax, DWORD PTR [ebp+12]
 	and	eax, 1
-	test	eax, eax
 	je	.L432
 	fld	DWORD PTR [ebp+8]
 	fmul	DWORD PTR [ebp-4]
@@ -3829,13 +3815,11 @@ ldexpf:
 	sar	eax
 	mov	DWORD PTR [ebp+12], eax
 	cmp	DWORD PTR [ebp+12], 0
-	je	.L437
+	je	.L428
 	fld	DWORD PTR [ebp-4]
 	fmul	st, st(0)
 	fstp	DWORD PTR [ebp-4]
 	jmp	.L434
-.L437:
-	nop
 .L428:
 	fld	DWORD PTR [ebp+8]
 	leave
@@ -3893,7 +3877,6 @@ ldexp:
 .L446:
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, 1
-	test	eax, eax
 	je	.L444
 	fld	QWORD PTR [ebp-24]
 	fmul	QWORD PTR [ebp-8]
@@ -3906,13 +3889,11 @@ ldexp:
 	sar	eax
 	mov	DWORD PTR [ebp+16], eax
 	cmp	DWORD PTR [ebp+16], 0
-	je	.L449
+	je	.L440
 	fld	QWORD PTR [ebp-8]
 	fmul	st, st(0)
 	fstp	QWORD PTR [ebp-8]
 	jmp	.L446
-.L449:
-	nop
 .L440:
 	fld	QWORD PTR [ebp-24]
 	leave
@@ -3966,7 +3947,6 @@ ldexpl:
 .L458:
 	mov	eax, DWORD PTR [ebp+20]
 	and	eax, 1
-	test	eax, eax
 	je	.L456
 	fld	TBYTE PTR [ebp+8]
 	fld	TBYTE PTR [ebp-12]
@@ -3980,13 +3960,11 @@ ldexpl:
 	sar	eax
 	mov	DWORD PTR [ebp+20], eax
 	cmp	DWORD PTR [ebp+20], 0
-	je	.L461
+	je	.L452
 	fld	TBYTE PTR [ebp-12]
 	fmul	st, st(0)
 	fstp	TBYTE PTR [ebp-12]
 	jmp	.L458
-.L461:
-	nop
 .L452:
 	fld	TBYTE PTR [ebp+8]
 	leave
@@ -4096,7 +4074,6 @@ strnlen:
 	mov	DWORD PTR [ebp-4], 0
 	jmp	.L474
 .L479:
-	nop
 	add	DWORD PTR [ebp-4], 1
 .L474:
 	mov	eax, DWORD PTR [ebp-4]
@@ -4718,7 +4695,6 @@ __mulsi3:
 .L561:
 	mov	eax, DWORD PTR [ebp+8]
 	and	eax, 1
-	test	eax, eax
 	je	.L560
 	mov	eax, DWORD PTR [ebp+12]
 	add	DWORD PTR [ebp-4], eax
@@ -4817,7 +4793,6 @@ __cmovd:
 	mov	DWORD PTR [ebp+16], edx
 	test	eax, eax
 	jne	.L572
-	nop
 .L570:
 	nop
 	leave
@@ -4874,7 +4849,6 @@ __cmovh:
 	jb	.L577
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, 1
-	test	eax, eax
 	je	.L579
 	mov	eax, DWORD PTR [ebp+16]
 	lea	edx, [eax-1]
@@ -4902,7 +4876,6 @@ __cmovh:
 	mov	DWORD PTR [ebp+16], edx
 	test	eax, eax
 	jne	.L581
-	nop
 .L579:
 	nop
 	leave
@@ -4991,7 +4964,6 @@ __cmovw:
 	mov	DWORD PTR [ebp+16], edx
 	test	eax, eax
 	jne	.L591
-	nop
 .L589:
 	nop
 	leave
@@ -5172,15 +5144,11 @@ __clzhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
-	jne	.L612
+	jne	.L609
 	add	DWORD PTR [ebp-4], 1
 .L607:
 	cmp	DWORD PTR [ebp-4], 15
 	jle	.L610
-	jmp	.L609
-.L612:
-	nop
 .L609:
 	mov	eax, DWORD PTR [ebp-4]
 	leave
@@ -5212,15 +5180,11 @@ __ctzhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
-	jne	.L619
+	jne	.L616
 	add	DWORD PTR [ebp-4], 1
 .L614:
 	cmp	DWORD PTR [ebp-4], 15
 	jle	.L617
-	jmp	.L616
-.L619:
-	nop
 .L616:
 	mov	eax, DWORD PTR [ebp-4]
 	leave
@@ -5300,7 +5264,6 @@ __parityhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L628
 	add	DWORD PTR [ebp-8], 1
 .L628:
@@ -5340,7 +5303,6 @@ __popcounthi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L633
 	add	DWORD PTR [ebp-8], 1
 .L633:
@@ -5372,7 +5334,6 @@ __mulsi3_iq2000:
 .L639:
 	mov	eax, DWORD PTR [ebp+8]
 	and	eax, 1
-	test	eax, eax
 	je	.L638
 	mov	eax, DWORD PTR [ebp+12]
 	add	DWORD PTR [ebp-4], eax
@@ -5409,7 +5370,6 @@ __mulsi3_lm32:
 .L646:
 	mov	eax, DWORD PTR [ebp+12]
 	and	eax, 1
-	test	eax, eax
 	je	.L645
 	mov	eax, DWORD PTR [ebp+8]
 	add	DWORD PTR [ebp-4], eax
@@ -5668,7 +5628,6 @@ __mulhi3:
 .L685:
 	mov	eax, DWORD PTR [ebp+12]
 	and	eax, 1
-	test	eax, eax
 	je	.L683
 	mov	eax, DWORD PTR [ebp+8]
 	add	DWORD PTR [ebp-12], eax
@@ -5927,7 +5886,6 @@ __ashldi3:
 	mov	DWORD PTR [ebp-16], edx
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, DWORD PTR [ebp-12]
-	test	eax, eax
 	je	.L718
 	mov	DWORD PTR [ebp-28], 0
 	mov	edx, DWORD PTR [ebp-20]
@@ -6002,7 +5960,6 @@ __ashrdi3:
 	mov	DWORD PTR [ebp-16], edx
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, DWORD PTR [ebp-12]
-	test	eax, eax
 	je	.L724
 	mov	edx, DWORD PTR [ebp-16]
 	mov	eax, DWORD PTR [ebp-12]
@@ -6209,7 +6166,6 @@ __clzsi2:
 	mov	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 65280
-	test	eax, eax
 	jne	.L736
 	mov	eax, 8
 	jmp	.L737
@@ -6225,7 +6181,6 @@ __clzsi2:
 	add	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 240
-	test	eax, eax
 	jne	.L738
 	mov	eax, 4
 	jmp	.L739
@@ -6241,7 +6196,6 @@ __clzsi2:
 	add	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 12
-	test	eax, eax
 	jne	.L740
 	mov	eax, 2
 	jmp	.L741
@@ -6257,7 +6211,6 @@ __clzsi2:
 	add	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 2
-	test	eax, eax
 	sete	al
 	movzx	eax, al
 	mov	edx, eax
@@ -6415,7 +6368,6 @@ __ctzsi2:
 	add	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 15
-	test	eax, eax
 	jne	.L757
 	mov	eax, 4
 	jmp	.L758
@@ -6430,7 +6382,6 @@ __ctzsi2:
 	add	DWORD PTR [ebp-12], eax
 	mov	eax, DWORD PTR [ebp-4]
 	and	eax, 3
-	test	eax, eax
 	jne	.L759
 	mov	eax, 2
 	jmp	.L760
@@ -6488,7 +6439,6 @@ __lshrdi3:
 	mov	DWORD PTR [ebp-16], edx
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, DWORD PTR [ebp-12]
-	test	eax, eax
 	je	.L763
 	mov	DWORD PTR [ebp-24], 0
 	mov	edx, DWORD PTR [ebp-16]
@@ -6990,7 +6940,6 @@ __powidf2:
 .L786:
 	mov	eax, DWORD PTR [ebp+16]
 	and	eax, 1
-	test	eax, eax
 	je	.L783
 	fld	QWORD PTR [ebp-8]
 	fmul	QWORD PTR [ebp-24]
@@ -7003,13 +6952,12 @@ __powidf2:
 	sar	eax
 	mov	DWORD PTR [ebp+16], eax
 	cmp	DWORD PTR [ebp+16], 0
-	je	.L791
+	je	.L790
 	fld	QWORD PTR [ebp-24]
 	fmul	st, st(0)
 	fstp	QWORD PTR [ebp-24]
 	jmp	.L786
-.L791:
-	nop
+.L790:
 	cmp	DWORD PTR [ebp-12], 0
 	je	.L787
 	fld1
@@ -7045,7 +6993,6 @@ __powisf2:
 .L796:
 	mov	eax, DWORD PTR [ebp+12]
 	and	eax, 1
-	test	eax, eax
 	je	.L793
 	fld	DWORD PTR [ebp-4]
 	fmul	DWORD PTR [ebp+8]
@@ -7058,13 +7005,12 @@ __powisf2:
 	sar	eax
 	mov	DWORD PTR [ebp+12], eax
 	cmp	DWORD PTR [ebp+12], 0
-	je	.L801
+	je	.L800
 	fld	DWORD PTR [ebp+8]
 	fmul	st, st(0)
 	fstp	DWORD PTR [ebp+8]
 	jmp	.L796
-.L801:
-	nop
+.L800:
 	cmp	DWORD PTR [ebp-8], 0
 	je	.L797
 	fld1

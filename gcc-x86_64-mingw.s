@@ -624,8 +624,6 @@ swab:
 .L74:
 	cmp	QWORD PTR 32[rbp], 1
 	jg	.L75
-	nop
-	nop
 	add	rsp, 16
 	pop	rbp
 	ret
@@ -1082,7 +1080,6 @@ fmax:
 	movsd	xmm0, QWORD PTR 16[rbp]
 	movmskpd	eax, xmm0
 	and	eax, 1
-	test	eax, eax
 	je	.L149
 	movsd	xmm0, QWORD PTR 24[rbp]
 	jmp	.L146
@@ -1133,7 +1130,6 @@ fmaxf:
 	je	.L160
 	mov	eax, DWORD PTR 16[rbp]
 	and	eax, -2147483648
-	test	eax, eax
 	je	.L161
 	movss	xmm0, DWORD PTR 24[rbp]
 	jmp	.L158
@@ -1210,7 +1206,6 @@ fmaxl:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L173
 	fld	TBYTE PTR -32[rbp]
 	jmp	.L174
@@ -1274,7 +1269,6 @@ fmin:
 	movsd	xmm0, QWORD PTR 16[rbp]
 	movmskpd	eax, xmm0
 	and	eax, 1
-	test	eax, eax
 	je	.L185
 	movsd	xmm0, QWORD PTR 16[rbp]
 	jmp	.L182
@@ -1325,7 +1319,6 @@ fminf:
 	je	.L196
 	mov	eax, DWORD PTR 16[rbp]
 	and	eax, -2147483648
-	test	eax, eax
 	je	.L197
 	movss	xmm0, DWORD PTR 16[rbp]
 	jmp	.L194
@@ -1402,7 +1395,6 @@ fminl:
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	test	eax, eax
 	je	.L209
 	fld	TBYTE PTR -16[rbp]
 	jmp	.L210
@@ -1589,14 +1581,13 @@ remque:
 	mov	rax, QWORD PTR -8[rbp]
 	mov	rax, QWORD PTR 8[rax]
 	test	rax, rax
-	je	.L229
+	je	.L226
 	mov	rax, QWORD PTR -8[rbp]
 	mov	rax, QWORD PTR 8[rax]
 	mov	rdx, QWORD PTR -8[rbp]
 	mov	rdx, QWORD PTR [rdx]
 	mov	QWORD PTR [rax], rdx
-.L229:
-	nop
+.L226:
 	add	rsp, 16
 	pop	rbp
 	ret
@@ -2354,7 +2345,6 @@ wcscpy:
 	mov	QWORD PTR 24[rbp], rdx
 	mov	rax, QWORD PTR 16[rbp]
 	mov	QWORD PTR -8[rbp], rax
-	nop
 .L313:
 	mov	rdx, QWORD PTR 24[rbp]
 	lea	rax, 2[rdx]
@@ -2727,11 +2717,11 @@ bcopy:
 .L363:
 	cmp	QWORD PTR 32[rbp], 0
 	jne	.L364
-	jmp	.L368
+	jmp	.L361
 .L362:
 	mov	rax, QWORD PTR -8[rbp]
 	cmp	rax, QWORD PTR -16[rbp]
-	je	.L368
+	je	.L361
 	jmp	.L366
 .L367:
 	mov	rdx, QWORD PTR -8[rbp]
@@ -2746,8 +2736,7 @@ bcopy:
 .L366:
 	cmp	QWORD PTR 32[rbp], 0
 	jne	.L367
-.L368:
-	nop
+.L361:
 	add	rsp, 16
 	pop	rbp
 	ret
@@ -3134,7 +3123,6 @@ ffs:
 	shr	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L397
 	mov	eax, DWORD PTR -4[rbp]
 	add	eax, 1
@@ -3175,7 +3163,6 @@ libiberty_ffs:
 .L403:
 	mov	edx, eax
 	and	edx, 1
-	test	edx, edx
 	je	.L404
 	mov	eax, ebx
 .L402:
@@ -3328,7 +3315,6 @@ ldexpf:
 .L434:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L432
 	movss	xmm0, DWORD PTR 16[rbp]
 	mulss	xmm0, DWORD PTR -4[rbp]
@@ -3341,13 +3327,11 @@ ldexpf:
 	sar	eax
 	mov	DWORD PTR 24[rbp], eax
 	cmp	DWORD PTR 24[rbp], 0
-	je	.L437
+	je	.L428
 	movss	xmm0, DWORD PTR -4[rbp]
 	mulss	xmm0, xmm0
 	movss	DWORD PTR -4[rbp], xmm0
 	jmp	.L434
-.L437:
-	nop
 .L428:
 	movss	xmm0, DWORD PTR 16[rbp]
 	add	rsp, 16
@@ -3388,7 +3372,6 @@ ldexp:
 .L445:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L443
 	movsd	xmm0, QWORD PTR 16[rbp]
 	mulsd	xmm0, QWORD PTR -8[rbp]
@@ -3401,13 +3384,11 @@ ldexp:
 	sar	eax
 	mov	DWORD PTR 24[rbp], eax
 	cmp	DWORD PTR 24[rbp], 0
-	je	.L448
+	je	.L439
 	movsd	xmm0, QWORD PTR -8[rbp]
 	mulsd	xmm0, xmm0
 	movsd	QWORD PTR -8[rbp], xmm0
 	jmp	.L445
-.L448:
-	nop
 .L439:
 	movsd	xmm0, QWORD PTR 16[rbp]
 	add	rsp, 16
@@ -3461,7 +3442,6 @@ ldexpl:
 .L456:
 	mov	eax, DWORD PTR 48[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L454
 	fld	TBYTE PTR -32[rbp]
 	fld	TBYTE PTR -16[rbp]
@@ -3475,13 +3455,11 @@ ldexpl:
 	sar	eax
 	mov	DWORD PTR 48[rbp], eax
 	cmp	DWORD PTR 48[rbp], 0
-	je	.L459
+	je	.L450
 	fld	TBYTE PTR -16[rbp]
 	fmul	st, st(0)
 	fstp	TBYTE PTR -16[rbp]
 	jmp	.L456
-.L459:
-	nop
 .L450:
 	mov	rax, QWORD PTR 32[rbp]
 	fld	TBYTE PTR -32[rbp]
@@ -3594,7 +3572,6 @@ strnlen:
 	mov	QWORD PTR -8[rbp], 0
 	jmp	.L472
 .L477:
-	nop
 	add	QWORD PTR -8[rbp], 1
 .L472:
 	mov	rax, QWORD PTR -8[rbp]
@@ -3971,7 +3948,6 @@ __muldi3:
 .L535:
 	mov	rax, QWORD PTR -16[rbp]
 	and	eax, 1
-	test	rax, rax
 	je	.L534
 	mov	rax, QWORD PTR 24[rbp]
 	add	QWORD PTR -8[rbp], rax
@@ -4125,7 +4101,6 @@ __mulsi3:
 .L557:
 	mov	eax, DWORD PTR 16[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L556
 	mov	eax, DWORD PTR 24[rbp]
 	add	DWORD PTR -4[rbp], eax
@@ -4222,7 +4197,6 @@ __cmovd:
 	mov	DWORD PTR 32[rbp], edx
 	test	eax, eax
 	jne	.L568
-	nop
 .L566:
 	nop
 	add	rsp, 32
@@ -4279,7 +4253,6 @@ __cmovh:
 	jb	.L573
 	mov	eax, DWORD PTR 32[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L575
 	mov	eax, DWORD PTR 32[rbp]
 	sub	eax, 1
@@ -4309,7 +4282,6 @@ __cmovh:
 	mov	DWORD PTR 32[rbp], edx
 	test	eax, eax
 	jne	.L577
-	nop
 .L575:
 	nop
 	add	rsp, 32
@@ -4398,7 +4370,6 @@ __cmovw:
 	mov	DWORD PTR 32[rbp], edx
 	test	eax, eax
 	jne	.L587
-	nop
 .L585:
 	nop
 	add	rsp, 32
@@ -4576,15 +4547,11 @@ __clzhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
-	jne	.L614
+	jne	.L611
 	add	DWORD PTR -4[rbp], 1
 .L609:
 	cmp	DWORD PTR -4[rbp], 15
 	jle	.L612
-	jmp	.L611
-.L614:
-	nop
 .L611:
 	mov	eax, DWORD PTR -4[rbp]
 	add	rsp, 16
@@ -4613,15 +4580,11 @@ __ctzhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
-	jne	.L621
+	jne	.L618
 	add	DWORD PTR -4[rbp], 1
 .L616:
 	cmp	DWORD PTR -4[rbp], 15
 	jle	.L619
-	jmp	.L618
-.L621:
-	nop
 .L618:
 	mov	eax, DWORD PTR -4[rbp]
 	add	rsp, 16
@@ -4677,7 +4640,6 @@ __parityhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L630
 	add	DWORD PTR -8[rbp], 1
 .L630:
@@ -4714,7 +4676,6 @@ __popcounthi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	test	eax, eax
 	je	.L635
 	add	DWORD PTR -8[rbp], 1
 .L635:
@@ -4745,7 +4706,6 @@ __mulsi3_iq2000:
 .L641:
 	mov	eax, DWORD PTR 16[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L640
 	mov	eax, DWORD PTR 24[rbp]
 	add	DWORD PTR -4[rbp], eax
@@ -4781,7 +4741,6 @@ __mulsi3_lm32:
 .L648:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L647
 	mov	eax, DWORD PTR 16[rbp]
 	add	DWORD PTR -4[rbp], eax
@@ -4969,7 +4928,6 @@ __mulhi3:
 .L687:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L685
 	mov	eax, DWORD PTR 16[rbp]
 	add	DWORD PTR -12[rbp], eax
@@ -5211,7 +5169,6 @@ __ashldi3:
 	mov	QWORD PTR -16[rbp], rax
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L720
 	mov	DWORD PTR -24[rbp], 0
 	mov	edx, DWORD PTR -16[rbp]
@@ -5281,7 +5238,6 @@ __ashlti3:
 	mov	QWORD PTR -24[rbp], rdx
 	mov	eax, DWORD PTR 40[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L726
 	mov	QWORD PTR -48[rbp], 0
 	mov	rdx, QWORD PTR -32[rbp]
@@ -5349,7 +5305,6 @@ __ashrdi3:
 	mov	QWORD PTR -16[rbp], rax
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L732
 	mov	edx, DWORD PTR -12[rbp]
 	mov	eax, DWORD PTR -4[rbp]
@@ -5425,7 +5380,6 @@ __ashrti3:
 	mov	QWORD PTR -24[rbp], rdx
 	mov	eax, DWORD PTR 40[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L738
 	mov	rdx, QWORD PTR -24[rbp]
 	mov	eax, DWORD PTR -4[rbp]
@@ -5587,7 +5541,6 @@ __clzsi2:
 	mov	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 65280
-	test	eax, eax
 	jne	.L750
 	mov	eax, 8
 	jmp	.L751
@@ -5603,7 +5556,6 @@ __clzsi2:
 	add	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 240
-	test	eax, eax
 	jne	.L752
 	mov	eax, 4
 	jmp	.L753
@@ -5619,7 +5571,6 @@ __clzsi2:
 	add	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 12
-	test	eax, eax
 	jne	.L754
 	mov	eax, 2
 	jmp	.L755
@@ -5635,7 +5586,6 @@ __clzsi2:
 	add	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 2
-	test	eax, eax
 	sete	al
 	movzx	eax, al
 	mov	edx, eax
@@ -5882,7 +5832,6 @@ __ctzsi2:
 	add	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 15
-	test	eax, eax
 	jne	.L780
 	mov	eax, 4
 	jmp	.L781
@@ -5897,7 +5846,6 @@ __ctzsi2:
 	add	DWORD PTR -12[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	and	eax, 3
-	test	eax, eax
 	jne	.L782
 	mov	eax, 2
 	jmp	.L783
@@ -6038,7 +5986,6 @@ __lshrdi3:
 	mov	QWORD PTR -16[rbp], rax
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L793
 	mov	DWORD PTR -20[rbp], 0
 	mov	edx, DWORD PTR -12[rbp]
@@ -6107,7 +6054,6 @@ __lshrti3:
 	mov	QWORD PTR -24[rbp], rdx
 	mov	eax, DWORD PTR 40[rbp]
 	and	eax, DWORD PTR -4[rbp]
-	test	eax, eax
 	je	.L799
 	mov	QWORD PTR -40[rbp], 0
 	mov	rdx, QWORD PTR -24[rbp]
@@ -6872,7 +6818,6 @@ __powidf2:
 .L832:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L829
 	movsd	xmm0, QWORD PTR -8[rbp]
 	mulsd	xmm0, QWORD PTR 16[rbp]
@@ -6885,13 +6830,12 @@ __powidf2:
 	sar	eax
 	mov	DWORD PTR 24[rbp], eax
 	cmp	DWORD PTR 24[rbp], 0
-	je	.L837
+	je	.L836
 	movsd	xmm0, QWORD PTR 16[rbp]
 	mulsd	xmm0, xmm0
 	movsd	QWORD PTR 16[rbp], xmm0
 	jmp	.L832
-.L837:
-	nop
+.L836:
 	cmp	DWORD PTR -12[rbp], 0
 	je	.L833
 	movsd	xmm0, QWORD PTR .LC16[rip]
@@ -6926,7 +6870,6 @@ __powisf2:
 .L842:
 	mov	eax, DWORD PTR 24[rbp]
 	and	eax, 1
-	test	eax, eax
 	je	.L839
 	movss	xmm0, DWORD PTR -4[rbp]
 	mulss	xmm0, DWORD PTR 16[rbp]
@@ -6939,13 +6882,12 @@ __powisf2:
 	sar	eax
 	mov	DWORD PTR 24[rbp], eax
 	cmp	DWORD PTR 24[rbp], 0
-	je	.L847
+	je	.L846
 	movss	xmm0, DWORD PTR 16[rbp]
 	mulss	xmm0, xmm0
 	movss	DWORD PTR 16[rbp], xmm0
 	jmp	.L842
-.L847:
-	nop
+.L846:
 	cmp	DWORD PTR -8[rbp], 0
 	je	.L843
 	movss	xmm0, DWORD PTR .LC18[rip]
