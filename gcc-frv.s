@@ -4163,10 +4163,8 @@ ffs:
 	.type	libiberty_ffs, @function
 libiberty_ffs:
 	addi sp,#-24,sp
-	sti fp, @(sp,8)
-	addi sp,#8,fp
 	movsg lr, gr5
-	sti gr5, @(fp,8)
+	sti gr5, @(sp,16)
 	sti gr18, @(sp,0)
 	mov gr8, gr4
 	cmpi gr4, #0, icc0
@@ -4187,8 +4185,7 @@ libiberty_ffs:
 .L451:
 	mov gr4, gr8
 	ldi @(sp,0), gr18
-	ldi @(fp,8), gr5
-	ld @(fp,gr0), fp
+	ldi @(sp,16), gr5
 	addi sp,#24,sp
 	jmpl @(gr5,gr0)
 	.size	libiberty_ffs, .-libiberty_ffs

@@ -6,21 +6,14 @@
 make_ti:
 .LFB0:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp-32], rdi
+	mov	QWORD PTR [rsp-40], rsi
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-24]
+	mov	rdx, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE0:
@@ -30,21 +23,14 @@ make_ti:
 make_tu:
 .LFB1:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp-32], rdi
+	mov	QWORD PTR [rsp-40], rsi
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-24]
+	mov	rdx, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE1:
@@ -54,60 +40,53 @@ make_tu:
 memmove:
 .LFB2:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-16]
-	cmp	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-16]
+	cmp	rax, QWORD PTR [rsp-8]
 	jnb	.L6
-	mov	rax, QWORD PTR [rbp-40]
-	add	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-40]
-	add	QWORD PTR [rbp-8], rax
+	mov	rax, QWORD PTR [rsp-40]
+	add	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-40]
+	add	QWORD PTR [rsp-8], rax
 	jmp	.L7
 .L8:
-	sub	QWORD PTR [rbp-16], 1
-	sub	QWORD PTR [rbp-8], 1
-	mov	rax, QWORD PTR [rbp-16]
+	sub	QWORD PTR [rsp-16], 1
+	sub	QWORD PTR [rsp-8], 1
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L7:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L8
 	jmp	.L9
 .L6:
-	mov	rax, QWORD PTR [rbp-16]
-	cmp	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
+	cmp	rax, QWORD PTR [rsp-8]
 	je	.L9
 	jmp	.L10
 .L11:
-	mov	rdx, QWORD PTR [rbp-16]
+	mov	rdx, QWORD PTR [rsp-16]
 	lea	rax, [rdx+1]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-8]
 	lea	rcx, [rax+1]
-	mov	QWORD PTR [rbp-8], rcx
+	mov	QWORD PTR [rsp-8], rcx
 	movzx	edx, BYTE PTR [rdx]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L10:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L11
 .L9:
-	mov	rax, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE2:
@@ -117,50 +96,42 @@ memmove:
 memccpy:
 .LFB3:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	DWORD PTR [rbp-36], edx
-	mov	QWORD PTR [rbp-48], rcx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	eax, DWORD PTR [rbp-36]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	DWORD PTR [rsp-36], edx
+	mov	QWORD PTR [rsp-48], rcx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	eax, DWORD PTR [rsp-36]
 	movzx	eax, al
-	mov	DWORD PTR [rbp-36], eax
+	mov	DWORD PTR [rsp-36], eax
 	jmp	.L14
 .L16:
-	sub	QWORD PTR [rbp-48], 1
-	add	QWORD PTR [rbp-16], 1
-	add	QWORD PTR [rbp-8], 1
+	sub	QWORD PTR [rsp-48], 1
+	add	QWORD PTR [rsp-16], 1
+	add	QWORD PTR [rsp-8], 1
 .L14:
-	cmp	QWORD PTR [rbp-48], 0
+	cmp	QWORD PTR [rsp-48], 0
 	je	.L15
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR [rbp-36], eax
+	cmp	DWORD PTR [rsp-36], eax
 	jne	.L16
 .L15:
-	cmp	QWORD PTR [rbp-48], 0
+	cmp	QWORD PTR [rsp-48], 0
 	je	.L17
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	add	rax, 1
-	jmp	.L18
+	ret
 .L17:
 	mov	eax, 0
-.L18:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE3:
@@ -170,41 +141,33 @@ memccpy:
 memchr:
 .LFB4:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	DWORD PTR [rbp-28], esi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	eax, DWORD PTR [rbp-28]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	DWORD PTR [rsp-28], esi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	eax, DWORD PTR [rsp-28]
 	movzx	eax, al
-	mov	DWORD PTR [rbp-28], eax
+	mov	DWORD PTR [rsp-28], eax
 	jmp	.L20
 .L22:
-	add	QWORD PTR [rbp-8], 1
-	sub	QWORD PTR [rbp-40], 1
+	add	QWORD PTR [rsp-8], 1
+	sub	QWORD PTR [rsp-40], 1
 .L20:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	je	.L21
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR [rbp-28], eax
+	cmp	DWORD PTR [rsp-28], eax
 	jne	.L22
 .L21:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	je	.L23
-	mov	rax, QWORD PTR [rbp-8]
-	jmp	.L25
+	mov	rax, QWORD PTR [rsp-8]
+	ret
 .L23:
 	mov	eax, 0
-.L25:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE4:
@@ -214,39 +177,34 @@ memchr:
 memcmp:
 .LFB5:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
 	jmp	.L27
 .L29:
-	sub	QWORD PTR [rbp-40], 1
-	add	QWORD PTR [rbp-8], 1
-	add	QWORD PTR [rbp-16], 1
+	sub	QWORD PTR [rsp-40], 1
+	add	QWORD PTR [rsp-8], 1
+	add	QWORD PTR [rsp-16], 1
 .L27:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	je	.L28
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	je	.L29
 .L28:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	je	.L30
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	edx, al
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
 	sub	edx, eax
@@ -255,8 +213,6 @@ memcmp:
 	mov	edx, 0
 .L32:
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE5:
@@ -266,35 +222,28 @@ memcmp:
 memcpy:
 .LFB6:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
 	jmp	.L34
 .L35:
-	mov	rdx, QWORD PTR [rbp-16]
+	mov	rdx, QWORD PTR [rsp-16]
 	lea	rax, [rdx+1]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-8]
 	lea	rcx, [rax+1]
-	mov	QWORD PTR [rbp-8], rcx
+	mov	QWORD PTR [rsp-8], rcx
 	movzx	edx, BYTE PTR [rdx]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L34:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L35
-	mov	rax, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE6:
@@ -304,42 +253,34 @@ memcpy:
 memrchr:
 .LFB7:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	DWORD PTR [rbp-28], esi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	eax, DWORD PTR [rbp-28]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	DWORD PTR [rsp-28], esi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	eax, DWORD PTR [rsp-28]
 	movzx	eax, al
-	mov	DWORD PTR [rbp-28], eax
+	mov	DWORD PTR [rsp-28], eax
 	jmp	.L38
 .L40:
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-8]
+	mov	rax, QWORD PTR [rsp-40]
 	add	rax, rdx
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR [rbp-28], eax
+	cmp	DWORD PTR [rsp-28], eax
 	jne	.L38
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-8]
+	mov	rax, QWORD PTR [rsp-40]
 	add	rax, rdx
-	jmp	.L39
+	ret
 .L38:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L40
 	mov	eax, 0
-.L39:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE7:
@@ -349,30 +290,23 @@ memrchr:
 memset:
 .LFB8:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	DWORD PTR [rbp-28], esi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	DWORD PTR [rsp-28], esi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L42
 .L43:
-	mov	eax, DWORD PTR [rbp-28]
+	mov	eax, DWORD PTR [rsp-28]
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
-	add	QWORD PTR [rbp-8], 1
+	sub	QWORD PTR [rsp-40], 1
+	add	QWORD PTR [rsp-8], 1
 .L42:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L43
-	mov	rax, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE8:
@@ -382,29 +316,22 @@ memset:
 stpcpy:
 .LFB9:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
 	jmp	.L46
 .L47:
-	add	QWORD PTR [rbp-16], 1
-	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rsp-16], 1
+	add	QWORD PTR [rsp-8], 1
 .L46:
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L47
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE9:
@@ -414,33 +341,26 @@ stpcpy:
 strchrnul:
 .LFB10:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	eax, DWORD PTR [rbp-12]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	eax, DWORD PTR [rsp-12]
 	movzx	eax, al
-	mov	DWORD PTR [rbp-12], eax
+	mov	DWORD PTR [rsp-12], eax
 	jmp	.L50
 .L52:
-	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rsp-8], 1
 .L50:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	je	.L51
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR [rbp-12], eax
+	cmp	DWORD PTR [rsp-12], eax
 	jne	.L52
 .L51:
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE10:
@@ -450,19 +370,14 @@ strchrnul:
 strchr:
 .LFB11:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
-	mov	DWORD PTR [rbp-4], esi
+	mov	DWORD PTR [rsp-4], esi
 .L57:
 	movzx	edx, BYTE PTR [rax]
 	movsx	edx, dl
-	cmp	DWORD PTR [rbp-4], edx
+	cmp	DWORD PTR [rsp-4], edx
 	jne	.L55
-	jmp	.L56
+	ret
 .L55:
 	mov	rdx, rax
 	lea	rax, [rdx+1]
@@ -470,9 +385,6 @@ strchr:
 	test	dl, dl
 	jne	.L57
 	mov	eax, 0
-.L56:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE11:
@@ -482,39 +394,32 @@ strchr:
 strcmp:
 .LFB12:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
 	jmp	.L59
 .L61:
-	add	QWORD PTR [rbp-8], 1
-	add	QWORD PTR [rbp-16], 1
+	add	QWORD PTR [rsp-8], 1
+	add	QWORD PTR [rsp-16], 1
 .L59:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	jne	.L60
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L61
 .L60:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	edx, al
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
 	sub	edx, eax
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE12:
@@ -524,26 +429,19 @@ strcmp:
 strlen:
 .LFB13:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L64
 .L65:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp-24], 1
 .L64:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L65
-	mov	rax, QWORD PTR [rbp-24]
-	sub	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
+	sub	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE13:
@@ -553,58 +451,51 @@ strlen:
 strncmp:
 .LFB14:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L70
 	mov	edx, 0
 	jmp	.L69
 .L72:
-	add	QWORD PTR [rbp-8], 1
-	add	QWORD PTR [rbp-16], 1
-	sub	QWORD PTR [rbp-40], 1
+	add	QWORD PTR [rsp-8], 1
+	add	QWORD PTR [rsp-16], 1
+	sub	QWORD PTR [rsp-40], 1
 .L70:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	je	.L71
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	je	.L71
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	je	.L71
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	je	.L72
 .L71:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	movzx	edx, al
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
 	sub	edx, eax
 .L69:
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE14:
@@ -614,38 +505,31 @@ strncmp:
 swab:
 .LFB15:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
 	jmp	.L74
 .L75:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	add	rax, 1
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	lea	rdx, [rax+1]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-	add	QWORD PTR [rbp-16], 2
-	add	QWORD PTR [rbp-8], 2
-	sub	QWORD PTR [rbp-40], 2
+	add	QWORD PTR [rsp-16], 2
+	add	QWORD PTR [rsp-8], 2
+	sub	QWORD PTR [rsp-40], 2
 .L74:
-	cmp	QWORD PTR [rbp-40], 1
+	cmp	QWORD PTR [rsp-40], 1
 	jg	.L75
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE15:
@@ -655,20 +539,13 @@ swab:
 isalpha:
 .LFB16:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	or	eax, 32
 	sub	eax, 97
 	cmp	eax, 25
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE16:
@@ -678,18 +555,11 @@ isalpha:
 isascii:
 .LFB17:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	cmp	eax, 127
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE17:
@@ -699,24 +569,16 @@ isascii:
 isblank:
 .LFB18:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	cmp	DWORD PTR [rbp-4], 32
+	mov	DWORD PTR [rsp-4], edi
+	cmp	DWORD PTR [rsp-4], 32
 	je	.L81
-	cmp	DWORD PTR [rbp-4], 9
+	cmp	DWORD PTR [rsp-4], 9
 	jne	.L82
 .L81:
 	mov	eax, 1
-	jmp	.L84
+	ret
 .L82:
 	mov	eax, 0
-.L84:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE18:
@@ -726,25 +588,17 @@ isblank:
 iscntrl:
 .LFB19:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	cmp	eax, 31
 	jbe	.L86
-	cmp	DWORD PTR [rbp-4], 127
+	cmp	DWORD PTR [rsp-4], 127
 	jne	.L87
 .L86:
 	mov	eax, 1
-	jmp	.L89
+	ret
 .L87:
 	mov	eax, 0
-.L89:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE19:
@@ -754,19 +608,12 @@ iscntrl:
 isdigit:
 .LFB20:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 48
 	cmp	eax, 9
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE20:
@@ -776,19 +623,12 @@ isdigit:
 isgraph:
 .LFB21:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 33
 	cmp	eax, 93
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE21:
@@ -798,19 +638,12 @@ isgraph:
 islower:
 .LFB22:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 97
 	cmp	eax, 25
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE22:
@@ -820,19 +653,12 @@ islower:
 isprint:
 .LFB23:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 32
 	cmp	eax, 94
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE23:
@@ -842,26 +668,18 @@ isprint:
 isspace:
 .LFB24:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	cmp	DWORD PTR [rbp-4], 32
+	mov	DWORD PTR [rsp-4], edi
+	cmp	DWORD PTR [rsp-4], 32
 	je	.L99
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 9
 	cmp	eax, 4
 	ja	.L100
 .L99:
 	mov	eax, 1
-	jmp	.L102
+	ret
 .L100:
 	mov	eax, 0
-.L102:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE24:
@@ -871,19 +689,12 @@ isspace:
 isupper:
 .LFB25:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 65
 	cmp	eax, 25
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE25:
@@ -893,34 +704,26 @@ isupper:
 iswcntrl:
 .LFB26:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	cmp	DWORD PTR [rbp-4], 31
+	mov	DWORD PTR [rsp-4], edi
+	cmp	DWORD PTR [rsp-4], 31
 	jbe	.L106
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 127
 	cmp	eax, 32
 	jbe	.L106
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 8232
 	cmp	eax, 1
 	jbe	.L106
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 65529
 	cmp	eax, 2
 	ja	.L107
 .L106:
 	mov	eax, 1
-	jmp	.L109
+	ret
 .L107:
 	mov	eax, 0
-.L109:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE26:
@@ -930,19 +733,12 @@ iswcntrl:
 iswdigit:
 .LFB27:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 48
 	cmp	eax, 9
 	setbe	al
 	movzx	eax, al
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE27:
@@ -952,52 +748,44 @@ iswdigit:
 iswprint:
 .LFB28:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	cmp	DWORD PTR [rbp-4], 254
+	mov	DWORD PTR [rsp-4], edi
+	cmp	DWORD PTR [rsp-4], 254
 	ja	.L113
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	add	eax, 1
 	and	eax, 127
 	cmp	eax, 32
 	seta	al
 	movzx	eax, al
-	jmp	.L114
+	ret
 .L113:
-	cmp	DWORD PTR [rbp-4], 8231
+	cmp	DWORD PTR [rsp-4], 8231
 	jbe	.L115
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 8234
 	cmp	eax, 47061
 	jbe	.L115
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 57344
 	cmp	eax, 8184
 	ja	.L116
 .L115:
 	mov	eax, 1
-	jmp	.L114
+	ret
 .L116:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 65532
 	cmp	eax, 1048579
 	ja	.L117
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 65534
 	cmp	eax, 65534
 	jne	.L118
 .L117:
 	mov	eax, 0
-	jmp	.L114
+	ret
 .L118:
 	mov	eax, 1
-.L114:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE28:
@@ -1007,29 +795,21 @@ iswprint:
 iswxdigit:
 .LFB29:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 48
 	cmp	eax, 9
 	jbe	.L120
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	or	eax, 32
 	sub	eax, 97
 	cmp	eax, 5
 	ja	.L121
 .L120:
 	mov	eax, 1
-	jmp	.L123
+	ret
 .L121:
 	mov	eax, 0
-.L123:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE29:
@@ -1039,16 +819,9 @@ iswxdigit:
 toascii:
 .LFB30:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 127
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE30:
@@ -1058,36 +831,28 @@ toascii:
 fdim:
 .LFB31:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
-	movsd	QWORD PTR [rbp-16], xmm1
-	movsd	xmm0, QWORD PTR [rbp-8]
-	ucomisd	xmm0, QWORD PTR [rbp-8]
+	movsd	QWORD PTR [rsp-8], xmm0
+	movsd	QWORD PTR [rsp-16], xmm1
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ucomisd	xmm0, QWORD PTR [rsp-8]
 	jnp	.L127
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L128
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L127:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	ucomisd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ucomisd	xmm0, QWORD PTR [rsp-16]
 	jnp	.L129
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L128
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L129:
-	movsd	xmm0, QWORD PTR [rbp-8]
-	comisd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-8]
+	comisd	xmm0, QWORD PTR [rsp-16]
 	jbe	.L134
-	movsd	xmm0, QWORD PTR [rbp-8]
-	subsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L128
+	movsd	xmm0, QWORD PTR [rsp-8]
+	subsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L134:
 	pxor	xmm0, xmm0
-.L128:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE31:
@@ -1097,36 +862,28 @@ fdim:
 fdimf:
 .LFB32:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
-	movss	DWORD PTR [rbp-8], xmm1
-	movss	xmm0, DWORD PTR [rbp-4]
-	ucomiss	xmm0, DWORD PTR [rbp-4]
+	movss	DWORD PTR [rsp-4], xmm0
+	movss	DWORD PTR [rsp-8], xmm1
+	movss	xmm0, DWORD PTR [rsp-4]
+	ucomiss	xmm0, DWORD PTR [rsp-4]
 	jnp	.L136
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L137
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L136:
-	movss	xmm0, DWORD PTR [rbp-8]
-	ucomiss	xmm0, DWORD PTR [rbp-8]
+	movss	xmm0, DWORD PTR [rsp-8]
+	ucomiss	xmm0, DWORD PTR [rsp-8]
 	jnp	.L138
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L137
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L138:
-	movss	xmm0, DWORD PTR [rbp-4]
-	comiss	xmm0, DWORD PTR [rbp-8]
+	movss	xmm0, DWORD PTR [rsp-4]
+	comiss	xmm0, DWORD PTR [rsp-8]
 	jbe	.L143
-	movss	xmm0, DWORD PTR [rbp-4]
-	subss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L137
+	movss	xmm0, DWORD PTR [rsp-4]
+	subss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L143:
 	pxor	xmm0, xmm0
-.L137:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE32:
@@ -1136,53 +893,45 @@ fdimf:
 fmax:
 .LFB33:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
-	movsd	QWORD PTR [rbp-16], xmm1
-	movsd	xmm0, QWORD PTR [rbp-8]
-	ucomisd	xmm0, QWORD PTR [rbp-8]
+	movsd	QWORD PTR [rsp-8], xmm0
+	movsd	QWORD PTR [rsp-16], xmm1
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ucomisd	xmm0, QWORD PTR [rsp-8]
 	jnp	.L145
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L146
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L145:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	ucomisd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ucomisd	xmm0, QWORD PTR [rsp-16]
 	jnp	.L147
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L146
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L147:
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	movmskpd	edx, xmm0
 	and	edx, 1
-	movsd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
 	movmskpd	eax, xmm0
 	and	eax, 1
 	cmp	edx, eax
 	je	.L148
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	movmskpd	eax, xmm0
 	and	eax, 1
 	je	.L149
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L146
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L149:
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L146
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L148:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	comisd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-16]
+	comisd	xmm0, QWORD PTR [rsp-8]
 	jbe	.L155
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L146
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L155:
-	movsd	xmm0, QWORD PTR [rbp-8]
-.L146:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE33:
@@ -1192,51 +941,43 @@ fmax:
 fmaxf:
 .LFB34:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
-	movss	DWORD PTR [rbp-8], xmm1
-	movss	xmm0, DWORD PTR [rbp-4]
-	ucomiss	xmm0, DWORD PTR [rbp-4]
+	movss	DWORD PTR [rsp-4], xmm0
+	movss	DWORD PTR [rsp-8], xmm1
+	movss	xmm0, DWORD PTR [rsp-4]
+	ucomiss	xmm0, DWORD PTR [rsp-4]
 	jnp	.L157
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L158
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L157:
-	movss	xmm0, DWORD PTR [rbp-8]
-	ucomiss	xmm0, DWORD PTR [rbp-8]
+	movss	xmm0, DWORD PTR [rsp-8]
+	ucomiss	xmm0, DWORD PTR [rsp-8]
 	jnp	.L159
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L158
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L159:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, -2147483648
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-8]
 	and	eax, -2147483648
 	cmp	edx, eax
 	je	.L160
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, -2147483648
 	je	.L161
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L158
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L161:
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L158
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L160:
-	movss	xmm0, DWORD PTR [rbp-8]
-	comiss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-8]
+	comiss	xmm0, DWORD PTR [rsp-4]
 	jbe	.L167
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L158
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L167:
-	movss	xmm0, DWORD PTR [rbp-4]
-.L158:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movss	xmm0, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE34:
@@ -1246,64 +987,56 @@ fmaxf:
 fmaxl:
 .LFB35:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp+8]
 	fucomip	st, st(1)
 	fstp	st(0)
 	jnp	.L169
-	fld	TBYTE PTR [rbp+32]
-	jmp	.L170
+	fld	TBYTE PTR [rsp+24]
+	ret
 .L169:
-	fld	TBYTE PTR [rbp+32]
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+24]
+	fld	TBYTE PTR [rsp+24]
 	fucomip	st, st(1)
 	fstp	st(0)
 	jnp	.L171
-	fld	TBYTE PTR [rbp+16]
-	jmp	.L170
+	fld	TBYTE PTR [rsp+8]
+	ret
 .L171:
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	mov	edx, eax
 	and	edx, 512
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+24]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
 	cmp	edx, eax
 	je	.L172
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
 	je	.L173
-	fld	TBYTE PTR [rbp+32]
-	jmp	.L170
+	fld	TBYTE PTR [rsp+24]
+	ret
 .L173:
-	fld	TBYTE PTR [rbp+16]
-	jmp	.L170
+	fld	TBYTE PTR [rsp+8]
+	ret
 .L172:
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp+24]
 	fcomip	st, st(1)
 	fstp	st(0)
 	jbe	.L179
-	fld	TBYTE PTR [rbp+32]
-	jmp	.L170
+	fld	TBYTE PTR [rsp+24]
+	ret
 .L179:
-	fld	TBYTE PTR [rbp+16]
-.L170:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	fld	TBYTE PTR [rsp+8]
 	ret
 	.cfi_endproc
 .LFE35:
@@ -1313,53 +1046,45 @@ fmaxl:
 fmin:
 .LFB36:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
-	movsd	QWORD PTR [rbp-16], xmm1
-	movsd	xmm0, QWORD PTR [rbp-8]
-	ucomisd	xmm0, QWORD PTR [rbp-8]
+	movsd	QWORD PTR [rsp-8], xmm0
+	movsd	QWORD PTR [rsp-16], xmm1
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ucomisd	xmm0, QWORD PTR [rsp-8]
 	jnp	.L181
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L182
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L181:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	ucomisd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ucomisd	xmm0, QWORD PTR [rsp-16]
 	jnp	.L183
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L182
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L183:
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	movmskpd	edx, xmm0
 	and	edx, 1
-	movsd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
 	movmskpd	eax, xmm0
 	and	eax, 1
 	cmp	edx, eax
 	je	.L184
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	movmskpd	eax, xmm0
 	and	eax, 1
 	je	.L185
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L182
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L185:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	jmp	.L182
+	movsd	xmm0, QWORD PTR [rsp-16]
+	ret
 .L184:
-	movsd	xmm0, QWORD PTR [rbp-16]
-	comisd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-16]
+	comisd	xmm0, QWORD PTR [rsp-8]
 	jbe	.L191
-	movsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L182
+	movsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L191:
-	movsd	xmm0, QWORD PTR [rbp-16]
-.L182:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE36:
@@ -1369,51 +1094,43 @@ fmin:
 fminf:
 .LFB37:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
-	movss	DWORD PTR [rbp-8], xmm1
-	movss	xmm0, DWORD PTR [rbp-4]
-	ucomiss	xmm0, DWORD PTR [rbp-4]
+	movss	DWORD PTR [rsp-4], xmm0
+	movss	DWORD PTR [rsp-8], xmm1
+	movss	xmm0, DWORD PTR [rsp-4]
+	ucomiss	xmm0, DWORD PTR [rsp-4]
 	jnp	.L193
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L194
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L193:
-	movss	xmm0, DWORD PTR [rbp-8]
-	ucomiss	xmm0, DWORD PTR [rbp-8]
+	movss	xmm0, DWORD PTR [rsp-8]
+	ucomiss	xmm0, DWORD PTR [rsp-8]
 	jnp	.L195
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L194
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L195:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, -2147483648
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-8]
 	and	eax, -2147483648
 	cmp	edx, eax
 	je	.L196
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, -2147483648
 	je	.L197
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L194
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L197:
-	movss	xmm0, DWORD PTR [rbp-8]
-	jmp	.L194
+	movss	xmm0, DWORD PTR [rsp-8]
+	ret
 .L196:
-	movss	xmm0, DWORD PTR [rbp-8]
-	comiss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-8]
+	comiss	xmm0, DWORD PTR [rsp-4]
 	jbe	.L203
-	movss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L194
+	movss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L203:
-	movss	xmm0, DWORD PTR [rbp-8]
-.L194:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movss	xmm0, DWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE37:
@@ -1423,64 +1140,56 @@ fminf:
 fminl:
 .LFB38:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp+8]
 	fucomip	st, st(1)
 	fstp	st(0)
 	jnp	.L205
-	fld	TBYTE PTR [rbp+32]
-	jmp	.L206
+	fld	TBYTE PTR [rsp+24]
+	ret
 .L205:
-	fld	TBYTE PTR [rbp+32]
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+24]
+	fld	TBYTE PTR [rsp+24]
 	fucomip	st, st(1)
 	fstp	st(0)
 	jnp	.L207
-	fld	TBYTE PTR [rbp+16]
-	jmp	.L206
+	fld	TBYTE PTR [rsp+8]
+	ret
 .L207:
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	mov	edx, eax
 	and	edx, 512
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+24]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
 	cmp	edx, eax
 	je	.L208
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
 	je	.L209
-	fld	TBYTE PTR [rbp+16]
-	jmp	.L206
+	fld	TBYTE PTR [rsp+8]
+	ret
 .L209:
-	fld	TBYTE PTR [rbp+32]
-	jmp	.L206
+	fld	TBYTE PTR [rsp+24]
+	ret
 .L208:
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp+32]
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp+24]
 	fcomip	st, st(1)
 	fstp	st(0)
 	jbe	.L215
-	fld	TBYTE PTR [rbp+16]
-	jmp	.L206
+	fld	TBYTE PTR [rsp+8]
+	ret
 .L215:
-	fld	TBYTE PTR [rbp+32]
-.L206:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	fld	TBYTE PTR [rsp+24]
 	ret
 	.cfi_endproc
 .LFE38:
@@ -1497,33 +1206,26 @@ digits:
 l64a:
 .LFB39:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	DWORD PTR [rbp-12], eax
-	mov	QWORD PTR [rbp-8], OFFSET FLAT:s.0
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	DWORD PTR [rsp-12], eax
+	mov	QWORD PTR [rsp-8], OFFSET FLAT:s.0
 	jmp	.L217
 .L218:
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	and	eax, 63
 	mov	eax, eax
 	movzx	edx, BYTE PTR digits[rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], dl
-	add	QWORD PTR [rbp-8], 1
-	shr	DWORD PTR [rbp-12], 6
+	add	QWORD PTR [rsp-8], 1
+	shr	DWORD PTR [rsp-12], 6
 .L217:
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp-12], 0
 	jne	.L218
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	BYTE PTR [rax], 0
 	mov	eax, OFFSET FLAT:s.0
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE39:
@@ -1535,19 +1237,12 @@ l64a:
 srand:
 .LFB40:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 1
 	mov	eax, eax
 	mov	QWORD PTR seed[rip], rax
 	nop
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE40:
@@ -1557,11 +1252,6 @@ srand:
 rand:
 .LFB41:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, QWORD PTR seed[rip]
 	movabs	rdx, 6364136223846793005
 	imul	rax, rdx
@@ -1569,8 +1259,6 @@ rand:
 	mov	QWORD PTR seed[rip], rax
 	mov	rax, QWORD PTR seed[rip]
 	shr	rax, 33
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE41:
@@ -1580,48 +1268,41 @@ rand:
 insque:
 .LFB42:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	cmp	QWORD PTR [rbp-16], 0
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	cmp	QWORD PTR [rsp-16], 0
 	jne	.L224
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	QWORD PTR [rax+8], 0
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rdx, QWORD PTR [rax+8]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	QWORD PTR [rax], rdx
-	jmp	.L223
+	ret
 .L224:
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	rdx, QWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	QWORD PTR [rax], rdx
-	mov	rax, QWORD PTR [rbp-8]
-	mov	rdx, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-8]
+	mov	rdx, QWORD PTR [rsp-16]
 	mov	QWORD PTR [rax+8], rdx
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	QWORD PTR [rax], rdx
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax]
 	test	rax, rax
 	je	.L223
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	QWORD PTR [rax+8], rdx
 .L223:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE42:
@@ -1631,36 +1312,29 @@ insque:
 remque:
 .LFB43:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax]
 	test	rax, rax
 	je	.L227
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	rdx, QWORD PTR [rdx+8]
 	mov	QWORD PTR [rax+8], rdx
 .L227:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax+8]
 	test	rax, rax
 	je	.L226
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rax, QWORD PTR [rax+8]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	rdx, QWORD PTR [rdx]
 	mov	QWORD PTR [rax], rdx
 .L226:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE43:
@@ -1670,70 +1344,68 @@ remque:
 lsearch:
 .LFB44:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 88
-	.cfi_offset 3, -24
-	mov	QWORD PTR [rbp-56], rdi
-	mov	QWORD PTR [rbp-64], rsi
-	mov	QWORD PTR [rbp-72], rdx
-	mov	QWORD PTR [rbp-80], rcx
-	mov	QWORD PTR [rbp-88], r8
-	mov	rbx, QWORD PTR [rbp-80]
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	sub	rsp, 80
+	.cfi_def_cfa_offset 96
+	mov	QWORD PTR [rsp+40], rdi
+	mov	QWORD PTR [rsp+32], rsi
+	mov	QWORD PTR [rsp+24], rdx
+	mov	QWORD PTR [rsp+16], rcx
+	mov	QWORD PTR [rsp+8], r8
+	mov	rbx, QWORD PTR [rsp+16]
 	mov	rax, rbx
 	sub	rax, 1
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-64]
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-72]
+	mov	QWORD PTR [rsp+64], rax
+	mov	rax, QWORD PTR [rsp+32]
+	mov	QWORD PTR [rsp+56], rax
+	mov	rax, QWORD PTR [rsp+24]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-24], 0
+	mov	QWORD PTR [rsp+48], rax
+	mov	QWORD PTR [rsp+72], 0
 	jmp	.L231
 .L234:
 	mov	rdx, rbx
-	imul	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-40]
+	imul	rdx, QWORD PTR [rsp+72]
+	mov	rax, QWORD PTR [rsp+56]
 	lea	rcx, [rdx+rax]
-	mov	rax, QWORD PTR [rbp-56]
-	mov	rdx, QWORD PTR [rbp-88]
+	mov	rax, QWORD PTR [rsp+40]
+	mov	rdx, QWORD PTR [rsp+8]
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	rdx
 	test	eax, eax
 	jne	.L232
-	imul	rbx, QWORD PTR [rbp-24]
+	imul	rbx, QWORD PTR [rsp+72]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+56]
 	add	rax, rdx
 	jmp	.L233
 .L232:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp+72], 1
 .L231:
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp+72]
+	cmp	rax, QWORD PTR [rsp+48]
 	jb	.L234
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp+48]
 	lea	rdx, [rax+1]
-	mov	rax, QWORD PTR [rbp-72]
+	mov	rax, QWORD PTR [rsp+24]
 	mov	QWORD PTR [rax], rdx
-	imul	rbx, QWORD PTR [rbp-48]
+	imul	rbx, QWORD PTR [rsp+48]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+56]
 	lea	rcx, [rdx+rax]
-	mov	rdx, QWORD PTR [rbp-80]
-	mov	rax, QWORD PTR [rbp-56]
+	mov	rdx, QWORD PTR [rsp+16]
+	mov	rax, QWORD PTR [rsp+40]
 	mov	rsi, rax
 	mov	rdi, rcx
 	call	memcpy
 .L233:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 80
+	.cfi_def_cfa_offset 16
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE44:
@@ -1743,58 +1415,56 @@ lsearch:
 lfind:
 .LFB45:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 88
-	.cfi_offset 3, -24
-	mov	QWORD PTR [rbp-56], rdi
-	mov	QWORD PTR [rbp-64], rsi
-	mov	QWORD PTR [rbp-72], rdx
-	mov	QWORD PTR [rbp-80], rcx
-	mov	QWORD PTR [rbp-88], r8
-	mov	rbx, QWORD PTR [rbp-80]
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	sub	rsp, 80
+	.cfi_def_cfa_offset 96
+	mov	QWORD PTR [rsp+40], rdi
+	mov	QWORD PTR [rsp+32], rsi
+	mov	QWORD PTR [rsp+24], rdx
+	mov	QWORD PTR [rsp+16], rcx
+	mov	QWORD PTR [rsp+8], r8
+	mov	rbx, QWORD PTR [rsp+16]
 	mov	rax, rbx
 	sub	rax, 1
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-64]
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-72]
+	mov	QWORD PTR [rsp+64], rax
+	mov	rax, QWORD PTR [rsp+32]
+	mov	QWORD PTR [rsp+56], rax
+	mov	rax, QWORD PTR [rsp+24]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-24], 0
+	mov	QWORD PTR [rsp+48], rax
+	mov	QWORD PTR [rsp+72], 0
 	jmp	.L236
 .L239:
 	mov	rdx, rbx
-	imul	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-40]
+	imul	rdx, QWORD PTR [rsp+72]
+	mov	rax, QWORD PTR [rsp+56]
 	lea	rcx, [rdx+rax]
-	mov	rax, QWORD PTR [rbp-56]
-	mov	rdx, QWORD PTR [rbp-88]
+	mov	rax, QWORD PTR [rsp+40]
+	mov	rdx, QWORD PTR [rsp+8]
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	rdx
 	test	eax, eax
 	jne	.L237
-	imul	rbx, QWORD PTR [rbp-24]
+	imul	rbx, QWORD PTR [rsp+72]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+56]
 	add	rax, rdx
 	jmp	.L238
 .L237:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp+72], 1
 .L236:
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp+72]
+	cmp	rax, QWORD PTR [rsp+48]
 	jb	.L239
 	mov	eax, 0
 .L238:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 80
+	.cfi_def_cfa_offset 16
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE45:
@@ -1804,18 +1474,11 @@ lfind:
 abs:
 .LFB46:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	mov	edx, eax
 	neg	edx
 	cmovns	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE46:
@@ -1825,70 +1488,66 @@ abs:
 atoi:
 .LFB47:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	DWORD PTR [rbp-4], 0
-	mov	DWORD PTR [rbp-8], 0
+	.cfi_def_cfa_offset 32
+	mov	QWORD PTR [rsp], rdi
+	mov	DWORD PTR [rsp+20], 0
+	mov	DWORD PTR [rsp+16], 0
 	jmp	.L243
 .L244:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 .L243:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	edi, eax
 	call	isspace
 	test	eax, eax
 	jne	.L244
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
 	je	.L245
 	cmp	eax, 45
 	jne	.L247
-	mov	DWORD PTR [rbp-8], 1
+	mov	DWORD PTR [rsp+16], 1
 .L245:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 	jmp	.L247
 .L248:
-	mov	edx, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp+20]
 	mov	eax, edx
 	sal	eax, 2
 	add	eax, edx
 	add	eax, eax
 	mov	ecx, eax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp], rdx
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	lea	edx, [rax-48]
 	mov	eax, ecx
 	sub	eax, edx
-	mov	DWORD PTR [rbp-4], eax
+	mov	DWORD PTR [rsp+20], eax
 .L247:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
 	jbe	.L248
-	cmp	DWORD PTR [rbp-8], 0
+	cmp	DWORD PTR [rsp+16], 0
 	jne	.L249
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp+20]
 	neg	eax
 	jmp	.L251
 .L249:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp+20]
 .L251:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 24
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE47:
@@ -1898,71 +1557,67 @@ atoi:
 atol:
 .LFB48:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-12], 0
+	.cfi_def_cfa_offset 32
+	mov	QWORD PTR [rsp], rdi
+	mov	QWORD PTR [rsp+16], 0
+	mov	DWORD PTR [rsp+12], 0
 	jmp	.L253
 .L254:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 .L253:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	edi, eax
 	call	isspace
 	test	eax, eax
 	jne	.L254
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
 	je	.L255
 	cmp	eax, 45
 	jne	.L257
-	mov	DWORD PTR [rbp-12], 1
+	mov	DWORD PTR [rsp+12], 1
 .L255:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 	jmp	.L257
 .L258:
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp+16]
 	mov	rax, rdx
 	sal	rax, 2
 	add	rax, rdx
 	add	rax, rax
 	mov	rcx, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp], rdx
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cdqe
 	sub	rcx, rax
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-8], rdx
+	mov	QWORD PTR [rsp+16], rdx
 .L257:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
 	jbe	.L258
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp+12], 0
 	jne	.L259
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+16]
 	neg	rax
 	jmp	.L261
 .L259:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+16]
 .L261:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 24
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE48:
@@ -1972,71 +1627,67 @@ atol:
 atoll:
 .LFB49:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-12], 0
+	.cfi_def_cfa_offset 32
+	mov	QWORD PTR [rsp], rdi
+	mov	QWORD PTR [rsp+16], 0
+	mov	DWORD PTR [rsp+12], 0
 	jmp	.L263
 .L264:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 .L263:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	edi, eax
 	call	isspace
 	test	eax, eax
 	jne	.L264
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
 	je	.L265
 	cmp	eax, 45
 	jne	.L267
-	mov	DWORD PTR [rbp-12], 1
+	mov	DWORD PTR [rsp+12], 1
 .L265:
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp], 1
 	jmp	.L267
 .L268:
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp+16]
 	mov	rax, rdx
 	sal	rax, 2
 	add	rax, rdx
 	add	rax, rax
 	mov	rcx, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp], rdx
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cdqe
 	sub	rcx, rax
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-8], rdx
+	mov	QWORD PTR [rsp+16], rdx
 .L267:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
 	jbe	.L268
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp+12], 0
 	jne	.L269
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+16]
 	neg	rax
 	jmp	.L271
 .L269:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+16]
 .L271:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 24
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE49:
@@ -2046,63 +1697,59 @@ atoll:
 bsearch:
 .LFB50:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 64
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	QWORD PTR [rbp-48], rcx
-	mov	QWORD PTR [rbp-56], r8
+	sub	rsp, 72
+	.cfi_def_cfa_offset 80
+	mov	QWORD PTR [rsp+40], rdi
+	mov	QWORD PTR [rsp+32], rsi
+	mov	QWORD PTR [rsp+24], rdx
+	mov	QWORD PTR [rsp+16], rcx
+	mov	QWORD PTR [rsp+8], r8
 	jmp	.L273
 .L278:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+24]
 	shr	rax
-	imul	rax, QWORD PTR [rbp-48]
+	imul	rax, QWORD PTR [rsp+16]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp+32]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-8], rax
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-24]
-	mov	rcx, QWORD PTR [rbp-56]
+	mov	QWORD PTR [rsp+56], rax
+	mov	rdx, QWORD PTR [rsp+56]
+	mov	rax, QWORD PTR [rsp+40]
+	mov	rcx, QWORD PTR [rsp+8]
 	mov	rsi, rdx
 	mov	rdi, rax
 	call	rcx
-	mov	DWORD PTR [rbp-12], eax
-	cmp	DWORD PTR [rbp-12], 0
+	mov	DWORD PTR [rsp+52], eax
+	cmp	DWORD PTR [rsp+52], 0
 	jns	.L274
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+24]
 	shr	rax
-	mov	QWORD PTR [rbp-40], rax
+	mov	QWORD PTR [rsp+24], rax
 	jmp	.L273
 .L274:
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp+52], 0
 	jle	.L276
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rdx, QWORD PTR [rsp+56]
+	mov	rax, QWORD PTR [rsp+16]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp+32], rax
+	mov	rax, QWORD PTR [rsp+24]
 	shr	rax
-	mov	rdx, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp+24]
 	sub	rdx, rax
 	lea	rax, [rdx-1]
-	mov	QWORD PTR [rbp-40], rax
+	mov	QWORD PTR [rsp+24], rax
 	jmp	.L273
 .L276:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+56]
 	jmp	.L277
 .L273:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp+24], 0
 	jne	.L278
 	mov	eax, 0
 .L277:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 72
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE50:
@@ -2112,61 +1759,57 @@ bsearch:
 bsearch_r:
 .LFB51:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 80
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-48], rsi
-	mov	QWORD PTR [rbp-56], rdx
-	mov	QWORD PTR [rbp-64], rcx
-	mov	QWORD PTR [rbp-72], r8
-	mov	QWORD PTR [rbp-80], r9
-	mov	rax, QWORD PTR [rbp-48]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-56]
-	mov	DWORD PTR [rbp-12], eax
+	sub	rsp, 88
+	.cfi_def_cfa_offset 96
+	mov	QWORD PTR [rsp+40], rdi
+	mov	QWORD PTR [rsp+32], rsi
+	mov	QWORD PTR [rsp+24], rdx
+	mov	QWORD PTR [rsp+16], rcx
+	mov	QWORD PTR [rsp+8], r8
+	mov	QWORD PTR [rsp], r9
+	mov	rax, QWORD PTR [rsp+32]
+	mov	QWORD PTR [rsp+72], rax
+	mov	rax, QWORD PTR [rsp+24]
+	mov	DWORD PTR [rsp+68], eax
 	jmp	.L280
 .L284:
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp+68]
 	sar	eax
 	cdqe
-	imul	rax, QWORD PTR [rbp-64]
+	imul	rax, QWORD PTR [rsp+16]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+72]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-24], rax
-	mov	rdx, QWORD PTR [rbp-80]
-	mov	rcx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-40]
-	mov	r8, QWORD PTR [rbp-72]
+	mov	QWORD PTR [rsp+56], rax
+	mov	rdx, QWORD PTR [rsp]
+	mov	rcx, QWORD PTR [rsp+56]
+	mov	rax, QWORD PTR [rsp+40]
+	mov	r8, QWORD PTR [rsp+8]
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	r8
-	mov	DWORD PTR [rbp-28], eax
-	cmp	DWORD PTR [rbp-28], 0
+	mov	DWORD PTR [rsp+52], eax
+	cmp	DWORD PTR [rsp+52], 0
 	jne	.L281
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+56]
 	jmp	.L282
 .L281:
-	cmp	DWORD PTR [rbp-28], 0
+	cmp	DWORD PTR [rsp+52], 0
 	jle	.L283
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-64]
+	mov	rdx, QWORD PTR [rsp+56]
+	mov	rax, QWORD PTR [rsp+16]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-8], rax
-	sub	DWORD PTR [rbp-12], 1
+	mov	QWORD PTR [rsp+72], rax
+	sub	DWORD PTR [rsp+68], 1
 .L283:
-	sar	DWORD PTR [rbp-12]
+	sar	DWORD PTR [rsp+68]
 .L280:
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp+68], 0
 	jne	.L284
 	mov	eax, 0
 .L282:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 88
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE51:
@@ -2176,20 +1819,15 @@ bsearch_r:
 div:
 .LFB52:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	DWORD PTR [rsp-8], esi
+	mov	eax, DWORD PTR [rsp-4]
 	cdq
-	idiv	DWORD PTR [rbp-8]
+	idiv	DWORD PTR [rsp-8]
 	mov	edi, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	cdq
-	idiv	DWORD PTR [rbp-8]
+	idiv	DWORD PTR [rsp-8]
 	mov	esi, edx
 	mov	edx, edi
 	movabs	rax, -4294967296
@@ -2202,8 +1840,6 @@ div:
 	or	rax, rdx
 	mov	rcx, rax
 	mov	rax, rcx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE52:
@@ -2213,18 +1849,11 @@ div:
 imaxabs:
 .LFB53:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rdx, rax
 	neg	rdx
 	cmovns	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE53:
@@ -2234,30 +1863,25 @@ imaxabs:
 imaxdiv:
 .LFB54:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rsi, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rax, rdx
 	mov	rcx, rsi
 	mov	rbx, rax
 	mov	rax, rcx
 	mov	rdx, rbx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE54:
@@ -2267,18 +1891,11 @@ imaxdiv:
 labs:
 .LFB55:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rdx, rax
 	neg	rdx
 	cmovns	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE55:
@@ -2288,30 +1905,25 @@ labs:
 ldiv:
 .LFB56:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rsi, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rax, rdx
 	mov	rcx, rsi
 	mov	rbx, rax
 	mov	rax, rcx
 	mov	rdx, rbx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE56:
@@ -2321,18 +1933,11 @@ ldiv:
 llabs:
 .LFB57:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	mov	rdx, rax
 	neg	rdx
 	cmovns	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE57:
@@ -2342,30 +1947,25 @@ llabs:
 lldiv:
 .LFB58:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rsi, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-8]
 	cqo
-	idiv	QWORD PTR [rbp-32]
+	idiv	QWORD PTR [rsp-16]
 	mov	rax, rdx
 	mov	rcx, rsi
 	mov	rbx, rax
 	mov	rax, rcx
 	mov	rdx, rbx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE58:
@@ -2375,37 +1975,29 @@ lldiv:
 wcschr:
 .LFB59:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
 	jmp	.L300
 .L302:
-	add	QWORD PTR [rbp-8], 4
+	add	QWORD PTR [rsp-8], 4
 .L300:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	je	.L301
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
-	cmp	DWORD PTR [rbp-12], eax
+	cmp	DWORD PTR [rsp-12], eax
 	jne	.L302
 .L301:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	je	.L303
-	mov	rax, QWORD PTR [rbp-8]
-	jmp	.L305
+	mov	rax, QWORD PTR [rsp-8]
+	ret
 .L303:
 	mov	eax, 0
-.L305:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE59:
@@ -2415,52 +2007,44 @@ wcschr:
 wcscmp:
 .LFB60:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
 	jmp	.L307
 .L309:
-	add	QWORD PTR [rbp-8], 4
-	add	QWORD PTR [rbp-16], 4
+	add	QWORD PTR [rsp-8], 4
+	add	QWORD PTR [rsp-16], 4
 .L307:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	jne	.L308
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	je	.L308
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	jne	.L309
 .L308:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	jl	.L310
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	setg	al
 	movzx	eax, al
-	jmp	.L312
+	ret
 .L310:
 	mov	eax, -1
-.L312:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE60:
@@ -2470,30 +2054,23 @@ wcscmp:
 wcscpy:
 .LFB61:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 .L314:
-	mov	rdx, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-32]
 	lea	rax, [rdx+4]
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-24]
 	lea	rcx, [rax+4]
-	mov	QWORD PTR [rbp-24], rcx
+	mov	QWORD PTR [rsp-24], rcx
 	mov	edx, DWORD PTR [rdx]
 	mov	DWORD PTR [rax], edx
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	jne	.L314
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE61:
@@ -2503,27 +2080,20 @@ wcscpy:
 wcslen:
 .LFB62:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L317
 .L318:
-	add	QWORD PTR [rbp-24], 4
+	add	QWORD PTR [rsp-24], 4
 .L317:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	jne	.L318
-	mov	rax, QWORD PTR [rbp-24]
-	sub	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-24]
+	sub	rax, QWORD PTR [rsp-8]
 	sar	rax, 2
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE62:
@@ -2533,61 +2103,53 @@ wcslen:
 wcsncmp:
 .LFB63:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	QWORD PTR [rsp-24], rdx
 	jmp	.L321
 .L323:
-	sub	QWORD PTR [rbp-24], 1
-	add	QWORD PTR [rbp-8], 4
-	add	QWORD PTR [rbp-16], 4
+	sub	QWORD PTR [rsp-24], 1
+	add	QWORD PTR [rsp-8], 4
+	add	QWORD PTR [rsp-16], 4
 .L321:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L322
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	jne	.L322
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	je	.L322
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	test	eax, eax
 	jne	.L323
 .L322:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L324
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	jl	.L325
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	setg	al
 	movzx	eax, al
-	jmp	.L328
+	ret
 .L325:
 	mov	eax, -1
-	jmp	.L328
+	ret
 .L324:
 	mov	eax, 0
-.L328:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE63:
@@ -2597,35 +2159,27 @@ wcsncmp:
 wmemchr:
 .LFB64:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	QWORD PTR [rsp-24], rdx
 	jmp	.L330
 .L332:
-	sub	QWORD PTR [rbp-24], 1
-	add	QWORD PTR [rbp-8], 4
+	sub	QWORD PTR [rsp-24], 1
+	add	QWORD PTR [rsp-8], 4
 .L330:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L331
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	eax, DWORD PTR [rax]
-	cmp	DWORD PTR [rbp-12], eax
+	cmp	DWORD PTR [rsp-12], eax
 	jne	.L332
 .L331:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L333
-	mov	rax, QWORD PTR [rbp-8]
-	jmp	.L335
+	mov	rax, QWORD PTR [rsp-8]
+	ret
 .L333:
 	mov	eax, 0
-.L335:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE64:
@@ -2635,53 +2189,45 @@ wmemchr:
 wmemcmp:
 .LFB65:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	QWORD PTR [rbp-24], rdx
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	QWORD PTR [rsp-24], rdx
 	jmp	.L337
 .L339:
-	sub	QWORD PTR [rbp-24], 1
-	add	QWORD PTR [rbp-8], 4
-	add	QWORD PTR [rbp-16], 4
+	sub	QWORD PTR [rsp-24], 1
+	add	QWORD PTR [rsp-8], 4
+	add	QWORD PTR [rsp-16], 4
 .L337:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L338
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	je	.L339
 .L338:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	je	.L340
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	jl	.L341
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	eax, DWORD PTR [rax]
 	cmp	edx, eax
 	setg	al
 	movzx	eax, al
-	jmp	.L344
+	ret
 .L341:
 	mov	eax, -1
-	jmp	.L344
+	ret
 .L340:
 	mov	eax, 0
-.L344:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE65:
@@ -2691,35 +2237,28 @@ wmemcmp:
 wmemcpy:
 .LFB66:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L346
 .L347:
-	mov	rdx, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-32]
 	lea	rax, [rdx+4]
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-24]
 	lea	rcx, [rax+4]
-	mov	QWORD PTR [rbp-24], rcx
+	mov	QWORD PTR [rsp-24], rcx
 	mov	edx, DWORD PTR [rdx]
 	mov	DWORD PTR [rax], edx
 .L346:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L347
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE66:
@@ -2729,68 +2268,60 @@ wmemcpy:
 wmemmove:
 .LFB67:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-32]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-24]
+	cmp	rax, QWORD PTR [rsp-32]
 	jne	.L350
-	mov	rax, QWORD PTR [rbp-24]
-	jmp	.L351
+	mov	rax, QWORD PTR [rsp-24]
+	ret
 .L350:
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	rax, QWORD PTR [rsp-32]
 	sub	rdx, rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	sal	rax, 2
 	cmp	rdx, rax
 	jnb	.L356
 	jmp	.L353
 .L354:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [0+rax*4]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	mov	rdx, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-40]
 	lea	rcx, [0+rdx*4]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	rdx, QWORD PTR [rsp-24]
 	add	rdx, rcx
 	mov	eax, DWORD PTR [rax]
 	mov	DWORD PTR [rdx], eax
 .L353:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L354
 	jmp	.L355
 .L357:
-	mov	rdx, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-32]
 	lea	rax, [rdx+4]
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-24]
 	lea	rcx, [rax+4]
-	mov	QWORD PTR [rbp-24], rcx
+	mov	QWORD PTR [rsp-24], rcx
 	mov	edx, DWORD PTR [rdx]
 	mov	DWORD PTR [rax], edx
 .L356:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L357
 .L355:
-	mov	rax, QWORD PTR [rbp-8]
-.L351:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE67:
@@ -2800,32 +2331,25 @@ wmemmove:
 wmemset:
 .LFB68:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	DWORD PTR [rbp-28], esi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	DWORD PTR [rsp-28], esi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L359
 .L360:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	lea	rdx, [rax+4]
-	mov	QWORD PTR [rbp-24], rdx
-	mov	edx, DWORD PTR [rbp-28]
+	mov	QWORD PTR [rsp-24], rdx
+	mov	edx, DWORD PTR [rsp-28]
 	mov	DWORD PTR [rax], edx
 .L359:
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-40]
 	lea	rdx, [rax-1]
-	mov	QWORD PTR [rbp-40], rdx
+	mov	QWORD PTR [rsp-40], rdx
 	test	rax, rax
 	jne	.L360
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE68:
@@ -2835,59 +2359,52 @@ wmemset:
 bcopy:
 .LFB69:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-8]
-	cmp	rax, QWORD PTR [rbp-16]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-8]
+	cmp	rax, QWORD PTR [rsp-16]
 	jnb	.L363
-	mov	rax, QWORD PTR [rbp-40]
-	add	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-40]
-	add	QWORD PTR [rbp-16], rax
+	mov	rax, QWORD PTR [rsp-40]
+	add	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-40]
+	add	QWORD PTR [rsp-16], rax
 	jmp	.L364
 .L365:
-	sub	QWORD PTR [rbp-8], 1
-	sub	QWORD PTR [rbp-16], 1
-	mov	rax, QWORD PTR [rbp-8]
+	sub	QWORD PTR [rsp-8], 1
+	sub	QWORD PTR [rsp-16], 1
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L364:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L365
-	jmp	.L362
+	ret
 .L363:
-	mov	rax, QWORD PTR [rbp-8]
-	cmp	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-8]
+	cmp	rax, QWORD PTR [rsp-16]
 	je	.L362
 	jmp	.L367
 .L368:
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-8]
 	lea	rax, [rdx+1]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-16]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-16]
 	lea	rcx, [rax+1]
-	mov	QWORD PTR [rbp-16], rcx
+	mov	QWORD PTR [rsp-16], rcx
 	movzx	edx, BYTE PTR [rdx]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L367:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L368
 .L362:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE69:
@@ -2897,20 +2414,13 @@ bcopy:
 rotl64:
 .LFB70:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	eax, DWORD PTR [rbp-12]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	ecx, eax
 	rol	rdx, cl
 	mov	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE70:
@@ -2920,20 +2430,13 @@ rotl64:
 rotr64:
 .LFB71:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	eax, DWORD PTR [rbp-12]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	ecx, eax
 	ror	rdx, cl
 	mov	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE71:
@@ -2943,20 +2446,13 @@ rotr64:
 rotl32:
 .LFB72:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	eax, DWORD PTR [rbp-8]
-	mov	edx, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	DWORD PTR [rsp-8], esi
+	mov	eax, DWORD PTR [rsp-8]
+	mov	edx, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	rol	edx, cl
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE72:
@@ -2966,20 +2462,13 @@ rotl32:
 rotr32:
 .LFB73:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	eax, DWORD PTR [rbp-8]
-	mov	edx, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	DWORD PTR [rsp-8], esi
+	mov	eax, DWORD PTR [rsp-8]
+	mov	edx, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	ror	edx, cl
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE73:
@@ -2989,27 +2478,20 @@ rotr32:
 rotl_sz:
 .LFB74:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	eax, DWORD PTR [rbp-12]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	rsi, rdx
 	mov	ecx, eax
 	sal	rsi, cl
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	edx, 64
 	sub	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	ecx, edx
 	shr	rax, cl
 	or	rax, rsi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE74:
@@ -3019,27 +2501,20 @@ rotl_sz:
 rotr_sz:
 .LFB75:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
-	mov	eax, DWORD PTR [rbp-12]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	DWORD PTR [rsp-12], esi
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	rsi, rdx
 	mov	ecx, eax
 	shr	rsi, cl
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	edx, 64
 	sub	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	mov	ecx, edx
 	sal	rax, cl
 	or	rax, rsi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE75:
@@ -3049,29 +2524,22 @@ rotr_sz:
 rotl16:
 .LFB76:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	WORD PTR [rbp-4], ax
-	movzx	edx, WORD PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], esi
+	mov	WORD PTR [rsp-4], ax
+	movzx	edx, WORD PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
 	mov	esi, eax
-	movzx	edx, WORD PTR [rbp-4]
+	movzx	edx, WORD PTR [rsp-4]
 	mov	eax, 16
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE76:
@@ -3081,29 +2549,22 @@ rotl16:
 rotr16:
 .LFB77:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	WORD PTR [rbp-4], ax
-	movzx	edx, WORD PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], esi
+	mov	WORD PTR [rsp-4], ax
+	movzx	edx, WORD PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	mov	esi, eax
-	movzx	edx, WORD PTR [rbp-4]
+	movzx	edx, WORD PTR [rsp-4]
 	mov	eax, 16
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE77:
@@ -3113,29 +2574,22 @@ rotr16:
 rotl8:
 .LFB78:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	BYTE PTR [rbp-4], al
-	movzx	edx, BYTE PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], esi
+	mov	BYTE PTR [rsp-4], al
+	movzx	edx, BYTE PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
 	mov	esi, eax
-	movzx	edx, BYTE PTR [rbp-4]
+	movzx	edx, BYTE PTR [rsp-4]
 	mov	eax, 8
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE78:
@@ -3145,29 +2599,22 @@ rotl8:
 rotr8:
 .LFB79:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	BYTE PTR [rbp-4], al
-	movzx	edx, BYTE PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], esi
+	mov	BYTE PTR [rsp-4], al
+	movzx	edx, BYTE PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	mov	esi, eax
-	movzx	edx, BYTE PTR [rbp-4]
+	movzx	edx, BYTE PTR [rsp-4]
 	mov	eax, 8
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE79:
@@ -3177,26 +2624,19 @@ rotr8:
 bswap_16:
 .LFB80:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	WORD PTR [rbp-20], ax
-	mov	QWORD PTR [rbp-8], 255
-	movzx	edx, WORD PTR [rbp-20]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	WORD PTR [rsp-20], ax
+	mov	QWORD PTR [rsp-8], 255
+	movzx	edx, WORD PTR [rsp-20]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 8
 	and	rax, rdx
 	shr	rax, 8
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
-	and	ax, WORD PTR [rbp-20]
+	mov	rax, QWORD PTR [rsp-8]
+	and	ax, WORD PTR [rsp-20]
 	sal	eax, 8
 	or	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE80:
@@ -3206,37 +2646,30 @@ bswap_16:
 bswap_32:
 .LFB81:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	QWORD PTR [rbp-8], 255
-	mov	edx, DWORD PTR [rbp-20]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-20], edi
+	mov	QWORD PTR [rsp-8], 255
+	mov	edx, DWORD PTR [rsp-20]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 24
 	and	rax, rdx
 	shr	rax, 24
 	mov	ecx, eax
-	mov	edx, DWORD PTR [rbp-20]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	edx, DWORD PTR [rsp-20]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 16
 	and	rax, rdx
 	shr	rax, 8
 	or	ecx, eax
 	mov	edx, ecx
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	eax, 8
-	and	eax, DWORD PTR [rbp-20]
+	and	eax, DWORD PTR [rsp-20]
 	sal	eax, 8
 	or	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
-	and	eax, DWORD PTR [rbp-20]
+	mov	rax, QWORD PTR [rsp-8]
+	and	eax, DWORD PTR [rsp-20]
 	sal	eax, 24
 	or	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE81:
@@ -3246,54 +2679,47 @@ bswap_32:
 bswap_64:
 .LFB82:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-8], 255
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-8], 255
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 56
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	shr	rax, 56
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 48
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	shr	rax, 40
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 40
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	shr	rax, 24
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 32
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	shr	rax, 8
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 24
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	sal	rax, 8
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 16
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	sal	rax, 24
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 8
-	and	rax, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-24]
 	sal	rax, 40
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-24]
-	and	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-24]
+	and	rax, QWORD PTR [rsp-8]
 	sal	rax, 56
 	or	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE82:
@@ -3303,34 +2729,26 @@ bswap_64:
 ffs:
 .LFB83:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L397
 .L400:
-	mov	edx, DWORD PTR [rbp-20]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp-20]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	and	eax, 1
 	je	.L398
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	add	eax, 1
-	jmp	.L399
+	ret
 .L398:
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L397:
-	cmp	DWORD PTR [rbp-4], 31
+	cmp	DWORD PTR [rsp-4], 31
 	jbe	.L400
 	mov	eax, 0
-.L399:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE83:
@@ -3340,13 +2758,9 @@ ffs:
 libiberty_ffs:
 .LFB84:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	eax, edi
 	test	eax, eax
 	jne	.L402
@@ -3364,9 +2778,8 @@ libiberty_ffs:
 	je	.L405
 	mov	eax, ebx
 .L403:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE84:
@@ -3376,26 +2789,18 @@ libiberty_ffs:
 gl_isinff:
 .LFB85:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
+	movss	DWORD PTR [rsp-4], xmm0
 	movss	xmm0, DWORD PTR .LC3[rip]
-	comiss	xmm0, DWORD PTR [rbp-4]
+	comiss	xmm0, DWORD PTR [rsp-4]
 	ja	.L407
-	movss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-4]
 	comiss	xmm0, DWORD PTR .LC4[rip]
 	jbe	.L412
 .L407:
 	mov	eax, 1
-	jmp	.L411
+	ret
 .L412:
 	mov	eax, 0
-.L411:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE85:
@@ -3405,26 +2810,18 @@ gl_isinff:
 gl_isinfd:
 .LFB86:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
+	movsd	QWORD PTR [rsp-8], xmm0
 	movsd	xmm0, QWORD PTR .LC5[rip]
-	comisd	xmm0, QWORD PTR [rbp-8]
+	comisd	xmm0, QWORD PTR [rsp-8]
 	ja	.L414
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	comisd	xmm0, QWORD PTR .LC6[rip]
 	jbe	.L419
 .L414:
 	mov	eax, 1
-	jmp	.L418
+	ret
 .L419:
 	mov	eax, 0
-.L418:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE86:
@@ -3434,29 +2831,21 @@ gl_isinfd:
 gl_isinfl:
 .LFB87:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fld	TBYTE PTR .LC7[rip]
 	fcomip	st, st(1)
 	fstp	st(0)
 	ja	.L421
 	fld	TBYTE PTR .LC8[rip]
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fcomip	st, st(1)
 	fstp	st(0)
 	jbe	.L426
 .L421:
 	mov	eax, 1
-	jmp	.L425
+	ret
 .L426:
 	mov	eax, 0
-.L425:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE87:
@@ -3466,22 +2855,15 @@ gl_isinfl:
 _Qp_itoq:
 .LFB88:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	DWORD PTR [rbp-12], esi
+	mov	QWORD PTR [rsp-16], rdi
+	mov	DWORD PTR [rsp-20], esi
 	pxor	xmm0, xmm0
-	cvtsi2sd	xmm0, DWORD PTR [rbp-12]
-	movsd	QWORD PTR [rbp-24], xmm0
-	fld	QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-8]
+	cvtsi2sd	xmm0, DWORD PTR [rsp-20]
+	movsd	QWORD PTR [rsp-32], xmm0
+	fld	QWORD PTR [rsp-32]
+	mov	rax, QWORD PTR [rsp-16]
 	fstp	TBYTE PTR [rax]
 	nop
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE88:
@@ -3491,55 +2873,48 @@ _Qp_itoq:
 ldexpf:
 .LFB89:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-20], xmm0
-	mov	DWORD PTR [rbp-24], edi
-	movss	xmm0, DWORD PTR [rbp-20]
-	ucomiss	xmm0, DWORD PTR [rbp-20]
+	movss	DWORD PTR [rsp-20], xmm0
+	mov	DWORD PTR [rsp-24], edi
+	movss	xmm0, DWORD PTR [rsp-20]
+	ucomiss	xmm0, DWORD PTR [rsp-20]
 	jp	.L429
-	movss	xmm0, DWORD PTR [rbp-20]
+	movss	xmm0, DWORD PTR [rsp-20]
 	addss	xmm0, xmm0
-	ucomiss	xmm0, DWORD PTR [rbp-20]
+	ucomiss	xmm0, DWORD PTR [rsp-20]
 	jp	.L437
-	ucomiss	xmm0, DWORD PTR [rbp-20]
+	ucomiss	xmm0, DWORD PTR [rsp-20]
 	je	.L429
 .L437:
-	cmp	DWORD PTR [rbp-24], 0
+	cmp	DWORD PTR [rsp-24], 0
 	jns	.L431
 	movss	xmm0, DWORD PTR .LC9[rip]
 	jmp	.L432
 .L431:
 	movss	xmm0, DWORD PTR .LC10[rip]
 .L432:
-	movss	DWORD PTR [rbp-4], xmm0
+	movss	DWORD PTR [rsp-4], xmm0
 .L435:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	and	eax, 1
 	je	.L433
-	movss	xmm0, DWORD PTR [rbp-20]
-	mulss	xmm0, DWORD PTR [rbp-4]
-	movss	DWORD PTR [rbp-20], xmm0
+	movss	xmm0, DWORD PTR [rsp-20]
+	mulss	xmm0, DWORD PTR [rsp-4]
+	movss	DWORD PTR [rsp-20], xmm0
 .L433:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	mov	DWORD PTR [rbp-24], eax
-	cmp	DWORD PTR [rbp-24], 0
+	mov	DWORD PTR [rsp-24], eax
+	cmp	DWORD PTR [rsp-24], 0
 	je	.L429
-	movss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-4]
 	mulss	xmm0, xmm0
-	movss	DWORD PTR [rbp-4], xmm0
+	movss	DWORD PTR [rsp-4], xmm0
 	jmp	.L435
 .L429:
-	movss	xmm0, DWORD PTR [rbp-20]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movss	xmm0, DWORD PTR [rsp-20]
 	ret
 	.cfi_endproc
 .LFE89:
@@ -3549,55 +2924,48 @@ ldexpf:
 ldexp:
 .LFB90:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-24], xmm0
-	mov	DWORD PTR [rbp-28], edi
-	movsd	xmm0, QWORD PTR [rbp-24]
-	ucomisd	xmm0, QWORD PTR [rbp-24]
+	movsd	QWORD PTR [rsp-24], xmm0
+	mov	DWORD PTR [rsp-28], edi
+	movsd	xmm0, QWORD PTR [rsp-24]
+	ucomisd	xmm0, QWORD PTR [rsp-24]
 	jp	.L440
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	addsd	xmm0, xmm0
-	ucomisd	xmm0, QWORD PTR [rbp-24]
+	ucomisd	xmm0, QWORD PTR [rsp-24]
 	jp	.L448
-	ucomisd	xmm0, QWORD PTR [rbp-24]
+	ucomisd	xmm0, QWORD PTR [rsp-24]
 	je	.L440
 .L448:
-	cmp	DWORD PTR [rbp-28], 0
+	cmp	DWORD PTR [rsp-28], 0
 	jns	.L442
 	movsd	xmm0, QWORD PTR .LC11[rip]
 	jmp	.L443
 .L442:
 	movsd	xmm0, QWORD PTR .LC12[rip]
 .L443:
-	movsd	QWORD PTR [rbp-8], xmm0
+	movsd	QWORD PTR [rsp-8], xmm0
 .L446:
-	mov	eax, DWORD PTR [rbp-28]
+	mov	eax, DWORD PTR [rsp-28]
 	and	eax, 1
 	je	.L444
-	movsd	xmm0, QWORD PTR [rbp-24]
-	mulsd	xmm0, QWORD PTR [rbp-8]
-	movsd	QWORD PTR [rbp-24], xmm0
+	movsd	xmm0, QWORD PTR [rsp-24]
+	mulsd	xmm0, QWORD PTR [rsp-8]
+	movsd	QWORD PTR [rsp-24], xmm0
 .L444:
-	mov	eax, DWORD PTR [rbp-28]
+	mov	eax, DWORD PTR [rsp-28]
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	mov	DWORD PTR [rbp-28], eax
-	cmp	DWORD PTR [rbp-28], 0
+	mov	DWORD PTR [rsp-28], eax
+	cmp	DWORD PTR [rsp-28], 0
 	je	.L440
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	mulsd	xmm0, xmm0
-	movsd	QWORD PTR [rbp-8], xmm0
+	movsd	QWORD PTR [rsp-8], xmm0
 	jmp	.L446
 .L440:
-	movsd	xmm0, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE90:
@@ -3607,23 +2975,18 @@ ldexp:
 ldexpl:
 .LFB91:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp+16]
+	mov	DWORD PTR [rsp-28], edi
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp+8]
 	fucomip	st, st(1)
 	fstp	st(0)
 	jp	.L451
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fadd	st, st(0)
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fucomip	st, st(1)
 	jp	.L461
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fucomip	st, st(1)
 	fstp	st(0)
 	je	.L451
@@ -3631,39 +2994,37 @@ ldexpl:
 .L461:
 	fstp	st(0)
 .L459:
-	cmp	DWORD PTR [rbp-20], 0
+	cmp	DWORD PTR [rsp-28], 0
 	jns	.L453
 	fld	TBYTE PTR .LC13[rip]
 	jmp	.L454
 .L453:
 	fld	TBYTE PTR .LC14[rip]
 .L454:
-	fstp	TBYTE PTR [rbp-16]
+	fstp	TBYTE PTR [rsp-24]
 .L457:
-	mov	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-28]
 	and	eax, 1
 	je	.L455
-	fld	TBYTE PTR [rbp+16]
-	fld	TBYTE PTR [rbp-16]
+	fld	TBYTE PTR [rsp+8]
+	fld	TBYTE PTR [rsp-24]
 	fmulp	st(1), st
-	fstp	TBYTE PTR [rbp+16]
+	fstp	TBYTE PTR [rsp+8]
 .L455:
-	mov	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-28]
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	mov	DWORD PTR [rbp-20], eax
-	cmp	DWORD PTR [rbp-20], 0
+	mov	DWORD PTR [rsp-28], eax
+	cmp	DWORD PTR [rsp-28], 0
 	je	.L451
-	fld	TBYTE PTR [rbp-16]
+	fld	TBYTE PTR [rsp-24]
 	fmul	st, st(0)
-	fstp	TBYTE PTR [rbp-16]
+	fstp	TBYTE PTR [rsp-24]
 	jmp	.L457
 .L451:
-	fld	TBYTE PTR [rbp+16]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	fld	TBYTE PTR [rsp+8]
 	ret
 	.cfi_endproc
 .LFE91:
@@ -3673,37 +3034,30 @@ ldexpl:
 memxor:
 .LFB92:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-16], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-16], rax
 	jmp	.L463
 .L464:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-8], rdx
+	mov	QWORD PTR [rsp-8], rdx
 	movzx	ecx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-16], rdx
+	mov	QWORD PTR [rsp-16], rdx
 	movzx	edx, BYTE PTR [rax]
 	xor	edx, ecx
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR [rbp-40], 1
+	sub	QWORD PTR [rsp-40], 1
 .L463:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp-40], 0
 	jne	.L464
-	mov	rax, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE92:
@@ -3713,46 +3067,42 @@ memxor:
 strncat:
 .LFB93:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 40
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-24]
+	.cfi_def_cfa_offset 48
+	mov	QWORD PTR [rsp+16], rdi
+	mov	QWORD PTR [rsp+8], rsi
+	mov	QWORD PTR [rsp], rdx
+	mov	rax, QWORD PTR [rsp+16]
 	mov	rdi, rax
 	call	strlen
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	rdx, QWORD PTR [rsp+16]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp+32], rax
 	jmp	.L467
 .L469:
-	add	QWORD PTR [rbp-32], 1
-	add	QWORD PTR [rbp-8], 1
-	sub	QWORD PTR [rbp-40], 1
+	add	QWORD PTR [rsp+8], 1
+	add	QWORD PTR [rsp+32], 1
+	sub	QWORD PTR [rsp], 1
 .L467:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp], 0
 	je	.L468
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp+8]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+32]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+32]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L469
 .L468:
-	cmp	QWORD PTR [rbp-40], 0
+	cmp	QWORD PTR [rsp], 0
 	jne	.L470
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+32]
 	mov	BYTE PTR [rax], 0
 .L470:
-	mov	rax, QWORD PTR [rbp-24]
-	leave
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp+16]
+	add	rsp, 40
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE93:
@@ -3762,31 +3112,24 @@ strncat:
 strnlen:
 .LFB94:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-8], 0
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-8], 0
 	jmp	.L473
 .L478:
-	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rsp-8], 1
 .L473:
-	mov	rax, QWORD PTR [rbp-8]
-	cmp	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-8]
+	cmp	rax, QWORD PTR [rsp-32]
 	jnb	.L474
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	rax, QWORD PTR [rsp-8]
 	add	rax, rdx
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L478
 .L474:
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE94:
@@ -3796,44 +3139,36 @@ strnlen:
 strpbrk:
 .LFB95:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
 	jmp	.L480
 .L484:
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-8], rax
 	jmp	.L481
 .L483:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	lea	rdx, [rax+1]
-	mov	QWORD PTR [rbp-8], rdx
+	mov	QWORD PTR [rsp-8], rdx
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	jne	.L481
-	mov	rax, QWORD PTR [rbp-24]
-	jmp	.L482
+	mov	rax, QWORD PTR [rsp-24]
+	ret
 .L481:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L483
-	add	QWORD PTR [rbp-24], 1
+	add	QWORD PTR [rsp-24], 1
 .L480:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	jne	.L484
 	mov	eax, 0
-.L482:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE95:
@@ -3843,29 +3178,22 @@ strpbrk:
 strrchr:
 .LFB96:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
-	mov	DWORD PTR [rbp-20], esi
-	mov	QWORD PTR [rbp-8], 0
+	mov	DWORD PTR [rsp-20], esi
+	mov	QWORD PTR [rsp-8], 0
 .L487:
 	movzx	edx, BYTE PTR [rax]
 	movsx	edx, dl
-	cmp	DWORD PTR [rbp-20], edx
+	cmp	DWORD PTR [rsp-20], edx
 	jne	.L486
-	mov	QWORD PTR [rbp-8], rax
+	mov	QWORD PTR [rsp-8], rax
 .L486:
 	mov	rdx, rax
 	lea	rax, [rdx+1]
 	movzx	edx, BYTE PTR [rdx]
 	test	dl, dl
 	jne	.L487
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE96:
@@ -3875,52 +3203,48 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 32
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
+	.cfi_def_cfa_offset 40
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	rax, QWORD PTR [rsp+8]
+	mov	QWORD PTR [rsp+24], rax
+	mov	rax, QWORD PTR [rsp]
 	mov	rdi, rax
 	call	strlen
-	mov	QWORD PTR [rbp-16], rax
-	cmp	QWORD PTR [rbp-16], 0
+	mov	QWORD PTR [rsp+16], rax
+	cmp	QWORD PTR [rsp+16], 0
 	jne	.L492
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+8]
 	jmp	.L491
 .L494:
-	mov	rdx, QWORD PTR [rbp-16]
-	mov	rcx, QWORD PTR [rbp-32]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp+16]
+	mov	rcx, QWORD PTR [rsp]
+	mov	rax, QWORD PTR [rsp+24]
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	strncmp
 	test	eax, eax
 	jne	.L493
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+24]
 	jmp	.L491
 .L493:
-	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rsp+24], 1
 .L492:
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	edx, al
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+24]
 	mov	esi, edx
 	mov	rdi, rax
 	call	strchr
-	mov	QWORD PTR [rbp-8], rax
-	cmp	QWORD PTR [rbp-8], 0
+	mov	QWORD PTR [rsp+24], rax
+	cmp	QWORD PTR [rsp+24], 0
 	jne	.L494
 	mov	eax, 0
 .L491:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 32
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE97:
@@ -3930,38 +3254,30 @@ strstr:
 copysign:
 .LFB98:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
-	movsd	QWORD PTR [rbp-16], xmm1
+	movsd	QWORD PTR [rsp-8], xmm0
+	movsd	QWORD PTR [rsp-16], xmm1
 	pxor	xmm0, xmm0
-	comisd	xmm0, QWORD PTR [rbp-8]
+	comisd	xmm0, QWORD PTR [rsp-8]
 	jbe	.L496
-	movsd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-16]
 	pxor	xmm1, xmm1
 	comisd	xmm0, xmm1
 	ja	.L498
 .L496:
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	pxor	xmm1, xmm1
 	comisd	xmm0, xmm1
 	jbe	.L499
 	pxor	xmm0, xmm0
-	comisd	xmm0, QWORD PTR [rbp-16]
+	comisd	xmm0, QWORD PTR [rsp-16]
 	jbe	.L499
 .L498:
-	movsd	xmm0, QWORD PTR [rbp-8]
+	movsd	xmm0, QWORD PTR [rsp-8]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
-	jmp	.L502
+	ret
 .L499:
-	movsd	xmm0, QWORD PTR [rbp-8]
-.L502:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE98:
@@ -3971,29 +3287,25 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 48
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-40], rdx
-	mov	QWORD PTR [rbp-48], rcx
-	mov	rax, QWORD PTR [rbp-32]
-	sub	rax, QWORD PTR [rbp-48]
+	.cfi_def_cfa_offset 56
+	mov	QWORD PTR [rsp+24], rdi
+	mov	QWORD PTR [rsp+16], rsi
+	mov	QWORD PTR [rsp+8], rdx
+	mov	QWORD PTR [rsp], rcx
+	mov	rax, QWORD PTR [rsp+16]
+	sub	rax, QWORD PTR [rsp]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+24]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-16], rax
-	cmp	QWORD PTR [rbp-48], 0
+	mov	QWORD PTR [rsp+32], rax
+	cmp	QWORD PTR [rsp], 0
 	jne	.L506
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+24]
 	jmp	.L507
 .L506:
-	mov	rax, QWORD PTR [rbp-32]
-	cmp	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp+16]
+	cmp	rax, QWORD PTR [rsp]
 	setb	al
 	movzx	eax, al
 	test	rax, rax
@@ -4001,39 +3313,39 @@ memmem:
 	mov	eax, 0
 	jmp	.L507
 .L508:
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
+	mov	rax, QWORD PTR [rsp+24]
+	mov	QWORD PTR [rsp+40], rax
 	jmp	.L509
 .L511:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+40]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+8]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	jne	.L510
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp]
 	lea	rdx, [rax-1]
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp+8]
 	lea	rcx, [rax+1]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+40]
 	add	rax, 1
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	memcmp
 	test	eax, eax
 	jne	.L510
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+40]
 	jmp	.L507
 .L510:
-	add	QWORD PTR [rbp-8], 1
+	add	QWORD PTR [rsp+40], 1
 .L509:
-	mov	rax, QWORD PTR [rbp-8]
-	cmp	QWORD PTR [rbp-16], rax
+	mov	rax, QWORD PTR [rsp+40]
+	cmp	QWORD PTR [rsp+32], rax
 	jnb	.L511
 	mov	eax, 0
 .L507:
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 48
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE99:
@@ -4043,25 +3355,21 @@ memmem:
 mempcpy:
 .LFB100:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 24
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	rcx, QWORD PTR [rbp-16]
-	mov	rax, QWORD PTR [rbp-8]
+	.cfi_def_cfa_offset 32
+	mov	QWORD PTR [rsp+16], rdi
+	mov	QWORD PTR [rsp+8], rsi
+	mov	QWORD PTR [rsp], rdx
+	mov	rdx, QWORD PTR [rsp]
+	mov	rcx, QWORD PTR [rsp+8]
+	mov	rax, QWORD PTR [rsp+16]
 	mov	rsi, rcx
 	mov	rdi, rax
 	call	memcpy
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	rdx, QWORD PTR [rsp]
 	add	rax, rdx
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 24
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE100:
@@ -4071,75 +3379,68 @@ mempcpy:
 frexp:
 .LFB101:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-24], xmm0
-	mov	QWORD PTR [rbp-32], rdi
-	mov	DWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-4], 0
+	movsd	QWORD PTR [rsp-24], xmm0
+	mov	QWORD PTR [rsp-32], rdi
+	mov	DWORD PTR [rsp-8], 0
+	mov	DWORD PTR [rsp-4], 0
 	pxor	xmm0, xmm0
-	comisd	xmm0, QWORD PTR [rbp-24]
+	comisd	xmm0, QWORD PTR [rsp-24]
 	jbe	.L515
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
-	movsd	QWORD PTR [rbp-24], xmm0
-	mov	DWORD PTR [rbp-4], 1
+	movsd	QWORD PTR [rsp-24], xmm0
+	mov	DWORD PTR [rsp-4], 1
 .L515:
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	movsd	xmm1, QWORD PTR .LC16[rip]
 	comisd	xmm0, xmm1
 	jb	.L532
 	jmp	.L519
 .L520:
-	add	DWORD PTR [rbp-8], 1
-	movsd	xmm0, QWORD PTR [rbp-24]
+	add	DWORD PTR [rsp-8], 1
+	movsd	xmm0, QWORD PTR [rsp-24]
 	movsd	xmm1, QWORD PTR .LC12[rip]
 	divsd	xmm0, xmm1
-	movsd	QWORD PTR [rbp-24], xmm0
+	movsd	QWORD PTR [rsp-24], xmm0
 .L519:
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	movsd	xmm1, QWORD PTR .LC16[rip]
 	comisd	xmm0, xmm1
 	jnb	.L520
 	jmp	.L521
 .L532:
 	movsd	xmm0, QWORD PTR .LC11[rip]
-	comisd	xmm0, QWORD PTR [rbp-24]
+	comisd	xmm0, QWORD PTR [rsp-24]
 	jbe	.L521
 	pxor	xmm0, xmm0
-	ucomisd	xmm0, QWORD PTR [rbp-24]
+	ucomisd	xmm0, QWORD PTR [rsp-24]
 	jp	.L524
 	pxor	xmm0, xmm0
-	ucomisd	xmm0, QWORD PTR [rbp-24]
+	ucomisd	xmm0, QWORD PTR [rsp-24]
 	je	.L521
 	jmp	.L524
 .L525:
-	sub	DWORD PTR [rbp-8], 1
-	movsd	xmm0, QWORD PTR [rbp-24]
+	sub	DWORD PTR [rsp-8], 1
+	movsd	xmm0, QWORD PTR [rsp-24]
 	addsd	xmm0, xmm0
-	movsd	QWORD PTR [rbp-24], xmm0
+	movsd	QWORD PTR [rsp-24], xmm0
 .L524:
 	movsd	xmm0, QWORD PTR .LC11[rip]
-	comisd	xmm0, QWORD PTR [rbp-24]
+	comisd	xmm0, QWORD PTR [rsp-24]
 	ja	.L525
 .L521:
-	mov	rax, QWORD PTR [rbp-32]
-	mov	edx, DWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-32]
+	mov	edx, DWORD PTR [rsp-8]
 	mov	DWORD PTR [rax], edx
-	cmp	DWORD PTR [rbp-4], 0
+	cmp	DWORD PTR [rsp-4], 0
 	je	.L526
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
-	movsd	QWORD PTR [rbp-24], xmm0
+	movsd	QWORD PTR [rsp-24], xmm0
 .L526:
-	movsd	xmm0, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE101:
@@ -4149,32 +3450,25 @@ frexp:
 __muldi3:
 .LFB102:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	QWORD PTR [rbp-8], 0
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-16], rax
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	QWORD PTR [rsp-8], 0
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-16], rax
 	jmp	.L534
 .L536:
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-16]
 	and	eax, 1
 	je	.L535
-	mov	rax, QWORD PTR [rbp-32]
-	add	QWORD PTR [rbp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	add	QWORD PTR [rsp-8], rax
 .L535:
-	sal	QWORD PTR [rbp-32]
-	shr	QWORD PTR [rbp-16]
+	sal	QWORD PTR [rsp-32]
+	shr	QWORD PTR [rsp-16]
 .L534:
-	cmp	QWORD PTR [rbp-16], 0
+	cmp	QWORD PTR [rsp-16], 0
 	jne	.L536
-	mov	rax, QWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE102:
@@ -4184,53 +3478,45 @@ __muldi3:
 udivmodsi4:
 .LFB103:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	QWORD PTR [rbp-32], rdx
-	mov	DWORD PTR [rbp-4], 1
-	mov	DWORD PTR [rbp-8], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	QWORD PTR [rsp-32], rdx
+	mov	DWORD PTR [rsp-4], 1
+	mov	DWORD PTR [rsp-8], 0
 	jmp	.L539
 .L541:
-	sal	DWORD PTR [rbp-24]
-	sal	DWORD PTR [rbp-4]
+	sal	DWORD PTR [rsp-24]
+	sal	DWORD PTR [rsp-4]
 .L539:
-	mov	eax, DWORD PTR [rbp-24]
-	cmp	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-24]
+	cmp	eax, DWORD PTR [rsp-20]
 	jnb	.L542
-	cmp	DWORD PTR [rbp-4], 0
+	cmp	DWORD PTR [rsp-4], 0
 	je	.L542
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	test	eax, eax
 	jns	.L541
 	jmp	.L542
 .L544:
-	mov	eax, DWORD PTR [rbp-20]
-	cmp	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-20]
+	cmp	eax, DWORD PTR [rsp-24]
 	jb	.L543
-	mov	eax, DWORD PTR [rbp-24]
-	sub	DWORD PTR [rbp-20], eax
-	mov	eax, DWORD PTR [rbp-4]
-	or	DWORD PTR [rbp-8], eax
+	mov	eax, DWORD PTR [rsp-24]
+	sub	DWORD PTR [rsp-20], eax
+	mov	eax, DWORD PTR [rsp-4]
+	or	DWORD PTR [rsp-8], eax
 .L543:
-	shr	DWORD PTR [rbp-4]
-	shr	DWORD PTR [rbp-24]
+	shr	DWORD PTR [rsp-4]
+	shr	DWORD PTR [rsp-24]
 .L542:
-	cmp	DWORD PTR [rbp-4], 0
+	cmp	DWORD PTR [rsp-4], 0
 	jne	.L544
-	cmp	QWORD PTR [rbp-32], 0
+	cmp	QWORD PTR [rsp-32], 0
 	je	.L545
-	mov	eax, DWORD PTR [rbp-20]
-	jmp	.L546
+	mov	eax, DWORD PTR [rsp-20]
+	ret
 .L545:
-	mov	eax, DWORD PTR [rbp-8]
-.L546:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE103:
@@ -4240,32 +3526,24 @@ udivmodsi4:
 __clrsbqi2:
 .LFB104:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	BYTE PTR [rbp-20], al
-	cmp	BYTE PTR [rbp-20], 0
+	mov	BYTE PTR [rsp-20], al
+	cmp	BYTE PTR [rsp-20], 0
 	jns	.L548
-	not	BYTE PTR [rbp-20]
+	not	BYTE PTR [rsp-20]
 .L548:
-	cmp	BYTE PTR [rbp-20], 0
+	cmp	BYTE PTR [rsp-20], 0
 	jne	.L549
 	mov	eax, 7
-	jmp	.L550
+	ret
 .L549:
-	movsx	eax, BYTE PTR [rbp-20]
+	movsx	eax, BYTE PTR [rsp-20]
 	sal	eax, 8
 	bsr	eax, eax
 	xor	eax, 31
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 1
-.L550:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE104:
@@ -4275,30 +3553,22 @@ __clrsbqi2:
 __clrsbdi2:
 .LFB105:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	cmp	QWORD PTR [rbp-24], 0
+	mov	QWORD PTR [rsp-24], rdi
+	cmp	QWORD PTR [rsp-24], 0
 	jns	.L552
-	not	QWORD PTR [rbp-24]
+	not	QWORD PTR [rsp-24]
 .L552:
-	cmp	QWORD PTR [rbp-24], 0
+	cmp	QWORD PTR [rsp-24], 0
 	jne	.L553
 	mov	eax, 63
-	jmp	.L554
+	ret
 .L553:
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	bsr	rax, rax
 	xor	rax, 63
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 1
-.L554:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE105:
@@ -4308,30 +3578,23 @@ __clrsbdi2:
 __mulsi3:
 .LFB106:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L556
 .L558:
-	mov	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-20]
 	and	eax, 1
 	je	.L557
-	mov	eax, DWORD PTR [rbp-24]
-	add	DWORD PTR [rbp-4], eax
+	mov	eax, DWORD PTR [rsp-24]
+	add	DWORD PTR [rsp-4], eax
 .L557:
-	shr	DWORD PTR [rbp-20]
-	sal	DWORD PTR [rbp-24]
+	shr	DWORD PTR [rsp-20]
+	sal	DWORD PTR [rsp-24]
 .L556:
-	cmp	DWORD PTR [rbp-20], 0
+	cmp	DWORD PTR [rsp-20], 0
 	jne	.L558
-	mov	eax, DWORD PTR [rbp-4]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE106:
@@ -4341,86 +3604,79 @@ __mulsi3:
 __cmovd:
 .LFB107:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-48], rsi
-	mov	DWORD PTR [rbp-52], edx
-	mov	eax, DWORD PTR [rbp-52]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	QWORD PTR [rsp-48], rsi
+	mov	DWORD PTR [rsp-52], edx
+	mov	eax, DWORD PTR [rsp-52]
 	shr	eax, 3
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-52]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-52]
 	and	eax, -8
-	mov	DWORD PTR [rbp-8], eax
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-32]
+	mov	DWORD PTR [rsp-8], eax
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-24]
+	cmp	rax, QWORD PTR [rsp-32]
 	jb	.L561
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	cmp	rax, QWORD PTR [rbp-24]
+	cmp	rax, QWORD PTR [rsp-24]
 	jnb	.L568
 .L561:
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L563
 .L564:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	lea	rdx, [0+rax*8]
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp-48]
 	add	rax, rdx
-	mov	edx, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp-4]
 	lea	rcx, [0+rdx*8]
-	mov	rdx, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-40]
 	add	rdx, rcx
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR [rdx], rax
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L563:
-	mov	eax, DWORD PTR [rbp-4]
-	cmp	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-4]
+	cmp	eax, DWORD PTR [rsp-12]
 	jb	.L564
 	jmp	.L565
 .L566:
-	mov	edx, DWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-8]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	mov	ecx, DWORD PTR [rbp-8]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	ecx, DWORD PTR [rsp-8]
+	mov	rdx, QWORD PTR [rsp-24]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-	add	DWORD PTR [rbp-8], 1
+	add	DWORD PTR [rsp-8], 1
 .L565:
-	mov	eax, DWORD PTR [rbp-52]
-	cmp	DWORD PTR [rbp-8], eax
+	mov	eax, DWORD PTR [rsp-52]
+	cmp	DWORD PTR [rsp-8], eax
 	jb	.L566
 	jmp	.L567
 .L569:
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	mov	ecx, DWORD PTR [rbp-52]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	ecx, DWORD PTR [rsp-52]
+	mov	rdx, QWORD PTR [rsp-24]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
 .L568:
-	mov	eax, DWORD PTR [rbp-52]
+	mov	eax, DWORD PTR [rsp-52]
 	lea	edx, [rax-1]
-	mov	DWORD PTR [rbp-52], edx
+	mov	DWORD PTR [rsp-52], edx
 	test	eax, eax
 	jne	.L569
 .L567:
 	nop
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE107:
@@ -4430,83 +3686,76 @@ __cmovd:
 __cmovh:
 .LFB108:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-48], rsi
-	mov	DWORD PTR [rbp-52], edx
-	mov	eax, DWORD PTR [rbp-52]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	QWORD PTR [rsp-48], rsi
+	mov	DWORD PTR [rsp-52], edx
+	mov	eax, DWORD PTR [rsp-52]
 	shr	eax
-	mov	DWORD PTR [rbp-8], eax
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-16]
-	cmp	rax, QWORD PTR [rbp-24]
+	mov	DWORD PTR [rsp-8], eax
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-16]
+	cmp	rax, QWORD PTR [rsp-24]
 	jb	.L571
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-24]
 	add	rax, rdx
-	cmp	rax, QWORD PTR [rbp-16]
+	cmp	rax, QWORD PTR [rsp-16]
 	jnb	.L577
 .L571:
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L573
 .L574:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	lea	rdx, [rax+rax]
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp-48]
 	add	rax, rdx
-	mov	edx, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp-4]
 	lea	rcx, [rdx+rdx]
-	mov	rdx, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-40]
 	add	rdx, rcx
 	movzx	eax, WORD PTR [rax]
 	mov	WORD PTR [rdx], ax
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L573:
-	mov	eax, DWORD PTR [rbp-4]
-	cmp	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-4]
+	cmp	eax, DWORD PTR [rsp-8]
 	jb	.L574
-	mov	eax, DWORD PTR [rbp-52]
+	mov	eax, DWORD PTR [rsp-52]
 	and	eax, 1
 	je	.L576
-	mov	eax, DWORD PTR [rbp-52]
+	mov	eax, DWORD PTR [rsp-52]
 	sub	eax, 1
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-24]
 	add	rax, rdx
-	mov	edx, DWORD PTR [rbp-52]
+	mov	edx, DWORD PTR [rsp-52]
 	sub	edx, 1
 	mov	ecx, edx
-	mov	rdx, QWORD PTR [rbp-16]
+	mov	rdx, QWORD PTR [rsp-16]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
 	jmp	.L576
 .L578:
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-24]
 	add	rax, rdx
-	mov	ecx, DWORD PTR [rbp-52]
-	mov	rdx, QWORD PTR [rbp-16]
+	mov	ecx, DWORD PTR [rsp-52]
+	mov	rdx, QWORD PTR [rsp-16]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
 .L577:
-	mov	eax, DWORD PTR [rbp-52]
+	mov	eax, DWORD PTR [rsp-52]
 	lea	edx, [rax-1]
-	mov	DWORD PTR [rbp-52], edx
+	mov	DWORD PTR [rsp-52], edx
 	test	eax, eax
 	jne	.L578
 .L576:
 	nop
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE108:
@@ -4516,86 +3765,79 @@ __cmovh:
 __cmovw:
 .LFB109:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-48], rsi
-	mov	DWORD PTR [rbp-52], edx
-	mov	eax, DWORD PTR [rbp-52]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	QWORD PTR [rsp-48], rsi
+	mov	DWORD PTR [rsp-52], edx
+	mov	eax, DWORD PTR [rsp-52]
 	shr	eax, 2
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-52]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-52]
 	and	eax, -4
-	mov	DWORD PTR [rbp-8], eax
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	QWORD PTR [rbp-32], rax
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-32]
+	mov	DWORD PTR [rsp-8], eax
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-24]
+	cmp	rax, QWORD PTR [rsp-32]
 	jb	.L580
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	cmp	rax, QWORD PTR [rbp-24]
+	cmp	rax, QWORD PTR [rsp-24]
 	jnb	.L587
 .L580:
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L582
 .L583:
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	lea	rdx, [0+rax*4]
-	mov	rax, QWORD PTR [rbp-48]
+	mov	rax, QWORD PTR [rsp-48]
 	add	rax, rdx
-	mov	edx, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp-4]
 	lea	rcx, [0+rdx*4]
-	mov	rdx, QWORD PTR [rbp-40]
+	mov	rdx, QWORD PTR [rsp-40]
 	add	rdx, rcx
 	mov	eax, DWORD PTR [rax]
 	mov	DWORD PTR [rdx], eax
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L582:
-	mov	eax, DWORD PTR [rbp-4]
-	cmp	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-4]
+	cmp	eax, DWORD PTR [rsp-12]
 	jb	.L583
 	jmp	.L584
 .L585:
-	mov	edx, DWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-8]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	mov	ecx, DWORD PTR [rbp-8]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	ecx, DWORD PTR [rsp-8]
+	mov	rdx, QWORD PTR [rsp-24]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-	add	DWORD PTR [rbp-8], 1
+	add	DWORD PTR [rsp-8], 1
 .L584:
-	mov	eax, DWORD PTR [rbp-52]
-	cmp	DWORD PTR [rbp-8], eax
+	mov	eax, DWORD PTR [rsp-52]
+	cmp	DWORD PTR [rsp-8], eax
 	jb	.L585
 	jmp	.L586
 .L588:
-	mov	edx, DWORD PTR [rbp-52]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	edx, DWORD PTR [rsp-52]
+	mov	rax, QWORD PTR [rsp-32]
 	add	rax, rdx
-	mov	ecx, DWORD PTR [rbp-52]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	ecx, DWORD PTR [rsp-52]
+	mov	rdx, QWORD PTR [rsp-24]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
 .L587:
-	mov	eax, DWORD PTR [rbp-52]
+	mov	eax, DWORD PTR [rsp-52]
 	lea	edx, [rax-1]
-	mov	DWORD PTR [rbp-52], edx
+	mov	DWORD PTR [rsp-52], edx
 	test	eax, eax
 	jne	.L588
 .L586:
 	nop
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE109:
@@ -4605,19 +3847,12 @@ __cmovw:
 __modi:
 .LFB110:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	DWORD PTR [rsp-8], esi
+	mov	eax, DWORD PTR [rsp-4]
 	cdq
-	idiv	DWORD PTR [rbp-8]
+	idiv	DWORD PTR [rsp-8]
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE110:
@@ -4627,18 +3862,13 @@ __modi:
 __uitod:
 .LFB111:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	test	rax, rax
 	js	.L592
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rax
-	jmp	.L594
+	ret
 .L592:
 	mov	rdx, rax
 	shr	rdx
@@ -4647,9 +3877,6 @@ __uitod:
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rdx
 	addsd	xmm0, xmm0
-.L594:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE111:
@@ -4659,18 +3886,13 @@ __uitod:
 __uitof:
 .LFB112:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	test	rax, rax
 	js	.L596
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rax
-	jmp	.L598
+	ret
 .L596:
 	mov	rdx, rax
 	shr	rdx
@@ -4679,9 +3901,6 @@ __uitof:
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rdx
 	addss	xmm0, xmm0
-.L598:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE112:
@@ -4691,18 +3910,13 @@ __uitof:
 __ulltod:
 .LFB113:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	test	rax, rax
 	js	.L600
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rax
-	jmp	.L602
+	ret
 .L600:
 	mov	rdx, rax
 	shr	rdx
@@ -4711,9 +3925,6 @@ __ulltod:
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rdx
 	addsd	xmm0, xmm0
-.L602:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE113:
@@ -4723,18 +3934,13 @@ __ulltod:
 __ulltof:
 .LFB114:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	test	rax, rax
 	js	.L604
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rax
-	jmp	.L606
+	ret
 .L604:
 	mov	rdx, rax
 	shr	rdx
@@ -4743,9 +3949,6 @@ __ulltof:
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rdx
 	addss	xmm0, xmm0
-.L606:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE114:
@@ -4755,19 +3958,12 @@ __ulltof:
 __umodi:
 .LFB115:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	DWORD PTR [rbp-8], esi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	DWORD PTR [rsp-8], esi
+	mov	eax, DWORD PTR [rsp-4]
 	mov	edx, 0
-	div	DWORD PTR [rbp-8]
+	div	DWORD PTR [rsp-8]
 	mov	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE115:
@@ -4777,32 +3973,25 @@ __umodi:
 __clzhi2:
 .LFB116:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	WORD PTR [rbp-20], ax
-	mov	DWORD PTR [rbp-4], 0
+	mov	WORD PTR [rsp-20], ax
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L610
 .L613:
-	movzx	edx, WORD PTR [rbp-20]
+	movzx	edx, WORD PTR [rsp-20]
 	mov	eax, 15
-	sub	eax, DWORD PTR [rbp-4]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
 	jne	.L612
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L610:
-	cmp	DWORD PTR [rbp-4], 15
+	cmp	DWORD PTR [rsp-4], 15
 	jle	.L613
 .L612:
-	mov	eax, DWORD PTR [rbp-4]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE116:
@@ -4812,31 +4001,24 @@ __clzhi2:
 __ctzhi2:
 .LFB117:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	WORD PTR [rbp-20], ax
-	mov	DWORD PTR [rbp-4], 0
+	mov	WORD PTR [rsp-20], ax
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L617
 .L620:
-	movzx	edx, WORD PTR [rbp-20]
-	mov	eax, DWORD PTR [rbp-4]
+	movzx	edx, WORD PTR [rsp-20]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
 	jne	.L619
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L617:
-	cmp	DWORD PTR [rbp-4], 15
+	cmp	DWORD PTR [rsp-4], 15
 	jle	.L620
 .L619:
-	mov	eax, DWORD PTR [rbp-4]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE117:
@@ -4846,27 +4028,19 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
-	movss	xmm0, DWORD PTR [rbp-4]
+	movss	DWORD PTR [rsp-4], xmm0
+	movss	xmm0, DWORD PTR [rsp-4]
 	comiss	xmm0, DWORD PTR .LC17[rip]
 	jb	.L628
-	movss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-4]
 	movss	xmm1, DWORD PTR .LC17[rip]
 	subss	xmm0, xmm1
 	cvttss2si	rax, xmm0
 	add	rax, 32768
-	jmp	.L626
+	ret
 .L628:
-	movss	xmm0, DWORD PTR [rbp-4]
+	movss	xmm0, DWORD PTR [rsp-4]
 	cvttss2si	rax, xmm0
-.L626:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE118:
@@ -4876,34 +4050,27 @@ __fixunssfsi:
 __parityhi2:
 .LFB119:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	WORD PTR [rbp-20], ax
-	mov	DWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-4], 0
+	mov	WORD PTR [rsp-20], ax
+	mov	DWORD PTR [rsp-8], 0
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L630
 .L632:
-	movzx	edx, WORD PTR [rbp-20]
-	mov	eax, DWORD PTR [rbp-4]
+	movzx	edx, WORD PTR [rsp-20]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
 	je	.L631
-	add	DWORD PTR [rbp-8], 1
+	add	DWORD PTR [rsp-8], 1
 .L631:
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L630:
-	cmp	DWORD PTR [rbp-4], 15
+	cmp	DWORD PTR [rsp-4], 15
 	jle	.L632
-	mov	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-8]
 	and	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE119:
@@ -4913,33 +4080,26 @@ __parityhi2:
 __popcounthi2:
 .LFB120:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	eax, edi
-	mov	WORD PTR [rbp-20], ax
-	mov	DWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-4], 0
+	mov	WORD PTR [rsp-20], ax
+	mov	DWORD PTR [rsp-8], 0
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L635
 .L637:
-	movzx	edx, WORD PTR [rbp-20]
-	mov	eax, DWORD PTR [rbp-4]
+	movzx	edx, WORD PTR [rsp-20]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
 	je	.L636
-	add	DWORD PTR [rbp-8], 1
+	add	DWORD PTR [rsp-8], 1
 .L636:
-	add	DWORD PTR [rbp-4], 1
+	add	DWORD PTR [rsp-4], 1
 .L635:
-	cmp	DWORD PTR [rbp-4], 15
+	cmp	DWORD PTR [rsp-4], 15
 	jle	.L637
-	mov	eax, DWORD PTR [rbp-8]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE120:
@@ -4949,30 +4109,23 @@ __popcounthi2:
 __mulsi3_iq2000:
 .LFB121:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	DWORD PTR [rbp-4], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	DWORD PTR [rsp-4], 0
 	jmp	.L640
 .L642:
-	mov	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-20]
 	and	eax, 1
 	je	.L641
-	mov	eax, DWORD PTR [rbp-24]
-	add	DWORD PTR [rbp-4], eax
+	mov	eax, DWORD PTR [rsp-24]
+	add	DWORD PTR [rsp-4], eax
 .L641:
-	shr	DWORD PTR [rbp-20]
-	sal	DWORD PTR [rbp-24]
+	shr	DWORD PTR [rsp-20]
+	sal	DWORD PTR [rsp-24]
 .L640:
-	cmp	DWORD PTR [rbp-20], 0
+	cmp	DWORD PTR [rsp-20], 0
 	jne	.L642
-	mov	eax, DWORD PTR [rbp-4]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE121:
@@ -4982,34 +4135,26 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 .LFB122:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	DWORD PTR [rbp-4], 0
-	cmp	DWORD PTR [rbp-20], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	DWORD PTR [rsp-4], 0
+	cmp	DWORD PTR [rsp-20], 0
 	jne	.L647
 	mov	eax, 0
-	jmp	.L646
+	ret
 .L649:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	and	eax, 1
 	je	.L648
-	mov	eax, DWORD PTR [rbp-20]
-	add	DWORD PTR [rbp-4], eax
+	mov	eax, DWORD PTR [rsp-20]
+	add	DWORD PTR [rsp-4], eax
 .L648:
-	sal	DWORD PTR [rbp-20]
-	shr	DWORD PTR [rbp-24]
+	sal	DWORD PTR [rsp-20]
+	shr	DWORD PTR [rsp-24]
 .L647:
-	cmp	DWORD PTR [rbp-24], 0
+	cmp	DWORD PTR [rsp-24], 0
 	jne	.L649
-	mov	eax, DWORD PTR [rbp-4]
-.L646:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE122:
@@ -5019,53 +4164,45 @@ __mulsi3_lm32:
 __udivmodsi4:
 .LFB123:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	DWORD PTR [rbp-28], edx
-	mov	DWORD PTR [rbp-4], 1
-	mov	DWORD PTR [rbp-8], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	DWORD PTR [rsp-28], edx
+	mov	DWORD PTR [rsp-4], 1
+	mov	DWORD PTR [rsp-8], 0
 	jmp	.L651
 .L653:
-	sal	DWORD PTR [rbp-24]
-	sal	DWORD PTR [rbp-4]
+	sal	DWORD PTR [rsp-24]
+	sal	DWORD PTR [rsp-4]
 .L651:
-	mov	eax, DWORD PTR [rbp-24]
-	cmp	eax, DWORD PTR [rbp-20]
+	mov	eax, DWORD PTR [rsp-24]
+	cmp	eax, DWORD PTR [rsp-20]
 	jnb	.L654
-	cmp	DWORD PTR [rbp-4], 0
+	cmp	DWORD PTR [rsp-4], 0
 	je	.L654
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	test	eax, eax
 	jns	.L653
 	jmp	.L654
 .L656:
-	mov	eax, DWORD PTR [rbp-20]
-	cmp	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-20]
+	cmp	eax, DWORD PTR [rsp-24]
 	jb	.L655
-	mov	eax, DWORD PTR [rbp-24]
-	sub	DWORD PTR [rbp-20], eax
-	mov	eax, DWORD PTR [rbp-4]
-	or	DWORD PTR [rbp-8], eax
+	mov	eax, DWORD PTR [rsp-24]
+	sub	DWORD PTR [rsp-20], eax
+	mov	eax, DWORD PTR [rsp-4]
+	or	DWORD PTR [rsp-8], eax
 .L655:
-	shr	DWORD PTR [rbp-4]
-	shr	DWORD PTR [rbp-24]
+	shr	DWORD PTR [rsp-4]
+	shr	DWORD PTR [rsp-24]
 .L654:
-	cmp	DWORD PTR [rbp-4], 0
+	cmp	DWORD PTR [rsp-4], 0
 	jne	.L656
-	cmp	DWORD PTR [rbp-28], 0
+	cmp	DWORD PTR [rsp-28], 0
 	je	.L657
-	mov	eax, DWORD PTR [rbp-20]
-	jmp	.L658
+	mov	eax, DWORD PTR [rsp-20]
+	ret
 .L657:
-	mov	eax, DWORD PTR [rbp-8]
-.L658:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE123:
@@ -5075,29 +4212,21 @@ __udivmodsi4:
 __mspabi_cmpf:
 .LFB124:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-4], xmm0
-	movss	DWORD PTR [rbp-8], xmm1
-	movss	xmm0, DWORD PTR [rbp-8]
-	comiss	xmm0, DWORD PTR [rbp-4]
+	movss	DWORD PTR [rsp-4], xmm0
+	movss	DWORD PTR [rsp-8], xmm1
+	movss	xmm0, DWORD PTR [rsp-8]
+	comiss	xmm0, DWORD PTR [rsp-4]
 	jbe	.L667
 	mov	eax, -1
-	jmp	.L662
+	ret
 .L667:
-	movss	xmm0, DWORD PTR [rbp-4]
-	comiss	xmm0, DWORD PTR [rbp-8]
+	movss	xmm0, DWORD PTR [rsp-4]
+	comiss	xmm0, DWORD PTR [rsp-8]
 	jbe	.L668
 	mov	eax, 1
-	jmp	.L662
+	ret
 .L668:
 	mov	eax, 0
-.L662:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE124:
@@ -5107,29 +4236,21 @@ __mspabi_cmpf:
 __mspabi_cmpd:
 .LFB125:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-8], xmm0
-	movsd	QWORD PTR [rbp-16], xmm1
-	movsd	xmm0, QWORD PTR [rbp-16]
-	comisd	xmm0, QWORD PTR [rbp-8]
+	movsd	QWORD PTR [rsp-8], xmm0
+	movsd	QWORD PTR [rsp-16], xmm1
+	movsd	xmm0, QWORD PTR [rsp-16]
+	comisd	xmm0, QWORD PTR [rsp-8]
 	jbe	.L677
 	mov	eax, -1
-	jmp	.L672
+	ret
 .L677:
-	movsd	xmm0, QWORD PTR [rbp-8]
-	comisd	xmm0, QWORD PTR [rbp-16]
+	movsd	xmm0, QWORD PTR [rsp-8]
+	comisd	xmm0, QWORD PTR [rsp-16]
 	jbe	.L678
 	mov	eax, 1
-	jmp	.L672
+	ret
 .L678:
 	mov	eax, 0
-.L672:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE125:
@@ -5139,17 +4260,10 @@ __mspabi_cmpd:
 __mspabi_mpysll:
 .LFB126:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	rax, QWORD PTR [rbp-8]
-	imul	rax, QWORD PTR [rbp-16]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	rax, QWORD PTR [rsp-8]
+	imul	rax, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE126:
@@ -5159,17 +4273,10 @@ __mspabi_mpysll:
 __mspabi_mpyull:
 .LFB127:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	rax, QWORD PTR [rbp-8]
-	imul	rax, QWORD PTR [rbp-16]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp-8], rdi
+	mov	QWORD PTR [rsp-16], rsi
+	mov	rax, QWORD PTR [rsp-8]
+	imul	rax, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE127:
@@ -5179,51 +4286,43 @@ __mspabi_mpyull:
 __mulhi3:
 .LFB128:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	DWORD PTR [rbp-24], esi
-	mov	DWORD PTR [rbp-8], 0
-	mov	DWORD PTR [rbp-12], 0
-	cmp	DWORD PTR [rbp-24], 0
+	mov	DWORD PTR [rsp-20], edi
+	mov	DWORD PTR [rsp-24], esi
+	mov	DWORD PTR [rsp-8], 0
+	mov	DWORD PTR [rsp-12], 0
+	cmp	DWORD PTR [rsp-24], 0
 	jns	.L684
-	neg	DWORD PTR [rbp-24]
-	mov	DWORD PTR [rbp-8], 1
+	neg	DWORD PTR [rsp-24]
+	mov	DWORD PTR [rsp-8], 1
 .L684:
-	mov	BYTE PTR [rbp-1], 0
+	mov	BYTE PTR [rsp-1], 0
 	jmp	.L685
 .L688:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	and	eax, 1
 	je	.L686
-	mov	eax, DWORD PTR [rbp-20]
-	add	DWORD PTR [rbp-12], eax
+	mov	eax, DWORD PTR [rsp-20]
+	add	DWORD PTR [rsp-12], eax
 .L686:
-	sal	DWORD PTR [rbp-20]
-	sar	DWORD PTR [rbp-24]
-	movzx	eax, BYTE PTR [rbp-1]
+	sal	DWORD PTR [rsp-20]
+	sar	DWORD PTR [rsp-24]
+	movzx	eax, BYTE PTR [rsp-1]
 	add	eax, 1
-	mov	BYTE PTR [rbp-1], al
+	mov	BYTE PTR [rsp-1], al
 .L685:
-	cmp	DWORD PTR [rbp-24], 0
+	cmp	DWORD PTR [rsp-24], 0
 	je	.L687
-	movzx	eax, BYTE PTR [rbp-1]
+	movzx	eax, BYTE PTR [rsp-1]
 	cmp	al, 31
 	jbe	.L688
 .L687:
-	cmp	DWORD PTR [rbp-8], 0
+	cmp	DWORD PTR [rsp-8], 0
 	je	.L689
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	neg	eax
-	jmp	.L691
+	ret
 .L689:
-	mov	eax, DWORD PTR [rbp-12]
-.L691:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	eax, DWORD PTR [rsp-12]
 	ret
 	.cfi_endproc
 .LFE128:
@@ -5233,47 +4332,43 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 32
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	DWORD PTR [rbp-4], 0
-	cmp	QWORD PTR [rbp-24], 0
+	.cfi_def_cfa_offset 40
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	DWORD PTR [rsp+28], 0
+	cmp	QWORD PTR [rsp+8], 0
 	jns	.L693
-	neg	QWORD PTR [rbp-24]
-	cmp	DWORD PTR [rbp-4], 0
+	neg	QWORD PTR [rsp+8]
+	cmp	DWORD PTR [rsp+28], 0
 	sete	al
 	movzx	eax, al
-	mov	DWORD PTR [rbp-4], eax
+	mov	DWORD PTR [rsp+28], eax
 .L693:
-	cmp	QWORD PTR [rbp-32], 0
+	cmp	QWORD PTR [rsp], 0
 	jns	.L694
-	neg	QWORD PTR [rbp-32]
-	cmp	DWORD PTR [rbp-4], 0
+	neg	QWORD PTR [rsp]
+	cmp	DWORD PTR [rsp+28], 0
 	sete	al
 	movzx	eax, al
-	mov	DWORD PTR [rbp-4], eax
+	mov	DWORD PTR [rsp+28], eax
 .L694:
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp]
 	mov	ecx, eax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+8]
 	mov	edx, 0
 	mov	esi, ecx
 	mov	edi, eax
 	call	__udivmodsi4
 	mov	eax, eax
-	mov	QWORD PTR [rbp-16], rax
-	cmp	DWORD PTR [rbp-4], 0
+	mov	QWORD PTR [rsp+16], rax
+	cmp	DWORD PTR [rsp+28], 0
 	je	.L695
-	neg	QWORD PTR [rbp-16]
+	neg	QWORD PTR [rsp+16]
 .L695:
-	mov	rax, QWORD PTR [rbp-16]
-	leave
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp+16]
+	add	rsp, 32
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE129:
@@ -5283,40 +4378,36 @@ __divsi3:
 __modsi3:
 .LFB130:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 32
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	DWORD PTR [rbp-4], 0
-	cmp	QWORD PTR [rbp-24], 0
+	.cfi_def_cfa_offset 40
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	DWORD PTR [rsp+28], 0
+	cmp	QWORD PTR [rsp+8], 0
 	jns	.L698
-	neg	QWORD PTR [rbp-24]
-	mov	DWORD PTR [rbp-4], 1
+	neg	QWORD PTR [rsp+8]
+	mov	DWORD PTR [rsp+28], 1
 .L698:
-	cmp	QWORD PTR [rbp-32], 0
+	cmp	QWORD PTR [rsp], 0
 	jns	.L699
-	neg	QWORD PTR [rbp-32]
+	neg	QWORD PTR [rsp]
 .L699:
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp]
 	mov	ecx, eax
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+8]
 	mov	edx, 1
 	mov	esi, ecx
 	mov	edi, eax
 	call	__udivmodsi4
 	mov	eax, eax
-	mov	QWORD PTR [rbp-16], rax
-	cmp	DWORD PTR [rbp-4], 0
+	mov	QWORD PTR [rsp+16], rax
+	cmp	DWORD PTR [rsp+28], 0
 	je	.L700
-	neg	QWORD PTR [rbp-16]
+	neg	QWORD PTR [rsp+16]
 .L700:
-	mov	rax, QWORD PTR [rbp-16]
-	leave
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp+16]
+	add	rsp, 32
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE130:
@@ -5326,56 +4417,48 @@ __modsi3:
 __udivmodhi4:
 .LFB131:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	ecx, edi
 	mov	eax, esi
-	mov	DWORD PTR [rbp-28], edx
+	mov	DWORD PTR [rsp-28], edx
 	mov	edx, ecx
-	mov	WORD PTR [rbp-20], dx
-	mov	WORD PTR [rbp-24], ax
-	mov	WORD PTR [rbp-2], 1
-	mov	WORD PTR [rbp-4], 0
+	mov	WORD PTR [rsp-20], dx
+	mov	WORD PTR [rsp-24], ax
+	mov	WORD PTR [rsp-2], 1
+	mov	WORD PTR [rsp-4], 0
 	jmp	.L703
 .L705:
-	sal	WORD PTR [rbp-24]
-	sal	WORD PTR [rbp-2]
+	sal	WORD PTR [rsp-24]
+	sal	WORD PTR [rsp-2]
 .L703:
-	movzx	eax, WORD PTR [rbp-24]
-	cmp	ax, WORD PTR [rbp-20]
+	movzx	eax, WORD PTR [rsp-24]
+	cmp	ax, WORD PTR [rsp-20]
 	jnb	.L706
-	cmp	WORD PTR [rbp-2], 0
+	cmp	WORD PTR [rsp-2], 0
 	je	.L706
-	movzx	eax, WORD PTR [rbp-24]
+	movzx	eax, WORD PTR [rsp-24]
 	test	ax, ax
 	jns	.L705
 	jmp	.L706
 .L708:
-	movzx	eax, WORD PTR [rbp-20]
-	cmp	ax, WORD PTR [rbp-24]
+	movzx	eax, WORD PTR [rsp-20]
+	cmp	ax, WORD PTR [rsp-24]
 	jb	.L707
-	movzx	eax, WORD PTR [rbp-24]
-	sub	WORD PTR [rbp-20], ax
-	movzx	eax, WORD PTR [rbp-2]
-	or	WORD PTR [rbp-4], ax
+	movzx	eax, WORD PTR [rsp-24]
+	sub	WORD PTR [rsp-20], ax
+	movzx	eax, WORD PTR [rsp-2]
+	or	WORD PTR [rsp-4], ax
 .L707:
-	shr	WORD PTR [rbp-2]
-	shr	WORD PTR [rbp-24]
+	shr	WORD PTR [rsp-2]
+	shr	WORD PTR [rsp-24]
 .L706:
-	cmp	WORD PTR [rbp-2], 0
+	cmp	WORD PTR [rsp-2], 0
 	jne	.L708
-	cmp	DWORD PTR [rbp-28], 0
+	cmp	DWORD PTR [rsp-28], 0
 	je	.L709
-	movzx	eax, WORD PTR [rbp-20]
-	jmp	.L710
+	movzx	eax, WORD PTR [rsp-20]
+	ret
 .L709:
-	movzx	eax, WORD PTR [rbp-4]
-.L710:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movzx	eax, WORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE131:
@@ -5385,53 +4468,45 @@ __udivmodhi4:
 __udivmodsi4_libgcc:
 .LFB132:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	DWORD PTR [rbp-36], edx
-	mov	QWORD PTR [rbp-8], 1
-	mov	QWORD PTR [rbp-16], 0
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	DWORD PTR [rsp-36], edx
+	mov	QWORD PTR [rsp-8], 1
+	mov	QWORD PTR [rsp-16], 0
 	jmp	.L712
 .L714:
-	sal	QWORD PTR [rbp-32]
-	sal	QWORD PTR [rbp-8]
+	sal	QWORD PTR [rsp-32]
+	sal	QWORD PTR [rsp-8]
 .L712:
-	mov	rax, QWORD PTR [rbp-32]
-	cmp	rax, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-32]
+	cmp	rax, QWORD PTR [rsp-24]
 	jnb	.L715
-	cmp	QWORD PTR [rbp-8], 0
+	cmp	QWORD PTR [rsp-8], 0
 	je	.L715
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-32]
 	and	eax, 2147483648
 	je	.L714
 	jmp	.L715
 .L717:
-	mov	rax, QWORD PTR [rbp-24]
-	cmp	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-24]
+	cmp	rax, QWORD PTR [rsp-32]
 	jb	.L716
-	mov	rax, QWORD PTR [rbp-32]
-	sub	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-8]
-	or	QWORD PTR [rbp-16], rax
+	mov	rax, QWORD PTR [rsp-32]
+	sub	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-8]
+	or	QWORD PTR [rsp-16], rax
 .L716:
-	shr	QWORD PTR [rbp-8]
-	shr	QWORD PTR [rbp-32]
+	shr	QWORD PTR [rsp-8]
+	shr	QWORD PTR [rsp-32]
 .L715:
-	cmp	QWORD PTR [rbp-8], 0
+	cmp	QWORD PTR [rsp-8], 0
 	jne	.L717
-	cmp	DWORD PTR [rbp-36], 0
+	cmp	DWORD PTR [rsp-36], 0
 	je	.L718
-	mov	rax, QWORD PTR [rbp-24]
-	jmp	.L719
+	mov	rax, QWORD PTR [rsp-24]
+	ret
 .L718:
-	mov	rax, QWORD PTR [rbp-16]
-.L719:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-16]
 	ret
 	.cfi_endproc
 .LFE132:
@@ -5441,59 +4516,51 @@ __udivmodsi4_libgcc:
 __ashldi3:
 .LFB133:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	DWORD PTR [rbp-44], esi
-	mov	DWORD PTR [rbp-4], 32
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	eax, DWORD PTR [rbp-44]
-	and	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	DWORD PTR [rsp-44], esi
+	mov	DWORD PTR [rsp-4], 32
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-16], rax
+	mov	eax, DWORD PTR [rsp-44]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L721
-	mov	DWORD PTR [rbp-24], 0
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-44]
-	sub	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-24], 0
+	mov	edx, DWORD PTR [rsp-16]
+	mov	eax, DWORD PTR [rsp-44]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-20], eax
+	mov	DWORD PTR [rsp-20], eax
 	jmp	.L722
 .L721:
-	cmp	DWORD PTR [rbp-44], 0
+	cmp	DWORD PTR [rsp-44], 0
 	jne	.L723
-	mov	rax, QWORD PTR [rbp-40]
-	jmp	.L725
+	mov	rax, QWORD PTR [rsp-40]
+	ret
 .L723:
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-16]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	sal	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-24], eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	DWORD PTR [rsp-24], eax
+	mov	eax, DWORD PTR [rsp-12]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-44]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	esi, edx
 	mov	ecx, eax
 	sal	esi, cl
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-4]
-	sub	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-16]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	mov	DWORD PTR [rbp-20], eax
+	mov	DWORD PTR [rsp-20], eax
 .L722:
-	mov	rax, QWORD PTR [rbp-24]
-.L725:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE133:
@@ -5503,71 +4570,66 @@ __ashldi3:
 __ashlti3:
 .LFB134:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rax, rdi
 	mov	rcx, rax
 	mov	ebx, 0
 	mov	rbx, rsi
-	mov	QWORD PTR [rbp-80], rcx
-	mov	QWORD PTR [rbp-72], rbx
-	mov	DWORD PTR [rbp-84], edx
-	mov	DWORD PTR [rbp-20], 64
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	eax, DWORD PTR [rbp-84]
-	and	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-64], rcx
+	mov	QWORD PTR [rsp-56], rbx
+	mov	DWORD PTR [rsp-68], edx
+	mov	DWORD PTR [rsp-4], 64
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	QWORD PTR [rsp-32], rax
+	mov	QWORD PTR [rsp-24], rdx
+	mov	eax, DWORD PTR [rsp-68]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L727
-	mov	QWORD PTR [rbp-64], 0
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-84]
-	sub	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-48], 0
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	eax, DWORD PTR [rsp-68]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sal	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-56], rax
+	mov	QWORD PTR [rsp-40], rax
 	jmp	.L728
 .L727:
-	cmp	DWORD PTR [rbp-84], 0
+	cmp	DWORD PTR [rsp-68], 0
 	jne	.L729
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
 	jmp	.L731
 .L729:
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	sal	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-64], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-48], rax
+	mov	rax, QWORD PTR [rsp-24]
 	mov	rdx, rax
-	mov	eax, DWORD PTR [rbp-84]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	rsi, rdx
 	mov	ecx, eax
 	sal	rsi, cl
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-20]
-	sub	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	or	rax, rsi
-	mov	QWORD PTR [rbp-56], rax
+	mov	QWORD PTR [rsp-40], rax
 .L728:
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
+	mov	rax, QWORD PTR [rsp-48]
+	mov	rdx, QWORD PTR [rsp-40]
 .L731:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE134:
@@ -5577,65 +4639,57 @@ __ashlti3:
 __ashrdi3:
 .LFB135:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	DWORD PTR [rbp-44], esi
-	mov	DWORD PTR [rbp-4], 32
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	eax, DWORD PTR [rbp-44]
-	and	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	DWORD PTR [rsp-44], esi
+	mov	DWORD PTR [rsp-4], 32
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-16], rax
+	mov	eax, DWORD PTR [rsp-44]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L733
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 1
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-20], eax
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-44]
-	sub	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], eax
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-44]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-24], eax
+	mov	DWORD PTR [rsp-24], eax
 	jmp	.L734
 .L733:
-	cmp	DWORD PTR [rbp-44], 0
+	cmp	DWORD PTR [rsp-44], 0
 	jne	.L735
-	mov	rax, QWORD PTR [rbp-40]
-	jmp	.L737
+	mov	rax, QWORD PTR [rsp-40]
+	ret
 .L735:
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-20], eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	DWORD PTR [rsp-20], eax
+	mov	eax, DWORD PTR [rsp-12]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
-	sub	eax, DWORD PTR [rbp-44]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-44]
 	mov	esi, edx
 	mov	ecx, eax
 	sal	esi, cl
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-16]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	mov	DWORD PTR [rbp-24], eax
+	mov	DWORD PTR [rsp-24], eax
 .L734:
-	mov	rax, QWORD PTR [rbp-24]
-.L737:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE135:
@@ -5645,77 +4699,72 @@ __ashrdi3:
 __ashrti3:
 .LFB136:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rax, rdi
 	mov	rcx, rax
 	mov	ebx, 0
 	mov	rbx, rsi
-	mov	QWORD PTR [rbp-80], rcx
-	mov	QWORD PTR [rbp-72], rbx
-	mov	DWORD PTR [rbp-84], edx
-	mov	DWORD PTR [rbp-20], 64
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	eax, DWORD PTR [rbp-84]
-	and	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-64], rcx
+	mov	QWORD PTR [rsp-56], rbx
+	mov	DWORD PTR [rsp-68], edx
+	mov	DWORD PTR [rsp-4], 64
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	QWORD PTR [rsp-32], rax
+	mov	QWORD PTR [rsp-24], rdx
+	mov	eax, DWORD PTR [rsp-68]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L739
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-20]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-4]
 	sub	eax, 1
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-56], rax
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-84]
-	sub	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-40], rax
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-68]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-64], rax
+	mov	QWORD PTR [rsp-48], rax
 	jmp	.L740
 .L739:
-	cmp	DWORD PTR [rbp-84], 0
+	cmp	DWORD PTR [rsp-68], 0
 	jne	.L741
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
 	jmp	.L743
 .L741:
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-56], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-40], rax
+	mov	rax, QWORD PTR [rsp-24]
 	mov	rdx, rax
-	mov	eax, DWORD PTR [rbp-20]
-	sub	eax, DWORD PTR [rbp-84]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-68]
 	mov	rsi, rdx
 	mov	ecx, eax
 	sal	rsi, cl
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	or	rax, rsi
-	mov	QWORD PTR [rbp-64], rax
+	mov	QWORD PTR [rsp-48], rax
 .L740:
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
+	mov	rax, QWORD PTR [rsp-48]
+	mov	rdx, QWORD PTR [rsp-40]
 .L743:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE136:
@@ -5725,50 +4774,43 @@ __ashrti3:
 __bswapdi2:
 .LFB137:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 56
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 40
 	and	eax, 65280
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 24
 	and	eax, 16711680
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 8
 	and	eax, 4278190080
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 8
 	mov	rcx, rax
 	movabs	rax, 1095216660480
 	and	rax, rcx
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 24
 	mov	rcx, rax
 	movabs	rax, 280375465082880
 	and	rax, rcx
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 40
 	mov	rcx, rax
 	movabs	rax, 71776119061217280
 	and	rax, rcx
 	or	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	sal	rax, 56
 	or	rax, rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE137:
@@ -5778,28 +4820,21 @@ __bswapdi2:
 __bswapsi2:
 .LFB138:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-4], edi
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], edi
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 24
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 8
 	and	eax, 65280
 	or	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sal	eax, 8
 	and	eax, 16711680
 	or	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	sal	eax, 24
 	or	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE138:
@@ -5809,29 +4844,24 @@ __bswapsi2:
 __clzsi2:
 .LFB139:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	eax, DWORD PTR [rbp-20]
-	mov	DWORD PTR [rbp-4], eax
-	cmp	DWORD PTR [rbp-4], 65535
+	mov	DWORD PTR [rsp-20], edi
+	mov	eax, DWORD PTR [rsp-20]
+	mov	DWORD PTR [rsp-4], eax
+	cmp	DWORD PTR [rsp-4], 65535
 	ja	.L749
 	mov	eax, 16
 	jmp	.L750
 .L749:
 	mov	eax, 0
 .L750:
-	mov	DWORD PTR [rbp-8], eax
+	mov	DWORD PTR [rsp-8], eax
 	mov	eax, 16
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 65280
 	jne	.L751
 	mov	eax, 8
@@ -5839,14 +4869,14 @@ __clzsi2:
 .L751:
 	mov	eax, 0
 .L752:
-	mov	DWORD PTR [rbp-8], eax
+	mov	DWORD PTR [rsp-8], eax
 	mov	eax, 8
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 240
 	jne	.L753
 	mov	eax, 4
@@ -5854,14 +4884,14 @@ __clzsi2:
 .L753:
 	mov	eax, 0
 .L754:
-	mov	DWORD PTR [rbp-8], eax
+	mov	DWORD PTR [rsp-8], eax
 	mov	eax, 4
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 12
 	jne	.L755
 	mov	eax, 2
@@ -5869,25 +4899,23 @@ __clzsi2:
 .L755:
 	mov	eax, 0
 .L756:
-	mov	DWORD PTR [rbp-8], eax
+	mov	DWORD PTR [rsp-8], eax
 	mov	eax, 2
-	sub	eax, DWORD PTR [rbp-8]
+	sub	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 2
 	sete	al
 	movzx	eax, al
 	mov	edx, eax
 	mov	eax, 2
-	sub	eax, DWORD PTR [rbp-4]
+	sub	eax, DWORD PTR [rsp-4]
 	imul	edx, eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	add	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE139:
@@ -5897,46 +4925,39 @@ __clzsi2:
 __clzti2:
 .LFB140:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-56], rax
+	mov	QWORD PTR [rsp-48], rdx
+	mov	rax, QWORD PTR [rsp-56]
+	mov	rdx, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rax, QWORD PTR [rsp-32]
 	test	rax, rax
 	sete	al
 	movzx	eax, al
 	neg	eax
 	cdqe
-	mov	QWORD PTR [rbp-8], rax
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	rax, QWORD PTR [rsp-16]
 	not	rax
 	and	rax, rdx
 	mov	rcx, rax
-	mov	rdx, QWORD PTR [rbp-32]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-40]
+	mov	rax, QWORD PTR [rsp-16]
 	and	rax, rdx
 	or	rax, rcx
 	bsr	rax, rax
 	xor	rax, 63
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
 	and	eax, 64
 	add	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE140:
@@ -5946,49 +4967,41 @@ __clzti2:
 __cmpdi2:
 .LFB141:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	edx, DWORD PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-12]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	edx, DWORD PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-12]
 	cmp	edx, eax
 	jge	.L761
 	mov	eax, 0
-	jmp	.L766
+	ret
 .L761:
-	mov	edx, DWORD PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-12]
+	mov	edx, DWORD PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-12]
 	cmp	edx, eax
 	jle	.L763
 	mov	eax, 2
-	jmp	.L766
+	ret
 .L763:
-	mov	edx, DWORD PTR [rbp-8]
-	mov	eax, DWORD PTR [rbp-16]
+	mov	edx, DWORD PTR [rsp-8]
+	mov	eax, DWORD PTR [rsp-16]
 	cmp	edx, eax
 	jnb	.L764
 	mov	eax, 0
-	jmp	.L766
+	ret
 .L764:
-	mov	eax, DWORD PTR [rbp-8]
-	mov	edx, DWORD PTR [rbp-16]
+	mov	eax, DWORD PTR [rsp-8]
+	mov	edx, DWORD PTR [rsp-16]
 	cmp	edx, eax
 	jnb	.L765
 	mov	eax, 2
-	jmp	.L766
+	ret
 .L765:
 	mov	eax, 1
-.L766:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE141:
@@ -5998,22 +5011,18 @@ __cmpdi2:
 __aeabi_lcmp:
 .LFB142:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 16
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	rdx, QWORD PTR [rbp-16]
-	mov	rax, QWORD PTR [rbp-8]
+	.cfi_def_cfa_offset 24
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	rdx, QWORD PTR [rsp]
+	mov	rax, QWORD PTR [rsp+8]
 	mov	rsi, rdx
 	mov	rdi, rax
 	call	__cmpdi2
 	sub	eax, 1
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 16
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE142:
@@ -6023,60 +5032,52 @@ __aeabi_lcmp:
 __cmpti2:
 .LFB143:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	r8, rsi
 	mov	rsi, rax
 	mov	edi, 0
 	mov	rdi, r8
-	mov	QWORD PTR [rbp-48], rsi
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-64], rdx
-	mov	QWORD PTR [rbp-56], rcx
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	QWORD PTR [rbp-8], rdx
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-56], rsi
+	mov	QWORD PTR [rsp-48], rdi
+	mov	QWORD PTR [rsp-72], rdx
+	mov	QWORD PTR [rsp-64], rcx
+	mov	rax, QWORD PTR [rsp-56]
+	mov	rdx, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-24], rax
+	mov	QWORD PTR [rsp-16], rdx
+	mov	rax, QWORD PTR [rsp-72]
+	mov	rdx, QWORD PTR [rsp-64]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rdx, QWORD PTR [rsp-16]
+	mov	rax, QWORD PTR [rsp-32]
 	cmp	rdx, rax
 	jge	.L770
 	mov	eax, 0
-	jmp	.L775
+	ret
 .L770:
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rdx, QWORD PTR [rsp-16]
+	mov	rax, QWORD PTR [rsp-32]
 	cmp	rdx, rax
 	jle	.L772
 	mov	eax, 2
-	jmp	.L775
+	ret
 .L772:
-	mov	rdx, QWORD PTR [rbp-16]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	rax, QWORD PTR [rsp-40]
 	cmp	rdx, rax
 	jnb	.L773
 	mov	eax, 0
-	jmp	.L775
+	ret
 .L773:
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-24]
+	mov	rdx, QWORD PTR [rsp-40]
 	cmp	rdx, rax
 	jnb	.L774
 	mov	eax, 2
-	jmp	.L775
+	ret
 .L774:
 	mov	eax, 1
-.L775:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE143:
@@ -6086,15 +5087,10 @@ __cmpti2:
 __ctzsi2:
 .LFB144:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	eax, DWORD PTR [rbp-20]
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], edi
+	mov	eax, DWORD PTR [rsp-20]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	movzx	eax, ax
 	test	eax, eax
 	jne	.L777
@@ -6103,13 +5099,13 @@ __ctzsi2:
 .L777:
 	mov	eax, 0
 .L778:
-	mov	DWORD PTR [rbp-8], eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], eax
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	movzx	eax, al
 	test	eax, eax
 	jne	.L779
@@ -6118,13 +5114,13 @@ __ctzsi2:
 .L779:
 	mov	eax, 0
 .L780:
-	mov	DWORD PTR [rbp-8], eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], eax
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 15
 	jne	.L781
 	mov	eax, 4
@@ -6132,13 +5128,13 @@ __ctzsi2:
 .L781:
 	mov	eax, 0
 .L782:
-	mov	DWORD PTR [rbp-8], eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], eax
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 3
 	jne	.L783
 	mov	eax, 2
@@ -6146,28 +5142,26 @@ __ctzsi2:
 .L783:
 	mov	eax, 0
 .L784:
-	mov	DWORD PTR [rbp-8], eax
-	mov	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], eax
+	mov	eax, DWORD PTR [rsp-8]
 	mov	ecx, eax
-	shr	DWORD PTR [rbp-4], cl
-	and	DWORD PTR [rbp-4], 3
-	mov	eax, DWORD PTR [rbp-8]
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-4]
+	shr	DWORD PTR [rsp-4], cl
+	and	DWORD PTR [rsp-4], 3
+	mov	eax, DWORD PTR [rsp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-4]
 	not	eax
 	and	eax, 1
 	mov	ecx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax
 	mov	edx, 2
 	sub	edx, eax
 	mov	eax, ecx
 	neg	eax
 	and	edx, eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	add	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE144:
@@ -6177,44 +5171,37 @@ __ctzsi2:
 __ctzti2:
 .LFB145:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-32]
+	mov	QWORD PTR [rsp-56], rax
+	mov	QWORD PTR [rsp-48], rdx
+	mov	rax, QWORD PTR [rsp-56]
+	mov	rdx, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rax, QWORD PTR [rsp-40]
 	test	rax, rax
 	sete	al
 	movzx	eax, al
 	neg	eax
 	cdqe
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-24]
-	and	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-16], rax
+	mov	rax, QWORD PTR [rsp-32]
+	and	rax, QWORD PTR [rsp-16]
 	mov	rcx, rax
-	mov	rdx, QWORD PTR [rbp-32]
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rdx, QWORD PTR [rsp-40]
+	mov	rax, QWORD PTR [rsp-16]
 	not	rax
 	and	rax, rdx
 	or	rax, rcx
 	rep bsf	rax, rax
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
 	and	eax, 64
 	add	eax, edx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE145:
@@ -6224,42 +5211,34 @@ __ctzti2:
 __ffsti2:
 .LFB146:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	rdx, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-16], rax
-	mov	QWORD PTR [rbp-8], rdx
-	mov	rax, QWORD PTR [rbp-16]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rax, QWORD PTR [rsp-40]
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-24], rax
+	mov	QWORD PTR [rsp-16], rdx
+	mov	rax, QWORD PTR [rsp-24]
 	test	rax, rax
 	jne	.L789
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
 	test	rax, rax
 	jne	.L790
 	mov	eax, 0
-	jmp	.L792
+	ret
 .L790:
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-16]
 	rep bsf	rax, rax
 	add	eax, 65
-	jmp	.L792
+	ret
 .L789:
-	mov	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-24]
 	rep bsf	rax, rax
 	add	eax, 1
-.L792:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE146:
@@ -6269,58 +5248,50 @@ __ffsti2:
 __lshrdi3:
 .LFB147:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-40], rdi
-	mov	DWORD PTR [rbp-44], esi
-	mov	DWORD PTR [rbp-4], 32
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	eax, DWORD PTR [rbp-44]
-	and	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-40], rdi
+	mov	DWORD PTR [rsp-44], esi
+	mov	DWORD PTR [rsp-4], 32
+	mov	rax, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-16], rax
+	mov	eax, DWORD PTR [rsp-44]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L794
-	mov	DWORD PTR [rbp-20], 0
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-44]
-	sub	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], 0
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-44]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-24], eax
+	mov	DWORD PTR [rsp-24], eax
 	jmp	.L795
 .L794:
-	cmp	DWORD PTR [rbp-44], 0
+	cmp	DWORD PTR [rsp-44], 0
 	jne	.L796
-	mov	rax, QWORD PTR [rbp-40]
-	jmp	.L798
+	mov	rax, QWORD PTR [rsp-40]
+	ret
 .L796:
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-20], eax
-	mov	edx, DWORD PTR [rbp-12]
-	mov	eax, DWORD PTR [rbp-4]
-	sub	eax, DWORD PTR [rbp-44]
+	mov	DWORD PTR [rsp-20], eax
+	mov	edx, DWORD PTR [rsp-12]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-44]
 	mov	esi, edx
 	mov	ecx, eax
 	sal	esi, cl
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-44]
+	mov	edx, DWORD PTR [rsp-16]
+	mov	eax, DWORD PTR [rsp-44]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	or	eax, esi
-	mov	DWORD PTR [rbp-24], eax
+	mov	DWORD PTR [rsp-24], eax
 .L795:
-	mov	rax, QWORD PTR [rbp-24]
-.L798:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE147:
@@ -6330,70 +5301,65 @@ __lshrdi3:
 __lshrti3:
 .LFB148:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rax, rdi
 	mov	rcx, rax
 	mov	ebx, 0
 	mov	rbx, rsi
-	mov	QWORD PTR [rbp-80], rcx
-	mov	QWORD PTR [rbp-72], rbx
-	mov	DWORD PTR [rbp-84], edx
-	mov	DWORD PTR [rbp-20], 64
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	eax, DWORD PTR [rbp-84]
-	and	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-64], rcx
+	mov	QWORD PTR [rsp-56], rbx
+	mov	DWORD PTR [rsp-68], edx
+	mov	DWORD PTR [rsp-4], 64
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	QWORD PTR [rsp-32], rax
+	mov	QWORD PTR [rsp-24], rdx
+	mov	eax, DWORD PTR [rsp-68]
+	and	eax, DWORD PTR [rsp-4]
 	je	.L800
-	mov	QWORD PTR [rbp-56], 0
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-84]
-	sub	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp-40], 0
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-68]
+	sub	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-64], rax
+	mov	QWORD PTR [rsp-48], rax
 	jmp	.L801
 .L800:
-	cmp	DWORD PTR [rbp-84], 0
+	cmp	DWORD PTR [rsp-68], 0
 	jne	.L802
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
+	mov	rax, QWORD PTR [rsp-64]
+	mov	rdx, QWORD PTR [rsp-56]
 	jmp	.L804
 .L802:
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-56], rax
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	eax, DWORD PTR [rbp-20]
-	sub	eax, DWORD PTR [rbp-84]
+	mov	QWORD PTR [rsp-40], rax
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-4]
+	sub	eax, DWORD PTR [rsp-68]
 	mov	rsi, rdx
 	mov	ecx, eax
 	sal	rsi, cl
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-84]
+	mov	rdx, QWORD PTR [rsp-32]
+	mov	eax, DWORD PTR [rsp-68]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	or	rax, rsi
-	mov	QWORD PTR [rbp-64], rax
+	mov	QWORD PTR [rsp-48], rax
 .L801:
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
+	mov	rax, QWORD PTR [rsp-48]
+	mov	rdx, QWORD PTR [rsp-40]
 .L804:
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE148:
@@ -6403,113 +5369,106 @@ __lshrti3:
 __muldsi3:
 .LFB149:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-36], edi
-	mov	DWORD PTR [rbp-40], esi
-	mov	DWORD PTR [rbp-4], 16
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-36], edi
+	mov	DWORD PTR [rsp-40], esi
+	mov	DWORD PTR [rsp-4], 16
+	mov	eax, DWORD PTR [rsp-4]
 	mov	edx, -1
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-8], eax
-	mov	eax, DWORD PTR [rbp-36]
-	and	eax, DWORD PTR [rbp-8]
+	mov	DWORD PTR [rsp-8], eax
+	mov	eax, DWORD PTR [rsp-36]
+	and	eax, DWORD PTR [rsp-8]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-40]
-	and	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-40]
+	and	eax, DWORD PTR [rsp-8]
 	imul	eax, edx
-	mov	DWORD PTR [rbp-24], eax
-	mov	edx, DWORD PTR [rbp-24]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-24], eax
+	mov	edx, DWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-24]
-	and	eax, DWORD PTR [rbp-8]
-	mov	DWORD PTR [rbp-24], eax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-36]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-24]
+	and	eax, DWORD PTR [rsp-8]
+	mov	DWORD PTR [rsp-24], eax
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-36]
 	mov	ecx, eax
 	shr	edx, cl
-	mov	eax, DWORD PTR [rbp-40]
-	and	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-40]
+	and	eax, DWORD PTR [rsp-8]
 	imul	eax, edx
-	add	DWORD PTR [rbp-12], eax
-	mov	edx, DWORD PTR [rbp-24]
-	mov	eax, DWORD PTR [rbp-12]
-	and	eax, DWORD PTR [rbp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	edx, DWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-12]
+	and	eax, DWORD PTR [rsp-8]
 	mov	esi, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sal	esi, cl
 	mov	eax, esi
 	add	eax, edx
-	mov	DWORD PTR [rbp-24], eax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-12]
+	mov	DWORD PTR [rsp-24], eax
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-20], eax
-	mov	edx, DWORD PTR [rbp-24]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], eax
+	mov	edx, DWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-24]
-	and	eax, DWORD PTR [rbp-8]
-	mov	DWORD PTR [rbp-24], eax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-40]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-24]
+	and	eax, DWORD PTR [rsp-8]
+	mov	DWORD PTR [rsp-24], eax
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-40]
 	mov	ecx, eax
 	shr	edx, cl
-	mov	eax, DWORD PTR [rbp-36]
-	and	eax, DWORD PTR [rbp-8]
+	mov	eax, DWORD PTR [rsp-36]
+	and	eax, DWORD PTR [rsp-8]
 	imul	eax, edx
-	add	DWORD PTR [rbp-12], eax
-	mov	edx, DWORD PTR [rbp-24]
-	mov	eax, DWORD PTR [rbp-12]
-	and	eax, DWORD PTR [rbp-8]
+	add	DWORD PTR [rsp-12], eax
+	mov	edx, DWORD PTR [rsp-24]
+	mov	eax, DWORD PTR [rsp-12]
+	and	eax, DWORD PTR [rsp-8]
 	mov	esi, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	mov	ecx, eax
 	sal	esi, cl
 	mov	eax, esi
 	add	eax, edx
-	mov	DWORD PTR [rbp-24], eax
-	mov	eax, DWORD PTR [rbp-20]
+	mov	DWORD PTR [rsp-24], eax
+	mov	eax, DWORD PTR [rsp-20]
 	mov	esi, eax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	add	eax, esi
-	mov	DWORD PTR [rbp-20], eax
-	mov	eax, DWORD PTR [rbp-20]
+	mov	DWORD PTR [rsp-20], eax
+	mov	eax, DWORD PTR [rsp-20]
 	mov	edi, eax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-36]
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-36]
 	mov	ecx, eax
 	shr	edx, cl
-	mov	eax, DWORD PTR [rbp-4]
-	mov	esi, DWORD PTR [rbp-40]
+	mov	eax, DWORD PTR [rsp-4]
+	mov	esi, DWORD PTR [rsp-40]
 	mov	ecx, eax
 	shr	esi, cl
 	mov	eax, esi
 	imul	eax, edx
 	add	eax, edi
-	mov	DWORD PTR [rbp-20], eax
-	mov	rax, QWORD PTR [rbp-24]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	DWORD PTR [rsp-20], eax
+	mov	rax, QWORD PTR [rsp-24]
 	ret
 	.cfi_endproc
 .LFE149:
@@ -6519,39 +5478,35 @@ __muldsi3:
 __muldi3_compiler_rt:
 .LFB150:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 48
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-48], rsi
-	mov	rax, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	QWORD PTR [rbp-16], rax
-	mov	edx, DWORD PTR [rbp-16]
-	mov	eax, DWORD PTR [rbp-8]
+	.cfi_def_cfa_offset 56
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	rax, QWORD PTR [rsp+8]
+	mov	QWORD PTR [rsp+40], rax
+	mov	rax, QWORD PTR [rsp]
+	mov	QWORD PTR [rsp+32], rax
+	mov	edx, DWORD PTR [rsp+32]
+	mov	eax, DWORD PTR [rsp+40]
 	mov	esi, edx
 	mov	edi, eax
 	call	__muldsi3
-	mov	QWORD PTR [rbp-24], rax
-	mov	eax, DWORD PTR [rbp-20]
+	mov	QWORD PTR [rsp+24], rax
+	mov	eax, DWORD PTR [rsp+28]
 	mov	esi, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp+44]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-16]
+	mov	eax, DWORD PTR [rsp+32]
 	imul	edx, eax
-	mov	eax, DWORD PTR [rbp-8]
-	mov	ecx, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp+40]
+	mov	ecx, DWORD PTR [rsp+36]
 	imul	eax, ecx
 	add	eax, edx
 	add	eax, esi
-	mov	DWORD PTR [rbp-20], eax
-	mov	rax, QWORD PTR [rbp-24]
-	leave
-	.cfi_def_cfa 7, 8
+	mov	DWORD PTR [rsp+28], eax
+	mov	rax, QWORD PTR [rsp+24]
+	add	rsp, 48
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE150:
@@ -6561,114 +5516,107 @@ __muldi3_compiler_rt:
 __mulddi3:
 .LFB151:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-56], rdi
-	mov	QWORD PTR [rbp-64], rsi
-	mov	DWORD PTR [rbp-4], 32
-	mov	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-64], rdi
+	mov	QWORD PTR [rsp-72], rsi
+	mov	DWORD PTR [rsp-12], 32
+	mov	eax, DWORD PTR [rsp-12]
 	mov	rdx, -1
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-16], rax
-	mov	rax, QWORD PTR [rbp-56]
-	and	rax, QWORD PTR [rbp-16]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-64]
+	and	rax, QWORD PTR [rsp-24]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-64]
-	and	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-72]
+	and	rax, QWORD PTR [rsp-24]
 	imul	rax, rdx
-	mov	QWORD PTR [rbp-48], rax
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-56], rax
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-48]
-	and	rax, QWORD PTR [rbp-16]
-	mov	QWORD PTR [rbp-48], rax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rdx, QWORD PTR [rbp-56]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-56]
+	and	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-56], rax
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-64]
 	mov	ecx, eax
 	shr	rdx, cl
-	mov	rax, QWORD PTR [rbp-64]
-	and	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-72]
+	and	rax, QWORD PTR [rsp-24]
 	imul	rax, rdx
-	add	QWORD PTR [rbp-24], rax
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	rax, QWORD PTR [rbp-24]
-	and	rax, QWORD PTR [rbp-16]
+	add	QWORD PTR [rsp-32], rax
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	rax, QWORD PTR [rsp-32]
+	and	rax, QWORD PTR [rsp-24]
 	mov	rsi, rax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	sal	rsi, cl
 	mov	rax, rsi
 	add	rax, rdx
-	mov	QWORD PTR [rbp-48], rax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-56], rax
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-32]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-40], rax
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	eax, DWORD PTR [rbp-4]
+	mov	QWORD PTR [rsp-48], rax
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR [rbp-24], rax
-	mov	rax, QWORD PTR [rbp-48]
-	and	rax, QWORD PTR [rbp-16]
-	mov	QWORD PTR [rbp-48], rax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rdx, QWORD PTR [rbp-64]
+	mov	QWORD PTR [rsp-32], rax
+	mov	rax, QWORD PTR [rsp-56]
+	and	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-56], rax
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-72]
 	mov	ecx, eax
 	shr	rdx, cl
-	mov	rax, QWORD PTR [rbp-56]
-	and	rax, QWORD PTR [rbp-16]
+	mov	rax, QWORD PTR [rsp-64]
+	and	rax, QWORD PTR [rsp-24]
 	imul	rax, rdx
-	add	QWORD PTR [rbp-24], rax
-	mov	rdx, QWORD PTR [rbp-48]
-	mov	rax, QWORD PTR [rbp-24]
-	and	rax, QWORD PTR [rbp-16]
+	add	QWORD PTR [rsp-32], rax
+	mov	rdx, QWORD PTR [rsp-56]
+	mov	rax, QWORD PTR [rsp-32]
+	and	rax, QWORD PTR [rsp-24]
 	mov	rsi, rax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-12]
 	mov	ecx, eax
 	sal	rsi, cl
 	mov	rax, rsi
 	add	rax, rdx
-	mov	QWORD PTR [rbp-48], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-56], rax
+	mov	rax, QWORD PTR [rsp-48]
 	mov	rsi, rax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-32]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	add	rax, rsi
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-48], rax
+	mov	rax, QWORD PTR [rsp-48]
 	mov	rdi, rax
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rdx, QWORD PTR [rbp-56]
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rdx, QWORD PTR [rsp-64]
 	mov	ecx, eax
 	shr	rdx, cl
-	mov	eax, DWORD PTR [rbp-4]
-	mov	rsi, QWORD PTR [rbp-64]
+	mov	eax, DWORD PTR [rsp-12]
+	mov	rsi, QWORD PTR [rsp-72]
 	mov	ecx, eax
 	shr	rsi, cl
 	mov	rax, rsi
 	imul	rax, rdx
 	add	rax, rdi
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp-48], rax
+	mov	rax, QWORD PTR [rsp-56]
+	mov	rdx, QWORD PTR [rsp-48]
 	ret
 	.cfi_endproc
 .LFE151:
@@ -6678,52 +5626,48 @@ __mulddi3:
 __multi3:
 .LFB152:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	sub	rsp, 80
+	sub	rsp, 88
+	.cfi_def_cfa_offset 96
 	mov	rax, rdi
 	mov	r8, rsi
 	mov	rsi, rax
 	mov	edi, 0
 	mov	rdi, r8
-	mov	QWORD PTR [rbp-64], rsi
-	mov	QWORD PTR [rbp-56], rdi
-	mov	QWORD PTR [rbp-80], rdx
-	mov	QWORD PTR [rbp-72], rcx
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
-	mov	QWORD PTR [rbp-16], rax
-	mov	QWORD PTR [rbp-8], rdx
-	mov	rax, QWORD PTR [rbp-80]
-	mov	rdx, QWORD PTR [rbp-72]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rdx, QWORD PTR [rbp-32]
-	mov	rax, QWORD PTR [rbp-16]
+	mov	QWORD PTR [rsp+16], rsi
+	mov	QWORD PTR [rsp+24], rdi
+	mov	QWORD PTR [rsp], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	mov	rax, QWORD PTR [rsp+16]
+	mov	rdx, QWORD PTR [rsp+24]
+	mov	QWORD PTR [rsp+64], rax
+	mov	QWORD PTR [rsp+72], rdx
+	mov	rax, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR [rsp+8]
+	mov	QWORD PTR [rsp+48], rax
+	mov	QWORD PTR [rsp+56], rdx
+	mov	rdx, QWORD PTR [rsp+48]
+	mov	rax, QWORD PTR [rsp+64]
 	mov	rsi, rdx
 	mov	rdi, rax
 	call	__mulddi3
-	mov	QWORD PTR [rbp-48], rax
-	mov	QWORD PTR [rbp-40], rdx
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp+32], rax
+	mov	QWORD PTR [rsp+40], rdx
+	mov	rax, QWORD PTR [rsp+40]
 	mov	rsi, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp+72]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp+48]
 	imul	rdx, rax
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rcx, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp+64]
+	mov	rcx, QWORD PTR [rsp+56]
 	imul	rax, rcx
 	add	rax, rdx
 	add	rax, rsi
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	leave
-	.cfi_def_cfa 7, 8
+	mov	QWORD PTR [rsp+40], rax
+	mov	rax, QWORD PTR [rsp+32]
+	mov	rdx, QWORD PTR [rsp+40]
+	add	rsp, 88
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE152:
@@ -6733,16 +5677,9 @@ __multi3:
 __negdi2:
 .LFB153:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-8], rdi
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rdi
+	mov	rax, QWORD PTR [rsp-8]
 	neg	rax
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE153:
@@ -6752,25 +5689,18 @@ __negdi2:
 __negti2:
 .LFB154:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-16], rax
-	mov	QWORD PTR [rbp-8], rdx
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-24], rax
+	mov	QWORD PTR [rsp-16], rdx
+	mov	rax, QWORD PTR [rsp-24]
+	mov	rdx, QWORD PTR [rsp-16]
 	neg	rax
 	adc	rdx, 0
 	neg	rdx
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE154:
@@ -6780,37 +5710,30 @@ __negti2:
 __paritydi2:
 .LFB155:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-16], rax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-16], rax
+	mov	eax, DWORD PTR [rsp-12]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-16]
+	mov	eax, DWORD PTR [rsp-16]
 	xor	eax, edx
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 16
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 8
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 4
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE155:
@@ -6820,50 +5743,43 @@ __paritydi2:
 __parityti2:
 .LFB156:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-64], rax
-	mov	QWORD PTR [rbp-56], rdx
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-72], rax
+	mov	QWORD PTR [rsp-64], rdx
+	mov	rax, QWORD PTR [rsp-72]
+	mov	rdx, QWORD PTR [rsp-64]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rax, QWORD PTR [rsp-32]
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-40]
 	xor	rax, rdx
-	mov	QWORD PTR [rbp-40], rax
-	mov	eax, DWORD PTR [rbp-36]
+	mov	QWORD PTR [rsp-48], rax
+	mov	eax, DWORD PTR [rsp-44]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-40]
+	mov	eax, DWORD PTR [rsp-48]
 	xor	eax, edx
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	shr	eax, 16
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	shr	eax, 8
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	shr	eax, 4
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE156:
@@ -6873,32 +5789,25 @@ __parityti2:
 __paritysi2:
 .LFB157:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	eax, DWORD PTR [rbp-20]
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], edi
+	mov	eax, DWORD PTR [rsp-20]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 16
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 8
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 4
-	xor	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	xor	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE157:
@@ -6908,54 +5817,47 @@ __paritysi2:
 __popcountdi2:
 .LFB158:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax
 	mov	rdx, rax
 	movabs	rax, 6148914691236517205
 	and	rax, rdx
-	sub	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-8]
+	sub	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 2
 	mov	rdx, rax
 	movabs	rax, 3689348814741910323
 	and	rdx, rax
 	movabs	rax, 3689348814741910323
-	and	rax, QWORD PTR [rbp-8]
+	and	rax, QWORD PTR [rsp-8]
 	add	rax, rdx
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 4
 	mov	rdx, rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	add	rdx, rax
 	movabs	rax, 1085102592571150095
 	and	rax, rdx
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-8]
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-8]
+	mov	rax, QWORD PTR [rsp-8]
 	shr	rax, 32
 	add	eax, edx
-	mov	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	shr	eax, 16
-	add	DWORD PTR [rbp-12], eax
-	mov	eax, DWORD PTR [rbp-12]
+	add	DWORD PTR [rsp-12], eax
+	mov	eax, DWORD PTR [rsp-12]
 	shr	eax, 8
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-12]
 	add	eax, edx
 	and	eax, 127
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE158:
@@ -6965,44 +5867,37 @@ __popcountdi2:
 __popcountsi2:
 .LFB159:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	DWORD PTR [rbp-20], edi
-	mov	eax, DWORD PTR [rbp-20]
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-20], edi
+	mov	eax, DWORD PTR [rsp-20]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax
 	and	eax, 1431655765
-	sub	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	sub	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 2
 	and	eax, 858993459
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	and	eax, 858993459
 	add	eax, edx
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 4
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	add	eax, edx
 	and	eax, 252645135
-	mov	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 16
-	add	DWORD PTR [rbp-4], eax
-	mov	eax, DWORD PTR [rbp-4]
+	add	DWORD PTR [rsp-4], eax
+	mov	eax, DWORD PTR [rsp-4]
 	shr	eax, 8
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-4]
+	mov	eax, DWORD PTR [rsp-4]
 	add	eax, edx
 	and	eax, 63
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE159:
@@ -7012,36 +5907,32 @@ __popcountsi2:
 __popcountti2:
 .LFB160:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rax, rdi
 	mov	rcx, rsi
 	mov	rax, rax
 	mov	edx, 0
 	mov	rdx, rcx
-	mov	QWORD PTR [rbp-64], rax
-	mov	QWORD PTR [rbp-56], rdx
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-48], rax
+	mov	QWORD PTR [rsp-40], rdx
+	mov	rax, QWORD PTR [rsp-48]
+	mov	rdx, QWORD PTR [rsp-40]
+	mov	QWORD PTR [rsp-16], rax
+	mov	QWORD PTR [rsp-8], rdx
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-8]
 	shrd	rax, rdx, 1
 	shr	rdx
 	movabs	rcx, 6148914691236517205
 	mov	rbx, rcx
 	and	rax, rcx
 	and	rdx, rbx
-	sub	QWORD PTR [rbp-32], rax
-	sbb	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	rdx, QWORD PTR [rbp-24]
+	sub	QWORD PTR [rsp-16], rax
+	sbb	QWORD PTR [rsp-8], rdx
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-8]
 	shrd	rax, rdx, 2
 	shr	rdx, 2
 	movabs	rcx, 3689348814741910323
@@ -7050,51 +5941,50 @@ __popcountti2:
 	and	rbx, rdx
 	movabs	rax, 3689348814741910323
 	mov	rdx, rax
-	and	rax, QWORD PTR [rbp-32]
-	and	rdx, QWORD PTR [rbp-24]
+	and	rax, QWORD PTR [rsp-16]
+	and	rdx, QWORD PTR [rsp-8]
 	add	rax, rcx
 	adc	rdx, rbx
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-16], rax
+	mov	QWORD PTR [rsp-8], rdx
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-8]
 	shrd	rax, rdx, 4
 	shr	rdx, 4
-	mov	rcx, QWORD PTR [rbp-32]
-	mov	rbx, QWORD PTR [rbp-24]
+	mov	rcx, QWORD PTR [rsp-16]
+	mov	rbx, QWORD PTR [rsp-8]
 	add	rax, rcx
 	adc	rdx, rbx
 	movabs	rcx, 1085102592571150095
 	mov	rbx, rcx
 	and	rax, rcx
 	and	rdx, rbx
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rcx, QWORD PTR [rbp-32]
-	mov	rax, QWORD PTR [rbp-32]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-16], rax
+	mov	QWORD PTR [rsp-8], rdx
+	mov	rcx, QWORD PTR [rsp-16]
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-8]
 	mov	rax, rdx
 	xor	edx, edx
 	add	rax, rcx
-	mov	QWORD PTR [rbp-40], rax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	QWORD PTR [rsp-24], rax
+	mov	rax, QWORD PTR [rsp-24]
 	mov	edx, eax
-	mov	rax, QWORD PTR [rbp-40]
+	mov	rax, QWORD PTR [rsp-24]
 	shr	rax, 32
 	add	eax, edx
-	mov	DWORD PTR [rbp-44], eax
-	mov	eax, DWORD PTR [rbp-44]
+	mov	DWORD PTR [rsp-28], eax
+	mov	eax, DWORD PTR [rsp-28]
 	shr	eax, 16
-	add	DWORD PTR [rbp-44], eax
-	mov	eax, DWORD PTR [rbp-44]
+	add	DWORD PTR [rsp-28], eax
+	mov	eax, DWORD PTR [rsp-28]
 	shr	eax, 8
 	mov	edx, eax
-	mov	eax, DWORD PTR [rbp-44]
+	mov	eax, DWORD PTR [rsp-28]
 	add	eax, edx
 	movzx	eax, al
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE160:
@@ -7104,50 +5994,42 @@ __popcountti2:
 __powidf2:
 .LFB161:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movsd	QWORD PTR [rbp-24], xmm0
-	mov	DWORD PTR [rbp-28], edi
-	mov	eax, DWORD PTR [rbp-28]
+	movsd	QWORD PTR [rsp-24], xmm0
+	mov	DWORD PTR [rsp-28], edi
+	mov	eax, DWORD PTR [rsp-28]
 	shr	eax, 31
 	movzx	eax, al
-	mov	DWORD PTR [rbp-12], eax
+	mov	DWORD PTR [rsp-12], eax
 	movsd	xmm0, QWORD PTR .LC16[rip]
-	movsd	QWORD PTR [rbp-8], xmm0
+	movsd	QWORD PTR [rsp-8], xmm0
 .L833:
-	mov	eax, DWORD PTR [rbp-28]
+	mov	eax, DWORD PTR [rsp-28]
 	and	eax, 1
 	je	.L830
-	movsd	xmm0, QWORD PTR [rbp-8]
-	mulsd	xmm0, QWORD PTR [rbp-24]
-	movsd	QWORD PTR [rbp-8], xmm0
+	movsd	xmm0, QWORD PTR [rsp-8]
+	mulsd	xmm0, QWORD PTR [rsp-24]
+	movsd	QWORD PTR [rsp-8], xmm0
 .L830:
-	mov	eax, DWORD PTR [rbp-28]
+	mov	eax, DWORD PTR [rsp-28]
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	mov	DWORD PTR [rbp-28], eax
-	cmp	DWORD PTR [rbp-28], 0
+	mov	DWORD PTR [rsp-28], eax
+	cmp	DWORD PTR [rsp-28], 0
 	je	.L837
-	movsd	xmm0, QWORD PTR [rbp-24]
+	movsd	xmm0, QWORD PTR [rsp-24]
 	mulsd	xmm0, xmm0
-	movsd	QWORD PTR [rbp-24], xmm0
+	movsd	QWORD PTR [rsp-24], xmm0
 	jmp	.L833
 .L837:
-	cmp	DWORD PTR [rbp-12], 0
+	cmp	DWORD PTR [rsp-12], 0
 	je	.L834
 	movsd	xmm0, QWORD PTR .LC16[rip]
-	divsd	xmm0, QWORD PTR [rbp-8]
-	jmp	.L836
+	divsd	xmm0, QWORD PTR [rsp-8]
+	ret
 .L834:
-	movsd	xmm0, QWORD PTR [rbp-8]
-.L836:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movsd	xmm0, QWORD PTR [rsp-8]
 	ret
 	.cfi_endproc
 .LFE161:
@@ -7157,50 +6039,42 @@ __powidf2:
 __powisf2:
 .LFB162:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	movss	DWORD PTR [rbp-20], xmm0
-	mov	DWORD PTR [rbp-24], edi
-	mov	eax, DWORD PTR [rbp-24]
+	movss	DWORD PTR [rsp-20], xmm0
+	mov	DWORD PTR [rsp-24], edi
+	mov	eax, DWORD PTR [rsp-24]
 	shr	eax, 31
 	movzx	eax, al
-	mov	DWORD PTR [rbp-8], eax
+	mov	DWORD PTR [rsp-8], eax
 	movss	xmm0, DWORD PTR .LC18[rip]
-	movss	DWORD PTR [rbp-4], xmm0
+	movss	DWORD PTR [rsp-4], xmm0
 .L843:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	and	eax, 1
 	je	.L840
-	movss	xmm0, DWORD PTR [rbp-4]
-	mulss	xmm0, DWORD PTR [rbp-20]
-	movss	DWORD PTR [rbp-4], xmm0
+	movss	xmm0, DWORD PTR [rsp-4]
+	mulss	xmm0, DWORD PTR [rsp-20]
+	movss	DWORD PTR [rsp-4], xmm0
 .L840:
-	mov	eax, DWORD PTR [rbp-24]
+	mov	eax, DWORD PTR [rsp-24]
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	mov	DWORD PTR [rbp-24], eax
-	cmp	DWORD PTR [rbp-24], 0
+	mov	DWORD PTR [rsp-24], eax
+	cmp	DWORD PTR [rsp-24], 0
 	je	.L847
-	movss	xmm0, DWORD PTR [rbp-20]
+	movss	xmm0, DWORD PTR [rsp-20]
 	mulss	xmm0, xmm0
-	movss	DWORD PTR [rbp-20], xmm0
+	movss	DWORD PTR [rsp-20], xmm0
 	jmp	.L843
 .L847:
-	cmp	DWORD PTR [rbp-8], 0
+	cmp	DWORD PTR [rsp-8], 0
 	je	.L844
 	movss	xmm0, DWORD PTR .LC18[rip]
-	divss	xmm0, DWORD PTR [rbp-4]
-	jmp	.L846
+	divss	xmm0, DWORD PTR [rsp-4]
+	ret
 .L844:
-	movss	xmm0, DWORD PTR [rbp-4]
-.L846:
-	pop	rbp
-	.cfi_def_cfa 7, 8
+	movss	xmm0, DWORD PTR [rsp-4]
 	ret
 	.cfi_endproc
 .LFE162:
@@ -7210,49 +6084,41 @@ __powisf2:
 __ucmpdi2:
 .LFB163:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
-	mov	QWORD PTR [rbp-8], rax
-	mov	rax, QWORD PTR [rbp-32]
-	mov	QWORD PTR [rbp-16], rax
-	mov	edx, DWORD PTR [rbp-4]
-	mov	eax, DWORD PTR [rbp-12]
+	mov	QWORD PTR [rsp-24], rdi
+	mov	QWORD PTR [rsp-32], rsi
+	mov	rax, QWORD PTR [rsp-24]
+	mov	QWORD PTR [rsp-8], rax
+	mov	rax, QWORD PTR [rsp-32]
+	mov	QWORD PTR [rsp-16], rax
+	mov	edx, DWORD PTR [rsp-4]
+	mov	eax, DWORD PTR [rsp-12]
 	cmp	edx, eax
 	jnb	.L850
 	mov	eax, 0
-	jmp	.L855
+	ret
 .L850:
-	mov	eax, DWORD PTR [rbp-4]
-	mov	edx, DWORD PTR [rbp-12]
+	mov	eax, DWORD PTR [rsp-4]
+	mov	edx, DWORD PTR [rsp-12]
 	cmp	edx, eax
 	jnb	.L852
 	mov	eax, 2
-	jmp	.L855
+	ret
 .L852:
-	mov	edx, DWORD PTR [rbp-8]
-	mov	eax, DWORD PTR [rbp-16]
+	mov	edx, DWORD PTR [rsp-8]
+	mov	eax, DWORD PTR [rsp-16]
 	cmp	edx, eax
 	jnb	.L853
 	mov	eax, 0
-	jmp	.L855
+	ret
 .L853:
-	mov	eax, DWORD PTR [rbp-8]
-	mov	edx, DWORD PTR [rbp-16]
+	mov	eax, DWORD PTR [rsp-8]
+	mov	edx, DWORD PTR [rsp-16]
 	cmp	edx, eax
 	jnb	.L854
 	mov	eax, 2
-	jmp	.L855
+	ret
 .L854:
 	mov	eax, 1
-.L855:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE163:
@@ -7262,22 +6128,18 @@ __ucmpdi2:
 __aeabi_ulcmp:
 .LFB164:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	sub	rsp, 16
-	mov	QWORD PTR [rbp-8], rdi
-	mov	QWORD PTR [rbp-16], rsi
-	mov	rdx, QWORD PTR [rbp-16]
-	mov	rax, QWORD PTR [rbp-8]
+	.cfi_def_cfa_offset 24
+	mov	QWORD PTR [rsp+8], rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	rdx, QWORD PTR [rsp]
+	mov	rax, QWORD PTR [rsp+8]
 	mov	rsi, rdx
 	mov	rdi, rax
 	call	__ucmpdi2
 	sub	eax, 1
-	leave
-	.cfi_def_cfa 7, 8
+	add	rsp, 16
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE164:
@@ -7287,60 +6149,52 @@ __aeabi_ulcmp:
 __ucmpti2:
 .LFB165:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	mov	rax, rdi
 	mov	r8, rsi
 	mov	rsi, rax
 	mov	edi, 0
 	mov	rdi, r8
-	mov	QWORD PTR [rbp-48], rsi
-	mov	QWORD PTR [rbp-40], rdi
-	mov	QWORD PTR [rbp-64], rdx
-	mov	QWORD PTR [rbp-56], rcx
-	mov	rax, QWORD PTR [rbp-48]
-	mov	rdx, QWORD PTR [rbp-40]
-	mov	QWORD PTR [rbp-16], rax
-	mov	QWORD PTR [rbp-8], rdx
-	mov	rax, QWORD PTR [rbp-64]
-	mov	rdx, QWORD PTR [rbp-56]
-	mov	QWORD PTR [rbp-32], rax
-	mov	QWORD PTR [rbp-24], rdx
-	mov	rdx, QWORD PTR [rbp-8]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	QWORD PTR [rsp-56], rsi
+	mov	QWORD PTR [rsp-48], rdi
+	mov	QWORD PTR [rsp-72], rdx
+	mov	QWORD PTR [rsp-64], rcx
+	mov	rax, QWORD PTR [rsp-56]
+	mov	rdx, QWORD PTR [rsp-48]
+	mov	QWORD PTR [rsp-24], rax
+	mov	QWORD PTR [rsp-16], rdx
+	mov	rax, QWORD PTR [rsp-72]
+	mov	rdx, QWORD PTR [rsp-64]
+	mov	QWORD PTR [rsp-40], rax
+	mov	QWORD PTR [rsp-32], rdx
+	mov	rdx, QWORD PTR [rsp-16]
+	mov	rax, QWORD PTR [rsp-32]
 	cmp	rdx, rax
 	jnb	.L859
 	mov	eax, 0
-	jmp	.L864
+	ret
 .L859:
-	mov	rax, QWORD PTR [rbp-8]
-	mov	rdx, QWORD PTR [rbp-24]
+	mov	rax, QWORD PTR [rsp-16]
+	mov	rdx, QWORD PTR [rsp-32]
 	cmp	rdx, rax
 	jnb	.L861
 	mov	eax, 2
-	jmp	.L864
+	ret
 .L861:
-	mov	rdx, QWORD PTR [rbp-16]
-	mov	rax, QWORD PTR [rbp-32]
+	mov	rdx, QWORD PTR [rsp-24]
+	mov	rax, QWORD PTR [rsp-40]
 	cmp	rdx, rax
 	jnb	.L862
 	mov	eax, 0
-	jmp	.L864
+	ret
 .L862:
-	mov	rax, QWORD PTR [rbp-16]
-	mov	rdx, QWORD PTR [rbp-32]
+	mov	rax, QWORD PTR [rsp-24]
+	mov	rdx, QWORD PTR [rsp-40]
 	cmp	rdx, rax
 	jnb	.L863
 	mov	eax, 2
-	jmp	.L864
+	ret
 .L863:
 	mov	eax, 1
-.L864:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE165:

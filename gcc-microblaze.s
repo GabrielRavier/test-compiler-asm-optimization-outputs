@@ -4,77 +4,73 @@
 	.ent	memmove
 	.type	memmove, @function
 memmove:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
-	lwi	r4,r19,8
-	lwi	r3,r19,4
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
+	lwi	r4,r1,8
+	lwi	r3,r1,4
 	cmpu	r18,r3,r4
 	bgei	r18,$L2
-	lwi	r4,r19,8
-	lwi	r3,r19,28
+	lwi	r4,r1,8
+	lwi	r3,r1,24
 	addk	r3,r4,r3
-	swi	r3,r19,8
-	lwi	r4,r19,4
-	lwi	r3,r19,28
+	swi	r3,r1,8
+	lwi	r4,r1,4
+	lwi	r3,r1,24
 	addk	r3,r4,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 	bri	$L3
 $L4:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,-1
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r3,r3,-1
-	swi	r3,r19,4
-	lwi	r3,r19,8
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L3:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L4
 	bri	$L5
 $L2:
-	lwi	r4,r19,8
-	lwi	r3,r19,4
+	lwi	r4,r1,8
+	lwi	r3,r1,4
 	xor	r3,r4,r3
 	beqi	r3,$L5
 	bri	$L6
 $L7:
-	lwi	r4,r19,8
+	lwi	r4,r1,8
 	addik	r3,r4,1
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r5,r3,1
-	swi	r5,r19,4
+	swi	r5,r1,4
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L6:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L7
 $L5:
-	lwi	r3,r19,20
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	lwi	r3,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -86,58 +82,54 @@ $Lfe1:
 	.ent	memccpy
 	.type	memccpy, @function
 memccpy:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	swi	r8,r19,32
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
-	lwi	r3,r19,28
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	swi	r8,r1,28
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
+	lwi	r3,r1,24
 	andi	r3,r3,0x00ff
-	swi	r3,r19,28
+	swi	r3,r1,24
 	bri	$L10
 $L12:
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	addik	r3,r3,-1
-	swi	r3,r19,32
-	lwi	r3,r19,8
+	swi	r3,r1,28
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L10:
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	beqi	r3,$L11
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	sbi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	xor	r3,r3,r4
 	bnei	r3,$L12
 $L11:
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	beqi	r3,$L13
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
 	bri	$L14
 $L13:
 	addk	r3,r0,r0
 $L14:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -149,47 +141,43 @@ $Lfe2:
 	.ent	memchr
 	.type	memchr, @function
 memchr:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r3,r19,20
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r3,r1,16
 	andi	r3,r3,0x00ff
-	swi	r3,r19,20
+	swi	r3,r1,16
 	bri	$L16
 $L18:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
-	lwi	r3,r19,24
+	swi	r3,r1,4
+	lwi	r3,r1,20
 	addik	r3,r3,-1
-	swi	r3,r19,24
+	swi	r3,r1,20
 $L16:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	beqi	r3,$L17
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	xor	r3,r3,r4
 	bnei	r3,$L18
 $L17:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	beqi	r3,$L19
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	bri	$L21
 $L19:
 	addk	r3,r0,r0
 $L21:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -201,54 +189,50 @@ $Lfe3:
 	.ent	memcmp
 	.type	memcmp, @function
 memcmp:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
 	bri	$L23
 $L25:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
-	lwi	r3,r19,4
+	swi	r3,r1,24
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
-	lwi	r3,r19,8
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L23:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L24
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	xor	r3,r4,r3
 	beqi	r3,$L25
 $L24:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L26
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	rsubk	r3,r3,r4
 	bri	$L28
 $L26:
 	addk	r3,r0,r0
 $L28:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -260,38 +244,34 @@ $Lfe4:
 	.ent	memcpy
 	.type	memcpy, @function
 memcpy:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
 	bri	$L30
 $L31:
-	lwi	r4,r19,8
+	lwi	r4,r1,8
 	addik	r3,r4,1
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r5,r3,1
-	swi	r5,r19,4
+	swi	r5,r1,4
 	lbui	r4,r4,0
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L30:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L31
-	lwi	r3,r19,20
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	lwi	r3,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -303,43 +283,39 @@ $Lfe5:
 	.ent	memrchr
 	.type	memrchr, @function
 memrchr:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r3,r19,20
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r3,r1,16
 	andi	r3,r3,0x00ff
-	swi	r3,r19,20
+	swi	r3,r1,16
 	bri	$L34
 $L36:
-	lwi	r4,r19,4
-	lwi	r3,r19,24
+	lwi	r4,r1,4
+	lwi	r3,r1,20
 	addk	r3,r4,r3
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	xor	r3,r3,r4
 	bnei	r3,$L34
-	lwi	r4,r19,4
-	lwi	r3,r19,24
+	lwi	r4,r1,4
+	lwi	r3,r1,20
 	addk	r3,r4,r3
 	bri	$L35
 $L34:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r4,r3,-1
-	swi	r4,r19,24
+	swi	r4,r1,20
 	bnei	r3,$L36
 	addk	r3,r0,r0
 $L35:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -351,35 +327,31 @@ $Lfe6:
 	.ent	memset
 	.type	memset, @function
 memset:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	bri	$L38
 $L39:
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	andi	r4,r3,0x00ff
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	sbi	r4,r3,0
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r3,r3,-1
-	swi	r3,r19,24
-	lwi	r3,r19,4
+	swi	r3,r1,20
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L38:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	bnei	r3,$L39
-	lwi	r3,r19,16
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -391,35 +363,29 @@ $Lfe7:
 	.ent	stpcpy
 	.type	stpcpy, @function
 stpcpy:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
 	bri	$L42
 $L43:
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,16
-	lwi	r3,r19,12
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,12
+	swi	r3,r1,4
 $L42:
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	sbi	r4,r3,0
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L43
-	lwi	r3,r19,12
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
+	lwi	r3,r1,4
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -431,37 +397,31 @@ $Lfe8:
 	.ent	strchrnul
 	.type	strchrnul, @function
 strchrnul:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r3,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r3,r1,8
 	andi	r3,r3,0x00ff
-	swi	r3,r19,16
+	swi	r3,r1,8
 	bri	$L46
 $L48:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,12
+	swi	r3,r1,4
 $L46:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r3,r3
 	beqi	r3,$L47
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	xor	r3,r3,r4
 	bnei	r3,$L48
 $L47:
-	lwi	r3,r19,12
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
+	lwi	r3,r1,4
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -473,18 +433,15 @@ $Lfe9:
 	.ent	strchr
 	.type	strchr, @function
 strchr:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
 	addk	r3,r5,r0
-	swi	r6,r19,16
+	swi	r6,r1,8
 $L53:
 	lbui	r4,r3,0
 	sext8	r4,r4
 	addk	r5,r4,r0
-	lwi	r4,r19,16
+	lwi	r4,r1,8
 	xor	r4,r4,r5
 	bnei	r4,$L51
 	bri	$L52
@@ -496,9 +453,6 @@ $L51:
 	bnei	r4,$L53
 	addk	r3,r0,r0
 $L52:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -510,44 +464,38 @@ $Lfe10:
 	.ent	strcmp
 	.type	strcmp, @function
 strcmp:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
 	bri	$L55
 $L57:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,12
-	lwi	r3,r19,16
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,16
+	swi	r3,r1,8
 $L55:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xor	r3,r4,r3
 	bnei	r3,$L56
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L57
 $L56:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	rsubk	r3,r3,r4
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -559,30 +507,26 @@ $Lfe11:
 	.ent	strlen
 	.type	strlen, @function
 strlen:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	bri	$L60
 $L61:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addik	r3,r3,1
-	swi	r3,r19,16
+	swi	r3,r1,12
 $L60:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L61
-	lwi	r4,r19,16
-	lwi	r3,r19,4
+	lwi	r4,r1,12
+	lwi	r3,r1,4
 	rsubk	r3,r3,r4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -594,60 +538,56 @@ $Lfe12:
 	.ent	strncmp
 	.type	strncmp, @function
 strncmp:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
-	lwi	r3,r19,28
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
+	lwi	r3,r1,24
 	addik	r4,r3,-1
-	swi	r4,r19,28
+	swi	r4,r1,24
 	bnei	r3,$L66
 	addk	r3,r0,r0
 	bri	$L65
 $L68:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
-	lwi	r3,r19,8
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
-	lwi	r3,r19,28
+	swi	r3,r1,8
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L66:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	beqi	r3,$L67
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	beqi	r3,$L67
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L67
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	xor	r3,r4,r3
 	beqi	r3,$L68
 $L67:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	addk	r4,r3,r0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lbui	r3,r3,0
 	rsubk	r3,r3,r4
 $L65:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -659,51 +599,47 @@ $Lfe13:
 	.ent	swab
 	.type	swab, @function
 swab:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
 	bri	$L70
 $L71:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	sbi	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,2
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	addik	r3,r3,2
-	swi	r3,r19,4
-	lwi	r3,r19,28
+	swi	r3,r1,4
+	lwi	r3,r1,24
 	addik	r3,r3,-2
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L70:
-	lwi	r4,r19,28
+	lwi	r4,r1,24
 	addik	r3,r0,1	# 0x1
 	cmp	r18,r4,r3
 	blti	r18,$L71
 	nop
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -715,13 +651,10 @@ $Lfe14:
 	.ent	isalpha
 	.type	isalpha, @function
 isalpha:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	ori	r3,r3,32
 	addik	r4,r3,-97
 	addik	r5,r0,1	# 0x1
@@ -731,9 +664,6 @@ isalpha:
 	addk	r5,r0,r0
 $L73:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -745,13 +675,10 @@ $Lfe15:
 	.ent	isascii
 	.type	isascii, @function
 isascii:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r4,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r4,r1,4
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,127	# 0x7f
 	cmpu	r18,r4,r3
@@ -759,9 +686,6 @@ isascii:
 	addk	r5,r0,r0
 $L76:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -773,16 +697,13 @@ $Lfe16:
 	.ent	isblank
 	.type	isblank, @function
 isblank:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	xori	r3,r3,32
 	beqi	r3,$L79
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xori	r3,r3,9
 	bnei	r3,$L80
 $L79:
@@ -791,9 +712,6 @@ $L79:
 $L80:
 	addk	r3,r0,r0
 $L82:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -805,17 +723,14 @@ $Lfe17:
 	.ent	iscntrl
 	.type	iscntrl, @function
 iscntrl:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r4,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r4,r1,4
 	addik	r3,r0,31	# 0x1f
 	cmpu	r18,r4,r3
 	bgei	r18,$L84
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xori	r3,r3,127
 	bnei	r3,$L85
 $L84:
@@ -824,9 +739,6 @@ $L84:
 $L85:
 	addk	r3,r0,r0
 $L87:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -838,13 +750,10 @@ $Lfe18:
 	.ent	isdigit
 	.type	isdigit, @function
 isdigit:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-48
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,9	# 0x9
@@ -853,9 +762,6 @@ isdigit:
 	addk	r5,r0,r0
 $L89:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -867,13 +773,10 @@ $Lfe19:
 	.ent	isgraph
 	.type	isgraph, @function
 isgraph:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-33
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,93	# 0x5d
@@ -882,9 +785,6 @@ isgraph:
 	addk	r5,r0,r0
 $L92:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -896,13 +796,10 @@ $Lfe20:
 	.ent	islower
 	.type	islower, @function
 islower:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-97
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,25	# 0x19
@@ -911,9 +808,6 @@ islower:
 	addk	r5,r0,r0
 $L95:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -925,13 +819,10 @@ $Lfe21:
 	.ent	isprint
 	.type	isprint, @function
 isprint:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-32
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,94	# 0x5e
@@ -940,9 +831,6 @@ isprint:
 	addk	r5,r0,r0
 $L98:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -954,16 +842,13 @@ $Lfe22:
 	.ent	isspace
 	.type	isspace, @function
 isspace:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	xori	r3,r3,32
 	beqi	r3,$L101
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-9
 	addik	r3,r0,4	# 0x4
 	cmpu	r18,r4,r3
@@ -974,9 +859,6 @@ $L101:
 $L102:
 	addk	r3,r0,r0
 $L104:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -988,13 +870,10 @@ $Lfe23:
 	.ent	isupper
 	.type	isupper, @function
 isupper:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-65
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,25	# 0x19
@@ -1003,9 +882,6 @@ isupper:
 	addk	r5,r0,r0
 $L106:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1017,27 +893,24 @@ $Lfe24:
 	.ent	iswcntrl
 	.type	iswcntrl, @function
 iswcntrl:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r4,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r4,r1,4
 	addik	r3,r0,31	# 0x1f
 	cmpu	r18,r4,r3
 	bgei	r18,$L109
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-127
 	addik	r3,r0,32	# 0x20
 	cmpu	r18,r4,r3
 	bgei	r18,$L109
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-8232
 	addik	r3,r0,1	# 0x1
 	cmpu	r18,r4,r3
 	bgei	r18,$L109
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-65529
 	addik	r3,r0,2	# 0x2
 	cmpu	r18,r4,r3
@@ -1048,9 +921,6 @@ $L109:
 $L110:
 	addk	r3,r0,r0
 $L112:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1062,13 +932,10 @@ $Lfe25:
 	.ent	iswdigit
 	.type	iswdigit, @function
 iswdigit:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-48
 	addik	r5,r0,1	# 0x1
 	addik	r3,r0,9	# 0x9
@@ -1077,9 +944,6 @@ iswdigit:
 	addk	r5,r0,r0
 $L114:
 	andi	r3,r5,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1091,17 +955,14 @@ $Lfe26:
 	.ent	iswprint
 	.type	iswprint, @function
 iswprint:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r4,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r4,r1,4
 	addik	r3,r0,254	# 0xfe
 	cmpu	r18,r4,r3
 	blti	r18,$L117
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r3,r3,1
 	andi	r4,r3,127 #and1
 	addik	r5,r0,1	# 0x1
@@ -1113,16 +974,16 @@ $L118:
 	andi	r3,r5,0x00ff
 	bri	$L119
 $L117:
-	lwi	r4,r19,12
+	lwi	r4,r1,4
 	addik	r3,r0,8231	# 0x2027
 	cmpu	r18,r4,r3
 	bgei	r18,$L120
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-8234
 	addik	r3,r0,47061
 	cmpu	r18,r4,r3
 	bgei	r18,$L120
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-57344
 	addik	r3,r0,8184	# 0x1ff8
 	cmpu	r18,r4,r3
@@ -1131,12 +992,12 @@ $L120:
 	addik	r3,r0,1	# 0x1
 	bri	$L119
 $L121:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r4,r3,-65532
 	addik	r3,r0,1048579
 	cmpu	r18,r4,r3
 	blti	r18,$L122
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	andi	r3,r3,65534 #and2
 	xori	r3,r3,65534
 	bnei	r3,$L123
@@ -1146,9 +1007,6 @@ $L122:
 $L123:
 	addik	r3,r0,1	# 0x1
 $L119:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1160,18 +1018,15 @@ $Lfe27:
 	.ent	iswxdigit
 	.type	iswxdigit, @function
 iswxdigit:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r4,r3,-48
 	addik	r3,r0,9	# 0x9
 	cmpu	r18,r4,r3
 	bgei	r18,$L125
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	ori	r3,r3,32
 	addik	r4,r3,-97
 	addik	r3,r0,5	# 0x5
@@ -1183,9 +1038,6 @@ $L125:
 $L126:
 	addk	r3,r0,r0
 $L128:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1197,17 +1049,11 @@ $Lfe28:
 	.ent	toascii
 	.type	toascii, @function
 toascii:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	andi	r3,r3,127 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1219,52 +1065,50 @@ $Lfe29:
 	.ent	fdim
 	.type	fdim, @function
 fdim:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,36
-	lwi	r8,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,32
+	lwi	r8,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L143
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L134
 $L143:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L144
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L134
 $L144:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
 	blei	r3,$L145
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__subdf3
 	nop		# Unfilled delay slot
 
@@ -1278,9 +1122,7 @@ $L134:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1292,40 +1134,38 @@ $Lfe30:
 	.ent	fdimf
 	.type	fdimf, @function
 fdimf:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r6,r19,36
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r6,r1,32
+	lwi	r5,r1,32
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L158
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L149
 $L158:
-	lwi	r6,r19,40
-	lwi	r5,r19,40
+	lwi	r6,r1,36
+	lwi	r5,r1,36
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L159
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L149
 $L159:
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
 	blei	r3,$L160
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__subsf3
 	nop		# Unfilled delay slot
 
@@ -1334,9 +1174,7 @@ $L160:
 	addk	r3,r0,r0
 $L149:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1348,79 +1186,75 @@ $Lfe31:
 	.ent	fmax
 	.type	fmax, @function
 fmax:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,36
-	lwi	r8,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,32
+	lwi	r8,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L176
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L164
 $L176:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L177
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L164
 $L177:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L167
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L168
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L164
 $L168:
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L164
 $L167:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L178
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L164
 $L178:
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 $L164:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1432,63 +1266,59 @@ $Lfe32:
 	.ent	fmaxf
 	.type	fmaxf, @function
 fmaxf:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r6,r19,36
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r6,r1,32
+	lwi	r5,r1,32
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L194
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L182
 $L194:
-	lwi	r6,r19,40
-	lwi	r5,r19,40
+	lwi	r6,r1,36
+	lwi	r5,r1,36
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L195
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L182
 $L195:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L185
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L186
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L182
 $L186:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L182
 $L185:
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L196
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L182
 $L196:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 $L182:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1500,79 +1330,75 @@ $Lfe33:
 	.ent	fmaxl
 	.type	fmaxl, @function
 fmaxl:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,36
-	lwi	r8,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,32
+	lwi	r8,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L212
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L200
 $L212:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L213
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L200
 $L213:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L203
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L204
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L200
 $L204:
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L200
 $L203:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L214
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L200
 $L214:
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 $L200:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1584,79 +1410,75 @@ $Lfe34:
 	.ent	fmin
 	.type	fmin, @function
 fmin:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,36
-	lwi	r8,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,32
+	lwi	r8,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L230
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L218
 $L230:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L231
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L218
 $L231:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L221
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L222
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L218
 $L222:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L218
 $L221:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L232
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L218
 $L232:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 $L218:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1668,63 +1490,59 @@ $Lfe35:
 	.ent	fminf
 	.type	fminf, @function
 fminf:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r6,r19,36
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r6,r1,32
+	lwi	r5,r1,32
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L248
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L236
 $L248:
-	lwi	r6,r19,40
-	lwi	r5,r19,40
+	lwi	r6,r1,36
+	lwi	r5,r1,36
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L249
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L236
 $L249:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L239
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L240
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L236
 $L240:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bri	$L236
 $L239:
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L250
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	bri	$L236
 $L250:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 $L236:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1736,79 +1554,75 @@ $Lfe36:
 	.ent	fminl
 	.type	fminl, @function
 fminl:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,36
-	lwi	r8,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,32
+	lwi	r8,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L266
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L254
 $L266:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L267
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L254
 $L267:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	addk	r4,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	andi	r3,r3,-2147483648 #and2
 	xor	r3,r4,r3
 	beqi	r3,$L257
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,-2147483648 #and2
 	beqi	r3,$L258
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L254
 $L258:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	bri	$L254
 $L257:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L268
-	lwi	r4,r19,36
-	lwi	r5,r19,40
+	lwi	r4,r1,32
+	lwi	r5,r1,36
 	bri	$L254
 $L268:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 $L254:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1827,28 +1641,26 @@ digits:
 	.ent	l64a
 	.type	l64a, @function
 l64a:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	lwi	r3,r19,20
-	swi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	lwi	r3,r1,16
+	swi	r3,r1,8
 	addik	r3,r0,s.0
-	swi	r3,r19,4
+	swi	r3,r1,4
 	bri	$L270
 $L271:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	andi	r3,r3,63 #and1
 	lbui	r3,r3,digits
 	sext8	r4,r3
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	sbi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
-	lwi	r4,r19,8
+	swi	r3,r1,4
+	lwi	r4,r1,8
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -1856,16 +1668,14 @@ $L271:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L270:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	bnei	r3,$L271
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	sbi	r0,r3,0
 	addik	r3,r0,s.0
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1881,22 +1691,16 @@ $Lfe38:
 	.ent	srand
 	.type	srand, @function
 srand:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addik	r3,r3,-1
 	addk	r7,r3,r0
 	addk	r6,r0,r0
 	swi	r6,r0,seed
 	swi	r7,r0,seed+4
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1908,14 +1712,12 @@ $Lfe39:
 	.ent	rand
 	.type	rand, @function
 rand:
-	.frame	r19,40,r15		# vars= 0, regs= 3, args= 24
-	.mask	0x00c88000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 0, regs= 2, args= 24
+	.mask	0x00c08000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,28
-	swi	r22,r1,32
-	swi	r23,r1,36
-	addk	r19,r1,r0
+	swi	r22,r1,28
+	swi	r23,r1,32
 	lwi	r4,r0,seed
 	lwi	r5,r0,seed+4
 	addik	r7,r0,0x5851f42d
@@ -1941,11 +1743,9 @@ rand:
 	addk	r22,r0,r0
 	addk	r3,r23,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	lwi	r22,r1,32
-	lwi	r23,r1,36
-	addik	r1,r1,40
+	lwi	r22,r1,28
+	lwi	r23,r1,32
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -1957,48 +1757,44 @@ $Lfe40:
 	.ent	insque
 	.type	insque, @function
 insque:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
-	lwi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
+	lwi	r3,r1,8
 	bnei	r3,$L277
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	swi	r0,r3,4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r4,r3,4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	swi	r4,r3,0
 	bri	$L276
 $L277:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	lwi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	swi	r4,r3,0
-	lwi	r3,r19,4
-	lwi	r4,r19,8
+	lwi	r3,r1,4
+	lwi	r4,r1,8
 	swi	r4,r3,4
-	lwi	r3,r19,8
-	lwi	r4,r19,4
+	lwi	r3,r1,8
+	lwi	r4,r1,4
 	swi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L276
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r3,r3,0
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	swi	r4,r3,4
 $L276:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2010,36 +1806,32 @@ $Lfe41:
 	.ent	remque
 	.type	remque, @function
 remque:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L280
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r3,r3,0
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	lwi	r4,r4,4
 	swi	r4,r3,4
 $L280:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r3,r3,4
 	beqi	r3,$L282
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lwi	r3,r3,4
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	lwi	r4,r4,0
 	swi	r4,r3,0
 $L282:
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2051,25 +1843,23 @@ $Lfe42:
 	.ent	lsearch
 	.type	lsearch, @function
 lsearch:
-	.frame	r19,60,r15		# vars= 16, regs= 4, args= 24
-	.mask	0x01c88000
-	addik	r1,r1,-60
+	.frame	r1,56,r15		# vars= 16, regs= 3, args= 24
+	.mask	0x00c88000
+	addik	r1,r1,-56
 	swi	r15,r1,0
 	swi	r19,r1,44
 	swi	r22,r1,48
 	swi	r23,r1,52
-	swi	r24,r1,56
-	addk	r19,r1,r0
-	swi	r5,r19,64
-	swi	r6,r19,68
-	swi	r7,r19,72
-	swi	r8,r19,76
-	swi	r9,r19,80
-	lwi	r24,r19,76
-	addk	r3,r24,r0
+	swi	r5,r1,60
+	swi	r6,r1,64
+	swi	r7,r1,68
+	swi	r8,r1,72
+	swi	r9,r1,76
+	lwi	r19,r1,72
+	addk	r3,r19,r0
 	addik	r3,r3,-1
-	swi	r3,r19,32
-	addk	r11,r24,r0
+	swi	r3,r1,32
+	addk	r11,r19,r0
 	addk	r10,r0,r0
 	addk	r3,r0,r11
 	srl	r3,r11
@@ -2110,73 +1900,71 @@ lsearch:
 	addk	r23,r11,r11
 	addk	r23,r23,r23
 	addk	r23,r23,r23
-	lwi	r3,r19,68
-	swi	r3,r19,36
-	lwi	r3,r19,72
+	lwi	r3,r1,64
+	swi	r3,r1,36
+	lwi	r3,r1,68
 	lwi	r3,r3,0
-	swi	r3,r19,40
-	swi	r0,r19,28
+	swi	r3,r1,40
+	swi	r0,r1,28
 	bri	$L284
 $L287:
-	lwi	r6,r19,28
-	addk	r5,r24,r0
+	lwi	r6,r1,28
+	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r4,r3,r4
-	lwi	r3,r19,80
+	lwi	r3,r1,76
 	addk	r6,r4,r0
-	lwi	r5,r19,64
+	lwi	r5,r1,60
 	brald	r15,r3
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L285
-	lwi	r6,r19,28
-	addk	r5,r24,r0
+	lwi	r6,r1,28
+	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r3,r4
 	bri	$L286
 $L285:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addik	r3,r3,1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L284:
-	lwi	r4,r19,28
-	lwi	r3,r19,40
+	lwi	r4,r1,28
+	lwi	r3,r1,40
 	cmpu	r18,r3,r4
 	blti	r18,$L287
-	lwi	r3,r19,40
+	lwi	r3,r1,40
 	addik	r4,r3,1
-	lwi	r3,r19,72
+	lwi	r3,r1,68
 	swi	r4,r3,0
-	lwi	r6,r19,40
-	addk	r5,r24,r0
+	lwi	r6,r1,40
+	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r3,r4
-	lwi	r7,r19,76
-	lwi	r6,r19,64
+	lwi	r7,r1,72
+	lwi	r6,r1,60
 	addk	r5,r3,r0
 	brlid	r15,memcpy
 	nop		# Unfilled delay slot
 
 $L286:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,44
 	lwi	r22,r1,48
 	lwi	r23,r1,52
-	lwi	r24,r1,56
-	addik	r1,r1,60
+	addik	r1,r1,56
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2188,25 +1976,23 @@ $Lfe43:
 	.ent	lfind
 	.type	lfind, @function
 lfind:
-	.frame	r19,60,r15		# vars= 16, regs= 4, args= 24
-	.mask	0x01c88000
-	addik	r1,r1,-60
+	.frame	r1,56,r15		# vars= 16, regs= 3, args= 24
+	.mask	0x00c88000
+	addik	r1,r1,-56
 	swi	r15,r1,0
 	swi	r19,r1,44
 	swi	r22,r1,48
 	swi	r23,r1,52
-	swi	r24,r1,56
-	addk	r19,r1,r0
-	swi	r5,r19,64
-	swi	r6,r19,68
-	swi	r7,r19,72
-	swi	r8,r19,76
-	swi	r9,r19,80
-	lwi	r24,r19,76
-	addk	r3,r24,r0
+	swi	r5,r1,60
+	swi	r6,r1,64
+	swi	r7,r1,68
+	swi	r8,r1,72
+	swi	r9,r1,76
+	lwi	r19,r1,72
+	addk	r3,r19,r0
 	addik	r3,r3,-1
-	swi	r3,r19,32
-	addk	r11,r24,r0
+	swi	r3,r1,32
+	addk	r11,r19,r0
 	addk	r10,r0,r0
 	addk	r3,r0,r11
 	srl	r3,r11
@@ -2247,56 +2033,54 @@ lfind:
 	addk	r23,r11,r11
 	addk	r23,r23,r23
 	addk	r23,r23,r23
-	lwi	r3,r19,68
-	swi	r3,r19,36
-	lwi	r3,r19,72
+	lwi	r3,r1,64
+	swi	r3,r1,36
+	lwi	r3,r1,68
 	lwi	r3,r3,0
-	swi	r3,r19,40
-	swi	r0,r19,28
+	swi	r3,r1,40
+	swi	r0,r1,28
 	bri	$L289
 $L292:
-	lwi	r6,r19,28
-	addk	r5,r24,r0
+	lwi	r6,r1,28
+	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r4,r3,r4
-	lwi	r3,r19,80
+	lwi	r3,r1,76
 	addk	r6,r4,r0
-	lwi	r5,r19,64
+	lwi	r5,r1,60
 	brald	r15,r3
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L290
-	lwi	r6,r19,28
-	addk	r5,r24,r0
+	lwi	r6,r1,28
+	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r3,r4
 	bri	$L291
 $L290:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addik	r3,r3,1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L289:
-	lwi	r4,r19,28
-	lwi	r3,r19,40
+	lwi	r4,r1,28
+	lwi	r3,r1,40
 	cmpu	r18,r3,r4
 	blti	r18,$L292
 	addk	r3,r0,r0
 $L291:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,44
 	lwi	r22,r1,48
 	lwi	r23,r1,52
-	lwi	r24,r1,56
-	addik	r1,r1,60
+	addik	r1,r1,56
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2308,13 +2092,10 @@ $Lfe44:
 	.ent	abs
 	.type	abs, @function
 abs:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addk	r4,r0,r3
 	sra	r4,r3
 	sra	r4,r4
@@ -2347,12 +2128,9 @@ abs:
 	sra	r4,r4
 	sra	r4,r4
 	sra	r4,r4
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xor	r3,r4,r3
 	rsubk	r3,r4,r3
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2364,22 +2142,20 @@ $Lfe45:
 	.ent	atoi
 	.type	atoi, @function
 atoi:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r0,r19,28
-	swi	r0,r19,32
+	swi	r5,r1,40
+	swi	r0,r1,28
+	swi	r0,r1,32
 	bri	$L296
 $L297:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r3,r3,1
-	swi	r3,r19,44
+	swi	r3,r1,40
 $L296:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addk	r5,r3,r0
@@ -2387,7 +2163,7 @@ $L296:
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L297
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xori	r4,r3,43
@@ -2395,48 +2171,46 @@ $L296:
 	xori	r3,r3,45
 	bnei	r3,$L300
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L298:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r3,r3,1
-	swi	r3,r19,44
+	swi	r3,r1,40
 	bri	$L300
 $L301:
-	lwi	r4,r19,28
+	lwi	r4,r1,28
 	addk	r3,r4,r0
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r4
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r4,r3,1
-	swi	r4,r19,44
+	swi	r4,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r3,r3,-48
 	rsubk	r3,r3,r5
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L300:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r4,r3,-48
 	addik	r3,r0,9	# 0x9
 	cmpu	r18,r4,r3
 	bgei	r18,$L301
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	bnei	r3,$L302
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	rsubk	r3,r3,r0
 	bri	$L304
 $L302:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 $L304:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2448,22 +2222,20 @@ $Lfe46:
 	.ent	atol
 	.type	atol, @function
 atol:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r0,r19,28
-	swi	r0,r19,32
+	swi	r5,r1,40
+	swi	r0,r1,28
+	swi	r0,r1,32
 	bri	$L306
 $L307:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r3,r3,1
-	swi	r3,r19,44
+	swi	r3,r1,40
 $L306:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addk	r5,r3,r0
@@ -2471,7 +2243,7 @@ $L306:
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L307
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xori	r4,r3,43
@@ -2479,48 +2251,46 @@ $L306:
 	xori	r3,r3,45
 	bnei	r3,$L310
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L308:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r3,r3,1
-	swi	r3,r19,44
+	swi	r3,r1,40
 	bri	$L310
 $L311:
-	lwi	r4,r19,28
+	lwi	r4,r1,28
 	addk	r3,r4,r0
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r4
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r4,r3,1
-	swi	r4,r19,44
+	swi	r4,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r3,r3,-48
 	rsubk	r3,r3,r5
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L310:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r4,r3,-48
 	addik	r3,r0,9	# 0x9
 	cmpu	r18,r4,r3
 	bgei	r18,$L311
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	bnei	r3,$L312
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	rsubk	r3,r3,r0
 	bri	$L314
 $L312:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 $L314:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2532,29 +2302,27 @@ $Lfe47:
 	.ent	atoll
 	.type	atoll, @function
 atoll:
-	.frame	r19,60,r15		# vars= 12, regs= 5, args= 24
-	.mask	0x03c88000
-	addik	r1,r1,-60
+	.frame	r1,56,r15		# vars= 12, regs= 4, args= 24
+	.mask	0x03c08000
+	addik	r1,r1,-56
 	swi	r15,r1,0
-	swi	r19,r1,40
-	swi	r22,r1,44
-	swi	r23,r1,48
-	swi	r24,r1,52
-	swi	r25,r1,56
-	addk	r19,r1,r0
-	swi	r5,r19,64
+	swi	r22,r1,40
+	swi	r23,r1,44
+	swi	r24,r1,48
+	swi	r25,r1,52
+	swi	r5,r1,60
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x00000000 #li => la
-	swi	r4,r19,28
-	swi	r5,r19,32
-	swi	r0,r19,36
+	swi	r4,r1,28
+	swi	r5,r1,32
+	swi	r0,r1,36
 	bri	$L316
 $L317:
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	addik	r3,r3,1
-	swi	r3,r19,64
+	swi	r3,r1,60
 $L316:
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addk	r5,r3,r0
@@ -2562,7 +2330,7 @@ $L316:
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L317
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xori	r4,r3,43
@@ -2570,15 +2338,15 @@ $L316:
 	xori	r3,r3,45
 	bnei	r3,$L320
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,36
+	swi	r3,r1,36
 $L318:
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	addik	r3,r3,1
-	swi	r3,r19,64
+	swi	r3,r1,60
 	bri	$L320
 $L321:
-	lwi	r6,r19,28
-	lwi	r7,r19,32
+	lwi	r6,r1,28
+	lwi	r7,r1,32
 	addk	r4,r6,r0
 	addk	r5,r7,r0
 	addk	r3,r0,r5
@@ -2660,9 +2428,9 @@ $L321:
 	addk	r5,r25,r0
 	addk	r8,r4,r0
 	addk	r9,r5,r0
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	addik	r4,r3,1
-	swi	r4,r19,64
+	swi	r4,r1,60
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r3,r3,-48
@@ -2673,37 +2441,35 @@ $L321:
 	addi	r6,r0,0xffffffff
 	rsub	r5,r7,r9
 	rsubc	r4,r6,r8
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 $L320:
-	lwi	r3,r19,64
+	lwi	r3,r1,60
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addik	r4,r3,-48
 	addik	r3,r0,9	# 0x9
 	cmpu	r18,r4,r3
 	bgei	r18,$L321
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	bnei	r3,$L322
-	lwi	r4,r19,28
-	lwi	r5,r19,32
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 	rsub	r5,r5,r0
 	rsubc	r4,r4,r0
 	bri	$L324
 $L322:
-	lwi	r4,r19,28
-	lwi	r5,r19,32
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 $L324:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,40
-	lwi	r22,r1,44
-	lwi	r23,r1,48
-	lwi	r24,r1,52
-	lwi	r25,r1,56
-	addik	r1,r1,60
+	lwi	r22,r1,40
+	lwi	r23,r1,44
+	lwi	r24,r1,48
+	lwi	r25,r1,52
+	addik	r1,r1,56
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2715,69 +2481,65 @@ $Lfe48:
 	.ent	bsearch
 	.type	bsearch, @function
 bsearch:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	swi	r8,r19,56
-	swi	r9,r19,60
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	swi	r8,r1,52
+	swi	r9,r1,56
 	bri	$L326
 $L331:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	srl	r3,r3
-	lwi	r6,r19,56
+	lwi	r6,r1,52
 	addk	r5,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	addk	r3,r3,r4
-	swi	r3,r19,28
-	lwi	r3,r19,60
-	lwi	r6,r19,28
-	lwi	r5,r19,44
+	swi	r3,r1,28
+	lwi	r3,r1,56
+	lwi	r6,r1,28
+	lwi	r5,r1,40
 	brald	r15,r3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	bgei	r3,$L327
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	srl	r3,r3
-	swi	r3,r19,52
+	swi	r3,r1,48
 	bri	$L326
 $L327:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	blei	r3,$L329
-	lwi	r4,r19,28
-	lwi	r3,r19,56
+	lwi	r4,r1,28
+	lwi	r3,r1,52
 	addk	r3,r4,r3
-	swi	r3,r19,48
-	lwi	r3,r19,52
+	swi	r3,r1,44
+	lwi	r3,r1,48
 	srl	r3,r3
-	lwi	r4,r19,52
+	lwi	r4,r1,48
 	rsubk	r3,r3,r4
 	addik	r3,r3,-1
-	swi	r3,r19,52
+	swi	r3,r1,48
 	bri	$L326
 $L329:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	bri	$L330
 $L326:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	bnei	r3,$L331
 	addk	r3,r0,r0
 $L330:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2789,70 +2551,66 @@ $Lfe49:
 	.ent	bsearch_r
 	.type	bsearch_r, @function
 bsearch_r:
-	.frame	r19,48,r15		# vars= 16, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-48
+	.frame	r1,44,r15		# vars= 16, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-44
 	swi	r15,r1,0
-	swi	r19,r1,44
-	addk	r19,r1,r0
-	swi	r5,r19,52
-	swi	r6,r19,56
-	swi	r7,r19,60
-	swi	r8,r19,64
-	swi	r9,r19,68
-	swi	r10,r19,72
-	lwi	r3,r19,56
-	swi	r3,r19,28
-	lwi	r3,r19,60
-	swi	r3,r19,32
+	swi	r5,r1,48
+	swi	r6,r1,52
+	swi	r7,r1,56
+	swi	r8,r1,60
+	swi	r9,r1,64
+	swi	r10,r1,68
+	lwi	r3,r1,52
+	swi	r3,r1,28
+	lwi	r3,r1,56
+	swi	r3,r1,32
 	bri	$L333
 $L337:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	sra	r3,r3
-	lwi	r6,r19,64
+	lwi	r6,r1,60
 	addk	r5,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addk	r3,r3,r4
-	swi	r3,r19,36
-	lwi	r3,r19,68
-	lwi	r7,r19,72
-	lwi	r6,r19,36
-	lwi	r5,r19,52
+	swi	r3,r1,36
+	lwi	r3,r1,64
+	lwi	r7,r1,68
+	lwi	r6,r1,36
+	lwi	r5,r1,48
 	brald	r15,r3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,40
-	lwi	r3,r19,40
+	swi	r3,r1,40
+	lwi	r3,r1,40
 	bnei	r3,$L334
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	bri	$L335
 $L334:
-	lwi	r3,r19,40
+	lwi	r3,r1,40
 	blei	r3,$L336
-	lwi	r4,r19,36
-	lwi	r3,r19,64
+	lwi	r4,r1,36
+	lwi	r3,r1,60
 	addk	r3,r4,r3
-	swi	r3,r19,28
-	lwi	r3,r19,32
+	swi	r3,r1,28
+	lwi	r3,r1,32
 	addik	r3,r3,-1
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L336:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	sra	r3,r3
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L333:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	bnei	r3,$L337
 	addk	r3,r0,r0
 $L335:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,44
-	addik	r1,r1,48
+	addik	r1,r1,44
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2864,39 +2622,35 @@ $Lfe50:
 	.ent	div
 	.type	div, @function
 div:
-	.frame	r19,36,r15		# vars= 0, regs= 2, args= 24
-	.mask	0x00488000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 0, regs= 1, args= 24
+	.mask	0x00088000
+	addik	r1,r1,-32
 	swi	r15,r1,0
 	swi	r19,r1,28
-	swi	r22,r1,32
-	addk	r19,r1,r0
-	swi	r5,r19,40
-	swi	r6,r19,44
-	swi	r7,r19,48
-	lwi	r6,r19,48
-	lwi	r5,r19,44
+	swi	r5,r1,36
+	swi	r6,r1,40
+	swi	r7,r1,44
+	lwi	r6,r1,44
+	lwi	r5,r1,40
 	brlid	r15,__divsi3
 	nop		# Unfilled delay slot
 
-	addk	r22,r3,r0
-	lwi	r3,r19,44
-	lwi	r6,r19,48
+	addk	r19,r3,r0
+	lwi	r3,r1,40
+	lwi	r6,r1,44
 	addk	r5,r3,r0
 	brlid	r15,__modsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,40
-	swi	r22,r3,0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
+	swi	r19,r3,0
+	lwi	r3,r1,36
 	swi	r4,r3,4
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,28
-	lwi	r22,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2908,14 +2662,11 @@ $Lfe51:
 	.ent	imaxabs
 	.type	imaxabs, @function
 imaxabs:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r3,r1,4
 	addk	r9,r0,r3
 	sra	r9,r3
 	sra	r9,r9
@@ -2948,7 +2699,7 @@ imaxabs:
 	sra	r9,r9
 	sra	r9,r9
 	sra	r9,r9
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addk	r8,r0,r3
 	sra	r8,r3
 	sra	r8,r8
@@ -2981,9 +2732,9 @@ imaxabs:
 	sra	r8,r8
 	sra	r8,r8
 	sra	r8,r8
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xor	r10,r3,r8
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	xor	r11,r3,r9
 	addk	r4,r10,r0
 	addk	r5,r11,r0
@@ -2993,9 +2744,6 @@ imaxabs:
 	addk	r5,r11,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3007,23 +2755,21 @@ $Lfe52:
 	.ent	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	.frame	r19,56,r15		# vars= 16, regs= 3, args= 24
-	.mask	0x00c88000
-	addik	r1,r1,-56
+	.frame	r1,52,r15		# vars= 16, regs= 2, args= 24
+	.mask	0x00c08000
+	addik	r1,r1,-52
 	swi	r15,r1,0
-	swi	r19,r1,44
-	swi	r22,r1,48
-	swi	r23,r1,52
-	addk	r19,r1,r0
-	swi	r5,r19,60
-	swi	r6,r19,64
-	swi	r7,r19,68
-	swi	r8,r19,72
-	swi	r9,r19,76
-	lwi	r7,r19,72
-	lwi	r8,r19,76
-	lwi	r5,r19,64
-	lwi	r6,r19,68
+	swi	r22,r1,44
+	swi	r23,r1,48
+	swi	r5,r1,56
+	swi	r6,r1,60
+	swi	r7,r1,64
+	swi	r8,r1,68
+	swi	r9,r1,72
+	lwi	r7,r1,68
+	lwi	r8,r1,72
+	lwi	r5,r1,60
+	lwi	r6,r1,64
 	brlid	r15,__divdi3
 	nop		# Unfilled delay slot
 
@@ -3031,10 +2777,10 @@ imaxdiv:
 	addk	r4,r3,r0
 	addk	r22,r4,r0
 	addk	r23,r5,r0
-	lwi	r4,r19,64
-	lwi	r5,r19,68
-	lwi	r7,r19,72
-	lwi	r8,r19,76
+	lwi	r4,r1,60
+	lwi	r5,r1,64
+	lwi	r7,r1,68
+	lwi	r8,r1,72
 	addk	r6,r5,r0
 	addk	r5,r4,r0
 	brlid	r15,__moddi3
@@ -3042,19 +2788,17 @@ imaxdiv:
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	swi	r22,r3,0
 	swi	r23,r3,4
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	swi	r4,r3,8
 	swi	r5,r3,12
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,44
-	lwi	r22,r1,48
-	lwi	r23,r1,52
-	addik	r1,r1,56
+	lwi	r22,r1,44
+	lwi	r23,r1,48
+	addik	r1,r1,52
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3066,13 +2810,10 @@ $Lfe53:
 	.ent	labs
 	.type	labs, @function
 labs:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addk	r4,r0,r3
 	sra	r4,r3
 	sra	r4,r4
@@ -3105,12 +2846,9 @@ labs:
 	sra	r4,r4
 	sra	r4,r4
 	sra	r4,r4
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xor	r3,r4,r3
 	rsubk	r3,r4,r3
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3122,39 +2860,35 @@ $Lfe54:
 	.ent	ldiv
 	.type	ldiv, @function
 ldiv:
-	.frame	r19,36,r15		# vars= 0, regs= 2, args= 24
-	.mask	0x00488000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 0, regs= 1, args= 24
+	.mask	0x00088000
+	addik	r1,r1,-32
 	swi	r15,r1,0
 	swi	r19,r1,28
-	swi	r22,r1,32
-	addk	r19,r1,r0
-	swi	r5,r19,40
-	swi	r6,r19,44
-	swi	r7,r19,48
-	lwi	r6,r19,48
-	lwi	r5,r19,44
+	swi	r5,r1,36
+	swi	r6,r1,40
+	swi	r7,r1,44
+	lwi	r6,r1,44
+	lwi	r5,r1,40
 	brlid	r15,__divsi3
 	nop		# Unfilled delay slot
 
-	addk	r22,r3,r0
-	lwi	r3,r19,44
-	lwi	r6,r19,48
+	addk	r19,r3,r0
+	lwi	r3,r1,40
+	lwi	r6,r1,44
 	addk	r5,r3,r0
 	brlid	r15,__modsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,40
-	swi	r22,r3,0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
+	swi	r19,r3,0
+	lwi	r3,r1,36
 	swi	r4,r3,4
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,28
-	lwi	r22,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3166,14 +2900,11 @@ $Lfe55:
 	.ent	llabs
 	.type	llabs, @function
 llabs:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r3,r1,4
 	addk	r9,r0,r3
 	sra	r9,r3
 	sra	r9,r9
@@ -3206,7 +2937,7 @@ llabs:
 	sra	r9,r9
 	sra	r9,r9
 	sra	r9,r9
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addk	r8,r0,r3
 	sra	r8,r3
 	sra	r8,r8
@@ -3239,9 +2970,9 @@ llabs:
 	sra	r8,r8
 	sra	r8,r8
 	sra	r8,r8
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	xor	r10,r3,r8
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	xor	r11,r3,r9
 	addk	r4,r10,r0
 	addk	r5,r11,r0
@@ -3251,9 +2982,6 @@ llabs:
 	addk	r5,r11,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3265,23 +2993,21 @@ $Lfe56:
 	.ent	lldiv
 	.type	lldiv, @function
 lldiv:
-	.frame	r19,56,r15		# vars= 16, regs= 3, args= 24
-	.mask	0x00c88000
-	addik	r1,r1,-56
+	.frame	r1,52,r15		# vars= 16, regs= 2, args= 24
+	.mask	0x00c08000
+	addik	r1,r1,-52
 	swi	r15,r1,0
-	swi	r19,r1,44
-	swi	r22,r1,48
-	swi	r23,r1,52
-	addk	r19,r1,r0
-	swi	r5,r19,60
-	swi	r6,r19,64
-	swi	r7,r19,68
-	swi	r8,r19,72
-	swi	r9,r19,76
-	lwi	r7,r19,72
-	lwi	r8,r19,76
-	lwi	r5,r19,64
-	lwi	r6,r19,68
+	swi	r22,r1,44
+	swi	r23,r1,48
+	swi	r5,r1,56
+	swi	r6,r1,60
+	swi	r7,r1,64
+	swi	r8,r1,68
+	swi	r9,r1,72
+	lwi	r7,r1,68
+	lwi	r8,r1,72
+	lwi	r5,r1,60
+	lwi	r6,r1,64
 	brlid	r15,__divdi3
 	nop		# Unfilled delay slot
 
@@ -3289,10 +3015,10 @@ lldiv:
 	addk	r4,r3,r0
 	addk	r22,r4,r0
 	addk	r23,r5,r0
-	lwi	r4,r19,64
-	lwi	r5,r19,68
-	lwi	r7,r19,72
-	lwi	r8,r19,76
+	lwi	r4,r1,60
+	lwi	r5,r1,64
+	lwi	r7,r1,68
+	lwi	r8,r1,72
 	addk	r6,r5,r0
 	addk	r5,r4,r0
 	brlid	r15,__moddi3
@@ -3300,19 +3026,17 @@ lldiv:
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	swi	r22,r3,0
 	swi	r23,r3,4
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	swi	r4,r3,8
 	swi	r5,r3,12
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,44
-	lwi	r22,r1,48
-	lwi	r23,r1,52
-	addik	r1,r1,56
+	lwi	r22,r1,44
+	lwi	r23,r1,48
+	addik	r1,r1,52
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3324,39 +3048,33 @@ $Lfe57:
 	.ent	wcschr
 	.type	wcschr, @function
 wcschr:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
 	bri	$L353
 $L355:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r3,r3,4
-	swi	r3,r19,12
+	swi	r3,r1,4
 $L353:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L354
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
-	lwi	r4,r19,16
+	lwi	r4,r1,8
 	xor	r3,r4,r3
 	bnei	r3,$L355
 $L354:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L356
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	bri	$L358
 $L356:
 	addk	r3,r0,r0
 $L358:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3368,44 +3086,41 @@ $Lfe58:
 	.ent	wcscmp
 	.type	wcscmp, @function
 wcscmp:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
 	bri	$L360
 $L362:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addik	r3,r3,4
-	swi	r3,r19,12
-	lwi	r3,r19,16
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,4
-	swi	r3,r19,16
+	swi	r3,r1,8
 $L360:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	xor	r3,r4,r3
 	bnei	r3,$L361
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L361
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	bnei	r3,$L362
 $L361:
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	cmp	r18,r3,r4
 	blti	r18,$L363
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	addik	r5,r0,1	# 0x1
 	cmp	r18,r4,r3
@@ -3417,9 +3132,6 @@ $L364:
 $L363:
 	addik	r3,r0,-1	# 0xffffffffffffffff
 $L366:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3431,31 +3143,27 @@ $Lfe59:
 	.ent	wcscpy
 	.type	wcscpy, @function
 wcscpy:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	nop
 $L368:
-	lwi	r4,r19,20
+	lwi	r4,r1,16
 	addik	r3,r4,4
-	swi	r3,r19,20
-	lwi	r3,r19,16
+	swi	r3,r1,16
+	lwi	r3,r1,12
 	addik	r5,r3,4
-	swi	r5,r19,16
+	swi	r5,r1,12
 	lwi	r4,r4,0
 	swi	r4,r3,0
 	lwi	r3,r3,0
 	bnei	r3,$L368
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3467,33 +3175,29 @@ $Lfe60:
 	.ent	wcslen
 	.type	wcslen, @function
 wcslen:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	bri	$L371
 $L372:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addik	r3,r3,4
-	swi	r3,r19,16
+	swi	r3,r1,12
 $L371:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	lwi	r3,r3,0
 	bnei	r3,$L372
-	lwi	r4,r19,16
-	lwi	r3,r19,4
+	lwi	r4,r1,12
+	lwi	r3,r1,4
 	rsubk	r3,r3,r4
 	addk	r4,r0,r3
 	sra	r4,r3
 	sra	r4,r4
 	addk	r3,r4,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3505,52 +3209,49 @@ $Lfe61:
 	.ent	wcsncmp
 	.type	wcsncmp, @function
 wcsncmp:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	swi	r7,r19,20
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	swi	r7,r1,12
 	bri	$L375
 $L377:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	addik	r3,r3,-1
-	swi	r3,r19,20
-	lwi	r3,r19,12
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	addik	r3,r3,4
-	swi	r3,r19,12
-	lwi	r3,r19,16
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,4
-	swi	r3,r19,16
+	swi	r3,r1,8
 $L375:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L376
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	xor	r3,r4,r3
 	bnei	r3,$L376
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
 	beqi	r3,$L376
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	bnei	r3,$L377
 $L376:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L378
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	cmp	r18,r3,r4
 	blti	r18,$L379
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	addik	r5,r0,1	# 0x1
 	cmp	r18,r4,r3
@@ -3565,9 +3266,6 @@ $L379:
 $L378:
 	addk	r3,r0,r0
 $L383:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3579,41 +3277,35 @@ $Lfe62:
 	.ent	wmemchr
 	.type	wmemchr, @function
 wmemchr:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	swi	r7,r19,20
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	swi	r7,r1,12
 	bri	$L385
 $L387:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	addik	r3,r3,-1
-	swi	r3,r19,20
-	lwi	r3,r19,12
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	addik	r3,r3,4
-	swi	r3,r19,12
+	swi	r3,r1,4
 $L385:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L386
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r3,r3,0
-	lwi	r4,r19,16
+	lwi	r4,r1,8
 	xor	r3,r4,r3
 	bnei	r3,$L387
 $L386:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L388
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	bri	$L390
 $L388:
 	addk	r3,r0,r0
 $L390:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3625,46 +3317,43 @@ $Lfe63:
 	.ent	wmemcmp
 	.type	wmemcmp, @function
 wmemcmp:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	swi	r7,r19,20
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	swi	r7,r1,12
 	bri	$L392
 $L394:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	addik	r3,r3,-1
-	swi	r3,r19,20
-	lwi	r3,r19,12
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	addik	r3,r3,4
-	swi	r3,r19,12
-	lwi	r3,r19,16
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,4
-	swi	r3,r19,16
+	swi	r3,r1,8
 $L392:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L393
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	xor	r3,r4,r3
 	beqi	r3,$L394
 $L393:
-	lwi	r3,r19,20
+	lwi	r3,r1,12
 	beqi	r3,$L395
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	cmp	r18,r3,r4
 	blti	r18,$L396
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	lwi	r4,r3,0
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	lwi	r3,r3,0
 	addik	r5,r0,1	# 0x1
 	cmp	r18,r4,r3
@@ -3679,9 +3368,6 @@ $L396:
 $L395:
 	addk	r3,r0,r0
 $L400:
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3693,35 +3379,31 @@ $Lfe64:
 	.ent	wmemcpy
 	.type	wmemcpy, @function
 wmemcpy:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	bri	$L402
 $L403:
-	lwi	r4,r19,20
+	lwi	r4,r1,16
 	addik	r3,r4,4
-	swi	r3,r19,20
-	lwi	r3,r19,16
+	swi	r3,r1,16
+	lwi	r3,r1,12
 	addik	r5,r3,4
-	swi	r5,r19,16
+	swi	r5,r1,12
 	lwi	r4,r4,0
 	swi	r4,r3,0
 $L402:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r4,r3,-1
-	swi	r4,r19,24
+	swi	r4,r1,20
 	bnei	r3,$L403
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3733,73 +3415,69 @@ $Lfe65:
 	.ent	wmemmove
 	.type	wmemmove, @function
 wmemmove:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r4,r19,16
-	lwi	r3,r19,20
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r4,r1,12
+	lwi	r3,r1,16
 	xor	r3,r4,r3
 	bnei	r3,$L406
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	bri	$L407
 $L406:
-	lwi	r4,r19,16
-	lwi	r3,r19,20
+	lwi	r4,r1,12
+	lwi	r3,r1,16
 	rsubk	r4,r3,r4
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	cmpu	r18,r3,r4
 	bgei	r18,$L412
 	bri	$L409
 $L410:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r4,r3,r0
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	addk	r4,r3,r4
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addk	r3,r3,r5
 	lwi	r4,r4,0
 	swi	r4,r3,0
 $L409:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r4,r3,-1
-	swi	r4,r19,24
+	swi	r4,r1,20
 	bnei	r3,$L410
 	bri	$L411
 $L413:
-	lwi	r4,r19,20
+	lwi	r4,r1,16
 	addik	r3,r4,4
-	swi	r3,r19,20
-	lwi	r3,r19,16
+	swi	r3,r1,16
+	lwi	r3,r1,12
 	addik	r5,r3,4
-	swi	r5,r19,16
+	swi	r5,r1,12
 	lwi	r4,r4,0
 	swi	r4,r3,0
 $L412:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r4,r3,-1
-	swi	r4,r19,24
+	swi	r4,r1,20
 	bnei	r3,$L413
 $L411:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 $L407:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3811,32 +3489,28 @@ $Lfe66:
 	.ent	wmemset
 	.type	wmemset, @function
 wmemset:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r7,r19,24
-	lwi	r3,r19,16
-	swi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r7,r1,20
+	lwi	r3,r1,12
+	swi	r3,r1,4
 	bri	$L415
 $L416:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addik	r4,r3,4
-	swi	r4,r19,16
-	lwi	r4,r19,20
+	swi	r4,r1,12
+	lwi	r4,r1,16
 	swi	r4,r3,0
 $L415:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addik	r4,r3,-1
-	swi	r4,r19,24
+	swi	r4,r1,20
 	bnei	r3,$L416
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3848,77 +3522,73 @@ $Lfe67:
 	.ent	bcopy
 	.type	bcopy, @function
 bcopy:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,20
-	swi	r3,r19,4
-	lwi	r3,r19,24
-	swi	r3,r19,8
-	lwi	r4,r19,4
-	lwi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,16
+	swi	r3,r1,4
+	lwi	r3,r1,20
+	swi	r3,r1,8
+	lwi	r4,r1,4
+	lwi	r3,r1,8
 	cmpu	r18,r3,r4
 	bgei	r18,$L419
-	lwi	r4,r19,4
-	lwi	r3,r19,28
+	lwi	r4,r1,4
+	lwi	r3,r1,24
 	addk	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,8
-	lwi	r3,r19,28
+	swi	r3,r1,4
+	lwi	r4,r1,8
+	lwi	r3,r1,24
 	addk	r3,r4,r3
-	swi	r3,r19,8
+	swi	r3,r1,8
 	bri	$L420
 $L421:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,-1
-	swi	r3,r19,4
-	lwi	r3,r19,8
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r3,r3,-1
-	swi	r3,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L420:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L421
 	bri	$L425
 $L419:
-	lwi	r4,r19,4
-	lwi	r3,r19,8
+	lwi	r4,r1,4
+	lwi	r3,r1,8
 	xor	r3,r4,r3
 	beqi	r3,$L425
 	bri	$L423
 $L424:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r4,1
-	swi	r3,r19,4
-	lwi	r3,r19,8
+	swi	r3,r1,4
+	lwi	r3,r1,8
 	addik	r5,r3,1
-	swi	r5,r19,8
+	swi	r5,r1,8
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L423:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L424
 $L425:
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -3930,22 +3600,20 @@ $Lfe68:
 	.ent	rotl64
 	.type	rotl64, @function
 rotl64:
-	.frame	r19,16,r15		# vars= 0, regs= 3, args= 0
-	.mask	0x00c80000
-	addik	r1,r1,-16
-	swi	r19,r1,4
-	swi	r22,r1,8
-	swi	r23,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r4,r19,20
-	lwi	r5,r19,24
-	lwi	r3,r19,28
+	.frame	r1,12,r15		# vars= 0, regs= 2, args= 0
+	.mask	0x00c00000
+	addik	r1,r1,-12
+	swi	r22,r1,4
+	swi	r23,r1,8
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r4,r1,16
+	lwi	r5,r1,20
+	lwi	r3,r1,24
 	andi	r3,r3,32 #and1
 	beqi	r3,$L427
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	andi	r18,r3,31
 	addk	r10,r0,r5
 	beqid	r18,.+20
@@ -3957,7 +3625,7 @@ rotl64:
 	bri	$L428
 $L427:
 	srl	r7,r5
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	xori	r6,r3,-1
 	andi	r18,r6,31
 	addk	r3,r0,r7
@@ -3966,7 +3634,7 @@ $L427:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	lwi	r6,r19,28
+	lwi	r6,r1,24
 	andi	r18,r6,31
 	addk	r10,r0,r4
 	beqid	r18,.+20
@@ -3975,7 +3643,7 @@ $L427:
 	bneid	r18,.-4
 	addk	r10,r10,r10
 	or	r10,r3,r10
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	andi	r18,r3,31
 	addk	r11,r0,r5
 	beqid	r18,.+20
@@ -3984,12 +3652,12 @@ $L427:
 	bneid	r18,.-4
 	addk	r11,r11,r11
 $L428:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r3,r3,32 #and1
 	beqi	r3,$L429
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4003,7 +3671,7 @@ $L428:
 	bri	$L430
 $L429:
 	addk	r7,r4,r4
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	xori	r3,r3,-1
@@ -4014,7 +3682,7 @@ $L429:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r6,r6,r6
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4025,7 +3693,7 @@ $L429:
 	bneid	r18,.-4
 	srl	r9,r9
 	or	r9,r6,r9
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4044,11 +3712,9 @@ $L430:
 	addk	r5,r9,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	lwi	r22,r1,8
-	lwi	r23,r1,12
-	addik	r1,r1,16
+	lwi	r22,r1,4
+	lwi	r23,r1,8
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4060,22 +3726,20 @@ $Lfe69:
 	.ent	rotr64
 	.type	rotr64, @function
 rotr64:
-	.frame	r19,16,r15		# vars= 0, regs= 3, args= 0
-	.mask	0x00c80000
-	addik	r1,r1,-16
-	swi	r19,r1,4
-	swi	r22,r1,8
-	swi	r23,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r4,r19,20
-	lwi	r5,r19,24
-	lwi	r3,r19,28
+	.frame	r1,12,r15		# vars= 0, regs= 2, args= 0
+	.mask	0x00c00000
+	addik	r1,r1,-12
+	swi	r22,r1,4
+	swi	r23,r1,8
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r4,r1,16
+	lwi	r5,r1,20
+	lwi	r3,r1,24
 	andi	r3,r3,32 #and1
 	beqi	r3,$L433
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	andi	r18,r3,31
 	addk	r11,r0,r4
 	beqid	r18,.+20
@@ -4087,7 +3751,7 @@ rotr64:
 	bri	$L434
 $L433:
 	addk	r7,r4,r4
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	xori	r6,r3,-1
 	andi	r18,r6,31
 	addk	r3,r0,r7
@@ -4096,7 +3760,7 @@ $L433:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r3,r3,r3
-	lwi	r6,r19,28
+	lwi	r6,r1,24
 	andi	r18,r6,31
 	addk	r11,r0,r5
 	beqid	r18,.+20
@@ -4105,7 +3769,7 @@ $L433:
 	bneid	r18,.-4
 	srl	r11,r11
 	or	r11,r3,r11
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	andi	r18,r3,31
 	addk	r10,r0,r4
 	beqid	r18,.+20
@@ -4114,12 +3778,12 @@ $L433:
 	bneid	r18,.-4
 	srl	r10,r10
 $L434:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r3,r3,32 #and1
 	beqi	r3,$L435
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4133,7 +3797,7 @@ $L434:
 	bri	$L436
 $L435:
 	srl	r7,r5
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	xori	r3,r3,-1
@@ -4144,7 +3808,7 @@ $L435:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r6,r6
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4155,7 +3819,7 @@ $L435:
 	bneid	r18,.-4
 	addk	r8,r8,r8
 	or	r8,r6,r8
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
 	andi	r3,r3,63 #and1
 	andi	r18,r3,31
@@ -4174,11 +3838,9 @@ $L436:
 	addk	r5,r9,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	lwi	r22,r1,8
-	lwi	r23,r1,12
-	addik	r1,r1,16
+	lwi	r22,r1,4
+	lwi	r23,r1,8
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4190,15 +3852,12 @@ $Lfe70:
 	.ent	rotl32
 	.type	rotl32, @function
 rotl32:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r5,r19,12
-	lwi	r3,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r5,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -4206,7 +3865,7 @@ rotl32:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r6,r6,r6
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	rsubk	r3,r3,r0
 	andi	r3,r3,31 #and1
 	andi	r18,r3,31
@@ -4218,9 +3877,6 @@ rotl32:
 	srl	r4,r4
 	or	r4,r4,r6
 	addk	r3,r4,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4232,15 +3888,12 @@ $Lfe71:
 	.ent	rotr32
 	.type	rotr32, @function
 rotr32:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r5,r19,12
-	lwi	r3,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r5,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -4248,7 +3901,7 @@ rotr32:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r6,r6
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	rsubk	r3,r3,r0
 	andi	r3,r3,31 #and1
 	andi	r18,r3,31
@@ -4260,9 +3913,6 @@ rotr32:
 	addk	r4,r4,r4
 	or	r4,r4,r6
 	addk	r3,r4,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4274,15 +3924,12 @@ $Lfe72:
 	.ent	rotl_sz
 	.type	rotl_sz, @function
 rotl_sz:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r5,r19,12
-	lwi	r3,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r5,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -4290,7 +3937,7 @@ rotl_sz:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r6,r6,r6
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	rsubk	r3,r3,r0
 	andi	r3,r3,31 #and1
 	andi	r18,r3,31
@@ -4302,9 +3949,6 @@ rotl_sz:
 	srl	r4,r4
 	or	r4,r4,r6
 	addk	r3,r4,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4316,15 +3960,12 @@ $Lfe73:
 	.ent	rotr_sz
 	.type	rotr_sz, @function
 rotr_sz:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r5,r19,12
-	lwi	r3,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r5,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -4332,7 +3973,7 @@ rotr_sz:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r6,r6
-	lwi	r3,r19,16
+	lwi	r3,r1,8
 	rsubk	r3,r3,r0
 	andi	r3,r3,31 #and1
 	andi	r18,r3,31
@@ -4344,9 +3985,6 @@ rotr_sz:
 	addk	r4,r4,r4
 	or	r4,r4,r6
 	addk	r3,r4,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4358,16 +3996,13 @@ $Lfe74:
 	.ent	rotl16
 	.type	rotl16, @function
 rotl16:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
 	addk	r3,r5,r0
-	swi	r6,r19,16
-	shi	r3,r19,12
-	lhui	r4,r19,12
-	lwi	r3,r19,16
+	swi	r6,r1,8
+	shi	r3,r1,4
+	lhui	r4,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -4376,8 +4011,8 @@ rotl16:
 	bneid	r18,.-4
 	addk	r5,r5,r5
 	andi	r4,r5,0xffff
-	lhui	r5,r19,12
-	lwi	r3,r19,16
+	lhui	r5,r1,4
+	lwi	r3,r1,8
 	addik	r6,r0,16	# 0x10
 	rsubk	r3,r3,r6
 	andi	r18,r3,31
@@ -4390,9 +4025,6 @@ rotl16:
 	andi	r3,r6,0xffff
 	or	r3,r4,r3
 	andi	r3,r3,0xffff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4404,16 +4036,13 @@ $Lfe75:
 	.ent	rotr16
 	.type	rotr16, @function
 rotr16:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
 	addk	r3,r5,r0
-	swi	r6,r19,16
-	shi	r3,r19,12
-	lhui	r4,r19,12
-	lwi	r3,r19,16
+	swi	r6,r1,8
+	shi	r3,r1,4
+	lhui	r4,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -4422,8 +4051,8 @@ rotr16:
 	bneid	r18,.-4
 	srl	r5,r5
 	andi	r4,r5,0xffff
-	lhui	r5,r19,12
-	lwi	r3,r19,16
+	lhui	r5,r1,4
+	lwi	r3,r1,8
 	addik	r6,r0,16	# 0x10
 	rsubk	r3,r3,r6
 	andi	r18,r3,31
@@ -4436,9 +4065,6 @@ rotr16:
 	andi	r3,r6,0xffff
 	or	r3,r4,r3
 	andi	r3,r3,0xffff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4450,16 +4076,13 @@ $Lfe76:
 	.ent	rotl8
 	.type	rotl8, @function
 rotl8:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
 	addk	r3,r5,r0
-	swi	r6,r19,16
-	sbi	r3,r19,12
-	lbui	r4,r19,12
-	lwi	r3,r19,16
+	swi	r6,r1,8
+	sbi	r3,r1,4
+	lbui	r4,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -4468,8 +4091,8 @@ rotl8:
 	bneid	r18,.-4
 	addk	r5,r5,r5
 	andi	r4,r5,0x00ff
-	lbui	r5,r19,12
-	lwi	r3,r19,16
+	lbui	r5,r1,4
+	lwi	r3,r1,8
 	addik	r6,r0,8	# 0x8
 	rsubk	r3,r3,r6
 	andi	r18,r3,31
@@ -4482,9 +4105,6 @@ rotl8:
 	andi	r3,r6,0x00ff
 	or	r3,r4,r3
 	andi	r3,r3,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4496,16 +4116,13 @@ $Lfe77:
 	.ent	rotr8
 	.type	rotr8, @function
 rotr8:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
 	addk	r3,r5,r0
-	swi	r6,r19,16
-	sbi	r3,r19,12
-	lbui	r4,r19,12
-	lwi	r3,r19,16
+	swi	r6,r1,8
+	sbi	r3,r1,4
+	lbui	r4,r1,4
+	lwi	r3,r1,8
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -4514,8 +4131,8 @@ rotr8:
 	bneid	r18,.-4
 	srl	r5,r5
 	andi	r4,r5,0x00ff
-	lbui	r5,r19,12
-	lwi	r3,r19,16
+	lbui	r5,r1,4
+	lwi	r3,r1,8
 	addik	r6,r0,8	# 0x8
 	rsubk	r3,r3,r6
 	andi	r18,r3,31
@@ -4528,9 +4145,6 @@ rotr8:
 	andi	r3,r6,0x00ff
 	or	r3,r4,r3
 	andi	r3,r3,0x00ff
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4542,17 +4156,15 @@ $Lfe78:
 	.ent	bswap_16
 	.type	bswap_16, @function
 bswap_16:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
 	addk	r3,r5,r0
-	shi	r3,r19,16
+	shi	r3,r1,12
 	addik	r3,r0,255	# 0xff
-	swi	r3,r19,4
-	lhui	r4,r19,16
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lhui	r4,r1,12
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -4572,9 +4184,9 @@ bswap_16:
 	srl	r4,r4
 	srl	r4,r4
 	andi	r4,r4,0xffff
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	andi	r5,r3,0xffff
-	lhui	r3,r19,16
+	lhui	r3,r1,12
 	and	r3,r5,r3
 	andi	r3,r3,0xffff
 	addk	r5,r3,r0
@@ -4596,9 +4208,7 @@ bswap_16:
 	andi	r3,r3,0xffff
 	or	r3,r4,r3
 	andi	r3,r3,0xffff
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4610,15 +4220,13 @@ $Lfe79:
 	.ent	bswap_32
 	.type	bswap_32, @function
 bswap_32:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
 	addik	r3,r0,255	# 0xff
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	src	r4,r3
 	src	r4,r4
 	src	r4,r4
@@ -4629,7 +4237,7 @@ bswap_32:
 	src	r4,r4
 	src	r4,r4
 	andi	r4,r4,-16777216
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	and	r3,r4,r3
 	addk	r4,r0,r3
 	srl	r4,r3
@@ -4656,7 +4264,7 @@ bswap_32:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -4674,7 +4282,7 @@ bswap_32:
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	and	r5,r5,r3
 	addk	r3,r0,r5
 	srl	r3,r5
@@ -4686,7 +4294,7 @@ bswap_32:
 	srl	r3,r3
 	srl	r3,r3
 	or	r4,r4,r3
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -4696,7 +4304,7 @@ bswap_32:
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	and	r3,r5,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -4707,8 +4315,8 @@ bswap_32:
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	or	r4,r4,r3
-	lwi	r5,r19,16
-	lwi	r3,r19,4
+	lwi	r5,r1,12
+	lwi	r3,r1,4
 	and	r5,r5,r3
 	src	r3,r5
 	src	r3,r3
@@ -4721,9 +4329,7 @@ bswap_32:
 	src	r3,r3
 	andi	r3,r3,-16777216
 	or	r3,r4,r3
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -4735,28 +4341,26 @@ $Lfe80:
 	.ent	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	.frame	r19,240,r15		# vars= 192, regs= 11, args= 0
-	.mask	0xffc80000
-	addik	r1,r1,-240
-	swi	r19,r1,196
-	swi	r22,r1,200
-	swi	r23,r1,204
-	swi	r24,r1,208
-	swi	r25,r1,212
-	swi	r26,r1,216
-	swi	r27,r1,220
-	swi	r28,r1,224
-	swi	r29,r1,228
-	swi	r30,r1,232
-	swi	r31,r1,236
-	addk	r19,r1,r0
-	swi	r5,r19,244
-	swi	r6,r19,248
+	.frame	r1,236,r15		# vars= 192, regs= 10, args= 0
+	.mask	0xffc00000
+	addik	r1,r1,-236
+	swi	r22,r1,196
+	swi	r23,r1,200
+	swi	r24,r1,204
+	swi	r25,r1,208
+	swi	r26,r1,212
+	swi	r27,r1,216
+	swi	r28,r1,220
+	swi	r29,r1,224
+	swi	r30,r1,228
+	swi	r31,r1,232
+	swi	r5,r1,240
+	swi	r6,r1,244
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x000000ff #li => la
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r3,r19,8
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r3,r1,8
 	src	r8,r3
 	src	r8,r8
 	src	r8,r8
@@ -4768,9 +4372,9 @@ bswap_64:
 	src	r8,r8
 	andi	r8,r8,-16777216
 	addk	r9,r0,r0
-	lwi	r3,r19,244
+	lwi	r3,r1,240
 	and	r22,r3,r8
-	lwi	r3,r19,248
+	lwi	r3,r1,244
 	and	r23,r3,r9
 	addk	r3,r0,r22
 	srl	r3,r22
@@ -4797,10 +4401,10 @@ bswap_64:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	swi	r3,r19,64
+	swi	r3,r1,64
 	addk	r8,r0,r0
-	swi	r8,r19,60
-	lwi	r3,r19,8
+	swi	r8,r1,60
+	lwi	r3,r1,8
 	addk	r10,r0,r3
 	addk	r10,r3,r3
 	addk	r10,r10,r10
@@ -4819,13 +4423,13 @@ bswap_64:
 	addk	r10,r10,r10
 	addk	r10,r10,r10
 	addk	r11,r0,r0
-	lwi	r3,r19,244
+	lwi	r3,r1,240
 	and	r3,r3,r10
-	swi	r3,r19,68
-	lwi	r3,r19,248
+	swi	r3,r1,68
+	lwi	r3,r1,244
 	and	r3,r3,r11
-	swi	r3,r19,72
-	lwi	r3,r19,68
+	swi	r3,r1,72
+	lwi	r3,r1,68
 	addk	r25,r0,r3
 	srl	r25,r3
 	srl	r25,r25
@@ -4836,16 +4440,16 @@ bswap_64:
 	srl	r25,r25
 	srl	r25,r25
 	addk	r24,r0,r0
-	addik	r3,r19,60
+	addik	r3,r1,60
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	or	r3,r3,r24
-	swi	r3,r19,76
+	swi	r3,r1,76
 	addk	r3,r5,r0
 	or	r3,r3,r25
-	swi	r3,r19,80
-	lwi	r3,r19,8
+	swi	r3,r1,80
+	lwi	r3,r1,8
 	addk	r30,r0,r3
 	addk	r30,r3,r3
 	addk	r30,r30,r30
@@ -4856,9 +4460,9 @@ bswap_64:
 	addk	r30,r30,r30
 	addk	r30,r30,r30
 	addk	r31,r0,r0
-	lwi	r3,r19,244
+	lwi	r3,r1,240
 	and	r28,r3,r30
-	lwi	r3,r19,248
+	lwi	r3,r1,244
 	and	r29,r3,r31
 	addk	r3,r0,r28
 	addk	r3,r28,r28
@@ -4920,30 +4524,30 @@ bswap_64:
 	srl	r26,r26
 	srl	r26,r26
 	srl	r26,r26
-	addik	r3,r19,76
+	addik	r3,r1,76
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	or	r3,r3,r26
-	swi	r3,r19,84
+	swi	r3,r1,84
 	addk	r3,r5,r0
 	or	r3,r3,r27
-	swi	r3,r19,88
-	lwi	r3,r19,8
-	swi	r3,r19,92
-	swi	r8,r19,96
-	lwi	r3,r19,244
-	addik	r4,r19,92
+	swi	r3,r1,88
+	lwi	r3,r1,8
+	swi	r3,r1,92
+	swi	r8,r1,96
+	lwi	r3,r1,240
+	addik	r4,r1,92
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r6,r4,r0
 	and	r3,r3,r6
-	swi	r3,r19,100
-	lwi	r3,r19,248
+	swi	r3,r1,100
+	lwi	r3,r1,244
 	addk	r4,r5,r0
 	and	r3,r3,r4
-	swi	r3,r19,104
-	addik	r3,r19,100
+	swi	r3,r1,104
+	addik	r3,r1,100
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r6,r4,r0
@@ -4967,10 +4571,10 @@ bswap_64:
 	srl	r6,r6
 	srl	r6,r6
 	srl	r6,r6
-	swi	r6,r19,16
-	lwi	r6,r19,16
+	swi	r6,r1,16
+	lwi	r6,r1,16
 	or	r3,r3,r6
-	swi	r3,r19,16
+	swi	r3,r1,16
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -4980,22 +4584,22 @@ bswap_64:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	swi	r3,r19,12
-	addik	r3,r19,84
+	swi	r3,r1,12
+	addik	r3,r1,84
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,12
+	addik	r4,r1,12
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r9,r4,r0
 	or	r3,r3,r9
-	swi	r3,r19,108
+	swi	r3,r1,108
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,112
-	lwi	r3,r19,8
+	swi	r3,r1,112
+	lwi	r3,r1,8
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -5005,7 +4609,7 @@ bswap_64:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	src	r5,r3
 	src	r5,r5
 	src	r5,r5
@@ -5016,11 +4620,11 @@ bswap_64:
 	src	r5,r5
 	src	r5,r5
 	andi	r5,r5,-16777216
-	swi	r5,r19,20
-	lwi	r3,r19,20
+	swi	r5,r1,20
+	lwi	r3,r1,20
 	or	r3,r4,r3
-	swi	r3,r19,20
-	lwi	r3,r19,8
+	swi	r3,r1,20
+	lwi	r3,r1,8
 	src	r4,r3
 	src	r4,r4
 	src	r4,r4
@@ -5031,19 +4635,19 @@ bswap_64:
 	src	r4,r4
 	src	r4,r4
 	andi	r4,r4,-16777216
-	swi	r4,r19,24
-	lwi	r3,r19,244
-	addik	r4,r19,20
+	swi	r4,r1,24
+	lwi	r3,r1,240
+	addik	r4,r1,20
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r6,r4,r0
 	and	r3,r3,r6
-	swi	r3,r19,116
-	lwi	r3,r19,248
+	swi	r3,r1,116
+	lwi	r3,r1,244
 	addk	r4,r5,r0
 	and	r3,r3,r4
-	swi	r3,r19,120
-	addik	r3,r19,116
+	swi	r3,r1,120
+	addik	r3,r1,116
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r6,r5,r0
@@ -5082,10 +4686,10 @@ bswap_64:
 	addk	r6,r6,r6
 	addk	r6,r6,r6
 	addk	r6,r6,r6
-	swi	r6,r19,28
-	lwi	r6,r19,28
+	swi	r6,r1,28
+	lwi	r6,r1,28
 	or	r3,r3,r6
-	swi	r3,r19,28
+	swi	r3,r1,28
 	addk	r4,r5,r0
 	addk	r3,r0,r4
 	addk	r3,r4,r4
@@ -5096,22 +4700,22 @@ bswap_64:
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
-	swi	r3,r19,32
-	addik	r3,r19,108
+	swi	r3,r1,32
+	addik	r3,r1,108
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,28
+	addik	r4,r1,28
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r9,r4,r0
 	or	r3,r3,r9
-	swi	r3,r19,124
+	swi	r3,r1,124
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,128
-	lwi	r3,r19,8
+	swi	r3,r1,128
+	lwi	r3,r1,8
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -5129,7 +4733,7 @@ bswap_64:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r5,r0,r3
 	addk	r5,r3,r3
 	addk	r5,r5,r5
@@ -5147,11 +4751,11 @@ bswap_64:
 	addk	r5,r5,r5
 	addk	r5,r5,r5
 	addk	r5,r5,r5
-	swi	r5,r19,36
-	lwi	r3,r19,36
+	swi	r5,r1,36
+	lwi	r3,r1,36
 	or	r3,r4,r3
-	swi	r3,r19,36
-	lwi	r3,r19,8
+	swi	r3,r1,36
+	lwi	r3,r1,8
 	addk	r4,r0,r3
 	addk	r4,r3,r3
 	addk	r4,r4,r4
@@ -5169,19 +4773,19 @@ bswap_64:
 	addk	r4,r4,r4
 	addk	r4,r4,r4
 	addk	r4,r4,r4
-	swi	r4,r19,40
-	lwi	r3,r19,244
-	addik	r4,r19,36
+	swi	r4,r1,40
+	lwi	r3,r1,240
+	addik	r4,r1,36
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r6,r4,r0
 	and	r3,r3,r6
-	swi	r3,r19,132
-	lwi	r3,r19,248
+	swi	r3,r1,132
+	lwi	r3,r1,244
 	addk	r4,r5,r0
 	and	r3,r3,r4
-	swi	r3,r19,136
-	addik	r3,r19,132
+	swi	r3,r1,136
+	addik	r3,r1,132
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r6,r5,r0
@@ -5205,10 +4809,10 @@ bswap_64:
 	src	r6,r6
 	src	r6,r6
 	andi	r6,r6,-16777216
-	swi	r6,r19,44
-	lwi	r6,r19,44
+	swi	r6,r1,44
+	lwi	r6,r1,44
 	or	r3,r3,r6
-	swi	r3,r19,44
+	swi	r3,r1,44
 	addk	r4,r5,r0
 	src	r3,r4
 	src	r3,r3
@@ -5220,22 +4824,22 @@ bswap_64:
 	src	r3,r3
 	src	r3,r3
 	andi	r3,r3,-16777216
-	swi	r3,r19,48
-	addik	r3,r19,124
+	swi	r3,r1,48
+	addik	r3,r1,124
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,44
+	addik	r4,r1,44
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r9,r4,r0
 	or	r3,r3,r9
-	swi	r3,r19,140
+	swi	r3,r1,140
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,144
-	lwi	r4,r19,8
+	swi	r3,r1,144
+	lwi	r4,r1,8
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -5261,7 +4865,7 @@ bswap_64:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addk	r5,r0,r4
 	addk	r5,r4,r4
 	addk	r5,r5,r5
@@ -5271,11 +4875,11 @@ bswap_64:
 	addk	r5,r5,r5
 	addk	r5,r5,r5
 	addk	r5,r5,r5
-	swi	r5,r19,52
-	lwi	r4,r19,52
+	swi	r5,r1,52
+	lwi	r4,r1,52
 	or	r3,r3,r4
-	swi	r3,r19,52
-	lwi	r3,r19,8
+	swi	r3,r1,52
+	lwi	r3,r1,8
 	addk	r4,r0,r3
 	addk	r4,r3,r3
 	addk	r4,r4,r4
@@ -5285,19 +4889,19 @@ bswap_64:
 	addk	r4,r4,r4
 	addk	r4,r4,r4
 	addk	r4,r4,r4
-	swi	r4,r19,56
-	lwi	r3,r19,244
-	addik	r4,r19,52
+	swi	r4,r1,56
+	lwi	r3,r1,240
+	addik	r4,r1,52
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r6,r4,r0
 	and	r3,r3,r6
-	swi	r3,r19,148
-	lwi	r3,r19,248
+	swi	r3,r1,148
+	lwi	r3,r1,244
 	addk	r4,r5,r0
 	and	r3,r3,r4
-	swi	r3,r19,152
-	lwi	r4,r19,152
+	swi	r3,r1,152
+	lwi	r4,r1,152
 	addk	r3,r0,r4
 	addk	r3,r4,r4
 	addk	r3,r3,r3
@@ -5307,31 +4911,31 @@ bswap_64:
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
-	swi	r3,r19,156
-	swi	r8,r19,160
-	addik	r3,r19,140
+	swi	r3,r1,156
+	swi	r8,r1,160
+	addik	r3,r1,140
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,156
+	addik	r4,r1,156
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r9,r4,r0
 	or	r3,r3,r9
-	swi	r3,r19,164
+	swi	r3,r1,164
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,168
-	lwi	r4,r19,244
-	lwi	r3,r19,4
+	swi	r3,r1,168
+	lwi	r4,r1,240
+	lwi	r3,r1,4
 	and	r3,r4,r3
-	swi	r3,r19,172
-	lwi	r4,r19,248
-	lwi	r3,r19,8
+	swi	r3,r1,172
+	lwi	r4,r1,244
+	lwi	r3,r1,8
 	and	r3,r4,r3
-	swi	r3,r19,176
-	lwi	r4,r19,176
+	swi	r3,r1,176
+	lwi	r4,r1,176
 	src	r3,r4
 	src	r3,r3
 	src	r3,r3
@@ -5342,40 +4946,38 @@ bswap_64:
 	src	r3,r3
 	src	r3,r3
 	andi	r3,r3,-16777216
-	swi	r3,r19,180
-	swi	r8,r19,184
-	addik	r3,r19,164
+	swi	r3,r1,180
+	swi	r8,r1,184
+	addik	r3,r1,164
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,180
+	addik	r4,r1,180
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r8,r4,r0
 	or	r3,r3,r8
-	swi	r3,r19,188
+	swi	r3,r1,188
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,192
-	addik	r3,r19,188
+	swi	r3,r1,192
+	addik	r3,r1,188
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,196
-	lwi	r22,r1,200
-	lwi	r23,r1,204
-	lwi	r24,r1,208
-	lwi	r25,r1,212
-	lwi	r26,r1,216
-	lwi	r27,r1,220
-	lwi	r28,r1,224
-	lwi	r29,r1,228
-	lwi	r30,r1,232
-	lwi	r31,r1,236
-	addik	r1,r1,240
+	lwi	r22,r1,196
+	lwi	r23,r1,200
+	lwi	r24,r1,204
+	lwi	r25,r1,208
+	lwi	r26,r1,212
+	lwi	r27,r1,216
+	lwi	r28,r1,220
+	lwi	r29,r1,224
+	lwi	r30,r1,228
+	lwi	r31,r1,232
+	addik	r1,r1,236
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5387,17 +4989,15 @@ $Lfe81:
 	.ent	ffs
 	.type	ffs, @function
 ffs:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r0,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r0,r1,4
 	bri	$L461
 $L464:
-	lwi	r5,r19,16
-	lwi	r4,r19,4
+	lwi	r5,r1,12
+	lwi	r4,r1,4
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -5407,23 +5007,21 @@ $L464:
 	srl	r3,r3
 	andi	r3,r3,1 #and1
 	beqi	r3,$L462
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
 	bri	$L463
 $L462:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L461:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r0,31	# 0x1f
 	cmpu	r18,r4,r3
 	bgei	r18,$L464
 	addk	r3,r0,r0
 $L463:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5435,31 +5033,27 @@ $Lfe82:
 	.ent	libiberty_ffs
 	.type	libiberty_ffs, @function
 libiberty_ffs:
-	.frame	r19,12,r15		# vars= 0, regs= 2, args= 0
-	.mask	0x00480000
-	addik	r1,r1,-12
+	.frame	r1,8,r15		# vars= 0, regs= 1, args= 0
+	.mask	0x00080000
+	addik	r1,r1,-8
 	swi	r19,r1,4
-	swi	r22,r1,8
-	addk	r19,r1,r0
 	addk	r3,r5,r0
 	bnei	r3,$L466
 	addk	r3,r0,r0
 	bri	$L467
 $L466:
-	addik	r22,r0,1	# 0x1
+	addik	r19,r0,1	# 0x1
 	bri	$L468
 $L469:
 	sra	r3,r3
-	addik	r22,r22,1
+	addik	r19,r19,1
 $L468:
 	andi	r4,r3,1 #and1
 	beqi	r4,$L469
-	addk	r3,r22,r0
+	addk	r3,r19,r0
 $L467:
-	addk	r1,r19,r0
 	lwi	r19,r1,4
-	lwi	r22,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5479,21 +5073,19 @@ $LC1:
 	.ent	gl_isinff
 	.type	gl_isinff, @function
 gl_isinff:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
+	swi	r5,r1,32
 	lwi	r6,r0,$LC0
-	lwi	r5,r19,36
+	lwi	r5,r1,32
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L471
 	lwi	r6,r0,$LC1
-	lwi	r5,r19,36
+	lwi	r5,r1,32
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
@@ -5505,9 +5097,7 @@ $L476:
 	addk	r3,r0,r0
 $L475:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5529,26 +5119,24 @@ $LC3:
 	.ent	gl_isinfd
 	.type	gl_isinfd, @function
 gl_isinfd:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
 	lwi	r7,r0,$LC2
 	lwi	r8,r0,$LC2+4
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L478
 	lwi	r7,r0,$LC3
 	lwi	r8,r0,$LC3+4
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
@@ -5560,9 +5148,7 @@ $L483:
 	addk	r3,r0,r0
 $L482:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5584,26 +5170,24 @@ $LC5:
 	.ent	gl_isinfl
 	.type	gl_isinfl, @function
 gl_isinfl:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
 	lwi	r7,r0,$LC4
 	lwi	r8,r0,$LC4+4
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L485
 	lwi	r7,r0,$LC5
 	lwi	r8,r0,$LC5+4
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
@@ -5615,9 +5199,7 @@ $L490:
 	addk	r3,r0,r0
 $L489:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5629,28 +5211,24 @@ $Lfe86:
 	.ent	_Qp_itoq
 	.type	_Qp_itoq, @function
 _Qp_itoq:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r5,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r5,r1,36
 	brlid	r15,__floatsidf
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	swi	r4,r3,0
 	swi	r5,r3,4
 	nop
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5662,52 +5240,50 @@ $Lfe87:
 	.ent	ldexpf
 	.type	ldexpf, @function
 ldexpf:
-	.frame	r19,36,r15		# vars= 4, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 4, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-32
 	swi	r15,r1,0
-	swi	r19,r1,32
-	addk	r19,r1,r0
-	swi	r5,r19,40
-	swi	r6,r19,44
-	lwi	r6,r19,40
-	lwi	r5,r19,40
+	swi	r5,r1,36
+	swi	r6,r1,40
+	lwi	r6,r1,36
+	lwi	r5,r1,36
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L493
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	addk	r6,r3,r0
 	addk	r5,r3,r0
 	brlid	r15,__addsf3
 	nop		# Unfilled delay slot
 
 	addk	r6,r3,r0
-	lwi	r5,r19,40
+	lwi	r5,r1,36
 	brlid	r15,__nesf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L493
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	bgei	r3,$L495
 	addik	r3,r0,0x3f000000
 	bri	$L496
 $L495:
 	addik	r3,r0,0x40000000
 $L496:
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L499:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	andi	r3,r3,1 #and1
 	beqi	r3,$L497
-	lwi	r6,r19,28
-	lwi	r5,r19,40
+	lwi	r6,r1,28
+	lwi	r5,r1,36
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,40
+	swi	r3,r1,36
 $L497:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -5742,24 +5318,22 @@ $L497:
 	srl	r4,r4
 	addk	r3,r4,r3
 	sra	r3,r3
-	swi	r3,r19,44
-	lwi	r3,r19,44
+	swi	r3,r1,40
+	lwi	r3,r1,40
 	beqi	r3,$L502
-	lwi	r6,r19,28
-	lwi	r5,r19,28
+	lwi	r6,r1,28
+	lwi	r5,r1,28
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,28
+	swi	r3,r1,28
 	bri	$L499
 $L502:
 	nop
 $L493:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5771,25 +5345,23 @@ $Lfe88:
 	.ent	ldexp
 	.type	ldexp, @function
 ldexp:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L504
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	addk	r7,r4,r0
 	addk	r8,r5,r0
 	addk	r6,r5,r0
@@ -5801,13 +5373,13 @@ ldexp:
 	addk	r4,r3,r0
 	addk	r7,r4,r0
 	addk	r8,r5,r0
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__nedf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L504
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	bgei	r3,$L506
 	addik	r4,r0,0x3fe00000 
 	addik	r5,r0,0x00000000 #Xfer Lo
@@ -5816,25 +5388,25 @@ $L506:
 	addik	r4,r0,0x40000000 
 	addik	r5,r0,0x00000000 #Xfer Lo
 $L507:
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 $L510:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	andi	r3,r3,1 #and1
 	beqi	r3,$L508
-	lwi	r7,r19,28
-	lwi	r8,r19,32
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,28
+	lwi	r8,r1,32
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,44
-	swi	r5,r19,48
+	swi	r4,r1,40
+	swi	r5,r1,44
 $L508:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -5869,32 +5441,30 @@ $L508:
 	srl	r4,r4
 	addk	r3,r4,r3
 	sra	r3,r3
-	swi	r3,r19,52
-	lwi	r3,r19,52
+	swi	r3,r1,48
+	lwi	r3,r1,48
 	beqi	r3,$L513
-	lwi	r7,r19,28
-	lwi	r8,r19,32
-	lwi	r5,r19,28
-	lwi	r6,r19,32
+	lwi	r7,r1,28
+	lwi	r8,r1,32
+	lwi	r5,r1,28
+	lwi	r6,r1,32
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 	bri	$L510
 $L513:
 	nop
 $L504:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -5906,25 +5476,23 @@ $Lfe89:
 	.ent	ldexpl
 	.type	ldexpl, @function
 ldexpl:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__unorddf2
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L515
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	addk	r7,r4,r0
 	addk	r8,r5,r0
 	addk	r6,r5,r0
@@ -5936,13 +5504,13 @@ ldexpl:
 	addk	r4,r3,r0
 	addk	r7,r4,r0
 	addk	r8,r5,r0
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__nedf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L515
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	bgei	r3,$L517
 	addik	r4,r0,0x3fe00000 
 	addik	r5,r0,0x00000000 #Xfer Lo
@@ -5951,25 +5519,25 @@ $L517:
 	addik	r4,r0,0x40000000 
 	addik	r5,r0,0x00000000 #Xfer Lo
 $L518:
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 $L521:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	andi	r3,r3,1 #and1
 	beqi	r3,$L519
-	lwi	r7,r19,28
-	lwi	r8,r19,32
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r7,r1,28
+	lwi	r8,r1,32
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,44
-	swi	r5,r19,48
+	swi	r4,r1,40
+	swi	r5,r1,44
 $L519:
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -6004,32 +5572,30 @@ $L519:
 	srl	r4,r4
 	addk	r3,r4,r3
 	sra	r3,r3
-	swi	r3,r19,52
-	lwi	r3,r19,52
+	swi	r3,r1,48
+	lwi	r3,r1,48
 	beqi	r3,$L524
-	lwi	r7,r19,28
-	lwi	r8,r19,32
-	lwi	r5,r19,28
-	lwi	r6,r19,32
+	lwi	r7,r1,28
+	lwi	r8,r1,32
+	lwi	r5,r1,28
+	lwi	r6,r1,32
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 	bri	$L521
 $L524:
 	nop
 $L515:
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6041,43 +5607,39 @@ $Lfe90:
 	.ent	memxor
 	.type	memxor, @function
 memxor:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
-	lwi	r3,r19,24
-	swi	r3,r19,4
-	lwi	r3,r19,20
-	swi	r3,r19,8
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
+	lwi	r3,r1,20
+	swi	r3,r1,4
+	lwi	r3,r1,16
+	swi	r3,r1,8
 	bri	$L526
 $L527:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r4,r3,1
-	swi	r4,r19,4
+	swi	r4,r1,4
 	lbui	r3,r3,0
 	sext8	r5,r3
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r4,r3,1
-	swi	r4,r19,8
+	swi	r4,r1,8
 	lbui	r4,r3,0
 	sext8	r4,r4
 	xor	r4,r5,r4
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addik	r3,r3,-1
-	swi	r3,r19,28
+	swi	r3,r1,24
 $L526:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	bnei	r3,$L527
-	lwi	r3,r19,20
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	lwi	r3,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6089,57 +5651,53 @@ $Lfe91:
 	.ent	strncat
 	.type	strncat, @function
 strncat:
-	.frame	r19,36,r15		# vars= 4, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 4, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-32
 	swi	r15,r1,0
-	swi	r19,r1,32
-	addk	r19,r1,r0
-	swi	r5,r19,40
-	swi	r6,r19,44
-	swi	r7,r19,48
-	lwi	r5,r19,40
+	swi	r5,r1,36
+	swi	r6,r1,40
+	swi	r7,r1,44
+	lwi	r5,r1,36
 	brlid	r15,strlen
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	addk	r3,r3,r4
-	swi	r3,r19,28
+	swi	r3,r1,28
 	bri	$L530
 $L532:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addik	r3,r3,1
-	swi	r3,r19,44
-	lwi	r3,r19,28
+	swi	r3,r1,40
+	lwi	r3,r1,28
 	addik	r3,r3,1
-	swi	r3,r19,28
-	lwi	r3,r19,48
+	swi	r3,r1,28
+	lwi	r3,r1,44
 	addik	r3,r3,-1
-	swi	r3,r19,48
+	swi	r3,r1,44
 $L530:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	beqi	r3,$L531
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	sbi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L532
 $L531:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	bnei	r3,$L533
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	sbi	r0,r3,0
 $L533:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6151,36 +5709,32 @@ $Lfe92:
 	.ent	strnlen
 	.type	strnlen, @function
 strnlen:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r0,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r0,r1,4
 	bri	$L536
 $L541:
 	nop
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L536:
-	lwi	r4,r19,4
-	lwi	r3,r19,20
+	lwi	r4,r1,4
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L537
-	lwi	r4,r19,16
-	lwi	r3,r19,4
+	lwi	r4,r1,12
+	lwi	r3,r1,4
 	addk	r3,r4,r3
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L541
 $L537:
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6192,49 +5746,45 @@ $Lfe93:
 	.ent	strpbrk
 	.type	strpbrk, @function
 strpbrk:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
 	bri	$L543
 $L547:
-	lwi	r3,r19,20
-	swi	r3,r19,4
+	lwi	r3,r1,16
+	swi	r3,r1,4
 	bri	$L544
 $L546:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r4,r3,1
-	swi	r4,r19,4
+	swi	r4,r1,4
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xor	r3,r4,r3
 	bnei	r3,$L544
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	bri	$L545
 $L544:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L546
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addik	r3,r3,1
-	swi	r3,r19,16
+	swi	r3,r1,12
 $L543:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	lbui	r3,r3,0
 	sext8	r3,r3
 	bnei	r3,$L547
 	addk	r3,r0,r0
 $L545:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6246,32 +5796,28 @@ $Lfe94:
 	.ent	strrchr
 	.type	strrchr, @function
 strrchr:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
 	addk	r3,r5,r0
-	swi	r6,r19,20
-	swi	r0,r19,4
+	swi	r6,r1,16
+	swi	r0,r1,4
 $L550:
 	lbui	r4,r3,0
 	sext8	r4,r4
 	addk	r5,r4,r0
-	lwi	r4,r19,20
+	lwi	r4,r1,16
 	xor	r4,r4,r5
 	bnei	r4,$L549
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L549:
 	addk	r4,r3,r0
 	addik	r3,r4,1
 	lbui	r4,r4,0
 	sext8	r4,r4
 	bnei	r4,$L550
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6283,57 +5829,53 @@ $Lfe95:
 	.ent	strstr
 	.type	strstr, @function
 strstr:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	lwi	r3,r19,44
-	swi	r3,r19,28
-	lwi	r5,r19,48
+	swi	r5,r1,40
+	swi	r6,r1,44
+	lwi	r3,r1,40
+	swi	r3,r1,28
+	lwi	r5,r1,44
 	brlid	r15,strlen
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	bnei	r3,$L555
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	bri	$L554
 $L557:
-	lwi	r7,r19,32
-	lwi	r6,r19,48
-	lwi	r5,r19,28
+	lwi	r7,r1,32
+	lwi	r6,r1,44
+	lwi	r5,r1,28
 	brlid	r15,strncmp
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L556
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	bri	$L554
 $L556:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addik	r3,r3,1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L555:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	lbui	r3,r3,0
 	sext8	r3,r3
 	addk	r6,r3,r0
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	brlid	r15,strchr
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,28
-	lwi	r3,r19,28
+	swi	r3,r1,28
+	lwi	r3,r1,28
 	bnei	r3,$L557
 	addk	r3,r0,r0
 $L554:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6345,30 +5887,28 @@ $Lfe96:
 	.ent	copysign
 	.type	copysign, @function
 copysign:
-	.frame	r19,40,r15		# vars= 0, regs= 3, args= 24
-	.mask	0x00c88000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 0, regs= 2, args= 24
+	.mask	0x00c08000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,28
-	swi	r22,r1,32
-	swi	r23,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	swi	r8,r19,56
+	swi	r22,r1,28
+	swi	r23,r1,32
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	swi	r8,r1,52
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L559
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,52
-	lwi	r6,r19,56
+	lwi	r5,r1,48
+	lwi	r6,r1,52
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
@@ -6376,39 +5916,37 @@ copysign:
 $L559:
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,44
-	lwi	r6,r19,48
+	lwi	r5,r1,40
+	lwi	r6,r1,44
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
 	blei	r3,$L562
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,52
-	lwi	r6,r19,56
+	lwi	r5,r1,48
+	lwi	r6,r1,52
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L562
 $L561:
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	xori	r22,r3,-2147483648
-	lwi	r23,r19,48
+	lwi	r23,r1,44
 	bri	$L565
 $L562:
-	lwi	r22,r19,44
-	lwi	r23,r19,48
+	lwi	r22,r1,40
+	lwi	r23,r1,44
 $L565:
 	addk	r4,r22,r0
 	addk	r5,r23,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	lwi	r22,r1,32
-	lwi	r23,r1,36
-	addik	r1,r1,40
+	lwi	r22,r1,28
+	lwi	r23,r1,32
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6420,30 +5958,28 @@ $Lfe97:
 	.ent	memmem
 	.type	memmem, @function
 memmem:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	swi	r8,r19,56
-	lwi	r4,r19,48
-	lwi	r3,r19,56
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	swi	r8,r1,52
+	lwi	r4,r1,44
+	lwi	r3,r1,52
 	rsubk	r3,r3,r4
-	lwi	r4,r19,44
+	lwi	r4,r1,40
 	addk	r3,r4,r3
-	swi	r3,r19,32
-	lwi	r3,r19,56
+	swi	r3,r1,32
+	lwi	r3,r1,52
 	bnei	r3,$L569
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	bri	$L570
 $L569:
 	addik	r5,r0,1	# 0x1
-	lwi	r4,r19,48
-	lwi	r3,r19,56
+	lwi	r4,r1,44
+	lwi	r3,r1,52
 	cmpu	r18,r3,r4
 	blti	r18,$L571
 	addk	r5,r0,r0
@@ -6453,23 +5989,23 @@ $L571:
 	addk	r3,r0,r0
 	bri	$L570
 $L572:
-	lwi	r3,r19,44
-	swi	r3,r19,28
+	lwi	r3,r1,40
+	swi	r3,r1,28
 	bri	$L573
 $L575:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	lbui	r3,r3,0
 	sext8	r4,r3
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	lbui	r3,r3,0
 	sext8	r3,r3
 	xor	r3,r4,r3
 	bnei	r3,$L574
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addik	r4,r3,1
-	lwi	r3,r19,52
+	lwi	r3,r1,48
 	addik	r5,r3,1
-	lwi	r3,r19,56
+	lwi	r3,r1,52
 	addik	r3,r3,-1
 	addk	r7,r3,r0
 	addk	r6,r5,r0
@@ -6478,23 +6014,21 @@ $L575:
 	nop		# Unfilled delay slot
 
 	bnei	r3,$L574
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	bri	$L570
 $L574:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	addik	r3,r3,1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L573:
-	lwi	r4,r19,28
-	lwi	r3,r19,32
+	lwi	r4,r1,28
+	lwi	r3,r1,32
 	cmpu	r18,r4,r3
 	bgei	r18,$L575
 	addk	r3,r0,r0
 $L570:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6506,28 +6040,24 @@ $Lfe98:
 	.ent	mempcpy
 	.type	mempcpy, @function
 mempcpy:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	lwi	r7,r19,44
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	lwi	r7,r1,40
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,memcpy
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	addk	r3,r4,r3
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6539,66 +6069,64 @@ $Lfe99:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	r19,56,r15		# vars= 8, regs= 5, args= 24
-	.mask	0x03c88000
-	addik	r1,r1,-56
+	.frame	r1,52,r15		# vars= 8, regs= 4, args= 24
+	.mask	0x03c08000
+	addik	r1,r1,-52
 	swi	r15,r1,0
-	swi	r19,r1,36
-	swi	r22,r1,40
-	swi	r23,r1,44
-	swi	r24,r1,48
-	swi	r25,r1,52
-	addk	r19,r1,r0
-	swi	r5,r19,60
-	swi	r6,r19,64
-	swi	r7,r19,68
-	swi	r0,r19,32
-	swi	r0,r19,28
+	swi	r22,r1,36
+	swi	r23,r1,40
+	swi	r24,r1,44
+	swi	r25,r1,48
+	swi	r5,r1,56
+	swi	r6,r1,60
+	swi	r7,r1,64
+	swi	r0,r1,32
+	swi	r0,r1,28
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L579
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	xori	r24,r3,-2147483648
-	lwi	r25,r19,64
-	swi	r24,r19,60
-	swi	r25,r19,64
+	lwi	r25,r1,60
+	swi	r24,r1,56
+	swi	r25,r1,60
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L579:
 	addik	r7,r0,0x3ff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__gedf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L596
 	bri	$L583
 $L584:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	addik	r3,r3,1
-	swi	r3,r19,32
+	swi	r3,r1,32
 	addik	r7,r0,0x40000000 
 	addik	r8,r0,0x00000000 #Xfer Lo
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__divdf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,60
-	swi	r5,r19,64
+	swi	r4,r1,56
+	swi	r5,r1,60
 $L583:
 	addik	r7,r0,0x3ff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__gedf2
 	nop		# Unfilled delay slot
 
@@ -6607,27 +6135,27 @@ $L583:
 $L596:
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	bgei	r3,$L585
 	addk	r7,r0,r0
 	addk	r8,r0,r0
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__nedf2
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L585
 	bri	$L588
 $L589:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	addik	r3,r3,-1
-	swi	r3,r19,32
-	lwi	r4,r19,60
-	lwi	r5,r19,64
+	swi	r3,r1,32
+	lwi	r4,r1,56
+	lwi	r5,r1,60
 	addk	r7,r4,r0
 	addk	r8,r5,r0
 	addk	r6,r5,r0
@@ -6637,41 +6165,39 @@ $L589:
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,60
-	swi	r5,r19,64
+	swi	r4,r1,56
+	swi	r5,r1,60
 $L588:
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
-	lwi	r5,r19,60
-	lwi	r6,r19,64
+	lwi	r5,r1,56
+	lwi	r6,r1,60
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L589
 $L585:
-	lwi	r3,r19,68
-	lwi	r4,r19,32
+	lwi	r3,r1,64
+	lwi	r4,r1,32
 	swi	r4,r3,0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	beqi	r3,$L590
-	lwi	r3,r19,60
+	lwi	r3,r1,56
 	xori	r22,r3,-2147483648
-	lwi	r23,r19,64
-	swi	r22,r19,60
-	swi	r23,r19,64
+	lwi	r23,r1,60
+	swi	r22,r1,56
+	swi	r23,r1,60
 $L590:
-	lwi	r4,r19,60
-	lwi	r5,r19,64
+	lwi	r4,r1,56
+	lwi	r5,r1,60
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	lwi	r22,r1,40
-	lwi	r23,r1,44
-	lwi	r24,r1,48
-	lwi	r25,r1,52
-	addik	r1,r1,56
+	lwi	r22,r1,36
+	lwi	r23,r1,40
+	lwi	r24,r1,44
+	lwi	r25,r1,48
+	addik	r1,r1,52
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6683,46 +6209,44 @@ $Lfe100:
 	.ent	__muldi3
 	.type	__muldi3, @function
 __muldi3:
-	.frame	r19,40,r15		# vars= 16, regs= 5, args= 0
-	.mask	0x03c80000
-	addik	r1,r1,-40
-	swi	r19,r1,20
-	swi	r22,r1,24
-	swi	r23,r1,28
-	swi	r24,r1,32
-	swi	r25,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r7,r19,52
-	swi	r8,r19,56
+	.frame	r1,36,r15		# vars= 16, regs= 4, args= 0
+	.mask	0x03c00000
+	addik	r1,r1,-36
+	swi	r22,r1,20
+	swi	r23,r1,24
+	swi	r24,r1,28
+	swi	r25,r1,32
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r7,r1,48
+	swi	r8,r1,52
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x00000000 #li => la
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,44
-	lwi	r5,r19,48
-	swi	r4,r19,12
-	swi	r5,r19,16
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,40
+	lwi	r5,r1,44
+	swi	r4,r1,12
+	swi	r5,r1,16
 	bri	$L598
 $L601:
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	andi	r24,r3,0 #and1
-	lwi	r3,r19,16
+	lwi	r3,r1,16
 	andi	r25,r3,1 #and1
 	addk	r3,r24,r0
 	or	r3,r3,r25
 	beqi	r3,$L599
-	lwi	r6,r19,4
-	lwi	r7,r19,8
-	lwi	r4,r19,52
-	lwi	r5,r19,56
+	lwi	r6,r1,4
+	lwi	r7,r1,8
+	lwi	r4,r1,48
+	lwi	r5,r1,52
 	add	r5,r7,r5
 	addc	r4,r6,r4
-	swi	r4,r19,4
-	swi	r5,r19,8
+	swi	r4,r1,4
+	swi	r5,r1,8
 $L599:
-	lwi	r4,r19,56
+	lwi	r4,r1,52
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -6755,40 +6279,38 @@ $L599:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,52
+	lwi	r4,r1,48
 	addk	r10,r4,r4
 	or	r10,r3,r10
-	lwi	r3,r19,56
+	lwi	r3,r1,52
 	addk	r11,r3,r3
-	swi	r10,r19,52
-	swi	r11,r19,56
-	lwi	r4,r19,12
+	swi	r10,r1,48
+	swi	r11,r1,52
+	lwi	r4,r1,12
 	src	r3,r4
 	src	r3,r3
 	andi	r3,r3,-2147483648
-	lwi	r4,r19,16
+	lwi	r4,r1,16
 	srl	r23,r4
 	or	r23,r3,r23
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	srl	r22,r3
-	swi	r22,r19,12
-	swi	r23,r19,16
+	swi	r22,r1,12
+	swi	r23,r1,16
 $L598:
-	lwi	r3,r19,12
-	lwi	r4,r19,16
+	lwi	r3,r1,12
+	lwi	r4,r1,16
 	or	r3,r3,r4
 	bnei	r3,$L601
-	lwi	r4,r19,4
-	lwi	r5,r19,8
+	lwi	r4,r1,4
+	lwi	r5,r1,8
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,20
-	lwi	r22,r1,24
-	lwi	r23,r1,28
-	lwi	r24,r1,32
-	lwi	r25,r1,36
-	addik	r1,r1,40
+	lwi	r22,r1,20
+	lwi	r23,r1,24
+	lwi	r24,r1,28
+	lwi	r25,r1,32
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6800,68 +6322,64 @@ $Lfe101:
 	.ent	udivmodsi4
 	.type	udivmodsi4, @function
 udivmodsi4:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,4
-	swi	r0,r19,8
+	swi	r3,r1,4
+	swi	r0,r1,8
 	bri	$L604
 $L606:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
-	swi	r3,r19,24
-	lwi	r3,r19,4
+	swi	r3,r1,20
+	lwi	r3,r1,4
 	addk	r3,r3,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L604:
-	lwi	r4,r19,24
-	lwi	r3,r19,20
+	lwi	r4,r1,20
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L607
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	beqi	r3,$L607
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	bgei	r3,$L606
 	bri	$L607
 $L609:
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	cmpu	r18,r3,r4
 	blti	r18,$L608
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	rsubk	r3,r3,r4
-	swi	r3,r19,20
-	lwi	r4,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,16
+	lwi	r4,r1,8
+	lwi	r3,r1,4
 	or	r3,r4,r3
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L608:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,24
+	swi	r3,r1,4
+	lwi	r3,r1,20
 	srl	r3,r3
-	swi	r3,r19,24
+	swi	r3,r1,20
 $L607:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	bnei	r3,$L609
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L610
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	bri	$L611
 $L610:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 $L611:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6873,28 +6391,26 @@ $Lfe102:
 	.ent	__clrsbqi2
 	.type	__clrsbqi2, @function
 __clrsbqi2:
-	.frame	r19,36,r15		# vars= 4, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 4, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-32
 	swi	r15,r1,0
-	swi	r19,r1,32
-	addk	r19,r1,r0
 	addk	r3,r5,r0
-	sbi	r3,r19,40
-	lbui	r3,r19,40
+	sbi	r3,r1,36
+	lbui	r3,r1,36
 	sext8	r3,r3
 	bgei	r3,$L613
-	lbui	r3,r19,40
+	lbui	r3,r1,36
 	xori	r3,r3,-1
-	sbi	r3,r19,40
+	sbi	r3,r1,36
 $L613:
-	lbui	r3,r19,40
+	lbui	r3,r1,36
 	sext8	r3,r3
 	bnei	r3,$L614
 	addik	r3,r0,7	# 0x7
 	bri	$L615
 $L614:
-	lbui	r3,r19,40
+	lbui	r3,r1,36
 	sext8	r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -6908,14 +6424,12 @@ $L614:
 	brlid	r15,__clzsi2
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,28
-	lwi	r3,r19,28
+	swi	r3,r1,28
+	lwi	r3,r1,28
 	addik	r3,r3,-1
 $L615:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6927,45 +6441,41 @@ $Lfe103:
 	.ent	__clrsbdi2
 	.type	__clrsbdi2, @function
 __clrsbdi2:
-	.frame	r19,36,r15		# vars= 4, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-36
+	.frame	r1,32,r15		# vars= 4, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-32
 	swi	r15,r1,0
-	swi	r19,r1,32
-	addk	r19,r1,r0
-	swi	r5,r19,40
-	swi	r6,r19,44
-	lwi	r3,r19,40
+	swi	r5,r1,36
+	swi	r6,r1,40
+	lwi	r3,r1,36
 	bgei	r3,$L617
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	xori	r8,r3,-1
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	xori	r9,r3,-1
-	swi	r8,r19,40
-	swi	r9,r19,44
+	swi	r8,r1,36
+	swi	r9,r1,40
 $L617:
-	lwi	r3,r19,40
-	lwi	r4,r19,44
+	lwi	r3,r1,36
+	lwi	r4,r1,40
 	or	r3,r3,r4
 	bnei	r3,$L619
 	addik	r3,r0,63	# 0x3f
 	bri	$L620
 $L619:
-	lwi	r4,r19,40
-	lwi	r5,r19,44
+	lwi	r4,r1,36
+	lwi	r5,r1,40
 	addk	r6,r5,r0
 	addk	r5,r4,r0
 	brlid	r15,__clzdi2
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,28
-	lwi	r3,r19,28
+	swi	r3,r1,28
+	lwi	r3,r1,28
 	addik	r3,r3,-1
 $L620:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,32
-	addik	r1,r1,36
+	addik	r1,r1,32
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -6977,37 +6487,33 @@ $Lfe104:
 	.ent	__mulsi3
 	.type	__mulsi3, @function
 __mulsi3:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r0,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r0,r1,4
 	bri	$L622
 $L624:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	andi	r3,r3,1 #and1
 	beqi	r3,$L623
-	lwi	r4,r19,4
-	lwi	r3,r19,20
+	lwi	r4,r1,4
+	lwi	r3,r1,16
 	addk	r3,r4,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L623:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	srl	r3,r3
-	swi	r3,r19,16
-	lwi	r3,r19,20
+	swi	r3,r1,12
+	lwi	r3,r1,16
 	addk	r3,r3,r3
-	swi	r3,r19,20
+	swi	r3,r1,16
 $L622:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	bnei	r3,$L624
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7019,108 +6525,104 @@ $Lfe105:
 	.ent	__cmovd
 	.type	__cmovd, @function
 __cmovd:
-	.frame	r19,28,r15		# vars= 20, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-28
-	swi	r19,r1,24
-	addk	r19,r1,r0
-	swi	r5,r19,32
-	swi	r6,r19,36
-	swi	r7,r19,40
-	lwi	r4,r19,40
+	.frame	r1,24,r15		# vars= 20, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-24
+	swi	r5,r1,28
+	swi	r6,r1,32
+	swi	r7,r1,36
+	lwi	r4,r1,36
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
 	srl	r3,r3
-	swi	r3,r19,12
-	lwi	r3,r19,40
+	swi	r3,r1,12
+	lwi	r3,r1,36
 	andi	r3,r3,-8 #and1
-	swi	r3,r19,8
-	lwi	r3,r19,32
-	swi	r3,r19,16
-	lwi	r3,r19,36
-	swi	r3,r19,20
-	lwi	r4,r19,16
-	lwi	r3,r19,20
+	swi	r3,r1,8
+	lwi	r3,r1,28
+	swi	r3,r1,16
+	lwi	r3,r1,32
+	swi	r3,r1,20
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	cmpu	r18,r3,r4
 	blti	r18,$L627
-	lwi	r4,r19,20
-	lwi	r3,r19,40
+	lwi	r4,r1,20
+	lwi	r3,r1,36
 	addk	r3,r4,r3
-	lwi	r4,r19,16
+	lwi	r4,r1,16
 	cmpu	r18,r4,r3
 	bgei	r18,$L634
 $L627:
-	swi	r0,r19,4
+	swi	r0,r1,4
 	bri	$L629
 $L630:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	addk	r4,r3,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	addk	r3,r3,r5
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	swi	r4,r3,0
 	swi	r5,r3,4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L629:
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmpu	r18,r3,r4
 	blti	r18,$L630
 	bri	$L631
 $L632:
-	lwi	r4,r19,20
-	lwi	r3,r19,8
+	lwi	r4,r1,20
+	lwi	r3,r1,8
 	addk	r4,r4,r3
-	lwi	r5,r19,16
-	lwi	r3,r19,8
+	lwi	r5,r1,16
+	lwi	r3,r1,8
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L631:
-	lwi	r4,r19,40
-	lwi	r3,r19,8
+	lwi	r4,r1,36
+	lwi	r3,r1,8
 	cmpu	r18,r4,r3
 	blti	r18,$L632
 	bri	$L633
 $L635:
-	lwi	r4,r19,20
-	lwi	r3,r19,40
+	lwi	r4,r1,20
+	lwi	r3,r1,36
 	addk	r4,r4,r3
-	lwi	r5,r19,16
-	lwi	r3,r19,40
+	lwi	r5,r1,16
+	lwi	r3,r1,36
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
 $L634:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	addik	r4,r3,-1
-	swi	r4,r19,40
+	swi	r4,r1,36
 	bnei	r3,$L635
 	nop
 $L633:
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,24
-	addik	r1,r1,28
+	addik	r1,r1,24
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7132,92 +6634,88 @@ $Lfe106:
 	.ent	__cmovh
 	.type	__cmovh, @function
 __cmovh:
-	.frame	r19,24,r15		# vars= 16, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-24
-	swi	r19,r1,20
-	addk	r19,r1,r0
-	swi	r5,r19,28
-	swi	r6,r19,32
-	swi	r7,r19,36
-	lwi	r3,r19,36
+	.frame	r1,20,r15		# vars= 16, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-20
+	swi	r5,r1,24
+	swi	r6,r1,28
+	swi	r7,r1,32
+	lwi	r3,r1,32
 	srl	r3,r3
-	swi	r3,r19,8
-	lwi	r3,r19,28
-	swi	r3,r19,12
-	lwi	r3,r19,32
-	swi	r3,r19,16
-	lwi	r4,r19,12
-	lwi	r3,r19,16
+	swi	r3,r1,8
+	lwi	r3,r1,24
+	swi	r3,r1,12
+	lwi	r3,r1,28
+	swi	r3,r1,16
+	lwi	r4,r1,12
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	blti	r18,$L637
-	lwi	r4,r19,16
-	lwi	r3,r19,36
+	lwi	r4,r1,16
+	lwi	r3,r1,32
 	addk	r3,r4,r3
-	lwi	r4,r19,12
+	lwi	r4,r1,12
 	cmpu	r18,r4,r3
 	bgei	r18,$L643
 $L637:
-	swi	r0,r19,4
+	swi	r0,r1,4
 	bri	$L639
 $L640:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r4,r3,r0
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	addk	r4,r3,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	addk	r3,r3,r5
 	lhui	r4,r4,0
 	sext16	r4,r4
 	shi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L639:
-	lwi	r4,r19,4
-	lwi	r3,r19,8
+	lwi	r4,r1,4
+	lwi	r3,r1,8
 	cmpu	r18,r3,r4
 	blti	r18,$L640
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	andi	r3,r3,1 #and1
 	beqi	r3,$L642
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	addik	r3,r3,-1
-	lwi	r4,r19,16
+	lwi	r4,r1,16
 	addk	r4,r4,r3
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	addik	r3,r3,-1
-	lwi	r5,r19,12
+	lwi	r5,r1,12
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
 	bri	$L642
 $L644:
-	lwi	r4,r19,16
-	lwi	r3,r19,36
+	lwi	r4,r1,16
+	lwi	r3,r1,32
 	addk	r4,r4,r3
-	lwi	r5,r19,12
-	lwi	r3,r19,36
+	lwi	r5,r1,12
+	lwi	r3,r1,32
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
 $L643:
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	addik	r4,r3,-1
-	swi	r4,r19,36
+	swi	r4,r1,32
 	bnei	r3,$L644
 	nop
 $L642:
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,20
-	addik	r1,r1,24
+	addik	r1,r1,20
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7229,103 +6727,99 @@ $Lfe107:
 	.ent	__cmovw
 	.type	__cmovw, @function
 __cmovw:
-	.frame	r19,28,r15		# vars= 20, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-28
-	swi	r19,r1,24
-	addk	r19,r1,r0
-	swi	r5,r19,32
-	swi	r6,r19,36
-	swi	r7,r19,40
-	lwi	r4,r19,40
+	.frame	r1,24,r15		# vars= 20, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-24
+	swi	r5,r1,28
+	swi	r6,r1,32
+	swi	r7,r1,36
+	lwi	r4,r1,36
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
-	swi	r3,r19,12
-	lwi	r3,r19,40
+	swi	r3,r1,12
+	lwi	r3,r1,36
 	andi	r3,r3,-4 #and1
-	swi	r3,r19,8
-	lwi	r3,r19,32
-	swi	r3,r19,16
-	lwi	r3,r19,36
-	swi	r3,r19,20
-	lwi	r4,r19,16
-	lwi	r3,r19,20
+	swi	r3,r1,8
+	lwi	r3,r1,28
+	swi	r3,r1,16
+	lwi	r3,r1,32
+	swi	r3,r1,20
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	cmpu	r18,r3,r4
 	blti	r18,$L646
-	lwi	r4,r19,20
-	lwi	r3,r19,40
+	lwi	r4,r1,20
+	lwi	r3,r1,36
 	addk	r3,r4,r3
-	lwi	r4,r19,16
+	lwi	r4,r1,16
 	cmpu	r18,r4,r3
 	bgei	r18,$L653
 $L646:
-	swi	r0,r19,4
+	swi	r0,r1,4
 	bri	$L648
 $L649:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,32
 	addk	r4,r3,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r5,r3,r0
-	lwi	r3,r19,32
+	lwi	r3,r1,28
 	addk	r3,r3,r5
 	lwi	r4,r4,0
 	swi	r4,r3,0
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L648:
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmpu	r18,r3,r4
 	blti	r18,$L649
 	bri	$L650
 $L651:
-	lwi	r4,r19,20
-	lwi	r3,r19,8
+	lwi	r4,r1,20
+	lwi	r3,r1,8
 	addk	r4,r4,r3
-	lwi	r5,r19,16
-	lwi	r3,r19,8
+	lwi	r5,r1,16
+	lwi	r3,r1,8
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L650:
-	lwi	r4,r19,40
-	lwi	r3,r19,8
+	lwi	r4,r1,36
+	lwi	r3,r1,8
 	cmpu	r18,r4,r3
 	blti	r18,$L651
 	bri	$L652
 $L654:
-	lwi	r4,r19,20
-	lwi	r3,r19,40
+	lwi	r4,r1,20
+	lwi	r3,r1,36
 	addk	r4,r4,r3
-	lwi	r5,r19,16
-	lwi	r3,r19,40
+	lwi	r5,r1,16
+	lwi	r3,r1,36
 	addk	r3,r5,r3
 	lbui	r4,r4,0
 	sext8	r4,r4
 	sbi	r4,r3,0
 $L653:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	addik	r4,r3,-1
-	swi	r4,r19,40
+	swi	r4,r1,36
 	bnei	r3,$L654
 	nop
 $L652:
 	nop
-	addk	r1,r19,r0
-	lwi	r19,r1,24
-	addik	r1,r1,28
+	addik	r1,r1,24
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7337,24 +6831,20 @@ $Lfe108:
 	.ent	__modi
 	.type	__modi, @function
 __modi:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r3,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r3,r1,32
+	lwi	r6,r1,36
 	addk	r5,r3,r0
 	brlid	r15,__modsi3
 	nop		# Unfilled delay slot
 
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7366,14 +6856,12 @@ $Lfe109:
 	.ent	__uitod
 	.type	__uitod, @function
 __uitod:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	lwi	r5,r1,32
 	brlid	r15,__floatunsidf
 	nop		# Unfilled delay slot
 
@@ -7382,9 +6870,7 @@ __uitod:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7396,21 +6882,17 @@ $Lfe110:
 	.ent	__uitof
 	.type	__uitof, @function
 __uitof:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	lwi	r5,r1,32
 	brlid	r15,__floatunsisf
 	nop		# Unfilled delay slot
 
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7422,16 +6904,14 @@ $Lfe111:
 	.ent	__ulltod
 	.type	__ulltod, @function
 __ulltod:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__floatundidf
 	nop		# Unfilled delay slot
 
@@ -7440,9 +6920,7 @@ __ulltod:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7454,23 +6932,19 @@ $Lfe112:
 	.ent	__ulltof
 	.type	__ulltof, @function
 __ulltof:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__floatundisf
 	nop		# Unfilled delay slot
 
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7482,24 +6956,20 @@ $Lfe113:
 	.ent	__umodi
 	.type	__umodi, @function
 __umodi:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r3,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r3,r1,32
+	lwi	r6,r1,36
 	addk	r5,r3,r0
 	brlid	r15,__umodsi3
 	nop		# Unfilled delay slot
 
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7511,18 +6981,16 @@ $Lfe114:
 	.ent	__clzhi2
 	.type	__clzhi2, @function
 __clzhi2:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
 	addk	r3,r5,r0
-	shi	r3,r19,16
-	swi	r0,r19,4
+	shi	r3,r1,12
+	swi	r0,r1,4
 	bri	$L668
 $L671:
-	lhui	r5,r19,16
-	lwi	r3,r19,4
+	lhui	r5,r1,12
+	lwi	r3,r1,4
 	addik	r4,r0,15	# 0xf
 	rsubk	r4,r3,r4
 	andi	r18,r4,31
@@ -7534,11 +7002,11 @@ $L671:
 	sra	r3,r3
 	andi	r3,r3,1 #and1
 	bnei	r3,$L673
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L668:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r0,15	# 0xf
 	cmp	r18,r4,r3
 	bgei	r18,$L671
@@ -7546,10 +7014,8 @@ $L668:
 $L673:
 	nop
 $L670:
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7561,18 +7027,16 @@ $Lfe115:
 	.ent	__ctzhi2
 	.type	__ctzhi2, @function
 __ctzhi2:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
 	addk	r3,r5,r0
-	shi	r3,r19,16
-	swi	r0,r19,4
+	shi	r3,r1,12
+	swi	r0,r1,4
 	bri	$L675
 $L678:
-	lhui	r5,r19,16
-	lwi	r4,r19,4
+	lhui	r5,r1,12
+	lwi	r4,r1,4
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -7582,11 +7046,11 @@ $L678:
 	sra	r3,r3
 	andi	r3,r3,1 #and1
 	bnei	r3,$L680
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L675:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r0,15	# 0xf
 	cmp	r18,r4,r3
 	bgei	r18,$L678
@@ -7594,10 +7058,8 @@ $L675:
 $L680:
 	nop
 $L677:
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7609,21 +7071,19 @@ $Lfe116:
 	.ent	__fixunssfsi
 	.type	__fixunssfsi, @function
 __fixunssfsi:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
+	swi	r5,r1,32
 	addik	r6,r0,0x47000000
-	lwi	r5,r19,36
+	lwi	r5,r1,32
 	brlid	r15,__gesf2
 	nop		# Unfilled delay slot
 
 	blti	r3,$L686
 	addik	r6,r0,0x47000000
-	lwi	r5,r19,36
+	lwi	r5,r1,32
 	brlid	r15,__subsf3
 	nop		# Unfilled delay slot
 
@@ -7634,15 +7094,13 @@ __fixunssfsi:
 	addik	r3,r3,32768
 	bri	$L684
 $L686:
-	lwi	r5,r19,36
+	lwi	r5,r1,32
 	brlid	r15,__fixsfsi
 	nop		# Unfilled delay slot
 
 $L684:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7654,19 +7112,17 @@ $Lfe117:
 	.ent	__parityhi2
 	.type	__parityhi2, @function
 __parityhi2:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
 	addk	r3,r5,r0
-	shi	r3,r19,20
-	swi	r0,r19,8
-	swi	r0,r19,4
+	shi	r3,r1,16
+	swi	r0,r1,8
+	swi	r0,r1,4
 	bri	$L688
 $L690:
-	lhui	r5,r19,20
-	lwi	r4,r19,4
+	lhui	r5,r1,16
+	lwi	r4,r1,4
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -7676,23 +7132,21 @@ $L690:
 	sra	r3,r3
 	andi	r3,r3,1 #and1
 	beqi	r3,$L689
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L689:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L688:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r0,15	# 0xf
 	cmp	r18,r4,r3
 	bgei	r18,$L690
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	andi	r3,r3,1 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7704,19 +7158,17 @@ $Lfe118:
 	.ent	__popcounthi2
 	.type	__popcounthi2, @function
 __popcounthi2:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
 	addk	r3,r5,r0
-	shi	r3,r19,20
-	swi	r0,r19,8
-	swi	r0,r19,4
+	shi	r3,r1,16
+	swi	r0,r1,8
+	swi	r0,r1,4
 	bri	$L693
 $L695:
-	lhui	r5,r19,20
-	lwi	r4,r19,4
+	lhui	r5,r1,16
+	lwi	r4,r1,4
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -7726,22 +7178,20 @@ $L695:
 	sra	r3,r3
 	andi	r3,r3,1 #and1
 	beqi	r3,$L694
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	addik	r3,r3,1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L694:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addik	r3,r3,1
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L693:
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addik	r3,r0,15	# 0xf
 	cmp	r18,r4,r3
 	bgei	r18,$L695
-	lwi	r3,r19,8
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	lwi	r3,r1,8
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7753,37 +7203,33 @@ $Lfe119:
 	.ent	__mulsi3_iq2000
 	.type	__mulsi3_iq2000, @function
 __mulsi3_iq2000:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r0,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r0,r1,4
 	bri	$L698
 $L700:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	andi	r3,r3,1 #and1
 	beqi	r3,$L699
-	lwi	r4,r19,4
-	lwi	r3,r19,20
+	lwi	r4,r1,4
+	lwi	r3,r1,16
 	addk	r3,r4,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L699:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	srl	r3,r3
-	swi	r3,r19,16
-	lwi	r3,r19,20
+	swi	r3,r1,12
+	lwi	r3,r1,16
 	addk	r3,r3,r3
-	swi	r3,r19,20
+	swi	r3,r1,16
 $L698:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	bnei	r3,$L700
-	lwi	r3,r19,4
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	lwi	r3,r1,4
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7795,41 +7241,37 @@ $Lfe120:
 	.ent	__mulsi3_lm32
 	.type	__mulsi3_lm32, @function
 __mulsi3_lm32:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	swi	r6,r19,20
-	swi	r0,r19,4
-	lwi	r3,r19,16
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	swi	r6,r1,16
+	swi	r0,r1,4
+	lwi	r3,r1,12
 	bnei	r3,$L705
 	addk	r3,r0,r0
 	bri	$L704
 $L707:
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	andi	r3,r3,1 #and1
 	beqi	r3,$L706
-	lwi	r4,r19,4
-	lwi	r3,r19,16
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	addk	r3,r4,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L706:
-	lwi	r3,r19,16
+	lwi	r3,r1,12
 	addk	r3,r3,r3
-	swi	r3,r19,16
-	lwi	r3,r19,20
+	swi	r3,r1,12
+	lwi	r3,r1,16
 	srl	r3,r3
-	swi	r3,r19,20
+	swi	r3,r1,16
 $L705:
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	bnei	r3,$L707
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 $L704:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7841,68 +7283,64 @@ $Lfe121:
 	.ent	__udivmodsi4
 	.type	__udivmodsi4, @function
 __udivmodsi4:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,4
-	swi	r0,r19,8
+	swi	r3,r1,4
+	swi	r0,r1,8
 	bri	$L709
 $L711:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
-	swi	r3,r19,24
-	lwi	r3,r19,4
+	swi	r3,r1,20
+	lwi	r3,r1,4
 	addk	r3,r3,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L709:
-	lwi	r4,r19,24
-	lwi	r3,r19,20
+	lwi	r4,r1,20
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L712
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	beqi	r3,$L712
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	bgei	r3,$L711
 	bri	$L712
 $L714:
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	cmpu	r18,r3,r4
 	blti	r18,$L713
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	rsubk	r3,r3,r4
-	swi	r3,r19,20
-	lwi	r4,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,16
+	lwi	r4,r1,8
+	lwi	r3,r1,4
 	or	r3,r4,r3
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L713:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,24
+	swi	r3,r1,4
+	lwi	r3,r1,20
 	srl	r3,r3
-	swi	r3,r19,24
+	swi	r3,r1,20
 $L712:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	bnei	r3,$L714
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L715
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	bri	$L716
 $L715:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 $L716:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7914,16 +7352,14 @@ $Lfe122:
 	.ent	__mspabi_cmpf
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
@@ -7931,8 +7367,8 @@ __mspabi_cmpf:
 	addik	r3,r0,-1	# 0xffffffffffffffff
 	bri	$L720
 $L725:
-	lwi	r6,r19,40
-	lwi	r5,r19,36
+	lwi	r6,r1,36
+	lwi	r5,r1,32
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
@@ -7943,9 +7379,7 @@ $L726:
 	addk	r3,r0,r0
 $L720:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -7957,20 +7391,18 @@ $Lfe123:
 	.ent	__mspabi_cmpd
 	.type	__mspabi_cmpd, @function
 __mspabi_cmpd:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__ltdf2
 	nop		# Unfilled delay slot
 
@@ -7978,10 +7410,10 @@ __mspabi_cmpd:
 	addik	r3,r0,-1	# 0xffffffffffffffff
 	bri	$L730
 $L735:
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__gtdf2
 	nop		# Unfilled delay slot
 
@@ -7992,9 +7424,7 @@ $L736:
 	addk	r3,r0,r0
 $L730:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8006,20 +7436,18 @@ $Lfe124:
 	.ent	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r5,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r5,r1,32
 	add	r4,r5,r5
 	addc	r4,r0,r0
 	beqi	r4,.+8
 	addi	r4,r0,0xffffffff
-	lwi	r7,r19,40
+	lwi	r7,r1,36
 	add	r6,r7,r7
 	addc	r6,r0,r0
 	beqi	r6,.+8
@@ -8036,9 +7464,7 @@ __mspabi_mpysll:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8050,18 +7476,16 @@ $Lfe125:
 	.ent	__mspabi_mpyull
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	lwi	r3,r19,36
+	swi	r5,r1,32
+	swi	r6,r1,36
+	lwi	r3,r1,32
 	addk	r11,r3,r0
 	addk	r10,r0,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	addk	r9,r3,r0
 	addk	r8,r0,r0
 	addk	r7,r8,r0
@@ -8076,9 +7500,7 @@ __mspabi_mpyull:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8090,65 +7512,61 @@ $Lfe126:
 	.ent	__mulhi3
 	.type	__mulhi3, @function
 __mulhi3:
-	.frame	r19,20,r15		# vars= 12, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-20
-	swi	r19,r1,16
-	addk	r19,r1,r0
-	swi	r5,r19,24
-	swi	r6,r19,28
-	swi	r0,r19,8
-	swi	r0,r19,12
-	lwi	r3,r19,28
+	.frame	r1,16,r15		# vars= 12, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-16
+	swi	r5,r1,20
+	swi	r6,r1,24
+	swi	r0,r1,8
+	swi	r0,r1,12
+	lwi	r3,r1,24
 	bgei	r3,$L742
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	rsubk	r3,r3,r0
-	swi	r3,r19,28
+	swi	r3,r1,24
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L742:
-	sbi	r0,r19,4
+	sbi	r0,r1,4
 	bri	$L743
 $L746:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	andi	r3,r3,1 #and1
 	beqi	r3,$L744
-	lwi	r4,r19,12
-	lwi	r3,r19,24
+	lwi	r4,r1,12
+	lwi	r3,r1,20
 	addk	r3,r4,r3
-	swi	r3,r19,12
+	swi	r3,r1,12
 $L744:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
-	swi	r3,r19,24
-	lwi	r3,r19,28
+	swi	r3,r1,20
+	lwi	r3,r1,24
 	sra	r3,r3
-	swi	r3,r19,28
-	lbui	r3,r19,4
+	swi	r3,r1,24
+	lbui	r3,r1,4
 	sext8	r3,r3
 	andi	r3,r3,0x00ff
 	addik	r3,r3,1
 	andi	r3,r3,0x00ff
-	sbi	r3,r19,4
+	sbi	r3,r1,4
 $L743:
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L745
-	lbui	r4,r19,4
+	lbui	r4,r1,4
 	addik	r3,r0,31	# 0x1f
 	cmpu	r18,r4,r3
 	bgei	r18,$L746
 $L745:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	beqi	r3,$L747
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	rsubk	r3,r3,r0
 	bri	$L749
 $L747:
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 $L749:
-	addk	r1,r19,r0
-	lwi	r19,r1,16
-	addik	r1,r1,20
+	addik	r1,r1,16
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8160,23 +7578,21 @@ $Lfe127:
 	.ent	__divsi3
 	.type	__divsi3, @function
 __divsi3:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r0,r19,28
-	lwi	r3,r19,44
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r0,r1,28
+	lwi	r3,r1,40
 	bgei	r3,$L751
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	rsubk	r3,r3,r0
-	swi	r3,r19,44
-	lwi	r3,r19,28
+	swi	r3,r1,40
+	lwi	r3,r1,28
 	rsubk	r4,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	or	r3,r4,r3
 	xori	r3,r3,-1
 	addk	r4,r0,r3
@@ -8213,16 +7629,16 @@ __divsi3:
 	srl	r4,r4
 	addk	r3,r4,r0
 	andi	r3,r3,0x00ff
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L751:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	bgei	r3,$L752
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	rsubk	r3,r3,r0
-	swi	r3,r19,48
-	lwi	r3,r19,28
+	swi	r3,r1,44
+	lwi	r3,r1,28
 	rsubk	r4,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	or	r3,r4,r3
 	xori	r3,r3,-1
 	addk	r4,r0,r3
@@ -8259,28 +7675,26 @@ $L751:
 	srl	r4,r4
 	addk	r3,r4,r0
 	andi	r3,r3,0x00ff
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L752:
-	lwi	r3,r19,44
-	lwi	r4,r19,48
+	lwi	r3,r1,40
+	lwi	r4,r1,44
 	addk	r7,r0,r0
 	addk	r6,r4,r0
 	addk	r5,r3,r0
 	brlid	r15,__udivmodsi4
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,32
-	lwi	r3,r19,28
+	swi	r3,r1,32
+	lwi	r3,r1,28
 	beqi	r3,$L753
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	rsubk	r3,r3,r0
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L753:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8292,49 +7706,45 @@ $Lfe128:
 	.ent	__modsi3
 	.type	__modsi3, @function
 __modsi3:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	swi	r0,r19,28
-	lwi	r3,r19,44
+	swi	r5,r1,40
+	swi	r6,r1,44
+	swi	r0,r1,28
+	lwi	r3,r1,40
 	bgei	r3,$L756
-	lwi	r3,r19,44
+	lwi	r3,r1,40
 	rsubk	r3,r3,r0
-	swi	r3,r19,44
+	swi	r3,r1,40
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L756:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	bgei	r3,$L757
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	rsubk	r3,r3,r0
-	swi	r3,r19,48
+	swi	r3,r1,44
 $L757:
-	lwi	r3,r19,44
-	lwi	r4,r19,48
+	lwi	r3,r1,40
+	lwi	r4,r1,44
 	addik	r7,r0,1	# 0x1
 	addk	r6,r4,r0
 	addk	r5,r3,r0
 	brlid	r15,__udivmodsi4
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,32
-	lwi	r3,r19,28
+	swi	r3,r1,32
+	lwi	r3,r1,28
 	beqi	r3,$L758
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	rsubk	r3,r3,r0
-	swi	r3,r19,32
+	swi	r3,r1,32
 $L758:
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8346,74 +7756,70 @@ $Lfe129:
 	.ent	__udivmodhi4
 	.type	__udivmodhi4, @function
 __udivmodhi4:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
 	addk	r3,r5,r0
 	addk	r4,r6,r0
-	swi	r7,r19,24
-	shi	r3,r19,16
+	swi	r7,r1,20
+	shi	r3,r1,12
 	addk	r3,r4,r0
-	shi	r3,r19,20
+	shi	r3,r1,16
 	addik	r3,r0,1	# 0x1
-	shi	r3,r19,4
-	shi	r0,r19,6
+	shi	r3,r1,4
+	shi	r0,r1,6
 	bri	$L761
 $L763:
-	lhui	r3,r19,20
+	lhui	r3,r1,16
 	addk	r4,r3,r0
 	addk	r3,r3,r4
-	shi	r3,r19,20
-	lhui	r3,r19,4
+	shi	r3,r1,16
+	lhui	r3,r1,4
 	addk	r4,r3,r0
 	addk	r3,r3,r4
-	shi	r3,r19,4
+	shi	r3,r1,4
 $L761:
-	lhui	r4,r19,20
-	lhui	r3,r19,16
+	lhui	r4,r1,16
+	lhui	r3,r1,12
 	cmpu	r18,r3,r4
 	bgei	r18,$L764
-	lhui	r3,r19,4
+	lhui	r3,r1,4
 	beqi	r3,$L764
-	lhui	r3,r19,20
+	lhui	r3,r1,16
 	sext16	r3,r3
 	bgei	r3,$L763
 	bri	$L764
 $L766:
-	lhui	r4,r19,16
-	lhui	r3,r19,20
+	lhui	r4,r1,12
+	lhui	r3,r1,16
 	cmpu	r18,r3,r4
 	blti	r18,$L765
-	lhui	r4,r19,16
-	lhui	r3,r19,20
+	lhui	r4,r1,12
+	lhui	r3,r1,16
 	rsubk	r3,r3,r4
-	shi	r3,r19,16
-	lhui	r4,r19,6
-	lhui	r3,r19,4
+	shi	r3,r1,12
+	lhui	r4,r1,6
+	lhui	r3,r1,4
 	or	r3,r4,r3
-	shi	r3,r19,6
+	shi	r3,r1,6
 $L765:
-	lhui	r3,r19,4
+	lhui	r3,r1,4
 	srl	r3,r3
-	shi	r3,r19,4
-	lhui	r3,r19,20
+	shi	r3,r1,4
+	lhui	r3,r1,16
 	srl	r3,r3
-	shi	r3,r19,20
+	shi	r3,r1,16
 $L764:
-	lhui	r3,r19,4
+	lhui	r3,r1,4
 	bnei	r3,$L766
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	beqi	r3,$L767
-	lhui	r3,r19,16
+	lhui	r3,r1,12
 	bri	$L768
 $L767:
-	lhui	r3,r19,6
+	lhui	r3,r1,6
 $L768:
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8425,68 +7831,64 @@ $Lfe130:
 	.ent	__udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
-	.frame	r19,16,r15		# vars= 8, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-16
-	swi	r19,r1,12
-	addk	r19,r1,r0
-	swi	r5,r19,20
-	swi	r6,r19,24
-	swi	r7,r19,28
+	.frame	r1,12,r15		# vars= 8, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-12
+	swi	r5,r1,16
+	swi	r6,r1,20
+	swi	r7,r1,24
 	addik	r3,r0,1	# 0x1
-	swi	r3,r19,4
-	swi	r0,r19,8
+	swi	r3,r1,4
+	swi	r0,r1,8
 	bri	$L770
 $L772:
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	addk	r3,r3,r3
-	swi	r3,r19,24
-	lwi	r3,r19,4
+	swi	r3,r1,20
+	lwi	r3,r1,4
 	addk	r3,r3,r3
-	swi	r3,r19,4
+	swi	r3,r1,4
 $L770:
-	lwi	r4,r19,24
-	lwi	r3,r19,20
+	lwi	r4,r1,20
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L773
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	beqi	r3,$L773
-	lwi	r3,r19,24
+	lwi	r3,r1,20
 	bgei	r3,$L772
 	bri	$L773
 $L775:
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	cmpu	r18,r3,r4
 	blti	r18,$L774
-	lwi	r4,r19,20
-	lwi	r3,r19,24
+	lwi	r4,r1,16
+	lwi	r3,r1,20
 	rsubk	r3,r3,r4
-	swi	r3,r19,20
-	lwi	r4,r19,8
-	lwi	r3,r19,4
+	swi	r3,r1,16
+	lwi	r4,r1,8
+	lwi	r3,r1,4
 	or	r3,r4,r3
-	swi	r3,r19,8
+	swi	r3,r1,8
 $L774:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,24
+	swi	r3,r1,4
+	lwi	r3,r1,20
 	srl	r3,r3
-	swi	r3,r19,24
+	swi	r3,r1,20
 $L773:
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	bnei	r3,$L775
-	lwi	r3,r19,28
+	lwi	r3,r1,24
 	beqi	r3,$L776
-	lwi	r3,r19,20
+	lwi	r3,r1,16
 	bri	$L777
 $L776:
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 $L777:
-	addk	r1,r19,r0
-	lwi	r19,r1,12
-	addik	r1,r1,16
+	addik	r1,r1,12
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8498,28 +7900,26 @@ $Lfe131:
 	.ent	__ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
-	.frame	r19,28,r15		# vars= 20, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-28
-	swi	r19,r1,24
-	addk	r19,r1,r0
-	swi	r5,r19,32
-	swi	r6,r19,36
-	swi	r7,r19,40
+	.frame	r1,24,r15		# vars= 20, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-24
+	swi	r5,r1,28
+	swi	r6,r1,32
+	swi	r7,r1,36
 	addik	r3,r0,32	# 0x20
-	swi	r3,r19,4
-	lwi	r4,r19,32
-	lwi	r5,r19,36
-	swi	r4,r19,8
-	swi	r5,r19,12
-	lwi	r4,r19,40
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,28
+	lwi	r5,r1,32
+	swi	r4,r1,8
+	swi	r5,r1,12
+	lwi	r4,r1,36
+	lwi	r3,r1,4
 	and	r3,r4,r3
 	beqi	r3,$L779
-	swi	r0,r19,20
-	lwi	r4,r19,12
-	lwi	r5,r19,40
-	lwi	r3,r19,4
+	swi	r0,r1,20
+	lwi	r4,r1,12
+	lwi	r5,r1,36
+	lwi	r3,r1,4
 	rsubk	r3,r3,r5
 	andi	r18,r3,31
 	addk	r5,r0,r4
@@ -8529,17 +7929,17 @@ __ashldi3:
 	bneid	r18,.-4
 	addk	r5,r5,r5
 	addk	r3,r5,r0
-	swi	r3,r19,16
+	swi	r3,r1,16
 	bri	$L780
 $L779:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bnei	r3,$L781
-	lwi	r4,r19,32
-	lwi	r5,r19,36
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 	bri	$L783
 $L781:
-	lwi	r5,r19,12
-	lwi	r4,r19,40
+	lwi	r5,r1,12
+	lwi	r4,r1,36
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -8547,10 +7947,10 @@ $L781:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r3,r3,r3
-	swi	r3,r19,20
-	lwi	r3,r19,8
+	swi	r3,r1,20
+	lwi	r3,r1,8
 	addk	r5,r3,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	andi	r18,r3,31
 	addk	r4,r0,r5
 	beqid	r18,.+20
@@ -8558,9 +7958,9 @@ $L781:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r4,r4,r4
-	lwi	r6,r19,12
-	lwi	r5,r19,4
-	lwi	r3,r19,40
+	lwi	r6,r1,12
+	lwi	r5,r1,4
+	lwi	r3,r1,36
 	rsubk	r5,r3,r5
 	andi	r18,r5,31
 	addk	r3,r0,r6
@@ -8570,16 +7970,14 @@ $L781:
 	bneid	r18,.-4
 	srl	r3,r3
 	or	r3,r4,r3
-	swi	r3,r19,16
+	swi	r3,r1,16
 $L780:
-	lwi	r4,r19,16
-	lwi	r5,r19,20
+	lwi	r4,r1,16
+	lwi	r5,r1,20
 $L783:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,24
-	addik	r1,r1,28
+	addik	r1,r1,24
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8591,26 +7989,24 @@ $Lfe132:
 	.ent	__ashrdi3
 	.type	__ashrdi3, @function
 __ashrdi3:
-	.frame	r19,28,r15		# vars= 20, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-28
-	swi	r19,r1,24
-	addk	r19,r1,r0
-	swi	r5,r19,32
-	swi	r6,r19,36
-	swi	r7,r19,40
+	.frame	r1,24,r15		# vars= 20, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-24
+	swi	r5,r1,28
+	swi	r6,r1,32
+	swi	r7,r1,36
 	addik	r3,r0,32	# 0x20
-	swi	r3,r19,4
-	lwi	r4,r19,32
-	lwi	r5,r19,36
-	swi	r4,r19,8
-	swi	r5,r19,12
-	lwi	r4,r19,40
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,28
+	lwi	r5,r1,32
+	swi	r4,r1,8
+	swi	r5,r1,12
+	lwi	r4,r1,36
+	lwi	r3,r1,4
 	and	r3,r4,r3
 	beqi	r3,$L785
-	lwi	r5,r19,8
-	lwi	r3,r19,4
+	lwi	r5,r1,8
+	lwi	r3,r1,4
 	addik	r4,r3,-1
 	andi	r18,r4,31
 	addk	r3,r0,r5
@@ -8619,10 +8015,10 @@ __ashrdi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	sra	r3,r3
-	swi	r3,r19,16
-	lwi	r4,r19,8
-	lwi	r5,r19,40
-	lwi	r3,r19,4
+	swi	r3,r1,16
+	lwi	r4,r1,8
+	lwi	r5,r1,36
+	lwi	r3,r1,4
 	rsubk	r3,r3,r5
 	andi	r18,r3,31
 	addk	r5,r0,r4
@@ -8632,17 +8028,17 @@ __ashrdi3:
 	bneid	r18,.-4
 	sra	r5,r5
 	addk	r3,r5,r0
-	swi	r3,r19,20
+	swi	r3,r1,20
 	bri	$L786
 $L785:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bnei	r3,$L787
-	lwi	r4,r19,32
-	lwi	r5,r19,36
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 	bri	$L789
 $L787:
-	lwi	r5,r19,8
-	lwi	r4,r19,40
+	lwi	r5,r1,8
+	lwi	r4,r1,36
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -8650,11 +8046,11 @@ $L787:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	sra	r3,r3
-	swi	r3,r19,16
-	lwi	r3,r19,8
+	swi	r3,r1,16
+	lwi	r3,r1,8
 	addk	r5,r3,r0
-	lwi	r4,r19,4
-	lwi	r3,r19,40
+	lwi	r4,r1,4
+	lwi	r3,r1,36
 	rsubk	r3,r3,r4
 	andi	r18,r3,31
 	addk	r4,r0,r5
@@ -8663,8 +8059,8 @@ $L787:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r4,r4,r4
-	lwi	r6,r19,12
-	lwi	r5,r19,40
+	lwi	r6,r1,12
+	lwi	r5,r1,36
 	andi	r18,r5,31
 	addk	r3,r0,r6
 	beqid	r18,.+20
@@ -8673,16 +8069,14 @@ $L787:
 	bneid	r18,.-4
 	srl	r3,r3
 	or	r3,r4,r3
-	swi	r3,r19,20
+	swi	r3,r1,20
 $L786:
-	lwi	r4,r19,16
-	lwi	r5,r19,20
+	lwi	r4,r1,16
+	lwi	r5,r1,20
 $L789:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,24
-	addik	r1,r1,28
+	addik	r1,r1,24
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -8694,24 +8088,22 @@ $Lfe133:
 	.ent	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	.frame	r19,160,r15		# vars= 112, regs= 11, args= 0
-	.mask	0xffc80000
-	addik	r1,r1,-160
-	swi	r19,r1,116
-	swi	r22,r1,120
-	swi	r23,r1,124
-	swi	r24,r1,128
-	swi	r25,r1,132
-	swi	r26,r1,136
-	swi	r27,r1,140
-	swi	r28,r1,144
-	swi	r29,r1,148
-	swi	r30,r1,152
-	swi	r31,r1,156
-	addk	r19,r1,r0
-	swi	r5,r19,164
-	swi	r6,r19,168
-	lwi	r3,r19,164
+	.frame	r1,156,r15		# vars= 112, regs= 10, args= 0
+	.mask	0xffc00000
+	addik	r1,r1,-156
+	swi	r22,r1,116
+	swi	r23,r1,120
+	swi	r24,r1,124
+	swi	r25,r1,128
+	swi	r26,r1,132
+	swi	r27,r1,136
+	swi	r28,r1,140
+	swi	r29,r1,144
+	swi	r30,r1,148
+	swi	r31,r1,152
+	swi	r5,r1,160
+	swi	r6,r1,164
+	lwi	r3,r1,160
 	addk	r25,r0,r3
 	srl	r25,r3
 	srl	r25,r25
@@ -8738,7 +8130,7 @@ __bswapdi2:
 	srl	r25,r25
 	srl	r25,r25
 	addk	r24,r0,r0
-	lwi	r3,r19,164
+	lwi	r3,r1,160
 	addk	r9,r0,r3
 	srl	r9,r3
 	srl	r9,r9
@@ -8752,10 +8144,10 @@ __bswapdi2:
 	andi	r10,r8,0 #and1
 	andi	r11,r9,65280 #and2
 	or	r3,r24,r10
-	swi	r3,r19,12
+	swi	r3,r1,12
 	or	r3,r25,r11
-	swi	r3,r19,16
-	lwi	r3,r19,164
+	swi	r3,r1,16
+	lwi	r3,r1,160
 	addk	r4,r0,r3
 	addk	r4,r3,r3
 	addk	r4,r4,r4
@@ -8765,7 +8157,7 @@ __bswapdi2:
 	addk	r4,r4,r4
 	addk	r4,r4,r4
 	addk	r4,r4,r4
-	lwi	r3,r19,168
+	lwi	r3,r1,164
 	addk	r23,r0,r3
 	srl	r23,r3
 	srl	r23,r23
@@ -8792,7 +8184,7 @@ __bswapdi2:
 	srl	r23,r23
 	srl	r23,r23
 	or	r23,r4,r23
-	lwi	r3,r19,164
+	lwi	r3,r1,160
 	addk	r22,r0,r3
 	srl	r22,r3
 	srl	r22,r22
@@ -8820,16 +8212,16 @@ __bswapdi2:
 	srl	r22,r22
 	andi	r26,r22,0 #and1
 	andi	r27,r23,16711680 #and2
-	addik	r3,r19,12
+	addik	r3,r1,12
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	or	r3,r3,r26
-	swi	r3,r19,20
+	swi	r3,r1,20
 	addk	r3,r5,r0
 	or	r3,r3,r27
-	swi	r3,r19,24
-	lwi	r3,r19,164
+	swi	r3,r1,24
+	lwi	r3,r1,160
 	src	r4,r3
 	src	r4,r4
 	src	r4,r4
@@ -8840,7 +8232,7 @@ __bswapdi2:
 	src	r4,r4
 	src	r4,r4
 	andi	r4,r4,-16777216
-	lwi	r3,r19,168
+	lwi	r3,r1,164
 	addk	r29,r0,r3
 	srl	r29,r3
 	srl	r29,r29
@@ -8851,7 +8243,7 @@ __bswapdi2:
 	srl	r29,r29
 	srl	r29,r29
 	or	r29,r4,r29
-	lwi	r3,r19,164
+	lwi	r3,r1,160
 	addk	r28,r0,r3
 	srl	r28,r3
 	srl	r28,r28
@@ -8862,24 +8254,24 @@ __bswapdi2:
 	srl	r28,r28
 	srl	r28,r28
 	andi	r3,r28,0 #and1
-	swi	r3,r19,28
+	swi	r3,r1,28
 	andi	r3,r29,-16777216 #and2
-	swi	r3,r19,32
-	addik	r3,r19,20
+	swi	r3,r1,32
+	addik	r3,r1,20
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,28
+	addik	r4,r1,28
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r8,r4,r0
 	or	r3,r3,r8
-	swi	r3,r19,36
+	swi	r3,r1,36
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,40
-	lwi	r3,r19,168
+	swi	r3,r1,40
+	lwi	r3,r1,164
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -8905,7 +8297,7 @@ __bswapdi2:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,164
+	lwi	r3,r1,160
 	addk	r5,r0,r3
 	addk	r5,r3,r3
 	addk	r5,r5,r5
@@ -8915,11 +8307,11 @@ __bswapdi2:
 	addk	r5,r5,r5
 	addk	r5,r5,r5
 	addk	r5,r5,r5
-	swi	r5,r19,4
-	lwi	r3,r19,4
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	or	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r3,r19,168
+	swi	r3,r1,4
+	lwi	r3,r1,164
 	addk	r4,r0,r3
 	addk	r4,r3,r3
 	addk	r4,r4,r4
@@ -8929,31 +8321,31 @@ __bswapdi2:
 	addk	r4,r4,r4
 	addk	r4,r4,r4
 	addk	r4,r4,r4
-	swi	r4,r19,8
-	addik	r3,r19,4
+	swi	r4,r1,8
+	addik	r3,r1,4
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	andi	r3,r3,255 #and1
-	swi	r3,r19,44
+	swi	r3,r1,44
 	addk	r3,r5,r0
 	andi	r3,r3,0 #and1
-	swi	r3,r19,48
-	addik	r3,r19,36
+	swi	r3,r1,48
+	addik	r3,r1,36
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,44
+	addik	r4,r1,44
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r8,r4,r0
 	or	r3,r3,r8
-	swi	r3,r19,52
+	swi	r3,r1,52
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,56
-	lwi	r4,r19,168
+	swi	r3,r1,56
+	lwi	r4,r1,164
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -8963,7 +8355,7 @@ __bswapdi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,164
+	lwi	r4,r1,160
 	src	r30,r4
 	src	r30,r30
 	src	r30,r30
@@ -8975,7 +8367,7 @@ __bswapdi2:
 	src	r30,r30
 	andi	r30,r30,-16777216
 	or	r30,r3,r30
-	lwi	r3,r19,168
+	lwi	r3,r1,164
 	src	r31,r3
 	src	r31,r31
 	src	r31,r31
@@ -8987,24 +8379,24 @@ __bswapdi2:
 	src	r31,r31
 	andi	r31,r31,-16777216
 	andi	r3,r30,65280 #and2
-	swi	r3,r19,60
+	swi	r3,r1,60
 	andi	r3,r31,0 #and1
-	swi	r3,r19,64
-	addik	r3,r19,52
+	swi	r3,r1,64
+	addik	r3,r1,52
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,60
+	addik	r4,r1,60
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r8,r4,r0
 	or	r3,r3,r8
-	swi	r3,r19,68
+	swi	r3,r1,68
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,72
-	lwi	r3,r19,168
+	swi	r3,r1,72
+	lwi	r3,r1,164
 	addk	r4,r0,r3
 	addk	r4,r3,r3
 	addk	r4,r4,r4
@@ -9014,33 +8406,33 @@ __bswapdi2:
 	addk	r4,r4,r4
 	addk	r4,r4,r4
 	addk	r4,r4,r4
-	swi	r4,r19,76
+	swi	r4,r1,76
 	addk	r8,r0,r0
-	swi	r8,r19,80
-	addik	r3,r19,76
+	swi	r8,r1,80
+	addik	r3,r1,76
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	andi	r3,r3,16711680 #and2
-	swi	r3,r19,84
+	swi	r3,r1,84
 	addk	r3,r5,r0
 	andi	r3,r3,0 #and1
-	swi	r3,r19,88
-	addik	r3,r19,68
+	swi	r3,r1,88
+	addik	r3,r1,68
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,84
+	addik	r4,r1,84
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r9,r4,r0
 	or	r3,r3,r9
-	swi	r3,r19,92
+	swi	r3,r1,92
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,96
-	lwi	r3,r19,168
+	swi	r3,r1,96
+	lwi	r3,r1,164
 	src	r4,r3
 	src	r4,r4
 	src	r4,r4
@@ -9051,40 +8443,38 @@ __bswapdi2:
 	src	r4,r4
 	src	r4,r4
 	andi	r4,r4,-16777216
-	swi	r4,r19,100
-	swi	r8,r19,104
-	addik	r3,r19,92
+	swi	r4,r1,100
+	swi	r8,r1,104
+	addik	r3,r1,92
 	lwi	r6,r3,0
 	lwi	r7,r3,4
 	addk	r3,r6,r0
-	addik	r4,r19,100
+	addik	r4,r1,100
 	lwi	r5,r4,4
 	lwi	r4,r4,0
 	addk	r8,r4,r0
 	or	r3,r3,r8
-	swi	r3,r19,108
+	swi	r3,r1,108
 	addk	r3,r7,r0
 	addk	r4,r5,r0
 	or	r3,r3,r4
-	swi	r3,r19,112
-	addik	r3,r19,108
+	swi	r3,r1,112
+	addik	r3,r1,108
 	lwi	r4,r3,0
 	lwi	r5,r3,4
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,116
-	lwi	r22,r1,120
-	lwi	r23,r1,124
-	lwi	r24,r1,128
-	lwi	r25,r1,132
-	lwi	r26,r1,136
-	lwi	r27,r1,140
-	lwi	r28,r1,144
-	lwi	r29,r1,148
-	lwi	r30,r1,152
-	lwi	r31,r1,156
-	addik	r1,r1,160
+	lwi	r22,r1,116
+	lwi	r23,r1,120
+	lwi	r24,r1,124
+	lwi	r25,r1,128
+	lwi	r26,r1,132
+	lwi	r27,r1,136
+	lwi	r28,r1,140
+	lwi	r29,r1,144
+	lwi	r30,r1,148
+	lwi	r31,r1,152
+	addik	r1,r1,156
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9096,13 +8486,10 @@ $Lfe134:
 	.ent	__bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	lwi	r3,r19,12
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	lwi	r3,r1,4
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -9128,7 +8515,7 @@ __bswapsi2:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r5,r19,12
+	lwi	r5,r1,4
 	addk	r3,r0,r5
 	srl	r3,r5
 	srl	r3,r3
@@ -9140,7 +8527,7 @@ __bswapsi2:
 	srl	r3,r3
 	andi	r3,r3,65280 #and2
 	or	r4,r4,r3
-	lwi	r3,r19,12
+	lwi	r3,r1,4
 	addk	r3,r3,r3
 	addk	r3,r3,r3
 	addk	r3,r3,r3
@@ -9151,7 +8538,7 @@ __bswapsi2:
 	addk	r3,r3,r3
 	andi	r3,r3,16711680 #and2
 	or	r4,r4,r3
-	lwi	r5,r19,12
+	lwi	r5,r1,4
 	src	r3,r5
 	src	r3,r3
 	src	r3,r3
@@ -9163,9 +8550,6 @@ __bswapsi2:
 	src	r3,r3
 	andi	r3,r3,-16777216
 	or	r3,r4,r3
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9177,16 +8561,14 @@ $Lfe135:
 	.ent	__clzsi2
 	.type	__clzsi2, @function
 __clzsi2:
-	.frame	r19,44,r15		# vars= 12, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-44
+	.frame	r1,40,r15		# vars= 12, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-40
 	swi	r15,r1,0
-	swi	r19,r1,40
-	addk	r19,r1,r0
-	swi	r5,r19,48
-	lwi	r3,r19,48
-	swi	r3,r19,28
-	lwi	r4,r19,28
+	swi	r5,r1,44
+	lwi	r3,r1,44
+	swi	r3,r1,28
+	lwi	r4,r1,28
 	addik	r3,r0,65535
 	cmpu	r18,r4,r3
 	blti	r18,$L795
@@ -9195,11 +8577,11 @@ __clzsi2:
 $L795:
 	addk	r3,r0,r0
 $L796:
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	addik	r4,r0,16	# 0x10
 	rsubk	r4,r3,r4
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9207,10 +8589,10 @@ $L796:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,28
-	lwi	r3,r19,32
-	swi	r3,r19,36
-	lwi	r3,r19,28
+	swi	r3,r1,28
+	lwi	r3,r1,32
+	swi	r3,r1,36
+	lwi	r3,r1,28
 	andi	r3,r3,65280 #and2
 	bnei	r3,$L797
 	addik	r3,r0,8	# 0x8
@@ -9218,11 +8600,11 @@ $L796:
 $L797:
 	addk	r3,r0,r0
 $L798:
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	addik	r4,r0,8	# 0x8
 	rsubk	r4,r3,r4
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9230,12 +8612,12 @@ $L798:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,28
-	lwi	r3,r19,32
-	lwi	r4,r19,36
+	swi	r3,r1,28
+	lwi	r3,r1,32
+	lwi	r4,r1,36
 	addk	r3,r4,r3
-	swi	r3,r19,36
-	lwi	r3,r19,28
+	swi	r3,r1,36
+	lwi	r3,r1,28
 	andi	r3,r3,240 #and1
 	bnei	r3,$L799
 	addik	r3,r0,4	# 0x4
@@ -9243,11 +8625,11 @@ $L798:
 $L799:
 	addk	r3,r0,r0
 $L800:
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	addik	r4,r0,4	# 0x4
 	rsubk	r4,r3,r4
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9255,12 +8637,12 @@ $L800:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,28
-	lwi	r3,r19,32
-	lwi	r4,r19,36
+	swi	r3,r1,28
+	lwi	r3,r1,32
+	lwi	r4,r1,36
 	addk	r3,r4,r3
-	swi	r3,r19,36
-	lwi	r3,r19,28
+	swi	r3,r1,36
+	lwi	r3,r1,28
 	andi	r3,r3,12 #and1
 	bnei	r3,$L801
 	addik	r3,r0,2	# 0x2
@@ -9268,11 +8650,11 @@ $L800:
 $L801:
 	addk	r3,r0,r0
 $L802:
-	swi	r3,r19,32
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r3,r1,32
 	addik	r6,r0,2	# 0x2
 	rsubk	r4,r3,r6
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9280,12 +8662,12 @@ $L802:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,28
-	lwi	r3,r19,32
-	lwi	r4,r19,36
+	swi	r3,r1,28
+	lwi	r3,r1,32
+	lwi	r4,r1,36
 	addk	r3,r4,r3
-	swi	r3,r19,36
-	lwi	r3,r19,28
+	swi	r3,r1,36
+	lwi	r3,r1,28
 	andi	r3,r3,2 #and1
 	rsubk	r4,r3,r0
 	or	r3,r4,r3
@@ -9325,7 +8707,7 @@ $L802:
 	addk	r3,r4,r0
 	andi	r3,r3,0x00ff
 	addk	r4,r3,r0
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 	rsubk	r3,r3,r6
 	addk	r6,r3,r0
 	addk	r5,r4,r0
@@ -9333,12 +8715,10 @@ $L802:
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r4,r3
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,40
-	addik	r1,r1,44
+	addik	r1,r1,40
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9350,46 +8730,44 @@ $Lfe136:
 	.ent	__cmpdi2
 	.type	__cmpdi2, @function
 __cmpdi2:
-	.frame	r19,24,r15		# vars= 16, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-24
-	swi	r19,r1,20
-	addk	r19,r1,r0
-	swi	r5,r19,28
-	swi	r6,r19,32
-	swi	r7,r19,36
-	swi	r8,r19,40
-	lwi	r4,r19,28
-	lwi	r5,r19,32
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,36
-	lwi	r5,r19,40
-	swi	r4,r19,12
-	swi	r5,r19,16
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	.frame	r1,20,r15		# vars= 16, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-20
+	swi	r5,r1,24
+	swi	r6,r1,28
+	swi	r7,r1,32
+	swi	r8,r1,36
+	lwi	r4,r1,24
+	lwi	r5,r1,28
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,32
+	lwi	r5,r1,36
+	swi	r4,r1,12
+	swi	r5,r1,16
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmp	r18,r3,r4
 	bgei	r18,$L805
 	addk	r3,r0,r0
 	bri	$L810
 $L805:
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmp	r18,r4,r3
 	bgei	r18,$L807
 	addik	r3,r0,2	# 0x2
 	bri	$L810
 $L807:
-	lwi	r4,r19,8
-	lwi	r3,r19,16
+	lwi	r4,r1,8
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L808
 	addk	r3,r0,r0
 	bri	$L810
 $L808:
-	lwi	r4,r19,8
-	lwi	r3,r19,16
+	lwi	r4,r1,8
+	lwi	r3,r1,16
 	cmpu	r18,r4,r3
 	bgei	r18,$L809
 	addik	r3,r0,2	# 0x2
@@ -9397,9 +8775,7 @@ $L808:
 $L809:
 	addik	r3,r0,1	# 0x1
 $L810:
-	addk	r1,r19,r0
-	lwi	r19,r1,20
-	addik	r1,r1,24
+	addik	r1,r1,20
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9411,28 +8787,24 @@ $Lfe137:
 	.ent	__aeabi_lcmp
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r7,r19,44
-	lwi	r8,r19,48
-	lwi	r5,r19,36
-	lwi	r6,r19,40
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r7,r1,40
+	lwi	r8,r1,44
+	lwi	r5,r1,32
+	lwi	r6,r1,36
 	brlid	r15,__cmpdi2
 	nop		# Unfilled delay slot
 
 	addik	r3,r3,-1
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9444,15 +8816,13 @@ $Lfe138:
 	.ent	__ctzsi2
 	.type	__ctzsi2, @function
 __ctzsi2:
-	.frame	r19,20,r15		# vars= 12, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-20
-	swi	r19,r1,16
-	addk	r19,r1,r0
-	swi	r5,r19,24
-	lwi	r3,r19,24
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	.frame	r1,16,r15		# vars= 12, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-16
+	swi	r5,r1,20
+	lwi	r3,r1,20
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	andi	r3,r3,65535 #and2
 	bnei	r3,$L814
 	addik	r3,r0,16	# 0x10
@@ -9460,9 +8830,9 @@ __ctzsi2:
 $L814:
 	addk	r3,r0,r0
 $L815:
-	swi	r3,r19,8
-	lwi	r5,r19,4
-	lwi	r4,r19,8
+	swi	r3,r1,8
+	lwi	r5,r1,4
+	lwi	r4,r1,8
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9470,10 +8840,10 @@ $L815:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,8
-	swi	r3,r19,12
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,8
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	andi	r3,r3,255 #and1
 	bnei	r3,$L816
 	addik	r3,r0,8	# 0x8
@@ -9481,9 +8851,9 @@ $L815:
 $L816:
 	addk	r3,r0,r0
 $L817:
-	swi	r3,r19,8
-	lwi	r5,r19,4
-	lwi	r4,r19,8
+	swi	r3,r1,8
+	lwi	r5,r1,4
+	lwi	r4,r1,8
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9491,12 +8861,12 @@ $L817:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,8
-	lwi	r4,r19,12
+	swi	r3,r1,4
+	lwi	r3,r1,8
+	lwi	r4,r1,12
 	addk	r3,r4,r3
-	swi	r3,r19,12
-	lwi	r3,r19,4
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	andi	r3,r3,15 #and1
 	bnei	r3,$L818
 	addik	r3,r0,4	# 0x4
@@ -9504,9 +8874,9 @@ $L817:
 $L818:
 	addk	r3,r0,r0
 $L819:
-	swi	r3,r19,8
-	lwi	r5,r19,4
-	lwi	r4,r19,8
+	swi	r3,r1,8
+	lwi	r5,r1,4
+	lwi	r4,r1,8
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9514,12 +8884,12 @@ $L819:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,8
-	lwi	r4,r19,12
+	swi	r3,r1,4
+	lwi	r3,r1,8
+	lwi	r4,r1,12
 	addk	r3,r4,r3
-	swi	r3,r19,12
-	lwi	r3,r19,4
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	andi	r3,r3,3 #and1
 	bnei	r3,$L820
 	addik	r3,r0,2	# 0x2
@@ -9527,9 +8897,9 @@ $L819:
 $L820:
 	addk	r3,r0,r0
 $L821:
-	swi	r3,r19,8
-	lwi	r5,r19,4
-	lwi	r4,r19,8
+	swi	r3,r1,8
+	lwi	r5,r1,4
+	lwi	r4,r1,8
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9537,28 +8907,26 @@ $L821:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	andi	r3,r3,3 #and1
-	swi	r3,r19,4
-	lwi	r3,r19,8
-	lwi	r4,r19,12
+	swi	r3,r1,4
+	lwi	r3,r1,8
+	lwi	r4,r1,12
 	addk	r3,r4,r3
-	swi	r3,r19,12
-	lwi	r3,r19,4
+	swi	r3,r1,12
+	lwi	r3,r1,4
 	xori	r3,r3,-1
 	andi	r4,r3,1 #and1
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	srl	r3,r3
 	addik	r5,r0,2	# 0x2
 	rsubk	r3,r3,r5
 	rsubk	r4,r4,r0
 	and	r4,r4,r3
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	addk	r3,r4,r3
-	addk	r1,r19,r0
-	lwi	r19,r1,16
-	addik	r1,r1,20
+	addik	r1,r1,16
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9570,28 +8938,26 @@ $Lfe139:
 	.ent	__lshrdi3
 	.type	__lshrdi3, @function
 __lshrdi3:
-	.frame	r19,28,r15		# vars= 20, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-28
-	swi	r19,r1,24
-	addk	r19,r1,r0
-	swi	r5,r19,32
-	swi	r6,r19,36
-	swi	r7,r19,40
+	.frame	r1,24,r15		# vars= 20, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-24
+	swi	r5,r1,28
+	swi	r6,r1,32
+	swi	r7,r1,36
 	addik	r3,r0,32	# 0x20
-	swi	r3,r19,4
-	lwi	r4,r19,32
-	lwi	r5,r19,36
-	swi	r4,r19,8
-	swi	r5,r19,12
-	lwi	r4,r19,40
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,28
+	lwi	r5,r1,32
+	swi	r4,r1,8
+	swi	r5,r1,12
+	lwi	r4,r1,36
+	lwi	r3,r1,4
 	and	r3,r4,r3
 	beqi	r3,$L824
-	swi	r0,r19,16
-	lwi	r5,r19,8
-	lwi	r4,r19,40
-	lwi	r3,r19,4
+	swi	r0,r1,16
+	lwi	r5,r1,8
+	lwi	r4,r1,36
+	lwi	r3,r1,4
 	rsubk	r4,r3,r4
 	andi	r18,r4,31
 	addk	r3,r0,r5
@@ -9600,17 +8966,17 @@ __lshrdi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,20
+	swi	r3,r1,20
 	bri	$L825
 $L824:
-	lwi	r3,r19,40
+	lwi	r3,r1,36
 	bnei	r3,$L826
-	lwi	r4,r19,32
-	lwi	r5,r19,36
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 	bri	$L828
 $L826:
-	lwi	r5,r19,8
-	lwi	r4,r19,40
+	lwi	r5,r1,8
+	lwi	r4,r1,36
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9618,10 +8984,10 @@ $L826:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,16
-	lwi	r5,r19,8
-	lwi	r4,r19,4
-	lwi	r3,r19,40
+	swi	r3,r1,16
+	lwi	r5,r1,8
+	lwi	r4,r1,4
+	lwi	r3,r1,36
 	rsubk	r3,r3,r4
 	andi	r18,r3,31
 	addk	r4,r0,r5
@@ -9630,8 +8996,8 @@ $L826:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r4,r4,r4
-	lwi	r6,r19,12
-	lwi	r5,r19,40
+	lwi	r6,r1,12
+	lwi	r5,r1,36
 	andi	r18,r5,31
 	addk	r3,r0,r6
 	beqid	r18,.+20
@@ -9640,16 +9006,14 @@ $L826:
 	bneid	r18,.-4
 	srl	r3,r3
 	or	r3,r4,r3
-	swi	r3,r19,20
+	swi	r3,r1,20
 $L825:
-	lwi	r4,r19,16
-	lwi	r5,r19,20
+	lwi	r4,r1,16
+	lwi	r5,r1,20
 $L828:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,24
-	addik	r1,r1,28
+	addik	r1,r1,24
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9661,19 +9025,17 @@ $Lfe140:
 	.ent	__muldsi3
 	.type	__muldsi3, @function
 __muldsi3:
-	.frame	r19,56,r15		# vars= 20, regs= 2, args= 24
-	.mask	0x00488000
-	addik	r1,r1,-56
+	.frame	r1,52,r15		# vars= 20, regs= 1, args= 24
+	.mask	0x00088000
+	addik	r1,r1,-52
 	swi	r15,r1,0
 	swi	r19,r1,48
-	swi	r22,r1,52
-	addk	r19,r1,r0
-	swi	r5,r19,60
-	swi	r6,r19,64
+	swi	r5,r1,56
+	swi	r6,r1,60
 	addik	r3,r0,16	# 0x10
-	swi	r3,r19,28
+	swi	r3,r1,28
 	addik	r5,r0,-1	# 0xffffffffffffffff
-	lwi	r4,r19,28
+	lwi	r4,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9681,20 +9043,20 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,32
-	lwi	r4,r19,60
-	lwi	r3,r19,32
+	swi	r3,r1,32
+	lwi	r4,r1,56
+	lwi	r3,r1,32
 	and	r5,r4,r3
-	lwi	r4,r19,64
-	lwi	r3,r19,32
+	lwi	r4,r1,60
+	lwi	r3,r1,32
 	and	r3,r4,r3
 	addk	r6,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,44
-	lwi	r5,r19,44
-	lwi	r4,r19,28
+	swi	r3,r1,44
+	lwi	r5,r1,44
+	lwi	r4,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9702,13 +9064,13 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,36
-	lwi	r4,r19,44
-	lwi	r3,r19,32
+	swi	r3,r1,36
+	lwi	r4,r1,44
+	lwi	r3,r1,32
 	and	r3,r4,r3
-	swi	r3,r19,44
-	lwi	r4,r19,60
-	lwi	r3,r19,28
+	swi	r3,r1,44
+	lwi	r4,r1,56
+	lwi	r3,r1,28
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -9716,22 +9078,22 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r5,r5
-	lwi	r4,r19,64
-	lwi	r3,r19,32
+	lwi	r4,r1,60
+	lwi	r3,r1,32
 	and	r3,r4,r3
 	addk	r6,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r3,r4
-	swi	r3,r19,36
-	lwi	r4,r19,44
-	lwi	r5,r19,36
-	lwi	r3,r19,32
+	swi	r3,r1,36
+	lwi	r4,r1,44
+	lwi	r5,r1,36
+	lwi	r3,r1,32
 	and	r6,r5,r3
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r5,31
 	addk	r3,r0,r6
 	beqid	r18,.+20
@@ -9740,9 +9102,9 @@ __muldsi3:
 	bneid	r18,.-4
 	addk	r3,r3,r3
 	addk	r3,r4,r3
-	swi	r3,r19,44
-	lwi	r4,r19,36
-	lwi	r3,r19,28
+	swi	r3,r1,44
+	lwi	r4,r1,36
+	lwi	r3,r1,28
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -9751,9 +9113,9 @@ __muldsi3:
 	bneid	r18,.-4
 	srl	r5,r5
 	addk	r3,r5,r0
-	swi	r3,r19,40
-	lwi	r5,r19,44
-	lwi	r4,r19,28
+	swi	r3,r1,40
+	lwi	r5,r1,44
+	lwi	r4,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9761,13 +9123,13 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	swi	r3,r19,36
-	lwi	r4,r19,44
-	lwi	r3,r19,32
+	swi	r3,r1,36
+	lwi	r4,r1,44
+	lwi	r3,r1,32
 	and	r3,r4,r3
-	swi	r3,r19,44
-	lwi	r4,r19,64
-	lwi	r3,r19,28
+	swi	r3,r1,44
+	lwi	r4,r1,60
+	lwi	r3,r1,28
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -9775,22 +9137,22 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r5,r5
-	lwi	r4,r19,60
-	lwi	r3,r19,32
+	lwi	r4,r1,56
+	lwi	r3,r1,32
 	and	r3,r4,r3
 	addk	r6,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
 	addk	r4,r3,r0
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	addk	r3,r3,r4
-	swi	r3,r19,36
-	lwi	r4,r19,44
-	lwi	r5,r19,36
-	lwi	r3,r19,32
+	swi	r3,r1,36
+	lwi	r4,r1,44
+	lwi	r5,r1,36
+	lwi	r3,r1,32
 	and	r6,r5,r3
-	lwi	r5,r19,28
+	lwi	r5,r1,28
 	andi	r18,r5,31
 	addk	r3,r0,r6
 	beqid	r18,.+20
@@ -9799,11 +9161,11 @@ __muldsi3:
 	bneid	r18,.-4
 	addk	r3,r3,r3
 	addk	r3,r4,r3
-	swi	r3,r19,44
-	lwi	r3,r19,40
+	swi	r3,r1,44
+	lwi	r3,r1,40
 	addk	r6,r3,r0
-	lwi	r5,r19,36
-	lwi	r4,r19,28
+	lwi	r5,r1,36
+	lwi	r4,r1,28
 	andi	r18,r4,31
 	addk	r3,r0,r5
 	beqid	r18,.+20
@@ -9812,11 +9174,11 @@ __muldsi3:
 	bneid	r18,.-4
 	srl	r3,r3
 	addk	r3,r6,r3
-	swi	r3,r19,40
-	lwi	r3,r19,40
-	addk	r22,r3,r0
-	lwi	r4,r19,60
-	lwi	r3,r19,28
+	swi	r3,r1,40
+	lwi	r3,r1,40
+	addk	r19,r3,r0
+	lwi	r4,r1,56
+	lwi	r3,r1,28
 	andi	r18,r3,31
 	addk	r5,r0,r4
 	beqid	r18,.+20
@@ -9824,8 +9186,8 @@ __muldsi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r5,r5
-	lwi	r4,r19,64
-	lwi	r3,r19,28
+	lwi	r4,r1,60
+	lwi	r3,r1,28
 	andi	r18,r3,31
 	addk	r6,r0,r4
 	beqid	r18,.+20
@@ -9836,17 +9198,15 @@ __muldsi3:
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
-	addk	r3,r22,r3
-	swi	r3,r19,40
-	lwi	r4,r19,40
-	lwi	r5,r19,44
+	addk	r3,r19,r3
+	swi	r3,r1,40
+	lwi	r4,r1,40
+	lwi	r5,r1,44
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,48
-	lwi	r22,r1,52
-	addik	r1,r1,56
+	addik	r1,r1,52
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9858,28 +9218,26 @@ $Lfe141:
 	.ent	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	.frame	r19,64,r15		# vars= 24, regs= 3, args= 24
-	.mask	0x00c88000
-	addik	r1,r1,-64
+	.frame	r1,60,r15		# vars= 24, regs= 2, args= 24
+	.mask	0x00488000
+	addik	r1,r1,-60
 	swi	r15,r1,0
 	swi	r19,r1,52
 	swi	r22,r1,56
-	swi	r23,r1,60
-	addk	r19,r1,r0
-	swi	r5,r19,68
-	swi	r6,r19,72
-	swi	r7,r19,76
-	swi	r8,r19,80
-	lwi	r4,r19,68
-	lwi	r5,r19,72
-	swi	r4,r19,28
-	swi	r5,r19,32
-	lwi	r4,r19,76
-	lwi	r5,r19,80
-	swi	r4,r19,36
-	swi	r5,r19,40
-	lwi	r3,r19,32
-	lwi	r4,r19,40
+	swi	r5,r1,64
+	swi	r6,r1,68
+	swi	r7,r1,72
+	swi	r8,r1,76
+	lwi	r4,r1,64
+	lwi	r5,r1,68
+	swi	r4,r1,28
+	swi	r5,r1,32
+	lwi	r4,r1,72
+	lwi	r5,r1,76
+	swi	r4,r1,36
+	swi	r5,r1,40
+	lwi	r3,r1,32
+	lwi	r4,r1,40
 	addk	r6,r4,r0
 	addk	r5,r3,r0
 	brlid	r15,__muldsi3
@@ -9887,39 +9245,37 @@ __muldi3_compiler_rt:
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,44
-	swi	r5,r19,48
-	lwi	r3,r19,44
-	addk	r22,r3,r0
-	lwi	r3,r19,28
+	swi	r4,r1,44
+	swi	r5,r1,48
+	lwi	r3,r1,44
+	addk	r19,r3,r0
+	lwi	r3,r1,28
 	addk	r4,r3,r0
-	lwi	r3,r19,40
+	lwi	r3,r1,40
 	addk	r6,r3,r0
 	addk	r5,r4,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
-	addk	r23,r3,r0
-	lwi	r3,r19,32
-	lwi	r4,r19,36
+	addk	r22,r3,r0
+	lwi	r3,r1,32
+	lwi	r4,r1,36
 	addk	r6,r4,r0
 	addk	r5,r3,r0
 	brlid	r15,__mulsi3
 	nop		# Unfilled delay slot
 
-	addk	r3,r23,r3
 	addk	r3,r22,r3
-	swi	r3,r19,44
-	lwi	r4,r19,44
-	lwi	r5,r19,48
+	addk	r3,r19,r3
+	swi	r3,r1,44
+	lwi	r4,r1,44
+	lwi	r5,r1,48
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
 	lwi	r19,r1,52
 	lwi	r22,r1,56
-	lwi	r23,r1,60
-	addik	r1,r1,64
+	addik	r1,r1,60
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9931,22 +9287,16 @@ $Lfe142:
 	.ent	__negdi2
 	.type	__negdi2, @function
 __negdi2:
-	.frame	r19,8,r15		# vars= 0, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-8
-	swi	r19,r1,4
-	addk	r19,r1,r0
-	swi	r5,r19,12
-	swi	r6,r19,16
-	lwi	r4,r19,12
-	lwi	r5,r19,16
+	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
+	.mask	0x00000000
+	swi	r5,r1,4
+	swi	r6,r1,8
+	lwi	r4,r1,4
+	lwi	r5,r1,8
 	rsub	r5,r5,r0
 	rsubc	r4,r4,r0
 	addk	r3,r4,r0
 	addk	r4,r5,r0
-	addk	r1,r19,r0
-	lwi	r19,r1,4
-	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -9958,23 +9308,21 @@ $Lfe143:
 	.ent	__paritydi2
 	.type	__paritydi2, @function
 __paritydi2:
-	.frame	r19,20,r15		# vars= 12, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-20
-	swi	r19,r1,16
-	addk	r19,r1,r0
-	swi	r5,r19,24
-	swi	r6,r19,28
-	lwi	r4,r19,24
-	lwi	r5,r19,28
-	swi	r4,r19,8
-	swi	r5,r19,12
-	lwi	r3,r19,8
+	.frame	r1,16,r15		# vars= 12, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-16
+	swi	r5,r1,20
+	swi	r6,r1,24
+	lwi	r4,r1,20
+	lwi	r5,r1,24
+	swi	r4,r1,8
+	swi	r5,r1,12
+	lwi	r3,r1,8
 	addk	r4,r3,r0
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -9992,10 +9340,10 @@ __paritydi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -10005,19 +9353,19 @@ __paritydi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	andi	r4,r3,15 #and1
 	addik	r5,r0,27030	# 0x6996
 	andi	r18,r4,31
@@ -10028,9 +9376,7 @@ __paritydi2:
 	bneid	r18,.-4
 	sra	r3,r3
 	andi	r3,r3,1 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,16
-	addik	r1,r1,20
+	addik	r1,r1,16
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10042,15 +9388,13 @@ $Lfe144:
 	.ent	__paritysi2
 	.type	__paritysi2, @function
 __paritysi2:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -10068,10 +9412,10 @@ __paritysi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -10081,19 +9425,19 @@ __paritysi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	xor	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	andi	r4,r3,15 #and1
 	addik	r5,r0,27030	# 0x6996
 	andi	r18,r4,31
@@ -10104,9 +9448,7 @@ __paritysi2:
 	bneid	r18,.-4
 	sra	r3,r3
 	andi	r3,r3,1 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10118,104 +9460,102 @@ $Lfe145:
 	.ent	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	.frame	r19,60,r15		# vars= 12, regs= 11, args= 0
-	.mask	0xffc80000
-	addik	r1,r1,-60
-	swi	r19,r1,16
-	swi	r22,r1,20
-	swi	r23,r1,24
-	swi	r24,r1,28
-	swi	r25,r1,32
-	swi	r26,r1,36
-	swi	r27,r1,40
-	swi	r28,r1,44
-	swi	r29,r1,48
-	swi	r30,r1,52
-	swi	r31,r1,56
-	addk	r19,r1,r0
-	swi	r5,r19,64
-	swi	r6,r19,68
-	lwi	r4,r19,64
-	lwi	r5,r19,68
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,4
+	.frame	r1,56,r15		# vars= 12, regs= 10, args= 0
+	.mask	0xffc00000
+	addik	r1,r1,-56
+	swi	r22,r1,16
+	swi	r23,r1,20
+	swi	r24,r1,24
+	swi	r25,r1,28
+	swi	r26,r1,32
+	swi	r27,r1,36
+	swi	r28,r1,40
+	swi	r29,r1,44
+	swi	r30,r1,48
+	swi	r31,r1,52
+	swi	r5,r1,60
+	swi	r6,r1,64
+	lwi	r4,r1,60
+	lwi	r5,r1,64
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,4
 	src	r3,r4
 	src	r3,r3
 	andi	r3,r3,-2147483648
-	lwi	r4,r19,8
+	lwi	r4,r1,8
 	srl	r11,r4
 	or	r11,r3,r11
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	srl	r10,r3
 	andi	r28,r10,1431655765 #and2
 	andi	r29,r11,1431655765 #and2
-	lwi	r6,r19,4
-	lwi	r7,r19,8
+	lwi	r6,r1,4
+	lwi	r7,r1,8
 	rsub	r5,r29,r7
 	rsubc	r4,r28,r6
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,4
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,4
 	src	r3,r4
 	src	r3,r3
 	src	r3,r3
 	andi	r3,r3,-1073741824
-	lwi	r4,r19,8
+	lwi	r4,r1,8
 	addk	r9,r0,r4
 	srl	r9,r4
 	srl	r9,r9
 	or	r9,r3,r9
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r8,r0,r3
 	srl	r8,r3
 	srl	r8,r8
 	andi	r26,r8,858993459 #and2
 	andi	r27,r9,858993459 #and2
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	andi	r24,r3,858993459 #and2
-	lwi	r3,r19,8
+	lwi	r3,r1,8
 	andi	r25,r3,858993459 #and2
 	add	r5,r27,r25
 	addc	r4,r26,r24
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,4
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,4
 	src	r3,r4
 	src	r3,r3
 	src	r3,r3
 	src	r3,r3
 	src	r3,r3
 	andi	r3,r3,-268435456
-	lwi	r4,r19,8
+	lwi	r4,r1,8
 	addk	r23,r0,r4
 	srl	r23,r4
 	srl	r23,r23
 	srl	r23,r23
 	srl	r23,r23
 	or	r23,r3,r23
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r22,r0,r3
 	srl	r22,r3
 	srl	r22,r22
 	srl	r22,r22
 	srl	r22,r22
-	lwi	r4,r19,4
-	lwi	r5,r19,8
+	lwi	r4,r1,4
+	lwi	r5,r1,8
 	add	r5,r23,r5
 	addc	r4,r22,r4
 	andi	r3,r4,252645135 #and2
-	swi	r3,r19,4
+	swi	r3,r1,4
 	andi	r3,r5,252645135 #and2
-	swi	r3,r19,8
-	lwi	r3,r19,8
-	lwi	r4,r19,4
+	swi	r3,r1,8
+	lwi	r3,r1,8
+	lwi	r4,r1,4
 	addk	r31,r4,r0
 	addk	r30,r0,r0
 	addk	r4,r31,r0
 	addk	r3,r3,r4
-	swi	r3,r19,12
-	lwi	r4,r19,12
+	swi	r3,r1,12
+	lwi	r4,r1,12
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -10233,10 +9573,10 @@ __popcountdi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,12
+	lwi	r4,r1,12
 	addk	r3,r4,r3
-	swi	r3,r19,12
-	lwi	r3,r19,12
+	swi	r3,r1,12
+	lwi	r3,r1,12
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10246,22 +9586,20 @@ __popcountdi2:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,12
+	lwi	r3,r1,12
 	addk	r3,r4,r3
 	andi	r3,r3,127 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,16
-	lwi	r22,r1,20
-	lwi	r23,r1,24
-	lwi	r24,r1,28
-	lwi	r25,r1,32
-	lwi	r26,r1,36
-	lwi	r27,r1,40
-	lwi	r28,r1,44
-	lwi	r29,r1,48
-	lwi	r30,r1,52
-	lwi	r31,r1,56
-	addik	r1,r1,60
+	lwi	r22,r1,16
+	lwi	r23,r1,20
+	lwi	r24,r1,24
+	lwi	r25,r1,28
+	lwi	r26,r1,32
+	lwi	r27,r1,36
+	lwi	r28,r1,40
+	lwi	r29,r1,44
+	lwi	r30,r1,48
+	lwi	r31,r1,52
+	addik	r1,r1,56
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10273,40 +9611,38 @@ $Lfe146:
 	.ent	__popcountsi2
 	.type	__popcountsi2, @function
 __popcountsi2:
-	.frame	r19,12,r15		# vars= 4, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-12
-	swi	r19,r1,8
-	addk	r19,r1,r0
-	swi	r5,r19,16
-	lwi	r3,r19,16
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	.frame	r1,8,r15		# vars= 4, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-8
+	swi	r5,r1,12
+	lwi	r3,r1,12
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	srl	r3,r3
 	andi	r3,r3,1431655765 #and2
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	rsubk	r3,r3,r4
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
 	andi	r4,r3,858993459 #and2
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	andi	r3,r3,858993459 #and2
 	addk	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r4,r3
 	andi	r3,r3,252645135 #and2
-	swi	r3,r19,4
-	lwi	r4,r19,4
+	swi	r3,r1,4
+	lwi	r4,r1,4
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -10324,10 +9660,10 @@ __popcountsi2:
 	srl	r3,r3
 	srl	r3,r3
 	srl	r3,r3
-	lwi	r4,r19,4
+	lwi	r4,r1,4
 	addk	r3,r4,r3
-	swi	r3,r19,4
-	lwi	r3,r19,4
+	swi	r3,r1,4
+	lwi	r3,r1,4
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10337,12 +9673,10 @@ __popcountsi2:
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	lwi	r3,r19,4
+	lwi	r3,r1,4
 	addk	r3,r4,r3
 	andi	r3,r3,63 #and1
-	addk	r1,r19,r0
-	lwi	r19,r1,8
-	addik	r1,r1,12
+	addik	r1,r1,8
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10354,16 +9688,14 @@ $Lfe147:
 	.ent	__powidf2
 	.type	__powidf2, @function
 __powidf2:
-	.frame	r19,44,r15		# vars= 12, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-44
+	.frame	r1,40,r15		# vars= 12, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-40
 	swi	r15,r1,0
-	swi	r19,r1,40
-	addk	r19,r1,r0
-	swi	r5,r19,48
-	swi	r6,r19,52
-	swi	r7,r19,56
-	lwi	r3,r19,56
+	swi	r5,r1,44
+	swi	r6,r1,48
+	swi	r7,r1,52
+	lwi	r3,r1,52
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10397,28 +9729,28 @@ __powidf2:
 	srl	r4,r4
 	srl	r4,r4
 	andi	r3,r4,0x00ff
-	swi	r3,r19,36
+	swi	r3,r1,36
 	addik	r4,r0,0x3ff00000 
 	addik	r5,r0,0x00000000 #Xfer Lo
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 $L847:
-	lwi	r3,r19,56
+	lwi	r3,r1,52
 	andi	r3,r3,1 #and1
 	beqi	r3,$L844
-	lwi	r7,r19,48
-	lwi	r8,r19,52
-	lwi	r5,r19,28
-	lwi	r6,r19,32
+	lwi	r7,r1,44
+	lwi	r8,r1,48
+	lwi	r5,r1,28
+	lwi	r6,r1,32
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,28
-	swi	r5,r19,32
+	swi	r4,r1,28
+	swi	r5,r1,32
 $L844:
-	lwi	r3,r19,56
+	lwi	r3,r1,52
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10453,27 +9785,27 @@ $L844:
 	srl	r4,r4
 	addk	r3,r4,r3
 	sra	r3,r3
-	swi	r3,r19,56
-	lwi	r3,r19,56
+	swi	r3,r1,52
+	lwi	r3,r1,52
 	beqi	r3,$L852
-	lwi	r7,r19,48
-	lwi	r8,r19,52
-	lwi	r5,r19,48
-	lwi	r6,r19,52
+	lwi	r7,r1,44
+	lwi	r8,r1,48
+	lwi	r5,r1,44
+	lwi	r6,r1,48
 	brlid	r15,__muldf3
 	nop		# Unfilled delay slot
 
 	addk	r5,r4,r0
 	addk	r4,r3,r0
-	swi	r4,r19,48
-	swi	r5,r19,52
+	swi	r4,r1,44
+	swi	r5,r1,48
 	bri	$L847
 $L852:
 	nop
-	lwi	r3,r19,36
+	lwi	r3,r1,36
 	beqi	r3,$L848
-	lwi	r7,r19,28
-	lwi	r8,r19,32
+	lwi	r7,r1,28
+	lwi	r8,r1,32
 	addik	r5,r0,0x3ff00000 
 	addik	r6,r0,0x00000000 #Xfer Lo
 	brlid	r15,__divdf3
@@ -10483,15 +9815,13 @@ $L852:
 	addk	r4,r3,r0
 	bri	$L850
 $L848:
-	lwi	r4,r19,28
-	lwi	r5,r19,32
+	lwi	r4,r1,28
+	lwi	r5,r1,32
 $L850:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,40
-	addik	r1,r1,44
+	addik	r1,r1,40
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10503,15 +9833,13 @@ $Lfe148:
 	.ent	__powisf2
 	.type	__powisf2, @function
 __powisf2:
-	.frame	r19,40,r15		# vars= 8, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-40
+	.frame	r1,36,r15		# vars= 8, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-36
 	swi	r15,r1,0
-	swi	r19,r1,36
-	addk	r19,r1,r0
-	swi	r5,r19,44
-	swi	r6,r19,48
-	lwi	r3,r19,48
+	swi	r5,r1,40
+	swi	r6,r1,44
+	lwi	r3,r1,44
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10545,21 +9873,21 @@ __powisf2:
 	srl	r4,r4
 	srl	r4,r4
 	andi	r3,r4,0x00ff
-	swi	r3,r19,32
+	swi	r3,r1,32
 	addik	r3,r0,0x3f800000
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L857:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	andi	r3,r3,1 #and1
 	beqi	r3,$L854
-	lwi	r6,r19,44
-	lwi	r5,r19,28
+	lwi	r6,r1,40
+	lwi	r5,r1,28
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,28
+	swi	r3,r1,28
 $L854:
-	lwi	r3,r19,48
+	lwi	r3,r1,44
 	addk	r4,r0,r3
 	srl	r4,r3
 	srl	r4,r4
@@ -10594,33 +9922,31 @@ $L854:
 	srl	r4,r4
 	addk	r3,r4,r3
 	sra	r3,r3
-	swi	r3,r19,48
-	lwi	r3,r19,48
+	swi	r3,r1,44
+	lwi	r3,r1,44
 	beqi	r3,$L862
-	lwi	r6,r19,44
-	lwi	r5,r19,44
+	lwi	r6,r1,40
+	lwi	r5,r1,40
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
-	swi	r3,r19,44
+	swi	r3,r1,40
 	bri	$L857
 $L862:
 	nop
-	lwi	r3,r19,32
+	lwi	r3,r1,32
 	beqi	r3,$L858
-	lwi	r6,r19,28
+	lwi	r6,r1,28
 	addik	r5,r0,0x3f800000
 	brlid	r15,__divsf3
 	nop		# Unfilled delay slot
 
 	bri	$L860
 $L858:
-	lwi	r3,r19,28
+	lwi	r3,r1,28
 $L860:
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,36
-	addik	r1,r1,40
+	addik	r1,r1,36
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10632,46 +9958,44 @@ $Lfe149:
 	.ent	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
-	.frame	r19,24,r15		# vars= 16, regs= 1, args= 0
-	.mask	0x00080000
-	addik	r1,r1,-24
-	swi	r19,r1,20
-	addk	r19,r1,r0
-	swi	r5,r19,28
-	swi	r6,r19,32
-	swi	r7,r19,36
-	swi	r8,r19,40
-	lwi	r4,r19,28
-	lwi	r5,r19,32
-	swi	r4,r19,4
-	swi	r5,r19,8
-	lwi	r4,r19,36
-	lwi	r5,r19,40
-	swi	r4,r19,12
-	swi	r5,r19,16
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	.frame	r1,20,r15		# vars= 16, regs= 0, args= 0
+	.mask	0x00000000
+	addik	r1,r1,-20
+	swi	r5,r1,24
+	swi	r6,r1,28
+	swi	r7,r1,32
+	swi	r8,r1,36
+	lwi	r4,r1,24
+	lwi	r5,r1,28
+	swi	r4,r1,4
+	swi	r5,r1,8
+	lwi	r4,r1,32
+	lwi	r5,r1,36
+	swi	r4,r1,12
+	swi	r5,r1,16
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmpu	r18,r3,r4
 	bgei	r18,$L864
 	addk	r3,r0,r0
 	bri	$L869
 $L864:
-	lwi	r4,r19,4
-	lwi	r3,r19,12
+	lwi	r4,r1,4
+	lwi	r3,r1,12
 	cmpu	r18,r4,r3
 	bgei	r18,$L866
 	addik	r3,r0,2	# 0x2
 	bri	$L869
 $L866:
-	lwi	r4,r19,8
-	lwi	r3,r19,16
+	lwi	r4,r1,8
+	lwi	r3,r1,16
 	cmpu	r18,r3,r4
 	bgei	r18,$L867
 	addk	r3,r0,r0
 	bri	$L869
 $L867:
-	lwi	r4,r19,8
-	lwi	r3,r19,16
+	lwi	r4,r1,8
+	lwi	r3,r1,16
 	cmpu	r18,r4,r3
 	bgei	r18,$L868
 	addik	r3,r0,2	# 0x2
@@ -10679,9 +10003,7 @@ $L867:
 $L868:
 	addik	r3,r0,1	# 0x1
 $L869:
-	addk	r1,r19,r0
-	lwi	r19,r1,20
-	addik	r1,r1,24
+	addik	r1,r1,20
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -10693,20 +10015,18 @@ $Lfe150:
 	.ent	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
-	.frame	r19,32,r15		# vars= 0, regs= 1, args= 24
-	.mask	0x00088000
-	addik	r1,r1,-32
+	.frame	r1,28,r15		# vars= 0, regs= 0, args= 24
+	.mask	0x00008000
+	addik	r1,r1,-28
 	swi	r15,r1,0
-	swi	r19,r1,28
-	addk	r19,r1,r0
-	swi	r5,r19,36
-	swi	r6,r19,40
-	swi	r7,r19,44
-	swi	r8,r19,48
-	lwi	r4,r19,36
-	lwi	r5,r19,40
-	lwi	r6,r19,44
-	lwi	r7,r19,48
+	swi	r5,r1,32
+	swi	r6,r1,36
+	swi	r7,r1,40
+	swi	r8,r1,44
+	lwi	r4,r1,32
+	lwi	r5,r1,36
+	lwi	r6,r1,40
+	lwi	r7,r1,44
 	addk	r8,r7,r0
 	addk	r7,r6,r0
 	addk	r6,r5,r0
@@ -10716,9 +10036,7 @@ __aeabi_ulcmp:
 
 	addik	r3,r3,-1
 	lwi	r15,r1,0
-	addk	r1,r19,r0
-	lwi	r19,r1,28
-	addik	r1,r1,32
+	addik	r1,r1,28
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 

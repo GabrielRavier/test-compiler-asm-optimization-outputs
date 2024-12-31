@@ -8744,30 +8744,25 @@ ffs:
 .global	libiberty_ffs
 	.type	libiberty_ffs, @function
 libiberty_ffs:
-	push r16
-	push r17
 	push r28
 	push r29
-	in r28,__SP_L__
-	in r29,__SP_H__
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 4 */
-.L__stack_usage = 4
+/* stack size = 2 */
+.L__stack_usage = 2
 	sbiw r24,0
 	brne .L461
 	ldi r24,0
 	ldi r25,0
 	rjmp .L462
 .L461:
-	ldi r16,lo8(1)
-	ldi r17,0
+	ldi r28,lo8(1)
+	ldi r29,0
 	rjmp .L463
 .L464:
 	asr r25
 	ror r24
-	subi r16,-1
-	sbci r17,-1
+	adiw r28,1
 .L463:
 	mov r18,r24
 	andi r18,1<<0
@@ -8775,14 +8770,12 @@ libiberty_ffs:
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
 	breq .L464
-	mov r24,r16
-	mov r25,r17
+	mov r24,r28
+	mov r25,r29
 .L462:
 /* epilogue start */
 	pop r29
 	pop r28
-	pop r17
-	pop r16
 	ret
 	.size	libiberty_ffs, .-libiberty_ffs
 .global	gl_isinff

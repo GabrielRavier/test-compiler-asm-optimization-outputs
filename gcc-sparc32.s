@@ -6433,8 +6433,10 @@ __bswapdi2:
 	sethi	%hi(64512), %g1
 	or	%g1, 768, %g1
 	and	%g3, %g1, %i5
-	or	%o0, %i4, %l4
-	or	%o1, %i5, %l5
+	or	%o0, %i4, %g1
+	st	%g1, [%fp-16]
+	or	%o1, %i5, %g1
+	st	%g1, [%fp-12]
 	ld	[%fp-8], %g1
 	sll	%g1, 8, %g2
 	ld	[%fp-4], %g1
@@ -6445,10 +6447,13 @@ __bswapdi2:
 	and	%i2, 0, %l2
 	sethi	%hi(16711680), %g1
 	and	%i3, %g1, %l3
-	or	%l4, %l2, %g1
-	st	%g1, [%fp-16]
-	or	%l5, %l3, %g1
-	st	%g1, [%fp-12]
+	ldd	[%fp-16], %g2
+	mov	%g2, %g1
+	or	%g1, %l2, %g1
+	st	%g1, [%fp-24]
+	mov	%g3, %g1
+	or	%g1, %l3, %g1
+	st	%g1, [%fp-20]
 	ld	[%fp-8], %g1
 	sll	%g1, 24, %g2
 	ld	[%fp-4], %g1
@@ -6457,20 +6462,20 @@ __bswapdi2:
 	ld	[%fp-8], %g1
 	srl	%g1, 8, %l0
 	and	%l0, 0, %g1
-	st	%g1, [%fp-24]
+	st	%g1, [%fp-32]
 	sethi	%hi(-16777216), %g1
 	and	%l1, %g1, %g1
-	st	%g1, [%fp-20]
-	ldd	[%fp-16], %i4
+	st	%g1, [%fp-28]
+	ldd	[%fp-24], %i4
 	mov	%i4, %g1
-	ldd	[%fp-24], %g2
+	ldd	[%fp-32], %g2
 	mov	%g2, %g4
 	or	%g1, %g4, %g1
-	st	%g1, [%fp-32]
+	st	%g1, [%fp-40]
 	mov	%i5, %g1
 	mov	%g3, %g2
 	or	%g1, %g2, %g1
-	st	%g1, [%fp-28]
+	st	%g1, [%fp-36]
 	ld	[%fp-4], %g1
 	srl	%g1, 24, %g1
 	ld	[%fp-8], %g2
@@ -6479,19 +6484,19 @@ __bswapdi2:
 	ld	[%fp-4], %g1
 	sll	%g1, 8, %o3
 	and	%o2, 255, %g1
-	st	%g1, [%fp-40]
+	st	%g1, [%fp-48]
 	and	%o3, 0, %g1
-	st	%g1, [%fp-36]
-	ldd	[%fp-32], %i4
+	st	%g1, [%fp-44]
+	ldd	[%fp-40], %i4
 	mov	%i4, %g1
-	ldd	[%fp-40], %g2
+	ldd	[%fp-48], %g2
 	mov	%g2, %g4
 	or	%g1, %g4, %g1
-	st	%g1, [%fp-48]
+	st	%g1, [%fp-56]
 	mov	%i5, %g1
 	mov	%g3, %g2
 	or	%g1, %g2, %g1
-	st	%g1, [%fp-44]
+	st	%g1, [%fp-52]
 	ld	[%fp-4], %g1
 	srl	%g1, 8, %g1
 	ld	[%fp-8], %g2
@@ -6502,49 +6507,44 @@ __bswapdi2:
 	sethi	%hi(64512), %g1
 	or	%g1, 768, %g1
 	and	%o4, %g1, %g1
-	st	%g1, [%fp-56]
+	st	%g1, [%fp-64]
 	and	%o5, 0, %g1
-	st	%g1, [%fp-52]
-	ldd	[%fp-48], %i4
+	st	%g1, [%fp-60]
+	ldd	[%fp-56], %i4
 	mov	%i4, %g1
-	ldd	[%fp-56], %g2
+	ldd	[%fp-64], %g2
 	mov	%g2, %g4
 	or	%g1, %g4, %g1
-	st	%g1, [%fp-64]
+	st	%g1, [%fp-72]
 	mov	%i5, %g1
 	mov	%g3, %g2
 	or	%g1, %g2, %g1
-	st	%g1, [%fp-60]
+	st	%g1, [%fp-68]
 	ld	[%fp-4], %g1
 	sll	%g1, 8, %g1
-	st	%g1, [%fp-72]
-	st	%g0, [%fp-68]
-	sethi	%hi(16711680), %g1
-	ldd	[%fp-72], %g2
-	mov	%g2, %g4
-	and	%g4, %g1, %g1
 	st	%g1, [%fp-80]
-	mov	%g3, %g1
-	and	%g1, 0, %g1
-	st	%g1, [%fp-76]
-	ldd	[%fp-64], %i4
-	mov	%i4, %g1
+	st	%g0, [%fp-76]
+	sethi	%hi(16711680), %g1
 	ldd	[%fp-80], %g2
 	mov	%g2, %g4
-	or	%g1, %g4, %l6
-	mov	%i5, %g1
-	mov	%g3, %g2
-	or	%g1, %g2, %l7
+	and	%g4, %g1, %l6
+	mov	%g3, %g1
+	and	%g1, 0, %l7
+	ldd	[%fp-72], %g2
+	mov	%g2, %g1
+	or	%g1, %l6, %l4
+	mov	%g3, %g1
+	or	%g1, %l7, %l5
 	ld	[%fp-4], %g1
 	sll	%g1, 24, %g1
 	st	%g1, [%fp-88]
 	st	%g0, [%fp-84]
 	ldd	[%fp-88], %g2
 	mov	%g2, %g1
-	or	%l6, %g1, %g1
+	or	%l4, %g1, %g1
 	st	%g1, [%fp-96]
 	mov	%g3, %g1
-	or	%l7, %g1, %g1
+	or	%l5, %g1, %g1
 	st	%g1, [%fp-92]
 	ldd	[%fp-96], %g2
 	mov	%g2, %i0

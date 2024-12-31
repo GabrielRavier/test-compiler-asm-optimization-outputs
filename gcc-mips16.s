@@ -16,23 +16,20 @@
 	.ent	make_ti
 	.type	make_ti, @function
 make_ti:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	sd	$5,40($17)
-	ld	$2,32($17)
-	sd	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	ld	$3,16($17)
-	ld	$2,8($17)
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	sd	$5,32($sp)
+	ld	$2,24($sp)
+	sd	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	move	$2,$sp
+	ld	$3,16($2)
+	ld	$2,8($2)
+	addiu	$sp,24
 	jr	$31
 	.end	make_ti
 	.size	make_ti, .-make_ti
@@ -43,23 +40,20 @@ make_ti:
 	.ent	make_tu
 	.type	make_tu, @function
 make_tu:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	sd	$5,40($17)
-	ld	$2,32($17)
-	sd	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	ld	$3,16($17)
-	ld	$2,8($17)
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	sd	$5,32($sp)
+	ld	$2,24($sp)
+	sd	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	move	$2,$sp
+	ld	$3,16($2)
+	ld	$2,8($2)
+	addiu	$sp,24
 	jr	$31
 	.end	make_tu
 	.size	make_tu, .-make_tu
@@ -70,77 +64,73 @@ make_tu:
 	.ent	memmove
 	.type	memmove, @function
 memmove:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
-	lw	$3,12($17)
-	lw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
+	lw	$3,12($sp)
+	lw	$2,8($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L6
-	lw	$3,12($17)
-	lw	$2,40($17)
+	lw	$3,12($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
-	sw	$2,12($17)
-	lw	$3,8($17)
-	lw	$2,40($17)
+	sw	$2,12($sp)
+	lw	$3,8($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L7
 $L8:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,-1
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	addiu	$2,-1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	lb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L7:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L8
 	b	$L9
 $L6:
-	lw	$3,12($17)
-	lw	$2,8($17)
+	lw	$3,12($sp)
+	lw	$2,8($sp)
 	xor	$2,$3
 	beqz	$2,$L9
 	b	$L10
 $L11:
-	lw	$3,12($17)
+	lw	$3,12($sp)
 	addiu	$2,$3,1
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	addiu	$4,$2,1
-	sw	$4,8($17)
+	sw	$4,8($sp)
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L10:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L11
 $L9:
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	memmove
 	.size	memmove, .-memmove
@@ -151,59 +141,55 @@ $L9:
 	.ent	memccpy
 	.type	memccpy, @function
 memccpy:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	sw	$7,48($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
-	lw	$2,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	sw	$7,40($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
+	lw	$2,32($sp)
 	zeb	$2
-	sw	$2,40($17)
+	sw	$2,32($sp)
 	b	$L14
 $L16:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	addiu	$2,-1
-	sw	$2,48($17)
-	lw	$2,12($17)
+	sw	$2,40($sp)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L14:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	beqz	$2,$L15
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	xor	$2,$3
 	bnez	$2,$L16
 $L15:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	beqz	$2,$L17
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
 	b	$L18
 $L17:
 	li	$2,0
 $L18:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	memccpy
 	.size	memccpy, .-memccpy
@@ -214,48 +200,44 @@ $L18:
 	.ent	memchr
 	.type	memchr, @function
 memchr:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
 	zeb	$2
-	sw	$2,32($17)
+	sw	$2,24($sp)
 	b	$L20
 $L22:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,40($17)
+	sw	$2,8($sp)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L20:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L21
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	xor	$2,$3
 	bnez	$2,$L22
 $L21:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L23
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	b	$L25
 $L23:
 	li	$2,0
 $L25:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	memchr
 	.size	memchr, .-memchr
@@ -266,55 +248,51 @@ $L25:
 	.ent	memcmp
 	.type	memcmp, @function
 memcmp:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
 	b	$L27
 $L29:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
-	lw	$2,8($17)
+	sw	$2,32($sp)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L27:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L28
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$2,0($2)
 	xor	$2,$3
 	beqz	$2,$L29
 $L28:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L30
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$2,0($2)
 	subu	$2,$3,$2
 	b	$L32
 $L30:
 	li	$2,0
 $L32:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	memcmp
 	.size	memcmp, .-memcmp
@@ -325,39 +303,35 @@ $L32:
 	.ent	memcpy
 	.type	memcpy, @function
 memcpy:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
 	b	$L34
 $L35:
-	lw	$3,12($17)
+	lw	$3,12($sp)
 	addiu	$2,$3,1
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	addiu	$4,$2,1
-	sw	$4,8($17)
+	sw	$4,8($sp)
 	lbu	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L34:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L35
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	memcpy
 	.size	memcpy, .-memcpy
@@ -368,44 +342,40 @@ $L34:
 	.ent	memrchr
 	.type	memrchr, @function
 memrchr:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
 	zeb	$2
-	sw	$2,32($17)
+	sw	$2,24($sp)
 	b	$L38
 $L40:
-	lw	$3,8($17)
-	lw	$2,40($17)
+	lw	$3,8($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	xor	$2,$3
 	bnez	$2,$L38
-	lw	$3,8($17)
-	lw	$2,40($17)
+	lw	$3,8($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
 	b	$L39
 $L38:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L40
 	li	$2,0
 $L39:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	memrchr
 	.size	memrchr, .-memrchr
@@ -416,37 +386,33 @@ $L39:
 	.ent	memset
 	.type	memset, @function
 memset:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	b	$L42
 $L43:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	move	$3,$2
 	zeb	$3
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
-	lw	$2,8($17)
+	sw	$2,32($sp)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L42:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L43
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	memset
 	.size	memset, .-memset
@@ -457,34 +423,28 @@ $L42:
 	.ent	stpcpy
 	.type	stpcpy, @function
 stpcpy:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
 	b	$L46
 $L47:
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,16($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,0($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,0($sp)
 $L46:
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	sb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lb	$2,0($2)
 	bnez	$2,$L47
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
+	lw	$2,0($sp)
 	jr	$31
 	.end	stpcpy
 	.size	stpcpy, .-stpcpy
@@ -495,37 +455,31 @@ $L46:
 	.ent	strchrnul
 	.type	strchrnul, @function
 strchrnul:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$2,8($sp)
 	zeb	$2
-	sw	$2,16($17)
+	sw	$2,8($sp)
 	b	$L50
 $L52:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,0($sp)
 $L50:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lb	$2,0($2)
 	beqz	$2,$L51
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	xor	$2,$3
 	bnez	$2,$L52
 $L51:
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
+	lw	$2,0($sp)
 	jr	$31
 	.end	strchrnul
 	.size	strchrnul, .-strchrnul
@@ -536,31 +490,24 @@ $L51:
 	.ent	strchr
 	.type	strchr, @function
 strchr:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	move	$2,$4
-	sw	$5,16($17)
+	sw	$5,8($sp)
 $L57:
 	lb	$3,0($2)
 	move	$4,$3
-	lw	$3,16($17)
+	lw	$3,8($sp)
 	xor	$3,$4
 	bnez	$3,$L55
-	b	$L56
+	jr	$31
 $L55:
 	move	$3,$2
 	addiu	$2,$3,1
 	lb	$3,0($3)
 	bnez	$3,$L57
 	li	$2,0
-$L56:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	strchr
 	.size	strchr, .-strchr
@@ -571,42 +518,36 @@ $L56:
 	.ent	strcmp
 	.type	strcmp, @function
 strcmp:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
 	b	$L59
 $L61:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,16($17)
+	sw	$2,0($sp)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,16($17)
+	sw	$2,8($sp)
 $L59:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lb	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lb	$2,0($2)
 	xor	$2,$3
 	bnez	$2,$L60
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lb	$2,0($2)
 	bnez	$2,$L61
 $L60:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	subu	$2,$3,$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	strcmp
 	.size	strcmp, .-strcmp
@@ -617,30 +558,26 @@ $L60:
 	.ent	strlen
 	.type	strlen, @function
 strlen:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	b	$L64
 $L65:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,1
-	sw	$2,24($17)
+	sw	$2,16($sp)
 $L64:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	lb	$2,0($2)
 	bnez	$2,$L65
-	lw	$3,24($17)
-	lw	$2,8($17)
+	lw	$3,16($sp)
+	lw	$2,8($sp)
 	subu	$2,$3,$2
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	strlen
 	.size	strlen, .-strlen
@@ -651,61 +588,57 @@ $L64:
 	.ent	strncmp
 	.type	strncmp, @function
 strncmp:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
-	lw	$2,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L70
 	li	$2,0
 	b	$L69
 $L72:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
-	lw	$2,40($17)
+	sw	$2,12($sp)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L70:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	beqz	$2,$L71
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$2,0($2)
 	beqz	$2,$L71
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L71
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$2,0($2)
 	xor	$2,$3
 	beqz	$2,$L72
 $L71:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lbu	$2,0($2)
 	move	$3,$2
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lbu	$2,0($2)
 	subu	$2,$3,$2
 $L69:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	strncmp
 	.size	strncmp, .-strncmp
@@ -716,42 +649,40 @@ $L69:
 	.ent	swab
 	.type	swab, @function
 swab:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
 	b	$L74
 $L75:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
 	lb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	sb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,1
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,2
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	addiu	$2,2
-	sw	$2,8($17)
-	lw	$2,40($17)
+	sw	$2,8($sp)
+	lw	$2,32($sp)
 	addiu	$2,-2
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L74:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	slt	$2,2
 	move	$2,$24
 	beqz	$2,$L75
@@ -761,9 +692,7 @@ $L74:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	swab
 	.size	swab, .-swab
@@ -774,23 +703,17 @@ $L74:
 	.ent	isalpha
 	.type	isalpha, @function
 isalpha:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$3,8($17)
+	sw	$4,0($sp)
+	lw	$3,0($sp)
 	li	$2,32
 	or	$2,$3
 	addiu	$2,-97
 	sltu	$2,26
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isalpha
 	.size	isalpha, .-isalpha
@@ -801,20 +724,14 @@ isalpha:
 	.ent	isascii
 	.type	isascii, @function
 isascii:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	sltu	$2,128
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isascii
 	.size	isascii, .-isascii
@@ -825,30 +742,23 @@ isascii:
 	.ent	isblank
 	.type	isblank, @function
 isblank:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	li	$3,32
 	xor	$2,$3
 	beqz	$2,$L81
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	li	$3,9
 	xor	$2,$3
 	bnez	$2,$L82
 $L81:
 	li	$2,1
-	b	$L84
+	jr	$31
 $L82:
 	li	$2,0
-$L84:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isblank
 	.size	isblank, .-isblank
@@ -859,30 +769,23 @@ $L84:
 	.ent	iscntrl
 	.type	iscntrl, @function
 iscntrl:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	sltu	$2,32
 	move	$2,$24
 	bnez	$2,$L86
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	li	$3,127
 	xor	$2,$3
 	bnez	$2,$L87
 $L86:
 	li	$2,1
-	b	$L89
+	jr	$31
 $L87:
 	li	$2,0
-$L89:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	iscntrl
 	.size	iscntrl, .-iscntrl
@@ -893,21 +796,15 @@ $L89:
 	.ent	isdigit
 	.type	isdigit, @function
 isdigit:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isdigit
 	.size	isdigit, .-isdigit
@@ -918,21 +815,15 @@ isdigit:
 	.ent	isgraph
 	.type	isgraph, @function
 isgraph:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-33
 	sltu	$2,94
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isgraph
 	.size	isgraph, .-isgraph
@@ -943,21 +834,15 @@ isgraph:
 	.ent	islower
 	.type	islower, @function
 islower:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-97
 	sltu	$2,26
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	islower
 	.size	islower, .-islower
@@ -968,21 +853,15 @@ islower:
 	.ent	isprint
 	.type	isprint, @function
 isprint:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-32
 	sltu	$2,95
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isprint
 	.size	isprint, .-isprint
@@ -993,31 +872,24 @@ isprint:
 	.ent	isspace
 	.type	isspace, @function
 isspace:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	li	$3,32
 	xor	$2,$3
 	beqz	$2,$L99
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,-9
 	sltu	$2,5
 	move	$2,$24
 	beqz	$2,$L100
 $L99:
 	li	$2,1
-	b	$L102
+	jr	$31
 $L100:
 	li	$2,0
-$L102:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isspace
 	.size	isspace, .-isspace
@@ -1028,21 +900,15 @@ $L102:
 	.ent	isupper
 	.type	isupper, @function
 isupper:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-65
 	sltu	$2,26
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	isupper
 	.size	isupper, .-isupper
@@ -1053,28 +919,25 @@ isupper:
 	.ent	iswcntrl
 	.type	iswcntrl, @function
 iswcntrl:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	sltu	$2,32
 	move	$2,$24
 	bnez	$2,$L106
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,-127
 	sltu	$2,33
 	move	$2,$24
 	bnez	$2,$L106
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,-8232
 	sltu	$2,2
 	move	$2,$24
 	bnez	$2,$L106
-	lw	$3,8($17)
+	lw	$3,0($sp)
 	li	$2,65529
 	neg	$2,$2
 	addu	$2,$3,$2
@@ -1083,13 +946,9 @@ iswcntrl:
 	beqz	$2,$L107
 $L106:
 	li	$2,1
-	b	$L109
+	jr	$31
 $L107:
 	li	$2,0
-$L109:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	iswcntrl
 	.size	iswcntrl, .-iswcntrl
@@ -1100,21 +959,15 @@ $L109:
 	.ent	iswdigit
 	.type	iswdigit, @function
 iswdigit:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	iswdigit
 	.size	iswdigit, .-iswdigit
@@ -1125,18 +978,15 @@ iswdigit:
 	.ent	iswprint
 	.type	iswprint, @function
 iswprint:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	sltu	$2,255
 	move	$2,$24
 	beqz	$2,$L113
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$3,$2,1
 	li	$2,127
 	and	$2,$3
@@ -1145,19 +995,19 @@ iswprint:
 	li	$3,1
 	xor	$2,$3
 	zeb	$2
-	b	$L114
+	jr	$31
 $L113:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	sltu	$2,8232
 	move	$2,$24
 	bnez	$2,$L115
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$3,$2,-8234
 	li	$2,47062
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L115
-	lw	$3,8($17)
+	lw	$3,0($sp)
 	li	$2,57344
 	neg	$2,$2
 	addu	$2,$3,$2
@@ -1166,9 +1016,9 @@ $L113:
 	beqz	$2,$L116
 $L115:
 	li	$2,1
-	b	$L114
+	jr	$31
 $L116:
-	lw	$3,8($17)
+	lw	$3,0($sp)
 	li	$2,65532
 	neg	$2,$2
 	addu	$3,$3,$2
@@ -1176,7 +1026,7 @@ $L116:
 	sltu	$2,$3
 	move	$2,$24
 	bnez	$2,$L117
-	lw	$3,8($17)
+	lw	$3,0($sp)
 	li	$2,65534
 	and	$2,$3
 	li	$3,65534
@@ -1184,13 +1034,9 @@ $L116:
 	bnez	$2,$L118
 $L117:
 	li	$2,0
-	b	$L114
+	jr	$31
 $L118:
 	li	$2,1
-$L114:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.type	__pool_iswprint_119, @object
 __pool_iswprint_119:
@@ -1210,19 +1056,16 @@ __pend_iswprint_119:
 	.ent	iswxdigit
 	.type	iswxdigit, @function
 iswxdigit:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	bnez	$2,$L122
-	lw	$3,8($17)
+	lw	$3,0($sp)
 	li	$2,32
 	or	$2,$3
 	addiu	$2,-97
@@ -1231,13 +1074,9 @@ iswxdigit:
 	beqz	$2,$L123
 $L122:
 	li	$2,1
-	b	$L125
+	jr	$31
 $L123:
 	li	$2,0
-$L125:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	iswxdigit
 	.size	iswxdigit, .-iswxdigit
@@ -1248,19 +1087,13 @@ $L125:
 	.ent	toascii
 	.type	toascii, @function
 toascii:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$3,8($17)
+	sw	$4,0($sp)
+	lw	$3,0($sp)
 	li	$2,127
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	toascii
 	.size	toascii, .-toascii
@@ -1288,55 +1121,53 @@ __fn_stub_fdim:
 	.ent	fdim
 	.type	fdim, @function
 fdim:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L143
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,32($17)
-	ld	$4,32($17)
+	ld	$5,56($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L140
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L131
 $L140:
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L141
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L131
 $L141:
 	lw	$2,%call16(__mips16_gtdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
 	bnez	$2,$L142
 	lw	$2,%call16(__mips16_subdf3)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	b	$L131
 $L142:
@@ -1345,13 +1176,11 @@ $L131:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fdim_143, @object
 __pool_fdim_143:
@@ -1390,55 +1219,53 @@ __fn_stub_fdimf:
 	.ent	fdimf
 	.type	fdimf, @function
 fdimf:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L160
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,32($17)
-	lw	$4,32($17)
+	lw	$5,56($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L157
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L148
 $L157:
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,40($17)
-	lw	$4,40($17)
+	lw	$5,64($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L158
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L148
 $L158:
 	lw	$2,%call16(__mips16_gtsf2)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
 	bnez	$2,$L159
 	lw	$2,%call16(__mips16_subsf3)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	b	$L148
 $L159:
@@ -1447,13 +1274,11 @@ $L148:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fdimf_160, @object
 __pool_fdimf_160:
@@ -1490,90 +1315,86 @@ __fn_stub_fmax:
 	.ent	fmax
 	.type	fmax, @function
 fmax:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L180
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,32($17)
-	ld	$4,32($17)
+	ld	$5,56($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L177
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L165
 $L177:
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L178
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L165
 $L178:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	move	$4,$2
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L168
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L169
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L165
 $L169:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L165
 $L168:
 	lw	$2,%call16(__mips16_ltdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L179
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L165
 $L179:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 $L165:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fmax_180, @object
 __pool_fmax_180:
@@ -1608,84 +1429,80 @@ __fn_stub_fmaxf:
 	.ent	fmaxf
 	.type	fmaxf, @function
 fmaxf:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L199
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,32($17)
-	lw	$4,32($17)
+	lw	$5,56($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L196
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L184
 $L196:
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,40($17)
-	lw	$4,40($17)
+	lw	$5,64($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L197
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L184
 $L197:
-	lw	$3,32($17)
+	lw	$3,56($sp)
 	lw	$2,$L200
 	and	$2,$3
 	move	$4,$2
-	lw	$3,40($17)
+	lw	$3,64($sp)
 	lw	$2,$L200
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L187
-	lw	$3,32($17)
+	lw	$3,56($sp)
 	lw	$2,$L200
 	and	$2,$3
 	beqz	$2,$L188
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L184
 $L188:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L184
 $L187:
 	lw	$2,%call16(__mips16_ltsf2)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L198
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L184
 $L198:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 $L184:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fmaxf_199, @object
 __pool_fmaxf_199:
@@ -1722,90 +1539,86 @@ __fn_stub_fmaxl:
 	.ent	fmaxl
 	.type	fmaxl, @function
 fmaxl:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L219
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,32($17)
-	ld	$4,32($17)
+	ld	$5,56($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L216
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L204
 $L216:
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L217
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L204
 $L217:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	move	$4,$2
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L207
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L208
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L204
 $L208:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L204
 $L207:
 	lw	$2,%call16(__mips16_ltdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L218
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L204
 $L218:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 $L204:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fmaxl_219, @object
 __pool_fmaxl_219:
@@ -1840,90 +1653,86 @@ __fn_stub_fmin:
 	.ent	fmin
 	.type	fmin, @function
 fmin:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L238
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,32($17)
-	ld	$4,32($17)
+	ld	$5,56($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L235
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L223
 $L235:
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L236
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L223
 $L236:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	move	$4,$2
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L226
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L227
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L223
 $L227:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L223
 $L226:
 	lw	$2,%call16(__mips16_ltdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L237
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L223
 $L237:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 $L223:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fmin_238, @object
 __pool_fmin_238:
@@ -1958,84 +1767,80 @@ __fn_stub_fminf:
 	.ent	fminf
 	.type	fminf, @function
 fminf:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L257
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,32($17)
-	lw	$4,32($17)
+	lw	$5,56($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L254
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L242
 $L254:
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,40($17)
-	lw	$4,40($17)
+	lw	$5,64($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L255
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L242
 $L255:
-	lw	$3,32($17)
+	lw	$3,56($sp)
 	lw	$2,$L258
 	and	$2,$3
 	move	$4,$2
-	lw	$3,40($17)
+	lw	$3,64($sp)
 	lw	$2,$L258
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L245
-	lw	$3,32($17)
+	lw	$3,56($sp)
 	lw	$2,$L258
 	and	$2,$3
 	beqz	$2,$L246
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L242
 $L246:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	b	$L242
 $L245:
 	lw	$2,%call16(__mips16_ltsf2)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L256
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L242
 $L256:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 $L242:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fminf_257, @object
 __pool_fminf_257:
@@ -2072,90 +1877,86 @@ __fn_stub_fminl:
 	.ent	fminl
 	.type	fminl, @function
 fminl:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L277
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,32($17)
-	ld	$4,32($17)
+	ld	$5,56($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L274
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L262
 $L274:
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L275
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L262
 $L275:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	move	$4,$2
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	xor	$2,$4
 	beqz	$2,$L265
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	dsrl	$2,63
 	move	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L266
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L262
 $L266:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	b	$L262
 $L265:
 	lw	$2,%call16(__mips16_ltdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L276
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	b	$L262
 $L276:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 $L262:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_fminl_277, @object
 __pool_fminl_277:
@@ -2181,43 +1982,39 @@ digits:
 	.ent	l64a
 	.type	l64a, @function
 l64a:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,12($sp)
 	lw	$2,$L282
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L279
 $L280:
-	lw	$3,12($17)
+	lw	$3,12($sp)
 	li	$2,63
 	and	$2,$3
 	lw	$3,$L283
 	addu	$2,$3,$2
 	lb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	srl	$2,$2,6
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L279:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	bnez	$2,$L280
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	li	$3,0
 	sb	$3,0($2)
 	lw	$2,$L282
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.type	__pool_l64a_282, @object
 __pool_l64a_282:
@@ -2239,14 +2036,11 @@ __pend_l64a_282:
 	.ent	srand
 	.type	srand, @function
 srand:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	addiu	$2,-1
 	dsll	$3,$2,32
 	dsrl	$3,32
@@ -2255,9 +2049,6 @@ srand:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.type	__pool_srand_285, @object
 __pool_srand_285:
@@ -2275,12 +2066,9 @@ __pend_srand_285:
 	.ent	rand
 	.type	rand, @function
 rand:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	lw	$2,$L289
 	ld	$3,0($2)
 	ld	$2,$L290
@@ -2293,9 +2081,6 @@ rand:
 	ld	$2,0($2)
 	dsrl	$2,33
 	sll	$2,$2,0
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.type	__pool_rand_288, @object
 __pool_rand_288:
@@ -2318,50 +2103,46 @@ __pend_rand_288:
 	.ent	insque
 	.type	insque, @function
 insque:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
-	lw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
+	lw	$2,12($sp)
 	bnez	$2,$L292
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	li	$3,0
 	sw	$3,4($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$3,4($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sw	$3,0($2)
 	b	$L291
 $L292:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	lw	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sw	$3,0($2)
-	lw	$2,8($17)
-	lw	$3,12($17)
+	lw	$2,8($sp)
+	lw	$3,12($sp)
 	sw	$3,4($2)
-	lw	$2,12($17)
-	lw	$3,8($17)
+	lw	$2,12($sp)
+	lw	$3,8($sp)
 	sw	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	beqz	$2,$L291
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	sw	$3,4($2)
 $L291:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	insque
 	.size	insque, .-insque
@@ -2372,39 +2153,35 @@ $L291:
 	.ent	remque
 	.type	remque, @function
 remque:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	beqz	$2,$L295
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	lw	$3,4($3)
 	sw	$3,4($2)
 $L295:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$2,4($2)
 	beqz	$2,$L297
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lw	$2,4($2)
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	lw	$3,0($3)
 	sw	$3,0($2)
 $L297:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	remque
 	.size	remque, .-remque
@@ -2415,71 +2192,69 @@ $L297:
 	.ent	lsearch
 	.type	lsearch, @function
 lsearch:
-	.frame	$17,48,$31		# vars= 16, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,72,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
+	sd	$3,64($sp)
 	sd	$16,56($sp)
-	addiu	$17,$sp,32
-	sw	$4,48($17)
-	sw	$5,56($17)
-	sw	$6,64($17)
-	sw	$7,72($17)
-	lw	$16,72($17)
+	sw	$4,72($sp)
+	sw	$5,80($sp)
+	sw	$6,88($sp)
+	sw	$7,96($sp)
+	lw	$16,96($sp)
 	move	$2,$16
 	addiu	$2,-1
-	sw	$2,12($17)
-	lw	$2,56($17)
-	sw	$2,16($17)
-	lw	$2,64($17)
+	sw	$2,44($sp)
+	lw	$2,80($sp)
+	sw	$2,48($sp)
+	lw	$2,88($sp)
 	lw	$2,0($2)
-	sw	$2,20($17)
+	sw	$2,52($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	b	$L299
 $L302:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	mult	$16,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,48($sp)
 	addu	$4,$3,$2
-	lw	$3,48($17)
-	lw	$2,84($17)
+	lw	$3,72($sp)
+	lw	$2,108($sp)
 	move	$5,$4
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
 	bnez	$2,$L300
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	mult	$16,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,48($sp)
 	addu	$2,$3,$2
 	b	$L301
 $L300:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L299:
-	lw	$3,8($17)
-	lw	$2,20($17)
+	lw	$3,40($sp)
+	lw	$2,52($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L302
-	lw	$2,20($17)
+	lw	$2,52($sp)
 	addiu	$3,$2,1
-	lw	$2,64($17)
+	lw	$2,88($sp)
 	sw	$3,0($2)
-	lw	$2,20($17)
+	lw	$2,52($sp)
 	mult	$16,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,48($sp)
 	addu	$2,$3,$2
-	lw	$4,72($17)
-	lw	$3,48($17)
+	lw	$4,96($sp)
+	lw	$3,72($sp)
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
@@ -2487,11 +2262,9 @@ $L299:
 	jal	memcpy
 	.option	pic2
 $L301:
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	ld	$16,24($sp)
-	addiu	$sp,48
+	ld	$7,64($sp)
+	ld	$16,56($sp)
+	addiu	$sp,72
 	jr	$7
 	.end	lsearch
 	.size	lsearch, .-lsearch
@@ -2502,67 +2275,63 @@ $L301:
 	.ent	lfind
 	.type	lfind, @function
 lfind:
-	.frame	$17,48,$31		# vars= 16, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,72,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
+	sd	$3,64($sp)
 	sd	$16,56($sp)
-	addiu	$17,$sp,32
-	sw	$4,48($17)
-	sw	$5,56($17)
-	sw	$6,64($17)
-	sw	$7,72($17)
-	lw	$16,72($17)
+	sw	$4,72($sp)
+	sw	$5,80($sp)
+	sw	$6,88($sp)
+	sw	$7,96($sp)
+	lw	$16,96($sp)
 	move	$2,$16
 	addiu	$2,-1
-	sw	$2,12($17)
-	lw	$2,56($17)
-	sw	$2,16($17)
-	lw	$2,64($17)
+	sw	$2,44($sp)
+	lw	$2,80($sp)
+	sw	$2,48($sp)
+	lw	$2,88($sp)
 	lw	$2,0($2)
-	sw	$2,20($17)
+	sw	$2,52($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	b	$L304
 $L307:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	mult	$16,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,48($sp)
 	addu	$4,$3,$2
-	lw	$3,48($17)
-	lw	$2,84($17)
+	lw	$3,72($sp)
+	lw	$2,108($sp)
 	move	$5,$4
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
 	bnez	$2,$L305
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	mult	$16,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,48($sp)
 	addu	$2,$3,$2
 	b	$L306
 $L305:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L304:
-	lw	$3,8($17)
-	lw	$2,20($17)
+	lw	$3,40($sp)
+	lw	$2,52($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L307
 	li	$2,0
 $L306:
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	ld	$16,24($sp)
-	addiu	$sp,48
+	ld	$7,64($sp)
+	ld	$16,56($sp)
+	addiu	$sp,72
 	jr	$7
 	.end	lfind
 	.size	lfind, .-lfind
@@ -2573,22 +2342,16 @@ $L306:
 	.ent	abs
 	.type	abs, @function
 abs:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	slt	$2,0
 	move	$3,$24
 	beqz	$3,$L309
 	neg	$2,$2
 $L309:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	abs
 	.size	abs, .-abs
@@ -2599,33 +2362,31 @@ $L309:
 	.ent	atoi
 	.type	atoi, @function
 atoi:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,44($sp)
 	b	$L312
 $L313:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$2,1
-	sw	$2,32($17)
+	sw	$2,56($sp)
 $L312:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	move	$4,$2
 	.option	pic0
 	jal	isspace
 	.option	pic2
 	bnez	$2,$L313
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	move	$3,$2
 	cmpi	$3,43
@@ -2635,45 +2396,43 @@ $L312:
 	move	$2,$24
 	bnez	$2,$L316
 	li	$2,1
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L314:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$2,1
-	sw	$2,32($17)
+	sw	$2,56($sp)
 	b	$L316
 $L317:
-	lw	$3,8($17)
+	lw	$3,40($sp)
 	move	$2,$3
 	sll	$2,$2,2
 	addu	$2,$2,$3
 	sll	$2,$2,1
 	move	$4,$2
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$3,$2,1
-	sw	$3,32($17)
+	sw	$3,56($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	subu	$2,$4,$2
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L316:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	bnez	$2,$L317
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	bnez	$2,$L318
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	neg	$2,$2
 	b	$L320
 $L318:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 $L320:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	atoi
 	.size	atoi, .-atoi
@@ -2684,33 +2443,31 @@ $L320:
 	.ent	atol
 	.type	atol, @function
 atol:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,44($sp)
 	b	$L322
 $L323:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$2,1
-	sw	$2,32($17)
+	sw	$2,56($sp)
 $L322:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	move	$4,$2
 	.option	pic0
 	jal	isspace
 	.option	pic2
 	bnez	$2,$L323
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	move	$3,$2
 	cmpi	$3,43
@@ -2720,45 +2477,43 @@ $L322:
 	move	$2,$24
 	bnez	$2,$L326
 	li	$2,1
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L324:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$2,1
-	sw	$2,32($17)
+	sw	$2,56($sp)
 	b	$L326
 $L327:
-	lw	$3,8($17)
+	lw	$3,40($sp)
 	move	$2,$3
 	sll	$2,$2,2
 	addu	$2,$2,$3
 	sll	$2,$2,1
 	move	$4,$2
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addiu	$3,$2,1
-	sw	$3,32($17)
+	sw	$3,56($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	subu	$2,$4,$2
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L326:
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	bnez	$2,$L327
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	bnez	$2,$L328
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	neg	$2,$2
 	b	$L330
 $L328:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 $L330:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	atol
 	.size	atol, .-atol
@@ -2769,33 +2524,31 @@ $L330:
 	.ent	atoll
 	.type	atoll, @function
 atoll:
-	.frame	$17,40,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,64,$31		# vars= 16, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
-	addiu	$17,$sp,32
-	sw	$4,40($17)
+	sd	$3,56($sp)
+	sw	$4,64($sp)
 	li	$2,0
-	sd	$2,8($17)
+	sd	$2,40($sp)
 	li	$2,0
-	sw	$2,16($17)
+	sw	$2,48($sp)
 	b	$L332
 $L333:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	addiu	$2,1
-	sw	$2,40($17)
+	sw	$2,64($sp)
 $L332:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	lb	$2,0($2)
 	move	$4,$2
 	.option	pic0
 	jal	isspace
 	.option	pic2
 	bnez	$2,$L333
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	lb	$2,0($2)
 	move	$3,$2
 	cmpi	$3,43
@@ -2805,46 +2558,44 @@ $L332:
 	move	$2,$24
 	bnez	$2,$L336
 	li	$2,1
-	sw	$2,16($17)
+	sw	$2,48($sp)
 $L334:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	addiu	$2,1
-	sw	$2,40($17)
+	sw	$2,64($sp)
 	b	$L336
 $L337:
-	ld	$3,8($17)
+	ld	$3,40($sp)
 	move	$2,$3
 	dsll	$2,$2,2
 	daddu	$2,$2,$3
 	dsll	$2,$2,1
 	move	$4,$2
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	addiu	$3,$2,1
-	sw	$3,40($17)
+	sw	$3,64($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	dsubu	$2,$4,$2
-	sd	$2,8($17)
+	sd	$2,40($sp)
 $L336:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	lb	$2,0($2)
 	addiu	$2,-48
 	sltu	$2,10
 	move	$2,$24
 	bnez	$2,$L337
-	lw	$2,16($17)
+	lw	$2,48($sp)
 	bnez	$2,$L338
 	li	$3,0
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	dsubu	$2,$3,$2
 	b	$L340
 $L338:
-	ld	$2,8($17)
+	ld	$2,40($sp)
 $L340:
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	addiu	$sp,64
 	jr	$7
 	.end	atoll
 	.size	atoll, .-atoll
@@ -2855,72 +2606,68 @@ $L340:
 	.ent	bsearch
 	.type	bsearch, @function
 bsearch:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
-	sw	$6,48($17)
-	sw	$7,56($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
+	sw	$6,72($sp)
+	sw	$7,80($sp)
 	b	$L342
 $L347:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$3,$2,1
-	lw	$2,56($17)
+	lw	$2,80($sp)
 	mult	$3,$2
 	mflo	$2
-	lw	$3,40($17)
+	lw	$3,64($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$4,8($17)
-	lw	$3,32($17)
-	lw	$2,68($17)
+	sw	$2,40($sp)
+	lw	$4,40($sp)
+	lw	$3,56($sp)
+	lw	$2,92($sp)
 	move	$5,$4
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	sw	$2,12($17)
-	lw	$2,12($17)
+	sw	$2,44($sp)
+	lw	$2,44($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L343
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$2,$2,1
-	sw	$2,48($17)
+	sw	$2,72($sp)
 	b	$L342
 $L343:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	slt	$2,1
 	move	$2,$24
 	bnez	$2,$L345
-	lw	$3,8($17)
-	lw	$2,56($17)
+	lw	$3,40($sp)
+	lw	$2,80($sp)
 	addu	$2,$3,$2
-	sw	$2,40($17)
-	lw	$2,48($17)
+	sw	$2,64($sp)
+	lw	$2,72($sp)
 	srl	$2,$2,1
-	lw	$3,48($17)
+	lw	$3,72($sp)
 	subu	$2,$3,$2
 	addiu	$2,-1
-	sw	$2,48($17)
+	sw	$2,72($sp)
 	b	$L342
 $L345:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	b	$L346
 $L342:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	bnez	$2,$L347
 	li	$2,0
 $L346:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	bsearch
 	.size	bsearch, .-bsearch
@@ -2931,72 +2678,68 @@ $L346:
 	.ent	bsearch_r
 	.type	bsearch_r, @function
 bsearch_r:
-	.frame	$17,40,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,64,$31		# vars= 16, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
-	addiu	$17,$sp,32
-	sw	$4,40($17)
-	sw	$5,48($17)
-	sw	$6,56($17)
-	sw	$7,64($17)
-	lw	$2,48($17)
-	sw	$2,8($17)
-	lw	$2,56($17)
-	sw	$2,12($17)
+	sd	$3,56($sp)
+	sw	$4,64($sp)
+	sw	$5,72($sp)
+	sw	$6,80($sp)
+	sw	$7,88($sp)
+	lw	$2,72($sp)
+	sw	$2,40($sp)
+	lw	$2,80($sp)
+	sw	$2,44($sp)
 	b	$L349
 $L353:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	sra	$2,$2,1
 	move	$3,$2
-	lw	$2,64($17)
+	lw	$2,88($sp)
 	mult	$3,$2
 	mflo	$2
-	lw	$3,8($17)
+	lw	$3,40($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$5,84($17)
-	lw	$4,16($17)
-	lw	$3,40($17)
-	lw	$2,76($17)
+	sw	$2,48($sp)
+	lw	$5,108($sp)
+	lw	$4,48($sp)
+	lw	$3,64($sp)
+	lw	$2,100($sp)
 	move	$6,$5
 	move	$5,$4
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	sw	$2,20($17)
-	lw	$2,20($17)
+	sw	$2,52($sp)
+	lw	$2,52($sp)
 	bnez	$2,$L350
-	lw	$2,16($17)
+	lw	$2,48($sp)
 	b	$L351
 $L350:
-	lw	$2,20($17)
+	lw	$2,52($sp)
 	slt	$2,1
 	move	$2,$24
 	bnez	$2,$L352
-	lw	$3,16($17)
-	lw	$2,64($17)
+	lw	$3,48($sp)
+	lw	$2,88($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,40($sp)
+	lw	$2,44($sp)
 	addiu	$2,-1
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L352:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	sra	$2,$2,1
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L349:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	bnez	$2,$L353
 	li	$2,0
 $L351:
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	addiu	$sp,64
 	jr	$7
 	.end	bsearch_r
 	.size	bsearch_r, .-bsearch_r
@@ -3007,39 +2750,35 @@ $L351:
 	.ent	div
 	.type	div, @function
 div:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$3,32($17)
-	lw	$2,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$3,24($sp)
+	lw	$2,32($sp)
 	div	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mflo	$2
 	move	$4,$2
-	lw	$3,32($17)
-	lw	$2,40($17)
+	lw	$3,24($sp)
+	lw	$2,32($sp)
 	div	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
 	move	$3,$2
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	sw	$4,0($2)
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	sw	$3,4($2)
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	div
 	.size	div, .-div
@@ -3050,23 +2789,17 @@ div:
 	.ent	imaxabs
 	.type	imaxabs, @function
 imaxabs:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	ld	$2,8($17)
+	sd	$4,0($sp)
+	ld	$2,0($sp)
 	slt	$2,0
 	move	$3,$24
 	beqz	$3,$L357
 	li	$3,0
 	dsubu	$2,$3,$2
 $L357:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	imaxabs
 	.size	imaxabs, .-imaxabs
@@ -3077,39 +2810,35 @@ $L357:
 	.ent	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	sd	$5,40($17)
-	sd	$6,48($17)
-	ld	$3,40($17)
-	ld	$2,48($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	sd	$5,32($sp)
+	sd	$6,40($sp)
+	ld	$3,32($sp)
+	ld	$2,40($sp)
 	ddiv	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mflo	$2
 	move	$4,$2
-	ld	$3,40($17)
-	ld	$2,48($17)
+	ld	$3,32($sp)
+	ld	$2,40($sp)
 	ddiv	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
 	move	$3,$2
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sd	$4,0($2)
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sd	$3,8($2)
-	lw	$2,32($17)
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	lw	$2,24($sp)
+	addiu	$sp,24
 	jr	$31
 	.end	imaxdiv
 	.size	imaxdiv, .-imaxdiv
@@ -3120,22 +2849,16 @@ imaxdiv:
 	.ent	labs
 	.type	labs, @function
 labs:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	slt	$2,0
 	move	$3,$24
 	beqz	$3,$L362
 	neg	$2,$2
 $L362:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	labs
 	.size	labs, .-labs
@@ -3146,39 +2869,35 @@ $L362:
 	.ent	ldiv
 	.type	ldiv, @function
 ldiv:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$3,32($17)
-	lw	$2,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$3,24($sp)
+	lw	$2,32($sp)
 	div	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mflo	$2
 	move	$4,$2
-	lw	$3,32($17)
-	lw	$2,40($17)
+	lw	$3,24($sp)
+	lw	$2,32($sp)
 	div	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
 	move	$3,$2
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	sw	$4,0($2)
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	sw	$3,4($2)
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	ldiv
 	.size	ldiv, .-ldiv
@@ -3189,23 +2908,17 @@ ldiv:
 	.ent	llabs
 	.type	llabs, @function
 llabs:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	ld	$2,8($17)
+	sd	$4,0($sp)
+	ld	$2,0($sp)
 	slt	$2,0
 	move	$3,$24
 	beqz	$3,$L367
 	li	$3,0
 	dsubu	$2,$3,$2
 $L367:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	llabs
 	.size	llabs, .-llabs
@@ -3216,39 +2929,35 @@ $L367:
 	.ent	lldiv
 	.type	lldiv, @function
 lldiv:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	sd	$5,40($17)
-	sd	$6,48($17)
-	ld	$3,40($17)
-	ld	$2,48($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	sd	$5,32($sp)
+	sd	$6,40($sp)
+	ld	$3,32($sp)
+	ld	$2,40($sp)
 	ddiv	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mflo	$2
 	move	$4,$2
-	ld	$3,40($17)
-	ld	$2,48($17)
+	ld	$3,32($sp)
+	ld	$2,40($sp)
 	ddiv	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
 	move	$3,$2
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sd	$4,0($2)
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sd	$3,8($2)
-	lw	$2,32($17)
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	lw	$2,24($sp)
+	addiu	$sp,24
 	jr	$31
 	.end	lldiv
 	.size	lldiv, .-lldiv
@@ -3259,40 +2968,33 @@ lldiv:
 	.ent	wcschr
 	.type	wcschr, @function
 wcschr:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
 	b	$L372
 $L374:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,4
-	sw	$2,8($17)
+	sw	$2,0($sp)
 $L372:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
 	beqz	$2,$L373
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
-	lw	$3,16($17)
+	lw	$3,8($sp)
 	xor	$2,$3
 	bnez	$2,$L374
 $L373:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
 	beqz	$2,$L375
-	lw	$2,8($17)
-	b	$L377
+	lw	$2,0($sp)
+	jr	$31
 $L375:
 	li	$2,0
-$L377:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	wcschr
 	.size	wcschr, .-wcschr
@@ -3303,58 +3005,51 @@ $L377:
 	.ent	wcscmp
 	.type	wcscmp, @function
 wcscmp:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
 	b	$L379
 $L381:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	addiu	$2,4
-	sw	$2,8($17)
-	lw	$2,16($17)
+	sw	$2,0($sp)
+	lw	$2,8($sp)
 	addiu	$2,4
-	sw	$2,16($17)
+	sw	$2,8($sp)
 $L379:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	xor	$2,$3
 	bnez	$2,$L380
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
 	beqz	$2,$L380
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	bnez	$2,$L381
 $L380:
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$3,$2
 	move	$2,$24
 	bnez	$2,$L382
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$2,$3
 	move	$2,$24
 	zeb	$2
-	b	$L384
+	jr	$31
 $L382:
 	li	$2,1
 	neg	$2,$2
-$L384:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	wcscmp
 	.size	wcscmp, .-wcscmp
@@ -3365,34 +3060,30 @@ $L384:
 	.ent	wcscpy
 	.type	wcscpy, @function
 wcscpy:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	.set	noreorder
 	nop
 	.set	reorder
 $L386:
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	addiu	$2,$3,4
-	sw	$2,32($17)
-	lw	$2,24($17)
+	sw	$2,24($sp)
+	lw	$2,16($sp)
 	addiu	$4,$2,4
-	sw	$4,24($17)
+	sw	$4,16($sp)
 	lw	$3,0($3)
 	sw	$3,0($2)
 	lw	$2,0($2)
 	bnez	$2,$L386
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	wcscpy
 	.size	wcscpy, .-wcscpy
@@ -3403,31 +3094,27 @@ $L386:
 	.ent	wcslen
 	.type	wcslen, @function
 wcslen:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	b	$L389
 $L390:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,4
-	sw	$2,24($17)
+	sw	$2,16($sp)
 $L389:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	lw	$2,0($2)
 	bnez	$2,$L390
-	lw	$3,24($17)
-	lw	$2,8($17)
+	lw	$3,16($sp)
+	lw	$2,8($sp)
 	subu	$2,$3,$2
 	sra	$2,$2,2
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	wcslen
 	.size	wcslen, .-wcslen
@@ -3438,69 +3125,62 @@ $L389:
 	.ent	wcsncmp
 	.type	wcsncmp, @function
 wcsncmp:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	sw	$6,24($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	sw	$6,16($sp)
 	b	$L393
 $L395:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,-1
-	sw	$2,24($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$2,0($sp)
 	addiu	$2,4
-	sw	$2,8($17)
-	lw	$2,16($17)
+	sw	$2,0($sp)
+	lw	$2,8($sp)
 	addiu	$2,4
-	sw	$2,16($17)
+	sw	$2,8($sp)
 $L393:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L394
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	xor	$2,$3
 	bnez	$2,$L394
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
 	beqz	$2,$L394
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	bnez	$2,$L395
 $L394:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L396
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$3,$2
 	move	$2,$24
 	bnez	$2,$L397
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$2,$3
 	move	$2,$24
 	zeb	$2
-	b	$L400
+	jr	$31
 $L397:
 	li	$2,1
 	neg	$2,$2
-	b	$L400
+	jr	$31
 $L396:
 	li	$2,0
-$L400:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	wcsncmp
 	.size	wcsncmp, .-wcsncmp
@@ -3511,42 +3191,35 @@ $L400:
 	.ent	wmemchr
 	.type	wmemchr, @function
 wmemchr:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	sw	$6,24($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	sw	$6,16($sp)
 	b	$L402
 $L404:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,-1
-	sw	$2,24($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$2,0($sp)
 	addiu	$2,4
-	sw	$2,8($17)
+	sw	$2,0($sp)
 $L402:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L403
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$2,0($2)
-	lw	$3,16($17)
+	lw	$3,8($sp)
 	xor	$2,$3
 	bnez	$2,$L404
 $L403:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L405
-	lw	$2,8($17)
-	b	$L407
+	lw	$2,0($sp)
+	jr	$31
 $L405:
 	li	$2,0
-$L407:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	wmemchr
 	.size	wmemchr, .-wmemchr
@@ -3557,63 +3230,56 @@ $L407:
 	.ent	wmemcmp
 	.type	wmemcmp, @function
 wmemcmp:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	sw	$6,24($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	sw	$6,16($sp)
 	b	$L409
 $L411:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,-1
-	sw	$2,24($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$2,0($sp)
 	addiu	$2,4
-	sw	$2,8($17)
-	lw	$2,16($17)
+	sw	$2,0($sp)
+	lw	$2,8($sp)
 	addiu	$2,4
-	sw	$2,16($17)
+	sw	$2,8($sp)
 $L409:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L410
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	xor	$2,$3
 	beqz	$2,$L411
 $L410:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	beqz	$2,$L412
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$3,$2
 	move	$2,$24
 	bnez	$2,$L413
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	lw	$3,0($2)
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	lw	$2,0($2)
 	slt	$2,$3
 	move	$2,$24
 	zeb	$2
-	b	$L416
+	jr	$31
 $L413:
 	li	$2,1
 	neg	$2,$2
-	b	$L416
+	jr	$31
 $L412:
 	li	$2,0
-$L416:
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	wmemcmp
 	.size	wmemcmp, .-wmemcmp
@@ -3624,36 +3290,32 @@ $L416:
 	.ent	wmemcpy
 	.type	wmemcpy, @function
 wmemcpy:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	b	$L418
 $L419:
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	addiu	$2,$3,4
-	sw	$2,32($17)
-	lw	$2,24($17)
+	sw	$2,24($sp)
+	lw	$2,16($sp)
 	addiu	$4,$2,4
-	sw	$4,24($17)
+	sw	$4,16($sp)
 	lw	$3,0($3)
 	sw	$3,0($2)
 $L418:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L419
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	wmemcpy
 	.size	wmemcpy, .-wmemcpy
@@ -3664,70 +3326,66 @@ $L418:
 	.ent	wmemmove
 	.type	wmemmove, @function
 wmemmove:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$3,24($17)
-	lw	$2,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	xor	$2,$3
 	bnez	$2,$L422
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	b	$L423
 $L422:
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	subu	$3,$3,$2
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	sll	$2,$2,2
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L428
 	b	$L425
 $L426:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	sll	$2,$2,2
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	addu	$3,$3,$2
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	sll	$2,$2,2
-	lw	$4,24($17)
+	lw	$4,16($sp)
 	addu	$2,$4,$2
 	lw	$3,0($3)
 	sw	$3,0($2)
 $L425:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L426
 	b	$L427
 $L429:
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	addiu	$2,$3,4
-	sw	$2,32($17)
-	lw	$2,24($17)
+	sw	$2,24($sp)
+	lw	$2,16($sp)
 	addiu	$4,$2,4
-	sw	$4,24($17)
+	sw	$4,16($sp)
 	lw	$3,0($3)
 	sw	$3,0($2)
 $L428:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L429
 $L427:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 $L423:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	wmemmove
 	.size	wmemmove, .-wmemmove
@@ -3738,33 +3396,29 @@ $L423:
 	.ent	wmemset
 	.type	wmemset, @function
 wmemset:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
 	b	$L431
 $L432:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$3,$2,4
-	sw	$3,24($17)
-	lw	$3,32($17)
+	sw	$3,16($sp)
+	lw	$3,24($sp)
 	sw	$3,0($2)
 $L431:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$3,$2,-1
-	sw	$3,40($17)
+	sw	$3,32($sp)
 	bnez	$2,$L432
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	wmemset
 	.size	wmemset, .-wmemset
@@ -3775,79 +3429,75 @@ $L431:
 	.ent	bcopy
 	.type	bcopy, @function
 bcopy:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,32($17)
-	sw	$2,12($17)
-	lw	$3,8($17)
-	lw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
+	sw	$2,12($sp)
+	lw	$3,8($sp)
+	lw	$2,12($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L435
-	lw	$3,8($17)
-	lw	$2,40($17)
+	lw	$3,8($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$3,12($17)
-	lw	$2,40($17)
+	sw	$2,8($sp)
+	lw	$3,12($sp)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	b	$L436
 $L437:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,-1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	addiu	$2,-1
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
 	lb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L436:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L437
 	b	$L441
 $L435:
-	lw	$3,8($17)
-	lw	$2,12($17)
+	lw	$3,8($sp)
+	lw	$2,12($sp)
 	xor	$2,$3
 	beqz	$2,$L441
 	b	$L439
 $L440:
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	addiu	$2,$3,1
-	sw	$2,8($17)
-	lw	$2,12($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
 	addiu	$4,$2,1
-	sw	$4,12($17)
+	sw	$4,12($sp)
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L439:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L440
 $L441:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	bcopy
 	.size	bcopy, .-bcopy
@@ -3858,28 +3508,22 @@ $L441:
 	.ent	rotl64
 	.type	rotl64, @function
 rotl64:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	sw	$5,16($17)
-	ld	$3,8($17)
-	lw	$2,16($17)
+	sd	$4,0($sp)
+	sw	$5,8($sp)
+	ld	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	dsll	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,63
 	and	$2,$5
 	dsrl	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotl64
 	.size	rotl64, .-rotl64
@@ -3890,28 +3534,22 @@ rotl64:
 	.ent	rotr64
 	.type	rotr64, @function
 rotr64:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	sw	$5,16($17)
-	ld	$3,8($17)
-	lw	$2,16($17)
+	sd	$4,0($sp)
+	sw	$5,8($sp)
+	ld	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	dsrl	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,63
 	and	$2,$5
 	dsll	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotr64
 	.size	rotr64, .-rotr64
@@ -3922,28 +3560,22 @@ rotr64:
 	.ent	rotl32
 	.type	rotl32, @function
 rotl32:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	sll	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,31
 	and	$2,$5
 	srl	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotl32
 	.size	rotl32, .-rotl32
@@ -3954,28 +3586,22 @@ rotl32:
 	.ent	rotr32
 	.type	rotr32, @function
 rotr32:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	srl	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,31
 	and	$2,$5
 	sll	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotr32
 	.size	rotr32, .-rotr32
@@ -3986,28 +3612,22 @@ rotr32:
 	.ent	rotl_sz
 	.type	rotl_sz, @function
 rotl_sz:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	sll	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,31
 	and	$2,$5
 	srl	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotl_sz
 	.size	rotl_sz, .-rotl_sz
@@ -4018,28 +3638,22 @@ rotl_sz:
 	.ent	rotr_sz
 	.type	rotr_sz, @function
 rotr_sz:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	move	$4,$3
 	srl	$4,$2
-	lw	$2,16($17)
+	lw	$2,8($sp)
 	neg	$2,$2
 	li	$5,31
 	and	$2,$5
 	sll	$3,$2
 	or	$3,$4
 	move	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotr_sz
 	.size	rotr_sz, .-rotr_sz
@@ -4050,31 +3664,28 @@ rotr_sz:
 	.ent	rotl16
 	.type	rotl16, @function
 rotl16:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	move	$2,$4
-	sw	$5,16($17)
-	sh	$2,8($17)
-	lhu	$2,8($17)
-	lw	$3,16($17)
+	sw	$5,8($sp)
+	move	$3,$sp
+	sh	$2,0($3)
+	move	$2,$sp
+	lhu	$2,0($2)
+	lw	$3,8($sp)
 	sll	$2,$3
 	move	$3,$2
 	zeh	$3
-	lhu	$2,8($17)
+	move	$2,$sp
+	lhu	$2,0($2)
 	li	$5,16
-	lw	$4,16($17)
+	lw	$4,8($sp)
 	subu	$4,$5,$4
 	srl	$2,$4
 	zeh	$2
 	or	$2,$3
 	zeh	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotl16
 	.size	rotl16, .-rotl16
@@ -4085,31 +3696,28 @@ rotl16:
 	.ent	rotr16
 	.type	rotr16, @function
 rotr16:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	move	$2,$4
-	sw	$5,16($17)
-	sh	$2,8($17)
-	lhu	$2,8($17)
-	lw	$3,16($17)
+	sw	$5,8($sp)
+	move	$3,$sp
+	sh	$2,0($3)
+	move	$2,$sp
+	lhu	$2,0($2)
+	lw	$3,8($sp)
 	srl	$2,$3
 	move	$3,$2
 	zeh	$3
-	lhu	$2,8($17)
+	move	$2,$sp
+	lhu	$2,0($2)
 	li	$5,16
-	lw	$4,16($17)
+	lw	$4,8($sp)
 	subu	$4,$5,$4
 	sll	$2,$4
 	zeh	$2
 	or	$2,$3
 	zeh	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotr16
 	.size	rotr16, .-rotr16
@@ -4120,31 +3728,28 @@ rotr16:
 	.ent	rotl8
 	.type	rotl8, @function
 rotl8:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	move	$2,$4
-	sw	$5,16($17)
-	sb	$2,8($17)
-	lbu	$2,8($17)
-	lw	$3,16($17)
+	sw	$5,8($sp)
+	move	$3,$sp
+	sb	$2,0($3)
+	move	$2,$sp
+	lbu	$2,0($2)
+	lw	$3,8($sp)
 	sll	$2,$3
 	move	$3,$2
 	zeb	$3
-	lbu	$2,8($17)
+	move	$2,$sp
+	lbu	$2,0($2)
 	li	$5,8
-	lw	$4,16($17)
+	lw	$4,8($sp)
 	subu	$4,$5,$4
 	srl	$2,$4
 	zeb	$2
 	or	$2,$3
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotl8
 	.size	rotl8, .-rotl8
@@ -4155,31 +3760,28 @@ rotl8:
 	.ent	rotr8
 	.type	rotr8, @function
 rotr8:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
 	move	$2,$4
-	sw	$5,16($17)
-	sb	$2,8($17)
-	lbu	$2,8($17)
-	lw	$3,16($17)
+	sw	$5,8($sp)
+	move	$3,$sp
+	sb	$2,0($3)
+	move	$2,$sp
+	lbu	$2,0($2)
+	lw	$3,8($sp)
 	srl	$2,$3
 	move	$3,$2
 	zeb	$3
-	lbu	$2,8($17)
+	move	$2,$sp
+	lbu	$2,0($2)
 	li	$5,8
-	lw	$4,16($17)
+	lw	$4,8($sp)
 	subu	$4,$5,$4
 	sll	$2,$4
 	zeb	$2
 	or	$2,$3
 	zeb	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	rotr8
 	.size	rotr8, .-rotr8
@@ -4190,36 +3792,35 @@ rotr8:
 	.ent	bswap_16
 	.type	bswap_16, @function
 bswap_16:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sh	$2,24($17)
+	move	$3,$sp
+	sh	$2,16($3)
 	li	$2,255
-	sw	$2,8($17)
-	lhu	$3,24($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	move	$2,$sp
+	lhu	$3,16($2)
+	lw	$2,8($sp)
 	sll	$2,$2,8
 	and	$2,$3
 	srl	$2,$2,8
 	move	$3,$2
 	zeh	$3
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	move	$4,$2
 	zeh	$4
-	lhu	$2,24($17)
+	move	$2,$sp
+	lhu	$2,16($2)
 	and	$2,$4
 	zeh	$2
 	sll	$2,$2,8
 	zeh	$2
 	or	$2,$3
 	zeh	$2
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	bswap_16
 	.size	bswap_16, .-bswap_16
@@ -4230,41 +3831,37 @@ bswap_16:
 	.ent	bswap_32
 	.type	bswap_32, @function
 bswap_32:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
 	li	$2,255
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	sll	$3,$2,24
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	and	$2,$3
 	srl	$3,$2,24
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$4,$2,8
 	sll	$4,$4,8
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	and	$2,$4
 	srl	$2,$2,8
 	or	$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$4,$2,8
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	and	$2,$4
 	sll	$2,$2,8
 	or	$3,$2
-	lw	$4,24($17)
-	lw	$2,8($17)
+	lw	$4,16($sp)
+	lw	$2,8($sp)
 	and	$2,$4
 	sll	$2,$2,24
 	or	$2,$3
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	bswap_32
 	.size	bswap_32, .-bswap_32
@@ -4275,66 +3872,62 @@ bswap_32:
 	.ent	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sd	$4,24($17)
+	addiu	$sp,-16
+	sd	$4,16($sp)
 	li	$2,255
-	sd	$2,8($17)
-	ld	$2,8($17)
+	sd	$2,8($sp)
+	ld	$2,8($sp)
 	dsll	$3,$2,56
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$3
 	dsrl	$2,56
 	move	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,48
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsrl	$2,40
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,40
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsrl	$2,24
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,32
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsrl	$2,8
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,24
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsll	$2,$2,8
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,8
 	dsll	$4,$4,8
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsll	$2,$2,24
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsll	$4,$2,8
-	ld	$2,24($17)
+	ld	$2,16($sp)
 	and	$2,$4
 	dsll	$2,$2,40
 	or	$3,$2
-	ld	$4,24($17)
-	ld	$2,8($17)
+	ld	$4,16($sp)
+	ld	$2,8($sp)
 	and	$2,$4
 	dsll	$2,$2,56
 	or	$2,$3
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	bswap_64
 	.size	bswap_64, .-bswap_64
@@ -4345,40 +3938,36 @@ bswap_64:
 	.ent	ffs
 	.type	ffs, @function
 ffs:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L469
 $L472:
-	lw	$3,24($17)
-	lw	$2,8($17)
+	lw	$3,16($sp)
+	lw	$2,8($sp)
 	srl	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L470
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
 	b	$L471
 $L470:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L469:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sltu	$2,32
 	move	$2,$24
 	bnez	$2,$L472
 	li	$2,0
 $L471:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	ffs
 	.size	ffs, .-ffs
@@ -4389,13 +3978,11 @@ $L471:
 	.ent	libiberty_ffs
 	.type	libiberty_ffs, @function
 libiberty_ffs:
-	.frame	$17,16,$31		# vars= 0, regs= 2/0, args= 0, gp= 0
-	.mask	0x00030000,-8
+	.frame	$sp,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
+	.mask	0x00010000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-16
-	sd	$17,8($sp)
+	addiu	$sp,-8
 	sd	$16,0($sp)
-	move	$17,$sp
 	move	$2,$4
 	bnez	$2,$L474
 	li	$2,0
@@ -4412,10 +3999,8 @@ $L476:
 	beqz	$3,$L477
 	move	$2,$16
 $L475:
-	move	$sp,$17
-	ld	$17,8($sp)
 	ld	$16,0($sp)
-	addiu	$sp,16
+	addiu	$sp,8
 	jr	$31
 	.end	libiberty_ffs
 	.size	libiberty_ffs, .-libiberty_ffs
@@ -4442,34 +4027,32 @@ __fn_stub_gl_isinff:
 	.ent	gl_isinff
 	.type	gl_isinff, @function
 gl_isinff:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L485
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
+	sw	$4,56($sp)
 	lw	$2,%call16(__mips16_ltsf2)($16)
 	lw	$5,$L486
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L479
 	lw	$2,%call16(__mips16_gtsf2)($16)
 	lw	$5,$L487
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -4480,11 +4063,9 @@ $L479:
 $L484:
 	li	$2,0
 $L483:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_gl_isinff_485, @object
 __pool_gl_isinff_485:
@@ -4522,34 +4103,32 @@ __fn_stub_gl_isinfd:
 	.ent	gl_isinfd
 	.type	gl_isinfd, @function
 gl_isinfd:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L495
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
+	sd	$4,56($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L496
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L489
 	lw	$2,%call16(__mips16_gtdf2)($16)
 	ld	$5,$L497
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -4560,11 +4139,9 @@ $L489:
 $L494:
 	li	$2,0
 $L493:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_gl_isinfd_495, @object
 __pool_gl_isinfd_495:
@@ -4605,34 +4182,32 @@ __fn_stub_gl_isinfl:
 	.ent	gl_isinfl
 	.type	gl_isinfl, @function
 gl_isinfl:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L505
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
+	sd	$4,56($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L506
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L499
 	lw	$2,%call16(__mips16_gtdf2)($16)
 	ld	$5,$L507
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -4643,11 +4218,9 @@ $L499:
 $L504:
 	li	$2,0
 $L503:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_gl_isinfl_505, @object
 __pool_gl_isinfl_505:
@@ -4672,35 +4245,31 @@ __pend_gl_isinfl_505:
 	.ent	_Qp_itoq
 	.type	_Qp_itoq, @function
 _Qp_itoq:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
+	sd	$3,40($sp)
 	lw	$2,$L509
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$2,$28
-	sw	$4,24($17)
-	sw	$5,32($17)
+	sw	$4,48($sp)
+	sw	$5,56($sp)
 	lw	$2,%call16(__mips16_floatsidf)($2)
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
-	lw	$2,24($17)
+	lw	$2,48($sp)
 	sd	$3,0($2)
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.type	__pool__Qp_itoq_509, @object
 __pool__Qp_itoq_509:
@@ -4734,44 +4303,42 @@ __fn_stub_ldexpf:
 	.ent	ldexpf
 	.type	ldexpf, @function
 ldexpf:
-	.frame	$17,40,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,64,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
+	sd	$3,56($sp)
 	sd	$16,48($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L521
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,40($17)
-	sw	$5,48($17)
+	sw	$4,64($sp)
+	sw	$5,72($sp)
 	lw	$2,%call16(__mips16_unordsf2)($16)
-	lw	$5,40($17)
-	lw	$4,40($17)
+	lw	$5,64($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L511
-	lw	$3,40($17)
+	lw	$3,64($sp)
 	lw	$2,%call16(__mips16_addsf3)($16)
 	move	$5,$3
 	move	$4,$3
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
 	lw	$2,%call16(__mips16_nesf2)($16)
 	move	$5,$3
-	lw	$4,40($17)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L511
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L513
@@ -4780,51 +4347,49 @@ ldexpf:
 $L513:
 	lw	$2,$L523
 $L514:
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L517:
-	lw	$3,48($17)
+	lw	$3,72($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L515
 	lw	$2,%call16(__mips16_mulsf3)($16)
-	lw	$5,8($17)
-	lw	$4,40($17)
+	lw	$5,40($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sw	$2,40($17)
+	sw	$2,64($sp)
 $L515:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	sw	$2,48($17)
-	lw	$2,48($17)
+	sw	$2,72($sp)
+	lw	$2,72($sp)
 	beqz	$2,$L520
 	lw	$2,%call16(__mips16_mulsf3)($16)
-	lw	$5,8($17)
-	lw	$4,8($17)
+	lw	$5,40($sp)
+	lw	$4,40($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	b	$L517
 $L520:
 	.set	noreorder
 	nop
 	.set	reorder
 $L511:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	ld	$16,16($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	ld	$16,48($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool_ldexpf_521, @object
 __pool_ldexpf_521:
@@ -4862,44 +4427,42 @@ __fn_stub_ldexp:
 	.ent	ldexp
 	.type	ldexp, @function
 ldexp:
-	.frame	$17,40,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,64,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
+	sd	$3,56($sp)
 	sd	$16,48($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L535
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,40($17)
-	sw	$5,48($17)
+	sd	$4,64($sp)
+	sw	$5,72($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L525
-	ld	$3,40($17)
+	ld	$3,64($sp)
 	lw	$2,%call16(__mips16_adddf3)($16)
 	move	$5,$3
 	move	$4,$3
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
 	lw	$2,%call16(__mips16_nedf2)($16)
 	move	$5,$3
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L525
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L527
@@ -4908,51 +4471,49 @@ ldexp:
 $L527:
 	ld	$2,$L537
 $L528:
-	sd	$2,8($17)
+	sd	$2,40($sp)
 $L531:
-	lw	$3,48($17)
+	lw	$3,72($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L529
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,8($17)
-	ld	$4,40($17)
+	ld	$5,40($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,40($17)
+	sd	$2,64($sp)
 $L529:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	sw	$2,48($17)
-	lw	$2,48($17)
+	sw	$2,72($sp)
+	lw	$2,72($sp)
 	beqz	$2,$L534
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,8($17)
-	ld	$4,8($17)
+	ld	$5,40($sp)
+	ld	$4,40($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,8($17)
+	sd	$2,40($sp)
 	b	$L531
 $L534:
 	.set	noreorder
 	nop
 	.set	reorder
 $L525:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	ld	$16,16($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	ld	$16,48($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool_ldexp_535, @object
 __pool_ldexp_535:
@@ -4993,44 +4554,42 @@ __fn_stub_ldexpl:
 	.ent	ldexpl
 	.type	ldexpl, @function
 ldexpl:
-	.frame	$17,40,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,64,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
+	sd	$3,56($sp)
 	sd	$16,48($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L549
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,40($17)
-	sw	$5,48($17)
+	sd	$4,64($sp)
+	sw	$5,72($sp)
 	lw	$2,%call16(__mips16_unorddf2)($16)
-	ld	$5,40($17)
-	ld	$4,40($17)
+	ld	$5,64($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L539
-	ld	$3,40($17)
+	ld	$3,64($sp)
 	lw	$2,%call16(__mips16_adddf3)($16)
 	move	$5,$3
 	move	$4,$3
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
 	lw	$2,%call16(__mips16_nedf2)($16)
 	move	$5,$3
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L539
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L541
@@ -5039,51 +4598,49 @@ ldexpl:
 $L541:
 	ld	$2,$L551
 $L542:
-	sd	$2,8($17)
+	sd	$2,40($sp)
 $L545:
-	lw	$3,48($17)
+	lw	$3,72($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L543
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,8($17)
-	ld	$4,40($17)
+	ld	$5,40($sp)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,40($17)
+	sd	$2,64($sp)
 $L543:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	sw	$2,48($17)
-	lw	$2,48($17)
+	sw	$2,72($sp)
+	lw	$2,72($sp)
 	beqz	$2,$L548
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,8($17)
-	ld	$4,8($17)
+	ld	$5,40($sp)
+	ld	$4,40($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,8($17)
+	sd	$2,40($sp)
 	b	$L545
 $L548:
 	.set	noreorder
 	nop
 	.set	reorder
 $L539:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	ld	$16,16($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	ld	$16,48($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool_ldexpl_549, @object
 __pool_ldexpl_549:
@@ -5108,42 +4665,38 @@ __pend_ldexpl_549:
 	.ent	memxor
 	.type	memxor, @function
 memxor:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$2,32($17)
-	sw	$2,8($17)
-	lw	$2,24($17)
-	sw	$2,12($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
+	lw	$2,24($sp)
+	sw	$2,8($sp)
+	lw	$2,16($sp)
+	sw	$2,12($sp)
 	b	$L553
 $L554:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$3,$2,1
-	sw	$3,8($17)
+	sw	$3,8($sp)
 	lb	$4,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$3,$2,1
-	sw	$3,12($17)
+	sw	$3,12($sp)
 	lb	$3,0($2)
 	xor	$3,$4
 	seb	$3
 	sb	$3,0($2)
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	addiu	$2,-1
-	sw	$2,40($17)
+	sw	$2,32($sp)
 $L553:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	bnez	$2,$L554
-	lw	$2,24($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,16($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	memxor
 	.size	memxor, .-memxor
@@ -5154,59 +4707,55 @@ $L553:
 	.ent	strncat
 	.type	strncat, @function
 strncat:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
-	sw	$6,48($17)
-	lw	$2,32($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
+	sw	$6,72($sp)
+	lw	$2,56($sp)
 	move	$4,$2
 	.option	pic0
 	jal	strlen
 	.option	pic2
 	move	$3,$2
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	addu	$2,$2,$3
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	b	$L557
 $L559:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	addiu	$2,1
-	sw	$2,40($17)
-	lw	$2,8($17)
+	sw	$2,64($sp)
+	lw	$2,40($sp)
 	addiu	$2,1
-	sw	$2,8($17)
-	lw	$2,48($17)
+	sw	$2,40($sp)
+	lw	$2,72($sp)
 	addiu	$2,-1
-	sw	$2,48($17)
+	sw	$2,72($sp)
 $L557:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	beqz	$2,$L558
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	lb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	sb	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	lb	$2,0($2)
 	bnez	$2,$L559
 $L558:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	bnez	$2,$L560
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	li	$3,0
 	sb	$3,0($2)
 $L560:
-	lw	$2,32($17)
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	lw	$2,56($sp)
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	strncat
 	.size	strncat, .-strncat
@@ -5217,40 +4766,36 @@ $L560:
 	.ent	strnlen
 	.type	strnlen, @function
 strnlen:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L563
 $L568:
 	.set	noreorder
 	nop
 	.set	reorder
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L563:
-	lw	$3,8($17)
-	lw	$2,32($17)
+	lw	$3,8($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L564
-	lw	$3,24($17)
-	lw	$2,8($17)
+	lw	$3,16($sp)
+	lw	$2,8($sp)
 	addu	$2,$3,$2
 	lb	$2,0($2)
 	bnez	$2,$L568
 $L564:
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	strnlen
 	.size	strnlen, .-strnlen
@@ -5261,46 +4806,42 @@ $L564:
 	.ent	strpbrk
 	.type	strpbrk, @function
 strpbrk:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
 	b	$L570
 $L574:
-	lw	$2,32($17)
-	sw	$2,8($17)
+	lw	$2,24($sp)
+	sw	$2,8($sp)
 	b	$L571
 $L573:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$3,$2,1
-	sw	$3,8($17)
+	sw	$3,8($sp)
 	lb	$3,0($2)
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	lb	$2,0($2)
 	xor	$2,$3
 	bnez	$2,$L571
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	b	$L572
 $L571:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	lb	$2,0($2)
 	bnez	$2,$L573
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	addiu	$2,1
-	sw	$2,24($17)
+	sw	$2,16($sp)
 $L570:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	lb	$2,0($2)
 	bnez	$2,$L574
 	li	$2,0
 $L572:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	strpbrk
 	.size	strpbrk, .-strpbrk
@@ -5311,32 +4852,28 @@ $L572:
 	.ent	strrchr
 	.type	strrchr, @function
 strrchr:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sw	$5,32($17)
+	sw	$5,24($sp)
 	li	$3,0
-	sw	$3,8($17)
+	sw	$3,8($sp)
 $L577:
 	lb	$3,0($2)
 	move	$4,$3
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	xor	$3,$4
 	bnez	$3,$L576
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L576:
 	move	$3,$2
 	addiu	$2,$3,1
 	lb	$3,0($3)
 	bnez	$3,$L577
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	strrchr
 	.size	strrchr, .-strrchr
@@ -5347,32 +4884,30 @@ $L576:
 	.ent	strstr
 	.type	strstr, @function
 strstr:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
-	lw	$2,32($17)
-	sw	$2,8($17)
-	lw	$2,40($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
+	lw	$2,56($sp)
+	sw	$2,40($sp)
+	lw	$2,64($sp)
 	move	$4,$2
 	.option	pic0
 	jal	strlen
 	.option	pic2
-	sw	$2,12($17)
-	lw	$2,12($17)
+	sw	$2,44($sp)
+	lw	$2,44($sp)
 	bnez	$2,$L582
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L581
 $L584:
-	lw	$4,12($17)
-	lw	$3,40($17)
-	lw	$2,8($17)
+	lw	$4,44($sp)
+	lw	$3,64($sp)
+	lw	$2,40($sp)
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
@@ -5380,31 +4915,29 @@ $L584:
 	jal	strncmp
 	.option	pic2
 	bnez	$2,$L583
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	b	$L581
 $L583:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L582:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	lb	$2,0($2)
 	move	$3,$2
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	strchr
 	.option	pic2
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,40($sp)
+	lw	$2,40($sp)
 	bnez	$2,$L584
 	li	$2,0
 $L581:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	strstr
 	.size	strstr, .-strstr
@@ -5432,35 +4965,33 @@ __fn_stub_copysign:
 	.ent	copysign
 	.type	copysign, @function
 copysign:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L595
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L596
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L586
 	lw	$2,%call16(__mips16_gtdf2)($16)
 	ld	$5,$L596
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -5468,40 +4999,38 @@ copysign:
 $L586:
 	lw	$2,%call16(__mips16_gtdf2)($16)
 	ld	$5,$L596
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
 	bnez	$2,$L589
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L596
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L589
 $L588:
-	ld	$3,32($17)
+	ld	$3,56($sp)
 	ld	$2,$L597
 	xor	$2,$3
 	b	$L592
 $L589:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 $L592:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool_copysign_595, @object
 __pool_copysign_595:
@@ -5525,31 +5054,29 @@ __pend_copysign_595:
 	.ent	memmem
 	.type	memmem, @function
 memmem:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
-	sw	$6,48($17)
-	sw	$7,56($17)
-	lw	$3,40($17)
-	lw	$2,56($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
+	sw	$6,72($sp)
+	sw	$7,80($sp)
+	lw	$3,64($sp)
+	lw	$2,80($sp)
 	subu	$2,$3,$2
-	lw	$3,32($17)
+	lw	$3,56($sp)
 	addu	$2,$3,$2
-	sw	$2,12($17)
-	lw	$2,56($17)
+	sw	$2,44($sp)
+	lw	$2,80($sp)
 	bnez	$2,$L599
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	b	$L600
 $L599:
-	lw	$3,40($17)
-	lw	$2,56($17)
+	lw	$3,64($sp)
+	lw	$2,80($sp)
 	sltu	$3,$2
 	move	$2,$24
 	zeb	$2
@@ -5557,21 +5084,21 @@ $L599:
 	li	$2,0
 	b	$L600
 $L601:
-	lw	$2,32($17)
-	sw	$2,8($17)
+	lw	$2,56($sp)
+	sw	$2,40($sp)
 	b	$L602
 $L604:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	lb	$3,0($2)
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	lb	$2,0($2)
 	xor	$2,$3
 	bnez	$2,$L603
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	addiu	$3,$2,1
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	addiu	$4,$2,1
-	lw	$2,56($17)
+	lw	$2,80($sp)
 	addiu	$2,-1
 	move	$6,$2
 	move	$5,$4
@@ -5580,24 +5107,22 @@ $L604:
 	jal	memcmp
 	.option	pic2
 	bnez	$2,$L603
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	b	$L600
 $L603:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L602:
-	lw	$3,8($17)
-	lw	$2,12($17)
+	lw	$3,40($sp)
+	lw	$2,44($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L604
 	li	$2,0
 $L600:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	memmem
 	.size	memmem, .-memmem
@@ -5608,20 +5133,18 @@ $L600:
 	.ent	mempcpy
 	.type	mempcpy, @function
 mempcpy:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
-	lw	$4,40($17)
-	lw	$3,32($17)
-	lw	$2,24($17)
+	sd	$3,40($sp)
+	sw	$4,48($sp)
+	sw	$5,56($sp)
+	sw	$6,64($sp)
+	lw	$4,64($sp)
+	lw	$3,56($sp)
+	lw	$2,48($sp)
 	move	$6,$4
 	move	$5,$3
 	move	$4,$2
@@ -5629,12 +5152,10 @@ mempcpy:
 	jal	memcpy
 	.option	pic2
 	move	$3,$2
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	addu	$2,$3,$2
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.end	mempcpy
 	.size	mempcpy, .-mempcpy
@@ -5661,68 +5182,66 @@ __fn_stub_frexp:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	$17,40,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,64,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
+	sd	$3,56($sp)
 	sd	$16,48($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L626
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,40($17)
-	sw	$5,48($17)
+	sd	$4,64($sp)
+	sw	$5,72($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,44($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,40($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L627
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L608
-	ld	$3,40($17)
+	ld	$3,64($sp)
 	ld	$2,$L628
 	xor	$2,$3
-	sd	$2,40($17)
+	sd	$2,64($sp)
 	li	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L608:
 	lw	$2,%call16(__mips16_gedf2)($16)
 	ld	$5,$L629
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L625
 	b	$L612
 $L613:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,44($sp)
 	lw	$2,%call16(__mips16_divdf3)($16)
 	ld	$5,$L630
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,40($17)
+	sd	$2,64($sp)
 $L612:
 	lw	$2,%call16(__mips16_gedf2)($16)
 	ld	$5,$L629
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
@@ -5731,65 +5250,63 @@ $L612:
 $L625:
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L631
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L614
 	lw	$2,%call16(__mips16_nedf2)($16)
 	ld	$5,$L627
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	beqz	$2,$L614
 	b	$L617
 $L618:
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	addiu	$2,-1
-	sw	$2,12($17)
-	ld	$3,40($17)
+	sw	$2,44($sp)
+	ld	$3,64($sp)
 	lw	$2,%call16(__mips16_adddf3)($16)
 	move	$5,$3
 	move	$4,$3
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,40($17)
+	sd	$2,64($sp)
 $L617:
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L631
-	ld	$4,40($17)
+	ld	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L618
 $L614:
-	lw	$2,48($17)
-	lw	$3,12($17)
+	lw	$2,72($sp)
+	lw	$3,44($sp)
 	sw	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	beqz	$2,$L619
-	ld	$3,40($17)
+	ld	$3,64($sp)
 	ld	$2,$L628
 	xor	$2,$3
-	sd	$2,40($17)
+	sd	$2,64($sp)
 $L619:
-	ld	$2,40($17)
+	ld	$2,64($sp)
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	ld	$16,16($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	ld	$16,48($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool_frexp_626, @object
 __pool_frexp_626:
@@ -5822,42 +5339,38 @@ __pend_frexp_626:
 	.ent	__muldi3
 	.type	__muldi3, @function
 __muldi3:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	sd	$5,40($17)
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	sd	$5,32($sp)
 	li	$2,0
-	sd	$2,8($17)
-	ld	$2,32($17)
-	sd	$2,16($17)
+	sd	$2,8($sp)
+	ld	$2,24($sp)
+	sd	$2,16($sp)
 	b	$L633
 $L635:
-	ld	$3,16($17)
+	ld	$3,16($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L634
-	ld	$3,8($17)
-	ld	$2,40($17)
+	ld	$3,8($sp)
+	ld	$2,32($sp)
 	daddu	$2,$3,$2
-	sd	$2,8($17)
+	sd	$2,8($sp)
 $L634:
-	ld	$2,40($17)
+	ld	$2,32($sp)
 	dsll	$2,$2,1
-	sd	$2,40($17)
-	ld	$2,16($17)
+	sd	$2,32($sp)
+	ld	$2,16($sp)
 	dsrl	$2,1
-	sd	$2,16($17)
+	sd	$2,16($sp)
 $L633:
-	ld	$2,16($17)
+	ld	$2,16($sp)
 	bnez	$2,$L635
-	ld	$2,8($17)
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	ld	$2,8($sp)
+	addiu	$sp,24
 	jr	$31
 	.end	__muldi3
 	.size	__muldi3, .-__muldi3
@@ -5868,74 +5381,70 @@ $L633:
 	.ent	udivmodsi4
 	.type	udivmodsi4, @function
 udivmodsi4:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sd	$6,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sd	$6,32($sp)
 	li	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	b	$L638
 $L640:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
-	lw	$2,8($17)
+	sw	$2,24($sp)
+	lw	$2,8($sp)
 	sll	$2,$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L638:
-	lw	$3,32($17)
-	lw	$2,24($17)
+	lw	$3,24($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L641
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	beqz	$2,$L641
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L640
 	b	$L641
 $L643:
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L642
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	subu	$2,$3,$2
-	sw	$2,24($17)
-	lw	$3,12($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$3,12($sp)
+	lw	$2,8($sp)
 	or	$2,$3
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L642:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$2,1
-	sw	$2,8($17)
-	lw	$2,32($17)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
 	srl	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L641:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	bnez	$2,$L643
-	ld	$2,40($17)
+	ld	$2,32($sp)
 	beqz	$2,$L644
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	b	$L645
 $L644:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 $L645:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	udivmodsi4
 	.size	udivmodsi4, .-udivmodsi4
@@ -5946,54 +5455,56 @@ $L645:
 	.ent	__clrsbqi2
 	.type	__clrsbqi2, @function
 __clrsbqi2:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
+	sd	$3,48($sp)
 	lw	$2,$L650
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$3,$28
 	move	$2,$4
-	sb	$2,32($17)
-	lb	$2,32($17)
+	move	$4,$sp
+	sb	$2,56($4)
+	move	$2,$sp
+	lb	$2,56($2)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L647
-	lbu	$2,32($17)
+	move	$2,$sp
+	lbu	$2,56($2)
 	not	$2,$2
-	sb	$2,32($17)
+	move	$4,$sp
+	sb	$2,56($4)
 $L647:
-	lb	$2,32($17)
+	move	$2,$sp
+	lb	$2,56($2)
 	bnez	$2,$L648
 	li	$2,7
 	b	$L649
 $L648:
-	lb	$2,32($17)
+	move	$2,$sp
+	lb	$2,56($2)
 	sll	$2,$2,8
 	dsll	$4,$2,32
 	dsrl	$4,32
 	lw	$2,%call16(__clzdi2)($3)
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	dsll	$2,$2,32
 	dsrl	$2,32
 	daddiu	$2,-16
 	daddiu	$2,-16
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,40($sp)
+	lw	$2,40($sp)
 	addiu	$2,-1
 $L649:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___clrsbqi2_650, @object
 __pool___clrsbqi2_650:
@@ -6011,46 +5522,42 @@ __pend___clrsbqi2_650:
 	.ent	__clrsbdi2
 	.type	__clrsbdi2, @function
 __clrsbdi2:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
+	sd	$3,48($sp)
 	lw	$2,$L655
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$3,$28
-	sd	$4,32($17)
-	ld	$2,32($17)
+	sd	$4,56($sp)
+	ld	$2,56($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L652
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	not	$2,$2
-	sd	$2,32($17)
+	sd	$2,56($sp)
 $L652:
-	ld	$2,32($17)
+	ld	$2,56($sp)
 	bnez	$2,$L653
 	li	$2,63
 	b	$L654
 $L653:
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	lw	$2,%call16(__clzdi2)($3)
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,40($sp)
+	lw	$2,40($sp)
 	addiu	$2,-1
 $L654:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___clrsbdi2_655, @object
 __pool___clrsbdi2_655:
@@ -6068,40 +5575,36 @@ __pend___clrsbdi2_655:
 	.ent	__mulsi3
 	.type	__mulsi3, @function
 __mulsi3:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L657
 $L659:
-	lw	$3,24($17)
+	lw	$3,16($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L658
-	lw	$3,8($17)
-	lw	$2,32($17)
+	lw	$3,8($sp)
+	lw	$2,24($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L658:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	srl	$2,$2,1
-	sw	$2,24($17)
-	lw	$2,32($17)
+	sw	$2,16($sp)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L657:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	bnez	$2,$L659
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	__mulsi3
 	.size	__mulsi3, .-__mulsi3
@@ -6112,96 +5615,94 @@ $L657:
 	.ent	__cmovd
 	.type	__cmovd, @function
 __cmovd:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sw	$4,40($17)
-	sw	$5,48($17)
-	sw	$6,56($17)
-	lw	$2,56($17)
+	addiu	$sp,-32
+	sw	$4,32($sp)
+	sw	$5,40($sp)
+	sw	$6,48($sp)
+	lw	$2,48($sp)
 	srl	$2,$2,3
-	sw	$2,16($17)
-	lw	$3,56($17)
+	sw	$2,16($sp)
+	lw	$3,48($sp)
 	li	$2,8
 	neg	$2,$2
 	and	$2,$3
-	sw	$2,12($17)
-	lw	$2,40($17)
-	sw	$2,20($17)
-	lw	$2,48($17)
-	sw	$2,24($17)
-	lw	$3,20($17)
-	lw	$2,24($17)
+	sw	$2,12($sp)
+	lw	$2,32($sp)
+	sw	$2,20($sp)
+	lw	$2,40($sp)
+	sw	$2,24($sp)
+	lw	$3,20($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L662
-	lw	$3,24($17)
-	lw	$2,56($17)
+	lw	$3,24($sp)
+	lw	$2,48($sp)
 	addu	$2,$3,$2
-	lw	$3,20($17)
+	lw	$3,20($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L669
 $L662:
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L664
 $L665:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,3
-	lw	$3,48($17)
+	lw	$3,40($sp)
 	addu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,3
-	lw	$4,40($17)
+	lw	$4,32($sp)
 	addu	$2,$4,$2
 	ld	$3,0($3)
 	sd	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L664:
-	lw	$3,8($17)
-	lw	$2,16($17)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L665
 	b	$L666
 $L667:
-	lw	$3,24($17)
-	lw	$2,12($17)
+	lw	$3,24($sp)
+	lw	$2,12($sp)
 	addu	$3,$3,$2
-	lw	$4,20($17)
-	lw	$2,12($17)
+	lw	$4,20($sp)
+	lw	$2,12($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L666:
-	lw	$3,56($17)
-	lw	$2,12($17)
+	lw	$3,48($sp)
+	lw	$2,12($sp)
 	sltu	$2,$3
 	move	$2,$24
 	bnez	$2,$L667
 	b	$L668
 $L670:
-	lw	$3,24($17)
-	lw	$2,56($17)
+	lw	$3,24($sp)
+	lw	$2,48($sp)
 	addu	$3,$3,$2
-	lw	$4,20($17)
-	lw	$2,56($17)
+	lw	$4,20($sp)
+	lw	$2,48($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
 $L669:
-	lw	$2,56($17)
+	lw	$2,48($sp)
 	addiu	$3,$2,-1
-	sw	$3,56($17)
+	sw	$3,48($sp)
 	bnez	$2,$L670
 	.set	noreorder
 	nop
@@ -6210,9 +5711,7 @@ $L668:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	addiu	$sp,32
 	jr	$31
 	.end	__cmovd
 	.size	__cmovd, .-__cmovd
@@ -6223,86 +5722,84 @@ $L668:
 	.ent	__cmovh
 	.type	__cmovh, @function
 __cmovh:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	sw	$5,40($17)
-	sw	$6,48($17)
-	lw	$2,48($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	sw	$5,32($sp)
+	sw	$6,40($sp)
+	lw	$2,40($sp)
 	srl	$2,$2,1
-	sw	$2,12($17)
-	lw	$2,32($17)
-	sw	$2,16($17)
-	lw	$2,40($17)
-	sw	$2,20($17)
-	lw	$3,16($17)
-	lw	$2,20($17)
+	sw	$2,12($sp)
+	lw	$2,24($sp)
+	sw	$2,16($sp)
+	lw	$2,32($sp)
+	sw	$2,20($sp)
+	lw	$3,16($sp)
+	lw	$2,20($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L672
-	lw	$3,20($17)
-	lw	$2,48($17)
+	lw	$3,20($sp)
+	lw	$2,40($sp)
 	addu	$2,$3,$2
-	lw	$3,16($17)
+	lw	$3,16($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L678
 $L672:
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L674
 $L675:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,1
-	lw	$3,40($17)
+	lw	$3,32($sp)
 	addu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,1
-	lw	$4,32($17)
+	lw	$4,24($sp)
 	addu	$2,$4,$2
 	lh	$3,0($3)
 	sh	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L674:
-	lw	$3,8($17)
-	lw	$2,12($17)
+	lw	$3,8($sp)
+	lw	$2,12($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L675
-	lw	$3,48($17)
+	lw	$3,40($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L677
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	addiu	$2,-1
-	lw	$3,20($17)
+	lw	$3,20($sp)
 	addu	$3,$3,$2
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	addiu	$2,-1
-	lw	$4,16($17)
+	lw	$4,16($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
 	b	$L677
 $L679:
-	lw	$3,20($17)
-	lw	$2,48($17)
+	lw	$3,20($sp)
+	lw	$2,40($sp)
 	addu	$3,$3,$2
-	lw	$4,16($17)
-	lw	$2,48($17)
+	lw	$4,16($sp)
+	lw	$2,40($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
 $L678:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	addiu	$3,$2,-1
-	sw	$3,48($17)
+	sw	$3,40($sp)
 	bnez	$2,$L679
 	.set	noreorder
 	nop
@@ -6311,9 +5808,7 @@ $L677:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__cmovh
 	.size	__cmovh, .-__cmovh
@@ -6324,96 +5819,94 @@ $L677:
 	.ent	__cmovw
 	.type	__cmovw, @function
 __cmovw:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sw	$4,40($17)
-	sw	$5,48($17)
-	sw	$6,56($17)
-	lw	$2,56($17)
+	addiu	$sp,-32
+	sw	$4,32($sp)
+	sw	$5,40($sp)
+	sw	$6,48($sp)
+	lw	$2,48($sp)
 	srl	$2,$2,2
-	sw	$2,16($17)
-	lw	$3,56($17)
+	sw	$2,16($sp)
+	lw	$3,48($sp)
 	li	$2,4
 	neg	$2,$2
 	and	$2,$3
-	sw	$2,12($17)
-	lw	$2,40($17)
-	sw	$2,20($17)
-	lw	$2,48($17)
-	sw	$2,24($17)
-	lw	$3,20($17)
-	lw	$2,24($17)
+	sw	$2,12($sp)
+	lw	$2,32($sp)
+	sw	$2,20($sp)
+	lw	$2,40($sp)
+	sw	$2,24($sp)
+	lw	$3,20($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L681
-	lw	$3,24($17)
-	lw	$2,56($17)
+	lw	$3,24($sp)
+	lw	$2,48($sp)
 	addu	$2,$3,$2
-	lw	$3,20($17)
+	lw	$3,20($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L688
 $L681:
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L683
 $L684:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,2
-	lw	$3,48($17)
+	lw	$3,40($sp)
 	addu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	sll	$2,$2,2
-	lw	$4,40($17)
+	lw	$4,32($sp)
 	addu	$2,$4,$2
 	lw	$3,0($3)
 	sw	$3,0($2)
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L683:
-	lw	$3,8($17)
-	lw	$2,16($17)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L684
 	b	$L685
 $L686:
-	lw	$3,24($17)
-	lw	$2,12($17)
+	lw	$3,24($sp)
+	lw	$2,12($sp)
 	addu	$3,$3,$2
-	lw	$4,20($17)
-	lw	$2,12($17)
+	lw	$4,20($sp)
+	lw	$2,12($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L685:
-	lw	$3,56($17)
-	lw	$2,12($17)
+	lw	$3,48($sp)
+	lw	$2,12($sp)
 	sltu	$2,$3
 	move	$2,$24
 	bnez	$2,$L686
 	b	$L687
 $L689:
-	lw	$3,24($17)
-	lw	$2,56($17)
+	lw	$3,24($sp)
+	lw	$2,48($sp)
 	addu	$3,$3,$2
-	lw	$4,20($17)
-	lw	$2,56($17)
+	lw	$4,20($sp)
+	lw	$2,48($sp)
 	addu	$2,$4,$2
 	lb	$3,0($3)
 	sb	$3,0($2)
 $L688:
-	lw	$2,56($17)
+	lw	$2,48($sp)
 	addiu	$3,$2,-1
-	sw	$3,56($17)
+	sw	$3,48($sp)
 	bnez	$2,$L689
 	.set	noreorder
 	nop
@@ -6422,9 +5915,7 @@ $L687:
 	.set	noreorder
 	nop
 	.set	reorder
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	addiu	$sp,32
 	jr	$31
 	.end	__cmovw
 	.size	__cmovw, .-__cmovw
@@ -6435,24 +5926,18 @@ $L687:
 	.ent	__modi
 	.type	__modi, @function
 __modi:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	div	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	__modi
 	.size	__modi, .-__modi
@@ -6463,33 +5948,29 @@ __modi:
 	.ent	__uitod
 	.type	__uitod, @function
 __uitod:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
+	sd	$3,40($sp)
 	lw	$2,$L694
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$2,$28
-	sw	$4,24($17)
+	sw	$4,48($sp)
 	lw	$2,%call16(__mips16_floatunsidf)($2)
-	lw	$4,24($17)
+	lw	$4,48($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.type	__pool___uitod_694, @object
 __pool___uitod_694:
@@ -6507,33 +5988,29 @@ __pend___uitod_694:
 	.ent	__uitof
 	.type	__uitof, @function
 __uitof:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
+	sd	$3,40($sp)
 	lw	$2,$L697
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$2,$28
-	sw	$4,24($17)
+	sw	$4,48($sp)
 	lw	$2,%call16(__mips16_floatunsisf)($2)
-	lw	$4,24($17)
+	lw	$4,48($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.type	__pool___uitof_697, @object
 __pool___uitof_697:
@@ -6551,38 +6028,34 @@ __pend___uitof_697:
 	.ent	__ulltod
 	.type	__ulltod, @function
 __ulltod:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80060000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80040000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	move	$3,$18
 	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
+	move	$3,$18
+	sd	$3,40($sp)
 	lw	$2,$L700
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$2,$28
-	sd	$4,32($17)
+	sd	$4,56($sp)
 	lw	$5,%got(__mips16_call_stub_df_0)($2)
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	lw	$2,%call16(__floatundidf)($2)
 	jalr	$5
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$6,16($sp)
+	ld	$7,48($sp)
+	ld	$6,40($sp)
 	move	$18,$6
-	ld	$17,8($sp)
-	addiu	$sp,32
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___ulltod_700, @object
 __pool___ulltod_700:
@@ -6600,38 +6073,34 @@ __pend___ulltod_700:
 	.ent	__ulltof
 	.type	__ulltof, @function
 __ulltof:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80060000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80040000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	move	$3,$18
 	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
+	move	$3,$18
+	sd	$3,40($sp)
 	lw	$2,$L703
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$2,$28
-	sd	$4,32($17)
+	sd	$4,56($sp)
 	lw	$5,%got(__mips16_call_stub_sf_0)($2)
-	ld	$4,32($17)
+	ld	$4,56($sp)
 	lw	$2,%call16(__floatundisf)($2)
 	jalr	$5
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$6,16($sp)
+	ld	$7,48($sp)
+	ld	$6,40($sp)
 	move	$18,$6
-	ld	$17,8($sp)
-	addiu	$sp,32
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___ulltof_703, @object
 __pool___ulltof_703:
@@ -6649,24 +6118,18 @@ __pend___ulltof_703:
 	.ent	__umodi
 	.type	__umodi, @function
 __umodi:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	divu	$0,$3,$2
 	bnez	$2,1f
 	break	7
 1:
 	mfhi	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	__umodi
 	.size	__umodi, .-__umodi
@@ -6677,31 +6140,31 @@ __umodi:
 	.ent	__clzhi2
 	.type	__clzhi2, @function
 __clzhi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sh	$2,24($17)
+	move	$3,$sp
+	sh	$2,16($3)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L707
 $L710:
-	lhu	$3,24($17)
+	move	$2,$sp
+	lhu	$3,16($2)
 	li	$4,15
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	subu	$2,$4,$2
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
 	bnez	$2,$L712
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L707:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	slt	$2,16
 	move	$2,$24
 	bnez	$2,$L710
@@ -6711,10 +6174,8 @@ $L712:
 	nop
 	.set	reorder
 $L709:
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	__clzhi2
 	.size	__clzhi2, .-__clzhi2
@@ -6725,29 +6186,29 @@ $L709:
 	.ent	__ctzhi2
 	.type	__ctzhi2, @function
 __ctzhi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sh	$2,24($17)
+	move	$3,$sp
+	sh	$2,16($3)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L714
 $L717:
-	lhu	$3,24($17)
-	lw	$2,8($17)
+	move	$2,$sp
+	lhu	$3,16($2)
+	lw	$2,8($sp)
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
 	bnez	$2,$L719
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L714:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	slt	$2,16
 	move	$2,$24
 	bnez	$2,$L717
@@ -6757,10 +6218,8 @@ $L719:
 	nop
 	.set	reorder
 $L716:
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	__ctzhi2
 	.size	__ctzhi2, .-__ctzhi2
@@ -6787,40 +6246,38 @@ __fn_stub___fixunssfsi:
 	.ent	__fixunssfsi
 	.type	__fixunssfsi, @function
 __fixunssfsi:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L726
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
+	sw	$4,56($sp)
 	lw	$2,%call16(__mips16_gesf2)($16)
 	lw	$5,$L727
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
 	bnez	$2,$L725
 	lw	$2,%call16(__mips16_subsf3)($16)
 	lw	$5,$L727
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
 	lw	$2,%call16(__mips16_fix_truncsfsi)($16)
 	move	$4,$3
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
 	li	$2,32768
@@ -6828,16 +6285,14 @@ __fixunssfsi:
 	b	$L723
 $L725:
 	lw	$2,%call16(__mips16_fix_truncsfsi)($16)
-	lw	$4,32($17)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 $L723:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___fixunssfsi_726, @object
 __pool___fixunssfsi_726:
@@ -6857,44 +6312,42 @@ __pend___fixunssfsi_726:
 	.ent	__parityhi2
 	.type	__parityhi2, @function
 __parityhi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sh	$2,24($17)
+	move	$3,$sp
+	sh	$2,16($3)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L729
 $L731:
-	lhu	$3,24($17)
-	lw	$2,8($17)
+	move	$2,$sp
+	lhu	$3,16($2)
+	lw	$2,8($sp)
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L730
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L730:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L729:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	slt	$2,16
 	move	$2,$24
 	bnez	$2,$L731
-	lw	$3,12($17)
+	lw	$3,12($sp)
 	li	$2,1
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__parityhi2
 	.size	__parityhi2, .-__parityhi2
@@ -6905,42 +6358,40 @@ $L729:
 	.ent	__popcounthi2
 	.type	__popcounthi2, @function
 __popcounthi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
-	sh	$2,24($17)
+	move	$3,$sp
+	sh	$2,16($3)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L734
 $L736:
-	lhu	$3,24($17)
-	lw	$2,8($17)
+	move	$2,$sp
+	lhu	$3,16($2)
+	lw	$2,8($sp)
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L735
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	addiu	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L735:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addiu	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L734:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	slt	$2,16
 	move	$2,$24
 	bnez	$2,$L736
-	lw	$2,12($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,12($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	__popcounthi2
 	.size	__popcounthi2, .-__popcounthi2
@@ -6951,40 +6402,36 @@ $L734:
 	.ent	__mulsi3_iq2000
 	.type	__mulsi3_iq2000, @function
 __mulsi3_iq2000:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
 	li	$2,0
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	b	$L739
 $L741:
-	lw	$3,24($17)
+	lw	$3,16($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L740
-	lw	$3,8($17)
-	lw	$2,32($17)
+	lw	$3,8($sp)
+	lw	$2,24($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L740:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	srl	$2,$2,1
-	sw	$2,24($17)
-	lw	$2,32($17)
+	sw	$2,16($sp)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L739:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	bnez	$2,$L741
-	lw	$2,8($17)
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	lw	$2,8($sp)
+	addiu	$sp,16
 	jr	$31
 	.end	__mulsi3_iq2000
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -6995,44 +6442,40 @@ $L739:
 	.ent	__mulsi3_lm32
 	.type	__mulsi3_lm32, @function
 __mulsi3_lm32:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
 	li	$2,0
-	sw	$2,8($17)
-	lw	$2,24($17)
+	sw	$2,8($sp)
+	lw	$2,16($sp)
 	bnez	$2,$L746
 	li	$2,0
 	b	$L745
 $L748:
-	lw	$3,32($17)
+	lw	$3,24($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L747
-	lw	$3,8($17)
-	lw	$2,24($17)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L747:
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	sll	$2,$2,1
-	sw	$2,24($17)
-	lw	$2,32($17)
+	sw	$2,16($sp)
+	lw	$2,24($sp)
 	srl	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L746:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	bnez	$2,$L748
-	lw	$2,8($17)
+	lw	$2,8($sp)
 $L745:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__mulsi3_lm32
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -7043,74 +6486,70 @@ $L745:
 	.ent	__udivmodsi4
 	.type	__udivmodsi4, @function
 __udivmodsi4:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
 	li	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	b	$L750
 $L752:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
-	lw	$2,8($17)
+	sw	$2,24($sp)
+	lw	$2,8($sp)
 	sll	$2,$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L750:
-	lw	$3,32($17)
-	lw	$2,24($17)
+	lw	$3,24($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L753
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	beqz	$2,$L753
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L752
 	b	$L753
 $L755:
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L754
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	subu	$2,$3,$2
-	sw	$2,24($17)
-	lw	$3,12($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$3,12($sp)
+	lw	$2,8($sp)
 	or	$2,$3
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L754:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$2,1
-	sw	$2,8($17)
-	lw	$2,32($17)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
 	srl	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L753:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	bnez	$2,$L755
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L756
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	b	$L757
 $L756:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 $L757:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__udivmodsi4
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -7138,26 +6577,24 @@ __fn_stub___mspabi_cmpf:
 	.ent	__mspabi_cmpf
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L768
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	lw	$2,%call16(__mips16_ltsf2)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
@@ -7167,10 +6604,10 @@ __mspabi_cmpf:
 	b	$L761
 $L766:
 	lw	$2,%call16(__mips16_gtsf2)($16)
-	lw	$5,40($17)
-	lw	$4,32($17)
+	lw	$5,64($sp)
+	lw	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -7180,11 +6617,9 @@ $L766:
 $L767:
 	li	$2,0
 $L761:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___mspabi_cmpf_768, @object
 __pool___mspabi_cmpf_768:
@@ -7219,26 +6654,24 @@ __fn_stub___mspabi_cmpd:
 	.ent	__mspabi_cmpd
 	.type	__mspabi_cmpd, @function
 __mspabi_cmpd:
-	.frame	$17,32,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
+	sd	$3,48($sp)
 	sd	$16,40($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L779
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,32($17)
-	sd	$5,40($17)
+	sd	$4,56($sp)
+	sd	$5,64($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,0
 	move	$2,$24
@@ -7248,10 +6681,10 @@ __mspabi_cmpd:
 	b	$L772
 $L777:
 	lw	$2,%call16(__mips16_gtdf2)($16)
-	ld	$5,40($17)
-	ld	$4,32($17)
+	ld	$5,64($sp)
+	ld	$4,56($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	slt	$2,1
 	move	$2,$24
@@ -7261,11 +6694,9 @@ $L777:
 $L778:
 	li	$2,0
 $L772:
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	ld	$16,8($sp)
-	addiu	$sp,32
+	ld	$7,48($sp)
+	ld	$16,40($sp)
+	addiu	$sp,56
 	jr	$7
 	.type	__pool___mspabi_cmpd_779, @object
 __pool___mspabi_cmpd_779:
@@ -7283,21 +6714,15 @@ __pend___mspabi_cmpd_779:
 	.ent	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	lw	$3,0($sp)
+	lw	$2,8($sp)
 	dmult	$3,$2
 	mflo	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	__mspabi_mpysll
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
@@ -7308,21 +6733,17 @@ __mspabi_mpysll:
 	.ent	__mspabi_mpyull
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	sw	$5,16($17)
-	lwu	$3,8($17)
-	lwu	$2,16($17)
+	sw	$4,0($sp)
+	sw	$5,8($sp)
+	move	$2,$sp
+	lwu	$3,0($2)
+	addiu	$2,$sp,8
+	lwu	$2,0($2)
 	dmult	$3,$2
 	mflo	$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	__mspabi_mpyull
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
@@ -7333,71 +6754,71 @@ __mspabi_mpyull:
 	.ent	__mulhi3
 	.type	__mulhi3, @function
 __mulhi3:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	sw	$5,40($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	sw	$5,32($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$2,0
-	sw	$2,16($17)
-	lw	$2,40($17)
+	sw	$2,16($sp)
+	lw	$2,32($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L785
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	neg	$2,$2
-	sw	$2,40($17)
+	sw	$2,32($sp)
 	li	$2,1
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L785:
 	li	$2,0
-	sb	$2,8($17)
+	move	$3,$sp
+	sb	$2,8($3)
 	b	$L786
 $L789:
-	lw	$3,40($17)
+	lw	$3,32($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L787
-	lw	$3,16($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
+	sw	$2,16($sp)
 $L787:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
-	lw	$2,40($17)
+	sw	$2,24($sp)
+	lw	$2,32($sp)
 	sra	$2,$2,1
-	sw	$2,40($17)
-	lb	$2,8($17)
+	sw	$2,32($sp)
+	move	$2,$sp
+	lb	$2,8($2)
 	zeb	$2
 	addiu	$2,1
 	zeb	$2
-	sb	$2,8($17)
+	move	$3,$sp
+	sb	$2,8($3)
 $L786:
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L788
-	lbu	$2,8($17)
+	move	$2,$sp
+	lbu	$2,8($2)
 	sltu	$2,32
 	move	$2,$24
 	bnez	$2,$L789
 $L788:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	beqz	$2,$L790
-	lw	$2,16($17)
+	lw	$2,16($sp)
 	neg	$2,$2
 	b	$L792
 $L790:
-	lw	$2,16($17)
+	lw	$2,16($sp)
 $L792:
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__mulhi3
 	.size	__mulhi3, .-__mulhi3
@@ -7408,64 +6829,60 @@ $L792:
 	.ent	__divsi3
 	.type	__divsi3, @function
 __divsi3:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	li	$2,0
-	sw	$2,8($17)
-	lw	$2,32($17)
+	sw	$2,40($sp)
+	lw	$2,56($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L794
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	neg	$2,$2
-	sw	$2,32($17)
-	lw	$2,8($17)
+	sw	$2,56($sp)
+	lw	$2,40($sp)
 	sltu	$2,1
 	move	$2,$24
 	zeb	$2
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L794:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L795
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	neg	$2,$2
-	sw	$2,40($17)
-	lw	$2,8($17)
+	sw	$2,64($sp)
+	lw	$2,40($sp)
 	sltu	$2,1
 	move	$2,$24
 	zeb	$2
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L795:
-	lw	$2,32($17)
-	lw	$3,40($17)
+	lw	$2,56($sp)
+	lw	$3,64($sp)
 	li	$6,0
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__udivmodsi4
 	.option	pic2
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,44($sp)
+	lw	$2,40($sp)
 	beqz	$2,$L796
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	neg	$2,$2
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L796:
-	lw	$2,12($17)
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	lw	$2,44($sp)
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	__divsi3
 	.size	__divsi3, .-__divsi3
@@ -7476,56 +6893,52 @@ $L796:
 	.ent	__modsi3
 	.type	__modsi3, @function
 __modsi3:
-	.frame	$17,32,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,56,$31		# vars= 8, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
+	addiu	$sp,-56
 	move	$3,$31
-	sd	$3,56($sp)
-	sd	$17,48($sp)
-	addiu	$17,$sp,32
-	sw	$4,32($17)
-	sw	$5,40($17)
+	sd	$3,48($sp)
+	sw	$4,56($sp)
+	sw	$5,64($sp)
 	li	$2,0
-	sw	$2,8($17)
-	lw	$2,32($17)
+	sw	$2,40($sp)
+	lw	$2,56($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L799
-	lw	$2,32($17)
+	lw	$2,56($sp)
 	neg	$2,$2
-	sw	$2,32($17)
+	sw	$2,56($sp)
 	li	$2,1
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L799:
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L800
-	lw	$2,40($17)
+	lw	$2,64($sp)
 	neg	$2,$2
-	sw	$2,40($17)
+	sw	$2,64($sp)
 $L800:
-	lw	$2,32($17)
-	lw	$3,40($17)
+	lw	$2,56($sp)
+	lw	$3,64($sp)
 	li	$6,1
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__udivmodsi4
 	.option	pic2
-	sw	$2,12($17)
-	lw	$2,8($17)
+	sw	$2,44($sp)
+	lw	$2,40($sp)
 	beqz	$2,$L801
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	neg	$2,$2
-	sw	$2,12($17)
+	sw	$2,44($sp)
 $L801:
-	lw	$2,12($17)
-	move	$sp,$17
-	ld	$7,24($sp)
-	ld	$17,16($sp)
-	addiu	$sp,32
+	lw	$2,44($sp)
+	ld	$7,48($sp)
+	addiu	$sp,56
 	jr	$7
 	.end	__modsi3
 	.size	__modsi3, .-__modsi3
@@ -7536,77 +6949,100 @@ $L801:
 	.ent	__udivmodhi4
 	.type	__udivmodhi4, @function
 __udivmodhi4:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
+	addiu	$sp,-16
 	move	$2,$4
 	move	$3,$5
-	sw	$6,40($17)
-	sh	$2,24($17)
+	sw	$6,32($sp)
+	move	$4,$sp
+	sh	$2,16($4)
 	move	$2,$3
-	sh	$2,32($17)
+	move	$3,$sp
+	sh	$2,24($3)
 	li	$2,1
-	sh	$2,8($17)
+	move	$3,$sp
+	sh	$2,8($3)
 	li	$2,0
-	sh	$2,10($17)
+	move	$3,$sp
+	sh	$2,10($3)
 	b	$L804
 $L806:
-	lhu	$2,32($17)
+	move	$2,$sp
+	lhu	$2,24($2)
 	sll	$2,$2,1
-	sh	$2,32($17)
-	lhu	$2,8($17)
+	move	$3,$sp
+	sh	$2,24($3)
+	move	$2,$sp
+	lhu	$2,8($2)
 	sll	$2,$2,1
-	sh	$2,8($17)
+	move	$3,$sp
+	sh	$2,8($3)
 $L804:
-	lhu	$3,32($17)
-	lhu	$2,24($17)
+	move	$2,$sp
+	lhu	$3,24($2)
+	move	$2,$sp
+	lhu	$2,16($2)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L807
-	lhu	$2,8($17)
+	move	$2,$sp
+	lhu	$2,8($2)
 	beqz	$2,$L807
-	lh	$2,32($17)
+	move	$2,$sp
+	lh	$2,24($2)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L806
 	b	$L807
 $L809:
-	lhu	$3,24($17)
-	lhu	$2,32($17)
+	move	$2,$sp
+	lhu	$3,16($2)
+	move	$2,$sp
+	lhu	$2,24($2)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L808
-	lhu	$3,24($17)
-	lhu	$2,32($17)
+	move	$2,$sp
+	lhu	$3,16($2)
+	move	$2,$sp
+	lhu	$2,24($2)
 	subu	$2,$3,$2
-	sh	$2,24($17)
-	lhu	$2,10($17)
-	lhu	$3,8($17)
+	move	$3,$sp
+	sh	$2,16($3)
+	move	$2,$sp
+	lhu	$2,10($2)
+	move	$3,$sp
+	lhu	$3,8($3)
 	or	$2,$3
-	sh	$2,10($17)
+	move	$3,$sp
+	sh	$2,10($3)
 $L808:
-	lhu	$2,8($17)
+	move	$2,$sp
+	lhu	$2,8($2)
 	srl	$2,$2,1
-	sh	$2,8($17)
-	lhu	$2,32($17)
+	move	$3,$sp
+	sh	$2,8($3)
+	move	$2,$sp
+	lhu	$2,24($2)
 	srl	$2,$2,1
-	sh	$2,32($17)
+	move	$3,$sp
+	sh	$2,24($3)
 $L807:
-	lhu	$2,8($17)
+	move	$2,$sp
+	lhu	$2,8($2)
 	bnez	$2,$L809
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L810
-	lhu	$2,24($17)
+	move	$2,$sp
+	lhu	$2,16($2)
 	b	$L811
 $L810:
-	lhu	$2,10($17)
+	move	$2,$sp
+	lhu	$2,10($2)
 $L811:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__udivmodhi4
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -7617,74 +7053,70 @@ $L811:
 	.ent	__udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	sw	$5,32($17)
-	sw	$6,40($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	sw	$5,24($sp)
+	sw	$6,32($sp)
 	li	$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	li	$2,0
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	b	$L813
 $L815:
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	sll	$2,$2,1
-	sw	$2,32($17)
-	lw	$2,8($17)
+	sw	$2,24($sp)
+	lw	$2,8($sp)
 	sll	$2,$2,1
-	sw	$2,8($17)
+	sw	$2,8($sp)
 $L813:
-	lw	$3,32($17)
-	lw	$2,24($17)
+	lw	$3,24($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L816
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	beqz	$2,$L816
-	lw	$2,32($17)
+	lw	$2,24($sp)
 	slt	$2,0
 	move	$2,$24
 	beqz	$2,$L815
 	b	$L816
 $L818:
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	bnez	$2,$L817
-	lw	$3,24($17)
-	lw	$2,32($17)
+	lw	$3,16($sp)
+	lw	$2,24($sp)
 	subu	$2,$3,$2
-	sw	$2,24($17)
-	lw	$3,12($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$3,12($sp)
+	lw	$2,8($sp)
 	or	$2,$3
-	sw	$2,12($17)
+	sw	$2,12($sp)
 $L817:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$2,1
-	sw	$2,8($17)
-	lw	$2,32($17)
+	sw	$2,8($sp)
+	lw	$2,24($sp)
 	srl	$2,$2,1
-	sw	$2,32($17)
+	sw	$2,24($sp)
 $L816:
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	bnez	$2,$L818
-	lw	$2,40($17)
+	lw	$2,32($sp)
 	beqz	$2,$L819
-	lw	$2,24($17)
+	lw	$2,16($sp)
 	b	$L820
 $L819:
-	lw	$2,12($17)
+	lw	$2,12($sp)
 $L820:
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__udivmodsi4_libgcc
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -7695,59 +7127,55 @@ $L820:
 	.ent	__ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sd	$4,40($17)
-	sw	$5,48($17)
+	addiu	$sp,-32
+	sd	$4,32($sp)
+	sw	$5,40($sp)
 	li	$2,32
-	sw	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	lw	$3,48($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	lw	$3,40($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L822
 	li	$2,0
-	sw	$2,28($17)
-	lw	$3,20($17)
-	lw	$4,48($17)
-	lw	$2,8($17)
+	sw	$2,28($sp)
+	lw	$3,20($sp)
+	lw	$4,40($sp)
+	lw	$2,8($sp)
 	subu	$2,$4,$2
 	sll	$3,$2
 	move	$2,$3
-	sw	$2,24($17)
+	sw	$2,24($sp)
 	b	$L823
 $L822:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	bnez	$2,$L824
-	ld	$2,40($17)
+	ld	$2,32($sp)
 	b	$L826
 $L824:
-	lw	$2,20($17)
-	lw	$3,48($17)
+	lw	$2,20($sp)
+	lw	$3,40($sp)
 	sll	$2,$3
-	sw	$2,28($17)
-	lw	$2,16($17)
+	sw	$2,28($sp)
+	lw	$2,16($sp)
 	move	$3,$2
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	sll	$3,$2
-	lw	$2,20($17)
-	lw	$5,8($17)
-	lw	$4,48($17)
+	lw	$2,20($sp)
+	lw	$5,8($sp)
+	lw	$4,40($sp)
 	subu	$4,$5,$4
 	srl	$2,$4
 	or	$2,$3
-	sw	$2,24($17)
+	sw	$2,24($sp)
 $L823:
-	ld	$2,24($17)
+	ld	$2,24($sp)
 $L826:
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	addiu	$sp,32
 	jr	$31
 	.end	__ashldi3
 	.size	__ashldi3, .-__ashldi3
@@ -7758,64 +7186,65 @@ $L826:
 	.ent	__ashlti3
 	.type	__ashlti3, @function
 __ashlti3:
-	.frame	$17,56,$31		# vars= 40, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,48,$31		# vars= 40, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$17,48($sp)
-	move	$17,$sp
-	sd	$5,64($17)
-	sd	$4,56($17)
-	sw	$6,72($17)
+	addiu	$sp,-48
+	move	$2,$sp
+	sd	$5,56($2)
+	sd	$4,48($2)
+	sw	$6,64($sp)
 	li	$2,64
-	sw	$2,8($17)
-	ld	$3,64($17)
-	ld	$2,56($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	lw	$3,72($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
+	move	$4,$sp
+	sd	$3,24($4)
+	sd	$2,16($4)
+	lw	$3,64($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L828
 	li	$2,0
-	sd	$2,40($17)
-	ld	$3,24($17)
-	lw	$4,72($17)
-	lw	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,24($sp)
+	lw	$4,64($sp)
+	lw	$2,8($sp)
 	subu	$2,$4,$2
 	dsll	$3,$2
 	move	$2,$3
-	sd	$2,32($17)
+	sd	$2,32($sp)
 	b	$L829
 $L828:
-	lw	$2,72($17)
+	lw	$2,64($sp)
 	bnez	$2,$L830
-	ld	$3,64($17)
-	ld	$2,56($17)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
 	b	$L832
 $L830:
-	ld	$2,24($17)
-	lw	$3,72($17)
+	ld	$2,24($sp)
+	lw	$3,64($sp)
 	dsll	$2,$3
-	sd	$2,40($17)
-	ld	$2,16($17)
+	sd	$2,40($sp)
+	ld	$2,16($sp)
 	move	$3,$2
-	lw	$2,72($17)
+	lw	$2,64($sp)
 	dsll	$3,$2
-	ld	$2,24($17)
-	lw	$5,8($17)
-	lw	$4,72($17)
+	ld	$2,24($sp)
+	lw	$5,8($sp)
+	lw	$4,64($sp)
 	subu	$4,$5,$4
 	dsrl	$2,$4
 	or	$2,$3
-	sd	$2,32($17)
+	sd	$2,32($sp)
 $L829:
-	ld	$3,40($17)
-	ld	$2,32($17)
+	move	$2,$sp
+	ld	$3,40($2)
+	ld	$2,32($2)
 $L832:
-	move	$sp,$17
-	ld	$17,48($sp)
-	addiu	$sp,56
+	addiu	$sp,48
 	jr	$31
 	.end	__ashlti3
 	.size	__ashlti3, .-__ashlti3
@@ -7826,63 +7255,59 @@ $L832:
 	.ent	__ashrdi3
 	.type	__ashrdi3, @function
 __ashrdi3:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sd	$4,40($17)
-	sw	$5,48($17)
+	addiu	$sp,-32
+	sd	$4,32($sp)
+	sw	$5,40($sp)
 	li	$2,32
-	sw	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	lw	$3,48($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	lw	$3,40($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L834
-	lw	$2,16($17)
-	lw	$3,8($17)
+	lw	$2,16($sp)
+	lw	$3,8($sp)
 	addiu	$3,-1
 	sra	$2,$3
-	sw	$2,24($17)
-	lw	$3,16($17)
-	lw	$4,48($17)
-	lw	$2,8($17)
+	sw	$2,24($sp)
+	lw	$3,16($sp)
+	lw	$4,40($sp)
+	lw	$2,8($sp)
 	subu	$2,$4,$2
 	sra	$3,$2
 	move	$2,$3
-	sw	$2,28($17)
+	sw	$2,28($sp)
 	b	$L835
 $L834:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	bnez	$2,$L836
-	ld	$2,40($17)
+	ld	$2,32($sp)
 	b	$L838
 $L836:
-	lw	$2,16($17)
-	lw	$3,48($17)
+	lw	$2,16($sp)
+	lw	$3,40($sp)
 	sra	$2,$3
-	sw	$2,24($17)
-	lw	$2,16($17)
+	sw	$2,24($sp)
+	lw	$2,16($sp)
 	move	$4,$2
-	lw	$3,8($17)
-	lw	$2,48($17)
+	lw	$3,8($sp)
+	lw	$2,40($sp)
 	subu	$2,$3,$2
 	move	$3,$4
 	sll	$3,$2
-	lw	$2,20($17)
-	lw	$4,48($17)
+	lw	$2,20($sp)
+	lw	$4,40($sp)
 	srl	$2,$4
 	or	$2,$3
-	sw	$2,28($17)
+	sw	$2,28($sp)
 $L835:
-	ld	$2,24($17)
+	ld	$2,24($sp)
 $L838:
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	addiu	$sp,32
 	jr	$31
 	.end	__ashrdi3
 	.size	__ashrdi3, .-__ashrdi3
@@ -7893,68 +7318,69 @@ $L838:
 	.ent	__ashrti3
 	.type	__ashrti3, @function
 __ashrti3:
-	.frame	$17,56,$31		# vars= 40, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,48,$31		# vars= 40, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$17,48($sp)
-	move	$17,$sp
-	sd	$5,64($17)
-	sd	$4,56($17)
-	sw	$6,72($17)
+	addiu	$sp,-48
+	move	$2,$sp
+	sd	$5,56($2)
+	sd	$4,48($2)
+	sw	$6,64($sp)
 	li	$2,64
-	sw	$2,8($17)
-	ld	$3,64($17)
-	ld	$2,56($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	lw	$3,72($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
+	move	$4,$sp
+	sd	$3,24($4)
+	sd	$2,16($4)
+	lw	$3,64($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L840
-	ld	$2,16($17)
-	lw	$3,8($17)
+	ld	$2,16($sp)
+	lw	$3,8($sp)
 	addiu	$3,-1
 	dsra	$2,$3
-	sd	$2,32($17)
-	ld	$3,16($17)
-	lw	$4,72($17)
-	lw	$2,8($17)
+	sd	$2,32($sp)
+	ld	$3,16($sp)
+	lw	$4,64($sp)
+	lw	$2,8($sp)
 	subu	$2,$4,$2
 	dsra	$3,$2
 	move	$2,$3
-	sd	$2,40($17)
+	sd	$2,40($sp)
 	b	$L841
 $L840:
-	lw	$2,72($17)
+	lw	$2,64($sp)
 	bnez	$2,$L842
-	ld	$3,64($17)
-	ld	$2,56($17)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
 	b	$L844
 $L842:
-	ld	$2,16($17)
-	lw	$3,72($17)
+	ld	$2,16($sp)
+	lw	$3,64($sp)
 	dsra	$2,$3
-	sd	$2,32($17)
-	ld	$2,16($17)
+	sd	$2,32($sp)
+	ld	$2,16($sp)
 	move	$4,$2
-	lw	$3,8($17)
-	lw	$2,72($17)
+	lw	$3,8($sp)
+	lw	$2,64($sp)
 	subu	$2,$3,$2
 	move	$3,$4
 	dsll	$3,$2
-	ld	$2,24($17)
-	lw	$4,72($17)
+	ld	$2,24($sp)
+	lw	$4,64($sp)
 	dsrl	$2,$4
 	or	$2,$3
-	sd	$2,40($17)
+	sd	$2,40($sp)
 $L841:
-	ld	$3,40($17)
-	ld	$2,32($17)
+	move	$2,$sp
+	ld	$3,40($2)
+	ld	$2,32($2)
 $L844:
-	move	$sp,$17
-	ld	$17,48($sp)
-	addiu	$sp,56
+	addiu	$sp,48
 	jr	$31
 	.end	__ashrti3
 	.size	__ashrti3, .-__ashrti3
@@ -7965,55 +7391,49 @@ $L844:
 	.ent	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	ld	$2,8($17)
+	sd	$4,0($sp)
+	ld	$2,0($sp)
 	dsrl	$2,56
 	move	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsrl	$2,40
 	move	$4,$2
 	li	$2,65280
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsrl	$2,24
 	move	$4,$2
 	ld	$2,$L848
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsrl	$2,8
 	move	$4,$2
 	ld	$2,$L849
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsll	$4,$2,8
 	ld	$2,$L850
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsll	$4,$2,24
 	ld	$2,$L851
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsll	$4,$2,40
 	ld	$2,$L852
 	and	$2,$4
 	or	$3,$2
-	ld	$2,8($17)
+	ld	$2,0($sp)
 	dsll	$2,$2,56
 	or	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.type	__pool___bswapdi2_847, @object
 __pool___bswapdi2_847:
@@ -8042,31 +7462,25 @@ __pend___bswapdi2_847:
 	.ent	__bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sw	$4,8($17)
-	lw	$2,8($17)
+	sw	$4,0($sp)
+	lw	$2,0($sp)
 	srl	$3,$2,24
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	srl	$4,$2,8
 	li	$2,65280
 	and	$2,$4
 	or	$3,$2
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	sll	$4,$2,8
 	lw	$2,$L856
 	and	$2,$4
 	or	$3,$2
-	lw	$2,8($17)
+	lw	$2,0($sp)
 	sll	$2,$2,24
 	or	$2,$3
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.type	__pool___bswapsi2_855, @object
 __pool___bswapsi2_855:
@@ -8086,16 +7500,14 @@ __pend___bswapsi2_855:
 	.ent	__clzsi2
 	.type	__clzsi2, @function
 __clzsi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	lw	$2,32($17)
-	sw	$2,8($17)
-	lw	$3,8($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	lw	$2,24($sp)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	lw	$2,$L868
 	sltu	$3,$2
 	move	$2,$24
@@ -8105,16 +7517,16 @@ __clzsi2:
 $L858:
 	li	$2,0
 $L859:
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$3,16
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	subu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,65280
 	and	$2,$3
 	bnez	$2,$L860
@@ -8123,18 +7535,18 @@ $L859:
 $L860:
 	li	$2,0
 $L861:
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$3,8
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	subu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,240
 	and	$2,$3
 	bnez	$2,$L862
@@ -8143,18 +7555,18 @@ $L861:
 $L862:
 	li	$2,0
 $L863:
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$3,4
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	subu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,12
 	and	$2,$3
 	bnez	$2,$L864
@@ -8163,18 +7575,18 @@ $L863:
 $L864:
 	li	$2,0
 $L865:
-	sw	$2,12($17)
+	sw	$2,12($sp)
 	li	$3,2
-	lw	$2,12($17)
+	lw	$2,12($sp)
 	subu	$3,$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,2
 	and	$2,$3
 	sltu	$2,1
@@ -8182,15 +7594,13 @@ $L865:
 	zeb	$2
 	move	$4,$2
 	li	$3,2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	subu	$2,$3,$2
 	mult	$4,$2
 	mflo	$3
-	lw	$2,16($17)
+	lw	$2,16($sp)
 	addu	$2,$3,$2
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.type	__pool___clzsi2_867, @object
 __pool___clzsi2_867:
@@ -8210,37 +7620,38 @@ __pend___clzsi2_867:
 	.ent	__clzti2
 	.type	__clzti2, @function
 __clzti2:
-	.frame	$17,48,$31		# vars= 24, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,72,$31		# vars= 24, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
-	addiu	$17,$sp,32
+	sd	$3,64($sp)
 	lw	$2,$L871
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$6,$28
-	sd	$5,56($17)
-	sd	$4,48($17)
-	ld	$3,56($17)
-	ld	$2,48($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	ld	$2,16($17)
+	move	$2,$sp
+	sd	$5,80($2)
+	sd	$4,72($2)
+	move	$2,$sp
+	ld	$3,80($2)
+	ld	$2,72($2)
+	move	$4,$sp
+	sd	$3,56($4)
+	sd	$2,48($4)
+	ld	$2,48($sp)
 	sltu	$2,1
 	move	$2,$24
 	zeb	$2
 	neg	$2,$2
-	sd	$2,8($17)
-	ld	$3,16($17)
-	ld	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,48($sp)
+	ld	$2,40($sp)
 	not	$2,$2
 	and	$2,$3
 	move	$4,$2
-	ld	$3,24($17)
-	ld	$2,8($17)
+	ld	$3,56($sp)
+	ld	$2,40($sp)
 	and	$2,$3
 	move	$3,$4
 	or	$3,$2
@@ -8248,18 +7659,16 @@ __clzti2:
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	sll	$4,$2,0
 	li	$2,64
 	and	$2,$4
 	addu	$2,$3,$2
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	addiu	$sp,48
+	ld	$7,64($sp)
+	addiu	$sp,72
 	jr	$7
 	.type	__pool___clzti2_871, @object
 __pool___clzti2_871:
@@ -8277,44 +7686,42 @@ __pend___clzti2_871:
 	.ent	__cmpdi2
 	.type	__cmpdi2, @function
 __cmpdi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	sd	$5,40($17)
-	ld	$2,32($17)
-	sd	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	sd	$5,32($sp)
+	ld	$2,24($sp)
+	sd	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	slt	$3,$2
 	move	$2,$24
 	beqz	$2,$L873
 	li	$2,0
 	b	$L878
 $L873:
-	lw	$3,8($17)
-	lw	$2,16($17)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	slt	$2,$3
 	move	$2,$24
 	beqz	$2,$L875
 	li	$2,2
 	b	$L878
 $L875:
-	lw	$3,12($17)
-	lw	$2,20($17)
+	lw	$3,12($sp)
+	lw	$2,20($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L876
 	li	$2,0
 	b	$L878
 $L876:
-	lw	$3,12($17)
-	lw	$2,20($17)
+	lw	$3,12($sp)
+	lw	$2,20($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L877
@@ -8323,9 +7730,7 @@ $L876:
 $L877:
 	li	$2,1
 $L878:
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__cmpdi2
 	.size	__cmpdi2, .-__cmpdi2
@@ -8336,28 +7741,24 @@ $L878:
 	.ent	__aeabi_lcmp
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
-	sd	$4,24($17)
-	sd	$5,32($17)
-	ld	$3,32($17)
-	ld	$2,24($17)
+	sd	$3,40($sp)
+	sd	$4,48($sp)
+	sd	$5,56($sp)
+	ld	$3,56($sp)
+	ld	$2,48($sp)
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__cmpdi2
 	.option	pic2
 	addiu	$2,-1
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.end	__aeabi_lcmp
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
@@ -8368,50 +7769,54 @@ __aeabi_lcmp:
 	.ent	__cmpti2
 	.type	__cmpti2, @function
 __cmpti2:
-	.frame	$17,48,$31		# vars= 32, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,40,$31		# vars= 32, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$17,40($sp)
-	move	$17,$sp
-	sd	$5,56($17)
-	sd	$4,48($17)
-	sd	$7,72($17)
-	sd	$6,64($17)
-	ld	$3,56($17)
-	ld	$2,48($17)
-	sd	$3,16($17)
-	sd	$2,8($17)
-	ld	$3,72($17)
-	ld	$2,64($17)
-	sd	$3,32($17)
-	sd	$2,24($17)
-	ld	$3,8($17)
-	ld	$2,24($17)
+	addiu	$sp,-40
+	move	$2,$sp
+	sd	$5,48($2)
+	sd	$4,40($2)
+	move	$2,$sp
+	sd	$7,64($2)
+	sd	$6,56($2)
+	move	$2,$sp
+	ld	$3,48($2)
+	ld	$2,40($2)
+	move	$4,$sp
+	sd	$3,16($4)
+	sd	$2,8($4)
+	move	$2,$sp
+	ld	$3,64($2)
+	ld	$2,56($2)
+	move	$4,$sp
+	sd	$3,32($4)
+	sd	$2,24($4)
+	ld	$3,8($sp)
+	ld	$2,24($sp)
 	slt	$3,$2
 	move	$2,$24
 	beqz	$2,$L882
 	li	$2,0
 	b	$L887
 $L882:
-	ld	$3,8($17)
-	ld	$2,24($17)
+	ld	$3,8($sp)
+	ld	$2,24($sp)
 	slt	$2,$3
 	move	$2,$24
 	beqz	$2,$L884
 	li	$2,2
 	b	$L887
 $L884:
-	ld	$3,16($17)
-	ld	$2,32($17)
+	ld	$3,16($sp)
+	ld	$2,32($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L885
 	li	$2,0
 	b	$L887
 $L885:
-	ld	$3,16($17)
-	ld	$2,32($17)
+	ld	$3,16($sp)
+	ld	$2,32($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L886
@@ -8420,9 +7825,7 @@ $L885:
 $L886:
 	li	$2,1
 $L887:
-	move	$sp,$17
-	ld	$17,40($sp)
-	addiu	$sp,48
+	addiu	$sp,40
 	jr	$31
 	.end	__cmpti2
 	.size	__cmpti2, .-__cmpti2
@@ -8433,16 +7836,14 @@ $L887:
 	.ent	__ctzsi2
 	.type	__ctzsi2, @function
 __ctzsi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sw	$4,32($17)
-	lw	$2,32($17)
-	sw	$2,8($17)
-	lw	$3,8($17)
+	addiu	$sp,-24
+	sw	$4,24($sp)
+	lw	$2,24($sp)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	li	$2,65535
 	and	$2,$3
 	bnez	$2,$L889
@@ -8451,14 +7852,14 @@ __ctzsi2:
 $L889:
 	li	$2,0
 $L890:
-	sw	$2,12($17)
-	lw	$2,8($17)
-	lw	$3,12($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
+	lw	$3,12($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,255
 	and	$2,$3
 	bnez	$2,$L891
@@ -8467,16 +7868,16 @@ $L890:
 $L891:
 	li	$2,0
 $L892:
-	sw	$2,12($17)
-	lw	$2,8($17)
-	lw	$3,12($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
+	lw	$3,12($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,15
 	and	$2,$3
 	bnez	$2,$L893
@@ -8485,16 +7886,16 @@ $L892:
 $L893:
 	li	$2,0
 $L894:
-	sw	$2,12($17)
-	lw	$2,8($17)
-	lw	$3,12($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
+	lw	$3,12($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,8($17)
+	sw	$2,16($sp)
+	lw	$3,8($sp)
 	li	$2,3
 	and	$2,$3
 	bnez	$2,$L895
@@ -8503,34 +7904,32 @@ $L894:
 $L895:
 	li	$2,0
 $L896:
-	sw	$2,12($17)
-	lw	$2,8($17)
-	lw	$3,12($17)
+	sw	$2,12($sp)
+	lw	$2,8($sp)
+	lw	$3,12($sp)
 	srl	$2,$3
-	sw	$2,8($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	li	$2,3
 	and	$2,$3
-	sw	$2,8($17)
-	lw	$2,12($17)
-	lw	$3,16($17)
+	sw	$2,8($sp)
+	lw	$2,12($sp)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$2,8($17)
+	sw	$2,16($sp)
+	lw	$2,8($sp)
 	not	$3,$2
 	li	$2,1
 	and	$3,$2
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	srl	$2,$2,1
 	li	$4,2
 	subu	$2,$4,$2
 	neg	$3,$3
 	and	$3,$2
-	lw	$2,16($17)
+	lw	$2,16($sp)
 	addu	$2,$3,$2
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__ctzsi2
 	.size	__ctzsi2, .-__ctzsi2
@@ -8541,36 +7940,37 @@ $L896:
 	.ent	__ctzti2
 	.type	__ctzti2, @function
 __ctzti2:
-	.frame	$17,48,$31		# vars= 24, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,72,$31		# vars= 24, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
-	addiu	$17,$sp,32
+	sd	$3,64($sp)
 	lw	$2,$L900
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$6,$28
-	sd	$5,56($17)
-	sd	$4,48($17)
-	ld	$3,56($17)
-	ld	$2,48($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	ld	$2,24($17)
+	move	$2,$sp
+	sd	$5,80($2)
+	sd	$4,72($2)
+	move	$2,$sp
+	ld	$3,80($2)
+	ld	$2,72($2)
+	move	$4,$sp
+	sd	$3,56($4)
+	sd	$2,48($4)
+	ld	$2,56($sp)
 	sltu	$2,1
 	move	$2,$24
 	zeb	$2
 	neg	$2,$2
-	sd	$2,8($17)
-	ld	$3,16($17)
-	ld	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,48($sp)
+	ld	$2,40($sp)
 	and	$2,$3
 	move	$4,$2
-	ld	$3,24($17)
-	ld	$2,8($17)
+	ld	$3,56($sp)
+	ld	$2,40($sp)
 	not	$2,$2
 	and	$2,$3
 	move	$3,$4
@@ -8579,18 +7979,16 @@ __ctzti2:
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	move	$3,$2
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	sll	$4,$2,0
 	li	$2,64
 	and	$2,$4
 	addu	$2,$3,$2
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	addiu	$sp,48
+	ld	$7,64($sp)
+	addiu	$sp,72
 	jr	$7
 	.type	__pool___ctzti2_900, @object
 __pool___ctzti2_900:
@@ -8608,55 +8006,54 @@ __pend___ctzti2_900:
 	.ent	__ffsti2
 	.type	__ffsti2, @function
 __ffsti2:
-	.frame	$17,40,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,64,$31		# vars= 16, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
-	addiu	$17,$sp,32
+	sd	$3,56($sp)
 	lw	$2,$L906
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$6,$28
-	sd	$5,48($17)
-	sd	$4,40($17)
-	ld	$3,48($17)
-	ld	$2,40($17)
-	sd	$3,16($17)
-	sd	$2,8($17)
-	ld	$2,16($17)
+	move	$2,$sp
+	sd	$5,72($2)
+	sd	$4,64($2)
+	move	$2,$sp
+	ld	$3,72($2)
+	ld	$2,64($2)
+	move	$4,$sp
+	sd	$3,48($4)
+	sd	$2,40($4)
+	ld	$2,48($sp)
 	bnez	$2,$L902
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	bnez	$2,$L903
 	li	$2,0
 	b	$L905
 $L903:
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	move	$3,$2
 	lw	$2,%call16(__ctzdi2)($6)
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	addiu	$2,65
 	b	$L905
 $L902:
-	ld	$3,16($17)
+	ld	$3,48($sp)
 	lw	$2,%call16(__ctzdi2)($6)
 	move	$4,$3
 	move	$25,$2
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	addiu	$2,1
 $L905:
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool___ffsti2_906, @object
 __pool___ffsti2_906:
@@ -8674,57 +8071,53 @@ __pend___ffsti2_906:
 	.ent	__lshrdi3
 	.type	__lshrdi3, @function
 __lshrdi3:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sd	$4,40($17)
-	sw	$5,48($17)
+	addiu	$sp,-32
+	sd	$4,32($sp)
+	sw	$5,40($sp)
 	li	$2,32
-	sw	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	lw	$3,48($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	lw	$3,40($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L908
 	li	$2,0
-	sw	$2,24($17)
-	lw	$2,16($17)
-	lw	$4,48($17)
-	lw	$3,8($17)
+	sw	$2,24($sp)
+	lw	$2,16($sp)
+	lw	$4,40($sp)
+	lw	$3,8($sp)
 	subu	$3,$4,$3
 	srl	$2,$3
-	sw	$2,28($17)
+	sw	$2,28($sp)
 	b	$L909
 $L908:
-	lw	$2,48($17)
+	lw	$2,40($sp)
 	bnez	$2,$L910
-	ld	$2,40($17)
+	ld	$2,32($sp)
 	b	$L912
 $L910:
-	lw	$2,16($17)
-	lw	$3,48($17)
+	lw	$2,16($sp)
+	lw	$3,40($sp)
 	srl	$2,$3
-	sw	$2,24($17)
-	lw	$3,16($17)
-	lw	$4,8($17)
-	lw	$2,48($17)
+	sw	$2,24($sp)
+	lw	$3,16($sp)
+	lw	$4,8($sp)
+	lw	$2,40($sp)
 	subu	$2,$4,$2
 	sll	$3,$2
-	lw	$2,20($17)
-	lw	$4,48($17)
+	lw	$2,20($sp)
+	lw	$4,40($sp)
 	srl	$2,$4
 	or	$2,$3
-	sw	$2,28($17)
+	sw	$2,28($sp)
 $L909:
-	ld	$2,24($17)
+	ld	$2,24($sp)
 $L912:
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	addiu	$sp,32
 	jr	$31
 	.end	__lshrdi3
 	.size	__lshrdi3, .-__lshrdi3
@@ -8735,62 +8128,63 @@ $L912:
 	.ent	__lshrti3
 	.type	__lshrti3, @function
 __lshrti3:
-	.frame	$17,56,$31		# vars= 40, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,48,$31		# vars= 40, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$17,48($sp)
-	move	$17,$sp
-	sd	$5,64($17)
-	sd	$4,56($17)
-	sw	$6,72($17)
+	addiu	$sp,-48
+	move	$2,$sp
+	sd	$5,56($2)
+	sd	$4,48($2)
+	sw	$6,64($sp)
 	li	$2,64
-	sw	$2,8($17)
-	ld	$3,64($17)
-	ld	$2,56($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	lw	$3,72($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
+	move	$4,$sp
+	sd	$3,24($4)
+	sd	$2,16($4)
+	lw	$3,64($sp)
+	lw	$2,8($sp)
 	and	$2,$3
 	beqz	$2,$L914
 	li	$2,0
-	sd	$2,32($17)
-	ld	$2,16($17)
-	lw	$4,72($17)
-	lw	$3,8($17)
+	sd	$2,32($sp)
+	ld	$2,16($sp)
+	lw	$4,64($sp)
+	lw	$3,8($sp)
 	subu	$3,$4,$3
 	dsrl	$2,$3
-	sd	$2,40($17)
+	sd	$2,40($sp)
 	b	$L915
 $L914:
-	lw	$2,72($17)
+	lw	$2,64($sp)
 	bnez	$2,$L916
-	ld	$3,64($17)
-	ld	$2,56($17)
+	move	$2,$sp
+	ld	$3,56($2)
+	ld	$2,48($2)
 	b	$L918
 $L916:
-	ld	$2,16($17)
-	lw	$3,72($17)
+	ld	$2,16($sp)
+	lw	$3,64($sp)
 	dsrl	$2,$3
-	sd	$2,32($17)
-	ld	$3,16($17)
-	lw	$4,8($17)
-	lw	$2,72($17)
+	sd	$2,32($sp)
+	ld	$3,16($sp)
+	lw	$4,8($sp)
+	lw	$2,64($sp)
 	subu	$2,$4,$2
 	dsll	$3,$2
-	ld	$2,24($17)
-	lw	$4,72($17)
+	ld	$2,24($sp)
+	lw	$4,64($sp)
 	dsrl	$2,$4
 	or	$2,$3
-	sd	$2,40($17)
+	sd	$2,40($sp)
 $L915:
-	ld	$3,40($17)
-	ld	$2,32($17)
+	move	$2,$sp
+	ld	$3,40($2)
+	ld	$2,32($2)
 $L918:
-	move	$sp,$17
-	ld	$17,48($sp)
-	addiu	$sp,56
+	addiu	$sp,48
 	jr	$31
 	.end	__lshrti3
 	.size	__lshrti3, .-__lshrti3
@@ -8801,112 +8195,108 @@ $L918:
 	.ent	__muldsi3
 	.type	__muldsi3, @function
 __muldsi3:
-	.frame	$17,40,$31		# vars= 24, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,32,$31		# vars= 24, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	move	$17,$sp
-	sw	$4,40($17)
-	sw	$5,48($17)
+	addiu	$sp,-32
+	sw	$4,32($sp)
+	sw	$5,40($sp)
 	li	$2,16
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	li	$2,1
 	neg	$2,$2
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	srl	$2,$3
-	sw	$2,12($17)
-	lw	$3,40($17)
-	lw	$2,12($17)
+	sw	$2,12($sp)
+	lw	$3,32($sp)
+	lw	$2,12($sp)
 	and	$3,$2
-	lw	$4,48($17)
-	lw	$2,12($17)
+	lw	$4,40($sp)
+	lw	$2,12($sp)
 	and	$2,$4
 	mult	$3,$2
 	mflo	$2
-	sw	$2,28($17)
-	lw	$2,28($17)
-	lw	$3,8($17)
+	sw	$2,28($sp)
+	lw	$2,28($sp)
+	lw	$3,8($sp)
 	srl	$2,$3
-	sw	$2,16($17)
-	lw	$3,28($17)
-	lw	$2,12($17)
+	sw	$2,16($sp)
+	lw	$3,28($sp)
+	lw	$2,12($sp)
 	and	$2,$3
-	sw	$2,28($17)
-	lw	$3,40($17)
-	lw	$2,8($17)
+	sw	$2,28($sp)
+	lw	$3,32($sp)
+	lw	$2,8($sp)
 	srl	$3,$2
-	lw	$4,48($17)
-	lw	$2,12($17)
+	lw	$4,40($sp)
+	lw	$2,12($sp)
 	and	$2,$4
 	mult	$3,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,28($17)
-	lw	$4,16($17)
-	lw	$2,12($17)
+	sw	$2,16($sp)
+	lw	$3,28($sp)
+	lw	$4,16($sp)
+	lw	$2,12($sp)
 	and	$2,$4
-	lw	$4,8($17)
+	lw	$4,8($sp)
 	sll	$2,$4
 	addu	$2,$3,$2
-	sw	$2,28($17)
-	lw	$3,16($17)
-	lw	$2,8($17)
+	sw	$2,28($sp)
+	lw	$3,16($sp)
+	lw	$2,8($sp)
 	srl	$3,$2
 	move	$2,$3
-	sw	$2,24($17)
-	lw	$2,28($17)
-	lw	$3,8($17)
+	sw	$2,24($sp)
+	lw	$2,28($sp)
+	lw	$3,8($sp)
 	srl	$2,$3
-	sw	$2,16($17)
-	lw	$3,28($17)
-	lw	$2,12($17)
+	sw	$2,16($sp)
+	lw	$3,28($sp)
+	lw	$2,12($sp)
 	and	$2,$3
-	sw	$2,28($17)
-	lw	$3,48($17)
-	lw	$2,8($17)
+	sw	$2,28($sp)
+	lw	$3,40($sp)
+	lw	$2,8($sp)
 	srl	$3,$2
-	lw	$4,40($17)
-	lw	$2,12($17)
+	lw	$4,32($sp)
+	lw	$2,12($sp)
 	and	$2,$4
 	mult	$3,$2
 	mflo	$2
-	lw	$3,16($17)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$3,28($17)
-	lw	$4,16($17)
-	lw	$2,12($17)
+	sw	$2,16($sp)
+	lw	$3,28($sp)
+	lw	$4,16($sp)
+	lw	$2,12($sp)
 	and	$2,$4
-	lw	$4,8($17)
+	lw	$4,8($sp)
 	sll	$2,$4
 	addu	$2,$3,$2
-	sw	$2,28($17)
-	lw	$2,24($17)
+	sw	$2,28($sp)
+	lw	$2,24($sp)
 	move	$4,$2
-	lw	$2,16($17)
-	lw	$3,8($17)
+	lw	$2,16($sp)
+	lw	$3,8($sp)
 	srl	$2,$3
 	addu	$2,$4,$2
-	sw	$2,24($17)
-	lw	$2,24($17)
+	sw	$2,24($sp)
+	lw	$2,24($sp)
 	move	$5,$2
-	lw	$3,40($17)
-	lw	$2,8($17)
+	lw	$3,32($sp)
+	lw	$2,8($sp)
 	srl	$3,$2
-	lw	$2,48($17)
-	lw	$4,8($17)
+	lw	$2,40($sp)
+	lw	$4,8($sp)
 	srl	$2,$4
 	mult	$3,$2
 	mflo	$2
 	addu	$2,$5,$2
-	sw	$2,24($17)
-	ld	$2,24($17)
-	move	$sp,$17
-	ld	$17,32($sp)
-	addiu	$sp,40
+	sw	$2,24($sp)
+	ld	$2,24($sp)
+	addiu	$sp,32
 	jr	$31
 	.end	__muldsi3
 	.size	__muldsi3, .-__muldsi3
@@ -8917,47 +8307,43 @@ __muldsi3:
 	.ent	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	.frame	$17,48,$31		# vars= 24, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,72,$31		# vars= 24, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
-	addiu	$17,$sp,32
-	sd	$4,48($17)
-	sd	$5,56($17)
-	ld	$2,48($17)
-	sd	$2,8($17)
-	ld	$2,56($17)
-	sd	$2,16($17)
-	lw	$2,12($17)
-	lw	$3,20($17)
+	sd	$3,64($sp)
+	sd	$4,72($sp)
+	sd	$5,80($sp)
+	ld	$2,72($sp)
+	sd	$2,40($sp)
+	ld	$2,80($sp)
+	sd	$2,48($sp)
+	lw	$2,44($sp)
+	lw	$3,52($sp)
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__muldsi3
 	.option	pic2
-	sd	$2,24($17)
-	lw	$2,24($17)
+	sd	$2,56($sp)
+	lw	$2,56($sp)
 	move	$4,$2
-	lw	$2,8($17)
+	lw	$2,40($sp)
 	move	$3,$2
-	lw	$2,20($17)
+	lw	$2,52($sp)
 	mult	$3,$2
 	mflo	$3
-	lw	$2,12($17)
-	lw	$5,16($17)
+	lw	$2,44($sp)
+	lw	$5,48($sp)
 	mult	$2,$5
 	mflo	$2
 	addu	$2,$3,$2
 	addu	$2,$4,$2
-	sw	$2,24($17)
-	ld	$2,24($17)
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	addiu	$sp,48
+	sw	$2,56($sp)
+	ld	$2,56($sp)
+	ld	$7,64($sp)
+	addiu	$sp,72
 	jr	$7
 	.end	__muldi3_compiler_rt
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
@@ -8968,113 +8354,110 @@ __muldi3_compiler_rt:
 	.ent	__mulddi3
 	.type	__mulddi3, @function
 __mulddi3:
-	.frame	$17,56,$31		# vars= 40, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,48,$31		# vars= 40, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$17,48($sp)
-	move	$17,$sp
-	sd	$4,56($17)
-	sd	$5,64($17)
+	addiu	$sp,-48
+	sd	$4,48($sp)
+	sd	$5,56($sp)
 	li	$2,32
-	sw	$2,8($17)
+	sw	$2,8($sp)
 	li	$2,1
 	neg	$2,$2
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	dsrl	$2,$3
-	sd	$2,16($17)
-	ld	$3,56($17)
-	ld	$2,16($17)
+	sd	$2,16($sp)
+	ld	$3,48($sp)
+	ld	$2,16($sp)
 	and	$3,$2
-	ld	$4,64($17)
-	ld	$2,16($17)
+	ld	$4,56($sp)
+	ld	$2,16($sp)
 	and	$2,$4
 	dmult	$3,$2
 	mflo	$2
-	sd	$2,40($17)
-	ld	$2,40($17)
-	lw	$3,8($17)
+	sd	$2,40($sp)
+	ld	$2,40($sp)
+	lw	$3,8($sp)
 	dsrl	$2,$3
-	sd	$2,24($17)
-	ld	$3,40($17)
-	ld	$2,16($17)
+	sd	$2,24($sp)
+	ld	$3,40($sp)
+	ld	$2,16($sp)
 	and	$2,$3
-	sd	$2,40($17)
-	ld	$3,56($17)
-	lw	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,48($sp)
+	lw	$2,8($sp)
 	dsrl	$3,$2
-	ld	$4,64($17)
-	ld	$2,16($17)
+	ld	$4,56($sp)
+	ld	$2,16($sp)
 	and	$2,$4
 	dmult	$3,$2
 	mflo	$2
-	ld	$3,24($17)
+	ld	$3,24($sp)
 	daddu	$2,$3,$2
-	sd	$2,24($17)
-	ld	$3,40($17)
-	ld	$4,24($17)
-	ld	$2,16($17)
+	sd	$2,24($sp)
+	ld	$3,40($sp)
+	ld	$4,24($sp)
+	ld	$2,16($sp)
 	and	$2,$4
-	lw	$4,8($17)
+	lw	$4,8($sp)
 	dsll	$2,$4
 	daddu	$2,$3,$2
-	sd	$2,40($17)
-	ld	$3,24($17)
-	lw	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,24($sp)
+	lw	$2,8($sp)
 	dsrl	$3,$2
 	move	$2,$3
-	sd	$2,32($17)
-	ld	$2,40($17)
-	lw	$3,8($17)
+	sd	$2,32($sp)
+	ld	$2,40($sp)
+	lw	$3,8($sp)
 	dsrl	$2,$3
-	sd	$2,24($17)
-	ld	$3,40($17)
-	ld	$2,16($17)
+	sd	$2,24($sp)
+	ld	$3,40($sp)
+	ld	$2,16($sp)
 	and	$2,$3
-	sd	$2,40($17)
-	ld	$3,64($17)
-	lw	$2,8($17)
+	sd	$2,40($sp)
+	ld	$3,56($sp)
+	lw	$2,8($sp)
 	dsrl	$3,$2
-	ld	$4,56($17)
-	ld	$2,16($17)
+	ld	$4,48($sp)
+	ld	$2,16($sp)
 	and	$2,$4
 	dmult	$3,$2
 	mflo	$2
-	ld	$3,24($17)
+	ld	$3,24($sp)
 	daddu	$2,$3,$2
-	sd	$2,24($17)
-	ld	$3,40($17)
-	ld	$4,24($17)
-	ld	$2,16($17)
+	sd	$2,24($sp)
+	ld	$3,40($sp)
+	ld	$4,24($sp)
+	ld	$2,16($sp)
 	and	$2,$4
-	lw	$4,8($17)
+	lw	$4,8($sp)
 	dsll	$2,$4
 	daddu	$2,$3,$2
-	sd	$2,40($17)
-	ld	$2,32($17)
+	sd	$2,40($sp)
+	ld	$2,32($sp)
 	move	$4,$2
-	ld	$2,24($17)
-	lw	$3,8($17)
+	ld	$2,24($sp)
+	lw	$3,8($sp)
 	dsrl	$2,$3
 	daddu	$2,$4,$2
-	sd	$2,32($17)
-	ld	$2,32($17)
+	sd	$2,32($sp)
+	ld	$2,32($sp)
 	move	$5,$2
-	ld	$3,56($17)
-	lw	$2,8($17)
+	ld	$3,48($sp)
+	lw	$2,8($sp)
 	dsrl	$3,$2
-	ld	$2,64($17)
-	lw	$4,8($17)
+	ld	$2,56($sp)
+	lw	$4,8($sp)
 	dsrl	$2,$4
 	dmult	$3,$2
 	mflo	$2
 	daddu	$2,$5,$2
-	sd	$2,32($17)
-	ld	$3,40($17)
-	ld	$2,32($17)
-	move	$sp,$17
-	ld	$17,48($sp)
-	addiu	$sp,56
+	sd	$2,32($sp)
+	move	$2,$sp
+	ld	$3,40($2)
+	ld	$2,32($2)
+	addiu	$sp,48
 	jr	$31
 	.end	__mulddi3
 	.size	__mulddi3, .-__mulddi3
@@ -9085,55 +8468,59 @@ __mulddi3:
 	.ent	__multi3
 	.type	__multi3, @function
 __multi3:
-	.frame	$17,72,$31		# vars= 48, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,96,$31		# vars= 48, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-104
+	addiu	$sp,-96
 	move	$3,$31
-	sd	$3,96($sp)
-	sd	$17,88($sp)
-	addiu	$17,$sp,32
-	sd	$5,80($17)
-	sd	$4,72($17)
-	sd	$7,96($17)
-	sd	$6,88($17)
-	ld	$3,80($17)
-	ld	$2,72($17)
-	sd	$3,16($17)
-	sd	$2,8($17)
-	ld	$3,96($17)
-	ld	$2,88($17)
-	sd	$3,32($17)
-	sd	$2,24($17)
-	ld	$2,16($17)
-	ld	$3,32($17)
+	sd	$3,88($sp)
+	move	$2,$sp
+	sd	$5,104($2)
+	sd	$4,96($2)
+	move	$2,$sp
+	sd	$7,120($2)
+	sd	$6,112($2)
+	move	$2,$sp
+	ld	$3,104($2)
+	ld	$2,96($2)
+	move	$4,$sp
+	sd	$3,48($4)
+	sd	$2,40($4)
+	move	$2,$sp
+	ld	$3,120($2)
+	ld	$2,112($2)
+	move	$4,$sp
+	sd	$3,64($4)
+	sd	$2,56($4)
+	ld	$2,48($sp)
+	ld	$3,64($sp)
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__mulddi3
 	.option	pic2
-	sd	$3,48($17)
-	sd	$2,40($17)
-	ld	$2,40($17)
+	move	$4,$sp
+	sd	$3,80($4)
+	sd	$2,72($4)
+	ld	$2,72($sp)
 	move	$4,$2
-	ld	$2,8($17)
+	ld	$2,40($sp)
 	move	$3,$2
-	ld	$2,32($17)
+	ld	$2,64($sp)
 	dmult	$3,$2
 	mflo	$3
-	ld	$2,16($17)
-	ld	$5,24($17)
+	ld	$2,48($sp)
+	ld	$5,56($sp)
 	dmult	$2,$5
 	mflo	$2
 	daddu	$2,$3,$2
 	daddu	$2,$4,$2
-	sd	$2,40($17)
-	ld	$3,48($17)
-	ld	$2,40($17)
-	move	$sp,$17
-	ld	$7,64($sp)
-	ld	$17,56($sp)
-	addiu	$sp,72
+	sd	$2,72($sp)
+	move	$2,$sp
+	ld	$3,80($2)
+	ld	$2,72($2)
+	ld	$7,88($sp)
+	addiu	$sp,96
 	jr	$7
 	.end	__multi3
 	.size	__multi3, .-__multi3
@@ -9144,19 +8531,13 @@ __multi3:
 	.ent	__negdi2
 	.type	__negdi2, @function
 __negdi2:
-	.frame	$17,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
-	.mask	0x00020000,0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-8
-	sd	$17,0($sp)
-	move	$17,$sp
-	sd	$4,8($17)
-	ld	$2,8($17)
+	sd	$4,0($sp)
+	ld	$2,0($sp)
 	li	$3,0
 	dsubu	$2,$3,$2
-	move	$sp,$17
-	ld	$17,0($sp)
-	addiu	$sp,8
 	jr	$31
 	.end	__negdi2
 	.size	__negdi2, .-__negdi2
@@ -9167,17 +8548,17 @@ __negdi2:
 	.ent	__negti2
 	.type	__negti2, @function
 __negti2:
-	.frame	$17,16,$31		# vars= 0, regs= 2/0, args= 0, gp= 0
-	.mask	0x00030000,-8
+	.frame	$sp,8,$31		# vars= 0, regs= 1/0, args= 0, gp= 0
+	.mask	0x00010000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-16
-	sd	$17,8($sp)
+	addiu	$sp,-8
 	sd	$16,0($sp)
-	move	$17,$sp
-	sd	$5,24($17)
-	sd	$4,16($17)
-	ld	$7,24($17)
-	ld	$6,16($17)
+	move	$2,$sp
+	sd	$5,16($2)
+	sd	$4,8($2)
+	move	$2,$sp
+	ld	$7,16($2)
+	ld	$6,8($2)
 	li	$5,0
 	li	$4,0
 	dsubu	$3,$5,$7
@@ -9188,10 +8569,8 @@ __negti2:
 	dsubu	$2,$4,$6
 	dsubu	$4,$2,$16
 	move	$2,$4
-	move	$sp,$17
-	ld	$17,8($sp)
 	ld	$16,0($sp)
-	addiu	$sp,16
+	addiu	$sp,8
 	jr	$31
 	.end	__negti2
 	.size	__negti2, .-__negti2
@@ -9202,46 +8581,42 @@ __negti2:
 	.ent	__paritydi2
 	.type	__paritydi2, @function
 __paritydi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	ld	$2,32($17)
-	sd	$2,16($17)
-	lw	$2,16($17)
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	ld	$2,24($sp)
+	sd	$2,16($sp)
+	lw	$2,16($sp)
 	move	$3,$2
-	lw	$2,20($17)
+	lw	$2,20($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,4
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	li	$2,15
 	and	$2,$3
 	li	$3,27030
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__paritydi2
 	.size	__paritydi2, .-__paritydi2
@@ -9252,54 +8627,53 @@ __paritydi2:
 	.ent	__parityti2
 	.type	__parityti2, @function
 __parityti2:
-	.frame	$17,48,$31		# vars= 32, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,40,$31		# vars= 32, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$17,40($sp)
-	move	$17,$sp
-	sd	$5,56($17)
-	sd	$4,48($17)
-	ld	$3,56($17)
-	ld	$2,48($17)
-	sd	$3,24($17)
-	sd	$2,16($17)
-	ld	$2,16($17)
+	addiu	$sp,-40
+	move	$2,$sp
+	sd	$5,48($2)
+	sd	$4,40($2)
+	move	$2,$sp
+	ld	$3,48($2)
+	ld	$2,40($2)
+	move	$4,$sp
+	sd	$3,24($4)
+	sd	$2,16($4)
+	ld	$2,16($sp)
 	move	$3,$2
-	ld	$2,24($17)
+	ld	$2,24($sp)
 	xor	$2,$3
-	sd	$2,32($17)
-	lw	$2,32($17)
+	sd	$2,32($sp)
+	lw	$2,32($sp)
 	move	$3,$2
-	lw	$2,36($17)
+	lw	$2,36($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,4
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	li	$2,15
 	and	$2,$3
 	li	$3,27030
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,40($sp)
-	addiu	$sp,48
+	addiu	$sp,40
 	jr	$31
 	.end	__parityti2
 	.size	__parityti2, .-__parityti2
@@ -9310,41 +8684,37 @@ __parityti2:
 	.ent	__paritysi2
 	.type	__paritysi2, @function
 __paritysi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,4
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	xor	$2,$3
-	sw	$2,8($17)
-	lw	$3,8($17)
+	sw	$2,8($sp)
+	lw	$3,8($sp)
 	li	$2,15
 	and	$2,$3
 	li	$3,27030
 	sra	$3,$2
 	li	$2,1
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.end	__paritysi2
 	.size	__paritysi2, .-__paritysi2
@@ -9355,64 +8725,60 @@ __paritysi2:
 	.ent	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	ld	$2,32($17)
-	sd	$2,8($17)
-	ld	$2,8($17)
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	ld	$2,24($sp)
+	sd	$2,8($sp)
+	ld	$2,8($sp)
 	dsrl	$2,1
 	move	$3,$2
 	ld	$2,$L940
 	and	$2,$3
-	ld	$3,8($17)
+	ld	$3,8($sp)
 	dsubu	$2,$3,$2
-	sd	$2,8($17)
-	ld	$2,8($17)
+	sd	$2,8($sp)
+	ld	$2,8($sp)
 	dsrl	$2,2
 	move	$3,$2
 	ld	$2,$L941
 	and	$3,$2
-	ld	$4,8($17)
+	ld	$4,8($sp)
 	ld	$2,$L941
 	and	$2,$4
 	daddu	$2,$3,$2
-	sd	$2,8($17)
-	ld	$2,8($17)
+	sd	$2,8($sp)
+	ld	$2,8($sp)
 	dsrl	$2,4
 	move	$3,$2
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	daddu	$3,$3,$2
 	ld	$2,$L942
 	and	$2,$3
-	sd	$2,8($17)
-	ld	$2,8($17)
+	sd	$2,8($sp)
+	ld	$2,8($sp)
 	sll	$3,$2,0
-	ld	$2,8($17)
+	ld	$2,8($sp)
 	dsrl	$2,32
 	sll	$2,$2,0
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$2,16($17)
+	sw	$2,16($sp)
+	lw	$2,16($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,16($17)
+	lw	$3,16($sp)
 	addu	$2,$3,$2
-	sw	$2,16($17)
-	lw	$2,16($17)
+	sw	$2,16($sp)
+	lw	$2,16($sp)
 	srl	$3,$2,8
-	lw	$2,16($17)
+	lw	$2,16($sp)
 	addu	$2,$3,$2
 	move	$3,$2
 	li	$2,127
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.type	__pool___popcountdi2_939, @object
 __pool___popcountdi2_939:
@@ -9437,54 +8803,50 @@ __pend___popcountdi2_939:
 	.ent	__popcountsi2
 	.type	__popcountsi2, @function
 __popcountsi2:
-	.frame	$17,24,$31		# vars= 8, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
-	sd	$17,16($sp)
-	move	$17,$sp
-	sw	$4,24($17)
-	lw	$2,24($17)
-	sw	$2,8($17)
-	lw	$2,8($17)
+	addiu	$sp,-16
+	sw	$4,16($sp)
+	lw	$2,16($sp)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$3,$2,1
 	lw	$2,$L946
 	and	$2,$3
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	subu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$3,$2,2
 	lw	$2,$L947
 	and	$3,$2
-	lw	$4,8($17)
+	lw	$4,8($sp)
 	lw	$2,$L947
 	and	$2,$4
 	addu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$3,$2,4
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addu	$3,$3,$2
 	lw	$2,$L948
 	and	$2,$3
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,8($17)
+	lw	$3,8($sp)
 	addu	$2,$3,$2
-	sw	$2,8($17)
-	lw	$2,8($17)
+	sw	$2,8($sp)
+	lw	$2,8($sp)
 	srl	$3,$2,8
-	lw	$2,8($17)
+	lw	$2,8($sp)
 	addu	$2,$3,$2
 	move	$3,$2
 	li	$2,63
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,16($sp)
-	addiu	$sp,24
+	addiu	$sp,16
 	jr	$31
 	.type	__pool___popcountsi2_945, @object
 __pool___popcountsi2_945:
@@ -9508,111 +8870,117 @@ __pend___popcountsi2_945:
 	.ent	__popcountti2
 	.type	__popcountti2, @function
 __popcountti2:
-	.frame	$17,136,$31		# vars= 112, regs= 2/0, args= 0, gp= 8
+	.frame	$sp,152,$31		# vars= 128, regs= 2/0, args= 0, gp= 8
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-136
-	sd	$17,128($sp)
-	sd	$16,120($sp)
-	move	$17,$sp
-	sd	$5,144($17)
-	sd	$4,136($17)
-	ld	$5,144($17)
-	ld	$4,136($17)
-	sd	$5,16($17)
-	sd	$4,8($17)
-	ld	$4,8($17)
+	addiu	$sp,-152
+	sd	$17,144($sp)
+	sd	$16,136($sp)
+	addiu	$6,$sp,96
+	sd	$5,64($6)
+	sd	$4,56($6)
+	addiu	$4,$sp,96
+	ld	$5,64($4)
+	ld	$4,56($4)
+	move	$6,$sp
+	sd	$5,16($6)
+	sd	$4,8($6)
+	ld	$4,8($sp)
 	dsll	$4,$4,63
-	ld	$5,16($17)
+	ld	$5,16($sp)
 	dsrl	$5,1
-	move	$7,$5
-	move	$5,$7
+	move	$17,$5
+	move	$5,$17
 	or	$4,$5
-	move	$7,$4
-	ld	$4,8($17)
+	move	$17,$4
+	ld	$4,8($sp)
 	dsrl	$4,1
-	move	$6,$4
+	move	$16,$4
 	ld	$4,$L952
+	move	$7,$17
+	move	$6,$16
 	move	$5,$6
 	and	$4,$5
-	sd	$4,56($17)
+	sd	$4,56($sp)
 	ld	$4,$L952
 	move	$5,$7
 	and	$5,$4
-	sd	$5,64($17)
-	ld	$5,16($17)
-	ld	$4,8($17)
-	ld	$7,16($17)
-	ld	$6,8($17)
-	move	$9,$7
-	move	$8,$6
-	move	$16,$9
-	ld	$7,64($17)
-	ld	$6,56($17)
-	move	$11,$7
-	move	$10,$6
-	move	$6,$11
-	dsubu	$5,$16,$6
+	sd	$5,64($sp)
+	move	$4,$sp
+	ld	$5,16($4)
+	ld	$4,8($4)
+	move	$17,$5
+	move	$16,$4
+	move	$6,$sp
+	sd	$17,128($6)
+	sd	$16,120($6)
+	ld	$6,128($sp)
+	move	$7,$sp
+	ld	$17,64($7)
+	ld	$16,56($7)
+	move	$9,$17
+	move	$8,$16
 	move	$7,$9
-	move	$6,$8
-	move	$9,$7
-	move	$8,$6
-	move	$6,$9
+	dsubu	$5,$6,$7
+	move	$6,$sp
+	ld	$17,128($6)
+	ld	$16,120($6)
+	move	$6,$17
 	sltu	$6,$5
 	move	$6,$24
-	dsll	$16,$6,32
-	dsrl	$16,32
-	move	$6,$8
-	move	$7,$10
-	dsubu	$4,$6,$7
-	dsubu	$16,$4,$16
-	move	$4,$16
-	sd	$5,16($17)
-	sd	$4,8($17)
-	ld	$4,8($17)
+	dsll	$6,$6,32
+	dsrl	$6,32
+	move	$7,$16
+	move	$16,$8
+	dsubu	$4,$7,$16
+	dsubu	$6,$4,$6
+	move	$4,$6
+	move	$6,$sp
+	sd	$5,16($6)
+	sd	$4,8($6)
+	ld	$4,8($sp)
 	dsll	$4,$4,62
-	ld	$5,16($17)
+	ld	$5,16($sp)
 	dsrl	$5,2
-	move	$3,$5
-	move	$5,$3
+	sd	$5,48($sp)
+	ld	$5,48($sp)
 	or	$4,$5
-	move	$3,$4
-	ld	$4,8($17)
+	sd	$4,48($sp)
+	ld	$4,8($sp)
 	dsrl	$4,2
-	move	$2,$4
+	sd	$4,40($sp)
 	ld	$4,$L953
-	move	$7,$3
-	move	$6,$2
+	move	$5,$sp
+	ld	$7,48($5)
+	ld	$6,40($5)
 	move	$5,$6
-	and	$5,$4
-	sd	$5,72($17)
+	and	$4,$5
+	sd	$4,72($sp)
 	ld	$4,$L953
 	move	$5,$7
 	and	$5,$4
-	sd	$5,80($17)
-	ld	$5,8($17)
+	sd	$5,80($sp)
+	ld	$5,8($sp)
 	ld	$4,$L953
 	and	$5,$4
-	sd	$5,88($17)
-	ld	$5,16($17)
+	sd	$5,88($sp)
+	ld	$5,16($sp)
 	ld	$4,$L953
 	and	$5,$4
-	sd	$5,96($17)
-	ld	$7,96($17)
-	ld	$6,88($17)
+	sd	$5,96($sp)
+	move	$6,$sp
+	ld	$7,96($6)
+	ld	$6,88($6)
 	move	$9,$7
 	move	$8,$6
 	move	$6,$9
-	ld	$3,80($17)
-	ld	$2,72($17)
-	move	$11,$3
-	move	$10,$2
-	move	$7,$11
+	move	$7,$sp
+	ld	$17,80($7)
+	ld	$16,72($7)
+	move	$7,$17
 	daddu	$5,$7,$6
-	move	$3,$11
-	move	$2,$10
-	move	$11,$3
-	move	$10,$2
+	move	$11,$17
+	move	$10,$16
 	move	$6,$11
 	sltu	$5,$6
 	move	$6,$24
@@ -9623,29 +8991,28 @@ __popcountti2:
 	daddu	$4,$7,$6
 	daddu	$6,$16,$4
 	move	$4,$6
-	sd	$5,16($17)
-	sd	$4,8($17)
-	ld	$4,8($17)
+	move	$6,$sp
+	sd	$5,16($6)
+	sd	$4,8($6)
+	ld	$4,8($sp)
 	dsll	$4,$4,60
-	ld	$5,16($17)
+	ld	$5,16($sp)
 	dsrl	$5,4
-	sd	$5,48($17)
-	ld	$5,48($17)
+	move	$3,$5
+	move	$5,$3
 	or	$4,$5
-	sd	$4,48($17)
-	ld	$4,8($17)
+	move	$3,$4
+	ld	$4,8($sp)
 	dsrl	$4,4
-	sd	$4,40($17)
-	ld	$7,16($17)
-	ld	$6,8($17)
-	ld	$2,48($17)
-	daddu	$5,$2,$7
-	ld	$2,48($17)
-	sltu	$5,$2
+	move	$2,$4
+	move	$4,$sp
+	ld	$7,16($4)
+	ld	$6,8($4)
+	daddu	$5,$3,$7
+	sltu	$5,$3
 	move	$16,$24
 	dsll	$16,$16,32
 	dsrl	$16,32
-	ld	$2,40($17)
 	daddu	$4,$2,$6
 	daddu	$2,$16,$4
 	move	$4,$2
@@ -9653,44 +9020,43 @@ __popcountti2:
 	move	$2,$4
 	ld	$4,$L954
 	and	$4,$2
-	sd	$4,8($17)
+	sd	$4,8($sp)
 	ld	$4,$L954
 	move	$2,$3
 	and	$2,$4
-	sd	$2,16($17)
-	ld	$2,16($17)
-	ld	$3,8($17)
+	sd	$2,16($sp)
+	ld	$2,16($sp)
+	ld	$3,8($sp)
 	dsrl	$3,0
-	sd	$3,112($17)
+	sd	$3,112($sp)
 	li	$3,0
-	sd	$3,104($17)
-	ld	$3,112($17)
+	sd	$3,104($sp)
+	ld	$3,112($sp)
 	daddu	$2,$2,$3
-	sd	$2,24($17)
-	ld	$2,24($17)
+	sd	$2,24($sp)
+	ld	$2,24($sp)
 	sll	$3,$2,0
-	ld	$2,24($17)
+	ld	$2,24($sp)
 	dsrl	$2,32
 	sll	$2,$2,0
 	addu	$2,$3,$2
-	sw	$2,32($17)
-	lw	$2,32($17)
+	sw	$2,32($sp)
+	lw	$2,32($sp)
 	srl	$2,$2,8
 	srl	$2,$2,8
-	lw	$3,32($17)
+	lw	$3,32($sp)
 	addu	$2,$3,$2
-	sw	$2,32($17)
-	lw	$2,32($17)
+	sw	$2,32($sp)
+	lw	$2,32($sp)
 	srl	$3,$2,8
-	lw	$2,32($17)
+	lw	$2,32($sp)
 	addu	$2,$3,$2
 	move	$3,$2
 	li	$2,255
 	and	$2,$3
-	move	$sp,$17
-	ld	$17,128($sp)
-	ld	$16,120($sp)
-	addiu	$sp,136
+	ld	$17,144($sp)
+	ld	$16,136($sp)
+	addiu	$sp,152
 	jr	$31
 	.type	__pool___popcountti2_951, @object
 __pool___popcountti2_951:
@@ -9731,81 +9097,77 @@ __fn_stub___powidf2:
 	.ent	__powidf2
 	.type	__powidf2, @function
 __powidf2:
-	.frame	$17,48,$31		# vars= 16, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,72,$31		# vars= 16, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-80
+	addiu	$sp,-72
 	move	$3,$31
-	sd	$3,72($sp)
-	sd	$17,64($sp)
+	sd	$3,64($sp)
 	sd	$16,56($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L965
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sd	$4,48($17)
-	sw	$5,56($17)
-	lw	$2,56($17)
+	sd	$4,72($sp)
+	sw	$5,80($sp)
+	lw	$2,80($sp)
 	srl	$2,$2,31
 	zeb	$2
-	sw	$2,16($17)
+	sw	$2,48($sp)
 	ld	$2,$L966
-	sd	$2,8($17)
+	sd	$2,40($sp)
 $L959:
-	lw	$3,56($17)
+	lw	$3,80($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L956
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,48($17)
-	ld	$4,8($17)
+	ld	$5,72($sp)
+	ld	$4,40($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,8($17)
+	sd	$2,40($sp)
 $L956:
-	lw	$2,56($17)
+	lw	$2,80($sp)
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	sw	$2,56($17)
-	lw	$2,56($17)
+	sw	$2,80($sp)
+	lw	$2,80($sp)
 	beqz	$2,$L964
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,48($17)
-	ld	$4,48($17)
+	ld	$5,72($sp)
+	ld	$4,72($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sd	$2,48($17)
+	sd	$2,72($sp)
 	b	$L959
 $L964:
 	.set	noreorder
 	nop
 	.set	reorder
-	lw	$2,16($17)
+	lw	$2,48($sp)
 	beqz	$2,$L960
 	lw	$2,%call16(__mips16_divdf3)($16)
-	ld	$5,8($17)
+	ld	$5,40($sp)
 	ld	$4,$L966
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	b	$L962
 $L960:
-	ld	$2,8($17)
+	ld	$2,40($sp)
 $L962:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,40($sp)
-	ld	$17,32($sp)
-	ld	$16,24($sp)
-	addiu	$sp,48
+	ld	$7,64($sp)
+	ld	$16,56($sp)
+	addiu	$sp,72
 	jr	$7
 	.type	__pool___powidf2_965, @object
 __pool___powidf2_965:
@@ -9843,81 +9205,77 @@ __fn_stub___powisf2:
 	.ent	__powisf2
 	.type	__powisf2, @function
 __powisf2:
-	.frame	$17,40,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
-	.mask	0x80030000,-8
+	.frame	$sp,64,$31		# vars= 8, regs= 2/0, args= 32, gp= 8
+	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
+	addiu	$sp,-64
 	move	$3,$31
-	sd	$3,64($sp)
-	sd	$17,56($sp)
+	sd	$3,56($sp)
 	sd	$16,48($sp)
-	addiu	$17,$sp,32
 	lw	$2,$L977
 	move	$28,$2
-	sw	$2,0($17)
+	sw	$2,32($sp)
 	move	$16,$28
-	sw	$4,40($17)
-	sw	$5,48($17)
-	lw	$2,48($17)
+	sw	$4,64($sp)
+	sw	$5,72($sp)
+	lw	$2,72($sp)
 	srl	$2,$2,31
 	zeb	$2
-	sw	$2,12($17)
+	sw	$2,44($sp)
 	lw	$2,$L978
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L971:
-	lw	$3,48($17)
+	lw	$3,72($sp)
 	li	$2,1
 	and	$2,$3
 	beqz	$2,$L968
 	lw	$2,%call16(__mips16_mulsf3)($16)
-	lw	$5,40($17)
-	lw	$4,8($17)
+	lw	$5,64($sp)
+	lw	$4,40($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sw	$2,8($17)
+	sw	$2,40($sp)
 $L968:
-	lw	$2,48($17)
+	lw	$2,72($sp)
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	sw	$2,48($17)
-	lw	$2,48($17)
+	sw	$2,72($sp)
+	lw	$2,72($sp)
 	beqz	$2,$L976
 	lw	$2,%call16(__mips16_mulsf3)($16)
-	lw	$5,40($17)
-	lw	$4,40($17)
+	lw	$5,64($sp)
+	lw	$4,64($sp)
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	sw	$2,40($17)
+	sw	$2,64($sp)
 	b	$L971
 $L976:
 	.set	noreorder
 	nop
 	.set	reorder
-	lw	$2,12($17)
+	lw	$2,44($sp)
 	beqz	$2,$L972
 	lw	$2,%call16(__mips16_divsf3)($16)
-	lw	$5,8($17)
+	lw	$5,40($sp)
 	lw	$4,$L978
 	jalr	$2
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
 	b	$L974
 $L972:
-	lw	$2,8($17)
+	lw	$2,40($sp)
 $L974:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,0($17)
+	lw	$6,32($sp)
 	move	$28,$6
-	move	$sp,$17
-	ld	$7,32($sp)
-	ld	$17,24($sp)
-	ld	$16,16($sp)
-	addiu	$sp,40
+	ld	$7,56($sp)
+	ld	$16,48($sp)
+	addiu	$sp,64
 	jr	$7
 	.type	__pool___powisf2_977, @object
 __pool___powisf2_977:
@@ -9937,44 +9295,42 @@ __pend___powisf2_977:
 	.ent	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
-	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$17,24($sp)
-	move	$17,$sp
-	sd	$4,32($17)
-	sd	$5,40($17)
-	ld	$2,32($17)
-	sd	$2,8($17)
-	ld	$2,40($17)
-	sd	$2,16($17)
-	lw	$3,8($17)
-	lw	$2,16($17)
+	addiu	$sp,-24
+	sd	$4,24($sp)
+	sd	$5,32($sp)
+	ld	$2,24($sp)
+	sd	$2,8($sp)
+	ld	$2,32($sp)
+	sd	$2,16($sp)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L980
 	li	$2,0
 	b	$L985
 $L980:
-	lw	$3,8($17)
-	lw	$2,16($17)
+	lw	$3,8($sp)
+	lw	$2,16($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L982
 	li	$2,2
 	b	$L985
 $L982:
-	lw	$3,12($17)
-	lw	$2,20($17)
+	lw	$3,12($sp)
+	lw	$2,20($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L983
 	li	$2,0
 	b	$L985
 $L983:
-	lw	$3,12($17)
-	lw	$2,20($17)
+	lw	$3,12($sp)
+	lw	$2,20($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L984
@@ -9983,9 +9339,7 @@ $L983:
 $L984:
 	li	$2,1
 $L985:
-	move	$sp,$17
-	ld	$17,24($sp)
-	addiu	$sp,32
+	addiu	$sp,24
 	jr	$31
 	.end	__ucmpdi2
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -9996,28 +9350,24 @@ $L985:
 	.ent	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
-	.frame	$17,24,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
+	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
+	addiu	$sp,-48
 	move	$3,$31
-	sd	$3,48($sp)
-	sd	$17,40($sp)
-	addiu	$17,$sp,32
-	sd	$4,24($17)
-	sd	$5,32($17)
-	ld	$2,24($17)
-	ld	$3,32($17)
+	sd	$3,40($sp)
+	sd	$4,48($sp)
+	sd	$5,56($sp)
+	ld	$2,48($sp)
+	ld	$3,56($sp)
 	move	$5,$3
 	move	$4,$2
 	.option	pic0
 	jal	__ucmpdi2
 	.option	pic2
 	addiu	$2,-1
-	move	$sp,$17
-	ld	$7,16($sp)
-	ld	$17,8($sp)
-	addiu	$sp,24
+	ld	$7,40($sp)
+	addiu	$sp,48
 	jr	$7
 	.end	__aeabi_ulcmp
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
@@ -10028,50 +9378,54 @@ __aeabi_ulcmp:
 	.ent	__ucmpti2
 	.type	__ucmpti2, @function
 __ucmpti2:
-	.frame	$17,48,$31		# vars= 32, regs= 1/0, args= 0, gp= 8
-	.mask	0x00020000,-8
+	.frame	$sp,40,$31		# vars= 32, regs= 0/0, args= 0, gp= 8
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$17,40($sp)
-	move	$17,$sp
-	sd	$5,56($17)
-	sd	$4,48($17)
-	sd	$7,72($17)
-	sd	$6,64($17)
-	ld	$3,56($17)
-	ld	$2,48($17)
-	sd	$3,16($17)
-	sd	$2,8($17)
-	ld	$3,72($17)
-	ld	$2,64($17)
-	sd	$3,32($17)
-	sd	$2,24($17)
-	ld	$3,8($17)
-	ld	$2,24($17)
+	addiu	$sp,-40
+	move	$2,$sp
+	sd	$5,48($2)
+	sd	$4,40($2)
+	move	$2,$sp
+	sd	$7,64($2)
+	sd	$6,56($2)
+	move	$2,$sp
+	ld	$3,48($2)
+	ld	$2,40($2)
+	move	$4,$sp
+	sd	$3,16($4)
+	sd	$2,8($4)
+	move	$2,$sp
+	ld	$3,64($2)
+	ld	$2,56($2)
+	move	$4,$sp
+	sd	$3,32($4)
+	sd	$2,24($4)
+	ld	$3,8($sp)
+	ld	$2,24($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L989
 	li	$2,0
 	b	$L994
 $L989:
-	ld	$3,8($17)
-	ld	$2,24($17)
+	ld	$3,8($sp)
+	ld	$2,24($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L991
 	li	$2,2
 	b	$L994
 $L991:
-	ld	$3,16($17)
-	ld	$2,32($17)
+	ld	$3,16($sp)
+	ld	$2,32($sp)
 	sltu	$3,$2
 	move	$2,$24
 	beqz	$2,$L992
 	li	$2,0
 	b	$L994
 $L992:
-	ld	$3,16($17)
-	ld	$2,32($17)
+	ld	$3,16($sp)
+	ld	$2,32($sp)
 	sltu	$2,$3
 	move	$2,$24
 	beqz	$2,$L993
@@ -10080,9 +9434,7 @@ $L992:
 $L993:
 	li	$2,1
 $L994:
-	move	$sp,$17
-	ld	$17,40($sp)
-	addiu	$sp,48
+	addiu	$sp,40
 	jr	$31
 	.end	__ucmpti2
 	.size	__ucmpti2, .-__ucmpti2

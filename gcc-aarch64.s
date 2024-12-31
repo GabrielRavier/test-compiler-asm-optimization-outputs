@@ -1292,11 +1292,9 @@ fmaxf:
 fmaxl:
 .LFB35:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	q0, [sp, 32]
 	str	q1, [sp, 16]
 	ldr	q1, [sp, 32]
@@ -1345,9 +1343,8 @@ fmaxl:
 	ldr	q30, [sp, 32]
 .L171:
 	mov	v0.16b, v30.16b
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -1478,11 +1475,9 @@ fminf:
 fminl:
 .LFB38:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	q0, [sp, 32]
 	str	q1, [sp, 16]
 	ldr	q1, [sp, 32]
@@ -1531,9 +1526,8 @@ fminl:
 	ldr	q30, [sp, 16]
 .L213:
 	mov	v0.16b, v30.16b
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -1734,71 +1728,66 @@ remque:
 lsearch:
 .LFB44:
 	.cfi_startproc
-	stp	x29, x30, [sp, -112]!
-	.cfi_def_cfa_offset 112
-	.cfi_offset 29, -112
-	.cfi_offset 30, -104
-	mov	x29, sp
-	str	x19, [sp, 16]
-	.cfi_offset 19, -96
-	str	x0, [sp, 72]
-	str	x1, [sp, 64]
-	str	x2, [sp, 56]
-	str	x3, [sp, 48]
-	str	x4, [sp, 40]
-	ldr	x19, [sp, 48]
+	stp	x30, x19, [sp, -96]!
+	.cfi_def_cfa_offset 96
+	.cfi_offset 30, -96
+	.cfi_offset 19, -88
+	str	x0, [sp, 56]
+	str	x1, [sp, 48]
+	str	x2, [sp, 40]
+	str	x3, [sp, 32]
+	str	x4, [sp, 24]
+	ldr	x19, [sp, 32]
 	mov	x0, x19
 	sub	x0, x0, #1
-	str	x0, [sp, 96]
-	ldr	x0, [sp, 64]
-	str	x0, [sp, 88]
-	ldr	x0, [sp, 56]
-	ldr	x0, [x0]
 	str	x0, [sp, 80]
-	str	xzr, [sp, 104]
+	ldr	x0, [sp, 48]
+	str	x0, [sp, 72]
+	ldr	x0, [sp, 40]
+	ldr	x0, [x0]
+	str	x0, [sp, 64]
+	str	xzr, [sp, 88]
 	b	.L243
 .L246:
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	mul	x0, x19, x0
-	ldr	x1, [sp, 88]
+	ldr	x1, [sp, 72]
 	add	x0, x1, x0
-	ldr	x2, [sp, 40]
+	ldr	x2, [sp, 24]
 	mov	x1, x0
-	ldr	x0, [sp, 72]
+	ldr	x0, [sp, 56]
 	blr	x2
 	cmp	w0, 0
 	bne	.L244
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	mul	x0, x19, x0
-	ldr	x1, [sp, 88]
+	ldr	x1, [sp, 72]
 	add	x0, x1, x0
 	b	.L245
 .L244:
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	add	x0, x0, 1
-	str	x0, [sp, 104]
+	str	x0, [sp, 88]
 .L243:
-	ldr	x1, [sp, 104]
-	ldr	x0, [sp, 80]
+	ldr	x1, [sp, 88]
+	ldr	x0, [sp, 64]
 	cmp	x1, x0
 	bcc	.L246
-	ldr	x0, [sp, 80]
+	ldr	x0, [sp, 64]
 	add	x1, x0, 1
-	ldr	x0, [sp, 56]
+	ldr	x0, [sp, 40]
 	str	x1, [x0]
-	ldr	x0, [sp, 80]
+	ldr	x0, [sp, 64]
 	mul	x0, x19, x0
-	ldr	x1, [sp, 88]
-	add	x0, x1, x0
-	ldr	x2, [sp, 48]
 	ldr	x1, [sp, 72]
+	add	x0, x1, x0
+	ldr	x2, [sp, 32]
+	ldr	x1, [sp, 56]
 	bl	memcpy
 .L245:
-	ldr	x19, [sp, 16]
-	ldp	x29, x30, [sp], 112
-	.cfi_restore 30
-	.cfi_restore 29
+	ldp	x30, x19, [sp], 96
 	.cfi_restore 19
+	.cfi_restore 30
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -1810,61 +1799,56 @@ lsearch:
 lfind:
 .LFB45:
 	.cfi_startproc
-	stp	x29, x30, [sp, -112]!
-	.cfi_def_cfa_offset 112
-	.cfi_offset 29, -112
-	.cfi_offset 30, -104
-	mov	x29, sp
-	str	x19, [sp, 16]
-	.cfi_offset 19, -96
-	str	x0, [sp, 72]
-	str	x1, [sp, 64]
-	str	x2, [sp, 56]
-	str	x3, [sp, 48]
-	str	x4, [sp, 40]
-	ldr	x19, [sp, 48]
+	stp	x30, x19, [sp, -96]!
+	.cfi_def_cfa_offset 96
+	.cfi_offset 30, -96
+	.cfi_offset 19, -88
+	str	x0, [sp, 56]
+	str	x1, [sp, 48]
+	str	x2, [sp, 40]
+	str	x3, [sp, 32]
+	str	x4, [sp, 24]
+	ldr	x19, [sp, 32]
 	mov	x0, x19
 	sub	x0, x0, #1
-	str	x0, [sp, 96]
-	ldr	x0, [sp, 64]
-	str	x0, [sp, 88]
-	ldr	x0, [sp, 56]
-	ldr	x0, [x0]
 	str	x0, [sp, 80]
-	str	xzr, [sp, 104]
+	ldr	x0, [sp, 48]
+	str	x0, [sp, 72]
+	ldr	x0, [sp, 40]
+	ldr	x0, [x0]
+	str	x0, [sp, 64]
+	str	xzr, [sp, 88]
 	b	.L248
 .L251:
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	mul	x0, x19, x0
-	ldr	x1, [sp, 88]
+	ldr	x1, [sp, 72]
 	add	x0, x1, x0
-	ldr	x2, [sp, 40]
+	ldr	x2, [sp, 24]
 	mov	x1, x0
-	ldr	x0, [sp, 72]
+	ldr	x0, [sp, 56]
 	blr	x2
 	cmp	w0, 0
 	bne	.L249
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	mul	x0, x19, x0
-	ldr	x1, [sp, 88]
+	ldr	x1, [sp, 72]
 	add	x0, x1, x0
 	b	.L250
 .L249:
-	ldr	x0, [sp, 104]
+	ldr	x0, [sp, 88]
 	add	x0, x0, 1
-	str	x0, [sp, 104]
+	str	x0, [sp, 88]
 .L248:
-	ldr	x1, [sp, 104]
-	ldr	x0, [sp, 80]
+	ldr	x1, [sp, 88]
+	ldr	x0, [sp, 64]
 	cmp	x1, x0
 	bcc	.L251
 	mov	x0, 0
 .L250:
-	ldr	x19, [sp, 16]
-	ldp	x29, x30, [sp], 112
-	.cfi_restore 30
-	.cfi_restore 29
+	ldp	x30, x19, [sp], 96
 	.cfi_restore 19
+	.cfi_restore 30
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -1894,11 +1878,9 @@ abs:
 atoi:
 .LFB47:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	wzr, [sp, 44]
 	str	wzr, [sp, 40]
@@ -1955,9 +1937,8 @@ atoi:
 .L261:
 	ldr	w0, [sp, 44]
 .L263:
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -1969,11 +1950,9 @@ atoi:
 atol:
 .LFB48:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	xzr, [sp, 40]
 	str	wzr, [sp, 36]
@@ -2031,9 +2010,8 @@ atol:
 .L271:
 	ldr	x0, [sp, 40]
 .L273:
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -2045,11 +2023,9 @@ atol:
 atoll:
 .LFB49:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	xzr, [sp, 40]
 	str	wzr, [sp, 36]
@@ -2107,9 +2083,8 @@ atoll:
 .L281:
 	ldr	x0, [sp, 40]
 .L283:
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -2121,11 +2096,9 @@ atoll:
 bsearch:
 .LFB50:
 	.cfi_startproc
-	stp	x29, x30, [sp, -80]!
+	str	x30, [sp, -80]!
 	.cfi_def_cfa_offset 80
-	.cfi_offset 29, -80
-	.cfi_offset 30, -72
-	mov	x29, sp
+	.cfi_offset 30, -80
 	str	x0, [sp, 56]
 	str	x1, [sp, 48]
 	str	x2, [sp, 40]
@@ -2176,9 +2149,8 @@ bsearch:
 	bne	.L290
 	mov	x0, 0
 .L289:
-	ldp	x29, x30, [sp], 80
+	ldr	x30, [sp], 80
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -2190,11 +2162,9 @@ bsearch:
 bsearch_r:
 .LFB51:
 	.cfi_startproc
-	stp	x29, x30, [sp, -96]!
+	str	x30, [sp, -96]!
 	.cfi_def_cfa_offset 96
-	.cfi_offset 29, -96
-	.cfi_offset 30, -88
-	mov	x29, sp
+	.cfi_offset 30, -96
 	str	x0, [sp, 56]
 	str	x1, [sp, 48]
 	str	x2, [sp, 40]
@@ -2247,9 +2217,8 @@ bsearch_r:
 	bne	.L296
 	mov	x0, 0
 .L294:
-	ldp	x29, x30, [sp], 96
+	ldr	x30, [sp], 96
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -3489,11 +3458,9 @@ gl_isinfd:
 gl_isinfl:
 .LFB87:
 	.cfi_startproc
-	stp	x29, x30, [sp, -32]!
+	str	x30, [sp, -32]!
 	.cfi_def_cfa_offset 32
-	.cfi_offset 29, -32
-	.cfi_offset 30, -24
-	mov	x29, sp
+	.cfi_offset 30, -32
 	str	q0, [sp, 16]
 	adrp	x0, .LC0
 	add	x0, x0, :lo12:.LC0
@@ -3515,9 +3482,8 @@ gl_isinfl:
 .L438:
 	mov	w0, 0
 .L437:
-	ldp	x29, x30, [sp], 32
+	ldr	x30, [sp], 32
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -3529,11 +3495,9 @@ gl_isinfl:
 _Qp_itoq:
 .LFB88:
 	.cfi_startproc
-	stp	x29, x30, [sp, -32]!
+	str	x30, [sp, -32]!
 	.cfi_def_cfa_offset 32
-	.cfi_offset 29, -32
-	.cfi_offset 30, -24
-	mov	x29, sp
+	.cfi_offset 30, -32
 	str	x0, [sp, 24]
 	str	w1, [sp, 20]
 	ldr	w0, [sp, 20]
@@ -3544,9 +3508,8 @@ _Qp_itoq:
 	ldr	x0, [sp, 24]
 	str	q30, [x0]
 	nop
-	ldp	x29, x30, [sp], 32
+	ldr	x30, [sp], 32
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -3678,11 +3641,9 @@ ldexp:
 ldexpl:
 .LFB91:
 	.cfi_startproc
-	stp	x29, x30, [sp, -64]!
+	str	x30, [sp, -64]!
 	.cfi_def_cfa_offset 64
-	.cfi_offset 29, -64
-	.cfi_offset 30, -56
-	mov	x29, sp
+	.cfi_offset 30, -64
 	str	q0, [sp, 32]
 	str	w0, [sp, 28]
 	ldr	q1, [sp, 32]
@@ -3742,9 +3703,8 @@ ldexpl:
 .L459:
 	ldr	q30, [sp, 32]
 	mov	v0.16b, v30.16b
-	ldp	x29, x30, [sp], 64
+	ldr	x30, [sp], 64
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -3798,11 +3758,9 @@ memxor:
 strncat:
 .LFB93:
 	.cfi_startproc
-	stp	x29, x30, [sp, -64]!
+	str	x30, [sp, -64]!
 	.cfi_def_cfa_offset 64
-	.cfi_offset 29, -64
-	.cfi_offset 30, -56
-	mov	x29, sp
+	.cfi_offset 30, -64
 	str	x0, [sp, 40]
 	str	x1, [sp, 32]
 	str	x2, [sp, 24]
@@ -3843,9 +3801,8 @@ strncat:
 	strb	wzr, [x0]
 .L477:
 	ldr	x0, [sp, 40]
-	ldp	x29, x30, [sp], 64
+	ldr	x30, [sp], 64
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -3970,11 +3927,9 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	ldr	x0, [sp, 24]
@@ -4012,9 +3967,8 @@ strstr:
 	bne	.L501
 	mov	x0, 0
 .L498:
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -4068,11 +4022,9 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	stp	x29, x30, [sp, -64]!
+	str	x30, [sp, -64]!
 	.cfi_def_cfa_offset 64
-	.cfi_offset 29, -64
-	.cfi_offset 30, -56
-	mov	x29, sp
+	.cfi_offset 30, -64
 	str	x0, [sp, 40]
 	str	x1, [sp, 32]
 	str	x2, [sp, 24]
@@ -4133,9 +4085,8 @@ memmem:
 	bls	.L518
 	mov	x0, 0
 .L514:
-	ldp	x29, x30, [sp], 64
+	ldr	x30, [sp], 64
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -4147,11 +4098,9 @@ memmem:
 mempcpy:
 .LFB100:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 40]
 	str	x1, [sp, 32]
 	str	x2, [sp, 24]
@@ -4162,9 +4111,8 @@ mempcpy:
 	mov	x1, x0
 	ldr	x0, [sp, 24]
 	add	x0, x1, x0
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -5373,11 +5321,9 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	str	wzr, [sp, 44]
@@ -5422,9 +5368,8 @@ __divsi3:
 	str	x0, [sp, 32]
 .L691:
 	ldr	x0, [sp, 32]
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -5436,11 +5381,9 @@ __divsi3:
 __modsi3:
 .LFB130:
 	.cfi_startproc
-	stp	x29, x30, [sp, -48]!
+	str	x30, [sp, -48]!
 	.cfi_def_cfa_offset 48
-	.cfi_offset 29, -48
-	.cfi_offset 30, -40
-	mov	x29, sp
+	.cfi_offset 30, -48
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	str	wzr, [sp, 44]
@@ -5477,9 +5420,8 @@ __modsi3:
 	str	x0, [sp, 32]
 .L696:
 	ldr	x0, [sp, 32]
-	ldp	x29, x30, [sp], 48
+	ldr	x30, [sp], 48
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -6134,20 +6076,17 @@ __cmpdi2:
 __aeabi_lcmp:
 .LFB142:
 	.cfi_startproc
-	stp	x29, x30, [sp, -32]!
+	str	x30, [sp, -32]!
 	.cfi_def_cfa_offset 32
-	.cfi_offset 29, -32
-	.cfi_offset 30, -24
-	mov	x29, sp
+	.cfi_offset 30, -32
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	ldr	x1, [sp, 16]
 	ldr	x0, [sp, 24]
 	bl	__cmpdi2
 	sub	w0, w0, #1
-	ldp	x29, x30, [sp], 32
+	ldr	x30, [sp], 32
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -6599,11 +6538,9 @@ __muldsi3:
 __muldi3_compiler_rt:
 .LFB150:
 	.cfi_startproc
-	stp	x29, x30, [sp, -64]!
+	str	x30, [sp, -64]!
 	.cfi_def_cfa_offset 64
-	.cfi_offset 29, -64
-	.cfi_offset 30, -56
-	mov	x29, sp
+	.cfi_offset 30, -64
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	ldr	x0, [sp, 24]
@@ -6627,9 +6564,8 @@ __muldi3_compiler_rt:
 	add	w0, w2, w0
 	str	w0, [sp, 44]
 	ldr	x0, [sp, 40]
-	ldp	x29, x30, [sp], 64
+	ldr	x30, [sp], 64
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -6746,11 +6682,9 @@ __mulddi3:
 __multi3:
 .LFB152:
 	.cfi_startproc
-	stp	x29, x30, [sp, -96]!
+	str	x30, [sp, -96]!
 	.cfi_def_cfa_offset 96
-	.cfi_offset 29, -96
-	.cfi_offset 30, -88
-	mov	x29, sp
+	.cfi_offset 30, -96
 	stp	x0, x1, [sp, 32]
 	stp	x2, x3, [sp, 16]
 	ldp	x0, x1, [sp, 32]
@@ -6774,9 +6708,8 @@ __multi3:
 	add	x0, x2, x0
 	str	x0, [sp, 56]
 	ldp	x0, x1, [sp, 48]
-	ldp	x29, x30, [sp], 96
+	ldr	x30, [sp], 96
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -7313,20 +7246,17 @@ __ucmpdi2:
 __aeabi_ulcmp:
 .LFB164:
 	.cfi_startproc
-	stp	x29, x30, [sp, -32]!
+	str	x30, [sp, -32]!
 	.cfi_def_cfa_offset 32
-	.cfi_offset 29, -32
-	.cfi_offset 30, -24
-	mov	x29, sp
+	.cfi_offset 30, -32
 	str	x0, [sp, 24]
 	str	x1, [sp, 16]
 	ldr	x0, [sp, 24]
 	ldr	x1, [sp, 16]
 	bl	__ucmpdi2
 	sub	w0, w0, #1
-	ldp	x29, x30, [sp], 32
+	ldr	x30, [sp], 32
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
