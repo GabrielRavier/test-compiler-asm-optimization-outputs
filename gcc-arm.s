@@ -18,40 +18,36 @@
 	.arm
 	.type	memmove, %function
 memmove:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #32
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #20]
 	cmp	r2, r3
 	bcs	.L2
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #4]
-	add	r3, r2, r3
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	str	r3, [sp, #20]
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #4]
+	add	r3, r2, r3
+	str	r3, [sp, #28]
 	b	.L3
 .L4:
-	ldr	r3, [sp, #16]
-	sub	r3, r3, #1
-	str	r3, [sp, #16]
 	ldr	r3, [sp, #20]
 	sub	r3, r3, #1
 	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldrb	r2, [r3]	@ zero_extendqisi2
+	ldr	r3, [sp, #28]
+	sub	r3, r3, #1
+	str	r3, [sp, #28]
 	ldr	r3, [sp, #20]
+	ldrb	r2, [r3]	@ zero_extendqisi2
+	ldr	r3, [sp, #28]
 	strb	r2, [r3]
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
@@ -62,18 +58,20 @@ memmove:
 	bne	.L4
 	b	.L5
 .L2:
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #20]
+	ldr	r2, [sp, #8]
+	ldr	r3, [sp, #12]
 	cmp	r2, r3
 	beq	.L5
+	ldr	r3, [sp, #12]
+	str	r3, [sp, #24]
 	b	.L6
 .L7:
-	ldr	r2, [sp, #16]
+	ldr	r2, [sp, #8]
 	add	r3, r2, #1
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #24]
 	add	r1, r3, #1
-	str	r1, [sp, #20]
+	str	r1, [sp, #24]
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
 	ldr	r3, [sp, #4]
@@ -86,7 +84,7 @@ memmove:
 .L5:
 	ldr	r3, [sp, #12]
 	mov	r0, r3
-	add	sp, sp, #24
+	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
 	.size	memmove, .-memmove
@@ -104,43 +102,39 @@ memccpy:
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	str	r3, [sp]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
 	ldr	r3, [sp, #4]
 	and	r3, r3, #255
-	str	r3, [sp, #4]
+	str	r3, [sp, #20]
 	b	.L11
 .L13:
 	ldr	r3, [sp]
 	sub	r3, r3, #1
 	str	r3, [sp]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	add	r3, r3, #1
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #12]
 	add	r3, r3, #1
-	str	r3, [sp, #20]
+	str	r3, [sp, #12]
 .L11:
 	ldr	r3, [sp]
 	cmp	r3, #0
 	beq	.L12
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	ldrb	r2, [r3]	@ zero_extendqisi2
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	strb	r2, [r3]
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp, #4]
+	ldr	r3, [sp, #20]
 	cmp	r3, r2
 	bne	.L13
 .L12:
 	ldr	r3, [sp]
 	cmp	r3, #0
 	beq	.L14
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	b	.L15
 .L14:
@@ -164,16 +158,14 @@ memchr:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
 	ldr	r3, [sp, #8]
 	and	r3, r3, #255
-	str	r3, [sp, #8]
+	str	r3, [sp, #20]
 	b	.L18
 .L20:
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	add	r3, r3, #1
-	str	r3, [sp, #20]
+	str	r3, [sp, #12]
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
@@ -181,21 +173,22 @@ memchr:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
 	beq	.L19
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp, #8]
+	ldr	r3, [sp, #20]
 	cmp	r3, r2
 	bne	.L20
 .L19:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
 	beq	.L21
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	b	.L23
 .L21:
 	mov	r3, #0
 .L23:
+	nop
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -207,35 +200,31 @@ memchr:
 	.arm
 	.type	memcmp, %function
 memcmp:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #16
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
 	b	.L26
 .L28:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	add	r3, r3, #1
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
+	str	r3, [sp, #12]
+	ldr	r3, [sp, #8]
 	add	r3, r3, #1
-	str	r3, [sp, #16]
+	str	r3, [sp, #8]
 .L26:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
 	beq	.L27
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	ldrb	r2, [r3]	@ zero_extendqisi2
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r2, r3
 	beq	.L28
@@ -243,18 +232,19 @@ memcmp:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
 	beq	.L29
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	sub	r3, r2, r3
 	b	.L31
 .L29:
 	mov	r3, #0
 .L31:
+	nop
 	mov	r0, r3
-	add	sp, sp, #24
+	add	sp, sp, #16
 	@ sp needed
 	mov	pc, lr
 	.size	memcmp, .-memcmp
@@ -273,13 +263,11 @@ memcpy:
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #12]
 	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
 	b	.L34
 .L35:
-	ldr	r2, [sp, #16]
+	ldr	r2, [sp, #8]
 	add	r3, r2, #1
-	str	r3, [sp, #16]
+	str	r3, [sp, #8]
 	ldr	r3, [sp, #20]
 	add	r1, r3, #1
 	str	r1, [sp, #20]
@@ -311,22 +299,20 @@ memrchr:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
 	ldr	r3, [sp, #8]
 	and	r3, r3, #255
-	str	r3, [sp, #8]
+	str	r3, [sp, #20]
 	b	.L39
 .L41:
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp, #8]
+	ldr	r3, [sp, #20]
 	cmp	r3, r2
 	bne	.L39
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	b	.L40
@@ -421,15 +407,15 @@ stpcpy:
 	.arm
 	.type	strchrnul, %function
 strchrnul:
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #8
+	sub	sp, sp, #16
 	str	r0, [sp, #4]
 	str	r1, [sp]
 	ldr	r3, [sp]
 	and	r3, r3, #255
-	str	r3, [sp]
+	str	r3, [sp, #12]
 	b	.L54
 .L56:
 	ldr	r3, [sp, #4]
@@ -443,13 +429,13 @@ strchrnul:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp]
+	ldr	r3, [sp, #12]
 	cmp	r3, r2
 	bne	.L56
 .L55:
 	ldr	r3, [sp, #4]
 	mov	r0, r3
-	add	sp, sp, #8
+	add	sp, sp, #16
 	@ sp needed
 	mov	pc, lr
 	.size	strchrnul, .-strchrnul
@@ -470,15 +456,16 @@ strchr:
 	mov	r1, r2
 	ldr	r2, [sp, #4]
 	cmp	r2, r1
-	bne	.L60
-	b	.L61
-.L60:
+	beq	.L63
 	mov	r2, r3
 	add	r3, r2, #1
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	cmp	r2, #0
 	bne	.L62
 	mov	r3, #0
+	b	.L61
+.L63:
+	nop
 .L61:
 	mov	r0, r3
 	add	sp, sp, #8
@@ -497,26 +484,26 @@ strcmp:
 	sub	sp, sp, #8
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	b	.L65
-.L67:
+	b	.L66
+.L68:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
 	ldr	r3, [sp]
 	add	r3, r3, #1
 	str	r3, [sp]
-.L65:
+.L66:
 	ldr	r3, [sp, #4]
 	ldrb	r2, [r3]	@ zero_extendqisi2
 	ldr	r3, [sp]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r2, r3
-	bne	.L66
+	bne	.L67
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L67
-.L66:
+	bne	.L68
+.L67:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
@@ -541,18 +528,18 @@ strlen:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	str	r3, [sp, #12]
-	b	.L71
-.L72:
-	ldr	r3, [sp, #4]
+	b	.L72
+.L73:
+	ldr	r3, [sp, #12]
 	add	r3, r3, #1
-	str	r3, [sp, #4]
-.L71:
-	ldr	r3, [sp, #4]
+	str	r3, [sp, #12]
+.L72:
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L72
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #12]
+	bne	.L73
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #4]
 	sub	r3, r2, r3
 	mov	r0, r3
 	add	sp, sp, #16
@@ -572,53 +559,49 @@ strncmp:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
-	str	r2, [sp, #4]
+	str	r2, [sp, #20]
 	cmp	r3, #0
-	bne	.L78
+	bne	.L79
 	mov	r3, #0
-	b	.L77
-.L80:
+	b	.L78
+.L81:
+	ldr	r3, [sp, #12]
+	add	r3, r3, #1
+	str	r3, [sp, #12]
+	ldr	r3, [sp, #8]
+	add	r3, r3, #1
+	str	r3, [sp, #8]
 	ldr	r3, [sp, #20]
-	add	r3, r3, #1
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	add	r3, r3, #1
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
-	str	r3, [sp, #4]
-.L78:
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #20]
+.L79:
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	beq	.L79
-	ldr	r3, [sp, #16]
+	beq	.L80
+	ldr	r3, [sp, #8]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	beq	.L79
-	ldr	r3, [sp, #4]
-	cmp	r3, #0
-	beq	.L79
+	beq	.L80
 	ldr	r3, [sp, #20]
+	cmp	r3, #0
+	beq	.L80
+	ldr	r3, [sp, #12]
 	ldrb	r2, [r3]	@ zero_extendqisi2
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r2, r3
-	beq	.L80
-.L79:
-	ldr	r3, [sp, #20]
+	beq	.L81
+.L80:
+	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r2, r3
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	sub	r3, r2, r3
-.L77:
+.L78:
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -630,45 +613,41 @@ strncmp:
 	.arm
 	.type	swab, %function
 swab:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #16
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
+	b	.L84
+.L85:
 	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
-	b	.L83
-.L84:
-	ldr	r3, [sp, #20]
 	add	r3, r3, #1
 	ldrb	r2, [r3]	@ zero_extendqisi2
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	strb	r2, [r3]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	add	r3, r3, #1
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #12]
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #8]
 	add	r3, r3, #2
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #12]
 	add	r3, r3, #2
-	str	r3, [sp, #20]
+	str	r3, [sp, #12]
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #2
 	str	r3, [sp, #4]
-.L83:
+.L84:
 	ldr	r3, [sp, #4]
 	cmp	r3, #1
-	bgt	.L84
+	bgt	.L85
 	nop
 	nop
-	add	sp, sp, #24
+	add	sp, sp, #16
 	@ sp needed
 	mov	pc, lr
 	.size	swab, .-swab
@@ -729,16 +708,17 @@ isblank:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #32
-	beq	.L93
+	beq	.L94
 	ldr	r3, [sp, #4]
 	cmp	r3, #9
-	bne	.L94
-.L93:
-	mov	r3, #1
-	b	.L96
+	bne	.L95
 .L94:
+	mov	r3, #1
+	b	.L97
+.L95:
 	mov	r3, #0
-.L96:
+.L97:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -757,16 +737,17 @@ iscntrl:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #31
-	bls	.L99
+	bls	.L100
 	ldr	r3, [sp, #4]
 	cmp	r3, #127
-	bne	.L100
-.L99:
-	mov	r3, #1
-	b	.L102
+	bne	.L101
 .L100:
+	mov	r3, #1
+	b	.L103
+.L101:
 	mov	r3, #0
-.L102:
+.L103:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -873,17 +854,18 @@ isspace:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #32
-	beq	.L117
+	beq	.L118
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #9
 	cmp	r3, #4
-	bhi	.L118
-.L117:
-	mov	r3, #1
-	b	.L120
+	bhi	.L119
 .L118:
+	mov	r3, #1
+	b	.L121
+.L119:
 	mov	r3, #0
-.L120:
+.L121:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -924,27 +906,28 @@ iswcntrl:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #31
-	bls	.L126
+	bls	.L127
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #127
 	cmp	r3, #32
-	bls	.L126
+	bls	.L127
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #8192
 	sub	r3, r3, #40
 	cmp	r3, #1
-	bls	.L126
+	bls	.L127
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #65280
 	sub	r3, r3, #249
 	cmp	r3, #2
-	bhi	.L127
-.L126:
-	mov	r3, #1
-	b	.L129
+	bhi	.L128
 .L127:
+	mov	r3, #1
+	b	.L130
+.L128:
 	mov	r3, #0
-.L129:
+.L130:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -985,7 +968,7 @@ iswprint:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #254
-	bhi	.L135
+	bhi	.L136
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	and	r3, r3, #127
@@ -993,52 +976,52 @@ iswprint:
 	movhi	r3, #1
 	movls	r3, #0
 	and	r3, r3, #255
-	b	.L136
-.L135:
+	b	.L137
+.L136:
 	ldr	r3, [sp, #4]
-	ldr	r2, .L142
+	ldr	r2, .L143
 	cmp	r3, r2
-	bls	.L137
+	bls	.L138
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #8192
 	sub	r3, r3, #42
-	ldr	r2, .L142+4
+	ldr	r2, .L143+4
 	cmp	r3, r2
-	bls	.L137
+	bls	.L138
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #57344
-	ldr	r2, .L142+8
+	ldr	r2, .L143+8
 	cmp	r3, r2
-	bhi	.L138
-.L137:
-	mov	r3, #1
-	b	.L136
+	bhi	.L139
 .L138:
+	mov	r3, #1
+	b	.L137
+.L139:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #65280
 	sub	r3, r3, #252
-	ldr	r2, .L142+12
+	ldr	r2, .L143+12
 	cmp	r3, r2
-	bhi	.L139
+	bhi	.L140
 	ldr	r2, [sp, #4]
-	ldr	r3, .L142+16
+	ldr	r3, .L143+16
 	and	r3, r3, r2
-	ldr	r2, .L142+16
+	ldr	r2, .L143+16
 	cmp	r3, r2
-	bne	.L140
-.L139:
-	mov	r3, #0
-	b	.L136
+	bne	.L141
 .L140:
+	mov	r3, #0
+	b	.L137
+.L141:
 	mov	r3, #1
-.L136:
+.L137:
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L143:
+.L144:
 	.align	2
-.L142:
+.L143:
 	.word	8231
 	.word	47061
 	.word	8184
@@ -1059,18 +1042,19 @@ iswxdigit:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #48
 	cmp	r3, #9
-	bls	.L145
+	bls	.L146
 	ldr	r3, [sp, #4]
 	orr	r3, r3, #32
 	sub	r3, r3, #97
 	cmp	r3, #5
-	bhi	.L146
-.L145:
-	mov	r3, #1
-	b	.L148
+	bhi	.L147
 .L146:
+	mov	r3, #1
+	b	.L149
+.L147:
 	mov	r3, #0
-.L148:
+.L149:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -1110,37 +1094,37 @@ fdim:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L154
+	bvc	.L155
 	vldr.64	d7, [sp, #8]
-	b	.L155
-.L154:
+	b	.L156
+.L155:
 	vldr.64	d6, [sp]
 	vldr.64	d7, [sp]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L156
+	bvc	.L157
 	vldr.64	d7, [sp]
-	b	.L155
-.L156:
+	b	.L156
+.L157:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L161
+	ble	.L162
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vsub.f64	d7, d6, d7
-	b	.L155
-.L161:
-	vldr.64	d7, .L163
-.L155:
+	b	.L156
+.L162:
+	vldr.64	d7, .L164
+.L156:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
 	mov	pc, lr
-.L164:
+.L165:
 	.align	3
-.L163:
+.L164:
 	.word	0
 	.word	0
 	.size	fdim, .-fdim
@@ -1160,37 +1144,37 @@ fdimf:
 	vldr.32	s15, [sp, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L166
+	bvc	.L167
 	vldr.32	s15, [sp, #4]
-	b	.L167
-.L166:
+	b	.L168
+.L167:
 	vldr.32	s14, [sp]
 	vldr.32	s15, [sp]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L168
+	bvc	.L169
 	vldr.32	s15, [sp]
-	b	.L167
-.L168:
+	b	.L168
+.L169:
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L173
+	ble	.L174
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp]
 	vsub.f32	s15, s14, s15
-	b	.L167
-.L173:
-	vldr.32	s15, .L175
-.L167:
+	b	.L168
+.L174:
+	vldr.32	s15, .L176
+.L168:
 	vmov.f32	s0, s15
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L176:
+.L177:
 	.align	2
-.L175:
+.L176:
 	.word	0
 	.size	fdimf, .-fdimf
 	.align	2
@@ -1209,49 +1193,45 @@ fmax:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L178
-	ldmia	sp, {r2-r3}
-	b	.L179
-.L178:
+	bvc	.L179
+	vldr.64	d7, [sp]
+	b	.L180
+.L179:
 	vldr.64	d6, [sp]
 	vldr.64	d7, [sp]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L180
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L179
-.L180:
+	bvc	.L181
+	vldr.64	d7, [sp, #8]
+	b	.L180
+.L181:
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L181
+	beq	.L182
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L182
-	ldmia	sp, {r2-r3}
-	b	.L179
+	beq	.L183
+	vldr.64	d7, [sp]
+	b	.L180
+.L183:
+	vldr.64	d7, [sp, #8]
+	b	.L180
 .L182:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L179
-.L181:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L188
-	ldmia	sp, {r2-r3}
-	b	.L179
-.L188:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-.L179:
-	vmov	d7, r2, r3
+	bpl	.L189
+	vldr.64	d7, [sp]
+	b	.L180
+.L189:
+	vldr.64	d7, [sp, #8]
+.L180:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
@@ -1273,46 +1253,45 @@ fmaxf:
 	vldr.32	s15, [sp, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L191
-	ldr	r3, [sp]	@ float
-	b	.L192
-.L191:
+	bvc	.L192
+	vldr.32	s15, [sp]
+	b	.L193
+.L192:
 	vldr.32	s14, [sp]
 	vldr.32	s15, [sp]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L193
-	ldr	r3, [sp, #4]	@ float
-	b	.L192
-.L193:
+	bvc	.L194
+	vldr.32	s15, [sp, #4]
+	b	.L193
+.L194:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L194
+	beq	.L195
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L195
-	ldr	r3, [sp]	@ float
-	b	.L192
+	beq	.L196
+	vldr.32	s15, [sp]
+	b	.L193
+.L196:
+	vldr.32	s15, [sp, #4]
+	b	.L193
 .L195:
-	ldr	r3, [sp, #4]	@ float
-	b	.L192
-.L194:
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L201
-	ldr	r3, [sp]	@ float
-	b	.L192
-.L201:
-	ldr	r3, [sp, #4]	@ float
-.L192:
-	vmov	s15, r3
+	bpl	.L202
+	vldr.32	s15, [sp]
+	b	.L193
+.L202:
+	vldr.32	s15, [sp, #4]
+.L193:
 	vmov.f32	s0, s15
 	add	sp, sp, #8
 	@ sp needed
@@ -1334,49 +1313,45 @@ fmaxl:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L204
-	ldmia	sp, {r2-r3}
-	b	.L205
-.L204:
+	bvc	.L205
+	vldr.64	d7, [sp]
+	b	.L206
+.L205:
 	vldr.64	d6, [sp]
 	vldr.64	d7, [sp]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L206
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L205
-.L206:
+	bvc	.L207
+	vldr.64	d7, [sp, #8]
+	b	.L206
+.L207:
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L207
+	beq	.L208
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L208
-	ldmia	sp, {r2-r3}
-	b	.L205
+	beq	.L209
+	vldr.64	d7, [sp]
+	b	.L206
+.L209:
+	vldr.64	d7, [sp, #8]
+	b	.L206
 .L208:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L205
-.L207:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L214
-	ldmia	sp, {r2-r3}
-	b	.L205
-.L214:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-.L205:
-	vmov	d7, r2, r3
+	bpl	.L215
+	vldr.64	d7, [sp]
+	b	.L206
+.L215:
+	vldr.64	d7, [sp, #8]
+.L206:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
@@ -1398,49 +1373,45 @@ fmin:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L217
-	ldmia	sp, {r2-r3}
-	b	.L218
-.L217:
+	bvc	.L218
+	vldr.64	d7, [sp]
+	b	.L219
+.L218:
 	vldr.64	d6, [sp]
 	vldr.64	d7, [sp]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L219
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L218
-.L219:
+	bvc	.L220
+	vldr.64	d7, [sp, #8]
+	b	.L219
+.L220:
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L220
+	beq	.L221
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L221
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L218
+	beq	.L222
+	vldr.64	d7, [sp, #8]
+	b	.L219
+.L222:
+	vldr.64	d7, [sp]
+	b	.L219
 .L221:
-	ldmia	sp, {r2-r3}
-	b	.L218
-.L220:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L227
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L218
-.L227:
-	ldmia	sp, {r2-r3}
-.L218:
-	vmov	d7, r2, r3
+	bpl	.L228
+	vldr.64	d7, [sp, #8]
+	b	.L219
+.L228:
+	vldr.64	d7, [sp]
+.L219:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
@@ -1462,46 +1433,45 @@ fminf:
 	vldr.32	s15, [sp, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L230
-	ldr	r3, [sp]	@ float
-	b	.L231
-.L230:
+	bvc	.L231
+	vldr.32	s15, [sp]
+	b	.L232
+.L231:
 	vldr.32	s14, [sp]
 	vldr.32	s15, [sp]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L232
-	ldr	r3, [sp, #4]	@ float
-	b	.L231
-.L232:
+	bvc	.L233
+	vldr.32	s15, [sp, #4]
+	b	.L232
+.L233:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L233
+	beq	.L234
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L234
-	ldr	r3, [sp, #4]	@ float
-	b	.L231
+	beq	.L235
+	vldr.32	s15, [sp, #4]
+	b	.L232
+.L235:
+	vldr.32	s15, [sp]
+	b	.L232
 .L234:
-	ldr	r3, [sp]	@ float
-	b	.L231
-.L233:
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L240
-	ldr	r3, [sp, #4]	@ float
-	b	.L231
-.L240:
-	ldr	r3, [sp]	@ float
-.L231:
-	vmov	s15, r3
+	bpl	.L241
+	vldr.32	s15, [sp, #4]
+	b	.L232
+.L241:
+	vldr.32	s15, [sp]
+.L232:
 	vmov.f32	s0, s15
 	add	sp, sp, #8
 	@ sp needed
@@ -1523,49 +1493,45 @@ fminl:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L243
-	ldmia	sp, {r2-r3}
-	b	.L244
-.L243:
+	bvc	.L244
+	vldr.64	d7, [sp]
+	b	.L245
+.L244:
 	vldr.64	d6, [sp]
 	vldr.64	d7, [sp]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvc	.L245
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L244
-.L245:
+	bvc	.L246
+	vldr.64	d7, [sp, #8]
+	b	.L245
+.L246:
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	mov	r2, r3
 	ldr	r3, [sp, #4]
 	and	r3, r3, #-2147483648
 	cmp	r2, r3
-	beq	.L246
+	beq	.L247
 	ldr	r3, [sp, #12]
 	and	r3, r3, #-2147483648
 	cmp	r3, #0
-	beq	.L247
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L244
+	beq	.L248
+	vldr.64	d7, [sp, #8]
+	b	.L245
+.L248:
+	vldr.64	d7, [sp]
+	b	.L245
 .L247:
-	ldmia	sp, {r2-r3}
-	b	.L244
-.L246:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L253
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	b	.L244
-.L253:
-	ldmia	sp, {r2-r3}
-.L244:
-	vmov	d7, r2, r3
+	bpl	.L254
+	vldr.64	d7, [sp, #8]
+	b	.L245
+.L254:
+	vldr.64	d7, [sp]
+.L245:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
@@ -1592,13 +1558,13 @@ l64a:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	str	r3, [sp, #8]
-	ldr	r3, .L260
+	ldr	r3, .L261
 	str	r3, [sp, #12]
-	b	.L256
-.L257:
+	b	.L257
+.L258:
 	ldr	r3, [sp, #8]
 	and	r3, r3, #63
-	ldr	r2, .L260+4
+	ldr	r2, .L261+4
 	ldrb	r2, [r2, r3]	@ zero_extendqisi2
 	ldr	r3, [sp, #12]
 	strb	r2, [r3]
@@ -1608,21 +1574,21 @@ l64a:
 	ldr	r3, [sp, #8]
 	lsr	r3, r3, #6
 	str	r3, [sp, #8]
-.L256:
+.L257:
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bne	.L257
+	bne	.L258
 	ldr	r3, [sp, #12]
 	mov	r2, #0
 	strb	r2, [r3]
-	ldr	r3, .L260
+	ldr	r3, .L261
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
 	mov	pc, lr
-.L261:
+.L262:
 	.align	2
-.L260:
+.L261:
 	.word	s.0
 	.word	digits
 	.size	l64a, .-l64a
@@ -1643,16 +1609,16 @@ srand:
 	sub	r3, r3, #1
 	mov	r2, #0
 	mov	r1, r3
-	ldr	r3, .L264
+	ldr	r3, .L265
 	str	r1, [r3]
 	str	r2, [r3, #4]
 	nop
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L265:
+.L266:
 	.align	2
-.L264:
+.L265:
 	.word	seed
 	.size	srand, .-srand
 	.align	2
@@ -1664,31 +1630,31 @@ rand:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	ldr	r3, .L268
+	ldr	r3, .L269
 	ldr	r2, [r3]
 	ldr	r3, [r3, #4]
-	ldr	r1, .L268+4
+	ldr	r1, .L269+4
 	mul	r1, r3, r1
-	ldr	r3, .L268+8
+	ldr	r3, .L269+8
 	mul	r3, r2, r3
 	add	r0, r1, r3
-	ldr	ip, .L268+4
+	ldr	ip, .L269+4
 	umull	r1, r3, r2, ip
 	add	r3, r0, r3
 	adds	r1, r1, #1
 	adc	r2, r3, #0
-	ldr	r3, .L268
+	ldr	r3, .L269
 	str	r1, [r3]
 	str	r2, [r3, #4]
-	ldr	r3, .L268
+	ldr	r3, .L269
 	ldr	r3, [r3, #4]
 	lsr	r2, r3, #1
 	mov	r3, r2
 	mov	r0, r3
 	mov	pc, lr
-.L269:
+.L270:
 	.align	2
-.L268:
+.L269:
 	.word	seed
 	.word	1284865837
 	.word	1481765933
@@ -1699,48 +1665,44 @@ rand:
 	.arm
 	.type	insque, %function
 insque:
-	@ args = 0, pretend = 0, frame = 16
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #16
+	sub	sp, sp, #8
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	ldr	r3, [sp, #4]
-	str	r3, [sp, #12]
 	ldr	r3, [sp]
-	str	r3, [sp, #8]
-	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bne	.L271
-	ldr	r3, [sp, #12]
+	bne	.L272
+	ldr	r3, [sp, #4]
 	mov	r2, #0
 	str	r2, [r3, #4]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #4]
 	ldr	r2, [r3, #4]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #4]
 	str	r2, [r3]
-	b	.L270
-.L271:
-	ldr	r3, [sp, #8]
+	b	.L271
+.L272:
+	ldr	r3, [sp]
 	ldr	r2, [r3]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #4]
 	str	r2, [r3]
-	ldr	r3, [sp, #12]
-	ldr	r2, [sp, #8]
+	ldr	r3, [sp, #4]
+	ldr	r2, [sp]
 	str	r2, [r3, #4]
-	ldr	r3, [sp, #8]
-	ldr	r2, [sp, #12]
+	ldr	r3, [sp]
+	ldr	r2, [sp, #4]
 	str	r2, [r3]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	beq	.L270
-	ldr	r3, [sp, #12]
+	beq	.L271
+	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #4]
 	str	r2, [r3, #4]
-.L270:
-	add	sp, sp, #16
+.L271:
+	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
 	.size	insque, .-insque
@@ -1750,35 +1712,33 @@ insque:
 	.arm
 	.type	remque, %function
 remque:
-	@ args = 0, pretend = 0, frame = 16
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #16
+	sub	sp, sp, #8
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	beq	.L275
-	ldr	r3, [sp, #12]
+	beq	.L276
+	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #4]
 	ldr	r2, [r2, #4]
 	str	r2, [r3, #4]
-.L275:
-	ldr	r3, [sp, #12]
+.L276:
+	ldr	r3, [sp, #4]
 	ldr	r3, [r3, #4]
 	cmp	r3, #0
-	beq	.L277
-	ldr	r3, [sp, #12]
+	beq	.L278
+	ldr	r3, [sp, #4]
 	ldr	r3, [r3, #4]
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #4]
 	ldr	r2, [r2]
 	str	r2, [r3]
-.L277:
+.L278:
 	nop
-	add	sp, sp, #16
+	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
 	.size	remque, .-remque
@@ -1800,18 +1760,16 @@ lsearch:
 	mov	r3, r4
 	sub	r3, r4, #1
 	str	r3, [sp, #24]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #20]
 	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
-	str	r3, [sp, #16]
+	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #28]
-	b	.L280
-.L283:
+	b	.L281
+.L284:
 	ldr	r3, [sp, #28]
 	mul	r3, r4, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	add	r2, r2, r3
 	ldr	r3, [sp, #40]
 	mov	r1, r2
@@ -1820,35 +1778,35 @@ lsearch:
 	mov	pc, r3
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L281
+	bne	.L282
 	ldr	r3, [sp, #28]
 	mul	r3, r4, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	add	r3, r2, r3
-	b	.L282
-.L281:
+	b	.L283
+.L282:
 	ldr	r3, [sp, #28]
 	add	r3, r3, #1
 	str	r3, [sp, #28]
-.L280:
+.L281:
 	ldr	r2, [sp, #28]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bcc	.L283
-	ldr	r3, [sp, #16]
+	bcc	.L284
+	ldr	r3, [sp, #20]
 	add	r2, r3, #1
 	ldr	r3, [sp, #4]
 	str	r2, [r3]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #20]
 	mul	r3, r4, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	add	r3, r2, r3
 	ldr	r2, [sp]
 	ldr	r1, [sp, #12]
 	mov	r0, r3
 	bl	memcpy
 	mov	r3, r0
-.L282:
+.L283:
 	mov	r0, r3
 	add	sp, sp, #32
 	@ sp needed
@@ -1872,18 +1830,16 @@ lfind:
 	mov	r3, r4
 	sub	r3, r4, #1
 	str	r3, [sp, #24]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #20]
 	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
-	str	r3, [sp, #16]
+	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #28]
-	b	.L286
-.L289:
+	b	.L287
+.L290:
 	ldr	r3, [sp, #28]
 	mul	r3, r4, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	add	r2, r2, r3
 	ldr	r3, [sp, #40]
 	mov	r1, r2
@@ -1892,23 +1848,23 @@ lfind:
 	mov	pc, r3
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L287
+	bne	.L288
 	ldr	r3, [sp, #28]
 	mul	r3, r4, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #8]
 	add	r3, r2, r3
-	b	.L288
-.L287:
+	b	.L289
+.L288:
 	ldr	r3, [sp, #28]
 	add	r3, r3, #1
 	str	r3, [sp, #28]
-.L286:
+.L287:
 	ldr	r2, [sp, #28]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bcc	.L289
+	bcc	.L290
 	mov	r3, #0
-.L288:
+.L289:
 	mov	r0, r3
 	add	sp, sp, #32
 	@ sp needed
@@ -1948,33 +1904,33 @@ atoi:
 	str	r3, [sp, #12]
 	mov	r3, #0
 	str	r3, [sp, #8]
-	b	.L295
-.L296:
+	b	.L296
+.L297:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-.L295:
+.L296:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r0, r3
 	bl	isspace
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L296
+	bne	.L297
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #43
-	beq	.L297
+	beq	.L298
 	cmp	r3, #45
-	bne	.L299
+	bne	.L300
 	mov	r3, #1
 	str	r3, [sp, #8]
-.L297:
+.L298:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-	b	.L299
-.L300:
+	b	.L300
+.L301:
 	ldr	r2, [sp, #12]
 	mov	r3, r2
 	lsl	r3, r3, #2
@@ -1988,21 +1944,22 @@ atoi:
 	sub	r3, r3, #48
 	sub	r3, r1, r3
 	str	r3, [sp, #12]
-.L299:
+.L300:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	sub	r3, r3, #48
 	cmp	r3, #9
-	bls	.L300
+	bls	.L301
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bne	.L301
+	bne	.L302
 	ldr	r3, [sp, #12]
 	rsb	r3, r3, #0
-	b	.L303
-.L301:
+	b	.L304
+.L302:
 	ldr	r3, [sp, #12]
-.L303:
+.L304:
+	nop
 	mov	r0, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -2023,33 +1980,33 @@ atol:
 	str	r3, [sp, #12]
 	mov	r3, #0
 	str	r3, [sp, #8]
-	b	.L306
-.L307:
+	b	.L307
+.L308:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-.L306:
+.L307:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r0, r3
 	bl	isspace
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L307
+	bne	.L308
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #43
-	beq	.L308
+	beq	.L309
 	cmp	r3, #45
-	bne	.L310
+	bne	.L311
 	mov	r3, #1
 	str	r3, [sp, #8]
-.L308:
+.L309:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-	b	.L310
-.L311:
+	b	.L311
+.L312:
 	ldr	r2, [sp, #12]
 	mov	r3, r2
 	lsl	r3, r3, #2
@@ -2063,21 +2020,22 @@ atol:
 	sub	r3, r3, #48
 	sub	r3, r1, r3
 	str	r3, [sp, #12]
-.L310:
+.L311:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	sub	r3, r3, #48
 	cmp	r3, #9
-	bls	.L311
+	bls	.L312
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bne	.L312
+	bne	.L313
 	ldr	r3, [sp, #12]
 	rsb	r3, r3, #0
-	b	.L314
-.L312:
+	b	.L315
+.L313:
 	ldr	r3, [sp, #12]
-.L314:
+.L315:
+	nop
 	mov	r0, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -2100,33 +2058,33 @@ atoll:
 	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L317
-.L318:
+	b	.L318
+.L319:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-.L317:
+.L318:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	mov	r0, r3
 	bl	isspace
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L318
+	bne	.L319
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #43
-	beq	.L319
+	beq	.L320
 	cmp	r3, #45
-	bne	.L321
+	bne	.L322
 	mov	r3, #1
 	str	r3, [sp, #12]
-.L319:
+.L320:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-	b	.L321
-.L322:
+	b	.L322
+.L323:
 	ldr	r0, [sp, #16]
 	ldr	ip, [sp, #20]
 	mov	r2, r0
@@ -2154,24 +2112,25 @@ atoll:
 	sbc	r3, r1, r3
 	str	r2, [sp, #16]
 	str	r3, [sp, #20]
-.L321:
+.L322:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	sub	r3, r3, #48
 	cmp	r3, #9
-	bls	.L322
+	bls	.L323
 	ldr	r3, [sp, #12]
 	cmp	r3, #0
-	bne	.L323
+	bne	.L324
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
 	rsbs	r2, r2, #0
 	rsc	r3, r3, #0
-	b	.L325
-.L323:
+	b	.L326
+.L324:
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
-.L325:
+.L326:
+	nop
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #28
@@ -2192,8 +2151,8 @@ bsearch:
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	str	r3, [sp]
-	b	.L328
-.L333:
+	b	.L329
+.L334:
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #1
 	ldr	r2, [sp]
@@ -2209,15 +2168,15 @@ bsearch:
 	str	r0, [sp, #16]
 	ldr	r3, [sp, #16]
 	cmp	r3, #0
-	bge	.L329
+	bge	.L330
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #1
 	str	r3, [sp, #4]
-	b	.L328
-.L329:
+	b	.L329
+.L330:
 	ldr	r3, [sp, #16]
 	cmp	r3, #0
-	ble	.L331
+	ble	.L332
 	ldr	r2, [sp, #20]
 	ldr	r3, [sp]
 	add	r3, r2, r3
@@ -2228,16 +2187,16 @@ bsearch:
 	sub	r3, r2, r3
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-	b	.L328
-.L331:
+	b	.L329
+.L332:
 	ldr	r3, [sp, #20]
-	b	.L332
-.L328:
+	b	.L333
+.L329:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L333
+	bne	.L334
 	mov	r3, #0
-.L332:
+.L333:
 	mov	r0, r3
 	add	sp, sp, #28
 	@ sp needed
@@ -2257,53 +2216,51 @@ bsearch_r:
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	str	r3, [sp]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #28]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #24]
-	b	.L336
-.L340:
-	ldr	r3, [sp, #24]
+	str	r3, [sp, #28]
+	b	.L337
+.L341:
+	ldr	r3, [sp, #28]
 	asr	r3, r3, #1
 	mov	r2, r3
 	ldr	r3, [sp]
 	mul	r3, r2, r3
-	ldr	r2, [sp, #28]
+	ldr	r2, [sp, #8]
 	add	r3, r2, r3
-	str	r3, [sp, #20]
+	str	r3, [sp, #24]
 	ldr	r3, [sp, #40]
 	ldr	r2, [sp, #44]
-	ldr	r1, [sp, #20]
+	ldr	r1, [sp, #24]
 	ldr	r0, [sp, #12]
 	mov	lr, pc
 	mov	pc, r3
-	str	r0, [sp, #16]
-	ldr	r3, [sp, #16]
-	cmp	r3, #0
-	bne	.L337
+	str	r0, [sp, #20]
 	ldr	r3, [sp, #20]
-	b	.L338
-.L337:
-	ldr	r3, [sp, #16]
 	cmp	r3, #0
-	ble	.L339
-	ldr	r2, [sp, #20]
+	bne	.L338
+	ldr	r3, [sp, #24]
+	b	.L339
+.L338:
+	ldr	r3, [sp, #20]
+	cmp	r3, #0
+	ble	.L340
+	ldr	r2, [sp, #24]
 	ldr	r3, [sp]
 	add	r3, r2, r3
-	str	r3, [sp, #28]
-	ldr	r3, [sp, #24]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #28]
 	sub	r3, r3, #1
-	str	r3, [sp, #24]
-.L339:
-	ldr	r3, [sp, #24]
+	str	r3, [sp, #28]
+.L340:
+	ldr	r3, [sp, #28]
 	asr	r3, r3, #1
-	str	r3, [sp, #24]
-.L336:
-	ldr	r3, [sp, #24]
+	str	r3, [sp, #28]
+.L337:
+	ldr	r3, [sp, #28]
 	cmp	r3, #0
-	bne	.L340
+	bne	.L341
 	mov	r3, #0
-.L338:
+.L339:
 	mov	r0, r3
 	add	sp, sp, #36
 	@ sp needed
@@ -2362,10 +2319,6 @@ imaxabs:
 	eor	r1, r1, r3
 	subs	r2, r0, r2
 	sbc	r3, r1, r3
-	mov	r0, r2
-	mov	r1, r3
-	mov	r2, r0
-	mov	r3, r1
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #8
@@ -2483,10 +2436,6 @@ llabs:
 	sbc	r3, r1, r3
 	mov	r0, r2
 	mov	r1, r3
-	mov	r2, r0
-	mov	r3, r1
-	mov	r0, r2
-	mov	r1, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
@@ -2540,31 +2489,32 @@ wcschr:
 	sub	sp, sp, #8
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	b	.L364
-.L366:
+	b	.L365
+.L367:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #4
 	str	r3, [sp, #4]
-.L364:
-	ldr	r3, [sp, #4]
-	ldr	r3, [r3]
-	cmp	r3, #0
-	beq	.L365
-	ldr	r3, [sp, #4]
-	ldr	r3, [r3]
-	ldr	r2, [sp]
-	cmp	r2, r3
-	bne	.L366
 .L365:
 	ldr	r3, [sp, #4]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	beq	.L367
+	beq	.L366
 	ldr	r3, [sp, #4]
-	b	.L369
-.L367:
+	ldr	r3, [r3]
+	ldr	r2, [sp]
+	cmp	r2, r3
+	bne	.L367
+.L366:
+	ldr	r3, [sp, #4]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	beq	.L368
+	ldr	r3, [sp, #4]
+	b	.L370
+.L368:
 	mov	r3, #0
-.L369:
+.L370:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -2582,36 +2532,36 @@ wcscmp:
 	sub	sp, sp, #8
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	b	.L372
-.L374:
+	b	.L373
+.L375:
 	ldr	r3, [sp, #4]
 	add	r3, r3, #4
 	str	r3, [sp, #4]
 	ldr	r3, [sp]
 	add	r3, r3, #4
 	str	r3, [sp]
-.L372:
-	ldr	r3, [sp, #4]
-	ldr	r2, [r3]
-	ldr	r3, [sp]
-	ldr	r3, [r3]
-	cmp	r2, r3
-	bne	.L373
-	ldr	r3, [sp, #4]
-	ldr	r3, [r3]
-	cmp	r3, #0
-	beq	.L373
-	ldr	r3, [sp]
-	ldr	r3, [r3]
-	cmp	r3, #0
-	bne	.L374
 .L373:
 	ldr	r3, [sp, #4]
 	ldr	r2, [r3]
 	ldr	r3, [sp]
 	ldr	r3, [r3]
 	cmp	r2, r3
-	bcc	.L375
+	bne	.L374
+	ldr	r3, [sp, #4]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	beq	.L374
+	ldr	r3, [sp]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bne	.L375
+.L374:
+	ldr	r3, [sp, #4]
+	ldr	r2, [r3]
+	ldr	r3, [sp]
+	ldr	r3, [r3]
+	cmp	r2, r3
+	bcc	.L376
 	ldr	r3, [sp, #4]
 	ldr	r2, [r3]
 	ldr	r3, [sp]
@@ -2620,10 +2570,11 @@ wcscmp:
 	movhi	r3, #1
 	movls	r3, #0
 	and	r3, r3, #255
-	b	.L377
-.L375:
+	b	.L378
+.L376:
 	mvn	r3, #0
-.L377:
+.L378:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -2643,20 +2594,19 @@ wcscpy:
 	str	r1, [sp]
 	ldr	r3, [sp, #4]
 	str	r3, [sp, #12]
-	nop
-.L380:
+.L381:
 	ldr	r2, [sp]
 	add	r3, r2, #4
 	str	r3, [sp]
-	ldr	r3, [sp, #4]
+	ldr	r3, [sp, #12]
 	add	r1, r3, #4
-	str	r1, [sp, #4]
+	str	r1, [sp, #12]
 	ldr	r2, [r2]
 	str	r2, [r3]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	bne	.L380
-	ldr	r3, [sp, #12]
+	bne	.L381
+	ldr	r3, [sp, #4]
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -2675,18 +2625,18 @@ wcslen:
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
 	str	r3, [sp, #12]
-	b	.L384
-.L385:
-	ldr	r3, [sp, #4]
+	b	.L385
+.L386:
+	ldr	r3, [sp, #12]
 	add	r3, r3, #4
-	str	r3, [sp, #4]
-.L384:
-	ldr	r3, [sp, #4]
+	str	r3, [sp, #12]
+.L385:
+	ldr	r3, [sp, #12]
 	ldr	r3, [r3]
 	cmp	r3, #0
-	bne	.L385
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #12]
+	bne	.L386
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #4]
 	sub	r3, r2, r3
 	asr	r3, r3, #2
 	mov	r0, r3
@@ -2707,8 +2657,8 @@ wcsncmp:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	b	.L389
-.L391:
+	b	.L390
+.L392:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
@@ -2718,34 +2668,34 @@ wcsncmp:
 	ldr	r3, [sp, #8]
 	add	r3, r3, #4
 	str	r3, [sp, #8]
-.L389:
-	ldr	r3, [sp, #4]
-	cmp	r3, #0
-	beq	.L390
-	ldr	r3, [sp, #12]
-	ldr	r2, [r3]
-	ldr	r3, [sp, #8]
-	ldr	r3, [r3]
-	cmp	r2, r3
-	bne	.L390
-	ldr	r3, [sp, #12]
-	ldr	r3, [r3]
-	cmp	r3, #0
-	beq	.L390
-	ldr	r3, [sp, #8]
-	ldr	r3, [r3]
-	cmp	r3, #0
-	bne	.L391
 .L390:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L392
+	beq	.L391
 	ldr	r3, [sp, #12]
 	ldr	r2, [r3]
 	ldr	r3, [sp, #8]
 	ldr	r3, [r3]
 	cmp	r2, r3
-	bcc	.L393
+	bne	.L391
+	ldr	r3, [sp, #12]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	beq	.L391
+	ldr	r3, [sp, #8]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bne	.L392
+.L391:
+	ldr	r3, [sp, #4]
+	cmp	r3, #0
+	beq	.L393
+	ldr	r3, [sp, #12]
+	ldr	r2, [r3]
+	ldr	r3, [sp, #8]
+	ldr	r3, [r3]
+	cmp	r2, r3
+	bcc	.L394
 	ldr	r3, [sp, #12]
 	ldr	r2, [r3]
 	ldr	r3, [sp, #8]
@@ -2754,13 +2704,14 @@ wcsncmp:
 	movhi	r3, #1
 	movls	r3, #0
 	and	r3, r3, #255
-	b	.L396
-.L393:
+	b	.L397
+.L394:
 	mvn	r3, #0
-	b	.L396
-.L392:
+	b	.L397
+.L393:
 	mov	r3, #0
-.L396:
+.L397:
+	nop
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -2779,32 +2730,33 @@ wmemchr:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	b	.L399
-.L401:
+	b	.L400
+.L402:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
 	ldr	r3, [sp, #12]
 	add	r3, r3, #4
 	str	r3, [sp, #12]
-.L399:
+.L400:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L400
+	beq	.L401
 	ldr	r3, [sp, #12]
 	ldr	r3, [r3]
 	ldr	r2, [sp, #8]
 	cmp	r2, r3
-	bne	.L401
-.L400:
+	bne	.L402
+.L401:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L402
+	beq	.L403
 	ldr	r3, [sp, #12]
-	b	.L404
-.L402:
+	b	.L405
+.L403:
 	mov	r3, #0
-.L404:
+.L405:
+	nop
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -2823,8 +2775,8 @@ wmemcmp:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	b	.L407
-.L409:
+	b	.L408
+.L410:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
@@ -2834,26 +2786,26 @@ wmemcmp:
 	ldr	r3, [sp, #8]
 	add	r3, r3, #4
 	str	r3, [sp, #8]
-.L407:
-	ldr	r3, [sp, #4]
-	cmp	r3, #0
-	beq	.L408
-	ldr	r3, [sp, #12]
-	ldr	r2, [r3]
-	ldr	r3, [sp, #8]
-	ldr	r3, [r3]
-	cmp	r2, r3
-	beq	.L409
 .L408:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L410
+	beq	.L409
 	ldr	r3, [sp, #12]
 	ldr	r2, [r3]
 	ldr	r3, [sp, #8]
 	ldr	r3, [r3]
 	cmp	r2, r3
-	bcc	.L411
+	beq	.L410
+.L409:
+	ldr	r3, [sp, #4]
+	cmp	r3, #0
+	beq	.L411
+	ldr	r3, [sp, #12]
+	ldr	r2, [r3]
+	ldr	r3, [sp, #8]
+	ldr	r3, [r3]
+	cmp	r2, r3
+	bcc	.L412
 	ldr	r3, [sp, #12]
 	ldr	r2, [r3]
 	ldr	r3, [sp, #8]
@@ -2862,13 +2814,14 @@ wmemcmp:
 	movhi	r3, #1
 	movls	r3, #0
 	and	r3, r3, #255
-	b	.L414
-.L411:
+	b	.L415
+.L412:
 	mvn	r3, #0
-	b	.L414
-.L410:
+	b	.L415
+.L411:
 	mov	r3, #0
-.L414:
+.L415:
+	nop
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -2889,23 +2842,23 @@ wmemcpy:
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #12]
 	str	r3, [sp, #20]
-	b	.L417
-.L418:
+	b	.L418
+.L419:
 	ldr	r2, [sp, #8]
 	add	r3, r2, #4
 	str	r3, [sp, #8]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #20]
 	add	r1, r3, #4
-	str	r1, [sp, #12]
+	str	r1, [sp, #20]
 	ldr	r2, [r2]
 	str	r2, [r3]
-.L417:
+.L418:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L418
-	ldr	r3, [sp, #20]
+	bne	.L419
+	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -2924,24 +2877,22 @@ wmemmove:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	bne	.L422
+	bne	.L423
 	ldr	r3, [sp, #12]
-	b	.L423
-.L422:
+	b	.L424
+.L423:
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	sub	r2, r2, r3
 	ldr	r3, [sp, #4]
 	lsl	r3, r3, #2
 	cmp	r2, r3
-	bcs	.L428
-	b	.L425
-.L426:
+	bcs	.L425
+	b	.L426
+.L427:
 	ldr	r3, [sp, #4]
 	lsl	r3, r3, #2
 	ldr	r2, [sp, #8]
@@ -2952,31 +2903,35 @@ wmemmove:
 	add	r3, r1, r3
 	ldr	r2, [r2]
 	str	r2, [r3]
-.L425:
+.L426:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L426
-	b	.L427
-.L429:
+	bne	.L427
+	b	.L428
+.L425:
+	ldr	r3, [sp, #12]
+	str	r3, [sp, #20]
+	b	.L429
+.L430:
 	ldr	r2, [sp, #8]
 	add	r3, r2, #4
 	str	r3, [sp, #8]
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #20]
 	add	r1, r3, #4
-	str	r1, [sp, #12]
+	str	r1, [sp, #20]
 	ldr	r2, [r2]
 	str	r2, [r3]
-.L428:
+.L429:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L429
-.L427:
-	ldr	r3, [sp, #20]
-.L423:
+	bne	.L430
+.L428:
+	ldr	r3, [sp, #12]
+.L424:
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -2997,20 +2952,20 @@ wmemset:
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #12]
 	str	r3, [sp, #20]
-	b	.L432
-.L433:
-	ldr	r3, [sp, #12]
+	b	.L433
+.L434:
+	ldr	r3, [sp, #20]
 	add	r2, r3, #4
-	str	r2, [sp, #12]
+	str	r2, [sp, #20]
 	ldr	r2, [sp, #8]
 	str	r2, [r3]
-.L432:
+.L433:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L433
-	ldr	r3, [sp, #20]
+	bne	.L434
+	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -3029,24 +2984,20 @@ bcopy:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
 	cmp	r2, r3
-	bcs	.L437
-	ldr	r2, [sp, #20]
+	bcs	.L438
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	str	r3, [sp, #20]
-	ldr	r2, [sp, #16]
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	str	r3, [sp, #16]
-	b	.L438
-.L439:
+	b	.L439
+.L440:
 	ldr	r3, [sp, #20]
 	sub	r3, r3, #1
 	str	r3, [sp, #20]
@@ -3060,34 +3011,34 @@ bcopy:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-.L438:
+.L439:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L439
-	b	.L443
-.L437:
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+	bne	.L440
+	b	.L444
+.L438:
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	beq	.L443
-	b	.L441
-.L442:
-	ldr	r2, [sp, #20]
+	beq	.L444
+	b	.L442
+.L443:
+	ldr	r2, [sp, #12]
 	add	r3, r2, #1
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
+	str	r3, [sp, #12]
+	ldr	r3, [sp, #8]
 	add	r1, r3, #1
-	str	r1, [sp, #16]
+	str	r1, [sp, #8]
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-.L441:
+.L442:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L442
-.L443:
+	bne	.L443
+.L444:
 	nop
 	add	sp, sp, #24
 	@ sp needed
@@ -3126,10 +3077,8 @@ rotl64:
 	lsr	r2, r0, r2
 	orr	r3, ip, r3
 	orr	r2, r1, r2
-	mov	r1, r3
-	mov	r3, r2
-	mov	r0, r1
-	mov	r1, r3
+	mov	r0, r3
+	mov	r1, r2
 	add	sp, sp, #16
 	@ sp needed
 	pop	{r4, pc}
@@ -3552,8 +3501,7 @@ bswap_64:
 	mov	r1, #0
 	orr	r1, r0, r1
 	orr	r3, r2, r3
-	mov	r2, r1
-	mov	r0, r2
+	mov	r0, r1
 	mov	r1, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -3572,27 +3520,27 @@ ffs:
 	str	r0, [sp, #4]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L485
-.L488:
+	b	.L486
+.L489:
 	ldr	r2, [sp, #4]
 	ldr	r3, [sp, #12]
 	lsr	r3, r2, r3
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L486
+	beq	.L487
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
-	b	.L487
-.L486:
+	b	.L488
+.L487:
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L485:
+.L486:
 	ldr	r3, [sp, #12]
 	cmp	r3, #31
-	bls	.L488
+	bls	.L489
 	mov	r3, #0
-.L487:
+.L488:
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -3607,28 +3555,26 @@ libiberty_ffs:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	cmp	r0, #0
-	bne	.L491
-	mov	r3, #0
-	b	.L496
-.L491:
 	str	r4, [sp, #-4]!
+	cmp	r0, #0
+	bne	.L492
+	mov	r4, #0
+	b	.L493
+.L492:
 	mov	r3, r0
 	mov	r4, #1
-	b	.L493
-.L494:
+	b	.L494
+.L495:
 	asr	r3, r3, #1
 	add	r4, r4, #1
-.L493:
+.L494:
 	and	r2, r3, #1
 	cmp	r2, #0
-	beq	.L494
-	mov	r3, r4
-	mov	r0, r3
+	beq	.L495
+	nop
+.L493:
+	mov	r0, r4
 	ldr	r4, [sp], #4
-	mov	pc, lr
-.L496:
-	mov	r0, r3
 	mov	pc, lr
 	.size	libiberty_ffs, .-libiberty_ffs
 	.align	2
@@ -3643,28 +3589,29 @@ gl_isinff:
 	sub	sp, sp, #8
 	vstr.32	s0, [sp, #4]
 	vldr.32	s15, [sp, #4]
-	vldr.32	s14, .L506
+	vldr.32	s14, .L505
 	vcmpe.f32	s15, s14
 	vmrs	APSR_nzcv, FPSCR
-	bmi	.L499
+	bmi	.L498
 	vldr.32	s15, [sp, #4]
-	vldr.32	s14, .L506+4
+	vldr.32	s14, .L505+4
 	vcmpe.f32	s15, s14
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L504
-.L499:
+	ble	.L503
+.L498:
 	mov	r3, #1
-	b	.L503
-.L504:
-	mov	r3, #0
+	b	.L502
 .L503:
+	mov	r3, #0
+.L502:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L507:
-	.align	2
 .L506:
+	.align	2
+.L505:
 	.word	-8388609
 	.word	2139095039
 	.size	gl_isinff, .-gl_isinff
@@ -3680,28 +3627,29 @@ gl_isinfd:
 	sub	sp, sp, #8
 	vstr.64	d0, [sp]
 	vldr.64	d7, [sp]
-	vldr.64	d6, .L516
+	vldr.64	d6, .L515
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	bmi	.L509
+	bmi	.L508
 	vldr.64	d7, [sp]
-	vldr.64	d6, .L516+8
+	vldr.64	d6, .L515+8
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L514
-.L509:
+	ble	.L513
+.L508:
 	mov	r3, #1
-	b	.L513
-.L514:
-	mov	r3, #0
+	b	.L512
 .L513:
+	mov	r3, #0
+.L512:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L517:
-	.align	3
 .L516:
+	.align	3
+.L515:
 	.word	-1
 	.word	-1048577
 	.word	-1
@@ -3719,28 +3667,29 @@ gl_isinfl:
 	sub	sp, sp, #8
 	vstr.64	d0, [sp]
 	vldr.64	d7, [sp]
-	vldr.64	d6, .L526
+	vldr.64	d6, .L525
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	bmi	.L519
+	bmi	.L518
 	vldr.64	d7, [sp]
-	vldr.64	d6, .L526+8
+	vldr.64	d6, .L525+8
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L524
-.L519:
+	ble	.L523
+.L518:
 	mov	r3, #1
-	b	.L523
-.L524:
-	mov	r3, #0
+	b	.L522
 .L523:
+	mov	r3, #0
+.L522:
+	nop
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L527:
-	.align	3
 .L526:
+	.align	3
+.L525:
 	.word	-1
 	.word	-1048577
 	.word	-1
@@ -3784,32 +3733,32 @@ ldexpf:
 	vldr.32	s15, [sp, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bvs	.L531
+	bvs	.L530
 	vldr.32	s15, [sp, #4]
 	vadd.f32	s15, s15, s15
 	vldr.32	s14, [sp, #4]
 	vcmp.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	beq	.L531
+	beq	.L530
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bge	.L532
+	bge	.L531
 	mov	r3, #1056964608
-	b	.L533
-.L532:
+	b	.L532
+.L531:
 	mov	r3, #1073741824
-.L533:
+.L532:
 	str	r3, [sp, #12]	@ float
-.L536:
+.L535:
 	ldr	r3, [sp]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L534
+	beq	.L533
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp, #12]
 	vmul.f32	s15, s14, s15
 	vstr.32	s15, [sp, #4]
-.L534:
+.L533:
 	ldr	r3, [sp]
 	lsr	r2, r3, #31
 	add	r3, r2, r3
@@ -3817,16 +3766,15 @@ ldexpf:
 	str	r3, [sp]
 	ldr	r3, [sp]
 	cmp	r3, #0
-	beq	.L538
+	beq	.L537
 	vldr.32	s15, [sp, #12]
 	vmul.f32	s15, s15, s15
 	vstr.32	s15, [sp, #12]
-	b	.L536
-.L538:
+	b	.L535
+.L537:
 	nop
-.L531:
-	ldr	r3, [sp, #4]	@ float
-	vmov	s15, r3
+.L530:
+	vldr.32	s15, [sp, #4]
 	vmov.f32	s0, s15
 	add	sp, sp, #16
 	@ sp needed
@@ -3848,35 +3796,35 @@ ldexp:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvs	.L541
+	bvs	.L540
 	vldr.64	d7, [sp, #8]
 	vadd.f64	d7, d7, d7
 	vldr.64	d6, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	beq	.L541
+	beq	.L540
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L542
+	bge	.L541
 	mov	r2, #0
-	ldr	r3, .L550
-	b	.L543
-.L542:
+	ldr	r3, .L549
+	b	.L542
+.L541:
 	mov	r2, #0
 	mov	r3, #1073741824
-.L543:
+.L542:
 	str	r2, [sp, #16]
 	str	r3, [sp, #20]
-.L546:
+.L545:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L544
+	beq	.L543
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp, #16]
 	vmul.f64	d7, d6, d7
 	vstr.64	d7, [sp, #8]
-.L544:
+.L543:
 	ldr	r3, [sp, #4]
 	lsr	r2, r3, #31
 	add	r3, r2, r3
@@ -3884,24 +3832,22 @@ ldexp:
 	str	r3, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L548
+	beq	.L547
 	vldr.64	d7, [sp, #16]
 	vmul.f64	d7, d7, d7
 	vstr.64	d7, [sp, #16]
-	b	.L546
-.L548:
+	b	.L545
+.L547:
 	nop
-.L541:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	vmov	d7, r2, r3
+.L540:
+	vldr.64	d7, [sp, #8]
 	vmov.f64	d0, d7
 	add	sp, sp, #24
 	@ sp needed
 	mov	pc, lr
-.L551:
-	.align	2
 .L550:
+	.align	2
+.L549:
 	.word	1071644672
 	.size	ldexp, .-ldexp
 	.align	2
@@ -3920,35 +3866,35 @@ ldexpl:
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bvs	.L553
+	bvs	.L552
 	vldr.64	d7, [sp, #8]
 	vadd.f64	d7, d7, d7
 	vldr.64	d6, [sp, #8]
 	vcmp.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	beq	.L553
+	beq	.L552
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L554
+	bge	.L553
 	mov	r2, #0
-	ldr	r3, .L562
-	b	.L555
-.L554:
+	ldr	r3, .L561
+	b	.L554
+.L553:
 	mov	r2, #0
 	mov	r3, #1073741824
-.L555:
+.L554:
 	str	r2, [sp, #16]
 	str	r3, [sp, #20]
-.L558:
+.L557:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L556
+	beq	.L555
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp, #16]
 	vmul.f64	d7, d6, d7
 	vstr.64	d7, [sp, #8]
-.L556:
+.L555:
 	ldr	r3, [sp, #4]
 	lsr	r2, r3, #31
 	add	r3, r2, r3
@@ -3956,24 +3902,22 @@ ldexpl:
 	str	r3, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L560
+	beq	.L559
 	vldr.64	d7, [sp, #16]
 	vmul.f64	d7, d7, d7
 	vstr.64	d7, [sp, #16]
-	b	.L558
-.L560:
+	b	.L557
+.L559:
 	nop
-.L553:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	vmov	d7, r2, r3
+.L552:
+	vldr.64	d7, [sp, #8]
 	vmov.f64	d0, d7
 	add	sp, sp, #24
 	@ sp needed
 	mov	pc, lr
-.L563:
-	.align	2
 .L562:
+	.align	2
+.L561:
 	.word	1071644672
 	.size	ldexpl, .-ldexpl
 	.align	2
@@ -3989,19 +3933,17 @@ memxor:
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r3, [sp, #8]
-	str	r3, [sp, #20]
 	ldr	r3, [sp, #12]
-	str	r3, [sp, #16]
-	b	.L565
-.L566:
+	str	r3, [sp, #20]
+	b	.L564
+.L565:
+	ldr	r3, [sp, #8]
+	add	r2, r3, #1
+	str	r2, [sp, #8]
+	ldrb	r1, [r3]	@ zero_extendqisi2
 	ldr	r3, [sp, #20]
 	add	r2, r3, #1
 	str	r2, [sp, #20]
-	ldrb	r1, [r3]	@ zero_extendqisi2
-	ldr	r3, [sp, #16]
-	add	r2, r3, #1
-	str	r2, [sp, #16]
 	ldrb	r2, [r3]	@ zero_extendqisi2
 	eor	r2, r2, r1
 	and	r2, r2, #255
@@ -4009,10 +3951,10 @@ memxor:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-.L565:
+.L564:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L566
+	bne	.L565
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #24
@@ -4038,8 +3980,8 @@ strncat:
 	ldr	r3, [sp, #12]
 	add	r3, r3, r0
 	str	r3, [sp, #20]
-	b	.L570
-.L572:
+	b	.L569
+.L571:
 	ldr	r3, [sp, #8]
 	add	r3, r3, #1
 	str	r3, [sp, #8]
@@ -4049,10 +3991,10 @@ strncat:
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
 	str	r3, [sp, #4]
-.L570:
+.L569:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L571
+	beq	.L570
 	ldr	r3, [sp, #8]
 	ldrb	r2, [r3]	@ zero_extendqisi2
 	ldr	r3, [sp, #20]
@@ -4060,15 +4002,15 @@ strncat:
 	ldr	r3, [sp, #20]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L572
-.L571:
+	bne	.L571
+.L570:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L573
+	bne	.L572
 	ldr	r3, [sp, #20]
 	mov	r2, #0
 	strb	r2, [r3]
-.L573:
+.L572:
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #28
@@ -4089,24 +4031,24 @@ strnlen:
 	str	r1, [sp]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L577
-.L582:
+	b	.L576
+.L581:
 	nop
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L577:
+.L576:
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp]
 	cmp	r2, r3
-	bcs	.L578
+	bcs	.L577
 	ldr	r2, [sp, #4]
 	ldr	r3, [sp, #12]
 	add	r3, r2, r3
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L582
-.L578:
+	bne	.L581
+.L577:
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -4125,12 +4067,12 @@ strpbrk:
 	sub	sp, sp, #16
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	b	.L585
-.L589:
+	b	.L584
+.L588:
 	ldr	r3, [sp]
 	str	r3, [sp, #12]
-	b	.L586
-.L588:
+	b	.L585
+.L587:
 	ldr	r3, [sp, #12]
 	add	r2, r3, #1
 	str	r2, [sp, #12]
@@ -4138,24 +4080,24 @@ strpbrk:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r2, r3
-	bne	.L586
+	bne	.L585
 	ldr	r3, [sp, #4]
-	b	.L587
-.L586:
+	b	.L586
+.L585:
 	ldr	r3, [sp, #12]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L588
+	bne	.L587
 	ldr	r3, [sp, #4]
 	add	r3, r3, #1
 	str	r3, [sp, #4]
-.L585:
+.L584:
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L589
+	bne	.L588
 	mov	r3, #0
-.L587:
+.L586:
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -4175,19 +4117,19 @@ strrchr:
 	str	r1, [sp, #4]
 	mov	r2, #0
 	str	r2, [sp, #12]
-.L593:
+.L592:
 	ldrb	r2, [r3]	@ zero_extendqisi2
 	mov	r1, r2
 	ldr	r2, [sp, #4]
 	cmp	r2, r1
-	bne	.L592
+	bne	.L591
 	str	r3, [sp, #12]
-.L592:
+.L591:
 	mov	r2, r3
 	add	r3, r2, #1
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	cmp	r2, #0
-	bne	.L593
+	bne	.L592
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -4206,42 +4148,40 @@ strstr:
 	sub	sp, sp, #20
 	str	r0, [sp, #4]
 	str	r1, [sp]
-	ldr	r3, [sp, #4]
-	str	r3, [sp, #12]
 	ldr	r0, [sp]
 	bl	strlen
-	str	r0, [sp, #8]
-	ldr	r3, [sp, #8]
-	cmp	r3, #0
-	bne	.L599
-	ldr	r3, [sp, #4]
-	b	.L598
-.L601:
-	ldr	r2, [sp, #8]
-	ldr	r1, [sp]
-	ldr	r0, [sp, #12]
-	bl	strncmp
-	mov	r3, r0
-	cmp	r3, #0
-	bne	.L600
-	ldr	r3, [sp, #12]
-	b	.L598
-.L600:
-	ldr	r3, [sp, #12]
-	add	r3, r3, #1
-	str	r3, [sp, #12]
-.L599:
-	ldr	r3, [sp]
-	ldrb	r3, [r3]	@ zero_extendqisi2
-	mov	r1, r3
-	ldr	r0, [sp, #12]
-	bl	strchr
 	str	r0, [sp, #12]
 	ldr	r3, [sp, #12]
 	cmp	r3, #0
-	bne	.L601
-	mov	r3, #0
+	bne	.L598
+	ldr	r3, [sp, #4]
+	b	.L597
+.L600:
+	ldr	r2, [sp, #12]
+	ldr	r1, [sp]
+	ldr	r0, [sp, #8]
+	bl	strncmp
+	mov	r3, r0
+	cmp	r3, #0
+	bne	.L599
+	ldr	r3, [sp, #8]
+	b	.L597
+.L599:
+	ldr	r3, [sp, #8]
+	add	r3, r3, #1
+	str	r3, [sp, #4]
 .L598:
+	ldr	r3, [sp]
+	ldrb	r3, [r3]	@ zero_extendqisi2
+	mov	r1, r3
+	ldr	r0, [sp, #4]
+	bl	strchr
+	str	r0, [sp, #8]
+	ldr	r3, [sp, #8]
+	cmp	r3, #0
+	bne	.L600
+	mov	r3, #0
+.L597:
 	mov	r0, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -4262,27 +4202,27 @@ copysign:
 	vldr.64	d7, [sp, #8]
 	vcmpe.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L604
+	bpl	.L603
 	vldr.64	d7, [sp]
 	vcmpe.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	bgt	.L606
-.L604:
+	bgt	.L605
+.L603:
 	vldr.64	d7, [sp, #8]
 	vcmpe.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L607
+	ble	.L606
 	vldr.64	d7, [sp]
 	vcmpe.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L607
-.L606:
+	bpl	.L606
+.L605:
 	vldr.64	d7, [sp, #8]
 	vneg.f64	d7, d7
-	b	.L610
-.L607:
+	b	.L609
+.L606:
 	vldr.64	d7, [sp, #8]
-.L610:
+.L609:
 	vmov.f64	d0, d7
 	add	sp, sp, #16
 	@ sp needed
@@ -4307,13 +4247,13 @@ memmem:
 	sub	r3, r2, r3
 	ldr	r2, [sp, #12]
 	add	r3, r2, r3
-	str	r3, [sp, #16]
+	str	r3, [sp, #20]
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bne	.L615
+	bne	.L614
 	ldr	r3, [sp, #12]
-	b	.L616
-.L615:
+	b	.L615
+.L614:
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp]
 	cmp	r2, r3
@@ -4323,19 +4263,15 @@ memmem:
 	cmp	r3, #0
 	beq	.L617
 	mov	r3, #0
-	b	.L616
-.L617:
+	b	.L615
+.L619:
 	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	b	.L618
-.L620:
-	ldr	r3, [sp, #20]
 	ldrb	r2, [r3]	@ zero_extendqisi2
 	ldr	r3, [sp, #4]
 	ldrb	r3, [r3]	@ zero_extendqisi2
 	cmp	r2, r3
-	bne	.L619
-	ldr	r3, [sp, #20]
+	bne	.L618
+	ldr	r3, [sp, #12]
 	add	r0, r3, #1
 	ldr	r3, [sp, #4]
 	add	r1, r3, #1
@@ -4345,20 +4281,20 @@ memmem:
 	bl	memcmp
 	mov	r3, r0
 	cmp	r3, #0
-	bne	.L619
-	ldr	r3, [sp, #20]
-	b	.L616
-.L619:
-	ldr	r3, [sp, #20]
-	add	r3, r3, #1
-	str	r3, [sp, #20]
+	bne	.L618
+	ldr	r3, [sp, #12]
+	b	.L615
 .L618:
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+	ldr	r3, [sp, #12]
+	add	r3, r3, #1
+	str	r3, [sp, #12]
+.L617:
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bls	.L620
+	bls	.L619
 	mov	r3, #0
-.L616:
+.L615:
 	mov	r0, r3
 	add	sp, sp, #28
 	@ sp needed
@@ -4408,20 +4344,20 @@ frexp:
 	vldr.64	d7, [sp, #8]
 	vcmpe.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L626
+	bpl	.L625
 	vldr.64	d7, [sp, #8]
 	vneg.f64	d7, d7
 	vstr.64	d7, [sp, #8]
 	mov	r3, #1
 	str	r3, [sp, #20]
-.L626:
+.L625:
 	vldr.64	d7, [sp, #8]
 	vmov.f64	d6, #1.0e+0
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	blt	.L641
-	b	.L630
-.L631:
+	blt	.L640
+	b	.L629
+.L630:
 	ldr	r3, [sp, #16]
 	add	r3, r3, #1
 	str	r3, [sp, #16]
@@ -4429,51 +4365,49 @@ frexp:
 	vmov.f64	d5, #2.0e+0
 	vdiv.f64	d7, d6, d5
 	vstr.64	d7, [sp, #8]
-.L630:
+.L629:
 	vldr.64	d7, [sp, #8]
 	vmov.f64	d6, #1.0e+0
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	bge	.L631
-	b	.L632
-.L641:
+	bge	.L630
+	b	.L631
+.L640:
 	vldr.64	d7, [sp, #8]
 	vmov.f64	d6, #5.0e-1
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L632
+	bpl	.L631
 	vldr.64	d7, [sp, #8]
 	vcmp.f64	d7, #0
 	vmrs	APSR_nzcv, FPSCR
-	beq	.L632
-	b	.L634
-.L635:
+	beq	.L631
+	b	.L633
+.L634:
 	ldr	r3, [sp, #16]
 	sub	r3, r3, #1
 	str	r3, [sp, #16]
 	vldr.64	d7, [sp, #8]
 	vadd.f64	d7, d7, d7
 	vstr.64	d7, [sp, #8]
-.L634:
+.L633:
 	vldr.64	d7, [sp, #8]
 	vmov.f64	d6, #5.0e-1
 	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
-	bmi	.L635
-.L632:
+	bmi	.L634
+.L631:
 	ldr	r3, [sp, #4]
 	ldr	r2, [sp, #16]
 	str	r2, [r3]
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	beq	.L636
+	beq	.L635
 	vldr.64	d7, [sp, #8]
 	vneg.f64	d7, d7
 	vstr.64	d7, [sp, #8]
-.L636:
-	add	r3, sp, #8
-	ldmia	r3, {r2-r3}
-	vmov	d7, r2, r3
+.L635:
+	vldr.64	d7, [sp, #8]
 	vmov.f64	d0, d7
 	add	sp, sp, #24
 	@ sp needed
@@ -4500,13 +4434,13 @@ __muldi3:
 	ldmia	r3, {r2-r3}
 	str	r2, [sp, #16]
 	str	r3, [sp, #20]
-	b	.L644
-.L646:
+	b	.L643
+.L645:
 	ldr	r3, [sp, #16]
 	and	r3, r3, #1
 	mov	r2, #0
 	orrs	r3, r3, r2
-	beq	.L645
+	beq	.L644
 	ldr	r3, [sp, #24]
 	ldr	r0, [sp, #28]
 	ldr	r2, [sp]
@@ -4515,7 +4449,7 @@ __muldi3:
 	adc	r3, r0, r1
 	str	r2, [sp, #24]
 	str	r3, [sp, #28]
-.L645:
+.L644:
 	ldr	r3, [sp]
 	ldr	r2, [sp, #4]
 	adds	r1, r3, r3
@@ -4529,13 +4463,13 @@ __muldi3:
 	lsr	r1, r2, #1
 	str	r3, [sp, #16]
 	str	r1, [sp, #20]
-.L644:
+.L643:
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
 	orrs	r3, r2, r3
-	bne	.L646
-	ldr	r2, [sp, #24]
-	ldr	r3, [sp, #28]
+	bne	.L645
+	add	r3, sp, #24
+	ldmia	r3, {r2-r3}
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #32
@@ -4559,31 +4493,31 @@ udivmodsi4:
 	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #16]
-	b	.L650
-.L652:
+	b	.L649
+.L651:
 	ldr	r3, [sp, #8]
 	lsl	r3, r3, #1
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #20]
 	lsl	r3, r3, #1
 	str	r3, [sp, #20]
-.L650:
+.L649:
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
 	cmp	r2, r3
-	bcs	.L653
+	bcs	.L652
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	beq	.L653
+	beq	.L652
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bge	.L652
-	b	.L653
-.L655:
+	bge	.L651
+	b	.L652
+.L654:
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	bcc	.L654
+	bcc	.L653
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	sub	r3, r2, r3
@@ -4592,25 +4526,25 @@ udivmodsi4:
 	ldr	r3, [sp, #20]
 	orr	r3, r2, r3
 	str	r3, [sp, #16]
-.L654:
+.L653:
 	ldr	r3, [sp, #20]
 	lsr	r3, r3, #1
 	str	r3, [sp, #20]
 	ldr	r3, [sp, #8]
 	lsr	r3, r3, #1
 	str	r3, [sp, #8]
-.L653:
+.L652:
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	bne	.L655
+	bne	.L654
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L656
+	beq	.L655
 	ldr	r3, [sp, #12]
-	b	.L657
-.L656:
+	b	.L656
+.L655:
 	ldr	r3, [sp, #16]
-.L657:
+.L656:
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -4630,10 +4564,10 @@ __clrsbqi2:
 	strb	r0, [sp, #7]
 	ldrb	r3, [sp, #7]	@ zero_extendqisi2
 	cmp	r3, #0
-	bne	.L660
+	bne	.L659
 	mov	r3, #7
-	b	.L661
-.L660:
+	b	.L660
+.L659:
 	ldrb	r3, [sp, #7]	@ zero_extendqisi2
 	lsl	r3, r3, #8
 	mov	r0, r3
@@ -4642,7 +4576,7 @@ __clrsbqi2:
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #12]
 	sub	r3, r3, #1
-.L661:
+.L660:
 	mov	r0, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -4661,21 +4595,21 @@ __clrsbdi2:
 	stm	sp, {r0-r1}
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L664
+	bge	.L663
 	ldr	r2, [sp]
 	ldr	r3, [sp, #4]
 	mvn	r2, r2
 	mvn	r3, r3
 	str	r2, [sp]
 	str	r3, [sp, #4]
-.L664:
+.L663:
 	ldr	r2, [sp]
 	ldr	r3, [sp, #4]
 	orrs	r3, r2, r3
-	bne	.L665
+	bne	.L664
 	mov	r3, #63
-	b	.L666
-.L665:
+	b	.L665
+.L664:
 	ldmia	sp, {r2-r3}
 	mov	r0, r2
 	mov	r1, r3
@@ -4684,7 +4618,7 @@ __clrsbdi2:
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #12]
 	sub	r3, r3, #1
-.L666:
+.L665:
 	mov	r0, r3
 	add	sp, sp, #20
 	@ sp needed
@@ -4704,27 +4638,27 @@ __mulsi3:
 	str	r1, [sp]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L669
-.L671:
+	b	.L668
+.L670:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L670
+	beq	.L669
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
-.L670:
+.L669:
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #1
 	str	r3, [sp, #4]
 	ldr	r3, [sp]
 	lsl	r3, r3, #1
 	str	r3, [sp]
-.L669:
+.L668:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L671
+	bne	.L670
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -4737,94 +4671,90 @@ __mulsi3:
 	.arm
 	.type	__cmovd, %function
 __cmovd:
-	@ args = 0, pretend = 0, frame = 40
+	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #40
+	sub	sp, sp, #32
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #3
-	str	r3, [sp, #28]
+	str	r3, [sp, #20]
 	ldr	r3, [sp, #4]
 	bic	r3, r3, #7
-	str	r3, [sp, #32]
-	ldr	r3, [sp, #12]
 	str	r3, [sp, #24]
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
-	str	r3, [sp, #20]
-	ldr	r2, [sp, #24]
-	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bcc	.L675
-	ldr	r2, [sp, #20]
+	bcc	.L674
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
-	ldr	r2, [sp, #24]
+	ldr	r2, [sp, #12]
 	cmp	r2, r3
-	bls	.L682
-.L675:
+	bls	.L681
+.L674:
 	mov	r3, #0
-	str	r3, [sp, #36]
-	b	.L677
-.L678:
-	ldr	r3, [sp, #36]
+	str	r3, [sp, #28]
+	b	.L676
+.L677:
+	ldr	r3, [sp, #28]
 	lsl	r3, r3, #3
 	ldr	r2, [sp, #8]
 	add	r3, r2, r3
-	ldr	r2, [sp, #36]
+	ldr	r2, [sp, #28]
 	lsl	r2, r2, #3
 	ldr	r1, [sp, #12]
 	add	r1, r1, r2
 	ldmia	r3, {r2-r3}
 	stm	r1, {r2-r3}
-	ldr	r3, [sp, #36]
-	add	r3, r3, #1
-	str	r3, [sp, #36]
-.L677:
-	ldr	r2, [sp, #36]
 	ldr	r3, [sp, #28]
-	cmp	r2, r3
-	bcc	.L678
-	b	.L679
-.L680:
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #32]
-	add	r2, r2, r3
-	ldr	r1, [sp, #24]
-	ldr	r3, [sp, #32]
-	add	r3, r1, r3
-	ldrb	r2, [r2]	@ zero_extendqisi2
-	strb	r2, [r3]
-	ldr	r3, [sp, #32]
 	add	r3, r3, #1
-	str	r3, [sp, #32]
-.L679:
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #32]
+	str	r3, [sp, #28]
+.L676:
+	ldr	r2, [sp, #28]
+	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bhi	.L680
-	b	.L681
-.L683:
-	ldr	r2, [sp, #20]
+	bcc	.L677
+	b	.L678
+.L679:
+	ldr	r2, [sp, #8]
+	ldr	r3, [sp, #24]
+	add	r2, r2, r3
+	ldr	r1, [sp, #12]
+	ldr	r3, [sp, #24]
+	add	r3, r1, r3
+	ldrb	r2, [r2]	@ zero_extendqisi2
+	strb	r2, [r3]
+	ldr	r3, [sp, #24]
+	add	r3, r3, #1
+	str	r3, [sp, #24]
+.L678:
+	ldr	r2, [sp, #4]
+	ldr	r3, [sp, #24]
+	cmp	r2, r3
+	bhi	.L679
+	b	.L680
+.L682:
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r2, r2, r3
-	ldr	r1, [sp, #24]
+	ldr	r1, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r1, r3
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
-.L682:
+.L681:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L683
+	bne	.L682
 	nop
-.L681:
+.L680:
 	nop
-	add	sp, sp, #40
+	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
 	.size	__cmovd, .-__cmovd
@@ -4834,87 +4764,83 @@ __cmovd:
 	.arm
 	.type	__cmovh, %function
 __cmovh:
-	@ args = 0, pretend = 0, frame = 32
+	@ args = 0, pretend = 0, frame = 24
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #32
+	sub	sp, sp, #24
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #1
-	str	r3, [sp, #24]
-	ldr	r3, [sp, #12]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #8]
 	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	bcc	.L686
-	ldr	r2, [sp, #16]
+	bcc	.L685
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #12]
 	cmp	r2, r3
-	bls	.L692
-.L686:
+	bls	.L691
+.L685:
 	mov	r3, #0
-	str	r3, [sp, #28]
-	b	.L688
-.L689:
-	ldr	r3, [sp, #28]
+	str	r3, [sp, #20]
+	b	.L687
+.L688:
+	ldr	r3, [sp, #20]
 	lsl	r3, r3, #1
 	ldr	r2, [sp, #8]
 	add	r2, r2, r3
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #20]
 	lsl	r3, r3, #1
 	ldr	r1, [sp, #12]
 	add	r3, r1, r3
 	ldrsh	r2, [r2]
 	strh	r2, [r3]	@ movhi
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #20]
 	add	r3, r3, #1
-	str	r3, [sp, #28]
-.L688:
-	ldr	r2, [sp, #28]
-	ldr	r3, [sp, #24]
+	str	r3, [sp, #20]
+.L687:
+	ldr	r2, [sp, #20]
+	ldr	r3, [sp, #16]
 	cmp	r2, r3
-	bcc	.L689
+	bcc	.L688
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L691
+	beq	.L690
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
-	ldr	r2, [sp, #16]
+	ldr	r2, [sp, #8]
 	add	r2, r2, r3
 	ldr	r3, [sp, #4]
 	sub	r3, r3, #1
-	ldr	r1, [sp, #20]
+	ldr	r1, [sp, #12]
 	add	r3, r1, r3
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
-	b	.L691
-.L693:
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #4]
-	add	r2, r2, r3
-	ldr	r1, [sp, #20]
-	ldr	r3, [sp, #4]
-	add	r3, r1, r3
-	ldrb	r2, [r2]	@ zero_extendqisi2
-	strb	r2, [r3]
+	b	.L690
 .L692:
+	ldr	r2, [sp, #8]
+	ldr	r3, [sp, #4]
+	add	r2, r2, r3
+	ldr	r1, [sp, #12]
+	ldr	r3, [sp, #4]
+	add	r3, r1, r3
+	ldrb	r2, [r2]	@ zero_extendqisi2
+	strb	r2, [r3]
+.L691:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L693
+	bne	.L692
 	nop
-.L691:
+.L690:
 	nop
-	add	sp, sp, #32
+	add	sp, sp, #24
 	@ sp needed
 	mov	pc, lr
 	.size	__cmovh, .-__cmovh
@@ -4924,94 +4850,90 @@ __cmovh:
 	.arm
 	.type	__cmovw, %function
 __cmovw:
-	@ args = 0, pretend = 0, frame = 40
+	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #40
+	sub	sp, sp, #32
 	str	r0, [sp, #12]
 	str	r1, [sp, #8]
 	str	r2, [sp, #4]
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #2
-	str	r3, [sp, #28]
+	str	r3, [sp, #20]
 	ldr	r3, [sp, #4]
 	bic	r3, r3, #3
-	str	r3, [sp, #32]
-	ldr	r3, [sp, #12]
 	str	r3, [sp, #24]
+	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
-	str	r3, [sp, #20]
-	ldr	r2, [sp, #24]
-	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bcc	.L696
-	ldr	r2, [sp, #20]
+	bcc	.L695
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
-	ldr	r2, [sp, #24]
+	ldr	r2, [sp, #12]
 	cmp	r2, r3
-	bls	.L703
-.L696:
+	bls	.L702
+.L695:
 	mov	r3, #0
-	str	r3, [sp, #36]
-	b	.L698
-.L699:
-	ldr	r3, [sp, #36]
+	str	r3, [sp, #28]
+	b	.L697
+.L698:
+	ldr	r3, [sp, #28]
 	lsl	r3, r3, #2
 	ldr	r2, [sp, #8]
 	add	r2, r2, r3
-	ldr	r3, [sp, #36]
+	ldr	r3, [sp, #28]
 	lsl	r3, r3, #2
 	ldr	r1, [sp, #12]
 	add	r3, r1, r3
 	ldr	r2, [r2]
 	str	r2, [r3]
-	ldr	r3, [sp, #36]
-	add	r3, r3, #1
-	str	r3, [sp, #36]
-.L698:
-	ldr	r2, [sp, #36]
 	ldr	r3, [sp, #28]
-	cmp	r2, r3
-	bcc	.L699
-	b	.L700
-.L701:
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #32]
-	add	r2, r2, r3
-	ldr	r1, [sp, #24]
-	ldr	r3, [sp, #32]
-	add	r3, r1, r3
-	ldrb	r2, [r2]	@ zero_extendqisi2
-	strb	r2, [r3]
-	ldr	r3, [sp, #32]
 	add	r3, r3, #1
-	str	r3, [sp, #32]
-.L700:
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #32]
+	str	r3, [sp, #28]
+.L697:
+	ldr	r2, [sp, #28]
+	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bhi	.L701
-	b	.L702
-.L704:
-	ldr	r2, [sp, #20]
+	bcc	.L698
+	b	.L699
+.L700:
+	ldr	r2, [sp, #8]
+	ldr	r3, [sp, #24]
+	add	r2, r2, r3
+	ldr	r1, [sp, #12]
+	ldr	r3, [sp, #24]
+	add	r3, r1, r3
+	ldrb	r2, [r2]	@ zero_extendqisi2
+	strb	r2, [r3]
+	ldr	r3, [sp, #24]
+	add	r3, r3, #1
+	str	r3, [sp, #24]
+.L699:
+	ldr	r2, [sp, #4]
+	ldr	r3, [sp, #24]
+	cmp	r2, r3
+	bhi	.L700
+	b	.L701
+.L703:
+	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #4]
 	add	r2, r2, r3
-	ldr	r1, [sp, #24]
+	ldr	r1, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r1, r3
 	ldrb	r2, [r2]	@ zero_extendqisi2
 	strb	r2, [r3]
-.L703:
+.L702:
 	ldr	r3, [sp, #4]
 	sub	r2, r3, #1
 	str	r2, [sp, #4]
 	cmp	r3, #0
-	bne	.L704
+	bne	.L703
 	nop
-.L702:
+.L701:
 	nop
-	add	sp, sp, #40
+	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
 	.size	__cmovw, .-__cmovw
@@ -5090,8 +5012,7 @@ __ulltod:
 	bl	__aeabi_ul2d
 	mov	r2, r0
 	mov	r3, r1
-	vmov	d7, r2, r3
-	vmov.f64	d0, d7
+	vmov	d0, r2, r3
 	add	sp, sp, #12
 	@ sp needed
 	ldr	pc, [sp], #4
@@ -5110,8 +5031,7 @@ __ulltof:
 	ldmia	sp, {r0-r1}
 	bl	__aeabi_ul2f
 	mov	r3, r0	@ float
-	vmov	s15, r3
-	vmov.f32	s0, s15
+	vmov	s0, r3
 	add	sp, sp, #12
 	@ sp needed
 	ldr	pc, [sp], #4
@@ -5152,26 +5072,26 @@ __clzhi2:
 	strh	r0, [sp, #6]	@ movhi
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L725
-.L728:
+	b	.L724
+.L727:
 	ldrh	r2, [sp, #6]
 	ldr	r3, [sp, #12]
 	rsb	r3, r3, #15
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	cmp	r3, #0
-	bne	.L730
+	bne	.L729
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L725:
+.L724:
 	ldr	r3, [sp, #12]
 	cmp	r3, #15
-	ble	.L728
-	b	.L727
-.L730:
+	ble	.L727
+	b	.L726
+.L729:
 	nop
-.L727:
+.L726:
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -5192,25 +5112,25 @@ __ctzhi2:
 	strh	r0, [sp, #6]	@ movhi
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L733
-.L736:
+	b	.L732
+.L735:
 	ldrh	r2, [sp, #6]
 	ldr	r3, [sp, #12]
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	cmp	r3, #0
-	bne	.L738
+	bne	.L737
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L733:
+.L732:
 	ldr	r3, [sp, #12]
 	cmp	r3, #15
-	ble	.L736
-	b	.L735
-.L738:
+	ble	.L735
+	b	.L734
+.L737:
 	nop
-.L735:
+.L734:
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -5229,29 +5149,29 @@ __fixunssfsi:
 	sub	sp, sp, #8
 	vstr.32	s0, [sp, #4]
 	vldr.32	s15, [sp, #4]
-	vldr.32	s14, .L747
+	vldr.32	s14, .L746
 	vcmpe.f32	s15, s14
 	vmrs	APSR_nzcv, FPSCR
-	blt	.L745
+	blt	.L744
 	vldr.32	s15, [sp, #4]
-	vldr.32	s14, .L747
+	vldr.32	s14, .L746
 	vsub.f32	s15, s15, s14
 	vcvt.s32.f32	s15, s15
 	vmov	r3, s15	@ int
 	add	r3, r3, #32768
-	b	.L743
-.L745:
+	b	.L742
+.L744:
 	vldr.32	s15, [sp, #4]
 	vcvt.s32.f32	s15, s15
 	vmov	r3, s15	@ int
-.L743:
+.L742:
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
 	mov	pc, lr
-.L748:
-	.align	2
 .L747:
+	.align	2
+.L746:
 	.word	1191182336
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align	2
@@ -5270,25 +5190,25 @@ __parityhi2:
 	str	r3, [sp, #8]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L750
-.L752:
+	b	.L749
+.L751:
 	ldrh	r2, [sp, #6]
 	ldr	r3, [sp, #12]
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L751
+	beq	.L750
 	ldr	r3, [sp, #8]
 	add	r3, r3, #1
 	str	r3, [sp, #8]
-.L751:
+.L750:
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L750:
+.L749:
 	ldr	r3, [sp, #12]
 	cmp	r3, #15
-	ble	.L752
+	ble	.L751
 	ldr	r3, [sp, #8]
 	and	r3, r3, #1
 	mov	r0, r3
@@ -5312,25 +5232,25 @@ __popcounthi2:
 	str	r3, [sp, #8]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L756
-.L758:
+	b	.L755
+.L757:
 	ldrh	r2, [sp, #6]
 	ldr	r3, [sp, #12]
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L757
+	beq	.L756
 	ldr	r3, [sp, #8]
 	add	r3, r3, #1
 	str	r3, [sp, #8]
-.L757:
+.L756:
 	ldr	r3, [sp, #12]
 	add	r3, r3, #1
 	str	r3, [sp, #12]
-.L756:
+.L755:
 	ldr	r3, [sp, #12]
 	cmp	r3, #15
-	ble	.L758
+	ble	.L757
 	ldr	r3, [sp, #8]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -5351,27 +5271,27 @@ __mulsi3_iq2000:
 	str	r1, [sp]
 	mov	r3, #0
 	str	r3, [sp, #12]
-	b	.L762
-.L764:
+	b	.L761
+.L763:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L763
+	beq	.L762
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
-.L763:
+.L762:
 	ldr	r3, [sp, #4]
 	lsr	r3, r3, #1
 	str	r3, [sp, #4]
 	ldr	r3, [sp]
 	lsl	r3, r3, #1
 	str	r3, [sp]
-.L762:
+.L761:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L764
+	bne	.L763
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	add	sp, sp, #16
@@ -5394,31 +5314,31 @@ __mulsi3_lm32:
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L770
+	bne	.L769
 	mov	r3, #0
-	b	.L769
-.L772:
+	b	.L768
+.L771:
 	ldr	r3, [sp]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L771
+	beq	.L770
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
-.L771:
+.L770:
 	ldr	r3, [sp, #4]
 	lsl	r3, r3, #1
 	str	r3, [sp, #4]
 	ldr	r3, [sp]
 	lsr	r3, r3, #1
 	str	r3, [sp]
-.L770:
+.L769:
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bne	.L772
+	bne	.L771
 	ldr	r3, [sp, #12]
-.L769:
+.L768:
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -5441,31 +5361,31 @@ __udivmodsi4:
 	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #16]
-	b	.L775
-.L777:
+	b	.L774
+.L776:
 	ldr	r3, [sp, #8]
 	lsl	r3, r3, #1
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #20]
 	lsl	r3, r3, #1
 	str	r3, [sp, #20]
-.L775:
+.L774:
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
 	cmp	r2, r3
-	bcs	.L778
+	bcs	.L777
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	beq	.L778
+	beq	.L777
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bge	.L777
-	b	.L778
-.L780:
+	bge	.L776
+	b	.L777
+.L779:
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	bcc	.L779
+	bcc	.L778
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	sub	r3, r2, r3
@@ -5474,25 +5394,25 @@ __udivmodsi4:
 	ldr	r3, [sp, #20]
 	orr	r3, r2, r3
 	str	r3, [sp, #16]
-.L779:
+.L778:
 	ldr	r3, [sp, #20]
 	lsr	r3, r3, #1
 	str	r3, [sp, #20]
 	ldr	r3, [sp, #8]
 	lsr	r3, r3, #1
 	str	r3, [sp, #8]
-.L778:
+.L777:
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	bne	.L780
+	bne	.L779
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L781
+	beq	.L780
 	ldr	r3, [sp, #12]
-	b	.L782
-.L781:
+	b	.L781
+.L780:
 	ldr	r3, [sp, #16]
-.L782:
+.L781:
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -5514,20 +5434,20 @@ __mspabi_cmpf:
 	vldr.32	s15, [sp]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L792
+	bpl	.L791
 	mvn	r3, #0
-	b	.L787
-.L792:
+	b	.L786
+.L791:
 	vldr.32	s14, [sp, #4]
 	vldr.32	s15, [sp]
 	vcmpe.f32	s14, s15
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L793
+	ble	.L792
 	mov	r3, #1
-	b	.L787
-.L793:
+	b	.L786
+.L792:
 	mov	r3, #0
-.L787:
+.L786:
 	mov	r0, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -5549,20 +5469,20 @@ __mspabi_cmpd:
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	bpl	.L803
+	bpl	.L802
 	mvn	r3, #0
-	b	.L798
-.L803:
+	b	.L797
+.L802:
 	vldr.64	d6, [sp, #8]
 	vldr.64	d7, [sp]
 	vcmpe.f64	d6, d7
 	vmrs	APSR_nzcv, FPSCR
-	ble	.L804
+	ble	.L803
 	mov	r3, #1
-	b	.L798
-.L804:
+	b	.L797
+.L803:
 	mov	r3, #0
-.L798:
+.L797:
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -5593,8 +5513,7 @@ __mspabi_mpysll:
 	add	r0, r0, r3
 	umull	ip, r3, r1, r2
 	add	r3, r0, r3
-	mov	r2, ip
-	mov	r0, r2
+	mov	r0, ip
 	mov	r1, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -5625,8 +5544,7 @@ __mspabi_mpyull:
 	add	r0, r0, r3
 	umull	ip, r3, r1, r2
 	add	r3, r0, r3
-	mov	r2, ip
-	mov	r0, r2
+	mov	r0, ip
 	mov	r1, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -5650,26 +5568,26 @@ __mulhi3:
 	str	r3, [sp, #12]
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bge	.L813
+	bge	.L812
 	ldr	r3, [sp]
 	rsb	r3, r3, #0
 	str	r3, [sp]
 	mov	r3, #1
 	str	r3, [sp, #16]
-.L813:
+.L812:
 	mov	r3, #0
 	strb	r3, [sp, #23]
-	b	.L814
-.L817:
+	b	.L813
+.L816:
 	ldr	r3, [sp]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L815
+	beq	.L814
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #4]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
-.L815:
+.L814:
 	ldr	r3, [sp, #4]
 	lsl	r3, r3, #1
 	str	r3, [sp, #4]
@@ -5679,23 +5597,24 @@ __mulhi3:
 	ldrb	r3, [sp, #23]	@ zero_extendqisi2
 	add	r3, r3, #1
 	strb	r3, [sp, #23]
-.L814:
+.L813:
 	ldr	r3, [sp]
 	cmp	r3, #0
-	beq	.L816
+	beq	.L815
 	ldrb	r3, [sp, #23]	@ zero_extendqisi2
 	cmp	r3, #31
-	bls	.L817
-.L816:
+	bls	.L816
+.L815:
 	ldr	r3, [sp, #16]
 	cmp	r3, #0
-	beq	.L818
+	beq	.L817
 	ldr	r3, [sp, #12]
 	rsb	r3, r3, #0
-	b	.L820
-.L818:
+	b	.L819
+.L817:
 	ldr	r3, [sp, #12]
-.L820:
+.L819:
+	nop
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -5717,7 +5636,7 @@ __divsi3:
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L823
+	bge	.L822
 	ldr	r3, [sp, #4]
 	rsb	r3, r3, #0
 	str	r3, [sp, #4]
@@ -5727,10 +5646,10 @@ __divsi3:
 	movne	r3, #0
 	and	r3, r3, #255
 	str	r3, [sp, #12]
-.L823:
+.L822:
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bge	.L824
+	bge	.L823
 	ldr	r3, [sp]
 	rsb	r3, r3, #0
 	str	r3, [sp]
@@ -5740,7 +5659,7 @@ __divsi3:
 	movne	r3, #0
 	and	r3, r3, #255
 	str	r3, [sp, #12]
-.L824:
+.L823:
 	ldr	r3, [sp, #4]
 	ldr	r1, [sp]
 	mov	r2, #0
@@ -5750,11 +5669,11 @@ __divsi3:
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #12]
 	cmp	r3, #0
-	beq	.L825
+	beq	.L824
 	ldr	r3, [sp, #8]
 	rsb	r3, r3, #0
 	str	r3, [sp, #8]
-.L825:
+.L824:
 	ldr	r3, [sp, #8]
 	mov	r0, r3
 	add	sp, sp, #20
@@ -5777,20 +5696,20 @@ __modsi3:
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L829
+	bge	.L828
 	ldr	r3, [sp, #4]
 	rsb	r3, r3, #0
 	str	r3, [sp, #4]
 	mov	r3, #1
 	str	r3, [sp, #12]
-.L829:
+.L828:
 	ldr	r3, [sp]
 	cmp	r3, #0
-	bge	.L830
+	bge	.L829
 	ldr	r3, [sp]
 	rsb	r3, r3, #0
 	str	r3, [sp]
-.L830:
+.L829:
 	ldr	r3, [sp, #4]
 	ldr	r1, [sp]
 	mov	r2, #1
@@ -5800,11 +5719,11 @@ __modsi3:
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #12]
 	cmp	r3, #0
-	beq	.L831
+	beq	.L830
 	ldr	r3, [sp, #8]
 	rsb	r3, r3, #0
 	str	r3, [sp, #8]
-.L831:
+.L830:
 	ldr	r3, [sp, #8]
 	mov	r0, r3
 	add	sp, sp, #20
@@ -5830,31 +5749,31 @@ __udivmodhi4:
 	strh	r3, [sp, #14]	@ movhi
 	mov	r3, #0
 	strh	r3, [sp, #12]	@ movhi
-	b	.L835
-.L837:
+	b	.L834
+.L836:
 	ldrh	r3, [sp, #4]	@ movhi
 	lsl	r3, r3, #1
 	strh	r3, [sp, #4]	@ movhi
 	ldrh	r3, [sp, #14]	@ movhi
 	lsl	r3, r3, #1
 	strh	r3, [sp, #14]	@ movhi
-.L835:
+.L834:
 	ldrh	r2, [sp, #4]
 	ldrh	r3, [sp, #6]
 	cmp	r2, r3
-	bcs	.L838
+	bcs	.L837
 	ldrh	r3, [sp, #14]
 	cmp	r3, #0
-	beq	.L838
+	beq	.L837
 	ldrsh	r3, [sp, #4]
 	cmp	r3, #0
-	bge	.L837
-	b	.L838
-.L840:
+	bge	.L836
+	b	.L837
+.L839:
 	ldrh	r2, [sp, #6]
 	ldrh	r3, [sp, #4]
 	cmp	r2, r3
-	bcc	.L839
+	bcc	.L838
 	ldrh	r2, [sp, #6]	@ movhi
 	ldrh	r3, [sp, #4]	@ movhi
 	sub	r3, r2, r3
@@ -5863,25 +5782,25 @@ __udivmodhi4:
 	ldrh	r3, [sp, #14]	@ movhi
 	orr	r3, r2, r3
 	strh	r3, [sp, #12]	@ movhi
-.L839:
+.L838:
 	ldrh	r3, [sp, #14]
 	lsr	r3, r3, #1
 	strh	r3, [sp, #14]	@ movhi
 	ldrh	r3, [sp, #4]
 	lsr	r3, r3, #1
 	strh	r3, [sp, #4]	@ movhi
-.L838:
+.L837:
 	ldrh	r3, [sp, #14]
 	cmp	r3, #0
-	bne	.L840
+	bne	.L839
 	ldr	r3, [sp]
 	cmp	r3, #0
-	beq	.L841
+	beq	.L840
 	ldrh	r3, [sp, #6]
-	b	.L842
-.L841:
+	b	.L841
+.L840:
 	ldrh	r3, [sp, #12]
-.L842:
+.L841:
 	mov	r0, r3
 	add	sp, sp, #16
 	@ sp needed
@@ -5904,31 +5823,31 @@ __udivmodsi4_libgcc:
 	str	r3, [sp, #20]
 	mov	r3, #0
 	str	r3, [sp, #16]
-	b	.L845
-.L847:
+	b	.L844
+.L846:
 	ldr	r3, [sp, #8]
 	lsl	r3, r3, #1
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #20]
 	lsl	r3, r3, #1
 	str	r3, [sp, #20]
-.L845:
+.L844:
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
 	cmp	r2, r3
-	bcs	.L848
+	bcs	.L847
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	beq	.L848
+	beq	.L847
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	bge	.L847
-	b	.L848
-.L850:
+	bge	.L846
+	b	.L847
+.L849:
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	cmp	r2, r3
-	bcc	.L849
+	bcc	.L848
 	ldr	r2, [sp, #12]
 	ldr	r3, [sp, #8]
 	sub	r3, r2, r3
@@ -5937,25 +5856,25 @@ __udivmodsi4_libgcc:
 	ldr	r3, [sp, #20]
 	orr	r3, r2, r3
 	str	r3, [sp, #16]
-.L849:
+.L848:
 	ldr	r3, [sp, #20]
 	lsr	r3, r3, #1
 	str	r3, [sp, #20]
 	ldr	r3, [sp, #8]
 	lsr	r3, r3, #1
 	str	r3, [sp, #8]
-.L848:
+.L847:
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	bne	.L850
+	bne	.L849
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L851
+	beq	.L850
 	ldr	r3, [sp, #12]
-	b	.L852
-.L851:
+	b	.L851
+.L850:
 	ldr	r3, [sp, #16]
-.L852:
+.L851:
 	mov	r0, r3
 	add	sp, sp, #24
 	@ sp needed
@@ -5984,7 +5903,7 @@ __ashldi3:
 	ldr	r3, [sp, #36]
 	and	r3, r3, r2
 	cmp	r3, #0
-	beq	.L855
+	beq	.L854
 	mov	r3, #0
 	str	r3, [sp, #16]
 	ldr	r2, [sp, #24]
@@ -5993,15 +5912,15 @@ __ashldi3:
 	sub	r3, r1, r3
 	lsl	r3, r2, r3
 	str	r3, [sp, #20]
-	b	.L856
-.L855:
+	b	.L855
+.L854:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L857
-	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #12]
-	b	.L859
-.L857:
+	bne	.L856
+	add	r3, sp, #8
+	ldmia	r3, {r2-r3}
+	b	.L858
+.L856:
 	ldr	r2, [sp, #24]
 	ldr	r3, [sp, #4]
 	lsl	r3, r2, r3
@@ -6017,10 +5936,10 @@ __ashldi3:
 	lsr	r3, r1, r3
 	orr	r3, r2, r3
 	str	r3, [sp, #20]
-.L856:
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #20]
-.L859:
+.L855:
+	add	r3, sp, #16
+	ldmia	r3, {r2-r3}
+.L858:
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #40
@@ -6050,7 +5969,7 @@ __ashrdi3:
 	ldr	r3, [sp, #36]
 	and	r3, r3, r2
 	cmp	r3, #0
-	beq	.L862
+	beq	.L861
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #36]
 	sub	r3, r3, #1
@@ -6062,15 +5981,15 @@ __ashrdi3:
 	sub	r3, r1, r3
 	asr	r3, r2, r3
 	str	r3, [sp, #16]
-	b	.L863
-.L862:
+	b	.L862
+.L861:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L864
-	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #12]
-	b	.L866
-.L864:
+	bne	.L863
+	add	r3, sp, #8
+	ldmia	r3, {r2-r3}
+	b	.L865
+.L863:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #4]
 	asr	r3, r2, r3
@@ -6086,10 +6005,10 @@ __ashrdi3:
 	lsr	r3, r1, r3
 	orr	r3, r2, r3
 	str	r3, [sp, #16]
-.L863:
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #20]
-.L866:
+.L862:
+	add	r3, sp, #16
+	ldmia	r3, {r2-r3}
+.L865:
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #40
@@ -6159,8 +6078,7 @@ __bswapdi2:
 	mov	r1, #0
 	orr	r1, r0, r1
 	orr	r3, r2, r3
-	mov	r2, r1
-	mov	r0, r2
+	mov	r0, r1
 	mov	r1, r3
 	add	sp, sp, #8
 	@ sp needed
@@ -6201,100 +6119,100 @@ __bswapsi2:
 	.arm
 	.type	__clzsi2, %function
 __clzsi2:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 64
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #64
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #60]
+	ldr	r3, [sp, #60]
 	cmp	r3, #65536
-	bcs	.L875
+	bcs	.L874
 	mov	r3, #16
-	b	.L876
-.L875:
+	b	.L875
+.L874:
 	mov	r3, #0
-.L876:
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #16]
+.L875:
+	str	r3, [sp, #56]
+	ldr	r3, [sp, #56]
 	rsb	r3, r3, #16
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #60]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #52]
+	ldr	r3, [sp, #56]
+	str	r3, [sp, #48]
+	ldr	r3, [sp, #52]
 	and	r3, r3, #65280
 	cmp	r3, #0
-	bne	.L877
+	bne	.L876
 	mov	r3, #8
-	b	.L878
-.L877:
+	b	.L877
+.L876:
 	mov	r3, #0
-.L878:
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #16]
+.L877:
+	str	r3, [sp, #44]
+	ldr	r3, [sp, #44]
 	rsb	r3, r3, #8
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #52]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
+	str	r3, [sp, #40]
+	ldr	r3, [sp, #44]
+	ldr	r2, [sp, #48]
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #36]
+	ldr	r3, [sp, #40]
 	and	r3, r3, #240
 	cmp	r3, #0
-	bne	.L879
+	bne	.L878
 	mov	r3, #4
-	b	.L880
-.L879:
+	b	.L879
+.L878:
 	mov	r3, #0
-.L880:
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #16]
+.L879:
+	str	r3, [sp, #32]
+	ldr	r3, [sp, #32]
 	rsb	r3, r3, #4
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #40]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
+	str	r3, [sp, #28]
+	ldr	r3, [sp, #32]
+	ldr	r2, [sp, #36]
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #24]
+	ldr	r3, [sp, #28]
 	and	r3, r3, #12
 	cmp	r3, #0
-	bne	.L881
+	bne	.L880
 	mov	r3, #2
-	b	.L882
-.L881:
+	b	.L881
+.L880:
 	mov	r3, #0
-.L882:
-	str	r3, [sp, #16]
-	ldr	r3, [sp, #16]
-	rsb	r3, r3, #2
-	ldr	r2, [sp, #20]
-	lsr	r3, r2, r3
+.L881:
 	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
+	ldr	r3, [sp, #20]
+	rsb	r3, r3, #2
+	ldr	r2, [sp, #28]
+	lsr	r3, r2, r3
+	str	r3, [sp, #16]
+	ldr	r3, [sp, #20]
+	ldr	r2, [sp, #24]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #16]
 	and	r3, r3, #2
 	cmp	r3, #0
 	moveq	r3, #1
 	movne	r3, #0
 	and	r3, r3, #255
 	mov	r2, r3
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #16]
 	rsb	r3, r3, #2
 	mul	r2, r3, r2
 	ldr	r3, [sp, #12]
 	add	r3, r2, r3
 	mov	r0, r3
-	add	sp, sp, #24
+	add	sp, sp, #64
 	@ sp needed
 	mov	pc, lr
 	.size	__clzsi2, .-__clzsi2
@@ -6321,33 +6239,33 @@ __cmpdi2:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bge	.L886
+	bge	.L885
 	mov	r3, #0
-	b	.L891
-.L886:
+	b	.L890
+.L885:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	ble	.L888
+	ble	.L887
 	mov	r3, #2
-	b	.L891
+	b	.L890
+.L887:
+	ldr	r2, [sp, #24]
+	ldr	r3, [sp, #16]
+	cmp	r2, r3
+	bcs	.L888
+	mov	r3, #0
+	b	.L890
 .L888:
 	ldr	r2, [sp, #24]
 	ldr	r3, [sp, #16]
 	cmp	r2, r3
-	bcs	.L889
-	mov	r3, #0
-	b	.L891
-.L889:
-	ldr	r2, [sp, #24]
-	ldr	r3, [sp, #16]
-	cmp	r2, r3
-	bls	.L890
+	bls	.L889
 	mov	r3, #2
-	b	.L891
-.L890:
+	b	.L890
+.L889:
 	mov	r3, #1
-.L891:
+.L890:
 	mov	r0, r3
 	add	sp, sp, #32
 	@ sp needed
@@ -6383,99 +6301,99 @@ __aeabi_lcmp:
 	.arm
 	.type	__ctzsi2, %function
 __ctzsi2:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 64
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #64
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #60]
+	ldr	r3, [sp, #60]
 	lsl	r3, r3, #16
 	lsr	r3, r3, #16
 	cmp	r3, #0
-	bne	.L897
+	bne	.L896
 	mov	r3, #16
-	b	.L898
-.L897:
+	b	.L897
+.L896:
 	mov	r3, #0
-.L898:
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+.L897:
+	str	r3, [sp, #56]
+	ldr	r2, [sp, #60]
+	ldr	r3, [sp, #56]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #52]
+	ldr	r3, [sp, #56]
+	str	r3, [sp, #48]
+	ldr	r3, [sp, #52]
 	and	r3, r3, #255
 	cmp	r3, #0
-	bne	.L899
+	bne	.L898
 	mov	r3, #8
-	b	.L900
-.L899:
+	b	.L899
+.L898:
 	mov	r3, #0
-.L900:
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+.L899:
+	str	r3, [sp, #44]
+	ldr	r2, [sp, #52]
+	ldr	r3, [sp, #44]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
+	str	r3, [sp, #40]
+	ldr	r3, [sp, #44]
+	ldr	r2, [sp, #48]
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #36]
+	ldr	r3, [sp, #40]
 	and	r3, r3, #15
 	cmp	r3, #0
-	bne	.L901
+	bne	.L900
 	mov	r3, #4
-	b	.L902
-.L901:
+	b	.L901
+.L900:
 	mov	r3, #0
-.L902:
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
+.L901:
+	str	r3, [sp, #32]
+	ldr	r2, [sp, #40]
+	ldr	r3, [sp, #32]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
+	str	r3, [sp, #28]
+	ldr	r3, [sp, #32]
+	ldr	r2, [sp, #36]
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #24]
+	ldr	r3, [sp, #28]
 	and	r3, r3, #3
 	cmp	r3, #0
-	bne	.L903
+	bne	.L902
 	mov	r3, #2
-	b	.L904
-.L903:
+	b	.L903
+.L902:
 	mov	r3, #0
-.L904:
-	str	r3, [sp, #16]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #16]
-	lsr	r3, r2, r3
+.L903:
 	str	r3, [sp, #20]
+	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #20]
-	and	r3, r3, #3
-	str	r3, [sp, #20]
+	lsr	r3, r2, r3
+	str	r3, [sp, #16]
 	ldr	r3, [sp, #16]
-	ldr	r2, [sp, #12]
-	add	r3, r2, r3
+	and	r3, r3, #3
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #20]
+	ldr	r2, [sp, #24]
+	add	r3, r2, r3
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #12]
 	mvn	r3, r3
 	and	r2, r3, #1
-	ldr	r3, [sp, #20]
+	ldr	r3, [sp, #12]
 	lsr	r3, r3, #1
 	rsb	r3, r3, #2
 	rsb	r2, r2, #0
 	and	r2, r2, r3
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #8]
 	add	r3, r2, r3
 	mov	r0, r3
-	add	sp, sp, #24
+	add	sp, sp, #64
 	@ sp needed
 	mov	pc, lr
 	.size	__ctzsi2, .-__ctzsi2
@@ -6502,7 +6420,7 @@ __lshrdi3:
 	ldr	r3, [sp, #36]
 	and	r3, r3, r2
 	cmp	r3, #0
-	beq	.L908
+	beq	.L907
 	mov	r3, #0
 	str	r3, [sp, #20]
 	ldr	r2, [sp, #28]
@@ -6511,15 +6429,15 @@ __lshrdi3:
 	sub	r3, r1, r3
 	lsr	r3, r2, r3
 	str	r3, [sp, #16]
-	b	.L909
-.L908:
+	b	.L908
+.L907:
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	bne	.L910
+	bne	.L909
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	b	.L912
-.L910:
+	b	.L911
+.L909:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #4]
 	lsr	r3, r2, r3
@@ -6534,10 +6452,10 @@ __lshrdi3:
 	lsr	r3, r1, r3
 	orr	r3, r2, r3
 	str	r3, [sp, #16]
-.L909:
+.L908:
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
-.L912:
+.L911:
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #40
@@ -6550,105 +6468,105 @@ __lshrdi3:
 	.arm
 	.type	__muldsi3, %function
 __muldsi3:
-	@ args = 0, pretend = 0, frame = 32
+	@ args = 0, pretend = 0, frame = 40
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #32
+	sub	sp, sp, #40
 	str	r0, [sp, #4]
 	str	r1, [sp]
 	mov	r3, #16
-	str	r3, [sp, #28]
+	str	r3, [sp, #36]
 	mvn	r2, #0
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
-	str	r3, [sp, #24]
+	str	r3, [sp, #32]
 	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #24]
+	ldr	r3, [sp, #32]
 	and	r3, r3, r2
 	ldr	r1, [sp]
-	ldr	r2, [sp, #24]
+	ldr	r2, [sp, #32]
 	and	r2, r2, r1
 	mul	r3, r2, r3
 	str	r3, [sp, #8]
 	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
-	str	r3, [sp, #20]
+	str	r3, [sp, #28]
 	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #24]
+	ldr	r3, [sp, #32]
 	and	r3, r3, r2
 	str	r3, [sp, #8]
 	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	ldr	r1, [sp]
-	ldr	r2, [sp, #24]
+	ldr	r2, [sp, #32]
 	and	r2, r2, r1
 	mul	r3, r2, r3
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #28]
 	add	r3, r2, r3
-	str	r3, [sp, #20]
+	str	r3, [sp, #24]
 	ldr	r2, [sp, #8]
-	ldr	r1, [sp, #20]
-	ldr	r3, [sp, #24]
+	ldr	r1, [sp, #24]
+	ldr	r3, [sp, #32]
 	and	r1, r1, r3
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsl	r3, r1, r3
 	add	r3, r2, r3
 	str	r3, [sp, #8]
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #28]
+	ldr	r2, [sp, #24]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	str	r3, [sp, #12]
 	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	str	r3, [sp, #20]
 	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #24]
+	ldr	r3, [sp, #32]
 	and	r3, r3, r2
 	str	r3, [sp, #8]
 	ldr	r2, [sp]
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	ldr	r1, [sp, #4]
-	ldr	r2, [sp, #24]
+	ldr	r2, [sp, #32]
 	and	r2, r2, r1
 	mul	r3, r2, r3
 	ldr	r2, [sp, #20]
 	add	r3, r2, r3
-	str	r3, [sp, #20]
+	str	r3, [sp, #16]
 	ldr	r2, [sp, #8]
-	ldr	r1, [sp, #20]
-	ldr	r3, [sp, #24]
+	ldr	r1, [sp, #16]
+	ldr	r3, [sp, #32]
 	and	r1, r1, r3
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsl	r3, r1, r3
 	add	r3, r2, r3
 	str	r3, [sp, #8]
 	ldr	r3, [sp, #12]
 	mov	r1, r3
-	ldr	r2, [sp, #20]
-	ldr	r3, [sp, #28]
+	ldr	r2, [sp, #16]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	add	r3, r1, r3
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #12]
 	mov	r0, r3
 	ldr	r2, [sp, #4]
-	ldr	r3, [sp, #28]
+	ldr	r3, [sp, #36]
 	lsr	r3, r2, r3
 	ldr	r1, [sp]
-	ldr	r2, [sp, #28]
+	ldr	r2, [sp, #36]
 	lsr	r2, r1, r2
 	mul	r3, r2, r3
 	add	r3, r0, r3
 	str	r3, [sp, #12]
-	ldr	r2, [sp, #8]
-	ldr	r3, [sp, #12]
+	add	r3, sp, #8
+	ldmia	r3, {r2-r3}
 	mov	r0, r2
 	mov	r1, r3
-	add	sp, sp, #32
+	add	sp, sp, #40
 	@ sp needed
 	mov	pc, lr
 	.size	__muldsi3, .-__muldsi3
@@ -6693,8 +6611,8 @@ __muldi3_compiler_rt:
 	add	r3, r2, r3
 	add	r3, r1, r3
 	str	r3, [sp, #20]
-	ldr	r2, [sp, #16]
-	ldr	r3, [sp, #20]
+	add	r3, sp, #16
+	ldmia	r3, {r2-r3}
 	mov	r0, r2
 	mov	r1, r3
 	add	sp, sp, #44
@@ -6728,10 +6646,10 @@ __negdi2:
 	.arm
 	.type	__paritydi2, %function
 __paritydi2:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #24
+	sub	sp, sp, #32
 	stm	sp, {r0-r1}
 	ldmia	sp, {r2-r3}
 	str	r2, [sp, #8]
@@ -6740,34 +6658,34 @@ __paritydi2:
 	mov	r2, r3
 	ldr	r3, [sp, #8]
 	eor	r3, r3, r2
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #28]
+	ldr	r3, [sp, #28]
 	lsr	r3, r3, #16
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #28]
 	eor	r3, r3, r2
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #24]
+	ldr	r3, [sp, #24]
 	lsr	r3, r3, #8
-	ldr	r2, [sp, #20]
+	ldr	r2, [sp, #24]
 	eor	r3, r3, r2
 	str	r3, [sp, #20]
 	ldr	r3, [sp, #20]
 	lsr	r3, r3, #4
 	ldr	r2, [sp, #20]
 	eor	r3, r3, r2
-	str	r3, [sp, #20]
-	ldr	r3, [sp, #20]
+	str	r3, [sp, #16]
+	ldr	r3, [sp, #16]
 	and	r3, r3, #15
-	ldr	r2, .L926
+	ldr	r2, .L925
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	mov	r0, r3
-	add	sp, sp, #24
+	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
-.L927:
-	.align	2
 .L926:
+	.align	2
+.L925:
 	.word	27030
 	.size	__paritydi2, .-__paritydi2
 	.align	2
@@ -6776,40 +6694,40 @@ __paritydi2:
 	.arm
 	.type	__paritysi2, %function
 __paritysi2:
-	@ args = 0, pretend = 0, frame = 16
+	@ args = 0, pretend = 0, frame = 24
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #16
+	sub	sp, sp, #24
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #20]
+	ldr	r3, [sp, #20]
 	lsr	r3, r3, #16
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #20]
 	eor	r3, r3, r2
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #16]
+	ldr	r3, [sp, #16]
 	lsr	r3, r3, #8
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #16]
 	eor	r3, r3, r2
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #12]
 	lsr	r3, r3, #4
 	ldr	r2, [sp, #12]
 	eor	r3, r3, r2
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #8]
 	and	r3, r3, #15
-	ldr	r2, .L931
+	ldr	r2, .L930
 	asr	r3, r2, r3
 	and	r3, r3, #1
 	mov	r0, r3
-	add	sp, sp, #16
+	add	sp, sp, #24
 	@ sp needed
 	mov	pc, lr
-.L932:
-	.align	2
 .L931:
+	.align	2
+.L930:
 	.word	27030
 	.size	__paritysi2, .-__paritysi2
 	.align	2
@@ -6818,59 +6736,59 @@ __paritysi2:
 	.arm
 	.type	__popcountdi2, %function
 __popcountdi2:
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 48
 	@ frame_needed = 0, uses_anonymous_args = 0
 	str	lr, [sp, #-4]!
-	sub	sp, sp, #28
+	sub	sp, sp, #52
 	stm	sp, {r0-r1}
 	ldmia	sp, {r2-r3}
-	str	r2, [sp, #16]
-	str	r3, [sp, #20]
-	ldr	r0, [sp, #16]
-	ldr	r2, [sp, #20]
+	str	r2, [sp, #40]
+	str	r3, [sp, #44]
+	ldr	r0, [sp, #40]
+	ldr	r2, [sp, #44]
 	lsr	r3, r0, #1
 	orr	r3, r3, r2, lsl #31
 	lsr	r1, r2, #1
-	ldr	r2, .L936
-	ldr	r0, .L936
+	ldr	r2, .L935
+	ldr	r0, .L935
 	and	r2, r2, r3
 	and	r3, r1, r0
-	ldr	r0, [sp, #16]
-	ldr	r1, [sp, #20]
+	ldr	r0, [sp, #40]
+	ldr	r1, [sp, #44]
 	subs	r2, r0, r2
 	sbc	r3, r1, r3
-	str	r2, [sp, #16]
-	str	r3, [sp, #20]
-	ldr	r0, [sp, #16]
-	ldr	r2, [sp, #20]
+	str	r2, [sp, #32]
+	str	r3, [sp, #36]
+	ldr	r0, [sp, #32]
+	ldr	r2, [sp, #36]
 	lsr	r3, r0, #2
 	orr	r3, r3, r2, lsl #30
 	lsr	r1, r2, #2
-	ldr	r0, .L936+4
-	ldr	r2, .L936+4
+	ldr	r0, .L935+4
+	ldr	r2, .L935+4
 	and	r3, r3, r0
 	and	r0, r1, r2
-	ldr	r2, [sp, #16]
-	ldr	r1, [sp, #20]
-	ldr	lr, .L936+4
-	ldr	ip, .L936+4
+	ldr	r2, [sp, #32]
+	ldr	r1, [sp, #36]
+	ldr	lr, .L935+4
+	ldr	ip, .L935+4
 	and	r2, r2, lr
 	and	r1, r1, ip
 	adds	r2, r3, r2
 	adc	r3, r0, r1
-	str	r2, [sp, #16]
-	str	r3, [sp, #20]
-	ldr	r0, [sp, #16]
-	ldr	r2, [sp, #20]
+	str	r2, [sp, #24]
+	str	r3, [sp, #28]
+	ldr	r0, [sp, #24]
+	ldr	r2, [sp, #28]
 	lsr	r3, r0, #4
 	orr	r3, r3, r2, lsl #28
 	lsr	r1, r2, #4
-	ldr	r2, [sp, #16]
-	ldr	r0, [sp, #20]
+	ldr	r2, [sp, #24]
+	ldr	r0, [sp, #28]
 	adds	r2, r3, r2
 	adc	r3, r1, r0
-	ldr	r0, .L936+8
-	ldr	r1, .L936+8
+	ldr	r0, .L935+8
+	ldr	r1, .L935+8
 	and	r2, r2, r0
 	and	r3, r3, r1
 	str	r2, [sp, #16]
@@ -6885,19 +6803,19 @@ __popcountdi2:
 	lsr	r3, r3, #16
 	ldr	r2, [sp, #12]
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #8]
+	ldr	r3, [sp, #8]
 	lsr	r2, r3, #8
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #8]
 	add	r3, r2, r3
 	and	r3, r3, #127
 	mov	r0, r3
-	add	sp, sp, #28
+	add	sp, sp, #52
 	@ sp needed
 	ldr	pc, [sp], #4
-.L937:
-	.align	2
 .L936:
+	.align	2
+.L935:
 	.word	1431655765
 	.word	858993459
 	.word	252645135
@@ -6908,39 +6826,39 @@ __popcountdi2:
 	.arm
 	.type	__popcountsi2, %function
 __popcountsi2:
-	@ args = 0, pretend = 0, frame = 16
+	@ args = 0, pretend = 0, frame = 32
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-	sub	sp, sp, #16
+	sub	sp, sp, #32
 	str	r0, [sp, #4]
 	ldr	r3, [sp, #4]
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #28]
+	ldr	r3, [sp, #28]
 	lsr	r2, r3, #1
-	ldr	r3, .L941
+	ldr	r3, .L940
 	and	r3, r3, r2
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #28]
 	sub	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #24]
+	ldr	r3, [sp, #24]
 	lsr	r3, r3, #2
-	ldr	r2, .L941+4
+	ldr	r2, .L940+4
 	and	r2, r2, r3
-	ldr	r1, [sp, #12]
-	ldr	r3, .L941+4
+	ldr	r1, [sp, #24]
+	ldr	r3, .L940+4
 	and	r3, r3, r1
 	add	r3, r2, r3
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #20]
+	ldr	r3, [sp, #20]
 	lsr	r2, r3, #4
-	ldr	r3, [sp, #12]
+	ldr	r3, [sp, #20]
 	add	r2, r2, r3
-	ldr	r3, .L941+8
+	ldr	r3, .L940+8
 	and	r3, r3, r2
-	str	r3, [sp, #12]
-	ldr	r3, [sp, #12]
+	str	r3, [sp, #16]
+	ldr	r3, [sp, #16]
 	lsr	r3, r3, #16
-	ldr	r2, [sp, #12]
+	ldr	r2, [sp, #16]
 	add	r3, r2, r3
 	str	r3, [sp, #12]
 	ldr	r3, [sp, #12]
@@ -6949,12 +6867,12 @@ __popcountsi2:
 	add	r3, r2, r3
 	and	r3, r3, #63
 	mov	r0, r3
-	add	sp, sp, #16
+	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
-.L942:
-	.align	2
 .L941:
+	.align	2
+.L940:
 	.word	1431655765
 	.word	858993459
 	.word	252645135
@@ -6976,19 +6894,19 @@ __powidf2:
 	and	r3, r3, #255
 	str	r3, [sp, #20]
 	mov	r2, #0
-	ldr	r3, .L954
+	ldr	r3, .L953
 	str	r2, [sp, #24]
 	str	r3, [sp, #28]
-.L947:
+.L946:
 	ldr	r3, [sp, #4]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L944
+	beq	.L943
 	vldr.64	d6, [sp, #24]
 	vldr.64	d7, [sp, #8]
 	vmul.f64	d7, d6, d7
 	vstr.64	d7, [sp, #24]
-.L944:
+.L943:
 	ldr	r3, [sp, #4]
 	lsr	r2, r3, #31
 	add	r3, r2, r3
@@ -6996,30 +6914,31 @@ __powidf2:
 	str	r3, [sp, #4]
 	ldr	r3, [sp, #4]
 	cmp	r3, #0
-	beq	.L952
+	beq	.L951
 	vldr.64	d7, [sp, #8]
 	vmul.f64	d7, d7, d7
 	vstr.64	d7, [sp, #8]
-	b	.L947
-.L952:
+	b	.L946
+.L951:
 	nop
 	ldr	r3, [sp, #20]
 	cmp	r3, #0
-	beq	.L948
+	beq	.L947
 	vmov.f64	d5, #1.0e+0
 	vldr.64	d6, [sp, #24]
 	vdiv.f64	d7, d5, d6
-	b	.L950
-.L948:
+	b	.L949
+.L947:
 	vldr.64	d7, [sp, #24]
-.L950:
+.L949:
+	nop
 	vmov.f64	d0, d7
 	add	sp, sp, #32
 	@ sp needed
 	mov	pc, lr
-.L955:
-	.align	2
 .L954:
+	.align	2
+.L953:
 	.word	1072693248
 	.size	__powidf2, .-__powidf2
 	.align	2
@@ -7040,16 +6959,16 @@ __powisf2:
 	str	r3, [sp, #8]
 	mov	r3, #1065353216
 	str	r3, [sp, #12]	@ float
-.L960:
+.L959:
 	ldr	r3, [sp]
 	and	r3, r3, #1
 	cmp	r3, #0
-	beq	.L957
+	beq	.L956
 	vldr.32	s14, [sp, #12]
 	vldr.32	s15, [sp, #4]
 	vmul.f32	s15, s14, s15
 	vstr.32	s15, [sp, #12]
-.L957:
+.L956:
 	ldr	r3, [sp]
 	lsr	r2, r3, #31
 	add	r3, r2, r3
@@ -7057,23 +6976,24 @@ __powisf2:
 	str	r3, [sp]
 	ldr	r3, [sp]
 	cmp	r3, #0
-	beq	.L965
+	beq	.L964
 	vldr.32	s15, [sp, #4]
 	vmul.f32	s15, s15, s15
 	vstr.32	s15, [sp, #4]
-	b	.L960
-.L965:
+	b	.L959
+.L964:
 	nop
 	ldr	r3, [sp, #8]
 	cmp	r3, #0
-	beq	.L961
+	beq	.L960
 	vmov.f32	s13, #1.0e+0
 	vldr.32	s14, [sp, #12]
 	vdiv.f32	s15, s13, s14
-	b	.L963
-.L961:
+	b	.L962
+.L960:
 	vldr.32	s15, [sp, #12]
-.L963:
+.L962:
+	nop
 	vmov.f32	s0, s15
 	add	sp, sp, #16
 	@ sp needed
@@ -7102,33 +7022,33 @@ __ucmpdi2:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bcs	.L968
+	bcs	.L967
 	mov	r3, #0
-	b	.L973
-.L968:
+	b	.L972
+.L967:
 	ldr	r2, [sp, #28]
 	ldr	r3, [sp, #20]
 	cmp	r2, r3
-	bls	.L970
+	bls	.L969
 	mov	r3, #2
-	b	.L973
+	b	.L972
+.L969:
+	ldr	r2, [sp, #24]
+	ldr	r3, [sp, #16]
+	cmp	r2, r3
+	bcs	.L970
+	mov	r3, #0
+	b	.L972
 .L970:
 	ldr	r2, [sp, #24]
 	ldr	r3, [sp, #16]
 	cmp	r2, r3
-	bcs	.L971
-	mov	r3, #0
-	b	.L973
-.L971:
-	ldr	r2, [sp, #24]
-	ldr	r3, [sp, #16]
-	cmp	r2, r3
-	bls	.L972
+	bls	.L971
 	mov	r3, #2
-	b	.L973
-.L972:
+	b	.L972
+.L971:
 	mov	r3, #1
-.L973:
+.L972:
 	mov	r0, r3
 	add	sp, sp, #32
 	@ sp needed

@@ -5,99 +5,93 @@
 	.def	make_ti;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_ti
 make_ti:
-	sub	rsp, 40
-	.seh_stackalloc	40
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 48[rsp], rcx
-	mov	QWORD PTR 56[rsp], rdx
-	mov	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 24[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
-	mov	QWORD PTR 16[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 40[rsp], rdx
+	mov	rax, QWORD PTR 32[rsp]
+	mov	QWORD PTR 8[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], rdx
 	movdqa	xmm0, XMMWORD PTR [rsp]
-	add	rsp, 40
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	make_tu
 	.def	make_tu;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_tu
 make_tu:
-	sub	rsp, 40
-	.seh_stackalloc	40
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 48[rsp], rcx
-	mov	QWORD PTR 56[rsp], rdx
-	mov	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 24[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
-	mov	QWORD PTR 16[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 40[rsp], rdx
+	mov	rax, QWORD PTR 32[rsp]
+	mov	QWORD PTR 8[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], rdx
 	movdqa	xmm0, XMMWORD PTR [rsp]
-	add	rsp, 40
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	memmove
 	.def	memmove;	.scl	2;	.type	32;	.endef
 	.seh_proc	memmove
 memmove:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	QWORD PTR 40[rsp], rdx
-	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR [rsp]
-	cmp	rax, QWORD PTR 8[rsp]
+	mov	QWORD PTR 48[rsp], rcx
+	mov	QWORD PTR 56[rsp], rdx
+	mov	QWORD PTR 64[rsp], r8
+	mov	rax, QWORD PTR 56[rsp]
+	cmp	rax, QWORD PTR 48[rsp]
 	jnb	.L6
-	mov	rax, QWORD PTR 48[rsp]
-	add	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR 48[rsp]
-	add	QWORD PTR 8[rsp], rax
+	mov	rdx, QWORD PTR 56[rsp]
+	mov	rax, QWORD PTR 64[rsp]
+	add	rax, rdx
+	mov	QWORD PTR 8[rsp], rax
+	mov	rdx, QWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 64[rsp]
+	add	rax, rdx
+	mov	QWORD PTR 24[rsp], rax
 	jmp	.L7
 .L8:
-	sub	QWORD PTR [rsp], 1
 	sub	QWORD PTR 8[rsp], 1
-	mov	rax, QWORD PTR [rsp]
-	movzx	edx, BYTE PTR [rax]
+	sub	QWORD PTR 24[rsp], 1
 	mov	rax, QWORD PTR 8[rsp]
+	movzx	edx, BYTE PTR [rax]
+	mov	rax, QWORD PTR 24[rsp]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR 48[rsp], 1
+	sub	QWORD PTR 64[rsp], 1
 .L7:
-	cmp	QWORD PTR 48[rsp], 0
+	cmp	QWORD PTR 64[rsp], 0
 	jne	.L8
 	jmp	.L9
 .L6:
-	mov	rax, QWORD PTR [rsp]
-	cmp	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 56[rsp]
+	cmp	rax, QWORD PTR 48[rsp]
 	je	.L9
+	mov	rax, QWORD PTR 48[rsp]
+	mov	QWORD PTR 16[rsp], rax
 	jmp	.L10
 .L11:
-	mov	rdx, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR 56[rsp]
 	lea	rax, 1[rdx]
-	mov	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	QWORD PTR 56[rsp], rax
+	mov	rax, QWORD PTR 16[rsp]
 	lea	rcx, 1[rax]
-	mov	QWORD PTR 8[rsp], rcx
+	mov	QWORD PTR 16[rsp], rcx
 	movzx	edx, BYTE PTR [rdx]
 	mov	BYTE PTR [rax], dl
-	sub	QWORD PTR 48[rsp], 1
+	sub	QWORD PTR 64[rsp], 1
 .L10:
-	cmp	QWORD PTR 48[rsp], 0
+	cmp	QWORD PTR 64[rsp], 0
 	jne	.L11
 .L9:
-	mov	rax, QWORD PTR 32[rsp]
-	add	rsp, 24
+	mov	rax, QWORD PTR 48[rsp]
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.globl	memccpy
@@ -111,34 +105,30 @@ memccpy:
 	mov	QWORD PTR 40[rsp], rdx
 	mov	DWORD PTR 48[rsp], r8d
 	mov	QWORD PTR 56[rsp], r9
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
 	mov	eax, DWORD PTR 48[rsp]
 	movzx	eax, al
-	mov	DWORD PTR 48[rsp], eax
+	mov	DWORD PTR 12[rsp], eax
 	jmp	.L14
 .L16:
 	sub	QWORD PTR 56[rsp], 1
-	add	QWORD PTR [rsp], 1
-	add	QWORD PTR 8[rsp], 1
+	add	QWORD PTR 40[rsp], 1
+	add	QWORD PTR 32[rsp], 1
 .L14:
 	cmp	QWORD PTR 56[rsp], 0
 	je	.L15
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR 48[rsp], eax
+	cmp	DWORD PTR 12[rsp], eax
 	jne	.L16
 .L15:
 	cmp	QWORD PTR 56[rsp], 0
 	je	.L17
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	add	rax, 1
 	jmp	.L18
 .L17:
@@ -157,27 +147,25 @@ memchr:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	DWORD PTR 40[rsp], edx
 	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
 	mov	eax, DWORD PTR 40[rsp]
 	movzx	eax, al
-	mov	DWORD PTR 40[rsp], eax
+	mov	DWORD PTR 12[rsp], eax
 	jmp	.L20
 .L22:
-	add	QWORD PTR 8[rsp], 1
+	add	QWORD PTR 32[rsp], 1
 	sub	QWORD PTR 48[rsp], 1
 .L20:
 	cmp	QWORD PTR 48[rsp], 0
 	je	.L21
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR 40[rsp], eax
+	cmp	DWORD PTR 12[rsp], eax
 	jne	.L22
 .L21:
 	cmp	QWORD PTR 48[rsp], 0
 	je	.L23
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	jmp	.L25
 .L23:
 	mov	eax, 0
@@ -189,46 +177,39 @@ memchr:
 	.def	memcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	memcmp
 memcmp:
-	sub	rsp, 24
-	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	QWORD PTR 40[rsp], rdx
-	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 8[rsp], rcx
+	mov	QWORD PTR 16[rsp], rdx
+	mov	QWORD PTR 24[rsp], r8
 	jmp	.L27
 .L29:
-	sub	QWORD PTR 48[rsp], 1
+	sub	QWORD PTR 24[rsp], 1
 	add	QWORD PTR 8[rsp], 1
-	add	QWORD PTR [rsp], 1
+	add	QWORD PTR 16[rsp], 1
 .L27:
-	cmp	QWORD PTR 48[rsp], 0
+	cmp	QWORD PTR 24[rsp], 0
 	je	.L28
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
 	je	.L29
 .L28:
-	cmp	QWORD PTR 48[rsp], 0
+	cmp	QWORD PTR 24[rsp], 0
 	je	.L30
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
-	movzx	edx, al
-	mov	rax, QWORD PTR [rsp]
+	movzx	ecx, al
+	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, BYTE PTR [rax]
-	movzx	eax, al
-	sub	edx, eax
+	movzx	edx, al
+	mov	eax, ecx
+	sub	eax, edx
 	jmp	.L32
 .L30:
-	mov	edx, 0
+	mov	eax, 0
 .L32:
-	mov	eax, edx
-	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	memcpy
@@ -243,13 +224,11 @@ memcpy:
 	mov	QWORD PTR 48[rsp], r8
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
 	jmp	.L34
 .L35:
-	mov	rdx, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR 40[rsp]
 	lea	rax, 1[rdx]
-	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 40[rsp], rax
 	mov	rax, QWORD PTR 8[rsp]
 	lea	rcx, 1[rax]
 	mov	QWORD PTR 8[rsp], rcx
@@ -273,21 +252,19 @@ memrchr:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	DWORD PTR 40[rsp], edx
 	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
 	mov	eax, DWORD PTR 40[rsp]
 	movzx	eax, al
-	mov	DWORD PTR 40[rsp], eax
+	mov	DWORD PTR 12[rsp], eax
 	jmp	.L38
 .L40:
-	mov	rdx, QWORD PTR 8[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	mov	rax, QWORD PTR 48[rsp]
 	add	rax, rdx
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR 40[rsp], eax
+	cmp	DWORD PTR 12[rsp], eax
 	jne	.L38
-	mov	rdx, QWORD PTR 8[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	mov	rax, QWORD PTR 48[rsp]
 	add	rax, rdx
 	jmp	.L39
@@ -356,27 +333,30 @@ stpcpy:
 	.def	strchrnul;	.scl	2;	.type	32;	.endef
 	.seh_proc	strchrnul
 strchrnul:
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 8[rsp], rcx
-	mov	DWORD PTR 16[rsp], edx
-	mov	eax, DWORD PTR 16[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	DWORD PTR 40[rsp], edx
+	mov	eax, DWORD PTR 40[rsp]
 	movzx	eax, al
-	mov	DWORD PTR 16[rsp], eax
+	mov	DWORD PTR 12[rsp], eax
 	jmp	.L50
 .L52:
-	add	QWORD PTR 8[rsp], 1
+	add	QWORD PTR 32[rsp], 1
 .L50:
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
 	je	.L51
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movzx	eax, al
-	cmp	DWORD PTR 16[rsp], eax
+	cmp	DWORD PTR 12[rsp], eax
 	jne	.L52
 .L51:
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 32[rsp]
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	strchr
@@ -390,9 +370,7 @@ strchr:
 	movzx	edx, BYTE PTR [rax]
 	movsx	edx, dl
 	cmp	DWORD PTR 16[rsp], edx
-	jne	.L55
-	jmp	.L56
-.L55:
+	je	.L56
 	mov	rdx, rax
 	lea	rax, 1[rdx]
 	movzx	edx, BYTE PTR [rdx]
@@ -409,30 +387,30 @@ strcmp:
 	.seh_endprologue
 	mov	QWORD PTR 8[rsp], rcx
 	mov	QWORD PTR 16[rsp], rdx
-	jmp	.L59
-.L61:
+	jmp	.L60
+.L62:
 	add	QWORD PTR 8[rsp], 1
 	add	QWORD PTR 16[rsp], 1
-.L59:
+.L60:
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, BYTE PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
-	jne	.L60
+	jne	.L61
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L61
-.L60:
+	jne	.L62
+.L61:
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
-	movzx	edx, al
+	movzx	ecx, al
 	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, BYTE PTR [rax]
-	movzx	eax, al
-	sub	edx, eax
-	mov	eax, edx
+	movzx	edx, al
+	mov	eax, ecx
+	sub	eax, edx
 	ret
 	.seh_endproc
 	.globl	strlen
@@ -445,16 +423,16 @@ strlen:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L64
+	jmp	.L65
+.L66:
+	add	QWORD PTR 8[rsp], 1
 .L65:
-	add	QWORD PTR 32[rsp], 1
-.L64:
-	mov	rax, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L65
-	mov	rax, QWORD PTR 32[rsp]
-	sub	rax, QWORD PTR 8[rsp]
+	jne	.L66
+	mov	rax, QWORD PTR 8[rsp]
+	sub	rax, QWORD PTR 32[rsp]
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -468,48 +446,44 @@ strncmp:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	QWORD PTR 40[rsp], rdx
 	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, -1[rax]
-	mov	QWORD PTR 48[rsp], rdx
+	mov	QWORD PTR 8[rsp], rdx
 	test	rax, rax
-	jne	.L70
-	mov	edx, 0
-	jmp	.L69
-.L72:
-	add	QWORD PTR 8[rsp], 1
-	add	QWORD PTR [rsp], 1
-	sub	QWORD PTR 48[rsp], 1
-.L70:
-	mov	rax, QWORD PTR 8[rsp]
+	jne	.L71
+	mov	eax, 0
+	jmp	.L70
+.L73:
+	add	QWORD PTR 32[rsp], 1
+	add	QWORD PTR 40[rsp], 1
+	sub	QWORD PTR 8[rsp], 1
+.L71:
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	je	.L71
-	mov	rax, QWORD PTR [rsp]
+	je	.L72
+	mov	rax, QWORD PTR 40[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	je	.L71
-	cmp	QWORD PTR 48[rsp], 0
-	je	.L71
-	mov	rax, QWORD PTR 8[rsp]
+	je	.L72
+	cmp	QWORD PTR 8[rsp], 0
+	je	.L72
+	mov	rax, QWORD PTR 32[rsp]
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
-	je	.L72
-.L71:
-	mov	rax, QWORD PTR 8[rsp]
+	je	.L73
+.L72:
+	mov	rax, QWORD PTR 32[rsp]
+	movzx	eax, BYTE PTR [rax]
+	movzx	ecx, al
+	mov	rax, QWORD PTR 40[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movzx	edx, al
-	mov	rax, QWORD PTR [rsp]
-	movzx	eax, BYTE PTR [rax]
-	movzx	eax, al
-	sub	edx, eax
-.L69:
-	mov	eax, edx
+	mov	eax, ecx
+	sub	eax, edx
+.L70:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -517,35 +491,28 @@ strncmp:
 	.def	swab;	.scl	2;	.type	32;	.endef
 	.seh_proc	swab
 swab:
-	sub	rsp, 24
-	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	QWORD PTR 40[rsp], rdx
-	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
-	jmp	.L74
-.L75:
+	mov	QWORD PTR 8[rsp], rcx
+	mov	QWORD PTR 16[rsp], rdx
+	mov	QWORD PTR 24[rsp], r8
+	jmp	.L75
+.L76:
 	mov	rax, QWORD PTR 8[rsp]
 	add	rax, 1
 	movzx	edx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	mov	BYTE PTR [rax], dl
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	lea	rdx, 1[rax]
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-	add	QWORD PTR [rsp], 2
+	add	QWORD PTR 16[rsp], 2
 	add	QWORD PTR 8[rsp], 2
-	sub	QWORD PTR 48[rsp], 2
-.L74:
-	cmp	QWORD PTR 48[rsp], 1
-	jg	.L75
-	add	rsp, 24
+	sub	QWORD PTR 24[rsp], 2
+.L75:
+	cmp	QWORD PTR 24[rsp], 1
+	jg	.L76
 	ret
 	.seh_endproc
 	.globl	isalpha
@@ -581,15 +548,15 @@ isblank:
 	.seh_endprologue
 	mov	DWORD PTR 8[rsp], ecx
 	cmp	DWORD PTR 8[rsp], 32
-	je	.L81
+	je	.L82
 	cmp	DWORD PTR 8[rsp], 9
-	jne	.L82
-.L81:
-	mov	eax, 1
-	jmp	.L84
+	jne	.L83
 .L82:
+	mov	eax, 1
+	jmp	.L85
+.L83:
 	mov	eax, 0
-.L84:
+.L85:
 	ret
 	.seh_endproc
 	.globl	iscntrl
@@ -600,15 +567,15 @@ iscntrl:
 	mov	DWORD PTR 8[rsp], ecx
 	mov	eax, DWORD PTR 8[rsp]
 	cmp	eax, 31
-	jbe	.L86
+	jbe	.L87
 	cmp	DWORD PTR 8[rsp], 127
-	jne	.L87
-.L86:
-	mov	eax, 1
-	jmp	.L89
+	jne	.L88
 .L87:
+	mov	eax, 1
+	jmp	.L90
+.L88:
 	mov	eax, 0
-.L89:
+.L90:
 	ret
 	.seh_endproc
 	.globl	isdigit
@@ -670,17 +637,17 @@ isspace:
 	.seh_endprologue
 	mov	DWORD PTR 8[rsp], ecx
 	cmp	DWORD PTR 8[rsp], 32
-	je	.L99
+	je	.L100
 	mov	eax, DWORD PTR 8[rsp]
 	sub	eax, 9
 	cmp	eax, 4
-	ja	.L100
-.L99:
-	mov	eax, 1
-	jmp	.L102
+	ja	.L101
 .L100:
+	mov	eax, 1
+	jmp	.L103
+.L101:
 	mov	eax, 0
-.L102:
+.L103:
 	ret
 	.seh_endproc
 	.globl	isupper
@@ -704,25 +671,25 @@ iswcntrl:
 	mov	eax, ecx
 	mov	WORD PTR 8[rsp], ax
 	cmp	WORD PTR 8[rsp], 31
-	jbe	.L106
+	jbe	.L107
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 127
 	cmp	eax, 32
-	jbe	.L106
+	jbe	.L107
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 8232
 	cmp	eax, 1
-	jbe	.L106
+	jbe	.L107
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 65529
 	cmp	eax, 2
-	ja	.L107
-.L106:
-	mov	eax, 1
-	jmp	.L109
+	ja	.L108
 .L107:
+	mov	eax, 1
+	jmp	.L110
+.L108:
 	mov	eax, 0
-.L109:
+.L110:
 	ret
 	.seh_endproc
 	.globl	iswdigit
@@ -747,43 +714,43 @@ iswprint:
 	mov	eax, ecx
 	mov	WORD PTR 8[rsp], ax
 	cmp	WORD PTR 8[rsp], 254
-	ja	.L113
+	ja	.L114
 	movzx	eax, WORD PTR 8[rsp]
 	add	eax, 1
 	and	eax, 127
 	cmp	eax, 32
 	setg	al
 	movzx	eax, al
-	jmp	.L114
-.L113:
+	jmp	.L115
+.L114:
 	cmp	WORD PTR 8[rsp], 8231
-	jbe	.L115
+	jbe	.L116
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 8234
 	cmp	eax, 47061
-	jbe	.L115
+	jbe	.L116
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 57344
 	cmp	eax, 8184
-	ja	.L116
-.L115:
-	mov	eax, 1
-	jmp	.L114
+	ja	.L117
 .L116:
+	mov	eax, 1
+	jmp	.L115
+.L117:
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 65532
 	cmp	eax, 1048579
-	ja	.L117
+	ja	.L118
 	movzx	eax, WORD PTR 8[rsp]
 	and	eax, 65534
 	cmp	eax, 65534
-	jne	.L118
-.L117:
-	mov	eax, 0
-	jmp	.L114
+	jne	.L119
 .L118:
+	mov	eax, 0
+	jmp	.L115
+.L119:
 	mov	eax, 1
-.L114:
+.L115:
 	ret
 	.seh_endproc
 	.globl	iswxdigit
@@ -796,19 +763,19 @@ iswxdigit:
 	movzx	eax, WORD PTR 8[rsp]
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	.L120
+	jbe	.L121
 	movzx	eax, WORD PTR 8[rsp]
 	or	eax, 32
 	movzx	eax, ax
 	sub	eax, 97
 	cmp	eax, 5
-	ja	.L121
-.L120:
-	mov	eax, 1
-	jmp	.L123
+	ja	.L122
 .L121:
+	mov	eax, 1
+	jmp	.L124
+.L122:
 	mov	eax, 0
-.L123:
+.L124:
 	ret
 	.seh_endproc
 	.globl	toascii
@@ -830,25 +797,27 @@ fdim:
 	movsd	QWORD PTR 16[rsp], xmm1
 	movsd	xmm0, QWORD PTR 8[rsp]
 	ucomisd	xmm0, QWORD PTR 8[rsp]
-	jnp	.L127
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L128
-.L127:
+	jnp	.L128
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L129
+.L128:
 	movsd	xmm0, QWORD PTR 16[rsp]
 	ucomisd	xmm0, QWORD PTR 16[rsp]
-	jnp	.L129
-	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L128
-.L129:
+	jnp	.L130
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L129
+.L130:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	comisd	xmm0, QWORD PTR 16[rsp]
-	jbe	.L134
+	jbe	.L135
 	movsd	xmm0, QWORD PTR 8[rsp]
 	subsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L128
-.L134:
-	pxor	xmm0, xmm0
-.L128:
+	movq	rax, xmm0
+	jmp	.L129
+.L135:
+	mov	rax, QWORD PTR .LC0[rip]
+.L129:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	fdimf
@@ -860,25 +829,27 @@ fdimf:
 	movss	DWORD PTR 16[rsp], xmm1
 	movss	xmm0, DWORD PTR 8[rsp]
 	ucomiss	xmm0, DWORD PTR 8[rsp]
-	jnp	.L136
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L137
-.L136:
+	jnp	.L137
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L138
+.L137:
 	movss	xmm0, DWORD PTR 16[rsp]
 	ucomiss	xmm0, DWORD PTR 16[rsp]
-	jnp	.L138
-	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L137
-.L138:
+	jnp	.L139
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L138
+.L139:
 	movss	xmm0, DWORD PTR 8[rsp]
 	comiss	xmm0, DWORD PTR 16[rsp]
-	jbe	.L143
+	jbe	.L144
 	movss	xmm0, DWORD PTR 8[rsp]
 	subss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L137
-.L143:
-	pxor	xmm0, xmm0
-.L137:
+	movd	eax, xmm0
+	jmp	.L138
+.L144:
+	mov	eax, DWORD PTR .LC1[rip]
+.L138:
+	movd	xmm0, eax
 	ret
 	.seh_endproc
 	.globl	fmax
@@ -890,16 +861,16 @@ fmax:
 	movsd	QWORD PTR 16[rsp], xmm1
 	movsd	xmm0, QWORD PTR 8[rsp]
 	ucomisd	xmm0, QWORD PTR 8[rsp]
-	jnp	.L145
-	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L146
-.L145:
+	jnp	.L146
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L147
+.L146:
 	movsd	xmm0, QWORD PTR 16[rsp]
 	ucomisd	xmm0, QWORD PTR 16[rsp]
-	jnp	.L147
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L146
-.L147:
+	jnp	.L148
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L147
+.L148:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	movmskpd	edx, xmm0
 	and	edx, 1
@@ -907,25 +878,26 @@ fmax:
 	movmskpd	eax, xmm0
 	and	eax, 1
 	cmp	edx, eax
-	je	.L148
+	je	.L149
 	movsd	xmm0, QWORD PTR 8[rsp]
 	movmskpd	eax, xmm0
 	and	eax, 1
-	je	.L149
-	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L146
+	je	.L150
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L147
+.L150:
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L147
 .L149:
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L146
-.L148:
 	movsd	xmm0, QWORD PTR 16[rsp]
 	comisd	xmm0, QWORD PTR 8[rsp]
-	jbe	.L155
-	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L146
-.L155:
-	movsd	xmm0, QWORD PTR 8[rsp]
-.L146:
+	jbe	.L156
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L147
+.L156:
+	mov	rax, QWORD PTR 8[rsp]
+.L147:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	fmaxf
@@ -937,40 +909,41 @@ fmaxf:
 	movss	DWORD PTR 16[rsp], xmm1
 	movss	xmm0, DWORD PTR 8[rsp]
 	ucomiss	xmm0, DWORD PTR 8[rsp]
-	jnp	.L157
-	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L158
-.L157:
+	jnp	.L158
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L159
+.L158:
 	movss	xmm0, DWORD PTR 16[rsp]
 	ucomiss	xmm0, DWORD PTR 16[rsp]
-	jnp	.L159
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L158
-.L159:
+	jnp	.L160
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L159
+.L160:
 	mov	eax, DWORD PTR 8[rsp]
 	and	eax, -2147483648
 	mov	edx, eax
 	mov	eax, DWORD PTR 16[rsp]
 	and	eax, -2147483648
 	cmp	edx, eax
-	je	.L160
+	je	.L161
 	mov	eax, DWORD PTR 8[rsp]
 	and	eax, -2147483648
-	je	.L161
-	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L158
+	je	.L162
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L159
+.L162:
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L159
 .L161:
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L158
-.L160:
 	movss	xmm0, DWORD PTR 16[rsp]
 	comiss	xmm0, DWORD PTR 8[rsp]
-	jbe	.L167
-	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L158
-.L167:
-	movss	xmm0, DWORD PTR 8[rsp]
-.L158:
+	jbe	.L168
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L159
+.L168:
+	mov	eax, DWORD PTR 8[rsp]
+.L159:
+	movd	xmm0, eax
 	ret
 	.seh_endproc
 	.globl	fmaxl
@@ -993,22 +966,22 @@ fmaxl:
 	fld	TBYTE PTR 16[rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	jnp	.L169
+	jnp	.L170
 	mov	rax, QWORD PTR 48[rsp]
 	fld	TBYTE PTR [rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L170
-.L169:
+	jmp	.L171
+.L170:
 	fld	TBYTE PTR [rsp]
 	fld	TBYTE PTR [rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	jnp	.L171
+	jnp	.L172
 	mov	rax, QWORD PTR 48[rsp]
 	fld	TBYTE PTR 16[rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L170
-.L171:
+	jmp	.L171
+.L172:
 	fld	TBYTE PTR 16[rsp]
 	fxam
 	fnstsw	ax
@@ -1021,35 +994,35 @@ fmaxl:
 	fstp	st(0)
 	and	eax, 512
 	cmp	edx, eax
-	je	.L172
+	je	.L173
 	fld	TBYTE PTR 16[rsp]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	je	.L173
+	je	.L174
 	fld	TBYTE PTR [rsp]
-	jmp	.L174
-.L173:
-	fld	TBYTE PTR 16[rsp]
+	jmp	.L175
 .L174:
+	fld	TBYTE PTR 16[rsp]
+.L175:
 	mov	rax, QWORD PTR 48[rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L170
-.L172:
+	jmp	.L171
+.L173:
 	fld	TBYTE PTR 16[rsp]
 	fld	TBYTE PTR [rsp]
 	fcomip	st, st(1)
 	fstp	st(0)
-	jbe	.L179
+	jbe	.L180
 	fld	TBYTE PTR [rsp]
-	jmp	.L177
-.L179:
+	jmp	.L178
+.L180:
 	fld	TBYTE PTR 16[rsp]
-.L177:
+.L178:
 	mov	rax, QWORD PTR 48[rsp]
 	fstp	TBYTE PTR [rax]
-.L170:
+.L171:
 	mov	rax, QWORD PTR 48[rsp]
 	add	rsp, 32
 	pop	rbx
@@ -1064,16 +1037,16 @@ fmin:
 	movsd	QWORD PTR 16[rsp], xmm1
 	movsd	xmm0, QWORD PTR 8[rsp]
 	ucomisd	xmm0, QWORD PTR 8[rsp]
-	jnp	.L181
-	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L182
-.L181:
+	jnp	.L182
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L183
+.L182:
 	movsd	xmm0, QWORD PTR 16[rsp]
 	ucomisd	xmm0, QWORD PTR 16[rsp]
-	jnp	.L183
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L182
-.L183:
+	jnp	.L184
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L183
+.L184:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	movmskpd	edx, xmm0
 	and	edx, 1
@@ -1081,25 +1054,26 @@ fmin:
 	movmskpd	eax, xmm0
 	and	eax, 1
 	cmp	edx, eax
-	je	.L184
+	je	.L185
 	movsd	xmm0, QWORD PTR 8[rsp]
 	movmskpd	eax, xmm0
 	and	eax, 1
-	je	.L185
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L182
+	je	.L186
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L183
+.L186:
+	mov	rax, QWORD PTR 16[rsp]
+	jmp	.L183
 .L185:
 	movsd	xmm0, QWORD PTR 16[rsp]
-	jmp	.L182
-.L184:
-	movsd	xmm0, QWORD PTR 16[rsp]
 	comisd	xmm0, QWORD PTR 8[rsp]
-	jbe	.L191
-	movsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L182
-.L191:
-	movsd	xmm0, QWORD PTR 16[rsp]
-.L182:
+	jbe	.L192
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L183
+.L192:
+	mov	rax, QWORD PTR 16[rsp]
+.L183:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	fminf
@@ -1111,40 +1085,41 @@ fminf:
 	movss	DWORD PTR 16[rsp], xmm1
 	movss	xmm0, DWORD PTR 8[rsp]
 	ucomiss	xmm0, DWORD PTR 8[rsp]
-	jnp	.L193
-	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L194
-.L193:
+	jnp	.L194
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L195
+.L194:
 	movss	xmm0, DWORD PTR 16[rsp]
 	ucomiss	xmm0, DWORD PTR 16[rsp]
-	jnp	.L195
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L194
-.L195:
+	jnp	.L196
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L195
+.L196:
 	mov	eax, DWORD PTR 8[rsp]
 	and	eax, -2147483648
 	mov	edx, eax
 	mov	eax, DWORD PTR 16[rsp]
 	and	eax, -2147483648
 	cmp	edx, eax
-	je	.L196
+	je	.L197
 	mov	eax, DWORD PTR 8[rsp]
 	and	eax, -2147483648
-	je	.L197
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L194
+	je	.L198
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L195
+.L198:
+	mov	eax, DWORD PTR 16[rsp]
+	jmp	.L195
 .L197:
 	movss	xmm0, DWORD PTR 16[rsp]
-	jmp	.L194
-.L196:
-	movss	xmm0, DWORD PTR 16[rsp]
 	comiss	xmm0, DWORD PTR 8[rsp]
-	jbe	.L203
-	movss	xmm0, DWORD PTR 8[rsp]
-	jmp	.L194
-.L203:
-	movss	xmm0, DWORD PTR 16[rsp]
-.L194:
+	jbe	.L204
+	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L195
+.L204:
+	mov	eax, DWORD PTR 16[rsp]
+.L195:
+	movd	xmm0, eax
 	ret
 	.seh_endproc
 	.globl	fminl
@@ -1167,22 +1142,22 @@ fminl:
 	fld	TBYTE PTR 16[rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	jnp	.L205
+	jnp	.L206
 	mov	rax, QWORD PTR 48[rsp]
 	fld	TBYTE PTR [rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L206
-.L205:
+	jmp	.L207
+.L206:
 	fld	TBYTE PTR [rsp]
 	fld	TBYTE PTR [rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	jnp	.L207
+	jnp	.L208
 	mov	rax, QWORD PTR 48[rsp]
 	fld	TBYTE PTR 16[rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L206
-.L207:
+	jmp	.L207
+.L208:
 	fld	TBYTE PTR 16[rsp]
 	fxam
 	fnstsw	ax
@@ -1195,35 +1170,35 @@ fminl:
 	fstp	st(0)
 	and	eax, 512
 	cmp	edx, eax
-	je	.L208
+	je	.L209
 	fld	TBYTE PTR 16[rsp]
 	fxam
 	fnstsw	ax
 	fstp	st(0)
 	and	eax, 512
-	je	.L209
+	je	.L210
 	fld	TBYTE PTR 16[rsp]
-	jmp	.L210
-.L209:
-	fld	TBYTE PTR [rsp]
+	jmp	.L211
 .L210:
+	fld	TBYTE PTR [rsp]
+.L211:
 	mov	rax, QWORD PTR 48[rsp]
 	fstp	TBYTE PTR [rax]
-	jmp	.L206
-.L208:
+	jmp	.L207
+.L209:
 	fld	TBYTE PTR 16[rsp]
 	fld	TBYTE PTR [rsp]
 	fcomip	st, st(1)
 	fstp	st(0)
-	jbe	.L215
+	jbe	.L216
 	fld	TBYTE PTR 16[rsp]
-	jmp	.L213
-.L215:
+	jmp	.L214
+.L216:
 	fld	TBYTE PTR [rsp]
-.L213:
+.L214:
 	mov	rax, QWORD PTR 48[rsp]
 	fstp	TBYTE PTR [rax]
-.L206:
+.L207:
 	mov	rax, QWORD PTR 48[rsp]
 	add	rsp, 32
 	pop	rbx
@@ -1246,8 +1221,8 @@ l64a:
 	mov	DWORD PTR 4[rsp], eax
 	lea	rax, s.0[rip]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L217
-.L218:
+	jmp	.L218
+.L219:
 	mov	eax, DWORD PTR 4[rsp]
 	and	eax, 63
 	mov	edx, eax
@@ -1257,9 +1232,9 @@ l64a:
 	mov	BYTE PTR [rax], dl
 	add	QWORD PTR 8[rsp], 1
 	shr	DWORD PTR 4[rsp], 6
-.L217:
+.L218:
 	cmp	DWORD PTR 4[rsp], 0
-	jne	.L218
+	jne	.L219
 	mov	rax, QWORD PTR 8[rsp]
 	mov	BYTE PTR [rax], 0
 	lea	rax, s.0[rip]
@@ -1298,78 +1273,66 @@ rand:
 	.def	insque;	.scl	2;	.type	32;	.endef
 	.seh_proc	insque
 insque:
-	sub	rsp, 24
-	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	QWORD PTR 40[rsp], rdx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR [rsp], rax
-	cmp	QWORD PTR [rsp], 0
-	jne	.L224
+	mov	QWORD PTR 8[rsp], rcx
+	mov	QWORD PTR 16[rsp], rdx
+	cmp	QWORD PTR 16[rsp], 0
+	jne	.L225
 	mov	rax, QWORD PTR 8[rsp]
 	mov	QWORD PTR 8[rax], 0
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rdx, QWORD PTR 8[rax]
 	mov	rax, QWORD PTR 8[rsp]
 	mov	QWORD PTR [rax], rdx
-	jmp	.L223
-.L224:
-	mov	rax, QWORD PTR [rsp]
+	jmp	.L224
+.L225:
+	mov	rax, QWORD PTR 16[rsp]
 	mov	rdx, QWORD PTR [rax]
 	mov	rax, QWORD PTR 8[rsp]
 	mov	QWORD PTR [rax], rdx
 	mov	rax, QWORD PTR 8[rsp]
-	mov	rdx, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR 16[rsp]
 	mov	QWORD PTR 8[rax], rdx
-	mov	rax, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	mov	rdx, QWORD PTR 8[rsp]
 	mov	QWORD PTR [rax], rdx
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR [rax]
 	test	rax, rax
-	je	.L223
+	je	.L224
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR [rax]
 	mov	rdx, QWORD PTR 8[rsp]
 	mov	QWORD PTR 8[rax], rdx
-.L223:
-	add	rsp, 24
+.L224:
 	ret
 	.seh_endproc
 	.globl	remque
 	.def	remque;	.scl	2;	.type	32;	.endef
 	.seh_proc	remque
 remque:
-	sub	rsp, 24
-	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
+	mov	QWORD PTR 8[rsp], rcx
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR [rax]
 	test	rax, rax
-	je	.L227
+	je	.L228
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR [rax]
 	mov	rdx, QWORD PTR 8[rsp]
 	mov	rdx, QWORD PTR 8[rdx]
 	mov	QWORD PTR 8[rax], rdx
-.L227:
+.L228:
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR 8[rax]
 	test	rax, rax
-	je	.L226
+	je	.L227
 	mov	rax, QWORD PTR 8[rsp]
 	mov	rax, QWORD PTR 8[rax]
 	mov	rdx, QWORD PTR 8[rsp]
 	mov	rdx, QWORD PTR [rdx]
 	mov	QWORD PTR [rax], rdx
-.L226:
-	add	rsp, 24
+.L227:
 	ret
 	.seh_endproc
 	.globl	lsearch
@@ -1389,49 +1352,47 @@ lsearch:
 	mov	rax, rbx
 	sub	rax, 1
 	mov	QWORD PTR 48[rsp], rax
-	mov	rax, QWORD PTR 88[rsp]
-	mov	QWORD PTR 40[rsp], rax
 	mov	rax, QWORD PTR 96[rsp]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR 32[rsp], rax
+	mov	QWORD PTR 40[rsp], rax
 	mov	QWORD PTR 56[rsp], 0
-	jmp	.L231
-.L234:
+	jmp	.L232
+.L235:
 	mov	rdx, rbx
 	imul	rdx, QWORD PTR 56[rsp]
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	add	rdx, rax
 	mov	rax, QWORD PTR 80[rsp]
 	mov	r8, QWORD PTR 112[rsp]
 	mov	rcx, rax
 	call	r8
 	test	eax, eax
-	jne	.L232
+	jne	.L233
 	imul	rbx, QWORD PTR 56[rsp]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	add	rax, rdx
-	jmp	.L233
-.L232:
+	jmp	.L234
+.L233:
 	add	QWORD PTR 56[rsp], 1
-.L231:
+.L232:
 	mov	rax, QWORD PTR 56[rsp]
-	cmp	rax, QWORD PTR 32[rsp]
-	jb	.L234
-	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jb	.L235
+	mov	rax, QWORD PTR 40[rsp]
 	lea	rdx, 1[rax]
 	mov	rax, QWORD PTR 96[rsp]
 	mov	QWORD PTR [rax], rdx
-	imul	rbx, QWORD PTR 32[rsp]
+	imul	rbx, QWORD PTR 40[rsp]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	lea	rcx, [rdx+rax]
 	mov	rdx, QWORD PTR 104[rsp]
 	mov	rax, QWORD PTR 80[rsp]
 	mov	r8, rdx
 	mov	rdx, rax
 	call	memcpy
-.L233:
+.L234:
 	add	rsp, 64
 	pop	rbx
 	ret
@@ -1453,37 +1414,35 @@ lfind:
 	mov	rax, rbx
 	sub	rax, 1
 	mov	QWORD PTR 48[rsp], rax
-	mov	rax, QWORD PTR 88[rsp]
-	mov	QWORD PTR 40[rsp], rax
 	mov	rax, QWORD PTR 96[rsp]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR 32[rsp], rax
+	mov	QWORD PTR 40[rsp], rax
 	mov	QWORD PTR 56[rsp], 0
-	jmp	.L236
-.L239:
+	jmp	.L237
+.L240:
 	mov	rdx, rbx
 	imul	rdx, QWORD PTR 56[rsp]
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	add	rdx, rax
 	mov	rax, QWORD PTR 80[rsp]
 	mov	r8, QWORD PTR 112[rsp]
 	mov	rcx, rax
 	call	r8
 	test	eax, eax
-	jne	.L237
+	jne	.L238
 	imul	rbx, QWORD PTR 56[rsp]
 	mov	rdx, rbx
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	add	rax, rdx
-	jmp	.L238
-.L237:
-	add	QWORD PTR 56[rsp], 1
-.L236:
-	mov	rax, QWORD PTR 56[rsp]
-	cmp	rax, QWORD PTR 32[rsp]
-	jb	.L239
-	mov	eax, 0
+	jmp	.L239
 .L238:
+	add	QWORD PTR 56[rsp], 1
+.L237:
+	mov	rax, QWORD PTR 56[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jb	.L240
+	mov	eax, 0
+.L239:
 	add	rsp, 64
 	pop	rbx
 	ret
@@ -1510,29 +1469,29 @@ atoi:
 	mov	QWORD PTR 64[rsp], rcx
 	mov	DWORD PTR 44[rsp], 0
 	mov	DWORD PTR 40[rsp], 0
-	jmp	.L243
-.L244:
+	jmp	.L244
+.L245:
 	add	QWORD PTR 64[rsp], 1
-.L243:
+.L244:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	ecx, eax
 	call	isspace
 	test	eax, eax
-	jne	.L244
+	jne	.L245
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
-	je	.L245
+	je	.L246
 	cmp	eax, 45
-	jne	.L247
+	jne	.L248
 	mov	DWORD PTR 40[rsp], 1
-.L245:
+.L246:
 	add	QWORD PTR 64[rsp], 1
-	jmp	.L247
-.L248:
+	jmp	.L248
+.L249:
 	mov	edx, DWORD PTR 44[rsp]
 	mov	eax, edx
 	sal	eax, 2
@@ -1548,21 +1507,21 @@ atoi:
 	mov	eax, ecx
 	sub	eax, edx
 	mov	DWORD PTR 44[rsp], eax
-.L247:
+.L248:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	.L248
+	jbe	.L249
 	cmp	DWORD PTR 40[rsp], 0
-	jne	.L249
+	jne	.L250
 	mov	eax, DWORD PTR 44[rsp]
 	neg	eax
-	jmp	.L251
-.L249:
+	jmp	.L252
+.L250:
 	mov	eax, DWORD PTR 44[rsp]
-.L251:
+.L252:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -1576,29 +1535,29 @@ atol:
 	mov	QWORD PTR 64[rsp], rcx
 	mov	DWORD PTR 44[rsp], 0
 	mov	DWORD PTR 40[rsp], 0
-	jmp	.L253
-.L254:
+	jmp	.L254
+.L255:
 	add	QWORD PTR 64[rsp], 1
-.L253:
+.L254:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	ecx, eax
 	call	isspace
 	test	eax, eax
-	jne	.L254
+	jne	.L255
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
-	je	.L255
+	je	.L256
 	cmp	eax, 45
-	jne	.L257
+	jne	.L258
 	mov	DWORD PTR 40[rsp], 1
-.L255:
+.L256:
 	add	QWORD PTR 64[rsp], 1
-	jmp	.L257
-.L258:
+	jmp	.L258
+.L259:
 	mov	edx, DWORD PTR 44[rsp]
 	mov	eax, edx
 	sal	eax, 2
@@ -1614,21 +1573,21 @@ atol:
 	mov	eax, ecx
 	sub	eax, edx
 	mov	DWORD PTR 44[rsp], eax
-.L257:
+.L258:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	.L258
+	jbe	.L259
 	cmp	DWORD PTR 40[rsp], 0
-	jne	.L259
+	jne	.L260
 	mov	eax, DWORD PTR 44[rsp]
 	neg	eax
-	jmp	.L261
-.L259:
+	jmp	.L262
+.L260:
 	mov	eax, DWORD PTR 44[rsp]
-.L261:
+.L262:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -1642,29 +1601,29 @@ atoll:
 	mov	QWORD PTR 64[rsp], rcx
 	mov	QWORD PTR 40[rsp], 0
 	mov	DWORD PTR 36[rsp], 0
-	jmp	.L263
-.L264:
+	jmp	.L264
+.L265:
 	add	QWORD PTR 64[rsp], 1
-.L263:
+.L264:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	mov	ecx, eax
 	call	isspace
 	test	eax, eax
-	jne	.L264
+	jne	.L265
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	cmp	eax, 43
-	je	.L265
+	je	.L266
 	cmp	eax, 45
-	jne	.L267
+	jne	.L268
 	mov	DWORD PTR 36[rsp], 1
-.L265:
+.L266:
 	add	QWORD PTR 64[rsp], 1
-	jmp	.L267
-.L268:
+	jmp	.L268
+.L269:
 	mov	rdx, QWORD PTR 40[rsp]
 	mov	rax, rdx
 	sal	rax, 2
@@ -1681,21 +1640,21 @@ atoll:
 	sub	rcx, rax
 	mov	rdx, rcx
 	mov	QWORD PTR 40[rsp], rdx
-.L267:
+.L268:
 	mov	rax, QWORD PTR 64[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	eax, al
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	.L268
+	jbe	.L269
 	cmp	DWORD PTR 36[rsp], 0
-	jne	.L269
+	jne	.L270
 	mov	rax, QWORD PTR 40[rsp]
 	neg	rax
-	jmp	.L271
-.L269:
+	jmp	.L272
+.L270:
 	mov	rax, QWORD PTR 40[rsp]
-.L271:
+.L272:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -1710,8 +1669,8 @@ bsearch:
 	mov	QWORD PTR 72[rsp], rdx
 	mov	QWORD PTR 80[rsp], r8
 	mov	QWORD PTR 88[rsp], r9
-	jmp	.L273
-.L278:
+	jmp	.L274
+.L279:
 	mov	rax, QWORD PTR 80[rsp]
 	shr	rax
 	imul	rax, QWORD PTR 88[rsp]
@@ -1726,14 +1685,14 @@ bsearch:
 	call	r8
 	mov	DWORD PTR 36[rsp], eax
 	cmp	DWORD PTR 36[rsp], 0
-	jns	.L274
+	jns	.L275
 	mov	rax, QWORD PTR 80[rsp]
 	shr	rax
 	mov	QWORD PTR 80[rsp], rax
-	jmp	.L273
-.L274:
+	jmp	.L274
+.L275:
 	cmp	DWORD PTR 36[rsp], 0
-	jle	.L276
+	jle	.L277
 	mov	rdx, QWORD PTR 40[rsp]
 	mov	rax, QWORD PTR 88[rsp]
 	add	rax, rdx
@@ -1744,15 +1703,15 @@ bsearch:
 	sub	rdx, rax
 	lea	rax, -1[rdx]
 	mov	QWORD PTR 80[rsp], rax
-	jmp	.L273
-.L276:
-	mov	rax, QWORD PTR 40[rsp]
-	jmp	.L277
-.L273:
-	cmp	QWORD PTR 80[rsp], 0
-	jne	.L278
-	mov	eax, 0
+	jmp	.L274
 .L277:
+	mov	rax, QWORD PTR 40[rsp]
+	jmp	.L278
+.L274:
+	cmp	QWORD PTR 80[rsp], 0
+	jne	.L279
+	mov	eax, 0
+.L278:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -1767,47 +1726,45 @@ bsearch_r:
 	mov	QWORD PTR 88[rsp], rdx
 	mov	QWORD PTR 96[rsp], r8
 	mov	QWORD PTR 104[rsp], r9
-	mov	rax, QWORD PTR 88[rsp]
-	mov	QWORD PTR 56[rsp], rax
 	mov	rax, QWORD PTR 96[rsp]
-	mov	DWORD PTR 52[rsp], eax
-	jmp	.L280
-.L284:
-	mov	eax, DWORD PTR 52[rsp]
+	mov	DWORD PTR 60[rsp], eax
+	jmp	.L281
+.L285:
+	mov	eax, DWORD PTR 60[rsp]
 	sar	eax
 	cdqe
 	imul	rax, QWORD PTR 104[rsp]
 	mov	rdx, rax
-	mov	rax, QWORD PTR 56[rsp]
+	mov	rax, QWORD PTR 88[rsp]
 	add	rax, rdx
-	mov	QWORD PTR 40[rsp], rax
+	mov	QWORD PTR 48[rsp], rax
 	mov	rcx, QWORD PTR 120[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	rdx, QWORD PTR 48[rsp]
 	mov	rax, QWORD PTR 80[rsp]
 	mov	r9, QWORD PTR 112[rsp]
 	mov	r8, rcx
 	mov	rcx, rax
 	call	r9
-	mov	DWORD PTR 36[rsp], eax
-	cmp	DWORD PTR 36[rsp], 0
-	jne	.L281
-	mov	rax, QWORD PTR 40[rsp]
-	jmp	.L282
-.L281:
-	cmp	DWORD PTR 36[rsp], 0
-	jle	.L283
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	DWORD PTR 44[rsp], eax
+	cmp	DWORD PTR 44[rsp], 0
+	jne	.L282
+	mov	rax, QWORD PTR 48[rsp]
+	jmp	.L283
+.L282:
+	cmp	DWORD PTR 44[rsp], 0
+	jle	.L284
+	mov	rdx, QWORD PTR 48[rsp]
 	mov	rax, QWORD PTR 104[rsp]
 	add	rax, rdx
-	mov	QWORD PTR 56[rsp], rax
-	sub	DWORD PTR 52[rsp], 1
-.L283:
-	sar	DWORD PTR 52[rsp]
-.L280:
-	cmp	DWORD PTR 52[rsp], 0
-	jne	.L284
+	mov	QWORD PTR 88[rsp], rax
+	sub	DWORD PTR 60[rsp], 1
+.L284:
+	sar	DWORD PTR 60[rsp]
+.L281:
+	cmp	DWORD PTR 60[rsp], 0
+	jne	.L285
 	mov	eax, 0
-.L282:
+.L283:
 	add	rsp, 72
 	ret
 	.seh_endproc
@@ -1955,28 +1912,28 @@ wcschr:
 	mov	QWORD PTR 8[rsp], rcx
 	mov	eax, edx
 	mov	WORD PTR 16[rsp], ax
-	jmp	.L300
-.L302:
+	jmp	.L301
+.L303:
 	add	QWORD PTR 8[rsp], 2
-.L300:
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	eax, WORD PTR [rax]
-	test	ax, ax
-	je	.L301
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	eax, WORD PTR [rax]
-	cmp	WORD PTR 16[rsp], ax
-	jne	.L302
 .L301:
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, WORD PTR [rax]
 	test	ax, ax
-	je	.L303
+	je	.L302
 	mov	rax, QWORD PTR 8[rsp]
-	jmp	.L305
-.L303:
+	movzx	eax, WORD PTR [rax]
+	cmp	WORD PTR 16[rsp], ax
+	jne	.L303
+.L302:
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	eax, WORD PTR [rax]
+	test	ax, ax
+	je	.L304
+	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L306
+.L304:
 	mov	eax, 0
-.L305:
+.L306:
 	ret
 	.seh_endproc
 	.globl	wcscmp
@@ -1986,32 +1943,32 @@ wcscmp:
 	.seh_endprologue
 	mov	QWORD PTR 8[rsp], rcx
 	mov	QWORD PTR 16[rsp], rdx
-	jmp	.L307
-.L309:
+	jmp	.L308
+.L310:
 	add	QWORD PTR 8[rsp], 2
 	add	QWORD PTR 16[rsp], 2
-.L307:
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	edx, WORD PTR [rax]
-	mov	rax, QWORD PTR 16[rsp]
-	movzx	eax, WORD PTR [rax]
-	cmp	dx, ax
-	jne	.L308
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	eax, WORD PTR [rax]
-	test	ax, ax
-	je	.L308
-	mov	rax, QWORD PTR 16[rsp]
-	movzx	eax, WORD PTR [rax]
-	test	ax, ax
-	jne	.L309
 .L308:
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, WORD PTR [rax]
 	cmp	dx, ax
-	jb	.L310
+	jne	.L309
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	eax, WORD PTR [rax]
+	test	ax, ax
+	je	.L309
+	mov	rax, QWORD PTR 16[rsp]
+	movzx	eax, WORD PTR [rax]
+	test	ax, ax
+	jne	.L310
+.L309:
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	edx, WORD PTR [rax]
+	mov	rax, QWORD PTR 16[rsp]
+	movzx	eax, WORD PTR [rax]
+	cmp	dx, ax
+	jb	.L311
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
@@ -2019,10 +1976,10 @@ wcscmp:
 	cmp	ax, dx
 	setb	al
 	movzx	eax, al
-	jmp	.L312
-.L310:
+	jmp	.L313
+.L311:
 	mov	eax, -1
-.L312:
+.L313:
 	ret
 	.seh_endproc
 	.globl	wcscpy
@@ -2036,19 +1993,19 @@ wcscpy:
 	mov	QWORD PTR 40[rsp], rdx
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-.L314:
+.L315:
 	mov	rdx, QWORD PTR 40[rsp]
 	lea	rax, 2[rdx]
 	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 8[rsp]
 	lea	rcx, 2[rax]
-	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 8[rsp], rcx
 	movzx	edx, WORD PTR [rdx]
 	mov	WORD PTR [rax], dx
 	movzx	eax, WORD PTR [rax]
 	test	ax, ax
-	jne	.L314
-	mov	rax, QWORD PTR 8[rsp]
+	jne	.L315
+	mov	rax, QWORD PTR 32[rsp]
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2062,16 +2019,16 @@ wcslen:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L317
+	jmp	.L318
+.L319:
+	add	QWORD PTR 8[rsp], 2
 .L318:
-	add	QWORD PTR 32[rsp], 2
-.L317:
-	mov	rax, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, WORD PTR [rax]
 	test	ax, ax
-	jne	.L318
-	mov	rax, QWORD PTR 32[rsp]
-	sub	rax, QWORD PTR 8[rsp]
+	jne	.L319
+	mov	rax, QWORD PTR 8[rsp]
+	sub	rax, QWORD PTR 32[rsp]
 	sar	rax
 	add	rsp, 24
 	ret
@@ -2084,37 +2041,37 @@ wcsncmp:
 	mov	QWORD PTR 8[rsp], rcx
 	mov	QWORD PTR 16[rsp], rdx
 	mov	QWORD PTR 24[rsp], r8
-	jmp	.L321
-.L323:
+	jmp	.L322
+.L324:
 	sub	QWORD PTR 24[rsp], 1
 	add	QWORD PTR 8[rsp], 2
 	add	QWORD PTR 16[rsp], 2
-.L321:
-	cmp	QWORD PTR 24[rsp], 0
-	je	.L322
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	edx, WORD PTR [rax]
-	mov	rax, QWORD PTR 16[rsp]
-	movzx	eax, WORD PTR [rax]
-	cmp	dx, ax
-	jne	.L322
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	eax, WORD PTR [rax]
-	test	ax, ax
-	je	.L322
-	mov	rax, QWORD PTR 16[rsp]
-	movzx	eax, WORD PTR [rax]
-	test	ax, ax
-	jne	.L323
 .L322:
 	cmp	QWORD PTR 24[rsp], 0
-	je	.L324
+	je	.L323
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, WORD PTR [rax]
 	cmp	dx, ax
-	jb	.L325
+	jne	.L323
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	eax, WORD PTR [rax]
+	test	ax, ax
+	je	.L323
+	mov	rax, QWORD PTR 16[rsp]
+	movzx	eax, WORD PTR [rax]
+	test	ax, ax
+	jne	.L324
+.L323:
+	cmp	QWORD PTR 24[rsp], 0
+	je	.L325
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	edx, WORD PTR [rax]
+	mov	rax, QWORD PTR 16[rsp]
+	movzx	eax, WORD PTR [rax]
+	cmp	dx, ax
+	jb	.L326
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
@@ -2122,13 +2079,13 @@ wcsncmp:
 	cmp	ax, dx
 	setb	al
 	movzx	eax, al
-	jmp	.L328
-.L325:
+	jmp	.L329
+.L326:
 	mov	eax, -1
-	jmp	.L328
-.L324:
+	jmp	.L329
+.L325:
 	mov	eax, 0
-.L328:
+.L329:
 	ret
 	.seh_endproc
 	.globl	wmemchr
@@ -2140,25 +2097,25 @@ wmemchr:
 	mov	eax, edx
 	mov	QWORD PTR 24[rsp], r8
 	mov	WORD PTR 16[rsp], ax
-	jmp	.L330
-.L332:
+	jmp	.L331
+.L333:
 	sub	QWORD PTR 24[rsp], 1
 	add	QWORD PTR 8[rsp], 2
-.L330:
+.L331:
 	cmp	QWORD PTR 24[rsp], 0
-	je	.L331
+	je	.L332
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, WORD PTR [rax]
 	cmp	WORD PTR 16[rsp], ax
-	jne	.L332
-.L331:
+	jne	.L333
+.L332:
 	cmp	QWORD PTR 24[rsp], 0
-	je	.L333
+	je	.L334
 	mov	rax, QWORD PTR 8[rsp]
-	jmp	.L335
-.L333:
+	jmp	.L336
+.L334:
 	mov	eax, 0
-.L335:
+.L336:
 	ret
 	.seh_endproc
 	.globl	wmemcmp
@@ -2169,29 +2126,29 @@ wmemcmp:
 	mov	QWORD PTR 8[rsp], rcx
 	mov	QWORD PTR 16[rsp], rdx
 	mov	QWORD PTR 24[rsp], r8
-	jmp	.L337
-.L339:
+	jmp	.L338
+.L340:
 	sub	QWORD PTR 24[rsp], 1
 	add	QWORD PTR 8[rsp], 2
 	add	QWORD PTR 16[rsp], 2
-.L337:
-	cmp	QWORD PTR 24[rsp], 0
-	je	.L338
-	mov	rax, QWORD PTR 8[rsp]
-	movzx	edx, WORD PTR [rax]
-	mov	rax, QWORD PTR 16[rsp]
-	movzx	eax, WORD PTR [rax]
-	cmp	dx, ax
-	je	.L339
 .L338:
 	cmp	QWORD PTR 24[rsp], 0
-	je	.L340
+	je	.L339
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
 	movzx	eax, WORD PTR [rax]
 	cmp	dx, ax
-	jb	.L341
+	je	.L340
+.L339:
+	cmp	QWORD PTR 24[rsp], 0
+	je	.L341
+	mov	rax, QWORD PTR 8[rsp]
+	movzx	edx, WORD PTR [rax]
+	mov	rax, QWORD PTR 16[rsp]
+	movzx	eax, WORD PTR [rax]
+	cmp	dx, ax
+	jb	.L342
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	edx, WORD PTR [rax]
 	mov	rax, QWORD PTR 16[rsp]
@@ -2199,13 +2156,13 @@ wmemcmp:
 	cmp	ax, dx
 	setb	al
 	movzx	eax, al
-	jmp	.L344
-.L341:
+	jmp	.L345
+.L342:
 	mov	eax, -1
-	jmp	.L344
-.L340:
+	jmp	.L345
+.L341:
 	mov	eax, 0
-.L344:
+.L345:
 	ret
 	.seh_endproc
 	.globl	wmemcpy
@@ -2220,23 +2177,23 @@ wmemcpy:
 	mov	QWORD PTR 48[rsp], r8
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L346
-.L347:
+	jmp	.L347
+.L348:
 	mov	rdx, QWORD PTR 40[rsp]
 	lea	rax, 2[rdx]
 	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 8[rsp]
 	lea	rcx, 2[rax]
-	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 8[rsp], rcx
 	movzx	edx, WORD PTR [rdx]
 	mov	WORD PTR [rax], dx
-.L346:
+.L347:
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, -1[rax]
 	mov	QWORD PTR 48[rsp], rdx
 	test	rax, rax
-	jne	.L347
-	mov	rax, QWORD PTR 8[rsp]
+	jne	.L348
+	mov	rax, QWORD PTR 32[rsp]
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2251,22 +2208,20 @@ wmemmove:
 	mov	QWORD PTR 40[rsp], rdx
 	mov	QWORD PTR 48[rsp], r8
 	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 32[rsp]
 	cmp	rax, QWORD PTR 40[rsp]
-	jne	.L350
+	jne	.L351
 	mov	rax, QWORD PTR 32[rsp]
-	jmp	.L351
-.L350:
+	jmp	.L352
+.L351:
 	mov	rdx, QWORD PTR 32[rsp]
 	mov	rax, QWORD PTR 40[rsp]
 	sub	rdx, rax
 	mov	rax, QWORD PTR 48[rsp]
 	add	rax, rax
 	cmp	rdx, rax
-	jnb	.L356
-	jmp	.L353
-.L354:
+	jnb	.L353
+	jmp	.L354
+.L355:
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, [rax+rax]
 	mov	rax, QWORD PTR 40[rsp]
@@ -2277,31 +2232,35 @@ wmemmove:
 	add	rdx, rcx
 	movzx	eax, WORD PTR [rax]
 	mov	WORD PTR [rdx], ax
-.L353:
+.L354:
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, -1[rax]
 	mov	QWORD PTR 48[rsp], rdx
 	test	rax, rax
-	jne	.L354
-	jmp	.L355
-.L357:
+	jne	.L355
+	jmp	.L356
+.L353:
+	mov	rax, QWORD PTR 32[rsp]
+	mov	QWORD PTR 8[rsp], rax
+	jmp	.L357
+.L358:
 	mov	rdx, QWORD PTR 40[rsp]
 	lea	rax, 2[rdx]
 	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 8[rsp]
 	lea	rcx, 2[rax]
-	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 8[rsp], rcx
 	movzx	edx, WORD PTR [rdx]
 	mov	WORD PTR [rax], dx
-.L356:
+.L357:
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, -1[rax]
 	mov	QWORD PTR 48[rsp], rdx
 	test	rax, rax
-	jne	.L357
-.L355:
-	mov	rax, QWORD PTR 8[rsp]
-.L351:
+	jne	.L358
+.L356:
+	mov	rax, QWORD PTR 32[rsp]
+.L352:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2318,20 +2277,20 @@ wmemset:
 	mov	WORD PTR 40[rsp], ax
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L359
-.L360:
-	mov	rax, QWORD PTR 32[rsp]
+	jmp	.L360
+.L361:
+	mov	rax, QWORD PTR 8[rsp]
 	lea	rdx, 2[rax]
-	mov	QWORD PTR 32[rsp], rdx
+	mov	QWORD PTR 8[rsp], rdx
 	movzx	edx, WORD PTR 40[rsp]
 	mov	WORD PTR [rax], dx
-.L359:
+.L360:
 	mov	rax, QWORD PTR 48[rsp]
 	lea	rdx, -1[rax]
 	mov	QWORD PTR 48[rsp], rdx
 	test	rax, rax
-	jne	.L360
-	mov	rax, QWORD PTR 8[rsp]
+	jne	.L361
+	mov	rax, QWORD PTR 32[rsp]
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2346,18 +2305,18 @@ bcopy:
 	mov	QWORD PTR 40[rsp], rdx
 	mov	QWORD PTR 48[rsp], r8
 	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jnb	.L364
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	rax, QWORD PTR 48[rsp]
+	add	rax, rdx
 	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rdx, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 48[rsp]
+	add	rax, rdx
 	mov	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
-	cmp	rax, QWORD PTR [rsp]
-	jnb	.L363
-	mov	rax, QWORD PTR 48[rsp]
-	add	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 48[rsp]
-	add	QWORD PTR [rsp], rax
-	jmp	.L364
-.L365:
+	jmp	.L365
+.L366:
 	sub	QWORD PTR 8[rsp], 1
 	sub	QWORD PTR [rsp], 1
 	mov	rax, QWORD PTR 8[rsp]
@@ -2365,29 +2324,29 @@ bcopy:
 	mov	rax, QWORD PTR [rsp]
 	mov	BYTE PTR [rax], dl
 	sub	QWORD PTR 48[rsp], 1
-.L364:
+.L365:
 	cmp	QWORD PTR 48[rsp], 0
-	jne	.L365
-	jmp	.L362
-.L363:
-	mov	rax, QWORD PTR 8[rsp]
-	cmp	rax, QWORD PTR [rsp]
-	je	.L362
-	jmp	.L367
-.L368:
-	mov	rdx, QWORD PTR 8[rsp]
+	jne	.L366
+	jmp	.L363
+.L364:
+	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	je	.L363
+	jmp	.L368
+.L369:
+	mov	rdx, QWORD PTR 32[rsp]
 	lea	rax, 1[rdx]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR [rsp]
+	mov	QWORD PTR 32[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	lea	rcx, 1[rax]
-	mov	QWORD PTR [rsp], rcx
+	mov	QWORD PTR 40[rsp], rcx
 	movzx	edx, BYTE PTR [rdx]
 	mov	BYTE PTR [rax], dl
 	sub	QWORD PTR 48[rsp], 1
-.L367:
+.L368:
 	cmp	QWORD PTR 48[rsp], 0
-	jne	.L368
-.L362:
+	jne	.L369
+.L363:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2696,25 +2655,25 @@ ffs:
 	.seh_endprologue
 	mov	DWORD PTR 32[rsp], ecx
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L397
-.L400:
+	jmp	.L398
+.L401:
 	mov	edx, DWORD PTR 32[rsp]
 	mov	eax, DWORD PTR 12[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	je	.L398
+	je	.L399
 	mov	eax, DWORD PTR 12[rsp]
 	add	eax, 1
-	jmp	.L399
-.L398:
-	add	DWORD PTR 12[rsp], 1
-.L397:
-	cmp	DWORD PTR 12[rsp], 31
-	jbe	.L400
-	mov	eax, 0
+	jmp	.L400
 .L399:
+	add	DWORD PTR 12[rsp], 1
+.L398:
+	cmp	DWORD PTR 12[rsp], 31
+	jbe	.L401
+	mov	eax, 0
+.L400:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2727,21 +2686,21 @@ libiberty_ffs:
 	.seh_endprologue
 	mov	eax, ecx
 	test	eax, eax
-	jne	.L402
-	mov	eax, 0
-	jmp	.L403
-.L402:
-	mov	ebx, 1
+	jne	.L403
+	mov	ebx, 0
 	jmp	.L404
-.L405:
+.L403:
+	mov	ebx, 1
+	jmp	.L405
+.L406:
 	sar	eax
 	add	ebx, 1
-.L404:
+.L405:
 	mov	edx, eax
 	and	edx, 1
-	je	.L405
+	je	.L406
+.L404:
 	mov	eax, ebx
-.L403:
 	pop	rbx
 	ret
 	.seh_endproc
@@ -2753,16 +2712,16 @@ gl_isinff:
 	movss	DWORD PTR 8[rsp], xmm0
 	movss	xmm0, DWORD PTR .LC3[rip]
 	comiss	xmm0, DWORD PTR 8[rsp]
-	ja	.L407
+	ja	.L408
 	movss	xmm0, DWORD PTR 8[rsp]
 	comiss	xmm0, DWORD PTR .LC4[rip]
-	jbe	.L412
-.L407:
+	jbe	.L413
+.L408:
 	mov	eax, 1
-	jmp	.L411
-.L412:
+	jmp	.L412
+.L413:
 	mov	eax, 0
-.L411:
+.L412:
 	ret
 	.seh_endproc
 	.globl	gl_isinfd
@@ -2773,16 +2732,16 @@ gl_isinfd:
 	movsd	QWORD PTR 8[rsp], xmm0
 	movsd	xmm0, QWORD PTR .LC5[rip]
 	comisd	xmm0, QWORD PTR 8[rsp]
-	ja	.L414
+	ja	.L415
 	movsd	xmm0, QWORD PTR 8[rsp]
 	comisd	xmm0, QWORD PTR .LC6[rip]
-	jbe	.L419
-.L414:
+	jbe	.L420
+.L415:
 	mov	eax, 1
-	jmp	.L418
-.L419:
+	jmp	.L419
+.L420:
 	mov	eax, 0
-.L418:
+.L419:
 	ret
 	.seh_endproc
 	.globl	gl_isinfl
@@ -2801,18 +2760,18 @@ gl_isinfl:
 	fld	TBYTE PTR .LC7[rip]
 	fcomip	st, st(1)
 	fstp	st(0)
-	ja	.L421
+	ja	.L422
 	fld	TBYTE PTR .LC8[rip]
 	fld	TBYTE PTR [rsp]
 	fcomip	st, st(1)
 	fstp	st(0)
-	jbe	.L426
-.L421:
+	jbe	.L427
+.L422:
 	mov	eax, 1
-	jmp	.L425
-.L426:
+	jmp	.L426
+.L427:
 	mov	eax, 0
-.L425:
+.L426:
 	add	rsp, 16
 	pop	rbx
 	ret
@@ -2847,30 +2806,30 @@ ldexpf:
 	mov	DWORD PTR 40[rsp], edx
 	movss	xmm0, DWORD PTR 32[rsp]
 	ucomiss	xmm0, DWORD PTR 32[rsp]
-	jp	.L429
+	jp	.L430
 	movss	xmm0, DWORD PTR 32[rsp]
 	addss	xmm0, xmm0
 	ucomiss	xmm0, DWORD PTR 32[rsp]
-	jp	.L437
+	jp	.L438
 	ucomiss	xmm0, DWORD PTR 32[rsp]
-	je	.L429
-.L437:
+	je	.L430
+.L438:
 	cmp	DWORD PTR 40[rsp], 0
-	jns	.L431
+	jns	.L432
 	movss	xmm0, DWORD PTR .LC9[rip]
-	jmp	.L432
-.L431:
-	movss	xmm0, DWORD PTR .LC10[rip]
+	jmp	.L433
 .L432:
+	movss	xmm0, DWORD PTR .LC10[rip]
+.L433:
 	movss	DWORD PTR 12[rsp], xmm0
-.L435:
+.L436:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L433
+	je	.L434
 	movss	xmm0, DWORD PTR 32[rsp]
 	mulss	xmm0, DWORD PTR 12[rsp]
 	movss	DWORD PTR 32[rsp], xmm0
-.L433:
+.L434:
 	mov	eax, DWORD PTR 40[rsp]
 	mov	edx, eax
 	shr	edx, 31
@@ -2878,13 +2837,14 @@ ldexpf:
 	sar	eax
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 40[rsp], 0
-	je	.L429
+	je	.L430
 	movss	xmm0, DWORD PTR 12[rsp]
 	mulss	xmm0, xmm0
 	movss	DWORD PTR 12[rsp], xmm0
-	jmp	.L435
-.L429:
-	movss	xmm0, DWORD PTR 32[rsp]
+	jmp	.L436
+.L430:
+	mov	eax, DWORD PTR 32[rsp]
+	movd	xmm0, eax
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2899,30 +2859,30 @@ ldexp:
 	mov	DWORD PTR 40[rsp], edx
 	movsd	xmm0, QWORD PTR 32[rsp]
 	ucomisd	xmm0, QWORD PTR 32[rsp]
-	jp	.L440
+	jp	.L441
 	movsd	xmm0, QWORD PTR 32[rsp]
 	addsd	xmm0, xmm0
 	ucomisd	xmm0, QWORD PTR 32[rsp]
-	jp	.L448
+	jp	.L449
 	ucomisd	xmm0, QWORD PTR 32[rsp]
-	je	.L440
-.L448:
+	je	.L441
+.L449:
 	cmp	DWORD PTR 40[rsp], 0
-	jns	.L442
+	jns	.L443
 	movsd	xmm0, QWORD PTR .LC11[rip]
-	jmp	.L443
-.L442:
-	movsd	xmm0, QWORD PTR .LC12[rip]
+	jmp	.L444
 .L443:
+	movsd	xmm0, QWORD PTR .LC12[rip]
+.L444:
 	movsd	QWORD PTR 8[rsp], xmm0
-.L446:
+.L447:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L444
+	je	.L445
 	movsd	xmm0, QWORD PTR 32[rsp]
 	mulsd	xmm0, QWORD PTR 8[rsp]
 	movsd	QWORD PTR 32[rsp], xmm0
-.L444:
+.L445:
 	mov	eax, DWORD PTR 40[rsp]
 	mov	edx, eax
 	shr	edx, 31
@@ -2930,13 +2890,14 @@ ldexp:
 	sar	eax
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 40[rsp], 0
-	je	.L440
+	je	.L441
 	movsd	xmm0, QWORD PTR 8[rsp]
 	mulsd	xmm0, xmm0
 	movsd	QWORD PTR 8[rsp], xmm0
-	jmp	.L446
-.L440:
-	movsd	xmm0, QWORD PTR 32[rsp]
+	jmp	.L447
+.L441:
+	mov	rax, QWORD PTR 32[rsp]
+	movq	xmm0, rax
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -2958,37 +2919,37 @@ ldexpl:
 	fld	TBYTE PTR [rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	jp	.L451
+	jp	.L452
 	fld	TBYTE PTR [rsp]
 	fadd	st, st(0)
 	fld	TBYTE PTR [rsp]
 	fucomip	st, st(1)
-	jp	.L461
+	jp	.L462
 	fld	TBYTE PTR [rsp]
 	fucomip	st, st(1)
 	fstp	st(0)
-	je	.L451
-	jmp	.L459
-.L461:
+	je	.L452
+	jmp	.L460
+.L462:
 	fstp	st(0)
-.L459:
+.L460:
 	cmp	DWORD PTR 64[rsp], 0
-	jns	.L453
+	jns	.L454
 	fld	TBYTE PTR .LC13[rip]
-	jmp	.L454
-.L453:
-	fld	TBYTE PTR .LC14[rip]
+	jmp	.L455
 .L454:
+	fld	TBYTE PTR .LC14[rip]
+.L455:
 	fstp	TBYTE PTR 16[rsp]
-.L457:
+.L458:
 	mov	eax, DWORD PTR 64[rsp]
 	and	eax, 1
-	je	.L455
+	je	.L456
 	fld	TBYTE PTR [rsp]
 	fld	TBYTE PTR 16[rsp]
 	fmulp	st(1), st
 	fstp	TBYTE PTR [rsp]
-.L455:
+.L456:
 	mov	eax, DWORD PTR 64[rsp]
 	mov	edx, eax
 	shr	edx, 31
@@ -2996,12 +2957,12 @@ ldexpl:
 	sar	eax
 	mov	DWORD PTR 64[rsp], eax
 	cmp	DWORD PTR 64[rsp], 0
-	je	.L451
+	je	.L452
 	fld	TBYTE PTR 16[rsp]
 	fmul	st, st(0)
 	fstp	TBYTE PTR 16[rsp]
-	jmp	.L457
-.L451:
+	jmp	.L458
+.L452:
 	mov	rax, QWORD PTR 48[rsp]
 	fld	TBYTE PTR [rsp]
 	fstp	TBYTE PTR [rax]
@@ -3020,26 +2981,24 @@ memxor:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	QWORD PTR 40[rsp], rdx
 	mov	QWORD PTR 48[rsp], r8
-	mov	rax, QWORD PTR 40[rsp]
-	mov	QWORD PTR 8[rsp], rax
 	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR [rsp], rax
-	jmp	.L463
-.L464:
+	mov	QWORD PTR 8[rsp], rax
+	jmp	.L464
+.L465:
+	mov	rax, QWORD PTR 40[rsp]
+	lea	rdx, 1[rax]
+	mov	QWORD PTR 40[rsp], rdx
+	movzx	ecx, BYTE PTR [rax]
 	mov	rax, QWORD PTR 8[rsp]
 	lea	rdx, 1[rax]
 	mov	QWORD PTR 8[rsp], rdx
-	movzx	ecx, BYTE PTR [rax]
-	mov	rax, QWORD PTR [rsp]
-	lea	rdx, 1[rax]
-	mov	QWORD PTR [rsp], rdx
 	movzx	edx, BYTE PTR [rax]
 	xor	edx, ecx
 	mov	BYTE PTR [rax], dl
 	sub	QWORD PTR 48[rsp], 1
-.L463:
+.L464:
 	cmp	QWORD PTR 48[rsp], 0
-	jne	.L464
+	jne	.L465
 	mov	rax, QWORD PTR 32[rsp]
 	add	rsp, 24
 	ret
@@ -3060,14 +3019,14 @@ strncat:
 	mov	rdx, QWORD PTR 64[rsp]
 	add	rax, rdx
 	mov	QWORD PTR 40[rsp], rax
-	jmp	.L467
-.L469:
+	jmp	.L468
+.L470:
 	add	QWORD PTR 72[rsp], 1
 	add	QWORD PTR 40[rsp], 1
 	sub	QWORD PTR 80[rsp], 1
-.L467:
+.L468:
 	cmp	QWORD PTR 80[rsp], 0
-	je	.L468
+	je	.L469
 	mov	rax, QWORD PTR 72[rsp]
 	movzx	edx, BYTE PTR [rax]
 	mov	rax, QWORD PTR 40[rsp]
@@ -3075,13 +3034,13 @@ strncat:
 	mov	rax, QWORD PTR 40[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L469
-.L468:
-	cmp	QWORD PTR 80[rsp], 0
 	jne	.L470
+.L469:
+	cmp	QWORD PTR 80[rsp], 0
+	jne	.L471
 	mov	rax, QWORD PTR 40[rsp]
 	mov	BYTE PTR [rax], 0
-.L470:
+.L471:
 	mov	rax, QWORD PTR 64[rsp]
 	add	rsp, 56
 	ret
@@ -3096,20 +3055,20 @@ strnlen:
 	mov	QWORD PTR 32[rsp], rcx
 	mov	QWORD PTR 40[rsp], rdx
 	mov	QWORD PTR 8[rsp], 0
-	jmp	.L473
-.L478:
+	jmp	.L474
+.L479:
 	add	QWORD PTR 8[rsp], 1
-.L473:
+.L474:
 	mov	rax, QWORD PTR 8[rsp]
 	cmp	rax, QWORD PTR 40[rsp]
-	jnb	.L474
+	jnb	.L475
 	mov	rdx, QWORD PTR 32[rsp]
 	mov	rax, QWORD PTR 8[rsp]
 	add	rax, rdx
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L478
-.L474:
+	jne	.L479
+.L475:
 	mov	rax, QWORD PTR 8[rsp]
 	add	rsp, 24
 	ret
@@ -3123,12 +3082,12 @@ strpbrk:
 	.seh_endprologue
 	mov	QWORD PTR 32[rsp], rcx
 	mov	QWORD PTR 40[rsp], rdx
-	jmp	.L480
-.L484:
+	jmp	.L481
+.L485:
 	mov	rax, QWORD PTR 40[rsp]
 	mov	QWORD PTR 8[rsp], rax
-	jmp	.L481
-.L483:
+	jmp	.L482
+.L484:
 	mov	rax, QWORD PTR 8[rsp]
 	lea	rdx, 1[rax]
 	mov	QWORD PTR 8[rsp], rdx
@@ -3136,22 +3095,22 @@ strpbrk:
 	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
-	jne	.L481
+	jne	.L482
 	mov	rax, QWORD PTR 32[rsp]
-	jmp	.L482
-.L481:
+	jmp	.L483
+.L482:
 	mov	rax, QWORD PTR 8[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L483
+	jne	.L484
 	add	QWORD PTR 32[rsp], 1
-.L480:
+.L481:
 	mov	rax, QWORD PTR 32[rsp]
 	movzx	eax, BYTE PTR [rax]
 	test	al, al
-	jne	.L484
+	jne	.L485
 	mov	eax, 0
-.L482:
+.L483:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -3165,18 +3124,18 @@ strrchr:
 	mov	rax, rcx
 	mov	DWORD PTR 40[rsp], edx
 	mov	QWORD PTR 8[rsp], 0
-.L487:
+.L488:
 	movzx	edx, BYTE PTR [rax]
 	movsx	edx, dl
 	cmp	DWORD PTR 40[rsp], edx
-	jne	.L486
+	jne	.L487
 	mov	QWORD PTR 8[rsp], rax
-.L486:
+.L487:
 	mov	rdx, rax
 	lea	rax, 1[rdx]
 	movzx	edx, BYTE PTR [rdx]
 	test	dl, dl
-	jne	.L487
+	jne	.L488
 	mov	rax, QWORD PTR 8[rsp]
 	add	rsp, 24
 	ret
@@ -3190,41 +3149,41 @@ strstr:
 	.seh_endprologue
 	mov	QWORD PTR 64[rsp], rcx
 	mov	QWORD PTR 72[rsp], rdx
-	mov	rax, QWORD PTR 64[rsp]
-	mov	QWORD PTR 40[rsp], rax
 	mov	rax, QWORD PTR 72[rsp]
 	mov	rcx, rax
 	call	strlen
-	mov	QWORD PTR 32[rsp], rax
-	cmp	QWORD PTR 32[rsp], 0
-	jne	.L492
+	mov	QWORD PTR 40[rsp], rax
+	cmp	QWORD PTR 40[rsp], 0
+	jne	.L493
 	mov	rax, QWORD PTR 64[rsp]
-	jmp	.L491
-.L494:
-	mov	rcx, QWORD PTR 32[rsp]
+	jmp	.L492
+.L495:
+	mov	rcx, QWORD PTR 40[rsp]
 	mov	rdx, QWORD PTR 72[rsp]
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	mov	r8, rcx
 	mov	rcx, rax
 	call	strncmp
 	test	eax, eax
-	jne	.L493
-	mov	rax, QWORD PTR 40[rsp]
-	jmp	.L491
+	jne	.L494
+	mov	rax, QWORD PTR 32[rsp]
+	jmp	.L492
+.L494:
+	mov	rax, QWORD PTR 32[rsp]
+	add	rax, 1
+	mov	QWORD PTR 64[rsp], rax
 .L493:
-	add	QWORD PTR 40[rsp], 1
-.L492:
 	mov	rax, QWORD PTR 72[rsp]
 	movzx	eax, BYTE PTR [rax]
 	movsx	edx, al
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 64[rsp]
 	mov	rcx, rax
 	call	strchr
-	mov	QWORD PTR 40[rsp], rax
-	cmp	QWORD PTR 40[rsp], 0
-	jne	.L494
+	mov	QWORD PTR 32[rsp], rax
+	cmp	QWORD PTR 32[rsp], 0
+	jne	.L495
 	mov	eax, 0
-.L491:
+.L492:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -3237,27 +3196,29 @@ copysign:
 	movsd	QWORD PTR 16[rsp], xmm1
 	pxor	xmm0, xmm0
 	comisd	xmm0, QWORD PTR 8[rsp]
-	jbe	.L496
+	jbe	.L497
 	movsd	xmm0, QWORD PTR 16[rsp]
 	pxor	xmm1, xmm1
 	comisd	xmm0, xmm1
-	ja	.L498
-.L496:
+	ja	.L499
+.L497:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	pxor	xmm1, xmm1
 	comisd	xmm0, xmm1
-	jbe	.L499
+	jbe	.L500
 	pxor	xmm0, xmm0
 	comisd	xmm0, QWORD PTR 16[rsp]
-	jbe	.L499
-.L498:
+	jbe	.L500
+.L499:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
-	jmp	.L502
-.L499:
-	movsd	xmm0, QWORD PTR 8[rsp]
-.L502:
+	movq	rax, xmm0
+	jmp	.L503
+.L500:
+	mov	rax, QWORD PTR 8[rsp]
+.L503:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	memmem
@@ -3276,52 +3237,48 @@ memmem:
 	mov	rdx, rax
 	mov	rax, QWORD PTR 64[rsp]
 	add	rax, rdx
-	mov	QWORD PTR 32[rsp], rax
+	mov	QWORD PTR 40[rsp], rax
 	cmp	QWORD PTR 88[rsp], 0
-	jne	.L506
+	jne	.L507
 	mov	rax, QWORD PTR 64[rsp]
-	jmp	.L507
-.L506:
+	jmp	.L508
+.L507:
 	mov	rax, QWORD PTR 72[rsp]
 	cmp	rax, QWORD PTR 88[rsp]
 	setb	al
 	movzx	eax, al
 	test	eax, eax
-	je	.L508
+	je	.L510
 	mov	eax, 0
-	jmp	.L507
-.L508:
+	jmp	.L508
+.L512:
 	mov	rax, QWORD PTR 64[rsp]
-	mov	QWORD PTR 40[rsp], rax
-	jmp	.L509
-.L511:
-	mov	rax, QWORD PTR 40[rsp]
 	movzx	edx, BYTE PTR [rax]
 	mov	rax, QWORD PTR 80[rsp]
 	movzx	eax, BYTE PTR [rax]
 	cmp	dl, al
-	jne	.L510
+	jne	.L511
 	mov	rax, QWORD PTR 88[rsp]
 	lea	rcx, -1[rax]
 	mov	rax, QWORD PTR 80[rsp]
 	lea	rdx, 1[rax]
-	mov	rax, QWORD PTR 40[rsp]
+	mov	rax, QWORD PTR 64[rsp]
 	add	rax, 1
 	mov	r8, rcx
 	mov	rcx, rax
 	call	memcmp
 	test	eax, eax
-	jne	.L510
-	mov	rax, QWORD PTR 40[rsp]
-	jmp	.L507
+	jne	.L511
+	mov	rax, QWORD PTR 64[rsp]
+	jmp	.L508
+.L511:
+	add	QWORD PTR 64[rsp], 1
 .L510:
-	add	QWORD PTR 40[rsp], 1
-.L509:
-	mov	rax, QWORD PTR 40[rsp]
-	cmp	QWORD PTR 32[rsp], rax
-	jnb	.L511
+	mov	rax, QWORD PTR 64[rsp]
+	cmp	QWORD PTR 40[rsp], rax
+	jnb	.L512
 	mov	eax, 0
-.L507:
+.L508:
 	add	rsp, 56
 	ret
 	.seh_endproc
@@ -3359,62 +3316,63 @@ frexp:
 	mov	DWORD PTR 12[rsp], 0
 	pxor	xmm0, xmm0
 	comisd	xmm0, QWORD PTR 32[rsp]
-	jbe	.L515
+	jbe	.L516
 	movsd	xmm0, QWORD PTR 32[rsp]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
 	movsd	QWORD PTR 32[rsp], xmm0
 	mov	DWORD PTR 12[rsp], 1
-.L515:
+.L516:
 	movsd	xmm0, QWORD PTR 32[rsp]
 	movsd	xmm1, QWORD PTR .LC16[rip]
 	comisd	xmm0, xmm1
-	jb	.L532
-	jmp	.L519
-.L520:
+	jb	.L533
+	jmp	.L520
+.L521:
 	add	DWORD PTR 8[rsp], 1
 	movsd	xmm0, QWORD PTR 32[rsp]
 	movsd	xmm1, QWORD PTR .LC12[rip]
 	divsd	xmm0, xmm1
 	movsd	QWORD PTR 32[rsp], xmm0
-.L519:
+.L520:
 	movsd	xmm0, QWORD PTR 32[rsp]
 	movsd	xmm1, QWORD PTR .LC16[rip]
 	comisd	xmm0, xmm1
-	jnb	.L520
-	jmp	.L521
-.L532:
+	jnb	.L521
+	jmp	.L522
+.L533:
 	movsd	xmm0, QWORD PTR .LC11[rip]
 	comisd	xmm0, QWORD PTR 32[rsp]
-	jbe	.L521
+	jbe	.L522
 	pxor	xmm0, xmm0
 	ucomisd	xmm0, QWORD PTR 32[rsp]
-	jp	.L524
+	jp	.L525
 	pxor	xmm0, xmm0
 	ucomisd	xmm0, QWORD PTR 32[rsp]
-	je	.L521
-	jmp	.L524
-.L525:
+	je	.L522
+	jmp	.L525
+.L526:
 	sub	DWORD PTR 8[rsp], 1
 	movsd	xmm0, QWORD PTR 32[rsp]
 	addsd	xmm0, xmm0
 	movsd	QWORD PTR 32[rsp], xmm0
-.L524:
+.L525:
 	movsd	xmm0, QWORD PTR .LC11[rip]
 	comisd	xmm0, QWORD PTR 32[rsp]
-	ja	.L525
-.L521:
+	ja	.L526
+.L522:
 	mov	rax, QWORD PTR 40[rsp]
 	mov	edx, DWORD PTR 8[rsp]
 	mov	DWORD PTR [rax], edx
 	cmp	DWORD PTR 12[rsp], 0
-	je	.L526
+	je	.L527
 	movsd	xmm0, QWORD PTR 32[rsp]
 	movq	xmm1, QWORD PTR .LC15[rip]
 	xorpd	xmm0, xmm1
 	movsd	QWORD PTR 32[rsp], xmm0
-.L526:
-	movsd	xmm0, QWORD PTR 32[rsp]
+.L527:
+	mov	rax, QWORD PTR 32[rsp]
+	movq	xmm0, rax
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -3430,19 +3388,19 @@ __muldi3:
 	mov	QWORD PTR 8[rsp], 0
 	mov	rax, QWORD PTR 32[rsp]
 	mov	QWORD PTR [rsp], rax
-	jmp	.L534
-.L536:
+	jmp	.L535
+.L537:
 	mov	rax, QWORD PTR [rsp]
 	and	eax, 1
-	je	.L535
+	je	.L536
 	mov	rax, QWORD PTR 40[rsp]
 	add	QWORD PTR 8[rsp], rax
-.L535:
+.L536:
 	sal	QWORD PTR 40[rsp]
 	shr	QWORD PTR [rsp]
-.L534:
+.L535:
 	cmp	QWORD PTR [rsp], 0
-	jne	.L536
+	jne	.L537
 	mov	rax, QWORD PTR 8[rsp]
 	add	rsp, 24
 	ret
@@ -3459,41 +3417,41 @@ udivmodsi4:
 	mov	QWORD PTR 48[rsp], r8
 	mov	DWORD PTR 12[rsp], 1
 	mov	DWORD PTR 8[rsp], 0
-	jmp	.L539
-.L541:
+	jmp	.L540
+.L542:
 	sal	DWORD PTR 40[rsp]
 	sal	DWORD PTR 12[rsp]
-.L539:
+.L540:
 	mov	eax, DWORD PTR 40[rsp]
 	cmp	eax, DWORD PTR 32[rsp]
-	jnb	.L542
+	jnb	.L543
 	cmp	DWORD PTR 12[rsp], 0
-	je	.L542
+	je	.L543
 	mov	eax, DWORD PTR 40[rsp]
 	test	eax, eax
-	jns	.L541
-	jmp	.L542
-.L544:
+	jns	.L542
+	jmp	.L543
+.L545:
 	mov	eax, DWORD PTR 32[rsp]
 	cmp	eax, DWORD PTR 40[rsp]
-	jb	.L543
+	jb	.L544
 	mov	eax, DWORD PTR 40[rsp]
 	sub	DWORD PTR 32[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	or	DWORD PTR 8[rsp], eax
-.L543:
+.L544:
 	shr	DWORD PTR 12[rsp]
 	shr	DWORD PTR 40[rsp]
-.L542:
+.L543:
 	cmp	DWORD PTR 12[rsp], 0
-	jne	.L544
+	jne	.L545
 	cmp	QWORD PTR 48[rsp], 0
-	je	.L545
+	je	.L546
 	mov	eax, DWORD PTR 32[rsp]
-	jmp	.L546
-.L545:
-	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L547
 .L546:
+	mov	eax, DWORD PTR 8[rsp]
+.L547:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -3507,14 +3465,14 @@ __clrsbqi2:
 	mov	eax, ecx
 	mov	BYTE PTR 32[rsp], al
 	cmp	BYTE PTR 32[rsp], 0
-	jns	.L548
+	jns	.L549
 	not	BYTE PTR 32[rsp]
-.L548:
-	cmp	BYTE PTR 32[rsp], 0
-	jne	.L549
-	mov	eax, 7
-	jmp	.L550
 .L549:
+	cmp	BYTE PTR 32[rsp], 0
+	jne	.L550
+	mov	eax, 7
+	jmp	.L551
+.L550:
 	movsx	eax, BYTE PTR 32[rsp]
 	sal	eax, 8
 	bsr	eax, eax
@@ -3522,7 +3480,7 @@ __clrsbqi2:
 	mov	DWORD PTR 12[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	sub	eax, 1
-.L550:
+.L551:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -3535,21 +3493,21 @@ __clrsbdi2:
 	.seh_endprologue
 	mov	QWORD PTR 32[rsp], rcx
 	cmp	QWORD PTR 32[rsp], 0
-	jns	.L552
+	jns	.L553
 	not	QWORD PTR 32[rsp]
-.L552:
-	cmp	QWORD PTR 32[rsp], 0
-	jne	.L553
-	mov	eax, 63
-	jmp	.L554
 .L553:
+	cmp	QWORD PTR 32[rsp], 0
+	jne	.L554
+	mov	eax, 63
+	jmp	.L555
+.L554:
 	mov	rax, QWORD PTR 32[rsp]
 	bsr	rax, rax
 	xor	rax, 63
 	mov	DWORD PTR 12[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	sub	eax, 1
-.L554:
+.L555:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -3563,19 +3521,19 @@ __mulsi3:
 	mov	DWORD PTR 32[rsp], ecx
 	mov	DWORD PTR 40[rsp], edx
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L556
-.L558:
+	jmp	.L557
+.L559:
 	mov	eax, DWORD PTR 32[rsp]
 	and	eax, 1
-	je	.L557
+	je	.L558
 	mov	eax, DWORD PTR 40[rsp]
 	add	DWORD PTR 12[rsp], eax
-.L557:
+.L558:
 	shr	DWORD PTR 32[rsp]
 	sal	DWORD PTR 40[rsp]
-.L556:
+.L557:
 	cmp	DWORD PTR 32[rsp], 0
-	jne	.L558
+	jne	.L559
 	mov	eax, DWORD PTR 12[rsp]
 	add	rsp, 24
 	ret
@@ -3584,246 +3542,234 @@ __mulsi3:
 	.def	__cmovd;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovd
 __cmovd:
-	sub	rsp, 40
-	.seh_stackalloc	40
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 48[rsp], rcx
-	mov	QWORD PTR 56[rsp], rdx
-	mov	DWORD PTR 64[rsp], r8d
-	mov	eax, DWORD PTR 64[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 40[rsp], rdx
+	mov	DWORD PTR 48[rsp], r8d
+	mov	eax, DWORD PTR 48[rsp]
 	shr	eax, 3
-	mov	DWORD PTR 20[rsp], eax
-	mov	eax, DWORD PTR 64[rsp]
+	mov	DWORD PTR 4[rsp], eax
+	mov	eax, DWORD PTR 48[rsp]
 	and	eax, -8
-	mov	DWORD PTR 24[rsp], eax
-	mov	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
-	mov	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
-	cmp	rax, QWORD PTR [rsp]
-	jb	.L561
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR [rsp]
+	mov	DWORD PTR 8[rsp], eax
+	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jb	.L562
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	cmp	rax, QWORD PTR 8[rsp]
-	jnb	.L568
-.L561:
-	mov	DWORD PTR 28[rsp], 0
-	jmp	.L563
-.L564:
-	mov	eax, DWORD PTR 28[rsp]
+	cmp	rax, QWORD PTR 32[rsp]
+	jnb	.L569
+.L562:
+	mov	DWORD PTR 12[rsp], 0
+	jmp	.L564
+.L565:
+	mov	eax, DWORD PTR 12[rsp]
 	lea	rdx, 0[0+rax*8]
-	mov	rax, QWORD PTR 56[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	mov	edx, DWORD PTR 28[rsp]
+	mov	edx, DWORD PTR 12[rsp]
 	lea	rcx, 0[0+rdx*8]
-	mov	rdx, QWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	add	rdx, rcx
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR [rdx], rax
-	add	DWORD PTR 28[rsp], 1
-.L563:
-	mov	eax, DWORD PTR 28[rsp]
-	cmp	eax, DWORD PTR 20[rsp]
-	jb	.L564
-	jmp	.L565
-.L566:
-	mov	edx, DWORD PTR 24[rsp]
-	mov	rax, QWORD PTR [rsp]
-	add	rax, rdx
-	mov	ecx, DWORD PTR 24[rsp]
-	mov	rdx, QWORD PTR 8[rsp]
-	add	rdx, rcx
-	movzx	eax, BYTE PTR [rax]
-	mov	BYTE PTR [rdx], al
-	add	DWORD PTR 24[rsp], 1
-.L565:
-	mov	eax, DWORD PTR 64[rsp]
-	cmp	DWORD PTR 24[rsp], eax
-	jb	.L566
-	jmp	.L567
-.L569:
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR [rsp]
-	add	rax, rdx
-	mov	ecx, DWORD PTR 64[rsp]
-	mov	rdx, QWORD PTR 8[rsp]
-	add	rdx, rcx
-	movzx	eax, BYTE PTR [rax]
-	mov	BYTE PTR [rdx], al
-.L568:
-	mov	eax, DWORD PTR 64[rsp]
-	lea	edx, -1[rax]
-	mov	DWORD PTR 64[rsp], edx
-	test	eax, eax
-	jne	.L569
+	add	DWORD PTR 12[rsp], 1
+.L564:
+	mov	eax, DWORD PTR 12[rsp]
+	cmp	eax, DWORD PTR 4[rsp]
+	jb	.L565
+	jmp	.L566
 .L567:
+	mov	edx, DWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 40[rsp]
+	add	rax, rdx
+	mov	ecx, DWORD PTR 8[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	add	rdx, rcx
+	movzx	eax, BYTE PTR [rax]
+	mov	BYTE PTR [rdx], al
+	add	DWORD PTR 8[rsp], 1
+.L566:
+	mov	eax, DWORD PTR 48[rsp]
+	cmp	DWORD PTR 8[rsp], eax
+	jb	.L567
+	jmp	.L568
+.L570:
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
+	add	rax, rdx
+	mov	ecx, DWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	add	rdx, rcx
+	movzx	eax, BYTE PTR [rax]
+	mov	BYTE PTR [rdx], al
+.L569:
+	mov	eax, DWORD PTR 48[rsp]
+	lea	edx, -1[rax]
+	mov	DWORD PTR 48[rsp], edx
+	test	eax, eax
+	jne	.L570
+.L568:
 	nop
-	add	rsp, 40
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__cmovh
 	.def	__cmovh;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovh
 __cmovh:
-	sub	rsp, 40
-	.seh_stackalloc	40
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 48[rsp], rcx
-	mov	QWORD PTR 56[rsp], rdx
-	mov	DWORD PTR 64[rsp], r8d
-	mov	eax, DWORD PTR 64[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 40[rsp], rdx
+	mov	DWORD PTR 48[rsp], r8d
+	mov	eax, DWORD PTR 48[rsp]
 	shr	eax
-	mov	DWORD PTR 24[rsp], eax
-	mov	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 16[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
-	cmp	rax, QWORD PTR 8[rsp]
-	jb	.L571
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR 8[rsp]
+	mov	DWORD PTR 8[rsp], eax
+	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jb	.L572
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	cmp	rax, QWORD PTR 16[rsp]
-	jnb	.L577
-.L571:
-	mov	DWORD PTR 28[rsp], 0
-	jmp	.L573
-.L574:
-	mov	eax, DWORD PTR 28[rsp]
+	cmp	rax, QWORD PTR 32[rsp]
+	jnb	.L578
+.L572:
+	mov	DWORD PTR 12[rsp], 0
+	jmp	.L574
+.L575:
+	mov	eax, DWORD PTR 12[rsp]
 	lea	rdx, [rax+rax]
-	mov	rax, QWORD PTR 56[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	mov	edx, DWORD PTR 28[rsp]
+	mov	edx, DWORD PTR 12[rsp]
 	lea	rcx, [rdx+rdx]
-	mov	rdx, QWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	add	rdx, rcx
 	movzx	eax, WORD PTR [rax]
 	mov	WORD PTR [rdx], ax
-	add	DWORD PTR 28[rsp], 1
-.L573:
-	mov	eax, DWORD PTR 28[rsp]
-	cmp	eax, DWORD PTR 24[rsp]
-	jb	.L574
-	mov	eax, DWORD PTR 64[rsp]
+	add	DWORD PTR 12[rsp], 1
+.L574:
+	mov	eax, DWORD PTR 12[rsp]
+	cmp	eax, DWORD PTR 8[rsp]
+	jb	.L575
+	mov	eax, DWORD PTR 48[rsp]
 	and	eax, 1
-	je	.L576
-	mov	eax, DWORD PTR 64[rsp]
+	je	.L577
+	mov	eax, DWORD PTR 48[rsp]
 	sub	eax, 1
 	mov	edx, eax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	mov	edx, DWORD PTR 64[rsp]
+	mov	edx, DWORD PTR 48[rsp]
 	sub	edx, 1
 	mov	ecx, edx
-	mov	rdx, QWORD PTR 16[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-	jmp	.L576
-.L578:
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR 8[rsp]
+	jmp	.L577
+.L579:
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	mov	ecx, DWORD PTR 64[rsp]
-	mov	rdx, QWORD PTR 16[rsp]
+	mov	ecx, DWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	add	rdx, rcx
 	movzx	eax, BYTE PTR [rax]
 	mov	BYTE PTR [rdx], al
-.L577:
-	mov	eax, DWORD PTR 64[rsp]
+.L578:
+	mov	eax, DWORD PTR 48[rsp]
 	lea	edx, -1[rax]
-	mov	DWORD PTR 64[rsp], edx
+	mov	DWORD PTR 48[rsp], edx
 	test	eax, eax
-	jne	.L578
-.L576:
+	jne	.L579
+.L577:
 	nop
-	add	rsp, 40
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__cmovw
 	.def	__cmovw;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovw
 __cmovw:
-	sub	rsp, 40
-	.seh_stackalloc	40
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR 48[rsp], rcx
-	mov	QWORD PTR 56[rsp], rdx
-	mov	DWORD PTR 64[rsp], r8d
-	mov	eax, DWORD PTR 64[rsp]
+	mov	QWORD PTR 32[rsp], rcx
+	mov	QWORD PTR 40[rsp], rdx
+	mov	DWORD PTR 48[rsp], r8d
+	mov	eax, DWORD PTR 48[rsp]
 	shr	eax, 2
-	mov	DWORD PTR 20[rsp], eax
-	mov	eax, DWORD PTR 64[rsp]
+	mov	DWORD PTR 4[rsp], eax
+	mov	eax, DWORD PTR 48[rsp]
 	and	eax, -4
-	mov	DWORD PTR 24[rsp], eax
-	mov	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
-	mov	QWORD PTR [rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
-	cmp	rax, QWORD PTR [rsp]
-	jb	.L580
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR [rsp]
+	mov	DWORD PTR 8[rsp], eax
+	mov	rax, QWORD PTR 32[rsp]
+	cmp	rax, QWORD PTR 40[rsp]
+	jb	.L581
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	cmp	rax, QWORD PTR 8[rsp]
-	jnb	.L587
-.L580:
-	mov	DWORD PTR 28[rsp], 0
-	jmp	.L582
-.L583:
-	mov	eax, DWORD PTR 28[rsp]
+	cmp	rax, QWORD PTR 32[rsp]
+	jnb	.L588
+.L581:
+	mov	DWORD PTR 12[rsp], 0
+	jmp	.L583
+.L584:
+	mov	eax, DWORD PTR 12[rsp]
 	lea	rdx, 0[0+rax*4]
-	mov	rax, QWORD PTR 56[rsp]
+	mov	rax, QWORD PTR 40[rsp]
 	add	rax, rdx
-	mov	edx, DWORD PTR 28[rsp]
+	mov	edx, DWORD PTR 12[rsp]
 	lea	rcx, 0[0+rdx*4]
-	mov	rdx, QWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
 	add	rdx, rcx
 	mov	eax, DWORD PTR [rax]
 	mov	DWORD PTR [rdx], eax
-	add	DWORD PTR 28[rsp], 1
-.L582:
-	mov	eax, DWORD PTR 28[rsp]
-	cmp	eax, DWORD PTR 20[rsp]
-	jb	.L583
-	jmp	.L584
-.L585:
-	mov	edx, DWORD PTR 24[rsp]
-	mov	rax, QWORD PTR [rsp]
-	add	rax, rdx
-	mov	ecx, DWORD PTR 24[rsp]
-	mov	rdx, QWORD PTR 8[rsp]
-	add	rdx, rcx
-	movzx	eax, BYTE PTR [rax]
-	mov	BYTE PTR [rdx], al
-	add	DWORD PTR 24[rsp], 1
-.L584:
-	mov	eax, DWORD PTR 64[rsp]
-	cmp	DWORD PTR 24[rsp], eax
-	jb	.L585
-	jmp	.L586
-.L588:
-	mov	edx, DWORD PTR 64[rsp]
-	mov	rax, QWORD PTR [rsp]
-	add	rax, rdx
-	mov	ecx, DWORD PTR 64[rsp]
-	mov	rdx, QWORD PTR 8[rsp]
-	add	rdx, rcx
-	movzx	eax, BYTE PTR [rax]
-	mov	BYTE PTR [rdx], al
-.L587:
-	mov	eax, DWORD PTR 64[rsp]
-	lea	edx, -1[rax]
-	mov	DWORD PTR 64[rsp], edx
-	test	eax, eax
-	jne	.L588
+	add	DWORD PTR 12[rsp], 1
+.L583:
+	mov	eax, DWORD PTR 12[rsp]
+	cmp	eax, DWORD PTR 4[rsp]
+	jb	.L584
+	jmp	.L585
 .L586:
+	mov	edx, DWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 40[rsp]
+	add	rax, rdx
+	mov	ecx, DWORD PTR 8[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	add	rdx, rcx
+	movzx	eax, BYTE PTR [rax]
+	mov	BYTE PTR [rdx], al
+	add	DWORD PTR 8[rsp], 1
+.L585:
+	mov	eax, DWORD PTR 48[rsp]
+	cmp	DWORD PTR 8[rsp], eax
+	jb	.L586
+	jmp	.L587
+.L589:
+	mov	edx, DWORD PTR 48[rsp]
+	mov	rax, QWORD PTR 40[rsp]
+	add	rax, rdx
+	mov	ecx, DWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	add	rdx, rcx
+	movzx	eax, BYTE PTR [rax]
+	mov	BYTE PTR [rdx], al
+.L588:
+	mov	eax, DWORD PTR 48[rsp]
+	lea	edx, -1[rax]
+	mov	DWORD PTR 48[rsp], edx
+	test	eax, eax
+	jne	.L589
+.L587:
 	nop
-	add	rsp, 40
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__modi
@@ -3847,11 +3793,12 @@ __uitod:
 	mov	DWORD PTR 8[rsp], ecx
 	mov	eax, DWORD PTR 8[rsp]
 	test	rax, rax
-	js	.L592
-	pxor	xmm0, xmm0
-	cvtsi2sd	xmm0, rax
-	jmp	.L594
-.L592:
+	js	.L593
+	pxor	xmm1, xmm1
+	cvtsi2sd	xmm1, rax
+	movq	rax, xmm1
+	jmp	.L595
+.L593:
 	mov	rdx, rax
 	shr	rdx
 	and	eax, 1
@@ -3859,7 +3806,9 @@ __uitod:
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rdx
 	addsd	xmm0, xmm0
-.L594:
+	movq	rax, xmm0
+.L595:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	__uitof
@@ -3870,11 +3819,12 @@ __uitof:
 	mov	DWORD PTR 8[rsp], ecx
 	mov	eax, DWORD PTR 8[rsp]
 	test	rax, rax
-	js	.L596
-	pxor	xmm0, xmm0
-	cvtsi2ss	xmm0, rax
-	jmp	.L598
-.L596:
+	js	.L597
+	pxor	xmm1, xmm1
+	cvtsi2ss	xmm1, rax
+	movd	eax, xmm1
+	jmp	.L599
+.L597:
 	mov	rdx, rax
 	shr	rdx
 	and	eax, 1
@@ -3882,7 +3832,9 @@ __uitof:
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rdx
 	addss	xmm0, xmm0
-.L598:
+	movd	eax, xmm0
+.L599:
+	movd	xmm0, eax
 	ret
 	.seh_endproc
 	.globl	__ulltod
@@ -3893,11 +3845,12 @@ __ulltod:
 	mov	QWORD PTR 8[rsp], rcx
 	mov	rax, QWORD PTR 8[rsp]
 	test	rax, rax
-	js	.L600
-	pxor	xmm0, xmm0
-	cvtsi2sd	xmm0, rax
-	jmp	.L602
-.L600:
+	js	.L601
+	pxor	xmm1, xmm1
+	cvtsi2sd	xmm1, rax
+	movq	rax, xmm1
+	jmp	.L603
+.L601:
 	mov	rdx, rax
 	shr	rdx
 	and	eax, 1
@@ -3905,7 +3858,9 @@ __ulltod:
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rdx
 	addsd	xmm0, xmm0
-.L602:
+	movq	rax, xmm0
+.L603:
+	movq	xmm0, rax
 	ret
 	.seh_endproc
 	.globl	__ulltof
@@ -3916,11 +3871,12 @@ __ulltof:
 	mov	QWORD PTR 8[rsp], rcx
 	mov	rax, QWORD PTR 8[rsp]
 	test	rax, rax
-	js	.L604
-	pxor	xmm0, xmm0
-	cvtsi2ss	xmm0, rax
-	jmp	.L606
-.L604:
+	js	.L605
+	pxor	xmm1, xmm1
+	cvtsi2ss	xmm1, rax
+	movd	eax, xmm1
+	jmp	.L607
+.L605:
 	mov	rdx, rax
 	shr	rdx
 	and	eax, 1
@@ -3928,7 +3884,9 @@ __ulltof:
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rdx
 	addss	xmm0, xmm0
-.L606:
+	movd	eax, xmm0
+.L607:
+	movd	xmm0, eax
 	ret
 	.seh_endproc
 	.globl	__umodi
@@ -3954,8 +3912,8 @@ __clzhi2:
 	mov	eax, ecx
 	mov	WORD PTR 32[rsp], ax
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L610
-.L613:
+	jmp	.L611
+.L614:
 	movzx	edx, WORD PTR 32[rsp]
 	mov	eax, 15
 	sub	eax, DWORD PTR 12[rsp]
@@ -3963,12 +3921,12 @@ __clzhi2:
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	jne	.L612
+	jne	.L613
 	add	DWORD PTR 12[rsp], 1
-.L610:
+.L611:
 	cmp	DWORD PTR 12[rsp], 15
-	jle	.L613
-.L612:
+	jle	.L614
+.L613:
 	mov	eax, DWORD PTR 12[rsp]
 	add	rsp, 24
 	ret
@@ -3983,20 +3941,20 @@ __ctzhi2:
 	mov	eax, ecx
 	mov	WORD PTR 32[rsp], ax
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L617
-.L620:
+	jmp	.L618
+.L621:
 	movzx	edx, WORD PTR 32[rsp]
 	mov	eax, DWORD PTR 12[rsp]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	jne	.L619
+	jne	.L620
 	add	DWORD PTR 12[rsp], 1
-.L617:
+.L618:
 	cmp	DWORD PTR 12[rsp], 15
-	jle	.L620
-.L619:
+	jle	.L621
+.L620:
 	mov	eax, DWORD PTR 12[rsp]
 	add	rsp, 24
 	ret
@@ -4009,17 +3967,17 @@ __fixunssfsi:
 	movss	DWORD PTR 8[rsp], xmm0
 	movss	xmm0, DWORD PTR 8[rsp]
 	comiss	xmm0, DWORD PTR .LC17[rip]
-	jb	.L628
+	jb	.L629
 	movss	xmm0, DWORD PTR 8[rsp]
 	movss	xmm1, DWORD PTR .LC17[rip]
 	subss	xmm0, xmm1
 	cvttss2si	eax, xmm0
 	add	eax, 32768
-	jmp	.L626
-.L628:
+	jmp	.L627
+.L629:
 	movss	xmm0, DWORD PTR 8[rsp]
 	cvttss2si	eax, xmm0
-.L626:
+.L627:
 	ret
 	.seh_endproc
 	.globl	__parityhi2
@@ -4033,21 +3991,21 @@ __parityhi2:
 	mov	WORD PTR 32[rsp], ax
 	mov	DWORD PTR 8[rsp], 0
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L630
-.L632:
+	jmp	.L631
+.L633:
 	movzx	edx, WORD PTR 32[rsp]
 	mov	eax, DWORD PTR 12[rsp]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	je	.L631
+	je	.L632
 	add	DWORD PTR 8[rsp], 1
-.L631:
+.L632:
 	add	DWORD PTR 12[rsp], 1
-.L630:
+.L631:
 	cmp	DWORD PTR 12[rsp], 15
-	jle	.L632
+	jle	.L633
 	mov	eax, DWORD PTR 8[rsp]
 	and	eax, 1
 	add	rsp, 24
@@ -4064,21 +4022,21 @@ __popcounthi2:
 	mov	WORD PTR 32[rsp], ax
 	mov	DWORD PTR 8[rsp], 0
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L635
-.L637:
+	jmp	.L636
+.L638:
 	movzx	edx, WORD PTR 32[rsp]
 	mov	eax, DWORD PTR 12[rsp]
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	je	.L636
+	je	.L637
 	add	DWORD PTR 8[rsp], 1
-.L636:
+.L637:
 	add	DWORD PTR 12[rsp], 1
-.L635:
+.L636:
 	cmp	DWORD PTR 12[rsp], 15
-	jle	.L637
+	jle	.L638
 	mov	eax, DWORD PTR 8[rsp]
 	add	rsp, 24
 	ret
@@ -4093,19 +4051,19 @@ __mulsi3_iq2000:
 	mov	DWORD PTR 32[rsp], ecx
 	mov	DWORD PTR 40[rsp], edx
 	mov	DWORD PTR 12[rsp], 0
-	jmp	.L640
-.L642:
+	jmp	.L641
+.L643:
 	mov	eax, DWORD PTR 32[rsp]
 	and	eax, 1
-	je	.L641
+	je	.L642
 	mov	eax, DWORD PTR 40[rsp]
 	add	DWORD PTR 12[rsp], eax
-.L641:
+.L642:
 	shr	DWORD PTR 32[rsp]
 	sal	DWORD PTR 40[rsp]
-.L640:
+.L641:
 	cmp	DWORD PTR 32[rsp], 0
-	jne	.L642
+	jne	.L643
 	mov	eax, DWORD PTR 12[rsp]
 	add	rsp, 24
 	ret
@@ -4121,23 +4079,23 @@ __mulsi3_lm32:
 	mov	DWORD PTR 40[rsp], edx
 	mov	DWORD PTR 12[rsp], 0
 	cmp	DWORD PTR 32[rsp], 0
-	jne	.L647
+	jne	.L648
 	mov	eax, 0
-	jmp	.L646
-.L649:
+	jmp	.L647
+.L650:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L648
+	je	.L649
 	mov	eax, DWORD PTR 32[rsp]
 	add	DWORD PTR 12[rsp], eax
-.L648:
+.L649:
 	sal	DWORD PTR 32[rsp]
 	shr	DWORD PTR 40[rsp]
-.L647:
+.L648:
 	cmp	DWORD PTR 40[rsp], 0
-	jne	.L649
+	jne	.L650
 	mov	eax, DWORD PTR 12[rsp]
-.L646:
+.L647:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -4153,41 +4111,41 @@ __udivmodsi4:
 	mov	DWORD PTR 48[rsp], r8d
 	mov	DWORD PTR 12[rsp], 1
 	mov	DWORD PTR 8[rsp], 0
-	jmp	.L651
-.L653:
+	jmp	.L652
+.L654:
 	sal	DWORD PTR 40[rsp]
 	sal	DWORD PTR 12[rsp]
-.L651:
+.L652:
 	mov	eax, DWORD PTR 40[rsp]
 	cmp	eax, DWORD PTR 32[rsp]
-	jnb	.L654
+	jnb	.L655
 	cmp	DWORD PTR 12[rsp], 0
-	je	.L654
+	je	.L655
 	mov	eax, DWORD PTR 40[rsp]
 	test	eax, eax
-	jns	.L653
-	jmp	.L654
-.L656:
+	jns	.L654
+	jmp	.L655
+.L657:
 	mov	eax, DWORD PTR 32[rsp]
 	cmp	eax, DWORD PTR 40[rsp]
-	jb	.L655
+	jb	.L656
 	mov	eax, DWORD PTR 40[rsp]
 	sub	DWORD PTR 32[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	or	DWORD PTR 8[rsp], eax
-.L655:
+.L656:
 	shr	DWORD PTR 12[rsp]
 	shr	DWORD PTR 40[rsp]
-.L654:
+.L655:
 	cmp	DWORD PTR 12[rsp], 0
-	jne	.L656
+	jne	.L657
 	cmp	DWORD PTR 48[rsp], 0
-	je	.L657
+	je	.L658
 	mov	eax, DWORD PTR 32[rsp]
-	jmp	.L658
-.L657:
-	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L659
 .L658:
+	mov	eax, DWORD PTR 8[rsp]
+.L659:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -4200,18 +4158,18 @@ __mspabi_cmpf:
 	movss	DWORD PTR 16[rsp], xmm1
 	movss	xmm0, DWORD PTR 16[rsp]
 	comiss	xmm0, DWORD PTR 8[rsp]
-	jbe	.L667
+	jbe	.L668
 	mov	eax, -1
-	jmp	.L662
-.L667:
+	jmp	.L663
+.L668:
 	movss	xmm0, DWORD PTR 8[rsp]
 	comiss	xmm0, DWORD PTR 16[rsp]
-	jbe	.L668
+	jbe	.L669
 	mov	eax, 1
-	jmp	.L662
-.L668:
+	jmp	.L663
+.L669:
 	mov	eax, 0
-.L662:
+.L663:
 	ret
 	.seh_endproc
 	.globl	__mspabi_cmpd
@@ -4223,18 +4181,18 @@ __mspabi_cmpd:
 	movsd	QWORD PTR 16[rsp], xmm1
 	movsd	xmm0, QWORD PTR 16[rsp]
 	comisd	xmm0, QWORD PTR 8[rsp]
-	jbe	.L677
+	jbe	.L678
 	mov	eax, -1
-	jmp	.L672
-.L677:
+	jmp	.L673
+.L678:
 	movsd	xmm0, QWORD PTR 8[rsp]
 	comisd	xmm0, QWORD PTR 16[rsp]
-	jbe	.L678
+	jbe	.L679
 	mov	eax, 1
-	jmp	.L672
-.L678:
+	jmp	.L673
+.L679:
 	mov	eax, 0
-.L672:
+.L673:
 	ret
 	.seh_endproc
 	.globl	__mspabi_mpysll
@@ -4275,39 +4233,39 @@ __mulhi3:
 	mov	DWORD PTR 8[rsp], 0
 	mov	DWORD PTR 4[rsp], 0
 	cmp	DWORD PTR 40[rsp], 0
-	jns	.L684
+	jns	.L685
 	neg	DWORD PTR 40[rsp]
 	mov	DWORD PTR 8[rsp], 1
-.L684:
+.L685:
 	mov	BYTE PTR 15[rsp], 0
-	jmp	.L685
-.L688:
+	jmp	.L686
+.L689:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L686
+	je	.L687
 	mov	eax, DWORD PTR 32[rsp]
 	add	DWORD PTR 4[rsp], eax
-.L686:
+.L687:
 	sal	DWORD PTR 32[rsp]
 	sar	DWORD PTR 40[rsp]
 	movzx	eax, BYTE PTR 15[rsp]
 	add	eax, 1
 	mov	BYTE PTR 15[rsp], al
-.L685:
+.L686:
 	cmp	DWORD PTR 40[rsp], 0
-	je	.L687
+	je	.L688
 	movzx	eax, BYTE PTR 15[rsp]
 	cmp	al, 31
-	jbe	.L688
-.L687:
+	jbe	.L689
+.L688:
 	cmp	DWORD PTR 8[rsp], 0
-	je	.L689
+	je	.L690
 	mov	eax, DWORD PTR 4[rsp]
 	neg	eax
-	jmp	.L691
-.L689:
+	jmp	.L692
+.L690:
 	mov	eax, DWORD PTR 4[rsp]
-.L691:
+.L692:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -4322,21 +4280,21 @@ __divsi3:
 	mov	DWORD PTR 72[rsp], edx
 	mov	DWORD PTR 44[rsp], 0
 	cmp	DWORD PTR 64[rsp], 0
-	jns	.L693
+	jns	.L694
 	neg	DWORD PTR 64[rsp]
 	cmp	DWORD PTR 44[rsp], 0
 	sete	al
 	movzx	eax, al
 	mov	DWORD PTR 44[rsp], eax
-.L693:
+.L694:
 	cmp	DWORD PTR 72[rsp], 0
-	jns	.L694
+	jns	.L695
 	neg	DWORD PTR 72[rsp]
 	cmp	DWORD PTR 44[rsp], 0
 	sete	al
 	movzx	eax, al
 	mov	DWORD PTR 44[rsp], eax
-.L694:
+.L695:
 	mov	edx, DWORD PTR 72[rsp]
 	mov	eax, DWORD PTR 64[rsp]
 	mov	r8d, 0
@@ -4344,9 +4302,9 @@ __divsi3:
 	call	__udivmodsi4
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 44[rsp], 0
-	je	.L695
+	je	.L696
 	neg	DWORD PTR 40[rsp]
-.L695:
+.L696:
 	mov	eax, DWORD PTR 40[rsp]
 	add	rsp, 56
 	ret
@@ -4362,14 +4320,14 @@ __modsi3:
 	mov	DWORD PTR 72[rsp], edx
 	mov	DWORD PTR 44[rsp], 0
 	cmp	DWORD PTR 64[rsp], 0
-	jns	.L698
+	jns	.L699
 	neg	DWORD PTR 64[rsp]
 	mov	DWORD PTR 44[rsp], 1
-.L698:
-	cmp	DWORD PTR 72[rsp], 0
-	jns	.L699
-	neg	DWORD PTR 72[rsp]
 .L699:
+	cmp	DWORD PTR 72[rsp], 0
+	jns	.L700
+	neg	DWORD PTR 72[rsp]
+.L700:
 	mov	edx, DWORD PTR 72[rsp]
 	mov	eax, DWORD PTR 64[rsp]
 	mov	r8d, 1
@@ -4377,9 +4335,9 @@ __modsi3:
 	call	__udivmodsi4
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 44[rsp], 0
-	je	.L700
+	je	.L701
 	neg	DWORD PTR 40[rsp]
-.L700:
+.L701:
 	mov	eax, DWORD PTR 40[rsp]
 	add	rsp, 56
 	ret
@@ -4398,41 +4356,41 @@ __udivmodhi4:
 	mov	WORD PTR 40[rsp], ax
 	mov	WORD PTR 14[rsp], 1
 	mov	WORD PTR 12[rsp], 0
-	jmp	.L703
-.L705:
+	jmp	.L704
+.L706:
 	sal	WORD PTR 40[rsp]
 	sal	WORD PTR 14[rsp]
-.L703:
+.L704:
 	movzx	eax, WORD PTR 40[rsp]
 	cmp	ax, WORD PTR 32[rsp]
-	jnb	.L706
+	jnb	.L707
 	cmp	WORD PTR 14[rsp], 0
-	je	.L706
+	je	.L707
 	movzx	eax, WORD PTR 40[rsp]
 	test	ax, ax
-	jns	.L705
-	jmp	.L706
-.L708:
+	jns	.L706
+	jmp	.L707
+.L709:
 	movzx	eax, WORD PTR 32[rsp]
 	cmp	ax, WORD PTR 40[rsp]
-	jb	.L707
+	jb	.L708
 	movzx	eax, WORD PTR 40[rsp]
 	sub	WORD PTR 32[rsp], ax
 	movzx	eax, WORD PTR 14[rsp]
 	or	WORD PTR 12[rsp], ax
-.L707:
+.L708:
 	shr	WORD PTR 14[rsp]
 	shr	WORD PTR 40[rsp]
-.L706:
+.L707:
 	cmp	WORD PTR 14[rsp], 0
-	jne	.L708
+	jne	.L709
 	cmp	DWORD PTR 48[rsp], 0
-	je	.L709
+	je	.L710
 	movzx	eax, WORD PTR 32[rsp]
-	jmp	.L710
-.L709:
-	movzx	eax, WORD PTR 12[rsp]
+	jmp	.L711
 .L710:
+	movzx	eax, WORD PTR 12[rsp]
+.L711:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -4448,41 +4406,41 @@ __udivmodsi4_libgcc:
 	mov	DWORD PTR 48[rsp], r8d
 	mov	DWORD PTR 12[rsp], 1
 	mov	DWORD PTR 8[rsp], 0
-	jmp	.L712
-.L714:
+	jmp	.L713
+.L715:
 	sal	DWORD PTR 40[rsp]
 	sal	DWORD PTR 12[rsp]
-.L712:
+.L713:
 	mov	eax, DWORD PTR 40[rsp]
 	cmp	eax, DWORD PTR 32[rsp]
-	jnb	.L715
+	jnb	.L716
 	cmp	DWORD PTR 12[rsp], 0
-	je	.L715
+	je	.L716
 	mov	eax, DWORD PTR 40[rsp]
 	test	eax, eax
-	jns	.L714
-	jmp	.L715
-.L717:
+	jns	.L715
+	jmp	.L716
+.L718:
 	mov	eax, DWORD PTR 32[rsp]
 	cmp	eax, DWORD PTR 40[rsp]
-	jb	.L716
+	jb	.L717
 	mov	eax, DWORD PTR 40[rsp]
 	sub	DWORD PTR 32[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	or	DWORD PTR 8[rsp], eax
-.L716:
+.L717:
 	shr	DWORD PTR 12[rsp]
 	shr	DWORD PTR 40[rsp]
-.L715:
+.L716:
 	cmp	DWORD PTR 12[rsp], 0
-	jne	.L717
+	jne	.L718
 	cmp	DWORD PTR 48[rsp], 0
-	je	.L718
+	je	.L719
 	mov	eax, DWORD PTR 32[rsp]
-	jmp	.L719
-.L718:
-	mov	eax, DWORD PTR 8[rsp]
+	jmp	.L720
 .L719:
+	mov	eax, DWORD PTR 8[rsp]
+.L720:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -4500,7 +4458,7 @@ __ashldi3:
 	mov	QWORD PTR 16[rsp], rax
 	mov	eax, DWORD PTR 56[rsp]
 	and	eax, DWORD PTR 28[rsp]
-	je	.L721
+	je	.L722
 	mov	DWORD PTR 8[rsp], 0
 	mov	edx, DWORD PTR 16[rsp]
 	mov	eax, DWORD PTR 56[rsp]
@@ -4509,13 +4467,13 @@ __ashldi3:
 	sal	edx, cl
 	mov	eax, edx
 	mov	DWORD PTR 12[rsp], eax
-	jmp	.L722
-.L721:
+	jmp	.L723
+.L722:
 	cmp	DWORD PTR 56[rsp], 0
-	jne	.L723
+	jne	.L724
 	mov	rax, QWORD PTR 48[rsp]
-	jmp	.L725
-.L723:
+	jmp	.L726
+.L724:
 	mov	edx, DWORD PTR 16[rsp]
 	mov	eax, DWORD PTR 56[rsp]
 	mov	ecx, eax
@@ -4536,9 +4494,9 @@ __ashldi3:
 	mov	eax, edx
 	or	eax, r8d
 	mov	DWORD PTR 12[rsp], eax
-.L722:
+.L723:
 	mov	rax, QWORD PTR 8[rsp]
-.L725:
+.L726:
 	add	rsp, 40
 	ret
 	.seh_endproc
@@ -4548,67 +4506,62 @@ __ashldi3:
 __ashlti3:
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 80
-	.seh_stackalloc	80
+	sub	rsp, 64
+	.seh_stackalloc	64
 	.seh_endprologue
 	mov	rbx, rcx
 	mov	rcx, QWORD PTR [rbx]
 	mov	rbx, QWORD PTR 8[rbx]
-	mov	QWORD PTR 16[rsp], rcx
-	mov	QWORD PTR 24[rsp], rbx
-	mov	DWORD PTR 104[rsp], edx
-	mov	DWORD PTR 76[rsp], 64
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	mov	QWORD PTR 48[rsp], rax
-	mov	QWORD PTR 56[rsp], rdx
-	mov	eax, DWORD PTR 104[rsp]
-	and	eax, DWORD PTR 76[rsp]
-	je	.L727
-	mov	QWORD PTR 32[rsp], 0
-	mov	rdx, QWORD PTR 48[rsp]
-	mov	eax, DWORD PTR 104[rsp]
-	sub	eax, DWORD PTR 76[rsp]
-	mov	ecx, eax
-	sal	rdx, cl
-	mov	rax, rdx
-	mov	QWORD PTR 40[rsp], rax
-	jmp	.L728
-.L727:
-	cmp	DWORD PTR 104[rsp], 0
-	jne	.L729
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	jmp	.L731
-.L729:
-	mov	rdx, QWORD PTR 48[rsp]
-	mov	eax, DWORD PTR 104[rsp]
-	mov	ecx, eax
-	sal	rdx, cl
-	mov	rax, rdx
+	mov	QWORD PTR [rsp], rcx
+	mov	QWORD PTR 8[rsp], rbx
+	mov	DWORD PTR 88[rsp], edx
+	mov	DWORD PTR 60[rsp], 64
+	mov	rax, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR 8[rsp]
 	mov	QWORD PTR 32[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
+	mov	QWORD PTR 40[rsp], rdx
+	mov	eax, DWORD PTR 88[rsp]
+	and	eax, DWORD PTR 60[rsp]
+	je	.L728
+	mov	QWORD PTR 16[rsp], 0
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 88[rsp]
+	sub	eax, DWORD PTR 60[rsp]
+	mov	ecx, eax
+	sal	rdx, cl
+	mov	rax, rdx
+	mov	QWORD PTR 24[rsp], rax
+	jmp	.L729
+.L728:
+	cmp	DWORD PTR 88[rsp], 0
+	jne	.L730
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	jmp	.L732
+.L730:
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 88[rsp]
+	mov	ecx, eax
+	sal	rdx, cl
+	mov	rax, rdx
+	mov	QWORD PTR 16[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	mov	rdx, rax
-	mov	eax, DWORD PTR 104[rsp]
+	mov	eax, DWORD PTR 88[rsp]
 	mov	ecx, eax
 	sal	rdx, cl
 	mov	r8, rdx
-	mov	rdx, QWORD PTR 48[rsp]
-	mov	eax, DWORD PTR 76[rsp]
-	sub	eax, DWORD PTR 104[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 60[rsp]
+	sub	eax, DWORD PTR 88[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	or	rax, r8
-	mov	QWORD PTR 40[rsp], rax
-.L728:
-	mov	rax, QWORD PTR 32[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
-.L731:
-	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], rdx
-	movdqa	xmm0, XMMWORD PTR [rsp]
-	add	rsp, 80
+	mov	QWORD PTR 24[rsp], rax
+.L729:
+	movdqa	xmm0, XMMWORD PTR 16[rsp]
+.L732:
+	add	rsp, 64
 	pop	rbx
 	ret
 	.seh_endproc
@@ -4626,7 +4579,7 @@ __ashrdi3:
 	mov	QWORD PTR 16[rsp], rax
 	mov	eax, DWORD PTR 56[rsp]
 	and	eax, DWORD PTR 28[rsp]
-	je	.L733
+	je	.L734
 	mov	edx, DWORD PTR 20[rsp]
 	mov	eax, DWORD PTR 28[rsp]
 	sub	eax, 1
@@ -4641,13 +4594,13 @@ __ashrdi3:
 	sar	edx, cl
 	mov	eax, edx
 	mov	DWORD PTR 8[rsp], eax
-	jmp	.L734
-.L733:
+	jmp	.L735
+.L734:
 	cmp	DWORD PTR 56[rsp], 0
-	jne	.L735
+	jne	.L736
 	mov	rax, QWORD PTR 48[rsp]
-	jmp	.L737
-.L735:
+	jmp	.L738
+.L736:
 	mov	edx, DWORD PTR 20[rsp]
 	mov	eax, DWORD PTR 56[rsp]
 	mov	ecx, eax
@@ -4668,9 +4621,9 @@ __ashrdi3:
 	mov	eax, edx
 	or	eax, r8d
 	mov	DWORD PTR 8[rsp], eax
-.L734:
+.L735:
 	mov	rax, QWORD PTR 8[rsp]
-.L737:
+.L738:
 	add	rsp, 40
 	ret
 	.seh_endproc
@@ -4680,73 +4633,68 @@ __ashrdi3:
 __ashrti3:
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 80
-	.seh_stackalloc	80
+	sub	rsp, 64
+	.seh_stackalloc	64
 	.seh_endprologue
 	mov	rbx, rcx
 	mov	rcx, QWORD PTR [rbx]
 	mov	rbx, QWORD PTR 8[rbx]
-	mov	QWORD PTR 16[rsp], rcx
-	mov	QWORD PTR 24[rsp], rbx
-	mov	DWORD PTR 104[rsp], edx
-	mov	DWORD PTR 76[rsp], 64
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	mov	QWORD PTR 48[rsp], rax
-	mov	QWORD PTR 56[rsp], rdx
-	mov	eax, DWORD PTR 104[rsp]
-	and	eax, DWORD PTR 76[rsp]
-	je	.L739
-	mov	rdx, QWORD PTR 56[rsp]
-	mov	eax, DWORD PTR 76[rsp]
+	mov	QWORD PTR [rsp], rcx
+	mov	QWORD PTR 8[rsp], rbx
+	mov	DWORD PTR 88[rsp], edx
+	mov	DWORD PTR 60[rsp], 64
+	mov	rax, QWORD PTR [rsp]
+	mov	rdx, QWORD PTR 8[rsp]
+	mov	QWORD PTR 32[rsp], rax
+	mov	QWORD PTR 40[rsp], rdx
+	mov	eax, DWORD PTR 88[rsp]
+	and	eax, DWORD PTR 60[rsp]
+	je	.L740
+	mov	rdx, QWORD PTR 40[rsp]
+	mov	eax, DWORD PTR 60[rsp]
 	sub	eax, 1
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR 40[rsp], rax
-	mov	rdx, QWORD PTR 56[rsp]
-	mov	eax, DWORD PTR 104[rsp]
-	sub	eax, DWORD PTR 76[rsp]
+	mov	QWORD PTR 24[rsp], rax
+	mov	rdx, QWORD PTR 40[rsp]
+	mov	eax, DWORD PTR 88[rsp]
+	sub	eax, DWORD PTR 60[rsp]
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR 32[rsp], rax
-	jmp	.L740
-.L739:
-	cmp	DWORD PTR 104[rsp], 0
-	jne	.L741
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	jmp	.L743
-.L741:
-	mov	rdx, QWORD PTR 56[rsp]
-	mov	eax, DWORD PTR 104[rsp]
+	mov	QWORD PTR 16[rsp], rax
+	jmp	.L741
+.L740:
+	cmp	DWORD PTR 88[rsp], 0
+	jne	.L742
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	jmp	.L744
+.L742:
+	mov	rdx, QWORD PTR 40[rsp]
+	mov	eax, DWORD PTR 88[rsp]
 	mov	ecx, eax
 	sar	rdx, cl
 	mov	rax, rdx
-	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 56[rsp]
+	mov	QWORD PTR 24[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	mov	rdx, rax
-	mov	eax, DWORD PTR 76[rsp]
-	sub	eax, DWORD PTR 104[rsp]
+	mov	eax, DWORD PTR 60[rsp]
+	sub	eax, DWORD PTR 88[rsp]
 	mov	ecx, eax
 	sal	rdx, cl
 	mov	r8, rdx
-	mov	rdx, QWORD PTR 48[rsp]
-	mov	eax, DWORD PTR 104[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 88[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	or	rax, r8
-	mov	QWORD PTR 32[rsp], rax
-.L740:
-	mov	rax, QWORD PTR 32[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
-.L743:
-	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], rdx
-	movdqa	xmm0, XMMWORD PTR [rsp]
-	add	rsp, 80
+	mov	QWORD PTR 16[rsp], rax
+.L741:
+	movdqa	xmm0, XMMWORD PTR 16[rsp]
+.L744:
+	add	rsp, 64
 	pop	rbx
 	ret
 	.seh_endproc
@@ -4820,82 +4768,100 @@ __bswapsi2:
 	.def	__clzsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clzsi2
 __clzsi2:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 72
+	.seh_stackalloc	72
 	.seh_endprologue
-	mov	DWORD PTR 32[rsp], ecx
-	mov	eax, DWORD PTR 32[rsp]
-	mov	DWORD PTR 12[rsp], eax
-	cmp	DWORD PTR 12[rsp], 65535
-	ja	.L749
+	mov	DWORD PTR 80[rsp], ecx
+	mov	eax, DWORD PTR 80[rsp]
+	mov	DWORD PTR 60[rsp], eax
+	cmp	DWORD PTR 60[rsp], 65535
+	ja	.L750
 	mov	eax, 16
-	jmp	.L750
-.L749:
-	mov	eax, 0
+	jmp	.L751
 .L750:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, 16
-	sub	eax, DWORD PTR 8[rsp]
-	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	mov	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
-	and	eax, 65280
-	jne	.L751
-	mov	eax, 8
-	jmp	.L752
+	mov	eax, 0
 .L751:
-	mov	eax, 0
-.L752:
-	mov	DWORD PTR 8[rsp], eax
+	mov	DWORD PTR 56[rsp], eax
+	mov	eax, 16
+	sub	eax, DWORD PTR 56[rsp]
+	mov	edx, DWORD PTR 60[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 52[rsp], eax
+	mov	eax, DWORD PTR 56[rsp]
+	mov	DWORD PTR 48[rsp], eax
+	mov	eax, DWORD PTR 52[rsp]
+	and	eax, 65280
+	jne	.L752
 	mov	eax, 8
-	sub	eax, DWORD PTR 8[rsp]
-	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
-	and	eax, 240
-	jne	.L753
-	mov	eax, 4
-	jmp	.L754
+	jmp	.L753
+.L752:
+	mov	eax, 0
 .L753:
-	mov	eax, 0
-.L754:
-	mov	DWORD PTR 8[rsp], eax
+	mov	DWORD PTR 44[rsp], eax
+	mov	eax, 8
+	sub	eax, DWORD PTR 44[rsp]
+	mov	edx, DWORD PTR 52[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 40[rsp], eax
+	mov	edx, DWORD PTR 44[rsp]
+	mov	eax, DWORD PTR 48[rsp]
+	add	eax, edx
+	mov	DWORD PTR 36[rsp], eax
+	mov	eax, DWORD PTR 40[rsp]
+	and	eax, 240
+	jne	.L754
 	mov	eax, 4
-	sub	eax, DWORD PTR 8[rsp]
-	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
-	and	eax, 12
-	jne	.L755
-	mov	eax, 2
-	jmp	.L756
-.L755:
+	jmp	.L755
+.L754:
 	mov	eax, 0
-.L756:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, 2
-	sub	eax, DWORD PTR 8[rsp]
+.L755:
+	mov	DWORD PTR 32[rsp], eax
+	mov	eax, 4
+	sub	eax, DWORD PTR 32[rsp]
+	mov	edx, DWORD PTR 40[rsp]
 	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 28[rsp], eax
+	mov	edx, DWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 36[rsp]
+	add	eax, edx
+	mov	DWORD PTR 24[rsp], eax
+	mov	eax, DWORD PTR 28[rsp]
+	and	eax, 12
+	jne	.L756
+	mov	eax, 2
+	jmp	.L757
+.L756:
+	mov	eax, 0
+.L757:
+	mov	DWORD PTR 20[rsp], eax
+	mov	eax, 2
+	sub	eax, DWORD PTR 20[rsp]
+	mov	edx, DWORD PTR 28[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 16[rsp], eax
+	mov	edx, DWORD PTR 20[rsp]
+	mov	eax, DWORD PTR 24[rsp]
+	add	eax, edx
+	mov	DWORD PTR 12[rsp], eax
+	mov	eax, DWORD PTR 16[rsp]
 	and	eax, 2
 	sete	al
 	movzx	eax, al
 	mov	edx, eax
 	mov	eax, 2
-	sub	eax, DWORD PTR 12[rsp]
+	sub	eax, DWORD PTR 16[rsp]
 	imul	edx, eax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	eax, DWORD PTR 12[rsp]
 	add	eax, edx
-	add	rsp, 24
+	add	rsp, 72
 	ret
 	.seh_endproc
 	.globl	__clzti2
@@ -4958,33 +4924,33 @@ __cmpdi2:
 	mov	edx, DWORD PTR 12[rsp]
 	mov	eax, DWORD PTR 4[rsp]
 	cmp	edx, eax
-	jge	.L761
+	jge	.L762
 	mov	eax, 0
-	jmp	.L766
-.L761:
+	jmp	.L767
+.L762:
 	mov	edx, DWORD PTR 12[rsp]
 	mov	eax, DWORD PTR 4[rsp]
 	cmp	edx, eax
-	jle	.L763
+	jle	.L764
 	mov	eax, 2
-	jmp	.L766
-.L763:
+	jmp	.L767
+.L764:
 	mov	edx, DWORD PTR 8[rsp]
 	mov	eax, DWORD PTR [rsp]
 	cmp	edx, eax
-	jnb	.L764
+	jnb	.L765
 	mov	eax, 0
-	jmp	.L766
-.L764:
+	jmp	.L767
+.L765:
 	mov	eax, DWORD PTR 8[rsp]
 	mov	edx, DWORD PTR [rsp]
 	cmp	edx, eax
-	jnb	.L765
+	jnb	.L766
 	mov	eax, 2
-	jmp	.L766
-.L765:
-	mov	eax, 1
+	jmp	.L767
 .L766:
+	mov	eax, 1
+.L767:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -5035,33 +5001,33 @@ __cmpti2:
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	rax, QWORD PTR 40[rsp]
 	cmp	rdx, rax
-	jge	.L770
+	jge	.L771
 	mov	eax, 0
-	jmp	.L775
-.L770:
+	jmp	.L776
+.L771:
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	rax, QWORD PTR 40[rsp]
 	cmp	rdx, rax
-	jle	.L772
+	jle	.L773
 	mov	eax, 2
-	jmp	.L775
-.L772:
+	jmp	.L776
+.L773:
 	mov	rdx, QWORD PTR 48[rsp]
 	mov	rax, QWORD PTR 32[rsp]
 	cmp	rdx, rax
-	jnb	.L773
+	jnb	.L774
 	mov	eax, 0
-	jmp	.L775
-.L773:
+	jmp	.L776
+.L774:
 	mov	rax, QWORD PTR 48[rsp]
 	mov	rdx, QWORD PTR 32[rsp]
 	cmp	rdx, rax
-	jnb	.L774
+	jnb	.L775
 	mov	eax, 2
-	jmp	.L775
-.L774:
-	mov	eax, 1
+	jmp	.L776
 .L775:
+	mov	eax, 1
+.L776:
 	add	rsp, 64
 	pop	rbx
 	ret
@@ -5070,71 +5036,91 @@ __cmpti2:
 	.def	__ctzsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ctzsi2
 __ctzsi2:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 72
+	.seh_stackalloc	72
 	.seh_endprologue
-	mov	DWORD PTR 32[rsp], ecx
-	mov	eax, DWORD PTR 32[rsp]
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 80[rsp], ecx
+	mov	eax, DWORD PTR 80[rsp]
+	mov	DWORD PTR 60[rsp], eax
+	mov	eax, DWORD PTR 60[rsp]
 	movzx	eax, ax
 	test	eax, eax
-	jne	.L777
+	jne	.L778
 	mov	eax, 16
-	jmp	.L778
-.L777:
-	mov	eax, 0
+	jmp	.L779
 .L778:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
+	mov	eax, 0
+.L779:
+	mov	DWORD PTR 56[rsp], eax
+	mov	eax, DWORD PTR 56[rsp]
+	mov	edx, DWORD PTR 60[rsp]
 	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	mov	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 52[rsp], eax
+	mov	eax, DWORD PTR 56[rsp]
+	mov	DWORD PTR 48[rsp], eax
+	mov	eax, DWORD PTR 52[rsp]
 	movzx	eax, al
 	test	eax, eax
-	jne	.L779
+	jne	.L780
 	mov	eax, 8
-	jmp	.L780
-.L779:
-	mov	eax, 0
+	jmp	.L781
 .L780:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
-	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
-	and	eax, 15
-	jne	.L781
-	mov	eax, 4
-	jmp	.L782
+	mov	eax, 0
 .L781:
-	mov	eax, 0
+	mov	DWORD PTR 44[rsp], eax
+	mov	eax, DWORD PTR 44[rsp]
+	mov	edx, DWORD PTR 52[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 40[rsp], eax
+	mov	edx, DWORD PTR 44[rsp]
+	mov	eax, DWORD PTR 48[rsp]
+	add	eax, edx
+	mov	DWORD PTR 36[rsp], eax
+	mov	eax, DWORD PTR 40[rsp]
+	and	eax, 15
+	jne	.L782
+	mov	eax, 4
+	jmp	.L783
 .L782:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
-	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
-	and	eax, 3
-	jne	.L783
-	mov	eax, 2
-	jmp	.L784
-.L783:
 	mov	eax, 0
-.L784:
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
+.L783:
+	mov	DWORD PTR 32[rsp], eax
+	mov	eax, DWORD PTR 32[rsp]
+	mov	edx, DWORD PTR 40[rsp]
 	mov	ecx, eax
-	shr	DWORD PTR 12[rsp], cl
-	and	DWORD PTR 12[rsp], 3
-	mov	eax, DWORD PTR 8[rsp]
-	add	DWORD PTR 4[rsp], eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 28[rsp], eax
+	mov	edx, DWORD PTR 32[rsp]
+	mov	eax, DWORD PTR 36[rsp]
+	add	eax, edx
+	mov	DWORD PTR 24[rsp], eax
+	mov	eax, DWORD PTR 28[rsp]
+	and	eax, 3
+	jne	.L784
+	mov	eax, 2
+	jmp	.L785
+.L784:
+	mov	eax, 0
+.L785:
+	mov	DWORD PTR 20[rsp], eax
+	mov	eax, DWORD PTR 20[rsp]
+	mov	edx, DWORD PTR 28[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 16[rsp], eax
+	mov	eax, DWORD PTR 16[rsp]
+	and	eax, 3
+	mov	DWORD PTR 12[rsp], eax
+	mov	edx, DWORD PTR 20[rsp]
+	mov	eax, DWORD PTR 24[rsp]
+	add	eax, edx
+	mov	DWORD PTR 8[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	not	eax
 	and	eax, 1
@@ -5146,9 +5132,9 @@ __ctzsi2:
 	mov	eax, ecx
 	neg	eax
 	and	edx, eax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	eax, DWORD PTR 8[rsp]
 	add	eax, edx
-	add	rsp, 24
+	add	rsp, 72
 	ret
 	.seh_endproc
 	.globl	__ctzti2
@@ -5213,22 +5199,22 @@ __ffsti2:
 	mov	QWORD PTR 24[rsp], rdx
 	mov	rax, QWORD PTR 16[rsp]
 	test	rax, rax
-	jne	.L789
+	jne	.L790
 	mov	rax, QWORD PTR 24[rsp]
 	test	rax, rax
-	jne	.L790
+	jne	.L791
 	mov	eax, 0
-	jmp	.L792
-.L790:
+	jmp	.L793
+.L791:
 	mov	rax, QWORD PTR 24[rsp]
 	rep bsf	rax, rax
 	add	eax, 65
-	jmp	.L792
-.L789:
+	jmp	.L793
+.L790:
 	mov	rax, QWORD PTR 16[rsp]
 	rep bsf	rax, rax
 	add	eax, 1
-.L792:
+.L793:
 	add	rsp, 32
 	pop	rbx
 	ret
@@ -5247,7 +5233,7 @@ __lshrdi3:
 	mov	QWORD PTR 16[rsp], rax
 	mov	eax, DWORD PTR 56[rsp]
 	and	eax, DWORD PTR 28[rsp]
-	je	.L794
+	je	.L795
 	mov	DWORD PTR 12[rsp], 0
 	mov	edx, DWORD PTR 20[rsp]
 	mov	eax, DWORD PTR 56[rsp]
@@ -5256,13 +5242,13 @@ __lshrdi3:
 	shr	edx, cl
 	mov	eax, edx
 	mov	DWORD PTR 8[rsp], eax
-	jmp	.L795
-.L794:
+	jmp	.L796
+.L795:
 	cmp	DWORD PTR 56[rsp], 0
-	jne	.L796
+	jne	.L797
 	mov	rax, QWORD PTR 48[rsp]
-	jmp	.L798
-.L796:
+	jmp	.L799
+.L797:
 	mov	edx, DWORD PTR 20[rsp]
 	mov	eax, DWORD PTR 56[rsp]
 	mov	ecx, eax
@@ -5282,9 +5268,9 @@ __lshrdi3:
 	mov	eax, edx
 	or	eax, r8d
 	mov	DWORD PTR 8[rsp], eax
-.L795:
+.L796:
 	mov	rax, QWORD PTR 8[rsp]
-.L798:
+.L799:
 	add	rsp, 40
 	ret
 	.seh_endproc
@@ -5310,7 +5296,7 @@ __lshrti3:
 	mov	QWORD PTR 56[rsp], rdx
 	mov	eax, DWORD PTR 104[rsp]
 	and	eax, DWORD PTR 76[rsp]
-	je	.L800
+	je	.L801
 	mov	QWORD PTR 40[rsp], 0
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	eax, DWORD PTR 104[rsp]
@@ -5319,14 +5305,13 @@ __lshrti3:
 	shr	rdx, cl
 	mov	rax, rdx
 	mov	QWORD PTR 32[rsp], rax
-	jmp	.L801
-.L800:
+	jmp	.L802
+.L801:
 	cmp	DWORD PTR 104[rsp], 0
-	jne	.L802
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	jmp	.L804
-.L802:
+	jne	.L803
+	movdqa	xmm0, XMMWORD PTR 16[rsp]
+	jmp	.L805
+.L803:
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	eax, DWORD PTR 104[rsp]
 	mov	ecx, eax
@@ -5346,13 +5331,13 @@ __lshrti3:
 	mov	rax, rdx
 	or	rax, r8
 	mov	QWORD PTR 32[rsp], rax
-.L801:
+.L802:
 	mov	rax, QWORD PTR 32[rsp]
 	mov	rdx, QWORD PTR 40[rsp]
-.L804:
 	mov	QWORD PTR [rsp], rax
 	mov	QWORD PTR 8[rsp], rdx
 	movdqa	xmm0, XMMWORD PTR [rsp]
+.L805:
 	add	rsp, 80
 	pop	rbx
 	ret
@@ -5379,26 +5364,28 @@ __muldsi3:
 	mov	eax, DWORD PTR 56[rsp]
 	and	eax, DWORD PTR 24[rsp]
 	imul	eax, edx
-	mov	DWORD PTR 8[rsp], eax
-	mov	edx, DWORD PTR 8[rsp]
+	mov	DWORD PTR [rsp], eax
+	mov	edx, DWORD PTR [rsp]
 	mov	eax, DWORD PTR 28[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	mov	DWORD PTR 20[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
+	mov	eax, DWORD PTR [rsp]
 	and	eax, DWORD PTR 24[rsp]
-	mov	DWORD PTR 8[rsp], eax
+	mov	DWORD PTR [rsp], eax
 	mov	eax, DWORD PTR 28[rsp]
 	mov	edx, DWORD PTR 48[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, DWORD PTR 56[rsp]
 	and	eax, DWORD PTR 24[rsp]
-	imul	eax, edx
-	add	DWORD PTR 20[rsp], eax
-	mov	edx, DWORD PTR 8[rsp]
+	imul	edx, eax
 	mov	eax, DWORD PTR 20[rsp]
+	add	eax, edx
+	mov	DWORD PTR 16[rsp], eax
+	mov	edx, DWORD PTR [rsp]
+	mov	eax, DWORD PTR 16[rsp]
 	and	eax, DWORD PTR 24[rsp]
 	mov	r8d, eax
 	mov	eax, DWORD PTR 28[rsp]
@@ -5406,32 +5393,34 @@ __muldsi3:
 	sal	r8d, cl
 	mov	eax, r8d
 	add	eax, edx
-	mov	DWORD PTR 8[rsp], eax
+	mov	DWORD PTR [rsp], eax
 	mov	eax, DWORD PTR 28[rsp]
-	mov	edx, DWORD PTR 20[rsp]
+	mov	edx, DWORD PTR 16[rsp]
+	mov	ecx, eax
+	shr	edx, cl
+	mov	eax, edx
+	mov	DWORD PTR 4[rsp], eax
+	mov	edx, DWORD PTR [rsp]
+	mov	eax, DWORD PTR 28[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	mov	DWORD PTR 12[rsp], eax
-	mov	edx, DWORD PTR 8[rsp]
-	mov	eax, DWORD PTR 28[rsp]
-	mov	ecx, eax
-	shr	edx, cl
-	mov	eax, edx
-	mov	DWORD PTR 20[rsp], eax
-	mov	eax, DWORD PTR 8[rsp]
+	mov	eax, DWORD PTR [rsp]
 	and	eax, DWORD PTR 24[rsp]
-	mov	DWORD PTR 8[rsp], eax
+	mov	DWORD PTR [rsp], eax
 	mov	eax, DWORD PTR 28[rsp]
 	mov	edx, DWORD PTR 56[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, DWORD PTR 48[rsp]
 	and	eax, DWORD PTR 24[rsp]
-	imul	eax, edx
-	add	DWORD PTR 20[rsp], eax
-	mov	edx, DWORD PTR 8[rsp]
-	mov	eax, DWORD PTR 20[rsp]
+	imul	edx, eax
+	mov	eax, DWORD PTR 12[rsp]
+	add	eax, edx
+	mov	DWORD PTR 8[rsp], eax
+	mov	edx, DWORD PTR [rsp]
+	mov	eax, DWORD PTR 8[rsp]
 	and	eax, DWORD PTR 24[rsp]
 	mov	r8d, eax
 	mov	eax, DWORD PTR 28[rsp]
@@ -5439,17 +5428,17 @@ __muldsi3:
 	sal	r8d, cl
 	mov	eax, r8d
 	add	eax, edx
-	mov	DWORD PTR 8[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR [rsp], eax
+	mov	eax, DWORD PTR 4[rsp]
 	mov	r8d, eax
 	mov	eax, DWORD PTR 28[rsp]
-	mov	edx, DWORD PTR 20[rsp]
+	mov	edx, DWORD PTR 8[rsp]
 	mov	ecx, eax
 	shr	edx, cl
 	mov	eax, edx
 	add	eax, r8d
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 4[rsp], eax
+	mov	eax, DWORD PTR 4[rsp]
 	mov	r9d, eax
 	mov	eax, DWORD PTR 28[rsp]
 	mov	edx, DWORD PTR 48[rsp]
@@ -5462,8 +5451,8 @@ __muldsi3:
 	mov	eax, r8d
 	imul	eax, edx
 	add	eax, r9d
-	mov	DWORD PTR 12[rsp], eax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	DWORD PTR 4[rsp], eax
+	mov	rax, QWORD PTR [rsp]
 	add	rsp, 40
 	ret
 	.seh_endproc
@@ -5523,26 +5512,28 @@ __mulddi3:
 	mov	rax, QWORD PTR 88[rsp]
 	and	rax, QWORD PTR 48[rsp]
 	imul	rax, rdx
-	mov	QWORD PTR 16[rsp], rax
-	mov	rdx, QWORD PTR 16[rsp]
+	mov	QWORD PTR [rsp], rax
+	mov	rdx, QWORD PTR [rsp]
 	mov	eax, DWORD PTR 60[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
+	mov	rax, QWORD PTR [rsp]
 	and	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 16[rsp], rax
+	mov	QWORD PTR [rsp], rax
 	mov	eax, DWORD PTR 60[rsp]
 	mov	rdx, QWORD PTR 80[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, QWORD PTR 88[rsp]
 	and	rax, QWORD PTR 48[rsp]
-	imul	rax, rdx
-	add	QWORD PTR 40[rsp], rax
-	mov	rdx, QWORD PTR 16[rsp]
+	imul	rdx, rax
 	mov	rax, QWORD PTR 40[rsp]
+	add	rax, rdx
+	mov	QWORD PTR 32[rsp], rax
+	mov	rdx, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 32[rsp]
 	and	rax, QWORD PTR 48[rsp]
 	mov	r8, rax
 	mov	eax, DWORD PTR 60[rsp]
@@ -5550,32 +5541,34 @@ __mulddi3:
 	sal	r8, cl
 	mov	rax, r8
 	add	rax, rdx
-	mov	QWORD PTR 16[rsp], rax
+	mov	QWORD PTR [rsp], rax
 	mov	eax, DWORD PTR 60[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	rdx, QWORD PTR 32[rsp]
+	mov	ecx, eax
+	shr	rdx, cl
+	mov	rax, rdx
+	mov	QWORD PTR 8[rsp], rax
+	mov	rdx, QWORD PTR [rsp]
+	mov	eax, DWORD PTR 60[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	mov	QWORD PTR 24[rsp], rax
-	mov	rdx, QWORD PTR 16[rsp]
-	mov	eax, DWORD PTR 60[rsp]
-	mov	ecx, eax
-	shr	rdx, cl
-	mov	rax, rdx
-	mov	QWORD PTR 40[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
+	mov	rax, QWORD PTR [rsp]
 	and	rax, QWORD PTR 48[rsp]
-	mov	QWORD PTR 16[rsp], rax
+	mov	QWORD PTR [rsp], rax
 	mov	eax, DWORD PTR 60[rsp]
 	mov	rdx, QWORD PTR 88[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, QWORD PTR 80[rsp]
 	and	rax, QWORD PTR 48[rsp]
-	imul	rax, rdx
-	add	QWORD PTR 40[rsp], rax
-	mov	rdx, QWORD PTR 16[rsp]
-	mov	rax, QWORD PTR 40[rsp]
+	imul	rdx, rax
+	mov	rax, QWORD PTR 24[rsp]
+	add	rax, rdx
+	mov	QWORD PTR 16[rsp], rax
+	mov	rdx, QWORD PTR [rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	and	rax, QWORD PTR 48[rsp]
 	mov	r8, rax
 	mov	eax, DWORD PTR 60[rsp]
@@ -5583,17 +5576,17 @@ __mulddi3:
 	sal	r8, cl
 	mov	rax, r8
 	add	rax, rdx
-	mov	QWORD PTR 16[rsp], rax
-	mov	rax, QWORD PTR 24[rsp]
+	mov	QWORD PTR [rsp], rax
+	mov	rax, QWORD PTR 8[rsp]
 	mov	r8, rax
 	mov	eax, DWORD PTR 60[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	rdx, QWORD PTR 16[rsp]
 	mov	ecx, eax
 	shr	rdx, cl
 	mov	rax, rdx
 	add	rax, r8
-	mov	QWORD PTR 24[rsp], rax
-	mov	rax, QWORD PTR 24[rsp]
+	mov	QWORD PTR 8[rsp], rax
+	mov	rax, QWORD PTR 8[rsp]
 	mov	r9, rax
 	mov	eax, DWORD PTR 60[rsp]
 	mov	rdx, QWORD PTR 80[rsp]
@@ -5606,11 +5599,7 @@ __mulddi3:
 	mov	rax, r8
 	imul	rax, rdx
 	add	rax, r9
-	mov	QWORD PTR 24[rsp], rax
-	mov	rax, QWORD PTR 16[rsp]
-	mov	rdx, QWORD PTR 24[rsp]
-	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], rdx
+	mov	QWORD PTR 8[rsp], rax
 	movdqa	xmm0, XMMWORD PTR [rsp]
 	add	rsp, 72
 	ret
@@ -5621,50 +5610,46 @@ __mulddi3:
 __multi3:
 	push	rbx
 	.seh_pushreg	rbx
-	add	rsp, -128
-	.seh_stackalloc	128
+	sub	rsp, 112
+	.seh_stackalloc	112
 	.seh_endprologue
 	mov	rbx, rcx
 	mov	rcx, QWORD PTR [rbx]
 	mov	rbx, QWORD PTR 8[rbx]
-	mov	QWORD PTR 64[rsp], rcx
-	mov	QWORD PTR 72[rsp], rbx
+	mov	QWORD PTR 48[rsp], rcx
+	mov	QWORD PTR 56[rsp], rbx
 	mov	rbx, rdx
 	mov	rax, QWORD PTR [rbx]
 	mov	rdx, QWORD PTR 8[rbx]
-	mov	QWORD PTR 48[rsp], rax
-	mov	QWORD PTR 56[rsp], rdx
-	mov	rax, QWORD PTR 64[rsp]
-	mov	rdx, QWORD PTR 72[rsp]
-	mov	QWORD PTR 112[rsp], rax
-	mov	QWORD PTR 120[rsp], rdx
+	mov	QWORD PTR 32[rsp], rax
+	mov	QWORD PTR 40[rsp], rdx
 	mov	rax, QWORD PTR 48[rsp]
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	QWORD PTR 96[rsp], rax
 	mov	QWORD PTR 104[rsp], rdx
-	mov	rdx, QWORD PTR 96[rsp]
-	mov	rax, QWORD PTR 112[rsp]
+	mov	rax, QWORD PTR 32[rsp]
+	mov	rdx, QWORD PTR 40[rsp]
+	mov	QWORD PTR 80[rsp], rax
+	mov	QWORD PTR 88[rsp], rdx
+	mov	rdx, QWORD PTR 80[rsp]
+	mov	rax, QWORD PTR 96[rsp]
 	mov	rcx, rax
 	call	__mulddi3
-	movaps	XMMWORD PTR 80[rsp], xmm0
-	mov	rax, QWORD PTR 88[rsp]
+	movaps	XMMWORD PTR 64[rsp], xmm0
+	mov	rax, QWORD PTR 72[rsp]
 	mov	r8, rax
-	mov	rax, QWORD PTR 120[rsp]
+	mov	rax, QWORD PTR 104[rsp]
 	mov	rdx, rax
-	mov	rax, QWORD PTR 96[rsp]
+	mov	rax, QWORD PTR 80[rsp]
 	imul	rdx, rax
-	mov	rax, QWORD PTR 112[rsp]
-	mov	rcx, QWORD PTR 104[rsp]
+	mov	rax, QWORD PTR 96[rsp]
+	mov	rcx, QWORD PTR 88[rsp]
 	imul	rax, rcx
 	add	rax, rdx
 	add	rax, r8
-	mov	QWORD PTR 88[rsp], rax
-	mov	rax, QWORD PTR 80[rsp]
-	mov	rdx, QWORD PTR 88[rsp]
-	mov	QWORD PTR 32[rsp], rax
-	mov	QWORD PTR 40[rsp], rdx
-	movdqa	xmm0, XMMWORD PTR 32[rsp]
-	sub	rsp, -128
+	mov	QWORD PTR 72[rsp], rax
+	movdqa	xmm0, XMMWORD PTR 64[rsp]
+	add	rsp, 112
 	pop	rbx
 	ret
 	.seh_endproc
@@ -5708,34 +5693,37 @@ __negti2:
 	.def	__paritydi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__paritydi2
 __paritydi2:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR [rsp], rax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	QWORD PTR 48[rsp], rcx
+	mov	rax, QWORD PTR 48[rsp]
+	mov	QWORD PTR 8[rsp], rax
+	mov	eax, DWORD PTR 12[rsp]
 	mov	edx, eax
-	mov	eax, DWORD PTR [rsp]
+	mov	eax, DWORD PTR 8[rsp]
 	xor	eax, edx
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 28[rsp], eax
+	mov	eax, DWORD PTR 28[rsp]
 	shr	eax, 16
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 28[rsp]
+	mov	DWORD PTR 24[rsp], eax
+	mov	eax, DWORD PTR 24[rsp]
 	shr	eax, 8
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 24[rsp]
+	mov	DWORD PTR 20[rsp], eax
+	mov	eax, DWORD PTR 20[rsp]
 	shr	eax, 4
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 20[rsp]
+	mov	DWORD PTR 16[rsp], eax
+	mov	eax, DWORD PTR 16[rsp]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
 	sar	edx, cl
 	mov	eax, edx
 	and	eax, 1
-	add	rsp, 24
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.globl	__parityti2
@@ -5768,14 +5756,17 @@ __parityti2:
 	mov	DWORD PTR 60[rsp], eax
 	mov	eax, DWORD PTR 60[rsp]
 	shr	eax, 16
-	xor	DWORD PTR 60[rsp], eax
-	mov	eax, DWORD PTR 60[rsp]
+	xor	eax, DWORD PTR 60[rsp]
+	mov	DWORD PTR 56[rsp], eax
+	mov	eax, DWORD PTR 56[rsp]
 	shr	eax, 8
-	xor	DWORD PTR 60[rsp], eax
-	mov	eax, DWORD PTR 60[rsp]
+	xor	eax, DWORD PTR 56[rsp]
+	mov	DWORD PTR 52[rsp], eax
+	mov	eax, DWORD PTR 52[rsp]
 	shr	eax, 4
-	xor	DWORD PTR 60[rsp], eax
-	mov	eax, DWORD PTR 60[rsp]
+	xor	eax, DWORD PTR 52[rsp]
+	mov	DWORD PTR 48[rsp], eax
+	mov	eax, DWORD PTR 48[rsp]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
@@ -5798,14 +5789,17 @@ __paritysi2:
 	mov	DWORD PTR 12[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	shr	eax, 16
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 8[rsp], eax
+	mov	eax, DWORD PTR 8[rsp]
 	shr	eax, 8
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 8[rsp]
+	mov	DWORD PTR 4[rsp], eax
+	mov	eax, DWORD PTR 4[rsp]
 	shr	eax, 4
-	xor	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	xor	eax, DWORD PTR 4[rsp]
+	mov	DWORD PTR [rsp], eax
+	mov	eax, DWORD PTR [rsp]
 	and	eax, 15
 	mov	edx, 27030
 	mov	ecx, eax
@@ -5819,92 +5813,103 @@ __paritysi2:
 	.def	__popcountdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcountdi2
 __popcountdi2:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 56
+	.seh_stackalloc	56
 	.seh_endprologue
-	mov	QWORD PTR 32[rsp], rcx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	QWORD PTR 64[rsp], rcx
+	mov	rax, QWORD PTR 64[rsp]
+	mov	QWORD PTR 40[rsp], rax
+	mov	rax, QWORD PTR 40[rsp]
 	shr	rax
 	mov	rdx, rax
 	movabs	rax, 6148914691236517205
-	and	rax, rdx
-	sub	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
+	and	rdx, rax
+	mov	rax, QWORD PTR 40[rsp]
+	sub	rax, rdx
+	mov	QWORD PTR 32[rsp], rax
+	mov	rax, QWORD PTR 32[rsp]
 	shr	rax, 2
 	mov	rdx, rax
 	movabs	rax, 3689348814741910323
 	and	rdx, rax
 	movabs	rax, 3689348814741910323
-	and	rax, QWORD PTR 8[rsp]
+	and	rax, QWORD PTR 32[rsp]
 	add	rax, rdx
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	QWORD PTR 24[rsp], rax
+	mov	rax, QWORD PTR 24[rsp]
 	shr	rax, 4
 	mov	rdx, rax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 24[rsp]
 	add	rdx, rax
 	movabs	rax, 1085102592571150095
 	and	rax, rdx
-	mov	QWORD PTR 8[rsp], rax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	QWORD PTR 16[rsp], rax
+	mov	rax, QWORD PTR 16[rsp]
 	mov	edx, eax
-	mov	rax, QWORD PTR 8[rsp]
+	mov	rax, QWORD PTR 16[rsp]
 	shr	rax, 32
 	add	eax, edx
-	mov	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	DWORD PTR 12[rsp], eax
+	mov	eax, DWORD PTR 12[rsp]
 	shr	eax, 16
-	add	DWORD PTR 4[rsp], eax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	edx, eax
+	mov	eax, DWORD PTR 12[rsp]
+	add	eax, edx
+	mov	DWORD PTR 8[rsp], eax
+	mov	eax, DWORD PTR 8[rsp]
 	shr	eax, 8
 	mov	edx, eax
-	mov	eax, DWORD PTR 4[rsp]
+	mov	eax, DWORD PTR 8[rsp]
 	add	eax, edx
 	and	eax, 127
-	add	rsp, 24
+	add	rsp, 56
 	ret
 	.seh_endproc
 	.globl	__popcountsi2
 	.def	__popcountsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcountsi2
 __popcountsi2:
-	sub	rsp, 24
-	.seh_stackalloc	24
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	DWORD PTR 32[rsp], ecx
-	mov	eax, DWORD PTR 32[rsp]
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 48[rsp], ecx
+	mov	eax, DWORD PTR 48[rsp]
+	mov	DWORD PTR 28[rsp], eax
+	mov	eax, DWORD PTR 28[rsp]
 	shr	eax
 	and	eax, 1431655765
-	sub	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	edx, eax
+	mov	eax, DWORD PTR 28[rsp]
+	sub	eax, edx
+	mov	DWORD PTR 24[rsp], eax
+	mov	eax, DWORD PTR 24[rsp]
 	shr	eax, 2
 	and	eax, 858993459
 	mov	edx, eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	eax, DWORD PTR 24[rsp]
 	and	eax, 858993459
 	add	eax, edx
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 20[rsp], eax
+	mov	eax, DWORD PTR 20[rsp]
 	shr	eax, 4
 	mov	edx, eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	eax, DWORD PTR 20[rsp]
 	add	eax, edx
 	and	eax, 252645135
-	mov	DWORD PTR 12[rsp], eax
-	mov	eax, DWORD PTR 12[rsp]
+	mov	DWORD PTR 16[rsp], eax
+	mov	eax, DWORD PTR 16[rsp]
 	shr	eax, 16
-	add	DWORD PTR 12[rsp], eax
+	mov	edx, eax
+	mov	eax, DWORD PTR 16[rsp]
+	add	eax, edx
+	mov	DWORD PTR 12[rsp], eax
 	mov	eax, DWORD PTR 12[rsp]
 	shr	eax, 8
 	mov	edx, eax
 	mov	eax, DWORD PTR 12[rsp]
 	add	eax, edx
 	and	eax, 63
-	add	rsp, 24
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.globl	__popcountti2
@@ -5913,8 +5918,8 @@ __popcountsi2:
 __popcountti2:
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 48
-	.seh_stackalloc	48
+	sub	rsp, 96
+	.seh_stackalloc	96
 	.seh_endprologue
 	mov	rbx, rcx
 	mov	rax, QWORD PTR [rbx]
@@ -5923,20 +5928,24 @@ __popcountti2:
 	mov	QWORD PTR 8[rsp], rdx
 	mov	rax, QWORD PTR [rsp]
 	mov	rdx, QWORD PTR 8[rsp]
-	mov	QWORD PTR 32[rsp], rax
-	mov	QWORD PTR 40[rsp], rdx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	QWORD PTR 80[rsp], rax
+	mov	QWORD PTR 88[rsp], rdx
+	mov	rax, QWORD PTR 80[rsp]
+	mov	rdx, QWORD PTR 88[rsp]
 	shrd	rax, rdx, 1
 	shr	rdx
 	movabs	rcx, 6148914691236517205
 	mov	rbx, rcx
-	and	rax, rcx
-	and	rdx, rbx
-	sub	QWORD PTR 32[rsp], rax
-	sbb	QWORD PTR 40[rsp], rdx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	and	rcx, rax
+	and	rbx, rdx
+	mov	rax, QWORD PTR 80[rsp]
+	mov	rdx, QWORD PTR 88[rsp]
+	sub	rax, rcx
+	sbb	rdx, rbx
+	mov	QWORD PTR 64[rsp], rax
+	mov	QWORD PTR 72[rsp], rdx
+	mov	rax, QWORD PTR 64[rsp]
+	mov	rdx, QWORD PTR 72[rsp]
 	shrd	rax, rdx, 2
 	shr	rdx, 2
 	movabs	rcx, 3689348814741910323
@@ -5945,18 +5954,18 @@ __popcountti2:
 	and	rbx, rdx
 	movabs	rax, 3689348814741910323
 	mov	rdx, rax
-	and	rax, QWORD PTR 32[rsp]
-	and	rdx, QWORD PTR 40[rsp]
+	and	rax, QWORD PTR 64[rsp]
+	and	rdx, QWORD PTR 72[rsp]
 	add	rax, rcx
 	adc	rdx, rbx
-	mov	QWORD PTR 32[rsp], rax
-	mov	QWORD PTR 40[rsp], rdx
-	mov	rax, QWORD PTR 32[rsp]
-	mov	rdx, QWORD PTR 40[rsp]
+	mov	QWORD PTR 48[rsp], rax
+	mov	QWORD PTR 56[rsp], rdx
+	mov	rax, QWORD PTR 48[rsp]
+	mov	rdx, QWORD PTR 56[rsp]
 	shrd	rax, rdx, 4
 	shr	rdx, 4
-	mov	rcx, QWORD PTR 32[rsp]
-	mov	rbx, QWORD PTR 40[rsp]
+	mov	rcx, QWORD PTR 48[rsp]
+	mov	rbx, QWORD PTR 56[rsp]
 	add	rax, rcx
 	adc	rdx, rbx
 	movabs	rcx, 1085102592571150095
@@ -5977,14 +5986,17 @@ __popcountti2:
 	mov	DWORD PTR 20[rsp], eax
 	mov	eax, DWORD PTR 20[rsp]
 	shr	eax, 16
-	add	DWORD PTR 20[rsp], eax
-	mov	eax, DWORD PTR 20[rsp]
-	shr	eax, 8
 	mov	edx, eax
 	mov	eax, DWORD PTR 20[rsp]
 	add	eax, edx
+	mov	DWORD PTR 16[rsp], eax
+	mov	eax, DWORD PTR 16[rsp]
+	shr	eax, 8
+	mov	edx, eax
+	mov	eax, DWORD PTR 16[rsp]
+	add	eax, edx
 	movzx	eax, al
-	add	rsp, 48
+	add	rsp, 96
 	pop	rbx
 	ret
 	.seh_endproc
@@ -6003,14 +6015,14 @@ __powidf2:
 	mov	DWORD PTR 4[rsp], eax
 	movsd	xmm0, QWORD PTR .LC16[rip]
 	movsd	QWORD PTR 8[rsp], xmm0
-.L833:
+.L834:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L830
+	je	.L831
 	movsd	xmm0, QWORD PTR 8[rsp]
 	mulsd	xmm0, QWORD PTR 32[rsp]
 	movsd	QWORD PTR 8[rsp], xmm0
-.L830:
+.L831:
 	mov	eax, DWORD PTR 40[rsp]
 	mov	edx, eax
 	shr	edx, 31
@@ -6018,20 +6030,22 @@ __powidf2:
 	sar	eax
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 40[rsp], 0
-	je	.L837
+	je	.L838
 	movsd	xmm0, QWORD PTR 32[rsp]
 	mulsd	xmm0, xmm0
 	movsd	QWORD PTR 32[rsp], xmm0
-	jmp	.L833
-.L837:
+	jmp	.L834
+.L838:
 	cmp	DWORD PTR 4[rsp], 0
-	je	.L834
+	je	.L835
 	movsd	xmm0, QWORD PTR .LC16[rip]
 	divsd	xmm0, QWORD PTR 8[rsp]
-	jmp	.L836
-.L834:
-	movsd	xmm0, QWORD PTR 8[rsp]
-.L836:
+	movq	rax, xmm0
+	jmp	.L837
+.L835:
+	mov	rax, QWORD PTR 8[rsp]
+.L837:
+	movq	xmm0, rax
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -6050,14 +6064,14 @@ __powisf2:
 	mov	DWORD PTR 8[rsp], eax
 	movss	xmm0, DWORD PTR .LC18[rip]
 	movss	DWORD PTR 12[rsp], xmm0
-.L843:
+.L844:
 	mov	eax, DWORD PTR 40[rsp]
 	and	eax, 1
-	je	.L840
+	je	.L841
 	movss	xmm0, DWORD PTR 12[rsp]
 	mulss	xmm0, DWORD PTR 32[rsp]
 	movss	DWORD PTR 12[rsp], xmm0
-.L840:
+.L841:
 	mov	eax, DWORD PTR 40[rsp]
 	mov	edx, eax
 	shr	edx, 31
@@ -6065,20 +6079,22 @@ __powisf2:
 	sar	eax
 	mov	DWORD PTR 40[rsp], eax
 	cmp	DWORD PTR 40[rsp], 0
-	je	.L847
+	je	.L848
 	movss	xmm0, DWORD PTR 32[rsp]
 	mulss	xmm0, xmm0
 	movss	DWORD PTR 32[rsp], xmm0
-	jmp	.L843
-.L847:
+	jmp	.L844
+.L848:
 	cmp	DWORD PTR 8[rsp], 0
-	je	.L844
+	je	.L845
 	movss	xmm0, DWORD PTR .LC18[rip]
 	divss	xmm0, DWORD PTR 12[rsp]
-	jmp	.L846
-.L844:
-	movss	xmm0, DWORD PTR 12[rsp]
-.L846:
+	movd	eax, xmm0
+	jmp	.L847
+.L845:
+	mov	eax, DWORD PTR 12[rsp]
+.L847:
+	movd	xmm0, eax
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -6098,33 +6114,33 @@ __ucmpdi2:
 	mov	edx, DWORD PTR 12[rsp]
 	mov	eax, DWORD PTR 4[rsp]
 	cmp	edx, eax
-	jnb	.L850
+	jnb	.L851
 	mov	eax, 0
-	jmp	.L855
-.L850:
+	jmp	.L856
+.L851:
 	mov	eax, DWORD PTR 12[rsp]
 	mov	edx, DWORD PTR 4[rsp]
 	cmp	edx, eax
-	jnb	.L852
+	jnb	.L853
 	mov	eax, 2
-	jmp	.L855
-.L852:
+	jmp	.L856
+.L853:
 	mov	edx, DWORD PTR 8[rsp]
 	mov	eax, DWORD PTR [rsp]
 	cmp	edx, eax
-	jnb	.L853
+	jnb	.L854
 	mov	eax, 0
-	jmp	.L855
-.L853:
+	jmp	.L856
+.L854:
 	mov	eax, DWORD PTR 8[rsp]
 	mov	edx, DWORD PTR [rsp]
 	cmp	edx, eax
-	jnb	.L854
+	jnb	.L855
 	mov	eax, 2
-	jmp	.L855
-.L854:
-	mov	eax, 1
+	jmp	.L856
 .L855:
+	mov	eax, 1
+.L856:
 	add	rsp, 24
 	ret
 	.seh_endproc
@@ -6175,39 +6191,46 @@ __ucmpti2:
 	mov	rdx, QWORD PTR 56[rsp]
 	mov	rax, QWORD PTR 40[rsp]
 	cmp	rdx, rax
-	jnb	.L859
+	jnb	.L860
 	mov	eax, 0
-	jmp	.L864
-.L859:
+	jmp	.L865
+.L860:
 	mov	rax, QWORD PTR 56[rsp]
 	mov	rdx, QWORD PTR 40[rsp]
 	cmp	rdx, rax
-	jnb	.L861
+	jnb	.L862
 	mov	eax, 2
-	jmp	.L864
-.L861:
+	jmp	.L865
+.L862:
 	mov	rdx, QWORD PTR 48[rsp]
 	mov	rax, QWORD PTR 32[rsp]
 	cmp	rdx, rax
-	jnb	.L862
+	jnb	.L863
 	mov	eax, 0
-	jmp	.L864
-.L862:
+	jmp	.L865
+.L863:
 	mov	rax, QWORD PTR 48[rsp]
 	mov	rdx, QWORD PTR 32[rsp]
 	cmp	rdx, rax
-	jnb	.L863
+	jnb	.L864
 	mov	eax, 2
-	jmp	.L864
-.L863:
-	mov	eax, 1
+	jmp	.L865
 .L864:
+	mov	eax, 1
+.L865:
 	add	rsp, 64
 	pop	rbx
 	ret
 	.seh_endproc
 .lcomm s.0,7,1
 	.section .rdata,"dr"
+	.align 8
+.LC0:
+	.long	0
+	.long	0
+	.align 4
+.LC1:
+	.long	0
 	.align 4
 .LC3:
 	.long	-8388609
