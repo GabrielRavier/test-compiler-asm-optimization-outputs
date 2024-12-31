@@ -1756,12 +1756,12 @@ lsearch:
 	mov	x0, x19
 	sub	x0, x0, #1
 	str	x0, [sp, 96]
-	mov	x6, x19
-	mov	x7, 0
-	lsr	x0, x6, 61
-	lsl	x9, x7, 3
-	orr	x9, x0, x9
-	lsl	x8, x6, 3
+	mov	x8, x19
+	mov	x9, 0
+	lsr	x0, x8, 61
+	lsl	x7, x9, 3
+	orr	x7, x0, x7
+	lsl	x6, x8, 3
 	ldr	x0, [sp, 64]
 	str	x0, [sp, 88]
 	ldr	x0, [sp, 56]
@@ -1838,12 +1838,12 @@ lfind:
 	mov	x0, x19
 	sub	x0, x0, #1
 	str	x0, [sp, 96]
-	mov	x6, x19
-	mov	x7, 0
-	lsr	x0, x6, 61
-	lsl	x9, x7, 3
-	orr	x9, x0, x9
-	lsl	x8, x6, 3
+	mov	x8, x19
+	mov	x9, 0
+	lsr	x0, x8, 61
+	lsl	x7, x9, 3
+	orr	x7, x0, x7
+	lsl	x6, x8, 3
 	ldr	x0, [sp, 64]
 	str	x0, [sp, 88]
 	ldr	x0, [sp, 56]
@@ -1950,13 +1950,13 @@ atoi:
 	lsl	w0, w0, 2
 	add	w0, w0, w1
 	lsl	w0, w0, 1
-	mov	w1, w0
+	mov	w2, w0
 	ldr	x0, [sp, 24]
-	add	x2, x0, 1
-	str	x2, [sp, 24]
+	add	x1, x0, 1
+	str	x1, [sp, 24]
 	ldrb	w0, [x0]
 	sub	w0, w0, #48
-	sub	w0, w1, w0
+	sub	w0, w2, w0
 	str	w0, [sp, 44]
 .L259:
 	ldr	x0, [sp, 24]
@@ -2025,14 +2025,14 @@ atol:
 	lsl	x0, x0, 2
 	add	x0, x0, x1
 	lsl	x0, x0, 1
-	mov	x1, x0
+	mov	x2, x0
 	ldr	x0, [sp, 24]
-	add	x2, x0, 1
-	str	x2, [sp, 24]
+	add	x1, x0, 1
+	str	x1, [sp, 24]
 	ldrb	w0, [x0]
 	sub	w0, w0, #48
 	sxtw	x0, w0
-	sub	x0, x1, x0
+	sub	x0, x2, x0
 	str	x0, [sp, 40]
 .L269:
 	ldr	x0, [sp, 24]
@@ -2101,14 +2101,14 @@ atoll:
 	lsl	x0, x0, 2
 	add	x0, x0, x1
 	lsl	x0, x0, 1
-	mov	x1, x0
+	mov	x2, x0
 	ldr	x0, [sp, 24]
-	add	x2, x0, 1
-	str	x2, [sp, 24]
+	add	x1, x0, 1
+	str	x1, [sp, 24]
 	ldrb	w0, [x0]
 	sub	w0, w0, #48
 	sxtw	x0, w0
-	sub	x0, x1, x0
+	sub	x0, x2, x0
 	str	x0, [sp, 40]
 .L279:
 	ldr	x0, [sp, 24]
@@ -2291,10 +2291,9 @@ div:
 	sdiv	w3, w0, w1
 	ldr	w1, [sp, 8]
 	mul	w1, w3, w1
-	sub	w1, w0, w1
-	mov	x0, x4
-	bfi	x2, x0, 0, 32
-	mov	x0, x1
+	sub	w0, w0, w1
+	mov	x1, x4
+	bfi	x2, x1, 0, 32
 	bfi	x2, x0, 32, 32
 	mov	x0, x2
 	add	sp, sp, 16
@@ -2333,17 +2332,17 @@ imaxdiv:
 	str	x1, [sp]
 	ldr	x1, [sp, 8]
 	ldr	x0, [sp]
-	sdiv	x5, x1, x0
+	sdiv	x3, x1, x0
 	ldr	x0, [sp, 8]
 	ldr	x1, [sp]
-	sdiv	x4, x0, x1
+	sdiv	x2, x0, x1
 	ldr	x1, [sp]
-	mul	x1, x4, x1
+	mul	x1, x2, x1
 	sub	x0, x0, x1
-	mov	x2, x5
-	mov	x3, x0
-	mov	x0, x2
-	mov	x1, x3
+	mov	x4, x3
+	mov	x5, x0
+	mov	x0, x4
+	mov	x1, x5
 	add	sp, sp, 16
 	.cfi_def_cfa_offset 0
 	ret
@@ -2380,17 +2379,17 @@ ldiv:
 	str	x1, [sp]
 	ldr	x1, [sp, 8]
 	ldr	x0, [sp]
-	sdiv	x5, x1, x0
+	sdiv	x3, x1, x0
 	ldr	x0, [sp, 8]
 	ldr	x1, [sp]
-	sdiv	x4, x0, x1
+	sdiv	x2, x0, x1
 	ldr	x1, [sp]
-	mul	x1, x4, x1
+	mul	x1, x2, x1
 	sub	x0, x0, x1
-	mov	x2, x5
-	mov	x3, x0
-	mov	x0, x2
-	mov	x1, x3
+	mov	x4, x3
+	mov	x5, x0
+	mov	x0, x4
+	mov	x1, x5
 	add	sp, sp, 16
 	.cfi_def_cfa_offset 0
 	ret
@@ -2427,17 +2426,17 @@ lldiv:
 	str	x1, [sp]
 	ldr	x1, [sp, 8]
 	ldr	x0, [sp]
-	sdiv	x5, x1, x0
+	sdiv	x3, x1, x0
 	ldr	x0, [sp, 8]
 	ldr	x1, [sp]
-	sdiv	x4, x0, x1
+	sdiv	x2, x0, x1
 	ldr	x1, [sp]
-	mul	x1, x4, x1
+	mul	x1, x2, x1
 	sub	x0, x0, x1
-	mov	x2, x5
-	mov	x3, x0
-	mov	x0, x2
-	mov	x1, x3
+	mov	x4, x3
+	mov	x5, x0
+	mov	x0, x4
+	mov	x1, x5
 	add	sp, sp, 16
 	.cfi_def_cfa_offset 0
 	ret
@@ -5441,8 +5440,11 @@ __divsi3:
 	str	w0, [sp, 44]
 .L689:
 	ldr	x0, [sp, 24]
-	ldr	x1, [sp, 16]
+	mov	w3, w0
+	ldr	x0, [sp, 16]
 	mov	w2, 0
+	mov	w1, w0
+	mov	w0, w3
 	bl	__udivmodsi4
 	uxtw	x0, w0
 	str	x0, [sp, 32]
@@ -5493,8 +5495,11 @@ __modsi3:
 	str	x0, [sp, 16]
 .L694:
 	ldr	x0, [sp, 24]
-	ldr	x1, [sp, 16]
+	mov	w3, w0
+	ldr	x0, [sp, 16]
 	mov	w2, 1
+	mov	w1, w0
+	mov	w0, w3
 	bl	__udivmodsi4
 	uxtw	x0, w0
 	str	x0, [sp, 32]
@@ -6332,7 +6337,8 @@ __ctzsi2:
 	lsr	w0, w0, 1
 	mov	w2, 2
 	sub	w0, w2, w0
-	mul	w1, w1, w0
+	neg	w1, w1
+	and	w1, w1, w0
 	ldr	w0, [sp, 20]
 	add	w0, w1, w0
 	add	sp, sp, 32
