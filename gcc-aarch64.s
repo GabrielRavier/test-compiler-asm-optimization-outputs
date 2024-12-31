@@ -217,8 +217,7 @@ memset:
 	b	.L38
 .L39:
 	and	w4, w1, 255
-	strb	w4, [x3]
-	add	x3, x3, 1
+	strb	w4, [x3], 1
 .L38:
 	cmp	x3, x2
 	bne	.L39
@@ -275,8 +274,7 @@ strchr:
 	ldrb	w2, [x0]
 	cmp	w1, w2
 	beq	.L48
-	add	x0, x0, 1
-	ldrb	w2, [x0, -1]
+	ldrb	w2, [x0], 1
 	cbnz	w2, .L49
 	mov	x0, 0
 .L48:
@@ -379,10 +377,9 @@ swab:
 .L66:
 	ldrb	w4, [x3, 1]
 	strb	w4, [x1]
-	ldrb	w4, [x3]
+	ldrb	w4, [x3], 2
 	strb	w4, [x1, 1]
 	add	x1, x1, 2
-	add	x3, x3, 2
 .L65:
 	add	x4, x0, x2
 	sub	x4, x4, x3
@@ -1003,8 +1000,7 @@ l64a:
 	adrp	x2, digits
 	add	x2, x2, :lo12:digits
 	ldrb	w2, [x2, x3]
-	strb	w2, [x1]
-	add	x1, x1, 1
+	strb	w2, [x1], 1
 	lsr	w0, w0, 6
 .L172:
 	cbnz	w0, .L173
@@ -1280,12 +1276,11 @@ atoi:
 	b	.L198
 .L199:
 	lsl	w1, w0, 2
-	add	w1, w1, w0
-	lsl	w0, w1, 1
-	add	x19, x19, 1
-	ldrb	w1, [x19, -1]
-	sub	w1, w1, #48
-	sub	w0, w0, w1
+	add	w0, w1, w0
+	lsl	w1, w0, 1
+	ldrb	w0, [x19], 1
+	sub	w0, w0, #48
+	sub	w0, w1, w0
 .L198:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
@@ -1344,12 +1339,11 @@ atol:
 	b	.L209
 .L210:
 	lsl	x1, x0, 2
-	add	x1, x1, x0
-	lsl	x0, x1, 1
-	add	x19, x19, 1
-	ldrb	w1, [x19, -1]
-	sub	w1, w1, #48
-	sub	x0, x0, w1, sxtw
+	add	x0, x1, x0
+	lsl	x1, x0, 1
+	ldrb	w0, [x19], 1
+	sub	w0, w0, #48
+	sub	x0, x1, w0, sxtw
 .L209:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
@@ -1408,12 +1402,11 @@ atoll:
 	b	.L220
 .L221:
 	lsl	x1, x0, 2
-	add	x1, x1, x0
-	lsl	x0, x1, 1
-	add	x19, x19, 1
-	ldrb	w1, [x19, -1]
-	sub	w1, w1, #48
-	sub	x0, x0, w1, sxtw
+	add	x0, x1, x0
+	lsl	x1, x0, 1
+	ldrb	w0, [x19], 1
+	sub	w0, w0, #48
+	sub	x0, x1, w0, sxtw
 .L220:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
@@ -2572,8 +2565,7 @@ strpbrk:
 	.cfi_startproc
 	b	.L381
 .L383:
-	add	x2, x2, 1
-	ldrb	w4, [x2, -1]
+	ldrb	w4, [x2], 1
 	ldrb	w3, [x0]
 	cmp	w4, w3
 	beq	.L382
@@ -2607,8 +2599,7 @@ strrchr:
 	bne	.L388
 	mov	x0, x2
 .L388:
-	add	x2, x2, 1
-	ldrb	w3, [x2, -1]
+	ldrb	w3, [x2], 1
 	cbnz	w3, .L389
 	ret
 	.cfi_endproc

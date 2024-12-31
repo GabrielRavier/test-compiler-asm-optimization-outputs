@@ -1740,9 +1740,8 @@ wcscpy:
 	mov d0,a0
 	setlb
 .L284:
-	add_add 4, d1, 4, a0
-	mov (-4,d1),a1
-	mov a1,(-4,a0)
+	mov (d1+),a1
+	mov a1,(a0+)
 	cmp 0,a1
 	Lne # loop back to: .L284
 	mov d0,a0
@@ -1946,15 +1945,14 @@ wmemmove:
 wmemset:
 	movm [a3],(sp)
 	mov sp,a3
-	mov (16,a3),a1
-	mov d0,a0
+	mov (16,a3),a0
+	mov d0,a1
 	jmp .L321
 .L322:
-	inc4 a0
-	mov d1,(-4,a0)
+	mov d1,(a1+)
 .L321:
-	add -1,a1
-	cmp -1,a1
+	add -1,a0
+	cmp -1,a0
 	bne .L322
 	mov d0,a0
 	mov a3,sp
