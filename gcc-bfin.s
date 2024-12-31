@@ -52,7 +52,7 @@ _memccpy:
 	P2 = R0;
 	P1 = R1;
 	R1 = [FP+20];
-	R2 = R2.B (Z);
+	R3 = R2.B (Z);
 	jump.s .L9;
 .L11:
 	R1 += -1;
@@ -63,10 +63,10 @@ _memccpy:
 	nop;
 	nop;
 	nop;
-	R3 = B [P1++] (X);
-	B [P2++] = R3;
-	R3 = B [P2+-1] (Z);
-	cc =R2==R3;
+	R2 = B [P1++] (X);
+	B [P2++] = R2;
+	R2 = R2.B (Z);
+	cc =R3==R2;
 	if !cc jump .L11;
 .L10:
 	cc =R1==0;
@@ -236,12 +236,13 @@ _stpcpy:
 	P2 = R0;
 	P1 = R1;
 .L38:
-	R0 = P2;
-	R1 = B [P1++] (X);
-	B [P2++] = R1;
-	R1 = B [P2+-1] (X);
-	cc =R1==0;
+	R1 = P2;
+	R0 = B [P1++] (X);
+	B [P2++] = R0;
+	R0 = R0.B (X);
+	cc =R0==0;
 	if !cc jump .L38;
+	R0 = R1;
 	UNLINK;
 	rts;
 	.size	_stpcpy, .-_stpcpy
@@ -759,8 +760,6 @@ _fdim:
 	R0 = [FP+16];
 	R1 = [FP+20];
 	call ___subdf3;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	jump.s .L108;
 .L110:
 	R0 = [FP+16];
@@ -1238,8 +1237,6 @@ _rand:
 	R0 = [P5];
 	R1 = [P5+4];
 	call ___muldi3;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R2 = R0;
 	R2 += 1; cc = ac0;
 	R0 = CC;
@@ -1713,10 +1710,6 @@ _div:
 	R1 = R6;
 	R0 = R7;
 	call ___modsi3;
-	R3 = 0 (X);
-	R4 = 0 (X);
-	[FP+-8] = R3;
-	[FP+-4] = R4;
 	[FP+-8] = R5;
 	[FP+-4] = R0;
 	R0 = [FP+-8];
@@ -1733,8 +1726,6 @@ _imaxabs:
 	[--sp] = ( r7:6 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	cc =R1<0;
 	if !cc jump .L253;
 	R6 = 0 (X);
@@ -1809,10 +1800,6 @@ _ldiv:
 	R1 = R6;
 	R0 = R7;
 	call ___modsi3;
-	R3 = 0 (X);
-	R4 = 0 (X);
-	[FP+-8] = R3;
-	[FP+-4] = R4;
 	[FP+-8] = R5;
 	[FP+-4] = R0;
 	R0 = [FP+-8];
@@ -1829,8 +1816,6 @@ _llabs:
 	[--sp] = ( r7:6 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	cc =R1<0;
 	if !cc jump .L259;
 	R6 = 0 (X);
@@ -1975,7 +1960,6 @@ _wcscpy:
 .L275:
 	R1 = [P2++];
 	[P1++] = R1;
-	R1 = [P1+-4];
 	cc =R1==0;
 	if !cc jump .L275;
 	UNLINK;
@@ -2288,8 +2272,6 @@ _rotl64:
 	[--sp] = ( r7:4, p5:5 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R4 = R0;
 	R5 = R1;
 	R0 = R2;
@@ -2347,8 +2329,6 @@ _rotr64:
 	[--sp] = ( r7:4, p5:5 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R4 = R0;
 	R5 = R1;
 	R0 = R2;
@@ -2563,8 +2543,6 @@ _bswap_64:
 	[--sp] = ( r7:4 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R3 = R1 >>> 24;
 	R3 <<= 24;
 	R6 = R3 >> 24;
@@ -3032,23 +3010,23 @@ _strncat:
 	R6 = R1;
 	R7 = R2;
 	call _strlen;
-	P2 = R0;
-	P1 = R6;
+	P1 = R0;
+	P2 = R6;
 	P0 = R5;
-	P2 = P0 + P2;
+	P1 = P0 + P1;
 	jump.s .L393;
 .L395:
 	R7 += -1;
 .L393:
-	P0 = P2;
+	P0 = P1;
 	cc =R7==0;
 	if cc jump .L394;
 	nop;
 	nop;
 	nop;
-	R0 = B [P1++] (X);
-	B [P2++] = R0;
-	R0 = B [P2+-1] (X);
+	R0 = B [P2++] (X);
+	B [P1++] = R0;
+	R0 = R0.B (X);
 	cc =R0==0;
 	if !cc jump .L395;
 .L394:
@@ -3803,8 +3781,6 @@ ___modi:
 ___uitod:
 	LINK 20;
 	call ___floatunsidf;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	UNLINK;
 	rts;
 	.size	___uitod, .-___uitod
@@ -3825,8 +3801,6 @@ ___ulltod:
 	[FP+8] = R0;
 	[FP+12] = R1;
 	call ___floatundidf;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	UNLINK;
 	rts;
 	.size	___ulltod, .-___ulltod
@@ -4176,10 +4150,6 @@ ___mspabi_mpyull:
 
 	[--SP] = R4;
 	LINK 24;
-	R7 = 0 (X);
-	P0 = 0 (X);
-	[FP+-8] = R7;
-	[FP+-4] = P0;
 	[FP+-8] = R0;
 	P0 = 0 (X);
 	[FP+-4] = P0;
@@ -4464,8 +4434,6 @@ ___ashrdi3:
 	[--sp] = ( r7:6 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R6 = R0;
 	R7 = R1;
 	R0 = R2;
@@ -4508,8 +4476,6 @@ ___bswapdi2:
 	[--sp] = ( r7:4 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R2 = R1 >> 24;
 	I2 = R2;
 	I3 = 0 (X);
@@ -4685,8 +4651,6 @@ ___clzsi2:
 .type ___cmpdi2, STT_FUNC;
 ___cmpdi2:
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	[FP+16] = R2;
 	R2 = [FP+16];
 	R3 = [FP+20];
@@ -4806,8 +4770,6 @@ ___lshrdi3:
 	[--sp] = ( r7:6 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R6 = R0;
 	R7 = R1;
 	R0 = R2;
@@ -4888,8 +4850,6 @@ ___muldi3_compiler_rt:
 	[--sp] = ( r7:4, p5:4 );
 
 	LINK 20;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R4 = R0;
 	R5 = R1;
 	[FP+40] = R2;
@@ -4898,7 +4858,6 @@ ___muldi3_compiler_rt:
 	R1 = R6;
 	call ___muldsi3;
 	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R2 = R1;
 	R0 = R5;
 	R0 *= R6;
@@ -4921,8 +4880,6 @@ ___negdi2:
 	[--sp] = ( r7:6 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R6 = 0 (X);
 	R7 = 0 (X);
 	R0 = R6 - R0; cc = ac0;
@@ -4940,8 +4897,6 @@ ___negdi2:
 .type ___paritydi2, STT_FUNC;
 ___paritydi2:
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R0 = R1 ^ R0;
 	R1 = R0 >> 16;
 	R0 = R0 ^ R1;
@@ -4986,8 +4941,6 @@ ___popcountdi2:
 	[--sp] = ( r7:5 );
 
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	R2 = R0;
 	R3 = R1;
 	CC = R0 < R0;
@@ -5188,8 +5141,6 @@ ___powisf2:
 .type ___ucmpdi2, STT_FUNC;
 ___ucmpdi2:
 	LINK 8;
-	[FP+-8] = R0;
-	[FP+-4] = R1;
 	[FP+16] = R2;
 	R2 = [FP+16];
 	R3 = [FP+20];

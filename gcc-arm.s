@@ -78,7 +78,6 @@ memccpy:
 	add	r1, r1, #1
 	ldrb	lr, [r1]	@ zero_extendqisi2
 	strb	lr, [r0], #1
-	ldrb	lr, [r0, #-1]	@ zero_extendqisi2
 	cmp	r2, lr
 	bne	.L11
 .L10:
@@ -253,7 +252,6 @@ stpcpy:
 	add	r1, r1, #1
 	ldrb	r2, [r1]	@ zero_extendqisi2
 	strb	r2, [r3], #1
-	ldrb	r2, [r3, #-1]	@ zero_extendqisi2
 	cmp	r2, #0
 	bne	.L41
 	add	sp, fp, #0
@@ -2852,19 +2850,18 @@ strncat:
 .L396:
 	sub	r5, r5, #1
 .L394:
-	mov	r2, r3
+	mov	r0, r3
 	cmp	r5, #0
 	beq	.L395
 	add	r1, r1, #1
-	ldrb	r0, [r1]	@ zero_extendqisi2
-	strb	r0, [r3], #1
-	ldrb	r0, [r3, #-1]	@ zero_extendqisi2
-	cmp	r0, #0
+	ldrb	r2, [r1]	@ zero_extendqisi2
+	strb	r2, [r3], #1
+	cmp	r2, #0
 	bne	.L396
 .L395:
 	cmp	r5, #0
 	moveq	r3, #0
-	strbeq	r3, [r2]
+	strbeq	r3, [r0]
 .L397:
 	mov	r0, r6
 	pop	{r4, r5, r6, r7, fp, pc}
@@ -4199,17 +4196,11 @@ __bswapdi2:
 	vmov	s14, r3	@ int
 	vldr.32	s15, .L625	@ int
 	lsr	r2, r1, #8
-	mov	r4, #0
-	mov	r5, #0
-	str	r4, [fp, #-36]
-	str	r5, [fp, #-32]
 	and	r3, r2, #65280
 	str	r3, [fp, #-36]
 	vstr.32	s15, [fp, #-32]	@ int
 	lsr	r2, r0, #24
 	orr	r2, r2, r1, lsl #8
-	str	r4, [fp, #-44]
-	str	r5, [fp, #-40]
 	and	r3, r2, #16711680
 	str	r3, [fp, #-44]
 	vstr.32	s15, [fp, #-40]	@ int
@@ -4219,10 +4210,6 @@ __bswapdi2:
 	lsl	r5, r1, #8
 	orr	r5, r5, r0, lsr #24
 	lsl	r4, r0, #8
-	mov	r2, #0
-	mov	r3, #0
-	str	r2, [fp, #-52]
-	str	r3, [fp, #-48]
 	vstr.32	s15, [fp, #-52]	@ int
 	and	r3, r5, #255
 	str	r3, [fp, #-48]
@@ -4232,10 +4219,6 @@ __bswapdi2:
 	vmov	r6, s15	@ int
 	and	r7, r3, #65280
 	and	r5, r4, #16711680
-	mov	r0, #0
-	mov	r1, #0
-	str	r0, [fp, #-60]
-	str	r1, [fp, #-56]
 	str	r2, [fp, #-56]
 	vstr.32	s15, [fp, #-60]	@ int
 	vmov	r0, s14	@ int

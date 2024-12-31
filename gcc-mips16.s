@@ -142,7 +142,6 @@ $L11:
 	beqz	$7,$L12
 	lbu	$2,0($5)
 	sb	$2,0($4)
-	lbu	$2,0($4)
 	xor	$2,$6
 	bnez	$2,$L13
 $L12:
@@ -380,7 +379,6 @@ $L41:
 $L40:
 	lb	$3,0($5)
 	sb	$3,0($2)
-	lb	$3,0($2)
 	bnez	$3,$L41
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -5039,7 +5037,6 @@ $L434:
 	lw	$3,40($17)
 	lb	$3,0($3)
 	sb	$3,0($2)
-	lb	$3,0($2)
 	bnez	$3,$L436
 $L435:
 	bnez	$16,$L437
@@ -7807,15 +7804,15 @@ __clzti2:
 	lw	$2,$L711
 	move	$28,$2
 	sw	$2,0($17)
+	move	$6,$4
 	sd	$5,16($17)
 	sd	$4,8($17)
-	ld	$2,8($17)
-	sltu	$2,1
+	sltu	$4,1
 	move	$16,$24
 	neg	$16,$16
 	not	$4,$16
-	and	$4,$2
-	ld	$3,16($17)
+	and	$4,$6
+	move	$3,$5
 	and	$3,$16
 	move	$2,$28
 	lw	$2,%call16(__clzdi2)($2)
@@ -7962,10 +7959,10 @@ __cmpti2:
 	sd	$4,8($17)
 	sd	$7,32($17)
 	sd	$6,24($17)
+	slt	$4,$6
+	btnez	$L721
 	ld	$2,8($17)
 	ld	$3,24($17)
-	slt	$2,$3
-	btnez	$L721
 	slt	$3,$2
 	btnez	$L722
 	ld	$2,16($17)
@@ -8093,14 +8090,12 @@ __ctzti2:
 	sw	$2,0($17)
 	sd	$5,16($17)
 	sd	$4,8($17)
-	ld	$2,16($17)
-	sltu	$2,1
+	sltu	$5,1
 	move	$16,$24
 	neg	$16,$16
-	ld	$3,8($17)
-	and	$3,$16
-	not	$4,$16
-	and	$4,$2
+	and	$4,$16
+	not	$3,$16
+	and	$3,$5
 	move	$2,$28
 	lw	$2,%call16(__ctzdi2)($2)
 	or	$4,$3
@@ -8156,8 +8151,7 @@ __ffsti2:
 	move	$2,$28
 	sd	$5,16($17)
 	sd	$4,8($17)
-	ld	$3,16($17)
-	bnez	$3,$L737
+	bnez	$5,$L737
 	ld	$3,8($17)
 	beqz	$3,$L739
 	lw	$2,%call16(__ctzdi2)($2)
@@ -8452,50 +8446,39 @@ __muldi3_compiler_rt:
 	.ent	__mulddi3
 	.type	__mulddi3, @function
 __mulddi3:
-	.frame	$17,40,$31		# vars= 16, regs= 2/0, args= 0, gp= 8
-	.mask	0x00030000,-8
+	.frame	$17,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
+	.mask	0x00020000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	sd	$16,24($sp)
+	addiu	$sp,-32
+	sd	$17,24($sp)
 	move	$17,$sp
-	dsll	$16,$4,32
-	dsrl	$16,32
-	dsll	$3,$5,32
+	dsll	$3,$4,32
 	dsrl	$3,32
-	dmult	$16,$3
+	dsll	$7,$5,32
+	dsrl	$7,32
+	dmult	$3,$7
 	mflo	$2
-	sd	$2,16($17)
 	dsrl	$2,32
 	mflo	$6
+	dsrl	$4,32
+	dmult	$4,$7
+	mflo	$7
+	daddu	$2,$2,$7
+	move	$7,$2
+	dsrl	$7,32
+	dsll	$2,$2,32
+	dsrl	$2,32
 	dsll	$6,$6,32
 	dsrl	$6,32
-	sd	$6,16($17)
-	dsrl	$4,32
-	dmult	$4,$3
+	dsrl	$5,32
+	dmult	$3,$5
 	mflo	$3
 	daddu	$2,$2,$3
 	dsll	$3,$2,32
 	daddu	$3,$3,$6
 	sd	$3,16($17)
 	dsrl	$2,32
-	move	$7,$2
-	sd	$2,8($17)
-	move	$2,$3
-	dsrl	$2,32
-	dsll	$3,$3,32
-	dsrl	$3,32
-	sd	$3,16($17)
-	dsrl	$5,32
-	dmult	$16,$5
-	mflo	$6
-	daddu	$2,$2,$6
-	dsll	$6,$2,32
-	daddu	$3,$6,$3
-	sd	$3,16($17)
-	dsrl	$2,32
 	daddu	$2,$2,$7
-	sd	$2,8($17)
 	dmult	$4,$5
 	mflo	$3
 	daddu	$2,$3,$2
@@ -8503,12 +8486,11 @@ __mulddi3:
 	ld	$3,16($17)
 	ld	$2,8($17)
 	move	$sp,$17
-	ld	$17,32($sp)
-	ld	$16,24($sp)
+	ld	$17,24($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	addiu	$sp,40
+	addiu	$sp,32
 	.set	macro
 	.set	reorder
 
@@ -8528,33 +8510,33 @@ __multi3:
 	sd	$31,96($sp)
 	sd	$17,88($sp)
 	addiu	$17,$sp,32
-	sd	$5,16($17)
+	move	$3,$5
+	move	$5,$7
+	sd	$3,16($17)
 	sd	$4,8($17)
 	sd	$7,32($17)
 	sd	$6,24($17)
-	ld	$5,32($17)
 	.option	pic0
 	.set	noreorder
 	.set	nomacro
 	jal	__mulddi3
 	.option	pic2
-	ld	$4,16($17)
+	move	$4,$3
 	.set	macro
 	.set	reorder
 
+	move	$6,$2
 	sd	$3,48($17)
-	sd	$2,40($17)
 	ld	$2,8($17)
 	ld	$3,32($17)
 	dmult	$2,$3
-	mflo	$2
-	ld	$3,24($17)
-	ld	$4,16($17)
-	dmult	$3,$4
 	mflo	$3
-	daddu	$2,$2,$3
-	ld	$3,40($17)
-	daddu	$2,$2,$3
+	ld	$2,24($17)
+	ld	$4,16($17)
+	dmult	$2,$4
+	mflo	$4
+	daddu	$3,$3,$4
+	daddu	$2,$3,$6
 	sd	$2,40($17)
 	ld	$3,48($17)
 	ld	$2,40($17)
@@ -8681,26 +8663,22 @@ __parityti2:
 	addiu	$sp,-32
 	sd	$17,24($sp)
 	move	$17,$sp
-	sd	$5,16($17)
-	sd	$4,8($17)
-	ld	$2,8($17)
-	ld	$3,16($17)
-	xor	$2,$3
-	move	$3,$2
-	dsra	$3,32
-	sll	$2,$2,0
-	xor	$2,$3
-	srl	$3,$2,8
-	srl	$3,$3,8
-	xor	$2,$3
-	srl	$3,$2,8
-	xor	$2,$3
-	srl	$3,$2,4
-	xor	$2,$3
-	li	$3,15
-	and	$3,$2
+	xor	$4,$5
+	move	$2,$4
+	dsra	$2,32
+	sll	$4,$4,0
+	xor	$4,$2
+	srl	$2,$4,8
+	srl	$2,$2,8
+	xor	$4,$2
+	srl	$2,$4,8
+	xor	$4,$2
+	srl	$2,$4,4
+	xor	$4,$2
+	li	$2,15
+	and	$4,$2
 	li	$2,27030
-	sra	$2,$3
+	sra	$2,$4
 	li	$3,1
 	and	$2,$3
 	move	$sp,$17
@@ -9347,10 +9325,10 @@ __ucmpti2:
 	sd	$4,8($17)
 	sd	$7,32($17)
 	sd	$6,24($17)
+	sltu	$4,$6
+	btnez	$L797
 	ld	$2,8($17)
 	ld	$3,24($17)
-	sltu	$2,$3
-	btnez	$L797
 	sltu	$3,$2
 	btnez	$L798
 	ld	$2,16($17)

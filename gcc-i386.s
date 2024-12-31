@@ -6064,26 +6064,20 @@ __muldsi3:
 	movzx	esi, di
 	mov	edx, ebx
 	imul	edx, esi
-	mov	DWORD PTR [ebp-24], 0
-	mov	DWORD PTR [ebp-20], 0
-	mov	DWORD PTR [ebp-24], edx
 	mov	eax, edx
 	shr	eax, 16
 	movzx	edx, dx
-	mov	DWORD PTR [ebp-24], edx
 	shr	ecx, 16
 	imul	esi, ecx
 	add	eax, esi
 	mov	esi, eax
 	sal	esi, 16
 	add	esi, edx
-	mov	DWORD PTR [ebp-24], esi
 	shr	eax, 16
 	mov	DWORD PTR [ebp-20], eax
 	mov	eax, esi
 	shr	eax, 16
 	movzx	edx, si
-	mov	DWORD PTR [ebp-24], edx
 	shr	edi, 16
 	mov	esi, edi
 	imul	ebx, edi
@@ -6095,7 +6089,6 @@ __muldsi3:
 	mov	edx, DWORD PTR [ebp-20]
 	shr	eax, 16
 	add	eax, edx
-	mov	DWORD PTR [ebp-20], eax
 	imul	ecx, esi
 	add	eax, ecx
 	mov	DWORD PTR [ebp-20], eax
@@ -6144,7 +6137,6 @@ __muldi3_compiler_rt:
 	push	esi
 	call	__muldsi3
 	mov	DWORD PTR [ebp-24], eax
-	mov	DWORD PTR [ebp-20], edx
 	mov	eax, edi
 	imul	eax, ebx
 	mov	ecx, DWORD PTR [ebp-28]

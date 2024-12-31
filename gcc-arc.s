@@ -64,9 +64,8 @@ memccpy:
 	breq.d	r3,0,.L10
 	mov_s	r12,r0	;4
 	ldb.a r13,[r1,1]
+	brne.d	r2,r13,.L11
 	stb.ab	r13,[r0,1]
-	ldb	r13,[r0,-1]
-	brne	r2,r13,.L11
 	.align 2
 .L10:
 	breq_s	r3,0,.L13
@@ -223,9 +222,8 @@ stpcpy:
 .L39:
 	mov_s	r0,r2	;4
 	ldb.a r3,[r1,1]
+	brne.d	r3,0,.L39
 	stb.ab	r3,[r2,1]
-	ldb	r3,[r2,-1]
-	brne_s	r3,0,.L39
 	j_s.d	[blink]
 	ld.ab	fp,[sp,4]	;23
 	.size	stpcpy, .-stpcpy
@@ -2669,15 +2667,14 @@ strncat:
 	.align 2
 .L390:
 	breq.d	r14,0,.L391
-	mov_s	r3,r2	;4
-	ldb.a r12,[r1,1]
-	stb.ab	r12,[r2,1]
-	ldb	r12,[r2,-1]
-	brne_s	r12,0,.L392
+	mov_s	r12,r2	;4
+	ldb.a r3,[r1,1]
+	brne.d	r3,0,.L392
+	stb.ab	r3,[r2,1]
 	.align 2
 .L391:
 	brne_s	r14,0,.L393
-	stb	0,[r3]
+	stb	0,[r12]
 	.align 2
 .L393:
 	mov_s	r0,r15	;4

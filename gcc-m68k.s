@@ -48,8 +48,8 @@ memccpy:
 	move.l %d3,-(%sp)
 	move.l %d2,-(%sp)
 	move.l 20(%fp),%d1
-	moveq #0,%d2
-	move.b 19(%fp),%d2
+	moveq #0,%d3
+	move.b 19(%fp),%d3
 	move.l 12(%fp),%a1
 	move.l 8(%fp),%a0
 	jra .L9
@@ -59,10 +59,10 @@ memccpy:
 	move.l %a0,%d0
 	tst.l %d1
 	jeq .L10
-	move.b (%a1)+,(%a0)+
-	moveq #0,%d3
-	move.b -1(%a0),%d3
-	cmp.l %d2,%d3
+	move.b (%a1)+,%d2
+	move.b %d2,(%a0)+
+	and.l #255,%d2
+	cmp.l %d3,%d2
 	jne .L11
 .L10:
 	tst.l %d1
@@ -230,8 +230,8 @@ stpcpy:
 	move.l 8(%fp),%a0
 .L38:
 	move.l %a0,%d0
-	move.b (%a1)+,(%a0)+
-	tst.b -1(%a0)
+	move.b (%a1)+,%d1
+	move.b %d1,(%a0)+
 	jne .L38
 	move.l %d0,%a0
 	unlk %fp
@@ -1965,8 +1965,8 @@ wcscpy:
 	move.l 12(%fp),%a1
 	move.l %d0,%a0
 .L277:
-	move.l (%a1)+,(%a0)+
-	tst.l -4(%a0)
+	move.l (%a1)+,%d1
+	move.l %d1,(%a0)+
 	jne .L277
 	move.l %d0,%a0
 	unlk %fp
@@ -3103,8 +3103,8 @@ strncat:
 	move.l %a0,%a2
 	tst.l %d3
 	jeq .L405
-	move.b (%a1)+,(%a0)+
-	tst.b -1(%a0)
+	move.b (%a1)+,%d0
+	move.b %d0,(%a0)+
 	jne .L406
 .L405:
 	tst.l %d3

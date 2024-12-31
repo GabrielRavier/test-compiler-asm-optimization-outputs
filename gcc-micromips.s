@@ -141,10 +141,8 @@ memccpy:
 .L11:
 	beqzc	$7,.L12
 	lbu	$2,0($5)
-	sb	$2,0($4)
-	andi	$2,$2,0x00ff
 	bne	$6,$2,.L13
-	nop
+	sb	$2,0($4)
 
 .L12:
 	bnez	$7,.L14
@@ -380,9 +378,9 @@ stpcpy:
 	daddiu	$2,$2,1
 .L40:
 	lb	$3,0($5)
+	bnez	$3,.L41
 	sb	$3,0($2)
-	seb	$3,$3
-	bnezc	$3,.L41
+
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -2470,17 +2468,15 @@ div:
 	move	$fp,$sp
 	div	$0,$4,$5
 	teq	$5,$0,7
-	mflo	$2
+	mflo	$3
 	div	$0,$4,$5
 	teq	$5,$0,7
 	mfhi	$4
-	sw	$2,0($fp)
-	sw	$4,4($fp)
 	move	$2,$0
-	lwu	$3,0($fp)
+	dext	$3,$3,0,32
 	dins	$2,$3,32,32
-	dext	$3,$4,0,32
-	dins	$2,$3,0,32
+	dext	$4,$4,0,32
+	dins	$2,$4,0,32
 	move	$sp,$fp
 	ld	$fp,24($sp)
 	jraddiusp	32
@@ -2533,10 +2529,7 @@ imaxdiv:
 	ddiv	$0,$4,$5
 	teq	$5,$0,7
 	mfhi	$4
-	mflo	$5
-	sd	$5,0($fp)
-	sd	$4,8($fp)
-	move	$2,$5
+	mflo	$2
 	move	$3,$4
 	move	$sp,$fp
 	ld	$fp,24($sp)
@@ -2590,10 +2583,7 @@ ldiv:
 	ddiv	$0,$4,$5
 	teq	$5,$0,7
 	mfhi	$4
-	mflo	$5
-	sd	$5,0($fp)
-	sd	$4,8($fp)
-	move	$2,$5
+	mflo	$2
 	move	$3,$4
 	move	$sp,$fp
 	ld	$fp,24($sp)
@@ -2647,10 +2637,7 @@ lldiv:
 	ddiv	$0,$4,$5
 	teq	$5,$0,7
 	mfhi	$4
-	mflo	$5
-	sd	$5,0($fp)
-	sd	$4,8($fp)
-	move	$2,$5
+	mflo	$2
 	move	$3,$4
 	move	$sp,$fp
 	ld	$fp,24($sp)
@@ -2765,9 +2752,9 @@ wcscpy:
 	daddiu	$5,$5,4
 	daddiu	$3,$3,4
 	lw	$4,-4($5)
+	bnez	$4,.L281
 	sw	$4,-4($3)
-	lw	$4,-4($3)
-	bnezc	$4,.L281
+
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -4102,15 +4089,14 @@ strncat:
 	daddu	$2,$18,$2
 
 .L401:
+	daddiu	$17,$17,1
 	daddiu	$2,$2,1
 	daddiu	$16,$16,-1
 .L399:
 	beqzc	$16,.L400
 	lb	$3,0($17)
-	sb	$3,0($2)
-	seb	$3,$3
 	bnez	$3,.L401
-	daddiu	$17,$17,1
+	sb	$3,0($2)
 
 .L400:
 	bnezc	$16,.L402

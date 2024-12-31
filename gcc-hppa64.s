@@ -2152,14 +2152,11 @@ div:
 	.IMPORT $$divI,MILLICODE
 	b,l $$divI,%r2
 	nop
-	extrd,s %r29,63,32,%r31
+	copy %r29,%r31
 	copy %r19,%r26
 	copy %r28,%r25
 	.IMPORT $$remI,MILLICODE
 	b,l $$remI,%r2
-	stw %r31,8(%r3)
-	extrd,s %r29,63,32,%r29
-	stw %r29,12(%r3)
 	ldi 0,%r28
 	extrd,u %r31,63,32,%r31
 	depd %r31,0+32-1,32,%r28
@@ -2217,8 +2214,6 @@ imaxdiv:
 	b,l __moddi3,%r2
 	copy %r6,%r26
 	copy %r28,%r29
-	std %r5,8(%r3)
-	std %r28,16(%r3)
 	copy %r5,%r28
 	ldd -16(%r3),%r2
 	ldd 24(%r3),%r7
@@ -2276,8 +2271,6 @@ ldiv:
 	b,l __moddi3,%r2
 	copy %r6,%r26
 	copy %r28,%r29
-	std %r5,8(%r3)
-	std %r28,16(%r3)
 	copy %r5,%r28
 	ldd -16(%r3),%r2
 	ldd 24(%r3),%r7
@@ -2335,8 +2328,6 @@ lldiv:
 	b,l __moddi3,%r2
 	copy %r6,%r26
 	copy %r28,%r29
-	std %r5,8(%r3)
-	std %r28,16(%r3)
 	copy %r5,%r28
 	ldd -16(%r3),%r2
 	ldd 24(%r3),%r7

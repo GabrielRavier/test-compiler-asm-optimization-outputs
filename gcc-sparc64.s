@@ -1483,13 +1483,11 @@ imaxabs:
 	.proc	010
 imaxdiv:
 	save	%sp, -208, %sp
-	sdivx	%i0, %i1, %g1
-	mulx	%g1, %i1, %i1
-	sub	%i0, %i1, %i1
-	stx	%g1, [%fp+2031]
-	stx	%i1, [%fp+2039]
+	mov	%i0, %g1
+	sdivx	%i0, %i1, %i0
+	mulx	%i0, %i1, %i1
 	return	%i7+8
-	 mov	%g1, %o0
+	 sub	%g1, %o1, %o1
 	.size	imaxdiv, .-imaxdiv
 	.align 4
 	.global labs
@@ -1508,13 +1506,11 @@ labs:
 	.proc	010
 ldiv:
 	save	%sp, -208, %sp
-	sdivx	%i0, %i1, %g1
-	mulx	%g1, %i1, %i1
-	sub	%i0, %i1, %i1
-	stx	%g1, [%fp+2031]
-	stx	%i1, [%fp+2039]
+	mov	%i0, %g1
+	sdivx	%i0, %i1, %i0
+	mulx	%i0, %i1, %i1
 	return	%i7+8
-	 mov	%g1, %o0
+	 sub	%g1, %o1, %o1
 	.size	ldiv, .-ldiv
 	.align 4
 	.global llabs
@@ -1533,13 +1529,11 @@ llabs:
 	.proc	010
 lldiv:
 	save	%sp, -208, %sp
-	sdivx	%i0, %i1, %g1
-	mulx	%g1, %i1, %i1
-	sub	%i0, %i1, %i1
-	stx	%g1, [%fp+2031]
-	stx	%i1, [%fp+2039]
+	mov	%i0, %g1
+	sdivx	%i0, %i1, %i0
+	mulx	%i0, %i1, %i1
 	return	%i7+8
-	 mov	%g1, %o0
+	 sub	%g1, %o1, %o1
 	.size	lldiv, .-lldiv
 	.align 4
 	.global wcschr

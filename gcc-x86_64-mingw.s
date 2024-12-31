@@ -12,10 +12,6 @@ make_ti:
 	sub	rsp, 16
 	.seh_stackalloc	16
 	.seh_endprologue
-	mov	QWORD PTR -16[rbp], 0
-	mov	QWORD PTR -8[rbp], 0
-	mov	r10d, 0
-	mov	QWORD PTR -16[rbp], r10
 	mov	QWORD PTR -8[rbp], rcx
 	mov	r9, QWORD PTR -8[rbp]
 	mov	QWORD PTR -16[rbp], rdx
@@ -36,10 +32,6 @@ make_tu:
 	sub	rsp, 16
 	.seh_stackalloc	16
 	.seh_endprologue
-	mov	QWORD PTR -16[rbp], 0
-	mov	QWORD PTR -8[rbp], 0
-	mov	r10d, 0
-	mov	QWORD PTR -16[rbp], r10
 	mov	QWORD PTR -8[rbp], rcx
 	mov	r9, QWORD PTR -8[rbp]
 	mov	QWORD PTR -16[rbp], rdx

@@ -119,7 +119,6 @@ memccpy:
 	beqz	$r7,.L13
 	ld.bu	$r12,$r5,0
 	st.b	$r12,$r4,0
-	bstrpick.w	$r12,$r12,7,0
 	bne	$r6,$r12,.L14
 .L13:
 	beqz	$r7,.L16
@@ -319,7 +318,6 @@ stpcpy:
 .L41:
 	ld.b	$r12,$r5,0
 	st.b	$r12,$r4,0
-	ext.w.b	$r12,$r12
 	bnez	$r12,.L42
 	ld.d	$r22,$r3,8
 	.cfi_restore 22
@@ -3546,7 +3544,6 @@ strncat:
 	beqz	$r23,.L385
 	ld.b	$r13,$r24,0
 	st.b	$r13,$r12,0
-	ext.w.b	$r13,$r13
 	bnez	$r13,.L386
 .L385:
 	bnez	$r23,.L387

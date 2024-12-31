@@ -1805,7 +1805,6 @@ imaxdiv:
 	mov	r20, r4
 	stw	r5, -28(fp)
 	stw	r6, -24(fp)
-	stw	r7, 8(fp)
 	mov	r16, r7
 	ldw	r17, 12(fp)
 	mov	r6, r7
@@ -1928,7 +1927,6 @@ lldiv:
 	mov	r20, r4
 	stw	r5, -28(fp)
 	stw	r6, -24(fp)
-	stw	r7, 8(fp)
 	mov	r16, r7
 	ldw	r17, 12(fp)
 	mov	r6, r7

@@ -137,7 +137,6 @@ memccpy:
 	beq	a3,zero,.L12
 	lbu	a5,0(a1)
 	sb	a5,0(a0)
-	andi	a5,a5,0xff
 	bne	a2,a5,.L13
 .L12:
 	beq	a3,zero,.L15
@@ -370,7 +369,6 @@ stpcpy:
 .L40:
 	lbu	a5,0(a1)
 	sb	a5,0(a0)
-	andi	a5,a5,0xff
 	bne	a5,zero,.L41
 	ld	ra,8(sp)
 	.cfi_restore 1
@@ -2372,13 +2370,10 @@ div:
 	.cfi_def_cfa 8, 0
 	divw	a5,a0,a1
 	remw	a0,a0,a1
-	sw	a5,-24(s0)
-	sw	a0,-20(s0)
-	slli	a5,a0,32
-	srli	a5,a5,32
-	slli	a5,a5,32
-	lwu	a0,-24(s0)
-	or	a0,a0,a5
+	slli	a1,a0,32
+	slli	a0,a5,32
+	srli	a0,a0,32
+	or	a0,a0,a1
 	ld	ra,24(sp)
 	.cfi_restore 1
 	ld	s0,16(sp)
@@ -2432,11 +2427,9 @@ imaxdiv:
 	.cfi_offset 8, -16
 	addi	s0,sp,32
 	.cfi_def_cfa 8, 0
-	div	a3,a0,a1
+	mv	a3,a1
 	rem	a1,a0,a1
-	sd	a3,-32(s0)
-	sd	a1,-24(s0)
-	mv	a4,a3
+	div	a4,a0,a3
 	mv	a0,a4
 	ld	ra,24(sp)
 	.cfi_restore 1
@@ -2491,11 +2484,9 @@ ldiv:
 	.cfi_offset 8, -16
 	addi	s0,sp,32
 	.cfi_def_cfa 8, 0
-	div	a3,a0,a1
+	mv	a3,a1
 	rem	a1,a0,a1
-	sd	a3,-32(s0)
-	sd	a1,-24(s0)
-	mv	a4,a3
+	div	a4,a0,a3
 	mv	a0,a4
 	ld	ra,24(sp)
 	.cfi_restore 1
@@ -2550,11 +2541,9 @@ lldiv:
 	.cfi_offset 8, -16
 	addi	s0,sp,32
 	.cfi_def_cfa 8, 0
-	div	a3,a0,a1
+	mv	a3,a1
 	rem	a1,a0,a1
-	sd	a3,-32(s0)
-	sd	a1,-24(s0)
-	mv	a4,a3
+	div	a4,a0,a3
 	mv	a0,a4
 	ld	ra,24(sp)
 	.cfi_restore 1
@@ -2669,7 +2658,6 @@ wcscpy:
 	addi	a5,a5,4
 	lw	a4,-4(a1)
 	sw	a4,-4(a5)
-	sext.w	a4,a4
 	bne	a4,zero,.L269
 	ld	ra,8(sp)
 	.cfi_restore 1
@@ -3976,7 +3964,6 @@ strncat:
 	beq	s1,zero,.L385
 	lbu	a4,0(s2)
 	sb	a4,0(a5)
-	andi	a4,a4,0xff
 	bne	a4,zero,.L386
 .L385:
 	bne	s1,zero,.L387

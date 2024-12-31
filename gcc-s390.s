@@ -5437,14 +5437,9 @@ __bswapdi2:
 	lr	%r4,%r2
 	lr	%r5,%r3
 	sldl	%r4,24
-	lhi	%r0,0
-	lhi	%r1,0
-	stm	%r0,%r1,120(%r11)
 	l	%r1,.L825-.L824(%r13)
 	nr	%r1,%r4
 	st	%r1,120(%r11)
-	lhi	%r1,0
-	st	%r1,124(%r11)
 	lr	%r4,%r2
 	lr	%r5,%r3
 	sldl	%r4,40

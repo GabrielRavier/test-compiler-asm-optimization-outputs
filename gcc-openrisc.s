@@ -73,10 +73,9 @@ memccpy:
 	 l.nop
 
 	l.lbz	r17, 0(r4)
-	l.sb	0(r3), r17
-	l.andi	r17, r17, 0xff
 	l.sfne	r5, r17
 	l.bf	.L12
+	l.sb	0(r3), r17
 	l.movhi	r17, hi(0)
 	l.sfeq	r6, r17
 .L15:
@@ -3125,27 +3124,22 @@ bswap_64:
 	l.lwz	r3, -52(r2)
 	l.and	r14, r3, r11
 	l.sw	-60(r2), r0
-	l.sw	-56(r2), r0
 	l.ori	r5, r0, 24
 	l.srl	r17, r14, r5
 	l.sw	-56(r2), r17
 	l.movhi	r15, hi(16711680)
-	l.sw	-68(r2), r0
 	l.sw	-64(r2), r0
 	l.lwz	r17, -52(r2)
 	l.and	r17, r17, r15
 	l.sw	-68(r2), r17
 	l.sw	-76(r2), r0
-	l.sw	-72(r2), r0
 	l.ori	r4, r0, 8
 	l.srl	r17, r17, r4
 	l.sw	-72(r2), r17
 	l.sw	-132(r2), r0
-	l.sw	-128(r2), r0
 	l.lwz	r19, -56(r2)
 	l.or	r17, r17, r19
 	l.sw	-128(r2), r17
-	l.sw	-84(r2), r0
 	l.sw	-80(r2), r0
 	l.lwz	r17, -52(r2)
 	l.andi	r17, r17, 65280
@@ -3157,7 +3151,6 @@ bswap_64:
 	l.lwz	r19, -128(r2)
 	l.or	r12, r17, r29
 	l.or	r13, r19, r31
-	l.sw	-92(r2), r0
 	l.sw	-88(r2), r0
 	l.lwz	r17, -52(r2)
 	l.andi	r17, r17, 255
@@ -3185,28 +3178,20 @@ bswap_64:
 	l.or	r8, r28, r21
 	l.or	r9, r30, r23
 	l.sw	-140(r2), r0
-	l.sw	-136(r2), r0
 	l.andi	r21, r31, 65280
 	l.sw	-136(r2), r21
-	l.sw	-100(r2), r0
 	l.sw	-96(r2), r0
 	l.sll	r19, r21, r4
 	l.sw	-100(r2), r19
-	l.sw	-108(r2), r0
-	l.sw	-104(r2), r0
 	l.or	r19, r8, r19
 	l.sw	-108(r2), r19
 	l.sw	-104(r2), r9
 	l.sw	-148(r2), r0
-	l.sw	-144(r2), r0
 	l.andi	r19, r31, 255
 	l.sw	-144(r2), r19
-	l.sw	-116(r2), r0
 	l.sw	-112(r2), r0
 	l.sll	r17, r19, r5
 	l.sw	-116(r2), r17
-	l.sw	-124(r2), r0
-	l.sw	-120(r2), r0
 	l.lwz	r17, -108(r2)
 	l.lwz	r19, -104(r2)
 	l.lwz	r23, -116(r2)
@@ -5600,7 +5585,6 @@ __bswapdi2:
 	l.sw	-132(r2), r3
 	l.sw	-128(r2), r4
 	l.sw	-52(r2), r0
-	l.sw	-48(r2), r0
 	l.ori	r19, r0, 24
 	l.lwz	r4, -132(r2)
 	l.lwz	r5, -128(r2)
@@ -5626,29 +5610,22 @@ __bswapdi2:
 	l.srl	r17, r5, r19
 	l.or	r25, r17, r11
 	l.sll	r27, r5, r12
-	l.sw	-60(r2), r0
 	l.sw	-56(r2), r0
 	l.andi	r17, r25, 255
 	l.sw	-60(r2), r17
 	l.srl	r17, r5, r12
 	l.or	r21, r17, r13
 	l.sll	r23, r5, r19
-	l.sw	-68(r2), r0
 	l.sw	-64(r2), r0
 	l.andi	r17, r21, 65280
 	l.sw	-68(r2), r17
-	l.sw	-76(r2), r0
 	l.sw	-72(r2), r0
 	l.sw	-76(r2), r27
-	l.sw	-84(r2), r0
 	l.sw	-80(r2), r0
 	l.and	r17, r27, r15
 	l.sw	-84(r2), r17
-	l.sw	-92(r2), r0
 	l.sw	-88(r2), r0
 	l.sw	-92(r2), r23
-	l.sw	-108(r2), r0
-	l.sw	-104(r2), r0
 	l.sw	-108(r2), r23
 	l.lwz	r17, -48(r2)
 	l.sw	-104(r2), r17
@@ -5660,22 +5637,16 @@ __bswapdi2:
 	l.or	r9, r7, r26
 	l.or	r20, r8, r16
 	l.or	r22, r9, r18
-	l.sw	-116(r2), r0
-	l.sw	-112(r2), r0
 	l.lwz	r17, -60(r2)
 	l.or	r17, r20, r17
 	l.sw	-116(r2), r17
 	l.sw	-112(r2), r22
-	l.sw	-124(r2), r0
-	l.sw	-120(r2), r0
 	l.lwz	r17, -116(r2)
 	l.lwz	r19, -112(r2)
 	l.lwz	r23, -68(r2)
 	l.or	r21, r17, r23
 	l.sw	-124(r2), r21
 	l.sw	-120(r2), r19
-	l.sw	-100(r2), r0
-	l.sw	-96(r2), r0
 	l.lwz	r17, -124(r2)
 	l.lwz	r19, -120(r2)
 	l.lwz	r23, -84(r2)

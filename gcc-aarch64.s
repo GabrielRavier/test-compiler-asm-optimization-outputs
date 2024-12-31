@@ -84,7 +84,6 @@ memccpy:
 	cbz	x3, .L13
 	ldrb	w4, [x1]
 	strb	w4, [x0]
-	and	w4, w4, 255
 	cmp	w2, w4
 	bne	.L14
 .L13:
@@ -229,7 +228,6 @@ stpcpy:
 .L41:
 	ldrb	w2, [x1]
 	strb	w2, [x0]
-	and	w2, w2, 255
 	cbnz	w2, .L42
 	ret
 	.cfi_endproc
@@ -2479,7 +2477,6 @@ strncat:
 	cbz	x19, .L373
 	ldrb	w0, [x20]
 	strb	w0, [x3]
-	and	w0, w0, 255
 	cbnz	w0, .L374
 .L373:
 	cbnz	x19, .L375

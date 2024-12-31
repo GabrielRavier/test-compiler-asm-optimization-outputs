@@ -67,7 +67,6 @@ memccpy:
 	beq icc0,0,.L11
 	ldub @(gr9,gr0),gr4
 	stb gr4, @(gr8,gr0)
-	andi gr4,#0xff,gr4
 	cmp gr10,gr4,icc0
 	bne icc0,2,.L12
 .L11:
@@ -242,8 +241,6 @@ stpcpy:
 .L39:
 	ldsb @(gr9,gr0),gr4
 	stb gr4, @(gr8,gr0)
-	slli gr4,#24,gr4
-	srai gr4, #24, gr4
 	cmpi gr4, #0, icc0
 	bne icc0,2,.L40
 	ldi @(fp,8), gr5
@@ -3440,8 +3437,6 @@ strncat:
 	beq icc0,0,.L391
 	ldsb @(gr20,gr0),gr4
 	stb gr4, @(gr8,gr0)
-	slli gr4,#24,gr4
-	srai gr4, #24, gr4
 	cmpi gr4, #0, icc0
 	bne icc0,2,.L392
 .L391:

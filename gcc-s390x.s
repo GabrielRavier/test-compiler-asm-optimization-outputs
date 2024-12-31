@@ -115,9 +115,9 @@ memccpy:
 	brctg	%r1,.L20
 	j	.L16
 .L20:
-	mvc	0(1,%r2),0(%r3)
-	llc	%r0,0(%r2)
-	crjlh	%r0,%r4,.L17
+	llgc	%r0,0(%r3)
+	stc	%r0,0(%r2)
+	cgrjlh	%r0,%r4,.L17
 .L16:
 	cgije	%r5,0,.L19
 	aghi	%r2,1
@@ -304,9 +304,9 @@ stpcpy:
 	aghi	%r3,1
 	aghi	%r2,1
 .L53:
-	mvc	0(1,%r2),0(%r3)
-	llc	%r1,0(%r2)
-	cijlh	%r1,0,.L54
+	llgc	%r1,0(%r3)
+	stc	%r1,0(%r2)
+	cgijlh	%r1,0,.L54
 	lgdr	%r11,%f0
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
@@ -3127,9 +3127,9 @@ strncat:
 	brctg	%r5,.L508
 	j	.L505
 .L508:
-	mvc	0(1,%r1),0(%r3)
-	llc	%r0,0(%r1)
-	cijlh	%r0,0,.L506
+	llgc	%r0,0(%r3)
+	stc	%r0,0(%r1)
+	cgijlh	%r0,0,.L506
 .L505:
 	cgijlh	%r4,0,.L507
 	mvi	0(%r1),0

@@ -49,7 +49,6 @@ memccpy:
 	beqz.n	a5, .L10
 	l8ui	a8, a3, 0
 	s8i	a8, a2, 0
-	extui	a8, a8, 0, 8
 	bne	a4, a8, .L11
 .L10:
 	beqz.n	a5, .L13
@@ -179,7 +178,6 @@ stpcpy:
 .L38:
 	l8ui	a8, a3, 0
 	s8i	a8, a2, 0
-	extui	a8, a8, 0, 8
 	bnez.n	a8, .L39
 	retw.n
 	.size	stpcpy, .-stpcpy
@@ -1462,11 +1460,10 @@ bsearch_r:
 div:
 	entry	sp, 48
 	mov.n	a7, sp
-	quos	a10, a2, a3
-	rems	a3, a2, a3
-	s32i	a10, a7, 0
-	s32i	a3, a7, 4
-	mov.n	a2, a10
+	mov.n	a9, a2
+	mov.n	a8, a3
+	quos	a2, a9, a8
+	rems	a3, a9, a8
 	retw.n
 	.size	div, .-div
 	.align	4
@@ -1508,16 +1505,12 @@ imaxdiv:
 	mov.n	a11, a3
 	l32r	a8, .LC49
 	callx8	a8
+	mov.n	a5, a11
 	l32i	a8, a7, 16
 	l32i	a9, a7, 20
-	s32i	a8, a7, 0
-	s32i	a9, a7, 4
-	s32i	a10, a7, 8
-	s32i	a11, a7, 12
-	l32i	a5, a7, 12
-	l32i	a12, a7, 0
-	l32i	a13, a7, 4
-	l32i	a14, a7, 8
+	mov.n	a12, a8
+	mov.n	a13, a9
+	mov.n	a14, a10
 	mov.n	a2, a12
 	mov.n	a3, a13
 	mov.n	a4, a14
@@ -1538,11 +1531,10 @@ labs:
 ldiv:
 	entry	sp, 48
 	mov.n	a7, sp
-	quos	a10, a2, a3
-	rems	a3, a2, a3
-	s32i	a10, a7, 0
-	s32i	a3, a7, 4
-	mov.n	a2, a10
+	mov.n	a9, a2
+	mov.n	a8, a3
+	quos	a2, a9, a8
+	rems	a3, a9, a8
 	retw.n
 	.size	ldiv, .-ldiv
 	.align	4
@@ -1584,16 +1576,12 @@ lldiv:
 	mov.n	a11, a3
 	l32r	a8, .LC51
 	callx8	a8
+	mov.n	a5, a11
 	l32i	a8, a7, 16
 	l32i	a9, a7, 20
-	s32i	a8, a7, 0
-	s32i	a9, a7, 4
-	s32i	a10, a7, 8
-	s32i	a11, a7, 12
-	l32i	a5, a7, 12
-	l32i	a12, a7, 0
-	l32i	a13, a7, 4
-	l32i	a14, a7, 8
+	mov.n	a12, a8
+	mov.n	a13, a9
+	mov.n	a14, a10
 	mov.n	a2, a12
 	mov.n	a3, a13
 	mov.n	a4, a14
@@ -2547,7 +2535,6 @@ strncat:
 	beqz.n	a4, .L401
 	l8ui	a8, a3, 0
 	s8i	a8, a10, 0
-	extui	a8, a8, 0, 8
 	bnez.n	a8, .L402
 .L401:
 	bnez.n	a4, .L403
@@ -3793,7 +3780,6 @@ __bswapdi2:
 	mov.n	a4, a5
 	extui	a5, a2, 24, 8
 	srli	a9, a2, 8
-	s32i	a4, a7, 12
 	s32i	a4, a7, 8
 	l32r	a10, .LC141
 	and	a8, a9, a10
@@ -3801,7 +3787,6 @@ __bswapdi2:
 	slli	a15, a2, 8
 	extui	a9, a3, 24, 8
 	or	a9, a15, a9
-	s32i	a4, a7, 20
 	s32i	a4, a7, 16
 	l32r	a6, .LC142
 	and	a8, a9, a6
@@ -3813,15 +3798,10 @@ __bswapdi2:
 	extui	a9, a11, 24, 8
 	slli	a9, a9, 24
 	extui	a10, a3, 24, 8
-	s32i	a4, a7, 4
-	s32i	a4, a7, 0
-	s32i	a15, a7, 0
 	or	a10, a10, a15
 	s32i	a10, a7, 0
 	slli	a10, a3, 8
 	s32i	a10, a7, 4
-	s32i	a4, a7, 28
-	s32i	a4, a7, 24
 	l32i	a10, a7, 0
 	extui	a10, a10, 0, 8
 	s32i	a10, a7, 24
@@ -3832,14 +3812,10 @@ __bswapdi2:
 	and	a14, a10, a13
 	l32i	a2, a7, 4
 	and	a12, a2, a6
-	s32i	a4, a7, 4
-	s32i	a4, a7, 0
-	s32i	a11, a7, 0
-	mov.n	a2, a11
 	mov.n	a3, a5
 	l32i	a4, a7, 8
 	l32i	a5, a7, 12
-	or	a10, a2, a4
+	or	a10, a11, a4
 	or	a11, a3, a5
 	l32i	a4, a7, 16
 	l32i	a5, a7, 20
@@ -3849,10 +3825,9 @@ __bswapdi2:
 	or	a11, a3, a9
 	l32i	a6, a7, 24
 	or	a8, a10, a6
-	mov.n	a9, a11
 	or	a10, a8, a14
 	or	a2, a10, a12
-	mov.n	a3, a9
+	mov.n	a3, a11
 	retw.n
 	.size	__bswapdi2, .-__bswapdi2
 	.align	4

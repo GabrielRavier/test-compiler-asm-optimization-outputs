@@ -120,11 +120,6 @@ memccpy:
 	ld1 r14 = [r33], 1
 	;;
 	st1 [r32] = r14, 1
-	;;
-	adds r14 = -1, r32
-	;;
-	ld1 r14 = [r14]
-	;;
 	cmp4.ne p6, p7 = r14, r34
 	(p6) br.cond.dptk .L13
 .L12:
@@ -340,14 +335,9 @@ stpcpy:
 	mov r8 = r32
 	ld1 r14 = [r33], 1
 	;;
-	st1 [r32] = r14, 1
-	;;
-	adds r14 = -1, r32
-	;;
-	ld1 r14 = [r14]
-	;;
 	sxt1 r14 = r14
 	;;
+	st1 [r32] = r14, 1
 	cmp4.ne p6, p7 = 0, r14
 	(p6) br.cond.dptk .L43
 	.restore sp
@@ -2180,19 +2170,17 @@ div:
 	mov r39 = r32
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r38
-	st4 [r37] = r34
-	adds r15 = 4, r37
+	mov r14 = r0
+	addp4 r34 = r34, r0
 	;;
-	st4 [r15] = r8
-	mov r8 = r0
-	addp4 r14 = r34, r0
+	shl r34 = r34, 32
 	;;
-	shl r14 = r14, 32
+	mix4.l r14 = r14, r34
+	addp4 r8 = r8, r0
 	;;
-	mix4.l r8 = r8, r14
-	ld4 r14 = [r15]
+	mix4.r r14 = r8, r14
 	;;
-	mix4.r r8 = r14, r8
+	mov r8 = r14
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2245,13 +2233,10 @@ imaxdiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r38
-	mov r14 = r8
-	st8 [r37] = r34
-	adds r15 = 8, r37
-	;;
-	st8 [r15] = r8
+	mov r15 = r8
 	mov r8 = r34
-	mov r9 = r14
+	;;
+	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2304,13 +2289,10 @@ ldiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r38
-	mov r14 = r8
-	st8 [r37] = r34
-	adds r15 = 8, r37
-	;;
-	st8 [r15] = r8
+	mov r15 = r8
 	mov r8 = r34
-	mov r9 = r14
+	;;
+	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2363,13 +2345,10 @@ lldiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r38
-	mov r14 = r8
-	st8 [r37] = r34
-	adds r15 = 8, r37
-	;;
-	st8 [r15] = r8
+	mov r15 = r8
 	mov r8 = r34
-	mov r9 = r14
+	;;
+	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2482,11 +2461,6 @@ wcscpy:
 	ld4 r15 = [r15]
 	;;
 	st4 [r14] = r15, 4
-	;;
-	adds r15 = -4, r14
-	;;
-	ld4 r15 = [r15]
-	;;
 	cmp4.ne p6, p7 = 0, r15
 	(p6) br.cond.dptk .L263
 	.restore sp
@@ -3688,14 +3662,9 @@ strncat:
 .L382:
 	ld1 r14 = [r33], 1
 	;;
-	st1 [r8] = r14, 1
-	;;
-	adds r14 = -1, r8
-	;;
-	ld1 r14 = [r14]
-	;;
 	sxt1 r14 = r14
 	;;
+	st1 [r8] = r14, 1
 	cmp4.ne p6, p7 = 0, r14
 	(p6) br.cond.dptk .L380
 .L379:

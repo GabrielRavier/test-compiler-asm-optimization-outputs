@@ -1510,26 +1510,24 @@ imaxdiv:
 	movm [d2,d3,a2,a3,exreg1],(sp)
 	mov sp,a3
 	add -28,sp
-	mov d0,a2
-	mov d1,(40,a3)
-	mov d1,d2
-	mov (44,a3),d3
-	mov (48,a3),r4
-	mov (52,a3),r5
-	mov r4,(12,sp)
-	mov r5,(16,sp)
-	mov_mov d1, d0, d3, d1
+	mov_mov d0, a2, d1, r6
+	mov (44,a3),r7
+	mov (48,a3),d2
+	mov (52,a3),d3
+	mov d2,(12,sp)
+	mov d3,(16,sp)
+	mov_mov d1, d0, r7, d1
 	call +__divdi3,[],0
-	mov_mov d0, r6, d1, r7
+	mov_mov d0, r4, d1, r5
 	mov d0,(-8,a3)
 	mov d1,(-4,a3)
-	mov r4,(12,sp)
-	mov r5,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,(12,sp)
+	mov d3,(16,sp)
+	mov_mov r6, d0, r7, d1
 	call +__moddi3,[],0
-	mov r6,d2
-	mov r6,(a2)
-	mov r7,(4,a2)
+	mov r4,d2
+	mov r4,(a2)
+	mov r5,(4,a2)
 	mov d0,(8,a2)
 	mov d1,(12,a2)
 	mov a2,a0
@@ -1582,26 +1580,24 @@ lldiv:
 	movm [d2,d3,a2,a3,exreg1],(sp)
 	mov sp,a3
 	add -28,sp
-	mov d0,a2
-	mov d1,(40,a3)
-	mov d1,d2
-	mov (44,a3),d3
-	mov (48,a3),r4
-	mov (52,a3),r5
-	mov r4,(12,sp)
-	mov r5,(16,sp)
-	mov_mov d1, d0, d3, d1
+	mov_mov d0, a2, d1, r6
+	mov (44,a3),r7
+	mov (48,a3),d2
+	mov (52,a3),d3
+	mov d2,(12,sp)
+	mov d3,(16,sp)
+	mov_mov d1, d0, r7, d1
 	call +__divdi3,[],0
-	mov_mov d0, r6, d1, r7
+	mov_mov d0, r4, d1, r5
 	mov d0,(-8,a3)
 	mov d1,(-4,a3)
-	mov r4,(12,sp)
-	mov r5,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,(12,sp)
+	mov d3,(16,sp)
+	mov_mov r6, d0, r7, d1
 	call +__moddi3,[],0
-	mov r6,d2
-	mov r6,(a2)
-	mov r7,(4,a2)
+	mov r4,d2
+	mov r4,(a2)
+	mov r5,(4,a2)
 	mov d0,(8,a2)
 	mov d1,(12,a2)
 	mov a2,a0
@@ -3880,8 +3876,6 @@ __bswapdi2:
 	mov a0,d2
 	lsr 8,d2
 	or r5,d2
-	mov d1,(-16,a3)
-	mov d1,(-12,a3)
 	mov d2,a2
 	and -16777216,a2
 	mov a2,(-16,a3)
@@ -3900,12 +3894,9 @@ __bswapdi2:
 	mov r1,a1
 	and 65280,a1
 	mov d1,a2
-	mov d1,(-8,a3)
-	mov d1,(-4,a3)
 	mov r2,(-4,a3)
 	mov (-4,a3),r3
 	and 16711680,r3
-	mov d1,(-4,a3)
 	mov r0,(-4,a3)
 	mov (-4,a3),r1
 	or r4,d0

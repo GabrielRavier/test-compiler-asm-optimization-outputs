@@ -1867,22 +1867,18 @@ div:
 	copy %r3,%r1
 	copy %r30,%r3
 	stwm %r1,64(%r30)
-	copy %r26,%r20
+	copy %r26,%r19
 	copy %r25,%r28
 	.IMPORT $$divI,MILLICODE
 	bl $$divI,%r31
 	nop
-	copy %r29,%r19
-	copy %r20,%r26
+	copy %r29,%r20
+	copy %r19,%r26
 	copy %r28,%r25
 	.IMPORT $$remI,MILLICODE
 	bl $$remI,%r31
-	stw %r19,8(%r3)
-	stw %r29,12(%r3)
-	copy %r19,%r21
-	copy %r29,%r22
-	copy %r21,%r28
-	copy %r22,%r29
+	nop
+	copy %r20,%r28
 	ldo 64(%r3),%r30
 	bv %r0(%r2)
 	ldwm -64(%r30),%r3
@@ -1990,20 +1986,16 @@ ldiv:
 	copy %r3,%r1
 	copy %r30,%r3
 	stwm %r1,64(%r30)
-	copy %r26,%r20
+	copy %r26,%r19
 	copy %r25,%r28
 	bl $$divI,%r31
 	nop
-	copy %r29,%r19
-	copy %r20,%r26
+	copy %r29,%r20
+	copy %r19,%r26
 	copy %r28,%r25
 	bl $$remI,%r31
-	stw %r19,8(%r3)
-	stw %r29,12(%r3)
-	copy %r19,%r21
-	copy %r29,%r22
-	copy %r21,%r28
-	copy %r22,%r29
+	nop
+	copy %r20,%r28
 	ldo 64(%r3),%r30
 	bv %r0(%r2)
 	ldwm -64(%r30),%r3

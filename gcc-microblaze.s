@@ -72,7 +72,6 @@ $L11:
 	beqi	r8,$L12
 	lbui	r3,r6,0
 	sbi	r3,r5,0
-	andi	r3,r3,0x00ff
 	xor	r3,r7,r3
 	bnei	r3,$L13
 $L12:
@@ -6869,11 +6868,6 @@ __bswapdi2:
 	srl	r6,r6
 	srl	r6,r6
 	srl	r6,r6
-	addik	r8,r0,0x00000000
-	addik	r9,r0,0x00000000 #li => la
-	swi	r8,r19,4
-	swi	r9,r19,8
-	swi	r12,r19,4
 	or	r6,r6,r12
 	swi	r6,r19,4
 	addk	r6,r0,r29
