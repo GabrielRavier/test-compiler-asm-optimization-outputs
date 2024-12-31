@@ -1647,8 +1647,8 @@ lsearch:
 	push	DWORD PTR [ebp-28]
 	push	DWORD PTR [ebp+8]
 	call	[DWORD PTR [ebp+24]]
-	add	esp, 16
 	add	DWORD PTR [ebp-28], edi
+	add	esp, 16
 	test	eax, eax
 	jne	.L201
 	imul	ebx, edi
@@ -1714,8 +1714,8 @@ lfind:
 	push	esi
 	push	DWORD PTR [ebp+8]
 	call	[DWORD PTR [ebp+24]]
-	add	esp, 16
 	add	esi, DWORD PTR [ebp+20]
+	add	esp, 16
 	test	eax, eax
 	jne	.L206
 	imul	ebx, DWORD PTR [ebp+20]
@@ -4015,7 +4015,6 @@ mempcpy:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	memcpy
-	add	esp, 16
 	add	eax, ebx
 	mov	ebx, DWORD PTR [ebp-4]
 	leave
@@ -5904,7 +5903,6 @@ __aeabi_lcmp:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	__cmpdi2
-	add	esp, 16
 	sub	eax, 1
 	leave
 	.cfi_restore 5
@@ -6145,7 +6143,6 @@ __muldi3_compiler_rt:
 	push	DWORD PTR [ebp-32]
 	push	esi
 	call	__muldsi3
-	add	esp, 8
 	mov	DWORD PTR [ebp-24], eax
 	mov	DWORD PTR [ebp-20], edx
 	mov	eax, edi
@@ -6527,7 +6524,6 @@ __aeabi_ulcmp:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	__ucmpdi2
-	add	esp, 16
 	sub	eax, 1
 	leave
 	.cfi_restore 5

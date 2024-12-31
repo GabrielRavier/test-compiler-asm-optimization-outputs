@@ -1339,8 +1339,8 @@ lsearch:
 	move.l %d6,-(%sp)
 	move.l 24(%fp),%a0
 	jsr (%a0)
-	addq.l #8,%sp
 	add.l %d2,%d5
+	addq.l #8,%sp
 	tst.l %d0
 	jne .L203
 	move.l %d2,-(%sp)
@@ -1365,8 +1365,8 @@ lsearch:
 	move.l %d6,-(%sp)
 	pea (%a2,%d0.l)
 	jsr memcpy
-	lea (12,%sp),%sp
 	move.l %a0,%d0
+	lea (12,%sp),%sp
 .L204:
 	move.l %d0,%a0
 	movem.l -28(%fp),#3196
@@ -1390,8 +1390,8 @@ lfind:
 	move.l 8(%fp),-(%sp)
 	move.l 24(%fp),%a0
 	jsr (%a0)
-	addq.l #8,%sp
 	add.l %d4,%d3
+	addq.l #8,%sp
 	tst.l %d0
 	jne .L208
 	move.l %d4,-(%sp)
@@ -3349,7 +3349,6 @@ mempcpy:
 	move.l 12(%fp),-(%sp)
 	move.l 8(%fp),-(%sp)
 	jsr memcpy
-	lea (12,%sp),%sp
 	move.l 16(%fp),%d0
 	add.l %a0,%d0
 	move.l %d0,%a0
@@ -4770,7 +4769,6 @@ __aeabi_lcmp:
 	move.l 12(%fp),-(%sp)
 	move.l 8(%fp),-(%sp)
 	jsr __cmpdi2
-	lea (16,%sp),%sp
 	subq.l #1,%d0
 	unlk %fp
 	rts
@@ -4963,7 +4961,6 @@ __muldi3_compiler_rt:
 	move.l %d5,-(%sp)
 	move.l %a3,-(%sp)
 	jsr __muldsi3
-	addq.l #8,%sp
 	move.l %d0,%d6
 	move.l %d1,%d7
 	move.l %d0,%d3
@@ -5299,7 +5296,6 @@ __aeabi_ulcmp:
 	move.l 12(%fp),-(%sp)
 	move.l 8(%fp),-(%sp)
 	jsr __ucmpdi2
-	lea (16,%sp),%sp
 	subq.l #1,%d0
 	unlk %fp
 	rts
