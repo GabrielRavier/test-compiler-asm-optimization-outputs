@@ -77,9 +77,8 @@ memmove:
 .L5:
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memmove, .-memmove
 	.align 4
 	.global memccpy
@@ -139,9 +138,8 @@ memccpy:
 	mov	0, %g1
 .L14:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memccpy, .-memccpy
 	.align 4
 	.global memchr
@@ -190,9 +188,8 @@ memchr:
 	mov	0, %g1
 .L21:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memchr, .-memchr
 	.align 4
 	.global memcmp
@@ -251,9 +248,8 @@ memcmp:
 	mov	0, %g1
 .L28:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memcmp, .-memcmp
 	.align 4
 	.global memcpy
@@ -289,9 +285,8 @@ memcpy:
 	 nop
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memcpy, .-memcpy
 	.align 4
 	.global memrchr
@@ -334,9 +329,8 @@ memrchr:
 	mov	0, %g1
 .L35:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memrchr, .-memrchr
 	.align 4
 	.global memset
@@ -369,9 +363,8 @@ memset:
 	 nop
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memset, .-memset
 	.align 4
 	.global stpcpy
@@ -404,9 +397,8 @@ stpcpy:
 	 nop
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	stpcpy, .-stpcpy
 	.align 4
 	.global strchrnul
@@ -443,9 +435,8 @@ strchrnul:
 .L47:
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strchrnul, .-strchrnul
 	.align 4
 	.global strchr
@@ -477,9 +468,8 @@ strchr:
 	mov	0, %g1
 .L52:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strchr, .-strchr
 	.align 4
 	.global strcmp
@@ -526,9 +516,8 @@ strcmp:
 	and	%g1, 0xff, %g1
 	sub	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strcmp, .-strcmp
 	.align 4
 	.global strlen
@@ -557,9 +546,8 @@ strlen:
 	ld	[%fp-4], %g1
 	sub	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strlen, .-strlen
 	.align 4
 	.global strncmp
@@ -629,9 +617,8 @@ strncmp:
 	sub	%g2, %g1, %g1
 .L65:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strncmp, .-strncmp
 	.align 4
 	.global swab
@@ -675,9 +662,8 @@ swab:
 	 nop
 	nop
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	swab, .-swab
 	.align 4
 	.global isalpha
@@ -697,9 +683,8 @@ isalpha:
 .L73:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isalpha, .-isalpha
 	.align 4
 	.global isascii
@@ -717,9 +702,8 @@ isascii:
 .L76:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isascii, .-isascii
 	.align 4
 	.global isblank
@@ -744,9 +728,8 @@ isblank:
 	mov	0, %g1
 .L82:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isblank, .-isblank
 	.align 4
 	.global iscntrl
@@ -771,9 +754,8 @@ iscntrl:
 	mov	0, %g1
 .L87:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	iscntrl, .-iscntrl
 	.align 4
 	.global isdigit
@@ -792,9 +774,8 @@ isdigit:
 .L89:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isdigit, .-isdigit
 	.align 4
 	.global isgraph
@@ -813,9 +794,8 @@ isgraph:
 .L92:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isgraph, .-isgraph
 	.align 4
 	.global islower
@@ -834,9 +814,8 @@ islower:
 .L95:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	islower, .-islower
 	.align 4
 	.global isprint
@@ -855,9 +834,8 @@ isprint:
 .L98:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isprint, .-isprint
 	.align 4
 	.global isspace
@@ -883,9 +861,8 @@ isspace:
 	mov	0, %g1
 .L104:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isspace, .-isspace
 	.align 4
 	.global isupper
@@ -904,9 +881,8 @@ isupper:
 .L106:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	isupper, .-isupper
 	.align 4
 	.global iswcntrl
@@ -946,9 +922,8 @@ iswcntrl:
 	mov	0, %g1
 .L112:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	iswcntrl, .-iswcntrl
 	.align 4
 	.global iswdigit
@@ -967,9 +942,8 @@ iswdigit:
 .L114:
 	and	%g2, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	iswdigit, .-iswdigit
 	.align 4
 	.global iswprint
@@ -1049,9 +1023,8 @@ iswprint:
 	mov	1, %g1
 .L119:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	iswprint, .-iswprint
 	.align 4
 	.global iswxdigit
@@ -1079,9 +1052,8 @@ iswxdigit:
 	mov	0, %g1
 .L128:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	iswxdigit, .-iswxdigit
 	.align 4
 	.global toascii
@@ -1093,9 +1065,8 @@ toascii:
 	ld	[%fp+68], %g1
 	and	%g1, 127, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	toascii, .-toascii
 	.section	".rodata"
 	.align 8
@@ -1149,9 +1120,8 @@ fdim:
 .L133:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fdim, .-fdim
 	.section	".rodata"
 	.align 4
@@ -1203,9 +1173,8 @@ fdimf:
 	ld	[%g1], %f8
 .L142:
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fdimf, .-fdimf
 	.align 4
 	.global fmax
@@ -1273,9 +1242,8 @@ fmax:
 .L151:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fmax, .-fmax
 	.align 4
 	.global fmaxf
@@ -1342,9 +1310,8 @@ fmaxf:
 	ld	[%fp+68], %f8
 .L163:
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fmaxf, .-fmaxf
 	.align 4
 	.global fmaxl
@@ -1412,9 +1379,8 @@ fmaxl:
 .L175:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fmaxl, .-fmaxl
 	.align 4
 	.global fmin
@@ -1482,9 +1448,8 @@ fmin:
 .L187:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fmin, .-fmin
 	.align 4
 	.global fminf
@@ -1551,9 +1516,8 @@ fminf:
 	ld	[%fp+72], %f8
 .L199:
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fminf, .-fminf
 	.align 4
 	.global fminl
@@ -1621,9 +1585,8 @@ fminl:
 .L211:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	fminl, .-fminl
 	.section	".rodata"
 	.align 8
@@ -1670,9 +1633,8 @@ l64a:
 	sethi	%hi(s.0), %g1
 	or	%g1, %lo(s.0), %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	l64a, .-l64a
 	.local	seed
 	.common	seed,8,8
@@ -1691,9 +1653,8 @@ srand:
 	or	%g1, %lo(seed), %g1
 	std	%g2, [%g1]
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	srand, .-srand
 	.align 4
 	.global rand
@@ -1728,9 +1689,8 @@ rand:
 	mov	0, %i4
 	mov	%i5, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rand, .-rand
 	.align 4
 	.global insque
@@ -1754,9 +1714,8 @@ insque:
 	ld	[%g1+4], %g2
 	ld	[%fp-4], %g1
 	st	%g2, [%g1]
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 .L229:
 	ld	[%fp-8], %g1
 	ld	[%g1], %g2
@@ -1778,9 +1737,8 @@ insque:
 	ld	[%fp-4], %g2
 	st	%g2, [%g1+4]
 .L228:
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	insque, .-insque
 	.align 4
 	.global remque
@@ -1814,9 +1772,8 @@ remque:
 	st	%g2, [%g1]
 .L234:
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	remque, .-remque
 	.align 4
 	.global lsearch
@@ -1905,9 +1862,8 @@ lsearch:
 	mov	%o0, %g1
 .L238:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	lsearch, .-lsearch
 	.align 4
 	.global lfind
@@ -1979,9 +1935,8 @@ lfind:
 	mov	0, %g1
 .L243:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	lfind, .-lfind
 	.align 4
 	.global abs
@@ -1996,9 +1951,8 @@ abs:
 	xor	%g2, %g1, %g1
 	sub	%g1, %g2, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	abs, .-abs
 	.align 4
 	.global atoi
@@ -2082,9 +2036,8 @@ atoi:
 	ld	[%fp-4], %g1
 .L256:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	atoi, .-atoi
 	.align 4
 	.global atol
@@ -2168,9 +2121,8 @@ atol:
 	ld	[%fp-4], %g1
 .L266:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	atol, .-atol
 	.align 4
 	.global atoll
@@ -2276,9 +2228,8 @@ atoll:
 .L276:
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	atoll, .-atoll
 	.align 4
 	.global bsearch
@@ -2349,9 +2300,8 @@ bsearch:
 	mov	0, %g1
 .L281:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bsearch, .-bsearch
 	.align 4
 	.global bsearch_r
@@ -2421,9 +2371,8 @@ bsearch_r:
 	mov	0, %g1
 .L286:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bsearch_r, .-bsearch_r
 	.align 4
 	.global div
@@ -2449,9 +2398,8 @@ div:
 	st	%i4, [%i5]
 	st	%g1, [%i5+4]
 	mov	%i5, %i0
-	restore
-	jmp	%o7+12
-	 nop
+	jmp	%i7+12
+	 restore
 	.size	div, .-div
 	.align 4
 	.global imaxabs
@@ -2476,9 +2424,8 @@ imaxabs:
 	mov	%i5, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	imaxabs, .-imaxabs
 	.align 4
 	.global imaxdiv
@@ -2508,9 +2455,8 @@ imaxdiv:
 	std	%i2, [%i5]
 	std	%g2, [%i5+8]
 	mov	%i5, %i0
-	restore
-	jmp	%o7+12
-	 nop
+	jmp	%i7+12
+	 restore
 	.size	imaxdiv, .-imaxdiv
 	.align 4
 	.global labs
@@ -2525,9 +2471,8 @@ labs:
 	xor	%g2, %g1, %g1
 	sub	%g1, %g2, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	labs, .-labs
 	.align 4
 	.global ldiv
@@ -2553,9 +2498,8 @@ ldiv:
 	st	%i4, [%i5]
 	st	%g1, [%i5+4]
 	mov	%i5, %i0
-	restore
-	jmp	%o7+12
-	 nop
+	jmp	%i7+12
+	 restore
 	.size	ldiv, .-ldiv
 	.align 4
 	.global llabs
@@ -2580,9 +2524,8 @@ llabs:
 	mov	%i5, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	llabs, .-llabs
 	.align 4
 	.global lldiv
@@ -2612,9 +2555,8 @@ lldiv:
 	std	%i2, [%i5]
 	std	%g2, [%i5+8]
 	mov	%i5, %i0
-	restore
-	jmp	%o7+12
-	 nop
+	jmp	%i7+12
+	 restore
 	.size	lldiv, .-lldiv
 	.align 4
 	.global wcschr
@@ -2655,9 +2597,8 @@ wcschr:
 	mov	0, %g1
 .L309:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wcschr, .-wcschr
 	.align 4
 	.global wcscmp
@@ -2719,9 +2660,8 @@ wcscmp:
 	mov	-1, %g1
 .L317:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wcscmp, .-wcscmp
 	.align 4
 	.global wcscpy
@@ -2749,9 +2689,8 @@ wcscpy:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wcscpy, .-wcscpy
 	.align 4
 	.global wcslen
@@ -2779,9 +2718,8 @@ wcslen:
 	sub	%g2, %g1, %g1
 	sra	%g1, 2, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wcslen, .-wcslen
 	.align 4
 	.global wcsncmp
@@ -2859,9 +2797,8 @@ wcsncmp:
 	mov	0, %g1
 .L334:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wcsncmp, .-wcsncmp
 	.align 4
 	.global wmemchr
@@ -2904,9 +2841,8 @@ wmemchr:
 	mov	0, %g1
 .L341:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wmemchr, .-wmemchr
 	.align 4
 	.global wmemcmp
@@ -2974,9 +2910,8 @@ wmemcmp:
 	mov	0, %g1
 .L351:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wmemcmp, .-wmemcmp
 	.align 4
 	.global wmemcpy
@@ -3009,9 +2944,8 @@ wmemcpy:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wmemcpy, .-wmemcpy
 	.align 4
 	.global wmemmove
@@ -3083,9 +3017,8 @@ wmemmove:
 	ld	[%fp-4], %g1
 .L358:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wmemmove, .-wmemmove
 	.align 4
 	.global wmemset
@@ -3115,9 +3048,8 @@ wmemset:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	wmemset, .-wmemset
 	.align 4
 	.global bcopy
@@ -3195,9 +3127,8 @@ bcopy:
 	 nop
 .L376:
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bcopy, .-bcopy
 	.align 4
 	.global rotl64
@@ -3268,9 +3199,8 @@ rotl64:
 	mov	%i5, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotl64, .-rotl64
 	.align 4
 	.global rotr64
@@ -3341,9 +3271,8 @@ rotr64:
 	mov	%i5, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotr64, .-rotr64
 	.align 4
 	.global rotl32
@@ -3362,9 +3291,8 @@ rotl32:
 	srl	%g2, %g1, %g1
 	or	%g1, %g3, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotl32, .-rotl32
 	.align 4
 	.global rotr32
@@ -3383,9 +3311,8 @@ rotr32:
 	sll	%g2, %g1, %g1
 	or	%g1, %g3, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotr32, .-rotr32
 	.align 4
 	.global rotl_sz
@@ -3404,9 +3331,8 @@ rotl_sz:
 	srl	%g2, %g1, %g1
 	or	%g1, %g3, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotl_sz, .-rotl_sz
 	.align 4
 	.global rotr_sz
@@ -3425,9 +3351,8 @@ rotr_sz:
 	sll	%g2, %g1, %g1
 	or	%g1, %g3, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotr_sz, .-rotr_sz
 	.align 4
 	.global rotl16
@@ -3455,9 +3380,8 @@ rotl16:
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotl16, .-rotl16
 	.align 4
 	.global rotr16
@@ -3485,9 +3409,8 @@ rotr16:
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotr16, .-rotr16
 	.align 4
 	.global rotl8
@@ -3512,9 +3435,8 @@ rotl8:
 	or	%g4, %g1, %g1
 	and	%g1, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotl8, .-rotl8
 	.align 4
 	.global rotr8
@@ -3539,9 +3461,8 @@ rotr8:
 	or	%g4, %g1, %g1
 	and	%g1, 0xff, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	rotr8, .-rotr8
 	.align 4
 	.global bswap_16
@@ -3570,9 +3491,8 @@ bswap_16:
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bswap_16, .-bswap_16
 	.align 4
 	.global bswap_32
@@ -3606,9 +3526,8 @@ bswap_32:
 	sll	%g1, 24, %g1
 	or	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bswap_32, .-bswap_32
 	.align 4
 	.global bswap_64
@@ -3832,9 +3751,8 @@ bswap_64:
 	ldd	[%fp-184], %g2
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	bswap_64, .-bswap_64
 	.align 4
 	.global ffs
@@ -3870,9 +3788,8 @@ ffs:
 	mov	0, %g1
 .L414:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	ffs, .-ffs
 	.align 4
 	.global libiberty_ffs
@@ -3902,9 +3819,8 @@ libiberty_ffs:
 	mov	%i5, %g1
 .L418:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	libiberty_ffs, .-libiberty_ffs
 	.section	".rodata"
 	.align 4
@@ -3945,9 +3861,8 @@ gl_isinff:
 	mov	0, %g1
 .L426:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	gl_isinff, .-gl_isinff
 	.section	".rodata"
 	.align 8
@@ -3990,9 +3905,8 @@ gl_isinfd:
 	mov	0, %g1
 .L433:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	gl_isinfd, .-gl_isinfd
 	.section	".rodata"
 	.align 8
@@ -4035,9 +3949,8 @@ gl_isinfl:
 	mov	0, %g1
 .L440:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	gl_isinfl, .-gl_isinfl
 	.align 4
 	.global _Qp_itoq
@@ -4054,9 +3967,8 @@ _Qp_itoq:
 	ld	[%fp+68], %g1
 	std	%f8, [%g1]
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	_Qp_itoq, .-_Qp_itoq
 	.section	".rodata"
 	.align 4
@@ -4132,9 +4044,8 @@ ldexpf:
 .L444:
 	ld	[%fp+68], %f8
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	ldexpf, .-ldexpf
 	.section	".rodata"
 	.align 8
@@ -4213,9 +4124,8 @@ ldexp:
 	ldd	[%fp-16], %f8
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	ldexp, .-ldexp
 	.section	".rodata"
 	.align 8
@@ -4294,9 +4204,8 @@ ldexpl:
 	ldd	[%fp-16], %f8
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	ldexpl, .-ldexpl
 	.align 4
 	.global memxor
@@ -4334,9 +4243,8 @@ memxor:
 	 nop
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memxor, .-memxor
 	.align 4
 	.global strncat
@@ -4392,9 +4300,8 @@ strncat:
 .L478:
 	ld	[%fp+68], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strncat, .-strncat
 	.align 4
 	.global strnlen
@@ -4430,9 +4337,8 @@ strnlen:
 .L482:
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strnlen, .-strnlen
 	.align 4
 	.global strpbrk
@@ -4488,9 +4394,8 @@ strpbrk:
 	mov	0, %g1
 .L490:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strpbrk, .-strpbrk
 	.align 4
 	.global strrchr
@@ -4521,9 +4426,8 @@ strrchr:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strrchr, .-strrchr
 	.align 4
 	.global strstr
@@ -4580,9 +4484,8 @@ strstr:
 	mov	0, %g1
 .L499:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	strstr, .-strstr
 	.section	".rodata"
 	.align 8
@@ -4641,9 +4544,8 @@ copysign:
 .L510:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	copysign, .-copysign
 	.align 4
 	.global memmem
@@ -4728,9 +4630,8 @@ memmem:
 	mov	0, %g1
 .L515:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	memmem, .-memmem
 	.align 4
 	.global mempcpy
@@ -4750,9 +4651,8 @@ mempcpy:
 	ld	[%fp+76], %g1
 	add	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	mempcpy, .-mempcpy
 	.section	".rodata"
 	.align 8
@@ -4877,9 +4777,8 @@ frexp:
 	ldd	[%fp-16], %f8
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	frexp, .-frexp
 	.align 4
 	.global __muldi3
@@ -4937,9 +4836,8 @@ __muldi3:
 	ldd	[%fp-8], %g2
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__muldi3, .-__muldi3
 	.align 4
 	.global udivmodsi4
@@ -5015,9 +4913,8 @@ udivmodsi4:
 	ld	[%fp-8], %g1
 .L553:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	udivmodsi4, .-udivmodsi4
 	.align 4
 	.global __clrsbqi2
@@ -5060,9 +4957,8 @@ __clrsbqi2:
 	add	%g1, -1, %g1
 .L557:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__clrsbqi2, .-__clrsbqi2
 	.align 4
 	.global __clrsbdi2
@@ -5102,9 +4998,8 @@ __clrsbdi2:
 	add	%g1, -1, %g1
 .L562:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__clrsbdi2, .-__clrsbdi2
 	.align 4
 	.global __mulsi3
@@ -5141,9 +5036,8 @@ __mulsi3:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mulsi3, .-__mulsi3
 	.align 4
 	.global __cmovd
@@ -5241,9 +5135,8 @@ __cmovd:
 	nop
 .L575:
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__cmovd, .-__cmovd
 	.align 4
 	.global __cmovh
@@ -5333,9 +5226,8 @@ __cmovh:
 	nop
 .L584:
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__cmovh, .-__cmovh
 	.align 4
 	.global __cmovw
@@ -5433,9 +5325,8 @@ __cmovw:
 	nop
 .L594:
 	nop
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__cmovw, .-__cmovw
 	.align 4
 	.global __modi
@@ -5452,9 +5343,8 @@ __modi:
 	 nop
 	mov	%o0, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__modi, .-__modi
 	.section	".rodata"
 	.align 8
@@ -5484,9 +5374,8 @@ __uitod:
 .L601:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__uitod, .-__uitod
 	.section	".rodata"
 	.align 8
@@ -5516,9 +5405,8 @@ __uitof:
 .L603:
 	fdtos	%f8, %f8
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__uitof, .-__uitof
 	.align 4
 	.global __ulltod
@@ -5534,9 +5422,8 @@ __ulltod:
 	fmovs	%f1, %f9
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ulltod, .-__ulltod
 	.align 4
 	.global __ulltof
@@ -5550,9 +5437,8 @@ __ulltof:
 	 nop
 	fmovs	%f0, %f8
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ulltof, .-__ulltof
 	.align 4
 	.global __umodi
@@ -5569,9 +5455,8 @@ __umodi:
 	 nop
 	mov	%o0, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__umodi, .-__umodi
 	.align 4
 	.global __clzhi2
@@ -5611,9 +5496,8 @@ __clzhi2:
 .L614:
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__clzhi2, .-__clzhi2
 	.align 4
 	.global __ctzhi2
@@ -5651,9 +5535,8 @@ __ctzhi2:
 .L621:
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ctzhi2, .-__ctzhi2
 	.section	".rodata"
 	.align 4
@@ -5694,9 +5577,8 @@ __fixunssfsi:
 	ld	[%fp-4], %g1
 .L628:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align 4
 	.global __parityhi2
@@ -5735,9 +5617,8 @@ __parityhi2:
 	ld	[%fp-8], %g1
 	and	%g1, 1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__parityhi2, .-__parityhi2
 	.align 4
 	.global __popcounthi2
@@ -5775,9 +5656,8 @@ __popcounthi2:
 	 nop
 	ld	[%fp-8], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__popcounthi2, .-__popcounthi2
 	.align 4
 	.global __mulsi3_iq2000
@@ -5814,9 +5694,8 @@ __mulsi3_iq2000:
 	 nop
 	ld	[%fp-4], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 	.align 4
 	.global __mulsi3_lm32
@@ -5859,9 +5738,8 @@ __mulsi3_lm32:
 	ld	[%fp-4], %g1
 .L648:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 	.align 4
 	.global __udivmodsi4
@@ -5937,9 +5815,8 @@ __udivmodsi4:
 	ld	[%fp-8], %g1
 .L660:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__udivmodsi4, .-__udivmodsi4
 	.align 4
 	.global __mspabi_cmpf
@@ -5972,9 +5849,8 @@ __mspabi_cmpf:
 	mov	0, %g1
 .L664:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
 	.align 4
 	.global __mspabi_cmpd
@@ -6007,9 +5883,8 @@ __mspabi_cmpd:
 	mov	0, %g1
 .L674:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 	.align 4
 	.global __mspabi_mpysll
@@ -6037,9 +5912,8 @@ __mspabi_mpysll:
 	mov	%o1, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
 	.align 4
 	.global __mspabi_mpyull
@@ -6065,9 +5939,8 @@ __mspabi_mpyull:
 	mov	%o1, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
 	.align 4
 	.global __mulhi3
@@ -6135,9 +6008,8 @@ __mulhi3:
 	ld	[%fp-12], %g1
 .L693:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__mulhi3, .-__mulhi3
 	.align 4
 	.global __divsi3
@@ -6193,9 +6065,8 @@ __divsi3:
 .L697:
 	ld	[%fp-8], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__divsi3, .-__divsi3
 	.align 4
 	.global __modsi3
@@ -6243,9 +6114,8 @@ __modsi3:
 .L702:
 	ld	[%fp-8], %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__modsi3, .-__modsi3
 	.align 4
 	.global __udivmodhi4
@@ -6344,9 +6214,8 @@ __udivmodhi4:
 	sll	%g1, 16, %g1
 	srl	%g1, 16, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align 4
 	.global __udivmodsi4_libgcc
@@ -6422,9 +6291,8 @@ __udivmodsi4_libgcc:
 	ld	[%fp-8], %g1
 .L721:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align 4
 	.global __ashldi3
@@ -6482,9 +6350,8 @@ __ashldi3:
 .L727:
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ashldi3, .-__ashldi3
 	.align 4
 	.global __ashrdi3
@@ -6546,9 +6413,8 @@ __ashrdi3:
 .L733:
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ashrdi3, .-__ashrdi3
 	.align 4
 	.global __bswapdi2
@@ -6683,9 +6549,8 @@ __bswapdi2:
 	ldd	[%fp-96], %g2
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__bswapdi2, .-__bswapdi2
 	.align 4
 	.global __bswapsi2
@@ -6711,9 +6576,8 @@ __bswapsi2:
 	sll	%g1, 24, %g1
 	or	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__bswapsi2, .-__bswapsi2
 	.align 4
 	.global __clzsi2
@@ -6831,9 +6695,8 @@ __clzsi2:
 	ld	[%fp-12], %g1
 	add	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__clzsi2, .-__clzsi2
 	.align 4
 	.global __cmpdi2
@@ -6886,9 +6749,8 @@ __cmpdi2:
 	mov	1, %g1
 .L754:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__cmpdi2, .-__cmpdi2
 	.align 4
 	.global __aeabi_lcmp
@@ -6905,9 +6767,8 @@ __aeabi_lcmp:
 	mov	%o0, %g1
 	add	%g1, -1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
 	.align 4
 	.global __ctzsi2
@@ -7013,9 +6874,8 @@ __ctzsi2:
 	ld	[%fp-12], %g1
 	add	%g2, %g1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ctzsi2, .-__ctzsi2
 	.align 4
 	.global __lshrdi3
@@ -7072,9 +6932,8 @@ __lshrdi3:
 .L772:
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__lshrdi3, .-__lshrdi3
 	.align 4
 	.global __muldsi3
@@ -7193,9 +7052,8 @@ __muldsi3:
 	ldd	[%fp-24], %g2
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__muldsi3, .-__muldsi3
 	.align 4
 	.global __muldi3_compiler_rt
@@ -7242,9 +7100,8 @@ __muldi3_compiler_rt:
 	ldd	[%fp-24], %g2
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align 4
 	.global __negdi2
@@ -7260,9 +7117,8 @@ __negdi2:
 	mov	%i5, %g3
 	mov	%g2, %i0
 	mov	%g3, %i1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__negdi2, .-__negdi2
 	.align 4
 	.global __paritydi2
@@ -7300,9 +7156,8 @@ __paritydi2:
 	sra	%g2, %g1, %g1
 	and	%g1, 1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__paritydi2, .-__paritydi2
 	.align 4
 	.global __paritysi2
@@ -7335,9 +7190,8 @@ __paritysi2:
 	sra	%g2, %g1, %g1
 	and	%g1, 1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__paritysi2, .-__paritysi2
 	.align 4
 	.global __popcountdi2
@@ -7425,9 +7279,8 @@ __popcountdi2:
 	add	%g2, %g1, %g1
 	and	%g1, 127, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__popcountdi2, .-__popcountdi2
 	.align 4
 	.global __popcountsi2
@@ -7476,9 +7329,8 @@ __popcountsi2:
 	add	%g2, %g1, %g1
 	and	%g1, 63, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__popcountsi2, .-__popcountsi2
 	.section	".rodata"
 	.align 8
@@ -7545,9 +7397,8 @@ __powidf2:
 .L794:
 	fmovs	%f8, %f0
 	fmovs	%f9, %f1
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__powidf2, .-__powidf2
 	.section	".rodata"
 	.align 4
@@ -7612,9 +7463,8 @@ __powisf2:
 	ld	[%fp-4], %f8
 .L804:
 	fmovs	%f8, %f0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__powisf2, .-__powisf2
 	.align 4
 	.global __ucmpdi2
@@ -7667,9 +7517,8 @@ __ucmpdi2:
 	mov	1, %g1
 .L813:
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__ucmpdi2, .-__ucmpdi2
 	.align 4
 	.global __aeabi_ulcmp
@@ -7690,9 +7539,8 @@ __aeabi_ulcmp:
 	mov	%o0, %g1
 	add	%g1, -1, %g1
 	mov	%g1, %i0
-	restore
-	jmp	%o7+8
-	 nop
+	jmp	%i7+8
+	 restore
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.common	s.0,7,8

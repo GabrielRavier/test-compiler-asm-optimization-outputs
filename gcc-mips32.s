@@ -3808,9 +3808,8 @@ div:
 	lw	$3,28($fp)
 	lw	$2,32($fp)
 	nop
-	div	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	div	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
@@ -3818,9 +3817,8 @@ div:
 	lw	$3,28($fp)
 	lw	$2,32($fp)
 	nop
-	div	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	div	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
@@ -4011,9 +4009,8 @@ ldiv:
 	lw	$3,28($fp)
 	lw	$2,32($fp)
 	nop
-	div	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	div	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
@@ -4021,9 +4018,8 @@ ldiv:
 	lw	$3,28($fp)
 	lw	$2,32($fp)
 	nop
-	div	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	div	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
@@ -8449,9 +8445,8 @@ __modi:
 	lw	$3,8($fp)
 	lw	$2,12($fp)
 	nop
-	div	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	div	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
@@ -8654,9 +8649,8 @@ __umodi:
 	lw	$3,8($fp)
 	lw	$2,12($fp)
 	nop
-	divu	$0,$3,$2
 	bne	$2,$0,1f
-	nop
+	divu	$0,$3,$2
 	break	7
 1:
 	mfhi	$2
