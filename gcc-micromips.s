@@ -22,8 +22,8 @@ make_ti:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	move	$3,$5
 	move	$2,$4
+	move	$3,$5
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -46,8 +46,8 @@ make_tu:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	move	$3,$5
 	move	$2,$4
+	move	$3,$5
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -2014,10 +2014,10 @@ lsearch:
 	daddiu	$2,$21,1
 	sd	$2,0($19)
 	dmult	$17,$21
-	mflo	$2
-	daddu	$4,$16,$2
+	mflo	$4
 	move	$6,$17
 	move	$5,$18
+	daddu	$4,$16,$4
 	ld	$25,%call16(memcpy)($28)
 	.reloc	1f,R_MICROMIPS_JALR,memcpy
 1:	jalrs	$25
@@ -2205,11 +2205,11 @@ atoi:
 .L210:
 	sll	$3,$2,2
 	addu	$3,$3,$2
-	sll	$2,$3,1
+	sll	$3,$3,1
 	daddiu	$16,$16,1
-	lb	$3,-1($16)
-	addiu	$3,$3,-48
-	subu	$2,$2,$3
+	lb	$2,-1($16)
+	addiu	$2,$2,-48
+	subu	$2,$3,$2
 .L209:
 	lb	$3,0($16)
 	addiu	$3,$3,-48
@@ -2293,11 +2293,11 @@ atol:
 .L221:
 	dsll	$3,$2,2
 	daddu	$3,$3,$2
-	dsll	$2,$3,1
+	dsll	$3,$3,1
 	daddiu	$16,$16,1
-	lb	$3,-1($16)
-	addiu	$3,$3,-48
-	dsubu	$2,$2,$3
+	lb	$2,-1($16)
+	addiu	$2,$2,-48
+	dsubu	$2,$3,$2
 .L220:
 	lb	$3,0($16)
 	addiu	$3,$3,-48
@@ -2381,11 +2381,11 @@ atoll:
 .L232:
 	dsll	$3,$2,2
 	daddu	$3,$3,$2
-	dsll	$2,$3,1
+	dsll	$3,$3,1
 	daddiu	$16,$16,1
-	lb	$3,-1($16)
-	addiu	$3,$3,-48
-	dsubu	$2,$2,$3
+	lb	$2,-1($16)
+	addiu	$2,$2,-48
+	dsubu	$2,$3,$2
 .L231:
 	lb	$3,0($16)
 	addiu	$3,$3,-48
@@ -3445,8 +3445,8 @@ rotl16:
 	sll	$3,$4,$5
 	li	$2,16			# 0x10
 	subu	$2,$2,$5
-	srl	$2,$4,$2
-	or	$2,$2,$3
+	srl	$4,$4,$2
+	or	$2,$4,$3
 	andi	$2,$2,0xffff
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -3473,8 +3473,8 @@ rotr16:
 	srl	$3,$4,$5
 	li	$2,16			# 0x10
 	subu	$2,$2,$5
-	sll	$2,$4,$2
-	or	$2,$2,$3
+	sll	$4,$4,$2
+	or	$2,$4,$3
 	andi	$2,$2,0xffff
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -3501,8 +3501,8 @@ rotl8:
 	sll	$3,$4,$5
 	li	$2,8			# 0x8
 	subu	$2,$2,$5
-	srl	$2,$4,$2
-	or	$2,$2,$3
+	srl	$4,$4,$2
+	or	$2,$4,$3
 	andi	$2,$2,0x00ff
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -3529,8 +3529,8 @@ rotr8:
 	srl	$3,$4,$5
 	li	$2,8			# 0x8
 	subu	$2,$2,$5
-	sll	$2,$4,$2
-	or	$2,$2,$3
+	sll	$4,$4,$2
+	or	$2,$4,$3
 	andi	$2,$2,0x00ff
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -3580,13 +3580,12 @@ bswap_32:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	dext	$3,$4,0,32
 	li	$2,255			# 0xff
 	dsll	$2,$2,24
 	and	$2,$4,$2
 	dsrl	$2,$2,24
 	sll	$2,$2,0
-	dsrl	$3,$3,8
+	dsrl	$3,$4,8
 	andi	$3,$3,0xff00
 	andi	$5,$4,0xff00
 	dsll	$5,$5,8
@@ -3620,32 +3619,32 @@ bswap_64:
 	dsll	$5,$5,56
 	and	$5,$4,$5
 	dsrl	$5,$5,56
-	li	$3,255			# 0xff
-	dsll	$2,$3,48
-	and	$2,$4,$2
-	dsrl	$2,$2,40
-	or	$2,$2,$5
-	dsll	$5,$3,40
+	li	$2,255			# 0xff
+	dsll	$3,$2,48
+	and	$3,$4,$3
+	dsrl	$3,$3,40
+	or	$3,$3,$5
+	dsll	$5,$2,40
 	and	$5,$4,$5
 	dsrl	$5,$5,24
-	or	$2,$2,$5
-	dsll	$5,$3,32
+	or	$3,$3,$5
+	dsll	$5,$2,32
 	and	$5,$4,$5
 	dsrl	$5,$5,8
-	or	$2,$2,$5
-	dsll	$3,$3,24
-	and	$3,$4,$3
-	dsll	$3,$3,8
+	or	$3,$3,$5
+	dsll	$2,$2,24
+	and	$2,$4,$2
+	dsll	$2,$2,8
+	or	$3,$3,$2
+	li	$2,16711680			# 0xff0000
+	and	$2,$4,$2
+	dsll	$2,$2,24
+	or	$3,$3,$2
+	andi	$2,$4,0xff00
+	dsll	$2,$2,40
+	or	$3,$3,$2
+	dsll	$2,$4,56
 	or	$2,$2,$3
-	li	$3,16711680			# 0xff0000
-	and	$3,$4,$3
-	dsll	$3,$3,24
-	or	$2,$2,$3
-	andi	$3,$4,0xff00
-	dsll	$3,$3,40
-	or	$2,$2,$3
-	dsll	$4,$4,56
-	or	$2,$2,$4
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -3933,7 +3932,6 @@ _Qp_itoq:
 1:	jalrs	$25
 	nop
 
-	dmfc1	$4,$f0
 	sdc1	$f2,8($16)
 	sdc1	$f0,0($16)
 	move	$sp,$fp
@@ -4594,9 +4592,9 @@ memmem:
 	bne	$3,$2,.L427
 	nop
 
-	daddiu	$4,$16,1
 	daddiu	$6,$17,-1
 	daddiu	$5,$18,1
+	daddiu	$4,$16,1
 	ld	$25,%got_disp(memcmp)($28)
 	.reloc	1f,R_MICROMIPS_JALR,memcmp
 1:	jalrs	$25
@@ -6273,33 +6271,22 @@ __ashlti3:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	move	$11,$5
-	move	$10,$4
-	andi	$2,$6,0x40
-	beqzc	$2,.L615
-	move	$9,$0
-	dsll	$6,$5,$6
-	move	$8,$6
-	b	.L616
-	nop
-
-.L615:
-	beqzc	$6,.L618
-	dsll	$9,$5,$6
-	dsll	$10,$4,$6
-	subu	$6,$0,$6
-	dsrl	$2,$5,$6
-	or	$2,$2,$10
-	move	$8,$2
-.L616:
-	move	$3,$9
-	move	$2,$8
+	move	$3,$5
+	move	$2,$4
+	andi	$7,$6,0x40
+	beqzc	$7,.L615
+	move	$3,$0
+	dsll	$2,$5,$6
 	b	.L617
 	nop
 
-.L618:
-	move	$3,$5
-	move	$2,$4
+.L615:
+	beqzc	$6,.L617
+	dsll	$3,$5,$6
+	dsll	$4,$4,$6
+	subu	$6,$0,$6
+	dsrl	$5,$5,$6
+	or	$2,$5,$4
 .L617:
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -6371,32 +6358,22 @@ __ashrti3:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	move	$11,$5
-	move	$10,$4
-	andi	$2,$6,0x40
-	beqzc	$2,.L625
-	dsra	$8,$4,63
-	dsra	$10,$4,$6
-	move	$9,$10
-	b	.L626
-	nop
-
-.L625:
-	beqzc	$6,.L628
-	dsra	$8,$4,$6
-	subu	$3,$0,$6
-	dsll	$2,$4,$3
-	dsrl	$6,$5,$6
-	or	$9,$2,$6
-.L626:
-	move	$3,$9
-	move	$2,$8
+	move	$3,$5
+	move	$2,$4
+	andi	$7,$6,0x40
+	beqzc	$7,.L625
+	dsra	$2,$4,63
+	dsra	$3,$4,$6
 	b	.L627
 	nop
 
-.L628:
-	move	$3,$5
-	move	$2,$4
+.L625:
+	beqzc	$6,.L627
+	dsra	$2,$4,$6
+	subu	$7,$0,$6
+	dsll	$4,$4,$7
+	dsrl	$6,$5,$6
+	or	$3,$4,$6
 .L627:
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -6427,18 +6404,18 @@ __bswapdi2:
 	li	$2,16711680			# 0xff0000
 	and	$8,$8,$2
 	dsrl	$7,$4,8
-	li	$2,255			# 0xff
-	dsll	$3,$2,24
-	and	$7,$7,$3
+	li	$3,255			# 0xff
+	dsll	$2,$3,24
+	and	$7,$7,$2
 	dsll	$6,$4,8
-	dsll	$3,$2,32
-	and	$6,$6,$3
+	dsll	$2,$3,32
+	and	$6,$6,$2
 	dsll	$5,$4,24
-	dsll	$3,$2,40
-	and	$5,$5,$3
-	dsll	$3,$4,40
-	dsll	$2,$2,48
-	and	$3,$3,$2
+	dsll	$2,$3,40
+	and	$5,$5,$2
+	dsll	$2,$4,40
+	dsll	$3,$3,48
+	and	$3,$2,$3
 	dsll	$2,$4,56
 	or	$2,$2,$10
 	or	$2,$2,$9
@@ -6960,31 +6937,22 @@ __lshrti3:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	move	$11,$5
-	move	$10,$4
-	andi	$2,$6,0x40
-	beqzc	$2,.L674
-	move	$8,$0
-	dsrl	$9,$4,$6
-	b	.L675
-	nop
-
-.L674:
-	beqzc	$6,.L677
-	dsrl	$8,$4,$6
-	subu	$3,$0,$6
-	dsll	$2,$4,$3
-	dsrl	$6,$5,$6
-	or	$9,$2,$6
-.L675:
-	move	$3,$9
-	move	$2,$8
+	move	$3,$5
+	move	$2,$4
+	andi	$7,$6,0x40
+	beqzc	$7,.L674
+	move	$2,$0
+	dsrl	$3,$4,$6
 	b	.L676
 	nop
 
-.L677:
-	move	$3,$5
-	move	$2,$4
+.L674:
+	beqzc	$6,.L676
+	dsrl	$2,$4,$6
+	subu	$7,$0,$6
+	dsll	$4,$4,$7
+	dsrl	$6,$5,$6
+	or	$3,$4,$6
 .L676:
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -7013,9 +6981,8 @@ __muldsi3:
 	mul	$7,$3,$6
 	move	$2,$0
 	dins	$2,$7,0,32
-	sll	$8,$2,0
 	dext	$7,$2,16,16
-	andi	$8,$8,0xffff
+	andi	$8,$2,0xffff
 	dins	$2,$8,0,32
 	dext	$4,$4,16,16
 	mul	$8,$4,$6
@@ -7026,9 +6993,8 @@ __muldsi3:
 	dins	$2,$7,0,32
 	dext	$6,$6,16,16
 	dins	$2,$6,32,32
-	sll	$6,$2,0
 	dext	$7,$2,16,16
-	andi	$6,$6,0xffff
+	andi	$6,$2,0xffff
 	dins	$2,$6,0,32
 	dext	$5,$5,16,16
 	mul	$6,$3,$5
@@ -7128,31 +7094,31 @@ __mulddi3:
 	dext	$8,$4,0,32
 	dext	$9,$5,0,32
 	dmult	$8,$9
-	mflo	$3
-	dsrl	$2,$3,32
-	dext	$3,$3,0,32
+	mflo	$2
+	dsrl	$3,$2,32
+	dext	$2,$2,0,32
 	dsrl	$4,$4,32
 	dmult	$4,$9
 	mflo	$9
-	daddu	$2,$2,$9
-	dsll	$9,$2,32
-	daddu	$7,$9,$3
-	dsrl	$2,$2,32
-	move	$6,$2
-	dsrl	$2,$7,32
-	dext	$3,$7,0,32
+	daddu	$3,$3,$9
+	dsll	$9,$3,32
+	daddu	$7,$9,$2
+	dsrl	$6,$3,32
+	dsrl	$3,$7,32
+	dext	$2,$7,0,32
 	dsrl	$5,$5,32
 	dmult	$8,$5
 	mflo	$8
-	daddu	$2,$2,$8
-	dsll	$8,$2,32
-	daddu	$7,$8,$3
-	dsrl	$2,$2,32
-	daddu	$2,$2,$6
+	daddu	$3,$3,$8
+	dsll	$8,$3,32
+	daddu	$7,$8,$2
+	dsrl	$3,$3,32
+	daddu	$3,$3,$6
 	dmult	$4,$5
-	mflo	$3
-	daddu	$2,$3,$2
+	mflo	$2
+	daddu	$6,$2,$3
 	move	$3,$7
+	move	$2,$6
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jraddiusp	16
@@ -7197,15 +7163,16 @@ __multi3:
 1:	jalrs	$25
 	nop
 
-	move	$6,$2
-	move	$5,$3
+	move	$4,$2
+	move	$7,$3
 	dmult	$17,$18
 	mflo	$3
 	dmult	$19,$16
 	mflo	$2
 	daddu	$3,$3,$2
-	daddu	$2,$3,$6
-	move	$3,$5
+	daddu	$6,$3,$4
+	move	$3,$7
+	move	$2,$6
 	move	$sp,$fp
 	ld	$31,72($sp)
 	ld	$fp,64($sp)
@@ -7356,15 +7323,15 @@ __paritysi2:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	dext	$2,$4,16,16
-	xor	$2,$2,$4
-	dext	$3,$2,8,24
-	xor	$2,$2,$3
-	dext	$3,$2,4,28
-	xor	$2,$2,$3
-	andi	$2,$2,0xf
-	li	$3,27030			# 0x6996
-	sra	$2,$3,$2
+	srl	$2,$4,16
+	xor	$4,$4,$2
+	dext	$2,$4,8,24
+	xor	$4,$4,$2
+	dext	$2,$4,4,28
+	xor	$4,$4,$2
+	andi	$4,$4,0xf
+	li	$2,27030			# 0x6996
+	sra	$2,$2,$4
 	andi	$2,$2,0x1
 	move	$sp,$fp
 	ld	$fp,8($sp)
@@ -7388,37 +7355,37 @@ __popcountdi2:
 	daddiu	$sp,$sp,-16
 	sd	$fp,8($sp)
 	move	$fp,$sp
-	dsrl	$2,$4,1
-	li	$3,1431633920			# 0x55550000
-	ori	$3,$3,0x5555
-	dsll	$3,$3,16
-	ori	$3,$3,0x5555
-	dsll	$3,$3,16
-	daddiu	$3,$3,21845
-	and	$2,$2,$3
-	dsubu	$2,$4,$2
-	dsrl	$4,$2,2
-	li	$3,858980352			# 0x33330000
-	ori	$3,$3,0x3333
-	dsll	$3,$3,16
-	ori	$3,$3,0x3333
-	dsll	$3,$3,16
-	daddiu	$3,$3,13107
-	and	$4,$4,$3
-	and	$2,$2,$3
-	daddu	$2,$4,$2
-	dsrl	$3,$2,4
-	daddu	$2,$3,$2
-	li	$3,252641280			# 0xf0f0000
-	ori	$3,$3,0xf0f
-	dsll	$3,$3,16
-	ori	$3,$3,0xf0f
-	dsll	$3,$3,16
-	daddiu	$3,$3,3855
-	and	$2,$2,$3
-	sll	$3,$2,0
-	dsrl	$2,$2,32
-	addu	$3,$3,$2
+	dsrl	$3,$4,1
+	li	$2,1431633920			# 0x55550000
+	ori	$2,$2,0x5555
+	dsll	$2,$2,16
+	ori	$2,$2,0x5555
+	dsll	$2,$2,16
+	daddiu	$2,$2,21845
+	and	$2,$3,$2
+	dsubu	$4,$4,$2
+	dsrl	$3,$4,2
+	li	$2,858980352			# 0x33330000
+	ori	$2,$2,0x3333
+	dsll	$2,$2,16
+	ori	$2,$2,0x3333
+	dsll	$2,$2,16
+	daddiu	$2,$2,13107
+	and	$3,$3,$2
+	and	$4,$4,$2
+	daddu	$4,$3,$4
+	dsrl	$2,$4,4
+	daddu	$4,$2,$4
+	li	$2,252641280			# 0xf0f0000
+	ori	$2,$2,0xf0f
+	dsll	$2,$2,16
+	ori	$2,$2,0xf0f
+	dsll	$2,$2,16
+	daddiu	$2,$2,3855
+	and	$4,$4,$2
+	sll	$3,$4,0
+	dsrl	$4,$4,32
+	addu	$3,$3,$4
 	dext	$2,$3,16,16
 	addu	$3,$2,$3
 	dext	$2,$3,8,24
@@ -7450,15 +7417,15 @@ __popcountsi2:
 	li	$3,1431633920			# 0x55550000
 	addiu	$3,$3,21845
 	and	$2,$2,$3
-	subu	$2,$4,$2
-	dext	$4,$2,2,30
-	li	$3,858980352			# 0x33330000
-	addiu	$3,$3,13107
-	and	$4,$4,$3
-	and	$2,$2,$3
+	subu	$4,$4,$2
+	dext	$3,$4,2,30
+	li	$2,858980352			# 0x33330000
+	addiu	$2,$2,13107
+	and	$3,$3,$2
+	and	$4,$4,$2
+	addu	$4,$4,$3
+	dext	$2,$4,4,28
 	addu	$2,$2,$4
-	dext	$3,$2,4,28
-	addu	$2,$3,$2
 	li	$3,252641280			# 0xf0f0000
 	addiu	$3,$3,3855
 	and	$2,$2,$3
@@ -7523,22 +7490,22 @@ __popcountti2:
 	sltu	$5,$11,$9
 	daddu	$10,$8,$12
 	daddu	$10,$5,$10
-	dsll	$6,$10,60
-	dsrl	$5,$11,4
-	or	$5,$5,$6
-	dsrl	$4,$10,4
-	daddu	$7,$5,$11
-	sltu	$3,$7,$5
-	daddu	$6,$4,$10
-	daddu	$6,$3,$6
+	dsll	$4,$10,60
+	dsrl	$7,$11,4
+	or	$7,$7,$4
+	dsrl	$6,$10,4
+	daddu	$5,$7,$11
+	sltu	$3,$5,$7
+	daddu	$4,$6,$10
+	daddu	$4,$3,$4
 	li	$2,252641280			# 0xf0f0000
 	ori	$2,$2,0xf0f
 	dsll	$2,$2,16
 	ori	$2,$2,0xf0f
 	dsll	$2,$2,16
 	daddiu	$2,$2,3855
-	and	$8,$6,$2
-	and	$9,$7,$2
+	and	$8,$4,$2
+	and	$9,$5,$2
 	daddu	$2,$8,$9
 	sll	$3,$2,0
 	dsra	$2,$2,32

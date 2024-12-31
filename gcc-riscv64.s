@@ -18,9 +18,10 @@ make_ti:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	mv	a3,a0
-	mv	a0,a1
-	mv	a1,a3
+	mv	a5,a0
+	mv	a2,a1
+	mv	a0,a2
+	mv	a1,a5
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -46,9 +47,10 @@ make_tu:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	mv	a3,a0
-	mv	a0,a1
-	mv	a1,a3
+	mv	a5,a0
+	mv	a2,a1
+	mv	a0,a2
+	mv	a1,a5
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -1824,20 +1826,20 @@ lsearch:
 	.cfi_offset 24, -80
 	addi	s0,sp,80
 	.cfi_def_cfa 8, 0
-	mv	s5,a0
+	mv	s7,a0
 	mv	s1,a1
-	mv	s6,a2
+	mv	s8,a2
 	mv	s2,a3
-	mv	s8,a4
+	mv	s6,a4
 	ld	s4,0(a2)
-	mv	s7,a1
+	mv	s5,a1
 	li	s3,0
 	j	.L193
 .L196:
-	mv	a1,s7
-	mv	a0,s5
-	jalr	s8
-	add	s7,s7,s2
+	mv	a1,s5
+	mv	a0,s7
+	jalr	s6
+	add	s5,s5,s2
 	bne	a0,zero,.L194
 	mul	s3,s3,s2
 	add	a0,s1,s3
@@ -1847,11 +1849,11 @@ lsearch:
 .L193:
 	bne	s3,s4,.L196
 	addi	a5,s4,1
-	sd	a5,0(s6)
+	sd	a5,0(s8)
 	mul	s4,s2,s4
-	add	a0,s1,s4
 	mv	a2,s2
-	mv	a1,s5
+	mv	a1,s7
+	add	a0,s1,s4
 	call	memcpy
 .L195:
 	ld	ra,72(sp)
@@ -1909,17 +1911,17 @@ lfind:
 	.cfi_offset 23, -72
 	addi	s0,sp,80
 	.cfi_def_cfa 8, 0
-	mv	s6,a0
+	mv	s7,a0
 	mv	s1,a1
 	mv	s3,a3
 	mv	s5,a4
-	ld	s7,0(a2)
+	ld	s6,0(a2)
 	mv	s4,a1
 	li	s2,0
 	j	.L198
 .L201:
 	mv	a1,s4
-	mv	a0,s6
+	mv	a0,s7
 	jalr	s5
 	add	s4,s4,s3
 	bne	a0,zero,.L199
@@ -1929,7 +1931,7 @@ lfind:
 .L199:
 	addi	s2,s2,1
 .L198:
-	bne	s2,s7,.L201
+	bne	s2,s6,.L201
 	li	a0,0
 .L200:
 	ld	ra,72(sp)
@@ -2014,32 +2016,32 @@ atoi:
 	beq	a5,a4,.L211
 	li	a4,45
 	bne	a5,a4,.L212
-	li	a4,1
+	li	a3,1
 	j	.L206
 .L211:
-	li	a4,0
+	li	a3,0
 .L206:
 	addi	s1,s1,1
 	j	.L207
 .L212:
-	li	a4,0
+	li	a3,0
 .L207:
 	li	a0,0
 	j	.L208
 .L209:
-	slliw	a5,a0,2
-	addw	a5,a0,a5
-	slliw	a3,a5,1
+	slliw	a4,a0,2
+	addw	a4,a4,a0
+	slliw	a4,a4,1
 	addi	s1,s1,1
 	lbu	a5,-1(s1)
 	addiw	a5,a5,-48
-	subw	a0,a3,a5
+	subw	a0,a4,a5
 .L208:
 	lbu	a5,0(s1)
 	addiw	a5,a5,-48
-	li	a3,9
-	bleu	a5,a3,.L209
-	bne	a4,zero,.L210
+	li	a4,9
+	bleu	a5,a4,.L209
+	bne	a3,zero,.L210
 	negw	a0,a0
 .L210:
 	ld	ra,24(sp)
@@ -2084,32 +2086,32 @@ atol:
 	beq	a5,a4,.L222
 	li	a4,45
 	bne	a5,a4,.L223
-	li	a4,1
+	li	a3,1
 	j	.L217
 .L222:
-	li	a4,0
+	li	a3,0
 .L217:
 	addi	s1,s1,1
 	j	.L218
 .L223:
-	li	a4,0
+	li	a3,0
 .L218:
 	li	a0,0
 	j	.L219
 .L220:
-	slli	a5,a0,2
-	add	a5,a5,a0
-	slli	a0,a5,1
+	slli	a4,a0,2
+	add	a4,a4,a0
+	slli	a4,a4,1
 	addi	s1,s1,1
 	lbu	a5,-1(s1)
 	addiw	a5,a5,-48
-	sub	a0,a0,a5
+	sub	a0,a4,a5
 .L219:
 	lbu	a5,0(s1)
 	addiw	a5,a5,-48
-	li	a3,9
-	bleu	a5,a3,.L220
-	bne	a4,zero,.L221
+	li	a4,9
+	bleu	a5,a4,.L220
+	bne	a3,zero,.L221
 	neg	a0,a0
 .L221:
 	ld	ra,24(sp)
@@ -2154,32 +2156,32 @@ atoll:
 	beq	a5,a4,.L233
 	li	a4,45
 	bne	a5,a4,.L234
-	li	a4,1
+	li	a3,1
 	j	.L228
 .L233:
-	li	a4,0
+	li	a3,0
 .L228:
 	addi	s1,s1,1
 	j	.L229
 .L234:
-	li	a4,0
+	li	a3,0
 .L229:
 	li	a0,0
 	j	.L230
 .L231:
-	slli	a5,a0,2
-	add	a5,a5,a0
-	slli	a0,a5,1
+	slli	a4,a0,2
+	add	a4,a4,a0
+	slli	a4,a4,1
 	addi	s1,s1,1
 	lbu	a5,-1(s1)
 	addiw	a5,a5,-48
-	sub	a0,a0,a5
+	sub	a0,a4,a5
 .L230:
 	lbu	a5,0(s1)
 	addiw	a5,a5,-48
-	li	a3,9
-	bleu	a5,a3,.L231
-	bne	a4,zero,.L232
+	li	a4,9
+	bleu	a5,a4,.L231
+	bne	a3,zero,.L232
 	neg	a0,a0
 .L232:
 	ld	ra,24(sp)
@@ -2372,10 +2374,10 @@ div:
 	remw	a0,a0,a1
 	sw	a5,-24(s0)
 	sw	a0,-20(s0)
-	slli	a0,a5,32
-	srli	a0,a0,32
-	lwu	a5,-20(s0)
+	slli	a5,a0,32
+	srli	a5,a5,32
 	slli	a5,a5,32
+	lwu	a0,-24(s0)
 	or	a0,a0,a5
 	ld	ra,24(sp)
 	.cfi_restore 1
@@ -3371,10 +3373,8 @@ bswap_32:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	slli	a5,a0,32
-	srli	a5,a5,32
-	li	a4,16711680
-	and	a3,a5,a4
+	li	a5,16711680
+	and	a3,a0,a5
 	mv	a5,a0
 	li	a4,65536
 	addi	a4,a4,-256
@@ -4253,16 +4253,15 @@ memmem:
 	sub	s4,a1,a3
 	add	s4,a0,s4
 	beq	a3,zero,.L429
-	sltu	a1,a1,a3
-	bne	a1,zero,.L430
+	bltu	a1,a3,.L430
 	j	.L426
 .L428:
 	lbu	a4,0(s1)
 	lbu	a5,0(s3)
 	bne	a4,a5,.L427
-	addi	a0,s1,1
 	addi	a2,s2,-1
 	addi	a1,s3,1
+	addi	a0,s1,1
 	call	memcmp
 	beq	a0,zero,.L431
 .L427:
@@ -5101,20 +5100,20 @@ __parityhi2:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	li	a5,0
 	li	a4,0
+	li	a5,0
 	j	.L525
 .L527:
-	sraw	a3,a0,a4
+	sraw	a3,a0,a5
 	andi	a3,a3,1
 	beq	a3,zero,.L526
-	addiw	a5,a5,1
-.L526:
 	addiw	a4,a4,1
+.L526:
+	addiw	a5,a5,1
 .L525:
 	li	a3,16
-	bne	a4,a3,.L527
-	andi	a0,a5,1
+	bne	a5,a3,.L527
+	andi	a0,a4,1
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -5718,23 +5717,21 @@ __ashldi3:
 	andi	a4,a1,32
 	beq	a4,zero,.L605
 	addiw	a1,a1,-32
-	sllw	a5,a5,a1
+	sllw	a5,a0,a1
 	slli	a0,a5,32
 	j	.L607
 .L605:
 	beq	a1,zero,.L607
-	sext.w	a4,a0
-	sllw	a3,a0,a1
-	slli	a0,a3,32
-	srli	a0,a0,32
-	srai	a5,a5,32
+	sllw	a0,a0,a1
+	srai	a4,a5,32
 	li	a3,32
 	subw	a3,a3,a1
-	srlw	a4,a4,a3
-	sllw	a5,a5,a1
-	or	a5,a4,a5
-	sext.w	a5,a5
+	srlw	a5,a5,a3
+	sllw	a4,a4,a1
+	or	a5,a5,a4
 	slli	a5,a5,32
+	slli	a0,a0,32
+	srli	a0,a0,32
 	or	a0,a0,a5
 .L607:
 	ld	ra,8(sp)
@@ -5762,23 +5759,20 @@ __ashlti3:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	mv	a6,a0
 	andi	a3,a2,64
 	beq	a3,zero,.L610
 	li	a4,0
 	addiw	a2,a2,-64
-	sll	a0,a0,a2
-	mv	a5,a0
+	sll	a5,a0,a2
 	j	.L611
 .L610:
 	beq	a2,zero,.L613
-	sll	a4,a6,a2
-	sll	a0,a1,a2
+	sll	a4,a0,a2
+	sll	a3,a1,a2
 	li	a1,64
 	subw	a2,a1,a2
-	srl	a3,a6,a2
-	or	a3,a3,a0
-	mv	a5,a3
+	srl	a0,a0,a2
+	or	a5,a0,a3
 .L611:
 	mv	a2,a4
 	mv	a3,a5
@@ -5818,19 +5812,19 @@ __ashrdi3:
 	andi	a5,a1,32
 	beq	a5,zero,.L615
 	srai	a5,a0,32
-	srai	a4,a0,63
-	slli	a0,a4,32
+	srai	a0,a0,31
 	addiw	a1,a1,-32
 	sraw	a5,a5,a1
 	slli	a5,a5,32
 	srli	a5,a5,32
+	srli	a0,a0,32
+	slli	a0,a0,32
 	or	a0,a0,a5
 	j	.L617
 .L615:
 	beq	a1,zero,.L617
 	srai	a5,a0,32
-	sraw	a3,a5,a1
-	slli	a0,a3,32
+	sraw	a0,a5,a1
 	li	a3,32
 	subw	a3,a3,a1
 	sllw	a5,a5,a3
@@ -5838,6 +5832,7 @@ __ashrdi3:
 	or	a5,a5,a4
 	slli	a5,a5,32
 	srli	a5,a5,32
+	slli	a0,a0,32
 	or	a0,a0,a5
 .L617:
 	ld	ra,8(sp)
@@ -5870,8 +5865,7 @@ __ashrti3:
 	beq	a3,zero,.L620
 	srai	a5,a1,63
 	addiw	a2,a2,-64
-	sra	a3,a1,a2
-	mv	a4,a3
+	sra	a4,a1,a2
 	j	.L621
 .L620:
 	beq	a2,zero,.L623
@@ -5917,37 +5911,37 @@ __bswapdi2:
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
 	srli	t1,a0,56
-	srli	a6,a0,40
+	srli	a7,a0,40
 	li	a5,65536
 	addi	a5,a5,-256
-	and	a6,a6,a5
-	srli	a1,a0,24
+	and	a7,a7,a5
+	srli	a6,a0,24
 	li	a5,16711680
-	and	a1,a1,a5
-	srli	a2,a0,8
+	and	a6,a6,a5
+	srli	a1,a0,8
 	li	a5,255
 	slli	a5,a5,24
-	and	a2,a2,a5
-	slli	a3,a0,8
+	and	a1,a1,a5
+	slli	a2,a0,8
 	li	a5,255
 	slli	a5,a5,32
-	and	a3,a3,a5
-	slli	a4,a0,24
+	and	a2,a2,a5
+	slli	a3,a0,24
 	li	a5,255
 	slli	a5,a5,40
+	and	a3,a3,a5
+	slli	a4,a0,40
+	li	a5,255
+	slli	a5,a5,48
 	and	a4,a4,a5
-	slli	a5,a0,40
-	li	a7,255
-	slli	a7,a7,48
-	and	a5,a5,a7
-	slli	a0,a0,56
-	or	a0,a0,t1
-	or	a0,a0,a6
-	or	a0,a0,a1
-	or	a0,a0,a2
-	or	a0,a0,a3
-	or	a0,a0,a4
-	or	a0,a0,a5
+	slli	a5,a0,56
+	or	a5,a5,t1
+	or	a5,a5,a7
+	or	a5,a5,a6
+	or	a5,a5,a1
+	or	a5,a5,a2
+	or	a5,a5,a3
+	or	a0,a5,a4
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -6058,8 +6052,8 @@ __clzsi2:
 	andi	a4,a0,2
 	seqz	a4,a4
 	subw	a3,a3,a0
-	mulw	a4,a4,a3
-	addw	a0,a5,a4
+	mulw	a0,a4,a3
+	addw	a0,a5,a0
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -6087,13 +6081,16 @@ __clzti2:
 	.cfi_offset 9, -24
 	addi	s0,sp,32
 	.cfi_def_cfa 8, 0
-	mv	a2,a0
-	seqz	s1,a1
-	neg	s1,s1
-	not	a0,s1
-	and	a0,a0,a1
-	and	a4,s1,a2
-	or	a0,a0,a4
+	mv	a4,a0
+	mv	a5,a1
+	mv	a0,a4
+	mv	a4,a5
+	seqz	a5,a5
+	neg	s1,a5
+	addi	a5,a5,-1
+	and	a5,a5,a4
+	and	a0,s1,a0
+	or	a0,a5,a0
 	call	__clzdi2
 	andi	s1,s1,64
 	addw	a0,a0,s1
@@ -6204,10 +6201,6 @@ __cmpti2:
 	mv	a7,a1
 	mv	a0,a2
 	mv	a1,a3
-	mv	a2,a6
-	mv	a3,a7
-	mv	a4,a0
-	mv	a5,a1
 	bgt	a1,a7,.L645
 	blt	a1,a7,.L646
 	bgtu	a0,a6,.L647
@@ -6288,14 +6281,14 @@ __ctzsi2:
 	srlw	a0,a0,a4
 	andi	a0,a0,3
 	addw	a5,a5,a4
-	not	a3,a0
-	andi	a3,a3,1
+	not	a4,a0
+	andi	a3,a4,1
 	srli	a0,a0,1
 	li	a4,2
-	subw	a4,a4,a0
-	negw	a3,a3
-	and	a4,a4,a3
-	addw	a0,a5,a4
+	subw	a0,a4,a0
+	negw	a4,a3
+	and	a0,a0,a4
+	addw	a0,a5,a0
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -6360,11 +6353,13 @@ __ffsti2:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	bne	a0,zero,.L660
-	beq	a1,zero,.L662
-	mv	a0,a1
+	mv	a4,a0
+	mv	a5,a1
+	mv	a0,a4
+	bne	a4,zero,.L660
+	beq	a5,zero,.L662
+	mv	a0,a5
 	call	__ctzdi2
-	sext.w	a0,a0
 	addiw	a0,a0,65
 	j	.L661
 .L660:
@@ -6402,7 +6397,7 @@ __lshrdi3:
 	mv	a5,a0
 	andi	a4,a1,32
 	beq	a4,zero,.L664
-	srai	a5,a5,32
+	srai	a5,a0,32
 	addiw	a1,a1,-32
 	srlw	a5,a5,a1
 	slli	a0,a5,32
@@ -6411,8 +6406,7 @@ __lshrdi3:
 .L664:
 	beq	a1,zero,.L666
 	srai	a4,a0,32
-	srlw	a3,a4,a1
-	slli	a0,a3,32
+	srlw	a0,a4,a1
 	li	a3,32
 	subw	a3,a3,a1
 	sllw	a4,a4,a3
@@ -6420,6 +6414,7 @@ __lshrdi3:
 	or	a4,a4,a5
 	slli	a4,a4,32
 	srli	a4,a4,32
+	slli	a0,a0,32
 	or	a0,a0,a4
 .L666:
 	ld	ra,8(sp)
@@ -6498,61 +6493,54 @@ __muldsi3:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	mv	a3,a0
-	slli	a5,a0,48
+	slli	a2,a0,48
+	srli	a2,a2,48
+	slli	a3,a1,48
+	srli	a3,a3,48
+	li	a6,-1
+	slli	a6,a6,32
+	mulw	a5,a2,a3
+	srliw	a4,a5,16
+	slli	a5,a5,48
 	srli	a5,a5,48
-	sext.w	a2,a5
-	slli	a4,a1,48
-	srli	a4,a4,48
-	sext.w	a6,a4
-	mulw	a5,a5,a4
-	li	a4,-1
+	srliw	a0,a0,16
+	mulw	a3,a0,a3
+	addw	a4,a3,a4
+	slliw	a3,a4,16
+	addw	a3,a3,a5
+	srliw	a4,a4,16
 	slli	a4,a4,32
-	slli	a0,a5,32
-	srli	a0,a0,32
-	sext.w	a7,a0
-	srli	a5,a0,16
-	slli	a0,a7,48
-	srli	a0,a0,48
-	srliw	a3,a3,16
-	mulw	a6,a3,a6
-	addw	a5,a6,a5
-	slliw	a6,a5,16
-	addw	a6,a6,a0
-	slli	a0,a6,32
-	srli	a0,a0,32
-	srliw	a5,a5,16
-	slli	a5,a5,32
-	or	a0,a0,a5
-	sext.w	a6,a0
-	srliw	a5,a0,16
-	slli	a6,a6,48
-	srli	a6,a6,48
-	and	a0,a0,a4
-	or	a0,a0,a6
+	slli	a3,a3,32
+	srli	a3,a3,32
+	or	a5,a3,a4
+	srli	a4,a3,16
+	slli	a3,a3,48
+	srli	a3,a3,48
+	and	a5,a5,a6
+	or	a5,a5,a3
 	srliw	a1,a1,16
 	mulw	a2,a2,a1
-	addw	a5,a2,a5
-	slliw	a2,a5,16
-	addw	a2,a2,a0
-	slli	a2,a2,32
-	srli	a2,a2,32
-	and	a4,a0,a4
-	or	a0,a4,a2
-	srai	a4,a0,32
-	srliw	a5,a5,16
-	addw	a5,a5,a4
+	addw	a4,a2,a4
+	slliw	a2,a4,16
+	addw	a3,a2,a3
+	slli	a3,a3,32
+	srli	a3,a3,32
+	and	a5,a5,a6
+	or	a5,a5,a3
+	srai	a3,a5,32
+	srliw	a4,a4,16
+	addw	a4,a4,a3
+	slli	a4,a4,32
 	slli	a5,a5,32
+	srli	a5,a5,32
+	or	a5,a5,a4
+	srai	a4,a5,32
+	mulw	a0,a0,a1
+	addw	a0,a0,a4
 	slli	a0,a0,32
-	srli	a0,a0,32
-	or	a0,a0,a5
-	srai	a4,a0,32
-	mulw	a5,a3,a1
-	addw	a5,a5,a4
 	slli	a5,a5,32
-	slli	a0,a0,32
-	srli	a0,a0,32
-	or	a0,a0,a5
+	srli	a5,a5,32
+	or	a0,a5,a0
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -6650,8 +6638,7 @@ __mulddi3:
 	add	a5,a5,a7
 	slli	a7,a5,32
 	add	a2,a7,a4
-	srli	a5,a5,32
-	mv	a3,a5
+	srli	a3,a5,32
 	srli	a5,a2,32
 	slli	a4,a2,32
 	srli	a4,a4,32
@@ -6664,8 +6651,7 @@ __mulddi3:
 	add	a5,a5,a3
 	mul	a0,a0,a1
 	add	a1,a0,a5
-	mv	a6,a2
-	mv	a0,a6
+	mv	a0,a2
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -6711,14 +6697,14 @@ __multi3:
 	mv	s7,a3
 	mv	a1,s6
 	call	__mulddi3
-	mv	a2,a0
 	mv	a3,a1
+	mv	a4,a0
 	mul	a1,s6,s5
 	mul	s2,s4,s7
 	add	a1,a1,s2
 	add	a1,a1,a3
-	mv	a6,a2
-	mv	a0,a6
+	mv	a2,a4
+	mv	a0,a2
 	ld	ra,72(sp)
 	.cfi_restore 1
 	ld	s0,64(sp)
@@ -6818,15 +6804,15 @@ __paritydi2:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	srai	a5,a0,32
-	xor	a5,a5,a0
-	srliw	a4,a5,16
-	xor	a5,a5,a4
-	srliw	a4,a5,8
-	xor	a5,a5,a4
-	srliw	a4,a5,4
-	xor	a5,a5,a4
-	andi	a5,a5,15
+	srli	a5,a0,32
+	xor	a0,a5,a0
+	srliw	a5,a0,16
+	xor	a0,a0,a5
+	srliw	a5,a0,8
+	xor	a0,a0,a5
+	srliw	a5,a0,4
+	xor	a0,a0,a5
+	andi	a5,a0,15
 	li	a0,28672
 	addiw	a0,a0,-1642
 	sraw	a0,a0,a5
@@ -6896,15 +6882,15 @@ __paritysi2:
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
 	srliw	a5,a0,16
-	xor	a0,a0,a5
+	xor	a0,a5,a0
 	srliw	a5,a0,8
 	xor	a0,a0,a5
 	srliw	a5,a0,4
 	xor	a0,a0,a5
-	andi	a0,a0,15
-	li	a5,28672
-	addiw	a5,a5,-1642
-	sraw	a0,a5,a0
+	andi	a5,a0,15
+	li	a0,28672
+	addiw	a0,a0,-1642
+	sraw	a0,a0,a5
 	andi	a0,a0,1
 	ld	ra,8(sp)
 	.cfi_restore 1
@@ -6931,30 +6917,30 @@ __popcountdi2:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	srli	a5,a0,1
-	li	a4,1431654400
-	addi	a4,a4,1365
-	slli	a3,a4,32
-	add	a4,a3,a4
-	and	a5,a5,a4
-	sub	a5,a0,a5
-	srli	a2,a5,2
-	li	a3,858992640
-	addi	a3,a3,819
-	slli	a4,a3,32
-	add	a4,a4,a3
-	and	a3,a2,a4
-	and	a5,a5,a4
+	srli	a4,a0,1
+	li	a5,1431654400
+	addi	a5,a5,1365
+	slli	a3,a5,32
 	add	a5,a3,a5
-	srli	a4,a5,4
+	and	a5,a4,a5
+	sub	a0,a0,a5
+	srli	a3,a0,2
+	li	a4,858992640
+	addi	a4,a4,819
+	slli	a5,a4,32
+	add	a5,a5,a4
+	and	a4,a3,a5
+	and	a0,a0,a5
+	add	a0,a4,a0
+	srli	a5,a0,4
+	add	a0,a5,a0
+	li	a5,252645376
+	addi	a5,a5,-241
+	slli	a4,a5,32
 	add	a5,a4,a5
-	li	a4,252645376
-	addi	a4,a4,-241
-	slli	a3,a4,32
-	add	a4,a3,a4
-	and	a5,a5,a4
-	srli	a4,a5,32
-	addw	a5,a4,a5
+	and	a0,a0,a5
+	srli	a5,a0,32
+	addw	a5,a5,a0
 	srliw	a4,a5,16
 	addw	a5,a4,a5
 	srliw	a0,a5,8
@@ -6989,22 +6975,22 @@ __popcountsi2:
 	li	a5,1431654400
 	addi	a5,a5,1365
 	and	a5,a5,a4
-	subw	a5,a0,a5
-	srliw	a3,a5,2
-	li	a4,858992640
-	addi	a4,a4,819
-	and	a3,a4,a3
-	and	a5,a5,a4
-	add	a5,a3,a5
-	srli	a4,a5,4
-	addw	a5,a4,a5
-	li	a4,252645376
-	addi	a4,a4,-241
-	and	a5,a4,a5
-	srli	a4,a5,16
-	addw	a5,a4,a5
-	srliw	a0,a5,8
-	addw	a0,a0,a5
+	subw	a0,a0,a5
+	srliw	a4,a0,2
+	li	a5,858992640
+	addi	a5,a5,819
+	and	a4,a5,a4
+	and	a0,a0,a5
+	add	a0,a4,a0
+	srli	a5,a0,4
+	addw	a0,a5,a0
+	li	a5,252645376
+	addi	a5,a5,-241
+	and	a0,a5,a0
+	srli	a5,a0,16
+	addw	a0,a5,a0
+	srliw	a5,a0,8
+	addw	a0,a5,a0
 	andi	a0,a0,63
 	ld	ra,8(sp)
 	.cfi_restore 1
@@ -7031,57 +7017,57 @@ __popcountti2:
 	.cfi_offset 8, -16
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	mv	t1,a0
-	mv	t2,a1
+	mv	t3,a0
+	mv	t4,a1
 	slli	a1,a1,63
 	srli	a2,a0,1
 	or	a2,a1,a2
-	srli	a3,t2,1
+	srli	a3,t4,1
 	li	a1,1431654400
 	addi	a1,a1,1365
 	slli	a6,a1,32
 	add	a6,a6,a1
 	and	a0,a2,a6
 	and	a1,a3,a6
-	sub	a2,t1,a0
-	sgtu	a4,a2,t1
-	sub	a3,t2,a1
+	sub	a2,t3,a0
+	sgtu	a4,a2,t3
+	sub	a3,t4,a1
 	sub	a1,a3,a4
-	mv	t1,a2
-	mv	t2,a1
+	mv	t3,a2
+	mv	t4,a1
 	slli	a1,a1,62
-	srli	a2,t1,2
+	srli	a2,t3,2
 	or	a2,a1,a2
-	srli	a3,t2,2
+	srli	a3,t4,2
 	li	a1,858992640
 	addi	a1,a1,819
-	slli	a6,a1,32
-	add	a6,a6,a1
-	and	a0,a2,a6
-	and	a1,a3,a6
-	and	a2,t1,a6
-	and	a3,t2,a6
-	add	a6,a0,a2
-	sltu	a5,a6,a0
-	add	a7,a1,a3
-	add	a3,a5,a7
-	mv	t1,a6
-	slli	a1,a3,60
-	srli	a5,t1,4
+	slli	t1,a1,32
+	add	t1,t1,a1
+	and	a0,a2,t1
+	and	a1,a3,t1
+	and	a6,t3,t1
+	and	a7,t4,t1
+	add	a2,a0,a6
+	sltu	a5,a2,a0
+	add	a3,a1,a7
+	add	a1,a5,a3
+	mv	t4,a1
+	slli	a1,a1,60
+	srli	a5,a2,4
 	or	a5,a1,a5
-	srli	a6,a3,4
-	add	a0,a5,t1
+	srli	a6,t4,4
+	add	a0,a5,a2
 	sltu	a2,a0,a5
-	add	a1,a6,a3
+	add	a1,a6,t4
 	add	a3,a2,a1
 	mv	a7,a3
 	li	a2,252645376
 	addi	a2,a2,-241
 	slli	a3,a2,32
 	add	a3,a3,a2
-	and	t1,a0,a3
-	and	t2,a7,a3
-	add	a2,t2,t1
+	and	t3,a0,a3
+	and	t4,a7,a3
+	add	a2,t4,t3
 	srai	a5,a2,32
 	addw	a5,a5,a2
 	srliw	a4,a5,16
@@ -7290,10 +7276,6 @@ __ucmpti2:
 	mv	a7,a1
 	mv	a0,a2
 	mv	a1,a3
-	mv	a2,a6
-	mv	a3,a7
-	mv	a4,a0
-	mv	a5,a1
 	bgtu	a1,a7,.L706
 	bltu	a1,a7,.L707
 	bgtu	a0,a6,.L708
