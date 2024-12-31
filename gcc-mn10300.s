@@ -266,8 +266,7 @@ strcmp:
 	movbu (d1),a0
 	cmp a0,a1
 	bne .L51
-	mov a1,a0
-	cmp 0,a0
+	cmp 0,a1
 	bne .L52
 .L51:
 	movbu (d0),d0
@@ -663,9 +662,8 @@ fdim:
 	mov_mov d0, r4, d1, r5
 	mov (40,a3),d2
 	mov (44,a3),d3
-	mov r4,(12,sp)
-	mov r5,(16,sp)
-	mov_mov r4, d0, r5, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L116
@@ -686,7 +684,7 @@ fdim:
 	mov_mov r4, d0, r5, d1
 	call +__subdf3,[],0
 	mov_mov d0, d2, d1, d3
-	mov_mov d2, a0, d3, a1
+	mov_mov d0, a0, d1, a1
 	jmp .L114
 .L116:
 	mov_mov r4, a0, r5, a1
@@ -709,7 +707,7 @@ fdimf:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, d3, d1, d2
-	mov_mov d3, d1, d3, d0
+	mov d0,d1
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L124
@@ -723,7 +721,7 @@ fdimf:
 	ble .L128
 	mov_mov d2, d1, d3, d0
 	call +__subsf3,[],0
-	mov_mov d0, d1, d0, d0
+	mov d0,d1
 	jmp .L122
 .L124:
 	mov d3,d0
@@ -734,7 +732,6 @@ fdimf:
 .L128:
 	mov 0,d0
 .L122:
-	mov d0,d1
 	mov a3,sp
 	ret [d2,d3,a3],12
 	.size	fdimf, .-fdimf
@@ -747,9 +744,8 @@ fmax:
 	mov_mov d0, d2, d1, d3
 	mov (40,a3),r4
 	mov (44,a3),r5
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L133
@@ -759,15 +755,13 @@ fmax:
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L134
-	mov_mov d3, d0, d3, d1
+	mov d3,d1
 	and -2147483648,d1
 	mov r5,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L131
-	mov d3,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L135
 	mov_mov r4, a0, r5, a1
 	jmp .L130
@@ -803,7 +797,7 @@ fmaxf:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, d2, d1, d3
-	mov_mov d2, d1, d2, d0
+	mov d0,d1
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L143
@@ -811,15 +805,13 @@ fmaxf:
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L144
-	mov_mov d2, d0, d2, d1
+	mov d2,d1
 	and -2147483648,d1
 	mov d3,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L141
-	mov d2,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L145
 	mov d3,d0
 	jmp .L140
@@ -842,7 +834,6 @@ fmaxf:
 .L148:
 	mov d2,d0
 .L140:
-	mov d0,d1
 	mov a3,sp
 	ret [d2,d3,a3],12
 	.size	fmaxf, .-fmaxf
@@ -855,9 +846,8 @@ fmaxl:
 	mov_mov d0, d2, d1, d3
 	mov (40,a3),r4
 	mov (44,a3),r5
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L153
@@ -867,15 +857,13 @@ fmaxl:
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L154
-	mov_mov d3, d0, d3, d1
+	mov d3,d1
 	and -2147483648,d1
 	mov r5,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L151
-	mov d3,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L155
 	mov_mov r4, a0, r5, a1
 	jmp .L150
@@ -913,9 +901,8 @@ fmin:
 	mov_mov d0, d2, d1, d3
 	mov (40,a3),r4
 	mov (44,a3),r5
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L163
@@ -925,15 +912,13 @@ fmin:
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L164
-	mov_mov d3, d0, d3, d1
+	mov d3,d1
 	and -2147483648,d1
 	mov r5,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L161
-	mov d3,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L165
 	mov_mov d2, a0, d3, a1
 	jmp .L160
@@ -969,7 +954,7 @@ fminf:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, d2, d1, d3
-	mov_mov d2, d1, d2, d0
+	mov d0,d1
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L173
@@ -977,15 +962,13 @@ fminf:
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L174
-	mov_mov d2, d0, d2, d1
+	mov d2,d1
 	and -2147483648,d1
 	mov d3,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L171
-	mov d2,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L175
 	mov d2,d0
 	jmp .L170
@@ -1008,7 +991,6 @@ fminf:
 .L178:
 	mov d3,d0
 .L170:
-	mov d0,d1
 	mov a3,sp
 	ret [d2,d3,a3],12
 	.size	fminf, .-fminf
@@ -1021,9 +1003,8 @@ fminl:
 	mov_mov d0, d2, d1, d3
 	mov (40,a3),r4
 	mov (44,a3),r5
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L183
@@ -1033,15 +1014,13 @@ fminl:
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L184
-	mov_mov d3, d0, d3, d1
+	mov d3,d1
 	and -2147483648,d1
 	mov r5,d0
 	and -2147483648,d0
 	cmp d0,d1
 	beq .L181
-	mov d3,d0
-	mov d1,d0
-	cmp 0,d0
+	cmp 0,d1
 	beq .L185
 	mov_mov d2, a0, d3, a1
 	jmp .L180
@@ -1125,19 +1104,14 @@ rand:
 	mul a0,d0
 	add d0,a1
 	mov 1284865837,r0
-	mov 0,d0
-	mov d0,d1
 	mulu a0,r0,d1,d0
 	add_mov a1, d1, 0, a0
-	mov_mov a0, a1, a0, d2
-	mov 1,a0
+	mov_mov a0, d2, 1, a0
 	add d0,a0
 	addc d2,d1,a1
 	mov a0,(+seed)
 	mov a1,(+seed+4)
-	mov_mov a0, r0, a1, r1
-	mov 0,d0
-	mov_mov d0, d1, r1, d0
+	mov a1,d0
 	lsr 1,d0
 	mov a3,sp
 	ret [d2,a3],8
@@ -1195,7 +1169,7 @@ lsearch:
 	mov (44,a3),r7
 	mov (48,a3),r5
 	mov (r7),a2
-	mov_mov d2, r6, 0, d3
+	mov_mov d1, r6, 0, d3
 	jmp .L201
 .L204:
 	mov_mov r6, d1, r4, d0
@@ -1235,7 +1209,7 @@ lfind:
 	mov (48,a3),r5
 	mov (44,a3),d0
 	mov (d0),r6
-	mov_mov d2, a2, 0, d3
+	mov_mov d1, a2, 0, d3
 	jmp .L206
 .L209:
 	mov_mov a2, d1, r4, d0
@@ -1415,7 +1389,7 @@ atoll:
 	add -48,d0
 	mov_mov d0, r4, d0, r5
 	asr 31,r5
-	sub r4,d2,a0
+	sub d0,d2,a0
 	subc r5,d3,a1
 .L239:
 	movbu (a2),d0
@@ -1425,10 +1399,8 @@ atoll:
 	cmp 0,d1
 	bne .L244
 	mov 0,d0
-	mov_mov d0, d1, d0, d2
-	mov d2,d3
 	sub a0,d0,d2
-	subc a1,d1,d3
+	subc a1,d0,d3
 	jmp .L241
 .L244:
 	mov_mov a0, d2, a1, d3
@@ -1526,9 +1498,7 @@ div:
 	div d1,d0
 	mov mdr,d1
 	mov 0,a0
-	mov_mov a0, a1, d0, a0
-	mov_mov d1, a1, a0, r0
-	mov d1,r1
+	mov d0,a0
 	mov a3,sp
 	ret [d2,a3],8
 	.size	div, .-div
@@ -1538,16 +1508,14 @@ imaxabs:
 	movm [d2,a3],(sp)
 	mov sp,a3
 	mov_mov d0, r0, d1, r1
-	mov_mov r0, a0, r1, a1
-	cmp 0,a1
+	mov_mov d0, a0, d1, a1
+	cmp 0,d1
 	bge .L260
 	mov 0,d0
-	mov d0,d1
-	sub a0,d0,a0
-	subc a1,d1,a1
+	sub r0,d0,a0
+	subc d1,d0,a1
 .L260:
-	mov_mov a0, r0, a1, r1
-	mov_mov r0, d0, a1, d1
+	mov_mov a0, d0, a1, d1
 	mov a3,sp
 	retf [d2,a3],8
 	.size	imaxabs, .-imaxabs
@@ -1565,22 +1533,20 @@ imaxdiv:
 	mov (52,a3),r5
 	mov r4,(12,sp)
 	mov r5,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov_mov d1, d0, d3, d1
 	call +__divdi3,[],0
 	mov_mov d0, r6, d1, r7
-	mov r6,(-8,a3)
-	mov r7,(-4,a3)
+	mov d0,(-8,a3)
+	mov d1,(-4,a3)
 	mov r4,(12,sp)
 	mov r5,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__moddi3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov r6,d2
-	mov d2,(a2)
+	mov r6,(a2)
 	mov r7,(4,a2)
 	mov d0,(8,a2)
-	mov a1,(12,a2)
+	mov d1,(12,a2)
 	mov a2,a0
 	mov a3,sp
 	ret [d2,d3,a2,a3,exreg1],32
@@ -1607,9 +1573,7 @@ ldiv:
 	div d1,d0
 	mov mdr,d1
 	mov 0,a0
-	mov_mov a0, a1, d0, a0
-	mov_mov d1, a1, a0, r0
-	mov d1,r1
+	mov d0,a0
 	mov a3,sp
 	ret [d2,a3],8
 	.size	ldiv, .-ldiv
@@ -1619,16 +1583,14 @@ llabs:
 	movm [d2,a3],(sp)
 	mov sp,a3
 	mov_mov d0, r0, d1, r1
-	mov_mov r0, a0, r1, a1
-	cmp 0,a1
+	mov_mov d0, a0, d1, a1
+	cmp 0,d1
 	bge .L267
 	mov 0,d0
-	mov d0,d1
-	sub a0,d0,a0
-	subc a1,d1,a1
+	sub r0,d0,a0
+	subc d1,d0,a1
 .L267:
-	mov_mov a0, r0, a1, r1
-	mov_mov r0, d0, a1, d1
+	mov_mov a0, d0, a1, d1
 	mov a3,sp
 	retf [d2,a3],8
 	.size	llabs, .-llabs
@@ -1646,22 +1608,20 @@ lldiv:
 	mov (52,a3),r5
 	mov r4,(12,sp)
 	mov r5,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov_mov d1, d0, d3, d1
 	call +__divdi3,[],0
 	mov_mov d0, r6, d1, r7
-	mov r6,(-8,a3)
-	mov r7,(-4,a3)
+	mov d0,(-8,a3)
+	mov d1,(-4,a3)
 	mov r4,(12,sp)
 	mov r5,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__moddi3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov r6,d2
-	mov d2,(a2)
+	mov r6,(a2)
 	mov r7,(4,a2)
 	mov d0,(8,a2)
-	mov a1,(12,a2)
+	mov d1,(12,a2)
 	mov a2,a0
 	mov a3,sp
 	ret [d2,d3,a2,a3,exreg1],32
@@ -1703,8 +1663,7 @@ wcscmp:
 	mov (d1),a0
 	cmp a0,a1
 	bne .L278
-	mov a1,a0
-	cmp 0,a0
+	cmp 0,a1
 	beq .L278
 	mov (d1),a0
 	cmp 0,a0
@@ -1714,10 +1673,9 @@ wcscmp:
 	mov (d1),a0
 	cmp a0,a1
 	blt .L282
-	mov a1,a0
 	mov (d1),d1
 	mov 1,d0
-	cmp d1,a0
+	cmp d1,a1
 	bgt .L281
 	mov 0,d0
 .L281:
@@ -1780,8 +1738,7 @@ wcsncmp:
 	mov (d1),a1
 	cmp a1,r0
 	bne .L290
-	mov r0,a1
-	cmp 0,a1
+	cmp 0,r0
 	beq .L290
 	mov (d1),a1
 	cmp 0,a1
@@ -1793,10 +1750,9 @@ wcsncmp:
 	mov (d1),a0
 	cmp a0,a1
 	blt .L295
-	mov a1,a0
 	mov (d1),d1
 	mov 1,d0
-	cmp d1,a0
+	cmp d1,a1
 	bgt .L293
 	mov 0,d0
 .L293:
@@ -1859,10 +1815,9 @@ wmemcmp:
 	mov (d1),a0
 	cmp a0,a1
 	blt .L309
-	mov a1,a0
 	mov (d1),d1
 	mov 1,d0
-	cmp d1,a0
+	cmp d1,a1
 	bgt .L307
 	mov 0,d0
 .L307:
@@ -2008,7 +1963,6 @@ rotl64:
 	and 32,d1
 	beq .L332
 	mov 0,r2
-	mov r2,r3
 	asl d0,r0,r3
 	jmp .L333
 .L332:
@@ -2016,7 +1970,6 @@ rotl64:
 	mov_lsr d0, a0, 1, d1
 	not a0
 	mov_lsr 0, r2, a0, d1
-	mov r2,r3
 	asl d0,r1,r3
 	or d1,r3
 	asl d0,r0,r2
@@ -2039,17 +1992,13 @@ rotl64:
 	mov d0,a0
 	not a0
 	mov_asl 0, a0, a0, d1
-	mov a0,a1
 	lsr d0,r0,a0
 	or d1,a0
 	lsr d0,r1,a1
 .L335:
-	mov 0,r0
-	mov r0,r1
 	or r2,a0,r0
 	or r3,a1,r1
-	mov_mov r0, a0, r1, a1
-	mov_mov a0, d0, r1, d1
+	mov_mov r0, d0, r1, d1
 	mov a3,sp
 	retf [a3],4
 	.size	rotl64, .-rotl64
@@ -2072,7 +2021,6 @@ rotr64:
 	mov_asl d0, a0, 1, d1
 	not a0
 	mov_asl 0, r2, a0, d1
-	mov r2,r3
 	lsr d0,r0,r2
 	or d1,r2
 	lsr d0,r1,r3
@@ -2083,7 +2031,6 @@ rotr64:
 	beq .L339
 	not d0
 	add_mov 1, d0, 0, a0
-	mov a0,a1
 	asl d0,r0,a1
 	jmp .L340
 .L339:
@@ -2095,17 +2042,13 @@ rotr64:
 	mov d0,a0
 	not a0
 	mov_lsr 0, a0, a0, d1
-	mov a0,a1
 	asl d0,r1,a1
 	or d1,a1
 	asl d0,r0,a0
 .L340:
-	mov 0,r0
-	mov r0,r1
 	or r2,a0,r0
 	or r3,a1,r1
-	mov_mov r0, a0, r1, a1
-	mov_mov a0, d0, r1, d1
+	mov_mov r0, d0, r1, d1
 	mov a3,sp
 	retf [a3],4
 	.size	rotr64, .-rotr64
@@ -2256,83 +2199,61 @@ bswap_64:
 	movm [d2,d3,a3,exreg1],(sp)
 	mov sp,a3
 	mov_mov d0, a0, d1, a1
-	mov 0,d2
-	mov d2,d3
-	mov a1,d3
+	mov_mov 0, d2, d1, d3
 	and -16777216,d3
-	mov_mov d2, d0, d2, d1
-	mov d3,d0
+	mov_mov d2, d1, d3, d0
 	lsr 24,d0
-	mov_mov d1, r0, d1, r1
-	mov a1,r1
+	mov_mov d2, r0, a1, r1
 	and 16711680,r1
-	mov_mov r0, d2, r0, d3
 	mov r1,d2
 	lsr 8,d2
-	mov_mov d3, r4, d3, r5
+	mov d1,r5
 	or d0,d2,r4
-	mov_mov r5, d2, r5, d3
 	mov a1,d3
 	and 65280,d3
 	mov d3,d0
 	asl 8,d0
-	mov_mov d2, r0, d2, r1
 	lsr 24,r0
 	or_mov d0, r0, d3, r1
 	lsr 24,r1
-	mov_mov d2, r2, d2, r3
 	or r0,r4,r2
-	mov_mov r1, r3, d2, d3
+	mov r1,r3
 	extbu a1,d3
 	mov d3,d0
 	asl 24,d0
-	mov_mov d2, r0, d2, r1
+	mov d1,r0
 	lsr 8,r0
 	or_mov d0, r0, d3, r1
 	lsr 8,r1
-	mov d2,d3
 	or r0,r2,d2
 	or r1,r3,d3
-	mov_mov r5, r2, r5, r3
 	mov a0,r2
 	and -16777216,r2
-	mov_mov r3, r0, r3, r1
 	mov r2,r1
 	lsr 24,r1
 	mov r2,r0
 	asl 8,r0
-	mov_mov r3, r2, r3, r3
 	or r0,d2,r2
 	or r1,d3,r3
-	mov_mov r5, d2, r5, d3
 	mov a0,d2
 	and 16711680,d2
-	mov_mov d3, r0, d3, r1
 	mov d2,r1
 	lsr 8,r1
 	mov d2,r0
 	asl 24,r0
-	mov_mov d3, r4, d3, r5
 	or r0,r2,r4
 	or r1,r3,r5
-	mov_mov d3, d2, d3, d3
 	mov a0,d2
 	and 65280,d2
-	mov_mov d3, r0, d3, r1
-	mov d2,r1
+	mov_mov d1, r0, d2, r1
 	asl 8,r1
-	mov_mov r0, d2, r0, d3
 	mov r4,d2
 	or r1,r5,d3
-	mov_mov r0, r2, r0, r3
 	extbu a0,r2
-	mov_mov r3, r0, r3, r1
 	mov r2,r1
 	asl 24,r1
-	mov_mov r0, a0, r0, a1
-	mov d2,a0
 	or r1,d3,a1
-	mov_mov a0, d0, a1, d1
+	mov_mov r4, d0, a1, d1
 	mov a3,sp
 	retf [d2,d3,a3,exreg1],28
 	.size	bswap_64, .-bswap_64
@@ -2390,7 +2311,6 @@ gl_isinff:
 	add -12,sp
 	mov d0,d2
 	mov -8388609,d1
-	mov d2,d0
 	call +__ltsf2,[],0
 	cmp 0,d0
 	blt .L365
@@ -2421,7 +2341,7 @@ gl_isinfd:
 	mov d0,(12,sp)
 	mov -1048577,d0
 	mov d0,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,d0
 	call +__ltdf2,[],0
 	cmp 0,d0
 	blt .L372
@@ -2455,7 +2375,7 @@ gl_isinfl:
 	mov d0,(12,sp)
 	mov -1048577,d0
 	mov d0,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,d0
 	call +__ltdf2,[],0
 	cmp 0,d0
 	blt .L379
@@ -2486,9 +2406,8 @@ _Qp_itoq:
 	add -12,sp
 	mov_mov d0, d2, d1, d0
 	call +__floatsidf,[],0
-	mov_mov d0, a0, d1, a1
-	mov a0,(d2)
-	mov a1,(4,d2)
+	mov d0,(d2)
+	mov d1,(4,d2)
 	mov a3,sp
 	ret [d2,a3],8
 	.size	_Qp_itoq, .-_Qp_itoq
@@ -2499,14 +2418,13 @@ ldexpf:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, d2, d1, a2
-	mov_mov d2, d1, d2, d0
+	mov d0,d1
 	call +__unordsf2,[],0
 	cmp 0,d0
 	bne .L385
 	mov_mov d2, d1, d2, d0
 	call +__addsf3,[],0
-	mov_mov d0, d1, d0, d0
-	mov d2,d0
+	mov_mov d0, d1, d2, d0
 	call +__nesf2,[],0
 	cmp 0,d0
 	beq .L385
@@ -2521,7 +2439,7 @@ ldexpf:
 	beq .L388
 	mov_mov d3, d1, d2, d0
 	call +__mulsf3,[],0
-	mov_mov d0, d1, d0, d2
+	mov d0,d2
 .L388:
 	mov a2,d0
 	lsr 31,d0
@@ -2531,7 +2449,7 @@ ldexpf:
 	beq .L385
 	mov_mov d3, d1, d3, d0
 	call +__mulsf3,[],0
-	mov_mov d0, d1, d0, d3
+	mov d0,d3
 	jmp .L389
 .L385:
 	mov d2,d0
@@ -2546,9 +2464,8 @@ ldexp:
 	add -20,sp
 	mov_mov d0, d2, d1, d3
 	mov (44,a3),a2
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L393
@@ -2556,10 +2473,8 @@ ldexp:
 	mov d3,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__adddf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov d0,(12,sp)
-	mov a1,(16,sp)
+	mov d1,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__nedf2,[],0
 	cmp 0,d0
@@ -2579,8 +2494,7 @@ ldexp:
 	mov r5,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d2, a1, d3
+	mov_mov d0, d2, d1, d3
 .L396:
 	mov a2,d0
 	lsr 31,d0
@@ -2592,8 +2506,7 @@ ldexp:
 	mov r5,(16,sp)
 	mov_mov r4, d0, r5, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, r4, a1, r5
+	mov_mov d0, r4, d1, r5
 	jmp .L397
 .L393:
 	mov_mov d2, d0, d3, d1
@@ -2608,9 +2521,8 @@ ldexpl:
 	add -20,sp
 	mov_mov d0, d2, d1, d3
 	mov (44,a3),a2
-	mov d2,(12,sp)
-	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d0,(12,sp)
+	mov d1,(16,sp)
 	call +__unorddf2,[],0
 	cmp 0,d0
 	bne .L401
@@ -2618,10 +2530,8 @@ ldexpl:
 	mov d3,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__adddf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov d0,(12,sp)
-	mov a1,(16,sp)
+	mov d1,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__nedf2,[],0
 	cmp 0,d0
@@ -2641,8 +2551,7 @@ ldexpl:
 	mov r5,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d2, a1, d3
+	mov_mov d0, d2, d1, d3
 .L404:
 	mov a2,d0
 	lsr 31,d0
@@ -2654,8 +2563,7 @@ ldexpl:
 	mov r5,(16,sp)
 	mov_mov r4, d0, r5, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, r4, a1, r5
+	mov_mov d0, r4, d1, r5
 	jmp .L405
 .L401:
 	mov_mov d2, d0, d3, d1
@@ -2693,7 +2601,6 @@ strncat:
 	add -12,sp
 	mov_mov d0, d2, d1, d3
 	mov (28,a3),a2
-	mov d2,d0
 	call +strlen,[],0
 	mov d0,a1
 	add d2,a1
@@ -2795,10 +2702,9 @@ strstr:
 	mov sp,a3
 	add -16,sp
 	mov_mov d0, d2, d1, d3
-	mov d3,d0
+	mov d1,d0
 	call +strlen,[],0
-	mov d0,a2
-	cmp 0,a2
+	mov_cmp d0, a2, 0, d0
 	beq .L435
 	movbu (d3),r4
 	jmp .L433
@@ -2812,8 +2718,7 @@ strstr:
 .L433:
 	mov_mov r4, d1, d2, d0
 	call +strchr,[],0
-	mov a0,d2
-	cmp 0,d2
+	mov_cmp a0, d2, 0, a0
 	bne .L434
 	mov 0,d0
 	jmp .L432
@@ -2839,7 +2744,7 @@ copysign:
 	mov 0,d0
 	mov d0,(12,sp)
 	mov d0,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,d0
 	call +__ltdf2,[],0
 	cmp 0,d0
 	bge .L438
@@ -2867,7 +2772,7 @@ copysign:
 	bge .L449
 .L440:
 	mov 0,a0
-	mov_mov a0, a1, d2, a0
+	mov d2,a0
 	mov -2147483648,a1
 	add d3,a1
 	jmp .L441
@@ -2891,7 +2796,7 @@ memmem:
 	mov (44,a3),r4
 	mov (48,a3),d3
 	sub d3,d1,a2
-	add_cmp d2, a2, 0, d3
+	add_cmp d0, a2, 0, d3
 	beq .L456
 	mov 1,d0
 	cmp d3,d1
@@ -2924,7 +2829,6 @@ memmem:
 	mov 0,d0
 	jmp .L451
 .L456:
-	mov d2,d0
 	jmp .L451
 .L457:
 	mov 0,d0
@@ -2961,12 +2865,11 @@ frexp:
 	mov 0,d0
 	mov d0,(12,sp)
 	mov d0,(16,sp)
-	mov_mov d2, d0, d3, d1
+	mov d2,d0
 	call +__ltdf2,[],0
 	cmp 0,d0
 	bge .L477
 	mov 0,d0
-	mov_mov d0, d1, d2, d0
 	mov -2147483648,d1
 	add d3,d1
 	mov_mov d1, d3, 1, r4
@@ -2990,8 +2893,7 @@ frexp:
 	mov d0,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d2, a1, d3
+	mov_mov d0, d2, d1, d3
 	jmp .L463
 .L472:
 	mov 0,a2
@@ -3029,8 +2931,7 @@ frexp:
 	mov d3,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__adddf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d2, a1, d3
+	mov_mov d0, d2, d1, d3
 	jmp .L468
 .L474:
 	mov 0,a2
@@ -3052,9 +2953,9 @@ frexp:
 	cmp 0,r4
 	beq .L470
 	mov 0,d0
-	mov_mov d0, d1, d2, d0
+	mov d2,d0
 	mov -2147483648,d1
-	add_mov d3, d1, d0, d2
+	add d3,d1
 	mov d1,d3
 .L470:
 	mov_mov d2, d0, d3, d1
@@ -3066,10 +2967,8 @@ frexp:
 __muldi3:
 	movm [d2,d3,a2,a3,exreg1],(sp)
 	mov sp,a3
-	mov_mov d0, a0, d1, a1
 	mov (44,a3),d2
 	mov (48,a3),d3
-	mov_mov a0, d0, a1, d1
 	mov 0,a0
 	mov a0,a1
 	jmp .L481
@@ -3173,27 +3072,23 @@ __clrsbdi2:
 	movm [a3],(sp)
 	mov sp,a3
 	mov_mov d0, a0, d1, a1
-	cmp 0,a1
+	cmp 0,d1
 	bge .L500
-	mov 0,d0
-	mov_mov d0, d1, a0, d0
 	not d0
-	mov a1,d1
 	not d1
 	mov_mov d0, a0, d1, a1
 .L500:
 	or a1,a0,d0
 	beq .L506
-	mov_mov a0, r0, a1, r1
-	cmp 0,r1
+	cmp 0,a1
 	beq .L504
 	mov 0,d0
-	bsch r1, d0
+	bsch a1, d0
 	xor 31,d0
 	jmp .L505
 .L504:
 	mov 0,d0
-	bsch r0, d0
+	bsch a0, d0
 	xor 31,d0
 	add 32,d0
 .L505:
@@ -3384,8 +3279,6 @@ __uitod:
 	mov sp,a3
 	add -12,sp
 	call +__floatunsidf,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov a3,sp
 	ret [a3],4
 	.size	__uitod, .-__uitod
@@ -3396,7 +3289,7 @@ __uitof:
 	mov sp,a3
 	add -12,sp
 	call +__floatunsisf,[],0
-	mov_mov d0, d1, d0, d0
+	mov d0,d1
 	mov a3,sp
 	ret [a3],4
 	.size	__uitof, .-__uitof
@@ -3406,11 +3299,7 @@ __ulltod:
 	movm [a3],(sp)
 	mov sp,a3
 	add -12,sp
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	call +__floatundidf,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mov a3,sp
 	ret [a3],4
 	.size	__ulltod, .-__ulltod
@@ -3420,10 +3309,7 @@ __ulltof:
 	movm [a3],(sp)
 	mov sp,a3
 	add -12,sp
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	call +__floatundisf,[],0
-	mov_mov d0, d1, d0, d0
 	mov a3,sp
 	ret [a3],4
 	.size	__ulltof, .-__ulltof
@@ -3491,14 +3377,13 @@ __fixunssfsi:
 	add -12,sp
 	mov d0,d2
 	mov 1191182336,d1
-	mov d2,d0
 	call +__gesf2,[],0
 	cmp 0,d0
 	blt .L558
 	mov 1191182336,d1
 	mov d2,d0
 	call +__subsf3,[],0
-	mov_mov d0, d1, d0, d0
+	mov d0,d1
 	call +__fixsfsi,[],0
 	add 32768,d0
 	jmp .L556
@@ -3654,7 +3539,6 @@ __mspabi_cmpf:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, d2, d1, d3
-	mov_mov d3, d1, d2, d0
 	call +__ltsf2,[],0
 	cmp 0,d0
 	blt .L590
@@ -3684,7 +3568,6 @@ __mspabi_cmpd:
 	mov (44,a3),r5
 	mov r4,(12,sp)
 	mov r5,(16,sp)
-	mov_mov d2, d0, d3, d1
 	call +__ltdf2,[],0
 	cmp 0,d0
 	blt .L594
@@ -3710,22 +3593,16 @@ __mspabi_cmpd:
 __mspabi_mpysll:
 	movm [a3],(sp)
 	mov sp,a3
-	mov_mov d1, r0, 0, a0
-	mov_mov a0, a1, d0, a0
+	mov_mov d1, r0, d0, a0
 	mov d0,a1
 	asr 31,a1
-	mov 0,d0
-	mov_mov d0, d1, r0, d0
-	mov r0,d1
+	mov d1,d0
 	asr 31,d1
-	mul d0,a1
+	mul r0,a1
 	mul a0,d1
-	add_mov a1, d1, 0, r0
-	mov r0,r1
-	mulu a0,d0,r1,r0
-	add r1,d1
-	mov_mov d1, r1, r0, a0
-	mov_mov d1, a1, a0, d0
+	add a1,d1
+	mulu a0,r0,r1,r0
+	add_mov r1, d1, r0, d0
 	mov a3,sp
 	ret [a3],4
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
@@ -3736,12 +3613,9 @@ __mspabi_mpyull:
 	mov sp,a3
 	mov_mov d1, r0, 0, a0
 	mov_mov a0, a1, d0, a0
-	mov_mov a1, d0, a1, d1
-	mov_mov r0, d0, d1, r0
-	mov r0,r1
-	mulu a0,d0,r1,r0
-	mov_mov r1, a0, r0, d0
-	mov a0,d1
+	mov d1,d0
+	mulu a0,d1,r1,r0
+	mov_mov r0, d0, r1, d1
 	mov a3,sp
 	retf [a3],4
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
@@ -3954,24 +3828,21 @@ __udivmodsi4_libgcc:
 __ashldi3:
 	movm [a3],(sp)
 	mov sp,a3
-	mov_mov d0, r0, d1, r1
+	mov d0,r0
 	mov (16,a3),a0
-	mov_mov r0, r2, r1, r3
 	mov a0,d0
 	and 32,d0
 	beq .L641
 	mov 0,d0
-	mov_mov d0, d1, d0, d0
-	asl a0,r2,a0
+	asl a0,r0,a0
 	mov a0,d1
 	jmp .L642
 .L641:
 	cmp 0,a0
 	beq .L644
-	mov_mov r2, a1, 0, d0
-	mov d0,d1
-	asl a0,a1,d0
-	asl a0,r3,r0
+	mov r0,a1
+	asl a0,r0,d0
+	asl a0,d1,r0
 	not a0
 	inc a0
 	lsr a0,a1
@@ -3981,7 +3852,7 @@ __ashldi3:
 	mov_mov d0, a0, d1, a1
 	jmp .L643
 .L644:
-	mov_mov r0, a0, r1, a1
+	mov_mov r0, a0, d1, a1
 .L643:
 	mov_mov a0, d0, a1, d1
 	mov a3,sp
@@ -3994,13 +3865,10 @@ __ashrdi3:
 	mov sp,a3
 	mov_mov d0, r0, d1, r1
 	mov (16,a3),a0
-	mov_mov r0, r2, r1, r3
-	mov a0,d0
+	mov_mov d0, r2, a0, d0
 	and 32,d0
 	beq .L646
-	mov_mov r3, a1, 0, d0
-	mov d0,d1
-	mov a1,d1
+	mov d1,a1
 	asr 31,d1
 	asr a0,a1
 	mov a1,d0
@@ -4008,9 +3876,7 @@ __ashrdi3:
 .L646:
 	cmp 0,a0
 	beq .L649
-	mov_mov r3, a1, 0, d0
-	mov d0,d1
-	asr a0,a1,d1
+	mov_asr r1, a1, a0, d1
 	mov 0,r0
 	sub a0,r0
 	asl r0,a1
@@ -4020,7 +3886,7 @@ __ashrdi3:
 	mov_mov d0, a0, d1, a1
 	jmp .L648
 .L649:
-	mov_mov r0, a0, r1, a1
+	mov_mov r0, a0, d1, a1
 .L648:
 	mov_mov a0, d0, a1, d1
 	mov a3,sp
@@ -4036,81 +3902,60 @@ __bswapdi2:
 	mov 0,d0
 	mov_mov d0, d1, a1, d0
 	lsr 24,d0
-	mov_mov d1, d2, d1, d3
 	mov a1,d2
 	lsr 8,d2
-	mov_mov d3, r4, d3, r5
-	mov d2,r4
+	mov_mov d1, r5, d2, r4
 	and 65280,r4
 	mov a1,r0
 	asl 8,r0
-	mov_mov r5, d2, r5, d3
 	mov a0,d2
 	lsr 24,d2
-	or_mov r0, d2, a1, d3
-	mov_mov d0, d3, r5, r6
-	mov_mov r6, r7, d2, r6
+	or_mov r0, d2, d1, r7
+	mov d2,r6
 	and 16711680,r6
 	mov a1,r5
 	asl 24,r5
-	mov_mov r7, d2, r7, d3
 	mov a0,d2
 	lsr 8,d2
-	or_mov r5, d2, a1, d3
-	lsr 8,d3
-	mov r7,a2
-	mov a2,(-16,a3)
-	mov a2,(-12,a3)
+	or r5,d2
+	mov d1,(-16,a3)
+	mov d1,(-12,a3)
 	mov d2,a2
 	and -16777216,a2
 	mov a2,(-16,a3)
 	mov a0,a1
 	lsr 24,a1
-	mov_mov r7, r2, r7, r3
 	mov r0,r3
 	or_mov a1, r3, a0, r2
 	asl 8,r2
-	mov_mov r7, d2, r7, d3
+	mov d1,d2
 	extbu r3,d3
 	mov a0,a1
 	lsr 8,a1
-	mov_mov d2, r0, d2, r1
 	mov r5,r1
 	or_mov a1, r1, a0, r0
 	asl 24,r0
-	mov_mov d2, a0, d2, a1
-	mov r1,a1
+	mov_mov d1, a0, r1, a1
 	and 65280,a1
-	mov a0,a2
-	mov a2,(-8,a3)
-	mov a2,(-4,a3)
+	mov d1,a2
+	mov d1,(-8,a3)
+	mov d1,(-4,a3)
 	mov r2,(-4,a3)
-	mov_mov a2, r2, a2, r3
 	mov (-4,a3),r3
 	and 16711680,r3
-	mov r2,a2
-	mov a2,(-4,a3)
+	mov d1,(-4,a3)
 	mov r0,(-4,a3)
-	mov_mov a2, r0, a2, r1
 	mov d0,r0
 	mov (-4,a3),r1
-	mov_mov a2, d0, a2, d1
-	or r4,r0,d0
-	mov_mov r1, d1, a2, r0
-	mov r0,r1
+	or r4,d0
 	or r6,d0,r0
-	mov_mov d1, r1, a2, d0
-	mov d0,d1
 	mov (-16,a3),d0
-	or_mov r0, d0, r1, d1
-	mov_mov a2, r0, a2, r1
-	or d2,d0,r0
-	or d3,d1,r1
-	mov_mov a2, d0, a2, d1
-	or a0,r0,d0
+	or r0,d0
+	or d1,d0,r0
+	or d3,r1
+	or d1,r0,d0
 	or a1,r1,d1
-	mov_mov a2, a0, a2, a1
-	or r2,d0,a0
+	or r7,d0,a0
 	or r3,d1,a1
 	mov_mov a0, d0, a1, d1
 	mov a3,sp
@@ -4142,7 +3987,7 @@ __clzsi2:
 	movm [a3],(sp)
 	mov sp,a3
 	mov d0,d1
-	cmp 65535,d1
+	cmp 65535,d0
 	bhi .L658
 	mov 16,d0
 	jmp .L653
@@ -4208,9 +4053,9 @@ __cmpdi2:
 	mov_mov d0, a0, d1, a1
 	cmp r3,d1
 	bgt .L664
-	cmp r1,a1
+	cmp r3,d1
 	blt .L665
-	cmp r0,a0
+	cmp r2,d0
 	bhi .L666
 	bcs .L667
 	mov 1,d0
@@ -4253,7 +4098,7 @@ __ctzsi2:
 	movm [a3],(sp)
 	mov sp,a3
 	mov d0,d1
-	exthu d1,d0
+	exthu d0
 	cmp 0,d0
 	bne .L674
 	mov 16,d0
@@ -4307,32 +4152,27 @@ __lshrdi3:
 	mov sp,a3
 	mov_mov d0, r0, d1, r1
 	mov (16,a3),a0
-	mov_mov r0, d0, r1, d1
-	mov_mov d0, r2, r1, r3
-	mov a0,d0
+	mov_mov d0, r2, a0, d0
 	and 32,d0
 	beq .L679
 	mov 0,d0
 	mov d0,d1
-	lsr a0,r3,d0
+	lsr a0,r1,d0
 	jmp .L680
 .L679:
 	cmp 0,a0
 	beq .L682
-	mov_mov r3, a1, 0, d0
-	mov d0,d1
-	lsr a0,a1,d1
+	mov_lsr r1, a1, a0, d1
 	mov 0,r0
 	sub a0,r0
 	asl r0,a1
 	lsr a0,r2,a0
 	or a0,a1,d0
 .L680:
-	mov_mov d0, r0, d1, r1
-	mov_mov r0, a0, d1, a1
+	mov_mov d0, a0, d1, a1
 	jmp .L681
 .L682:
-	mov_mov r0, a0, r1, a1
+	mov_mov r0, a0, d1, a1
 .L681:
 	mov_mov a0, d0, a1, d1
 	mov a3,sp
@@ -4346,12 +4186,9 @@ __muldsi3:
 	exthu d0,r2
 	exthu d1,r3
 	mul r2,r3,a0,a1
-	mov 0,r0
-	mov_mov r0, r1, a1, r0
 	mov a1,a0
 	lsr 16,a0
 	exthu a1
-	mov a1,r0
 	lsr 16,d0
 	mul d0,r3
 	add r3,a0
@@ -4360,10 +4197,9 @@ __muldsi3:
 	add a1,r3,r0
 	lsr 16,a0
 	mov_mov a0, r1, r0, a1
-	mov a1,a0
+	mov r0,a0
 	lsr 16,a0
 	exthu a1
-	mov a1,r0
 	lsr 16,d1
 	mul d1,r2
 	add r2,a0
@@ -4372,11 +4208,8 @@ __muldsi3:
 	add a1,r2,r0
 	lsr 16,a0
 	add r1,a0
-	mov a0,r1
 	mul d0,d1
-	add a0,d1
-	mov_mov d1, r1, r0, a0
-	mov_mov d1, a1, r0, d0
+	add_mov a0, d1, r0, d0
 	mov a3,sp
 	ret [a3],4
 	.size	__muldsi3, .-__muldsi3
@@ -4389,19 +4222,14 @@ __muldi3_compiler_rt:
 	mov_mov d0, r6, d1, r7
 	mov (36,a3),r4
 	mov (40,a3),r5
-	mov_mov r6, d0, r7, d1
-	mov_mov r4, a0, r5, a1
-	mov_mov d0, r4, a0, d2
-	mov a0,d1
+	mov_mov r4, a0, d0, r4
+	mov_mov a0, d2, a0, d1
 	call +__muldsi3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
 	mul r7,d2
 	mul r5,r4
 	add r4,d2
-	add a1,d2
-	mov_mov d2, d1, d0, r0
-	mov d2,r1
+	add d1,d2
+	mov d2,d1
 	mov a3,sp
 	ret [d2,a3,exreg1],24
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
@@ -4410,15 +4238,11 @@ __muldi3_compiler_rt:
 __negdi2:
 	movm [d2,a3],(sp)
 	mov sp,a3
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, r0, a1, r1
+	mov_mov d1, a1, d0, r0
 	mov 0,d0
-	mov_mov d0, d1, d0, a0
-	mov a0,a1
 	sub r0,d0,a0
-	subc r1,d1,a1
-	mov_mov a0, r0, a1, r1
-	mov_mov r0, d0, a1, d1
+	subc d1,d0,a1
+	mov_mov a0, d0, a1, d1
 	mov a3,sp
 	retf [d2,a3],8
 	.size	__negdi2, .-__negdi2
@@ -4427,9 +4251,8 @@ __negdi2:
 __paritydi2:
 	movm [a3],(sp)
 	mov sp,a3
-	mov_mov d0, r0, d1, r1
-	mov_mov r0, a0, r1, a1
-	xor r1,a0
+	mov d0,a0
+	xor d1,a0
 	mov a0,d0
 	lsr 16,d0
 	xor d0,a0
@@ -4472,16 +4295,12 @@ __paritysi2:
 __popcountdi2:
 	movm [d2,a3],(sp)
 	mov sp,a3
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d0, a1, d1
-	mov d1,r0
+	mov_mov d1, a1, d1, r0
 	asl 31,r0
-	mov 0,a0
-	mov_mov a0, a1, d0, a0
+	mov d0,a0
 	lsr 1,a0
-	or_mov r0, a0, d1, a1
-	mov_lsr 0, r0, 1, a1
-	mov_mov r0, r1, a0, r0
+	or_lsr r0, a0, 1, a1
+	mov a0,r0
 	and 1431655765,r0
 	mov a1,r1
 	and 1431655765,r1
@@ -4489,17 +4308,14 @@ __popcountdi2:
 	subc r1,d1
 	mov d1,a0
 	asl 30,a0
-	mov 0,r0
-	mov_mov r0, r1, d0, r0
+	mov d0,r0
 	lsr 2,r0
 	or_mov a0, r0, d1, r1
-	mov_lsr 0, a0, 2, r1
-	mov_mov a0, a1, r0, a0
+	mov_lsr r0, a0, 2, r1
 	and 858993459,a0
 	mov r1,a1
 	and 858993459,a1
-	mov 0,r0
-	mov_mov r0, r1, d0, r0
+	mov d0,r0
 	and 858993459,r0
 	mov d1,r1
 	and 858993459,r1
@@ -4507,20 +4323,17 @@ __popcountdi2:
 	addc a1,r1,d1
 	mov d1,r0
 	asl 28,r0
-	mov 0,a0
-	mov_mov a0, a1, d0, a0
+	mov d0,a0
 	lsr 4,a0
 	or_mov r0, a0, d1, a1
-	mov_lsr 0, r0, 4, a1
-	mov r0,r1
+	lsr 4,a1
 	add d0,a0,r0
 	addc a1,d1,r1
 	mov r0,d0
 	and 252645135,d0
 	mov r1,d1
 	and 252645135,d1
-	mov 0,a0
-	mov_mov a0, a1, d1, a0
+	mov d1,a0
 	add d0,a0
 	mov a0,d0
 	lsr 16,d0
@@ -4579,8 +4392,7 @@ __powidf2:
 	mov r5,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, d2, a1, d3
+	mov_mov d0, d2, d1, d3
 .L691:
 	mov a2,d0
 	lsr 31,d0
@@ -4592,8 +4404,7 @@ __powidf2:
 	mov r5,(16,sp)
 	mov_mov r4, d0, r5, d1
 	call +__muldf3,[],0
-	mov_mov d0, a0, d1, a1
-	mov_mov a0, r4, a1, r5
+	mov_mov d0, r4, d1, r5
 	jmp .L693
 .L692:
 	cmp 0,r6
@@ -4604,7 +4415,7 @@ __powidf2:
 	mov 1072693248,d1
 	call +__divdf3,[],0
 	mov_mov d0, d2, d1, d3
-	mov_mov d2, a0, d3, a1
+	mov_mov d0, a0, d1, a1
 	jmp .L694
 .L695:
 	mov_mov d2, a0, d3, a1
@@ -4620,7 +4431,7 @@ __powisf2:
 	mov sp,a3
 	add -12,sp
 	mov_mov d0, a2, d1, d2
-	mov d2,r4
+	mov d1,r4
 	lsr 31,r4
 	mov 1065353216,d3
 .L699:
@@ -4628,7 +4439,7 @@ __powisf2:
 	beq .L697
 	mov_mov a2, d1, d3, d0
 	call +__mulsf3,[],0
-	mov_mov d0, d1, d0, d3
+	mov d0,d3
 .L697:
 	mov d2,d0
 	lsr 31,d0
@@ -4638,7 +4449,7 @@ __powisf2:
 	beq .L698
 	mov_mov a2, d1, a2, d0
 	call +__mulsf3,[],0
-	mov_mov d0, d1, d0, a2
+	mov d0,a2
 	jmp .L699
 .L698:
 	cmp 0,r4
@@ -4646,12 +4457,11 @@ __powisf2:
 	mov d3,d1
 	mov 1065353216,d0
 	call +__divsf3,[],0
-	mov_mov d0, d1, d0, d0
+	mov d0,d1
 	jmp .L700
 .L701:
 	mov d3,d0
 .L700:
-	mov d0,d1
 	mov a3,sp
 	ret [d2,d3,a2,a3,exreg1],32
 	.size	__powisf2, .-__powisf2
@@ -4667,9 +4477,9 @@ __ucmpdi2:
 	mov_mov d0, a0, d1, a1
 	cmp r3,d1
 	bhi .L704
-	cmp r1,a1
+	cmp r3,d1
 	bcs .L705
-	cmp r0,a0
+	cmp r2,d0
 	bhi .L706
 	bcs .L707
 	mov 1,d0
@@ -4695,12 +4505,9 @@ __aeabi_ulcmp:
 	movm [a3],(sp)
 	mov sp,a3
 	add -20,sp
-	mov_mov d0, a0, d1, a1
 	mov (16,a3),r0
 	mov (20,a3),r1
-	mov_mov a0, d0, a1, d1
-	mov_mov r0, r2, r1, r3
-	mov r2,(12,sp)
+	mov r0,(12,sp)
 	mov r1,(16,sp)
 	call +__ucmpdi2,[],0
 	add -1,d0

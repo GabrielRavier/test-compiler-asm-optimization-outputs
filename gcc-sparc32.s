@@ -305,8 +305,7 @@ strcmp:
 	cmp	%g2, %g1
 	bne	.L51
 	 nop
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	bne	.L52
 	 nop
 .L51:
@@ -907,8 +906,7 @@ fmax:
 	 nop
 	st	%f0, [%fp-8]
 	ld	[%fp-8], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L123
 	 nop
@@ -965,8 +963,7 @@ fmaxf:
 	 nop
 	st	%f0, [%fp-4]
 	ld	[%fp-4], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L133
 	 nop
@@ -1020,8 +1017,7 @@ fmaxl:
 	 nop
 	st	%f0, [%fp-8]
 	ld	[%fp-8], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L143
 	 nop
@@ -1078,8 +1074,7 @@ fmin:
 	 nop
 	st	%f8, [%fp-8]
 	ld	[%fp-8], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L153
 	 nop
@@ -1136,8 +1131,7 @@ fminf:
 	 nop
 	st	%f8, [%fp-4]
 	ld	[%fp-4], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L163
 	 nop
@@ -1191,8 +1185,7 @@ fminl:
 	 nop
 	st	%f8, [%fp-8]
 	ld	[%fp-8], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	.L173
 	 nop
@@ -1289,10 +1282,7 @@ rand:
 	addcc	%o1, 1, %i3
 	addx	%o0, 0, %i2
 	std	%i2, [%i5]
-	mov	0, %g2
-	mov	0, %g3
 	srl	%i2, 1, %g3
-	mov	0, %g2
 	mov	%g3, %i0
 	restore
 	jmp	%o7+8
@@ -1625,9 +1615,8 @@ atoll:
 	add	%i0, 1, %i0
 	ldsb	[%i0-1], %g1
 	add	%g1, -48, %g1
-	mov	%g1, %l1
 	sra	%g1, 31, %l0
-	subcc	%i5, %l1, %g3
+	subcc	%i5, %g1, %g3
 	subx	%i4, %l0, %g2
 .L231:
 	ldsb	[%i0], %g1
@@ -1764,18 +1753,11 @@ div:
 	.proc	05
 imaxabs:
 	save	%sp, -96, %sp
-	mov	0, %g2
-	mov	0, %g3
 	sra	%i0, 31, %g3
-	mov	%g3, %g2
-	mov	0, %i4
-	mov	0, %i5
-	xor	%g2, %i0, %i4
+	xor	%g3, %i0, %i4
 	xor	%g3, %i1, %i5
-	mov	%i4, %i0
-	mov	%i5, %i1
-	subcc	%i1, %g3, %i5
-	subx	%i0, %g2, %i4
+	subcc	%i5, %g3, %i5
+	subx	%i4, %g3, %i4
 	mov	%i4, %i0
 	mov	%i5, %i1
 	restore
@@ -1852,18 +1834,11 @@ ldiv:
 	.proc	05
 llabs:
 	save	%sp, -96, %sp
-	mov	0, %g2
-	mov	0, %g3
 	sra	%i0, 31, %g3
-	mov	%g3, %g2
-	mov	0, %i4
-	mov	0, %i5
-	xor	%g2, %i0, %i4
+	xor	%g3, %i0, %i4
 	xor	%g3, %i1, %i5
-	mov	%i4, %i0
-	mov	%i5, %i1
-	subcc	%i1, %g3, %i5
-	subx	%i0, %g2, %i4
+	subcc	%i5, %g3, %i5
+	subx	%i4, %g3, %i4
 	mov	%i4, %i0
 	mov	%i5, %i1
 	restore
@@ -1942,8 +1917,7 @@ wcscmp:
 	cmp	%g2, %g1
 	bne	.L265
 	 nop
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	.L265
 	 nop
 	ld	[%i1], %g1
@@ -2032,8 +2006,7 @@ wcsncmp:
 	cmp	%g2, %g1
 	bne	.L277
 	 nop
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	.L277
 	 nop
 	ld	[%i1], %g1
@@ -2292,8 +2265,6 @@ rotl64:
 	andcc	%i2, 32, %g0
 	be	.L319
 	 nop
-	mov	0, %i4
-	mov	0, %i5
 	sll	%i1, %i2, %i4
 	mov	0, %i5
 	b,a	.L320
@@ -2301,8 +2272,6 @@ rotl64:
 	srl	%i1, 1, %g1
 	xnor	%g0, %i2, %g2
 	srl	%g1, %g2, %g1
-	mov	0, %i4
-	mov	0, %i5
 	sll	%i0, %i2, %i4
 	or	%g1, %i4, %i4
 	sll	%i1, %i2, %i5
@@ -2311,10 +2280,7 @@ rotl64:
 	andcc	%g1, 32, %g0
 	be	.L321
 	 nop
-	mov	%g1, %i2
-	mov	0, %g2
-	mov	0, %g3
-	srl	%i0, %i2, %g3
+	srl	%i0, %g1, %g3
 	mov	0, %g2
 	b,a	.L322
 .L321:
@@ -2323,14 +2289,10 @@ rotl64:
 	and	%i2, 63, %i2
 	xnor	%g0, %i2, %g2
 	sll	%g1, %g2, %g1
-	mov	0, %g2
-	mov	0, %g3
 	srl	%i1, %i2, %g3
 	or	%g1, %g3, %g3
 	srl	%i0, %i2, %g2
 .L322:
-	mov	0, %i0
-	mov	0, %i1
 	or	%g2, %i4, %i0
 	or	%g3, %i5, %i1
 	restore
@@ -2346,8 +2308,6 @@ rotr64:
 	andcc	%i2, 32, %g0
 	be	.L324
 	 nop
-	mov	0, %i4
-	mov	0, %i5
 	srl	%i0, %i2, %i5
 	mov	0, %i4
 	b,a	.L325
@@ -2355,8 +2315,6 @@ rotr64:
 	sll	%i0, 1, %g1
 	xnor	%g0, %i2, %g2
 	sll	%g1, %g2, %g1
-	mov	0, %i4
-	mov	0, %i5
 	srl	%i1, %i2, %i5
 	or	%g1, %i5, %i5
 	srl	%i0, %i2, %i4
@@ -2365,10 +2323,7 @@ rotr64:
 	andcc	%g1, 32, %g0
 	be	.L326
 	 nop
-	mov	%g1, %i2
-	mov	0, %g2
-	mov	0, %g3
-	sll	%i1, %i2, %g2
+	sll	%i1, %g1, %g2
 	mov	0, %g3
 	b,a	.L327
 .L326:
@@ -2377,14 +2332,10 @@ rotr64:
 	and	%i2, 63, %i2
 	xnor	%g0, %i2, %g2
 	srl	%g1, %g2, %g1
-	mov	0, %g2
-	mov	0, %g3
 	sll	%i0, %i2, %g2
 	or	%g1, %g2, %g2
 	sll	%i1, %i2, %g3
 .L327:
-	mov	0, %i0
-	mov	0, %i1
 	or	%g2, %i4, %i0
 	or	%g3, %i5, %i1
 	restore
@@ -2560,101 +2511,48 @@ bswap_32:
 	.proc	017
 bswap_64:
 	save	%sp, -96, %sp
-	mov	%i0, %o2
-	mov	%i1, %o3
 	sethi	%hi(-16777216), %o7
-	mov	0, %i4
-	mov	0, %i5
-	and	%o2, %o7, %i4
-	mov	0, %i5
-	mov	0, %g2
-	mov	0, %g3
+	and	%i0, %o7, %i4
 	srl	%i4, 24, %g3
-	mov	0, %g2
 	sethi	%hi(16711680), %g4
-	mov	0, %i2
-	mov	0, %i3
-	and	%o2, %g4, %i2
-	mov	0, %i3
-	mov	0, %i4
-	mov	0, %i5
+	and	%i0, %g4, %i2
 	srl	%i2, 8, %i5
-	mov	0, %i4
 	mov	0, %o4
-	mov	0, %o5
 	or	%i5, %g3, %o5
 	sethi	%hi(64512), %g1
 	or	%g1, 768, %g1
-	mov	0, %i4
-	mov	0, %i5
-	and	%o2, %g1, %i4
-	mov	0, %i5
-	mov	0, %g2
-	mov	0, %g3
+	and	%i0, %g1, %i4
 	sll	%i4, 8, %g3
 	srl	%i4, 24, %g2
-	mov	0, %i2
-	mov	0, %i3
 	or	%o4, %g2, %i2
 	or	%o5, %g3, %i3
-	mov	0, %i4
-	mov	0, %i5
-	and	%o2, 255, %i4
-	mov	0, %i5
-	mov	0, %g2
-	mov	0, %g3
+	and	%i0, 255, %i4
 	sll	%i4, 24, %g3
 	srl	%i4, 8, %g2
-	mov	0, %i4
-	mov	0, %i5
 	or	%i2, %g2, %i4
 	or	%i3, %g3, %i5
 	mov	0, %i2
-	mov	0, %i3
-	and	%o3, %o7, %i3
+	and	%i1, %o7, %i3
 	srl	%i3, 24, %i0
-	mov	0, %g2
-	mov	0, %g3
 	sll	%i2, 8, %g2
 	or	%i0, %g2, %g2
 	sll	%i3, 8, %g3
-	mov	0, %i2
-	mov	0, %i3
 	or	%i4, %g2, %i2
 	or	%i5, %g3, %i3
 	mov	0, %i4
-	mov	0, %i5
-	and	%o3, %g4, %i5
+	and	%i1, %g4, %i5
 	srl	%i5, 8, %g4
-	mov	0, %g2
-	mov	0, %g3
 	sll	%i4, 24, %g2
 	or	%g4, %g2, %g2
 	sll	%i5, 24, %g3
-	mov	0, %i4
-	mov	0, %i5
 	or	%i2, %g2, %i4
 	or	%i3, %g3, %i5
-	mov	0, %g2
-	mov	0, %g3
-	and	%o3, %g1, %g3
-	mov	0, %i2
-	mov	0, %i3
+	and	%i1, %g1, %g3
 	sll	%g3, 8, %i2
-	mov	0, %i3
-	mov	0, %g2
-	mov	0, %g3
 	or	%i4, %i2, %g2
 	mov	%i5, %g3
-	mov	0, %i2
-	mov	0, %i3
-	and	%o3, 255, %i3
-	mov	0, %i4
-	mov	0, %i5
+	and	%i1, 255, %i3
 	sll	%i3, 24, %i4
-	mov	0, %i5
-	mov	0, %i0
-	mov	0, %i1
 	or	%g2, %i4, %i0
 	mov	%g3, %i1
 	restore
@@ -3176,7 +3074,7 @@ strstr:
 	call	strlen, 0
 	 nop
 	mov	%o0, %i5
-	cmp	%i5, 0
+	cmp	%o0, 0
 	be	.L413
 	 nop
 	ldsb	[%i1], %i4
@@ -3197,7 +3095,7 @@ strstr:
 	call	strchr, 0
 	 nop
 	mov	%o0, %i0
-	cmp	%i0, 0
+	cmp	%o0, 0
 	bne	.L415
 	 nop
 .L413:
@@ -3428,10 +3326,8 @@ __muldi3:
 	orcc	%o2, %o3, %g0
 	be	.L460
 	 nop
-	mov	%i0, %o0
-	mov	%i1, %o1
-	addcc	%o1, %i3, %i1
-	addx	%o0, %i2, %i0
+	addcc	%i1, %i3, %i1
+	addx	%i0, %i2, %i0
 .L460:
 	srl	%i3, 31, %g1
 	sll	%i2, 1, %i4
@@ -3538,8 +3434,6 @@ __clrsbdi2:
 	cmp	%i0, 0
 	bge	.L478
 	 nop
-	mov	0, %g2
-	mov	0, %g3
 	xnor	%g0, %i0, %g2
 	xnor	%g0, %i1, %g3
 	mov	%g2, %i0
@@ -4165,12 +4059,8 @@ __mspabi_cmpd:
 	.proc	05
 __mspabi_mpysll:
 	save	%sp, -96, %sp
-	mov	0, %o0
-	mov	0, %o1
 	mov	%i0, %o1
 	sra	%i0, 31, %o0
-	mov	0, %o2
-	mov	0, %o3
 	mov	%i1, %o3
 	sra	%i1, 31, %o2
 	call	__muldi3, 0
@@ -4284,7 +4174,7 @@ __divsi3:
 	cmp	%i5, 0
 	be	.L584
 	 nop
-	sub	%g0, %i0, %i0
+	sub	%g0, %o0, %i0
 .L584:
 	restore
 	jmp	%o7+8
@@ -4319,7 +4209,7 @@ __modsi3:
 	cmp	%i5, 0
 	be	.L589
 	 nop
-	sub	%g0, %i0, %i0
+	sub	%g0, %o0, %i0
 .L589:
 	restore
 	jmp	%o7+8
@@ -4443,22 +4333,18 @@ __ashldi3:
 	andcc	%i2, 32, %g0
 	be	.L612
 	 nop
-	mov	0, %g2
 	mov	0, %g3
-	sll	%i5, %i2, %i2
+	sll	%i1, %i2, %i2
 	mov	%i2, %g2
 	b,a	.L613
 .L612:
 	cmp	%i2, 0
 	be	.L614
 	 nop
-	mov	%i5, %g1
-	mov	0, %g2
-	mov	0, %g3
-	sll	%g1, %i2, %g3
-	sll	%i4, %i2, %i4
+	sll	%i1, %i2, %g3
+	sll	%i0, %i2, %i4
 	sub	%g0, %i2, %i2
-	srl	%g1, %i2, %g1
+	srl	%i1, %i2, %g1
 	or	%g1, %i4, %g1
 	mov	%g1, %g2
 .L613:
@@ -4480,23 +4366,18 @@ __ashrdi3:
 	andcc	%i2, 32, %g0
 	be	.L617
 	 nop
-	mov	0, %g2
-	mov	0, %g3
-	sra	%i4, 31, %g2
-	sra	%i4, %i2, %i4
+	sra	%i0, 31, %g2
+	sra	%i0, %i2, %i4
 	mov	%i4, %g3
 	b,a	.L618
 .L617:
 	cmp	%i2, 0
 	be	.L619
 	 nop
-	mov	%i4, %g1
-	mov	0, %g2
-	mov	0, %g3
-	sra	%g1, %i2, %g2
+	sra	%i0, %i2, %g2
 	sub	%g0, %i2, %g4
-	sll	%g1, %g4, %g1
-	srl	%i5, %i2, %i2
+	sll	%i0, %g4, %g1
+	srl	%i1, %i2, %i2
 	or	%g1, %i2, %g3
 .L618:
 	mov	%g2, %i0
@@ -4512,99 +4393,43 @@ __ashrdi3:
 	.proc	017
 __bswapdi2:
 	save	%sp, -96, %sp
-	mov	0, %l0
-	mov	0, %l1
 	srl	%i0, 24, %l1
-	mov	0, %l0
-	mov	0, %g2
-	mov	0, %g3
 	srl	%i0, 8, %g3
-	mov	0, %g2
 	mov	0, %o4
-	mov	0, %o5
 	sethi	%hi(64512), %g1
 	or	%g1, 768, %g1
 	and	%g3, %g1, %o5
 	sll	%i0, 8, %o1
-	mov	0, %g2
-	mov	0, %g3
 	srl	%i1, 24, %g3
 	or	%o1, %g3, %g3
-	mov	%l1, %g2
 	mov	0, %i2
-	mov	0, %i3
 	sethi	%hi(16711680), %g4
 	and	%g3, %g4, %i3
 	sll	%i0, 24, %o7
-	mov	0, %i4
-	mov	0, %i5
 	srl	%i1, 8, %i5
 	or	%o7, %i5, %i5
-	srl	%i0, 8, %i4
 	mov	0, %o2
-	mov	0, %o3
 	sethi	%hi(-16777216), %g2
 	and	%i5, %g2, %o3
-	srl	%i1, 24, %g2
-	mov	0, %l2
-	mov	0, %l3
-	mov	%o1, %l2
-	mov	%g3, %l2
 	sll	%i1, 8, %l3
-	mov	0, %o0
-	mov	0, %o1
-	and	%l2, 255, %o0
-	mov	0, %o1
-	srl	%i1, 8, %i4
-	mov	0, %g2
-	mov	0, %g3
-	mov	%o7, %g2
-	mov	%i5, %g2
+	and	%g3, 255, %o0
 	sll	%i1, 24, %g3
-	mov	0, %i0
-	mov	0, %i1
-	and	%g2, %g1, %i0
-	mov	0, %i1
-	mov	0, %l4
-	mov	0, %l5
+	and	%i5, %g1, %i0
 	mov	%l3, %l4
-	mov	0, %l5
-	mov	0, %l2
-	mov	0, %l3
 	and	%l4, %g4, %l2
-	mov	0, %l3
-	mov	0, %i4
-	mov	0, %i5
 	mov	%g3, %i4
-	mov	0, %i5
-	mov	0, %g2
-	mov	0, %g3
-	mov	%i4, %g2
 	mov	%l1, %g3
-	mov	0, %l0
-	mov	0, %l1
-	or	%g2, %o4, %l0
+	or	%i4, %o4, %l0
 	or	%g3, %o5, %l1
-	mov	0, %i4
-	mov	0, %i5
 	or	%l0, %i2, %i4
 	or	%l1, %i3, %i5
-	mov	0, %g2
-	mov	0, %g3
 	or	%i4, %o2, %g2
 	or	%i5, %o3, %g3
-	mov	0, %i4
-	mov	0, %i5
 	or	%g2, %o0, %i4
 	mov	%g3, %i5
-	mov	0, %g2
-	mov	0, %g3
 	or	%i4, %i0, %g2
-	mov	%i5, %g3
-	mov	0, %i0
-	mov	0, %i1
 	or	%g2, %l2, %i0
-	mov	%g3, %i1
+	mov	%i5, %i1
 	restore
 	jmp	%o7+8
 	 nop
@@ -4823,20 +4648,16 @@ __lshrdi3:
 	be	.L649
 	 nop
 	mov	0, %g2
-	mov	0, %g3
-	srl	%i4, %i2, %g3
+	srl	%i0, %i2, %g3
 	b,a	.L650
 .L649:
 	cmp	%i2, 0
 	be	.L651
 	 nop
-	mov	%i4, %g1
-	mov	0, %g2
-	mov	0, %g3
-	srl	%g1, %i2, %g2
+	srl	%i0, %i2, %g2
 	sub	%g0, %i2, %g4
-	sll	%g1, %g4, %g1
-	srl	%i5, %i2, %i2
+	sll	%i0, %g4, %g1
+	srl	%i1, %i2, %i2
 	or	%g1, %i2, %g3
 .L650:
 	mov	%g2, %i0
@@ -4860,12 +4681,8 @@ __muldsi3:
 	mov	%l1, %o0
 	call	.umul, 0
 	 nop
-	mov	0, %i2
-	mov	0, %i3
-	mov	%o0, %i3
 	srl	%o0, 16, %i5
 	and	%o0, %l0, %i4
-	mov	%i4, %i3
 	srl	%i0, 16, %i0
 	mov	%l2, %o1
 	mov	%i0, %o0
@@ -4876,10 +4693,8 @@ __muldsi3:
 	add	%g1, %i4, %i3
 	srl	%i5, 16, %i5
 	mov	%i5, %i2
-	mov	%i3, %i4
-	srl	%i4, 16, %i5
-	and	%i4, %l0, %i4
-	mov	%i4, %i3
+	srl	%i3, 16, %i5
+	and	%i3, %l0, %i4
 	srl	%i1, 16, %i1
 	mov	%i1, %o1
 	mov	%l1, %o0
@@ -4890,14 +4705,12 @@ __muldsi3:
 	add	%g1, %i4, %i3
 	srl	%i5, 16, %i5
 	add	%i5, %i2, %i5
-	mov	%i5, %i2
 	mov	%i1, %o1
 	mov	%i0, %o0
 	call	.umul, 0
 	 nop
 	add	%o0, %i5, %o0
-	mov	%o0, %i2
-	mov	%i2, %i0
+	mov	%o0, %i0
 	mov	%i3, %i1
 	restore
 	jmp	%o7+8
@@ -4913,7 +4726,6 @@ __muldi3_compiler_rt:
 	mov	%i1, %o0
 	call	__muldsi3, 0
 	 nop
-	mov	%o0, %l0
 	mov	%o1, %l1
 	mov	%o0, %i4
 	mov	%i3, %o1
@@ -4927,8 +4739,7 @@ __muldi3_compiler_rt:
 	 nop
 	add	%i5, %o0, %i5
 	add	%i5, %i4, %o0
-	mov	%o0, %l0
-	mov	%l0, %i0
+	mov	%o0, %i0
 	mov	%l1, %i1
 	restore
 	jmp	%o7+8
@@ -4998,40 +4809,28 @@ __paritysi2:
 __popcountdi2:
 	save	%sp, -96, %sp
 	sll	%i0, 31, %g1
-	mov	0, %g2
-	mov	0, %g3
 	srl	%i1, 1, %g3
 	or	%g1, %g3, %g3
 	srl	%i0, 1, %g2
 	sethi	%hi(1431655424), %g1
 	or	%g1, 341, %g1
-	mov	0, %i4
-	mov	0, %i5
 	and	%g2, %g1, %i4
 	and	%g3, %g1, %i5
 	subcc	%i1, %i5, %g3
 	subx	%i0, %i4, %g2
 	sll	%g2, 30, %g1
-	mov	0, %i4
-	mov	0, %i5
 	srl	%g3, 2, %i5
 	or	%g1, %i5, %i5
 	srl	%g2, 2, %i4
 	sethi	%hi(858992640), %g1
 	or	%g1, 819, %g1
-	mov	0, %i2
-	mov	0, %i3
 	and	%i4, %g1, %i2
 	and	%i5, %g1, %i3
-	mov	0, %i4
-	mov	0, %i5
 	and	%g2, %g1, %i4
 	and	%g3, %g1, %i5
 	addcc	%i3, %i5, %g3
 	addx	%i2, %i4, %g2
 	sll	%g2, 28, %g1
-	mov	0, %i4
-	mov	0, %i5
 	srl	%g3, 4, %i5
 	or	%g1, %i5, %i5
 	srl	%g2, 4, %i4
@@ -5041,11 +4840,7 @@ __popcountdi2:
 	or	%g1, 783, %g1
 	and	%i2, %g1, %g2
 	and	%i3, %g1, %g3
-	mov	0, %i4
-	mov	0, %i5
-	mov	%g2, %i5
-	mov	0, %i4
-	add	%i5, %g3, %g1
+	add	%g2, %g3, %g1
 	srl	%g1, 16, %g2
 	add	%g1, %g2, %g1
 	srl	%g1, 8, %i0

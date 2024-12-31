@@ -8,12 +8,8 @@ make_ti:
 	.register	%g2, #scratch
 	.register	%g3, #scratch
 	save	%sp, -176, %sp
-	mov	0, %g2
-	mov	0, %g3
 	mov	%i0, %g2
 	mov	%i1, %g3
-	mov	%g2, %i0
-	mov	%g3, %i1
 	return	%i7+8
 	 nop
 	.size	make_ti, .-make_ti
@@ -23,12 +19,8 @@ make_ti:
 	.proc	017
 make_tu:
 	save	%sp, -176, %sp
-	mov	0, %g2
-	mov	0, %g3
 	mov	%i0, %g2
 	mov	%i1, %g3
-	mov	%g2, %i0
-	mov	%g3, %i1
 	return	%i7+8
 	 nop
 	.size	make_tu, .-make_tu
@@ -328,8 +320,7 @@ strcmp:
 	cmp	%g2, %g1
 	bne	%icc, .L53
 	 nop
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	bne	%icc, .L54
 	 nop
 .L53:
@@ -837,9 +828,7 @@ fmax:
 	be	%icc, .L113
 	 nop
 	std	%f0, [%fp+2039]
-	ldx	[%fp+2039], %g1
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	%icc, .L112
 	 nop
 	fmovd	%f2, %f0
@@ -882,8 +871,7 @@ fmaxf:
 	 nop
 	st	%f1, [%fp+2043]
 	lduw	[%fp+2043], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	%icc, .L127
 	 nop
@@ -946,16 +934,12 @@ fmaxl:
 	cmp	%o0, 3
 	be	%xcc, .L136
 	 nop
-	mov	%i4, %g2
-	srlx	%g2, 63, %g2
-	mov	%i2, %g1
-	srlx	%g1, 63, %g1
+	srlx	%i4, 63, %g2
+	srlx	%i2, 63, %g1
 	cmp	%g2, %g1
 	be	%icc, .L133
 	 nop
-	mov	%i4, %g1
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	%icc, .L137
 	 nop
 	stx	%i2, [%fp+1935]
@@ -1032,9 +1016,7 @@ fmin:
 	be	%icc, .L143
 	 nop
 	std	%f0, [%fp+2039]
-	ldx	[%fp+2039], %g1
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	%icc, .L147
 	 nop
 	return	%i7+8
@@ -1083,8 +1065,7 @@ fminf:
 	 nop
 	st	%f1, [%fp+2043]
 	lduw	[%fp+2043], %g1
-	mov	%g3, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	cmp	%g1, 0
 	be	%icc, .L152
 	 nop
@@ -1141,16 +1122,12 @@ fminl:
 	cmp	%o0, 3
 	be	%xcc, .L166
 	 nop
-	mov	%i2, %g2
-	srlx	%g2, 63, %g2
-	mov	%i4, %g1
-	srlx	%g1, 63, %g1
+	srlx	%i2, 63, %g2
+	srlx	%i4, 63, %g1
 	cmp	%g2, %g1
 	be	%icc, .L163
 	 nop
-	mov	%i2, %g1
-	mov	%g2, %g1
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	%icc, .L167
 	 nop
 	stx	%i2, [%fp+1935]
@@ -2955,7 +2932,7 @@ strstr:
 	call	strlen, 0
 	 nop
 	mov	%o0, %i5
-	brz	%i5, .L391
+	brz	%o0, .L391
 	 nop
 	ldsb	[%i1], %i4
 	ba,pt	%xcc, .L392
@@ -2976,7 +2953,7 @@ strstr:
 	call	strchr, 0
 	 nop
 	mov	%o0, %i0
-	brnz	%i0, .L393
+	brnz	%o0, .L393
 	 nop
 .L391:
 	return	%i7+8
@@ -3972,7 +3949,7 @@ __divsi3:
 	cmp	%i5, 0
 	be	%icc, .L562
 	 nop
-	sub	%g0, %i0, %i0
+	sub	%g0, %o0, %i0
 .L562:
 	return	%i7+8
 	 nop
@@ -4005,7 +3982,7 @@ __modsi3:
 	cmp	%i5, 0
 	be	%icc, .L567
 	 nop
-	sub	%g0, %i0, %i0
+	sub	%g0, %o0, %i0
 .L567:
 	return	%i7+8
 	 nop
@@ -4138,8 +4115,8 @@ __ashldi3:
 .L590:
 	brz	%i1, .L592
 	 nop
-	mov	%g1, %g2
-	sll	%g2, %i1, %g3
+	mov	%i0, %g2
+	sll	%i0, %i1, %g3
 	srl	%g3, 0, %i0
 	srax	%g1, 32, %g1
 	sll	%g1, %i1, %g1
@@ -4163,22 +4140,18 @@ __ashlti3:
 	andcc	%i2, 64, %g0
 	be	%xcc, .L595
 	 nop
-	mov	0, %g2
 	mov	0, %g3
-	sllx	%g5, %i2, %i2
+	sllx	%i1, %i2, %i2
 	mov	%i2, %g2
 	ba,pt	%xcc, .L596
 	 nop
 .L595:
 	brz	%i2, .L597
 	 nop
-	mov	%g5, %g1
-	mov	0, %g2
-	mov	0, %g3
-	sllx	%g1, %i2, %g3
-	sllx	%g4, %i2, %g4
+	sllx	%i1, %i2, %g3
+	sllx	%i0, %i2, %g4
 	sub	%g0, %i2, %i2
-	srlx	%g1, %i2, %g1
+	srlx	%i1, %i2, %g1
 	or	%g1, %g4, %g1
 	mov	%g1, %g2
 .L596:
@@ -4198,7 +4171,7 @@ __ashrdi3:
 	andcc	%i1, 32, %g0
 	be	%xcc, .L600
 	 nop
-	srax	%g1, 32, %g1
+	srax	%i0, 32, %g1
 	sra	%g1, 31, %g2
 	sllx	%g2, 32, %i0
 	sra	%g1, %i1, %g1
@@ -4209,7 +4182,7 @@ __ashrdi3:
 .L600:
 	brz	%i1, .L602
 	 nop
-	srax	%g1, 32, %g2
+	srax	%i0, 32, %g2
 	sra	%g2, %i1, %g3
 	sllx	%g3, 32, %i0
 	sub	%g0, %i1, %g3
@@ -4233,24 +4206,18 @@ __ashrti3:
 	andcc	%i2, 64, %g0
 	be	%xcc, .L605
 	 nop
-	mov	%o4, %g4
-	mov	0, %g2
-	mov	0, %g3
-	srax	%g4, 63, %g2
-	srax	%g4, %i2, %g4
+	srax	%i0, 63, %g2
+	srax	%i0, %i2, %g4
 	mov	%g4, %g3
 	ba,pt	%xcc, .L606
 	 nop
 .L605:
 	brz	%i2, .L607
 	 nop
-	mov	%o4, %g1
-	mov	0, %g2
-	mov	0, %g3
-	srax	%g1, %i2, %g2
+	srax	%i0, %i2, %g2
 	sub	%g0, %i2, %g4
-	sllx	%g1, %g4, %g1
-	srlx	%o5, %i2, %i2
+	sllx	%i0, %g4, %g1
+	srlx	%i1, %i2, %i2
 	or	%g1, %i2, %g3
 .L606:
 	mov	%g2, %i0
@@ -4395,10 +4362,9 @@ __clzsi2:
 	.proc	04
 __clzti2:
 	save	%sp, -176, %sp
-	mov	%i0, %o0
 	mov	0, %i5
-	movre	%o0, -1, %i5
-	andn	%o0, %i5, %o0
+	movre	%i0, -1, %i5
+	andn	%i0, %i5, %o0
 	and	%i5, %i1, %g1
 	or	%o0, %g1, %o0
 	call	__clzdi2, 0
@@ -4573,11 +4539,10 @@ __ctzsi2:
 	.proc	04
 __ctzti2:
 	save	%sp, -176, %sp
-	mov	%i1, %o0
 	mov	0, %i5
-	movre	%o0, -1, %i5
+	movre	%i1, -1, %i5
 	and	%i5, %i0, %i0
-	andn	%o0, %i5, %o0
+	andn	%i1, %i5, %o0
 	or	%o0, %i0, %o0
 	call	__ctzdi2, 0
 	 nop
@@ -4634,7 +4599,7 @@ __lshrdi3:
 .L649:
 	brz	%i1, .L651
 	 nop
-	srlx	%g2, 32, %g1
+	srlx	%i0, 32, %g1
 	srl	%g1, %i1, %g3
 	sllx	%g3, 32, %i0
 	sub	%g0, %i1, %g3
@@ -4659,20 +4624,16 @@ __lshrti3:
 	be	%xcc, .L654
 	 nop
 	mov	0, %g2
-	mov	0, %g3
-	srlx	%o4, %i2, %g3
+	srlx	%i0, %i2, %g3
 	ba,pt	%xcc, .L655
 	 nop
 .L654:
 	brz	%i2, .L656
 	 nop
-	mov	%o4, %g1
-	mov	0, %g2
-	mov	0, %g3
-	srlx	%g1, %i2, %g2
+	srlx	%i0, %i2, %g2
 	sub	%g0, %i2, %g4
-	sllx	%g1, %g4, %g1
-	srlx	%o5, %i2, %i2
+	sllx	%i0, %g4, %g1
+	srlx	%i1, %i2, %i2
 	or	%g1, %i2, %g3
 .L655:
 	mov	%g2, %i0
@@ -4709,9 +4670,8 @@ __muldsi3:
 	srlx	%i5, 32, %i5
 	and	%g1, %i5, %g1
 	or	%g1, %g3, %g1
-	mov	%g1, %g3
-	srl	%g3, 16, %g2
-	and	%g3, %g4, %g3
+	srl	%g1, 16, %g2
+	and	%g1, %g4, %g3
 	srl	%g3, 0, %g3
 	and	%g1, %i4, %g1
 	or	%g1, %g3, %g1
@@ -4746,14 +4706,13 @@ __muldsi3:
 __muldi3_compiler_rt:
 	save	%sp, -176, %sp
 	mov	%i0, %i4
-	mov	%i1, %i5
-	srl	%i5, 0, %o1
-	srl	%i4, 0, %o0
+	srl	%i1, 0, %o1
+	srl	%i0, 0, %o0
 	call	__muldsi3, 0
 	 nop
 	srax	%o0, 32, %g1
 	srax	%i0, 32, %i0
-	smul	%i5, %i0, %i5
+	smul	%i1, %i0, %i5
 	srax	%i1, 32, %i1
 	smul	%i4, %i1, %i4
 	add	%i5, %i4, %i5
@@ -4775,12 +4734,8 @@ __mulddi3:
 	and	%i0, %g4, %i5
 	and	%i1, %g4, %i4
 	mulx	%i5, %i4, %g5
-	mov	0, %g2
-	mov	0, %g3
-	mov	%g5, %g3
 	srlx	%g5, 32, %g1
 	and	%g5, %g4, %g5
-	mov	%g5, %g3
 	srlx	%i0, 32, %i0
 	mulx	%i0, %i4, %i4
 	add	%g1, %i4, %g1
@@ -4788,10 +4743,8 @@ __mulddi3:
 	add	%i4, %g5, %g3
 	srlx	%g1, 32, %g1
 	mov	%g1, %g2
-	mov	%g3, %g5
-	srlx	%g5, 32, %g1
-	and	%g5, %g4, %g4
-	mov	%g4, %g3
+	srlx	%g3, 32, %g1
+	and	%g3, %g4, %g4
 	srlx	%i1, 32, %i1
 	mulx	%i5, %i1, %i5
 	add	%g1, %i5, %g1
@@ -4799,11 +4752,8 @@ __mulddi3:
 	add	%g5, %g4, %g3
 	srlx	%g1, 32, %g1
 	add	%g1, %g2, %g1
-	mov	%g1, %g2
 	mulx	%i0, %i1, %i0
 	add	%i0, %g1, %i0
-	mov	%i0, %g2
-	mov	%g2, %i0
 	mov	%g3, %i1
 	return	%i7+8
 	 nop
@@ -4814,21 +4764,16 @@ __mulddi3:
 	.proc	05
 __multi3:
 	save	%sp, -176, %sp
-	mov	%i1, %i4
-	mov	%i3, %i5
 	mov	%i3, %o1
 	mov	%i1, %o0
 	call	__mulddi3, 0
 	 nop
-	mov	%o0, %g2
-	mov	%o1, %g3
-	mulx	%i5, %i0, %i5
-	mulx	%i4, %i2, %i4
+	mulx	%i3, %i0, %i5
+	mulx	%i1, %i2, %i4
 	add	%i5, %i4, %i5
 	add	%i5, %o0, %i5
-	mov	%i5, %g2
-	mov	%g2, %i0
-	mov	%g3, %i1
+	mov	%i5, %i0
+	mov	%o1, %i1
 	return	%i7+8
 	 nop
 	.size	__multi3, .-__multi3
@@ -4849,7 +4794,6 @@ __negdi2:
 __negti2:
 	save	%sp, -176, %sp
 	sub	%g0, %i1, %g3
-	cmp	%g3, 0
 	mov	0, %g1
 	movrne	%g3, 1, %g1
 	sub	%g0, %i0, %g2
@@ -4999,8 +4943,6 @@ __popcountsi2:
 __popcountti2:
 	save	%sp, -176, %sp
 	sllx	%i0, 63, %g1
-	mov	0, %g2
-	mov	0, %g3
 	srlx	%i1, 1, %g3
 	or	%g1, %g3, %g3
 	srlx	%i0, 1, %g2
@@ -5008,8 +4950,6 @@ __popcountti2:
 	or	%g4, 341, %g4
 	sllx	%g4, 32, %g1
 	add	%g1, %g4, %g1
-	mov	0, %g4
-	mov	0, %g5
 	and	%g2, %g1, %g4
 	and	%g3, %g1, %g5
 	sub	%i1, %g5, %g3
@@ -5019,8 +4959,6 @@ __popcountti2:
 	sub	%i0, %g4, %g2
 	sub	%g2, %g1, %g2
 	sllx	%g2, 62, %g1
-	mov	0, %g4
-	mov	0, %g5
 	srlx	%g3, 2, %g5
 	or	%g1, %g5, %g5
 	srlx	%g2, 2, %g4
@@ -5028,12 +4966,8 @@ __popcountti2:
 	or	%i5, 819, %i5
 	sllx	%i5, 32, %g1
 	add	%g1, %i5, %g1
-	mov	0, %i4
-	mov	0, %i5
 	and	%g4, %g1, %i4
 	and	%g5, %g1, %i5
-	mov	0, %g4
-	mov	0, %g5
 	and	%g2, %g1, %g4
 	and	%g3, %g1, %g5
 	add	%i5, %g5, %g3
@@ -5042,11 +4976,7 @@ __popcountti2:
 	movlu	%xcc, 1, %g1
 	add	%i4, %g4, %g2
 	add	%g1, %g2, %g2
-	mov	%g2, %i2
-	mov	%g3, %i3
 	sllx	%g2, 60, %g1
-	mov	0, %g4
-	mov	0, %g5
 	srlx	%g3, 4, %g5
 	or	%g1, %g5, %g5
 	srlx	%g2, 4, %g4
@@ -5062,11 +4992,7 @@ __popcountti2:
 	add	%g1, %g2, %g1
 	and	%i4, %g1, %i2
 	and	%i5, %g1, %i3
-	mov	0, %g2
-	mov	0, %g3
-	mov	%i2, %g3
-	mov	0, %g2
-	add	%g3, %i3, %g2
+	add	%i2, %i3, %g2
 	srlx	%g2, 32, %g1
 	add	%g1, %g2, %g1
 	srl	%g1, 16, %g2
