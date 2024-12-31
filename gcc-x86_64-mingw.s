@@ -1343,7 +1343,6 @@ bsearch:
 	shr	rbx
 	jmp	.L235
 .L236:
-	test	eax, eax
 	jle	.L240
 	lea	r12, [rsi+rdi]
 	mov	rax, rbx
@@ -1405,7 +1404,6 @@ bsearch_r:
 	call	[QWORD PTR 96[rbp]]
 	test	eax, eax
 	je	.L246
-	test	eax, eax
 	jle	.L244
 	lea	rdi, [rbx+r12]
 	sub	esi, 1
@@ -1785,7 +1783,6 @@ bcopy:
 	jne	.L306
 	jmp	.L303
 .L304:
-	cmp	rcx, rdx
 	jne	.L310
 	jmp	.L303
 .L309:

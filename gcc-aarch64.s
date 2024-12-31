@@ -58,7 +58,6 @@ memmove:
 	cbnz	x4, .L6
 	b	.L7
 .L4:
-	cmp	x0, x1
 	bne	.L10
 	b	.L7
 .L9:
@@ -1957,7 +1956,6 @@ bcopy:
 	cbnz	x4, .L298
 	b	.L295
 .L296:
-	cmp	x0, x1
 	bne	.L302
 	b	.L295
 .L301:
@@ -3381,7 +3379,6 @@ __mspabi_cmpf:
 	.cfi_startproc
 	fcmpe	s0, s1
 	bmi	.L535
-	fcmpe	s0, s1
 	bgt	.L536
 	mov	w0, 0
 	b	.L534
@@ -3403,7 +3400,6 @@ __mspabi_cmpd:
 	.cfi_startproc
 	fcmpe	d0, d1
 	bmi	.L539
-	fcmpe	d0, d1
 	bgt	.L540
 	mov	w0, 0
 	b	.L538
@@ -3913,11 +3909,9 @@ __cmpdi2:
 	lsr	x2, x1, 32
 	cmp	w3, w2
 	blt	.L615
-	cmp	w3, w2
 	bgt	.L616
 	cmp	w0, w1
 	bcc	.L617
-	cmp	w0, w1
 	bhi	.L618
 	mov	w0, 1
 	b	.L614
@@ -3968,11 +3962,9 @@ __cmpti2:
 	mov	x5, x1
 	cmp	x5, x3
 	blt	.L622
-	cmp	x5, x3
 	bgt	.L623
 	cmp	x4, x2
 	bcc	.L624
-	cmp	x4, x2
 	bhi	.L625
 	mov	w0, 1
 	b	.L621
@@ -4598,11 +4590,9 @@ __ucmpdi2:
 	lsr	x2, x1, 32
 	cmp	w3, w2
 	bcc	.L676
-	cmp	w3, w2
 	bhi	.L677
 	cmp	w0, w1
 	bcc	.L678
-	cmp	w0, w1
 	bhi	.L679
 	mov	w0, 1
 	b	.L675
@@ -4653,11 +4643,9 @@ __ucmpti2:
 	mov	x5, x1
 	cmp	x5, x3
 	bcc	.L683
-	cmp	x5, x3
 	bhi	.L684
 	cmp	x4, x2
 	bcc	.L685
-	cmp	x4, x2
 	bhi	.L686
 	mov	w0, 1
 	b	.L682

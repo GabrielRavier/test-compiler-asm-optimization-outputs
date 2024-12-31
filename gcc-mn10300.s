@@ -28,7 +28,6 @@ memmove:
 	bne .L4
 	jmp .L5
 .L2:
-	cmp d1,d0
 	bne .L8
 	jmp .L5
 .L7:
@@ -1461,7 +1460,6 @@ bsearch:
 	lsr 1,d3
 	jmp .L246
 .L247:
-	cmp 0,d0
 	ble .L251
 	add r5,d2,a2
 	mov d3,d0
@@ -1502,7 +1500,6 @@ bsearch_r:
 	calls (a0)
 	cmp 0,d0
 	beq .L257
-	cmp 0,d0
 	ble .L255
 	add r5,d2,a2
 	add -1,d3
@@ -1984,7 +1981,6 @@ bcopy:
 	bne .L326
 	jmp .L323
 .L324:
-	cmp d1,d0
 	bne .L330
 	jmp .L323
 .L329:
@@ -2010,7 +2006,6 @@ rotl64:
 	mov (16,a3),d0
 	mov d0,d1
 	and 32,d1
-	cmp 0,d1
 	beq .L332
 	mov 0,r2
 	mov r2,r3
@@ -2029,7 +2024,6 @@ rotl64:
 	mov 0,d1
 	sub d0,d1
 	and 32,d1
-	cmp 0,d1
 	beq .L334
 	not d0
 	add_mov 1, d0, 0, a0
@@ -2068,7 +2062,6 @@ rotr64:
 	mov (16,a3),d0
 	mov d0,d1
 	and 32,d1
-	cmp 0,d1
 	beq .L337
 	mov 0,r2
 	mov r2,r3
@@ -2087,7 +2080,6 @@ rotr64:
 	mov 0,d1
 	sub d0,d1
 	and 32,d1
-	cmp 0,d1
 	beq .L339
 	not d0
 	add_mov 1, d0, 0, a0
@@ -3106,7 +3098,6 @@ __muldi3:
 	mov r3,d1
 .L481:
 	or d1,d0,a2
-	cmp 0,a2
 	bne .L484
 	mov_mov a0, d0, a1, d1
 	mov a3,sp
@@ -3128,7 +3119,6 @@ udivmodsi4:
 	cmp d0,d1
 	bcc .L493
 	add -1,a1
-	cmp 0,a1
 	beq .L494
 	cmp 0,d1
 	bge .L488
@@ -3193,7 +3183,6 @@ __clrsbdi2:
 	mov_mov d0, a0, d1, a1
 .L500:
 	or a1,a0,d0
-	cmp 0,d0
 	beq .L506
 	mov_mov a0, r0, a1, r1
 	cmp 0,r1
@@ -3630,7 +3619,6 @@ __udivmodsi4:
 	cmp d0,d1
 	bcc .L585
 	add -1,a1
-	cmp 0,a1
 	beq .L586
 	cmp 0,d1
 	bge .L580
@@ -3883,7 +3871,6 @@ __udivmodhi4:
 	cmp r2,r0
 	bcc .L626
 	add -1,a1
-	cmp 0,a1
 	beq .L627
 	exth d1,r0
 	cmp 0,r0
@@ -3934,7 +3921,6 @@ __udivmodsi4_libgcc:
 	cmp d0,d1
 	bcc .L637
 	add -1,a1
-	cmp 0,a1
 	beq .L638
 	cmp 0,d1
 	bge .L632
@@ -3973,7 +3959,6 @@ __ashldi3:
 	mov_mov r0, r2, r1, r3
 	mov a0,d0
 	and 32,d0
-	cmp 0,d0
 	beq .L641
 	mov 0,d0
 	mov_mov d0, d1, d0, d0
@@ -4012,7 +3997,6 @@ __ashrdi3:
 	mov_mov r0, r2, r1, r3
 	mov a0,d0
 	and 32,d0
-	cmp 0,d0
 	beq .L646
 	mov_mov r3, a1, 0, d0
 	mov d0,d1
@@ -4201,7 +4185,6 @@ __clzsi2:
 	mov d1,a1
 	and 2,a1
 	mov 1,a0
-	cmp 0,a1
 	beq .L657
 	mov 0,a0
 .L657:
@@ -4229,7 +4212,6 @@ __cmpdi2:
 	blt .L665
 	cmp r0,a0
 	bhi .L666
-	cmp r0,a0
 	bcs .L667
 	mov 1,d0
 	jmp .L663
@@ -4329,7 +4311,6 @@ __lshrdi3:
 	mov_mov d0, r2, r1, r3
 	mov a0,d0
 	and 32,d0
-	cmp 0,d0
 	beq .L679
 	mov 0,d0
 	mov d0,d1
@@ -4690,7 +4671,6 @@ __ucmpdi2:
 	bcs .L705
 	cmp r0,a0
 	bhi .L706
-	cmp r0,a0
 	bcs .L707
 	mov 1,d0
 	jmp .L703

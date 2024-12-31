@@ -1407,7 +1407,6 @@ bsearch:
 	shr	rbx
 	jmp	.L233
 .L234:
-	test	eax, eax
 	jle	.L238
 	lea	r14, [r12+r13]
 	mov	rax, rbx
@@ -1474,7 +1473,6 @@ bsearch_r:
 	call	r15
 	test	eax, eax
 	je	.L244
-	test	eax, eax
 	jle	.L242
 	lea	r13, [rbx+r14]
 	sub	r12d, 1
@@ -1882,7 +1880,6 @@ bcopy:
 	jne	.L304
 	ret
 .L302:
-	cmp	rdi, rsi
 	jne	.L308
 	ret
 .L307:

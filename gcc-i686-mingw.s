@@ -1928,7 +1928,6 @@ L248:
 	shr	esi
 	jmp	L244
 L245:
-	test	eax, eax
 	jle	L249
 	lea	eax, [ebx+edi]
 	mov	DWORD PTR [ebp+12], eax
@@ -1990,7 +1989,6 @@ L254:
 	call	[DWORD PTR [ebp+24]]
 	test	eax, eax
 	je	L255
-	test	eax, eax
 	jle	L253
 	mov	edi, ebx
 	add	edi, DWORD PTR [ebp+20]
@@ -2742,7 +2740,6 @@ L314:
 	jne	L315
 	jmp	L312
 L313:
-	cmp	edx, eax
 	je	L312
 	add	ecx, eax
 	mov	DWORD PTR [ebp-16], edx
