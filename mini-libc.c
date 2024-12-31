@@ -1158,11 +1158,15 @@ memmem (const void *haystack, size_t haystack_len, const void *needle,
   return NULL;
 }
 
+#ifndef __BPF__
+
 void *
 mempcpy (void *dst, const void *src, size_t len)
 {
   return (char *) memcpy (dst, src, len) + len;
 }
+
+#endif
 
 double
 frexp(double x, int *i)

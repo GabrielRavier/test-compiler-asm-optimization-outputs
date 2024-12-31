@@ -6,20 +6,26 @@
 make_ti:
 .LFB0 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	or	$r13,$r4,$r0
+	or	$r12,$r5,$r0
+	or	$r14,$r5,$r0
+	or	$r15,$r13,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	or	$r4,$r12,$r0
+	or	$r5,$r13,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE0:
@@ -30,20 +36,26 @@ make_ti:
 make_tu:
 .LFB1 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	or	$r13,$r4,$r0
+	or	$r12,$r5,$r0
+	or	$r14,$r5,$r0
+	or	$r15,$r13,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	or	$r4,$r12,$r0
+	or	$r5,$r13,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE1:
@@ -54,68 +66,46 @@ make_tu:
 memmove:
 .LFB2 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	bgeu	$r13,$r12,.L8
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,56
-	b	.L9
-.L10:
-	ld.d	$r12,$r3,40
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bleu	$r4,$r5,.L4
+	add.d	$r5,$r5,$r6
+	add.d	$r15,$r4,$r6
+	or	$r13,$r6,$r0
+	b	.L5
+.L6:
+	sub.d	$r12,$r0,$r6
+	sub.d	$r14,$r5,$r6
+	addi.d	$r14,$r14,-1
+	ldx.b	$r14,$r14,$r13
+	add.d	$r12,$r15,$r12
 	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,56
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,56
-	ld.d	$r12,$r3,40
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,56
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
+	stx.b	$r14,$r12,$r13
+	addi.d	$r13,$r13,-1
+.L5:
+	bnez	$r13,.L6
+	b	.L7
+.L4:
+	bne	$r4,$r5,.L10
+	b	.L7
 .L9:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L10
-	b	.L11
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+	addi.d	$r12,$r12,1
+	b	.L8
+.L10:
+	or	$r12,$r0,$r0
 .L8:
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	beq	$r13,$r12,.L11
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,48
-	b	.L12
-.L13:
-	ld.d	$r13,$r3,16
-	addi.d	$r12,$r13,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,48
-	addi.d	$r14,$r12,1
-	st.d	$r14,$r3,48
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L12:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L13
-.L11:
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	bne	$r12,$r6,.L9
+.L7:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE2:
@@ -126,52 +116,35 @@ memmove:
 memccpy:
 .LFB3 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	or	$r12,$r6,$r0
-	stptr.d	$r7,$r3,0
-	st.w	$r6,$r3,12
-	ld.w	$r12,$r3,12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.w	$r6,$r6,7,0
+	b	.L12
+.L14:
+	addi.d	$r7,$r7,-1
+	addi.d	$r5,$r5,1
+	addi.d	$r4,$r4,1
+.L12:
+	beqz	$r7,.L13
+	ld.bu	$r12,$r5,0
+	st.b	$r12,$r4,0
 	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,44
-	b	.L17
-.L19:
-	ldptr.d	$r12,$r3,0
-	addi.d	$r12,$r12,-1
-	stptr.d	$r12,$r3,0
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-.L17:
-	ldptr.d	$r12,$r3,0
-	beqz	$r12,.L18
-	ld.d	$r12,$r3,16
-	ld.bu	$r13,$r12,0
-	ld.d	$r12,$r3,24
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L19
-.L18:
-	ldptr.d	$r12,$r3,0
-	beqz	$r12,.L20
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	b	.L21
-.L20:
-	or	$r12,$r0,$r0
-.L21:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	bne	$r6,$r12,.L14
+.L13:
+	beqz	$r7,.L16
+	addi.d	$r4,$r4,1
+	b	.L15
+.L16:
+	or	$r4,$r0,$r0
+.L15:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE3:
@@ -182,44 +155,29 @@ memccpy:
 memchr:
 .LFB4 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	or	$r12,$r5,$r0
-	st.d	$r6,$r3,8
-	st.w	$r5,$r3,20
-	ld.w	$r12,$r3,20
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,44
-	b	.L24
-.L26:
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L24:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L25
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L26
-.L25:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L27
-	ld.d	$r12,$r3,24
-	b	.L29
-.L27:
-	or	$r12,$r0,$r0
-.L29:
-	nop
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.w	$r5,$r5,7,0
+	b	.L18
+.L20:
+	addi.d	$r4,$r4,1
+	addi.d	$r6,$r6,-1
+.L18:
+	beqz	$r6,.L19
+	ld.bu	$r12,$r4,0
+	bne	$r5,$r12,.L20
+.L19:
+	bnez	$r6,.L21
+	or	$r4,$r0,$r0
+.L21:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE4:
@@ -230,48 +188,35 @@ memchr:
 memcmp:
 .LFB5 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	b	.L32
-.L34:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-.L32:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L33
-	ld.d	$r12,$r3,24
-	ld.bu	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ld.bu	$r12,$r12,0
-	beq	$r13,$r12,.L34
-.L33:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L35
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ld.bu	$r12,$r12,0
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	b	.L36
-.L35:
-	or	$r12,$r0,$r0
-.L36:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L24
+.L26:
+	addi.d	$r6,$r6,-1
+	addi.d	$r4,$r4,1
+	addi.d	$r5,$r5,1
+.L24:
+	beqz	$r6,.L25
+	ld.bu	$r13,$r4,0
+	ld.bu	$r12,$r5,0
+	beq	$r13,$r12,.L26
+.L25:
+	beqz	$r6,.L28
+	ld.bu	$r4,$r4,0
+	ld.bu	$r12,$r5,0
+	sub.w	$r4,$r4,$r12
+	b	.L27
+.L28:
+	or	$r4,$r0,$r0
+.L27:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE5:
@@ -282,33 +227,24 @@ memcmp:
 memcpy:
 .LFB6 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L40
-.L41:
-	ld.d	$r13,$r3,16
-	addi.d	$r12,$r13,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	addi.d	$r14,$r12,1
-	st.d	$r14,$r3,40
-	ld.bu	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L40:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L41
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	b	.L30
+.L31:
+	ldx.bu	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+	addi.d	$r12,$r12,1
+.L30:
+	bne	$r12,$r6,.L31
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE6:
@@ -319,39 +255,32 @@ memcpy:
 memrchr:
 .LFB7 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	or	$r12,$r5,$r0
-	st.d	$r6,$r3,8
-	st.w	$r5,$r3,20
-	ld.w	$r12,$r3,20
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,44
-	b	.L45
-.L47:
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L45
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	b	.L46
-.L45:
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,8
-	bnez	$r12,.L47
-	or	$r12,$r0,$r0
-.L46:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.w	$r5,$r5,7,0
+	addi.d	$r6,$r6,-1
+	b	.L33
+.L35:
+	ldx.bu	$r13,$r4,$r6
+	addi.d	$r12,$r6,-1
+	bne	$r5,$r13,.L36
+	add.d	$r4,$r4,$r6
+	b	.L34
+.L36:
+	or	$r6,$r12,$r0
+.L33:
+	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r12,.L35
+	or	$r4,$r0,$r0
+.L34:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE7:
@@ -362,32 +291,24 @@ memrchr:
 memset:
 .LFB8 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	or	$r12,$r5,$r0
-	st.d	$r6,$r3,8
-	st.w	$r5,$r3,20
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L50
-.L51:
-	ld.d	$r12,$r3,40
-	ld.w	$r13,$r3,20
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-	ld.d	$r12,$r3,40
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	add.d	$r6,$r4,$r6
+	or	$r12,$r4,$r0
+	b	.L38
+.L39:
+	st.b	$r5,$r12,0
 	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,40
-.L50:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L51
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+.L38:
+	bne	$r12,$r6,.L39
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE8:
@@ -400,28 +321,23 @@ stpcpy:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	b	.L55
-.L56:
-	ldptr.d	$r12,$r3,0
-	addi.d	$r12,$r12,1
-	stptr.d	$r12,$r3,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L55:
-	ldptr.d	$r12,$r3,0
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L56
-	ld.d	$r12,$r3,8
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L41
+.L42:
+	addi.d	$r5,$r5,1
+	addi.d	$r4,$r4,1
+.L41:
+	ld.b	$r12,$r5,0
+	st.b	$r12,$r4,0
+	ext.w.b	$r12,$r12
+	bnez	$r12,.L42
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE9:
@@ -432,34 +348,26 @@ stpcpy:
 strchrnul:
 .LFB10 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,4
-	ld.w	$r12,$r3,4
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,28
-	b	.L60
-.L62:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L60:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	beqz	$r12,.L61
-	ld.d	$r12,$r3,8
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L62
-.L61:
-	ld.d	$r12,$r3,8
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.w	$r5,$r5,7,0
+	b	.L44
+.L46:
+	addi.d	$r4,$r4,1
+.L44:
+	ld.b	$r12,$r4,0
+	beqz	$r12,.L45
+	ld.bu	$r12,$r4,0
+	bne	$r5,$r12,.L46
+.L45:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE10:
@@ -472,28 +380,22 @@ strchr:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r13,$r3,12
-.L68:
-	ld.b	$r13,$r12,0
-	slli.w	$r14,$r13,0
-	ld.w	$r13,$r3,12
-	slli.w	$r13,$r13,0
-	beq	$r13,$r14,.L69
-	or	$r13,$r12,$r0
-	addi.d	$r12,$r13,1
-	ld.bu	$r13,$r13,0
-	bstrpick.w	$r13,$r13,7,0
-	bnez	$r13,.L68
-	or	$r12,$r0,$r0
-	b	.L67
-.L69:
-	nop
-.L67:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+.L49:
+	ld.b	$r12,$r4,0
+	beq	$r5,$r12,.L48
+	addi.d	$r4,$r4,1
+	ld.b	$r12,$r4,-1
+	bnez	$r12,.L49
+	or	$r4,$r0,$r0
+.L48:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE11:
@@ -506,37 +408,28 @@ strcmp:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	b	.L72
-.L74:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-	ldptr.d	$r12,$r3,0
-	addi.d	$r12,$r12,1
-	stptr.d	$r12,$r3,0
-.L72:
-	ld.d	$r12,$r3,8
-	ld.b	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	ld.b	$r12,$r12,0
-	bne	$r13,$r12,.L73
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L74
-.L73:
-	ld.d	$r12,$r3,8
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	ld.bu	$r12,$r12,0
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L52
+.L54:
+	addi.d	$r4,$r4,1
+	addi.d	$r5,$r5,1
+.L52:
+	ld.b	$r13,$r4,0
+	ld.b	$r12,$r5,0
+	bne	$r13,$r12,.L53
+	or	$r12,$r13,$r0
+	bnez	$r12,.L54
+.L53:
+	ld.bu	$r4,$r4,0
+	ld.bu	$r12,$r5,0
+	sub.w	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE12:
@@ -547,27 +440,24 @@ strcmp:
 strlen:
 .LFB13 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	b	.L78
-.L79:
-	ld.d	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	b	.L56
+.L57:
 	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-.L78:
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	bstrpick.w	$r12,$r12,7,0
-	bnez	$r12,.L79
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	sub.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L56:
+	ld.b	$r13,$r12,0
+	bnez	$r13,.L57
+	sub.d	$r4,$r12,$r4
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE13:
@@ -578,54 +468,39 @@ strlen:
 strncmp:
 .LFB14 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,40
-	bnez	$r12,.L85
-	or	$r12,$r0,$r0
-	b	.L84
-.L87:
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,40
-.L85:
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	beqz	$r12,.L86
-	ld.d	$r12,$r3,16
-	ld.bu	$r12,$r12,0
-	beqz	$r12,.L86
-	ld.d	$r12,$r3,40
-	beqz	$r12,.L86
-	ld.d	$r12,$r3,24
-	ld.bu	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ld.bu	$r12,$r12,0
-	beq	$r13,$r12,.L87
-.L86:
-	ld.d	$r12,$r3,24
-	ld.bu	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ld.bu	$r12,$r12,0
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-.L84:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	beqz	$r6,.L63
+	addi.d	$r6,$r6,-1
+	add.d	$r6,$r4,$r6
+	b	.L60
+.L62:
+	addi.d	$r4,$r4,1
+	addi.d	$r5,$r5,1
+.L60:
+	ld.bu	$r12,$r4,0
+	beqz	$r12,.L61
+	ld.bu	$r12,$r5,0
+	beqz	$r12,.L61
+	beq	$r4,$r6,.L61
+	ld.bu	$r13,$r4,0
+	beq	$r13,$r12,.L62
+.L61:
+	ld.bu	$r4,$r4,0
+	ld.bu	$r12,$r5,0
+	sub.w	$r4,$r4,$r12
+	b	.L59
+.L63:
+	or	$r4,$r0,$r0
+.L59:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE14:
@@ -636,39 +511,30 @@ strncmp:
 swab:
 .LFB15 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	b	.L90
-.L91:
-	ld.d	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	b	.L65
+.L66:
 	ld.b	$r13,$r12,1
-	ld.d	$r12,$r3,16
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,1
-	ld.d	$r13,$r3,24
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,16
+	st.b	$r13,$r5,0
+	ld.b	$r13,$r12,0
+	st.b	$r13,$r5,1
+	addi.d	$r5,$r5,2
 	addi.d	$r12,$r12,2
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,2
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-2
-	st.d	$r12,$r3,8
-.L90:
-	ld.d	$r13,$r3,8
-	addi.w	$r12,$r0,1			# 0x1
-	bgt	$r13,$r12,.L91
-	nop
-	nop
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L65:
+	add.d	$r13,$r4,$r6
+	sub.d	$r13,$r13,$r12
+	addi.w	$r14,$r0,1			# 0x1
+	bgt	$r13,$r14,.L66
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE15:
@@ -681,21 +547,17 @@ isalpha:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	ori	$r12,$r12,32
-	slli.w	$r12,$r12,0
-	addi.w	$r12,$r12,-97
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,25			# 0x19
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	ori	$r4,$r4,32
+	addi.w	$r4,$r4,-97
+	sltui	$r4,$r4,26
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE16:
@@ -708,17 +570,15 @@ isascii:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,127			# 0x7f
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sltui	$r4,$r4,128
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE17:
@@ -731,25 +591,26 @@ isblank:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,32			# 0x20
-	beq	$r13,$r12,.L100
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	beq	$r4,$r12,.L71
 	addi.w	$r12,$r0,9			# 0x9
-	bne	$r13,$r12,.L101
-.L100:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L102
-.L101:
-	or	$r12,$r0,$r0
-.L102:
-	or	$r4,$r12,$r0
+	bne	$r4,$r12,.L72
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L70
+.L71:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L70
+.L72:
+	or	$r4,$r0,$r0
+.L70:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE18:
@@ -762,25 +623,26 @@ iscntrl:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ldptr.w	$r12,$r3,12
-	or	$r13,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,31			# 0x1f
-	bleu	$r13,$r12,.L106
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	bleu	$r4,$r12,.L75
 	addi.w	$r12,$r0,127			# 0x7f
-	bne	$r13,$r12,.L107
-.L106:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L108
-.L107:
-	or	$r12,$r0,$r0
-.L108:
-	or	$r4,$r12,$r0
+	bne	$r4,$r12,.L76
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L74
+.L75:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L74
+.L76:
+	or	$r4,$r0,$r0
+.L74:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE19:
@@ -793,19 +655,16 @@ isdigit:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,9			# 0x9
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-48
+	sltui	$r4,$r4,10
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE20:
@@ -818,19 +677,16 @@ isgraph:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-33
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,93			# 0x5d
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-33
+	sltui	$r4,$r4,94
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE21:
@@ -843,19 +699,16 @@ islower:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-97
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,25			# 0x19
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-97
+	sltui	$r4,$r4,26
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE22:
@@ -868,19 +721,16 @@ isprint:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-32
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,94			# 0x5e
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-32
+	sltui	$r4,$r4,95
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE23:
@@ -893,27 +743,27 @@ isspace:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,32			# 0x20
-	beq	$r13,$r12,.L124
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-9
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	beq	$r4,$r12,.L83
+	addi.w	$r4,$r4,-9
 	addi.w	$r12,$r0,4			# 0x4
-	bgtu	$r13,$r12,.L125
-.L124:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L126
-.L125:
-	or	$r12,$r0,$r0
-.L126:
-	or	$r4,$r12,$r0
+	bgtu	$r4,$r12,.L84
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L82
+.L83:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L82
+.L84:
+	or	$r4,$r0,$r0
+.L82:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE24:
@@ -926,19 +776,16 @@ isupper:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ldptr.w	$r12,$r3,12
-	addi.w	$r12,$r12,-65
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,25			# 0x19
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-65
+	sltui	$r4,$r4,26
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE25:
@@ -951,42 +798,42 @@ iswcntrl:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,31			# 0x1f
-	bleu	$r13,$r12,.L133
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-127
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,32			# 0x20
-	bleu	$r13,$r12,.L133
-	ld.w	$r13,$r3,12
+	bleu	$r4,$r12,.L88
+	addi.w	$r12,$r4,-127
+	addi.w	$r13,$r0,32			# 0x20
+	bleu	$r12,$r13,.L89
 	lu12i.w	$r12,-12288>>12			# 0xffffffffffffd000
 	ori	$r12,$r12,4056
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,1			# 0x1
-	bleu	$r13,$r12,.L133
-	ld.w	$r12,$r3,12
-	addu16i.d	$r12,$r12,-1
-	addi.w	$r12,$r12,7
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	add.w	$r12,$r12,$r4
+	addi.w	$r13,$r0,1			# 0x1
+	bleu	$r12,$r13,.L90
+	addu16i.d	$r4,$r4,-1
+	addi.w	$r4,$r4,7
 	addi.w	$r12,$r0,2			# 0x2
-	bgtu	$r13,$r12,.L134
-.L133:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L135
-.L134:
-	or	$r12,$r0,$r0
-.L135:
-	or	$r4,$r12,$r0
+	bgtu	$r4,$r12,.L91
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L87
+.L88:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L87
+.L89:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L87
+.L90:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L87
+.L91:
+	or	$r4,$r0,$r0
+.L87:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE26:
@@ -999,19 +846,16 @@ iswdigit:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,9			# 0x9
-	sltu	$r12,$r12,$r13
-	xori	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-48
+	sltui	$r4,$r4,10
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE27:
@@ -1024,75 +868,62 @@ iswprint:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,254			# 0xfe
-	bgtu	$r13,$r12,.L142
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,127
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	bgtu	$r4,$r12,.L94
+	addi.w	$r4,$r4,1
+	andi	$r4,$r4,127
 	addi.w	$r12,$r0,32			# 0x20
-	sltu	$r12,$r12,$r13
-	slli.w	$r12,$r12,0
-	b	.L143
-.L142:
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,0
+	sltu	$r4,$r12,$r4
+	b	.L95
+.L94:
 	lu12i.w	$r12,8192>>12			# 0x2000
 	ori	$r12,$r12,39
-	bleu	$r13,$r12,.L144
-	ld.w	$r13,$r3,12
+	bleu	$r4,$r12,.L96
 	lu12i.w	$r12,-12288>>12			# 0xffffffffffffd000
 	ori	$r12,$r12,4054
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,45056>>12			# 0xb000
-	ori	$r12,$r12,2005
-	bleu	$r13,$r12,.L144
-	ld.w	$r13,$r3,12
+	add.w	$r12,$r12,$r4
+	lu12i.w	$r13,45056>>12			# 0xb000
+	ori	$r13,$r13,2005
+	bleu	$r12,$r13,.L97
 	lu12i.w	$r12,-57344>>12			# 0xffffffffffff2000
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,4096>>12			# 0x1000
-	ori	$r12,$r12,4088
-	bgtu	$r13,$r12,.L145
-.L144:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L143
-.L145:
-	ld.w	$r12,$r3,12
-	addu16i.d	$r12,$r12,-1
+	add.w	$r12,$r12,$r4
+	lu12i.w	$r13,4096>>12			# 0x1000
+	ori	$r13,$r13,4088
+	bleu	$r12,$r13,.L98
+	addu16i.d	$r12,$r4,-1
 	addi.w	$r12,$r12,4
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,1048576>>12			# 0x100000
-	ori	$r12,$r12,3
-	bgtu	$r13,$r12,.L146
-	ld.w	$r13,$r3,12
+	lu12i.w	$r13,1048576>>12			# 0x100000
+	ori	$r13,$r13,3
+	bgtu	$r12,$r13,.L99
 	lu12i.w	$r12,61440>>12			# 0xf000
 	ori	$r12,$r12,4094
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,61440>>12			# 0xf000
-	ori	$r12,$r12,4094
-	bne	$r13,$r12,.L147
-.L146:
-	or	$r12,$r0,$r0
-	b	.L143
-.L147:
-	addi.w	$r12,$r0,1			# 0x1
-.L143:
-	or	$r4,$r12,$r0
+	and	$r4,$r4,$r12
+	beq	$r4,$r12,.L100
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L95
+.L96:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L95
+.L97:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L95
+.L98:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L95
+.L99:
+	or	$r4,$r0,$r0
+	b	.L95
+.L100:
+	or	$r4,$r0,$r0
+.L95:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE28:
@@ -1105,31 +936,29 @@ iswxdigit:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r13,$r4,-48
 	addi.w	$r12,$r0,9			# 0x9
-	bleu	$r13,$r12,.L150
-	ld.w	$r12,$r3,12
-	ori	$r12,$r12,32
-	slli.w	$r12,$r12,0
-	addi.w	$r12,$r12,-97
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	bleu	$r13,$r12,.L103
+	ori	$r4,$r4,32
+	addi.w	$r4,$r4,-97
 	addi.w	$r12,$r0,5			# 0x5
-	bgtu	$r13,$r12,.L151
-.L150:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L152
-.L151:
-	or	$r12,$r0,$r0
-.L152:
-	or	$r4,$r12,$r0
+	bgtu	$r4,$r12,.L104
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L102
+.L103:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L102
+.L104:
+	or	$r4,$r0,$r0
+.L102:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE29:
@@ -1142,14 +971,15 @@ toascii:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	andi	$r12,$r12,127
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	andi	$r4,$r4,127
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE30:
@@ -1162,35 +992,28 @@ fdim:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fst.d	$f1,$r3,0
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,8
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L159
-	fld.d	$f0,$r3,8
-	b	.L160
-.L159:
-	fld.d	$f1,$r3,0
-	fld.d	$f0,$r3,0
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L161
-	fld.d	$f0,$r3,0
-	b	.L160
-.L161:
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fcmp.sgt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L166
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fsub.d	$f0,$f1,$f0
-	b	.L160
-.L166:
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L107
+	fcmp.cun.d	$fcc0,$f1,$f1
+	bcnez	$fcc0,.L110
+	fcmp.sgt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L113
+	fsub.d	$f0,$f0,$f1
+	b	.L107
+.L110:
+	fmov.d	$f0,$f1
+	b	.L107
+.L113:
 	movgr2fr.d	$f0,$r0
-.L160:
+.L107:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE31:
@@ -1203,35 +1026,28 @@ fdimf:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fst.s	$f1,$r3,8
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,12
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L169
-	fld.s	$f0,$r3,12
-	b	.L170
-.L169:
-	fld.s	$f1,$r3,8
-	fld.s	$f0,$r3,8
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L171
-	fld.s	$f0,$r3,8
-	b	.L170
-.L171:
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fcmp.sgt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L176
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fsub.s	$f0,$f1,$f0
-	b	.L170
-.L176:
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L115
+	fcmp.cun.s	$fcc0,$f1,$f1
+	bcnez	$fcc0,.L118
+	fcmp.sgt.s	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L121
+	fsub.s	$f0,$f0,$f1
+	b	.L115
+.L118:
+	fmov.s	$f0,$f1
+	b	.L115
+.L121:
 	movgr2fr.w	$f0,$r0
-.L170:
+.L115:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE32:
@@ -1242,55 +1058,50 @@ fdimf:
 fmax:
 .LFB33 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-16
-	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fst.d	$f1,$r3,0
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,8
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L179
-	fld.d	$f0,$r3,0
-	b	.L180
-.L179:
-	fld.d	$f1,$r3,0
-	fld.d	$f0,$r3,0
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L181
-	fld.d	$f0,$r3,8
-	b	.L180
-.L181:
-	ld.d	$r12,$r3,8
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r22,$r3,24
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	fst.d	$f0,$r22,-24
+	fst.d	$f1,$r22,-32
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L126
+	fmov.d	$f0,$f1
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L127
+	ld.d	$r13,$r22,-24
+	srli.d	$r13,$r13,63
+	ld.d	$r12,$r22,-32
 	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beq	$r13,$r12,.L182
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L183
-	fld.d	$f0,$r3,0
-	b	.L180
-.L183:
-	fld.d	$f0,$r3,8
-	b	.L180
-.L182:
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L189
-	fld.d	$f0,$r3,0
-	b	.L180
-.L189:
-	fld.d	$f0,$r3,8
-.L180:
-	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	beq	$r13,$r12,.L124
+	ld.d	$r12,$r22,-24
+	bge	$r12,$r0,.L128
+	b	.L123
+.L124:
+	fld.d	$f0,$r22,-24
+	fld.d	$f1,$r22,-32
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L131
+	fmov.d	$f0,$f1
+	b	.L123
+.L126:
+	fld.d	$f0,$r22,-32
+	b	.L123
+.L127:
+	fld.d	$f0,$r22,-24
+	b	.L123
+.L128:
+	fld.d	$f0,$r22,-24
+	b	.L123
+.L131:
+	fld.d	$f0,$r22,-24
+.L123:
+	ld.d	$r22,$r3,24
+	.cfi_restore 22
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE33:
@@ -1301,56 +1112,56 @@ fmax:
 fmaxf:
 .LFB34 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-16
-	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fst.s	$f1,$r3,8
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,12
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L192
-	fld.s	$f0,$r3,8
-	b	.L193
-.L192:
-	fld.s	$f1,$r3,8
-	fld.s	$f0,$r3,8
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L194
-	fld.s	$f0,$r3,12
-	b	.L193
-.L194:
-	ld.w	$r13,$r3,12
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r13,$r3,8
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r22,$r3,24
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	fst.s	$f0,$r22,-20
+	fst.s	$f1,$r22,-24
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L136
+	fmov.s	$f0,$f1
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L137
+	ldptr.w	$r12,$r22,-20
+	lu12i.w	$r14,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r14
 	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
-	beq	$r13,$r12,.L195
-	ld.w	$r13,$r3,12
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
+	ldptr.w	$r13,$r22,-24
+	and	$r13,$r13,$r14
+	slli.w	$r13,$r13,0
+	beq	$r12,$r13,.L134
+	ldptr.w	$r12,$r22,-20
+	lu12i.w	$r13,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r13
 	slli.w	$r12,$r12,0
-	beqz	$r12,.L196
-	fld.s	$f0,$r3,8
-	b	.L193
-.L196:
-	fld.s	$f0,$r3,12
-	b	.L193
-.L195:
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fcmp.slt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L202
-	fld.s	$f0,$r3,8
-	b	.L193
-.L202:
-	fld.s	$f0,$r3,12
-.L193:
-	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	beqz	$r12,.L138
+	b	.L133
+.L134:
+	fld.s	$f0,$r22,-20
+	fld.s	$f1,$r22,-24
+	fcmp.slt.s	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L141
+	fmov.s	$f0,$f1
+	b	.L133
+.L136:
+	fld.s	$f0,$r22,-24
+	b	.L133
+.L137:
+	fld.s	$f0,$r22,-20
+	b	.L133
+.L138:
+	fld.s	$f0,$r22,-20
+	b	.L133
+.L141:
+	fld.s	$f0,$r22,-20
+.L133:
+	ld.d	$r22,$r3,24
+	.cfi_restore 22
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE34:
@@ -1364,75 +1175,83 @@ fmaxl:
 	addi.d	$r3,$r3,-48
 	.cfi_def_cfa_offset 48
 	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r24,$r3,24
+	st.d	$r25,$r3,16
+	st.d	$r26,$r3,8
+	stptr.d	$r27,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	stptr.d	$r6,$r3,0
-	st.d	$r7,$r3,8
-	ld.d	$r6,$r3,16
-	ld.d	$r7,$r3,24
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	.cfi_offset 22, -16
+	.cfi_offset 24, -24
+	.cfi_offset 25, -32
+	.cfi_offset 26, -40
+	.cfi_offset 27, -48
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r24,$r4,$r0
+	or	$r25,$r5,$r0
+	or	$r26,$r6,$r0
+	or	$r27,$r7,$r0
+	or	$r6,$r24,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r24,$r0
 	bl	%plt(__unordtf2)
-	or	$r12,$r4,$r0
-	beqz	$r4,.L219
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-	b	.L207
-.L219:
-	ldptr.d	$r6,$r3,0
-	ld.d	$r7,$r3,8
-	ldptr.d	$r4,$r3,0
-	ld.d	$r5,$r3,8
+	bnez	$r4,.L146
+	or	$r6,$r26,$r0
+	or	$r7,$r27,$r0
+	or	$r4,$r26,$r0
+	or	$r5,$r27,$r0
 	bl	%plt(__unordtf2)
-	or	$r12,$r4,$r0
-	beqz	$r12,.L220
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L207
-.L220:
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beq	$r13,$r12,.L210
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L211
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-	b	.L207
-.L211:
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L207
-.L210:
-	ldptr.d	$r6,$r3,0
-	ld.d	$r7,$r3,8
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	bnez	$r4,.L147
+	srli.d	$r12,$r25,63
+	srli.d	$r13,$r27,63
+	beq	$r12,$r13,.L144
+	bge	$r25,$r0,.L148
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L143
+.L144:
+	or	$r6,$r26,$r0
+	or	$r7,$r27,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__lttf2)
-	or	$r12,$r4,$r0
-	bge	$r12,$r0,.L221
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-	b	.L207
-.L221:
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-.L207:
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	bge	$r4,$r0,.L151
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L143
+.L146:
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L143
+.L147:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+	b	.L143
+.L148:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+	b	.L143
+.L151:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+.L143:
+	or	$r4,$r12,$r0
+	or	$r5,$r13,$r0
 	ld.d	$r1,$r3,40
 	.cfi_restore 1
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r24,$r3,24
+	.cfi_restore 24
+	ld.d	$r25,$r3,16
+	.cfi_restore 25
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
+	ldptr.d	$r27,$r3,0
+	.cfi_restore 27
 	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE35:
@@ -1443,55 +1262,50 @@ fmaxl:
 fmin:
 .LFB36 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-16
-	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fst.d	$f1,$r3,0
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,8
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L224
-	fld.d	$f0,$r3,0
-	b	.L225
-.L224:
-	fld.d	$f1,$r3,0
-	fld.d	$f0,$r3,0
-	fcmp.cor.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L226
-	fld.d	$f0,$r3,8
-	b	.L225
-.L226:
-	ld.d	$r12,$r3,8
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r22,$r3,24
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	fst.d	$f0,$r22,-24
+	fst.d	$f1,$r22,-32
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L156
+	fmov.d	$f0,$f1
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L157
+	ld.d	$r13,$r22,-24
+	srli.d	$r13,$r13,63
+	ld.d	$r12,$r22,-32
 	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beq	$r13,$r12,.L227
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L228
-	fld.d	$f0,$r3,8
-	b	.L225
-.L228:
-	fld.d	$f0,$r3,0
-	b	.L225
-.L227:
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L234
-	fld.d	$f0,$r3,8
-	b	.L225
-.L234:
-	fld.d	$f0,$r3,0
-.L225:
-	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	beq	$r13,$r12,.L154
+	ld.d	$r12,$r22,-24
+	bge	$r12,$r0,.L158
+	fld.d	$f0,$r22,-24
+	b	.L153
+.L154:
+	fld.d	$f0,$r22,-24
+	fld.d	$f1,$r22,-32
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L161
+	b	.L153
+.L156:
+	fld.d	$f0,$r22,-32
+	b	.L153
+.L157:
+	fld.d	$f0,$r22,-24
+	b	.L153
+.L158:
+	fld.d	$f0,$r22,-32
+	b	.L153
+.L161:
+	fld.d	$f0,$r22,-32
+.L153:
+	ld.d	$r22,$r3,24
+	.cfi_restore 22
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE36:
@@ -1502,56 +1316,56 @@ fmin:
 fminf:
 .LFB37 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-16
-	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fst.s	$f1,$r3,8
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,12
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L237
-	fld.s	$f0,$r3,8
-	b	.L238
-.L237:
-	fld.s	$f1,$r3,8
-	fld.s	$f0,$r3,8
-	fcmp.cor.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L239
-	fld.s	$f0,$r3,12
-	b	.L238
-.L239:
-	ld.w	$r13,$r3,12
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r13,$r3,8
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r22,$r3,24
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	fst.s	$f0,$r22,-20
+	fst.s	$f1,$r22,-24
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L166
+	fmov.s	$f0,$f1
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L167
+	ldptr.w	$r12,$r22,-20
+	lu12i.w	$r14,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r14
 	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
-	beq	$r13,$r12,.L240
-	ld.w	$r13,$r3,12
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	and	$r12,$r13,$r12
+	ldptr.w	$r13,$r22,-24
+	and	$r13,$r13,$r14
+	slli.w	$r13,$r13,0
+	beq	$r12,$r13,.L164
+	ldptr.w	$r12,$r22,-20
+	lu12i.w	$r13,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r13
 	slli.w	$r12,$r12,0
-	beqz	$r12,.L241
-	fld.s	$f0,$r3,12
-	b	.L238
-.L241:
-	fld.s	$f0,$r3,8
-	b	.L238
-.L240:
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fcmp.slt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L247
-	fld.s	$f0,$r3,12
-	b	.L238
-.L247:
-	fld.s	$f0,$r3,8
-.L238:
-	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	beqz	$r12,.L168
+	fld.s	$f0,$r22,-20
+	b	.L163
+.L164:
+	fld.s	$f0,$r22,-20
+	fld.s	$f1,$r22,-24
+	fcmp.slt.s	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L171
+	b	.L163
+.L166:
+	fld.s	$f0,$r22,-24
+	b	.L163
+.L167:
+	fld.s	$f0,$r22,-20
+	b	.L163
+.L168:
+	fld.s	$f0,$r22,-24
+	b	.L163
+.L171:
+	fld.s	$f0,$r22,-24
+.L163:
+	ld.d	$r22,$r3,24
+	.cfi_restore 22
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE37:
@@ -1565,75 +1379,83 @@ fminl:
 	addi.d	$r3,$r3,-48
 	.cfi_def_cfa_offset 48
 	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r24,$r3,24
+	st.d	$r25,$r3,16
+	st.d	$r26,$r3,8
+	stptr.d	$r27,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	stptr.d	$r6,$r3,0
-	st.d	$r7,$r3,8
-	ld.d	$r6,$r3,16
-	ld.d	$r7,$r3,24
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	.cfi_offset 22, -16
+	.cfi_offset 24, -24
+	.cfi_offset 25, -32
+	.cfi_offset 26, -40
+	.cfi_offset 27, -48
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r26,$r4,$r0
+	or	$r27,$r5,$r0
+	or	$r24,$r6,$r0
+	or	$r25,$r7,$r0
+	or	$r6,$r26,$r0
+	or	$r7,$r27,$r0
+	or	$r4,$r26,$r0
 	bl	%plt(__unordtf2)
-	or	$r12,$r4,$r0
-	beqz	$r4,.L264
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-	b	.L252
-.L264:
-	ldptr.d	$r6,$r3,0
-	ld.d	$r7,$r3,8
-	ldptr.d	$r4,$r3,0
-	ld.d	$r5,$r3,8
+	bnez	$r4,.L176
+	or	$r6,$r24,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__unordtf2)
-	or	$r12,$r4,$r0
-	beqz	$r12,.L265
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L252
-.L265:
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beq	$r13,$r12,.L255
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,63
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L256
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L252
-.L256:
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-	b	.L252
-.L255:
-	ldptr.d	$r6,$r3,0
-	ld.d	$r7,$r3,8
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	bnez	$r4,.L177
+	srli.d	$r12,$r27,63
+	srli.d	$r13,$r25,63
+	beq	$r12,$r13,.L174
+	bge	$r27,$r0,.L178
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L173
+.L174:
+	or	$r6,$r24,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r26,$r0
+	or	$r5,$r27,$r0
 	bl	%plt(__lttf2)
-	or	$r12,$r4,$r0
-	bge	$r12,$r0,.L266
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L252
-.L266:
-	ldptr.d	$r13,$r3,0
-	ld.d	$r12,$r3,8
-.L252:
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	bge	$r4,$r0,.L181
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L173
+.L176:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+	b	.L173
+.L177:
+	or	$r12,$r26,$r0
+	or	$r13,$r27,$r0
+	b	.L173
+.L178:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+	b	.L173
+.L181:
+	or	$r12,$r24,$r0
+	or	$r13,$r25,$r0
+.L173:
+	or	$r4,$r12,$r0
+	or	$r5,$r13,$r0
 	ld.d	$r1,$r3,40
 	.cfi_restore 1
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r24,$r3,24
+	.cfi_restore 24
+	ld.d	$r25,$r3,16
+	.cfi_restore 25
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
+	ldptr.d	$r27,$r3,0
+	.cfi_restore 27
 	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE38:
@@ -1652,39 +1474,30 @@ digits:
 l64a:
 .LFB39 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	st.w	$r12,$r3,20
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	slli.w	$r4,$r4,0
 	la.local	$r12,s.0
-	st.d	$r12,$r3,24
-	b	.L269
-.L270:
-	ld.w	$r12,$r3,20
-	andi	$r12,$r12,63
-	slli.w	$r12,$r12,0
-	la.local	$r13,digits
-	bstrpick.d	$r12,$r12,31,0
-	ldx.b	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
+	b	.L183
+.L184:
+	andi	$r13,$r4,63
+	la.local	$r14,digits
+	ldx.b	$r13,$r14,$r13
 	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,24
 	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-	ld.w	$r12,$r3,20
-	srli.w	$r12,$r12,6
-	st.w	$r12,$r3,20
-.L269:
-	ld.w	$r12,$r3,20
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L270
-	ld.d	$r12,$r3,24
+	bstrpick.d	$r4,$r4,31,6
+.L183:
+	bnez	$r4,.L184
 	st.b	$r0,$r12,0
-	la.local	$r12,s.0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	la.local	$r4,s.0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE39:
@@ -1699,16 +1512,18 @@ srand:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-1
-	bstrpick.d	$r13,$r12,31,0
-	la.local	$r12,seed
-	stptr.d	$r13,$r12,0
-	nop
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r4,$r4,-1
+	bstrpick.d	$r4,$r4,31,0
+	pcalau12i	$r12,%pc_hi20(seed)
+	st.d	$r4,$r12,%pc_lo12(seed)
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE40:
@@ -1719,21 +1534,26 @@ srand:
 rand:
 .LFB41 = .
 	.cfi_startproc
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	la.local	$r12,seed
-	ldptr.d	$r13,$r12,0
-	lu12i.w	$r12,1284861952>>12			# 0x4c957000
-	ori	$r12,$r12,3885
-	lu32i.d	$r12,0x1f42d00000000>>32
-	lu52i.d	$r12,$r12,0x5850000000000000>>52
-	mul.d	$r12,$r13,$r12
-	addi.d	$r13,$r12,1
-	la.local	$r12,seed
-	stptr.d	$r13,$r12,0
-	la.local	$r12,seed
-	ldptr.d	$r12,$r12,0
-	srli.d	$r12,$r12,33
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	ldptr.d	$r4,$r12,0
+	lu12i.w	$r13,1284861952>>12			# 0x4c957000
+	ori	$r13,$r13,3885
+	lu32i.d	$r13,0x1f42d00000000>>32
+	lu52i.d	$r13,$r13,0x5850000000000000>>52
+	mul.d	$r4,$r4,$r13
+	addi.d	$r4,$r4,1
+	stptr.d	$r4,$r12,0
+	srli.d	$r4,$r4,33
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE41:
@@ -1746,38 +1566,27 @@ insque:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ldptr.d	$r12,$r3,0
-	bnez	$r12,.L278
-	ld.d	$r12,$r3,8
-	st.d	$r0,$r12,8
-	ld.d	$r12,$r3,8
-	ld.d	$r13,$r12,8
-	ld.d	$r12,$r3,8
-	stptr.d	$r13,$r12,0
-	b	.L277
-.L278:
-	ldptr.d	$r12,$r3,0
-	ldptr.d	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	stptr.d	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	ldptr.d	$r13,$r3,0
-	st.d	$r13,$r12,8
-	ldptr.d	$r12,$r3,0
-	ld.d	$r13,$r3,8
-	stptr.d	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	ldptr.d	$r12,$r12,0
-	beqz	$r12,.L277
-	ld.d	$r12,$r3,8
-	ldptr.d	$r12,$r12,0
-	ld.d	$r13,$r3,8
-	st.d	$r13,$r12,8
-.L277:
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bnez	$r5,.L188
+	st.d	$r0,$r4,8
+	stptr.d	$r0,$r4,0
+	b	.L187
+.L188:
+	ldptr.d	$r12,$r5,0
+	stptr.d	$r12,$r4,0
+	st.d	$r5,$r4,8
+	stptr.d	$r4,$r5,0
+	ldptr.d	$r12,$r4,0
+	beqz	$r12,.L187
+	st.d	$r4,$r12,8
+.L187:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE42:
@@ -1790,28 +1599,24 @@ remque:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	ldptr.d	$r12,$r12,0
-	beqz	$r12,.L282
-	ld.d	$r12,$r3,8
-	ldptr.d	$r12,$r12,0
-	ld.d	$r13,$r3,8
-	ld.d	$r13,$r13,8
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	ldptr.d	$r12,$r4,0
+	beqz	$r12,.L191
+	ld.d	$r13,$r4,8
 	st.d	$r13,$r12,8
-.L282:
-	ld.d	$r12,$r3,8
-	ld.d	$r12,$r12,8
-	beqz	$r12,.L284
-	ld.d	$r12,$r3,8
-	ld.d	$r12,$r12,8
-	ld.d	$r13,$r3,8
-	ldptr.d	$r13,$r13,0
+.L191:
+	ld.d	$r12,$r4,8
+	beqz	$r12,.L190
+	ldptr.d	$r13,$r4,0
 	stptr.d	$r13,$r12,0
-.L284:
-	nop
+.L190:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE43:
@@ -1822,70 +1627,82 @@ remque:
 lsearch:
 .LFB44 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-96
-	.cfi_def_cfa_offset 96
-	st.d	$r1,$r3,88
-	st.d	$r23,$r3,80
+	addi.d	$r3,$r3,-80
+	.cfi_def_cfa_offset 80
+	st.d	$r1,$r3,72
+	st.d	$r22,$r3,64
+	st.d	$r23,$r3,56
+	st.d	$r24,$r3,48
+	st.d	$r25,$r3,40
+	st.d	$r26,$r3,32
+	st.d	$r27,$r3,24
+	st.d	$r28,$r3,16
+	st.d	$r29,$r3,8
+	stptr.d	$r30,$r3,0
 	.cfi_offset 1, -8
-	.cfi_offset 23, -16
-	st.d	$r4,$r3,40
-	st.d	$r5,$r3,32
-	st.d	$r6,$r3,24
-	st.d	$r7,$r3,16
-	st.d	$r8,$r3,8
-	ld.d	$r23,$r3,16
-	addi.d	$r12,$r23,-1
-	st.d	$r12,$r3,64
-	ld.d	$r12,$r3,24
-	ldptr.d	$r12,$r12,0
-	st.d	$r12,$r3,56
-	st.d	$r0,$r3,72
-	b	.L287
-.L290:
-	ld.d	$r12,$r3,72
-	mul.d	$r12,$r23,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	or	$r5,$r13,$r0
-	ld.d	$r4,$r3,40
-	jirl	$r1,$r12,0
-	or	$r12,$r4,$r0
-	bnez	$r12,.L288
-	ld.d	$r12,$r3,72
-	mul.d	$r12,$r23,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r12,$r13,$r12
-	b	.L289
-.L288:
-	ld.d	$r12,$r3,72
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,72
-.L287:
-	ld.d	$r13,$r3,72
-	ld.d	$r12,$r3,56
-	bltu	$r13,$r12,.L290
-	ld.d	$r12,$r3,56
-	addi.d	$r13,$r12,1
-	ld.d	$r12,$r3,24
-	stptr.d	$r13,$r12,0
-	ld.d	$r12,$r3,56
-	mul.d	$r12,$r23,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r12,$r13,$r12
-	ld.d	$r6,$r3,16
-	ld.d	$r5,$r3,40
-	or	$r4,$r12,$r0
-	bl	memcpy
-	or	$r12,$r4,$r0
-.L289:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,88
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	.cfi_offset 28, -64
+	.cfi_offset 29, -72
+	.cfi_offset 30, -80
+	addi.d	$r22,$r3,80
+	.cfi_def_cfa 22, 0
+	or	$r27,$r4,$r0
+	or	$r23,$r5,$r0
+	or	$r28,$r6,$r0
+	or	$r24,$r7,$r0
+	or	$r30,$r8,$r0
+	ldptr.d	$r26,$r28,0
+	or	$r29,$r23,$r0
+	or	$r25,$r0,$r0
+	b	.L194
+.L197:
+	or	$r5,$r29,$r0
+	or	$r4,$r27,$r0
+	jirl	$r1,$r30,0
+	add.d	$r29,$r29,$r24
+	bnez	$r4,.L195
+	mul.d	$r25,$r25,$r24
+	add.d	$r4,$r23,$r25
+	b	.L196
+.L195:
+	addi.d	$r25,$r25,1
+.L194:
+	bne	$r25,$r26,.L197
+	addi.d	$r12,$r26,1
+	stptr.d	$r12,$r28,0
+	mul.d	$r26,$r24,$r26
+	add.d	$r4,$r23,$r26
+	or	$r6,$r24,$r0
+	or	$r5,$r27,$r0
+	bl	%plt(memcpy)
+.L196:
+	ld.d	$r1,$r3,72
 	.cfi_restore 1
-	ld.d	$r23,$r3,80
+	ld.d	$r22,$r3,64
+	.cfi_restore 22
+	ld.d	$r23,$r3,56
 	.cfi_restore 23
-	addi.d	$r3,$r3,96
-	.cfi_def_cfa_offset 0
+	ld.d	$r24,$r3,48
+	.cfi_restore 24
+	ld.d	$r25,$r3,40
+	.cfi_restore 25
+	ld.d	$r26,$r3,32
+	.cfi_restore 26
+	ld.d	$r27,$r3,24
+	.cfi_restore 27
+	ld.d	$r28,$r3,16
+	.cfi_restore 28
+	ld.d	$r29,$r3,8
+	.cfi_restore 29
+	ldptr.d	$r30,$r3,0
+	.cfi_restore 30
+	addi.d	$r3,$r3,80
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE44:
@@ -1896,58 +1713,71 @@ lsearch:
 lfind:
 .LFB45 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-96
-	.cfi_def_cfa_offset 96
-	st.d	$r1,$r3,88
-	st.d	$r23,$r3,80
+	addi.d	$r3,$r3,-80
+	.cfi_def_cfa_offset 80
+	st.d	$r1,$r3,72
+	st.d	$r22,$r3,64
+	st.d	$r23,$r3,56
+	st.d	$r24,$r3,48
+	st.d	$r25,$r3,40
+	st.d	$r26,$r3,32
+	st.d	$r27,$r3,24
+	st.d	$r28,$r3,16
+	st.d	$r29,$r3,8
 	.cfi_offset 1, -8
-	.cfi_offset 23, -16
-	st.d	$r4,$r3,40
-	st.d	$r5,$r3,32
-	st.d	$r6,$r3,24
-	st.d	$r7,$r3,16
-	st.d	$r8,$r3,8
-	ld.d	$r23,$r3,16
-	addi.d	$r12,$r23,-1
-	st.d	$r12,$r3,64
-	ld.d	$r12,$r3,24
-	ldptr.d	$r12,$r12,0
-	st.d	$r12,$r3,56
-	st.d	$r0,$r3,72
-	b	.L293
-.L296:
-	ld.d	$r12,$r3,72
-	mul.d	$r12,$r23,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	or	$r5,$r13,$r0
-	ld.d	$r4,$r3,40
-	jirl	$r1,$r12,0
-	or	$r12,$r4,$r0
-	bnez	$r12,.L294
-	ld.d	$r12,$r3,72
-	mul.d	$r12,$r23,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r12,$r13,$r12
-	b	.L295
-.L294:
-	ld.d	$r12,$r3,72
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,72
-.L293:
-	ld.d	$r13,$r3,72
-	ld.d	$r12,$r3,56
-	bltu	$r13,$r12,.L296
-	or	$r12,$r0,$r0
-.L295:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,88
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	.cfi_offset 28, -64
+	.cfi_offset 29, -72
+	addi.d	$r22,$r3,80
+	.cfi_def_cfa 22, 0
+	or	$r28,$r4,$r0
+	or	$r23,$r5,$r0
+	or	$r25,$r7,$r0
+	or	$r27,$r8,$r0
+	ldptr.d	$r29,$r6,0
+	or	$r26,$r23,$r0
+	or	$r24,$r0,$r0
+	b	.L199
+.L202:
+	or	$r5,$r26,$r0
+	or	$r4,$r28,$r0
+	jirl	$r1,$r27,0
+	add.d	$r26,$r26,$r25
+	bnez	$r4,.L200
+	mul.d	$r24,$r24,$r25
+	add.d	$r4,$r23,$r24
+	b	.L201
+.L200:
+	addi.d	$r24,$r24,1
+.L199:
+	bne	$r24,$r29,.L202
+	or	$r4,$r0,$r0
+.L201:
+	ld.d	$r1,$r3,72
 	.cfi_restore 1
-	ld.d	$r23,$r3,80
+	ld.d	$r22,$r3,64
+	.cfi_restore 22
+	ld.d	$r23,$r3,56
 	.cfi_restore 23
-	addi.d	$r3,$r3,96
-	.cfi_def_cfa_offset 0
+	ld.d	$r24,$r3,48
+	.cfi_restore 24
+	ld.d	$r25,$r3,40
+	.cfi_restore 25
+	ld.d	$r26,$r3,32
+	.cfi_restore 26
+	ld.d	$r27,$r3,24
+	.cfi_restore 27
+	ld.d	$r28,$r3,16
+	.cfi_restore 28
+	ld.d	$r29,$r3,8
+	.cfi_restore 29
+	addi.d	$r3,$r3,80
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE45:
@@ -1960,17 +1790,17 @@ abs:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	srai.w	$r12,$r12,31
-	ld.w	$r13,$r3,12
-	xor	$r13,$r12,$r13
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.w	$r12,$r4,31
+	xor	$r4,$r4,$r12
+	sub.w	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE46:
@@ -1981,78 +1811,64 @@ abs:
 atoi:
 .LFB47 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	st.w	$r0,$r3,28
-	st.w	$r0,$r3,24
-	b	.L302
-.L303:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L302:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	or	$r4,$r12,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	b	.L205
+.L206:
+	addi.d	$r23,$r23,1
+.L205:
+	ld.b	$r4,$r23,0
 	bl	isspace
-	or	$r12,$r4,$r0
-	bnez	$r12,.L303
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	or	$r14,$r13,$r0
-	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r14,$r12,.L304
-	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L306
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,24
-.L304:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-	b	.L306
-.L307:
-	ld.w	$r13,$r3,28
-	or	$r12,$r13,$r0
-	slli.w	$r12,$r12,2
-	add.w	$r12,$r12,$r13
-	slli.w	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r14,$r12,1
-	st.d	$r14,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r12,$r12,0
+	bnez	$r4,.L206
+	ld.b	$r12,$r23,0
+	addi.w	$r13,$r0,43			# 0x2b
+	beq	$r12,$r13,.L212
+	addi.w	$r13,$r0,45			# 0x2d
+	bne	$r12,$r13,.L213
+	addi.w	$r13,$r0,1			# 0x1
+	b	.L207
+.L212:
+	or	$r13,$r0,$r0
+.L207:
+	addi.d	$r23,$r23,1
+	b	.L208
+.L213:
+	or	$r13,$r0,$r0
+.L208:
+	or	$r4,$r0,$r0
+	b	.L209
+.L210:
+	alsl.w	$r4,$r4,$r4,2
+	slli.w	$r14,$r4,1
+	addi.d	$r23,$r23,1
+	ld.b	$r12,$r23,-1
 	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-.L306:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
+	sub.w	$r4,$r14,$r12
+.L209:
+	ld.b	$r12,$r23,0
 	addi.w	$r12,$r12,-48
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,9			# 0x9
-	bleu	$r13,$r12,.L307
-	ld.w	$r12,$r3,24
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L308
-	ld.w	$r12,$r3,28
-	sub.w	$r12,$r0,$r12
-	slli.w	$r12,$r12,0
-	b	.L309
-.L308:
-	ldptr.w	$r12,$r3,28
-.L309:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	addi.w	$r14,$r0,9			# 0x9
+	bleu	$r12,$r14,.L210
+	bnez	$r13,.L211
+	sub.w	$r4,$r0,$r4
+.L211:
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE47:
@@ -2063,78 +1879,64 @@ atoi:
 atol:
 .LFB48 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	st.d	$r0,$r3,24
-	st.w	$r0,$r3,20
-	b	.L313
-.L314:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L313:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	or	$r4,$r12,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	b	.L216
+.L217:
+	addi.d	$r23,$r23,1
+.L216:
+	ld.b	$r4,$r23,0
 	bl	isspace
-	or	$r12,$r4,$r0
-	bnez	$r12,.L314
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	or	$r14,$r13,$r0
-	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r14,$r12,.L315
-	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L317
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,20
-.L315:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-	b	.L317
-.L318:
-	ld.d	$r13,$r3,24
-	or	$r12,$r13,$r0
-	slli.d	$r12,$r12,2
-	add.d	$r12,$r12,$r13
-	slli.d	$r12,$r12,1
-	or	$r14,$r12,$r0
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,1
-	st.d	$r13,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r12,$r12,0
+	bnez	$r4,.L217
+	ld.b	$r12,$r23,0
+	addi.w	$r13,$r0,43			# 0x2b
+	beq	$r12,$r13,.L223
+	addi.w	$r13,$r0,45			# 0x2d
+	bne	$r12,$r13,.L224
+	addi.w	$r13,$r0,1			# 0x1
+	b	.L218
+.L223:
+	or	$r13,$r0,$r0
+.L218:
+	addi.d	$r23,$r23,1
+	b	.L219
+.L224:
+	or	$r13,$r0,$r0
+.L219:
+	or	$r4,$r0,$r0
+	b	.L220
+.L221:
+	alsl.d	$r4,$r4,$r4,2
+	slli.d	$r14,$r4,1
+	addi.d	$r23,$r23,1
+	ld.b	$r12,$r23,-1
 	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	sub.d	$r12,$r14,$r12
-	st.d	$r12,$r3,24
-.L317:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
+	sub.d	$r4,$r14,$r12
+.L220:
+	ld.b	$r12,$r23,0
 	addi.w	$r12,$r12,-48
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,9			# 0x9
-	bleu	$r13,$r12,.L318
-	ld.w	$r12,$r3,20
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L319
-	ld.d	$r12,$r3,24
-	sub.d	$r12,$r0,$r12
-	b	.L321
-.L319:
-	ld.d	$r12,$r3,24
-.L321:
-	nop
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	addi.w	$r14,$r0,9			# 0x9
+	bleu	$r12,$r14,.L221
+	bnez	$r13,.L222
+	sub.d	$r4,$r0,$r4
+.L222:
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE48:
@@ -2145,78 +1947,64 @@ atol:
 atoll:
 .LFB49 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	st.d	$r0,$r3,24
-	st.w	$r0,$r3,20
-	b	.L324
-.L325:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L324:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	or	$r4,$r12,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	b	.L227
+.L228:
+	addi.d	$r23,$r23,1
+.L227:
+	ld.b	$r4,$r23,0
 	bl	isspace
-	or	$r12,$r4,$r0
-	bnez	$r12,.L325
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r13,$r12,0
-	or	$r14,$r13,$r0
-	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r14,$r12,.L326
-	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L328
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,20
-.L326:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-	b	.L328
-.L329:
-	ld.d	$r13,$r3,24
-	or	$r12,$r13,$r0
-	slli.d	$r12,$r12,2
-	add.d	$r12,$r12,$r13
-	slli.d	$r12,$r12,1
-	or	$r14,$r12,$r0
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,1
-	st.d	$r13,$r3,8
-	ld.b	$r12,$r12,0
-	slli.w	$r12,$r12,0
+	bnez	$r4,.L228
+	ld.b	$r12,$r23,0
+	addi.w	$r13,$r0,43			# 0x2b
+	beq	$r12,$r13,.L234
+	addi.w	$r13,$r0,45			# 0x2d
+	bne	$r12,$r13,.L235
+	addi.w	$r13,$r0,1			# 0x1
+	b	.L229
+.L234:
+	or	$r13,$r0,$r0
+.L229:
+	addi.d	$r23,$r23,1
+	b	.L230
+.L235:
+	or	$r13,$r0,$r0
+.L230:
+	or	$r4,$r0,$r0
+	b	.L231
+.L232:
+	alsl.d	$r4,$r4,$r4,2
+	slli.d	$r14,$r4,1
+	addi.d	$r23,$r23,1
+	ld.b	$r12,$r23,-1
 	addi.w	$r12,$r12,-48
-	slli.w	$r12,$r12,0
-	sub.d	$r12,$r14,$r12
-	st.d	$r12,$r3,24
-.L328:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
+	sub.d	$r4,$r14,$r12
+.L231:
+	ld.b	$r12,$r23,0
 	addi.w	$r12,$r12,-48
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,9			# 0x9
-	bleu	$r13,$r12,.L329
-	ld.w	$r12,$r3,20
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L330
-	ld.d	$r12,$r3,24
-	sub.d	$r12,$r0,$r12
-	b	.L332
-.L330:
-	ld.d	$r12,$r3,24
-.L332:
-	nop
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	addi.w	$r14,$r0,9			# 0x9
+	bleu	$r12,$r14,.L232
+	bnez	$r13,.L233
+	sub.d	$r4,$r0,$r4
+.L233:
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE49:
@@ -2227,65 +2015,73 @@ atoll:
 bsearch:
 .LFB50 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	st.d	$r1,$r3,72
+	addi.d	$r3,$r3,-64
+	.cfi_def_cfa_offset 64
+	st.d	$r1,$r3,56
+	st.d	$r22,$r3,48
+	st.d	$r23,$r3,40
+	st.d	$r24,$r3,32
+	st.d	$r25,$r3,24
+	st.d	$r26,$r3,16
+	st.d	$r27,$r3,8
+	stptr.d	$r28,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,40
-	st.d	$r5,$r3,32
-	st.d	$r6,$r3,24
-	st.d	$r7,$r3,16
-	st.d	$r8,$r3,8
-	b	.L335
-.L340:
-	ld.d	$r12,$r3,24
-	srli.d	$r13,$r12,1
-	ld.d	$r12,$r3,16
-	mul.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,56
-	ld.d	$r12,$r3,8
-	ld.d	$r5,$r3,56
-	ld.d	$r4,$r3,40
-	jirl	$r1,$r12,0
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,52
-	ld.w	$r12,$r3,52
-	slli.w	$r12,$r12,0
-	bge	$r12,$r0,.L336
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-	b	.L335
-.L336:
-	ld.w	$r12,$r3,52
-	slli.w	$r12,$r12,0
-	ble	$r12,$r0,.L338
-	ld.d	$r13,$r3,56
-	ld.d	$r12,$r3,16
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,1
-	ld.d	$r13,$r3,24
-	sub.d	$r12,$r13,$r12
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,24
-	b	.L335
-.L338:
-	ld.d	$r12,$r3,56
-	b	.L339
-.L335:
-	ld.d	$r12,$r3,24
-	bnez	$r12,.L340
-	or	$r12,$r0,$r0
-.L339:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,72
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	.cfi_offset 28, -64
+	addi.d	$r22,$r3,64
+	.cfi_def_cfa 22, 0
+	or	$r28,$r4,$r0
+	or	$r26,$r5,$r0
+	or	$r23,$r6,$r0
+	or	$r25,$r7,$r0
+	or	$r27,$r8,$r0
+	b	.L238
+.L242:
+	srli.d	$r24,$r23,1
+	mul.d	$r24,$r24,$r25
+	add.d	$r24,$r26,$r24
+	or	$r5,$r24,$r0
+	or	$r4,$r28,$r0
+	jirl	$r1,$r27,0
+	bge	$r4,$r0,.L239
+	srli.d	$r23,$r23,1
+	b	.L238
+.L239:
+	ble	$r4,$r0,.L243
+	add.d	$r26,$r24,$r25
+	srli.d	$r12,$r23,1
+	addi.d	$r23,$r23,-1
+	sub.d	$r23,$r23,$r12
+.L238:
+	bnez	$r23,.L242
+	or	$r4,$r0,$r0
+	b	.L241
+.L243:
+	or	$r4,$r24,$r0
+.L241:
+	ld.d	$r1,$r3,56
 	.cfi_restore 1
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,48
+	.cfi_restore 22
+	ld.d	$r23,$r3,40
+	.cfi_restore 23
+	ld.d	$r24,$r3,32
+	.cfi_restore 24
+	ld.d	$r25,$r3,24
+	.cfi_restore 25
+	ld.d	$r26,$r3,16
+	.cfi_restore 26
+	ld.d	$r27,$r3,8
+	.cfi_restore 27
+	ldptr.d	$r28,$r3,0
+	.cfi_restore 28
+	addi.d	$r3,$r3,64
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE50:
@@ -2296,66 +2092,76 @@ bsearch:
 bsearch_r:
 .LFB51 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-96
-	.cfi_def_cfa_offset 96
-	st.d	$r1,$r3,88
+	addi.d	$r3,$r3,-80
+	.cfi_def_cfa_offset 80
+	st.d	$r1,$r3,72
+	st.d	$r22,$r3,64
+	st.d	$r23,$r3,56
+	st.d	$r24,$r3,48
+	st.d	$r25,$r3,40
+	st.d	$r26,$r3,32
+	st.d	$r27,$r3,24
+	st.d	$r28,$r3,16
+	st.d	$r29,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,40
-	st.d	$r5,$r3,32
-	st.d	$r6,$r3,24
-	st.d	$r7,$r3,16
-	st.d	$r8,$r3,8
-	stptr.d	$r9,$r3,0
-	ld.d	$r12,$r3,24
-	st.w	$r12,$r3,76
-	b	.L343
-.L347:
-	ld.w	$r12,$r3,76
-	srai.w	$r12,$r12,1
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	mul.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,32
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,64
-	ld.d	$r12,$r3,8
-	ldptr.d	$r6,$r3,0
-	ld.d	$r5,$r3,64
-	ld.d	$r4,$r3,40
-	jirl	$r1,$r12,0
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,60
-	ld.w	$r12,$r3,60
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L344
-	ld.d	$r12,$r3,64
-	b	.L345
-.L344:
-	ld.w	$r12,$r3,60
-	slli.w	$r12,$r12,0
-	ble	$r12,$r0,.L346
-	ld.d	$r13,$r3,64
-	ld.d	$r12,$r3,16
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	ld.w	$r12,$r3,76
-	addi.w	$r12,$r12,-1
-	st.w	$r12,$r3,76
-.L346:
-	ld.w	$r12,$r3,76
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,76
-.L343:
-	ld.w	$r12,$r3,76
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L347
-	or	$r12,$r0,$r0
-.L345:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,88
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	.cfi_offset 28, -64
+	.cfi_offset 29, -72
+	addi.d	$r22,$r3,80
+	.cfi_def_cfa 22, 0
+	or	$r29,$r4,$r0
+	or	$r26,$r7,$r0
+	or	$r28,$r8,$r0
+	or	$r27,$r9,$r0
+	slli.w	$r24,$r6,0
+	or	$r25,$r5,$r0
+	b	.L245
+.L248:
+	srai.w	$r23,$r24,1
+	mul.d	$r23,$r23,$r26
+	add.d	$r23,$r25,$r23
+	or	$r6,$r27,$r0
+	or	$r5,$r23,$r0
+	or	$r4,$r29,$r0
+	jirl	$r1,$r28,0
+	beqz	$r4,.L249
+	ble	$r4,$r0,.L247
+	add.d	$r25,$r23,$r26
+	addi.w	$r24,$r24,-1
+.L247:
+	srai.w	$r24,$r24,1
+.L245:
+	bnez	$r24,.L248
+	or	$r4,$r0,$r0
+	b	.L246
+.L249:
+	or	$r4,$r23,$r0
+.L246:
+	ld.d	$r1,$r3,72
 	.cfi_restore 1
-	addi.d	$r3,$r3,96
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,64
+	.cfi_restore 22
+	ld.d	$r23,$r3,56
+	.cfi_restore 23
+	ld.d	$r24,$r3,48
+	.cfi_restore 24
+	ld.d	$r25,$r3,40
+	.cfi_restore 25
+	ld.d	$r26,$r3,32
+	.cfi_restore 26
+	ld.d	$r27,$r3,24
+	.cfi_restore 27
+	ld.d	$r28,$r3,16
+	.cfi_restore 28
+	ld.d	$r29,$r3,8
+	.cfi_restore 29
+	addi.d	$r3,$r3,80
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE51:
@@ -2368,36 +2174,19 @@ div:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r13,$r4,$r0
-	or	$r14,$r5,$r0
-	st.w	$r13,$r3,12
-	or	$r13,$r14,$r0
-	st.w	$r13,$r3,8
-	ld.w	$r14,$r3,12
-	ld.w	$r13,$r3,8
-	slli.w	$r14,$r14,0
-	slli.w	$r13,$r13,0
-	div.w	$r14,$r14,$r13
-	bne	$r13,$r0,1f
-	break	7
-1:
-	or	$r13,$r14,$r0
-	slli.w	$r14,$r13,0
-	ld.w	$r15,$r3,12
-	ld.w	$r13,$r3,8
-	slli.w	$r15,$r15,0
-	slli.w	$r13,$r13,0
-	mod.w	$r15,$r15,$r13
-	bne	$r13,$r0,1f
-	break	7
-1:
-	or	$r13,$r15,$r0
-	slli.w	$r13,$r13,0
-	bstrins.d	$r12,$r14,31,0
-	bstrins.d	$r12,$r13,63,32
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	div.w	$r12,$r4,$r5
+	mod.w	$r5,$r4,$r5
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r12,31,0
+	bstrins.d	$r4,$r5,63,32
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE52:
@@ -2410,15 +2199,17 @@ imaxabs:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	srai.d	$r13,$r12,63
-	ld.d	$r12,$r3,8
-	xor	$r12,$r13,$r12
-	sub.d	$r12,$r12,$r13
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r12,$r4,63
+	xor	$r4,$r12,$r4
+	sub.d	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE53:
@@ -2431,28 +2222,23 @@ imaxdiv:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	div.d	$r14,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	mod.d	$r13,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	or	$r15,$r14,$r0
-	or	$r14,$r13,$r0
-	or	$r13,$r15,$r0
-	or	$r12,$r14,$r0
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r5,$r0
+	mod.d	$r5,$r4,$r14
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	div.d	$r12,$r4,$r14
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r5,$r0
+	or	$r4,$r14,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE54:
@@ -2465,15 +2251,17 @@ labs:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	srai.d	$r13,$r12,63
-	ld.d	$r12,$r3,8
-	xor	$r12,$r13,$r12
-	sub.d	$r12,$r12,$r13
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r12,$r4,63
+	xor	$r4,$r12,$r4
+	sub.d	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE55:
@@ -2486,28 +2274,23 @@ ldiv:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	div.d	$r14,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	mod.d	$r13,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	or	$r15,$r14,$r0
-	or	$r14,$r13,$r0
-	or	$r13,$r15,$r0
-	or	$r12,$r14,$r0
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r5,$r0
+	mod.d	$r5,$r4,$r14
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	div.d	$r12,$r4,$r14
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r5,$r0
+	or	$r4,$r14,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE56:
@@ -2520,15 +2303,17 @@ llabs:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	srai.d	$r13,$r12,63
-	ld.d	$r12,$r3,8
-	xor	$r12,$r13,$r12
-	sub.d	$r12,$r12,$r13
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r12,$r4,63
+	xor	$r4,$r12,$r4
+	sub.d	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE57:
@@ -2541,28 +2326,23 @@ lldiv:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	div.d	$r14,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	mod.d	$r13,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	or	$r15,$r14,$r0
-	or	$r14,$r13,$r0
-	or	$r13,$r15,$r0
-	or	$r12,$r14,$r0
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r5,$r0
+	mod.d	$r5,$r4,$r14
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	div.d	$r12,$r4,$r14
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r5,$r0
+	or	$r4,$r14,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE58:
@@ -2575,36 +2355,26 @@ wcschr:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,4
-	b	.L371
-.L373:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,8
-.L371:
-	ld.d	$r12,$r3,8
-	ldptr.w	$r12,$r12,0
-	beqz	$r12,.L372
-	ld.d	$r12,$r3,8
-	ldptr.w	$r13,$r12,0
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L373
-.L372:
-	ld.d	$r12,$r3,8
-	ldptr.w	$r12,$r12,0
-	beqz	$r12,.L374
-	ld.d	$r12,$r3,8
-	b	.L376
-.L374:
-	or	$r12,$r0,$r0
-.L376:
-	nop
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L258
+.L260:
+	addi.d	$r4,$r4,4
+.L258:
+	ldptr.w	$r12,$r4,0
+	beqz	$r12,.L259
+	bne	$r5,$r12,.L260
+.L259:
+	ldptr.w	$r12,$r4,0
+	bnez	$r12,.L261
+	or	$r4,$r0,$r0
+.L261:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE59:
@@ -2617,48 +2387,36 @@ wcscmp:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	b	.L379
-.L381:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,8
-	ldptr.d	$r12,$r3,0
-	addi.d	$r12,$r12,4
-	stptr.d	$r12,$r3,0
-.L379:
-	ld.d	$r12,$r3,8
-	ldptr.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	ldptr.w	$r12,$r12,0
-	bne	$r13,$r12,.L380
-	ld.d	$r12,$r3,8
-	ldptr.w	$r12,$r12,0
-	beqz	$r12,.L380
-	ldptr.d	$r12,$r3,0
-	ldptr.w	$r12,$r12,0
-	bnez	$r12,.L381
-.L380:
-	ld.d	$r12,$r3,8
-	ldptr.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	ldptr.w	$r12,$r12,0
-	blt	$r13,$r12,.L382
-	ld.d	$r12,$r3,8
-	ldptr.w	$r13,$r12,0
-	ldptr.d	$r12,$r3,0
-	ldptr.w	$r12,$r12,0
-	slt	$r12,$r12,$r13
-	bstrpick.w	$r12,$r12,7,0
-	slli.w	$r12,$r12,0
-	b	.L383
-.L382:
-	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
-.L383:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L264
+.L266:
+	addi.d	$r4,$r4,4
+	addi.d	$r5,$r5,4
+.L264:
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	bne	$r13,$r12,.L265
+	or	$r12,$r13,$r0
+	beqz	$r12,.L265
+	ldptr.w	$r12,$r5,0
+	bnez	$r12,.L266
+.L265:
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	blt	$r13,$r12,.L268
+	or	$r4,$r13,$r0
+	slt	$r4,$r12,$r4
+	b	.L267
+.L268:
+	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
+.L267:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE60:
@@ -2669,27 +2427,24 @@ wcscmp:
 wcscpy:
 .LFB61 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-.L387:
-	ldptr.d	$r13,$r3,0
-	addi.d	$r12,$r13,4
-	stptr.d	$r12,$r3,0
-	ld.d	$r12,$r3,24
-	addi.d	$r14,$r12,4
-	st.d	$r14,$r3,24
-	ldptr.w	$r13,$r13,0
-	stptr.w	$r13,$r12,0
-	ldptr.w	$r12,$r12,0
-	bnez	$r12,.L387
-	ld.d	$r12,$r3,8
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+.L270:
+	ldx.w	$r13,$r5,$r12
+	stx.w	$r13,$r4,$r12
+	addi.d	$r12,$r12,4
+	addi.d	$r13,$r4,-4
+	ldx.w	$r13,$r13,$r12
+	bnez	$r13,.L270
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE61:
@@ -2700,28 +2455,25 @@ wcscpy:
 wcslen:
 .LFB62 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	b	.L391
-.L392:
-	ld.d	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	b	.L272
+.L273:
 	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,24
-.L391:
-	ld.d	$r12,$r3,24
-	ldptr.w	$r12,$r12,0
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L392
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	sub.d	$r12,$r13,$r12
-	srai.d	$r12,$r12,2
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L272:
+	ldptr.w	$r13,$r12,0
+	bnez	$r13,.L273
+	sub.d	$r4,$r12,$r4
+	srai.d	$r4,$r4,2
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE62:
@@ -2732,61 +2484,44 @@ wcslen:
 wcsncmp:
 .LFB63 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	b	.L396
-.L398:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,16
-.L396:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L397
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	bne	$r13,$r12,.L397
-	ld.d	$r12,$r3,24
-	ldptr.w	$r12,$r12,0
-	beqz	$r12,.L397
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	bnez	$r12,.L398
-.L397:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L399
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	blt	$r13,$r12,.L400
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	slt	$r12,$r12,$r13
-	bstrpick.w	$r12,$r12,7,0
-	slli.w	$r12,$r12,0
-	b	.L402
-.L400:
-	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
-	b	.L402
-.L399:
-	or	$r12,$r0,$r0
-.L402:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L275
+.L277:
+	addi.d	$r6,$r6,-1
+	addi.d	$r4,$r4,4
+	addi.d	$r5,$r5,4
+.L275:
+	beqz	$r6,.L276
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	bne	$r13,$r12,.L276
+	or	$r12,$r13,$r0
+	beqz	$r12,.L276
+	ldptr.w	$r12,$r5,0
+	bnez	$r12,.L277
+.L276:
+	beqz	$r6,.L279
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	blt	$r13,$r12,.L280
+	or	$r4,$r13,$r0
+	slt	$r4,$r12,$r4
+	b	.L278
+.L279:
+	or	$r4,$r0,$r0
+	b	.L278
+.L280:
+	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
+.L278:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE63:
@@ -2797,40 +2532,28 @@ wcsncmp:
 wmemchr:
 .LFB64 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,24
-	or	$r12,$r5,$r0
-	st.d	$r6,$r3,8
-	st.w	$r5,$r3,20
-	b	.L406
-.L408:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,24
-.L406:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L407
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.w	$r12,$r3,20
-	slli.w	$r12,$r12,0
-	bne	$r12,$r13,.L408
-.L407:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L409
-	ld.d	$r12,$r3,24
-	b	.L411
-.L409:
-	or	$r12,$r0,$r0
-.L411:
-	nop
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L282
+.L284:
+	addi.d	$r6,$r6,-1
+	addi.d	$r4,$r4,4
+.L282:
+	beqz	$r6,.L283
+	ldptr.w	$r12,$r4,0
+	bne	$r5,$r12,.L284
+.L283:
+	bnez	$r6,.L285
+	or	$r4,$r0,$r0
+.L285:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE64:
@@ -2841,55 +2564,40 @@ wmemchr:
 wmemcmp:
 .LFB65 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	b	.L414
-.L416:
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,4
-	st.d	$r12,$r3,16
-.L414:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L415
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	beq	$r13,$r12,.L416
-.L415:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L417
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	blt	$r13,$r12,.L418
-	ld.d	$r12,$r3,24
-	ldptr.w	$r13,$r12,0
-	ld.d	$r12,$r3,16
-	ldptr.w	$r12,$r12,0
-	slt	$r12,$r12,$r13
-	bstrpick.w	$r12,$r12,7,0
-	slli.w	$r12,$r12,0
-	b	.L420
-.L418:
-	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
-	b	.L420
-.L417:
-	or	$r12,$r0,$r0
-.L420:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L288
+.L290:
+	addi.d	$r6,$r6,-1
+	addi.d	$r4,$r4,4
+	addi.d	$r5,$r5,4
+.L288:
+	beqz	$r6,.L289
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	beq	$r13,$r12,.L290
+.L289:
+	beqz	$r6,.L292
+	ldptr.w	$r13,$r4,0
+	ldptr.w	$r12,$r5,0
+	blt	$r13,$r12,.L293
+	or	$r4,$r13,$r0
+	slt	$r4,$r12,$r4
+	b	.L291
+.L292:
+	or	$r4,$r0,$r0
+	b	.L291
+.L293:
+	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
+.L291:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE65:
@@ -2900,32 +2608,26 @@ wmemcmp:
 wmemcpy:
 .LFB66 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L424
-.L425:
-	ld.d	$r13,$r3,16
-	addi.d	$r12,$r13,4
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	addi.d	$r14,$r12,4
-	st.d	$r14,$r3,40
-	ldptr.w	$r13,$r13,0
-	stptr.w	$r13,$r12,0
-.L424:
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,8
-	bnez	$r12,.L425
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	b	.L295
+.L296:
+	ldx.w	$r13,$r5,$r12
+	stx.w	$r13,$r4,$r12
+	addi.d	$r12,$r12,4
+.L295:
+	addi.d	$r6,$r6,-1
+	addi.w	$r13,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r13,.L296
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE66:
@@ -2936,65 +2638,43 @@ wmemcpy:
 wmemmove:
 .LFB67 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bne	$r13,$r12,.L429
-	ld.d	$r12,$r3,24
-	b	.L430
-.L429:
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	sub.d	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,2
-	bgeu	$r13,$r12,.L431
-	b	.L432
-.L433:
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,2
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,8
-	slli.d	$r13,$r13,2
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ldptr.w	$r13,$r13,0
-	stptr.w	$r13,$r12,0
-.L432:
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,8
-	bnez	$r12,.L433
-	b	.L434
-.L431:
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L435
-.L436:
-	ld.d	$r13,$r3,16
-	addi.d	$r12,$r13,4
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	addi.d	$r14,$r12,4
-	st.d	$r14,$r3,40
-	ldptr.w	$r13,$r13,0
-	stptr.w	$r13,$r12,0
-.L435:
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,8
-	bnez	$r12,.L436
-.L434:
-	ld.d	$r12,$r3,24
-.L430:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	beq	$r4,$r5,.L298
+	sub.d	$r12,$r4,$r5
+	slli.d	$r13,$r6,2
+	bgeu	$r12,$r13,.L303
+	addi.d	$r6,$r6,-1
+	slli.d	$r6,$r6,2
+	b	.L300
+.L301:
+	ldx.w	$r12,$r5,$r6
+	stx.w	$r12,$r4,$r6
+	addi.d	$r6,$r6,-4
+.L300:
+	addi.w	$r12,$r0,-4			# 0xfffffffffffffffc
+	bne	$r6,$r12,.L301
+	b	.L298
+.L302:
+	ldx.w	$r13,$r5,$r12
+	stx.w	$r13,$r4,$r12
+	addi.d	$r12,$r12,4
+	b	.L299
+.L303:
+	or	$r12,$r0,$r0
+.L299:
+	addi.d	$r6,$r6,-1
+	addi.w	$r13,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r13,.L302
+.L298:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE67:
@@ -3005,30 +2685,25 @@ wmemmove:
 wmemset:
 .LFB68 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	or	$r12,$r5,$r0
-	st.d	$r6,$r3,8
-	st.w	$r5,$r3,20
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L439
-.L440:
-	ld.d	$r12,$r3,40
-	addi.d	$r13,$r12,4
-	st.d	$r13,$r3,40
-	ld.w	$r13,$r3,20
-	stptr.w	$r13,$r12,0
-.L439:
-	ld.d	$r12,$r3,8
-	addi.d	$r13,$r12,-1
-	st.d	$r13,$r3,8
-	bnez	$r12,.L440
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	b	.L305
+.L306:
+	addi.d	$r12,$r12,4
+	st.w	$r5,$r12,-4
+.L305:
+	addi.d	$r6,$r6,-1
+	addi.w	$r13,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r13,.L306
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE68:
@@ -3039,65 +2714,46 @@ wmemset:
 bcopy:
 .LFB69 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bgeu	$r13,$r12,.L444
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	b	.L445
-.L446:
-	ld.d	$r12,$r3,40
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bgeu	$r4,$r5,.L308
+	add.d	$r4,$r4,$r6
+	add.d	$r5,$r5,$r6
+	or	$r13,$r6,$r0
+	b	.L309
+.L310:
+	sub.d	$r12,$r0,$r6
+	sub.d	$r14,$r4,$r6
+	addi.d	$r14,$r14,-1
+	ldx.b	$r14,$r14,$r13
+	add.d	$r12,$r5,$r12
 	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,32
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,40
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,32
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L445:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L446
-	b	.L450
-.L444:
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	beq	$r13,$r12,.L450
-	b	.L448
-.L449:
-	ld.d	$r13,$r3,24
-	addi.d	$r12,$r13,1
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	addi.d	$r14,$r12,1
-	st.d	$r14,$r3,16
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L448:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L449
-.L450:
-	nop
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	stx.b	$r14,$r12,$r13
+	addi.d	$r13,$r13,-1
+.L309:
+	bnez	$r13,.L310
+	b	.L307
+.L308:
+	bne	$r4,$r5,.L314
+	b	.L307
+.L313:
+	ldx.b	$r13,$r4,$r12
+	stx.b	$r13,$r5,$r12
+	addi.d	$r12,$r12,1
+	b	.L312
+.L314:
+	or	$r12,$r0,$r0
+.L312:
+	bne	$r12,$r6,.L313
+.L307:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE69:
@@ -3110,16 +2766,16 @@ rotl64:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r12,$r3,4
-	ld.d	$r13,$r3,8
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r0,$r12
-	rotr.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sub.w	$r5,$r0,$r5
+	rotr.d	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE70:
@@ -3132,15 +2788,15 @@ rotr64:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r12,$r3,4
-	ld.d	$r13,$r3,8
-	ld.w	$r12,$r3,4
-	rotr.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	rotr.d	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE71:
@@ -3153,19 +2809,16 @@ rotl32:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r12,$r3,12
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r0,$r12
-	rotr.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sub.w	$r5,$r0,$r5
+	rotr.w	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE72:
@@ -3178,18 +2831,15 @@ rotr32:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r12,$r3,12
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	rotr.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	rotr.w	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE73:
@@ -3202,22 +2852,18 @@ rotl_sz:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r12,$r3,4
-	ld.d	$r13,$r3,8
-	ld.w	$r12,$r3,4
-	sll.d	$r13,$r13,$r12
-	addi.w	$r14,$r0,64			# 0x40
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	ld.d	$r14,$r3,8
-	srl.d	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sll.d	$r12,$r4,$r5
+	sub.w	$r5,$r0,$r5
+	srl.d	$r4,$r4,$r5
+	or	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE74:
@@ -3230,22 +2876,18 @@ rotr_sz:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r12,$r3,4
-	ld.d	$r13,$r3,8
-	ld.w	$r12,$r3,4
-	srl.d	$r13,$r13,$r12
-	addi.w	$r14,$r0,64			# 0x40
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	ld.d	$r14,$r3,8
-	sll.d	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srl.d	$r12,$r4,$r5
+	sub.w	$r5,$r0,$r5
+	sll.d	$r4,$r4,$r5
+	or	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE75:
@@ -3258,31 +2900,20 @@ rotl16:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.h	$r12,$r3,14
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.hu	$r12,$r3,14
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,8
-	sll.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r13,$r12,15,0
-	ld.hu	$r12,$r3,14
-	slli.w	$r14,$r12,0
-	addi.w	$r15,$r0,16			# 0x10
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	srl.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r12,$r12,15,0
-	or	$r12,$r13,$r12
-	bstrpick.w	$r12,$r12,15,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sll.w	$r13,$r4,$r5
+	addi.w	$r12,$r0,16			# 0x10
+	sub.w	$r12,$r12,$r5
+	srl.w	$r4,$r4,$r12
+	or	$r4,$r4,$r13
+	bstrpick.w	$r4,$r4,15,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE76:
@@ -3295,31 +2926,20 @@ rotr16:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.h	$r12,$r3,14
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.hu	$r12,$r3,14
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,8
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r13,$r12,15,0
-	ld.hu	$r12,$r3,14
-	slli.w	$r14,$r12,0
-	addi.w	$r15,$r0,16			# 0x10
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	sll.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r12,$r12,15,0
-	or	$r12,$r13,$r12
-	bstrpick.w	$r12,$r12,15,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srl.w	$r13,$r4,$r5
+	addi.w	$r12,$r0,16			# 0x10
+	sub.w	$r12,$r12,$r5
+	sll.w	$r4,$r4,$r12
+	or	$r4,$r4,$r13
+	bstrpick.w	$r4,$r4,15,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE77:
@@ -3332,31 +2952,20 @@ rotl8:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.b	$r12,$r3,15
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.bu	$r12,$r3,15
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,8
-	sll.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r13,$r12,7,0
-	ld.bu	$r12,$r3,15
-	slli.w	$r14,$r12,0
-	addi.w	$r15,$r0,8			# 0x8
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	srl.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r12,$r12,7,0
-	or	$r12,$r13,$r12
-	bstrpick.w	$r12,$r12,7,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sll.w	$r13,$r4,$r5
+	addi.w	$r12,$r0,8			# 0x8
+	sub.w	$r12,$r12,$r5
+	srl.w	$r4,$r4,$r12
+	or	$r4,$r4,$r13
+	bstrpick.w	$r4,$r4,7,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE78:
@@ -3369,31 +2978,20 @@ rotr8:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.b	$r12,$r3,15
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.bu	$r12,$r3,15
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,8
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r13,$r12,7,0
-	ld.bu	$r12,$r3,15
-	slli.w	$r14,$r12,0
-	addi.w	$r15,$r0,8			# 0x8
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	sll.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	bstrpick.w	$r12,$r12,7,0
-	or	$r12,$r13,$r12
-	bstrpick.w	$r12,$r12,7,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srl.w	$r13,$r4,$r5
+	addi.w	$r12,$r0,8			# 0x8
+	sub.w	$r12,$r12,$r5
+	sll.w	$r4,$r4,$r12
+	or	$r4,$r4,$r13
+	bstrpick.w	$r4,$r4,7,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE79:
@@ -3404,28 +3002,20 @@ rotr8:
 bswap_16:
 .LFB80 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.h	$r12,$r3,14
-	addi.w	$r12,$r0,255			# 0xff
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,24
-	slli.d	$r12,$r12,8
-	ld.hu	$r13,$r3,14
-	and	$r12,$r13,$r12
-	srli.d	$r13,$r12,8
-	ld.d	$r14,$r3,24
-	ld.hu	$r12,$r3,14
-	and	$r12,$r12,$r14
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r12,$r12,8
-	bstrpick.w	$r12,$r12,15,0
-	or	$r12,$r12,$r13
-	bstrpick.w	$r12,$r12,15,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r12,$r4,8
+	bstrpick.w	$r4,$r4,7,0
+	slli.d	$r4,$r4,8
+	or	$r4,$r12,$r4
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE80:
@@ -3436,46 +3026,31 @@ bswap_16:
 bswap_32:
 .LFB81 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r12,$r4,31,0
+	lu12i.w	$r13,16711680>>12			# 0xff0000
+	and	$r13,$r12,$r13
 	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	addi.w	$r12,$r0,255			# 0xff
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,24
-	slli.d	$r12,$r12,24
-	ld.wu	$r13,$r3,12
-	and	$r12,$r13,$r12
-	srli.d	$r14,$r12,24
-	ld.d	$r12,$r3,24
-	slli.d	$r12,$r12,16
-	ld.wu	$r13,$r3,12
-	and	$r12,$r13,$r12
-	srli.d	$r12,$r12,8
-	or	$r13,$r14,$r0
-	or	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,24
-	slli.w	$r12,$r12,8
-	slli.w	$r14,$r12,0
-	ld.w	$r12,$r3,12
-	and	$r12,$r12,$r14
-	slli.w	$r12,$r12,0
-	slli.w	$r12,$r12,8
-	slli.w	$r12,$r12,0
-	or	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.d	$r14,$r3,24
-	ld.w	$r12,$r3,12
-	and	$r12,$r12,$r14
-	slli.w	$r12,$r12,0
+	lu12i.w	$r14,61440>>12			# 0xf000
+	ori	$r14,$r14,3840
+	and	$r14,$r12,$r14
 	slli.w	$r12,$r12,24
-	slli.w	$r12,$r12,0
-	or	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	slli.w	$r14,$r14,8
+	or	$r12,$r12,$r14
+	srli.w	$r4,$r4,24
+	or	$r4,$r12,$r4
+	bstrpick.d	$r12,$r13,39,8
+	or	$r4,$r4,$r12
+	slli.w	$r4,$r4,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE81:
@@ -3486,60 +3061,49 @@ bswap_32:
 bswap_64:
 .LFB82 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	addi.w	$r12,$r0,255			# 0xff
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,24
-	slli.d	$r13,$r12,56
-	ld.d	$r12,$r3,8
-	and	$r12,$r13,$r12
-	srli.d	$r13,$r12,56
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,48
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r13,$r4,56
+	or	$r12,$r0,$r0
+	lu32i.d	$r12,0xffff000000000000>>32
+	lu52i.d	$r12,$r12,0xf0000000000000>>52
+	and	$r12,$r4,$r12
 	srli.d	$r12,$r12,40
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,40
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
-	srli.d	$r12,$r12,24
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,32
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
-	srli.d	$r12,$r12,8
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,24
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
-	slli.d	$r12,$r12,8
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,16
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
-	slli.d	$r12,$r12,24
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,24
-	slli.d	$r14,$r12,8
-	ld.d	$r12,$r3,8
-	and	$r12,$r14,$r12
-	slli.d	$r12,$r12,40
-	or	$r13,$r13,$r12
-	ld.d	$r14,$r3,8
-	ld.d	$r12,$r3,24
-	and	$r12,$r14,$r12
-	slli.d	$r12,$r12,56
-	or	$r12,$r13,$r12
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r12,$r12,$r13
+	or	$r13,$r0,$r0
+	lu32i.d	$r13,0xff0000000000>>32
+	and	$r13,$r4,$r13
+	srli.d	$r13,$r13,24
+	or	$r12,$r12,$r13
+	or	$r13,$r0,$r0
+	lu32i.d	$r13,0xff00000000>>32
+	and	$r13,$r4,$r13
+	srli.d	$r13,$r13,8
+	or	$r12,$r12,$r13
+	lu12i.w	$r13,-16777216>>12			# 0xffffffffff000000
+	lu32i.d	$r13,0>>32
+	and	$r13,$r4,$r13
+	slli.d	$r13,$r13,8
+	or	$r12,$r12,$r13
+	lu12i.w	$r13,16711680>>12			# 0xff0000
+	and	$r13,$r4,$r13
+	slli.d	$r13,$r13,24
+	or	$r12,$r12,$r13
+	lu12i.w	$r13,61440>>12			# 0xf000
+	ori	$r13,$r13,3840
+	and	$r13,$r4,$r13
+	slli.d	$r13,$r13,40
+	or	$r12,$r12,$r13
+	slli.d	$r4,$r4,56
+	or	$r4,$r12,$r4
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE82:
@@ -3550,37 +3114,31 @@ bswap_64:
 ffs:
 .LFB83 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	st.w	$r0,$r3,28
-	b	.L492
-.L495:
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,28
-	srl.w	$r12,$r13,$r12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L493
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	b	.L494
-.L493:
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L492:
-	ld.w	$r12,$r3,28
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,31			# 0x1f
-	bleu	$r13,$r12,.L495
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	or	$r12,$r0,$r0
-.L494:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	b	.L329
+.L332:
+	srl.w	$r13,$r4,$r12
+	andi	$r13,$r13,1
+	beqz	$r13,.L330
+	addi.w	$r4,$r12,1
+	b	.L331
+.L330:
+	addi.w	$r12,$r12,1
+.L329:
+	addi.w	$r13,$r0,32			# 0x20
+	bne	$r12,$r13,.L332
+	or	$r4,$r0,$r0
+.L331:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE83:
@@ -3593,31 +3151,28 @@ libiberty_ffs:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r23,$r3,8
-	.cfi_offset 23, -8
-	bnez	$r4,.L498
-	or	$r23,$r0,$r0
-	b	.L499
-.L498:
-	or	$r12,$r4,$r0
-	addi.w	$r23,$r0,1			# 0x1
-	b	.L500
-.L501:
-	srai.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	addi.w	$r13,$r23,1
-	slli.w	$r23,$r13,0
-.L500:
-	andi	$r13,$r12,1
-	slli.w	$r13,$r13,0
-	beqz	$r13,.L501
-	nop
-.L499:
-	or	$r4,$r23,$r0
-	ld.d	$r23,$r3,8
-	.cfi_restore 23
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	beqz	$r4,.L337
+	addi.w	$r12,$r0,1			# 0x1
+	b	.L335
+.L336:
+	srai.w	$r4,$r4,1
+	addi.w	$r12,$r12,1
+.L335:
+	andi	$r13,$r4,1
+	beqz	$r13,.L336
+	or	$r4,$r12,$r0
+	b	.L334
+.L337:
+	or	$r4,$r0,$r0
+.L334:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE84:
@@ -3630,26 +3185,30 @@ gl_isinff:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fld.s	$f1,$r3,12
-	la.local	$r12,.LC0
-	fld.s	$f0,$r12,0
-	fcmp.slt.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L504
-	fld.s	$f1,$r3,12
-	la.local	$r12,.LC1
-	fld.s	$f0,$r12,0
-	fcmp.sgt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L509
-.L504:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L507
-.L509:
-	or	$r12,$r0,$r0
-.L507:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	pcalau12i	$r12,%pc_hi20(.LC0)
+	fld.s	$f1,$r12,%pc_lo12(.LC0)
+	fcmp.slt.s	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L341
+	pcalau12i	$r12,%pc_hi20(.LC1)
+	fld.s	$f1,$r12,%pc_lo12(.LC1)
+	fcmp.sgt.s	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L344
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L339
+.L341:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L339
+.L344:
+	or	$r4,$r0,$r0
+.L339:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE85:
@@ -3662,26 +3221,30 @@ gl_isinfd:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC2
-	fld.d	$f0,$r12,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L512
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC3
-	fld.d	$f0,$r12,0
-	fcmp.sgt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L517
-.L512:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L515
-.L517:
-	or	$r12,$r0,$r0
-.L515:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	pcalau12i	$r12,%pc_hi20(.LC4)
+	fld.d	$f1,$r12,%pc_lo12(.LC4)
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L348
+	pcalau12i	$r12,%pc_hi20(.LC5)
+	fld.d	$f1,$r12,%pc_lo12(.LC5)
+	fcmp.sgt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L351
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L346
+.L348:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L346
+.L351:
+	or	$r4,$r0,$r0
+.L346:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE86:
@@ -3695,36 +3258,48 @@ gl_isinfl:
 	addi.d	$r3,$r3,-32
 	.cfi_def_cfa_offset 32
 	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r24,$r3,8
+	stptr.d	$r25,$r3,0
 	.cfi_offset 1, -8
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	la.local	$r12,.LC4
+	.cfi_offset 22, -16
+	.cfi_offset 24, -24
+	.cfi_offset 25, -32
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r24,$r4,$r0
+	or	$r25,$r5,$r0
+	la.local	$r12,.LC8
 	ldptr.d	$r6,$r12,0
 	ld.d	$r7,$r12,8
-	ldptr.d	$r4,$r3,0
-	ld.d	$r5,$r3,8
+	or	$r4,$r24,$r0
 	bl	%plt(__lttf2)
-	or	$r12,$r4,$r0
-	blt	$r4,$r0,.L520
-	la.local	$r12,.LC5
+	blt	$r4,$r0,.L355
+	la.local	$r12,.LC9
 	ldptr.d	$r6,$r12,0
 	ld.d	$r7,$r12,8
-	ldptr.d	$r4,$r3,0
-	ld.d	$r5,$r3,8
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__gttf2)
-	or	$r12,$r4,$r0
-	ble	$r12,$r0,.L525
-.L520:
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L523
-.L525:
-	or	$r12,$r0,$r0
-.L523:
-	or	$r4,$r12,$r0
+	ble	$r4,$r0,.L358
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L353
+.L355:
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L353
+.L358:
+	or	$r4,$r0,$r0
+.L353:
 	ld.d	$r1,$r3,24
 	.cfi_restore 1
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r24,$r3,8
+	.cfi_restore 24
+	ldptr.d	$r25,$r3,0
+	.cfi_restore 25
 	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE87:
@@ -3738,23 +3313,29 @@ _Qp_itoq:
 	addi.d	$r3,$r3,-32
 	.cfi_def_cfa_offset 32
 	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r12,$r3,4
-	fld.s	$f0,$r3,4
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	movgr2fr.d	$f0,$r5
 	ffint.d.w	$f0,$f0
 	bl	%plt(__extenddftf2)
-	or	$r14,$r4,$r0
+	or	$r12,$r4,$r0
 	or	$r13,$r5,$r0
-	ld.d	$r12,$r3,8
-	stptr.d	$r14,$r12,0
-	st.d	$r13,$r12,8
-	nop
+	stptr.d	$r12,$r23,0
+	st.d	$r13,$r23,8
 	ld.d	$r1,$r3,24
 	.cfi_restore 1
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
 	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE88:
@@ -3765,59 +3346,40 @@ _Qp_itoq:
 ldexpf:
 .LFB89 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	fst.s	$f0,$r3,12
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,8
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,12
-	fcmp.cun.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L530
-	fld.s	$f0,$r3,12
-	fadd.s	$f0,$f0,$f0
-	fld.s	$f1,$r3,12
-	fcmp.ceq.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L530
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	bge	$r12,$r0,.L531
-	la.local	$r12,.LC6
-	fld.s	$f0,$r12,0
-	b	.L532
-.L531:
-	la.local	$r12,.LC7
-	fld.s	$f0,$r12,0
-.L532:
-	fst.s	$f0,$r3,28
-.L535:
-	ld.w	$r12,$r3,8
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L533
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,28
-	fmul.s	$f0,$f1,$f0
-	fst.s	$f0,$r3,12
-.L533:
-	ld.w	$r12,$r3,8
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L537
-	fld.s	$f0,$r3,28
-	fmul.s	$f0,$f0,$f0
-	fst.s	$f0,$r3,28
-	b	.L535
-.L537:
-	nop
-.L530:
-	fld.s	$f0,$r3,12
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L361
+	fadd.s	$f1,$f0,$f0
+	fcmp.ceq.s	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L361
+	bge	$r4,$r0,.L365
+	pcalau12i	$r12,%pc_hi20(.LC10)
+	fld.s	$f1,$r12,%pc_lo12(.LC10)
+	b	.L364
+.L365:
+	pcalau12i	$r12,%pc_hi20(.LC11)
+	fld.s	$f1,$r12,%pc_lo12(.LC11)
+.L364:
+	andi	$r12,$r4,1
+	beqz	$r12,.L363
+	fmul.s	$f0,$f0,$f1
+.L363:
+	srli.w	$r12,$r4,31
+	add.w	$r4,$r12,$r4
+	srai.w	$r4,$r4,1
+	beqz	$r4,.L361
+	fmul.s	$f1,$f1,$f1
+	b	.L364
+.L361:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE89:
@@ -3828,59 +3390,40 @@ ldexpf:
 ldexp:
 .LFB90 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	fst.d	$f0,$r3,8
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,4
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,8
-	fcmp.cun.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L540
-	fld.d	$f0,$r3,8
-	fadd.d	$f0,$f0,$f0
-	fld.d	$f1,$r3,8
-	fcmp.ceq.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L540
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	bge	$r12,$r0,.L541
-	la.local	$r12,.LC8
-	fld.d	$f0,$r12,0
-	b	.L542
-.L541:
-	la.local	$r12,.LC9
-	fld.d	$f0,$r12,0
-.L542:
-	fst.d	$f0,$r3,24
-.L545:
-	ld.w	$r12,$r3,4
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L543
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,24
-	fmul.d	$f0,$f1,$f0
-	fst.d	$f0,$r3,8
-.L543:
-	ld.w	$r12,$r3,4
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,4
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L547
-	fld.d	$f0,$r3,24
-	fmul.d	$f0,$f0,$f0
-	fst.d	$f0,$r3,24
-	b	.L545
-.L547:
-	nop
-.L540:
-	fld.d	$f0,$r3,8
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L367
+	fadd.d	$f1,$f0,$f0
+	fcmp.ceq.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L367
+	bge	$r4,$r0,.L371
+	pcalau12i	$r12,%pc_hi20(.LC12)
+	fld.d	$f1,$r12,%pc_lo12(.LC12)
+	b	.L370
+.L371:
+	pcalau12i	$r12,%pc_hi20(.LC13)
+	fld.d	$f1,$r12,%pc_lo12(.LC13)
+.L370:
+	andi	$r12,$r4,1
+	beqz	$r12,.L369
+	fmul.d	$f0,$f0,$f1
+.L369:
+	srli.w	$r12,$r4,31
+	add.w	$r4,$r12,$r4
+	srai.w	$r4,$r4,1
+	beqz	$r4,.L367
+	fmul.d	$f1,$f1,$f1
+	b	.L370
+.L367:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE90:
@@ -3894,94 +3437,97 @@ ldexpl:
 	addi.d	$r3,$r3,-64
 	.cfi_def_cfa_offset 64
 	st.d	$r1,$r3,56
+	st.d	$r22,$r3,48
+	st.d	$r23,$r3,40
+	st.d	$r24,$r3,32
+	st.d	$r25,$r3,24
+	st.d	$r26,$r3,16
+	st.d	$r27,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	ld.d	$r6,$r3,16
-	ld.d	$r7,$r3,24
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	addi.d	$r22,$r3,64
+	.cfi_def_cfa 22, 0
+	or	$r24,$r4,$r0
+	or	$r25,$r5,$r0
+	or	$r23,$r6,$r0
+	or	$r6,$r24,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r24,$r0
 	bl	%plt(__unordtf2)
-	or	$r12,$r4,$r0
-	bnez	$r4,.L550
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	or	$r6,$r13,$r0
-	or	$r7,$r12,$r0
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	bnez	$r4,.L373
+	or	$r6,$r24,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__addtf3)
-	or	$r15,$r4,$r0
-	or	$r14,$r5,$r0
-	or	$r13,$r15,$r0
-	or	$r12,$r14,$r0
-	or	$r6,$r13,$r0
-	or	$r7,$r12,$r0
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
-	bl	%plt(__netf2)
 	or	$r12,$r4,$r0
-	beqz	$r12,.L550
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bge	$r12,$r0,.L552
-	la.local	$r14,.LC10
-	ldptr.d	$r13,$r14,0
-	ld.d	$r12,$r14,8
-	b	.L553
-.L552:
-	la.local	$r14,.LC11
-	ldptr.d	$r13,$r14,0
-	ld.d	$r12,$r14,8
-.L553:
-	st.d	$r13,$r3,32
-	st.d	$r12,$r3,40
-.L556:
-	ld.w	$r12,$r3,12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L554
-	ld.d	$r6,$r3,32
-	ld.d	$r7,$r3,40
-	ld.d	$r4,$r3,16
-	ld.d	$r5,$r3,24
+	or	$r13,$r5,$r0
+	or	$r6,$r12,$r0
+	or	$r7,$r13,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
+	bl	%plt(__netf2)
+	beqz	$r4,.L373
+	bge	$r23,$r0,.L378
+	la.local	$r12,.LC14
+	ldptr.d	$r26,$r12,0
+	ld.d	$r27,$r12,8
+	b	.L377
+.L378:
+	la.local	$r12,.LC15
+	ldptr.d	$r26,$r12,0
+	ld.d	$r27,$r12,8
+.L377:
+	andi	$r12,$r23,1
+	beqz	$r12,.L376
+	or	$r6,$r26,$r0
+	or	$r7,$r27,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__multf3)
-	or	$r13,$r4,$r0
-	or	$r12,$r5,$r0
-	st.d	$r13,$r3,16
-	st.d	$r12,$r3,24
-.L554:
-	ld.w	$r12,$r3,12
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L559
-	ld.d	$r6,$r3,32
-	ld.d	$r7,$r3,40
-	ld.d	$r4,$r3,32
-	ld.d	$r5,$r3,40
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r24,$r12,$r0
+	or	$r25,$r13,$r0
+.L376:
+	srli.w	$r12,$r23,31
+	add.w	$r12,$r12,$r23
+	srai.w	$r23,$r12,1
+	beqz	$r23,.L373
+	or	$r6,$r26,$r0
+	or	$r7,$r27,$r0
+	or	$r4,$r26,$r0
+	or	$r5,$r27,$r0
 	bl	%plt(__multf3)
-	or	$r13,$r4,$r0
-	or	$r12,$r5,$r0
-	st.d	$r13,$r3,32
-	st.d	$r12,$r3,40
-	b	.L556
-.L559:
-	nop
-.L550:
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r26,$r12,$r0
+	or	$r27,$r13,$r0
+	b	.L377
+.L373:
+	or	$r4,$r24,$r0
+	or	$r5,$r25,$r0
 	ld.d	$r1,$r3,56
 	.cfi_restore 1
+	ld.d	$r22,$r3,48
+	.cfi_restore 22
+	ld.d	$r23,$r3,40
+	.cfi_restore 23
+	ld.d	$r24,$r3,32
+	.cfi_restore 24
+	ld.d	$r25,$r3,24
+	.cfi_restore 25
+	ld.d	$r26,$r3,16
+	.cfi_restore 26
+	ld.d	$r27,$r3,8
+	.cfi_restore 27
 	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE91:
@@ -3992,35 +3538,26 @@ ldexpl:
 memxor:
 .LFB92 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,40
-	b	.L562
-.L563:
-	ld.d	$r12,$r3,16
-	addi.d	$r13,$r12,1
-	st.d	$r13,$r3,16
-	ld.b	$r14,$r12,0
-	ld.d	$r12,$r3,40
-	addi.d	$r13,$r12,1
-	st.d	$r13,$r3,40
-	ld.b	$r13,$r12,0
-	xor	$r13,$r14,$r13
-	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L562:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L563
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	b	.L381
+.L382:
+	ldx.b	$r14,$r5,$r12
+	ldx.b	$r13,$r4,$r12
+	xor	$r13,$r13,$r14
+	stx.b	$r13,$r4,$r12
+	addi.d	$r12,$r12,1
+.L381:
+	bne	$r12,$r6,.L382
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE92:
@@ -4031,52 +3568,53 @@ memxor:
 strncat:
 .LFB93 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r1,$r3,56
+	addi.d	$r3,$r3,-48
+	.cfi_def_cfa_offset 48
+	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r23,$r3,24
+	st.d	$r24,$r3,16
+	st.d	$r25,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r4,$r3,24
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r25,$r4,$r0
+	or	$r24,$r5,$r0
+	or	$r23,$r6,$r0
 	bl	strlen
-	or	$r13,$r4,$r0
-	ld.d	$r12,$r3,24
-	add.d	$r12,$r12,$r4
-	st.d	$r12,$r3,40
-	b	.L567
-.L569:
-	ld.d	$r12,$r3,16
+	add.d	$r12,$r25,$r4
+	b	.L384
+.L386:
+	addi.d	$r24,$r24,1
 	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,-1
-	st.d	$r12,$r3,8
-.L567:
-	ld.d	$r12,$r3,8
-	beqz	$r12,.L568
-	ld.d	$r12,$r3,16
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,40
+	addi.d	$r23,$r23,-1
+.L384:
+	beqz	$r23,.L385
+	ld.b	$r13,$r24,0
 	st.b	$r13,$r12,0
-	ld.d	$r12,$r3,40
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L569
-.L568:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L570
-	ld.d	$r12,$r3,40
+	ext.w.b	$r13,$r13
+	bnez	$r13,.L386
+.L385:
+	bnez	$r23,.L387
 	st.b	$r0,$r12,0
-.L570:
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,56
+.L387:
+	or	$r4,$r25,$r0
+	ld.d	$r1,$r3,40
 	.cfi_restore 1
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r23,$r3,24
+	.cfi_restore 23
+	ld.d	$r24,$r3,16
+	.cfi_restore 24
+	ld.d	$r25,$r3,8
+	.cfi_restore 25
+	addi.d	$r3,$r3,48
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE93:
@@ -4087,31 +3625,26 @@ strncat:
 strnlen:
 .LFB94 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	st.d	$r0,$r3,24
-	b	.L574
-.L579:
-	nop
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-.L574:
-	ld.d	$r13,$r3,24
-	ldptr.d	$r12,$r3,0
-	bgeu	$r13,$r12,.L575
-	ld.d	$r13,$r3,8
-	ld.d	$r12,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L579
-.L575:
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r4,$r0,$r0
+	b	.L389
+.L391:
+	addi.d	$r4,$r4,1
+.L389:
+	beq	$r4,$r5,.L390
+	ldx.b	$r13,$r12,$r4
+	bnez	$r13,.L391
+.L390:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE94:
@@ -4122,41 +3655,34 @@ strnlen:
 strpbrk:
 .LFB95 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	b	.L582
-.L586:
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,24
-	b	.L583
-.L585:
-	ld.d	$r12,$r3,24
-	addi.d	$r13,$r12,1
-	st.d	$r13,$r3,24
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	bne	$r13,$r12,.L583
-	ld.d	$r12,$r3,8
-	b	.L584
-.L583:
-	ld.d	$r12,$r3,24
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L585
-	ld.d	$r12,$r3,8
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	b	.L393
+.L395:
 	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L582:
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	bnez	$r12,.L586
-	or	$r12,$r0,$r0
-.L584:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	ld.b	$r14,$r12,-1
+	ld.b	$r13,$r4,0
+	beq	$r14,$r13,.L394
+	b	.L396
+.L398:
+	or	$r12,$r5,$r0
+.L396:
+	ld.b	$r13,$r12,0
+	bnez	$r13,.L395
+	addi.d	$r4,$r4,1
+.L393:
+	ld.b	$r12,$r4,0
+	bnez	$r12,.L398
+	or	$r4,$r0,$r0
+.L394:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE95:
@@ -4167,29 +3693,26 @@ strpbrk:
 strrchr:
 .LFB96 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r13,$r3,12
-	st.d	$r0,$r3,24
-.L590:
+	or	$r4,$r0,$r0
+.L401:
 	ld.b	$r13,$r12,0
-	slli.w	$r14,$r13,0
-	ld.w	$r13,$r3,12
-	slli.w	$r13,$r13,0
-	bne	$r13,$r14,.L589
-	st.d	$r12,$r3,24
-.L589:
-	or	$r13,$r12,$r0
-	addi.d	$r12,$r13,1
-	ld.bu	$r13,$r13,0
-	bstrpick.w	$r13,$r13,7,0
-	bnez	$r13,.L590
-	ld.d	$r12,$r3,24
+	bne	$r5,$r13,.L400
 	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L400:
+	addi.d	$r12,$r12,1
+	ld.b	$r13,$r12,-1
+	bnez	$r13,.L401
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE96:
@@ -4203,45 +3726,62 @@ strstr:
 	addi.d	$r3,$r3,-48
 	.cfi_def_cfa_offset 48
 	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r23,$r3,24
+	st.d	$r24,$r3,16
+	st.d	$r25,$r3,8
+	stptr.d	$r26,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ldptr.d	$r4,$r3,0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	or	$r24,$r5,$r0
+	or	$r4,$r24,$r0
 	bl	strlen
-	st.d	$r4,$r3,24
-	ld.d	$r12,$r3,24
-	bnez	$r12,.L596
-	ld.d	$r12,$r3,8
-	b	.L595
-.L598:
-	ld.d	$r6,$r3,24
-	ldptr.d	$r5,$r3,0
-	ld.d	$r4,$r3,16
+	or	$r25,$r4,$r0
+	beqz	$r25,.L407
+	ld.b	$r26,$r24,0
+	b	.L405
+.L406:
+	or	$r6,$r25,$r0
+	or	$r5,$r24,$r0
+	or	$r4,$r23,$r0
 	bl	strncmp
-	or	$r12,$r4,$r0
-	bnez	$r12,.L597
-	ld.d	$r12,$r3,16
-	b	.L595
-.L597:
-	ld.d	$r12,$r3,16
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,8
-.L596:
-	ldptr.d	$r12,$r3,0
-	ld.b	$r12,$r12,0
-	or	$r5,$r12,$r0
-	ld.d	$r4,$r3,8
+	beqz	$r4,.L408
+	addi.d	$r23,$r23,1
+.L405:
+	or	$r5,$r26,$r0
+	or	$r4,$r23,$r0
 	bl	strchr
-	st.d	$r4,$r3,16
-	ld.d	$r12,$r3,16
-	bnez	$r12,.L598
-	or	$r12,$r0,$r0
-.L595:
-	or	$r4,$r12,$r0
+	or	$r23,$r4,$r0
+	bnez	$r23,.L406
+	or	$r4,$r0,$r0
+	b	.L404
+.L407:
+	or	$r4,$r23,$r0
+	b	.L404
+.L408:
+	or	$r4,$r23,$r0
+.L404:
 	ld.d	$r1,$r3,40
 	.cfi_restore 1
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r23,$r3,24
+	.cfi_restore 23
+	ld.d	$r24,$r3,16
+	.cfi_restore 24
+	ld.d	$r25,$r3,8
+	.cfi_restore 25
+	ldptr.d	$r26,$r3,0
+	.cfi_restore 26
 	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE97:
@@ -4254,34 +3794,28 @@ copysign:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fst.d	$f1,$r3,0
-	fld.d	$f0,$r3,8
-	movgr2fr.d	$f1,$r0
-	fcmp.slt.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L601
-	fld.d	$f0,$r3,0
-	movgr2fr.d	$f1,$r0
-	fcmp.sgt.d	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L603
-.L601:
-	fld.d	$f0,$r3,8
-	movgr2fr.d	$f1,$r0
-	fcmp.sgt.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L604
-	fld.d	$f0,$r3,0
-	movgr2fr.d	$f1,$r0
-	fcmp.slt.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L604
-.L603:
-	fld.d	$f0,$r3,8
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	movgr2fr.d	$f2,$r0
+	fcmp.slt.d	$fcc0,$f0,$f2
+	bceqz	$fcc0,.L410
+	fcmp.sgt.d	$fcc0,$f1,$f2
+	bcnez	$fcc0,.L412
+.L410:
+	movgr2fr.d	$f2,$r0
+	fcmp.sgt.d	$fcc0,$f0,$f2
+	bceqz	$fcc0,.L413
+	fcmp.slt.d	$fcc0,$f1,$f2
+	bceqz	$fcc0,.L413
+.L412:
 	fneg.d	$f0,$f0
-	b	.L607
-.L604:
-	fld.d	$f0,$r3,8
-.L607:
+.L413:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE98:
@@ -4292,67 +3826,69 @@ copysign:
 memmem:
 .LFB99 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r1,$r3,56
+	addi.d	$r3,$r3,-48
+	.cfi_def_cfa_offset 48
+	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r23,$r3,24
+	st.d	$r24,$r3,16
+	st.d	$r25,$r3,8
+	stptr.d	$r26,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	stptr.d	$r7,$r3,0
-	ld.d	$r13,$r3,16
-	ldptr.d	$r12,$r3,0
-	sub.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ldptr.d	$r12,$r3,0
-	bnez	$r12,.L612
-	ld.d	$r12,$r3,24
-	b	.L613
-.L612:
-	ld.d	$r13,$r3,16
-	ldptr.d	$r12,$r3,0
-	sltu	$r12,$r13,$r12
-	bstrpick.w	$r12,$r12,7,0
-	beqz	$r12,.L615
-	or	$r12,$r0,$r0
-	b	.L613
-.L617:
-	ld.d	$r12,$r3,24
-	ld.b	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	ld.b	$r12,$r12,0
-	bne	$r13,$r12,.L616
-	ld.d	$r12,$r3,24
-	addi.d	$r13,$r12,1
-	ldptr.d	$r12,$r3,0
-	addi.d	$r14,$r12,-1
-	ld.d	$r12,$r3,8
-	addi.d	$r12,$r12,1
-	or	$r6,$r14,$r0
-	or	$r5,$r12,$r0
-	or	$r4,$r13,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	or	$r25,$r6,$r0
+	or	$r24,$r7,$r0
+	sub.d	$r26,$r5,$r24
+	add.d	$r26,$r23,$r26
+	beqz	$r24,.L427
+	sltu	$r5,$r5,$r24
+	bnez	$r5,.L428
+	b	.L424
+.L426:
+	ld.b	$r13,$r23,0
+	ld.b	$r12,$r25,0
+	bne	$r13,$r12,.L425
+	addi.d	$r4,$r23,1
+	addi.d	$r6,$r24,-1
+	addi.d	$r5,$r25,1
 	bl	memcmp
-	or	$r12,$r4,$r0
-	bnez	$r12,.L616
-	ld.d	$r12,$r3,24
-	b	.L613
-.L616:
-	ld.d	$r12,$r3,24
-	addi.d	$r12,$r12,1
-	st.d	$r12,$r3,24
-.L615:
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,40
-	bleu	$r13,$r12,.L617
-	or	$r12,$r0,$r0
-.L613:
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,56
+	beqz	$r4,.L429
+.L425:
+	addi.d	$r23,$r23,1
+.L424:
+	bleu	$r23,$r26,.L426
+	or	$r4,$r0,$r0
+	b	.L423
+.L427:
+	or	$r4,$r23,$r0
+	b	.L423
+.L428:
+	or	$r4,$r0,$r0
+	b	.L423
+.L429:
+	or	$r4,$r23,$r0
+.L423:
+	ld.d	$r1,$r3,40
 	.cfi_restore 1
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r23,$r3,24
+	.cfi_restore 23
+	ld.d	$r24,$r3,16
+	.cfi_restore 24
+	ld.d	$r25,$r3,8
+	.cfi_restore 25
+	ldptr.d	$r26,$r3,0
+	.cfi_restore 26
+	addi.d	$r3,$r3,48
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE99:
@@ -4363,25 +3899,27 @@ memmem:
 mempcpy:
 .LFB100 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	st.d	$r6,$r3,8
-	ld.d	$r6,$r3,8
-	ld.d	$r5,$r3,16
-	ld.d	$r4,$r3,24
-	bl	memcpy
-	or	$r13,$r4,$r0
-	ld.d	$r12,$r3,8
-	add.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	or	$r23,$r6,$r0
+	bl	%plt(memcpy)
+	add.d	$r4,$r4,$r23
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE100:
@@ -4392,82 +3930,73 @@ mempcpy:
 frexp:
 .LFB101 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	fst.d	$f0,$r3,8
-	stptr.d	$r4,$r3,0
-	st.w	$r0,$r3,24
-	st.w	$r0,$r3,28
-	fld.d	$f0,$r3,8
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	movgr2fr.d	$f1,$r0
 	fcmp.slt.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L623
-	fld.d	$f0,$r3,8
+	bceqz	$fcc0,.L448
 	fneg.d	$f0,$f0
-	fst.d	$f0,$r3,8
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,28
-.L623:
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC12
-	fld.d	$f0,$r12,0
-	fcmp.sge.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L638
-	b	.L627
-.L628:
-	ld.w	$r12,$r3,24
+	addi.w	$r13,$r0,1			# 0x1
+	b	.L432
+.L448:
+	or	$r13,$r0,$r0
+.L432:
+	pcalau12i	$r12,%pc_hi20(.LC16)
+	fld.d	$f1,$r12,%pc_lo12(.LC16)
+	fcmp.sge.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L443
+	b	.L449
+.L436:
 	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,24
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC9
-	fld.d	$f0,$r12,0
-	fdiv.d	$f0,$f1,$f0
-	fst.d	$f0,$r3,8
-.L627:
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC12
-	fld.d	$f0,$r12,0
-	fcmp.sge.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L628
-	b	.L629
-.L638:
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC8
-	fld.d	$f0,$r12,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L629
-	fld.d	$f0,$r3,8
+	pcalau12i	$r14,%pc_hi20(.LC12)
+	fld.d	$f1,$r14,%pc_lo12(.LC12)
+	fmul.d	$f0,$f0,$f1
+	b	.L434
+.L443:
+	or	$r12,$r0,$r0
+.L434:
+	pcalau12i	$r14,%pc_hi20(.LC16)
+	fld.d	$f1,$r14,%pc_lo12(.LC16)
+	fcmp.sge.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L436
+	b	.L437
+.L449:
+	pcalau12i	$r12,%pc_hi20(.LC12)
+	fld.d	$f1,$r12,%pc_lo12(.LC12)
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L450
 	movgr2fr.d	$f1,$r0
-	fcmp.ceq.d	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L629
-	b	.L631
-.L632:
-	ld.w	$r12,$r3,24
+	fcmp.cune.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L445
+	or	$r12,$r0,$r0
+	b	.L437
+.L440:
 	addi.w	$r12,$r12,-1
-	st.w	$r12,$r3,24
-	fld.d	$f0,$r3,8
 	fadd.d	$f0,$f0,$f0
-	fst.d	$f0,$r3,8
-.L631:
-	fld.d	$f1,$r3,8
-	la.local	$r12,.LC8
-	fld.d	$f0,$r12,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L632
-.L629:
-	ldptr.d	$r12,$r3,0
-	ld.w	$r13,$r3,24
-	stptr.w	$r13,$r12,0
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L633
-	fld.d	$f0,$r3,8
+	b	.L439
+.L445:
+	or	$r12,$r0,$r0
+.L439:
+	pcalau12i	$r14,%pc_hi20(.LC12)
+	fld.d	$f1,$r14,%pc_lo12(.LC12)
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L440
+	b	.L437
+.L450:
+	or	$r12,$r0,$r0
+.L437:
+	stptr.w	$r12,$r4,0
+	beqz	$r13,.L441
 	fneg.d	$f0,$f0
-	fst.d	$f0,$r3,8
-.L633:
-	fld.d	$f0,$r3,8
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L441:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE101:
@@ -4478,36 +4007,28 @@ frexp:
 __muldi3:
 .LFB102 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	st.d	$r0,$r3,24
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,16
-	b	.L641
-.L643:
-	ld.d	$r12,$r3,16
-	andi	$r12,$r12,1
-	beqz	$r12,.L642
-	ld.d	$r13,$r3,24
-	ldptr.d	$r12,$r3,0
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-.L642:
-	ldptr.d	$r12,$r3,0
-	slli.d	$r12,$r12,1
-	stptr.d	$r12,$r3,0
-	ld.d	$r12,$r3,16
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r4,$r0,$r0
+	b	.L452
+.L454:
+	andi	$r13,$r12,1
+	beqz	$r13,.L453
+	add.d	$r4,$r4,$r5
+.L453:
+	slli.d	$r5,$r5,1
 	srli.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-.L641:
-	ld.d	$r12,$r3,16
-	bnez	$r12,.L643
-	ld.d	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L452:
+	bnez	$r12,.L454
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE102:
@@ -4518,72 +4039,45 @@ __muldi3:
 udivmodsi4:
 .LFB103 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	stptr.d	$r6,$r3,0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,28
-	st.w	$r0,$r3,24
-	b	.L647
-.L649:
-	ld.w	$r12,$r3,8
+	b	.L456
+.L458:
+	slli.w	$r5,$r5,1
 	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L647:
-	ld.w	$r13,$r3,8
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bgeu	$r13,$r12,.L650
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L650
-	ldptr.w	$r12,$r3,8
-	bge	$r12,$r0,.L649
-	b	.L650
-.L652:
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L651
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r13,$r12
-	st.w	$r12,$r3,12
-	ld.w	$r13,$r3,24
-	ld.w	$r12,$r3,28
-	or	$r12,$r13,$r12
-	st.w	$r12,$r3,24
-.L651:
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,8
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-.L650:
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L652
-	ldptr.d	$r12,$r3,0
-	beqz	$r12,.L653
-	ldptr.w	$r12,$r3,12
-	b	.L654
-.L653:
-	ldptr.w	$r12,$r3,24
-.L654:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L456:
+	bgeu	$r5,$r4,.L463
+	beqz	$r12,.L464
+	bge	$r5,$r0,.L458
+	or	$r13,$r0,$r0
+	b	.L460
+.L461:
+	bltu	$r4,$r5,.L459
+	sub.w	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L459:
+	bstrpick.d	$r12,$r12,31,1
+	bstrpick.d	$r5,$r5,31,1
+	b	.L460
+.L463:
+	or	$r13,$r0,$r0
+	b	.L460
+.L464:
+	or	$r13,$r0,$r0
+.L460:
+	bnez	$r12,.L461
+	bnez	$r6,.L462
+	or	$r4,$r13,$r0
+.L462:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE103:
@@ -4594,35 +4088,27 @@ udivmodsi4:
 __clrsbqi2:
 .LFB104 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.b	$r4,$r3,15
-	ld.bu	$r12,$r3,15
-	ext.w.b	$r12,$r12
-	bge	$r12,$r0,.L657
-	ld.bu	$r12,$r3,15
-	nor	$r12,$r0,$r12
-	st.b	$r12,$r3,15
-.L657:
-	ld.bu	$r12,$r3,15
-	bstrpick.w	$r12,$r12,7,0
-	bnez	$r12,.L658
-	addi.w	$r12,$r0,7			# 0x7
-	b	.L659
-.L658:
-	ld.b	$r12,$r3,15
-	slli.w	$r12,$r12,0
-	slli.w	$r12,$r12,8
-	clz.w	$r12,$r12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-.L659:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bge	$r4,$r0,.L467
+	nor	$r4,$r0,$r4
+.L467:
+	beqz	$r4,.L469
+	slli.w	$r4,$r4,8
+	clz.w	$r4,$r4
+	addi.w	$r4,$r4,-1
+	b	.L468
+.L469:
+	addi.w	$r4,$r0,7			# 0x7
+.L468:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE104:
@@ -4633,30 +4119,26 @@ __clrsbqi2:
 __clrsbdi2:
 .LFB105 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	bge	$r12,$r0,.L662
-	ld.d	$r12,$r3,8
-	nor	$r12,$r0,$r12
-	st.d	$r12,$r3,8
-.L662:
-	ld.d	$r12,$r3,8
-	bnez	$r12,.L663
-	addi.w	$r12,$r0,63			# 0x3f
-	b	.L664
-.L663:
-	ld.d	$r12,$r3,8
-	clz.d	$r12,$r12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-.L664:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bge	$r4,$r0,.L471
+	nor	$r4,$r0,$r4
+.L471:
+	beqz	$r4,.L473
+	clz.d	$r4,$r4
+	addi.w	$r4,$r4,-1
+	b	.L472
+.L473:
+	addi.w	$r4,$r0,63			# 0x3f
+.L472:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE105:
@@ -4667,39 +4149,28 @@ __clrsbdi2:
 __mulsi3:
 .LFB106 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
-	st.w	$r0,$r3,28
-	b	.L667
-.L669:
-	ld.w	$r12,$r3,12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L668
-	ld.w	$r13,$r3,28
-	ld.w	$r12,$r3,8
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-.L668:
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-.L667:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L669
-	ldptr.w	$r12,$r3,28
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r4,$r0,$r0
+	b	.L475
+.L477:
+	andi	$r13,$r12,1
+	beqz	$r13,.L476
+	add.w	$r4,$r4,$r5
+.L476:
+	bstrpick.d	$r12,$r12,31,1
+	slli.w	$r5,$r5,1
+.L475:
+	bnez	$r12,.L477
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE106:
@@ -4710,89 +4181,52 @@ __mulsi3:
 __cmovd:
 .LFB107 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,3
-	st.w	$r12,$r3,36
-	ld.w	$r13,$r3,12
-	addi.w	$r12,$r0,-8			# 0xfffffffffffffff8
-	and	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bltu	$r13,$r12,.L673
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,16
-	add.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,24
-	bleu	$r13,$r12,.L680
-.L673:
-	st.w	$r0,$r3,44
-	b	.L675
-.L676:
-	ld.wu	$r12,$r3,44
-	slli.d	$r12,$r12,3
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,44
-	slli.d	$r13,$r13,3
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ldptr.d	$r13,$r13,0
-	stptr.d	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,44
-.L675:
-	ld.w	$r13,$r3,44
-	ld.w	$r12,$r3,36
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L676
-	b	.L677
-.L678:
-	ld.wu	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,40
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.w	$r12,$r3,40
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,40
-.L677:
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,40
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bgtu	$r13,$r12,.L678
-	b	.L679
-.L681:
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,12
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-.L680:
-	ldptr.w	$r12,$r3,12
-	addi.w	$r13,$r12,-1
-	st.w	$r13,$r3,12
-	bnez	$r12,.L681
-	nop
-.L679:
-	nop
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r14,$r6,31,3
+	addi.w	$r13,$r0,-8			# 0xfffffffffffffff8
+	and	$r13,$r6,$r13
+	bltu	$r4,$r5,.L479
+	bstrpick.d	$r12,$r6,31,0
+	add.d	$r12,$r5,$r12
+	bgeu	$r12,$r4,.L480
+.L479:
+	slli.d	$r14,$r14,3
+	or	$r12,$r0,$r0
+	b	.L481
+.L482:
+	ldx.d	$r15,$r5,$r12
+	stx.d	$r15,$r4,$r12
+	addi.d	$r12,$r12,8
+.L481:
+	bne	$r12,$r14,.L482
+	bstrpick.d	$r12,$r13,31,0
+	b	.L483
+.L484:
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+	addi.d	$r12,$r12,1
+.L483:
+	slli.w	$r13,$r12,0
+	bgtu	$r6,$r13,.L484
+	b	.L478
+.L486:
+	bstrpick.d	$r12,$r6,31,0
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+.L480:
+	addi.w	$r6,$r6,-1
+	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r12,.L486
+.L478:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE107:
@@ -4803,82 +4237,47 @@ __cmovd:
 __cmovh:
 .LFB108 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bltu	$r13,$r12,.L684
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,16
-	add.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,24
-	bleu	$r13,$r12,.L690
-.L684:
-	st.w	$r0,$r3,44
-	b	.L686
-.L687:
-	ld.wu	$r12,$r3,44
-	slli.d	$r12,$r12,1
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,44
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r13,$r6,31,1
+	bltu	$r4,$r5,.L488
+	bstrpick.d	$r12,$r6,31,0
+	add.d	$r12,$r5,$r12
+	bgeu	$r12,$r4,.L489
+.L488:
 	slli.d	$r13,$r13,1
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.h	$r13,$r13,0
-	st.h	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,44
-.L686:
-	ld.w	$r13,$r3,44
-	ld.w	$r12,$r3,40
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L687
-	ld.w	$r12,$r3,12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L689
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-1
-	bstrpick.d	$r13,$r12,31,0
-	ld.w	$r12,$r3,12
-	addi.w	$r12,$r12,-1
-	bstrpick.d	$r12,$r12,31,0
-	ld.d	$r14,$r3,24
-	add.d	$r12,$r14,$r12
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	b	.L689
-.L691:
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,12
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-.L690:
-	ldptr.w	$r12,$r3,12
-	addi.w	$r13,$r12,-1
-	st.w	$r13,$r3,12
-	bnez	$r12,.L691
-	nop
-.L689:
-	nop
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	or	$r12,$r0,$r0
+	b	.L490
+.L491:
+	ldx.h	$r14,$r5,$r12
+	stx.h	$r14,$r4,$r12
+	addi.d	$r12,$r12,2
+.L490:
+	bne	$r12,$r13,.L491
+	andi	$r12,$r6,1
+	beqz	$r12,.L487
+	addi.w	$r6,$r6,-1
+	bstrpick.d	$r6,$r6,31,0
+	ldx.b	$r12,$r5,$r6
+	stx.b	$r12,$r4,$r6
+	b	.L487
+.L493:
+	bstrpick.d	$r12,$r6,31,0
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+.L489:
+	addi.w	$r6,$r6,-1
+	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r12,.L493
+.L487:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE108:
@@ -4889,89 +4288,52 @@ __cmovh:
 __cmovw:
 .LFB109 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,2
-	st.w	$r12,$r3,36
-	ld.w	$r13,$r3,12
-	addi.w	$r12,$r0,-4			# 0xfffffffffffffffc
-	and	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bltu	$r13,$r12,.L694
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,16
-	add.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,24
-	bleu	$r13,$r12,.L701
-.L694:
-	st.w	$r0,$r3,44
-	b	.L696
-.L697:
-	ld.wu	$r12,$r3,44
-	slli.d	$r12,$r12,2
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,44
-	slli.d	$r13,$r13,2
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ldptr.w	$r13,$r13,0
-	stptr.w	$r13,$r12,0
-	ld.w	$r12,$r3,44
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,44
-.L696:
-	ld.w	$r13,$r3,44
-	ld.w	$r12,$r3,36
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L697
-	b	.L698
-.L699:
-	ld.wu	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,40
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-	ld.w	$r12,$r3,40
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,40
-.L698:
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,40
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bgtu	$r13,$r12,.L699
-	b	.L700
-.L702:
-	ld.wu	$r12,$r3,12
-	ld.d	$r13,$r3,24
-	add.d	$r12,$r13,$r12
-	ld.wu	$r13,$r3,12
-	ld.d	$r14,$r3,16
-	add.d	$r13,$r14,$r13
-	ld.b	$r13,$r13,0
-	st.b	$r13,$r12,0
-.L701:
-	ldptr.w	$r12,$r3,12
-	addi.w	$r13,$r12,-1
-	st.w	$r13,$r3,12
-	bnez	$r12,.L702
-	nop
-.L700:
-	nop
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r14,$r6,31,2
+	addi.w	$r13,$r0,-4			# 0xfffffffffffffffc
+	and	$r13,$r6,$r13
+	bltu	$r4,$r5,.L495
+	bstrpick.d	$r12,$r6,31,0
+	add.d	$r12,$r5,$r12
+	bgeu	$r12,$r4,.L496
+.L495:
+	slli.d	$r14,$r14,2
+	or	$r12,$r0,$r0
+	b	.L497
+.L498:
+	ldx.w	$r15,$r5,$r12
+	stx.w	$r15,$r4,$r12
+	addi.d	$r12,$r12,4
+.L497:
+	bne	$r12,$r14,.L498
+	bstrpick.d	$r12,$r13,31,0
+	b	.L499
+.L500:
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+	addi.d	$r12,$r12,1
+.L499:
+	slli.w	$r13,$r12,0
+	bgtu	$r6,$r13,.L500
+	b	.L494
+.L502:
+	bstrpick.d	$r12,$r6,31,0
+	ldx.b	$r13,$r5,$r12
+	stx.b	$r13,$r4,$r12
+.L496:
+	addi.w	$r6,$r6,-1
+	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
+	bne	$r6,$r12,.L502
+.L494:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE109:
@@ -4984,24 +4346,15 @@ __modi:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r12,$r3,12
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	mod.w	$r13,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	or	$r12,$r13,$r0
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	mod.w	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE110:
@@ -5014,13 +4367,17 @@ __uitod:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.wu	$r12,$r3,12
-	movgr2fr.d	$f0,$r12
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r4,$r4,31,0
+	movgr2fr.d	$f0,$r4
 	ffint.d.l	$f0,$f0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE111:
@@ -5033,13 +4390,17 @@ __uitof:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.wu	$r12,$r3,12
-	movgr2fr.d	$f0,$r12
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r4,$r4,31,0
+	movgr2fr.d	$f0,$r4
 	ffint.s.l	$f0,$f0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE112:
@@ -5052,26 +4413,26 @@ __ulltod:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	blt	$r12,$r0,.L715
-	ld.d	$r12,$r3,8
-	movgr2fr.d	$f0,$r12
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	blt	$r4,$r0,.L508
+	movgr2fr.d	$f0,$r4
 	ffint.d.l	$f0,$f0
-	b	.L716
-.L715:
-	ld.d	$r12,$r3,8
-	andi	$r12,$r12,1
-	ld.d	$r13,$r3,8
-	srli.d	$r13,$r13,1
-	or	$r12,$r12,$r13
+	b	.L507
+.L508:
+	andi	$r12,$r4,1
+	srli.d	$r4,$r4,1
+	or	$r12,$r12,$r4
 	movgr2fr.d	$f0,$r12
 	ffint.d.l	$f0,$f0
 	fadd.d	$f0,$f0,$f0
-.L716:
-	nop
+.L507:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE113:
@@ -5084,26 +4445,26 @@ __ulltof:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	blt	$r12,$r0,.L720
-	ld.d	$r12,$r3,8
-	movgr2fr.d	$f0,$r12
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	blt	$r4,$r0,.L511
+	movgr2fr.d	$f0,$r4
 	ffint.s.l	$f0,$f0
-	b	.L721
-.L720:
-	ld.d	$r12,$r3,8
-	andi	$r12,$r12,1
-	ld.d	$r13,$r3,8
-	srli.d	$r13,$r13,1
-	or	$r12,$r12,$r13
+	b	.L510
+.L511:
+	andi	$r12,$r4,1
+	srli.d	$r4,$r4,1
+	or	$r12,$r12,$r4
 	movgr2fr.d	$f0,$r12
 	ffint.s.l	$f0,$f0
 	fadd.s	$f0,$f0,$f0
-.L721:
-	nop
+.L510:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE114:
@@ -5116,24 +4477,15 @@ __umodi:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r12,$r3,12
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	mod.wu	$r13,$r13,$r12
-	bne	$r12,$r0,1f
-	break	7
-1:
-	or	$r12,$r13,$r0
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	mod.wu	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE115:
@@ -5144,38 +4496,30 @@ __umodi:
 __clzhi2:
 .LFB116 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.h	$r4,$r3,14
-	st.w	$r0,$r3,28
-	b	.L727
-.L730:
-	addi.w	$r13,$r0,15			# 0xf
-	ld.w	$r12,$r3,28
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.hu	$r13,$r3,14
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r13,$r4,$r0
+	or	$r4,$r0,$r0
+	b	.L514
+.L516:
+	addi.w	$r12,$r0,15			# 0xf
+	sub.w	$r12,$r12,$r4
 	sra.w	$r12,$r13,$r12
 	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L732
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L727:
-	ld.w	$r12,$r3,28
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,15			# 0xf
-	ble	$r13,$r12,.L730
-	b	.L729
-.L732:
-	nop
-.L729:
-	ldptr.w	$r12,$r3,28
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	bnez	$r12,.L515
+	addi.w	$r4,$r4,1
+.L514:
+	addi.w	$r12,$r0,16			# 0x10
+	bne	$r4,$r12,.L516
+.L515:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE116:
@@ -5186,35 +4530,28 @@ __clzhi2:
 __ctzhi2:
 .LFB117 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	or	$r12,$r4,$r0
-	st.h	$r4,$r3,14
-	st.w	$r0,$r3,28
-	b	.L735
-.L738:
-	ld.hu	$r13,$r3,14
-	ld.w	$r12,$r3,28
-	sra.w	$r12,$r13,$r12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L740
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L735:
-	ld.w	$r12,$r3,28
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,15			# 0xf
-	ble	$r13,$r12,.L738
-	b	.L737
-.L740:
-	nop
-.L737:
-	ldptr.w	$r12,$r3,28
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r4,$r0,$r0
+	b	.L518
+.L520:
+	sra.w	$r13,$r12,$r4
+	andi	$r13,$r13,1
+	bnez	$r13,.L519
+	addi.w	$r4,$r4,1
+.L518:
+	addi.w	$r13,$r0,16			# 0x10
+	bne	$r4,$r13,.L520
+.L519:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE117:
@@ -5227,29 +4564,28 @@ __fixunssfsi:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fld.s	$f1,$r3,12
-	la.local	$r12,.LC13
-	fld.s	$f0,$r12,0
-	fcmp.sge.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L747
-	fld.s	$f1,$r3,12
-	la.local	$r12,.LC13
-	fld.s	$f0,$r12,0
-	fsub.s	$f0,$f1,$f0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	pcalau12i	$r12,%pc_hi20(.LC19)
+	fld.s	$f1,$r12,%pc_lo12(.LC19)
+	fcmp.sge.s	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L526
+	fsub.s	$f0,$f0,$f1
 	ftintrz.l.s $f0,$f0
-	movfr2gr.d	$r13,$f0
+	movfr2gr.d	$r4,$f0
 	lu12i.w	$r12,32768>>12			# 0x8000
-	add.d	$r12,$r13,$r12
-	b	.L745
-.L747:
-	fld.s	$f0,$r3,12
+	add.d	$r4,$r4,$r12
+	b	.L524
+.L526:
 	ftintrz.l.s $f0,$f0
-	movfr2gr.d	$r12,$f0
-.L745:
-	or	$r4,$r12,$r0
+	movfr2gr.d	$r4,$f0
+.L524:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE118:
@@ -5260,38 +4596,30 @@ __fixunssfsi:
 __parityhi2:
 .LFB119 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.h	$r4,$r3,14
-	st.w	$r0,$r3,24
-	st.w	$r0,$r3,28
-	b	.L750
-.L752:
-	ld.hu	$r13,$r3,14
-	ld.w	$r12,$r3,28
-	sra.w	$r12,$r13,$r12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L751
-	ld.w	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	b	.L528
+.L530:
+	sra.w	$r14,$r4,$r13
+	andi	$r14,$r14,1
+	beqz	$r14,.L529
 	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,24
-.L751:
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L750:
-	ld.w	$r12,$r3,28
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,15			# 0xf
-	ble	$r13,$r12,.L752
-	ld.w	$r12,$r3,24
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L529:
+	addi.w	$r13,$r13,1
+.L528:
+	addi.w	$r14,$r0,16			# 0x10
+	bne	$r13,$r14,.L530
+	andi	$r4,$r12,1
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE119:
@@ -5302,36 +4630,30 @@ __parityhi2:
 __popcounthi2:
 .LFB120 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.h	$r4,$r3,14
-	st.w	$r0,$r3,24
-	st.w	$r0,$r3,28
-	b	.L756
-.L758:
-	ld.hu	$r13,$r3,14
-	ld.w	$r12,$r3,28
-	sra.w	$r12,$r13,$r12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L757
-	ld.w	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r13,$r4,$r0
+	or	$r4,$r0,$r0
+	or	$r12,$r0,$r0
+	b	.L532
+.L534:
+	sra.w	$r14,$r13,$r12
+	andi	$r14,$r14,1
+	beqz	$r14,.L533
+	addi.w	$r4,$r4,1
+.L533:
 	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,24
-.L757:
-	ld.w	$r12,$r3,28
-	addi.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L756:
-	ld.w	$r12,$r3,28
-	slli.w	$r13,$r12,0
-	addi.w	$r12,$r0,15			# 0xf
-	ble	$r13,$r12,.L758
-	ldptr.w	$r12,$r3,24
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L532:
+	addi.w	$r14,$r0,16			# 0x10
+	bne	$r12,$r14,.L534
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE120:
@@ -5342,39 +4664,28 @@ __popcounthi2:
 __mulsi3_iq2000:
 .LFB121 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
-	st.w	$r0,$r3,28
-	b	.L762
-.L764:
-	ld.w	$r12,$r3,12
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L763
-	ld.w	$r13,$r3,28
-	ld.w	$r12,$r3,8
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-.L763:
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-.L762:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L764
-	ldptr.w	$r12,$r3,28
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r4,$r0,$r0
+	b	.L536
+.L538:
+	andi	$r13,$r12,1
+	beqz	$r13,.L537
+	add.w	$r4,$r4,$r5
+.L537:
+	bstrpick.d	$r12,$r12,31,1
+	slli.w	$r5,$r5,1
+.L536:
+	bnez	$r12,.L538
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE121:
@@ -5385,44 +4696,33 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 .LFB122 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
-	st.w	$r0,$r3,28
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L770
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	beqz	$r4,.L544
 	or	$r12,$r0,$r0
-	b	.L769
-.L772:
-	ld.w	$r12,$r3,8
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L771
-	ld.w	$r13,$r3,28
-	ld.w	$r12,$r3,12
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-.L771:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,8
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-.L770:
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L772
-	ldptr.w	$r12,$r3,28
-.L769:
+	b	.L541
+.L543:
+	andi	$r13,$r5,1
+	beqz	$r13,.L542
+	add.w	$r12,$r12,$r4
+.L542:
+	slli.w	$r4,$r4,1
+	bstrpick.d	$r5,$r5,31,1
+.L541:
+	bnez	$r5,.L543
 	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	b	.L540
+.L544:
+	or	$r4,$r0,$r0
+.L540:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE122:
@@ -5433,75 +4733,45 @@ __mulsi3_lm32:
 __udivmodsi4:
 .LFB123 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	or	$r14,$r5,$r0
-	or	$r13,$r6,$r0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,4
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,28
-	st.w	$r0,$r3,24
-	b	.L775
-.L777:
-	ld.w	$r12,$r3,8
+	b	.L546
+.L548:
+	slli.w	$r5,$r5,1
 	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-.L775:
-	ld.w	$r13,$r3,8
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bgeu	$r13,$r12,.L778
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L778
-	ldptr.w	$r12,$r3,8
-	bge	$r12,$r0,.L777
-	b	.L778
-.L780:
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L779
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r13,$r12
-	st.w	$r12,$r3,12
-	ld.w	$r13,$r3,24
-	ld.w	$r12,$r3,28
-	or	$r12,$r13,$r12
-	st.w	$r12,$r3,24
-.L779:
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,8
-	srli.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-.L778:
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L780
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L781
-	ldptr.w	$r12,$r3,12
-	b	.L782
-.L781:
-	ldptr.w	$r12,$r3,24
-.L782:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L546:
+	bgeu	$r5,$r4,.L553
+	beqz	$r12,.L554
+	bge	$r5,$r0,.L548
+	or	$r13,$r0,$r0
+	b	.L550
+.L551:
+	bltu	$r4,$r5,.L549
+	sub.w	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L549:
+	bstrpick.d	$r12,$r12,31,1
+	bstrpick.d	$r5,$r5,31,1
+	b	.L550
+.L553:
+	or	$r13,$r0,$r0
+	b	.L550
+.L554:
+	or	$r13,$r0,$r0
+.L550:
+	bnez	$r12,.L551
+	bnez	$r6,.L552
+	or	$r4,$r13,$r0
+.L552:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE123:
@@ -5514,27 +4784,26 @@ __mspabi_cmpf:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.s	$f0,$r3,12
-	fst.s	$f1,$r3,8
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fcmp.slt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L792
-	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
-	b	.L787
-.L792:
-	fld.s	$f1,$r3,12
-	fld.s	$f0,$r3,8
-	fcmp.sgt.s	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L793
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L787
-.L793:
-	or	$r12,$r0,$r0
-.L787:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.slt.s	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L558
+	fcmp.sgt.s	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L559
+	or	$r4,$r0,$r0
+	b	.L557
+.L558:
+	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
+	b	.L557
+.L559:
+	addi.w	$r4,$r0,1			# 0x1
+.L557:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE124:
@@ -5547,27 +4816,26 @@ __mspabi_cmpd:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	fst.d	$f0,$r3,8
-	fst.d	$f1,$r3,0
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fcmp.slt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L803
-	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
-	b	.L798
-.L803:
-	fld.d	$f1,$r3,8
-	fld.d	$f0,$r3,0
-	fcmp.sgt.d	$fcc0,$f1,$f0
-	bceqz	$fcc0,.L804
-	addi.w	$r12,$r0,1			# 0x1
-	b	.L798
-.L804:
-	or	$r12,$r0,$r0
-.L798:
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L562
+	fcmp.sgt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L563
+	or	$r4,$r0,$r0
+	b	.L561
+.L562:
+	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
+	b	.L561
+.L563:
+	addi.w	$r4,$r0,1			# 0x1
+.L561:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE125:
@@ -5580,14 +4848,15 @@ __mspabi_mpysll:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	mul.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	mul.d	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE126:
@@ -5600,14 +4869,15 @@ __mspabi_mpyull:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r13,$r3,8
-	ldptr.d	$r12,$r3,0
-	mul.d	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	mul.d	$r4,$r4,$r5
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE127:
@@ -5618,68 +4888,45 @@ __mspabi_mpyull:
 __mulhi3:
 .LFB128 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r4,$r3,12
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,8
-	st.w	$r0,$r3,24
-	st.w	$r0,$r3,20
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	bge	$r12,$r0,.L813
-	ld.w	$r12,$r3,8
-	sub.w	$r12,$r0,$r12
-	st.w	$r12,$r3,8
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,24
-.L813:
-	st.b	$r0,$r3,31
-	b	.L814
-.L817:
-	ld.w	$r12,$r3,8
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L815
-	ld.w	$r13,$r3,20
-	ld.w	$r12,$r3,12
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,20
-.L815:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,1
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,8
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-	ld.bu	$r12,$r3,31
-	addi.w	$r12,$r12,1
-	bstrpick.w	$r12,$r12,7,0
-	st.b	$r12,$r3,31
-.L814:
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L816
-	ld.bu	$r12,$r3,31
-	or	$r13,$r12,$r0
-	addi.w	$r12,$r0,31			# 0x1f
-	bleu	$r13,$r12,.L817
-.L816:
-	ld.w	$r12,$r3,24
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L818
-	ld.w	$r12,$r3,20
-	sub.w	$r12,$r0,$r12
-	slli.w	$r12,$r12,0
-	b	.L819
-.L818:
-	ldptr.w	$r12,$r3,20
-.L819:
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bge	$r5,$r0,.L573
+	sub.w	$r5,$r0,$r5
+	addi.w	$r14,$r0,1			# 0x1
+	b	.L567
+.L573:
+	or	$r14,$r0,$r0
+.L567:
+	addi.w	$r13,$r0,33			# 0x21
+	or	$r12,$r0,$r0
+	b	.L568
+.L571:
+	andi	$r15,$r5,1
+	beqz	$r15,.L569
+	add.w	$r12,$r12,$r4
+.L569:
+	slli.w	$r4,$r4,1
+	srai.w	$r5,$r5,1
+.L568:
+	beqz	$r5,.L570
+	addi.w	$r13,$r13,-1
+	bstrpick.w	$r13,$r13,7,0
+	bnez	$r13,.L571
+.L570:
+	beqz	$r14,.L574
+	sub.w	$r4,$r0,$r12
+	b	.L572
+.L574:
 	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+.L572:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE128:
@@ -5690,59 +4937,43 @@ __mulhi3:
 __divsi3:
 .LFB129 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	st.w	$r0,$r3,28
-	ld.d	$r12,$r3,8
-	bge	$r12,$r0,.L823
-	ld.d	$r12,$r3,8
-	sub.d	$r12,$r0,$r12
-	st.d	$r12,$r3,8
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	sltui	$r12,$r12,1
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,28
-.L823:
-	ldptr.d	$r12,$r3,0
-	bge	$r12,$r0,.L824
-	ldptr.d	$r12,$r3,0
-	sub.d	$r12,$r0,$r12
-	stptr.d	$r12,$r3,0
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	sltui	$r12,$r12,1
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,28
-.L824:
-	ldptr.d	$r12,$r3,0
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	slli.w	$r12,$r12,0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	bge	$r4,$r0,.L579
+	sub.d	$r4,$r0,$r4
+	addi.w	$r23,$r0,1			# 0x1
+	b	.L576
+.L579:
+	or	$r23,$r0,$r0
+.L576:
+	bge	$r5,$r0,.L577
+	sub.d	$r5,$r0,$r5
+	xori	$r23,$r23,1
+.L577:
 	or	$r6,$r0,$r0
-	or	$r5,$r13,$r0
-	or	$r4,$r12,$r0
+	slli.w	$r5,$r5,0
+	slli.w	$r4,$r4,0
 	bl	__udivmodsi4
-	or	$r12,$r4,$r0
-	bstrpick.d	$r12,$r12,31,0
-	st.d	$r12,$r3,16
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L825
-	ld.d	$r12,$r3,16
-	sub.d	$r12,$r0,$r12
-	st.d	$r12,$r3,16
-.L825:
-	ld.d	$r12,$r3,16
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	bstrpick.d	$r4,$r4,31,0
+	beqz	$r23,.L578
+	sub.d	$r4,$r0,$r4
+.L578:
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE129:
@@ -5753,51 +4984,42 @@ __divsi3:
 __modsi3:
 .LFB130 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r1,$r3,40
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r1,$r3,24
+	st.d	$r22,$r3,16
+	st.d	$r23,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	st.w	$r0,$r3,28
-	ld.d	$r12,$r3,8
-	bge	$r12,$r0,.L829
-	ld.d	$r12,$r3,8
-	sub.d	$r12,$r0,$r12
-	st.d	$r12,$r3,8
-	addi.w	$r12,$r0,1			# 0x1
-	st.w	$r12,$r3,28
-.L829:
-	ldptr.d	$r12,$r3,0
-	bge	$r12,$r0,.L830
-	ldptr.d	$r12,$r3,0
-	sub.d	$r12,$r0,$r12
-	stptr.d	$r12,$r3,0
-.L830:
-	ldptr.d	$r12,$r3,0
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,8
-	slli.w	$r12,$r12,0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	addi.d	$r22,$r3,32
+	.cfi_def_cfa 22, 0
+	bge	$r4,$r0,.L584
+	sub.d	$r4,$r0,$r4
+	addi.w	$r23,$r0,1			# 0x1
+	b	.L581
+.L584:
+	or	$r23,$r0,$r0
+.L581:
+	bge	$r5,$r0,.L582
+	sub.d	$r5,$r0,$r5
+.L582:
 	addi.w	$r6,$r0,1			# 0x1
-	or	$r5,$r13,$r0
-	or	$r4,$r12,$r0
+	slli.w	$r5,$r5,0
+	slli.w	$r4,$r4,0
 	bl	__udivmodsi4
-	or	$r12,$r4,$r0
-	bstrpick.d	$r12,$r12,31,0
-	st.d	$r12,$r3,16
-	ld.w	$r12,$r3,28
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L831
-	ld.d	$r12,$r3,16
-	sub.d	$r12,$r0,$r12
-	st.d	$r12,$r3,16
-.L831:
-	ld.d	$r12,$r3,16
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,40
+	bstrpick.d	$r4,$r4,31,0
+	beqz	$r23,.L583
+	sub.d	$r4,$r0,$r4
+.L583:
+	ld.d	$r1,$r3,24
 	.cfi_restore 1
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,16
+	.cfi_restore 22
+	ld.d	$r23,$r3,8
+	.cfi_restore 23
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE130:
@@ -5808,75 +5030,53 @@ __modsi3:
 __udivmodhi4:
 .LFB131 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	or	$r14,$r5,$r0
-	or	$r13,$r6,$r0
-	st.h	$r4,$r3,14
-	or	$r12,$r5,$r0
-	st.h	$r5,$r3,12
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,8
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	addi.w	$r13,$r0,17			# 0x11
 	addi.w	$r12,$r0,1			# 0x1
-	st.h	$r12,$r3,30
-	st.h	$r0,$r3,28
-	b	.L835
-.L837:
-	ld.hu	$r12,$r3,12
+	b	.L586
+.L588:
+	slli.w	$r5,$r5,1
+	bstrpick.w	$r5,$r5,15,0
 	slli.w	$r12,$r12,1
-	st.h	$r12,$r3,12
-	ld.hu	$r12,$r3,30
-	slli.w	$r12,$r12,1
-	st.h	$r12,$r3,30
-.L835:
-	ld.hu	$r13,$r3,12
-	ld.hu	$r12,$r3,14
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bgeu	$r13,$r12,.L838
-	ld.hu	$r12,$r3,30
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L838
-	ld.h	$r12,$r3,12
-	bge	$r12,$r0,.L837
-	b	.L838
-.L840:
-	ld.hu	$r13,$r3,14
-	ld.hu	$r12,$r3,12
-	slli.w	$r13,$r13,0
-	slli.w	$r12,$r12,0
-	bltu	$r13,$r12,.L839
-	ld.hu	$r13,$r3,14
-	ld.hu	$r12,$r3,12
-	sub.w	$r12,$r13,$r12
-	st.h	$r12,$r3,14
-	ld.hu	$r13,$r3,28
-	ld.hu	$r12,$r3,30
-	or	$r12,$r13,$r12
-	st.h	$r12,$r3,28
-.L839:
-	ld.hu	$r12,$r3,30
-	srli.w	$r12,$r12,1
-	st.h	$r12,$r3,30
-	ld.hu	$r12,$r3,12
-	srli.w	$r12,$r12,1
-	st.h	$r12,$r3,12
-.L838:
-	ld.hu	$r12,$r3,30
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L840
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L841
-	ld.hu	$r12,$r3,14
-	b	.L842
-.L841:
-	ld.hu	$r12,$r3,28
-.L842:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	bstrpick.w	$r12,$r12,15,0
+.L586:
+	slli.w	$r14,$r5,0
+	bgeu	$r14,$r4,.L593
+	addi.w	$r13,$r13,-1
+	beqz	$r13,.L594
+	ext.w.h	$r14,$r5
+	bge	$r14,$r0,.L588
+	or	$r13,$r0,$r0
+	b	.L590
+.L591:
+	slli.w	$r14,$r4,0
+	bltu	$r14,$r5,.L589
+	sub.w	$r4,$r4,$r5
+	bstrpick.w	$r4,$r4,15,0
+	or	$r13,$r13,$r12
+.L589:
+	srli.d	$r12,$r12,1
+	srli.d	$r5,$r5,1
+	b	.L590
+.L593:
+	or	$r13,$r0,$r0
+	b	.L590
+.L594:
+	or	$r13,$r0,$r0
+.L590:
+	bnez	$r12,.L591
+	bnez	$r6,.L592
+	or	$r4,$r13,$r0
+.L592:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE131:
@@ -5887,68 +5087,46 @@ __udivmodhi4:
 __udivmodsi4_libgcc:
 .LFB132 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,24
-	st.d	$r5,$r3,16
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
-	st.d	$r12,$r3,40
-	st.d	$r0,$r3,32
-	b	.L845
-.L847:
-	ld.d	$r12,$r3,16
+	b	.L597
+.L599:
+	slli.d	$r5,$r5,1
 	slli.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,40
-	slli.d	$r12,$r12,1
-	st.d	$r12,$r3,40
-.L845:
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	bgeu	$r13,$r12,.L848
-	ld.d	$r12,$r3,40
-	beqz	$r12,.L848
-	ld.d	$r13,$r3,16
-	lu12i.w	$r12,-2147483648>>12			# 0xffffffff80000000
-	lu32i.d	$r12,0>>32
-	and	$r12,$r13,$r12
-	beqz	$r12,.L847
-	b	.L848
-.L850:
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	bltu	$r13,$r12,.L849
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,16
-	sub.d	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-	ld.d	$r13,$r3,32
-	ld.d	$r12,$r3,40
-	or	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-.L849:
-	ld.d	$r12,$r3,40
+.L597:
+	bgeu	$r5,$r4,.L604
+	beqz	$r12,.L605
+	bstrpick.d	$r13,$r5,31,31
+	beqz	$r13,.L599
+	or	$r13,$r0,$r0
+	b	.L601
+.L602:
+	bltu	$r4,$r5,.L600
+	sub.d	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L600:
 	srli.d	$r12,$r12,1
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,16
-	srli.d	$r12,$r12,1
-	st.d	$r12,$r3,16
-.L848:
-	ld.d	$r12,$r3,40
-	bnez	$r12,.L850
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L851
-	ld.d	$r12,$r3,24
-	b	.L852
-.L851:
-	ld.d	$r12,$r3,32
-.L852:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	srli.d	$r5,$r5,1
+	b	.L601
+.L604:
+	or	$r13,$r0,$r0
+	b	.L601
+.L605:
+	or	$r13,$r0,$r0
+.L601:
+	bnez	$r12,.L602
+	bnez	$r6,.L603
+	or	$r4,$r13,$r0
+.L603:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE132:
@@ -5959,64 +5137,38 @@ __udivmodsi4_libgcc:
 __ashldi3:
 .LFB133 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,4
-	addi.w	$r12,$r0,32			# 0x20
-	st.w	$r12,$r3,44
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,32
-	ld.w	$r13,$r3,4
-	ld.w	$r12,$r3,44
-	and	$r12,$r13,$r12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	andi	$r13,$r5,32
+	beqz	$r13,.L608
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r0,31,0
+	sll.w	$r12,$r12,$r5
+	bstrins.d	$r4,$r12,63,32
+	b	.L610
+.L608:
+	beqz	$r5,.L610
+	slli.w	$r13,$r12,0
+	sll.w	$r14,$r12,$r5
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r14,31,0
+	srai.d	$r12,$r12,32
+	sub.w	$r14,$r0,$r5
+	srl.w	$r13,$r13,$r14
+	sll.w	$r5,$r12,$r5
+	or	$r12,$r13,$r5
 	slli.w	$r12,$r12,0
-	beqz	$r12,.L855
-	st.w	$r0,$r3,24
-	ldptr.w	$r13,$r3,32
-	ld.w	$r14,$r3,4
-	ld.w	$r12,$r3,44
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sll.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,28
-	b	.L856
-.L855:
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L857
-	ld.d	$r12,$r3,8
-	b	.L859
-.L857:
-	ldptr.w	$r13,$r3,32
-	ld.w	$r12,$r3,4
-	sll.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,24
-	ldptr.w	$r12,$r3,36
-	or	$r13,$r12,$r0
-	ld.w	$r12,$r3,4
-	sll.w	$r12,$r13,$r12
-	slli.w	$r15,$r12,0
-	ldptr.w	$r13,$r3,32
-	ld.w	$r14,$r3,44
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r15,$r0
-	or	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,28
-.L856:
-	ld.d	$r12,$r3,24
-.L859:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	bstrins.d	$r4,$r12,63,32
+.L610:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE133:
@@ -6027,64 +5179,48 @@ __ashldi3:
 __ashlti3:
 .LFB134 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	addi.w	$r12,$r0,64			# 0x40
-	st.w	$r12,$r3,76
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,56
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,76
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L862
-	st.d	$r0,$r3,32
-	ld.d	$r13,$r3,48
-	ld.w	$r14,$r3,12
-	ld.w	$r12,$r3,76
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sll.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	b	.L863
-.L862:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L864
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L866
-.L864:
-	ld.d	$r13,$r3,48
-	ld.w	$r12,$r3,12
-	sll.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,56
-	or	$r13,$r12,$r0
-	ld.w	$r12,$r3,12
-	sll.d	$r13,$r13,$r12
-	ld.d	$r14,$r3,48
-	ld.w	$r15,$r3,76
-	ld.w	$r12,$r3,12
-	sub.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	srl.d	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-.L863:
-	ld.d	$r13,$r3,32
-	ld.d	$r12,$r3,40
-.L866:
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r16,$r12,$r0
+	or	$r17,$r13,$r0
+	andi	$r14,$r6,64
+	beqz	$r14,.L613
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	sll.d	$r16,$r16,$r6
+	or	$r13,$r16,$r0
+	b	.L614
+.L613:
+	beqz	$r6,.L616
+	or	$r14,$r16,$r0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	sll.d	$r12,$r14,$r6
+	sll.d	$r15,$r17,$r6
+	sub.w	$r6,$r0,$r6
+	srl.d	$r14,$r14,$r6
+	or	$r14,$r14,$r15
+	or	$r13,$r14,$r0
+.L614:
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+	b	.L615
+.L616:
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+.L615:
+	or	$r4,$r14,$r0
+	or	$r5,$r15,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE134:
@@ -6095,70 +5231,39 @@ __ashlti3:
 __ashrdi3:
 .LFB135 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,4
-	addi.w	$r12,$r0,32			# 0x20
-	st.w	$r12,$r3,44
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,32
-	ld.w	$r13,$r3,4
-	ld.w	$r12,$r3,44
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L869
-	ldptr.w	$r13,$r3,36
-	ld.w	$r12,$r3,44
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,28
-	ldptr.w	$r13,$r3,36
-	ld.w	$r14,$r3,4
-	ld.w	$r12,$r3,44
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,24
-	b	.L870
-.L869:
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L871
-	ld.d	$r12,$r3,8
-	b	.L873
-.L871:
-	ldptr.w	$r13,$r3,36
-	ld.w	$r12,$r3,4
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,28
-	ldptr.w	$r12,$r3,36
-	or	$r14,$r12,$r0
-	ld.w	$r13,$r3,44
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	sll.w	$r12,$r14,$r12
-	slli.w	$r14,$r12,0
-	ldptr.w	$r13,$r3,32
-	ld.w	$r12,$r3,4
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
-	or	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,24
-.L870:
-	ld.d	$r12,$r3,24
-.L873:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	andi	$r13,$r5,32
+	beqz	$r13,.L618
+	srai.d	$r12,$r12,32
+	srai.w	$r13,$r12,31
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r13,63,32
+	sra.w	$r12,$r12,$r5
+	bstrins.d	$r4,$r12,31,0
+	b	.L620
+.L618:
+	beqz	$r5,.L620
+	srai.d	$r13,$r12,32
+	sra.w	$r14,$r13,$r5
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r14,63,32
+	sub.w	$r14,$r0,$r5
+	sll.w	$r13,$r13,$r14
+	srl.w	$r12,$r12,$r5
+	or	$r13,$r13,$r12
+	slli.w	$r13,$r13,0
+	bstrins.d	$r4,$r13,31,0
+.L620:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE135:
@@ -6169,69 +5274,49 @@ __ashrdi3:
 __ashrti3:
 .LFB136 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	addi.w	$r12,$r0,64			# 0x40
-	st.w	$r12,$r3,76
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,56
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,76
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L876
-	ld.d	$r13,$r3,56
-	ld.w	$r12,$r3,76
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-	sra.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,56
-	ld.w	$r14,$r3,12
-	ld.w	$r12,$r3,76
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sra.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	b	.L877
-.L876:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L878
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L880
-.L878:
-	ld.d	$r13,$r3,56
-	ld.w	$r12,$r3,12
-	sra.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,56
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r16,$r12,$r0
+	or	$r17,$r13,$r0
+	andi	$r14,$r6,64
+	beqz	$r14,.L623
+	or	$r14,$r17,$r0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	srai.d	$r13,$r14,63
+	sra.d	$r14,$r14,$r6
+	or	$r12,$r14,$r0
+	b	.L624
+.L623:
+	beqz	$r6,.L626
+	or	$r14,$r17,$r0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	sra.d	$r13,$r14,$r6
+	sub.w	$r15,$r0,$r6
+	sll.d	$r14,$r14,$r15
+	srl.d	$r16,$r16,$r6
+	or	$r12,$r14,$r16
+.L624:
 	or	$r14,$r12,$r0
-	ld.w	$r13,$r3,76
-	ld.w	$r12,$r3,12
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	sll.d	$r13,$r14,$r12
-	ld.d	$r14,$r3,48
-	ld.w	$r12,$r3,12
-	srl.d	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-.L877:
-	ld.d	$r13,$r3,32
-	ld.d	$r12,$r3,40
-.L880:
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	or	$r15,$r13,$r0
+	b	.L625
+.L626:
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+.L625:
+	or	$r4,$r14,$r0
+	or	$r5,$r15,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE136:
@@ -6244,51 +5329,47 @@ __bswapdi2:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	srli.d	$r13,$r12,56
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,40
-	lu12i.w	$r14,61440>>12			# 0xf000
-	ori	$r14,$r14,3840
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,24
-	lu12i.w	$r14,16711680>>12			# 0xff0000
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	srli.d	$r12,$r12,8
-	lu12i.w	$r14,-16777216>>12			# 0xffffffffff000000
-	lu32i.d	$r14,0>>32
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,8
-	or	$r14,$r0,$r0
-	lu32i.d	$r14,0xff00000000>>32
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,24
-	or	$r14,$r0,$r0
-	lu32i.d	$r14,0xff0000000000>>32
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,40
-	or	$r14,$r0,$r0
-	lu32i.d	$r14,0xffff000000000000>>32
-	lu52i.d	$r14,$r14,0xf0000000000000>>52
-	and	$r12,$r12,$r14
-	or	$r13,$r13,$r12
-	ld.d	$r12,$r3,8
-	slli.d	$r12,$r12,56
-	or	$r12,$r13,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r18,$r4,56
+	srli.d	$r17,$r4,40
+	lu12i.w	$r12,61440>>12			# 0xf000
+	ori	$r12,$r12,3840
+	and	$r17,$r17,$r12
+	srli.d	$r16,$r4,24
+	lu12i.w	$r12,16711680>>12			# 0xff0000
+	and	$r16,$r16,$r12
+	srli.d	$r15,$r4,8
+	lu12i.w	$r12,-16777216>>12			# 0xffffffffff000000
+	lu32i.d	$r12,0>>32
+	and	$r15,$r15,$r12
+	slli.d	$r14,$r4,8
+	or	$r12,$r0,$r0
+	lu32i.d	$r12,0xff00000000>>32
+	and	$r14,$r14,$r12
+	slli.d	$r13,$r4,24
+	or	$r12,$r0,$r0
+	lu32i.d	$r12,0xff0000000000>>32
+	and	$r13,$r13,$r12
+	slli.d	$r12,$r4,40
+	or	$r19,$r0,$r0
+	lu32i.d	$r19,0xffff000000000000>>32
+	lu52i.d	$r19,$r19,0xf0000000000000>>52
+	and	$r12,$r12,$r19
+	slli.d	$r4,$r4,56
+	or	$r4,$r4,$r18
+	or	$r4,$r4,$r17
+	or	$r4,$r4,$r16
+	or	$r4,$r4,$r15
+	or	$r4,$r4,$r14
+	or	$r4,$r4,$r13
+	or	$r4,$r4,$r12
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE137:
@@ -6301,36 +5382,27 @@ __bswapsi2:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	srli.w	$r12,$r12,24
-	slli.w	$r14,$r12,0
-	ld.w	$r12,$r3,12
-	srli.w	$r13,$r12,8
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.w	$r14,$r4,8
+	slli.w	$r13,$r4,8
+	slli.w	$r12,$r4,24
+	srli.w	$r4,$r4,24
+	or	$r4,$r12,$r4
 	lu12i.w	$r12,61440>>12			# 0xf000
 	ori	$r12,$r12,3840
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
-	or	$r12,$r13,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r12,$r3,12
-	slli.w	$r13,$r12,8
+	and	$r12,$r12,$r14
+	or	$r4,$r4,$r12
 	lu12i.w	$r12,16711680>>12			# 0xff0000
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
-	or	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,24
-	slli.w	$r12,$r12,0
-	or	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
+	and	$r12,$r12,$r13
+	or	$r4,$r4,$r12
+	slli.w	$r4,$r4,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE138:
@@ -6341,113 +5413,66 @@ __bswapsi2:
 __clzsi2:
 .LFB139 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	st.w	$r12,$r3,76
-	ld.w	$r12,$r3,76
-	slli.w	$r13,$r12,0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	lu12i.w	$r12,65536>>12			# 0x10000
-	bgeu	$r13,$r12,.L889
+	bgeu	$r4,$r12,.L634
 	addi.w	$r12,$r0,16			# 0x10
-	b	.L890
-.L889:
+	b	.L630
+.L634:
 	or	$r12,$r0,$r0
-.L890:
-	st.w	$r12,$r3,72
+.L630:
 	addi.w	$r13,$r0,16			# 0x10
-	ld.w	$r12,$r3,72
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,76
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,68
-	ld.w	$r12,$r3,72
-	st.w	$r12,$r3,64
-	ld.w	$r13,$r3,68
-	lu12i.w	$r12,61440>>12			# 0xf000
-	ori	$r12,$r12,3840
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L891
-	addi.w	$r12,$r0,8			# 0x8
-	b	.L892
-.L891:
-	or	$r12,$r0,$r0
-.L892:
-	st.w	$r12,$r3,60
+	sub.w	$r13,$r13,$r12
+	srl.w	$r4,$r4,$r13
+	lu12i.w	$r13,61440>>12			# 0xf000
+	ori	$r13,$r13,3840
+	and	$r13,$r4,$r13
+	bnez	$r13,.L635
 	addi.w	$r13,$r0,8			# 0x8
-	ld.w	$r12,$r3,60
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,68
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,56
-	ld.w	$r13,$r3,64
-	ld.w	$r12,$r3,60
+	b	.L631
+.L635:
+	or	$r13,$r0,$r0
+.L631:
+	addi.w	$r14,$r0,8			# 0x8
+	sub.w	$r14,$r14,$r13
+	srl.w	$r4,$r4,$r14
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,52
-	ld.w	$r12,$r3,56
-	andi	$r12,$r12,240
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L893
-	addi.w	$r12,$r0,4			# 0x4
-	b	.L894
-.L893:
-	or	$r12,$r0,$r0
-.L894:
-	st.w	$r12,$r3,48
+	andi	$r13,$r4,240
+	bnez	$r13,.L636
 	addi.w	$r13,$r0,4			# 0x4
-	ld.w	$r12,$r3,48
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,56
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,44
-	ld.w	$r13,$r3,52
-	ld.w	$r12,$r3,48
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.w	$r12,$r3,44
-	andi	$r12,$r12,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L895
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L896
-.L895:
-	or	$r12,$r0,$r0
-.L896:
-	st.w	$r12,$r3,36
+	b	.L632
+.L636:
+	or	$r13,$r0,$r0
+.L632:
+	addi.w	$r14,$r0,4			# 0x4
+	sub.w	$r14,$r14,$r13
+	srl.w	$r4,$r4,$r14
+	add.w	$r12,$r12,$r13
+	andi	$r13,$r4,12
+	bnez	$r13,.L637
 	addi.w	$r13,$r0,2			# 0x2
-	ld.w	$r12,$r3,36
-	sub.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,44
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,32
-	ld.w	$r13,$r3,40
-	ld.w	$r12,$r3,36
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,32
-	andi	$r12,$r12,2
-	slli.w	$r12,$r12,0
-	sltui	$r12,$r12,1
-	slli.w	$r13,$r12,0
+	b	.L633
+.L637:
+	or	$r13,$r0,$r0
+.L633:
 	addi.w	$r14,$r0,2			# 0x2
-	ld.w	$r12,$r3,32
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	mul.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,28
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	sub.w	$r15,$r14,$r13
+	srl.w	$r4,$r4,$r15
+	add.w	$r12,$r12,$r13
+	andi	$r13,$r4,2
+	sltui	$r13,$r13,1
+	sub.w	$r14,$r14,$r4
+	mul.w	$r13,$r13,$r14
+	add.w	$r4,$r12,$r13
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE139:
@@ -6458,39 +5483,29 @@ __clzsi2:
 __clzti2:
 .LFB140 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,24
-	sltui	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r0,$r12
-	slli.w	$r12,$r12,0
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,40
-	nor	$r12,$r0,$r12
-	and	$r13,$r13,$r12
-	ld.d	$r14,$r3,16
-	ld.d	$r12,$r3,40
-	and	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	clz.d	$r12,$r12
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,40
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,64
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+	or	$r12,$r13,$r0
+	sltui	$r13,$r12,1
+	sub.d	$r13,$r0,$r13
+	andn	$r4,$r12,$r13
+	and	$r14,$r13,$r14
+	or	$r4,$r4,$r14
+	clz.d	$r4,$r4
+	andi	$r13,$r13,64
+	add.d	$r4,$r4,$r13
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE140:
@@ -6501,43 +5516,42 @@ __clzti2:
 __cmpdi2:
 .LFB141 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,20
-	bge	$r13,$r12,.L903
-	or	$r12,$r0,$r0
-	b	.L908
-.L903:
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,20
-	ble	$r13,$r12,.L905
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L908
-.L905:
-	ldptr.w	$r13,$r3,24
-	ldptr.w	$r12,$r3,16
-	bgeu	$r13,$r12,.L906
-	or	$r12,$r0,$r0
-	b	.L908
-.L906:
-	ldptr.w	$r13,$r3,24
-	ldptr.w	$r12,$r3,16
-	bleu	$r13,$r12,.L907
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L908
-.L907:
-	addi.w	$r12,$r0,1			# 0x1
-.L908:
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r13,$r4,32
+	srai.d	$r12,$r5,32
+	blt	$r13,$r12,.L641
+	or	$r12,$r13,$r0
+	srai.d	$r13,$r5,32
+	bgt	$r12,$r13,.L642
+	slli.w	$r12,$r4,0
+	slli.w	$r13,$r5,0
+	bltu	$r12,$r13,.L643
 	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r5,$r13,$r0
+	bgtu	$r4,$r5,.L644
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L640
+.L641:
+	or	$r4,$r0,$r0
+	b	.L640
+.L642:
+	addi.w	$r4,$r0,2			# 0x2
+	b	.L640
+.L643:
+	or	$r4,$r0,$r0
+	b	.L640
+.L644:
+	addi.w	$r4,$r0,2			# 0x2
+.L640:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE141:
@@ -6548,23 +5562,22 @@ __cmpdi2:
 __aeabi_lcmp:
 .LFB142 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r1,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r1,$r3,8
+	stptr.d	$r22,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ldptr.d	$r5,$r3,0
-	ld.d	$r4,$r3,8
+	.cfi_offset 22, -16
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	bl	__cmpdi2
-	or	$r12,$r4,$r0
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,24
+	addi.w	$r4,$r4,-1
+	ld.d	$r1,$r3,8
 	.cfi_restore 1
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	ldptr.d	$r22,$r3,0
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE142:
@@ -6575,49 +5588,42 @@ __aeabi_lcmp:
 __cmpti2:
 .LFB143 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	stptr.d	$r6,$r3,0
-	st.d	$r7,$r3,8
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,56
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,56
-	ld.d	$r12,$r3,40
-	bge	$r13,$r12,.L914
-	or	$r12,$r0,$r0
-	b	.L919
-.L914:
-	ld.d	$r13,$r3,56
-	ld.d	$r12,$r3,40
-	ble	$r13,$r12,.L916
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L919
-.L916:
-	ld.d	$r13,$r3,48
-	ld.d	$r12,$r3,32
-	bgeu	$r13,$r12,.L917
-	or	$r12,$r0,$r0
-	b	.L919
-.L917:
-	ld.d	$r13,$r3,48
-	ld.d	$r12,$r3,32
-	bleu	$r13,$r12,.L918
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L919
-.L918:
-	addi.w	$r12,$r0,1			# 0x1
-.L919:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r16,$r4,$r0
+	or	$r17,$r5,$r0
+	or	$r18,$r6,$r0
+	or	$r19,$r7,$r0
+	or	$r14,$r16,$r0
+	or	$r15,$r17,$r0
+	or	$r12,$r18,$r0
+	or	$r13,$r19,$r0
+	bgt	$r19,$r17,.L648
+	blt	$r13,$r15,.L649
+	bgtu	$r12,$r14,.L650
+	bltu	$r12,$r14,.L651
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L647
+.L648:
+	or	$r4,$r0,$r0
+	b	.L647
+.L649:
+	addi.w	$r4,$r0,2			# 0x2
+	b	.L647
+.L650:
+	or	$r4,$r0,$r0
+	b	.L647
+.L651:
+	addi.w	$r4,$r0,2			# 0x2
+.L647:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE143:
@@ -6628,105 +5634,60 @@ __cmpti2:
 __ctzsi2:
 .LFB144 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	or	$r12,$r4,$r0
-	st.w	$r4,$r3,12
-	ld.w	$r12,$r3,12
-	st.w	$r12,$r3,76
-	ld.w	$r13,$r3,76
-	lu12i.w	$r12,61440>>12			# 0xf000
-	ori	$r12,$r12,4095
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L922
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.w	$r12,$r4,15,0
+	bnez	$r12,.L657
 	addi.w	$r12,$r0,16			# 0x10
-	b	.L923
-.L922:
+	b	.L653
+.L657:
 	or	$r12,$r0,$r0
-.L923:
-	st.w	$r12,$r3,72
-	ld.w	$r13,$r3,76
-	ld.w	$r12,$r3,72
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,68
-	ld.w	$r12,$r3,72
-	st.w	$r12,$r3,64
-	ld.w	$r12,$r3,68
-	andi	$r12,$r12,255
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L924
-	addi.w	$r12,$r0,8			# 0x8
-	b	.L925
-.L924:
-	or	$r12,$r0,$r0
-.L925:
-	st.w	$r12,$r3,60
-	ld.w	$r13,$r3,68
-	ld.w	$r12,$r3,60
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,56
-	ld.w	$r13,$r3,64
-	ld.w	$r12,$r3,60
+.L653:
+	srl.w	$r4,$r4,$r12
+	bstrpick.w	$r13,$r4,7,0
+	bnez	$r13,.L658
+	addi.w	$r13,$r0,8			# 0x8
+	b	.L654
+.L658:
+	or	$r13,$r0,$r0
+.L654:
+	srl.w	$r4,$r4,$r13
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,52
-	ld.w	$r12,$r3,56
-	andi	$r12,$r12,15
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L926
-	addi.w	$r12,$r0,4			# 0x4
-	b	.L927
-.L926:
-	or	$r12,$r0,$r0
-.L927:
-	st.w	$r12,$r3,48
-	ld.w	$r13,$r3,56
-	ld.w	$r12,$r3,48
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,44
-	ld.w	$r13,$r3,52
-	ld.w	$r12,$r3,48
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.w	$r12,$r3,44
-	andi	$r12,$r12,3
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L928
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L929
-.L928:
-	or	$r12,$r0,$r0
-.L929:
-	st.w	$r12,$r3,36
-	ld.w	$r13,$r3,44
-	ld.w	$r12,$r3,36
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,32
-	ld.w	$r12,$r3,32
-	andi	$r12,$r12,3
-	st.w	$r12,$r3,28
-	ld.w	$r13,$r3,40
-	ld.w	$r12,$r3,36
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,24
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
+	andi	$r13,$r4,15
+	bnez	$r13,.L659
+	addi.w	$r13,$r0,4			# 0x4
+	b	.L655
+.L659:
+	or	$r13,$r0,$r0
+.L655:
+	srl.w	$r4,$r4,$r13
+	add.w	$r12,$r12,$r13
+	andi	$r13,$r4,3
+	bnez	$r13,.L660
 	addi.w	$r13,$r0,2			# 0x2
-	sub.w	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,28
-	nor	$r12,$r0,$r12
-	andi	$r12,$r12,1
-	sub.w	$r12,$r0,$r12
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,24
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	b	.L656
+.L660:
+	or	$r13,$r0,$r0
+.L656:
+	srl.w	$r4,$r4,$r13
+	andi	$r4,$r4,3
+	add.w	$r12,$r12,$r13
+	nor	$r14,$r0,$r4
+	andi	$r14,$r14,1
+	srli.d	$r4,$r4,1
+	addi.w	$r13,$r0,2			# 0x2
+	sub.w	$r13,$r13,$r4
+	sub.w	$r14,$r0,$r14
+	and	$r13,$r13,$r14
+	add.w	$r4,$r12,$r13
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE144:
@@ -6737,39 +5698,28 @@ __ctzsi2:
 __ctzti2:
 .LFB145 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	sltui	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	sub.w	$r12,$r0,$r12
-	slli.w	$r12,$r12,0
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,24
-	ld.d	$r12,$r3,40
-	and	$r13,$r13,$r12
-	ld.d	$r14,$r3,16
-	ld.d	$r12,$r3,40
-	nor	$r12,$r0,$r12
-	and	$r12,$r14,$r12
-	or	$r12,$r13,$r12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r4,$r0
+	or	$r15,$r5,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	sltui	$r4,$r12,1
+	sub.d	$r4,$r0,$r4
+	and	$r13,$r4,$r15
+	andn	$r12,$r12,$r4
+	or	$r12,$r12,$r13
 	ctz.d	$r12,$r12
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,40
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,64
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	andi	$r4,$r4,64
+	add.d	$r4,$r12,$r4
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE145:
@@ -6780,37 +5730,32 @@ __ctzti2:
 __ffsti2:
 .LFB146 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,16
-	bnez	$r12,.L936
-	ld.d	$r12,$r3,24
-	bnez	$r12,.L937
-	or	$r12,$r0,$r0
-	b	.L939
-.L937:
-	ld.d	$r12,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r4,$r0
+	or	$r15,$r5,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	bnez	$r12,.L663
+	beqz	$r13,.L665
+	ctz.d	$r4,$r13
+	addi.d	$r4,$r4,65
+	b	.L664
+.L663:
 	ctz.d	$r12,$r12
-	slli.w	$r12,$r12,0
-	addi.w	$r12,$r12,65
-	slli.w	$r12,$r12,0
-	b	.L939
-.L936:
-	ld.d	$r12,$r3,16
-	ctz.d	$r12,$r12
-	slli.w	$r12,$r12,0
-	addi.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
-.L939:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r4,$r12,1
+	b	.L664
+.L665:
+	or	$r4,$r0,$r0
+.L664:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE146:
@@ -6821,63 +5766,39 @@ __ffsti2:
 __lshrdi3:
 .LFB147 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,8
-	or	$r12,$r5,$r0
-	st.w	$r5,$r3,4
-	addi.w	$r12,$r0,32			# 0x20
-	st.w	$r12,$r3,44
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,32
-	ld.w	$r13,$r3,4
-	ld.w	$r12,$r3,44
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L942
-	st.w	$r0,$r3,28
-	ldptr.w	$r13,$r3,36
-	ld.w	$r14,$r3,4
-	ld.w	$r12,$r3,44
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,24
-	b	.L943
-.L942:
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L944
-	ld.d	$r12,$r3,8
-	b	.L946
-.L944:
-	ldptr.w	$r13,$r3,36
-	ld.w	$r12,$r3,4
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,28
-	ldptr.w	$r13,$r3,36
-	ld.w	$r14,$r3,44
-	ld.w	$r12,$r3,4
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sll.w	$r12,$r13,$r12
-	slli.w	$r14,$r12,0
-	ldptr.w	$r13,$r3,32
-	ld.w	$r12,$r3,4
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r14,$r0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	andi	$r13,$r5,32
+	beqz	$r13,.L667
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r0,63,32
+	srai.d	$r12,$r12,32
+	srl.w	$r5,$r12,$r5
+	bstrins.d	$r4,$r5,31,0
+	b	.L669
+.L667:
+	beqz	$r5,.L669
+	srai.d	$r13,$r12,32
+	srl.w	$r13,$r13,$r5
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r13,63,32
+	srai.d	$r13,$r12,32
+	sub.w	$r14,$r0,$r5
+	sll.w	$r13,$r13,$r14
+	srl.w	$r12,$r12,$r5
 	or	$r12,$r13,$r12
 	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,24
-.L943:
-	ld.d	$r12,$r3,24
-.L946:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	bstrins.d	$r4,$r12,31,0
+.L669:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE147:
@@ -6888,63 +5809,50 @@ __lshrdi3:
 __lshrti3:
 .LFB148 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	or	$r12,$r6,$r0
-	st.w	$r6,$r3,12
-	addi.w	$r12,$r0,64			# 0x40
-	st.w	$r12,$r3,76
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,56
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,76
-	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L949
-	st.d	$r0,$r3,40
-	ld.d	$r13,$r3,56
-	ld.w	$r14,$r3,12
-	ld.w	$r12,$r3,76
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	b	.L950
-.L949:
-	ld.w	$r12,$r3,12
-	slli.w	$r12,$r12,0
-	bnez	$r12,.L951
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	b	.L953
-.L951:
-	ld.d	$r13,$r3,56
-	ld.w	$r12,$r3,12
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,56
-	ld.w	$r14,$r3,76
-	ld.w	$r12,$r3,12
-	sub.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	sll.d	$r13,$r13,$r12
-	ld.d	$r14,$r3,48
-	ld.w	$r12,$r3,12
-	srl.d	$r12,$r14,$r12
-	or	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-.L950:
-	ld.d	$r13,$r3,32
-	ld.d	$r12,$r3,40
-.L953:
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+	or	$r16,$r14,$r0
+	or	$r17,$r13,$r0
+	andi	$r14,$r6,64
+	beqz	$r14,.L672
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	srl.d	$r12,$r17,$r6
+	b	.L673
+.L672:
+	beqz	$r6,.L675
+	or	$r14,$r17,$r0
+	or	$r12,$r0,$r0
+	or	$r13,$r0,$r0
+	srl.d	$r13,$r14,$r6
+	sub.w	$r15,$r0,$r6
+	sll.d	$r14,$r14,$r15
+	srl.d	$r16,$r16,$r6
+	or	$r12,$r14,$r16
+.L673:
+	or	$r16,$r12,$r0
+	or	$r17,$r13,$r0
+	or	$r14,$r16,$r0
+	or	$r15,$r13,$r0
+	b	.L674
+.L675:
+	or	$r14,$r12,$r0
+	or	$r15,$r13,$r0
+.L674:
+	or	$r4,$r14,$r0
+	or	$r5,$r15,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE148:
@@ -6955,121 +5863,54 @@ __lshrti3:
 __muldsi3:
 .LFB149 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	or	$r12,$r4,$r0
-	or	$r13,$r5,$r0
-	st.w	$r12,$r3,12
-	or	$r12,$r13,$r0
-	st.w	$r12,$r3,8
-	addi.w	$r12,$r0,16			# 0x10
-	st.w	$r12,$r3,44
-	addi.w	$r13,$r0,-1			# 0xffffffffffffffff
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,40
-	and	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r14,$r3,8
-	ld.w	$r12,$r3,40
-	and	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	mul.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,16
-	ldptr.w	$r13,$r3,16
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,36
-	ldptr.w	$r13,$r3,16
-	ld.w	$r12,$r3,40
-	and	$r12,$r12,$r13
-	st.w	$r12,$r3,16
-	ld.w	$r13,$r3,12
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r14,$r3,8
-	ld.w	$r12,$r3,40
-	and	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	mul.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,36
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,32
-	ldptr.w	$r13,$r3,16
-	ld.w	$r14,$r3,32
-	ld.w	$r12,$r3,40
-	and	$r12,$r14,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r12,$r3,44
-	sll.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,16
-	ld.w	$r13,$r3,32
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	st.w	$r12,$r3,20
-	ldptr.w	$r13,$r3,16
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-	ldptr.w	$r13,$r3,16
-	ld.w	$r12,$r3,40
-	and	$r12,$r12,$r13
-	st.w	$r12,$r3,16
-	ld.w	$r13,$r3,8
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r14,$r3,12
-	ld.w	$r12,$r3,40
-	and	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	mul.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,28
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,24
-	ldptr.w	$r13,$r3,16
-	ld.w	$r14,$r3,24
-	ld.w	$r12,$r3,40
-	and	$r12,$r14,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r12,$r3,44
-	sll.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,16
-	ldptr.w	$r13,$r3,20
-	ld.w	$r14,$r3,24
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,20
-	ldptr.w	$r13,$r3,20
-	ld.w	$r14,$r3,12
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r14,$r12
-	slli.w	$r14,$r12,0
-	ld.w	$r15,$r3,8
-	ld.w	$r12,$r3,44
-	srl.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	mul.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,20
-	ld.d	$r12,$r3,16
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r13,$r4,$r0
+	or	$r14,$r13,$r0
+	bstrpick.w	$r14,$r14,15,0
+	or	$r15,$r5,$r0
+	bstrpick.w	$r15,$r15,15,0
+	mul.w	$r12,$r14,$r15
+	or	$r4,$r0,$r0
+	bstrins.d	$r4,$r12,31,0
+	slli.w	$r16,$r4,0
+	bstrpick.d	$r12,$r4,31,16
+	bstrpick.w	$r16,$r16,15,0
+	bstrins.d	$r4,$r16,31,0
+	bstrpick.d	$r13,$r13,31,16
+	mul.w	$r15,$r13,$r15
+	add.w	$r12,$r15,$r12
+	slli.w	$r15,$r12,16
+	add.w	$r15,$r15,$r4
+	bstrins.d	$r4,$r15,31,0
+	bstrpick.d	$r12,$r12,31,16
+	bstrins.d	$r4,$r12,63,32
+	slli.w	$r15,$r4,0
+	bstrpick.d	$r12,$r4,31,16
+	bstrpick.w	$r15,$r15,15,0
+	bstrins.d	$r4,$r15,31,0
+	bstrpick.d	$r5,$r5,31,16
+	mul.w	$r14,$r14,$r5
+	add.w	$r12,$r14,$r12
+	slli.w	$r14,$r12,16
+	add.w	$r14,$r14,$r4
+	bstrins.d	$r4,$r14,31,0
+	srai.d	$r14,$r4,32
+	bstrpick.d	$r12,$r12,31,16
+	add.w	$r12,$r12,$r14
+	bstrins.d	$r4,$r12,63,32
+	srai.d	$r12,$r4,32
+	mul.w	$r13,$r13,$r5
+	add.w	$r13,$r13,$r12
+	bstrins.d	$r4,$r13,63,32
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE149:
@@ -7080,42 +5921,53 @@ __muldsi3:
 __muldi3_compiler_rt:
 .LFB150 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r1,$r3,56
+	addi.d	$r3,$r3,-48
+	.cfi_def_cfa_offset 48
+	st.d	$r1,$r3,40
+	st.d	$r22,$r3,32
+	st.d	$r23,$r3,24
+	st.d	$r24,$r3,16
+	st.d	$r25,$r3,8
+	stptr.d	$r26,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,40
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,32
-	ldptr.w	$r13,$r3,32
-	ldptr.w	$r12,$r3,40
-	or	$r5,$r13,$r0
-	or	$r4,$r12,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	addi.d	$r22,$r3,48
+	.cfi_def_cfa 22, 0
+	or	$r23,$r4,$r0
+	or	$r24,$r5,$r0
+	slli.w	$r25,$r23,0
+	slli.w	$r26,$r24,0
+	or	$r5,$r26,$r0
+	or	$r4,$r25,$r0
 	bl	__muldsi3
 	or	$r12,$r4,$r0
-	st.d	$r12,$r3,24
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r14,$r3,44
-	ldptr.w	$r12,$r3,32
-	mul.w	$r12,$r14,$r12
-	slli.w	$r14,$r12,0
-	ldptr.w	$r15,$r3,40
-	ldptr.w	$r12,$r3,36
-	mul.w	$r12,$r15,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-	ld.d	$r12,$r3,24
 	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,56
+	srai.d	$r12,$r12,32
+	srai.d	$r23,$r23,32
+	mul.w	$r23,$r23,$r26
+	srai.d	$r24,$r24,32
+	mul.w	$r24,$r24,$r25
+	add.w	$r23,$r23,$r24
+	add.w	$r23,$r23,$r12
+	bstrins.d	$r4,$r23,63,32
+	ld.d	$r1,$r3,40
 	.cfi_restore 1
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,32
+	.cfi_restore 22
+	ld.d	$r23,$r3,24
+	.cfi_restore 23
+	ld.d	$r24,$r3,16
+	.cfi_restore 24
+	ld.d	$r25,$r3,8
+	.cfi_restore 25
+	ldptr.d	$r26,$r3,0
+	.cfi_restore 26
+	addi.d	$r3,$r3,48
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE150:
@@ -7126,102 +5978,52 @@ __muldi3_compiler_rt:
 __mulddi3:
 .LFB151 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-80
-	.cfi_def_cfa_offset 80
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	addi.w	$r12,$r0,32			# 0x20
-	st.w	$r12,$r3,76
-	addi.w	$r13,$r0,-1			# 0xffffffffffffffff
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,64
-	ld.d	$r13,$r3,8
-	ld.d	$r12,$r3,64
-	and	$r13,$r13,$r12
-	ldptr.d	$r14,$r3,0
-	ld.d	$r12,$r3,64
-	and	$r12,$r14,$r12
-	mul.d	$r12,$r13,$r12
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,16
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,56
-	ld.d	$r12,$r3,16
-	ld.d	$r13,$r3,64
-	and	$r12,$r13,$r12
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,8
-	ld.w	$r12,$r3,76
-	srl.d	$r13,$r13,$r12
-	ldptr.d	$r14,$r3,0
-	ld.d	$r12,$r3,64
-	and	$r12,$r14,$r12
-	mul.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,56
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,48
-	ld.d	$r13,$r3,16
-	ld.d	$r14,$r3,48
-	ld.d	$r12,$r3,64
-	and	$r14,$r14,$r12
-	ld.w	$r12,$r3,76
-	sll.d	$r12,$r14,$r12
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,48
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-	ld.d	$r13,$r3,16
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,16
-	ld.d	$r13,$r3,64
-	and	$r12,$r13,$r12
-	st.d	$r12,$r3,16
-	ldptr.d	$r13,$r3,0
-	ld.w	$r12,$r3,76
-	srl.d	$r13,$r13,$r12
-	ld.d	$r14,$r3,8
-	ld.d	$r12,$r3,64
-	and	$r12,$r14,$r12
-	mul.d	$r12,$r13,$r12
-	ld.d	$r13,$r3,40
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	ld.d	$r13,$r3,16
-	ld.d	$r14,$r3,32
-	ld.d	$r12,$r3,64
-	and	$r14,$r14,$r12
-	ld.w	$r12,$r3,76
-	sll.d	$r12,$r14,$r12
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,16
-	ld.d	$r13,$r3,24
-	ld.d	$r14,$r3,32
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r14,$r12
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-	ld.d	$r13,$r3,24
-	ld.d	$r14,$r3,8
-	ld.w	$r12,$r3,76
-	srl.d	$r14,$r14,$r12
-	ldptr.d	$r15,$r3,0
-	ld.w	$r12,$r3,76
-	srl.d	$r12,$r15,$r12
-	mul.d	$r12,$r14,$r12
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-	ld.d	$r13,$r3,16
-	ld.d	$r12,$r3,24
-	or	$r4,$r13,$r0
-	or	$r5,$r12,$r0
-	addi.d	$r3,$r3,80
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	bstrpick.d	$r16,$r4,31,0
+	bstrpick.d	$r17,$r5,31,0
+	mul.d	$r13,$r16,$r17
+	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
+	or	$r14,$r13,$r0
+	srli.d	$r12,$r13,32
+	bstrpick.d	$r13,$r13,31,0
+	or	$r14,$r13,$r0
+	srli.d	$r4,$r4,32
+	mul.d	$r17,$r4,$r17
+	add.d	$r12,$r12,$r17
+	slli.d	$r17,$r12,32
+	add.d	$r14,$r17,$r13
+	srli.d	$r12,$r12,32
+	or	$r15,$r12,$r0
+	or	$r13,$r14,$r0
+	srli.d	$r12,$r13,32
+	bstrpick.d	$r13,$r13,31,0
+	or	$r14,$r13,$r0
+	srli.d	$r5,$r5,32
+	mul.d	$r16,$r16,$r5
+	add.d	$r12,$r12,$r16
+	slli.d	$r16,$r12,32
+	add.d	$r14,$r16,$r13
+	srli.d	$r12,$r12,32
+	add.d	$r12,$r12,$r15
+	or	$r15,$r12,$r0
+	mul.d	$r4,$r4,$r5
+	add.d	$r5,$r4,$r12
+	or	$r15,$r5,$r0
+	or	$r16,$r14,$r0
+	or	$r17,$r5,$r0
+	or	$r12,$r16,$r0
+	or	$r13,$r5,$r0
+	or	$r4,$r12,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE151:
@@ -7232,47 +6034,75 @@ __mulddi3:
 __multi3:
 .LFB152 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-96
-	.cfi_def_cfa_offset 96
-	st.d	$r1,$r3,88
+	addi.d	$r3,$r3,-80
+	.cfi_def_cfa_offset 80
+	st.d	$r1,$r3,72
+	st.d	$r22,$r3,64
+	st.d	$r23,$r3,56
+	st.d	$r24,$r3,48
+	st.d	$r25,$r3,40
+	st.d	$r26,$r3,32
+	st.d	$r27,$r3,24
+	st.d	$r28,$r3,16
+	st.d	$r29,$r3,8
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	stptr.d	$r6,$r3,0
-	st.d	$r7,$r3,8
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,64
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,72
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,56
-	ld.d	$r5,$r3,48
-	ld.d	$r4,$r3,64
-	bl	__mulddi3
-	or	$r13,$r4,$r0
-	or	$r12,$r5,$r0
-	st.d	$r13,$r3,32
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,40
-	ld.d	$r14,$r3,72
-	ld.d	$r12,$r3,48
-	mul.d	$r14,$r14,$r12
-	ld.d	$r15,$r3,64
-	ld.d	$r12,$r3,56
-	mul.d	$r12,$r15,$r12
-	add.d	$r12,$r14,$r12
-	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,32
-	ld.d	$r12,$r3,40
-	or	$r4,$r13,$r0
+	.cfi_offset 22, -16
+	.cfi_offset 23, -24
+	.cfi_offset 24, -32
+	.cfi_offset 25, -40
+	.cfi_offset 26, -48
+	.cfi_offset 27, -56
+	.cfi_offset 28, -64
+	.cfi_offset 29, -72
+	addi.d	$r22,$r3,80
+	.cfi_def_cfa 22, 0
+	or	$r26,$r4,$r0
+	or	$r27,$r5,$r0
+	or	$r28,$r6,$r0
+	or	$r29,$r7,$r0
+	or	$r14,$r26,$r0
+	or	$r15,$r27,$r0
+	or	$r12,$r28,$r0
+	or	$r13,$r29,$r0
+	or	$r24,$r14,$r0
+	or	$r23,$r12,$r0
 	or	$r5,$r12,$r0
-	ld.d	$r1,$r3,88
+	or	$r4,$r14,$r0
+	bl	__mulddi3
+	or	$r14,$r4,$r0
+	or	$r15,$r5,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	mul.d	$r5,$r23,$r27
+	mul.d	$r24,$r24,$r29
+	add.d	$r5,$r5,$r24
+	add.d	$r5,$r5,$r15
+	or	$r13,$r5,$r0
+	or	$r16,$r12,$r0
+	or	$r17,$r5,$r0
+	or	$r12,$r16,$r0
+	or	$r13,$r5,$r0
+	or	$r4,$r12,$r0
+	ld.d	$r1,$r3,72
 	.cfi_restore 1
-	addi.d	$r3,$r3,96
-	.cfi_def_cfa_offset 0
+	ld.d	$r22,$r3,64
+	.cfi_restore 22
+	ld.d	$r23,$r3,56
+	.cfi_restore 23
+	ld.d	$r24,$r3,48
+	.cfi_restore 24
+	ld.d	$r25,$r3,40
+	.cfi_restore 25
+	ld.d	$r26,$r3,32
+	.cfi_restore 26
+	ld.d	$r27,$r3,24
+	.cfi_restore 27
+	ld.d	$r28,$r3,16
+	.cfi_restore 28
+	ld.d	$r29,$r3,8
+	.cfi_restore 29
+	addi.d	$r3,$r3,80
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE152:
@@ -7285,12 +6115,15 @@ __negdi2:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	sub.d	$r12,$r0,$r12
-	or	$r4,$r12,$r0
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	sub.d	$r4,$r0,$r4
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE153:
@@ -7303,24 +6136,32 @@ __negti2:
 	.cfi_startproc
 	addi.d	$r3,$r3,-16
 	.cfi_def_cfa_offset 16
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r16,$r3,0
-	ld.d	$r15,$r3,8
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r12,$r4,$r0
+	or	$r13,$r5,$r0
+	or	$r16,$r12,$r0
+	or	$r17,$r13,$r0
+	or	$r12,$r0,$r0
 	or	$r13,$r0,$r0
-	or	$r17,$r0,$r0
-	sub.d	$r14,$r13,$r16
+	sub.d	$r14,$r12,$r16
+	sltu	$r5,$r12,$r14
+	sub.d	$r15,$r0,$r17
+	sub.d	$r5,$r15,$r5
+	or	$r15,$r5,$r0
 	or	$r12,$r14,$r0
-	sltu	$r12,$r13,$r12
-	bstrpick.d	$r13,$r12,31,0
-	sub.d	$r12,$r17,$r15
-	sub.d	$r12,$r12,$r13
-	or	$r15,$r14,$r0
-	or	$r13,$r12,$r0
-	or	$r4,$r15,$r0
-	or	$r5,$r13,$r0
+	or	$r13,$r5,$r0
+	or	$r14,$r12,$r0
+	or	$r15,$r5,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r5,$r0
+	or	$r4,$r12,$r0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
 	addi.d	$r3,$r3,16
-	.cfi_def_cfa_offset 0
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE154:
@@ -7331,45 +6172,29 @@ __negti2:
 __paritydi2:
 .LFB155 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,24
-	xor	$r12,$r13,$r12
-	st.w	$r12,$r3,44
-	ld.w	$r12,$r3,44
-	srli.w	$r12,$r12,16
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,44
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r12,$r4,32
+	xor	$r12,$r12,$r4
+	srli.w	$r13,$r12,16
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,40
-	ld.w	$r12,$r3,40
-	srli.w	$r12,$r12,8
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,40
+	srli.w	$r13,$r12,8
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,36
-	ld.w	$r12,$r3,36
-	srli.w	$r12,$r12,4
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,36
+	srli.w	$r13,$r12,4
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,32
-	ld.w	$r12,$r3,32
 	andi	$r12,$r12,15
-	slli.w	$r12,$r12,0
-	lu12i.w	$r13,24576>>12			# 0x6000
-	ori	$r13,$r13,2454
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	lu12i.w	$r4,24576>>12			# 0x6000
+	ori	$r4,$r4,2454
+	sra.w	$r4,$r4,$r12
+	andi	$r4,$r4,1
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE155:
@@ -7380,52 +6205,34 @@ __paritydi2:
 __parityti2:
 .LFB156 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,40
-	ld.d	$r12,$r3,32
-	xor	$r12,$r13,$r12
-	st.d	$r12,$r3,24
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,24
-	xor	$r12,$r13,$r12
-	st.w	$r12,$r3,60
-	ld.w	$r12,$r3,60
-	srli.w	$r12,$r12,16
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,60
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r4,$r0
+	or	$r15,$r5,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r15,$r0
+	xor	$r13,$r12,$r15
+	srai.d	$r12,$r13,32
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,56
-	ld.w	$r12,$r3,56
-	srli.w	$r12,$r12,8
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,56
+	srli.w	$r13,$r12,16
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,52
-	ld.w	$r12,$r3,52
-	srli.w	$r12,$r12,4
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,52
+	srli.w	$r13,$r12,8
 	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,48
-	ld.w	$r12,$r3,48
+	srli.w	$r13,$r12,4
+	xor	$r12,$r12,$r13
 	andi	$r12,$r12,15
-	slli.w	$r12,$r12,0
-	lu12i.w	$r13,24576>>12			# 0x6000
-	ori	$r13,$r13,2454
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	lu12i.w	$r4,24576>>12			# 0x6000
+	ori	$r4,$r4,2454
+	sra.w	$r4,$r4,$r12
+	andi	$r4,$r4,1
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE156:
@@ -7436,42 +6243,27 @@ __parityti2:
 __paritysi2:
 .LFB157 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,16
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,28
-	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,24
-	ld.w	$r12,$r3,24
-	srli.w	$r12,$r12,8
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,24
-	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,20
-	ld.w	$r12,$r3,20
-	srli.w	$r12,$r12,4
-	slli.w	$r13,$r12,0
-	ld.w	$r12,$r3,20
-	xor	$r12,$r12,$r13
-	st.w	$r12,$r3,16
-	ld.w	$r12,$r3,16
-	andi	$r12,$r12,15
-	slli.w	$r12,$r12,0
-	lu12i.w	$r13,24576>>12			# 0x6000
-	ori	$r13,$r13,2454
-	sra.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.w	$r12,$r4,16
+	xor	$r4,$r4,$r12
+	srli.w	$r12,$r4,8
+	xor	$r4,$r4,$r12
+	srli.w	$r12,$r4,4
+	xor	$r4,$r4,$r12
+	andi	$r4,$r4,15
+	lu12i.w	$r12,24576>>12			# 0x6000
+	ori	$r12,$r12,2454
+	sra.w	$r4,$r12,$r4
+	andi	$r4,$r4,1
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE157:
@@ -7482,70 +6274,42 @@ __paritysi2:
 __popcountdi2:
 .LFB158 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r4,$r3,8
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,56
-	ld.d	$r12,$r3,56
-	srli.d	$r13,$r12,1
-	lu12i.w	$r12,1431654400>>12			# 0x55555000
-	ori	$r12,$r12,1365
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r12,$r13,$r12
-	ld.d	$r13,$r3,56
-	sub.d	$r12,$r13,$r12
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,48
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r12,$r4,1
+	lu12i.w	$r13,1431654400>>12			# 0x55555000
+	ori	$r13,$r13,1365
+	bstrins.d	$r13,$r13,63,32
+	and	$r12,$r12,$r13
+	sub.d	$r12,$r4,$r12
 	srli.d	$r13,$r12,2
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r13,$r13,$r12
-	ld.d	$r14,$r3,48
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r12,$r14,$r12
+	lu12i.w	$r14,858992640>>12			# 0x33333000
+	ori	$r14,$r14,819
+	bstrins.d	$r14,$r14,63,32
+	and	$r13,$r13,$r14
+	and	$r12,$r12,$r14
 	add.d	$r12,$r13,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,40
 	srli.d	$r13,$r12,4
-	ld.d	$r12,$r3,40
-	add.d	$r13,$r13,$r12
-	lu12i.w	$r12,252641280>>12			# 0xf0f0000
-	ori	$r12,$r12,3855
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r12,$r13,$r12
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,32
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,32
-	srli.d	$r12,$r12,32
-	slli.w	$r12,$r12,0
+	add.d	$r12,$r13,$r12
+	lu12i.w	$r13,252641280>>12			# 0xf0f0000
+	ori	$r13,$r13,3855
+	bstrins.d	$r13,$r13,63,32
+	and	$r12,$r12,$r13
+	srli.d	$r13,$r12,32
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,16
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,28
+	bstrpick.d	$r13,$r12,31,16
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,24
-	ld.w	$r12,$r3,24
-	srli.w	$r12,$r12,8
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,24
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,127
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	bstrpick.d	$r4,$r12,31,8
+	add.w	$r4,$r4,$r12
+	andi	$r4,$r4,127
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE158:
@@ -7556,66 +6320,37 @@ __popcountdi2:
 __popcountsi2:
 .LFB159 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-48
-	.cfi_def_cfa_offset 48
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,12
-	ld.w	$r12,$r3,12
-	st.w	$r12,$r3,44
-	ld.w	$r12,$r3,44
-	srli.w	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.w	$r13,$r4,1
 	lu12i.w	$r12,1431654400>>12			# 0x55555000
 	ori	$r12,$r12,1365
+	and	$r12,$r12,$r13
+	sub.w	$r12,$r4,$r12
+	srli.w	$r13,$r12,2
+	lu12i.w	$r14,858992640>>12			# 0x33333000
+	ori	$r14,$r14,819
+	and	$r13,$r14,$r13
+	and	$r12,$r12,$r14
+	add.d	$r12,$r13,$r12
+	srli.d	$r13,$r12,4
+	add.w	$r12,$r13,$r12
+	lu12i.w	$r13,252641280>>12			# 0xf0f0000
+	ori	$r13,$r13,3855
 	and	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,44
-	sub.w	$r12,$r13,$r12
-	st.w	$r12,$r3,40
-	ld.w	$r12,$r3,40
-	srli.w	$r12,$r12,2
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	and	$r12,$r13,$r12
-	slli.w	$r13,$r12,0
-	ld.w	$r14,$r3,40
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	and	$r12,$r14,$r12
-	slli.w	$r12,$r12,0
+	srli.d	$r13,$r12,16
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,36
-	ld.w	$r12,$r3,36
-	srli.w	$r12,$r12,4
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,36
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	or	$r13,$r12,$r0
-	lu12i.w	$r12,252641280>>12			# 0xf0f0000
-	ori	$r12,$r12,3855
-	and	$r12,$r13,$r12
-	st.w	$r12,$r3,32
-	ld.w	$r12,$r3,32
-	srli.w	$r12,$r12,16
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,32
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,28
-	ld.w	$r12,$r3,28
-	srli.w	$r12,$r12,8
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,28
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,63
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,48
-	.cfi_def_cfa_offset 0
+	bstrpick.d	$r4,$r12,31,8
+	add.w	$r4,$r4,$r12
+	andi	$r4,$r4,63
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE159:
@@ -7626,137 +6361,93 @@ __popcountsi2:
 __popcountti2:
 .LFB160 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-96
-	.cfi_def_cfa_offset 96
-	stptr.d	$r4,$r3,0
-	st.d	$r5,$r3,8
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,80
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,88
-	ld.d	$r12,$r3,88
-	slli.d	$r13,$r12,63
-	ld.d	$r12,$r3,80
-	srli.d	$r12,$r12,1
-	or	$r12,$r13,$r12
-	ld.d	$r13,$r3,88
-	srli.d	$r13,$r13,1
-	lu12i.w	$r14,1431654400>>12			# 0x55555000
-	ori	$r14,$r14,1365
-	bstrins.d	$r14,$r14,63,32
-	or	$r14,$r14,$r0
-	and	$r17,$r12,$r14
-	lu12i.w	$r12,1431654400>>12			# 0x55555000
-	ori	$r12,$r12,1365
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r15,$r13,$r12
-	ld.d	$r13,$r3,80
-	ld.d	$r16,$r3,88
-	sub.d	$r14,$r13,$r17
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r14,$r4,$r0
+	or	$r15,$r5,$r0
 	or	$r12,$r14,$r0
-	sltu	$r12,$r13,$r12
-	bstrpick.d	$r13,$r12,31,0
-	sub.d	$r12,$r16,$r15
-	sub.d	$r12,$r12,$r13
-	st.d	$r14,$r3,64
-	st.d	$r12,$r3,72
-	ld.d	$r12,$r3,72
-	slli.d	$r13,$r12,62
-	ld.d	$r12,$r3,64
-	srli.d	$r12,$r12,2
-	or	$r12,$r13,$r12
-	ld.d	$r13,$r3,72
-	srli.d	$r13,$r13,2
-	lu12i.w	$r14,858992640>>12			# 0x33333000
-	ori	$r14,$r14,819
-	bstrins.d	$r14,$r14,63,32
-	or	$r14,$r14,$r0
-	and	$r14,$r12,$r14
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r16,$r13,$r12
-	ld.d	$r13,$r3,64
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r17,$r13,$r12
-	ld.d	$r13,$r3,72
-	lu12i.w	$r12,858992640>>12			# 0x33333000
-	ori	$r12,$r12,819
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r15,$r13,$r12
-	add.d	$r13,$r14,$r17
-	or	$r12,$r13,$r0
-	sltu	$r12,$r12,$r14
-	bstrpick.d	$r14,$r12,31,0
-	add.d	$r12,$r16,$r15
-	add.d	$r12,$r14,$r12
-	st.d	$r13,$r3,48
-	st.d	$r12,$r3,56
-	ld.d	$r12,$r3,56
-	slli.d	$r13,$r12,60
-	ld.d	$r12,$r3,48
-	srli.d	$r12,$r12,4
-	or	$r12,$r13,$r12
-	ld.d	$r13,$r3,56
-	srli.d	$r16,$r13,4
-	ld.d	$r17,$r3,48
-	ld.d	$r15,$r3,56
-	add.d	$r14,$r12,$r17
+	or	$r13,$r15,$r0
+	slli.d	$r16,$r13,63
+	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
+	srli.d	$r14,$r12,1
+	or	$r14,$r16,$r14
+	srli.d	$r15,$r13,1
+	lu12i.w	$r18,1431654400>>12			# 0x55555000
+	ori	$r18,$r18,1365
+	bstrins.d	$r18,$r18,63,32
+	or	$r4,$r0,$r0
+	or	$r5,$r0,$r0
+	and	$r4,$r14,$r18
+	and	$r5,$r15,$r18
+	sub.d	$r14,$r12,$r4
+	sltu	$r16,$r12,$r14
+	sub.d	$r15,$r13,$r5
+	sub.d	$r16,$r15,$r16
+	or	$r15,$r16,$r0
+	or	$r12,$r14,$r0
+	or	$r13,$r16,$r0
+	slli.d	$r16,$r13,62
+	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
+	srli.d	$r14,$r12,2
+	or	$r14,$r16,$r14
+	srli.d	$r15,$r13,2
+	lu12i.w	$r18,858992640>>12			# 0x33333000
+	ori	$r18,$r18,819
+	bstrins.d	$r18,$r18,63,32
+	or	$r16,$r0,$r0
+	or	$r17,$r0,$r0
+	and	$r16,$r14,$r18
+	and	$r17,$r15,$r18
+	or	$r4,$r0,$r0
+	or	$r5,$r0,$r0
+	and	$r4,$r12,$r18
+	and	$r5,$r13,$r18
+	add.d	$r18,$r16,$r4
+	sltu	$r14,$r18,$r16
+	add.d	$r19,$r17,$r5
+	add.d	$r14,$r14,$r19
+	or	$r19,$r14,$r0
+	or	$r12,$r18,$r0
 	or	$r13,$r14,$r0
-	sltu	$r12,$r13,$r12
-	bstrpick.d	$r12,$r12,31,0
-	add.d	$r13,$r16,$r15
-	add.d	$r12,$r12,$r13
-	or	$r13,$r12,$r0
-	or	$r16,$r14,$r0
-	or	$r15,$r13,$r0
-	lu12i.w	$r12,252641280>>12			# 0xf0f0000
-	ori	$r12,$r12,3855
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r12,$r16,$r12
-	st.d	$r12,$r3,32
-	lu12i.w	$r12,252641280>>12			# 0xf0f0000
-	ori	$r12,$r12,3855
-	bstrins.d	$r12,$r12,63,32
-	or	$r12,$r12,$r0
-	and	$r12,$r15,$r12
-	st.d	$r12,$r3,40
-	ld.d	$r12,$r3,32
-	ld.d	$r13,$r3,40
-	srli.d	$r13,$r13,0
-	add.d	$r12,$r12,$r13
-	st.d	$r12,$r3,24
-	ld.d	$r12,$r3,24
-	slli.w	$r13,$r12,0
-	ld.d	$r12,$r3,24
-	srli.d	$r12,$r12,32
-	slli.w	$r12,$r12,0
+	slli.d	$r16,$r13,60
+	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
+	srli.d	$r14,$r12,4
+	or	$r14,$r16,$r14
+	srli.d	$r15,$r13,4
+	add.d	$r16,$r14,$r12
+	sltu	$r18,$r16,$r14
+	add.d	$r17,$r15,$r13
+	add.d	$r18,$r18,$r17
+	or	$r17,$r18,$r0
+	or	$r14,$r16,$r0
+	or	$r15,$r18,$r0
+	lu12i.w	$r16,252641280>>12			# 0xf0f0000
+	ori	$r16,$r16,3855
+	bstrins.d	$r16,$r16,63,32
+	and	$r12,$r14,$r16
+	and	$r13,$r15,$r16
+	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
+	or	$r14,$r13,$r0
+	add.d	$r14,$r14,$r12
+	srai.d	$r12,$r14,32
+	add.w	$r12,$r12,$r14
+	bstrpick.d	$r13,$r12,31,16
 	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,20
-	ld.w	$r12,$r3,20
-	srli.w	$r12,$r12,16
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,20
-	add.w	$r12,$r13,$r12
-	st.w	$r12,$r3,16
-	ld.w	$r12,$r3,16
-	srli.w	$r12,$r12,8
-	slli.w	$r12,$r12,0
-	ld.w	$r13,$r3,16
-	add.w	$r12,$r13,$r12
-	slli.w	$r12,$r12,0
-	andi	$r12,$r12,255
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,96
-	.cfi_def_cfa_offset 0
+	bstrpick.d	$r4,$r12,31,8
+	add.w	$r4,$r4,$r12
+	bstrpick.w	$r4,$r4,7,0
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE160:
@@ -7767,54 +6458,37 @@ __popcountti2:
 __powidf2:
 .LFB161 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	fst.d	$f0,$r3,8
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,4
-	ld.w	$r12,$r3,4
-	srli.w	$r12,$r12,31
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,20
-	la.local	$r12,.LC12
-	fld.d	$f0,$r12,0
-	fst.d	$f0,$r3,24
-.L995:
-	ld.w	$r12,$r3,4
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L992
-	fld.d	$f1,$r3,24
-	fld.d	$f0,$r3,8
-	fmul.d	$f0,$f1,$f0
-	fst.d	$f0,$r3,24
-.L992:
-	ld.w	$r12,$r3,4
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,4
-	ld.w	$r12,$r3,4
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L1000
-	fld.d	$f0,$r3,8
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r12,$r4,63
+	pcalau12i	$r13,%pc_hi20(.LC16)
+	fld.d	$f1,$r13,%pc_lo12(.LC16)
+.L691:
+	andi	$r13,$r4,1
+	beqz	$r13,.L689
+	fmul.d	$f1,$f1,$f0
+.L689:
+	srli.w	$r13,$r4,31
+	add.w	$r4,$r13,$r4
+	srai.w	$r4,$r4,1
+	beqz	$r4,.L690
 	fmul.d	$f0,$f0,$f0
-	fst.d	$f0,$r3,8
-	b	.L995
-.L1000:
-	nop
-	ld.w	$r12,$r3,20
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L996
-	fld.d	$f0,$r3,24
-	frecip.d	$f0,$f0
-	b	.L998
-.L996:
-	fld.d	$f0,$r3,24
-.L998:
-	nop
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	b	.L691
+.L690:
+	beqz	$r12,.L693
+	frecip.d	$f0,$f1
+	b	.L692
+.L693:
+	fmov.d	$f0,$f1
+.L692:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE161:
@@ -7825,54 +6499,37 @@ __powidf2:
 __powisf2:
 .LFB162 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	fst.s	$f0,$r3,12
-	or	$r12,$r4,$r0
-	st.w	$r12,$r3,8
-	ld.w	$r12,$r3,8
-	srli.w	$r12,$r12,31
-	bstrpick.w	$r12,$r12,7,0
-	st.w	$r12,$r3,24
-	la.local	$r12,.LC14
-	fld.s	$f0,$r12,0
-	fst.s	$f0,$r3,28
-.L1006:
-	ld.w	$r12,$r3,8
-	andi	$r12,$r12,1
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L1003
-	fld.s	$f1,$r3,28
-	fld.s	$f0,$r3,12
-	fmul.s	$f0,$f1,$f0
-	fst.s	$f0,$r3,28
-.L1003:
-	ld.w	$r12,$r3,8
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
-	srai.w	$r12,$r12,1
-	st.w	$r12,$r3,8
-	ld.w	$r12,$r3,8
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L1011
-	fld.s	$f0,$r3,12
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srli.d	$r12,$r4,63
+	pcalau12i	$r13,%pc_hi20(.LC21)
+	fld.s	$f1,$r13,%pc_lo12(.LC21)
+.L697:
+	andi	$r13,$r4,1
+	beqz	$r13,.L695
+	fmul.s	$f1,$f1,$f0
+.L695:
+	srli.w	$r13,$r4,31
+	add.w	$r4,$r13,$r4
+	srai.w	$r4,$r4,1
+	beqz	$r4,.L696
 	fmul.s	$f0,$f0,$f0
-	fst.s	$f0,$r3,12
-	b	.L1006
-.L1011:
-	nop
-	ld.w	$r12,$r3,24
-	slli.w	$r12,$r12,0
-	beqz	$r12,.L1007
-	fld.s	$f0,$r3,28
-	frecip.s	$f0,$f0
-	b	.L1009
-.L1007:
-	fld.s	$f0,$r3,28
-.L1009:
-	nop
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	b	.L697
+.L696:
+	beqz	$r12,.L699
+	frecip.s	$f0,$f1
+	b	.L698
+.L699:
+	fmov.s	$f0,$f1
+.L698:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE162:
@@ -7883,43 +6540,42 @@ __powisf2:
 __ucmpdi2:
 .LFB163 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,24
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,16
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,20
-	bgeu	$r13,$r12,.L1014
-	or	$r12,$r0,$r0
-	b	.L1019
-.L1014:
-	ldptr.w	$r13,$r3,28
-	ldptr.w	$r12,$r3,20
-	bleu	$r13,$r12,.L1016
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L1019
-.L1016:
-	ldptr.w	$r13,$r3,24
-	ldptr.w	$r12,$r3,16
-	bgeu	$r13,$r12,.L1017
-	or	$r12,$r0,$r0
-	b	.L1019
-.L1017:
-	ldptr.w	$r13,$r3,24
-	ldptr.w	$r12,$r3,16
-	bleu	$r13,$r12,.L1018
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L1019
-.L1018:
-	addi.w	$r12,$r0,1			# 0x1
-.L1019:
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	srai.d	$r13,$r4,32
+	srai.d	$r12,$r5,32
+	bltu	$r13,$r12,.L702
+	or	$r12,$r13,$r0
+	srai.d	$r13,$r5,32
+	bgtu	$r12,$r13,.L703
+	slli.w	$r12,$r4,0
+	slli.w	$r13,$r5,0
+	bltu	$r12,$r13,.L704
 	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	or	$r5,$r13,$r0
+	bgtu	$r4,$r5,.L705
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L701
+.L702:
+	or	$r4,$r0,$r0
+	b	.L701
+.L703:
+	addi.w	$r4,$r0,2			# 0x2
+	b	.L701
+.L704:
+	or	$r4,$r0,$r0
+	b	.L701
+.L705:
+	addi.w	$r4,$r0,2			# 0x2
+.L701:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE163:
@@ -7930,23 +6586,22 @@ __ucmpdi2:
 __aeabi_ulcmp:
 .LFB164 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-32
-	.cfi_def_cfa_offset 32
-	st.d	$r1,$r3,24
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r1,$r3,8
+	stptr.d	$r22,$r3,0
 	.cfi_offset 1, -8
-	st.d	$r4,$r3,8
-	stptr.d	$r5,$r3,0
-	ldptr.d	$r5,$r3,0
-	ld.d	$r4,$r3,8
+	.cfi_offset 22, -16
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
 	bl	__ucmpdi2
-	or	$r12,$r4,$r0
-	addi.w	$r12,$r12,-1
-	slli.w	$r12,$r12,0
-	or	$r4,$r12,$r0
-	ld.d	$r1,$r3,24
+	addi.w	$r4,$r4,-1
+	ld.d	$r1,$r3,8
 	.cfi_restore 1
-	addi.d	$r3,$r3,32
-	.cfi_def_cfa_offset 0
+	ldptr.d	$r22,$r3,0
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE164:
@@ -7957,124 +6612,105 @@ __aeabi_ulcmp:
 __ucmpti2:
 .LFB165 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r4,$r3,16
-	st.d	$r5,$r3,24
-	stptr.d	$r6,$r3,0
-	st.d	$r7,$r3,8
-	ld.d	$r12,$r3,16
-	st.d	$r12,$r3,48
-	ld.d	$r12,$r3,24
-	st.d	$r12,$r3,56
-	ldptr.d	$r12,$r3,0
-	st.d	$r12,$r3,32
-	ld.d	$r12,$r3,8
-	st.d	$r12,$r3,40
-	ld.d	$r13,$r3,56
-	ld.d	$r12,$r3,40
-	bgeu	$r13,$r12,.L1025
-	or	$r12,$r0,$r0
-	b	.L1030
-.L1025:
-	ld.d	$r13,$r3,56
-	ld.d	$r12,$r3,40
-	bleu	$r13,$r12,.L1027
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L1030
-.L1027:
-	ld.d	$r13,$r3,48
-	ld.d	$r12,$r3,32
-	bgeu	$r13,$r12,.L1028
-	or	$r12,$r0,$r0
-	b	.L1030
-.L1028:
-	ld.d	$r13,$r3,48
-	ld.d	$r12,$r3,32
-	bleu	$r13,$r12,.L1029
-	addi.w	$r12,$r0,2			# 0x2
-	b	.L1030
-.L1029:
-	addi.w	$r12,$r0,1			# 0x1
-.L1030:
-	or	$r4,$r12,$r0
-	addi.d	$r3,$r3,64
-	.cfi_def_cfa_offset 0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	st.d	$r22,$r3,8
+	.cfi_offset 22, -8
+	addi.d	$r22,$r3,16
+	.cfi_def_cfa 22, 0
+	or	$r16,$r4,$r0
+	or	$r17,$r5,$r0
+	or	$r18,$r6,$r0
+	or	$r19,$r7,$r0
+	or	$r14,$r16,$r0
+	or	$r15,$r17,$r0
+	or	$r12,$r18,$r0
+	or	$r13,$r19,$r0
+	bgtu	$r19,$r17,.L709
+	bltu	$r13,$r15,.L710
+	bgtu	$r12,$r14,.L711
+	bltu	$r12,$r14,.L712
+	addi.w	$r4,$r0,1			# 0x1
+	b	.L708
+.L709:
+	or	$r4,$r0,$r0
+	b	.L708
+.L710:
+	addi.w	$r4,$r0,2			# 0x2
+	b	.L708
+.L711:
+	or	$r4,$r0,$r0
+	b	.L708
+.L712:
+	addi.w	$r4,$r0,2			# 0x2
+.L708:
+	ld.d	$r22,$r3,8
+	.cfi_restore 22
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_register 3
 	jr	$r1
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
-	.section	.rodata.cst4,"aM",@progbits,4
+	.section	.rodata
 	.align	2
 .LC0:
 	.word	-8388609
 	.align	2
 .LC1:
 	.word	2139095039
-	.section	.rodata.cst8,"aM",@progbits,8
 	.align	3
-.LC2:
+.LC4:
 	.word	-1
 	.word	-1048577
 	.align	3
-.LC3:
+.LC5:
 	.word	-1
 	.word	2146435071
-	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
-.LC4:
+.LC8:
 	.word	-1
 	.word	-1
 	.word	-1
 	.word	-65537
 	.align	4
-.LC5:
+.LC9:
 	.word	-1
 	.word	-1
 	.word	-1
 	.word	2147418111
-	.section	.rodata.cst4
 	.align	2
-.LC6:
+.LC10:
 	.word	1056964608
-	.align	2
-.LC7:
-	.word	1073741824
-	.section	.rodata.cst8
+	.set	.LC11,.LC15+12
 	.align	3
-.LC8:
+.LC12:
 	.word	0
 	.word	1071644672
-	.align	3
-.LC9:
-	.word	0
-	.word	1073741824
-	.section	.rodata.cst16
+	.set	.LC13,.LC15+8
 	.align	4
-.LC10:
+.LC14:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073610752
 	.align	4
-.LC11:
+.LC15:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073741824
-	.section	.rodata.cst8
 	.align	3
-.LC12:
+.LC16:
 	.word	0
 	.word	1072693248
-	.section	.rodata.cst4
 	.align	2
-.LC13:
+.LC19:
 	.word	1191182336
 	.align	2
-.LC14:
+.LC21:
 	.word	1065353216
 
 

@@ -20,7 +20,7 @@ SHELL := bash
 # --warn-undefined-variables: Is nice tbh
 MAKEFLAGS += --no-builtin-rules --warn-undefined-variables
 
-OPT_FLAGS = -O0 -fauto-inc-dec -fbranch-count-reg -fcombine-stack-adjustments -fcompare-elim -fcprop-registers -fdce -fdefer-pop -fdelayed-branch -fdse -fforward-propagate -fguess-branch-probability -fif-conversion -fif-conversion2 -finline-functions-called-once -fipa-modref -fipa-profile -fipa-pure-const -fipa-reference -fipa-reference-addressable -fmerge-constants -fmove-loop-invariants -fmove-loop-stores -fomit-frame-pointer -freorder-blocks -fshrink-wrap -fshrink-wrap-separate -fsplit-wide-types -fssa-backprop -fssa-phiopt -ftree-bit-ccp -ftree-ccp -ftree-ch -ftree-coalesce-vars -ftree-copy-prop -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre -ftree-phiprop -ftree-pta -ftree-scev-cprop -ftree-sink -ftree-slsr -ftree-sra -ftree-ter
+OPT_FLAGS = -O1 -fno-auto-inc-dec -fno-branch-count-reg -fno-combine-stack-adjustments -fno-compare-elim -fno-cprop-registers -fno-dce -fno-defer-pop -fno-delayed-branch -fno-dse -fno-forward-propagate -fno-guess-branch-probability -fno-if-conversion -fno-if-conversion2 -fno-inline-functions-called-once -fno-ipa-modref -fno-ipa-profile -fno-ipa-pure-const -fno-ipa-reference -fno-ipa-reference-addressable -fno-merge-constants -fno-move-loop-invariants -fno-move-loop-stores -fno-omit-frame-pointer -fno-reorder-blocks -fno-shrink-wrap -fno-shrink-wrap-separate -fno-split-wide-types -fno-ssa-backprop -fno-ssa-phiopt -fno-tree-bit-ccp -fno-tree-ccp -fno-tree-ch -fno-tree-coalesce-vars -fno-tree-copy-prop -fno-tree-dce -fno-tree-dominator-opts -fno-tree-dse -fno-tree-forwprop -fno-tree-fre -fno-tree-phiprop -fno-tree-pta -fno-tree-scev-cprop -fno-tree-sink -fno-tree-slsr -fno-tree-sra -fno-tree-ter -fno-unit-at-a-time
 
 all: gcc-x86_64.s gcc-aarch64.s gcc-alpha.s gcc-arc.s gcc-arm.s gcc-avr.s gcc-bfin.s gcc-bpf.s gcc-c6x.s gcc-frv.s gcc-h8300.s gcc-hppa64.s gcc-hppa.s gcc-i386.s gcc-i686-mingw.s gcc-ia64.s gcc-loongarch64.s gcc-m68k.s gcc-microblaze.s gcc-mips64.s gcc-mn10300.s gcc-nios2.s gcc-openrisc.s gcc-powerpc64le.s gcc-powerpc64.s gcc-riscv64.s gcc-s390x.s gcc-sparc64.s gcc-xtensa.s gcc-x86_64-mingw.s gcc-mips32.s gcc-mips16.s gcc-micromips.s gcc-powerpc32le.s gcc-powerpc32.s gcc-riscv32.s gcc-s390.s gcc-sparc32.s
 
@@ -55,7 +55,7 @@ gcc-frv.s: mini-libc.c
 > frv-linux-gnu-gcc -S $< -o $@ $(OPT_FLAGS) -mcpu=simple
 
 gcc-h8300.s: mini-libc.c
-> h8300-linux-gnu-gcc -S $< -o $@ $(OPT_FLAGS)
+> h8300-linux-gnu-gcc -S $< -o $@ $(OPT_FLAGS) -ftree-ter
 
 gcc-hppa64.s: mini-libc.c
 > hppa64-linux-gnu-gcc -S $< -o $@ $(OPT_FLAGS)
@@ -139,4 +139,4 @@ gcc-x86_64-mingw.s: mini-libc.c
 > x86_64-w64-mingw32-gcc -masm=intel -S $< -o $@ $(OPT_FLAGS) -mtune=generic
 
 clean:
-> rm --force *.s
+> rm --force ./*.s
