@@ -376,9 +376,8 @@ memset:
 	sd	a5,40(sp)
 	j	.L50
 .L51:
-	lw	a5,20(sp)
-	andi	a4,a5,0xff
 	ld	a5,40(sp)
+	lw	a4,20(sp)
 	sb	a4,0(a5)
 	ld	a5,8(sp)
 	addi	a5,a5,-1
@@ -489,6 +488,7 @@ strchr:
 	mv	a4,a5
 	addi	a5,a4,1
 	lbu	a4,0(a4)
+	andi	a4,a4,0xff
 	bne	a4,zero,.L68
 	li	a5,0
 	j	.L67
@@ -564,6 +564,7 @@ strlen:
 .L78:
 	ld	a5,24(sp)
 	lbu	a5,0(a5)
+	andi	a5,a5,0xff
 	bne	a5,zero,.L79
 	ld	a4,24(sp)
 	ld	a5,8(sp)
@@ -647,8 +648,7 @@ swab:
 	j	.L90
 .L91:
 	ld	a5,24(sp)
-	addi	a5,a5,1
-	lbu	a4,0(a5)
+	lbu	a4,1(a5)
 	ld	a5,16(sp)
 	sb	a4,0(a5)
 	ld	a5,16(sp)
@@ -695,7 +695,6 @@ isalpha:
 	li	a5,25
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -714,11 +713,11 @@ isascii:
 	.cfi_def_cfa_offset 16
 	mv	a5,a0
 	sw	a5,12(sp)
-	lw	a4,12(sp)
+	lw	a5,12(sp)
+	sext.w	a4,a5
 	li	a5,127
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -804,7 +803,6 @@ isdigit:
 	li	a5,9
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -829,7 +827,6 @@ isgraph:
 	li	a5,93
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -854,7 +851,6 @@ islower:
 	li	a5,25
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -879,7 +875,6 @@ isprint:
 	li	a5,94
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -936,7 +931,6 @@ isupper:
 	li	a5,25
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -1009,7 +1003,6 @@ iswdigit:
 	li	a5,9
 	sgtu	a5,a4,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	mv	a0,a5
 	addi	sp,sp,16
@@ -1039,7 +1032,6 @@ iswprint:
 	sext.w	a4,a5
 	li	a5,32
 	sgtu	a5,a4,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	j	.L143
 .L142:
@@ -1754,7 +1746,6 @@ srand:
 	sw	a5,12(sp)
 	lw	a5,12(sp)
 	addiw	a5,a5,-1
-	sext.w	a5,a5
 	slli	a4,a5,32
 	srli	a4,a4,32
 	lui	a5,%hi(seed)
@@ -1885,7 +1876,6 @@ lsearch:
 	sd	a3,16(sp)
 	sd	a4,8(sp)
 	ld	s0,16(sp)
-	mv	a5,s0
 	addi	a5,s0,-1
 	sd	a5,64(sp)
 	ld	a5,24(sp)
@@ -1960,7 +1950,6 @@ lfind:
 	sd	a3,16(sp)
 	sd	a4,8(sp)
 	ld	s0,16(sp)
-	mv	a5,s0
 	addi	a5,s0,-1
 	sd	a5,64(sp)
 	ld	a5,24(sp)
@@ -2088,7 +2077,6 @@ atoi:
 .L306:
 	ld	a5,8(sp)
 	lbu	a5,0(a5)
-	sext.w	a5,a5
 	addiw	a5,a5,-48
 	sext.w	a4,a5
 	li	a5,9
@@ -2171,7 +2159,6 @@ atol:
 .L317:
 	ld	a5,8(sp)
 	lbu	a5,0(a5)
-	sext.w	a5,a5
 	addiw	a5,a5,-48
 	sext.w	a4,a5
 	li	a5,9
@@ -2254,7 +2241,6 @@ atoll:
 .L328:
 	ld	a5,8(sp)
 	lbu	a5,0(a5)
-	sext.w	a5,a5
 	addiw	a5,a5,-48
 	sext.w	a4,a5
 	li	a5,9
@@ -2369,8 +2355,7 @@ bsearch_r:
 .L347:
 	lw	a5,76(sp)
 	sraiw	a5,a5,1
-	sext.w	a5,a5
-	mv	a4,a5
+	sext.w	a4,a5
 	ld	a5,16(sp)
 	mul	a5,a4,a5
 	ld	a4,32(sp)
@@ -2768,6 +2753,7 @@ wcslen:
 .L391:
 	ld	a5,24(sp)
 	lw	a5,0(a5)
+	sext.w	a5,a5
 	bne	a5,zero,.L392
 	ld	a4,24(sp)
 	ld	a5,8(sp)
@@ -3011,12 +2997,12 @@ wmemmove:
 .L433:
 	ld	a5,8(sp)
 	slli	a5,a5,2
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	ld	a5,8(sp)
-	slli	a5,a5,2
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	ld	a4,8(sp)
+	slli	a4,a4,2
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lw	a4,0(a4)
 	sw	a4,0(a5)
 .L432:
@@ -3281,9 +3267,9 @@ rotl_sz:
 	mv	a4,a5
 	ld	a5,8(sp)
 	sll	a4,a5,a4
-	lw	a5,4(sp)
-	li	a3,64
-	subw	a5,a3,a5
+	li	a5,64
+	lw	a3,4(sp)
+	subw	a5,a5,a3
 	sext.w	a5,a5
 	mv	a3,a5
 	ld	a5,8(sp)
@@ -3311,9 +3297,9 @@ rotr_sz:
 	mv	a4,a5
 	ld	a5,8(sp)
 	srl	a4,a5,a4
-	lw	a5,4(sp)
-	li	a3,64
-	subw	a5,a3,a5
+	li	a5,64
+	lw	a3,4(sp)
+	subw	a5,a5,a3
 	sext.w	a5,a5
 	mv	a3,a5
 	ld	a5,8(sp)
@@ -3492,24 +3478,20 @@ bswap_16:
 	sh	a5,14(sp)
 	li	a5,255
 	sd	a5,24(sp)
-	lhu	a4,14(sp)
 	ld	a5,24(sp)
 	slli	a5,a5,8
+	lhu	a4,14(sp)
 	and	a5,a4,a5
-	srli	a5,a5,8
-	slli	a4,a5,48
-	srli	a4,a4,48
+	srli	a4,a5,8
 	ld	a5,24(sp)
-	slli	a5,a5,48
-	srli	a5,a5,48
 	lhu	a3,14(sp)
-	and	a5,a5,a3
+	and	a5,a3,a5
 	slli	a5,a5,48
 	srli	a5,a5,48
 	slliw	a5,a5,8
 	slli	a5,a5,48
 	srli	a5,a5,48
-	or	a5,a4,a5
+	or	a5,a5,a4
 	slli	a5,a5,48
 	srli	a5,a5,48
 	mv	a0,a5
@@ -3531,23 +3513,20 @@ bswap_32:
 	sw	a5,12(sp)
 	li	a5,255
 	sd	a5,24(sp)
-	lwu	a4,12(sp)
 	ld	a5,24(sp)
 	slli	a5,a5,24
-	and	a5,a4,a5
-	srli	a5,a5,24
-	sext.w	a3,a5
 	lwu	a4,12(sp)
+	and	a5,a4,a5
+	srli	a3,a5,24
 	ld	a5,24(sp)
 	slli	a5,a5,16
+	lwu	a4,12(sp)
 	and	a5,a4,a5
 	srli	a5,a5,8
-	sext.w	a5,a5
 	mv	a4,a3
 	or	a5,a4,a5
 	sext.w	a4,a5
 	ld	a5,24(sp)
-	sext.w	a5,a5
 	slliw	a5,a5,8
 	sext.w	a5,a5
 	lw	a3,12(sp)
@@ -3558,7 +3537,6 @@ bswap_32:
 	or	a5,a4,a5
 	sext.w	a4,a5
 	ld	a5,24(sp)
-	sext.w	a5,a5
 	lw	a3,12(sp)
 	and	a5,a3,a5
 	sext.w	a5,a5
@@ -3650,10 +3628,9 @@ ffs:
 	sw	zero,28(sp)
 	j	.L492
 .L495:
-	lw	a5,12(sp)
-	lw	a4,28(sp)
-	srlw	a5,a5,a4
-	sext.w	a5,a5
+	lw	a5,28(sp)
+	lw	a4,12(sp)
+	srlw	a5,a4,a5
 	andi	a5,a5,1
 	sext.w	a5,a5
 	beq	a5,zero,.L493
@@ -4113,7 +4090,6 @@ memxor:
 	sd	a4,40(sp)
 	lbu	a4,0(a5)
 	xor	a4,a3,a4
-	andi	a4,a4,0xff
 	sb	a4,0(a5)
 	ld	a5,8(sp)
 	addi	a5,a5,-1
@@ -4288,6 +4264,7 @@ strrchr:
 	mv	a4,a5
 	addi	a5,a4,1
 	lbu	a4,0(a4)
+	andi	a4,a4,0xff
 	bne	a4,zero,.L596
 	ld	a5,24(sp)
 	mv	a0,a5
@@ -4436,12 +4413,12 @@ memmem:
 	bne	a4,a5,.L624
 	ld	a5,24(sp)
 	addi	a4,a5,1
-	ld	a5,8(sp)
-	addi	a3,a5,1
 	ld	a5,0(sp)
-	addi	a5,a5,-1
-	mv	a2,a5
-	mv	a1,a3
+	addi	a3,a5,-1
+	ld	a5,8(sp)
+	addi	a5,a5,1
+	mv	a2,a3
+	mv	a1,a5
 	mv	a0,a4
 	call	memcmp
 	mv	a5,a0
@@ -4728,7 +4705,6 @@ __clrsbqi2:
 	lbu	a5,15(sp)
 	sext.w	a5,a5
 	slliw	a5,a5,8
-	sext.w	a5,a5
 	slli	a5,a5,32
 	srli	a5,a5,32
 	mv	a0,a5
@@ -4773,8 +4749,7 @@ __clrsbdi2:
 	li	a5,63
 	j	.L672
 .L671:
-	ld	a5,8(sp)
-	mv	a0,a5
+	ld	a0,8(sp)
 	call	__clzdi2
 	mv	a5,a0
 	sw	a5,28(sp)
@@ -4867,12 +4842,12 @@ __cmovd:
 .L684:
 	lwu	a5,44(sp)
 	slli	a5,a5,3
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,44(sp)
-	slli	a5,a5,3
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,44(sp)
+	slli	a4,a4,3
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	ld	a4,0(a4)
 	sd	a4,0(a5)
 	lw	a5,44(sp)
@@ -4888,11 +4863,11 @@ __cmovd:
 	j	.L685
 .L686:
 	lwu	a5,40(sp)
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,40(sp)
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,40(sp)
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 	lw	a5,40(sp)
@@ -4908,11 +4883,11 @@ __cmovd:
 	j	.L687
 .L689:
 	lwu	a5,12(sp)
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,12(sp)
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,12(sp)
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 .L688:
@@ -4958,12 +4933,12 @@ __cmovh:
 .L695:
 	lwu	a5,44(sp)
 	slli	a5,a5,1
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,44(sp)
-	slli	a5,a5,1
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,44(sp)
+	slli	a4,a4,1
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lh	a4,0(a4)
 	sh	a4,0(a5)
 	lw	a5,44(sp)
@@ -4982,28 +4957,26 @@ __cmovh:
 	beq	a5,zero,.L697
 	lw	a5,12(sp)
 	addiw	a5,a5,-1
-	sext.w	a5,a5
-	slli	a5,a5,32
-	srli	a5,a5,32
-	ld	a4,16(sp)
-	add	a4,a4,a5
+	slli	a4,a5,32
+	srli	a4,a4,32
 	lw	a5,12(sp)
 	addiw	a5,a5,-1
-	sext.w	a5,a5
 	slli	a5,a5,32
 	srli	a5,a5,32
 	ld	a3,24(sp)
 	add	a5,a3,a5
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 	j	.L697
 .L699:
 	lwu	a5,12(sp)
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,12(sp)
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,12(sp)
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 .L698:
@@ -5052,12 +5025,12 @@ __cmovw:
 .L705:
 	lwu	a5,44(sp)
 	slli	a5,a5,2
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,44(sp)
-	slli	a5,a5,2
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,44(sp)
+	slli	a4,a4,2
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lw	a4,0(a4)
 	sw	a4,0(a5)
 	lw	a5,44(sp)
@@ -5073,11 +5046,11 @@ __cmovw:
 	j	.L706
 .L707:
 	lwu	a5,40(sp)
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,40(sp)
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,40(sp)
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 	lw	a5,40(sp)
@@ -5093,11 +5066,11 @@ __cmovw:
 	j	.L708
 .L710:
 	lwu	a5,12(sp)
-	ld	a4,16(sp)
-	add	a4,a4,a5
-	lwu	a5,12(sp)
-	ld	a3,24(sp)
-	add	a5,a3,a5
+	ld	a4,24(sp)
+	add	a5,a4,a5
+	lwu	a4,12(sp)
+	ld	a3,16(sp)
+	add	a4,a3,a4
 	lbu	a4,0(a4)
 	sb	a4,0(a5)
 .L709:
@@ -5251,14 +5224,12 @@ __clzhi2:
 	sw	zero,28(sp)
 	j	.L731
 .L734:
-	lhu	a5,14(sp)
-	sext.w	a4,a5
 	li	a5,15
-	lw	a3,28(sp)
-	subw	a5,a5,a3
+	lw	a4,28(sp)
+	subw	a5,a5,a4
 	sext.w	a5,a5
+	lhu	a4,14(sp)
 	sraw	a5,a4,a5
-	sext.w	a5,a5
 	andi	a5,a5,1
 	sext.w	a5,a5
 	bne	a5,zero,.L736
@@ -5296,10 +5267,8 @@ __ctzhi2:
 	j	.L739
 .L742:
 	lhu	a5,14(sp)
-	sext.w	a5,a5
 	lw	a4,28(sp)
 	sraw	a5,a5,a4
-	sext.w	a5,a5
 	andi	a5,a5,1
 	sext.w	a5,a5
 	bne	a5,zero,.L744
@@ -5373,10 +5342,8 @@ __parityhi2:
 	j	.L754
 .L756:
 	lhu	a5,14(sp)
-	sext.w	a5,a5
 	lw	a4,28(sp)
 	sraw	a5,a5,a4
-	sext.w	a5,a5
 	andi	a5,a5,1
 	sext.w	a5,a5
 	beq	a5,zero,.L755
@@ -5417,10 +5384,8 @@ __popcounthi2:
 	j	.L760
 .L762:
 	lhu	a5,14(sp)
-	sext.w	a5,a5
 	lw	a4,28(sp)
 	sraw	a5,a5,a4
-	sext.w	a5,a5
 	andi	a5,a5,1
 	sext.w	a5,a5
 	beq	a5,zero,.L761
@@ -5841,10 +5806,10 @@ __divsi3:
 	andi	a5,a5,0xff
 	sw	a5,28(sp)
 .L828:
+	ld	a5,0(sp)
+	sext.w	a4,a5
 	ld	a5,8(sp)
 	sext.w	a5,a5
-	ld	a4,0(sp)
-	sext.w	a4,a4
 	li	a2,0
 	mv	a1,a4
 	mv	a0,a5
@@ -5897,10 +5862,10 @@ __modsi3:
 	neg	a5,a5
 	sd	a5,0(sp)
 .L834:
+	ld	a5,0(sp)
+	sext.w	a4,a5
 	ld	a5,8(sp)
 	sext.w	a5,a5
-	ld	a4,0(sp)
-	sext.w	a4,a4
 	li	a2,1
 	mv	a1,a4
 	mv	a0,a5
@@ -6384,39 +6349,39 @@ __bswapdi2:
 	ld	a5,8(sp)
 	srli	a4,a5,56
 	ld	a5,8(sp)
-	srli	a3,a5,40
-	li	a5,65536
-	addi	a5,a5,-256
-	and	a5,a3,a5
+	srli	a5,a5,40
+	li	a3,65536
+	addi	a3,a3,-256
+	and	a5,a5,a3
 	or	a4,a4,a5
 	ld	a5,8(sp)
-	srli	a3,a5,24
-	li	a5,16711680
-	and	a5,a3,a5
+	srli	a5,a5,24
+	li	a3,16711680
+	and	a5,a5,a3
 	or	a4,a4,a5
 	ld	a5,8(sp)
-	srli	a3,a5,8
-	li	a5,255
+	srli	a5,a5,8
+	li	a3,255
+	slli	a3,a3,24
+	and	a5,a5,a3
+	or	a4,a4,a5
+	ld	a5,8(sp)
+	slli	a5,a5,8
+	li	a3,255
+	slli	a3,a3,32
+	and	a5,a5,a3
+	or	a4,a4,a5
+	ld	a5,8(sp)
 	slli	a5,a5,24
-	and	a5,a3,a5
+	li	a3,255
+	slli	a3,a3,40
+	and	a5,a5,a3
 	or	a4,a4,a5
 	ld	a5,8(sp)
-	slli	a3,a5,8
-	li	a5,255
-	slli	a5,a5,32
-	and	a5,a3,a5
-	or	a4,a4,a5
-	ld	a5,8(sp)
-	slli	a3,a5,24
-	li	a5,255
 	slli	a5,a5,40
-	and	a5,a3,a5
-	or	a4,a4,a5
-	ld	a5,8(sp)
-	slli	a3,a5,40
-	li	a5,255
-	slli	a5,a5,48
-	and	a5,a3,a5
+	li	a3,255
+	slli	a3,a3,48
+	and	a5,a5,a3
 	or	a4,a4,a5
 	ld	a5,8(sp)
 	slli	a5,a5,56
@@ -6443,7 +6408,6 @@ __bswapsi2:
 	sext.w	a4,a5
 	lw	a5,12(sp)
 	srliw	a5,a5,8
-	sext.w	a5,a5
 	mv	a3,a5
 	li	a5,65536
 	addi	a5,a5,-256
@@ -6453,7 +6417,6 @@ __bswapsi2:
 	sext.w	a4,a5
 	lw	a5,12(sp)
 	slliw	a5,a5,8
-	sext.w	a5,a5
 	mv	a3,a5
 	li	a5,16711680
 	and	a5,a3,a5
@@ -6523,8 +6486,9 @@ __clzsi2:
 	lw	a4,68(sp)
 	srlw	a5,a4,a5
 	sw	a5,56(sp)
+	lw	a5,64(sp)
+	mv	a4,a5
 	lw	a5,60(sp)
-	lw	a4,64(sp)
 	addw	a5,a4,a5
 	sw	a5,52(sp)
 	lw	a5,56(sp)
@@ -6544,8 +6508,9 @@ __clzsi2:
 	lw	a4,56(sp)
 	srlw	a5,a4,a5
 	sw	a5,44(sp)
+	lw	a5,52(sp)
+	mv	a4,a5
 	lw	a5,48(sp)
-	lw	a4,52(sp)
 	addw	a5,a4,a5
 	sw	a5,40(sp)
 	lw	a5,44(sp)
@@ -6565,17 +6530,16 @@ __clzsi2:
 	lw	a4,44(sp)
 	srlw	a5,a4,a5
 	sw	a5,32(sp)
+	lw	a5,40(sp)
+	mv	a4,a5
 	lw	a5,36(sp)
-	lw	a4,40(sp)
 	addw	a5,a4,a5
 	sw	a5,28(sp)
 	lw	a5,32(sp)
 	andi	a5,a5,2
 	sext.w	a5,a5
 	seqz	a5,a5
-	andi	a5,a5,0xff
-	sext.w	a5,a5
-	mv	a4,a5
+	sext.w	a4,a5
 	li	a5,2
 	lw	a3,32(sp)
 	subw	a5,a5,a3
@@ -6610,7 +6574,6 @@ __clzti2:
 	sd	a5,24(sp)
 	ld	a5,24(sp)
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	negw	a5,a5
 	sext.w	a5,a5
@@ -6618,12 +6581,11 @@ __clzti2:
 	ld	a4,24(sp)
 	ld	a5,40(sp)
 	not	a5,a5
-	and	a5,a4,a5
-	mv	a3,a5
-	ld	a4,16(sp)
+	and	a4,a4,a5
+	ld	a3,16(sp)
 	ld	a5,40(sp)
-	and	a5,a4,a5
-	or	a5,a3,a5
+	and	a5,a3,a5
+	or	a5,a4,a5
 	mv	a0,a5
 	call	__clzdi2
 	mv	a5,a0
@@ -6813,8 +6775,9 @@ __ctzsi2:
 	lw	a4,68(sp)
 	srlw	a5,a4,a5
 	sw	a5,56(sp)
+	lw	a5,64(sp)
+	mv	a4,a5
 	lw	a5,60(sp)
-	lw	a4,64(sp)
 	addw	a5,a4,a5
 	sw	a5,52(sp)
 	lw	a5,56(sp)
@@ -6831,8 +6794,9 @@ __ctzsi2:
 	lw	a4,56(sp)
 	srlw	a5,a4,a5
 	sw	a5,44(sp)
+	lw	a5,52(sp)
+	mv	a4,a5
 	lw	a5,48(sp)
-	lw	a4,52(sp)
 	addw	a5,a4,a5
 	sw	a5,40(sp)
 	lw	a5,44(sp)
@@ -6852,21 +6816,20 @@ __ctzsi2:
 	lw	a5,32(sp)
 	andi	a5,a5,3
 	sw	a5,28(sp)
+	lw	a5,40(sp)
+	mv	a4,a5
 	lw	a5,36(sp)
-	lw	a4,40(sp)
 	addw	a5,a4,a5
 	sw	a5,24(sp)
 	lw	a5,28(sp)
-	not	a5,a5
-	sext.w	a5,a5
-	andi	a5,a5,1
-	sext.w	a4,a5
-	lw	a5,28(sp)
 	srliw	a5,a5,1
 	sext.w	a5,a5
-	li	a3,2
-	subw	a5,a3,a5
+	li	a4,2
+	subw	a5,a4,a5
 	sext.w	a5,a5
+	lw	a4,28(sp)
+	not	a4,a4
+	andi	a4,a4,1
 	negw	a4,a4
 	and	a5,a5,a4
 	sext.w	a5,a5
@@ -6898,20 +6861,18 @@ __ctzti2:
 	sd	a5,24(sp)
 	ld	a5,16(sp)
 	seqz	a5,a5
-	andi	a5,a5,0xff
 	sext.w	a5,a5
 	negw	a5,a5
 	sext.w	a5,a5
 	sd	a5,40(sp)
 	ld	a4,24(sp)
 	ld	a5,40(sp)
-	and	a5,a4,a5
-	mv	a3,a5
-	ld	a4,16(sp)
+	and	a4,a4,a5
+	ld	a3,16(sp)
 	ld	a5,40(sp)
 	not	a5,a5
-	and	a5,a4,a5
-	or	a5,a3,a5
+	and	a5,a3,a5
+	or	a5,a4,a5
 	mv	a0,a5
 	call	__ctzdi2
 	mv	a5,a0
@@ -7063,9 +7024,9 @@ __lshrti3:
 	sw	a2,12(sp)
 	li	a5,64
 	sw	a5,76(sp)
-	ld	a4,16(sp)
+	ld	a5,16(sp)
+	sd	a5,48(sp)
 	ld	a5,24(sp)
-	sd	a4,48(sp)
 	sd	a5,56(sp)
 	lw	a5,12(sp)
 	mv	a4,a5
@@ -7108,10 +7069,8 @@ __lshrti3:
 	or	a5,a4,a5
 	sd	a5,32(sp)
 .L954:
-	ld	a2,32(sp)
-	ld	a3,40(sp)
-	mv	a4,a2
-	mv	a5,a3
+	ld	a4,32(sp)
+	ld	a5,40(sp)
 .L957:
 	mv	a0,a4
 	mv	a1,a5
@@ -7161,7 +7120,6 @@ __muldsi3:
 	lw	a5,16(sp)
 	lw	a4,40(sp)
 	and	a5,a4,a5
-	sext.w	a5,a5
 	sw	a5,16(sp)
 	lw	a5,44(sp)
 	lw	a4,12(sp)
@@ -7187,7 +7145,6 @@ __muldsi3:
 	sllw	a5,a5,a3
 	sext.w	a5,a5
 	addw	a5,a4,a5
-	sext.w	a5,a5
 	sw	a5,16(sp)
 	lw	a5,44(sp)
 	lw	a4,32(sp)
@@ -7201,7 +7158,6 @@ __muldsi3:
 	lw	a5,16(sp)
 	lw	a4,40(sp)
 	and	a5,a4,a5
-	sext.w	a5,a5
 	sw	a5,16(sp)
 	lw	a5,44(sp)
 	lw	a4,8(sp)
@@ -7227,31 +7183,26 @@ __muldsi3:
 	sllw	a5,a5,a3
 	sext.w	a5,a5
 	addw	a5,a4,a5
-	sext.w	a5,a5
 	sw	a5,16(sp)
-	lw	a5,20(sp)
-	mv	a4,a5
+	lw	a4,20(sp)
 	lw	a5,44(sp)
 	lw	a3,24(sp)
 	srlw	a5,a3,a5
 	sext.w	a5,a5
 	addw	a5,a4,a5
-	sext.w	a5,a5
 	sw	a5,20(sp)
-	lw	a5,20(sp)
-	mv	a3,a5
+	lw	a4,20(sp)
 	lw	a5,44(sp)
-	lw	a4,12(sp)
-	srlw	a5,a4,a5
-	sext.w	a4,a5
+	lw	a3,12(sp)
+	srlw	a5,a3,a5
+	sext.w	a3,a5
 	lw	a5,44(sp)
 	lw	a2,8(sp)
 	srlw	a5,a2,a5
 	sext.w	a5,a5
-	mulw	a5,a4,a5
+	mulw	a5,a3,a5
 	sext.w	a5,a5
-	addw	a5,a3,a5
-	sext.w	a5,a5
+	addw	a5,a4,a5
 	sw	a5,20(sp)
 	ld	a5,16(sp)
 	mv	a0,a5
@@ -7277,28 +7228,25 @@ __muldi3_compiler_rt:
 	sd	a5,40(sp)
 	ld	a5,0(sp)
 	sd	a5,32(sp)
-	lw	a5,40(sp)
 	lw	a4,32(sp)
+	lw	a5,40(sp)
 	mv	a1,a4
 	mv	a0,a5
 	call	__muldsi3
 	mv	a5,a0
 	sd	a5,24(sp)
-	lw	a5,28(sp)
-	mv	a3,a5
-	lw	a5,44(sp)
-	mv	a4,a5
+	lw	a4,28(sp)
+	lw	a3,44(sp)
 	lw	a5,32(sp)
-	mulw	a5,a4,a5
-	sext.w	a4,a5
-	lw	a5,40(sp)
-	lw	a2,36(sp)
-	mulw	a5,a5,a2
-	sext.w	a5,a5
-	addw	a5,a4,a5
+	mulw	a5,a3,a5
+	sext.w	a3,a5
+	lw	a2,40(sp)
+	lw	a5,36(sp)
+	mulw	a5,a2,a5
 	sext.w	a5,a5
 	addw	a5,a3,a5
 	sext.w	a5,a5
+	addw	a5,a4,a5
 	sw	a5,28(sp)
 	ld	a5,24(sp)
 	mv	a0,a5
@@ -7339,8 +7287,8 @@ __mulddi3:
 	lw	a4,76(sp)
 	srl	a5,a5,a4
 	sd	a5,56(sp)
-	ld	a4,16(sp)
-	ld	a5,64(sp)
+	ld	a5,16(sp)
+	ld	a4,64(sp)
 	and	a5,a4,a5
 	sd	a5,16(sp)
 	lw	a5,76(sp)
@@ -7371,8 +7319,8 @@ __mulddi3:
 	lw	a4,76(sp)
 	srl	a5,a5,a4
 	sd	a5,40(sp)
-	ld	a4,16(sp)
-	ld	a5,64(sp)
+	ld	a5,16(sp)
+	ld	a4,64(sp)
 	and	a5,a4,a5
 	sd	a5,16(sp)
 	lw	a5,76(sp)
@@ -7394,26 +7342,24 @@ __mulddi3:
 	sll	a5,a5,a3
 	add	a5,a4,a5
 	sd	a5,16(sp)
-	ld	a5,24(sp)
-	mv	a4,a5
+	ld	a4,24(sp)
 	lw	a5,76(sp)
 	mv	a3,a5
 	ld	a5,32(sp)
 	srl	a5,a5,a3
 	add	a5,a4,a5
 	sd	a5,24(sp)
-	ld	a5,24(sp)
-	mv	a3,a5
+	ld	a4,24(sp)
 	lw	a5,76(sp)
-	mv	a4,a5
+	mv	a3,a5
 	ld	a5,8(sp)
-	srl	a4,a5,a4
+	srl	a3,a5,a3
 	lw	a5,76(sp)
 	mv	a2,a5
 	ld	a5,0(sp)
 	srl	a5,a5,a2
-	mul	a5,a4,a5
-	add	a5,a3,a5
+	mul	a5,a3,a5
+	add	a5,a4,a5
 	sd	a5,24(sp)
 	ld	a4,16(sp)
 	ld	a5,24(sp)
@@ -7447,26 +7393,22 @@ __multi3:
 	sd	a5,48(sp)
 	ld	a5,8(sp)
 	sd	a5,56(sp)
-	ld	a5,64(sp)
-	ld	a4,48(sp)
-	mv	a1,a4
-	mv	a0,a5
+	ld	a1,48(sp)
+	ld	a0,64(sp)
 	call	__mulddi3
 	mv	a4,a0
 	mv	a5,a1
 	sd	a4,32(sp)
 	sd	a5,40(sp)
-	ld	a5,40(sp)
-	mv	a3,a5
-	ld	a5,72(sp)
-	mv	a4,a5
+	ld	a4,40(sp)
+	ld	a3,72(sp)
 	ld	a5,48(sp)
-	mul	a4,a4,a5
-	ld	a5,64(sp)
-	ld	a2,56(sp)
-	mul	a5,a5,a2
-	add	a5,a4,a5
+	mul	a3,a3,a5
+	ld	a2,64(sp)
+	ld	a5,56(sp)
+	mul	a5,a2,a5
 	add	a5,a3,a5
+	add	a5,a4,a5
 	sd	a5,40(sp)
 	ld	a4,32(sp)
 	ld	a5,40(sp)
@@ -7519,12 +7461,10 @@ __negti2:
 	srli	a4,a4,32
 	sub	a5,a0,a2
 	sub	a5,a5,a4
-	mv	a1,a3
-	mv	a2,a5
-	mv	a4,a1
-	mv	a5,a2
-	mv	a0,a4
-	mv	a1,a5
+	mv	a2,a3
+	mv	a4,a5
+	mv	a0,a2
+	mv	a1,a4
 	addi	sp,sp,16
 	.cfi_def_cfa_offset 0
 	jr	ra
@@ -7542,8 +7482,7 @@ __paritydi2:
 	sd	a0,8(sp)
 	ld	a5,8(sp)
 	sd	a5,24(sp)
-	lw	a5,28(sp)
-	mv	a4,a5
+	lw	a4,28(sp)
 	lw	a5,24(sp)
 	xor	a5,a4,a5
 	sw	a5,44(sp)
@@ -7595,13 +7534,11 @@ __parityti2:
 	sd	a5,32(sp)
 	ld	a5,8(sp)
 	sd	a5,40(sp)
-	ld	a5,40(sp)
-	mv	a4,a5
+	ld	a4,40(sp)
 	ld	a5,32(sp)
 	xor	a5,a4,a5
 	sd	a5,24(sp)
-	lw	a5,28(sp)
-	mv	a4,a5
+	lw	a4,28(sp)
 	lw	a5,24(sp)
 	xor	a5,a4,a5
 	sw	a5,60(sp)
@@ -8131,10 +8068,8 @@ __aeabi_ulcmp:
 	.cfi_offset 1, -8
 	sd	a0,8(sp)
 	sd	a1,0(sp)
-	ld	a5,8(sp)
-	ld	a4,0(sp)
-	mv	a1,a4
-	mv	a0,a5
+	ld	a1,0(sp)
+	ld	a0,8(sp)
 	call	__ucmpdi2
 	mv	a5,a0
 	addiw	a5,a5,-1

@@ -251,11 +251,9 @@ $L18:
 	lw	$2,16($sp)
 	nop
 	lbu	$2,0($2)
+	lw	$3,8($sp)
 	nop
-	move	$3,$2
-	lw	$2,8($sp)
-	nop
-	bne	$2,$3,$L20
+	bne	$3,$2,$L20
 	nop
 
 $L19:
@@ -339,9 +337,7 @@ $L27:
 
 	lw	$2,0($sp)
 	nop
-	lbu	$2,0($2)
-	nop
-	move	$3,$2
+	lbu	$3,0($2)
 	lw	$2,4($sp)
 	nop
 	lbu	$2,0($2)
@@ -449,11 +445,9 @@ $L40:
 	nop
 	addu	$2,$3,$2
 	lbu	$2,0($2)
+	lw	$3,8($sp)
 	nop
-	move	$3,$2
-	lw	$2,8($sp)
-	nop
-	bne	$2,$3,$L38
+	bne	$3,$2,$L38
 	nop
 
 	lw	$3,16($sp)
@@ -508,10 +502,8 @@ memset:
 
 	.option	pic2
 $L44:
-	lw	$2,20($sp)
-	nop
-	andi	$3,$2,0x00ff
 	lw	$2,8($sp)
+	lw	$3,20($sp)
 	nop
 	sb	$3,0($2)
 	lw	$2,24($sp)
@@ -627,11 +619,9 @@ $L52:
 	lw	$2,16($sp)
 	nop
 	lbu	$2,0($2)
+	lw	$3,8($sp)
 	nop
-	move	$3,$2
-	lw	$2,8($sp)
-	nop
-	bne	$2,$3,$L54
+	bne	$3,$2,$L54
 	nop
 
 $L53:
@@ -660,11 +650,9 @@ strchr:
 	sw	$5,4($sp)
 $L60:
 	lb	$3,0($2)
+	lw	$4,4($sp)
 	nop
-	move	$4,$3
-	lw	$3,4($sp)
-	nop
-	beq	$3,$4,$L61
+	beq	$4,$3,$L61
 	nop
 
 	move	$3,$2
@@ -736,9 +724,7 @@ $L63:
 $L64:
 	lw	$2,0($sp)
 	nop
-	lbu	$2,0($2)
-	nop
-	move	$3,$2
+	lbu	$3,0($2)
 	lw	$2,4($sp)
 	nop
 	lbu	$2,0($2)
@@ -873,9 +859,7 @@ $L75:
 $L76:
 	lw	$2,16($sp)
 	nop
-	lbu	$2,0($2)
-	nop
-	move	$3,$2
+	lbu	$3,0($2)
 	lw	$2,20($sp)
 	nop
 	lbu	$2,0($2)
@@ -913,8 +897,7 @@ swab:
 $L81:
 	lw	$2,0($sp)
 	nop
-	addiu	$2,$2,1
-	lb	$3,0($2)
+	lb	$3,1($2)
 	lw	$2,4($sp)
 	nop
 	sb	$3,0($2)
@@ -972,7 +955,6 @@ isalpha:
 	ori	$2,$2,0x20
 	addiu	$2,$2,-97
 	sltu	$2,$2,26
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -996,7 +978,6 @@ isascii:
 	lw	$2,0($sp)
 	nop
 	sltu	$2,$2,128
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1104,7 +1085,6 @@ isdigit:
 	nop
 	addiu	$2,$2,-48
 	sltu	$2,$2,10
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1129,7 +1109,6 @@ isgraph:
 	nop
 	addiu	$2,$2,-33
 	sltu	$2,$2,94
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1154,7 +1133,6 @@ islower:
 	nop
 	addiu	$2,$2,-97
 	sltu	$2,$2,26
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1179,7 +1157,6 @@ isprint:
 	nop
 	addiu	$2,$2,-32
 	sltu	$2,$2,95
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1247,7 +1224,6 @@ isupper:
 	nop
 	addiu	$2,$2,-65
 	sltu	$2,$2,26
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1331,7 +1307,6 @@ iswdigit:
 	nop
 	addiu	$2,$2,-48
 	sltu	$2,$2,10
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -1364,7 +1339,6 @@ iswprint:
 	andi	$2,$2,0x7f
 	sltu	$2,$2,33
 	xori	$2,$2,0x1
-	andi	$2,$2,0x00ff
 	jr	$31
 	nop
 
@@ -2391,19 +2365,20 @@ rand:
 	.set	nomacro
 	lui	$2,%hi(seed)
 	lw	$4,%lo(seed)($2)
-	lw	$2,%lo(seed+4)($2)
 	li	$3,1284833280			# 0x4c950000
 	ori	$3,$3,0x7f2d
 	mult	$4,$3
 	mflo	$3
+	lw	$5,%lo(seed+4)($2)
 	li	$4,1481703424			# 0x58510000
 	ori	$4,$4,0xf42d
-	mult	$2,$4
+	mult	$5,$4
 	mflo	$4
 	addu	$4,$3,$4
-	li	$3,1284833280			# 0x4c950000
-	ori	$3,$3,0x7f2d
-	multu	$2,$3
+	lw	$3,%lo(seed+4)($2)
+	li	$2,1284833280			# 0x4c950000
+	ori	$2,$2,0x7f2d
+	multu	$3,$2
 	mflo	$3
 	mfhi	$2
 	addu	$4,$4,$2
@@ -2571,7 +2546,6 @@ lsearch:
 	sw	$7,60($sp)
 	lw	$16,60($sp)
 	nop
-	move	$2,$16
 	addiu	$2,$16,-1
 	sw	$2,28($sp)
 	lw	$2,56($sp)
@@ -2678,7 +2652,6 @@ lfind:
 	sw	$7,60($sp)
 	lw	$16,60($sp)
 	nop
-	move	$2,$16
 	addiu	$2,$16,-1
 	sw	$2,28($sp)
 	lw	$2,56($sp)
@@ -3287,8 +3260,7 @@ bsearch_r:
 $L298:
 	lw	$2,24($sp)
 	nop
-	sra	$2,$2,1
-	move	$3,$2
+	sra	$3,$2,1
 	lw	$2,60($sp)
 	nop
 	mult	$3,$2
@@ -4321,15 +4293,15 @@ $L381:
 	lw	$2,24($sp)
 	nop
 	sll	$2,$2,2
-	lw	$3,20($sp)
+	lw	$3,16($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$2,24($sp)
+	addu	$2,$3,$2
+	lw	$3,24($sp)
 	nop
-	sll	$2,$2,2
-	lw	$4,16($sp)
+	sll	$3,$3,2
+	lw	$4,20($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lw	$3,0($3)
 	nop
 	sw	$3,0($2)
@@ -5024,23 +4996,21 @@ bswap_16:
 	sh	$2,16($sp)
 	li	$2,255			# 0xff
 	sw	$2,8($sp)
-	lhu	$3,16($sp)
 	lw	$2,8($sp)
 	nop
 	sll	$2,$2,8
-	and	$2,$3,$2
-	srl	$2,$2,8
-	andi	$3,$2,0xffff
-	lw	$2,8($sp)
+	lhu	$3,16($sp)
 	nop
-	andi	$4,$2,0xffff
+	and	$2,$3,$2
+	srl	$3,$2,8
+	lw	$4,8($sp)
 	lhu	$2,16($sp)
 	nop
-	and	$2,$4,$2
+	and	$2,$2,$4
 	andi	$2,$2,0xffff
 	sll	$2,$2,8
 	andi	$2,$2,0xffff
-	or	$2,$3,$2
+	or	$2,$2,$3
 	andi	$2,$2,0xffff
 	addiu	$sp,$sp,16
 	jr	$31
@@ -5922,8 +5892,6 @@ $L506:
 	lb	$3,0($2)
 	nop
 	xor	$3,$4,$3
-	sll	$3,$3,24
-	sra	$3,$3,24
 	sb	$3,0($2)
 	lw	$2,24($sp)
 	nop
@@ -6179,11 +6147,9 @@ strrchr:
 	sw	$0,8($sp)
 $L533:
 	lb	$3,0($2)
+	lw	$4,20($sp)
 	nop
-	move	$4,$3
-	lw	$3,20($sp)
-	nop
-	bne	$3,$4,$L532
+	bne	$4,$3,$L532
 	nop
 
 	sw	$2,8($sp)
@@ -6445,14 +6411,14 @@ $L559:
 	lw	$2,40($sp)
 	nop
 	addiu	$3,$2,1
-	lw	$2,48($sp)
-	nop
-	addiu	$4,$2,1
 	lw	$2,52($sp)
 	nop
-	addiu	$2,$2,-1
-	move	$6,$2
-	move	$5,$4
+	addiu	$4,$2,-1
+	lw	$2,48($sp)
+	nop
+	addiu	$2,$2,1
+	move	$6,$4
+	move	$5,$2
 	move	$4,$3
 	.option	pic0
 	jal	memcmp
@@ -7029,12 +6995,10 @@ $L605:
 
 	.option	pic2
 $L607:
-	lw	$3,44($sp)
-	lw	$2,40($sp)
-	lw	$6,%call16(__clzdi2)($28)
-	move	$5,$3
-	move	$4,$2
-	move	$25,$6
+	lw	$2,%call16(__clzdi2)($28)
+	lw	$5,44($sp)
+	lw	$4,40($sp)
+	move	$25,$2
 	.reloc	1f,R_MIPS_JALR,__clzdi2
 1:	jalr	$25
 	nop
@@ -7163,15 +7127,15 @@ $L620:
 	lw	$2,8($sp)
 	nop
 	sll	$2,$2,3
+	lw	$3,24($sp)
+	nop
+	addu	$4,$3,$2
+	lw	$2,8($sp)
+	nop
+	sll	$2,$2,3
 	lw	$3,28($sp)
 	nop
 	addu	$2,$3,$2
-	lw	$3,8($sp)
-	nop
-	sll	$3,$3,3
-	lw	$4,24($sp)
-	nop
-	addu	$4,$4,$3
 	lw	$3,4($2)
 	lw	$2,0($2)
 	sw	$3,4($4)
@@ -7194,14 +7158,14 @@ $L619:
 
 	.option	pic2
 $L622:
-	lw	$3,28($sp)
+	lw	$3,24($sp)
 	lw	$2,12($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$4,24($sp)
-	lw	$2,12($sp)
+	addu	$2,$3,$2
+	lw	$4,28($sp)
+	lw	$3,12($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lb	$3,0($3)
 	nop
 	sb	$3,0($2)
@@ -7223,14 +7187,14 @@ $L621:
 
 	.option	pic2
 $L625:
-	lw	$3,28($sp)
+	lw	$3,24($sp)
 	lw	$2,32($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$4,24($sp)
-	lw	$2,32($sp)
+	addu	$2,$3,$2
+	lw	$4,28($sp)
+	lw	$3,32($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lb	$3,0($3)
 	nop
 	sb	$3,0($2)
@@ -7301,15 +7265,15 @@ $L631:
 	lw	$2,8($sp)
 	nop
 	sll	$2,$2,1
-	lw	$3,20($sp)
+	lw	$3,16($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$2,8($sp)
+	addu	$2,$3,$2
+	lw	$3,8($sp)
 	nop
-	sll	$2,$2,1
-	lw	$4,16($sp)
+	sll	$3,$3,1
+	lw	$4,20($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lh	$3,0($3)
 	nop
 	sh	$3,0($2)
@@ -7334,16 +7298,14 @@ $L630:
 	lw	$2,24($sp)
 	nop
 	addiu	$2,$2,-1
-	lw	$3,20($sp)
+	lw	$3,16($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$2,24($sp)
+	addu	$2,$3,$2
+	lw	$4,20($sp)
+	lw	$3,24($sp)
 	nop
-	addiu	$2,$2,-1
-	lw	$4,16($sp)
-	nop
-	addu	$2,$4,$2
-	lb	$3,0($3)
+	addu	$3,$4,$3
+	lb	$3,-1($3)
 	nop
 	sb	$3,0($2)
 	.option	pic0
@@ -7352,14 +7314,14 @@ $L630:
 
 	.option	pic2
 $L635:
-	lw	$3,20($sp)
+	lw	$3,16($sp)
 	lw	$2,24($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$4,16($sp)
-	lw	$2,24($sp)
+	addu	$2,$3,$2
+	lw	$4,20($sp)
+	lw	$3,24($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lb	$3,0($3)
 	nop
 	sb	$3,0($2)
@@ -7434,15 +7396,15 @@ $L641:
 	lw	$2,8($sp)
 	nop
 	sll	$2,$2,2
-	lw	$3,28($sp)
+	lw	$3,24($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$2,8($sp)
+	addu	$2,$3,$2
+	lw	$3,8($sp)
 	nop
-	sll	$2,$2,2
-	lw	$4,24($sp)
+	sll	$3,$3,2
+	lw	$4,28($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lw	$3,0($3)
 	nop
 	sw	$3,0($2)
@@ -7464,14 +7426,14 @@ $L640:
 
 	.option	pic2
 $L643:
-	lw	$3,28($sp)
+	lw	$3,24($sp)
 	lw	$2,12($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$4,24($sp)
-	lw	$2,12($sp)
+	addu	$2,$3,$2
+	lw	$4,28($sp)
+	lw	$3,12($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lb	$3,0($3)
 	nop
 	sb	$3,0($2)
@@ -7493,14 +7455,14 @@ $L642:
 
 	.option	pic2
 $L646:
-	lw	$3,28($sp)
+	lw	$3,24($sp)
 	lw	$2,32($sp)
 	nop
-	addu	$3,$3,$2
-	lw	$4,24($sp)
-	lw	$2,32($sp)
+	addu	$2,$3,$2
+	lw	$4,28($sp)
+	lw	$3,32($sp)
 	nop
-	addu	$2,$4,$2
+	addu	$3,$4,$3
 	lb	$3,0($3)
 	nop
 	sb	$3,0($2)
@@ -7758,11 +7720,12 @@ __clzhi2:
 
 	.option	pic2
 $L670:
-	lhu	$3,16($sp)
-	li	$4,15			# 0xf
+	li	$3,15			# 0xf
 	lw	$2,8($sp)
 	nop
-	subu	$2,$4,$2
+	subu	$2,$3,$2
+	lhu	$3,16($sp)
+	nop
 	sra	$2,$3,$2
 	andi	$2,$2,0x1
 	bne	$2,$0,$L672
@@ -8496,9 +8459,8 @@ $L751:
 	nop
 	sra	$2,$2,1
 	sw	$2,28($sp)
-	lb	$2,8($sp)
+	lbu	$2,8($sp)
 	nop
-	andi	$2,$2,0x00ff
 	addiu	$2,$2,1
 	andi	$2,$2,0x00ff
 	sb	$2,8($sp)
@@ -8587,11 +8549,9 @@ $L759:
 	andi	$2,$2,0x00ff
 	sw	$2,24($sp)
 $L760:
-	lw	$2,40($sp)
-	lw	$3,44($sp)
 	move	$6,$0
-	move	$5,$3
-	move	$4,$2
+	lw	$5,44($sp)
+	lw	$4,40($sp)
 	.option	pic0
 	jal	__udivmodsi4
 	nop
@@ -8657,11 +8617,9 @@ $L765:
 	subu	$2,$0,$2
 	sw	$2,44($sp)
 $L766:
-	lw	$2,40($sp)
-	lw	$3,44($sp)
 	li	$6,1			# 0x1
-	move	$5,$3
-	move	$4,$2
+	lw	$5,44($sp)
+	lw	$4,40($sp)
 	.option	pic0
 	jal	__udivmodsi4
 	nop
@@ -9108,83 +9066,85 @@ __bswapdi2:
 	sw	$4,0($sp)
 	lw	$2,0($sp)
 	nop
-	srl	$3,$2,24
-	move	$5,$0
+	srl	$5,$2,24
+	move	$4,$0
 	lw	$2,0($sp)
 	nop
 	srl	$2,$2,8
-	move	$4,$0
-	andi	$4,$4,0
+	move	$3,$0
+	andi	$3,$3,0
 	andi	$2,$2,0xff00
-	or	$5,$5,$4
-	or	$3,$3,$2
+	or	$4,$4,$3
+	or	$5,$5,$2
 	lw	$2,0($sp)
 	nop
-	sll	$4,$2,8
+	sll	$3,$2,8
 	lw	$2,4($sp)
 	nop
 	srl	$2,$2,24
-	or	$2,$4,$2
-	lw	$4,0($sp)
+	or	$2,$3,$2
+	lw	$3,0($sp)
 	nop
-	srl	$4,$4,24
-	andi	$4,$4,0
-	li	$6,16711680			# 0xff0000
-	and	$2,$2,$6
-	or	$5,$5,$4
-	or	$3,$3,$2
+	srl	$3,$3,24
+	andi	$6,$3,0
+	li	$3,16711680			# 0xff0000
+	and	$2,$2,$3
+	move	$3,$6
+	or	$4,$4,$3
+	or	$5,$5,$2
 	lw	$2,0($sp)
 	nop
-	sll	$4,$2,24
+	sll	$3,$2,24
 	lw	$2,4($sp)
 	nop
 	srl	$2,$2,8
-	or	$2,$4,$2
-	lw	$4,0($sp)
+	or	$2,$3,$2
+	lw	$3,0($sp)
 	nop
-	srl	$4,$4,8
-	andi	$4,$4,0
-	li	$6,-16777216			# 0xffffffffff000000
-	and	$2,$2,$6
-	or	$5,$5,$4
-	or	$3,$3,$2
+	srl	$3,$3,8
+	andi	$6,$3,0
+	li	$3,-16777216			# 0xffffffffff000000
+	and	$2,$2,$3
+	move	$3,$6
+	or	$4,$4,$3
+	or	$5,$5,$2
 	lw	$2,4($sp)
 	nop
-	srl	$4,$2,24
+	srl	$3,$2,24
 	lw	$2,0($sp)
 	nop
 	sll	$2,$2,8
-	or	$2,$4,$2
-	lw	$4,4($sp)
+	or	$2,$3,$2
+	lw	$3,4($sp)
 	nop
-	sll	$6,$4,8
-	andi	$4,$2,0xff
-	andi	$2,$6,0
-	or	$5,$5,$4
-	or	$3,$3,$2
+	sll	$3,$3,8
+	andi	$2,$2,0xff
+	andi	$3,$3,0
+	or	$4,$4,$2
+	or	$5,$5,$3
 	lw	$2,4($sp)
 	nop
-	srl	$4,$2,8
+	srl	$3,$2,8
 	lw	$2,0($sp)
 	nop
 	sll	$2,$2,24
-	or	$2,$4,$2
-	lw	$4,4($sp)
+	or	$2,$3,$2
+	lw	$3,4($sp)
 	nop
-	sll	$6,$4,24
-	andi	$4,$2,0xff00
-	andi	$2,$6,0
-	or	$5,$5,$4
-	or	$3,$3,$2
+	sll	$3,$3,24
+	andi	$2,$2,0xff00
+	andi	$3,$3,0
+	or	$4,$4,$2
+	or	$5,$5,$3
 	lw	$2,4($sp)
 	nop
-	sll	$4,$2,8
-	move	$6,$0
-	li	$2,16711680			# 0xff0000
-	and	$4,$4,$2
-	andi	$2,$6,0
-	or	$4,$5,$4
-	or	$2,$3,$2
+	sll	$2,$2,8
+	move	$3,$0
+	li	$6,16711680			# 0xff0000
+	and	$2,$2,$6
+	andi	$3,$3,0
+	or	$4,$4,$2
+	or	$2,$5,$3
 	lw	$3,4($sp)
 	nop
 	sll	$3,$3,24
@@ -9222,9 +9182,9 @@ __bswapsi2:
 	or	$3,$3,$2
 	lw	$2,0($sp)
 	nop
-	sll	$4,$2,8
-	li	$2,16711680			# 0xff0000
-	and	$2,$4,$2
+	sll	$2,$2,8
+	li	$4,16711680			# 0xff0000
+	and	$2,$2,$4
 	or	$3,$3,$2
 	lw	$2,0($sp)
 	nop
@@ -9305,8 +9265,8 @@ $L812:
 	nop
 	srl	$2,$3,$2
 	sw	$2,28($sp)
-	lw	$2,24($sp)
 	lw	$3,20($sp)
+	lw	$2,24($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,32($sp)
@@ -9334,8 +9294,8 @@ $L814:
 	nop
 	srl	$2,$3,$2
 	sw	$2,40($sp)
-	lw	$2,36($sp)
 	lw	$3,32($sp)
+	lw	$2,36($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,44($sp)
@@ -9363,8 +9323,8 @@ $L816:
 	nop
 	srl	$2,$3,$2
 	sw	$2,52($sp)
-	lw	$2,48($sp)
 	lw	$3,44($sp)
+	lw	$2,48($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,56($sp)
@@ -9372,7 +9332,6 @@ $L816:
 	nop
 	andi	$2,$2,0x2
 	sltu	$2,$2,1
-	andi	$2,$2,0x00ff
 	move	$4,$2
 	li	$3,2			# 0x2
 	lw	$2,52($sp)
@@ -9580,8 +9539,8 @@ $L834:
 	nop
 	srl	$2,$3,$2
 	sw	$2,28($sp)
-	lw	$2,24($sp)
 	lw	$3,20($sp)
+	lw	$2,24($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,32($sp)
@@ -9606,8 +9565,8 @@ $L836:
 	nop
 	srl	$2,$3,$2
 	sw	$2,40($sp)
-	lw	$2,36($sp)
 	lw	$3,32($sp)
+	lw	$2,36($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,44($sp)
@@ -9636,20 +9595,20 @@ $L838:
 	nop
 	andi	$2,$2,0x3
 	sw	$2,56($sp)
-	lw	$2,48($sp)
 	lw	$3,44($sp)
+	lw	$2,48($sp)
 	nop
 	addu	$2,$3,$2
 	sw	$2,60($sp)
 	lw	$2,56($sp)
 	nop
-	nor	$2,$0,$2
-	andi	$3,$2,0x1
-	lw	$2,56($sp)
-	nop
 	srl	$2,$2,1
-	li	$4,2			# 0x2
-	subu	$2,$4,$2
+	li	$3,2			# 0x2
+	subu	$2,$3,$2
+	lw	$3,56($sp)
+	nop
+	nor	$3,$0,$3
+	andi	$3,$3,0x1
 	subu	$3,$0,$3
 	and	$3,$3,$2
 	lw	$2,60($sp)
@@ -9711,8 +9670,8 @@ $L842:
 	bne	$2,$0,$L844
 	nop
 
-	lw	$2,32($sp)
 	lw	$3,36($sp)
+	lw	$2,32($sp)
 	.option	pic0
 	b	$L846
 	nop
@@ -9737,8 +9696,8 @@ $L844:
 	or	$2,$3,$2
 	sw	$2,28($sp)
 $L843:
-	lw	$2,24($sp)
 	lw	$3,28($sp)
+	lw	$2,24($sp)
 $L846:
 	addiu	$sp,$sp,32
 	jr	$31
@@ -9786,8 +9745,8 @@ __muldsi3:
 	nop
 	srl	$2,$3,$2
 	sw	$2,16($sp)
-	lw	$3,36($sp)
-	lw	$2,12($sp)
+	lw	$2,36($sp)
+	lw	$3,12($sp)
 	nop
 	and	$2,$3,$2
 	sw	$2,36($sp)
@@ -9824,8 +9783,8 @@ __muldsi3:
 	nop
 	srl	$2,$3,$2
 	sw	$2,24($sp)
-	lw	$3,36($sp)
-	lw	$2,12($sp)
+	lw	$2,36($sp)
+	lw	$3,12($sp)
 	nop
 	and	$2,$3,$2
 	sw	$2,36($sp)
@@ -9852,29 +9811,25 @@ __muldsi3:
 	sll	$2,$4,$2
 	addu	$2,$3,$2
 	sw	$2,36($sp)
-	lw	$2,32($sp)
-	nop
-	move	$4,$2
-	lw	$3,28($sp)
-	lw	$2,8($sp)
-	nop
-	srl	$2,$3,$2
-	addu	$2,$4,$2
-	sw	$2,32($sp)
-	lw	$2,32($sp)
-	nop
-	move	$5,$2
-	lw	$3,40($sp)
-	lw	$2,8($sp)
-	nop
-	srl	$3,$3,$2
-	lw	$4,44($sp)
+	lw	$3,32($sp)
+	lw	$4,28($sp)
 	lw	$2,8($sp)
 	nop
 	srl	$2,$4,$2
-	mult	$3,$2
-	mflo	$2
-	addu	$2,$5,$2
+	addu	$2,$3,$2
+	sw	$2,32($sp)
+	lw	$2,32($sp)
+	lw	$4,40($sp)
+	lw	$3,8($sp)
+	nop
+	srl	$4,$4,$3
+	lw	$5,44($sp)
+	lw	$3,8($sp)
+	nop
+	srl	$3,$5,$3
+	mult	$4,$3
+	mflo	$3
+	addu	$2,$2,$3
 	sw	$2,32($sp)
 	lw	$3,36($sp)
 	lw	$2,32($sp)
@@ -9912,11 +9867,8 @@ __muldi3_compiler_rt:
 	lw	$2,64($sp)
 	sw	$3,36($sp)
 	sw	$2,32($sp)
-	lw	$2,28($sp)
-	lw	$3,36($sp)
-	nop
-	move	$5,$3
-	move	$4,$2
+	lw	$5,36($sp)
+	lw	$4,28($sp)
 	.option	pic0
 	jal	__muldsi3
 	nop
@@ -9924,23 +9876,19 @@ __muldi3_compiler_rt:
 	.option	pic2
 	sw	$3,44($sp)
 	sw	$2,40($sp)
-	lw	$2,40($sp)
-	nop
-	move	$4,$2
-	lw	$2,24($sp)
-	nop
-	move	$3,$2
+	lw	$3,40($sp)
+	lw	$4,24($sp)
 	lw	$2,36($sp)
 	nop
-	mult	$3,$2
+	mult	$4,$2
 	mflo	$2
-	lw	$3,28($sp)
-	lw	$5,32($sp)
+	lw	$5,28($sp)
+	lw	$4,32($sp)
 	nop
-	mult	$3,$5
-	mflo	$3
-	addu	$2,$2,$3
-	addu	$2,$4,$2
+	mult	$5,$4
+	mflo	$4
+	addu	$2,$2,$4
+	addu	$2,$3,$2
 	sw	$2,40($sp)
 	lw	$3,44($sp)
 	lw	$2,40($sp)
@@ -10001,9 +9949,7 @@ __paritydi2:
 	lw	$2,32($sp)
 	sw	$3,28($sp)
 	sw	$2,24($sp)
-	lw	$2,24($sp)
-	nop
-	move	$3,$2
+	lw	$3,24($sp)
 	lw	$2,28($sp)
 	nop
 	xor	$2,$3,$2
@@ -10595,14 +10541,10 @@ __aeabi_ulcmp:
 	sw	$4,32($sp)
 	sw	$7,44($sp)
 	sw	$6,40($sp)
-	lw	$3,36($sp)
-	lw	$2,32($sp)
-	lw	$5,44($sp)
-	lw	$4,40($sp)
 	lw	$7,44($sp)
 	lw	$6,40($sp)
-	move	$5,$3
-	move	$4,$2
+	lw	$5,36($sp)
+	lw	$4,32($sp)
 	.option	pic0
 	jal	__ucmpdi2
 	nop

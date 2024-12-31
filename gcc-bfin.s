@@ -148,8 +148,7 @@ _memchr:
 	nop;
 	nop;
 	P2 = [SP+4];
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R1 = [SP];
 	cc =R1==R0;
 	if !cc jump .L18;
@@ -205,11 +204,9 @@ _memcmp:
 	nop;
 	nop;
 	P2 = [SP];
-	R0 = B [P2] (X);
-	R1 = R0.B (Z);
+	R1 = B [P2] (Z);
 	P2 = [SP+4];
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R0 = R1 - R0;
 	jump.s .L28;
 .L26:
@@ -268,8 +265,7 @@ _memrchr:
 	R0 = [SP+12];
 	R0 = R1 + R0;
 	P2 = R0;
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R1 = [SP];
 	cc =R1==R0;
 	if !cc jump .L34;
@@ -303,8 +299,8 @@ _memset:
 	[SP] = R0;
 	jump.s .L38;
 .L39:
-	R0 = [SP+8];
 	P2 = [SP];
+	R0 = [SP+8];
 	B [P2] = R0;
 	R0 = [SP+12];
 	R0 += -1;
@@ -371,8 +367,7 @@ _strchrnul:
 	nop;
 	nop;
 	P2 = [SP+4];
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R1 = [SP];
 	cc =R1==R0;
 	if !cc jump .L48;
@@ -389,7 +384,6 @@ _strchr:
 	[SP+4] = R1;
 .L53:
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R1 = [SP+4];
 	cc =R1==R0;
 	if cc jump .L54;
@@ -397,7 +391,6 @@ _strchr:
 	P2 = P1;
 	P2 += 1;
 	R0 = B [P1] (X);
-	R0 = R0.B (X);
 	cc =R0==0;
 	if !cc jump .L53;
 	P2 = 0 (X);
@@ -442,11 +435,9 @@ _strcmp:
 	nop;
 .L57:
 	P2 = [SP];
-	R0 = B [P2] (X);
-	R1 = R0.B (Z);
+	R1 = B [P2] (Z);
 	P2 = [SP+4];
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R0 = R1 - R0;
 	rts;
 	.size	_strcmp, .-_strcmp
@@ -466,7 +457,6 @@ _strlen:
 .L61:
 	P2 = [SP];
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	cc =R0==0;
 	if !cc jump .L62;
 	R1 = [SP];
@@ -531,11 +521,9 @@ _strncmp:
 	nop;
 .L68:
 	P2 = [SP+4];
-	R0 = B [P2] (X);
-	R1 = R0.B (Z);
+	R1 = B [P2] (Z);
 	P2 = [SP+8];
-	R0 = B [P2] (X);
-	R0 = R0.B (Z);
+	R0 = B [P2] (Z);
 	R0 = R1 - R0;
 .L66:
 	SP += 4;
@@ -592,7 +580,6 @@ _isalpha:
 	R1 = 25 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isalpha, .-_isalpha
 	.align 4
@@ -604,7 +591,6 @@ _isascii:
 	R1 = 127 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isascii, .-_isascii
 	.align 4
@@ -661,7 +647,6 @@ _isdigit:
 	R1 = 9 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isdigit, .-_isdigit
 	.align 4
@@ -674,7 +659,6 @@ _isgraph:
 	R1 = 93 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isgraph, .-_isgraph
 	.align 4
@@ -689,7 +673,6 @@ _islower:
 	R1 = 25 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_islower, .-_islower
 	.align 4
@@ -702,7 +685,6 @@ _isprint:
 	R1 = 94 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isprint, .-_isprint
 	.align 4
@@ -739,7 +721,6 @@ _isupper:
 	R1 = 25 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_isupper, .-_isupper
 	.align 4
@@ -790,7 +771,6 @@ _iswdigit:
 	R1 = 9 (X);
 	cc =R0<=R1 (iu);
 	R0 = CC;
-	R0 = R0.B (Z);
 	rts;
 	.size	_iswdigit, .-_iswdigit
 	.align 4
@@ -811,7 +791,6 @@ _iswprint:
 	cc =R0<=R1 (iu);
 	R0 = CC;
 	BITTGL (R0, 0);
-	R0 = R0.B (Z);
 	jump.s .L111;
 .L110:
 	R0 = [SP];
@@ -1479,20 +1458,16 @@ _srand:
 .type _rand, STT_FUNC;
 _rand:
 	[--SP] = RETS;
-	SP += -24;
+	SP += -16;
 	P2.H = _seed;
 	P2.L = _seed;
-	R0 = [P2];
-	R1 = [P2+4];
-	[SP+16] = R0;
-	[SP+20] = R1;
 	R0.H = 22609;
 	R0.L = 62509;
 	[SP+12] = R0;
 	R2.H = 19605;
 	R2.L = 32557;
-	R0 = [SP+16];
-	R1 = [SP+20];
+	R0 = [P2];
+	R1 = [P2+4];
 	call ___muldi3;
 	R2 = R0;
 	R0 = R1;
@@ -1510,7 +1485,7 @@ _rand:
 	P2.L = _seed;
 	R0 = [P2+4];
 	R0 >>= 1;
-	SP += 24;
+	SP += 16;
 	RETS = [SP++];
 	rts;
 	.size	_rand, .-_rand
@@ -1602,6 +1577,12 @@ _lsearch:
 	R0 = R7;
 	R0 += -1;
 	[SP+16] = R0;
+	R1 = R7;
+	R0 = 0 (X);
+	R2 = R1 >> 29;
+	R0 <<= 3;
+	R0 = R2 | R0;
+	R1 <<= 3;
 	P2 = [SP+40];
 	R0 = [P2];
 	[SP+12] = R0;
@@ -1673,6 +1654,12 @@ _lfind:
 	R0 = R7;
 	R0 += -1;
 	[SP+16] = R0;
+	R1 = R7;
+	R0 = 0 (X);
+	R2 = R1 >> 29;
+	R0 <<= 3;
+	R0 = R2 | R0;
+	R1 <<= 3;
 	P2 = [SP+40];
 	R0 = [P2];
 	[SP+12] = R0;
@@ -1752,7 +1739,6 @@ _atoi:
 	nop;
 	P2 = [SP+24];
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R1 = 43 (X);
 	cc =R0==R1;
 	if cc jump .L290;
@@ -1778,7 +1764,6 @@ _atoi:
 	R0 += 1;
 	[SP+24] = R0;
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R0 += -48;
 	R0 = R1 - R0;
 	[SP+16] = R0;
@@ -1831,7 +1816,6 @@ _atol:
 	nop;
 	P2 = [SP+24];
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R1 = 43 (X);
 	cc =R0==R1;
 	if cc jump .L300;
@@ -1857,7 +1841,6 @@ _atol:
 	R0 += 1;
 	[SP+24] = R0;
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R0 += -48;
 	R0 = R1 - R0;
 	[SP+16] = R0;
@@ -1914,7 +1897,6 @@ _atoll:
 	nop;
 	P2 = [SP+40];
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R1 = 43 (X);
 	cc =R0==R1;
 	if cc jump .L310;
@@ -1944,7 +1926,6 @@ _atoll:
 	R0 += 1;
 	[SP+40] = R0;
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R0 += -48;
 	R1 = R0;
 	R1 >>>= 31;
@@ -2060,8 +2041,7 @@ _bsearch_r:
 	jump.s .L325;
 .L329:
 	R0 = [SP+20];
-	R0 >>>= 1;
-	R1 = R0;
+	R1 = R0 >>> 1;
 	R0 = [SP+40];
 	R0 *= R1;
 	R1 = [SP+32];
@@ -2710,14 +2690,14 @@ _wmemmove:
 .L403:
 	R0 = [SP+12];
 	R0 <<= 2;
-	R1 = [SP+8];
-	R1 = R1 + R0;
-	P1 = R1;
-	R0 = [SP+12];
-	R0 <<= 2;
 	R1 = [SP+4];
 	R1 = R1 + R0;
 	P2 = R1;
+	R0 = [SP+12];
+	R0 <<= 2;
+	R1 = [SP+8];
+	R1 = R1 + R0;
+	P1 = R1;
 	R0 = [P1];
 	[P2] = R0;
 .L402:
@@ -3202,14 +3182,12 @@ _bswap_16:
 	W [SP+4] = R0;
 	R0 = 255 (X);
 	[SP] = R0;
-	R1 = W [SP+4] (Z);
 	R0 = [SP];
 	R0 <<= 8;
+	R1 = W [SP+4] (Z);
 	R0 = R1 & R0;
-	R0 >>= 8;
-	R1 = R0;
-	R0 = [SP];
-	R2 = R0;
+	R1 = R0 >> 8;
+	R2 = [SP];
 	R0 = W [SP+4] (X);
 	R0 = R0 & R2;
 	R0 <<= 8;
@@ -3369,11 +3347,11 @@ _ffs:
 	[SP] = R0;
 	jump.s .L446;
 .L449:
-	R1 = [SP+4];
-	R0 = [SP];
-	R1 >>= R0;
-	R0 = 1 (X);
-	R0 = R1 & R0;
+	R0 = [SP+4];
+	R1 = [SP];
+	R0 >>= R1;
+	R1 = 1 (X);
+	R0 = R0 & R1;
 	cc =R0==0;
 	if cc jump .L447;
 	R0 = [SP];
@@ -4007,7 +3985,6 @@ _strrchr:
 	[SP] = R0;
 .L535:
 	R0 = B [P2] (X);
-	R0 = R0.B (X);
 	R1 = [SP+8];
 	cc =R1==R0;
 	if !cc jump .L534;
@@ -4017,7 +3994,6 @@ _strrchr:
 	P2 = P1;
 	P2 += 1;
 	R0 = B [P1] (X);
-	R0 = R0.B (X);
 	cc =R0==0;
 	if !cc jump .L535;
 	R0 = [SP];
@@ -4174,12 +4150,13 @@ _memmem:
 	R0 = [SP+20];
 	R3 = R0;
 	R3 += 1;
-	R0 = [SP+28];
-	R1 = R0;
-	R1 += 1;
 	R0 = [SP+32];
-	R0 += -1;
-	R2 = R0;
+	R1 = R0;
+	R1 += -1;
+	R0 = [SP+28];
+	R0 += 1;
+	R2 = R1;
+	R1 = R0;
 	R0 = R3;
 	call _memcmp;
 	cc =R0==0;
@@ -4545,39 +4522,35 @@ ___clrsbqi2:
 .type ___clrsbdi2, STT_FUNC;
 ___clrsbdi2:
 	[--SP] = RETS;
-	SP += -24;
-	[SP+28] = R0;
-	[SP+32] = R1;
-	R0 = [SP+32];
+	SP += -16;
+	[SP+20] = R0;
+	[SP+24] = R1;
+	R0 = [SP+24];
 	cc =R0<0;
 	if !cc jump .L601;
-	R0 = [SP+28];
+	R0 = [SP+20];
 	R1 = ~R0;
-	R0 = [SP+32];
+	R0 = [SP+24];
 	R0 = ~R0;
-	[SP+28] = R1;
-	[SP+32] = R0;
+	[SP+20] = R1;
+	[SP+24] = R0;
 .L601:
-	R0 = [SP+28];
-	R1 = [SP+32];
+	R0 = [SP+20];
+	R1 = [SP+24];
 	R0 = R0 | R1;
 	cc =R0==0;
 	if !cc jump .L603;
 	R0 = 63 (X);
 	jump.s .L604;
 .L603:
-	R0 = [SP+28];
-	R1 = [SP+32];
-	[SP+12] = R0;
-	[SP+16] = R1;
-	R0 = [SP+12];
-	R1 = [SP+16];
-	call ___clzdi2;
-	[SP+20] = R0;
 	R0 = [SP+20];
+	R1 = [SP+24];
+	call ___clzdi2;
+	[SP+12] = R0;
+	R0 = [SP+12];
 	R0 += -1;
 .L604:
-	SP += 24;
+	SP += 16;
 	RETS = [SP++];
 	rts;
 	.size	___clrsbdi2, .-___clrsbdi2
@@ -4648,14 +4621,14 @@ ___cmovd:
 .L614:
 	R0 = [SP+8];
 	R0 <<= 3;
-	R1 = [SP+16];
-	R1 = R1 + R0;
-	P1 = R1;
-	R0 = [SP+8];
-	R0 <<= 3;
 	R1 = [SP+12];
 	R1 = R1 + R0;
 	P2 = R1;
+	R0 = [SP+8];
+	R0 <<= 3;
+	R1 = [SP+16];
+	R1 = R1 + R0;
+	P1 = R1;
 	R0 = [P1];
 	R1 = [P1+4];
 	[P2] = R0;
@@ -4670,14 +4643,14 @@ ___cmovd:
 	if cc jump .L614;
 	jump.s .L615;
 .L616:
-	R1 = [SP+16];
-	R0 = [SP+4];
-	R0 = R1 + R0;
-	P1 = R0;
 	R1 = [SP+12];
 	R0 = [SP+4];
 	R0 = R1 + R0;
 	P2 = R0;
+	R1 = [SP+16];
+	R0 = [SP+4];
+	R0 = R1 + R0;
+	P1 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
 	R0 = [SP+4];
@@ -4690,14 +4663,14 @@ ___cmovd:
 	if !cc jump .L616;
 	jump.s .L617;
 .L619:
-	R1 = [SP+16];
-	R0 = [SP+20];
-	R0 = R1 + R0;
-	P1 = R0;
 	R1 = [SP+12];
 	R0 = [SP+20];
 	R0 = R1 + R0;
 	P2 = R0;
+	R1 = [SP+16];
+	R0 = [SP+20];
+	R0 = R1 + R0;
+	P1 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
 .L618:
@@ -4741,14 +4714,14 @@ ___cmovh:
 .L624:
 	R0 = [SP+4];
 	R0 <<= 1;
-	R1 = [SP+12];
-	R1 = R1 + R0;
-	P1 = R1;
-	R0 = [SP+4];
-	R0 <<= 1;
 	R1 = [SP+8];
 	R1 = R1 + R0;
 	P2 = R1;
+	R0 = [SP+4];
+	R0 <<= 1;
+	R1 = [SP+12];
+	R1 = R1 + R0;
+	P1 = R1;
 	R0 = W [P1] (X);
 	W [P2] = R0;
 	R0 = [SP+4];
@@ -4766,26 +4739,26 @@ ___cmovh:
 	if cc jump .L626;
 	R0 = [SP+16];
 	R0 += -1;
-	R1 = [SP+12];
-	R1 = R1 + R0;
-	P1 = R1;
-	R0 = [SP+16];
-	R0 += -1;
 	R1 = [SP+8];
 	R1 = R1 + R0;
 	P2 = R1;
-	R0 = B [P1] (X);
-	B [P2] = R0;
-	jump.s .L626;
-.L628:
 	R1 = [SP+12];
 	R0 = [SP+16];
 	R0 = R1 + R0;
 	P1 = R0;
+	P1 += -1;
+	R0 = B [P1] (X);
+	B [P2] = R0;
+	jump.s .L626;
+.L628:
 	R1 = [SP+8];
 	R0 = [SP+16];
 	R0 = R1 + R0;
 	P2 = R0;
+	R1 = [SP+12];
+	R0 = [SP+16];
+	R0 = R1 + R0;
+	P1 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
 .L627:
@@ -4833,14 +4806,14 @@ ___cmovw:
 .L633:
 	R0 = [SP+8];
 	R0 <<= 2;
-	R1 = [SP+16];
-	R1 = R1 + R0;
-	P1 = R1;
-	R0 = [SP+8];
-	R0 <<= 2;
 	R1 = [SP+12];
 	R1 = R1 + R0;
 	P2 = R1;
+	R0 = [SP+8];
+	R0 <<= 2;
+	R1 = [SP+16];
+	R1 = R1 + R0;
+	P1 = R1;
 	R0 = [P1];
 	[P2] = R0;
 	R0 = [SP+8];
@@ -4853,14 +4826,14 @@ ___cmovw:
 	if cc jump .L633;
 	jump.s .L634;
 .L635:
-	R1 = [SP+16];
-	R0 = [SP+4];
-	R0 = R1 + R0;
-	P1 = R0;
 	R1 = [SP+12];
 	R0 = [SP+4];
 	R0 = R1 + R0;
 	P2 = R0;
+	R1 = [SP+16];
+	R0 = [SP+4];
+	R0 = R1 + R0;
+	P1 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
 	R0 = [SP+4];
@@ -4873,14 +4846,14 @@ ___cmovw:
 	if !cc jump .L635;
 	jump.s .L636;
 .L638:
-	R1 = [SP+16];
-	R0 = [SP+20];
-	R0 = R1 + R0;
-	P1 = R0;
 	R1 = [SP+12];
 	R0 = [SP+20];
 	R0 = R1 + R0;
 	P2 = R0;
+	R1 = [SP+16];
+	R0 = [SP+20];
+	R0 = R1 + R0;
+	P1 = R0;
 	R0 = B [P1] (X);
 	B [P2] = R0;
 .L637:
@@ -5000,13 +4973,13 @@ ___clzhi2:
 	[SP] = R0;
 	jump.s .L652;
 .L655:
-	R1 = W [SP+4] (Z);
-	R2 = 15 (X);
+	R1 = 15 (X);
 	R0 = [SP];
-	R0 = R2 - R0;
-	R1 >>>= R0;
-	R0 = 1 (X);
-	R0 = R1 & R0;
+	R1 = R1 - R0;
+	R0 = W [SP+4] (Z);
+	R0 >>>= R1;
+	R1 = 1 (X);
+	R0 = R0 & R1;
 	cc =R0==0;
 	if !cc jump .L657;
 	R0 = [SP];
@@ -5035,11 +5008,11 @@ ___ctzhi2:
 	[SP] = R0;
 	jump.s .L659;
 .L662:
-	R1 = W [SP+4] (Z);
-	R0 = [SP];
-	R1 >>>= R0;
-	R0 = 1 (X);
-	R0 = R1 & R0;
+	R0 = W [SP+4] (Z);
+	R1 = [SP];
+	R0 >>>= R1;
+	R1 = 1 (X);
+	R0 = R0 & R1;
 	cc =R0==0;
 	if !cc jump .L664;
 	R0 = [SP];
@@ -5103,11 +5076,11 @@ ___parityhi2:
 	[SP+4] = R0;
 	jump.s .L672;
 .L674:
-	R1 = W [SP+8] (Z);
-	R0 = [SP+4];
-	R1 >>>= R0;
-	R0 = 1 (X);
-	R0 = R1 & R0;
+	R0 = W [SP+8] (Z);
+	R1 = [SP+4];
+	R0 >>>= R1;
+	R1 = 1 (X);
+	R0 = R0 & R1;
 	cc =R0==0;
 	if cc jump .L673;
 	R0 = [SP];
@@ -5140,11 +5113,11 @@ ___popcounthi2:
 	[SP+4] = R0;
 	jump.s .L677;
 .L679:
-	R1 = W [SP+8] (Z);
-	R0 = [SP+4];
-	R1 >>>= R0;
-	R0 = 1 (X);
-	R0 = R1 & R0;
+	R0 = W [SP+8] (Z);
+	R1 = [SP+4];
+	R0 >>>= R1;
+	R1 = 1 (X);
+	R0 = R0 & R1;
 	cc =R0==0;
 	if cc jump .L678;
 	R0 = [SP];
@@ -5536,9 +5509,10 @@ ___divsi3:
 	R0 = R0.B (Z);
 	[SP+16] = R0;
 .L736:
-	R0 = [SP+24];
-	R1 = [SP+28];
+	R0 = [SP+28];
 	R2 = 0 (X);
+	R1 = R0;
+	R0 = [SP+24];
 	call ___udivmodsi4;
 	[SP+12] = R0;
 	R0 = [SP+16];
@@ -5579,9 +5553,10 @@ ___modsi3:
 	R0 = -R0;
 	[SP+28] = R0;
 .L741:
-	R0 = [SP+24];
-	R1 = [SP+28];
+	R0 = [SP+28];
 	R2 = 1 (X);
+	R1 = R0;
+	R0 = [SP+24];
 	call ___udivmodsi4;
 	[SP+12] = R0;
 	R0 = [SP+16];
@@ -5752,12 +5727,11 @@ ___ashldi3:
 	if cc jump .L763;
 	R0 = 0 (X);
 	[SP+8] = R0;
-	R1 = [SP+16];
+	R0 = [SP+16];
 	R2 = [SP+36];
-	R0 = [SP+24];
-	R0 = R2 - R0;
-	R1 <<= R0;
-	R0 = R1;
+	R1 = [SP+24];
+	R1 = R2 - R1;
+	R0 <<= R1;
 	[SP+12] = R0;
 	jump.s .L764;
 .L763:
@@ -5820,12 +5794,11 @@ ___ashrdi3:
 	R1 += -1;
 	R0 >>>= R1;
 	[SP+12] = R0;
-	R1 = [SP+20];
+	R0 = [SP+20];
 	R2 = [SP+36];
-	R0 = [SP+24];
-	R0 = R2 - R0;
-	R1 >>>= R0;
-	R0 = R1;
+	R1 = [SP+24];
+	R1 = R2 - R1;
+	R0 >>>= R1;
 	[SP+8] = R0;
 	jump.s .L770;
 .L769:
@@ -5874,84 +5847,96 @@ ___bswapdi2:
 	[SP+12] = R0;
 	[SP+16] = R1;
 	R0 = [SP+16];
-	R7 = R0 >> 24;
-	R1 = 0 (X);
+	R5 = R0 >> 24;
+	R3 = 0 (X);
 	R0 = [SP+16];
-	R6 = R0 >> 8;
-	R2 = 0 (X);
-	R0 = 65280 (Z);
-	R3 = R6 & R0;
+	R1 = R0 >> 8;
 	R0 = 0 (X);
-	R0 = R2 & R0;
-	R6 = R7 | R3;
-	R2 = R1 | R0;
+	R2 = 65280 (Z);
+	R7 = R1 & R2;
+	R1 = 0 (X);
+	R2 = R0 & R1;
+	R1 = R7;
+	R0 = R2;
+	R6 = R5 | R1;
+	R7 = R3 | R0;
 	R0 = [SP+16];
 	R1 = R0 << 8;
 	R0 = [SP+12];
 	R0 >>= 24;
 	R0 = R1 | R0;
 	R1 = [SP+16];
-	R7 = R1 >> 24;
-	R1 = 255 (X);
-	R1 <<= 16;
-	R3 = R0 & R1;
+	R1 >>= 24;
+	R2 = 255 (X);
+	R2 <<= 16;
+	R3 = R0 & R2;
 	R0 = 0 (X);
-	R1 = R7 & R0;
-	R5 = R6 | R3;
-	R7 = R2 | R1;
+	R2 = R1 & R0;
+	R0 = R3;
+	R1 = R2;
+	R5 = R6 | R0;
+	R3 = R7 | R1;
 	R0 = [SP+16];
-	R0 <<= 24;
-	R1 = [SP+12];
+	R1 = R0 << 24;
+	R0 = [SP+12];
+	R0 >>= 8;
+	R0 = R1 | R0;
+	R1 = [SP+16];
 	R1 >>= 8;
-	R1 = R0 | R1;
-	R0 = [SP+16];
-	R2 = R0 >> 8;
-	R0 = R1 >>> 24;
-	R0 <<= 24;
-	R1 = 0 (X);
-	R3 = R2 & R1;
+	R2 = R0 >>> 24;
+	R2 <<= 24;
+	R0 = 0 (X);
+	R7 = R1 & R0;
+	R0 = R2;
+	R1 = R7;
 	R6 = R5 | R0;
-	R2 = R7 | R3;
+	R7 = R3 | R1;
 	R0 = [SP+12];
 	R1 = R0 >> 24;
 	R0 = [SP+16];
 	R0 <<= 8;
 	R0 = R1 | R0;
 	R1 = [SP+12];
-	R3 = R1 << 8;
-	R1 = 0 (X);
-	R7 = R3 & R1;
-	R1 = R0.B (Z);
-	R5 = R6 | R7;
-	R3 = R2 | R1;
+	R1 <<= 8;
+	R2 = 0 (X);
+	R3 = R1 & R2;
+	R2 = R0.B (Z);
+	R1 = R3;
+	R0 = R2;
+	R3 = R6 | R1;
+	R2 = R7 | R0;
 	R0 = [SP+12];
 	R1 = R0 >> 8;
 	R0 = [SP+16];
 	R0 <<= 24;
 	R0 = R1 | R0;
 	R1 = [SP+12];
-	R2 = R1 << 24;
-	R1 = 0 (X);
-	R7 = R2 & R1;
+	R1 <<= 24;
+	R7 = 0 (X);
+	R6 = R1 & R7;
 	R1 = 65280 (Z);
-	R1 = R0 & R1;
-	R6 = R5 | R7;
-	R2 = R3 | R1;
+	R7 = R0 & R1;
+	R1 = R6;
+	R0 = R7;
+	R6 = R3 | R1;
+	R7 = R2 | R0;
 	R0 = [SP+12];
-	R1 = R0 << 8;
-	R3 = 0 (X);
-	R0 = 0 (X);
-	R7 = R3 & R0;
-	R0 = 255 (X);
-	R0 <<= 16;
-	R0 = R1 & R0;
-	R3 = R6 | R7;
-	R1 = R2 | R0;
+	R0 <<= 8;
+	R1 = 0 (X);
+	R2 = 0 (X);
+	R3 = R1 & R2;
+	R1 = 255 (X);
+	R1 <<= 16;
+	R2 = R0 & R1;
+	R1 = R3;
+	R0 = R2;
+	R3 = R6 | R1;
+	R2 = R7 | R0;
 	R0 = [SP+12];
 	R0 <<= 24;
-	R2 = 0 (X);
-	R6 = R3 | R2;
-	R7 = R1 | R0;
+	R1 = 0 (X);
+	R6 = R3 | R1;
+	R7 = R2 | R0;
 	R0 = R6;
 	R1 = R7;
 	( r7:5 ) = [sp++];
@@ -5964,18 +5949,18 @@ ___bswapdi2:
 ___bswapsi2:
 	[SP] = R0;
 	R0 = [SP];
-	R1 = R0 >> 24;
+	R2 = R0 >> 24;
 	R0 = [SP];
-	R2 = R0 >> 8;
-	R0 = 65280 (Z);
-	R0 = R2 & R0;
-	R1 = R1 | R0;
+	R0 >>= 8;
+	R1 = 65280 (Z);
+	R0 = R0 & R1;
+	R2 = R2 | R0;
 	R0 = [SP];
-	R2 = R0 << 8;
-	R0 = 255 (X);
-	R0 <<= 16;
-	R0 = R2 & R0;
-	R1 = R1 | R0;
+	R0 <<= 8;
+	R1 = 255 (X);
+	R1 <<= 16;
+	R0 = R0 & R1;
+	R1 = R2 | R0;
 	R0 = [SP];
 	R0 <<= 24;
 	R0 = R1 | R0;
@@ -6024,8 +6009,8 @@ ___clzsi2:
 	R0 = [SP+40];
 	R0 >>= R1;
 	[SP+28] = R0;
-	R0 = [SP+32];
 	R1 = [SP+36];
+	R0 = [SP+32];
 	R0 = R1 + R0;
 	[SP+24] = R0;
 	R1 = [SP+28];
@@ -6045,8 +6030,8 @@ ___clzsi2:
 	R0 = [SP+28];
 	R0 >>= R1;
 	[SP+16] = R0;
-	R0 = [SP+20];
 	R1 = [SP+24];
+	R0 = [SP+20];
 	R0 = R1 + R0;
 	[SP+12] = R0;
 	R1 = [SP+16];
@@ -6066,8 +6051,8 @@ ___clzsi2:
 	R0 = [SP+16];
 	R0 >>= R1;
 	[SP+4] = R0;
-	R0 = [SP+8];
 	R1 = [SP+12];
+	R0 = [SP+8];
 	R0 = R1 + R0;
 	[SP] = R0;
 	R1 = [SP+4];
@@ -6075,7 +6060,6 @@ ___clzsi2:
 	R0 = R1 & R0;
 	cc =R0==0;
 	R0 = CC;
-	R0 = R0.B (Z);
 	R2 = R0;
 	R1 = 2 (X);
 	R0 = [SP+4];
@@ -6201,8 +6185,8 @@ ___ctzsi2:
 	R1 = [SP+36];
 	R0 >>= R1;
 	[SP+32] = R0;
-	R0 = [SP+36];
 	R1 = [SP+40];
+	R0 = [SP+36];
 	R0 = R1 + R0;
 	[SP+28] = R0;
 	R1 = [SP+32];
@@ -6220,8 +6204,8 @@ ___ctzsi2:
 	R1 = [SP+24];
 	R0 >>= R1;
 	[SP+20] = R0;
-	R0 = [SP+24];
 	R1 = [SP+28];
+	R0 = [SP+24];
 	R0 = R1 + R0;
 	[SP+16] = R0;
 	R1 = [SP+20];
@@ -6243,18 +6227,18 @@ ___ctzsi2:
 	R0 = 3 (X);
 	R0 = R1 & R0;
 	[SP+4] = R0;
-	R0 = [SP+12];
 	R1 = [SP+16];
+	R0 = [SP+12];
 	R0 = R1 + R0;
 	[SP] = R0;
 	R0 = [SP+4];
-	R1 = ~R0;
-	R0 = 1 (X);
-	R1 = R1 & R0;
-	R0 = [SP+4];
 	R0 >>= 1;
-	R2 = 2 (X);
-	R0 = R2 - R0;
+	R1 = 2 (X);
+	R0 = R1 - R0;
+	R1 = [SP+4];
+	R2 = ~R1;
+	R1 = 1 (X);
+	R1 = R2 & R1;
 	R1 = -R1;
 	R1 = R1 & R0;
 	R0 = [SP];
@@ -6352,8 +6336,8 @@ ___muldsi3:
 	R1 = [SP+36];
 	R0 >>= R1;
 	[SP+28] = R0;
-	R1 = [SP+8];
-	R0 = [SP+32];
+	R0 = [SP+8];
+	R1 = [SP+32];
 	R0 = R1 & R0;
 	[SP+8] = R0;
 	R1 = [SP+40];
@@ -6374,17 +6358,16 @@ ___muldsi3:
 	R0 <<= R2;
 	R0 = R1 + R0;
 	[SP+8] = R0;
-	R1 = [SP+24];
-	R0 = [SP+36];
-	R1 >>= R0;
-	R0 = R1;
+	R0 = [SP+24];
+	R1 = [SP+36];
+	R0 >>= R1;
 	[SP+12] = R0;
 	R0 = [SP+8];
 	R1 = [SP+36];
 	R0 >>= R1;
 	[SP+20] = R0;
-	R1 = [SP+8];
-	R0 = [SP+32];
+	R0 = [SP+8];
+	R1 = [SP+32];
 	R0 = R1 & R0;
 	[SP+8] = R0;
 	R1 = [SP+44];
@@ -6405,27 +6388,21 @@ ___muldsi3:
 	R0 <<= R2;
 	R0 = R1 + R0;
 	[SP+8] = R0;
-	R0 = [SP+12];
-	P2 = R0;
+	R1 = [SP+12];
 	R0 = [SP+16];
-	R1 = [SP+36];
-	R0 >>= R1;
-	P1 = R0;
-	P2 = P2 + P1;
-	R0 = P2;
-	[SP+12] = R0;
-	R0 = [SP+12];
-	P2 = R0;
-	R1 = [SP+40];
-	R0 = [SP+36];
-	R1 >>= R0;
-	R0 = [SP+44];
 	R2 = [SP+36];
 	R0 >>= R2;
-	R0 *= R1;
-	P1 = R0;
-	P2 = P2 + P1;
-	R0 = P2;
+	R0 = R1 + R0;
+	[SP+12] = R0;
+	R1 = [SP+12];
+	R2 = [SP+40];
+	R0 = [SP+36];
+	R2 >>= R0;
+	R0 = [SP+44];
+	R3 = [SP+36];
+	R0 >>= R3;
+	R0 *= R2;
+	R0 = R1 + R0;
 	[SP+12] = R0;
 	R0 = [SP+8];
 	R1 = [SP+12];
@@ -6453,8 +6430,8 @@ ___muldi3_compiler_rt:
 	R1 = [SP+68];
 	[SP+36] = R0;
 	[SP+40] = R1;
-	R0 = [SP+44];
 	R1 = [SP+36];
+	R0 = [SP+44];
 	call ___muldsi3;
 	[SP+20] = R0;
 	[SP+24] = R1;
@@ -6463,18 +6440,16 @@ ___muldi3_compiler_rt:
 	[SP+28] = R0;
 	[SP+32] = R1;
 	R0 = [SP+32];
-	P1 = R0;
-	R0 = [SP+48];
-	R1 = R0;
-	R0 = [SP+36];
-	R1 *= R0;
-	R0 = [SP+44];
-	R2 = [SP+40];
-	R0 *= R2;
-	R0 = R1 + R0;
-	P2 = R0;
-	P2 = P1 + P2;
-	R0 = P2;
+	R2 = [SP+48];
+	R1 = [SP+36];
+	R2 *= R1;
+	R3 = [SP+44];
+	R1 = [SP+40];
+	R1 *= R3;
+	R1 = R2 + R1;
+	P2 = R1;
+	R1 = P2;
+	R0 = R0 + R1;
 	[SP+32] = R0;
 	R0 = [SP+28];
 	R1 = [SP+32];
@@ -6494,18 +6469,16 @@ ___negdi2:
 
 	[SP+8] = R0;
 	[SP+12] = R1;
-	R1 = [SP+8];
+	R0 = [SP+8];
 	R2 = [SP+12];
 	R7 = 0 (X);
 	R3 = 0 (X);
-	R6 = R7 - R1; cc = ac0;
+	R6 = R7 - R0; cc = ac0;
 	CC = ! CC;
-	R1 = CC;
-	R0 = R3 - R2;
-	R0 = R0 - R1;
-	R2 = R6;
-	R1 = R0;
-	R0 = R2;
+	R0 = CC;
+	R1 = R3 - R2;
+	R1 = R1 - R0;
+	R0 = R6;
 	( r7:6 ) = [sp++];
 
 	rts;
@@ -6521,8 +6494,7 @@ ___paritydi2:
 	R1 = [SP+28];
 	[SP] = R0;
 	[SP+4] = R1;
-	R0 = [SP+4];
-	R1 = R0;
+	R1 = [SP+4];
 	R0 = [SP];
 	R0 = R1 ^ R0;
 	[SP+20] = R0;
@@ -6682,9 +6654,7 @@ ___popcountdi2:
 	R0 = [SP];
 	R1 = R0 >> 8;
 	R0 = [SP];
-	R0 = R1 + R0;
-	P2 = R0;
-	R1 = P2;
+	R1 = R1 + R0;
 	R0 = 127 (X);
 	R0 = R1 & R0;
 	SP += 40;
@@ -6735,9 +6705,7 @@ ___popcountsi2:
 	R0 = [SP];
 	R1 = R0 >> 8;
 	R0 = [SP];
-	R0 = R1 + R0;
-	P2 = R0;
-	R1 = P2;
+	R1 = R1 + R0;
 	R0 = 63 (X);
 	R0 = R1 & R0;
 	SP += 20;
@@ -6948,12 +6916,12 @@ ___aeabi_ulcmp:
 	[SP+28] = R0;
 	[SP+32] = R1;
 	[SP+36] = R2;
-	R0 = [SP+28];
-	R1 = [SP+32];
-	[SP+16] = R0;
-	[SP+20] = R1;
 	R1 = [SP+36];
 	R0 = [SP+40];
+	R2 = [SP+28];
+	R3 = [SP+32];
+	[SP+16] = R2;
+	[SP+20] = R3;
 	[SP+12] = R0;
 	R2 = R1;
 	R0 = [SP+16];
