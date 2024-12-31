@@ -244,13 +244,11 @@ _strchr:
 	mov.b	@er0,r3l
 	extu.w	r3
 	cmp.w	r3,r1
-	beq	.L47
+	beq	.L45
 	mov.b	@er0+,r2l
 	mov.b	r2l,r2l
 	bne	.L46
 	sub.l	er0,er0
-	bra	.L45
-.L47:
 .L45:
 	mov.l	@er7+,er6
 	rts
@@ -3672,7 +3670,7 @@ _memmem:
 	add.l	er0,er2
 	mov.l	er2,@(-12,er6)
 	mov.l	er3,er2
-	beq	.L551
+	beq	.L546
 	sub.l	er2,er2
 	add.b	#1,r2l
 	cmp.l	er3,er1
@@ -3703,8 +3701,6 @@ _memmem:
 	cmp.l	er2,er4
 	bls	.L550
 	sub.l	er0,er0
-	bra	.L546
-.L551:
 	bra	.L546
 .L552:
 	sub.l	er0,er0
