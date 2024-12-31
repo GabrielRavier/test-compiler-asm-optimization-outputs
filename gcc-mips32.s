@@ -2909,19 +2909,15 @@ imaxabs:
 	addiu	$sp,$sp,-8
 	sw	$fp,4($sp)
 	move	$fp,$sp
-	move	$7,$5
+	move	$3,$5
 	bgez	$4,$L254
-	move	$6,$4
+	move	$2,$4
 
-	subu	$5,$0,$7
-	sltu	$3,$0,$5
-	subu	$4,$0,$6
-	subu	$4,$4,$3
-	move	$7,$5
-	move	$6,$4
+	subu	$3,$0,$5
+	sltu	$5,$0,$3
+	subu	$2,$0,$4
+	subu	$2,$2,$5
 $L254:
-	move	$3,$7
-	move	$2,$6
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31
@@ -3077,19 +3073,15 @@ llabs:
 	addiu	$sp,$sp,-8
 	sw	$fp,4($sp)
 	move	$fp,$sp
-	move	$7,$5
+	move	$3,$5
 	bgez	$4,$L261
-	move	$6,$4
+	move	$2,$4
 
-	subu	$5,$0,$7
-	sltu	$3,$0,$5
-	subu	$4,$0,$6
-	subu	$4,$4,$3
-	move	$7,$5
-	move	$6,$4
+	subu	$3,$0,$5
+	sltu	$5,$0,$3
+	subu	$2,$0,$4
+	subu	$2,$2,$5
 $L261:
-	move	$3,$7
-	move	$2,$6
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31
@@ -6849,7 +6841,7 @@ $L604:
 	move	$6,$0
 
 	subu	$5,$0,$5
-	sltu	$16,$16,1
+	xori	$16,$16,0x1
 $L608:
 	.option	pic0
 	jal	__udivmodsi4
@@ -7104,11 +7096,9 @@ __ashldi3:
 	.set	nomacro
 	addiu	$sp,$sp,-8
 	sw	$fp,4($sp)
+	andi	$2,$6,0x20
+	beq	$2,$0,$L638
 	move	$fp,$sp
-	move	$3,$5
-	andi	$7,$6,0x20
-	beq	$7,$0,$L638
-	move	$2,$4
 
 	move	$3,$0
 	.option	pic0
@@ -7117,13 +7107,20 @@ __ashldi3:
 	sll	$2,$5,$6
 
 $L638:
-	beq	$6,$0,$L640
-	sll	$4,$4,$6
-
+	beq	$6,$0,$L641
 	sll	$3,$5,$6
+
+	sll	$4,$4,$6
 	subu	$6,$0,$6
-	srl	$5,$5,$6
-	or	$2,$5,$4
+	srl	$6,$5,$6
+	.option	pic0
+	b	$L640
+	.option	pic2
+	or	$2,$6,$4
+
+$L641:
+	move	$3,$5
+	move	$2,$4
 $L640:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -7148,11 +7145,9 @@ __ashrdi3:
 	.set	nomacro
 	addiu	$sp,$sp,-8
 	sw	$fp,4($sp)
+	andi	$2,$6,0x20
+	beq	$2,$0,$L643
 	move	$fp,$sp
-	move	$3,$5
-	andi	$7,$6,0x20
-	beq	$7,$0,$L643
-	move	$2,$4
 
 	sra	$2,$4,31
 	.option	pic0
@@ -7161,13 +7156,20 @@ __ashrdi3:
 	sra	$3,$4,$6
 
 $L643:
-	beq	$6,$0,$L645
-	subu	$7,$0,$6
-
+	beq	$6,$0,$L646
 	sra	$2,$4,$6
+
+	subu	$7,$0,$6
 	sll	$4,$4,$7
 	srl	$6,$5,$6
+	.option	pic0
+	b	$L645
+	.option	pic2
 	or	$3,$4,$6
+
+$L646:
+	move	$3,$5
+	move	$2,$4
 $L645:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -7529,11 +7531,9 @@ __lshrdi3:
 	.set	nomacro
 	addiu	$sp,$sp,-8
 	sw	$fp,4($sp)
+	andi	$2,$6,0x20
+	beq	$2,$0,$L676
 	move	$fp,$sp
-	move	$3,$5
-	andi	$7,$6,0x20
-	beq	$7,$0,$L676
-	move	$2,$4
 
 	move	$2,$0
 	.option	pic0
@@ -7542,13 +7542,20 @@ __lshrdi3:
 	srl	$3,$4,$6
 
 $L676:
-	beq	$6,$0,$L678
-	subu	$7,$0,$6
-
+	beq	$6,$0,$L679
 	srl	$2,$4,$6
+
+	subu	$7,$0,$6
 	sll	$4,$4,$7
 	srl	$6,$5,$6
+	.option	pic0
+	b	$L678
+	.option	pic2
 	or	$3,$4,$6
+
+$L679:
+	move	$3,$5
+	move	$2,$4
 $L678:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -7618,27 +7625,25 @@ __muldsi3:
 	.ent	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	.frame	$fp,56,$31		# vars= 0, regs= 8/0, args= 16, gp= 8
-	.mask	0xc03f0000,-4
+	.frame	$fp,48,$31		# vars= 0, regs= 6/0, args= 16, gp= 8
+	.mask	0xc00f0000,-4
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	addiu	$sp,$sp,-56
-	sw	$31,52($sp)
-	sw	$fp,48($sp)
-	sw	$21,44($sp)
-	sw	$20,40($sp)
+	addiu	$sp,$sp,-48
+	sw	$31,44($sp)
+	sw	$fp,40($sp)
 	sw	$19,36($sp)
 	sw	$18,32($sp)
 	sw	$17,28($sp)
 	sw	$16,24($sp)
 	move	$fp,$sp
-	move	$19,$5
-	move	$18,$4
-	move	$17,$7
-	move	$16,$6
+	move	$17,$5
+	move	$16,$4
+	move	$19,$7
+	move	$18,$6
 	move	$5,$7
-	move	$4,$19
+	move	$4,$17
 	.option	pic0
 	jal	__muldsi3
 	nop
@@ -7646,27 +7651,25 @@ __muldi3_compiler_rt:
 	.option	pic2
 	move	$4,$2
 	move	$7,$3
-	mult	$17,$18
+	mult	$16,$19
 	mflo	$3
 	nop
 	nop
-	mult	$19,$16
+	mult	$18,$17
 	mflo	$2
 	addu	$3,$3,$2
 	addu	$6,$3,$4
 	move	$3,$7
 	move	$2,$6
 	move	$sp,$fp
-	lw	$31,52($sp)
-	lw	$fp,48($sp)
-	lw	$21,44($sp)
-	lw	$20,40($sp)
+	lw	$31,44($sp)
+	lw	$fp,40($sp)
 	lw	$19,36($sp)
 	lw	$18,32($sp)
 	lw	$17,28($sp)
 	lw	$16,24($sp)
 	jr	$31
-	addiu	$sp,$sp,56
+	addiu	$sp,$sp,48
 
 	.set	macro
 	.set	reorder

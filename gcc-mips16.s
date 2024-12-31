@@ -441,13 +441,15 @@ strchr:
 	sd	$17,0($sp)
 	move	$17,$sp
 $L48:
-	move	$2,$4
-	lb	$3,0($4)
-	xor	$3,$5
-	beqz	$3,$L47
+	lb	$2,0($4)
+	xor	$2,$5
+	beqz	$2,$L49
 	addiu	$4,1
 	lb	$2,-1($4)
 	bnez	$2,$L48
+	b	$L47
+$L49:
+	move	$2,$4
 $L47:
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -2264,7 +2266,6 @@ rand:
 	daddiu	$2,1
 	sd	$2,0($3)
 	dsrl	$2,33
-	sll	$2,$2,0
 	move	$sp,$17
 	ld	$17,0($sp)
 	.set	noreorder
@@ -2981,8 +2982,8 @@ imaxabs:
 	move	$2,$4
 	slt	$4,0
 	bteqz	$L271
-	li	$3,0
-	dsubu	$2,$3,$4
+	li	$2,0
+	dsubu	$2,$2,$4
 $L271:
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -3106,8 +3107,8 @@ llabs:
 	move	$2,$4
 	slt	$4,0
 	bteqz	$L277
-	li	$3,0
-	dsubu	$2,$3,$4
+	li	$2,0
+	dsubu	$2,$2,$4
 $L277:
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -3618,15 +3619,16 @@ $L331:
 $L330:
 	cmp	$4,$5
 	bteqz	$L329
-	addu	$6,$5,$6
+	move	$2,$5
+	addu	$5,$5,$6
 	b	$L334
 $L335:
-	lb	$2,0($4)
-	sb	$2,0($5)
+	lb	$3,0($4)
+	sb	$3,0($2)
 	addiu	$4,1
-	addiu	$5,1
+	addiu	$2,1
 $L334:
-	cmp	$5,$6
+	cmp	$2,$5
 	btnez	$L335
 $L329:
 	move	$sp,$17
@@ -7161,8 +7163,8 @@ $L641:
 	slt	$5,0
 	bteqz	$L642
 	neg	$5,$5
-	sltu	$16,1
-	move	$16,$24
+	li	$2,1
+	xor	$16,$2
 $L642:
 	.option	pic0
 	.set	noreorder
@@ -7381,28 +7383,30 @@ __ashldi3:
 	addiu	$sp,-8
 	sd	$17,0($sp)
 	move	$17,$sp
-	move	$2,$4
-	li	$3,32
-	and	$3,$5
-	beqz	$3,$L673
-	sll	$2,$4,0
-	sll	$2,$5
-	dsll	$2,$2,32
+	li	$2,32
+	and	$2,$5
+	beqz	$2,$L673
+	sll	$4,$4,0
+	sll	$4,$5
+	dsll	$2,$4,32
 	b	$L675
 $L673:
-	beqz	$5,$L675
-	sll	$3,$4,0
-	move	$4,$3
+	beqz	$5,$L676
+	sll	$2,$4,0
+	move	$3,$2
+	sll	$3,$5
+	dsra	$4,32
 	sll	$4,$5
-	dsra	$2,32
-	sll	$2,$5
 	neg	$5,$5
-	srl	$3,$5
-	or	$2,$3
-	dsll	$2,$2,32
-	dsll	$4,$4,32
-	dsrl	$4,32
+	srl	$2,$5
 	or	$2,$4
+	dsll	$2,$2,32
+	dsll	$3,$3,32
+	dsrl	$3,32
+	or	$2,$3
+	b	$L675
+$L676:
+	move	$2,$4
 $L675:
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -7483,36 +7487,36 @@ __ashrdi3:
 	addiu	$sp,-8
 	sd	$17,0($sp)
 	move	$17,$sp
+	li	$2,32
+	and	$2,$5
+	beqz	$2,$L683
+	dsra	$4,32
+	sll	$4,$4,0
+	sra	$2,$4,31
+	sra	$4,$5
+	dsll	$4,$4,32
+	dsrl	$4,32
+	dsll	$2,$2,32
+	or	$2,$4
+	b	$L685
+$L683:
+	beqz	$5,$L686
 	move	$2,$4
-	li	$3,32
-	and	$3,$5
-	beqz	$3,$L683
 	dsra	$2,32
 	sll	$2,$2,0
-	sra	$4,$2,31
-	sra	$2,$5
-	dsll	$2,$2,32
-	dsrl	$2,32
-	dsll	$4,$4,32
-	or	$4,$2
-	b	$L684
-$L683:
-	beqz	$5,$L685
-	move	$3,$4
-	dsra	$3,32
-	sll	$3,$3,0
-	move	$4,$3
-	sra	$4,$5
-	neg	$6,$5
-	sll	$3,$6
-	sll	$2,$2,0
-	srl	$2,$5
-	or	$3,$2
-	dsll	$3,$3,32
+	move	$6,$2
+	sra	$6,$5
+	neg	$3,$5
+	sll	$2,$3
+	sll	$4,$4,0
+	srl	$4,$5
+	or	$2,$4
+	dsll	$3,$2,32
 	dsrl	$3,32
-	dsll	$4,$4,32
-	or	$4,$3
-$L684:
+	dsll	$2,$6,32
+	or	$2,$3
+	b	$L685
+$L686:
 	move	$2,$4
 $L685:
 	move	$sp,$17
@@ -7804,15 +7808,15 @@ __clzti2:
 	lw	$2,$L711
 	move	$28,$2
 	sw	$2,0($17)
-	move	$6,$4
+	move	$3,$5
+	move	$2,$4
 	sd	$5,16($17)
 	sd	$4,8($17)
 	sltu	$4,1
 	move	$16,$24
 	neg	$16,$16
 	not	$4,$16
-	and	$4,$6
-	move	$3,$5
+	and	$4,$2
 	and	$3,$16
 	move	$2,$28
 	lw	$2,%call16(__clzdi2)($2)
@@ -7868,15 +7872,15 @@ __cmpdi2:
 	dsra	$3,32
 	slt	$2,$3
 	btnez	$L714
-	move	$3,$5
-	dsra	$3,32
 	move	$2,$4
 	dsra	$2,32
+	move	$3,$5
+	dsra	$3,32
 	slt	$3,$2
 	btnez	$L715
-	sll	$2,$4,0
-	sll	$3,$5,0
-	sltu	$2,$3
+	sll	$3,$4,0
+	sll	$2,$5,0
+	sltu	$3,$2
 	btnez	$L716
 	sll	$4,$4,0
 	sll	$5,$5,0
@@ -8216,32 +8220,34 @@ __lshrdi3:
 	addiu	$sp,-8
 	sd	$17,0($sp)
 	move	$17,$sp
-	move	$2,$4
-	li	$3,32
-	and	$3,$5
-	beqz	$3,$L742
-	dsrl	$2,32
-	sll	$2,$2,0
-	srl	$2,$5
-	dsll	$2,$2,32
+	li	$2,32
+	and	$2,$5
+	beqz	$2,$L742
+	dsrl	$4,32
+	sll	$4,$4,0
+	srl	$4,$5
+	dsll	$2,$4,32
 	dsrl	$2,32
 	b	$L744
 $L742:
-	beqz	$5,$L744
-	move	$3,$4
-	dsrl	$3,32
-	sll	$3,$3,0
-	move	$4,$3
-	srl	$4,$5
-	neg	$6,$5
-	sll	$3,$6
+	beqz	$5,$L745
+	move	$2,$4
+	dsrl	$2,32
 	sll	$2,$2,0
-	srl	$2,$5
-	or	$2,$3
+	move	$3,$2
+	srl	$3,$5
+	neg	$6,$5
+	sll	$2,$6
+	sll	$4,$4,0
+	srl	$4,$5
+	or	$2,$4
 	dsll	$2,$2,32
 	dsrl	$2,32
-	dsll	$4,$4,32
-	or	$2,$4
+	dsll	$3,$3,32
+	or	$2,$3
+	b	$L744
+$L745:
+	move	$2,$4
 $L744:
 	move	$sp,$17
 	ld	$17,0($sp)
@@ -8323,56 +8329,53 @@ __muldsi3:
 	sd	$17,8($sp)
 	sd	$16,0($sp)
 	move	$17,$sp
-	li	$7,65535
+	li	$2,65535
 	move	$16,$4
-	and	$16,$7
-	move	$6,$5
-	and	$6,$7
-	mult	$16,$6
+	and	$16,$2
+	and	$2,$5
+	mult	$16,$2
+	mflo	$7
+	srl	$3,$7,8
+	srl	$3,$3,8
+	srl	$4,$4,8
+	srl	$4,$4,8
+	mult	$4,$2
 	mflo	$2
-	srl	$3,$2,8
-	srl	$3,$3,8
-	and	$2,$7
-	srl	$4,$4,8
-	srl	$4,$4,8
-	mult	$4,$6
-	mflo	$6
-	addu	$3,$3,$6
-	sll	$6,$3,8
-	sll	$6,$6,8
-	srl	$3,$3,8
-	srl	$3,$3,8
-	move	$9,$3
-	move	$3,$6
-	addu	$6,$6,$2
-	srl	$3,$3,8
-	srl	$3,$3,8
+	addu	$3,$3,$2
+	srl	$6,$3,8
+	srl	$6,$6,8
+	zeh	$3
+	zeh	$7
 	srl	$5,$5,8
 	srl	$5,$5,8
 	mult	$16,$5
 	mflo	$2
 	addu	$3,$3,$2
-	and	$6,$7
 	sll	$2,$3,8
 	sll	$2,$2,8
-	addu	$2,$2,$6
-	srl	$3,$3,8
-	srl	$3,$3,8
-	move	$6,$9
-	addu	$3,$3,$6
-	dsll	$3,$3,32
+	addu	$2,$2,$7
 	dsll	$2,$2,32
 	dsrl	$2,32
-	or	$3,$2
-	move	$6,$3
-	dsra	$6,32
+	dsll	$6,$6,32
+	or	$6,$2
+	move	$2,$6
+	dsra	$2,32
+	srl	$3,$3,8
+	srl	$3,$3,8
+	addu	$3,$3,$2
+	dsll	$3,$3,32
+	dsll	$6,$6,32
+	dsrl	$6,32
+	or	$6,$3
+	move	$3,$6
+	dsra	$3,32
 	mult	$4,$5
 	mflo	$2
-	addu	$2,$2,$6
+	addu	$2,$2,$3
 	dsll	$2,$2,32
-	dsll	$3,$3,32
-	dsrl	$3,32
-	or	$2,$3
+	dsll	$6,$6,32
+	dsrl	$6,32
+	or	$2,$6
 	move	$sp,$17
 	ld	$17,8($sp)
 	ld	$16,0($sp)
@@ -9240,9 +9243,9 @@ __ucmpdi2:
 	sll	$2,$2,0
 	sltu	$2,$3
 	btnez	$L791
-	sll	$2,$4,0
-	sll	$3,$5,0
-	sltu	$2,$3
+	sll	$3,$4,0
+	sll	$2,$5,0
+	sltu	$3,$2
 	btnez	$L792
 	sll	$4,$4,0
 	sll	$5,$5,0

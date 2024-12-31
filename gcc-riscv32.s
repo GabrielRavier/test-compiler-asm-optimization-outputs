@@ -949,7 +949,7 @@ iswprint:
 	addi	a0,a0,1
 	andi	a0,a0,127
 	sltiu	a0,a0,33
-	seqz	a0,a0
+	xori	a0,a0,1
 	j	.L92
 .L91:
 	li	a5,8192
@@ -3624,7 +3624,7 @@ bswap_16:
 	addi	s0,sp,8
 	.cfi_def_cfa 8, 0
 	srli	a5,a0,8
-	andi	a0,a0,0xff
+	andi	a0,a0,255
 	slli	a0,a0,8
 	or	a0,a5,a0
 	lw	ra,4(sp)
@@ -6083,7 +6083,7 @@ __divsi3:
 .L598:
 	bge	a1,zero,.L599
 	neg	a1,a1
-	seqz	s1,s1
+	xori	s1,s1,1
 .L599:
 	li	a2,0
 	call	__udivmodsi4
@@ -6281,21 +6281,25 @@ __ashldi3:
 	.cfi_offset 8, -8
 	addi	s0,sp,8
 	.cfi_def_cfa 8, 0
-	mv	t1,a0
-	andi	a3,a2,32
-	beq	a3,zero,.L630
-	li	a0,0
+	andi	a5,a2,32
+	beq	a5,zero,.L630
+	li	a4,0
 	addi	a2,a2,-32
-	sll	a1,t1,a2
-	j	.L632
+	sll	a5,a0,a2
+	j	.L631
 .L630:
-	beq	a2,zero,.L632
-	sll	a0,a0,a2
-	sll	a3,a1,a2
-	li	a5,32
-	sub	a5,a5,a2
-	srl	a4,t1,a5
-	or	a1,a4,a3
+	beq	a2,zero,.L633
+	sll	a4,a0,a2
+	sll	a1,a1,a2
+	li	a3,32
+	sub	a3,a3,a2
+	srl	a3,a0,a3
+	or	a5,a3,a1
+.L631:
+	mv	a0,a4
+	mv	a1,a5
+	j	.L632
+.L633:
 .L632:
 	lw	ra,4(sp)
 	.cfi_restore 1
@@ -6322,21 +6326,23 @@ __ashrdi3:
 	.cfi_offset 8, -8
 	addi	s0,sp,8
 	.cfi_def_cfa 8, 0
-	mv	t2,a1
-	andi	a3,a2,32
-	beq	a3,zero,.L635
-	srai	a1,a1,31
+	andi	a5,a2,32
+	beq	a5,zero,.L635
+	srai	a5,a1,31
 	addi	a2,a2,-32
-	sra	a0,t2,a2
-	j	.L637
+	sra	a4,a1,a2
+	j	.L636
 .L635:
 	beq	a2,zero,.L637
-	sra	a1,a1,a2
+	sra	a5,a1,a2
 	li	a3,32
 	sub	a3,a3,a2
-	sll	a5,t2,a3
-	srl	a4,a0,a2
-	or	a0,a5,a4
+	sll	a3,a1,a3
+	srl	a2,a0,a2
+	or	a4,a3,a2
+.L636:
+	mv	a0,a4
+	mv	a1,a5
 .L637:
 	lw	ra,4(sp)
 	.cfi_restore 1
@@ -6705,21 +6711,23 @@ __lshrdi3:
 	.cfi_offset 8, -8
 	addi	s0,sp,8
 	.cfi_def_cfa 8, 0
-	mv	t2,a1
-	andi	a3,a2,32
-	beq	a3,zero,.L667
-	li	a1,0
+	andi	a5,a2,32
+	beq	a5,zero,.L667
+	li	a5,0
 	addi	a2,a2,-32
-	srl	a0,t2,a2
-	j	.L669
+	srl	a4,a1,a2
+	j	.L668
 .L667:
 	beq	a2,zero,.L669
-	srl	a1,a1,a2
+	srl	a5,a1,a2
 	li	a3,32
 	sub	a3,a3,a2
-	sll	a5,t2,a3
-	srl	a4,a0,a2
-	or	a0,a5,a4
+	sll	a3,a1,a3
+	srl	a2,a0,a2
+	or	a4,a3,a2
+.L668:
+	mv	a0,a4
+	mv	a1,a5
 .L669:
 	lw	ra,4(sp)
 	.cfi_restore 1
@@ -6777,9 +6785,9 @@ __muldsi3:
 	sw	a4,-20(s0)
 	srli	a4,s1,16
 	sw	a4,-16(s0)
-	lw	a5,-20(s0)
-	srli	s1,a5,16
-	slli	a4,a5,16
+	lw	t1,-20(s0)
+	srli	s1,t1,16
+	slli	a4,t1,16
 	srli	a4,a4,16
 	sw	a4,-32(s0)
 	sw	a4,-20(s0)
@@ -6824,15 +6832,15 @@ __muldsi3:
 __muldi3_compiler_rt:
 .LFB141:
 	.cfi_startproc
-	addi	sp,sp,-40
-	.cfi_def_cfa_offset 40
-	sw	ra,36(sp)
-	sw	s0,32(sp)
-	sw	s1,28(sp)
+	addi	sp,sp,-44
+	.cfi_def_cfa_offset 44
+	sw	ra,40(sp)
+	sw	s0,36(sp)
+	sw	s1,32(sp)
 	.cfi_offset 1, -4
 	.cfi_offset 8, -8
 	.cfi_offset 9, -12
-	addi	s0,sp,40
+	addi	s0,sp,44
 	.cfi_def_cfa 8, 0
 	mv	a5,a1
 	sw	a2,-28(s0)
@@ -6844,6 +6852,7 @@ __muldi3_compiler_rt:
 	call	__muldsi3
 	sw	a0,-36(s0)
 	sw	a1,-32(s0)
+	sw	a0,-44(s0)
 	sw	a1,-40(s0)
 	lw	a1,-28(s0)
 	lw	a0,-16(s0)
@@ -6853,19 +6862,19 @@ __muldi3_compiler_rt:
 	lw	a0,-24(s0)
 	call	__mulsi3
 	add	s1,s1,a0
-	lw	a5,-40(s0)
+	lw	a5,-32(s0)
 	add	a5,s1,a5
-	sw	a5,-32(s0)
-	lw	a0,-36(s0)
-	lw	a1,-32(s0)
-	lw	ra,36(sp)
+	sw	a5,-40(s0)
+	lw	a0,-44(s0)
+	lw	a1,-40(s0)
+	lw	ra,40(sp)
 	.cfi_restore 1
-	lw	s0,32(sp)
+	lw	s0,36(sp)
 	.cfi_restore 8
-	.cfi_def_cfa 2, 40
-	lw	s1,28(sp)
+	.cfi_def_cfa 2, 44
+	lw	s1,32(sp)
 	.cfi_restore 9
-	addi	sp,sp,40
+	addi	sp,sp,44
 	.cfi_def_cfa_offset 0
 	jr	ra
 	.cfi_endproc
