@@ -11081,13 +11081,14 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
-	.rdata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align	2
 .LC0:
 	.word	-8388609
 	.align	2
 .LC1:
 	.word	2139095039
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align	3
 .LC2:
 	.word	-1048577
@@ -11096,6 +11097,7 @@ __ucmpti2:
 .LC3:
 	.word	2146435071
 	.word	-1
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
 .LC4:
 	.word	-65537
@@ -11108,12 +11110,14 @@ __ucmpti2:
 	.word	-1
 	.word	-1
 	.word	-1
+	.section	.rodata.cst4
 	.align	2
 .LC6:
 	.word	1056964608
 	.align	2
 .LC7:
 	.word	1073741824
+	.section	.rodata.cst8
 	.align	3
 .LC8:
 	.word	1071644672
@@ -11122,6 +11126,7 @@ __ucmpti2:
 .LC9:
 	.word	1073741824
 	.word	0
+	.section	.rodata.cst16
 	.align	4
 .LC10:
 	.word	1073610752
@@ -11134,10 +11139,12 @@ __ucmpti2:
 	.word	0
 	.word	0
 	.word	0
+	.section	.rodata.cst8
 	.align	3
 .LC12:
 	.word	1072693248
 	.word	0
+	.section	.rodata.cst4
 	.align	2
 .LC13:
 	.word	1191182336

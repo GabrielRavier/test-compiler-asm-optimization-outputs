@@ -3588,7 +3588,7 @@ libiberty_ffs:
 	return	%i7+8
 	 nop
 	.size	libiberty_ffs, .-libiberty_ffs
-	.section	".rodata"
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC0:
 	.long	-8388609
@@ -3629,7 +3629,7 @@ gl_isinff:
 	return	%i7+8
 	 nop
 	.size	gl_isinff, .-gl_isinff
-	.section	".rodata"
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC2:
 	.long	-1048577
@@ -3672,7 +3672,7 @@ gl_isinfd:
 	return	%i7+8
 	 nop
 	.size	gl_isinfd, .-gl_isinfd
-	.section	".rodata"
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16
 .LC4:
 	.long	-65537
@@ -3769,7 +3769,7 @@ _Qp_itoq:
 	return	%i7+8
 	 nop
 	.size	_Qp_itoq, .-_Qp_itoq
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC6:
 	.long	1056964608
@@ -3845,7 +3845,7 @@ ldexpf:
 	return	%i7+8
 	 nop
 	.size	ldexpf, .-ldexpf
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC8:
 	.long	1071644672
@@ -3923,7 +3923,7 @@ ldexp:
 	return	%i7+8
 	 nop
 	.size	ldexp, .-ldexp
-	.section	".rodata"
+	.section	.rodata.cst16
 	.align 16
 .LC10:
 	.long	1073610752
@@ -4494,7 +4494,7 @@ mempcpy:
 	return	%i7+8
 	 nop
 	.size	mempcpy, .-mempcpy
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC12:
 	.long	1072693248
@@ -5408,7 +5408,7 @@ __ctzhi2:
 	return	%i7+8
 	 nop
 	.size	__ctzhi2, .-__ctzhi2
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC15:
 	.long	1191182336
@@ -7835,7 +7835,7 @@ __popcountti2:
 	return	%i7+8
 	 nop
 	.size	__popcountti2, .-__popcountti2
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC16:
 	.long	1072693248
@@ -7903,7 +7903,7 @@ __powidf2:
 	return	%i7+8
 	 nop
 	.size	__powidf2, .-__powidf2
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC17:
 	.long	1065353216

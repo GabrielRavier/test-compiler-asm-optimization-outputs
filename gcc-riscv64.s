@@ -10023,16 +10023,18 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
-	.section	.rodata
+	.section	.srodata.cst8,"aM",@progbits,8
 	.align	3
 .LC0:
 	.dword	6364136223846793005
+	.section	.srodata.cst4,"aM",@progbits,4
 	.align	2
 .LC1:
 	.word	-8388609
 	.align	2
 .LC2:
 	.word	2139095039
+	.section	.srodata.cst8
 	.align	3
 .LC3:
 	.word	-1
@@ -10041,6 +10043,7 @@ __ucmpti2:
 .LC4:
 	.word	-1
 	.word	2146435071
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
 .LC5:
 	.word	-1
@@ -10053,12 +10056,14 @@ __ucmpti2:
 	.word	-1
 	.word	-1
 	.word	2147418111
+	.section	.srodata.cst4
 	.align	2
 .LC7:
 	.word	1056964608
 	.align	2
 .LC8:
 	.word	1073741824
+	.section	.srodata.cst8
 	.align	3
 .LC9:
 	.word	0
@@ -10067,6 +10072,7 @@ __ucmpti2:
 .LC10:
 	.word	0
 	.word	1073741824
+	.section	.rodata.cst16
 	.align	4
 .LC11:
 	.word	0
@@ -10079,13 +10085,16 @@ __ucmpti2:
 	.word	0
 	.word	0
 	.word	1073741824
+	.section	.srodata.cst8
 	.align	3
 .LC13:
 	.word	0
 	.word	1072693248
+	.section	.srodata.cst4
 	.align	2
 .LC14:
 	.word	1191182336
+	.section	.srodata.cst8
 	.align	3
 .LC15:
 	.dword	6148914691236517205
@@ -10095,6 +10104,7 @@ __ucmpti2:
 	.align	3
 .LC17:
 	.dword	1085102592571150095
+	.section	.srodata.cst4
 	.align	2
 .LC18:
 	.word	1065353216

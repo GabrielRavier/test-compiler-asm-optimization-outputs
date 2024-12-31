@@ -7384,7 +7384,7 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
-	.section	.rodata
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
 .LC0:
 	.word	-1

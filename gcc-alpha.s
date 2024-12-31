@@ -11598,16 +11598,18 @@ $LFE165:
 	.size	s.0, 7
 s.0:
 	.zero	7
-	.section	.rodata
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 3
 $LC0:
 	.quad	6364136223846793005
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 2
 $LC1:
 	.long	-8388609
 	.align 2
 $LC2:
 	.long	2139095039
+	.section	.rodata.cst8
 	.align 3
 $LC3:
 	.long	-1
@@ -11616,6 +11618,7 @@ $LC3:
 $LC4:
 	.long	-1
 	.long	2146435071
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align 4
 $LC5:
 	.long	-1
@@ -11628,12 +11631,14 @@ $LC6:
 	.long	-1
 	.long	-1
 	.long	2147418111
+	.section	.rodata.cst4
 	.align 2
 $LC7:
 	.long	1056964608
 	.align 2
 $LC8:
 	.long	1073741824
+	.section	.rodata.cst8
 	.align 3
 $LC9:
 	.long	0
@@ -11642,6 +11647,7 @@ $LC9:
 $LC10:
 	.long	0
 	.long	1073741824
+	.section	.rodata.cst16
 	.align 4
 $LC11:
 	.long	0
@@ -11654,13 +11660,16 @@ $LC12:
 	.long	0
 	.long	0
 	.long	1073741824
+	.section	.rodata.cst8
 	.align 3
 $LC13:
 	.long	0
 	.long	1072693248
+	.section	.rodata.cst4
 	.align 2
 $LC14:
 	.long	1191182336
+	.section	.rodata.cst8
 	.align 3
 $LC15:
 	.quad	6148914691236517205
@@ -11670,6 +11679,7 @@ $LC16:
 	.align 3
 $LC17:
 	.quad	1085102592571150095
+	.section	.rodata.cst4
 	.align 2
 $LC18:
 	.long	1065353216

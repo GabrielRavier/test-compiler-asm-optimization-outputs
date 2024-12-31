@@ -1484,7 +1484,7 @@ fdim:
 	 l.nop
 
 	.size	fdim, .-fdim
-	.section	.rodata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC1:
 	.long	0
@@ -5234,7 +5234,7 @@ libiberty_ffs:
 	 l.nop
 
 	.size	libiberty_ffs, .-libiberty_ffs
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC2:
 	.long	-8388609
@@ -5456,7 +5456,7 @@ _Qp_itoq:
 	 l.nop
 
 	.size	_Qp_itoq, .-_Qp_itoq
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC8:
 	.long	1056964608
@@ -7724,7 +7724,7 @@ __ctzhi2:
 	 l.nop
 
 	.size	__ctzhi2, .-__ctzhi2
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC19:
 	.long	1191182336
@@ -10215,7 +10215,7 @@ __powidf2:
 	 l.nop
 
 	.size	__powidf2, .-__powidf2
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC21:
 	.long	1065353216

@@ -4497,7 +4497,7 @@ _Qp_itoq:
 	.cfi_endproc
 .LFE88:
 	.size	_Qp_itoq, .-_Qp_itoq
-	.section	.rodata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align	4
 .LC7:
 	.long	1056964608
@@ -4576,7 +4576,7 @@ ldexpf:
 	.cfi_endproc
 .LFE89:
 	.size	ldexpf, .-ldexpf
-	.section	.rodata
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align	8
 .LC9:
 	.long	1071644672
@@ -8750,7 +8750,7 @@ __paritysi2:
 	.cfi_endproc
 .LFE157:
 	.size	__paritysi2, .-__paritysi2
-	.section	.rodata
+	.section	.rodata.cst8
 	.align	8
 .LC18:
 	.quad	6148914691236517205
@@ -8884,7 +8884,7 @@ __popcountsi2:
 	.cfi_endproc
 .LFE159:
 	.size	__popcountsi2, .-__popcountsi2
-	.section	.rodata
+	.section	.rodata.cst8
 	.align	8
 .LC21:
 	.quad	6148914691236517205
