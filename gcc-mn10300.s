@@ -3380,11 +3380,10 @@ __modsi3:
 .L1163:
 	mov 1,a0
 .L1168:
-	cmp d1,r0
+	cmp_lsr d1, r0, 1, a0
 	bcs .L1159
 	sub d1,r0
 .L1159:
-	lsr 1,a0
 	lsr 1,d1
 .L1173:
 	cmp 0,a0
@@ -3408,26 +3407,26 @@ __udivmodhi4:
 	exthu d1,a0
 	exthu d0
 	cmp d0,a0
-	mov (12,sp),r3
 	bcc .L1194
-	mov 16,d0
+	mov 16,a0
 	mov 1,r0
 	exthu r2,a1
 .L1179:
-	exth d1,a0
-	cmp 0,a0
+	exth d1,d0
+	cmp 0,d0
 	blt .L1180
 	add d1,d1
-	exthu d1,a0
-	cmp_asl a0, a1, 1, r0
+	exthu d1,d0
+	cmp_asl d0, a1, 1, r0
 	bls .L1180
-	add -1,d0
+	add -1,a0
 	bne .L1179
-	mov d0,r0
+	mov a0,r0
 .L1191:
 	mov r0,d0
 .L1182:
-	cmp 0,r3
+	mov (12,sp),d1
+	cmp 0,d1
 	bne .L1195
 	retf [],0
 .L1180:
@@ -3436,16 +3435,17 @@ __udivmodhi4:
 	beq .L1191
 	clr d0
 .L1181:
-	exthu r2,r1
 	exthu d1,a1
-	cmp a1,r1
+	mov a1,r3
+	exthu r2,r1
+	lsr 1,a0
+	cmp_lsr a1, r1, 1, r3
 	bcs .L1184
 	or_sub r0, d0, d1, r2
 .L1184:
-	lsr 1,a0
-	cmp_lsr 0, a0, 1, a1
+	cmp 0,a0
 	mov a0,r0
-	mov a1,d1
+	mov r3,d1
 	beq .L1182
 	exthu a0
 	jmp .L1181

@@ -3409,10 +3409,10 @@ __modsi3:
 	bltu	r5, r4, .L959
 	beq	r3, zero, .L941
 .L951:
+	srli	r3, r3, 1
 	bltu	r2, r5, .L942
 	sub	r2, r2, r5
 .L942:
-	srli	r3, r3, 1
 	srli	r5, r5, 1
 	bne	r3, zero, .L951
 .L941:
@@ -3469,15 +3469,16 @@ __udivmodhi4:
 .L975:
 	andi	r3, r3, 0xffff
 .L963:
-	andi	r8, r4, 0xffff
-	andi	r9, r5, 0xffff
-	bltu	r8, r9, .L966
+	andi	r8, r5, 0xffff
+	andi	r10, r4, 0xffff
+	srli	r3, r3, 1
+	srli	r9, r8, 1
+	bltu	r10, r8, .L966
 	sub	r4, r4, r5
 	or	r2, r7, r2
 .L966:
-	srli	r3, r3, 1
-	srli	r5, r9, 1
 	mov	r7, r3
+	mov	r5, r9
 	bne	r3, zero, .L975
 	br	.L964
 .L974:

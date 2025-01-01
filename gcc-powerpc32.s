@@ -3960,11 +3960,11 @@ strrchr:
 	li 3,0
 .L792:
 	lbz 10,0(9)
-	cmpw 0,10,4
-	bne+ 0,.L791
+	cmpw 7,10,4
+	cmpwi 0,10,0
+	bne+ 7,.L791
 	mr 3,9
 .L791:
-	cmpwi 0,10,0
 	addi 9,9,1
 	bne+ 0,.L792
 	blr
@@ -5607,11 +5607,11 @@ __modsi3:
 	cmpwi 0,10,0
 	beq- 0,.L1215
 .L1225:
-	cmplw 0,3,9
-	blt- 0,.L1216
+	cmplw 7,3,9
+	srwi. 10,10,1
+	blt- 7,.L1216
 	subf 3,9,3
 .L1216:
-	srwi. 10,10,1
 	srwi 9,9,1
 	bne+ 0,.L1225
 .L1215:
@@ -5629,36 +5629,37 @@ __udivmodhi4:
 .LFB129:
 	.cfi_startproc
 	cmplw 0,4,3
-	li 10,16
-	li 9,1
-	mtctr 10
+	li 9,16
+	li 10,1
+	mtctr 9
 	bge- 0,.L1236
 .L1235:
-	andi. 10,4,0x8000
+	andi. 9,4,0x8000
 	bne- 0,.L1236
 	rlwinm 4,4,1,16,30
-	slwi 9,9,1
+	slwi 10,10,1
 	cmplw 0,3,4
 	ble- 0,.L1236
 	bdnz .L1235
-	li 9,0
+	li 10,0
 .L1236:
-	andi. 10,9,0xffff
+	andi. 9,10,0xffff
 	beq- 0,.L1244
 	li 8,0
 	b .L1240
 .L1250:
-	rlwinm 10,9,0,0xffff
+	rlwinm 9,9,0,0xffff
 .L1240:
-	cmplw 0,3,4
-	blt- 0,.L1239
+	cmplw 7,3,4
+	srwi 9,9,1
+	cmpwi 0,9,0
+	blt- 7,.L1239
 	subf 3,4,3
-	or 8,9,8
+	or 8,10,8
 	rlwinm 3,3,0,0xffff
 .L1239:
-	srwi 9,10,1
+	mr 10,9
 	srwi 4,4,1
-	cmpwi 0,9,0
 	bne+ 0,.L1250
 .L1238:
 	cmpwi 0,5,0
@@ -5668,7 +5669,7 @@ __udivmodhi4:
 	rlwinm 3,8,0,0xffff
 	blr
 .L1244:
-	mr 8,9
+	mr 8,10
 	b .L1238
 	.cfi_endproc
 .LFE129:

@@ -2213,9 +2213,9 @@ ldexpf:
 	vmovlt.f32	s15, s14
 .L492:
 	tst	r0, #1
-	add	r0, r0, r0, lsr #31
+	add	r3, r0, r0, lsr #31
 	vmulne.f32	s0, s0, s15
-	asrs	r0, r0, #1
+	asrs	r0, r3, #1
 	moveq	pc, lr
 	vmul.f32	s15, s15, s15
 	b	.L492
@@ -2242,9 +2242,9 @@ ldexp:
 	vmovlt.f64	d7, d6
 .L504:
 	tst	r0, #1
-	add	r0, r0, r0, lsr #31
+	add	r3, r0, r0, lsr #31
 	vmulne.f64	d0, d0, d7
-	asrs	r0, r0, #1
+	asrs	r0, r3, #1
 	moveq	pc, lr
 	vmul.f64	d7, d7, d7
 	b	.L504
@@ -2271,9 +2271,9 @@ ldexpl:
 	vmovlt.f64	d7, d6
 .L516:
 	tst	r0, #1
-	add	r0, r0, r0, lsr #31
+	add	r3, r0, r0, lsr #31
 	vmulne.f64	d0, d0, d7
-	asrs	r0, r0, #1
+	asrs	r0, r3, #1
 	moveq	pc, lr
 	vmul.f64	d7, d7, d7
 	b	.L516
@@ -3981,9 +3981,9 @@ __powidf2:
 	vmul.f64	d7, d7, d7
 .L946:
 	tst	r3, #1
-	add	r3, r3, r3, lsr #31
+	add	r2, r3, r3, lsr #31
 	vmulne.f64	d0, d0, d7
-	asrs	r3, r3, #1
+	asrs	r3, r2, #1
 	bne	.L951
 	cmp	r0, #0
 	vmovlt.f64	d7, #1.0e+0
@@ -4007,9 +4007,9 @@ __powisf2:
 	vmul.f32	s15, s15, s15
 .L955:
 	tst	r3, #1
-	add	r3, r3, r3, lsr #31
+	add	r2, r3, r3, lsr #31
 	vmulne.f32	s0, s0, s15
-	asrs	r3, r3, #1
+	asrs	r3, r2, #1
 	bne	.L960
 	cmp	r0, #0
 	vmovlt.f32	s15, #1.0e+0

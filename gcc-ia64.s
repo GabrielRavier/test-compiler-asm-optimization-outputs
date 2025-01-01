@@ -3743,8 +3743,8 @@ wmemmove:
 	mov r8 = r32
 	;;
 	.mib
-	mov r15 = r32
 	adds r14 = -1, r34
+	mov r15 = r32
 	(p6) br.cond.dpnt .L473
 	;;
 	.mib
@@ -4593,16 +4593,16 @@ ldexpf:
 	nop 0
 	(p6) movl r14 = 0x40000000
 	;;
-	.mii
+	.mmi
 	setf.s f6 = r14
+	nop 0
 	extr.u r14 = r33, 31, 1
 	;;
+	.mii
+	add r14 = r14, r33
 	tbit.z p6, p7 = r33, 0
-	.mmi
-	add r33 = r14, r33
 	;;
-	nop 0
-	extr r33 = r33, 1, 31
+	extr r33 = r14, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -4620,14 +4620,10 @@ ldexpf:
 	extr.u r14 = r33, 31, 1
 	;;
 	.mii
-	nop 0
+	add r14 = r14, r33
 	tbit.z p6, p7 = r33, 0
-	add r33 = r14, r33
 	;;
-	.mii
-	nop 0
-	extr r33 = r33, 1, 31
-	nop 0
+	extr r33 = r14, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -4688,16 +4684,16 @@ ldexp:
 	nop 0
 	(p6) movl r14 = 0x4000000000000000
 	;;
-	.mii
+	.mmi
 	setf.d f6 = r14
+	nop 0
 	extr.u r14 = r33, 31, 1
 	;;
+	.mii
+	add r14 = r14, r33
 	tbit.z p6, p7 = r33, 0
-	.mmi
-	add r33 = r14, r33
 	;;
-	nop 0
-	extr r33 = r33, 1, 31
+	extr r33 = r14, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -4715,14 +4711,10 @@ ldexp:
 	extr.u r14 = r33, 31, 1
 	;;
 	.mii
-	nop 0
+	add r14 = r14, r33
 	tbit.z p6, p7 = r33, 0
-	add r33 = r14, r33
 	;;
-	.mii
-	nop 0
-	extr r33 = r33, 1, 31
-	nop 0
+	extr r33 = r14, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -4806,11 +4798,11 @@ ldexpl:
 	ldfe f6 = [r14]
 	extr.u r14 = r34, 31, 1
 	;;
-	add r34 = r14, r34
+	add r14 = r14, r34
 	;;
 	.mii
 	nop 0
-	extr r34 = r34, 1, 31
+	extr r34 = r14, 1, 31
 	nop 0
 	;;
 	.mfi
@@ -4829,14 +4821,10 @@ ldexpl:
 	extr.u r14 = r34, 31, 1
 	;;
 	.mii
-	nop 0
+	add r14 = r14, r34
 	tbit.z p6, p7 = r34, 0
-	add r34 = r14, r34
 	;;
-	.mii
-	nop 0
-	extr r34 = r34, 1, 31
-	nop 0
+	extr r34 = r14, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -9354,13 +9342,13 @@ __powidf2:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
-	;;
-	tbit.z p6, p7 = r14, 0
-	.mmi
-	add r14 = r15, r14
-	;;
 	nop 0
-	extr r14 = r14, 1, 31
+	;;
+	.mii
+	add r15 = r15, r14
+	tbit.z p6, p7 = r14, 0
+	;;
+	extr r14 = r15, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -9378,14 +9366,10 @@ __powidf2:
 	extr.u r15 = r14, 31, 1
 	;;
 	.mii
-	nop 0
+	add r15 = r15, r14
 	tbit.z p6, p7 = r14, 0
-	add r14 = r15, r14
 	;;
-	.mii
-	nop 0
-	extr r14 = r14, 1, 31
-	nop 0
+	extr r14 = r15, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -9476,13 +9460,13 @@ __powisf2:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
-	;;
-	tbit.z p6, p7 = r14, 0
-	.mmi
-	add r14 = r15, r14
-	;;
 	nop 0
-	extr r14 = r14, 1, 31
+	;;
+	.mii
+	add r15 = r15, r14
+	tbit.z p6, p7 = r14, 0
+	;;
+	extr r14 = r15, 1, 31
 	;;
 	.mfi
 	nop 0
@@ -9500,14 +9484,10 @@ __powisf2:
 	extr.u r15 = r14, 31, 1
 	;;
 	.mii
-	nop 0
+	add r15 = r15, r14
 	tbit.z p6, p7 = r14, 0
-	add r14 = r15, r14
 	;;
-	.mii
-	nop 0
-	extr r14 = r14, 1, 31
-	nop 0
+	extr r14 = r15, 1, 31
 	;;
 	.mfi
 	nop 0

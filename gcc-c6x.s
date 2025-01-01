@@ -404,43 +404,43 @@ strlen:
 	.type	strncmp, @function
 strncmp:
 		mv	.d1	A6, A0
-	||	mv	.s1x	B4, A7
+	||	mv	.s1x	B4, A5
 	[!A0]	b	.s1	.L124
 	||[!A0]	mvk	.d1	0, A4
-	||	add	.l1	A7, A6, A6
-	[A0]	ldbu	.d1t1	*A4, A8
+	||	add	.l1	A5, A6, A6
+	[A0]	ldbu	.d1t1	*A4, A7
 		nop	4
 	;; condjump to .L124 occurs
-		mv	.d1	A8, A1
+		mv	.d1	A7, A1
 	[!A1]	b	.s1	.L126
 		nop	5
 	;; condjump to .L126 occurs
 .L127:
-		ldb	.d1t1	*A7, A3
-	||	mv	.l2x	A7, B4
+		ldb	.d1t1	*A5, A3
+	||	mv	.l2x	A5, B4
 		nop	1
-		add	.l1x	1, B4, A7
-		cmpeq	.l1	A7, A6, A18
-		cmpeq	.l1	0, A18, A20
+		add	.l1x	1, B4, A5
+		cmpeq	.l1	A5, A6, A17
+		cmpeq	.l1	0, A17, A19
 		extu	.s1	A3, 24, 24, A9
-		cmpeq	.l1	0, A9, A5
-		cmpeq	.l1	A8, A9, A16
-		cmpeq	.l1	0, A5, A17
-		and	.d1	A16, A17, A19
-		and	.d1	A19, A20, A2
+		cmpeq	.l1	0, A9, A16
+		cmpeq	.l1	A7, A9, A8
+		cmpeq	.l1	0, A16, A18
+		and	.d1	A8, A18, A20
+		and	.d1	A20, A19, A2
 	[!A2]	b	.s1	.L126
-	||[A2]	ldbu	.d1t1	*++A4[1], A8
+	||[A2]	ldbu	.d1t1	*++A4[1], A7
 		nop	4
-		mv	.d1	A8, A0
+		mv	.d1	A7, A0
 	;; condjump to .L126 occurs
 	[A0]	b	.s1	.L127
 		nop	5
 	;; condjump to .L127 occurs
-		mv	.l2x	A7, B4
+		mv	.l2x	A5, B4
 .L126:
 		ldbu	.d2t1	*B4, A4
 		nop	4
-		sub	.d1	A8, A4, A4
+		sub	.d1	A7, A4, A4
 .L124:
 		ret	.s2	B3
 		nop	5
@@ -3373,19 +3373,20 @@ strpbrk:
 	.global	strrchr
 	.type	strrchr, @function
 strrchr:
-		mv	.s1	A4, A5
+		mv	.s1	A4, A3
 	||	mvk	.d1	0, A4
 .L774:
-		mv	.s1	A5, A6
-	||	ldb	.d1t1	*A5++[1], A7
-	||	mv	.l1x	B4, A8
+		mv	.s1	A3, A6
+	||	ldb	.d1t1	*A3++[1], A7
+	||	mv	.l1x	B4, A9
 		nop	4
-		shl	.s1	A7, 24, A0
-	[A0]	b	.s1	.L774
-		ext	.s1	A7, 24, 24, A3
-		cmpeq	.l1	A8, A3, A1
-	[A1]	mv	.d1	A6, A4
-		nop	2
+		shl	.s1	A7, 24, A5
+		mv	.d1	A5, A1
+	||	ext	.s1	A7, 24, 24, A8
+	[A1]	b	.s1	.L774
+	||	cmpeq	.l1	A9, A8, A0
+	[A0]	mv	.d1	A6, A4
+		nop	4
 	;; condjump to .L774 occurs
 		ret	.s2	B3
 		nop	5
@@ -3441,37 +3442,37 @@ strstr:
 .L787:
 		extu	.s1	A7, 24, 24, A28
 	||	mv	.d1	A4, A2
-	||	mv	.l1	A4, A9
+	||	mv	.l1	A4, A26
 		mv	.d1	A28, A1
 	||[!A2]	b	.s1	.L779
-	||	mv	.l1x	B4, A20
+	||	mv	.l1x	B4, A6
 		nop	5
 	;; condjump to .L779 occurs
 	[!A1]	b	.s1	.L792
 		nop	5
 	;; condjump to .L792 occurs
 .L785:
-		ldb	.d1t1	*A20, A6
-	||	mv	.l1	A20, A18
-	||	add	.s1	1, A20, A20
-		cmpeq	.l1	A20, A27, A24
-		cmpeq	.l1	0, A24, A26
+		ldb	.d1t1	*A6, A9
+	||	mv	.l1	A6, A18
+	||	add	.s1	1, A6, A6
+		cmpeq	.l1	A6, A27, A22
+		cmpeq	.l1	0, A22, A24
 		nop	2
-		extu	.s1	A6, 24, 24, A19
+		extu	.s1	A9, 24, 24, A19
 		cmpeq	.l1	0, A19, A21
-		cmpeq	.l1	A28, A19, A22
+		cmpeq	.l1	A28, A19, A20
 		cmpeq	.l1	0, A21, A23
-		and	.d1	A22, A23, A25
-		and	.d1	A25, A26, A0
+		and	.d1	A20, A23, A25
+		and	.d1	A25, A24, A0
 	[!A0]	b	.s1	.L784
-	||[A0]	ldbu	.d1t1	*++A9[1], A28
+	||[A0]	ldbu	.d1t1	*++A26[1], A28
 		nop	4
 		mv	.d1	A28, A2
 	;; condjump to .L784 occurs
 	[A2]	b	.s1	.L785
 		nop	5
 	;; condjump to .L785 occurs
-		mv	.d1	A20, A18
+		mv	.d1	A6, A18
 .L784:
 		ldbu	.d1t1	*A18, A29
 	||	add	.s1	1, A4, A3

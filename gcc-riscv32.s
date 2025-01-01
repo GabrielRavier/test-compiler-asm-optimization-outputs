@@ -4625,10 +4625,10 @@ __modsi3:
 	bgtu	a0,a1,.L993
 	beq	a5,zero,.L977
 .L987:
+	srli	a5,a5,1
 	bltu	a3,a1,.L978
 	sub	a3,a3,a1
 .L978:
-	srli	a5,a5,1
 	srli	a1,a1,1
 	bne	a5,zero,.L987
 .L977:

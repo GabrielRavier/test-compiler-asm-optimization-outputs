@@ -3684,7 +3684,7 @@ __udivmodhi4:
 	b	.L1076
 	 sll	%g2, 16, %g1
 .L1061:
-	sll	%g2, 1, %g1
+	sll	%o1, 17, %o1
 	srl	%o1, 16, %o1
 	cmp	%o1, %o0
 	bgeu	.L1057
@@ -3696,8 +3696,8 @@ __udivmodhi4:
 .L1056:
 	sll	%o1, 16, %g1
 	cmp	%g1, 0
-	bge,a	.L1061
-	 sll	%o1, 17, %o1
+	bge	.L1061
+	 sll	%g2, 1, %g1
 .L1057:
 	sll	%g2, 16, %g1
 .L1076:

@@ -2007,8 +2007,8 @@ wcsncmp:
 	beqz	$r6,.L389
 	.align	3
 .L398:
-	ldptr.w	$r13,$r4,0
 	ldptr.w	$r12,$r5,0
+	ldptr.w	$r13,$r4,0
 	bne	$r12,$r13,.L386
 	beqz	$r12,.L386
 	addi.d	$r6,$r6,-1
@@ -2612,12 +2612,12 @@ ldexpf:
 .L518:
 	fmul.s	$f1,$f1,$f1
 .L510:
+	srli.w	$r13,$r4,31
 	andi	$r12,$r4,1
+	add.w	$r4,$r13,$r4
 	beqz	$r12,.L509
 	fmul.s	$f0,$f0,$f1
 .L509:
-	srli.w	$r12,$r4,31
-	add.w	$r4,$r12,$r4
 	srai.d	$r4,$r4,1
 	bnez	$r4,.L518
 .L507:
@@ -2647,12 +2647,12 @@ ldexp:
 .L531:
 	fmul.d	$f1,$f1,$f1
 .L523:
+	srli.w	$r13,$r4,31
 	andi	$r12,$r4,1
+	add.w	$r4,$r13,$r4
 	beqz	$r12,.L522
 	fmul.d	$f0,$f0,$f1
 .L522:
-	srli.w	$r12,$r4,31
-	add.w	$r4,$r12,$r4
 	srai.d	$r4,$r4,1
 	bnez	$r4,.L531
 .L520:
@@ -4856,12 +4856,12 @@ __powidf2:
 .L1023:
 	fmul.d	$f1,$f1,$f1
 .L1018:
+	srli.w	$r14,$r12,31
 	andi	$r13,$r12,1
+	add.w	$r12,$r14,$r12
 	beqz	$r13,.L1016
 	fmul.d	$f0,$f0,$f1
 .L1016:
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
 	srai.d	$r12,$r12,1
 	bnez	$r12,.L1023
 	blt	$r4,$r0,.L1024
@@ -4889,12 +4889,12 @@ __powisf2:
 .L1033:
 	fmul.s	$f1,$f1,$f1
 .L1028:
+	srli.w	$r14,$r12,31
 	andi	$r13,$r12,1
+	add.w	$r12,$r14,$r12
 	beqz	$r13,.L1026
 	fmul.s	$f0,$f0,$f1
 .L1026:
-	srli.w	$r13,$r12,31
-	add.w	$r12,$r13,$r12
 	srai.d	$r12,$r12,1
 	bnez	$r12,.L1033
 	blt	$r4,$r0,.L1034

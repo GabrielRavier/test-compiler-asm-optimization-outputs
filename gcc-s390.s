@@ -3323,12 +3323,12 @@ ldexpf:
 	jl	.L920
 	le	%f1,.L922-.L921(%r5)
 .L911:
+	lr	%r1,%r2
 	tml	%r2,1
+	srl	%r1,31
 	je	.L910
 	meebr	%f0,%f1
 .L910:
-	lr	%r1,%r2
-	srl	%r1,31
 	ar	%r2,%r1
 	sra	%r2,1
 	ltr	%r2,%r2
@@ -3368,12 +3368,12 @@ ldexp:
 	jl	.L937
 	ld	%f1,.L939-.L938(%r5)
 .L928:
+	lr	%r1,%r2
 	tml	%r2,1
+	srl	%r1,31
 	je	.L927
 	mdbr	%f0,%f1
 .L927:
-	lr	%r1,%r2
-	srl	%r1,31
 	ar	%r2,%r1
 	sra	%r2,1
 	ltr	%r2,%r2
@@ -3421,12 +3421,12 @@ ldexpl:
 .L955:
 	mxbr	%f0,%f0
 .L945:
+	lr	%r1,%r4
 	tml	%r4,1
+	srl	%r1,31
 	je	.L944
 	mxbr	%f1,%f0
 .L944:
-	lr	%r1,%r4
-	srl	%r1,31
 	ar	%r4,%r1
 	sra	%r4,1
 	ltr	%r4,%r4
@@ -6086,12 +6086,12 @@ __powidf2:
 .L1745:
 	mdbr	%f2,%f2
 .L1739:
+	lr	%r3,%r1
 	tml	%r1,1
+	srl	%r3,31
 	je	.L1737
 	mdbr	%f0,%f2
 .L1737:
-	lr	%r3,%r1
-	srl	%r3,31
 	ar	%r1,%r3
 	sra	%r1,1
 	ltr	%r1,%r1
@@ -6128,12 +6128,12 @@ __powisf2:
 .L1757:
 	meebr	%f2,%f2
 .L1751:
+	lr	%r3,%r1
 	tml	%r1,1
+	srl	%r3,31
 	je	.L1749
 	meebr	%f0,%f2
 .L1749:
-	lr	%r3,%r1
-	srl	%r3,31
 	ar	%r1,%r3
 	sra	%r1,1
 	ltr	%r1,%r1

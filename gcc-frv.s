@@ -2834,10 +2834,10 @@ strrchr:
 	setlos #0, gr5
 .L567:
 	ldsb @(gr8,gr0),gr4
-	cmp gr4,gr9,icc0
-	ckeq icc0, cc4
+	cmp gr4,gr9,icc1
+	ckeq icc1, cc5
 	cmpi gr4, #0, icc0
-	cmov gr8, gr5, cc4, 1
+	cmov gr8, gr5, cc5, 1
 	addi gr8,#1,gr8
 	bne icc0,2,.L567
 	mov gr5, gr8
@@ -3997,10 +3997,10 @@ __modsi3:
 	cmpi gr5, #0, icc0
 	beq icc0,0,.L851
 .L861:
-	cmp gr7,gr4,icc0
-	cknc icc0, cc4
+	cmp gr7,gr4,icc1
+	cknc icc1, cc5
 	srlicc gr5, #1, gr5, icc0
-	csub gr7, gr4, gr7, cc4, 1
+	csub gr7, gr4, gr7, cc5, 1
 	srli gr4, #1, gr4
 	bne icc0,2,.L861
 .L851:
@@ -4052,8 +4052,8 @@ __udivmodhi4:
 	cmp gr8,gr9,icc0
 	bc icc0,2,.L872
 	sub gr8,gr9,gr8
-	sethi #hi(#0),gr8
 	or gr4, gr5, gr5
+	sethi #hi(#0),gr8
 .L872:
 	srlicc gr4, #1, gr4, icc0
 	srli gr9, #1, gr9
