@@ -738,13 +738,13 @@ stpcpy:
 	r5 <<= 56
 	r5 s>>= 56
 	*(u8 *) (r0+0) = r5
+	r2 += 8
 	if r5 == 0 goto .L362
-	r9 = *(u8 *) (r2+8)
 	r0 += 1
+	r9 = *(u8 *) (r2+0)
 	r9 <<= 56
 	r9 s>>= 56
 	*(u8 *) (r0+0) = r9
-	r2 += 8
 	if r9 != 0 goto .L363
 	exit
 .L362:
@@ -3601,25 +3601,25 @@ ldexpf:
 	r7 = 0x40000000 ll
 	goto .L1321
 .L1331:
-	r2 = r7
-	r1 = r7
 	call	__mulsf3
 	r7 = r0
 .L1321:
 	r0 = r6
+	r2 = r7
+	r1 = r8
 	r0 &= 1
 	if r0 == 0 goto .L1320
-	r1 = r8
-	r2 = r7
 	call	__mulsf3
 	r8 = r0
 .L1320:
-	r1 = r6
-	r1 >>= 63
-	r1 += r6
-	r1 s>>= 1
-	r6 = r1
-	if r1 != 0 goto .L1331
+	r3 = r6
+	r2 = r7
+	r3 >>= 63
+	r1 = r7
+	r3 += r6
+	r3 s>>= 1
+	r6 = r3
+	if r3 != 0 goto .L1331
 .L1317:
 	r0 = r8
 	exit
@@ -3649,25 +3649,25 @@ ldexp:
 	r7 = 0x4000000000000000 ll
 	goto .L1337
 .L1347:
-	r2 = r7
-	r1 = r7
 	call	__muldf3
 	r7 = r0
 .L1337:
 	r0 = r6
+	r2 = r7
+	r1 = r8
 	r0 &= 1
 	if r0 == 0 goto .L1336
-	r1 = r8
-	r2 = r7
 	call	__muldf3
 	r8 = r0
 .L1336:
-	r1 = r6
-	r1 >>= 63
-	r1 += r6
-	r1 s>>= 1
-	r6 = r1
-	if r1 != 0 goto .L1347
+	r3 = r6
+	r2 = r7
+	r3 >>= 63
+	r1 = r7
+	r3 += r6
+	r3 s>>= 1
+	r6 = r3
+	if r3 != 0 goto .L1347
 .L1333:
 	r0 = r8
 	exit
@@ -3697,25 +3697,25 @@ ldexpl:
 	r7 = 0x4000000000000000 ll
 	goto .L1353
 .L1363:
-	r2 = r7
-	r1 = r7
 	call	__muldf3
 	r7 = r0
 .L1353:
 	r0 = r6
+	r2 = r7
+	r1 = r8
 	r0 &= 1
 	if r0 == 0 goto .L1352
-	r1 = r8
-	r2 = r7
 	call	__muldf3
 	r8 = r0
 .L1352:
-	r1 = r6
-	r1 >>= 63
-	r1 += r6
-	r1 s>>= 1
-	r6 = r1
-	if r1 != 0 goto .L1363
+	r3 = r6
+	r2 = r7
+	r3 >>= 63
+	r1 = r7
+	r3 += r6
+	r3 s>>= 1
+	r6 = r3
+	if r3 != 0 goto .L1363
 .L1349:
 	r0 = r8
 	exit
@@ -4601,57 +4601,64 @@ frexp:
 	if r0 s< 0 goto .L1840
 .L1844:
 	r8 = 0
-	r6 = 0x3ff0000000000000 ll
+	r6 = 0x3fe0000000000000 ll
 .L1809:
 	r1 = r7
-	r2 = 0x3fe0000000000000 ll
-	call	__muldf3
-	r8 += 1
 	r2 = r6
-	r8 <<= 32
+	call	__muldf3
+	r2 = 0x3ff0000000000000 ll
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1810
-	r1 = r7
-	r2 = 0x3fe0000000000000 ll
-	call	__muldf3
 	r8 += 1
 	r2 = r6
 	r8 <<= 32
-	r7 = r0
+	r1 = r7
 	r8 s>>= 32
+	r5 = r8
+	r5 += 1
+	r5 <<= 32
+	if r0 s< 0 goto .L1810
+	r5 s>>= 32
+	r8 = r5
+	call	__muldf3
+	r2 = 0x3ff0000000000000 ll
+	r7 = r0
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1810
-	r1 = r7
-	r2 = 0x3fe0000000000000 ll
-	call	__muldf3
-	r8 += 1
+	r4 = r8
 	r2 = r6
-	r8 <<= 32
+	r4 += 1
+	r1 = r7
+	r4 <<= 32
+	if r0 s< 0 goto .L1810
+	r4 s>>= 32
+	r8 = r4
+	call	__muldf3
+	r2 = 0x3ff0000000000000 ll
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1810
-	r1 = r7
-	r2 = 0x3fe0000000000000 ll
-	call	__muldf3
-	r8 += 1
 	r2 = r6
-	r8 <<= 32
+	r3 = r0
+	r1 = r7
+	r0 = r8
+	r0 += 1
+	r0 <<= 32
+	if r3 s< 0 goto .L1810
+	r0 s>>= 32
+	r8 = r0
+	call	__muldf3
+	r2 = 0x3ff0000000000000 ll
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__gedf2
 	if r0 s>= 0 goto .L1809
 .L1810:
-	r3 = *(u64 *) (r10+-16)
-	*(u32 *) (r3+0) = r8
-	r4 = *(u64 *) (r10+-8)
-	if r4 == 0 goto .L1814
+	r2 = *(u64 *) (r10+-16)
+	*(u32 *) (r2+0) = r8
+	r1 = *(u64 *) (r10+-8)
+	if r1 == 0 goto .L1814
 	r5 = -9223372036854775808 ll
 	r5 ^= r7
 	r7 = r5
@@ -4682,44 +4689,51 @@ frexp:
 	r2 = r7
 	r1 = r7
 	call	__adddf3
-	r8 += -1
 	r2 = 0x3fe0000000000000 ll
-	r8 <<= 32
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__ltdf2
-	if r6 s< r0 goto .L1810
-	r2 = r7
-	r1 = r7
-	call	__adddf3
 	r8 += -1
-	r2 = 0x3fe0000000000000 ll
+	r2 = r7
 	r8 <<= 32
-	r7 = r0
+	r1 = r7
 	r8 s>>= 32
+	r3 = r8
+	r3 += -1
+	r3 <<= 32
+	if r6 s< r0 goto .L1810
+	r3 s>>= 32
+	r8 = r3
+	call	__adddf3
+	r2 = 0x3fe0000000000000 ll
+	r7 = r0
 	r1 = r0
 	call	__ltdf2
-	if r6 s< r0 goto .L1810
+	r9 = r8
 	r2 = r7
+	r9 += -1
 	r1 = r7
+	r9 <<= 32
+	if r6 s< r0 goto .L1810
+	r9 s>>= 32
+	r8 = r9
 	call	__adddf3
-	r8 += -1
 	r2 = 0x3fe0000000000000 ll
-	r8 <<= 32
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__ltdf2
-	if r6 s< r0 goto .L1810
 	r2 = r7
+	r4 = r0
 	r1 = r7
+	r0 = r8
+	r0 += -1
+	r0 <<= 32
+	if r6 s< r4 goto .L1810
+	r0 s>>= 32
+	r8 = r0
 	call	__adddf3
-	r8 += -1
 	r2 = 0x3fe0000000000000 ll
-	r8 <<= 32
 	r7 = r0
-	r8 s>>= 32
 	r1 = r0
 	call	__ltdf2
 	if r6 s>= r0 goto .L1813
@@ -8548,27 +8562,27 @@ __powidf2:
 	r8 = r2
 	goto .L2707
 .L2712:
-	r2 = r6
-	r1 = r6
 	call	__muldf3
 	r6 = r0
 .L2707:
 	r0 = r8
+	r2 = r6
+	r1 = r7
 	r0 &= 1
 	if r0 == 0 goto .L2705
-	r1 = r7
-	r2 = r6
 	call	__muldf3
 	r7 = r0
 .L2705:
-	r1 = r8
-	r1 >>= 63
-	r1 += r8
-	r1 s>>= 1
-	r8 = r1
-	if r1 != 0 goto .L2712
-	r2 = *(u64 *) (r10+-8)
-	if r2 s>= 0 goto .L2704
+	r3 = r8
+	r2 = r6
+	r3 >>= 63
+	r1 = r6
+	r3 += r8
+	r3 s>>= 1
+	r8 = r3
+	if r3 != 0 goto .L2712
+	r1 = *(u64 *) (r10+-8)
+	if r1 s>= 0 goto .L2704
 	r2 = r7
 	r1 = 0x3ff0000000000000 ll
 	call	__divdf3
@@ -8589,27 +8603,27 @@ __powisf2:
 	r8 = r2
 	goto .L2716
 .L2721:
-	r2 = r6
-	r1 = r6
 	call	__mulsf3
 	r6 = r0
 .L2716:
 	r0 = r8
+	r2 = r6
+	r1 = r7
 	r0 &= 1
 	if r0 == 0 goto .L2714
-	r1 = r7
-	r2 = r6
 	call	__mulsf3
 	r7 = r0
 .L2714:
-	r1 = r8
-	r1 >>= 63
-	r1 += r8
-	r1 s>>= 1
-	r8 = r1
-	if r1 != 0 goto .L2721
-	r2 = *(u64 *) (r10+-8)
-	if r2 s>= 0 goto .L2713
+	r3 = r8
+	r2 = r6
+	r3 >>= 63
+	r1 = r6
+	r3 += r8
+	r3 s>>= 1
+	r8 = r3
+	if r3 != 0 goto .L2721
+	r1 = *(u64 *) (r10+-8)
+	if r1 s>= 0 goto .L2713
 	r2 = r7
 	r1 = 0x3f800000 ll
 	call	__divsf3

@@ -55,7 +55,7 @@ memccpy:
 	stb	%g1, [%o0]
 	and	%g1, 0xff, %g1
 	cmp	%g1, %o2
-	bne,a	.L22
+	bne	.L22
 	 add	%o1, 1, %o1
 	cmp	%o3, 0
 	be,a	.L30
@@ -115,7 +115,7 @@ memcmp:
 .L54:
 	ldub	[%o1], %g2
 	cmp	%g1, %g2
-	be,a	.L45
+	be	.L45
 	 add	%o0, 1, %o0
 	cmp	%o2, 0
 	be,a	.L53
@@ -155,14 +155,14 @@ memrchr:
 	b	.L62
 	 add	%o0, -1, %g2
 .L64:
-	mov	%o2, %o0
+	ldub	[%o0], %g1
 	cmp	%g1, %o1
 	be	.L65
 	 add	%o2, -1, %o2
 .L62:
 	cmp	%o2, %g2
-	bne,a	.L64
-	 ldub	[%o2], %g1
+	bne	.L64
+	 mov	%o2, %o0
 	mov	0, %o0
 .L65:
 	jmp	%o7+8
@@ -325,13 +325,13 @@ strncmp:
 	b	.L121
 	 add	%o1, %o2, %o2
 .L133:
+	cmp	%o1, %o2
 	be,a	.L134
 	 ldub	[%o1], %g1
-	ldub	[%o0+1], %g2
-	add	%o1, 1, %o1
+	ldub	[%o0], %g2
 	cmp	%g2, 0
 	be	.L120
-	 add	%o0, 1, %o0
+	 add	%o1, 1, %o1
 .L121:
 	ldub	[%o1], %g1
 	cmp	%g0, %g1
@@ -341,7 +341,7 @@ strncmp:
 	subx	%g0, -1, %g1
 	andcc	%g3, %g1, %g0
 	bne	.L133
-	 cmp	%o1, %o2
+	 add	%o0, 1, %o0
 .L120:
 	ldub	[%o1], %g1
 .L134:
@@ -1712,7 +1712,7 @@ wmemcmp:
 .L503:
 	ld	[%o1], %g1
 	cmp	%g2, %g1
-	be,a	.L492
+	be	.L492
 	 add	%o0, 4, %o0
 	cmp	%o2, 0
 	be,a	.L502
@@ -2455,7 +2455,7 @@ strncat:
 	stb	%g2, [%g1]
 	sll	%g2, 24, %g2
 	cmp	%g2, 0
-	bne,a	.L658
+	bne	.L658
 	 add	%o1, 1, %o1
 	cmp	%o2, 0
 	bne	.L666
@@ -2503,13 +2503,14 @@ strpbrk:
 	b	.L680
 	 sra	%g3, 24, %g3
 .L679:
+	cmp	%g2, %g3
 	be	.L683
-	 add	%g1, 1, %g1
+	 nop
 .L680:
 	ldsb	[%g1], %g2
 	cmp	%g2, 0
 	bne	.L679
-	 cmp	%g2, %g3
+	 add	%g1, 1, %g1
 	ldub	[%o0+1], %g3
 	sll	%g3, 24, %g3
 	cmp	%g3, 0
@@ -2583,13 +2584,13 @@ strstr:
 	b	.L718
 	 ldub	[%g3], %g2
 .L717:
+	cmp	%g3, %o3
 	be,a	.L718
 	 ldub	[%g3], %g2
-	ldub	[%g4+1], %g1
-	add	%g3, 1, %g3
+	ldub	[%g4], %g1
 	cmp	%g1, 0
 	be	.L695
-	 add	%g4, 1, %g4
+	 add	%g3, 1, %g3
 .L694:
 	ldub	[%g3], %g2
 	cmp	%g0, %g2
@@ -2599,7 +2600,7 @@ strstr:
 	subx	%g0, -1, %g2
 	andcc	%o5, %g2, %g0
 	bne	.L717
-	 cmp	%g3, %o3
+	 add	%g4, 1, %g4
 .L695:
 	ldub	[%g3], %g2
 .L718:
@@ -2690,22 +2691,22 @@ memmem:
 	cmp	%g1, %o7
 	bne	.L733
 	 add	%i4, 1, %i4
-	addcc	%i3, -1, %g1
+	addcc	%i3, -1, %g2
 	be	.L757
-	 add	%i2, 1, %g2
+	 add	%i2, 1, %g3
 	b	.L734
-	 mov	%i4, %g3
+	 mov	%i4, %g1
 .L736:
-	addcc	%g1, -1, %g1
+	addcc	%g2, -1, %g2
 	be	.L757
-	 add	%g2, 1, %g2
-.L734:
-	ldub	[%g3], %i5
-	ldub	[%g2], %g4
-	cmp	%i5, %g4
-	be,a	.L736
 	 add	%g3, 1, %g3
-	cmp	%g1, 0
+.L734:
+	ldub	[%g1], %i5
+	ldub	[%g3], %g4
+	cmp	%i5, %g4
+	be	.L736
+	 add	%g1, 1, %g1
+	cmp	%g2, 0
 	be	.L756
 	 nop
 	cmp	%i5, %g4

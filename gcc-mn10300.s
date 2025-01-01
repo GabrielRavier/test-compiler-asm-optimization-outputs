@@ -48,12 +48,13 @@ memccpy:
 	beq .L22
 .L18:
 	movbu (d1),a1
+	inc d1
 	movbu a1,(d0)
 	extbu a1
 	cmp r0,a1
 	beq .L31
-	add_add -1, a0, 1, d1
-	add_cmp 1, d0, 0, a0
+	add_add -1, a0, 1, d0
+	cmp 0,a0
 	bne .L18
 .L22:
 	mov 0,a0
@@ -100,10 +101,10 @@ memcmp:
 .L46:
 	movbu (d0),a1
 	movbu (d1),r0
+	add_add 1, d0, 1, d1
 	cmp r0,a1
 	bne .L59
-	add_add -1, a0, 1, d0
-	add_cmp 1, d1, 0, a0
+	add -1,a0
 	bne .L46
 .L50:
 	clr d0
@@ -136,11 +137,10 @@ memrchr:
 	add -1,a1
 	add_add d0, a1, -1, d0
 .L68:
-	cmp d0,a1
+	cmp_mov d0, a1, a1, a0
 	beq .L73
-	movbu (a1),r0
-	mov_add a1, a0, -1, a1
-	cmp d1,r0
+	movbu (a0),r0
+	add_cmp -1, a1, d1, r0
 	bne .L68
 	mov a0,d0
 	retf [],0
@@ -273,11 +273,10 @@ strncmp:
 	beq .L124
 	cmp r0,d0
 	beq .L124
-	cmp a0,a1
+	add_cmp 1, d0, a0, a1
 	bne .L124
-	movbu (1,d0),a0
-	add_add 1, d1, 1, d0
-	cmp 0,a0
+	movbu (d0),a0
+	add_cmp 1, d1, 0, a0
 	bne .L125
 .L124:
 	movbu (d1),d0
@@ -1033,10 +1032,10 @@ lsearch:
 	mov_mov d2, d1, a3, d0
 	mov r5,a0
 	calls (a0)
-	cmp_mov 0, d0, d2, d3
+	add_cmp 1, r7, 0, d0
+	mov d2,d3
 	beq .L365
-	add_add 1, r7, r4, d2
-	cmp r7,a2
+	add_cmp r4, d2, r7, a2
 	bne .L368
 .L366:
 	mul r4,a2,d0,d3
@@ -1069,10 +1068,10 @@ lfind:
 	mov_mov d2, d1, a2, d0
 	mov r4,a0
 	calls (a0)
-	cmp_mov 0, d0, d2, r6
+	add_cmp 1, d3, 0, d0
+	mov d2,r6
 	beq .L382
-	add_add 1, d3, r5, d2
-	cmp d3,a3
+	add_cmp r5, d2, d3, a3
 	bne .L385
 .L383:
 	clr r6
@@ -1097,10 +1096,10 @@ atoi:
 	mov d0,d1
 .L401:
 	movbu (d1),a0
-	cmp 32,a0
-	beq .L404
 	mov -9,d0
 	add a0,d0
+	cmp 32,a0
+	beq .L404
 	cmp 4,d0
 	bls .L404
 	clr d0
@@ -1161,10 +1160,10 @@ atoll:
 	movm [d2,d3,a2,a3],(sp)
 .L425:
 	movbu (d0),d1
-	cmp 32,d1
-	beq .L428
 	mov -9,d2
 	add d1,d2
+	cmp 32,d1
+	beq .L428
 	cmp 4,d2
 	bls .L428
 	cmp 43,d1
@@ -1242,22 +1241,22 @@ bsearch:
 	mov_add r5, a0, a2, d3
 	mov_mov r4, d0, d3, d1
 	calls (a0)
-	cmp 0,d0
-	blt .L451
-	ble .L446
 	add -1,d2
+	sub_cmp r6, d2, 0, d0
+	blt .L451
 	add a3,d3,a2
-	sub r6,d2
-	cmp 0,d2
-	bne .L459
-.L447:
-	clr d3
-.L446:
+	cmp 0,d0
+	bgt .L456
 	mov_mov d3, d0, d3, a0
 	ret [d2,d3,a2,a3,exreg1],44
 .L451:
 	mov r6,d2
-	jmp .L456
+	cmp 0,d2
+	bne .L459
+.L447:
+	clr d3
+	mov_mov d3, d0, d3, a0
+	ret [d2,d3,a2,a3,exreg1],44
 	.size	bsearch, .-bsearch
 	.global bsearch_r
 	.type	bsearch_r, @function
@@ -1552,10 +1551,10 @@ wmemcmp:
 .L569:
 	mov (d0),r0
 	mov (d1),a1
+	add_add 4, d0, 4, d1
 	cmp a1,r0
 	bne .L584
-	add_add -1, a0, 4, d0
-	add_cmp 4, d1, 0, a0
+	add -1,a0
 	bne .L569
 .L574:
 	clr d0
@@ -2136,18 +2135,18 @@ ldexpf:
 	mov 1073741824,d3
 .L712:
 	btst 1,d2
+	mov_mov d3, d1, a2, d0
 	beq .L711
-	mov_mov a2, d0, d3, d1
 	call +__mulsf3,[],0
 	mov d0,a2
 .L711:
-	mov d2,d0
-	lsr 31,d0
-	add d0,d2
+	mov d2,a0
+	lsr 31,a0
+	add a0,d2
 	asr 1,d2
-	cmp 0,d2
+	cmp_mov 0, d2, d3, d1
+	mov d3,d0
 	beq .L708
-	mov_mov d3, d1, d3, d0
 	call +__mulsf3,[],0
 	mov d0,d3
 	jmp .L712
@@ -2185,22 +2184,22 @@ ldexp:
 	mov 1073741824,d3
 .L729:
 	btst 1,r4
+	mov_mov a2, d0, a3, d1
 	beq .L728
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov a2, d0, a3, d1
 	call +__muldf3,[],0
 	mov_mov d0, a2, d1, a3
 .L728:
-	mov r4,d0
-	lsr 31,d0
-	add d0,r4
+	mov r4,a0
+	lsr 31,a0
+	add a0,r4
 	asr 1,r4
-	cmp 0,r4
+	cmp_mov 0, r4, d2, d0
+	mov d3,d1
 	beq .L725
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
 	mov_mov d0, d2, d1, d3
 	jmp .L729
@@ -2239,22 +2238,22 @@ ldexpl:
 	mov 1073741824,d3
 .L746:
 	btst 1,r4
+	mov_mov a2, d0, a3, d1
 	beq .L745
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov a2, d0, a3, d1
 	call +__muldf3,[],0
 	mov_mov d0, a2, d1, a3
 .L745:
-	mov r4,d0
-	lsr 31,d0
-	add d0,r4
+	mov r4,a0
+	lsr 31,a0
+	add a0,r4
 	asr 1,r4
-	cmp 0,r4
+	cmp_mov 0, r4, d2, d0
+	mov d3,d1
 	beq .L742
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
 	mov_mov d0, d2, d1, d3
 	jmp .L746
@@ -2302,12 +2301,13 @@ strncat:
 	beq .L776
 .L785:
 	movbu (d1),r0
+	inc d1
 	movbu r0,(a1)
 	extbu r0
 	cmp 0,r0
 	beq .L784
-	add_add -1, r1, 1, d1
-	add_cmp 1, a1, 0, r1
+	add_add -1, r1, 1, a1
+	cmp 0,r1
 	bne .L785
 .L776:
 	movbu r1,(a1)
@@ -2351,9 +2351,9 @@ strpbrk:
 	mov d1,a1
 .L799:
 	movbu (a1),r0
-	cmp 0,r0
+	add_cmp 1, a1, 0, r0
 	beq .L804
-	add_cmp 1, a1, r1, r0
+	cmp r1,r0
 	bne .L799
 	mov a0,d0
 	retf [],0
@@ -2425,11 +2425,10 @@ strstr:
 	beq .L819
 	cmp r3,d0
 	beq .L819
-	cmp r0,r1
+	add_cmp 1, d0, r0, r1
 	bne .L819
-	movbu (1,d0),r0
-	add_add 1, a1, 1, d0
-	cmp 0,r0
+	movbu (d0),r0
+	add_cmp 1, a1, 0, r0
 	bne .L820
 .L819:
 	movbu (a1),d0
@@ -2515,25 +2514,26 @@ memmem:
 	mov a0,d0
 	retf [d2,d3,a2],12
 .L877:
-	mov_mov 1, a1, -1, d1
-	add_add d3, a1, d2, d1
+	mov_mov 1, d1, -1, r0
+	add_add d3, d1, d2, r0
 	cmp 1,d2
 	beq .L852
-	mov d0,r0
-	movbu (r0),r2
-	movbu (a1),r1
+	mov d0,a1
+	movbu (a1),r2
+	movbu (d1),r1
+	add_add 1, a1, 1, d1
 	cmp r1,r2
 	bne .L878
 .L857:
-	add_add -1, d1, 1, r0
-	add_cmp 1, a1, 0, d1
+	add -1,r0
 	beq .L852
-	movbu (r0),r2
-	movbu (a1),r1
+	movbu (a1),r2
+	movbu (d1),r1
+	add_add 1, a1, 1, d1
 	cmp r1,r2
 	beq .L857
 .L878:
-	cmp 0,d1
+	cmp 0,r0
 	beq .L852
 	cmp r1,r2
 	beq .L852
@@ -2716,12 +2716,12 @@ udivmodsi4:
 	mov 32,d0
 	mov 1,a0
 .L927:
-	cmp 0,d1
+	add_cmp -1, d0, 0, d1
 	blt .L928
 	add d1,d1
 	cmp_asl d1, a1, 1, a0
 	bls .L928
-	add -1,d0
+	cmp 0,d0
 	bne .L927
 .L939:
 	clr d0
@@ -3155,12 +3155,12 @@ __udivmodsi4:
 	mov 32,d0
 	mov 1,a0
 .L1078:
-	cmp 0,d1
+	add_cmp -1, d0, 0, d1
 	blt .L1079
 	add d1,d1
 	cmp_asl d1, a1, 1, a0
 	bls .L1079
-	add -1,d0
+	cmp 0,d0
 	bne .L1078
 .L1090:
 	clr d0
@@ -3271,12 +3271,11 @@ __mulhi3:
 	and 1,a0
 	not a0
 	inc a0
-	and_asr r0, a0, 1, d1
-	add_asl a0, d0, 1, r0
-	cmp 0,d1
-	beq .L1114
-	add -1,a1
+	and_add r0, a0, -1, a1
+	add_asr a0, d0, 1, d1
+	cmp_asl 0, d1, 1, r0
 	extbu a1,r1
+	beq .L1114
 	cmp 0,r1
 	bne .L1115
 .L1114:
@@ -3308,10 +3307,10 @@ __divsi3:
 	mov 32,a1
 	mov 1,a0
 .L1133:
-	add d1,d1
+	add_asl -1, a1, 1, d1
 	cmp_asl d1, d0, 1, a0
 	bls .L1132
-	add -1,a1
+	cmp 0,a1
 	bne .L1133
 .L1140:
 	clr d0
@@ -3365,10 +3364,10 @@ __modsi3:
 	mov 32,a1
 	mov 1,a0
 .L1157:
-	add d1,d1
+	add_asl -1, a1, 1, d1
 	cmp_asl d1, d0, 1, a0
 	bls .L1173
-	add -1,a1
+	cmp 0,a1
 	bne .L1157
 .L1158:
 	cmp_mov 0, r1, r0, d0
@@ -3403,58 +3402,63 @@ __modsi3:
 	.global __udivmodhi4
 	.type	__udivmodhi4, @function
 __udivmodhi4:
+	movm [d2],(sp)
 	mov d0,r2
 	exthu d1,a0
 	exthu d0
 	cmp d0,a0
 	bcc .L1194
-	mov 16,a0
-	mov 1,r0
-	exthu r2,a1
+	mov 16,d0
+	mov 1,a1
+	exthu r2,r1
 .L1179:
-	exth d1,d0
-	cmp 0,d0
+	mov d1,r0
+	add r0,r0
+	exth d1,a0
+	add_cmp -1, d0, 0, a0
+	exthu r0,d2
 	blt .L1180
-	add d1,d1
-	exthu d1,d0
-	cmp_asl d0, a1, 1, r0
+	cmp_asl d2, r1, 1, a1
+	mov r0,d1
 	bls .L1180
-	add -1,a0
+	cmp 0,d0
 	bne .L1179
-	mov a0,r0
+	mov d0,a1
 .L1191:
-	mov r0,d0
-.L1182:
-	mov (12,sp),d1
+	mov (16,sp),d1
+	mov a1,d0
 	cmp 0,d1
 	bne .L1195
-	retf [],0
+.L1178:
+	retf [d2],4
 .L1180:
-	exthu r0,a0
-	cmp 0,a0
+	exthu a1,r3
+	cmp 0,r3
 	beq .L1191
 	clr d0
 .L1181:
-	exthu d1,a1
-	mov a1,r3
-	exthu r2,r1
-	lsr 1,a0
-	cmp_lsr a1, r1, 1, r3
+	exthu d1,a0
+	mov_mov r3, r1, a0, d2
+	exthu r2,r0
+	lsr 1,r1
+	cmp_lsr a0, r0, 1, d2
 	bcs .L1184
-	or_sub r0, d0, d1, r2
+	or_sub a1, d0, d1, r2
 .L1184:
-	cmp 0,a0
-	mov a0,r0
-	mov r3,d1
-	beq .L1182
-	exthu a0
-	jmp .L1181
+	cmp 0,r1
+	mov r1,a1
+	mov d2,d1
+	exthu r1,r3
+	bne .L1181
+	mov (16,sp),d1
+	cmp 0,d1
+	beq .L1178
 .L1195:
 	mov r2,d0
-	retf [],0
+	retf [d2],4
 .L1194:
-	mov 1,a0
-	mov 1,r0
+	mov 1,r3
+	mov 1,a1
 	clr d0
 	jmp .L1181
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -3468,12 +3472,12 @@ __udivmodsi4_libgcc:
 	mov 32,d0
 	mov 1,a0
 .L1197:
-	cmp 0,d1
+	add_cmp -1, d0, 0, d1
 	blt .L1198
 	add d1,d1
 	cmp_asl d1, a1, 1, a0
 	bls .L1198
-	add -1,d0
+	cmp 0,d0
 	bne .L1197
 .L1209:
 	clr d0
@@ -4045,22 +4049,22 @@ __powidf2:
 	mov a3,a2
 .L1308:
 	btst 1,a2
+	mov_mov r4, d0, r5, d1
 	beq .L1306
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov r4, d0, r5, d1
 	call +__muldf3,[],0
 	mov_mov d0, r4, d1, r5
 .L1306:
-	mov a2,d0
-	lsr 31,d0
-	add d0,a2
+	mov a2,a0
+	lsr 31,a0
+	add a0,a2
 	asr 1,a2
-	cmp 0,a2
+	cmp_mov 0, a2, d2, d0
+	mov d3,d1
 	beq .L1307
 	mov d2,(12,sp)
 	mov d3,(16,sp)
-	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
 	mov_mov d0, d2, d1, d3
 	jmp .L1308
@@ -4089,18 +4093,18 @@ __powisf2:
 	mov d1,d2
 .L1319:
 	btst 1,d2
+	mov_mov d3, d1, a2, d0
 	beq .L1317
-	mov_mov a2, d0, d3, d1
 	call +__mulsf3,[],0
 	mov d0,a2
 .L1317:
-	mov d2,d0
-	lsr 31,d0
-	add d0,d2
+	mov d2,a0
+	lsr 31,a0
+	add a0,d2
 	asr 1,d2
-	cmp 0,d2
+	cmp_mov 0, d2, d3, d1
+	mov d3,d0
 	beq .L1318
-	mov_mov d3, d1, d3, d0
 	call +__mulsf3,[],0
 	mov d0,d3
 	jmp .L1319
