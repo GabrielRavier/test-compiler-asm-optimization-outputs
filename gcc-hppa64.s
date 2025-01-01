@@ -1812,25 +1812,28 @@ div:
 	.CALLINFO FRAME=64,NO_CALLS,SAVE_RP
 	.ENTRY
 	std %r2,-16(%r30)
-	extrd,s %r26,63,32,%r31
+	extrd,s %r26,63,32,%r19
 	extrd,s %r25,63,32,%r28
-	copy %r31,%r26
+	copy %r19,%r26
 	copy %r28,%r25
 	.IMPORT $$divI,MILLICODE
 	b,l $$divI,%r2
-	nop
-	copy %r31,%r26
+	ldi 0,%r31
+	copy %r19,%r26
+	copy %r29,%r20
 	copy %r28,%r25
-	copy %r29,%r31
 	ldo 64(%r30),%r30
 	.IMPORT $$remI,MILLICODE
 	b,l $$remI,%r2
-	extrd,u %r31,63,32,%r31
-	extrd,u %r29,63,32,%r29
+	depd %r20,0+32-1,32,%r31
+	copy %r29,%r19
 	ldd -80(%r30),%r2
 	ldi 0,%r28
-	depd %r31,0+32-1,32,%r28
-	depd %r29,32+32-1,32,%r28
+	depd %r19,32+32-1,32,%r31
+	extrd,u %r31,31,32,%r19
+	extrd,u %r31,63,32,%r31
+	depd %r19,0+32-1,32,%r28
+	depd %r31,32+32-1,32,%r28
 	bve (%r2)
 	ldo -64(%r30),%r30
 	.EXIT

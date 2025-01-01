@@ -2314,16 +2314,20 @@ div:
 	.set	nomacro
 	div	$0,$4,$5
 	teq	$5,$0,7
+	move	$3,$0
 	move	$2,$0
 	daddiu	$sp,$sp,-16
 	daddiu	$sp,$sp,16
-	mflo	$3
+	mflo	$5
 	mfhi	$4
-	dext	$3,$3,0,32
+	dins	$3,$5,32,32
+	dins	$3,$4,0,32
+	sll	$4,$3,0
+	dsrl	$3,$3,32
 	dins	$2,$3,32,32
-	dext	$4,$4,0,32
+	dext	$3,$4,0,32
 	jr	$31
-	dins	$2,$4,0,32
+	dins	$2,$3,0,32
 
 	.set	macro
 	.set	reorder

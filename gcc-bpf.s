@@ -7409,11 +7409,10 @@ __udivmodhi4:
 	r2 >>= 1
 	r1 = 0
 .L2490:
-	if r2 > r0 goto .L2489
+	if r2 >= r0 goto .L2489
 	r0 -= r2
-	r9 |= r1
+	r1 |= r9
 	r0 &= 0xffff
-	r1 = r9
 .L2489:
 	r2 = r5
 	r9 = r4
@@ -8276,33 +8275,37 @@ __lshrdi3:
 	r0 = r2
 	r0 &= 32
 	if r0 == 0 goto .L2676
-	r2 += -32
-	r1 >>= 32
-	r5 = r2;r5 &= 0xffffffff
 	r0 = 0
-	r1 >>= r5
 	r0 <<= 32
+	r2 += -32
+	r9 = r0
+	r5 = r2;r5 &= 0xffffffff
+	r1 >>= 32
+	r1 >>= r5
 	r3 = r1;r3 &= 0xffffffff
-	r0 |= r3
+	r0 = r3
+	r0 |= r9
 	exit
 .L2676:
 	if r2 == 0 goto .L2679
 	r5 = r2;r5 &= 0xffffffff
 	r3 = r1
-	r4 = 32
 	r3 >>= 32
-	r4 -= r2
 	r9 = r3
-	r2 = r4;r2 &= 0xffffffff
 	r9 >>= r5
-	r3 <<= r2
 	r0 = r9;r0 &= 0xffffffff
-	r1 = r1;r1 &= 0xffffffff
 	r0 <<= 32
+	r4 = 32
+	r9 = r0
+	r4 -= r2
+	r1 = r1;r1 &= 0xffffffff
+	r2 = r4;r2 &= 0xffffffff
 	r1 >>= r5
+	r3 <<= r2
 	r3 |= r1
 	r3 = r3;r3 &= 0xffffffff
-	r0 |= r3
+	r0 = r3
+	r0 |= r9
 	exit
 .L2679:
 	r0 = r1

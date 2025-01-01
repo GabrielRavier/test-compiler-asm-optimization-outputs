@@ -2944,29 +2944,40 @@ div:
 	br.call.sptk.many b0 = __divdi3#
 	;;
 	.mmi
+	mov r34 = r8
 	mov r1 = r37
-	mov r39 = r33
 	nop 0
 	.mmb
+	mov r39 = r33
 	mov r38 = r32
-	mov r34 = r8
 	br.call.sptk.many b0 = __moddi3#
 	;;
 	.mmi
-	mov r14 = r0
+	adds r15 = 16, r12
 	nop 0
-	addp4 r34 = r34, r0
+	mov r14 = r0
 	.mii
-	addp4 r8 = r8, r0
+	adds r16 = 20, r12
 	mov r1 = r37
 	;;
-	shl r34 = r34, 32
+	unpack4.l r34 = r8, r34
+	;;
+	.mmi
+	st8 [r15] = r34
+	;;
+	ld4 r15 = [r15]
+	nop 0
+	.mmi
+	ld4 r16 = [r16]
+	;;
+	nop 0
+	shl r15 = r15, 32
 	;;
 	.mii
 	nop 0
-	mix4.l r14 = r14, r34
+	mix4.l r14 = r14, r15
 	;;
-	mix4.r r14 = r8, r14
+	mix4.r r14 = r16, r14
 	;;
 	.mii
 	mov r8 = r14
@@ -8205,56 +8216,50 @@ __lshrdi3:
 	tbit.z p6, p7 = r33, 5
 	nop 0
 	.mmi
-	adds r16 = -32, r33
-	mov r15 = r0
-	shr.u r14 = r32, 32
+	adds r15 = -32, r33
+	mov r8 = r0
+	shr.u r16 = r32, 32
 	;;
 	.mmi
 	nop 0
-	(p7) addp4 r16 = r16, r0
+	(p7) addp4 r15 = r15, r0
 	nop 0
 	;;
 	.mib
 	nop 0
-	(p7) shr.u r14 = r14, r16
+	(p7) shr.u r16 = r16, r15
 	(p7) br.cond.dptk .L1064
 	;;
 	.mmi
-	sub r16 = 32, r33
-	addp4 r18 = r33, r0
-	extr.u r17 = r32, 32, 32
-	.mmi
-	addp4 r14 = r32, r0
+	addp4 r8 = r33, r0
 	cmp4.eq p6, p7 = 0, r33
-	shr.u r15 = r32, 32
+	extr.u r16 = r32, 32, 32
+	.mmi
+	sub r15 = 32, r33
+	addp4 r17 = r32, r0
+	shr.u r14 = r32, 32
 	;;
 	.mib
-	addp4 r16 = r16, r0
 	(p6) mov r8 = r32
+	addp4 r15 = r15, r0
 	(p6) br.cond.dpnt .L1062
 	;;
 	.mii
 	nop 0
-	shr.u r14 = r14, r18
-	shr.u r15 = r15, r18
+	shr.u r17 = r17, r8
+	shl r16 = r16, r15
 	;;
 	.mii
 	nop 0
-	shl r17 = r17, r16
+	shr.u r8 = r14, r8
 	;;
-	or r14 = r17, r14
+	or r16 = r16, r17
 	;;
 .L1064:
-	.mmi
-	mov r8 = r0
-	nop 0
-	shl r14 = r14, 32
-	;;
 	.mii
 	nop 0
-	mix4.r r8 = r15, r8
-	;;
-	mix4.l r8 = r8, r14
+	unpack4.l r8 = r8, r16
+	nop 0
 .L1062:
 	.mib
 	nop 0

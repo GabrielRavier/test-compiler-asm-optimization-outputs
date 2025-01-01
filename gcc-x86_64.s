@@ -1077,9 +1077,10 @@ insque:
 	.cfi_startproc
 	test	rsi, rsi
 	je	.L235
-	mov	rax, QWORD PTR [rsi]
-	mov	QWORD PTR [rdi+8], rsi
-	mov	QWORD PTR [rdi], rax
+	movq	xmm0, QWORD PTR [rsi]
+	movq	xmm1, rsi
+	punpcklqdq	xmm0, xmm1
+	movups	XMMWORD PTR [rdi], xmm0
 	mov	QWORD PTR [rsi], rdi
 	mov	rax, QWORD PTR [rdi]
 	test	rax, rax
@@ -1090,8 +1091,8 @@ insque:
 	.p2align 4,,10
 	.p2align 3
 .L235:
-	mov	QWORD PTR [rdi+8], 0
-	mov	QWORD PTR [rdi], 0
+	pxor	xmm0, xmm0
+	movups	XMMWORD PTR [rdi], xmm0
 	ret
 	.cfi_endproc
 .LFE42:

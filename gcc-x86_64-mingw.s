@@ -1021,9 +1021,10 @@ insque:
 	.seh_endprologue
 	test	rdx, rdx
 	je	.L229
-	mov	rax, QWORD PTR [rdx]
-	mov	QWORD PTR 8[rcx], rdx
-	mov	QWORD PTR [rcx], rax
+	movq	xmm0, QWORD PTR [rdx]
+	movq	xmm1, rdx
+	punpcklqdq	xmm0, xmm1
+	movups	XMMWORD PTR [rcx], xmm0
 	mov	QWORD PTR [rdx], rcx
 	mov	rax, QWORD PTR [rcx]
 	test	rax, rax
@@ -1034,8 +1035,8 @@ insque:
 	.p2align 4,,10
 	.p2align 3
 .L229:
-	mov	QWORD PTR 8[rcx], 0
-	mov	QWORD PTR [rcx], 0
+	pxor	xmm0, xmm0
+	movups	XMMWORD PTR [rcx], xmm0
 	ret
 	.seh_endproc
 	.p2align 4

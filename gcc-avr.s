@@ -547,9 +547,9 @@ swab:
 	add r18,r30
 	adc r19,r31
 .L101:
-	ldd r24,Z+1
-	st X,r24
 	ld r24,Z
+	ldd r25,Z+1
+	st X,r25
 	adiw r26,1
 	st X,r24
 	sbiw r26,1
