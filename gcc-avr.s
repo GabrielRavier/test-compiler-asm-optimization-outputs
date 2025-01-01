@@ -18,28 +18,30 @@ memmove:
 .L__stack_usage = 4
 	mov r16,r24
 	mov r17,r25
-	mov r30,r22
-	mov r31,r23
-	mov r18,r20
-	mov r19,r21
-	cp r30,r16
-	cpc r31,r17
+	mov r18,r22
+	mov r19,r23
+	mov r28,r20
+	mov r29,r21
+	cp r18,r16
+	cpc r19,r17
 	brsh .L2
-	add r30,r18
-	adc r31,r19
-	mov r26,r16
-	mov r27,r17
-	add r26,r18
-	adc r27,r19
-	or r18,r19
+	mov r26,r18
+	mov r27,r19
+	add r26,r28
+	adc r27,r29
+	mov r30,r16
+	mov r31,r17
+	add r30,r28
+	adc r31,r29
+	or r28,r29
 	breq .L3
 	mov r18,r16
 	mov r19,r17
 .L4:
-	ld r24,-Z
-	st -X,r24
-	cp r26,r18
-	cpc r27,r19
+	ld r24,-X
+	st -Z,r24
+	cp r30,r18
+	cpc r31,r19
 	brne .L4
 .L3:
 	mov r24,r16
@@ -51,80 +53,79 @@ memmove:
 	pop r16
 	ret
 .L2:
-	cp r16,r30
-	cpc r17,r31
+	cp r16,r18
+	cpc r17,r19
 	breq .L3
-	cp r18,__zero_reg__
-	cpc r19,__zero_reg__
+	sbiw r28,0
 	breq .L3
-	mov r26,r16
-	mov r27,r17
-	add r18,r30
-	adc r19,r31
+	mov r30,r16
+	mov r31,r17
+	add r28,r18
+	adc r29,r19
 .L5:
-	adiw r30,1
-	mov r24,r30
-	mov r25,r31
-	sbiw r24,1
-	mov r28,r24
-	mov r29,r25
-	ld r24,Y
-	st X+,r24
-	cp r30,r18
-	cpc r31,r19
+	subi r18,-1
+	sbci r19,-1
+	mov r26,r18
+	mov r27,r19
+	ld r24,-X
+	st Z+,r24
+	cp r18,r28
+	cpc r19,r29
 	brne .L5
 	rjmp .L3
 	.size	memmove, .-memmove
 .global	memccpy
 	.type	memccpy, @function
 memccpy:
+	push r16
+	push r17
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 2 */
-.L__stack_usage = 2
+/* stack size = 4 */
+.L__stack_usage = 4
+	mov r16,r24
+	mov r17,r25
 	mov r26,r18
 	mov r27,r19
 	ldi r21,0
 	sbiw r26,0
-	breq .L13
+	breq .L9
 	mov r28,r22
 	mov r29,r23
-	mov r30,r24
-	mov r31,r25
+	mov r30,r16
+	mov r31,r17
 .L10:
-	mov r18,r30
-	mov r19,r31
+	mov r16,r30
+	mov r17,r31
 	ld r25,Y+
 	st Z+,r25
 	cp r25,r20
 	cpc __zero_reg__,r21
 	breq .L9
 	sbiw r26,1
-	mov r18,r30
-	mov r19,r31
+	mov r16,r30
+	mov r17,r31
 	sbiw r26,0
 	brne .L10
 .L9:
-	mov r24,r18
-	mov r25,r19
+	mov r24,r16
+	mov r25,r17
 	adiw r24,1
 	or r26,r27
-	breq .L15
-.L12:
+	breq .L14
+.L8:
 /* epilogue start */
 	pop r29
 	pop r28
+	pop r17
+	pop r16
 	ret
-.L13:
-	mov r18,r24
-	mov r19,r25
-	rjmp .L9
-.L15:
+.L14:
 	ldi r24,0
 	ldi r25,0
-	rjmp .L12
+	rjmp .L8
 	.size	memccpy, .-memccpy
 .global	memchr
 	.type	memchr, @function
@@ -138,30 +139,30 @@ memchr:
 	ldi r23,0
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L17
+	breq .L16
 	mov r30,r24
 	mov r31,r25
-.L18:
+.L17:
 	mov r24,r30
 	mov r25,r31
 	ld r20,Z+
 	cp r20,r22
 	cpc __zero_reg__,r23
-	breq .L17
+	breq .L16
 	mov r24,r30
 	mov r25,r31
 	subi r18,1
 	sbc r19,__zero_reg__
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L18
-.L17:
+	brne .L17
+.L16:
 	or r18,r19
-	breq .L23
-.L20:
+	breq .L21
+.L15:
 /* epilogue start */
 	ret
-.L23:
+.L21:
 	ldi r24,0
 	ldi r25,0
 	ret
@@ -169,61 +170,63 @@ memchr:
 .global	memcmp
 	.type	memcmp, @function
 memcmp:
+	push r16
+	push r17
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 2 */
-.L__stack_usage = 2
+/* stack size = 4 */
+.L__stack_usage = 4
+	mov r16,r24
+	mov r17,r25
+	mov r28,r22
+	mov r29,r23
 	mov r18,r20
 	mov r19,r21
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L29
-	mov r26,r24
-	mov r27,r25
-	mov r30,r22
-	mov r31,r23
-.L26:
+	breq .L23
+	mov r26,r16
+	mov r27,r17
+	mov r30,r28
+	mov r31,r29
+.L24:
 	mov r28,r30
 	mov r29,r31
-	mov r20,r26
-	mov r21,r27
+	mov r16,r26
+	mov r17,r27
 	ld r25,X+
 	ld r24,Z+
 	cpse r25,r24
-	rjmp .L25
+	rjmp .L23
 	subi r18,1
 	sbc r19,__zero_reg__
-	mov r20,r26
-	mov r21,r27
+	mov r16,r26
+	mov r17,r27
 	mov r28,r30
 	mov r29,r31
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L26
-.L25:
+	brne .L24
+.L23:
 	ldi r24,0
 	ldi r25,0
 	or r18,r19
-	breq .L28
-	mov r30,r20
-	mov r31,r21
+	breq .L22
+	mov r30,r16
+	mov r31,r17
 	ld r24,Z
 	ld r25,Y
 	sub r24,r25
 	sbc r25,r25
-.L28:
+.L22:
 /* epilogue start */
 	pop r29
 	pop r28
+	pop r17
+	pop r16
 	ret
-.L29:
-	mov r28,r22
-	mov r29,r23
-	mov r20,r24
-	mov r21,r25
-	rjmp .L25
 	.size	memcmp, .-memcmp
 .global	memcpy
 	.type	memcpy, @function
@@ -237,14 +240,14 @@ memcpy:
 	mov r26,r20
 	mov r27,r21
 	sbiw r26,0
-	breq .L32
+	breq .L29
 	mov r30,r24
 	mov r31,r25
 	mov r22,r18
 	mov r23,r19
 	add r22,r26
 	adc r23,r27
-.L33:
+.L30:
 	subi r18,-1
 	sbci r19,-1
 	mov r26,r18
@@ -253,8 +256,8 @@ memcpy:
 	st Z+,r20
 	cp r18,r22
 	cpc r19,r23
-	brne .L33
-.L32:
+	brne .L30
+.L29:
 /* epilogue start */
 	ret
 	.size	memcpy, .-memcpy
@@ -280,27 +283,27 @@ memrchr:
 	mov r19,r29
 	com r18
 	com r19
-.L36:
+.L33:
 	mov r26,r18
 	mov r27,r19
 	add r26,r30
 	adc r27,r31
 	cp r30,r20
 	cpc r31,r21
-	breq .L40
+	breq .L37
 	ld r25,-Z
 	cp r25,r22
 	cpc __zero_reg__,r23
-	brne .L36
+	brne .L33
 	mov r24,r28
 	mov r25,r29
 	add r24,r26
 	adc r25,r27
-	rjmp .L37
-.L40:
+	rjmp .L32
+.L37:
 	ldi r24,0
 	ldi r25,0
-.L37:
+.L32:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -319,17 +322,17 @@ memset:
 	mov r19,r21
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L42
+	breq .L39
 	add r18,r26
 	adc r19,r27
 	mov r30,r26
 	mov r31,r27
-.L43:
+.L40:
 	st Z+,r22
 	cp r30,r18
 	cpc r31,r19
-	brne .L43
-.L42:
+	brne .L40
+.L39:
 	mov r24,r26
 	mov r25,r27
 /* epilogue start */
@@ -344,32 +347,34 @@ stpcpy:
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	mov r28,r24
-	mov r29,r25
+	mov r30,r24
+	mov r31,r25
 	mov r26,r22
 	mov r27,r23
 	ld r24,X
-	st Y,r24
+	st Z,r24
 	cp r24, __zero_reg__
-	breq .L46
+	breq .L45
 	adiw r26,1
-	mov r30,r28
-	mov r31,r29
 	adiw r30,1
-.L47:
+.L44:
+	mov r24,r30
+	mov r25,r31
+	ld r18,X+
+	st Z+,r18
 	mov r28,r30
 	mov r29,r31
-	ld r24,X+
-	st Z+,r24
-	cpse r24,__zero_reg__
-	rjmp .L47
-.L46:
-	mov r24,r28
-	mov r25,r29
+	ld r18,-Y
+	cpse r18,__zero_reg__
+	rjmp .L44
+.L42:
 /* epilogue start */
 	pop r29
 	pop r28
 	ret
+.L45:
+	mov r24,r30
+	rjmp .L42
 	.size	stpcpy, .-stpcpy
 .global	strchrnul
 	.type	strchrnul, @function
@@ -378,30 +383,31 @@ strchrnul:
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	mov r26,r24
-	mov r27,r25
+	mov r30,r24
+	mov r31,r25
 	ldi r23,0
-	ld r24,X
-	cp r24, __zero_reg__
-	breq .L50
-	mov r30,r26
-	mov r31,r27
-.L51:
-	mov r26,r30
-	mov r27,r31
-	ld r24,Z+
-	cp r24,r22
-	cpc __zero_reg__,r23
-	breq .L50
-	mov r26,r30
-	mov r27,r31
 	ld r24,Z
-	cpse r24,__zero_reg__
-	rjmp .L51
-.L50:
-	mov r24,r26
-	mov r25,r27
+	cp r24, __zero_reg__
+	breq .L51
+.L49:
+	mov r24,r30
+	mov r25,r31
+	ld r18,Z+
+	cp r18,r22
+	cpc __zero_reg__,r23
+	breq .L52
+	mov r24,r30
+	mov r25,r31
+	ld r18,Z
+	cpse r18,__zero_reg__
+	rjmp .L49
+.L47:
 /* epilogue start */
+	ret
+.L52:
+	ret
+.L51:
+	mov r24,r30
 	ret
 	.size	strchrnul, .-strchrnul
 .global	strchr
@@ -424,14 +430,14 @@ strchr:
 	sbc __tmp_reg__,__tmp_reg__
 	cp r18,r20
 	cpc r0,r21
-	breq .L54
+	breq .L53
 	mov r26,r30
 	mov r27,r31
 	ld r24,-X
 	cpse r24,__zero_reg__
 	rjmp .L55
 	ldi r25,0
-.L54:
+.L53:
 /* epilogue start */
 	ret
 	.size	strchr, .-strchr
@@ -451,23 +457,23 @@ strcmp:
 	ld r25,Y
 	ld r24,X
 	cpse r25,r24
-	rjmp .L59
+	rjmp .L58
 	mov r30,r28
 	mov r31,r29
-.L60:
+.L59:
 	mov r28,r30
 	mov r29,r31
 	ld r24,Z+
 	cp r24, __zero_reg__
-	breq .L59
+	breq .L58
 	mov r28,r30
 	mov r29,r31
 	adiw r26,1
 	ld r25,Z
 	ld r24,X
 	cp r25,r24
-	breq .L60
-.L59:
+	breq .L59
+.L58:
 	ld r24,Y
 	ld r25,X
 	sub r24,r25
@@ -488,41 +494,43 @@ strlen:
 	mov r27,r25
 	ld r24,X
 	cp r24, __zero_reg__
-	breq .L65
+	breq .L64
 	mov r30,r26
 	mov r31,r27
 	adiw r30,1
-.L64:
+.L63:
 	mov r18,r30
 	mov r19,r31
 	ld r25,Z+
 	cpse r25,__zero_reg__
-	rjmp .L64
-.L63:
+	rjmp .L63
+.L62:
 	mov r24,r18
 	mov r25,r19
 	sub r24,r26
 	sbc r25,r27
 /* epilogue start */
 	ret
-.L65:
+.L64:
 	mov r18,r26
 	mov r19,r27
-	rjmp .L63
+	rjmp .L62
 	.size	strlen, .-strlen
 .global	strncmp
 	.type	strncmp, @function
 strncmp:
+	push r14
+	push r15
 	push r16
 	push r17
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 4 */
-.L__stack_usage = 4
-	mov r26,r24
-	mov r27,r25
+/* stack size = 6 */
+.L__stack_usage = 6
+	mov r14,r24
+	mov r15,r25
 	mov r18,r22
 	mov r19,r23
 	mov r16,r20
@@ -531,25 +539,29 @@ strncmp:
 	ldi r25,0
 	cp r16,__zero_reg__
 	cpc r17,__zero_reg__
-	breq .L68
-	ld r24,X
+	breq .L66
+	mov r28,r14
+	mov r29,r15
+	ld r24,Y
 	cp r24, __zero_reg__
-	breq .L73
+	breq .L68
 	mov r30,r18
 	mov r31,r19
+	mov r26,r14
+	mov r27,r15
 	add r16,r18
 	adc r17,r19
-.L70:
+.L69:
 	mov r18,r30
 	mov r19,r31
-	mov r22,r26
-	mov r23,r27
+	mov r14,r26
+	mov r15,r27
 	ld r24,Z+
 	cp r24, __zero_reg__
-	breq .L69
+	breq .L68
 	cp r30,r16
 	cpc r31,r17
-	breq .L69
+	breq .L68
 	ld r25,X+
 	mov r20,r30
 	mov r21,r31
@@ -559,34 +571,32 @@ strncmp:
 	mov r29,r21
 	ld r24,Y
 	cpse r25,r24
-	rjmp .L69
-	mov r22,r26
-	mov r23,r27
+	rjmp .L68
+	mov r14,r26
+	mov r15,r27
 	mov r18,r30
 	mov r19,r31
 	ld r24,X
 	cpse r24,__zero_reg__
-	rjmp .L70
-.L69:
-	mov r30,r22
-	mov r31,r23
+	rjmp .L69
+.L68:
+	mov r30,r14
+	mov r31,r15
 	ld r24,Z
 	mov r28,r18
 	mov r29,r19
 	ld r25,Y
 	sub r24,r25
 	sbc r25,r25
-.L68:
+.L66:
 /* epilogue start */
 	pop r29
 	pop r28
 	pop r17
 	pop r16
+	pop r15
+	pop r14
 	ret
-.L73:
-	mov r22,r26
-	mov r23,r27
-	rjmp .L69
 	.size	strncmp, .-strncmp
 .global	swab
 	.type	swab, @function
@@ -597,33 +607,33 @@ swab:
 .L__stack_usage = 0
 	mov r30,r24
 	mov r31,r25
+	mov r26,r22
+	mov r27,r23
 	mov r18,r20
 	mov r19,r21
 	cpi r18,2
 	cpc r19,__zero_reg__
-	brlt .L74
-	subi r18,2
-	sbc r19,__zero_reg__
-	andi r18,254
-	subi r18,-2
-	sbci r19,-1
-	add r18,r30
-	adc r19,r31
-	mov r26,r22
-	mov r27,r23
-.L76:
-	ldd r24,Z+1
-	st X,r24
-	ld r24,Z
+	brlt .L72
+	mov r24,r18
+	mov r25,r19
+	sbiw r24,2
+	andi r24,254
+	adiw r24,2
+	add r24,r30
+	adc r25,r31
+.L74:
+	ldd r18,Z+1
+	st X,r18
+	ld r18,Z
 	adiw r26,1
-	st X,r24
+	st X,r18
 	sbiw r26,1
 	adiw r26,2
 	adiw r30,2
-	cp r30,r18
-	cpc r31,r19
-	brne .L76
-.L74:
+	cp r30,r24
+	cpc r31,r25
+	brne .L74
+.L72:
 /* epilogue start */
 	ret
 	.size	swab, .-swab
@@ -642,9 +652,9 @@ isalpha:
 	ldi r24,lo8(1)
 	cpi r18,26
 	cpc r19,__zero_reg__
-	brlo .L79
+	brlo .L77
 	ldi r24,0
-.L79:
+.L77:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -661,9 +671,9 @@ isascii:
 	ldi r24,lo8(1)
 	cpi r18,-128
 	cpc r19,__zero_reg__
-	brlo .L81
+	brlo .L79
 	ldi r24,0
-.L81:
+.L79:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -679,16 +689,16 @@ isblank:
 	mov r19,r25
 	cpi r18,32
 	cpc r19,__zero_reg__
-	breq .L85
+	breq .L83
 	ldi r24,lo8(1)
 	cpi r18,9
 	cpc r19,__zero_reg__
-	breq .L84
+	breq .L82
 	ldi r24,0
-.L84:
+.L82:
 	ldi r25,0
 	ret
-.L85:
+.L83:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -705,16 +715,16 @@ iscntrl:
 	mov r19,r25
 	cpi r18,32
 	cpc r19,__zero_reg__
-	brlo .L89
+	brlo .L87
 	ldi r24,lo8(1)
 	cpi r18,127
 	cpc r19,__zero_reg__
-	breq .L88
+	breq .L86
 	ldi r24,0
-.L88:
+.L86:
 	ldi r25,0
 	ret
-.L89:
+.L87:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -734,9 +744,9 @@ isdigit:
 	ldi r24,lo8(1)
 	cpi r18,10
 	cpc r19,__zero_reg__
-	brlo .L91
+	brlo .L89
 	ldi r24,0
-.L91:
+.L89:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -755,9 +765,9 @@ isgraph:
 	ldi r24,lo8(1)
 	cpi r18,94
 	cpc r19,__zero_reg__
-	brlo .L93
+	brlo .L91
 	ldi r24,0
-.L93:
+.L91:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -776,9 +786,9 @@ islower:
 	ldi r24,lo8(1)
 	cpi r18,26
 	cpc r19,__zero_reg__
-	brlo .L95
+	brlo .L93
 	ldi r24,0
-.L95:
+.L93:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -797,9 +807,9 @@ isprint:
 	ldi r24,lo8(1)
 	cpi r18,95
 	cpc r19,__zero_reg__
-	brlo .L97
+	brlo .L95
 	ldi r24,0
-.L97:
+.L95:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -815,18 +825,18 @@ isspace:
 	mov r19,r25
 	cpi r18,32
 	cpc r19,__zero_reg__
-	breq .L101
+	breq .L99
 	subi r18,9
 	sbc r19,__zero_reg__
 	ldi r24,lo8(1)
 	cpi r18,5
 	cpc r19,__zero_reg__
-	brlo .L100
+	brlo .L98
 	ldi r24,0
-.L100:
+.L98:
 	ldi r25,0
 	ret
-.L101:
+.L99:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -846,9 +856,9 @@ isupper:
 	ldi r24,lo8(1)
 	cpi r18,26
 	cpc r19,__zero_reg__
-	brlo .L103
+	brlo .L101
 	ldi r24,0
-.L103:
+.L101:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -864,37 +874,37 @@ iswcntrl:
 	mov r19,r25
 	cpi r18,32
 	cpc r19,__zero_reg__
-	brlo .L107
+	brlo .L105
 	mov r24,r18
 	mov r25,r19
 	subi r24,127
 	sbc r25,__zero_reg__
 	cpi r24,33
 	cpc r25,__zero_reg__
-	brlo .L108
+	brlo .L106
 	subi r24,-87
 	sbci r25,31
 	sbiw r24,2
-	brlo .L109
+	brlo .L107
 	subi r18,-7
 	sbci r19,-1
 	ldi r24,lo8(1)
 	cpi r18,3
 	cpc r19,__zero_reg__
-	brlo .L106
+	brlo .L104
 	ldi r24,0
+.L104:
+	ldi r25,0
+	ret
+.L105:
+	ldi r24,lo8(1)
+	ldi r25,0
+	ret
 .L106:
+	ldi r24,lo8(1)
 	ldi r25,0
 	ret
 .L107:
-	ldi r24,lo8(1)
-	ldi r25,0
-	ret
-.L108:
-	ldi r24,lo8(1)
-	ldi r25,0
-	ret
-.L109:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -914,9 +924,9 @@ iswdigit:
 	ldi r24,lo8(1)
 	cpi r18,10
 	cpc r19,__zero_reg__
-	brlo .L111
+	brlo .L109
 	ldi r24,0
-.L111:
+.L109:
 	ldi r25,0
 /* epilogue start */
 	ret
@@ -932,11 +942,11 @@ iswprint:
 	mov r19,r25
 	cpi r18,-1
 	cpc r19,__zero_reg__
-	brlo .L120
+	brlo .L118
 	cpi r18,40
 	ldi r20,32
 	cpc r19,r20
-	brlo .L117
+	brlo .L115
 	mov r24,r18
 	mov r25,r19
 	subi r24,42
@@ -944,21 +954,21 @@ iswprint:
 	cpi r24,-42
 	ldi r20,-73
 	cpc r25,r20
-	brlo .L118
+	brlo .L116
 	subi r24,-42
 	sbci r25,-65
 	cpi r24,-7
 	sbci r25,31
-	brlo .L119
+	brlo .L117
 	andi r18,254
 	ldi r24,lo8(1)
 	cpi r18,-2
 	sbci r19,-1
-	breq .L121
-.L116:
+	breq .L119
+.L114:
 	ldi r25,0
 	ret
-.L120:
+.L118:
 	subi r18,-1
 	sbci r19,-1
 	andi r18,127
@@ -966,23 +976,23 @@ iswprint:
 	ldi r24,lo8(1)
 	cpi r18,33
 	cpc r19,__zero_reg__
-	brsh .L114
+	brsh .L112
 	ldi r24,0
-.L114:
-	ldi r25,0
-	ret
-.L121:
-	ldi r24,0
-	rjmp .L116
-.L117:
-	ldi r24,lo8(1)
-	ldi r25,0
-	ret
-.L118:
-	ldi r24,lo8(1)
+.L112:
 	ldi r25,0
 	ret
 .L119:
+	ldi r24,0
+	rjmp .L114
+.L115:
+	ldi r24,lo8(1)
+	ldi r25,0
+	ret
+.L116:
+	ldi r24,lo8(1)
+	ldi r25,0
+	ret
+.L117:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -1001,19 +1011,19 @@ iswxdigit:
 	mov r25,r19
 	sbiw r24,48
 	sbiw r24,10
-	brlo .L125
+	brlo .L123
 	ori r18,32
 	subi r18,97
 	sbc r19,__zero_reg__
 	ldi r24,lo8(1)
 	cpi r18,6
 	cpc r19,__zero_reg__
-	brlo .L124
+	brlo .L122
 	ldi r24,0
-.L124:
+.L122:
 	ldi r25,0
 	ret
-.L125:
+.L123:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -1090,7 +1100,7 @@ fdim:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L130
+	rjmp .L128
 	ldd r25,Y+28
 	ldd r24,Y+27
 	mov r12,r17
@@ -1111,7 +1121,7 @@ fdim:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L131
+	rjmp .L129
 	mov r4,r17
 	mov r5,r16
 	mov r6,r14
@@ -1130,8 +1140,8 @@ fdim:
 	ldd r25,Y+16
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L134
-	brlt .L134
+	breq .L132
+	brlt .L132
 	std Y+19,r17
 	std Y+20,r16
 	std Y+21,r14
@@ -1149,7 +1159,7 @@ fdim:
 	ldd r24,Y+25
 	ldd r25,Y+26
 	rcall __subsf3
-.L128:
+.L125:
 	std Y+5,r22
 	std Y+6,r23
 	std Y+7,r24
@@ -1184,24 +1194,24 @@ fdim:
 	pop r3
 	pop r2
 	ret
-.L130:
+.L128:
 	ldd r22,Y+17
 	ldd r23,Y+18
 	mov r24,r3
 	mov r25,r2
-	rjmp .L128
-.L131:
+	rjmp .L125
+.L129:
 	mov r22,r17
 	mov r23,r16
 	ldd r24,Y+28
 	ldd r25,Y+27
-	rjmp .L128
-.L134:
+	rjmp .L125
+.L132:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L128
+	rjmp .L125
 	.size	fdim, .-fdim
 .global	fdimf
 	.type	fdimf, @function
@@ -1262,7 +1272,7 @@ fdimf:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L138
+	rjmp .L136
 	ldd r25,Y+28
 	ldd r24,Y+27
 	mov r12,r17
@@ -1283,7 +1293,7 @@ fdimf:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L139
+	rjmp .L137
 	mov r4,r17
 	mov r5,r16
 	mov r6,r14
@@ -1302,8 +1312,8 @@ fdimf:
 	ldd r25,Y+16
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L142
-	brlt .L142
+	breq .L140
+	brlt .L140
 	std Y+19,r17
 	std Y+20,r16
 	std Y+21,r14
@@ -1321,7 +1331,7 @@ fdimf:
 	ldd r24,Y+25
 	ldd r25,Y+26
 	rcall __subsf3
-.L136:
+.L133:
 	std Y+5,r22
 	std Y+6,r23
 	std Y+7,r24
@@ -1356,24 +1366,24 @@ fdimf:
 	pop r3
 	pop r2
 	ret
-.L138:
+.L136:
 	ldd r22,Y+17
 	ldd r23,Y+18
 	mov r24,r3
 	mov r25,r2
-	rjmp .L136
-.L139:
+	rjmp .L133
+.L137:
 	mov r22,r17
 	mov r23,r16
 	ldd r24,Y+28
 	ldd r25,Y+27
-	rjmp .L136
-.L142:
+	rjmp .L133
+.L140:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L136
+	rjmp .L133
 	.size	fdimf, .-fdimf
 .global	fmax
 	.type	fmax, @function
@@ -1434,7 +1444,7 @@ fmax:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L149
+	rjmp .L147
 	mov r8,r2
 	mov r9,r3
 	mov r10,r16
@@ -1453,7 +1463,7 @@ fmax:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L150
+	rjmp .L148
 	mov r24,r17
 	ldi r25,0
 	andi r24,128
@@ -1462,19 +1472,19 @@ fmax:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L145
+	breq .L143
 	mov r24,r15
 	ldi r25,0
 	andi r24,128
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L151
+	rjmp .L149
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-.L144:
+.L141:
 	ldd r19,Y+9
 	ldd r18,Y+1
 	std Y+5,r25
@@ -1509,7 +1519,7 @@ fmax:
 	pop r3
 	pop r2
 	ret
-.L145:
+.L143:
 	std Y+13,r2
 	std Y+14,r3
 	std Y+15,r16
@@ -1530,42 +1540,42 @@ fmax:
 	ldd r25,Y+20
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brge .L147
+	brge .L145
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-	rjmp .L144
+	rjmp .L141
+.L145:
+	mov r25,r6
+	mov r24,r7
+	ldd r18,Y+22
+	std Y+9,r18
+	ldd r18,Y+21
+	std Y+1,r18
+	rjmp .L141
 .L147:
-	mov r25,r6
-	mov r24,r7
-	ldd r18,Y+22
-	std Y+9,r18
-	ldd r18,Y+21
-	std Y+1,r18
-	rjmp .L144
-.L149:
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-	rjmp .L144
-.L150:
+	rjmp .L141
+.L148:
 	mov r25,r6
 	mov r24,r7
 	ldd r18,Y+22
 	std Y+9,r18
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L144
-.L151:
+	rjmp .L141
+.L149:
 	mov r25,r6
 	mov r24,r7
 	ldd r18,Y+22
 	std Y+9,r18
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L144
+	rjmp .L141
 	.size	fmax, .-fmax
 .global	fmaxf
 	.type	fmaxf, @function
@@ -1626,7 +1636,7 @@ fmaxf:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L158
+	rjmp .L156
 	mov r8,r2
 	mov r9,r3
 	mov r10,r16
@@ -1645,7 +1655,7 @@ fmaxf:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L159
+	rjmp .L157
 	mov r24,r17
 	ldi r25,0
 	andi r24,128
@@ -1654,19 +1664,19 @@ fmaxf:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L154
+	breq .L152
 	mov r24,r15
 	ldi r25,0
 	andi r24,128
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L160
+	rjmp .L158
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-.L153:
+.L150:
 	ldd r19,Y+9
 	ldd r18,Y+1
 	std Y+5,r25
@@ -1701,7 +1711,7 @@ fmaxf:
 	pop r3
 	pop r2
 	ret
-.L154:
+.L152:
 	std Y+13,r2
 	std Y+14,r3
 	std Y+15,r16
@@ -1722,42 +1732,42 @@ fmaxf:
 	ldd r25,Y+20
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brge .L156
+	brge .L154
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-	rjmp .L153
+	rjmp .L150
+.L154:
+	mov r25,r6
+	mov r24,r7
+	ldd r18,Y+22
+	std Y+9,r18
+	ldd r18,Y+21
+	std Y+1,r18
+	rjmp .L150
 .L156:
-	mov r25,r6
-	mov r24,r7
-	ldd r18,Y+22
-	std Y+9,r18
-	ldd r18,Y+21
-	std Y+1,r18
-	rjmp .L153
-.L158:
 	mov r25,r2
 	mov r24,r3
 	std Y+9,r16
 	std Y+1,r17
-	rjmp .L153
-.L159:
+	rjmp .L150
+.L157:
 	mov r25,r6
 	mov r24,r7
 	ldd r18,Y+22
 	std Y+9,r18
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L153
-.L160:
+	rjmp .L150
+.L158:
 	mov r25,r6
 	mov r24,r7
 	ldd r18,Y+22
 	std Y+9,r18
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L153
+	rjmp .L150
 	.size	fmaxf, .-fmaxf
 .global	fmaxl
 	.type	fmaxl, @function
@@ -1818,7 +1828,7 @@ fmaxl:
 	mov r17,r25
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L167
+	rjmp .L165
 	mov r10,r3
 	mov r11,r4
 	mov r12,r5
@@ -1837,7 +1847,7 @@ fmaxl:
 	mov r25,r17
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L168
+	rjmp .L166
 	mov r24,r17
 	ldi r25,0
 	andi r24,128
@@ -1846,7 +1856,7 @@ fmaxl:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L163
+	breq .L161
 	ldd r18,Y+8
 	mov r24,r18
 	ldi r25,0
@@ -1854,7 +1864,7 @@ fmaxl:
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L169
+	rjmp .L167
 	mov r18,r3
 	mov r19,r4
 	mov r20,r5
@@ -1863,8 +1873,8 @@ fmaxl:
 	mov r23,r8
 	mov r24,r9
 	mov r25,r17
-	rjmp .L162
-.L163:
+	rjmp .L159
+.L161:
 	ldi r24,lo8(1)
 	std Y+7,r24
 	ldd r17,Y+9
@@ -1878,12 +1888,12 @@ fmaxl:
 	ldd r25,Y+8
 	rcall __ltdf2
 	cpse r24,__zero_reg__
-	rjmp .L164
+	rjmp .L162
 	std Y+7,__zero_reg__
-.L164:
+.L162:
 	ldd r25,Y+7
 	cp r25, __zero_reg__
-	breq .L165
+	breq .L163
 	mov r18,r3
 	mov r19,r4
 	mov r20,r5
@@ -1893,9 +1903,9 @@ fmaxl:
 	mov r24,r9
 	ldd r25,Y+9
 	std Y+8,r25
-.L166:
+.L164:
 	ldd r25,Y+8
-.L162:
+.L159:
 /* epilogue start */
 	adiw r28,9
 	in __tmp_reg__,__SREG__
@@ -1922,7 +1932,7 @@ fmaxl:
 	pop r3
 	pop r2
 	ret
-.L165:
+.L163:
 	ldd r18,Y+1
 	ldd r19,Y+2
 	ldd r20,Y+3
@@ -1930,8 +1940,8 @@ fmaxl:
 	ldd r22,Y+5
 	ldd r23,Y+6
 	mov r24,r2
-	rjmp .L166
-.L167:
+	rjmp .L164
+.L165:
 	mov r18,r3
 	mov r19,r4
 	mov r20,r5
@@ -1940,8 +1950,8 @@ fmaxl:
 	mov r23,r8
 	mov r24,r9
 	ldd r25,Y+9
-	rjmp .L162
-.L168:
+	rjmp .L159
+.L166:
 	ldd r18,Y+1
 	ldd r19,Y+2
 	ldd r20,Y+3
@@ -1950,8 +1960,8 @@ fmaxl:
 	ldd r23,Y+6
 	mov r24,r2
 	ldd r25,Y+8
-	rjmp .L162
-.L169:
+	rjmp .L159
+.L167:
 	ldd r18,Y+1
 	ldd r19,Y+2
 	ldd r20,Y+3
@@ -1960,7 +1970,7 @@ fmaxl:
 	ldd r23,Y+6
 	mov r24,r2
 	ldd r25,Y+8
-	rjmp .L162
+	rjmp .L159
 	.size	fmaxl, .-fmaxl
 .global	fmin
 	.type	fmin, @function
@@ -2019,7 +2029,7 @@ fmin:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L176
+	rjmp .L174
 	ldd r25,Y+22
 	ldd r24,Y+21
 	mov r8,r16
@@ -2040,7 +2050,7 @@ fmin:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L177
+	rjmp .L175
 	mov r24,r11
 	ldi r25,0
 	andi r24,128
@@ -2049,19 +2059,19 @@ fmin:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L172
+	breq .L170
 	mov r24,r3
 	ldi r25,0
 	andi r24,128
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L178
+	rjmp .L176
 	mov r16,r6
 	mov r17,r7
 	std Y+9,r2
 	std Y+1,r3
-.L171:
+.L168:
 	ldd r25,Y+9
 	ldd r24,Y+1
 	std Y+5,r16
@@ -2096,7 +2106,7 @@ fmin:
 	pop r3
 	pop r2
 	ret
-.L172:
+.L170:
 	ldd r25,Y+22
 	ldd r24,Y+21
 	std Y+13,r16
@@ -2117,36 +2127,36 @@ fmin:
 	ldd r25,Y+20
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brge .L174
+	brge .L172
 	mov r16,r6
 	mov r17,r7
 	std Y+9,r2
 	std Y+1,r3
-	rjmp .L171
+	rjmp .L168
+.L172:
+	ldd r24,Y+22
+	std Y+9,r24
+	ldd r18,Y+21
+	std Y+1,r18
+	rjmp .L168
 .L174:
 	ldd r24,Y+22
 	std Y+9,r24
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L171
+	rjmp .L168
+.L175:
+	mov r16,r6
+	mov r17,r7
+	std Y+9,r2
+	std Y+1,r3
+	rjmp .L168
 .L176:
 	ldd r24,Y+22
 	std Y+9,r24
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L171
-.L177:
-	mov r16,r6
-	mov r17,r7
-	std Y+9,r2
-	std Y+1,r3
-	rjmp .L171
-.L178:
-	ldd r24,Y+22
-	std Y+9,r24
-	ldd r18,Y+21
-	std Y+1,r18
-	rjmp .L171
+	rjmp .L168
 	.size	fmin, .-fmin
 .global	fminf
 	.type	fminf, @function
@@ -2205,7 +2215,7 @@ fminf:
 	ldd r25,Y+4
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L185
+	rjmp .L183
 	ldd r25,Y+22
 	ldd r24,Y+21
 	mov r8,r16
@@ -2226,7 +2236,7 @@ fminf:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L186
+	rjmp .L184
 	mov r24,r11
 	ldi r25,0
 	andi r24,128
@@ -2235,19 +2245,19 @@ fminf:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L181
+	breq .L179
 	mov r24,r3
 	ldi r25,0
 	andi r24,128
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L187
+	rjmp .L185
 	mov r16,r6
 	mov r17,r7
 	std Y+9,r2
 	std Y+1,r3
-.L180:
+.L177:
 	ldd r25,Y+9
 	ldd r24,Y+1
 	std Y+5,r16
@@ -2282,7 +2292,7 @@ fminf:
 	pop r3
 	pop r2
 	ret
-.L181:
+.L179:
 	ldd r25,Y+22
 	ldd r24,Y+21
 	std Y+13,r16
@@ -2303,36 +2313,36 @@ fminf:
 	ldd r25,Y+20
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brge .L183
+	brge .L181
 	mov r16,r6
 	mov r17,r7
 	std Y+9,r2
 	std Y+1,r3
-	rjmp .L180
+	rjmp .L177
+.L181:
+	ldd r24,Y+22
+	std Y+9,r24
+	ldd r18,Y+21
+	std Y+1,r18
+	rjmp .L177
 .L183:
 	ldd r24,Y+22
 	std Y+9,r24
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L180
+	rjmp .L177
+.L184:
+	mov r16,r6
+	mov r17,r7
+	std Y+9,r2
+	std Y+1,r3
+	rjmp .L177
 .L185:
 	ldd r24,Y+22
 	std Y+9,r24
 	ldd r18,Y+21
 	std Y+1,r18
-	rjmp .L180
-.L186:
-	mov r16,r6
-	mov r17,r7
-	std Y+9,r2
-	std Y+1,r3
-	rjmp .L180
-.L187:
-	ldd r24,Y+22
-	std Y+9,r24
-	ldd r18,Y+21
-	std Y+1,r18
-	rjmp .L180
+	rjmp .L177
 	.size	fminf, .-fminf
 .global	fminl
 	.type	fminl, @function
@@ -2393,7 +2403,7 @@ fminl:
 	mov r17,r25
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L194
+	rjmp .L192
 	mov r10,r4
 	mov r11,r5
 	mov r12,r6
@@ -2412,7 +2422,7 @@ fminl:
 	mov r25,r17
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L195
+	rjmp .L193
 	mov r24,r17
 	ldi r25,0
 	andi r24,128
@@ -2421,14 +2431,14 @@ fminl:
 	andi r18,lo8(-128)
 	cp r18,r24
 	cpc __zero_reg__,r25
-	breq .L190
+	breq .L188
 	mov r24,r3
 	ldi r25,0
 	andi r24,128
 	clr r25
 	or r24,r25
 	brne .+2
-	rjmp .L196
+	rjmp .L194
 	ldd r18,Y+1
 	ldd r19,Y+2
 	ldd r20,Y+3
@@ -2437,8 +2447,8 @@ fminl:
 	ldd r23,Y+6
 	mov r24,r2
 	mov r25,r3
-	rjmp .L189
-.L190:
+	rjmp .L186
+.L188:
 	ldi r24,lo8(1)
 	std Y+9,r24
 	ldd r16,Y+7
@@ -2453,12 +2463,12 @@ fminl:
 	mov r25,r3
 	rcall __ltdf2
 	cpse r24,__zero_reg__
-	rjmp .L191
+	rjmp .L189
 	std Y+9,__zero_reg__
-.L191:
+.L189:
 	ldd r18,Y+9
 	cp r18, __zero_reg__
-	breq .L193
+	breq .L191
 	ldd r4,Y+1
 	ldd r5,Y+2
 	ldd r6,Y+3
@@ -2467,7 +2477,7 @@ fminl:
 	ldd r9,Y+6
 	std Y+7,r2
 	std Y+8,r3
-.L193:
+.L191:
 	mov r18,r4
 	mov r19,r5
 	mov r20,r6
@@ -2476,7 +2486,7 @@ fminl:
 	mov r23,r9
 	ldd r24,Y+7
 	ldd r25,Y+8
-.L189:
+.L186:
 /* epilogue start */
 	adiw r28,9
 	in __tmp_reg__,__SREG__
@@ -2503,6 +2513,26 @@ fminl:
 	pop r3
 	pop r2
 	ret
+.L192:
+	mov r18,r4
+	mov r19,r5
+	mov r20,r6
+	mov r21,r7
+	mov r22,r8
+	mov r23,r9
+	ldd r24,Y+7
+	ldd r25,Y+8
+	rjmp .L186
+.L193:
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r22,Y+5
+	ldd r23,Y+6
+	mov r24,r2
+	mov r25,r3
+	rjmp .L186
 .L194:
 	mov r18,r4
 	mov r19,r5
@@ -2512,27 +2542,7 @@ fminl:
 	mov r23,r9
 	ldd r24,Y+7
 	ldd r25,Y+8
-	rjmp .L189
-.L195:
-	ldd r18,Y+1
-	ldd r19,Y+2
-	ldd r20,Y+3
-	ldd r21,Y+4
-	ldd r22,Y+5
-	ldd r23,Y+6
-	mov r24,r2
-	mov r25,r3
-	rjmp .L189
-.L196:
-	mov r18,r4
-	mov r19,r5
-	mov r20,r6
-	mov r21,r7
-	mov r22,r8
-	mov r23,r9
-	ldd r24,Y+7
-	ldd r25,Y+8
-	rjmp .L189
+	rjmp .L186
 	.size	fminl, .-fminl
 	.section	.rodata
 	.type	digits, @object
@@ -2557,10 +2567,10 @@ l64a:
 	cpc r17,__zero_reg__
 	cpc r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L200
+	breq .L198
 	ldi r30,lo8(s.0)
 	ldi r31,hi8(s.0)
-.L199:
+.L197:
 	mov r27,r19
 	mov r26,r18
 	mov r25,r17
@@ -2588,8 +2598,8 @@ l64a:
 	cpc r17,__zero_reg__
 	cpc r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L199
-.L198:
+	brne .L197
+.L196:
 	st Z,__zero_reg__
 	ldi r24,lo8(s.0)
 	ldi r25,hi8(s.0)
@@ -2597,10 +2607,10 @@ l64a:
 	pop r17
 	pop r16
 	ret
-.L200:
+.L198:
 	ldi r30,lo8(s.0)
 	ldi r31,hi8(s.0)
-	rjmp .L198
+	rjmp .L196
 	.size	l64a, .-l64a
 	.local	seed
 	.comm	seed,8,1
@@ -2714,7 +2724,7 @@ insque:
 	mov r26,r22
 	mov r27,r23
 	sbiw r26,0
-	breq .L207
+	breq .L205
 	ld r24,X+
 	ld r25,X
 	sbiw r26,1
@@ -2727,17 +2737,17 @@ insque:
 	ld r24,Z
 	ldd r25,Z+1
 	sbiw r24,0
-	breq .L204
+	breq .L202
 	mov r26,r24
 	mov r27,r25
 	adiw r26,2+1
 	st X,r31
 	st -X,r30
 	sbiw r26,2
-.L204:
+.L202:
 /* epilogue start */
 	ret
-.L207:
+.L205:
 	std Z+3,__zero_reg__
 	std Z+2,__zero_reg__
 	std Z+1,__zero_reg__
@@ -2756,7 +2766,7 @@ remque:
 	ld r24,Z
 	ldd r25,Z+1
 	sbiw r24,0
-	breq .L209
+	breq .L207
 	mov r26,r24
 	mov r27,r25
 	ldd r24,Z+2
@@ -2765,18 +2775,18 @@ remque:
 	st X,r25
 	st -X,r24
 	sbiw r26,2
-.L209:
+.L207:
 	ldd r24,Z+2
 	ldd r25,Z+3
 	sbiw r24,0
-	breq .L208
+	breq .L206
 	mov r26,r24
 	mov r27,r25
 	ld r24,Z
 	ldd r25,Z+1
 	st X+,r24
 	st X,r25
-.L208:
+.L206:
 /* epilogue start */
 	ret
 	.size	remque, .-remque
@@ -2821,12 +2831,12 @@ lsearch:
 	ldd r9,Z+1
 	cp r8,__zero_reg__
 	cpc r9,__zero_reg__
-	breq .L212
+	breq .L210
 	mov r16,r4
 	mov r17,r5
 	ldi r28,0
 	ldi r29,0
-.L215:
+.L213:
 	mov r22,r16
 	mov r23,r17
 	mov r24,r3
@@ -2835,14 +2845,14 @@ lsearch:
 	mov r31,r13
 	icall
 	or r24,r25
-	breq .L217
+	breq .L215
 	adiw r28,1
 	add r16,r14
 	adc r17,r15
 	cp r28,r8
 	cpc r29,r9
-	brne .L215
-.L212:
+	brne .L213
+.L210:
 	mov r24,r8
 	mov r25,r9
 	adiw r24,1
@@ -2864,7 +2874,7 @@ lsearch:
 	rcall memcpy
 	mov r10,r24
 	mov r11,r25
-.L214:
+.L209:
 	mov r24,r10
 	mov r25,r11
 /* epilogue start */
@@ -2887,7 +2897,7 @@ lsearch:
 	pop r3
 	pop r2
 	ret
-.L217:
+.L215:
 	mov r24,r28
 	mov r25,r29
 	mov r22,r14
@@ -2897,7 +2907,7 @@ lsearch:
 	mov r11,r5
 	add r10,r24
 	adc r11,r25
-	rjmp .L214
+	rjmp .L209
 	.size	lsearch, .-lsearch
 .global	lfind
 	.type	lfind, @function
@@ -2934,12 +2944,12 @@ lfind:
 	ldd r9,Z+1
 	cp r8,__zero_reg__
 	cpc r9,__zero_reg__
-	breq .L222
+	breq .L220
 	mov r16,r10
 	mov r17,r11
 	ldi r28,0
 	ldi r29,0
-.L221:
+.L219:
 	mov r22,r16
 	mov r23,r17
 	mov r24,r7
@@ -2948,17 +2958,17 @@ lfind:
 	mov r31,r13
 	icall
 	or r24,r25
-	breq .L224
+	breq .L222
 	adiw r28,1
 	add r16,r14
 	adc r17,r15
 	cp r28,r8
 	cpc r29,r9
-	brne .L221
+	brne .L219
 	ldi r24,0
 	ldi r25,0
-	rjmp .L219
-.L224:
+	rjmp .L216
+.L222:
 	mov r24,r28
 	mov r25,r29
 	mov r22,r14
@@ -2966,7 +2976,7 @@ lfind:
 	rcall __mulhi3
 	add r24,r10
 	adc r25,r11
-.L219:
+.L216:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -2983,10 +2993,10 @@ lfind:
 	pop r7
 	pop r6
 	ret
-.L222:
+.L220:
 	ldi r24,0
 	ldi r25,0
-	rjmp .L219
+	rjmp .L216
 	.size	lfind, .-lfind
 .global	abs
 	.type	abs, @function
@@ -2998,17 +3008,17 @@ abs:
 	mov r18,r24
 	mov r19,r25
 	tst r19
-	brlt .L227
-.L226:
+	brlt .L225
+.L224:
 	mov r24,r18
 	mov r25,r19
 /* epilogue start */
 	ret
-.L227:
+.L225:
 	neg r19
 	neg r18
 	sbc r19,__zero_reg__
-	rjmp .L226
+	rjmp .L224
 	.size	abs, .-abs
 .global	atoi
 	.type	atoi, @function
@@ -3023,7 +3033,7 @@ atoi:
 .L__stack_usage = 4
 	mov r16,r24
 	mov r17,r25
-.L229:
+.L227:
 	mov r28,r16
 	mov r29,r17
 	mov r30,r16
@@ -3036,46 +3046,46 @@ atoi:
 	sbc r25,r25
 	rcall isspace
 	or r24,r25
-	brne .L229
+	brne .L227
 	ld r24,Y
 	mov r18,r24
 	mov __tmp_reg__,r24
 	lsl r0
 	sbc r19,r19
 	cpi r24,lo8(43)
-	breq .L235
+	breq .L233
 	ldi r20,lo8(1)
 	ldi r21,0
 	cpi r18,45
 	cpc r19,__zero_reg__
-	breq .L230
+	breq .L228
 	ldi r20,0
 	ldi r21,0
-	rjmp .L231
-.L235:
+	rjmp .L229
+.L233:
 	ldi r20,0
 	ldi r21,0
-.L230:
+.L228:
 	adiw r28,1
-.L231:
+.L229:
 	ld r24,Y
 	mov __tmp_reg__,r24
 	lsl r0
 	sbc r25,r25
 	sbiw r24,48
 	sbiw r24,10
-	brsh .L237
-	ldi r22,0
-	ldi r23,0
-.L233:
-	mov r24,r22
-	mov r25,r23
-	lsl r24
-	rol r25
-	lsl r24
-	rol r25
-	add r24,r22
-	adc r25,r23
+	brsh .L235
+	ldi r24,0
+	ldi r25,0
+.L231:
+	mov r18,r24
+	mov r19,r25
+	lsl r18
+	rol r19
+	lsl r18
+	rol r19
+	add r24,r18
+	adc r25,r19
 	lsl r24
 	rol r25
 	adiw r28,1
@@ -3087,10 +3097,8 @@ atoi:
 	sbc r19,r19
 	subi r18,48
 	sbc r19,__zero_reg__
-	mov r22,r24
-	mov r23,r25
-	sub r22,r18
-	sbc r23,r19
+	sub r24,r18
+	sbc r25,r19
 	ld r18,Y
 	mov __tmp_reg__,r18
 	lsl r0
@@ -3099,46 +3107,39 @@ atoi:
 	sbc r19,__zero_reg__
 	cpi r18,10
 	cpc r19,__zero_reg__
-	brlo .L233
-.L232:
-	mov r24,r22
-	mov r25,r23
+	brlo .L231
+.L230:
 	or r20,r21
-	brne .L234
-	clr r24
-	clr r25
-	sub r24,r22
-	sbc r25,r23
-.L234:
+	brne .L226
+	neg r25
+	neg r24
+	sbc r25,__zero_reg__
+.L226:
 /* epilogue start */
 	pop r29
 	pop r28
 	pop r17
 	pop r16
 	ret
-.L237:
-	ldi r22,0
-	ldi r23,0
-	rjmp .L232
+.L235:
+	ldi r24,0
+	ldi r25,0
+	rjmp .L230
 	.size	atoi, .-atoi
 .global	atol
 	.type	atol, @function
 atol:
-	push r12
-	push r13
-	push r14
-	push r15
 	push r16
 	push r17
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 8 */
-.L__stack_usage = 8
+/* stack size = 4 */
+.L__stack_usage = 4
 	mov r16,r24
 	mov r17,r25
-.L242:
+.L239:
 	mov r28,r16
 	mov r29,r17
 	mov r30,r16
@@ -3151,7 +3152,7 @@ atol:
 	sbc r25,r25
 	rcall isspace
 	or r24,r25
-	brne .L242
+	brne .L239
 	ld r24,Y
 	mov r18,r24
 	mov __tmp_reg__,r24
@@ -3159,16 +3160,16 @@ atol:
 	sbc r19,r19
 	cpi r24,lo8(43)
 	brne .+2
-	rjmp .L248
+	rjmp .L245
 	cpi r18,45
 	cpc r19,__zero_reg__
 	breq .+2
-	rjmp .L249
+	rjmp .L246
 	ldi r18,lo8(1)
 	ldi r19,0
-.L243:
+.L240:
 	adiw r28,1
-.L244:
+.L241:
 	ld r24,Y
 	mov __tmp_reg__,r24
 	lsl r0
@@ -3176,28 +3177,32 @@ atol:
 	sbiw r24,48
 	sbiw r24,10
 	brlo .+2
-	rjmp .L250
-	mov r12,__zero_reg__
-	mov r13,__zero_reg__
-	mov r14,__zero_reg__
-	mov r15,__zero_reg__
-.L246:
-	mov r23,r15
-	mov r22,r14
-	mov r21,r13
-	mov r20,r12
-	lsl r20
-	rol r21
-	rol r22
-	rol r23
-	lsl r20
-	rol r21
-	rol r22
-	rol r23
-	add r20,r12
-	adc r21,r13
-	adc r22,r14
-	adc r23,r15
+	rjmp .L247
+	ldi r20,0
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+.L243:
+	mov r27,r23
+	mov r26,r22
+	mov r25,r21
+	mov r24,r20
+	lsl r24
+	rol r25
+	rol r26
+	rol r27
+	lsl r24
+	rol r25
+	rol r26
+	rol r27
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
+	mov r20,r24
+	mov r21,r25
+	mov r22,r26
+	mov r23,r27
 	lsl r20
 	rol r21
 	rol r22
@@ -3214,61 +3219,52 @@ atol:
 	lsl r0
 	sbc r26,r26
 	sbc r27,r27
-	mov r12,r20
-	mov r13,r21
-	mov r14,r22
-	mov r15,r23
-	sub r12,r24
-	sbc r13,r25
-	sbc r14,r26
-	sbc r15,r27
+	sub r20,r24
+	sbc r21,r25
+	sbc r22,r26
+	sbc r23,r27
 	ld r24,Y
 	mov __tmp_reg__,r24
 	lsl r0
 	sbc r25,r25
 	sbiw r24,48
 	sbiw r24,10
-	brlo .L246
-.L245:
-	mov r25,r15
-	mov r24,r14
-	mov r23,r13
-	mov r22,r12
+	brlo .L243
+.L242:
 	or r18,r19
-	brne .L247
-	clr r22
-	clr r23
-	clr r24
-	clr r25
-	sub r22,r12
-	sbc r23,r13
-	sbc r24,r14
-	sbc r25,r15
-.L247:
+	brne .L238
+	com r23
+	com r22
+	com r21
+	neg r20
+	sbci r21,lo8(-1)
+	sbci r22,lo8(-1)
+	sbci r23,lo8(-1)
+.L238:
+	mov r25,r23
+	mov r24,r22
+	mov r23,r21
+	mov r22,r20
 /* epilogue start */
 	pop r29
 	pop r28
 	pop r17
 	pop r16
-	pop r15
-	pop r14
-	pop r13
-	pop r12
 	ret
-.L248:
+.L245:
 	ldi r18,0
 	ldi r19,0
-	rjmp .L243
-.L249:
+	rjmp .L240
+.L246:
 	ldi r18,0
 	ldi r19,0
-	rjmp .L244
-.L250:
-	mov r12,__zero_reg__
-	mov r13,__zero_reg__
-	mov r14,__zero_reg__
-	mov r15,__zero_reg__
-	rjmp .L245
+	rjmp .L241
+.L247:
+	ldi r20,0
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	rjmp .L242
 	.size	atol, .-atol
 .global	atoll
 	.type	atoll, @function
@@ -3290,7 +3286,7 @@ atoll:
 .L__stack_usage = 11
 	mov r14,r24
 	mov r15,r25
-.L255:
+.L251:
 	mov r28,r14
 	mov r29,r15
 	mov r30,r14
@@ -3303,28 +3299,28 @@ atoll:
 	sbc r25,r25
 	rcall isspace
 	or r24,r25
-	brne .L255
+	brne .L251
 	ld r24,Y
 	mov r18,r24
 	mov __tmp_reg__,r24
 	lsl r0
 	sbc r19,r19
 	cpi r24,lo8(43)
-	breq .L261
+	breq .L257
 	ldi r26,lo8(1)
 	ldi r27,0
 	cpi r18,45
 	cpc r19,__zero_reg__
-	breq .L256
+	breq .L252
 	ldi r26,0
 	ldi r27,0
-	rjmp .L257
-.L261:
-	ldi r26,0
-	ldi r27,0
-.L256:
-	adiw r28,1
+	rjmp .L253
 .L257:
+	ldi r26,0
+	ldi r27,0
+.L252:
+	adiw r28,1
+.L253:
 	ld r24,Y
 	mov __tmp_reg__,r24
 	lsl r0
@@ -3332,7 +3328,7 @@ atoll:
 	sbiw r24,48
 	sbiw r24,10
 	brlo .+2
-	rjmp .L263
+	rjmp .L259
 	mov r10,__zero_reg__
 	mov r11,__zero_reg__
 	mov r12,__zero_reg__
@@ -3341,7 +3337,7 @@ atoll:
 	mov r15,__zero_reg__
 	mov r9,__zero_reg__
 	ldi r17,0
-.L259:
+.L255:
 	mov r18,r10
 	mov r19,r11
 	mov r20,r12
@@ -3390,10 +3386,10 @@ atoll:
 	sbc r31,r31
 	sbiw r30,48
 	sbiw r30,10
-	brlo .L259
-.L258:
+	brlo .L255
+.L254:
 	or r26,r27
-	brne .L264
+	brne .L250
 	mov r18,r10
 	mov r19,r11
 	mov r20,r12
@@ -3403,7 +3399,23 @@ atoll:
 	mov r24,r9
 	mov r25,r17
 	rcall __negdi2
-.L260:
+	mov r10,r18
+	mov r11,r19
+	mov r12,r20
+	mov r13,r21
+	mov r14,r22
+	mov r15,r23
+	mov r9,r24
+	mov r17,r25
+.L250:
+	mov r18,r10
+	mov r19,r11
+	mov r20,r12
+	mov r21,r13
+	mov r22,r14
+	mov r23,r15
+	mov r24,r9
+	mov r25,r17
 /* epilogue start */
 	pop r29
 	pop r28
@@ -3417,7 +3429,7 @@ atoll:
 	pop r10
 	pop r9
 	ret
-.L263:
+.L259:
 	mov r10,__zero_reg__
 	mov r11,__zero_reg__
 	mov r12,__zero_reg__
@@ -3426,17 +3438,7 @@ atoll:
 	mov r15,__zero_reg__
 	mov r9,__zero_reg__
 	ldi r17,0
-	rjmp .L258
-.L264:
-	mov r18,r10
-	mov r19,r11
-	mov r20,r12
-	mov r21,r13
-	mov r22,r14
-	mov r23,r15
-	mov r24,r9
-	mov r25,r17
-	rjmp .L260
+	rjmp .L254
 	.size	atoll, .-atoll
 .global	bsearch
 	.type	bsearch, @function
@@ -3470,17 +3472,17 @@ bsearch:
 	mov r8,r16
 	mov r9,r17
 	sbiw r28,0
-	brne .L271
-	ldi r24,0
-	ldi r25,0
-	rjmp .L268
-.L276:
+	brne .L266
+	ldi r16,0
+	ldi r17,0
+	rjmp .L262
+.L270:
 	lsr r29
 	ror r28
-.L270:
+.L265:
 	sbiw r28,0
-	breq .L275
-.L271:
+	breq .L269
+.L266:
 	mov r24,r28
 	mov r25,r29
 	lsr r25
@@ -3502,11 +3504,11 @@ bsearch:
 	mov r14,r24
 	mov r15,r25
 	tst r15
-	brlt .L276
+	brlt .L270
 	cp r14,__zero_reg__
 	cpc r15,__zero_reg__
-	breq .L273
-	brlt .L273
+	breq .L262
+	brlt .L262
 	mov r10,r16
 	mov r11,r17
 	add r10,r12
@@ -3518,11 +3520,13 @@ bsearch:
 	sbiw r28,1
 	sub r28,r24
 	sbc r29,r25
-	rjmp .L270
-.L275:
-	ldi r24,0
-	ldi r25,0
-.L268:
+	rjmp .L265
+.L269:
+	ldi r16,0
+	ldi r17,0
+.L262:
+	mov r24,r16
+	mov r25,r17
 /* epilogue start */
 	pop r29
 	pop r28
@@ -3539,10 +3543,6 @@ bsearch:
 	pop r7
 	pop r6
 	ret
-.L273:
-	mov r24,r16
-	mov r25,r17
-	rjmp .L268
 	.size	bsearch, .-bsearch
 .global	bsearch_r
 	.type	bsearch_r, @function
@@ -3567,31 +3567,33 @@ bsearch_r:
 /* frame size = 0 */
 /* stack size = 16 */
 .L__stack_usage = 16
-	mov r5,r24
-	mov r4,r25
-	mov r8,r18
-	mov r9,r19
-	mov r10,r16
-	mov r11,r17
+	mov r4,r24
+	mov r5,r25
+	mov r6,r22
+	mov r7,r23
+	mov r10,r18
+	mov r11,r19
+	mov r8,r16
+	mov r9,r17
 	mov r28,r20
 	mov r29,r21
 	sbiw r28,0
-	breq .L281
-	mov r6,r22
-	mov r7,r23
-	rjmp .L280
-.L279:
+	brne .L274
+	ldi r16,0
+	ldi r17,0
+	rjmp .L271
+.L273:
 	asr r29
 	ror r28
 	sbiw r28,0
-	breq .L284
-.L280:
+	breq .L277
+.L274:
 	mov r24,r28
 	mov r25,r29
 	asr r25
 	ror r24
-	mov r22,r8
-	mov r23,r9
+	mov r22,r10
+	mov r23,r11
 	rcall __mulhi3
 	mov r16,r6
 	mov r17,r7
@@ -3601,35 +3603,29 @@ bsearch_r:
 	mov r21,r15
 	mov r22,r16
 	mov r23,r17
-	mov r24,r5
-	mov r25,r4
-	mov r30,r10
-	mov r31,r11
+	mov r24,r4
+	mov r25,r5
+	mov r30,r8
+	mov r31,r9
 	icall
 	mov r12,r24
 	mov r13,r25
 	cp r12,__zero_reg__
 	cpc r13,__zero_reg__
-	breq .L282
-	brlt .L279
+	breq .L271
+	brlt .L273
 	mov r6,r16
 	mov r7,r17
-	add r6,r8
-	adc r7,r9
+	add r6,r10
+	adc r7,r11
 	sbiw r28,1
-	rjmp .L279
-.L284:
-	ldi r24,0
-	ldi r25,0
-	rjmp .L278
-.L281:
-	ldi r24,0
-	ldi r25,0
-	rjmp .L278
-.L282:
+	rjmp .L273
+.L277:
+	ldi r16,0
+	ldi r17,0
+.L271:
 	mov r24,r16
 	mov r25,r17
-.L278:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -3702,7 +3698,7 @@ imaxabs:
 	mov r14,r25
 	ldi r26,0
 	rcall __cmpdi2_s8
-	brge .L287
+	brge .L280
 	rcall __negdi2
 	mov r7,r18
 	mov r8,r19
@@ -3712,7 +3708,7 @@ imaxabs:
 	mov r12,r23
 	mov r13,r24
 	mov r14,r25
-.L287:
+.L280:
 	mov r18,r7
 	mov r19,r8
 	mov r20,r9
@@ -3883,8 +3879,8 @@ labs:
 	mov r18,r24
 	mov r19,r25
 	tst r19
-	brlt .L291
-.L290:
+	brlt .L284
+.L283:
 	mov r25,r19
 	mov r24,r18
 	mov r23,r17
@@ -3893,7 +3889,7 @@ labs:
 	pop r17
 	pop r16
 	ret
-.L291:
+.L284:
 	com r19
 	com r18
 	com r17
@@ -3901,7 +3897,7 @@ labs:
 	sbci r17,lo8(-1)
 	sbci r18,lo8(-1)
 	sbci r19,lo8(-1)
-	rjmp .L290
+	rjmp .L283
 	.size	labs, .-labs
 .global	ldiv
 	.type	ldiv, @function
@@ -3962,7 +3958,7 @@ llabs:
 	mov r14,r25
 	ldi r26,0
 	rcall __cmpdi2_s8
-	brge .L294
+	brge .L287
 	rcall __negdi2
 	mov r7,r18
 	mov r8,r19
@@ -3972,7 +3968,7 @@ llabs:
 	mov r12,r23
 	mov r13,r24
 	mov r14,r25
-.L294:
+.L287:
 	mov r18,r7
 	mov r19,r8
 	mov r20,r9
@@ -4136,42 +4132,43 @@ wcschr:
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	mov r26,r24
-	mov r27,r25
-	mov r18,r22
-	mov r19,r23
-	ld r24,X+
-	ld r25,X
-	sbiw r26,1
-	or r24,r25
-	breq .L297
-	mov r30,r26
-	mov r31,r27
-.L298:
-	mov r26,r30
-	mov r27,r31
-	ld r24,Z+
-	ld r25,Z+
-	cp r18,r24
-	cpc r19,r25
-	breq .L297
-	mov r26,r30
-	mov r27,r31
+	mov r30,r24
+	mov r31,r25
+	mov r20,r22
+	mov r21,r23
 	ld r24,Z
 	ldd r25,Z+1
 	or r24,r25
-	brne .L298
-.L297:
-	ld r24,X+
-	ld r25,X
-	sbiw r26,1
-	or r24,r25
-	breq .L302
-	mov r24,r26
-	mov r25,r27
+	breq .L294
+.L291:
+	mov r24,r30
+	mov r25,r31
+	ld r18,Z+
+	ld r19,Z+
+	cp r20,r18
+	cpc r21,r19
+	breq .L290
+	mov r24,r30
+	mov r25,r31
+	ld r18,Z
+	ldd r19,Z+1
+	or r18,r19
+	brne .L291
+.L290:
+	mov r30,r24
+	mov r31,r25
+	ld r18,Z
+	ldd r19,Z+1
+	or r18,r19
+	breq .L295
+.L289:
 /* epilogue start */
 	ret
-.L302:
+.L294:
+	mov r24,r30
+	mov r25,r31
+	rjmp .L290
+.L295:
 	ldi r24,0
 	ldi r25,0
 	ret
@@ -4197,10 +4194,10 @@ wcscmp:
 	ldd r25,Y+1
 	cp r20,r24
 	cpc r21,r25
-	brne .L304
+	brne .L297
 	mov r26,r28
 	mov r27,r29
-.L305:
+.L298:
 	mov r28,r26
 	mov r29,r27
 	mov r18,r30
@@ -4208,11 +4205,11 @@ wcscmp:
 	ld r24,Z+
 	ld r25,Z+
 	or r24,r25
-	breq .L304
+	breq .L297
 	ld r24,X+
 	ld r25,X+
 	or r24,r25
-	breq .L304
+	breq .L297
 	mov r18,r30
 	mov r19,r31
 	mov r28,r26
@@ -4224,8 +4221,8 @@ wcscmp:
 	sbiw r26,1
 	cp r20,r24
 	cpc r21,r25
-	breq .L305
-.L304:
+	breq .L298
+.L297:
 	mov r30,r18
 	mov r31,r19
 	ld r20,Z
@@ -4234,7 +4231,7 @@ wcscmp:
 	ldd r25,Y+1
 	cp r20,r24
 	cpc r21,r25
-	brlt .L309
+	brlt .L302
 	mov r18,r20
 	mov r19,r21
 	mov r20,r24
@@ -4242,19 +4239,19 @@ wcscmp:
 	ldi r24,lo8(1)
 	cp r20,r18
 	cpc r21,r19
-	brlt .L308
+	brlt .L301
 	ldi r24,0
-.L308:
+.L301:
 	ldi r25,0
-.L307:
+.L296:
 /* epilogue start */
 	pop r29
 	pop r28
 	ret
-.L309:
+.L302:
 	ldi r24,lo8(-1)
 	ldi r25,lo8(-1)
-	rjmp .L307
+	rjmp .L296
 	.size	wcscmp, .-wcscmp
 .global	wcscpy
 	.type	wcscpy, @function
@@ -4267,7 +4264,7 @@ wcscpy:
 	mov r19,r23
 	mov r30,r24
 	mov r31,r25
-.L311:
+.L304:
 	subi r18,-2
 	sbci r19,-1
 	mov r26,r18
@@ -4281,7 +4278,7 @@ wcscpy:
 	ld r21,-X
 	ld r20,-X
 	or r20,r21
-	brne .L311
+	brne .L304
 /* epilogue start */
 	ret
 	.size	wcscpy, .-wcscpy
@@ -4298,28 +4295,28 @@ wcslen:
 	ld r25,X
 	sbiw r26,1
 	or r24,r25
-	breq .L316
+	breq .L309
 	mov r30,r26
 	mov r31,r27
 	adiw r30,2
-.L315:
+.L308:
 	mov r24,r30
 	mov r25,r31
 	ld r18,Z+
 	ld r19,Z+
 	or r18,r19
-	brne .L315
-.L314:
+	brne .L308
+.L307:
 	sub r24,r26
 	sbc r25,r27
 	asr r25
 	ror r24
 /* epilogue start */
 	ret
-.L316:
+.L309:
 	mov r24,r26
 	mov r25,r27
-	rjmp .L314
+	rjmp .L307
 	.size	wcslen, .-wcslen
 .global	wcsncmp
 	.type	wcsncmp, @function
@@ -4342,12 +4339,12 @@ wcsncmp:
 	mov r19,r21
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L319
+	breq .L312
 	mov r30,r16
 	mov r31,r17
 	mov r26,r14
 	mov r27,r15
-.L320:
+.L313:
 	mov r14,r26
 	mov r15,r27
 	mov r16,r30
@@ -4358,7 +4355,7 @@ wcsncmp:
 	ld r25,X+
 	cp r20,r24
 	cpc r21,r25
-	brne .L319
+	brne .L312
 	mov r24,r30
 	mov r25,r31
 	sbiw r24,2
@@ -4367,7 +4364,7 @@ wcsncmp:
 	ld r24,Y
 	ldd r25,Y+1
 	or r24,r25
-	breq .L319
+	breq .L312
 	mov r24,r26
 	mov r25,r27
 	sbiw r24,2
@@ -4376,7 +4373,7 @@ wcsncmp:
 	ld r24,Y
 	ldd r25,Y+1
 	or r24,r25
-	breq .L319
+	breq .L312
 	subi r18,1
 	sbc r19,__zero_reg__
 	mov r16,r30
@@ -4385,12 +4382,12 @@ wcsncmp:
 	mov r15,r27
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L320
-.L319:
+	brne .L313
+.L312:
 	ldi r24,0
 	ldi r25,0
 	or r18,r19
-	breq .L322
+	breq .L311
 	mov r30,r16
 	mov r31,r17
 	ld r18,Z
@@ -4401,17 +4398,17 @@ wcsncmp:
 	ldd r25,Y+1
 	cp r18,r24
 	cpc r19,r25
-	brlt .L325
+	brlt .L318
 	mov r20,r24
 	mov r21,r25
 	ldi r24,lo8(1)
 	cp r20,r18
 	cpc r21,r19
-	brlt .L323
+	brlt .L316
 	ldi r24,0
-.L323:
+.L316:
 	ldi r25,0
-.L322:
+.L311:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -4420,10 +4417,10 @@ wcsncmp:
 	pop r15
 	pop r14
 	ret
-.L325:
+.L318:
 	ldi r24,lo8(-1)
 	ldi r25,lo8(-1)
-	rjmp .L322
+	rjmp .L311
 	.size	wcsncmp, .-wcsncmp
 .global	wmemchr
 	.type	wmemchr, @function
@@ -4438,31 +4435,31 @@ wmemchr:
 	mov r19,r21
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L327
+	breq .L320
 	mov r30,r24
 	mov r31,r25
-.L328:
+.L321:
 	mov r24,r30
 	mov r25,r31
 	ld r20,Z+
 	ld r21,Z+
 	cp r26,r20
 	cpc r27,r21
-	breq .L327
+	breq .L320
 	subi r18,1
 	sbc r19,__zero_reg__
 	mov r24,r30
 	mov r25,r31
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L328
-.L327:
+	brne .L321
+.L320:
 	or r18,r19
-	breq .L332
-.L330:
+	breq .L325
+.L319:
 /* epilogue start */
 	ret
-.L332:
+.L325:
 	ldi r24,0
 	ldi r25,0
 	ret
@@ -4486,12 +4483,12 @@ wmemcmp:
 	mov r19,r21
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L334
+	breq .L327
 	mov r26,r16
 	mov r27,r17
 	mov r30,r28
 	mov r31,r29
-.L335:
+.L328:
 	mov r28,r30
 	mov r29,r31
 	mov r16,r26
@@ -4502,7 +4499,7 @@ wmemcmp:
 	ld r25,Z+
 	cp r20,r24
 	cpc r21,r25
-	brne .L334
+	brne .L327
 	subi r18,1
 	sbc r19,__zero_reg__
 	mov r16,r26
@@ -4511,12 +4508,12 @@ wmemcmp:
 	mov r29,r31
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L335
-.L334:
+	brne .L328
+.L327:
 	ldi r24,0
 	ldi r25,0
 	or r18,r19
-	breq .L337
+	breq .L326
 	mov r30,r16
 	mov r31,r17
 	ld r18,Z
@@ -4525,150 +4522,136 @@ wmemcmp:
 	ldd r25,Y+1
 	cp r18,r24
 	cpc r19,r25
-	brlt .L340
+	brlt .L333
 	mov r20,r24
 	mov r21,r25
 	ldi r24,lo8(1)
 	cp r20,r18
 	cpc r21,r19
-	brlt .L338
+	brlt .L331
 	ldi r24,0
-.L338:
+.L331:
 	ldi r25,0
-.L337:
+.L326:
 /* epilogue start */
 	pop r29
 	pop r28
 	pop r17
 	pop r16
 	ret
-.L340:
+.L333:
 	ldi r24,lo8(-1)
 	ldi r25,lo8(-1)
-	rjmp .L337
+	rjmp .L326
 	.size	wmemcmp, .-wmemcmp
 .global	wmemcpy
 	.type	wmemcpy, @function
 wmemcpy:
+/* prologue: function */
+/* frame size = 0 */
+/* stack size = 0 */
+.L__stack_usage = 0
+	mov r18,r22
+	mov r19,r23
+	mov r30,r20
+	mov r31,r21
+	mov r20,r30
+	mov r21,r31
+	subi r20,1
+	sbc r21,__zero_reg__
+	or r30,r31
+	breq .L335
+	mov r30,r24
+	mov r31,r25
+.L336:
+	subi r18,-2
+	sbci r19,-1
+	mov r26,r18
+	mov r27,r19
+	ld r23,-X
+	ld r22,-X
+	st Z+,r22
+	st Z+,r23
+	subi r20,1
+	sbc r21,__zero_reg__
+	brcc .L336
+.L335:
+/* epilogue start */
+	ret
+	.size	wmemcpy, .-wmemcpy
+.global	wmemmove
+	.type	wmemmove, @function
+wmemmove:
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	mov r30,r22
-	mov r31,r23
-	mov r18,r20
-	mov r19,r21
-	mov r20,r18
-	mov r21,r19
-	subi r20,1
-	sbc r21,__zero_reg__
-	or r18,r19
-	breq .L342
-	mov r26,r24
-	mov r27,r25
-	mov r18,r20
-	mov r19,r21
-.L343:
-	adiw r30,2
-	mov r28,r30
-	mov r29,r31
-	ld r21,-Y
-	ld r20,-Y
-	st X+,r20
-	st X+,r21
-	subi r18,1
-	sbc r19,__zero_reg__
-	brcc .L343
-.L342:
-/* epilogue start */
-	pop r29
-	pop r28
-	ret
-	.size	wmemcpy, .-wmemcpy
-.global	wmemmove
-	.type	wmemmove, @function
-wmemmove:
-	push r16
-	push r17
-	push r28
-	push r29
-/* prologue: function */
-/* frame size = 0 */
-/* stack size = 4 */
-.L__stack_usage = 4
-	mov r16,r24
-	mov r17,r25
-	mov r28,r22
-	mov r29,r23
-	mov r18,r20
-	mov r19,r21
-	cp r16,r28
-	cpc r17,r29
-	breq .L346
-	mov r20,r18
-	mov r21,r19
+	mov r28,r24
+	mov r29,r25
+	mov r18,r22
+	mov r19,r23
+	mov r30,r20
+	mov r31,r21
+	cp r28,r18
+	cpc r29,r19
+	breq .L339
+	mov r20,r30
+	mov r21,r31
 	lsl r20
 	rol r21
-	mov r24,r16
-	mov r25,r17
-	sub r24,r28
-	sbc r25,r29
+	mov r24,r28
+	mov r25,r29
+	sub r24,r18
+	sbc r25,r19
 	cp r24,r20
 	cpc r25,r21
-	brlo .L347
-	mov r24,r18
-	mov r25,r19
+	brlo .L340
+	mov r24,r30
+	mov r25,r31
 	sbiw r24,1
-	or r18,r19
-	breq .L346
-	mov r30,r16
-	mov r31,r17
-	mov r18,r24
-	mov r19,r25
-.L350:
-	adiw r28,2
-	mov r26,r28
-	mov r27,r29
-	ld r25,-X
-	ld r24,-X
-	st Z+,r24
-	st Z+,r25
-	subi r18,1
-	sbc r19,__zero_reg__
-	brcc .L350
-	rjmp .L346
-.L347:
-	cp r18,__zero_reg__
-	cpc r19,__zero_reg__
-	breq .L346
-	lsl r18
-	rol r19
+	or r30,r31
+	breq .L339
 	mov r30,r28
 	mov r31,r29
-	add r30,r18
-	adc r31,r19
-	mov r26,r16
-	mov r27,r17
-	add r26,r18
-	adc r27,r19
-.L349:
-	ld r25,-Z
-	ld r24,-Z
-	st -X,r25
-	st -X,r24
-	cp r30,r28
-	cpc r31,r29
-	brne .L349
-.L346:
-	mov r24,r16
-	mov r25,r17
+.L343:
+	subi r18,-2
+	sbci r19,-1
+	mov r26,r18
+	mov r27,r19
+	ld r21,-X
+	ld r20,-X
+	st Z+,r20
+	st Z+,r21
+	sbiw r24,1
+	brcc .L343
+	rjmp .L339
+.L340:
+	sbiw r30,0
+	breq .L339
+	lsl r30
+	rol r31
+	mov r26,r18
+	mov r27,r19
+	add r26,r30
+	adc r27,r31
+	add r30,r28
+	adc r31,r29
+.L342:
+	ld r25,-X
+	ld r24,-X
+	st -Z,r25
+	st -Z,r24
+	cp r26,r18
+	cpc r27,r19
+	brne .L342
+.L339:
+	mov r24,r28
+	mov r25,r29
 /* epilogue start */
 	pop r29
 	pop r28
-	pop r17
-	pop r16
 	ret
 	.size	wmemmove, .-wmemmove
 .global	wmemset
@@ -4685,88 +4668,86 @@ wmemset:
 	subi r20,1
 	sbc r21,__zero_reg__
 	or r18,r19
-	breq .L354
-	mov r18,r20
-	mov r19,r21
-	mov r20,r24
-	mov r21,r25
-.L355:
-	subi r20,-2
-	sbci r21,-1
-	mov r30,r20
-	mov r31,r21
+	breq .L347
+	mov r18,r24
+	mov r19,r25
+.L348:
+	subi r18,-2
+	sbci r19,-1
+	mov r30,r18
+	mov r31,r19
 	sbiw r30,2
 	st Z,r22
 	std Z+1,r23
-	subi r18,1
-	sbc r19,__zero_reg__
-	brcc .L355
-.L354:
+	subi r20,1
+	sbc r21,__zero_reg__
+	brcc .L348
+.L347:
 /* epilogue start */
 	ret
 	.size	wmemset, .-wmemset
 .global	bcopy
 	.type	bcopy, @function
 bcopy:
+	push r16
+	push r17
 	push r28
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 2 */
-.L__stack_usage = 2
-	mov r30,r24
-	mov r31,r25
-	mov r18,r22
-	mov r19,r23
-	mov r28,r20
-	mov r29,r21
-	cp r30,r18
-	cpc r31,r19
-	brsh .L358
-	add r30,r28
-	adc r31,r29
-	mov r26,r18
-	mov r27,r19
-	add r26,r28
-	adc r27,r29
-	or r28,r29
-	breq .L357
-.L360:
-	ld r24,-Z
-	st -X,r24
-	cp r26,r18
-	cpc r27,r19
-	brne .L360
-.L357:
+/* stack size = 4 */
+.L__stack_usage = 4
+	mov r28,r24
+	mov r29,r25
+	mov r26,r22
+	mov r27,r23
+	mov r16,r20
+	mov r17,r21
+	cp r28,r26
+	cpc r29,r27
+	brsh .L351
+	add r28,r16
+	adc r29,r17
+	mov r30,r26
+	mov r31,r27
+	add r30,r16
+	adc r31,r17
+	or r16,r17
+	breq .L350
+.L353:
+	ld r24,-Y
+	st -Z,r24
+	cp r30,r26
+	cpc r31,r27
+	brne .L353
+.L350:
 /* epilogue start */
 	pop r29
 	pop r28
+	pop r17
+	pop r16
 	ret
-.L358:
-	cp r30,r18
-	cpc r31,r19
-	breq .L357
-	sbiw r28,0
-	breq .L357
-	mov r26,r18
-	mov r27,r19
-	mov r18,r28
-	mov r19,r29
-	add r18,r30
-	adc r19,r31
-.L361:
-	adiw r30,1
-	mov r24,r30
-	mov r25,r31
-	sbiw r24,1
-	mov r28,r24
-	mov r29,r25
-	ld r24,Y
-	st X+,r24
-	cp r30,r18
-	cpc r31,r19
-	brne .L361
-	rjmp .L357
+.L351:
+	cp r28,r26
+	cpc r29,r27
+	breq .L350
+	cp r16,__zero_reg__
+	cpc r17,__zero_reg__
+	breq .L350
+	mov r30,r26
+	mov r31,r27
+	add r16,r28
+	adc r17,r29
+.L354:
+	adiw r28,1
+	mov r26,r28
+	mov r27,r29
+	ld r24,-X
+	st Z+,r24
+	cp r28,r16
+	cpc r29,r17
+	brne .L354
+	rjmp .L350
 	.size	bcopy, .-bcopy
 .global	rotl64
 	.type	rotl64, @function
@@ -5448,7 +5429,7 @@ ffs:
 	mov r21,r25
 	ldi r24,0
 	ldi r25,0
-.L380:
+.L373:
 	mov r18,r20
 	mov r19,r21
 	mov r0,r24
@@ -5460,16 +5441,16 @@ ffs:
 	dec r0
 	brpl 1b
 	sbrc r18,0
-	rjmp .L382
+	rjmp .L375
 	adiw r24,1
 	cpi r24,16
 	cpc r25,__zero_reg__
-	brne .L380
+	brne .L373
 	ldi r24,0
 	ldi r25,0
 /* epilogue start */
 	ret
-.L382:
+.L375:
 	mov r18,r24
 	mov r19,r25
 	subi r18,-1
@@ -5489,26 +5470,23 @@ libiberty_ffs:
 	mov r19,r25
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L386
+	breq .L379
 	sbrc r18,0
-	rjmp .L387
-	ldi r20,lo8(1)
-	ldi r21,0
-.L385:
+	rjmp .L380
+	ldi r24,lo8(1)
+	ldi r25,0
+.L378:
 	asr r19
 	ror r18
-	subi r20,-1
-	sbci r21,-1
+	adiw r24,1
 	sbrs r18,0
-	rjmp .L385
-	mov r24,r20
-	mov r25,r21
+	rjmp .L378
 	ret
-.L386:
+.L379:
 	ldi r24,0
 	ldi r25,0
 	ret
-.L387:
+.L380:
 	ldi r24,lo8(1)
 	ldi r25,0
 /* epilogue start */
@@ -5551,7 +5529,7 @@ gl_isinff:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L392
+	brlt .L385
 	clr r15
 	inc r15
 	ldi r18,lo8(-1)
@@ -5568,12 +5546,12 @@ gl_isinff:
 	mov r22,r8
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L393
-	brlt .L393
-.L391:
+	breq .L386
+	brlt .L386
+.L384:
 	mov r24,r15
 	ldi r25,0
-.L390:
+.L382:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -5588,13 +5566,13 @@ gl_isinff:
 	pop r9
 	pop r8
 	ret
-.L393:
+.L386:
 	mov r15,__zero_reg__
-	rjmp .L391
-.L392:
+	rjmp .L384
+.L385:
 	ldi r24,lo8(1)
 	ldi r25,0
-	rjmp .L390
+	rjmp .L382
 	.size	gl_isinff, .-gl_isinff
 .global	gl_isinfd
 	.type	gl_isinfd, @function
@@ -5633,7 +5611,7 @@ gl_isinfd:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L397
+	brlt .L390
 	clr r15
 	inc r15
 	ldi r18,lo8(-1)
@@ -5650,12 +5628,12 @@ gl_isinfd:
 	mov r22,r8
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L398
-	brlt .L398
-.L396:
+	breq .L391
+	brlt .L391
+.L389:
 	mov r24,r15
 	ldi r25,0
-.L395:
+.L387:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -5670,13 +5648,13 @@ gl_isinfd:
 	pop r9
 	pop r8
 	ret
-.L398:
+.L391:
 	mov r15,__zero_reg__
-	rjmp .L396
-.L397:
+	rjmp .L389
+.L390:
 	ldi r24,lo8(1)
 	ldi r25,0
-	rjmp .L395
+	rjmp .L387
 	.size	gl_isinfd, .-gl_isinfd
 .global	gl_isinfl
 	.type	gl_isinfl, @function
@@ -5726,7 +5704,7 @@ gl_isinfl:
 	ldi r17,lo8(-1)
 	rcall __ltdf2
 	cpse r24,__zero_reg__
-	rjmp .L402
+	rjmp .L395
 	clr r3
 	inc r3
 	ldi r17,lo8(127)
@@ -5740,12 +5718,12 @@ gl_isinfl:
 	mov r25,r28
 	rcall __gtdf2
 	cpse r24,__zero_reg__
-	rjmp .L401
+	rjmp .L394
 	mov r3,__zero_reg__
-.L401:
+.L394:
 	mov r24,r3
 	ldi r25,0
-.L400:
+.L392:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -5765,10 +5743,10 @@ gl_isinfl:
 	pop r4
 	pop r3
 	ret
-.L402:
+.L395:
 	ldi r24,lo8(1)
 	ldi r25,0
-	rjmp .L400
+	rjmp .L392
 	.size	gl_isinfl, .-gl_isinfl
 .global	_Qp_itoq
 	.type	_Qp_itoq, @function
@@ -5873,7 +5851,7 @@ ldexpf:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L405
+	rjmp .L398
 	mov r2,r6
 	mov r3,r7
 	mov r4,r16
@@ -5910,11 +5888,11 @@ ldexpf:
 	rcall __nesf2
 	cp r24, __zero_reg__
 	brne .+2
-	rjmp .L405
+	rjmp .L398
 	ldd r18,Y+33
 	ldd r19,Y+34
 	tst r19
-	brlt .L414
+	brlt .L407
 	mov r12,__zero_reg__
 	mov r13,__zero_reg__
 	mov r14,__zero_reg__
@@ -5923,8 +5901,8 @@ ldexpf:
 	bld r15,6
 	mov r3,r6
 	mov r2,r7
-	rjmp .L410
-.L414:
+	rjmp .L403
+.L407:
 	mov r12,__zero_reg__
 	mov r13,__zero_reg__
 	mov r14,__zero_reg__
@@ -5934,13 +5912,13 @@ ldexpf:
 	mov r31,__tmp_reg__
 	mov r3,r6
 	mov r2,r7
-	rjmp .L410
-.L408:
+	rjmp .L403
+.L401:
 	ldd r24,Y+33
 	ldd r25,Y+34
 	tst r25
-	brlt .L415
-.L409:
+	brlt .L408
+.L402:
 	mov r18,r24
 	mov r19,r25
 	asr r19
@@ -5948,7 +5926,7 @@ ldexpf:
 	std Y+34,r19
 	std Y+33,r18
 	or r18,r19
-	breq .L413
+	breq .L406
 	mov r8,r12
 	mov r9,r13
 	mov r10,r14
@@ -5970,11 +5948,11 @@ ldexpf:
 	mov r13,r23
 	mov r14,r24
 	mov r15,r25
-.L410:
+.L403:
 	ldd r18,Y+33
 	ldd r19,Y+34
 	sbrs r18,0
-	rjmp .L408
+	rjmp .L401
 	mov r4,r12
 	mov r5,r13
 	mov r6,r14
@@ -5996,14 +5974,14 @@ ldexpf:
 	mov r2,r23
 	mov r16,r24
 	mov r17,r25
-	rjmp .L408
-.L415:
+	rjmp .L401
+.L408:
 	adiw r24,1
-	rjmp .L409
-.L413:
+	rjmp .L402
+.L406:
 	mov r6,r3
 	mov r7,r2
-.L405:
+.L398:
 	std Y+13,r6
 	std Y+14,r7
 	std Y+15,r16
@@ -6096,7 +6074,7 @@ ldexp:
 	ldd r25,Y+12
 	rcall __unordsf2
 	cpse r24,__zero_reg__
-	rjmp .L417
+	rjmp .L410
 	mov r2,r6
 	mov r3,r7
 	mov r4,r16
@@ -6133,11 +6111,11 @@ ldexp:
 	rcall __nesf2
 	cp r24, __zero_reg__
 	brne .+2
-	rjmp .L417
+	rjmp .L410
 	ldd r18,Y+33
 	ldd r19,Y+34
 	tst r19
-	brlt .L426
+	brlt .L419
 	mov r12,__zero_reg__
 	mov r13,__zero_reg__
 	mov r14,__zero_reg__
@@ -6146,8 +6124,8 @@ ldexp:
 	bld r15,6
 	mov r3,r6
 	mov r2,r7
-	rjmp .L422
-.L426:
+	rjmp .L415
+.L419:
 	mov r12,__zero_reg__
 	mov r13,__zero_reg__
 	mov r14,__zero_reg__
@@ -6157,13 +6135,13 @@ ldexp:
 	mov r31,__tmp_reg__
 	mov r3,r6
 	mov r2,r7
-	rjmp .L422
-.L420:
+	rjmp .L415
+.L413:
 	ldd r24,Y+33
 	ldd r25,Y+34
 	tst r25
-	brlt .L427
-.L421:
+	brlt .L420
+.L414:
 	mov r18,r24
 	mov r19,r25
 	asr r19
@@ -6171,7 +6149,7 @@ ldexp:
 	std Y+34,r19
 	std Y+33,r18
 	or r18,r19
-	breq .L425
+	breq .L418
 	mov r8,r12
 	mov r9,r13
 	mov r10,r14
@@ -6193,11 +6171,11 @@ ldexp:
 	mov r13,r23
 	mov r14,r24
 	mov r15,r25
-.L422:
+.L415:
 	ldd r18,Y+33
 	ldd r19,Y+34
 	sbrs r18,0
-	rjmp .L420
+	rjmp .L413
 	mov r4,r12
 	mov r5,r13
 	mov r6,r14
@@ -6219,14 +6197,14 @@ ldexp:
 	mov r2,r23
 	mov r16,r24
 	mov r17,r25
-	rjmp .L420
-.L427:
+	rjmp .L413
+.L420:
 	adiw r24,1
-	rjmp .L421
-.L425:
+	rjmp .L414
+.L418:
 	mov r6,r3
 	mov r7,r2
-.L417:
+.L410:
 	std Y+13,r6
 	std Y+14,r7
 	std Y+15,r16
@@ -6315,7 +6293,7 @@ ldexpl:
 	mov r17,r25
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L429
+	rjmp .L422
 	mov r18,r10
 	mov r19,r11
 	mov r20,r12
@@ -6344,11 +6322,11 @@ ldexpl:
 	rcall __nedf2
 	cp r24, __zero_reg__
 	brne .+2
-	rjmp .L429
+	rjmp .L422
 	ldd r18,Y+9
 	ldd r19,Y+10
 	tst r19
-	brlt .L437
+	brlt .L430
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
 	mov r4,__zero_reg__
@@ -6359,8 +6337,8 @@ ldexpl:
 	set
 	clr r9
 	bld r9,6
-	rjmp .L434
-.L437:
+	rjmp .L427
+.L430:
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
 	mov r4,__zero_reg__
@@ -6375,14 +6353,14 @@ ldexpl:
 	ldi r31,lo8(63)
 	mov r9,r31
 	mov r31,__tmp_reg__
-	rjmp .L434
-.L432:
+	rjmp .L427
+.L425:
 	ldd r24,Y+9
 	ldd r25,Y+10
 	tst r25
 	brge .+2
-	rjmp .L438
-.L433:
+	rjmp .L431
+.L426:
 	mov r18,r24
 	mov r19,r25
 	asr r19
@@ -6390,7 +6368,7 @@ ldexpl:
 	std Y+10,r19
 	std Y+9,r18
 	or r18,r19
-	breq .L429
+	breq .L422
 	mov r10,r2
 	mov r11,r3
 	mov r12,r4
@@ -6416,11 +6394,11 @@ ldexpl:
 	mov r7,r23
 	mov r8,r24
 	mov r9,r25
-.L434:
+.L427:
 	ldd r24,Y+9
 	ldd r25,Y+10
 	sbrs r24,0
-	rjmp .L432
+	rjmp .L425
 	mov r10,r2
 	mov r11,r3
 	mov r12,r4
@@ -6446,11 +6424,11 @@ ldexpl:
 	std Y+6,r23
 	std Y+7,r24
 	std Y+8,r25
-	rjmp .L432
-.L438:
+	rjmp .L425
+.L431:
 	adiw r24,1
-	rjmp .L433
-.L429:
+	rjmp .L426
+.L422:
 	ldd r18,Y+1
 	ldd r19,Y+2
 	ldd r20,Y+3
@@ -6498,12 +6476,12 @@ memxor:
 	mov r26,r20
 	mov r27,r21
 	sbiw r26,0
-	breq .L440
+	breq .L433
 	add r26,r18
 	adc r27,r19
 	mov r22,r24
 	mov r23,r25
-.L441:
+.L434:
 	subi r18,-1
 	sbci r19,-1
 	mov r30,r18
@@ -6518,8 +6496,8 @@ memxor:
 	st Z,r20
 	cp r18,r26
 	cpc r19,r27
-	brne .L441
-.L440:
+	brne .L434
+.L433:
 /* epilogue start */
 	ret
 	.size	memxor, .-memxor
@@ -6549,28 +6527,28 @@ strncat:
 	mov r29,r31
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L444
+	breq .L437
 	mov r26,r22
 	mov r27,r23
-.L445:
+.L438:
 	mov r28,r30
 	mov r29,r31
 	ld r24,X+
 	st Z+,r24
 	cp r24, __zero_reg__
-	breq .L444
+	breq .L437
 	mov r28,r30
 	mov r29,r31
 	subi r18,1
 	sbc r19,__zero_reg__
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	brne .L445
-.L444:
+	brne .L438
+.L437:
 	or r18,r19
-	brne .L447
+	brne .L440
 	st Y,__zero_reg__
-.L447:
+.L440:
 	mov r24,r16
 	mov r25,r17
 /* epilogue start */
@@ -6591,25 +6569,25 @@ strnlen:
 	mov r19,r23
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L452
+	breq .L445
 	mov r30,r24
 	mov r31,r25
 	ldi r24,0
 	ldi r25,0
-.L450:
+.L443:
 	ld r20,Z+
 	cpse r20,__zero_reg__
-	rjmp .L453
-.L449:
+	rjmp .L446
+.L441:
 /* epilogue start */
 	ret
-.L453:
+.L446:
 	adiw r24,1
 	cp r24,r18
 	cpc r25,r19
-	brne .L450
+	brne .L443
 	ret
-.L452:
+.L445:
 	ldi r24,0
 	ldi r25,0
 	ret
@@ -6626,37 +6604,40 @@ strpbrk:
 	mov r28,r24
 	mov r29,r25
 	ld r24,Y
-	ldi r25,0
 	cp r24, __zero_reg__
-	breq .L456
-.L455:
+	breq .L454
+.L448:
 	mov r30,r22
 	mov r31,r23
-.L458:
+.L451:
 	ld r24,Z+
 	cp r24, __zero_reg__
-	breq .L462
+	breq .L455
 	mov r26,r30
 	mov r27,r31
 	ld r25,-X
 	ld r24,Y
 	cpse r25,r24
-	rjmp .L458
+	rjmp .L451
+.L449:
 	mov r24,r28
 	mov r25,r29
-.L456:
 /* epilogue start */
 	pop r29
 	pop r28
 	ret
-.L462:
+.L454:
+	ldi r28,0
+	ldi r29,0
+	rjmp .L449
+.L455:
 	adiw r28,1
 	ld r24,Y
 	cpse r24,__zero_reg__
-	rjmp .L455
-	ldi r24,0
-	ldi r25,0
-	rjmp .L456
+	rjmp .L448
+	ldi r28,0
+	ldi r29,0
+	rjmp .L449
 	.size	strpbrk, .-strpbrk
 .global	strrchr
 	.type	strrchr, @function
@@ -6673,14 +6654,14 @@ strrchr:
 	mov r31,r25
 	ldi r24,0
 	ldi r25,0
-	rjmp .L465
-.L464:
+	rjmp .L458
+.L457:
 	mov r26,r30
 	mov r27,r31
 	ld r18,-X
 	cp r18, __zero_reg__
-	breq .L468
-.L465:
+	breq .L461
+.L458:
 	mov r20,r30
 	mov r19,r31
 	ld r18,Z+
@@ -6689,11 +6670,11 @@ strrchr:
 	sbc __tmp_reg__,__tmp_reg__
 	cp r18,r28
 	cpc r0,r29
-	brne .L464
+	brne .L457
 	mov r24,r20
 	mov r25,r19
-	rjmp .L464
-.L468:
+	rjmp .L457
+.L461:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -6714,6 +6695,8 @@ strstr:
 /* frame size = 0 */
 /* stack size = 8 */
 .L__stack_usage = 8
+	mov r18,r24
+	mov r19,r25
 	mov r16,r22
 	mov r17,r23
 	mov r30,r16
@@ -6727,27 +6710,27 @@ strstr:
 	mov r13,r31
 	sub r12,r16
 	sbc r13,r17
+	mov r28,r18
+	mov r29,r19
 	cp r16,r30
 	cpc r17,r31
-	breq .L470
+	breq .L462
 	mov r30,r16
 	mov r31,r17
 	ld r14,Z
 	mov __tmp_reg__,r14
 	lsl r0
 	sbc r15,r15
-	mov r28,r24
-	mov r29,r25
-.L471:
+.L464:
 	mov r22,r14
 	mov r23,r15
-	mov r24,r28
-	mov r25,r29
+	mov r24,r18
+	mov r25,r19
 	rcall strchr
 	mov r28,r24
 	mov r29,r25
 	sbiw r28,0
-	breq .L475
+	breq .L467
 	mov r20,r12
 	mov r21,r13
 	mov r22,r16
@@ -6756,13 +6739,18 @@ strstr:
 	mov r25,r29
 	rcall strncmp
 	or r24,r25
-	breq .L474
-	adiw r28,1
-	rjmp .L471
-.L475:
-	ldi r24,0
-	ldi r25,0
-.L470:
+	breq .L462
+	mov r18,r28
+	mov r19,r29
+	subi r18,-1
+	sbci r19,-1
+	rjmp .L464
+.L467:
+	ldi r28,0
+	ldi r29,0
+.L462:
+	mov r24,r28
+	mov r25,r29
 /* epilogue start */
 	pop r29
 	pop r28
@@ -6773,10 +6761,6 @@ strstr:
 	pop r13
 	pop r12
 	ret
-.L474:
-	mov r24,r28
-	mov r25,r29
-	rjmp .L470
 	.size	strstr, .-strstr
 .global	copysign
 	.type	copysign, @function
@@ -6819,8 +6803,8 @@ copysign:
 	mov r22,r4
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L489
-.L477:
+	brlt .L477
+.L469:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -6831,8 +6815,8 @@ copysign:
 	mov r22,r4
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L487
-	brlt .L487
+	breq .L472
+	brlt .L472
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -6847,12 +6831,12 @@ copysign:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L479
+	brlt .L471
+.L472:
 	mov r25,r7
 	mov r24,r6
 	mov r23,r5
 	mov r22,r4
-.L480:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -6871,7 +6855,7 @@ copysign:
 	pop r5
 	pop r4
 	ret
-.L489:
+.L477:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -6886,21 +6870,14 @@ copysign:
 	mov r22,r8
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L477
-	brlt .L477
-.L479:
-	mov r25,r7
-	mov r24,r6
-	mov r23,r5
-	mov r22,r4
-	subi r25,0x80
-	rjmp .L480
-.L487:
-	mov r25,r7
-	mov r24,r6
-	mov r23,r5
-	mov r22,r4
-	rjmp .L480
+	breq .L469
+	brlt .L469
+.L471:
+	bst r7,7
+	com r7
+	bld r7,7
+	com r7
+	rjmp .L472
 	.size	copysign, .-copysign
 .global	memmem
 	.type	memmem, @function
@@ -6934,18 +6911,18 @@ memmem:
 	adc r17,r29
 	cp r12,__zero_reg__
 	cpc r13,__zero_reg__
-	breq .L491
+	breq .L483
 	ldi r24,lo8(1)
 	cp r30,r12
 	cpc r31,r13
-	brlo .L492
+	brlo .L480
 	ldi r24,0
-.L492:
+.L480:
 	cpse r24,__zero_reg__
-	rjmp .L496
+	rjmp .L484
 	cp r16,r28
 	cpc r17,r29
-	brlo .L497
+	brlo .L485
 	mov r10,r20
 	mov r11,r21
 	mov r30,r10
@@ -6956,17 +6933,17 @@ memmem:
 	ldi r31,1
 	sub r12,r31
 	sbc r13,__zero_reg__
-	rjmp .L494
-.L493:
+	rjmp .L482
+.L481:
 	cp r16,r28
 	cpc r17,r29
-	brlo .L500
-.L494:
+	brlo .L487
+.L482:
 	mov r14,r28
 	mov r15,r29
-	ld r18,Y+
-	cpse r18,r9
-	rjmp .L493
+	ld r24,Y+
+	cpse r24,r9
+	rjmp .L481
 	mov r20,r12
 	mov r21,r13
 	mov r22,r10
@@ -6975,14 +6952,14 @@ memmem:
 	mov r25,r29
 	rcall memcmp
 	or r24,r25
-	brne .L493
+	brne .L481
+	rjmp .L478
+.L487:
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
+.L478:
 	mov r24,r14
 	mov r25,r15
-	rjmp .L491
-.L500:
-	ldi r24,0
-	ldi r25,0
-.L491:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -6996,14 +6973,18 @@ memmem:
 	pop r10
 	pop r9
 	ret
-.L496:
-	ldi r24,0
-	ldi r25,0
-	rjmp .L491
-.L497:
-	ldi r24,0
-	ldi r25,0
-	rjmp .L491
+.L483:
+	mov r14,r24
+	mov r15,r25
+	rjmp .L478
+.L484:
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
+	rjmp .L478
+.L485:
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
+	rjmp .L478
 	.size	memmem, .-memmem
 .global	mempcpy
 	.type	mempcpy, @function
@@ -7071,8 +7052,8 @@ frexp:
 	mov r11,__zero_reg__
 	cp r24, __zero_reg__
 	brge .+2
-	rjmp .L526
-.L503:
+	rjmp .L513
+.L490:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,lo8(-128)
@@ -7084,10 +7065,10 @@ frexp:
 	rcall __gesf2
 	cp r24, __zero_reg__
 	brge .+2
-	rjmp .L523
+	rjmp .L510
 	std Y+6,__zero_reg__
 	std Y+5,__zero_reg__
-.L507:
+.L494:
 	ldd r24,Y+5
 	ldd r25,Y+6
 	adiw r24,1
@@ -7120,8 +7101,8 @@ frexp:
 	mov r22,r12
 	rcall __gesf2
 	cp r24, __zero_reg__
-	brge .L507
-.L508:
+	brge .L494
+.L495:
 	ldd r24,Y+5
 	ldd r25,Y+6
 	mov r30,r16
@@ -7129,12 +7110,12 @@ frexp:
 	std Z+1,r25
 	st Z,r24
 	or r10,r11
-	breq .L512
+	breq .L499
 	bst r15,7
 	com r15
 	bld r15,7
 	com r15
-.L512:
+.L499:
 	mov r25,r15
 	mov r24,r14
 	mov r23,r13
@@ -7161,7 +7142,7 @@ frexp:
 	pop r5
 	pop r4
 	ret
-.L526:
+.L513:
 	bst r15,7
 	com r15
 	bld r15,7
@@ -7169,8 +7150,8 @@ frexp:
 	clr r10
 	inc r10
 	mov r11,__zero_reg__
-	rjmp .L503
-.L523:
+	rjmp .L490
+.L510:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -7181,7 +7162,7 @@ frexp:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brge .L524
+	brge .L511
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -7192,10 +7173,10 @@ frexp:
 	mov r22,r12
 	rcall __nesf2
 	cp r24, __zero_reg__
-	breq .L525
+	breq .L512
 	std Y+6,__zero_reg__
 	std Y+5,__zero_reg__
-.L511:
+.L498:
 	ldd r30,Y+5
 	ldd r31,Y+6
 	sbiw r30,1
@@ -7228,16 +7209,16 @@ frexp:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L511
-	rjmp .L508
-.L524:
+	brlt .L498
+	rjmp .L495
+.L511:
 	std Y+6,__zero_reg__
 	std Y+5,__zero_reg__
-	rjmp .L508
-.L525:
+	rjmp .L495
+.L512:
 	std Y+6,__zero_reg__
 	std Y+5,__zero_reg__
-	rjmp .L508
+	rjmp .L495
 	.size	frexp, .-frexp
 .global	__muldi3
 	.type	__muldi3, @function
@@ -7262,48 +7243,46 @@ __muldi3:
 	push r29
 	in r28,__SP_L__
 	in r29,__SP_H__
-	sbiw r28,12
+	sbiw r28,13
 	in __tmp_reg__,__SREG__
 	cli
 	out __SP_H__,r29
 	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
 /* prologue: function */
-/* frame size = 12 */
-/* stack size = 30 */
-.L__stack_usage = 30
-	std Y+2,r10
-	std Y+3,r11
-	mov r8,r12
-	mov r7,r13
-	mov r6,r14
-	mov r5,r15
-	mov r4,r16
-	mov r3,r17
-	std Y+1,r18
-	std Y+4,r19
-	std Y+5,r20
-	std Y+6,r21
-	std Y+7,r22
-	std Y+8,r23
-	std Y+9,r24
-	std Y+10,r25
+/* frame size = 13 */
+/* stack size = 31 */
+.L__stack_usage = 31
+	mov r30,r10
+	mov r31,r11
+	mov r27,r12
+	std Y+12,r13
+	std Y+13,r14
+	mov r9,r15
+	mov r8,r16
+	mov r7,r17
+	mov r6,r18
+	mov r5,r19
+	mov r4,r20
+	mov r3,r21
+	mov r2,r22
+	std Y+9,r23
+	std Y+10,r24
+	std Y+11,r25
 	ldi r26,0
 	rcall __cmpdi2_s8
 	brne .+2
-	rjmp .L530
-	mov r2,__zero_reg__
-	mov r9,__zero_reg__
-	std Y+12,__zero_reg__
-	std Y+11,__zero_reg__
-	ldi r27,0
-	ldi r31,0
-	ldi r30,0
-	rjmp .L529
-.L531:
-	mov r26,r17
-.L529:
-	ldd r18,Y+1
+	rjmp .L517
+	std Y+1,__zero_reg__
+	std Y+2,__zero_reg__
+	std Y+3,__zero_reg__
+	std Y+4,__zero_reg__
+	std Y+5,__zero_reg__
+	std Y+6,__zero_reg__
+	std Y+7,__zero_reg__
+	std Y+8,__zero_reg__
+.L516:
+	mov r18,r6
 	andi r18,lo8(1)
 	ldi r19,0
 	ldi r20,0
@@ -7313,94 +7292,89 @@ __muldi3:
 	ldi r24,0
 	ldi r25,0
 	rcall __negdi2
-	ldd r10,Y+2
+	mov r10,r30
 	and r10,r18
-	ldd r11,Y+3
+	mov r11,r31
 	and r11,r19
-	mov r12,r8
+	mov r12,r27
 	and r12,r20
-	mov r13,r7
+	ldd r13,Y+12
 	and r13,r21
-	mov r14,r6
+	ldd r14,Y+13
 	and r14,r22
-	mov r15,r5
+	mov r15,r9
 	and r15,r23
-	mov r16,r4
+	mov r16,r8
 	and r16,r24
-	mov r17,r3
+	mov r17,r7
 	and r17,r25
-	mov r18,r2
-	mov r19,r9
-	ldd r20,Y+12
-	ldd r21,Y+11
-	mov r22,r27
-	mov r23,r26
-	mov r24,r31
-	mov r25,r30
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r22,Y+5
+	ldd r23,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
 	rcall __adddi3
-	mov r2,r18
-	mov r9,r19
-	std Y+12,r20
-	std Y+11,r21
-	mov r27,r22
-	mov r17,r23
-	mov r31,r24
-	mov r30,r25
-	ldd r18,Y+2
-	ldd r19,Y+3
-	mov r20,r8
-	mov r21,r7
-	mov r22,r6
-	mov r23,r5
-	mov r24,r4
-	mov r25,r3
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	std Y+5,r22
+	std Y+6,r23
+	std Y+7,r24
+	std Y+8,r25
+	mov r18,r30
+	mov r19,r31
+	mov r20,r27
+	ldd r21,Y+12
+	ldd r22,Y+13
+	mov r23,r9
+	mov r24,r8
+	mov r25,r7
 	ldi r16,lo8(1)
 	rcall __ashldi3
-	std Y+2,r18
-	std Y+3,r19
-	mov r8,r20
-	mov r7,r21
-	mov r6,r22
-	mov r5,r23
-	mov r4,r24
-	mov r3,r25
-	ldd r18,Y+1
-	ldd r19,Y+4
-	ldd r20,Y+5
-	ldd r21,Y+6
-	ldd r22,Y+7
-	ldd r23,Y+8
-	ldd r24,Y+9
-	ldd r25,Y+10
+	mov r30,r18
+	mov r31,r19
+	mov r27,r20
+	std Y+12,r21
+	std Y+13,r22
+	mov r9,r23
+	mov r8,r24
+	mov r7,r25
+	mov r18,r6
+	mov r19,r5
+	mov r20,r4
+	mov r21,r3
+	mov r22,r2
+	ldd r23,Y+9
+	ldd r24,Y+10
+	ldd r25,Y+11
 	rcall __lshrdi3
-	std Y+1,r18
-	std Y+4,r19
-	std Y+5,r20
-	std Y+6,r21
-	std Y+7,r22
-	std Y+8,r23
-	std Y+9,r24
-	std Y+10,r25
+	mov r6,r18
+	mov r5,r19
+	mov r4,r20
+	mov r3,r21
+	mov r2,r22
+	std Y+9,r23
+	std Y+10,r24
+	std Y+11,r25
 	ldi r26,0
 	rcall __cmpdi2_s8
 	breq .+2
-	rjmp .L531
-	ldd r24,Y+12
-	std Y+2,r24
-	ldd r24,Y+11
-	std Y+1,r24
-	mov r26,r17
-.L528:
-	mov r18,r2
-	mov r19,r9
-	ldd r20,Y+12
-	ldd r21,Y+11
-	mov r22,r27
-	mov r23,r26
-	mov r24,r31
-	mov r25,r30
+	rjmp .L516
+.L514:
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r22,Y+5
+	ldd r23,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
 /* epilogue start */
-	adiw r28,12
+	adiw r28,13
 	in __tmp_reg__,__SREG__
 	cli
 	out __SP_H__,r29
@@ -7425,16 +7399,16 @@ __muldi3:
 	pop r3
 	pop r2
 	ret
-.L530:
-	mov r2,__zero_reg__
-	mov r9,__zero_reg__
-	std Y+12,__zero_reg__
-	std Y+11,__zero_reg__
-	ldi r27,0
-	ldi r26,0
-	ldi r31,0
-	ldi r30,0
-	rjmp .L528
+.L517:
+	std Y+1,__zero_reg__
+	std Y+2,__zero_reg__
+	std Y+3,__zero_reg__
+	std Y+4,__zero_reg__
+	std Y+5,__zero_reg__
+	std Y+6,__zero_reg__
+	std Y+7,__zero_reg__
+	std Y+8,__zero_reg__
+	rjmp .L514
 	.size	__muldi3, .-__muldi3
 .global	udivmodsi4
 	.type	udivmodsi4, @function
@@ -7468,14 +7442,14 @@ udivmodsi4:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L534
+	brsh .L521
 	ldi r24,lo8(1)
 	ldi r25,0
 	ldi r26,0
 	ldi r27,0
-.L533:
+.L520:
 	tst r15
-	brlt .L534
+	brlt .L521
 	lsl r12
 	rol r13
 	rol r14
@@ -7488,12 +7462,12 @@ udivmodsi4:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L534
+	brsh .L521
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	brne .L533
-.L534:
+	brne .L520
+.L521:
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
@@ -7501,13 +7475,13 @@ udivmodsi4:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L537
+	breq .L524
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L536
-.L539:
+	rjmp .L523
+.L526:
 	lsr r27
 	ror r26
 	ror r25
@@ -7519,13 +7493,13 @@ udivmodsi4:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L537
-.L536:
+	breq .L524
+.L523:
 	cp r8,r12
 	cpc r9,r13
 	cpc r10,r14
 	cpc r11,r15
-	brlo .L539
+	brlo .L526
 	sub r8,r12
 	sbc r9,r13
 	sbc r10,r14
@@ -7534,17 +7508,15 @@ udivmodsi4:
 	or r21,r25
 	or r22,r26
 	or r23,r27
-	rjmp .L539
-.L537:
+	rjmp .L526
+.L524:
 	cpse r16,__zero_reg__
-	rjmp .L543
-	mov r19,r20
-	mov r18,r21
-	mov r24,r22
+	rjmp .L532
+.L519:
 	mov r25,r23
-.L540:
-	mov r22,r19
-	mov r23,r18
+	mov r24,r22
+	mov r23,r21
+	mov r22,r20
 /* epilogue start */
 	pop r16
 	pop r15
@@ -7556,12 +7528,12 @@ udivmodsi4:
 	pop r9
 	pop r8
 	ret
-.L543:
-	mov r19,r8
-	mov r18,r9
-	mov r24,r10
-	mov r25,r11
-	rjmp .L540
+.L532:
+	mov r23,r11
+	mov r22,r10
+	mov r21,r9
+	mov r20,r8
+	rjmp .L519
 	.size	udivmodsi4, .-udivmodsi4
 .global	__clrsbqi2
 	.type	__clrsbqi2, @function
@@ -7576,12 +7548,12 @@ __clrsbqi2:
 	mov r25,r18
 	eor r25,r24
 	cp r18,r24
-	breq .L547
+	breq .L535
 	ldi r24,0
 	rcall __clzhi2
 	sbiw r24,1
 	ret
-.L547:
+.L535:
 	ldi r24,lo8(7)
 	ldi r25,0
 /* epilogue start */
@@ -7633,10 +7605,10 @@ __clrsbdi2:
 	mov r25,r30
 	ldi r26,0
 	rcall __cmpdi2_s8
-	breq .L550
+	breq .L538
 	rcall __clzdi2
 	sbiw r24,1
-.L549:
+.L536:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -7644,10 +7616,10 @@ __clrsbdi2:
 	pop r16
 	pop r15
 	ret
-.L550:
+.L538:
 	ldi r24,lo8(63)
 	ldi r25,0
-	rjmp .L549
+	rjmp .L536
 	.size	__clrsbdi2, .-__clrsbdi2
 .global	__mulsi3
 	.type	__mulsi3, @function
@@ -7662,10 +7634,10 @@ __mulsi3:
 	mov r31,r23
 	cp r20,__zero_reg__
 	cpc r21,__zero_reg__
-	breq .L554
+	breq .L542
 	ldi r24,0
 	ldi r25,0
-.L553:
+.L541:
 	mov r18,r20
 	andi r18,1<<0
 	clr r19
@@ -7682,9 +7654,9 @@ __mulsi3:
 	rol r31
 	cp r20,__zero_reg__
 	cpc r21,__zero_reg__
-	brne .L553
+	brne .L541
 	ret
-.L554:
+.L542:
 	ldi r24,0
 	ldi r25,0
 /* epilogue start */
@@ -7726,34 +7698,34 @@ __cmovd:
 	andi r24,248
 	cp r16,r18
 	cpc r17,r19
-	brlo .L557
+	brlo .L545
 	mov r20,r18
 	mov r21,r19
 	add r20,r28
 	adc r21,r29
 	cp r20,r16
 	cpc r21,r17
-	brlo .L557
+	brlo .L545
 	sbiw r28,0
 	brne .+2
-	rjmp .L556
+	rjmp .L544
 	mov r26,r18
 	mov r27,r19
 	add r26,r28
 	adc r27,r29
 	add r28,r16
 	adc r29,r17
-.L563:
+.L551:
 	ld r24,-X
 	st -Y,r24
 	cp r26,r18
 	cpc r27,r19
-	brne .L563
-	rjmp .L556
-.L557:
+	brne .L551
+	rjmp .L544
+.L545:
 	cp r12,__zero_reg__
 	cpc r13,__zero_reg__
-	breq .L560
+	breq .L548
 	mov r30,r18
 	mov r31,r19
 	mov r26,r16
@@ -7766,7 +7738,7 @@ __cmovd:
 	rol r13
 	add r12,r18
 	adc r13,r19
-.L561:
+.L549:
 	ld r10,Z
 	ldd r11,Z+1
 	ldd r14,Z+2
@@ -7801,11 +7773,11 @@ __cmovd:
 	adiw r26,8
 	cp r30,r12
 	cpc r31,r13
-	brne .L561
-.L560:
+	brne .L549
+.L548:
 	cp r24,r28
 	cpc r25,r29
-	brsh .L556
+	brsh .L544
 	mov r30,r18
 	mov r31,r19
 	add r30,r24
@@ -7816,13 +7788,13 @@ __cmovd:
 	adc r27,r25
 	add r18,r28
 	adc r19,r29
-.L562:
+.L550:
 	ld r24,Z+
 	st X+,r24
 	cp r30,r18
 	cpc r31,r19
-	brne .L562
-.L556:
+	brne .L550
+.L544:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -7861,34 +7833,34 @@ __cmovh:
 	ror r18
 	cp r28,r16
 	cpc r29,r17
-	brlo .L568
+	brlo .L556
 	mov r24,r16
 	mov r25,r17
 	add r24,r14
 	adc r25,r15
 	cp r24,r28
 	cpc r25,r29
-	brlo .L568
+	brlo .L556
 	cp r14,__zero_reg__
 	cpc r15,__zero_reg__
-	breq .L567
+	breq .L555
 	mov r30,r16
 	mov r31,r17
 	add r30,r14
 	adc r31,r15
 	add r28,r14
 	adc r29,r15
-.L573:
+.L561:
 	ld r24,-Z
 	st -Y,r24
 	cp r30,r16
 	cpc r31,r17
-	brne .L573
-	rjmp .L567
-.L568:
+	brne .L561
+	rjmp .L555
+.L556:
 	cp r18,__zero_reg__
 	cpc r19,__zero_reg__
-	breq .L571
+	breq .L559
 	mov r30,r16
 	mov r31,r17
 	mov r26,r28
@@ -7897,17 +7869,17 @@ __cmovh:
 	rol r19
 	add r18,r16
 	adc r19,r17
-.L572:
+.L560:
 	ld r24,Z+
 	ld r25,Z+
 	st X+,r24
 	st X+,r25
 	cp r30,r18
 	cpc r31,r19
-	brne .L572
-.L571:
+	brne .L560
+.L559:
 	sbrs r14,0
-	rjmp .L567
+	rjmp .L555
 	ldi r24,1
 	sub r14,r24
 	sbc r15,__zero_reg__
@@ -7919,7 +7891,7 @@ __cmovh:
 	adc r29,r15
 	ld r24,Z
 	st Y,r24
-.L567:
+.L555:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -7959,17 +7931,17 @@ __cmovw:
 	andi r26,252
 	cp r14,r18
 	cpc r15,r19
-	brlo .L577
+	brlo .L565
 	mov r24,r18
 	mov r25,r19
 	add r24,r16
 	adc r25,r17
 	cp r24,r14
 	cpc r25,r15
-	brlo .L577
+	brlo .L565
 	cp r16,__zero_reg__
 	cpc r17,__zero_reg__
-	breq .L576
+	breq .L564
 	mov r26,r18
 	mov r27,r19
 	add r26,r16
@@ -7978,17 +7950,17 @@ __cmovw:
 	mov r31,r15
 	add r30,r16
 	adc r31,r17
-.L583:
+.L571:
 	ld r24,-X
 	st -Z,r24
 	cp r26,r18
 	cpc r27,r19
-	brne .L583
-	rjmp .L576
-.L577:
+	brne .L571
+	rjmp .L564
+.L565:
 	cp r20,__zero_reg__
 	cpc r21,__zero_reg__
-	breq .L580
+	breq .L568
 	mov r30,r18
 	mov r31,r19
 	mov r28,r14
@@ -7997,18 +7969,18 @@ __cmovw:
 	rol r21
 	add r20,r18
 	adc r21,r19
-.L581:
+.L569:
 	ld r24,Z+
 	ld r25,Z+
 	st Y+,r24
 	st Y+,r25
 	cp r30,r20
 	cpc r31,r21
-	brne .L581
-.L580:
+	brne .L569
+.L568:
 	cp r26,r16
 	cpc r27,r17
-	brsh .L576
+	brsh .L564
 	mov r30,r18
 	mov r31,r19
 	add r30,r26
@@ -8017,13 +7989,13 @@ __cmovw:
 	adc r27,r15
 	add r18,r16
 	adc r19,r17
-.L582:
+.L570:
 	ld r24,Z+
 	st X+,r24
 	cp r30,r18
 	cpc r31,r19
-	brne .L582
-.L576:
+	brne .L570
+.L564:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -8181,16 +8153,16 @@ __clzhi2:
 	mov r20,r24
 	mov r21,r25
 	tst r21
-	brlt .L597
+	brlt .L585
 	ldi r24,0
 	ldi r25,0
 	ldi r22,0
 	ldi r23,lo8(-128)
-.L595:
+.L583:
 	adiw r24,1
 	cpi r24,16
 	cpc r25,__zero_reg__
-	breq .L598
+	breq .L586
 	mov r18,r22
 	mov r19,r23
 	mov r0,r24
@@ -8204,13 +8176,13 @@ __clzhi2:
 	and r18,r20
 	and r19,r21
 	or r18,r19
-	breq .L595
-.L594:
+	breq .L583
+.L581:
 /* epilogue start */
 	ret
-.L598:
+.L586:
 	ret
-.L597:
+.L585:
 	ldi r24,0
 	ldi r25,0
 	ret
@@ -8226,7 +8198,7 @@ __ctzhi2:
 	mov r21,r25
 	ldi r24,0
 	ldi r25,0
-.L601:
+.L589:
 	mov r18,r20
 	mov r19,r21
 	mov r0,r24
@@ -8238,12 +8210,12 @@ __ctzhi2:
 	dec r0
 	brpl 1b
 	sbrc r18,0
-	rjmp .L600
+	rjmp .L587
 	adiw r24,1
 	cpi r24,16
 	cpc r25,__zero_reg__
-	brne .L601
-.L600:
+	brne .L589
+.L587:
 /* epilogue start */
 	ret
 	.size	__ctzhi2, .-__ctzhi2
@@ -8296,7 +8268,7 @@ __fixunssfsi:
 	mov r22,r12
 	rcall __gesf2
 	cp r24, __zero_reg__
-	brge .L609
+	brge .L597
 	mov r8,r16
 	mov r9,r17
 	ldd r10,Y+10
@@ -8310,7 +8282,7 @@ __fixunssfsi:
 	mov r5,r23
 	mov r6,r24
 	mov r7,r25
-.L606:
+.L591:
 	mov r25,r7
 	mov r24,r6
 	mov r23,r5
@@ -8339,7 +8311,7 @@ __fixunssfsi:
 	pop r5
 	pop r4
 	ret
-.L609:
+.L597:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -8370,7 +8342,7 @@ __fixunssfsi:
 	add r5,r18
 	adc r6,__zero_reg__
 	adc r7,__zero_reg__
-	rjmp .L606
+	rjmp .L591
 	.size	__fixunssfsi, .-__fixunssfsi
 .global	__parityhi2
 	.type	__parityhi2, @function
@@ -8385,7 +8357,7 @@ __parityhi2:
 	ldi r25,0
 	ldi r18,0
 	ldi r19,0
-.L611:
+.L599:
 	mov r20,r22
 	mov r21,r23
 	mov r0,r18
@@ -8404,7 +8376,7 @@ __parityhi2:
 	sbci r19,-1
 	cpi r18,16
 	cpc r19,__zero_reg__
-	brne .L611
+	brne .L599
 	andi r24,1
 	clr r25
 /* epilogue start */
@@ -8423,7 +8395,7 @@ __popcounthi2:
 	ldi r25,0
 	ldi r18,0
 	ldi r19,0
-.L614:
+.L602:
 	mov r20,r22
 	mov r21,r23
 	mov r0,r18
@@ -8442,7 +8414,7 @@ __popcounthi2:
 	sbci r19,-1
 	cpi r18,16
 	cpc r19,__zero_reg__
-	brne .L614
+	brne .L602
 /* epilogue start */
 	ret
 	.size	__popcounthi2, .-__popcounthi2
@@ -8473,18 +8445,12 @@ __mulsi3_iq2000:
 	cpc r13,__zero_reg__
 	cpc r14,__zero_reg__
 	cpc r15,__zero_reg__
-	breq .L619
+	breq .L607
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L618
-.L620:
-	mov r20,r24
-	mov r21,r25
-	mov r22,r26
-	mov r23,r27
-.L618:
+.L606:
 	mov r24,r12
 	andi r24,1<<0
 	clr r25
@@ -8501,10 +8467,10 @@ __mulsi3_iq2000:
 	and r25,r9
 	and r26,r10
 	and r27,r11
-	add r24,r20
-	adc r25,r21
-	adc r26,r22
-	adc r27,r23
+	add r20,r24
+	adc r21,r25
+	adc r22,r26
+	adc r23,r27
 	lsr r15
 	ror r14
 	ror r13
@@ -8517,12 +8483,8 @@ __mulsi3_iq2000:
 	cpc r13,__zero_reg__
 	cpc r14,__zero_reg__
 	cpc r15,__zero_reg__
-	brne .L620
-	mov r20,r24
-	mov r21,r25
-	mov r22,r26
-	mov r23,r27
-.L617:
+	brne .L606
+.L604:
 	mov r25,r23
 	mov r24,r22
 	mov r23,r21
@@ -8537,12 +8499,12 @@ __mulsi3_iq2000:
 	pop r9
 	pop r8
 	ret
-.L619:
+.L607:
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L617
+	rjmp .L604
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 .global	__mulsi3_lm32
 	.type	__mulsi3_lm32, @function
@@ -8567,31 +8529,25 @@ __mulsi3_lm32:
 	mov r13,r19
 	mov r14,r20
 	mov r15,r21
-	ldi r24,0
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	cp r8,__zero_reg__
-	cpc r9,__zero_reg__
-	cpc r10,__zero_reg__
-	cpc r11,__zero_reg__
-	breq .L622
-	cp r12,__zero_reg__
-	cpc r13,__zero_reg__
-	cpc r14,__zero_reg__
-	cpc r15,__zero_reg__
-	breq .L625
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L623
-.L626:
-	mov r20,r24
-	mov r21,r25
-	mov r22,r26
-	mov r23,r27
-.L623:
+	cp r8,__zero_reg__
+	cpc r9,__zero_reg__
+	cpc r10,__zero_reg__
+	cpc r11,__zero_reg__
+	breq .L609
+	cp r12,__zero_reg__
+	cpc r13,__zero_reg__
+	cpc r14,__zero_reg__
+	cpc r15,__zero_reg__
+	breq .L613
+	ldi r20,0
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+.L611:
 	mov r24,r12
 	andi r24,1<<0
 	clr r25
@@ -8608,10 +8564,10 @@ __mulsi3_lm32:
 	and r25,r9
 	and r26,r10
 	and r27,r11
-	add r24,r20
-	adc r25,r21
-	adc r26,r22
-	adc r27,r23
+	add r20,r24
+	adc r21,r25
+	adc r22,r26
+	adc r23,r27
 	lsl r8
 	rol r9
 	rol r10
@@ -8624,12 +8580,12 @@ __mulsi3_lm32:
 	cpc r13,__zero_reg__
 	cpc r14,__zero_reg__
 	cpc r15,__zero_reg__
-	brne .L626
-.L622:
-	mov r22,r24
-	mov r23,r25
-	mov r24,r26
-	mov r25,r27
+	brne .L611
+.L609:
+	mov r25,r23
+	mov r24,r22
+	mov r23,r21
+	mov r22,r20
 /* epilogue start */
 	pop r15
 	pop r14
@@ -8640,12 +8596,12 @@ __mulsi3_lm32:
 	pop r9
 	pop r8
 	ret
-.L625:
-	ldi r24,0
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	rjmp .L622
+.L613:
+	ldi r20,0
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	rjmp .L609
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 .global	__udivmodsi4
 	.type	__udivmodsi4, @function
@@ -8682,14 +8638,14 @@ __udivmodsi4:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L629
+	brsh .L617
 	ldi r24,lo8(1)
 	ldi r25,0
 	ldi r26,0
 	ldi r27,0
-.L628:
+.L616:
 	tst r15
-	brlt .L629
+	brlt .L617
 	lsl r12
 	rol r13
 	rol r14
@@ -8702,12 +8658,12 @@ __udivmodsi4:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L629
+	brsh .L617
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	brne .L628
-.L629:
+	brne .L616
+.L617:
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
@@ -8715,13 +8671,13 @@ __udivmodsi4:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L632
+	breq .L620
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L631
-.L634:
+	rjmp .L619
+.L622:
 	lsr r27
 	ror r26
 	ror r25
@@ -8733,13 +8689,13 @@ __udivmodsi4:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L632
-.L631:
+	breq .L620
+.L619:
 	cp r8,r12
 	cpc r9,r13
 	cpc r10,r14
 	cpc r11,r15
-	brlo .L634
+	brlo .L622
 	sub r8,r12
 	sbc r9,r13
 	sbc r10,r14
@@ -8748,17 +8704,15 @@ __udivmodsi4:
 	or r21,r25
 	or r22,r26
 	or r23,r27
-	rjmp .L634
-.L632:
+	rjmp .L622
+.L620:
 	or r30,r31
-	brne .L638
-	mov r19,r20
-	mov r18,r21
-	mov r24,r22
+	brne .L628
+.L615:
 	mov r25,r23
-.L635:
-	mov r22,r19
-	mov r23,r18
+	mov r24,r22
+	mov r23,r21
+	mov r22,r20
 /* epilogue start */
 	pop r17
 	pop r16
@@ -8771,12 +8725,12 @@ __udivmodsi4:
 	pop r9
 	pop r8
 	ret
-.L638:
-	mov r19,r8
-	mov r18,r9
-	mov r24,r10
-	mov r25,r11
-	rjmp .L635
+.L628:
+	mov r23,r11
+	mov r22,r10
+	mov r21,r9
+	mov r20,r8
+	rjmp .L615
 	.size	__udivmodsi4, .-__udivmodsi4
 .global	__mspabi_cmpf
 	.type	__mspabi_cmpf, @function
@@ -8837,7 +8791,7 @@ __mspabi_cmpf:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L643
+	brlt .L632
 	clr r15
 	inc r15
 	mov r8,r2
@@ -8859,12 +8813,12 @@ __mspabi_cmpf:
 	ldd r25,Y+4
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L644
-	brlt .L644
-.L642:
+	breq .L633
+	brlt .L633
+.L631:
 	mov r24,r15
 	ldi r25,0
-.L641:
+.L629:
 /* epilogue start */
 	adiw r28,8
 	in __tmp_reg__,__SREG__
@@ -8891,13 +8845,13 @@ __mspabi_cmpf:
 	pop r3
 	pop r2
 	ret
-.L644:
+.L633:
 	mov r15,__zero_reg__
-	rjmp .L642
-.L643:
+	rjmp .L631
+.L632:
 	ldi r24,lo8(-1)
 	ldi r25,lo8(-1)
-	rjmp .L641
+	rjmp .L629
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
 .global	__mspabi_cmpd
 	.type	__mspabi_cmpd, @function
@@ -8958,7 +8912,7 @@ __mspabi_cmpd:
 	mov r22,r12
 	rcall __ltsf2
 	cp r24, __zero_reg__
-	brlt .L648
+	brlt .L637
 	clr r15
 	inc r15
 	mov r8,r2
@@ -8980,12 +8934,12 @@ __mspabi_cmpd:
 	ldd r25,Y+4
 	rcall __gtsf2
 	cp r24, __zero_reg__
-	breq .L649
-	brlt .L649
-.L647:
+	breq .L638
+	brlt .L638
+.L636:
 	mov r24,r15
 	ldi r25,0
-.L646:
+.L634:
 /* epilogue start */
 	adiw r28,8
 	in __tmp_reg__,__SREG__
@@ -9012,13 +8966,13 @@ __mspabi_cmpd:
 	pop r3
 	pop r2
 	ret
-.L649:
+.L638:
 	mov r15,__zero_reg__
-	rjmp .L647
-.L648:
+	rjmp .L636
+.L637:
 	ldi r24,lo8(-1)
 	ldi r25,lo8(-1)
-	rjmp .L646
+	rjmp .L634
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 .global	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
@@ -9182,15 +9136,15 @@ __mulhi3:
 	ldi r26,0
 	ldi r27,0
 	tst r21
-	brlt .L662
-.L653:
+	brlt .L649
+.L642:
 	cp r20,__zero_reg__
 	cpc r21,__zero_reg__
-	breq .L658
-	ldi r22,lo8(16)
-	ldi r24,0
-	ldi r25,0
-.L655:
+	breq .L647
+	ldi r25,lo8(16)
+	ldi r22,0
+	ldi r23,0
+.L644:
 	mov r18,r20
 	andi r18,1<<0
 	clr r19
@@ -9199,38 +9153,40 @@ __mulhi3:
 	sbc r19,__zero_reg__
 	and r18,r30
 	and r19,r31
-	add r24,r18
-	adc r25,r19
+	add r22,r18
+	adc r23,r19
 	lsl r30
 	rol r31
 	asr r21
 	ror r20
 	cp r20,__zero_reg__
 	cpc r21,__zero_reg__
-	breq .L654
-	subi r22,lo8(-(-1))
-	cpse r22,__zero_reg__
-	rjmp .L655
-.L654:
+	breq .L643
+	subi r25,lo8(-(-1))
+	cpse r25,__zero_reg__
+	rjmp .L644
+.L643:
 	or r26,r27
-	breq .L656
-	neg r25
-	neg r24
-	sbc r25,__zero_reg__
-.L656:
+	breq .L641
+	neg r23
+	neg r22
+	sbc r23,__zero_reg__
+.L641:
+	mov r24,r22
+	mov r25,r23
 /* epilogue start */
 	ret
-.L662:
+.L649:
 	neg r21
 	neg r20
 	sbc r21,__zero_reg__
 	ldi r26,lo8(1)
 	ldi r27,0
-	rjmp .L653
-.L658:
-	ldi r24,0
-	ldi r25,0
-	rjmp .L654
+	rjmp .L642
+.L647:
+	ldi r22,0
+	ldi r23,0
+	rjmp .L643
 	.size	__mulhi3, .-__mulhi3
 .global	__divsi3
 	.type	__divsi3, @function
@@ -9266,11 +9222,11 @@ __divsi3:
 	ldi r28,0
 	ldi r29,0
 	tst r15
-	brlt .L668
-.L664:
+	brlt .L655
+.L651:
 	tst r11
-	brlt .L669
-.L665:
+	brlt .L656
+.L652:
 	ldi r16,0
 	ldi r17,0
 	mov r21,r11
@@ -9287,7 +9243,7 @@ __divsi3:
 	mov r6,r24
 	mov r7,r25
 	or r28,r29
-	breq .L666
+	breq .L650
 	com r7
 	com r6
 	com r5
@@ -9296,7 +9252,7 @@ __divsi3:
 	adc r5,__zero_reg__
 	adc r6,__zero_reg__
 	adc r7,__zero_reg__
-.L666:
+.L650:
 	mov r25,r7
 	mov r24,r6
 	mov r23,r5
@@ -9319,7 +9275,7 @@ __divsi3:
 	pop r5
 	pop r4
 	ret
-.L668:
+.L655:
 	com r15
 	com r14
 	com r13
@@ -9330,8 +9286,8 @@ __divsi3:
 	adc r15,__zero_reg__
 	ldi r28,lo8(1)
 	ldi r29,0
-	rjmp .L664
-.L669:
+	rjmp .L651
+.L656:
 	com r11
 	com r10
 	com r9
@@ -9344,7 +9300,7 @@ __divsi3:
 	ldi r24,lo8(1)
 	eor r28,r24
 	ldi r29,0
-	rjmp .L665
+	rjmp .L652
 	.size	__divsi3, .-__divsi3
 .global	__modsi3
 	.type	__modsi3, @function
@@ -9380,15 +9336,15 @@ __modsi3:
 	ldi r28,0
 	ldi r29,0
 	tst r15
-	brlt .L675
-.L671:
+	brlt .L662
+.L658:
 	mov r21,r7
 	mov r20,r6
 	mov r19,r5
 	mov r18,r4
 	tst r7
-	brlt .L676
-.L672:
+	brlt .L663
+.L659:
 	ldi r16,lo8(1)
 	ldi r17,0
 	mov r25,r15
@@ -9401,7 +9357,7 @@ __modsi3:
 	mov r10,r24
 	mov r11,r25
 	or r28,r29
-	breq .L673
+	breq .L657
 	com r11
 	com r10
 	com r9
@@ -9410,7 +9366,7 @@ __modsi3:
 	adc r9,__zero_reg__
 	adc r10,__zero_reg__
 	adc r11,__zero_reg__
-.L673:
+.L657:
 	mov r25,r11
 	mov r24,r10
 	mov r23,r9
@@ -9433,7 +9389,7 @@ __modsi3:
 	pop r5
 	pop r4
 	ret
-.L675:
+.L662:
 	com r15
 	com r14
 	com r13
@@ -9444,8 +9400,8 @@ __modsi3:
 	adc r15,__zero_reg__
 	ldi r28,lo8(1)
 	ldi r29,0
-	rjmp .L671
-.L676:
+	rjmp .L658
+.L663:
 	clr r18
 	clr r19
 	clr r20
@@ -9454,7 +9410,7 @@ __modsi3:
 	sbc r19,r5
 	sbc r20,r6
 	sbc r21,r7
-	rjmp .L672
+	rjmp .L659
 	.size	__modsi3, .-__modsi3
 .global	__udivmodhi4
 	.type	__udivmodhi4, @function
@@ -9469,59 +9425,61 @@ __udivmodhi4:
 	mov r19,r23
 	mov r26,r20
 	mov r27,r21
-	ldi r24,lo8(1)
-	ldi r25,0
+	ldi r20,lo8(1)
+	ldi r21,0
 	cp r18,r30
 	cpc r19,r31
-	brsh .L679
-	ldi r24,lo8(1)
-	ldi r25,0
-.L678:
+	brsh .L666
+	ldi r20,lo8(1)
+	ldi r21,0
+.L665:
 	tst r19
-	brlt .L679
+	brlt .L666
 	lsl r18
 	rol r19
-	lsl r24
-	rol r25
+	lsl r20
+	rol r21
 	cp r18,r30
 	cpc r19,r31
-	brsh .L679
-	sbiw r24,0
-	brne .L678
-.L679:
-	ldi r20,0
-	ldi r21,0
-	sbiw r24,0
-	breq .L682
-	ldi r20,0
-	ldi r21,0
-	rjmp .L681
-.L684:
-	lsr r25
-	ror r24
+	brsh .L666
+	cp r20,__zero_reg__
+	cpc r21,__zero_reg__
+	brne .L665
+.L666:
+	ldi r24,0
+	ldi r25,0
+	cp r20,__zero_reg__
+	cpc r21,__zero_reg__
+	breq .L669
+	ldi r24,0
+	ldi r25,0
+	rjmp .L668
+.L671:
+	lsr r21
+	ror r20
 	lsr r19
 	ror r18
-	sbiw r24,0
-	breq .L682
-.L681:
+	cp r20,__zero_reg__
+	cpc r21,__zero_reg__
+	breq .L669
+.L668:
 	cp r30,r18
 	cpc r31,r19
-	brlo .L684
+	brlo .L671
 	sub r30,r18
 	sbc r31,r19
-	or r20,r24
-	or r21,r25
-	rjmp .L684
-.L682:
+	or r24,r20
+	or r25,r21
+	rjmp .L671
+.L669:
 	or r26,r27
-	brne .L688
-	mov r24,r20
-	mov r25,r21
+	brne .L677
+.L664:
+/* epilogue start */
 	ret
-.L688:
+.L677:
 	mov r24,r30
 	mov r25,r31
-/* epilogue start */
 	ret
 	.size	__udivmodhi4, .-__udivmodhi4
 .global	__udivmodsi4_libgcc
@@ -9559,14 +9517,14 @@ __udivmodsi4_libgcc:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L692
+	brsh .L680
 	ldi r24,lo8(1)
 	ldi r25,0
 	ldi r26,0
 	ldi r27,0
-.L691:
+.L679:
 	tst r15
-	brlt .L692
+	brlt .L680
 	lsl r12
 	rol r13
 	rol r14
@@ -9579,12 +9537,12 @@ __udivmodsi4_libgcc:
 	cpc r13,r9
 	cpc r14,r10
 	cpc r15,r11
-	brsh .L692
+	brsh .L680
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	brne .L691
-.L692:
+	brne .L679
+.L680:
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
@@ -9592,13 +9550,13 @@ __udivmodsi4_libgcc:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L695
+	breq .L683
 	ldi r20,0
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
-	rjmp .L694
-.L697:
+	rjmp .L682
+.L685:
 	lsr r27
 	ror r26
 	ror r25
@@ -9610,13 +9568,13 @@ __udivmodsi4_libgcc:
 	sbiw r24,0
 	cpc r26,__zero_reg__
 	cpc r27,__zero_reg__
-	breq .L695
-.L694:
+	breq .L683
+.L682:
 	cp r8,r12
 	cpc r9,r13
 	cpc r10,r14
 	cpc r11,r15
-	brlo .L697
+	brlo .L685
 	sub r8,r12
 	sbc r9,r13
 	sbc r10,r14
@@ -9625,17 +9583,15 @@ __udivmodsi4_libgcc:
 	or r21,r25
 	or r22,r26
 	or r23,r27
-	rjmp .L697
-.L695:
+	rjmp .L685
+.L683:
 	or r30,r31
-	brne .L701
-	mov r19,r20
-	mov r18,r21
-	mov r24,r22
+	brne .L691
+.L678:
 	mov r25,r23
-.L698:
-	mov r22,r19
-	mov r23,r18
+	mov r24,r22
+	mov r23,r21
+	mov r22,r20
 /* epilogue start */
 	pop r17
 	pop r16
@@ -9648,12 +9604,12 @@ __udivmodsi4_libgcc:
 	pop r9
 	pop r8
 	ret
-.L701:
-	mov r19,r8
-	mov r18,r9
-	mov r24,r10
-	mov r25,r11
-	rjmp .L698
+.L691:
+	mov r23,r11
+	mov r22,r10
+	mov r21,r9
+	mov r20,r8
+	rjmp .L678
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 .global	__ashldi3
 	.type	__ashldi3, @function
@@ -9685,7 +9641,7 @@ __ashldi3:
 	std Y+7,r24
 	std Y+8,r25
 	sbrs r30,5
-	rjmp .L704
+	rjmp .L693
 	std Y+9,__zero_reg__
 	std Y+10,__zero_reg__
 	std Y+11,__zero_reg__
@@ -9708,7 +9664,7 @@ __ashldi3:
 	std Y+14,r25
 	std Y+15,r26
 	std Y+16,r27
-.L705:
+.L694:
 	ldd r18,Y+9
 	ldd r19,Y+10
 	ldd r20,Y+11
@@ -9717,7 +9673,7 @@ __ashldi3:
 	ldd r23,Y+14
 	ldd r24,Y+15
 	ldd r25,Y+16
-.L706:
+.L692:
 /* epilogue start */
 	adiw r28,16
 	in __tmp_reg__,__SREG__
@@ -9730,9 +9686,9 @@ __ashldi3:
 	pop r17
 	pop r16
 	ret
-.L704:
+.L693:
 	sbiw r30,0
-	breq .L706
+	breq .L692
 	ldd r24,Y+1
 	ldd r25,Y+2
 	ldd r26,Y+3
@@ -9789,7 +9745,7 @@ __ashldi3:
 	std Y+14,r25
 	std Y+15,r26
 	std Y+16,r27
-	rjmp .L705
+	rjmp .L694
 	.size	__ashldi3, .-__ashldi3
 .global	__ashrdi3
 	.type	__ashrdi3, @function
@@ -9821,7 +9777,7 @@ __ashrdi3:
 	std Y+7,r24
 	std Y+8,r25
 	sbrs r30,5
-	rjmp .L709
+	rjmp .L698
 	ldd r24,Y+5
 	ldd r25,Y+6
 	ldd r26,Y+7
@@ -9853,7 +9809,7 @@ __ashrdi3:
 	std Y+10,r25
 	std Y+11,r26
 	std Y+12,r27
-.L710:
+.L699:
 	ldd r18,Y+9
 	ldd r19,Y+10
 	ldd r20,Y+11
@@ -9862,7 +9818,7 @@ __ashrdi3:
 	ldd r23,Y+14
 	ldd r24,Y+15
 	ldd r25,Y+16
-.L711:
+.L697:
 /* epilogue start */
 	adiw r28,16
 	in __tmp_reg__,__SREG__
@@ -9875,9 +9831,9 @@ __ashrdi3:
 	pop r17
 	pop r16
 	ret
-.L709:
+.L698:
 	sbiw r30,0
-	breq .L711
+	breq .L697
 	ldd r24,Y+5
 	ldd r25,Y+6
 	ldd r26,Y+7
@@ -9934,7 +9890,7 @@ __ashrdi3:
 	std Y+10,r25
 	std Y+11,r26
 	std Y+12,r27
-	rjmp .L710
+	rjmp .L699
 	.size	__ashrdi3, .-__ashrdi3
 .global	__bswapdi2
 	.type	__bswapdi2, @function
@@ -10179,6 +10135,10 @@ __bswapsi2:
 .global	__clzsi2
 	.type	__clzsi2, @function
 __clzsi2:
+	push r8
+	push r9
+	push r10
+	push r11
 	push r12
 	push r13
 	push r14
@@ -10187,32 +10147,36 @@ __clzsi2:
 	push r17
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 6 */
-.L__stack_usage = 6
+/* stack size = 10 */
+.L__stack_usage = 10
 	mov r16,r22
 	mov r17,r23
 	mov r18,r24
 	mov r19,r25
-	ldi r20,lo8(1)
+	ldi r24,lo8(1)
 	cp r16,__zero_reg__
 	cpc r17,__zero_reg__
-	ldi r24,1
-	cpc r18,r24
+	ldi r20,1
+	cpc r18,r20
 	cpc r19,__zero_reg__
-	brlo .L716
-	ldi r20,0
-.L716:
-	ldi r21,0
-	ldi r22,0
-	ldi r23,0
-	lsl r20
-	rol r21
-	rol r22
-	rol r23
-	lsl r20
-	rol r21
-	rol r22
-	rol r23
+	brlo .L705
+	ldi r24,0
+.L705:
+	ldi r25,0
+	ldi r26,0
+	ldi r27,0
+	lsl r24
+	rol r25
+	rol r26
+	rol r27
+	lsl r24
+	rol r25
+	rol r26
+	rol r27
+	mov r20,r24
+	mov r21,r25
+	mov r22,r26
+	mov r23,r27
 	lsl r20
 	rol r21
 	rol r22
@@ -10245,9 +10209,9 @@ __clzsi2:
 	or r12,r13
 	or r12,r14
 	or r12,r15
-	breq .L717
+	breq .L706
 	ldi r24,0
-.L717:
+.L706:
 	ldi r25,0
 	ldi r26,0
 	ldi r27,0
@@ -10276,115 +10240,125 @@ __clzsi2:
 	2:
 	dec r30
 	brpl 1b
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
-	mov r12,r16
-	mov r13,r17
-	mov r14,r18
-	mov r15,r19
-	ldi r24,240
-	and r12,r24
-	clr r13
-	clr r14
-	clr r15
-	ldi r24,lo8(1)
-	or r12,r13
-	or r12,r14
-	or r12,r15
-	breq .L718
-	ldi r24,0
-.L718:
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	ldi r30,lo8(4)
-	ldi r31,0
-	sub r30,r24
-	sbc r31,r25
-	rjmp 2f
-	1:
-	lsr r19
-	ror r18
-	ror r17
-	ror r16
-	2:
-	dec r30
-	brpl 1b
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
-	mov r12,r16
-	mov r13,r17
-	mov r14,r18
-	mov r15,r19
-	ldi r24,12
-	and r12,r24
-	clr r13
-	clr r14
-	clr r15
-	ldi r24,lo8(1)
-	or r12,r13
-	or r12,r14
-	or r12,r15
-	breq .L719
-	ldi r24,0
-.L719:
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	ldi r30,lo8(2)
-	ldi r31,0
-	sub r30,r24
-	sbc r31,r25
-	rjmp 2f
-	1:
-	lsr r19
-	ror r18
-	ror r17
-	ror r16
-	2:
-	dec r30
-	brpl 1b
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
-	clr r24
-	sbrs r16,1
-	inc r24
-	mov r30,r24
-	ldi r31,0
-	ldi r24,lo8(2)
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	sub r24,r16
-	sbc r25,r17
-	sbc r26,r18
-	sbc r27,r19
-	clr r18
-	clr r19
-	sub r18,r30
-	sbc r19,r31
-	and r24,r18
-	and r25,r19
 	add r24,r20
 	adc r25,r21
+	adc r26,r22
+	adc r27,r23
+	mov r12,r16
+	mov r13,r17
+	mov r14,r18
+	mov r15,r19
+	ldi r20,240
+	and r12,r20
+	clr r13
+	clr r14
+	clr r15
+	ldi r20,lo8(1)
+	or r12,r13
+	or r12,r14
+	or r12,r15
+	breq .L707
+	ldi r20,0
+.L707:
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	ldi r30,lo8(4)
+	ldi r31,0
+	sub r30,r20
+	sbc r31,r21
+	rjmp 2f
+	1:
+	lsr r19
+	ror r18
+	ror r17
+	ror r16
+	2:
+	dec r30
+	brpl 1b
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
+	mov r12,r16
+	mov r13,r17
+	mov r14,r18
+	mov r15,r19
+	ldi r20,12
+	and r12,r20
+	clr r13
+	clr r14
+	clr r15
+	ldi r20,lo8(1)
+	or r12,r13
+	or r12,r14
+	or r12,r15
+	breq .L708
+	ldi r20,0
+.L708:
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	ldi r30,lo8(2)
+	ldi r31,0
+	sub r30,r20
+	sbc r31,r21
+	rjmp 2f
+	1:
+	lsr r19
+	ror r18
+	ror r17
+	ror r16
+	2:
+	dec r30
+	brpl 1b
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
+	clr r20
+	sbrs r16,1
+	inc r20
+	ldi r21,0
+	set
+	clr r12
+	bld r12,1
+	mov r13,__zero_reg__
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
+	mov r8,r12
+	mov r9,r13
+	mov r10,r14
+	mov r11,r15
+	sub r8,r16
+	sbc r9,r17
+	sbc r10,r18
+	sbc r11,r19
+	mov r19,r11
+	mov r18,r10
+	mov r17,r9
+	mov r16,r8
+	neg r21
+	neg r20
+	sbc r21,__zero_reg__
+	mov r18,r20
+	mov r19,r21
+	and r18,r16
+	and r19,r17
+	add r24,r18
+	adc r25,r19
 /* epilogue start */
 	pop r17
 	pop r16
@@ -10392,6 +10366,10 @@ __clzsi2:
 	pop r14
 	pop r13
 	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
 	ret
 	.size	__clzsi2, .-__clzsi2
 .global	__cmpdi2
@@ -10447,7 +10425,7 @@ __cmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlt .L722
+	brlt .L711
 	mov r27,r23
 	mov r26,r22
 	mov r25,r21
@@ -10460,7 +10438,7 @@ __cmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlt .L723
+	brlt .L712
 	ldd r20,Y+1
 	ldd r21,Y+2
 	ldd r22,Y+3
@@ -10473,7 +10451,7 @@ __cmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L724
+	brlo .L713
 	mov r27,r23
 	mov r26,r22
 	mov r25,r21
@@ -10486,18 +10464,18 @@ __cmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L725
+	brlo .L714
 	ldi r22,lo8(1)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L721
-.L722:
+	rjmp .L709
+.L711:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-.L721:
+.L709:
 /* epilogue start */
 	adiw r28,16
 	in __tmp_reg__,__SREG__
@@ -10516,24 +10494,24 @@ __cmpdi2:
 	pop r11
 	pop r10
 	ret
-.L723:
+.L712:
 	ldi r22,lo8(2)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L721
-.L724:
+	rjmp .L709
+.L713:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L721
-.L725:
+	rjmp .L709
+.L714:
 	ldi r22,lo8(2)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L721
+	rjmp .L709
 	.size	__cmpdi2, .-__cmpdi2
 .global	__aeabi_lcmp
 	.type	__aeabi_lcmp, @function
@@ -10593,9 +10571,9 @@ __ctzsi2:
 	or r24,r25
 	or r24,r26
 	or r24,r27
-	breq .L728
+	breq .L717
 	ldi r20,0
-.L728:
+.L717:
 	ldi r21,0
 	ldi r22,0
 	ldi r23,0
@@ -10628,7 +10606,7 @@ __ctzsi2:
 	ldi r24,lo8(1)
 	cpse r16,__zero_reg__
 	ldi r24,0
-.L729:
+.L718:
 	ldi r25,0
 	ldi r26,0
 	ldi r27,0
@@ -10654,38 +10632,38 @@ __ctzsi2:
 	2:
 	dec r0
 	brpl 1b
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
 	mov r12,r16
 	mov r13,r17
 	mov r14,r18
 	mov r15,r19
-	ldi r24,15
-	and r12,r24
+	ldi r20,15
+	and r12,r20
 	clr r13
 	clr r14
 	clr r15
-	ldi r24,lo8(1)
+	ldi r20,lo8(1)
 	or r12,r13
 	or r12,r14
 	or r12,r15
-	breq .L730
-	ldi r24,0
-.L730:
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	mov r0,r24
+	breq .L719
+	ldi r20,0
+.L719:
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	mov r0,r20
 	rjmp 2f
 	1:
 	lsr r19
@@ -10695,34 +10673,34 @@ __ctzsi2:
 	2:
 	dec r0
 	brpl 1b
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
 	mov r12,r16
 	mov r13,r17
 	mov r14,r18
 	mov r15,r19
-	ldi r24,3
-	and r12,r24
+	ldi r20,3
+	and r12,r20
 	clr r13
 	clr r14
 	clr r15
-	ldi r24,lo8(1)
+	ldi r20,lo8(1)
 	or r12,r13
 	or r12,r14
 	or r12,r15
-	breq .L731
-	ldi r24,0
-.L731:
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	lsl r24
-	rol r25
-	rol r26
-	rol r27
-	mov r0,r24
+	breq .L720
+	ldi r20,0
+.L720:
+	ldi r21,0
+	ldi r22,0
+	ldi r23,0
+	lsl r20
+	rol r21
+	rol r22
+	rol r23
+	mov r0,r20
 	rjmp 2f
 	1:
 	lsr r19
@@ -10736,39 +10714,39 @@ __ctzsi2:
 	clr r17
 	clr r18
 	clr r19
-	add r20,r24
-	adc r21,r25
-	adc r22,r26
-	adc r23,r27
-	mov r27,r19
-	mov r26,r18
-	mov r25,r17
-	mov r24,r16
-	com r24
-	com r25
-	com r26
-	com r27
-	mov r30,r24
-	andi r30,1<<0
-	clr r31
+	add r24,r20
+	adc r25,r21
+	adc r26,r22
+	adc r27,r23
+	mov r23,r19
+	mov r22,r18
+	mov r21,r17
+	mov r20,r16
+	com r20
+	com r21
+	com r22
+	com r23
+	andi r20,1
+	clr r21
 	lsr r19
 	ror r18
 	ror r17
 	ror r16
-	ldi r24,lo8(2)
-	ldi r25,0
-	ldi r26,0
-	ldi r27,0
-	sub r24,r16
-	sbc r25,r17
-	sbc r26,r18
-	sbc r27,r19
-	clr r18
-	clr r19
-	sub r18,r30
-	sbc r19,r31
-	and r24,r18
-	and r25,r19
+	set
+	clr r12
+	bld r12,1
+	mov r13,__zero_reg__
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
+	sub r12,r16
+	sbc r13,r17
+	sbc r14,r18
+	sbc r15,r19
+	neg r21
+	neg r20
+	sbc r21,__zero_reg__
+	and r20,r12
+	and r21,r13
 	add r24,r20
 	adc r25,r21
 /* epilogue start */
@@ -10810,7 +10788,7 @@ __lshrdi3:
 	std Y+7,r24
 	std Y+8,r25
 	sbrs r30,5
-	rjmp .L733
+	rjmp .L722
 	std Y+13,__zero_reg__
 	std Y+14,__zero_reg__
 	std Y+15,__zero_reg__
@@ -10833,7 +10811,7 @@ __lshrdi3:
 	std Y+10,r25
 	std Y+11,r26
 	std Y+12,r27
-.L734:
+.L723:
 	ldd r18,Y+9
 	ldd r19,Y+10
 	ldd r20,Y+11
@@ -10842,7 +10820,7 @@ __lshrdi3:
 	ldd r23,Y+14
 	ldd r24,Y+15
 	ldd r25,Y+16
-.L735:
+.L721:
 /* epilogue start */
 	adiw r28,16
 	in __tmp_reg__,__SREG__
@@ -10855,9 +10833,9 @@ __lshrdi3:
 	pop r17
 	pop r16
 	ret
-.L733:
+.L722:
 	sbiw r30,0
-	breq .L735
+	breq .L721
 	ldd r24,Y+5
 	ldd r25,Y+6
 	ldd r26,Y+7
@@ -10914,7 +10892,7 @@ __lshrdi3:
 	std Y+10,r25
 	std Y+11,r26
 	std Y+12,r27
-	rjmp .L734
+	rjmp .L723
 	.size	__lshrdi3, .-__lshrdi3
 .global	__muldsi3
 	.type	__muldsi3, @function
@@ -10935,28 +10913,28 @@ __muldsi3:
 	push r29
 	in r28,__SP_L__
 	in r29,__SP_H__
-	sbiw r28,24
+	sbiw r28,28
 	in __tmp_reg__,__SREG__
 	cli
 	out __SP_H__,r29
 	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
 /* prologue: function */
-/* frame size = 24 */
-/* stack size = 38 */
-.L__stack_usage = 38
-	std Y+9,r22
-	std Y+10,r23
-	std Y+11,r24
-	std Y+12,r25
+/* frame size = 28 */
+/* stack size = 42 */
+.L__stack_usage = 42
+	mov r12,r22
+	mov r13,r23
+	mov r14,r24
+	mov r15,r25
 	mov r4,r18
 	mov r5,r19
 	mov r6,r20
 	mov r7,r21
-	ldd r18,Y+9
-	ldd r19,Y+10
-	ldd r20,Y+11
-	ldd r21,Y+12
+	mov r21,r15
+	mov r20,r14
+	mov r19,r13
+	mov r18,r12
 	clr r20
 	clr r21
 	std Y+17,r18
@@ -10969,10 +10947,10 @@ __muldsi3:
 	mov r24,r4
 	clr r26
 	clr r27
-	std Y+13,r24
-	std Y+14,r25
-	std Y+15,r26
-	std Y+16,r27
+	std Y+9,r24
+	std Y+10,r25
+	std Y+11,r26
+	std Y+12,r27
 	mov r18,r24
 	mov r19,r25
 	mov r20,r26
@@ -10986,16 +10964,53 @@ __muldsi3:
 	mov r9,r23
 	mov r10,r24
 	mov r11,r25
-	mov r13,r11
-	mov r12,r10
-	clr r14
-	clr r15
-	clr r10
-	clr r11
+	mov r19,r11
+	mov r18,r10
+	clr r20
+	clr r21
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r20
+	std Y+28,r21
+	mov r27,r11
+	mov r26,r10
+	mov r25,r9
+	mov r24,r8
+	clr r26
+	clr r27
+	std Y+13,r24
+	std Y+14,r25
+	std Y+15,r26
+	std Y+16,r27
+	mov r19,r15
+	mov r18,r14
+	clr r20
+	clr r21
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r20
+	std Y+24,r21
 	ldd r18,Y+9
 	ldd r19,Y+10
 	ldd r20,Y+11
 	ldd r21,Y+12
+	ldd r22,Y+21
+	ldd r23,Y+22
+	ldd r24,Y+23
+	ldd r25,Y+24
+	rcall __mulsi3
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r20,Y+27
+	ldd r21,Y+28
+	add r18,r22
+	adc r19,r23
+	adc r20,r24
+	adc r21,r25
+	mov r10,r18
+	mov r11,r19
+	clr r9
+	clr r8
 	mov r19,r21
 	mov r18,r20
 	clr r20
@@ -11004,107 +11019,82 @@ __muldsi3:
 	std Y+10,r19
 	std Y+11,r20
 	std Y+12,r21
-	ldd r18,Y+13
-	ldd r19,Y+14
-	ldd r20,Y+15
-	ldd r21,Y+16
-	ldd r22,Y+9
-	ldd r23,Y+10
-	ldd r24,Y+11
-	ldd r25,Y+12
-	rcall __mulsi3
-	add r12,r22
-	adc r13,r23
-	adc r14,r24
-	adc r15,r25
-	mov r26,r12
-	mov r27,r13
-	clr r25
-	clr r24
-	mov r19,r15
-	mov r18,r14
-	clr r20
-	clr r21
-	std Y+13,r18
-	std Y+14,r19
-	std Y+15,r20
-	std Y+16,r21
-	mov r13,r27
-	mov r12,r26
-	clr r14
-	clr r15
-	std Y+21,r8
-	std Y+22,r9
-	std Y+23,r10
-	std Y+24,r11
-	mov r9,r7
-	mov r8,r6
+	mov r9,r11
+	mov r8,r10
 	clr r10
 	clr r11
-	mov r21,r11
-	mov r20,r10
-	mov r19,r9
-	mov r18,r8
+	mov r13,r7
+	mov r12,r6
+	clr r14
+	clr r15
+	mov r21,r15
+	mov r20,r14
+	mov r19,r13
+	mov r18,r12
 	ldd r22,Y+17
 	ldd r23,Y+18
 	ldd r24,Y+19
 	ldd r25,Y+20
 	rcall __mulsi3
-	add r12,r22
-	adc r13,r23
-	adc r14,r24
-	adc r15,r25
-	mov r26,r12
-	mov r27,r13
+	mov r4,r22
+	mov r5,r23
+	mov r6,r24
+	mov r7,r25
+	add r4,r8
+	adc r5,r9
+	adc r6,r10
+	adc r7,r11
+	mov r26,r4
+	mov r27,r5
 	clr r25
 	clr r24
-	ldd r18,Y+21
-	ldd r19,Y+22
-	ldd r20,Y+23
-	ldd r21,Y+24
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r20,Y+15
+	ldd r21,Y+16
 	add r24,r18
 	adc r25,r19
 	adc r26,r20
 	adc r27,r21
-	mov r4,r24
-	mov r5,r25
-	mov r6,r26
-	mov r7,r27
-	mov r13,r15
-	mov r12,r14
-	clr r14
-	clr r15
-	ldd r24,Y+13
-	ldd r25,Y+14
-	ldd r26,Y+15
-	ldd r27,Y+16
-	add r12,r24
-	adc r13,r25
-	adc r14,r26
-	adc r15,r27
-	mov r21,r11
-	mov r20,r10
-	mov r19,r9
-	mov r18,r8
-	ldd r22,Y+9
-	ldd r23,Y+10
-	ldd r24,Y+11
-	ldd r25,Y+12
+	mov r8,r24
+	mov r9,r25
+	mov r10,r26
+	mov r11,r27
+	mov r5,r7
+	mov r4,r6
+	clr r6
+	clr r7
+	ldd r24,Y+9
+	ldd r25,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	add r4,r24
+	adc r5,r25
+	adc r6,r26
+	adc r7,r27
+	mov r21,r15
+	mov r20,r14
+	mov r19,r13
+	mov r18,r12
+	ldd r22,Y+21
+	ldd r23,Y+22
+	ldd r24,Y+23
+	ldd r25,Y+24
 	rcall __mulsi3
-	add r12,r22
-	adc r13,r23
-	adc r14,r24
-	adc r15,r25
-	mov r22,r12
-	mov r23,r13
-	mov r18,r4
-	mov r19,r5
-	mov r20,r6
-	mov r21,r7
-	mov r24,r14
-	mov r25,r15
+	add r4,r22
+	adc r5,r23
+	adc r6,r24
+	adc r7,r25
+	mov r22,r4
+	mov r23,r5
+	mov r18,r8
+	mov r19,r9
+	mov r20,r10
+	mov r21,r11
+	mov r24,r6
+	mov r25,r7
 /* epilogue start */
-	adiw r28,24
+	adiw r28,28
 	in __tmp_reg__,__SREG__
 	cli
 	out __SP_H__,r29
@@ -11309,14 +11299,14 @@ __paritydi2:
 	std Y+6,r23
 	std Y+7,r24
 	std Y+8,r25
-	ldd r24,Y+5
-	ldd r25,Y+6
-	ldd r26,Y+7
-	ldd r27,Y+8
-	ldd r20,Y+1
-	ldd r21,Y+2
-	ldd r22,Y+3
-	ldd r23,Y+4
+	ldd r20,Y+5
+	ldd r21,Y+6
+	ldd r22,Y+7
+	ldd r23,Y+8
+	ldd r24,Y+1
+	ldd r25,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
 	eor r24,r20
 	eor r25,r21
 	eor r26,r22
@@ -11449,10 +11439,8 @@ __paritysi2:
 .global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	push r4
-	push r5
-	push r6
-	push r7
+	push r8
+	push r9
 	push r10
 	push r11
 	push r12
@@ -11465,10 +11453,10 @@ __popcountdi2:
 	push r29
 /* prologue: function */
 /* frame size = 0 */
-/* stack size = 14 */
-.L__stack_usage = 14
-	mov r6,r18
-	mov r7,r19
+/* stack size = 12 */
+.L__stack_usage = 12
+	mov r8,r18
+	mov r9,r19
 	mov r29,r20
 	mov r28,r21
 	mov r27,r22
@@ -11493,8 +11481,8 @@ __popcountdi2:
 	andi r16,lo8(85)
 	mov r17,r25
 	andi r17,lo8(85)
-	mov r18,r6
-	mov r19,r7
+	mov r18,r8
+	mov r19,r9
 	mov r20,r29
 	mov r21,r28
 	mov r22,r27
@@ -11555,10 +11543,10 @@ __popcountdi2:
 	andi r21,lo8(15)
 	andi r22,lo8(15)
 	andi r23,lo8(15)
-	mov r4,r18
-	mov r5,r19
-	mov r6,r20
-	mov r7,r21
+	mov r8,r18
+	mov r9,r19
+	mov r10,r20
+	mov r11,r21
 	andi r24,lo8(15)
 	andi r25,lo8(15)
 	ldi r16,lo8(32)
@@ -11567,10 +11555,10 @@ __popcountdi2:
 	mov r25,r19
 	mov r26,r20
 	mov r27,r21
-	add r24,r4
-	adc r25,r5
-	adc r26,r6
-	adc r27,r7
+	add r24,r8
+	adc r25,r9
+	adc r26,r10
+	adc r27,r11
 	mov r21,r27
 	mov r20,r26
 	clr r22
@@ -11598,10 +11586,8 @@ __popcountdi2:
 	pop r12
 	pop r11
 	pop r10
-	pop r7
-	pop r6
-	pop r5
-	pop r4
+	pop r9
+	pop r8
 	ret
 	.size	__popcountdi2, .-__popcountdi2
 .global	__popcountsi2
@@ -11629,38 +11615,34 @@ __popcountsi2:
 	andi r25,85
 	andi r26,85
 	andi r27,85
-	mov r23,r19
-	mov r22,r18
-	mov r21,r17
-	mov r20,r16
-	sub r20,r24
-	sbc r21,r25
-	sbc r22,r26
-	sbc r23,r27
-	mov r27,r23
-	mov r26,r22
-	mov r25,r21
-	mov r24,r20
-	lsr r23
-	ror r22
-	ror r21
-	ror r20
-	lsr r23
-	ror r22
-	ror r21
-	ror r20
-	andi r20,51
-	andi r21,51
-	andi r22,51
-	andi r23,51
+	sub r16,r24
+	sbc r17,r25
+	sbc r18,r26
+	sbc r19,r27
+	mov r27,r19
+	mov r26,r18
+	mov r25,r17
+	mov r24,r16
+	lsr r27
+	ror r26
+	ror r25
+	ror r24
+	lsr r27
+	ror r26
+	ror r25
+	ror r24
 	andi r24,51
 	andi r25,51
 	andi r26,51
 	andi r27,51
-	add r24,r20
-	adc r25,r21
-	adc r26,r22
-	adc r27,r23
+	andi r16,51
+	andi r17,51
+	andi r18,51
+	andi r19,51
+	add r24,r16
+	adc r25,r17
+	adc r26,r18
+	adc r27,r19
 	mov r20,r24
 	mov r21,r25
 	mov r22,r26
@@ -11678,14 +11660,18 @@ __popcountsi2:
 	adc r25,r21
 	adc r26,r22
 	adc r27,r23
-	andi r24,15
-	andi r25,15
-	andi r26,15
-	andi r27,15
-	mov r21,r27
-	mov r20,r26
-	clr r22
-	clr r23
+	mov r20,r24
+	mov r21,r25
+	mov r22,r26
+	mov r23,r27
+	andi r20,15
+	andi r21,15
+	andi r22,15
+	andi r23,15
+	mov r25,r23
+	mov r24,r22
+	clr r26
+	clr r27
 	add r24,r20
 	adc r25,r21
 	adc r26,r22
@@ -11758,20 +11744,20 @@ __powidf2:
 	mov r13,r31
 	mov r31,__tmp_reg__
 	std Y+19,r25
-	rjmp .L748
-.L745:
+	rjmp .L737
+.L734:
 	mov r24,r14
 	mov r25,r15
 	tst r25
-	brlt .L751
-.L746:
+	brlt .L739
+.L735:
 	mov r14,r24
 	mov r15,r25
 	asr r15
 	ror r14
 	cp r14,__zero_reg__
 	cpc r15,__zero_reg__
-	breq .L747
+	breq .L736
 	mov r8,r16
 	mov r9,r17
 	ldd r10,Y+20
@@ -11793,9 +11779,9 @@ __powidf2:
 	mov r17,r23
 	std Y+20,r24
 	std Y+19,r25
-.L748:
+.L737:
 	sbrs r14,0
-	rjmp .L745
+	rjmp .L734
 	mov r4,r16
 	mov r5,r17
 	ldd r6,Y+20
@@ -11817,15 +11803,15 @@ __powidf2:
 	mov r3,r23
 	mov r12,r24
 	mov r13,r25
-	rjmp .L745
-.L751:
+	rjmp .L734
+.L739:
 	adiw r24,1
-	rjmp .L746
-.L747:
+	rjmp .L735
+.L736:
 	ldd r18,Y+17
 	ldd r19,Y+18
 	or r18,r19
-	breq .L749
+	breq .L733
 	std Y+13,r2
 	std Y+14,r3
 	std Y+15,r12
@@ -11843,7 +11829,7 @@ __powidf2:
 	mov r3,r23
 	mov r12,r24
 	mov r13,r25
-.L749:
+.L733:
 	std Y+9,r2
 	std Y+10,r3
 	std Y+11,r12
@@ -11934,20 +11920,20 @@ __powisf2:
 	mov r13,r31
 	mov r31,__tmp_reg__
 	std Y+19,r25
-	rjmp .L756
-.L753:
+	rjmp .L744
+.L741:
 	mov r24,r14
 	mov r25,r15
 	tst r25
-	brlt .L759
-.L754:
+	brlt .L746
+.L742:
 	mov r14,r24
 	mov r15,r25
 	asr r15
 	ror r14
 	cp r14,__zero_reg__
 	cpc r15,__zero_reg__
-	breq .L755
+	breq .L743
 	mov r8,r16
 	mov r9,r17
 	ldd r10,Y+20
@@ -11969,9 +11955,9 @@ __powisf2:
 	mov r17,r23
 	std Y+20,r24
 	std Y+19,r25
-.L756:
+.L744:
 	sbrs r14,0
-	rjmp .L753
+	rjmp .L741
 	mov r4,r16
 	mov r5,r17
 	ldd r6,Y+20
@@ -11993,15 +11979,15 @@ __powisf2:
 	mov r3,r23
 	mov r12,r24
 	mov r13,r25
-	rjmp .L753
-.L759:
+	rjmp .L741
+.L746:
 	adiw r24,1
-	rjmp .L754
-.L755:
+	rjmp .L742
+.L743:
 	ldd r18,Y+17
 	ldd r19,Y+18
 	or r18,r19
-	breq .L757
+	breq .L740
 	std Y+13,r2
 	std Y+14,r3
 	std Y+15,r12
@@ -12019,7 +12005,7 @@ __powisf2:
 	mov r3,r23
 	mov r12,r24
 	mov r13,r25
-.L757:
+.L740:
 	std Y+9,r2
 	std Y+10,r3
 	std Y+11,r12
@@ -12108,7 +12094,7 @@ __ucmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L762
+	brlo .L749
 	mov r27,r23
 	mov r26,r22
 	mov r25,r21
@@ -12121,7 +12107,7 @@ __ucmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L763
+	brlo .L750
 	ldd r20,Y+1
 	ldd r21,Y+2
 	ldd r22,Y+3
@@ -12134,7 +12120,7 @@ __ucmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L764
+	brlo .L751
 	mov r27,r23
 	mov r26,r22
 	mov r25,r21
@@ -12147,18 +12133,18 @@ __ucmpdi2:
 	cpc r21,r25
 	cpc r22,r26
 	cpc r23,r27
-	brlo .L765
+	brlo .L752
 	ldi r22,lo8(1)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L761
-.L762:
+	rjmp .L747
+.L749:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-.L761:
+.L747:
 /* epilogue start */
 	adiw r28,16
 	in __tmp_reg__,__SREG__
@@ -12177,24 +12163,24 @@ __ucmpdi2:
 	pop r11
 	pop r10
 	ret
-.L763:
+.L750:
 	ldi r22,lo8(2)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L761
-.L764:
+	rjmp .L747
+.L751:
 	ldi r22,0
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L761
-.L765:
+	rjmp .L747
+.L752:
 	ldi r22,lo8(2)
 	ldi r23,0
 	ldi r24,0
 	ldi r25,0
-	rjmp .L761
+	rjmp .L747
 	.size	__ucmpdi2, .-__ucmpdi2
 .global	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
