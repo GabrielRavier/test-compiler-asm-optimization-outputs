@@ -50,7 +50,7 @@ memmove:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
-	bne	$r12,$r6,.L7
+	bne	$r6,$r12,.L7
 .L5:
 	jr	$r1
 	.cfi_endproc
@@ -2039,7 +2039,7 @@ bcopy:
 	ldx.b	$r13,$r4,$r12
 	stx.b	$r13,$r5,$r12
 	addi.d	$r12,$r12,1
-	bne	$r12,$r6,.L361
+	bne	$r6,$r12,.L361
 .L357:
 	jr	$r1
 	.cfi_endproc
@@ -3117,7 +3117,7 @@ __cmovd:
 	ldx.d	$r14,$r5,$r13
 	stx.d	$r14,$r4,$r13
 	addi.d	$r13,$r13,8
-	bne	$r13,$r15,.L551
+	bne	$r15,$r13,.L551
 .L547:
 	bleu	$r6,$r12,.L544
 	bstrpick.d	$r12,$r12,31,0
@@ -3126,7 +3126,7 @@ __cmovd:
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
 	slli.w	$r13,$r12,0
-	bgtu	$r6,$r13,.L552
+	bltu	$r13,$r6,.L552
 	jr	$r1
 .L545:
 	bstrpick.d	$r13,$r6,31,0
@@ -3215,7 +3215,7 @@ __cmovw:
 	ldx.w	$r14,$r5,$r13
 	stx.w	$r14,$r4,$r13
 	addi.d	$r13,$r13,4
-	bne	$r13,$r15,.L581
+	bne	$r15,$r13,.L581
 .L577:
 	bleu	$r6,$r12,.L574
 	bstrpick.d	$r12,$r12,31,0
@@ -3224,7 +3224,7 @@ __cmovw:
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
 	slli.w	$r13,$r12,0
-	bgtu	$r6,$r13,.L582
+	bltu	$r13,$r6,.L582
 	jr	$r1
 .L575:
 	bstrpick.d	$r13,$r6,31,0

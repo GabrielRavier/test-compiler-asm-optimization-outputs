@@ -3302,8 +3302,8 @@ wmemmove:
 	bteqz	$L362
 	addiu	$sp,-8
 	sd	$16,0($sp)
-	move	$3,$4
-	move	$7,$5
+	move	$7,$4
+	move	$3,$5
 	subu	$16,$4,$5
 	sll	$4,$6,2
 	sltu	$16,$4
@@ -3311,11 +3311,11 @@ wmemmove:
 	addiu	$5,$6,-1
 	beqz	$6,$L354
 $L356:
-	lw	$4,0($7)
-	sw	$4,0($3)
+	lw	$4,0($3)
+	sw	$4,0($7)
 	addiu	$5,-1
-	addiu	$3,4
 	addiu	$7,4
+	addiu	$3,4
 	addiu	$4,$5,1
 	bnez	$4,$L356
 	b	$L354
@@ -5596,18 +5596,19 @@ __cmovd:
 	addiu	$sp,-16
 	sd	$17,8($sp)
 	sd	$16,0($sp)
+	move	$16,$5
 	srl	$7,$6,3
-	li	$16,8
-	neg	$16,$16
-	and	$16,$6
-	sltu	$4,$5
+	li	$5,8
+	neg	$5,$5
+	and	$5,$6
+	sltu	$4,$16
 	bteqz	$L604
 $L607:
 	beqz	$7,$L606
-	move	$2,$5
+	move	$2,$16
 	move	$3,$4
 	sll	$7,$7,3
-	addu	$7,$5,$7
+	addu	$7,$16,$7
 $L610:
 	ld	$17,0($2)
 	sd	$17,0($3)
@@ -5616,17 +5617,17 @@ $L610:
 	cmp	$2,$7
 	btnez	$L610
 $L606:
-	sltu	$16,$6
+	sltu	$5,$6
 	bteqz	$L603
-	addu	$2,$5,$16
-	addu	$4,$4,$16
-	addu	$5,$5,$6
+	addu	$2,$16,$5
+	addu	$4,$4,$5
+	addu	$6,$6,$16
 $L611:
 	lb	$3,0($2)
 	sb	$3,0($4)
 	addiu	$2,1
 	addiu	$4,1
-	cmp	$2,$5
+	cmp	$2,$6
 	btnez	$L611
 $L603:
 	ld	$17,8($sp)
@@ -5639,16 +5640,16 @@ $L603:
 	.set	reorder
 
 $L604:
-	addu	$2,$5,$6
+	addu	$2,$16,$6
 	sltu	$2,$4
 	btnez	$L607
 	addiu	$2,$6,-1
 	beqz	$6,$L603
 $L608:
-	addu	$3,$5,$2
-	lb	$6,0($3)
+	addu	$3,$16,$2
+	lb	$5,0($3)
 	addu	$3,$4,$2
-	sb	$6,0($3)
+	sb	$5,0($3)
 	addiu	$2,-1
 	addiu	$3,$2,1
 	bnez	$3,$L608
@@ -5675,7 +5676,7 @@ $L617:
 	move	$2,$5
 	move	$3,$4
 	sll	$16,$16,1
-	addu	$16,$16,$5
+	addu	$16,$5,$16
 $L620:
 	lh	$7,0($2)
 	sh	$7,0($3)
@@ -5731,18 +5732,19 @@ __cmovw:
 	addiu	$sp,-16
 	sd	$17,8($sp)
 	sd	$16,0($sp)
+	move	$16,$5
 	srl	$7,$6,2
-	li	$16,4
-	neg	$16,$16
-	and	$16,$6
-	sltu	$4,$5
+	li	$5,4
+	neg	$5,$5
+	and	$5,$6
+	sltu	$4,$16
 	bteqz	$L623
 $L626:
 	beqz	$7,$L625
-	move	$2,$5
+	move	$2,$16
 	move	$3,$4
 	sll	$7,$7,2
-	addu	$7,$5,$7
+	addu	$7,$16,$7
 $L629:
 	lw	$17,0($2)
 	sw	$17,0($3)
@@ -5751,17 +5753,17 @@ $L629:
 	cmp	$2,$7
 	btnez	$L629
 $L625:
-	sltu	$16,$6
+	sltu	$5,$6
 	bteqz	$L622
-	addu	$2,$5,$16
-	addu	$4,$4,$16
-	addu	$5,$5,$6
+	addu	$2,$16,$5
+	addu	$4,$4,$5
+	addu	$6,$6,$16
 $L630:
 	lb	$3,0($2)
 	sb	$3,0($4)
 	addiu	$2,1
 	addiu	$4,1
-	cmp	$2,$5
+	cmp	$2,$6
 	btnez	$L630
 $L622:
 	ld	$17,8($sp)
@@ -5774,16 +5776,16 @@ $L622:
 	.set	reorder
 
 $L623:
-	addu	$2,$5,$6
+	addu	$2,$16,$6
 	sltu	$2,$4
 	btnez	$L626
 	addiu	$2,$6,-1
 	beqz	$6,$L622
 $L627:
-	addu	$3,$5,$2
-	lb	$6,0($3)
+	addu	$3,$16,$2
+	lb	$5,0($3)
 	addu	$3,$4,$2
-	sb	$6,0($3)
+	sb	$5,0($3)
 	addiu	$2,-1
 	addiu	$3,$2,1
 	bnez	$3,$L627

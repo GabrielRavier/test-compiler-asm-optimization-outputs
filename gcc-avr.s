@@ -6253,8 +6253,8 @@ memxor:
 	ld r20,Z
 	eor r20,r21
 	st Z,r20
-	cp r26,r18
-	cpc r27,r19
+	cp r18,r26
+	cpc r19,r27
 	brne .L444
 .L443:
 /* epilogue start */

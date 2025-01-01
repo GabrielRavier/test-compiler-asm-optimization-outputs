@@ -3901,12 +3901,12 @@ __cmovd:
 
 	l.add	r17, r4, r27
 	l.add	r3, r3, r27
-	l.add	r4, r4, r5
+	l.add	r5, r5, r4
 .L665:
 	l.lbs	r19, 0(r17)
 	l.sb	0(r3), r19
 	l.addi	r17, r17, 1
-	l.sfne	r17, r4
+	l.sfne	r17, r5
 	l.bf	.L665
 	l.addi	r3, r3, 1
 .L657:
@@ -3950,7 +3950,7 @@ __cmovh:
 	l.or	r17, r4, r4
 	l.or	r19, r3, r3
 	l.add	r23, r23, r23
-	l.add	r23, r23, r4
+	l.add	r23, r4, r23
 .L678:
 	l.lhs	r21, 0(r17)
 	l.sh	0(r19), r21
@@ -4027,12 +4027,12 @@ __cmovw:
 
 	l.add	r17, r4, r25
 	l.add	r3, r3, r25
-	l.add	r4, r4, r5
+	l.add	r5, r5, r4
 .L691:
 	l.lbs	r19, 0(r17)
 	l.sb	0(r3), r19
 	l.addi	r17, r17, 1
-	l.sfne	r17, r4
+	l.sfne	r17, r5
 	l.bf	.L691
 	l.addi	r3, r3, 1
 .L683:

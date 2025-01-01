@@ -3172,7 +3172,7 @@ __cmovd:
 	sb	a3,0(a4)
 	addi	a5,a5,1
 	sext.w	a4,a5
-	bltu	a4,a2,.L571
+	bgtu	a2,a4,.L571
 	ret
 .L564:
 	slli	a4,a2,32
@@ -3213,7 +3213,7 @@ __cmovh:
 	mv	a4,a0
 	srliw	a6,a2,1
 	slli	a6,a6,1
-	add	a6,a6,a1
+	add	a6,a1,a6
 .L584:
 	lh	a3,0(a5)
 	sh	a3,0(a4)
@@ -3289,7 +3289,7 @@ __cmovw:
 	sb	a3,0(a4)
 	addi	a5,a5,1
 	sext.w	a4,a5
-	bltu	a4,a2,.L597
+	bgtu	a2,a4,.L597
 	ret
 .L590:
 	slli	a4,a2,32

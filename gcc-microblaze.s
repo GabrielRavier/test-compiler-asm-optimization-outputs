@@ -30,7 +30,7 @@ $L5:
 	lbu	r5,r4,r6
 	sb	r5,r4,r3
 	addik	r4,r4,1
-	xor	r5,r4,r7
+	xor	r5,r7,r4
 	bnei	r5,$L5
 	bri	$L3
 	.end	memmove
@@ -3057,7 +3057,7 @@ $L389:
 	lbu	r4,r3,r5
 	sb	r4,r3,r6
 	addik	r3,r3,1
-	xor	r4,r3,r7
+	xor	r4,r7,r3
 	bnei	r4,$L389
 	bri	$L385
 	.end	bcopy
@@ -5157,14 +5157,14 @@ $L621:
 	addk	r9,r9,r9
 	addk	r9,r9,r9
 	addk	r9,r9,r9
-	addk	r9,r9,r6
+	addk	r9,r6,r9
 $L625:
 	lwi	r10,r4,0
 	lwi	r11,r4,4
 	swi	r10,r8,0
 	swi	r11,r8,4
 	addik	r4,r4,8
-	xor	r10,r9,r4
+	xor	r10,r4,r9
 	bneid	r10,$L625
 	addik	r8,r8,8
 $L624:
@@ -5213,7 +5213,7 @@ $L636:
 	lhu	r4,r3,r6
 	sh	r4,r3,r5
 	addik	r3,r3,2
-	xor	r4,r3,r8
+	xor	r4,r8,r3
 	bnei	r4,$L636
 $L635:
 	andi	r3,r7,1 #and1
@@ -5262,7 +5262,7 @@ $L645:
 	lw	r8,r4,r6
 	sw	r8,r4,r5
 	addik	r4,r4,4
-	xor	r8,r4,r9
+	xor	r8,r9,r4
 	bnei	r8,$L645
 $L644:
 	cmpu	r18,r7,r3

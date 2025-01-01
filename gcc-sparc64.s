@@ -46,7 +46,7 @@ memmove:
 .L11:
 	stb	%g2, [%o0+%g1]
 	add	%g1, 1, %g1
-	cmp	%g1, %o2
+	cmp	%o2, %g1
 	bne,a,pt %xcc, .L11
 	 ldub	[%o1+%g1], %g2
 .L12:
@@ -1820,7 +1820,7 @@ bcopy:
 .L375:
 	stb	%g2, [%o1+%g1]
 	add	%g1, 1, %g1
-	cmp	%g1, %o2
+	cmp	%o2, %g1
 	bne,a,pt %xcc, .L375
 	 ldub	[%o0+%g1], %g2
 .L376:
@@ -2856,7 +2856,7 @@ __cmovd:
 .L577:
 	stx	%g3, [%o0+%g2]
 	add	%g2, 8, %g2
-	cmp	%g2, %g4
+	cmp	%g4, %g2
 	bne,a,pt %xcc, .L577
 	 ldx	[%o1+%g2], %g3
 .L564:
@@ -2966,7 +2966,7 @@ __cmovw:
 .L618:
 	st	%g3, [%o0+%g2]
 	add	%g2, 4, %g2
-	cmp	%g2, %g4
+	cmp	%g4, %g2
 	bne,a,pt %xcc, .L618
 	 lduw	[%o1+%g2], %g3
 .L605:

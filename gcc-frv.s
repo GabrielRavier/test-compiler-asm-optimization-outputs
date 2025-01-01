@@ -27,7 +27,7 @@ memmove:
 	ldsb @(gr9,gr4),gr5
 	stb gr5, @(gr8,gr4)
 	addi gr4,#1,gr4
-	cmp gr4,gr10,icc0
+	cmp gr10,gr4,icc0
 	bne icc0,2,.L5
 	bra .L3
 	.size	memmove, .-memmove
@@ -2205,7 +2205,7 @@ bcopy:
 	ldsb @(gr8,gr4),gr5
 	stb gr5, @(gr9,gr4)
 	addi gr4,#1,gr4
-	cmp gr4,gr10,icc0
+	cmp gr10,gr4,icc0
 	bne icc0,2,.L337
 	bra .L333
 	.size	bcopy, .-bcopy
@@ -3542,7 +3542,7 @@ __cmovd:
 	mov gr9, gr5
 	mov gr8, gr6
 	slli gr7,#3,gr7
-	add gr7,gr9,gr7
+	add gr9,gr7,gr7
 .L529:
 	ld @(gr5,gr0), gr12
 	ldi @(gr5,4), gr13
@@ -3594,7 +3594,7 @@ __cmovh:
 	ldsh @(gr9,gr4),gr5
 	sth gr5, @(gr8,gr4)
 	addi gr4,#2,gr4
-	cmp gr4,gr6,icc0
+	cmp gr6,gr4,icc0
 	bne icc0,2,.L542
 .L538:
 	andicc gr10, #1, gr0, icc0
@@ -3636,7 +3636,7 @@ __cmovw:
 	ld @(gr9,gr5), gr6
 	st gr6, @(gr8,gr5)
 	addi gr5,#4,gr5
-	cmp gr5,gr7,icc0
+	cmp gr7,gr5,icc0
 	bne icc0,2,.L553
 .L549:
 	cmp gr10,gr4,icc0

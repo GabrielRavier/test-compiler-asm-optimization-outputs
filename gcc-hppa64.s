@@ -3723,36 +3723,36 @@ __cmovd:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	extrd,u %r24,63,32,%r23
-	extrd,u %r24,32+29-1,29,%r21
-	copy %r24,%r22
-	depwi 0,31,3,%r22
+	extrd,u %r24,32+29-1,29,%r20
+	copy %r24,%r21
+	depwi 0,31,3,%r21
 	cmpb,*<<= %r25,%r26,.L552
-	extrd,u %r22,63,32,%r20
+	extrd,u %r21,63,32,%r22
 .L555:
-	cmpb,*=,n %r0,%r21,.L554
+	cmpb,*=,n %r0,%r20,.L554
 	copy %r25,%r28
 	copy %r26,%r31
-	shladd,l %r21,3,%r25,%r21
+	shladd,l %r20,3,%r25,%r20
 .L558:
 	ldd 0(%r28),%r19
 	std %r19,0(%r31)
 	ldo 8(%r28),%r28
-	cmpb,*<> %r21,%r28,.L558
+	cmpb,*<> %r20,%r28,.L558
 	ldo 8(%r31),%r31
 .L554:
-	cmpb,>>=,n %r22,%r23,.L551
-	add,l %r25,%r20,%r28
-	add,l %r26,%r20,%r26
+	cmpb,>>=,n %r21,%r23,.L551
+	add,l %r25,%r22,%r28
+	add,l %r26,%r22,%r26
 	ldo 1(%r25),%r25
-	uaddcm %r24,%r22,%r24
+	uaddcm %r24,%r21,%r24
 	extrd,u %r24,63,32,%r24
-	add,l %r20,%r25,%r19
-	add,l %r19,%r24,%r19
+	add,l %r25,%r22,%r25
+	add,l %r25,%r24,%r25
 .L559:
 	ldb 0(%r28),%r31
 	stb %r31,0(%r26)
 	ldo 1(%r28),%r28
-	cmpb,*<> %r19,%r28,.L559
+	cmpb,*<> %r25,%r28,.L559
 	ldo 1(%r26),%r26
 .L551:
 	bve,n (%r2)
@@ -3834,36 +3834,36 @@ __cmovw:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	extrd,u %r24,63,32,%r23
-	extrd,u %r24,32+30-1,30,%r21
-	copy %r24,%r22
-	depwi 0,31,2,%r22
+	extrd,u %r24,32+30-1,30,%r20
+	copy %r24,%r21
+	depwi 0,31,2,%r21
 	cmpb,*<<= %r25,%r26,.L578
-	extrd,u %r22,63,32,%r20
+	extrd,u %r21,63,32,%r22
 .L581:
-	cmpb,*=,n %r0,%r21,.L580
+	cmpb,*=,n %r0,%r20,.L580
 	copy %r25,%r28
 	copy %r26,%r31
-	shladd,l %r21,2,%r25,%r21
+	shladd,l %r20,2,%r25,%r20
 .L584:
 	ldw 0(%r28),%r19
 	stw %r19,0(%r31)
 	ldo 4(%r28),%r28
-	cmpb,*<> %r21,%r28,.L584
+	cmpb,*<> %r20,%r28,.L584
 	ldo 4(%r31),%r31
 .L580:
-	cmpb,>>=,n %r22,%r23,.L577
-	add,l %r25,%r20,%r28
-	add,l %r26,%r20,%r26
+	cmpb,>>=,n %r21,%r23,.L577
+	add,l %r25,%r22,%r28
+	add,l %r26,%r22,%r26
 	ldo 1(%r25),%r25
-	uaddcm %r24,%r22,%r24
+	uaddcm %r24,%r21,%r24
 	extrd,u %r24,63,32,%r24
-	add,l %r20,%r25,%r19
-	add,l %r19,%r24,%r19
+	add,l %r25,%r22,%r25
+	add,l %r25,%r24,%r25
 .L585:
 	ldb 0(%r28),%r31
 	stb %r31,0(%r26)
 	ldo 1(%r28),%r28
-	cmpb,*<> %r19,%r28,.L585
+	cmpb,*<> %r25,%r28,.L585
 	ldo 1(%r26),%r26
 .L577:
 	bve,n (%r2)

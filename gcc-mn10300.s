@@ -30,7 +30,7 @@ memmove:
 	movbu (r0,d1),a0
 	movbu a0,(r0,d0)
 	inc r0
-	cmp a1,r0
+	cmp r0,a1
 	Lne # loop back to: .L5
 	jmp .L3
 	.size	memmove, .-memmove
@@ -1798,7 +1798,7 @@ bcopy:
 	movbu (a1,d0),r0
 	movbu r0,(a1,d1)
 	inc a1
-	cmp a0,a1
+	cmp a1,a0
 	Lne # loop back to: .L367
 .L363:
 	retf [],0
@@ -2923,7 +2923,7 @@ __cmovd:
 	add a0,d0,r0
 	mov r1,(4,r0)
 	add 8,a0
-	cmp d2,a0
+	cmp a0,d2
 	Lne # loop back to: .L574
 .L573:
 	cmp a1,r3
@@ -2971,7 +2971,7 @@ __cmovh:
 	movhu (a0,d1),a1
 	movhu a1,(a0,d0)
 	add 2,a0
-	cmp r0,a0
+	cmp a0,r0
 	Lne # loop back to: .L585
 .L584:
 	btst 1,r1
@@ -3016,7 +3016,7 @@ __cmovw:
 	mov (a1,d1),r0
 	mov r0,(a1,d0)
 	inc4 a1
-	cmp r2,a1
+	cmp a1,r2
 	Lne # loop back to: .L595
 .L594:
 	cmp a0,r1

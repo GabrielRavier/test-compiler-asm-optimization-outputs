@@ -4026,13 +4026,13 @@ __cmovd:
 	bleu	a2,t0,.L604
 	add	a5,a1,t0
 	add	a0,a0,t0
-	add	a1,a1,a2
+	add	a2,a2,a1
 .L612:
 	lbu	a4,0(a5)
 	sb	a4,0(a0)
 	addi	a5,a5,1
 	addi	a0,a0,1
-	bne	a5,a1,.L612
+	bne	a5,a2,.L612
 	ret
 .L605:
 	add	a5,a1,a2
@@ -4067,7 +4067,7 @@ __cmovh:
 	mv	a5,a1
 	mv	a4,a0
 	slli	t1,t1,1
-	add	t1,t1,a1
+	add	t1,a1,t1
 .L625:
 	lh	a3,0(a5)
 	sh	a3,0(a4)
@@ -4128,13 +4128,13 @@ __cmovw:
 	bleu	a2,t0,.L630
 	add	a5,a1,t0
 	add	a0,a0,t0
-	add	a1,a1,a2
+	add	a2,a2,a1
 .L638:
 	lbu	a4,0(a5)
 	sb	a4,0(a0)
 	addi	a5,a5,1
 	addi	a0,a0,1
-	bne	a5,a1,.L638
+	bne	a5,a2,.L638
 	ret
 .L631:
 	add	a5,a1,a2

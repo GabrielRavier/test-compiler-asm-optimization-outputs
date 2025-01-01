@@ -1856,7 +1856,7 @@ wmemmove:
 	mov	edi, DWORD PTR [rsi+rcx*4]
 	mov	DWORD PTR [rax+rcx*4], edi
 	add	rcx, 1
-	cmp	rdx, rcx
+	cmp	rcx, rdx
 	jne	.L319
 .L317:
 	ret
@@ -2900,7 +2900,7 @@ __cmovd:
 	mov	r8, QWORD PTR [rsi+rcx]
 	mov	QWORD PTR [rdi+rcx], r8
 	add	rcx, 8
-	cmp	rcx, r9
+	cmp	r9, rcx
 	jne	.L519
 .L515:
 	cmp	eax, edx
@@ -3008,7 +3008,7 @@ __cmovw:
 	mov	r8d, DWORD PTR [rsi+rcx]
 	mov	DWORD PTR [rdi+rcx], r8d
 	add	rcx, 4
-	cmp	rcx, r9
+	cmp	r9, rcx
 	jne	.L549
 .L545:
 	cmp	eax, edx

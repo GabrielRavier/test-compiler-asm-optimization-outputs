@@ -3121,13 +3121,13 @@ __cmovd:
 	bgeu	r10, r6, .L583
 	add	r2, r5, r10
 	add	r4, r4, r10
-	add	r5, r5, r6
+	add	r6, r6, r5
 .L589:
 	ldbu	r3, 0(r2)
 	stb	r3, 0(r4)
 	addi	r2, r2, 1
 	addi	r4, r4, 1
-	bne	r2, r5, .L589
+	bne	r2, r6, .L589
 	ret
 	.size	__cmovd, .-__cmovd
 	.align	2
@@ -3157,7 +3157,7 @@ __cmovh:
 	mov	r2, r5
 	mov	r3, r4
 	add	r8, r8, r8
-	add	r8, r8, r5
+	add	r8, r5, r8
 .L600:
 	ldhu	r7, 0(r2)
 	sth	r7, 0(r3)
@@ -3214,13 +3214,13 @@ __cmovw:
 	bgeu	r9, r6, .L605
 	add	r2, r5, r9
 	add	r4, r4, r9
-	add	r5, r5, r6
+	add	r6, r6, r5
 .L611:
 	ldbu	r3, 0(r2)
 	stb	r3, 0(r4)
 	addi	r2, r2, 1
 	addi	r4, r4, 1
-	bne	r2, r5, .L611
+	bne	r2, r6, .L611
 	ret
 	.size	__cmovw, .-__cmovw
 	.align	2

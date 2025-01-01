@@ -30,7 +30,7 @@ memmove:
 	ldbx %r25(%r19),%r21
 	addl %r28,%r19,%r20
 	ldo 1(%r19),%r19
-	comb,<> %r24,%r19,.L5
+	comb,<> %r19,%r24,.L5
 	stb %r21,0(%r20)
 	b,n .L3
 	.EXIT
@@ -2048,7 +2048,7 @@ wmemmove:
 	ldwx,s %r19(%r25),%r21
 	sh2addl %r19,%r28,%r20 
 	ldo 1(%r19),%r19
-	comb,<> %r19,%r24,.L336
+	comb,<> %r24,%r19,.L336
 	stw %r21,0(%r20)
 	b,n .L334
 .L335:
@@ -2115,7 +2115,7 @@ bcopy:
 	ldbx %r26(%r28),%r20
 	addl %r25,%r28,%r19
 	ldo 1(%r28),%r28
-	comb,<> %r24,%r28,.L350
+	comb,<> %r28,%r24,.L350
 	stb %r20,0(%r19)
 	b,n .L346
 	.EXIT

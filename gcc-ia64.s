@@ -3277,8 +3277,10 @@ memxor:
 	mov r8 = r32
 	cmp.eq p6, p7 = 0, r34
 	(p6) br.cond.dpnt .L390
+	add r34 = r33, r34
 	mov r16 = r32
-	adds r34 = -1, r34
+	;;
+	sub r34 = r34, r33, 1
 	;;
 	mov ar.lc = r34
 .L391:

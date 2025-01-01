@@ -53,7 +53,7 @@ memmove:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-	cmp	x3, x2
+	cmp	x2, x3
 	bne	.L7
 	b	.L5
 	.cfi_endproc
@@ -1874,7 +1874,7 @@ wmemmove:
 	ldr	w4, [x1, x3, lsl 2]
 	str	w4, [x0, x3, lsl 2]
 	add	x3, x3, 1
-	cmp	x2, x3
+	cmp	x3, x2
 	bne	.L316
 	b	.L314
 .L315:
@@ -1935,7 +1935,7 @@ bcopy:
 	ldrb	w4, [x0, x3]
 	strb	w4, [x1, x3]
 	add	x3, x3, 1
-	cmp	x3, x2
+	cmp	x2, x3
 	bne	.L330
 	b	.L326
 	.cfi_endproc
@@ -2926,7 +2926,7 @@ __cmovd:
 	ldr	x5, [x1, x4]
 	str	x5, [x0, x4]
 	add	x4, x4, 8
-	cmp	x4, x6
+	cmp	x6, x4
 	bne	.L513
 .L509:
 	cmp	w2, w3
@@ -2936,8 +2936,8 @@ __cmovd:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-	cmp	w2, w3
-	bhi	.L514
+	cmp	w3, w2
+	bcc	.L514
 .L506:
 	ret
 .L507:
@@ -3016,7 +3016,7 @@ __cmovw:
 	ldr	w5, [x1, x4]
 	str	w5, [x0, x4]
 	add	x4, x4, 4
-	cmp	x4, x6
+	cmp	x6, x4
 	bne	.L541
 .L537:
 	cmp	w2, w3
@@ -3026,8 +3026,8 @@ __cmovw:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-	cmp	w2, w3
-	bhi	.L542
+	cmp	w3, w2
+	bcc	.L542
 .L534:
 	ret
 .L535:

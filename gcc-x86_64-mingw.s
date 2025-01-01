@@ -1708,7 +1708,7 @@ wmemmove:
 	movzx	ecx, WORD PTR [rdx+r9*2]
 	mov	WORD PTR [rax+r9*2], cx
 	add	r9, 1
-	cmp	r8, r9
+	cmp	r9, r8
 	jne	.L308
 	jmp	.L306
 .L307:
@@ -2663,7 +2663,7 @@ __cmovd:
 	mov	r10, QWORD PTR [r9+rdx]
 	mov	QWORD PTR [rcx+rdx], r10
 	add	rdx, 8
-	cmp	rdx, r11
+	cmp	r11, rdx
 	jne	.L503
 .L499:
 	cmp	eax, r8d
@@ -2763,7 +2763,7 @@ __cmovw:
 	mov	r10d, DWORD PTR [r9+rdx]
 	mov	DWORD PTR [rcx+rdx], r10d
 	add	rdx, 4
-	cmp	rdx, r11
+	cmp	r11, rdx
 	jne	.L531
 .L527:
 	cmp	eax, r8d
