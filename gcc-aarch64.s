@@ -34,30 +34,28 @@ memmove:
 .LFB2:
 	.cfi_startproc
 	cmp	x0, x1
-	bls	.L13
+	bls	.L4
+	cbz	x2, .L5
 	sub	x1, x1, #1
 	sub	x4, x0, #1
-	b	.L4
 .L6:
 	ldrb	w3, [x1, x2]
 	strb	w3, [x4, x2]
-	sub	x2, x2, #1
-.L4:
-	cbnz	x2, .L6
-.L7:
+	subs	x2, x2, #1
+	bne	.L6
+.L5:
 	ret
-.L13:
+.L4:
+	beq	.L5
+	cbz	x2, .L5
 	mov	x3, 0
-	bne	.L8
-	b	.L7
-.L9:
+.L7:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-.L8:
 	cmp	x3, x2
-	bne	.L9
-	b	.L7
+	bne	.L7
+	b	.L5
 	.cfi_endproc
 .LFE2:
 	.size	memmove, .-memmove
@@ -68,20 +66,20 @@ memccpy:
 .LFB3:
 	.cfi_startproc
 	and	w2, w2, 255
-	b	.L15
-.L17:
-	sub	x3, x3, #1
+	mov	x4, x0
+	cbz	x3, .L12
+.L11:
+	ldrb	w0, [x1]
+	strb	w0, [x4]
+	cmp	w2, w0
+	beq	.L12
 	add	x1, x1, 1
-	add	x0, x0, 1
-.L15:
-	cbz	x3, .L16
-	ldrb	w4, [x1]
-	strb	w4, [x0]
-	cmp	w2, w4
-	bne	.L17
-.L16:
+	add	x4, x4, 1
+	subs	x3, x3, #1
+	bne	.L11
+.L12:
 	cmp	x3, 0
-	csinc	x0, xzr, x0, eq
+	csinc	x0, xzr, x4, eq
 	ret
 	.cfi_endproc
 .LFE3:
@@ -93,18 +91,18 @@ memchr:
 .LFB4:
 	.cfi_startproc
 	and	w1, w1, 255
-	b	.L21
-.L23:
-	add	x0, x0, 1
-	sub	x2, x2, #1
-.L21:
-	cbz	x2, .L22
-	ldrb	w3, [x0]
-	cmp	w1, w3
-	bne	.L23
-.L22:
+	mov	x3, x0
+	cbz	x2, .L20
+.L19:
+	ldrb	w0, [x3]
+	cmp	w1, w0
+	beq	.L20
+	add	x3, x3, 1
+	subs	x2, x2, #1
+	bne	.L19
+.L20:
 	cmp	x2, 0
-	csel	x0, x0, xzr, ne
+	csel	x0, x3, xzr, ne
 	ret
 	.cfi_endproc
 .LFE4:
@@ -115,23 +113,23 @@ memchr:
 memcmp:
 .LFB5:
 	.cfi_startproc
-	mov	x3, x0
-	b	.L27
-.L29:
-	sub	x2, x2, #1
-	add	x3, x3, 1
-	add	x1, x1, 1
-.L27:
+	mov	x3, x1
+	mov	x4, x0
 	cbz	x2, .L28
-	ldrb	w4, [x3]
-	ldrb	w0, [x1]
-	cmp	w4, w0
-	beq	.L29
+.L27:
+	ldrb	w1, [x4]
+	ldrb	w0, [x3]
+	cmp	w1, w0
+	bne	.L28
+	add	x4, x4, 1
+	add	x3, x3, 1
+	subs	x2, x2, #1
+	bne	.L27
 .L28:
 	mov	w0, 0
 	cbz	x2, .L30
-	ldrb	w0, [x3]
-	ldrb	w1, [x1]
+	ldrb	w0, [x4]
+	ldrb	w1, [x3]
 	sub	w0, w0, w1
 .L30:
 	ret
@@ -144,15 +142,15 @@ memcmp:
 memcpy:
 .LFB6:
 	.cfi_startproc
+	cbz	x2, .L35
 	mov	x3, 0
-	b	.L33
-.L34:
+.L36:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-.L33:
 	cmp	x3, x2
-	bne	.L34
+	bne	.L36
+.L35:
 	ret
 	.cfi_endproc
 .LFE6:
@@ -165,21 +163,21 @@ memrchr:
 	.cfi_startproc
 	and	w1, w1, 255
 	sub	x2, x2, #1
-.L36:
+.L39:
 	cmn	x2, #1
-	beq	.L40
+	beq	.L43
 	ldrb	w3, [x0, x2]
 	sub	x4, x2, #1
 	cmp	w1, w3
-	beq	.L41
+	beq	.L44
 	mov	x2, x4
-	b	.L36
-.L41:
+	b	.L39
+.L44:
 	add	x0, x0, x2
-	b	.L37
-.L40:
+	b	.L40
+.L43:
 	mov	x0, 0
-.L37:
+.L40:
 	ret
 	.cfi_endproc
 .LFE7:
@@ -190,15 +188,15 @@ memrchr:
 memset:
 .LFB8:
 	.cfi_startproc
-	add	x2, x0, x2
-	mov	x3, x0
+	cbz	x2, .L46
+	add	x3, x0, x2
+	mov	x2, x0
 	and	w1, w1, 255
-	b	.L43
-.L44:
-	strb	w1, [x3], 1
-.L43:
-	cmp	x3, x2
-	bne	.L44
+.L47:
+	strb	w1, [x2], 1
+	cmp	x2, x3
+	bne	.L47
+.L46:
 	ret
 	.cfi_endproc
 .LFE8:
@@ -209,14 +207,14 @@ memset:
 stpcpy:
 .LFB9:
 	.cfi_startproc
-	b	.L46
-.L47:
-	add	x1, x1, 1
-	add	x0, x0, 1
-.L46:
 	ldrb	w2, [x1]
 	strb	w2, [x0]
-	cbnz	w2, .L47
+	cbz	w2, .L50
+.L51:
+	ldrb	w2, [x1, 1]!
+	strb	w2, [x0, 1]!
+	cbnz	w2, .L51
+.L50:
 	ret
 	.cfi_endproc
 .LFE9:
@@ -228,15 +226,15 @@ strchrnul:
 .LFB10:
 	.cfi_startproc
 	and	w1, w1, 255
-	b	.L49
-.L51:
-	add	x0, x0, 1
-.L49:
 	ldrb	w2, [x0]
-	cbz	w2, .L50
+	cbz	w2, .L55
+.L54:
+	ldrb	w2, [x0]
 	cmp	w1, w2
-	bne	.L51
-.L50:
+	beq	.L55
+	ldrb	w2, [x0, 1]!
+	cbnz	w2, .L54
+.L55:
 	ret
 	.cfi_endproc
 .LFE10:
@@ -247,14 +245,14 @@ strchrnul:
 strchr:
 .LFB11:
 	.cfi_startproc
-.L54:
+.L60:
 	ldrb	w2, [x0]
 	cmp	w1, w2
-	beq	.L53
+	beq	.L59
 	ldrb	w2, [x0], 1
-	cbnz	w2, .L54
+	cbnz	w2, .L60
 	mov	x0, 0
-.L53:
+.L59:
 	ret
 	.cfi_endproc
 .LFE11:
@@ -265,17 +263,18 @@ strchr:
 strcmp:
 .LFB12:
 	.cfi_startproc
-	b	.L58
-.L60:
-	add	x0, x0, 1
-	add	x1, x1, 1
-.L58:
 	ldrb	w3, [x0]
 	ldrb	w2, [x1]
 	cmp	w3, w2
-	bne	.L59
-	cbnz	w3, .L60
-.L59:
+	bne	.L65
+.L64:
+	ldrb	w2, [x0]
+	cbz	w2, .L65
+	ldrb	w3, [x0, 1]!
+	ldrb	w2, [x1, 1]!
+	cmp	w3, w2
+	beq	.L64
+.L65:
 	ldrb	w2, [x0]
 	ldrb	w0, [x1]
 	sub	w0, w2, w0
@@ -289,15 +288,18 @@ strcmp:
 strlen:
 .LFB13:
 	.cfi_startproc
+	ldrb	w1, [x0]
+	cbz	w1, .L71
 	mov	x1, x0
-	b	.L62
-.L63:
-	add	x1, x1, 1
-.L62:
-	ldrb	w2, [x1]
-	cbnz	w2, .L63
+.L70:
+	ldrb	w2, [x1, 1]!
+	cbnz	w2, .L70
+.L69:
 	sub	x0, x1, x0
 	ret
+.L71:
+	mov	x1, x0
+	b	.L69
 	.cfi_endproc
 .LFE13:
 	.size	strlen, .-strlen
@@ -308,36 +310,37 @@ strncmp:
 .LFB14:
 	.cfi_startproc
 	sub	x5, x2, #1
-	cbz	x2, .L69
-	mov	x2, x0
-.L66:
-	ldrb	w3, [x2]
-	cbz	w3, .L67
-	ldrb	w3, [x1]
-	sub	x4, x0, x2
+	cbz	x2, .L78
+	ldrb	w4, [x0]
+	mov	x2, x1
+	mov	x3, x0
+	cbz	w4, .L76
+.L75:
+	ldrb	w1, [x2]
+	sub	x4, x0, x3
 	cmn	x4, x5
 	cset	w4, ne
-	cmp	w3, 0
-	cset	w3, ne
+	cmp	w1, 0
+	cset	w1, ne
 	cmp	w4, 0
-	ccmp	w3, 0, 4, ne
-	beq	.L67
-	ldrb	w4, [x2]
-	ldrb	w3, [x1]
-	cmp	w4, w3
-	bne	.L67
+	ccmp	w1, 0, 4, ne
+	beq	.L76
+	ldrb	w4, [x3]
+	ldrb	w1, [x2]
+	cmp	w4, w1
+	bne	.L76
 	add	x2, x2, 1
-	add	x1, x1, 1
-	b	.L66
-.L67:
-	ldrb	w0, [x2]
-	ldrb	w1, [x1]
+	ldrb	w1, [x3, 1]!
+	cbnz	w1, .L75
+.L76:
+	ldrb	w0, [x3]
+	ldrb	w1, [x2]
 	sub	w0, w0, w1
-.L65:
+.L74:
 	ret
-.L69:
+.L78:
 	mov	w0, 0
-	b	.L65
+	b	.L74
 	.cfi_endproc
 .LFE14:
 	.size	strncmp, .-strncmp
@@ -347,19 +350,21 @@ strncmp:
 swab:
 .LFB15:
 	.cfi_startproc
-	mov	x3, x0
+	cmp	x2, 1
+	ble	.L81
+	sub	x2, x2, #2
+	and	x2, x2, -2
+	add	x2, x2, 2
 	add	x2, x0, x2
-	b	.L71
-.L72:
-	ldrb	w0, [x3, 1]
-	strb	w0, [x1]
-	ldrb	w0, [x3], 2
-	strb	w0, [x1, 1]
+.L83:
+	ldrb	w3, [x0, 1]
+	strb	w3, [x1]
+	ldrb	w3, [x0], 2
+	strb	w3, [x1, 1]
 	add	x1, x1, 2
-.L71:
-	sub	x0, x2, x3
-	cmp	x0, 1
-	bgt	.L72
+	cmp	x0, x2
+	bne	.L83
+.L81:
 	ret
 	.cfi_endproc
 .LFE15:
@@ -518,17 +523,17 @@ iswcntrl:
 	cmp	w2, 0
 	ccmp	w0, 0, 0, eq
 	mov	w0, 1
-	bne	.L84
+	bne	.L96
 	sub	w2, w1, #8192
 	sub	w2, w2, #40
 	mov	w0, 1
 	cmp	w2, w0
-	bls	.L84
+	bls	.L96
 	sub	w1, w1, #61440
 	sub	w1, w1, #4089
 	cmp	w1, 2
 	cset	w0, ls
-.L84:
+.L96:
 	ret
 	.cfi_endproc
 .LFE26:
@@ -554,7 +559,7 @@ iswprint:
 	.cfi_startproc
 	mov	w1, w0
 	cmp	w0, 254
-	bls	.L94
+	bls	.L106
 	mov	w0, 8231
 	cmp	w1, w0
 	cset	w0, ls
@@ -566,29 +571,29 @@ iswprint:
 	cmp	w0, 0
 	mov	w0, 1
 	ccmp	w2, 0, 0, eq
-	bne	.L90
+	bne	.L102
 	sub	w3, w1, #57344
 	mov	w2, 8184
 	cmp	w3, w2
-	bls	.L90
+	bls	.L102
 	sub	w3, w1, #61440
 	sub	w3, w3, #4092
 	mov	w0, 0
 	mov	w2, 3
 	movk	w2, 0x10, lsl 16
 	cmp	w3, w2
-	bhi	.L90
+	bhi	.L102
 	and	w1, w1, 65534
 	mov	w0, 65534
 	cmp	w1, w0
 	cset	w0, ne
-	b	.L90
-.L94:
+	b	.L102
+.L106:
 	add	w1, w0, 1
 	and	w1, w1, 127
 	cmp	w1, 32
 	cset	w0, hi
-.L90:
+.L102:
 	ret
 	.cfi_endproc
 .LFE28:
@@ -601,16 +606,16 @@ iswxdigit:
 	.cfi_startproc
 	sub	w1, w0, #48
 	cmp	w1, 9
-	bls	.L97
+	bls	.L109
 	orr	w0, w0, 32
 	sub	w0, w0, #97
 	cmp	w0, 5
 	cset	w0, ls
-.L96:
+.L108:
 	ret
-.L97:
+.L109:
 	mov	w0, 1
-	b	.L96
+	b	.L108
 	.cfi_endproc
 .LFE29:
 	.size	iswxdigit, .-iswxdigit
@@ -632,20 +637,20 @@ fdim:
 .LFB31:
 	.cfi_startproc
 	fcmp	d0, d0
-	bvs	.L100
+	bvs	.L112
 	fcmp	d1, d1
-	bvs	.L103
+	bvs	.L115
 	fcmpe	d0, d1
-	bgt	.L105
+	bgt	.L117
 	movi	d0, #0
-	b	.L100
-.L105:
+	b	.L112
+.L117:
 	fsub	d0, d0, d1
-.L100:
+.L112:
 	ret
-.L103:
+.L115:
 	fmov	d0, d1
-	b	.L100
+	b	.L112
 	.cfi_endproc
 .LFE31:
 	.size	fdim, .-fdim
@@ -656,20 +661,20 @@ fdimf:
 .LFB32:
 	.cfi_startproc
 	fcmp	s0, s0
-	bvs	.L108
+	bvs	.L120
 	fcmp	s1, s1
-	bvs	.L111
+	bvs	.L123
 	fcmpe	s0, s1
-	bgt	.L113
+	bgt	.L125
 	movi	v0.2s, #0
-	b	.L108
-.L113:
+	b	.L120
+.L125:
 	fsub	s0, s0, s1
-.L108:
+.L120:
 	ret
-.L111:
+.L123:
 	fmov	s0, s1
-	b	.L108
+	b	.L120
 	.cfi_endproc
 .LFE32:
 	.size	fdimf, .-fdimf
@@ -680,27 +685,27 @@ fmax:
 .LFB33:
 	.cfi_startproc
 	fcmp	d0, d0
-	bvs	.L118
+	bvs	.L130
 	fcmp	d1, d1
-	bvs	.L116
+	bvs	.L128
 	fmov	x1, d0
 	lsr	x1, x1, 63
 	fmov	x0, d1
 	lsr	x0, x0, 63
 	cmp	w1, w0
-	beq	.L117
+	beq	.L129
 	fmov	x0, d0
 	cmp	x0, 0
 	fcsel	d0, d0, d1, ge
-.L116:
+.L128:
 	ret
-.L117:
+.L129:
 	fcmpe	d0, d1
 	fcsel	d0, d1, d0, mi
-	b	.L116
-.L118:
+	b	.L128
+.L130:
 	fmov	d0, d1
-	b	.L116
+	b	.L128
 	.cfi_endproc
 .LFE33:
 	.size	fmax, .-fmax
@@ -711,27 +716,27 @@ fmaxf:
 .LFB34:
 	.cfi_startproc
 	fcmp	s0, s0
-	bvs	.L124
+	bvs	.L136
 	fcmp	s1, s1
-	bvs	.L122
+	bvs	.L134
 	fmov	w1, s0
 	and	w1, w1, -2147483648
 	fmov	w0, s1
 	and	w0, w0, -2147483648
 	cmp	w1, w0
-	beq	.L123
+	beq	.L135
 	fmov	w0, s0
 	cmp	w0, 0
 	fcsel	s0, s0, s1, ge
-.L122:
+.L134:
 	ret
-.L123:
+.L135:
 	fcmpe	s0, s1
 	fcsel	s0, s1, s0, mi
-	b	.L122
-.L124:
+	b	.L134
+.L136:
 	fmov	s0, s1
-	b	.L122
+	b	.L134
 	.cfi_endproc
 .LFE34:
 	.size	fmaxf, .-fmaxf
@@ -749,42 +754,42 @@ fmaxl:
 	stp	q1, q0, [sp, 16]
 	mov	v1.16b, v0.16b
 	bl	__unordtf2
-	cbnz	w0, .L133
+	cbnz	w0, .L145
 	ldr	q1, [sp, 16]
 	mov	v0.16b, v1.16b
 	bl	__unordtf2
-	cbnz	w0, .L134
+	cbnz	w0, .L146
 	ldr	x1, [sp, 40]
 	lsr	x1, x1, 63
 	ldr	x0, [sp, 24]
 	lsr	x0, x0, 63
 	cmp	w1, w0
-	beq	.L129
+	beq	.L141
 	ldr	x0, [sp, 40]
 	ldr	q0, [sp, 16]
-	tbnz	x0, #63, .L128
+	tbnz	x0, #63, .L140
 	ldr	q0, [sp, 32]
-	b	.L128
-.L129:
+	b	.L140
+.L141:
 	ldp	q1, q0, [sp, 16]
 	bl	__lttf2
 	ldr	q0, [sp, 16]
-	tbnz	x0, 31, .L128
+	tbnz	x0, 31, .L140
 	ldr	q0, [sp, 32]
-.L128:
+.L140:
 	ldp	x29, x30, [sp], 48
 	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
-.L133:
+.L145:
 	.cfi_restore_state
 	ldr	q0, [sp, 16]
-	b	.L128
-.L134:
+	b	.L140
+.L146:
 	ldr	q0, [sp, 32]
-	b	.L128
+	b	.L140
 	.cfi_endproc
 .LFE35:
 	.size	fmaxl, .-fmaxl
@@ -795,27 +800,27 @@ fmin:
 .LFB36:
 	.cfi_startproc
 	fcmp	d0, d0
-	bvs	.L140
+	bvs	.L152
 	fcmp	d1, d1
-	bvs	.L138
+	bvs	.L150
 	fmov	x1, d0
 	lsr	x1, x1, 63
 	fmov	x0, d1
 	lsr	x0, x0, 63
 	cmp	w1, w0
-	beq	.L139
+	beq	.L151
 	fmov	x0, d0
 	cmp	x0, 0
 	fcsel	d0, d1, d0, ge
-.L138:
+.L150:
 	ret
-.L139:
+.L151:
 	fcmpe	d0, d1
 	fcsel	d0, d0, d1, mi
-	b	.L138
-.L140:
+	b	.L150
+.L152:
 	fmov	d0, d1
-	b	.L138
+	b	.L150
 	.cfi_endproc
 .LFE36:
 	.size	fmin, .-fmin
@@ -826,27 +831,27 @@ fminf:
 .LFB37:
 	.cfi_startproc
 	fcmp	s0, s0
-	bvs	.L146
+	bvs	.L158
 	fcmp	s1, s1
-	bvs	.L144
+	bvs	.L156
 	fmov	w1, s0
 	and	w1, w1, -2147483648
 	fmov	w0, s1
 	and	w0, w0, -2147483648
 	cmp	w1, w0
-	beq	.L145
+	beq	.L157
 	fmov	w0, s0
 	cmp	w0, 0
 	fcsel	s0, s1, s0, ge
-.L144:
+.L156:
 	ret
-.L145:
+.L157:
 	fcmpe	s0, s1
 	fcsel	s0, s0, s1, mi
-	b	.L144
-.L146:
+	b	.L156
+.L158:
 	fmov	s0, s1
-	b	.L144
+	b	.L156
 	.cfi_endproc
 .LFE37:
 	.size	fminf, .-fminf
@@ -864,42 +869,42 @@ fminl:
 	stp	q1, q0, [sp, 16]
 	mov	v1.16b, v0.16b
 	bl	__unordtf2
-	cbnz	w0, .L155
+	cbnz	w0, .L167
 	ldr	q1, [sp, 16]
 	mov	v0.16b, v1.16b
 	bl	__unordtf2
-	cbnz	w0, .L156
+	cbnz	w0, .L168
 	ldr	x1, [sp, 40]
 	lsr	x1, x1, 63
 	ldr	x0, [sp, 24]
 	lsr	x0, x0, 63
 	cmp	w1, w0
-	beq	.L151
+	beq	.L163
 	ldr	x0, [sp, 40]
 	ldr	q0, [sp, 32]
-	tbnz	x0, #63, .L150
+	tbnz	x0, #63, .L162
 	ldr	q0, [sp, 16]
-	b	.L150
-.L151:
+	b	.L162
+.L163:
 	ldp	q1, q0, [sp, 16]
 	bl	__lttf2
 	ldr	q0, [sp, 32]
-	tbnz	x0, 31, .L150
+	tbnz	x0, 31, .L162
 	ldr	q0, [sp, 16]
-.L150:
+.L162:
 	ldp	x29, x30, [sp], 48
 	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	ret
-.L155:
+.L167:
 	.cfi_restore_state
 	ldr	q0, [sp, 16]
-	b	.L150
-.L156:
+	b	.L162
+.L168:
 	ldr	q0, [sp, 32]
-	b	.L150
+	b	.L162
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
@@ -916,22 +921,27 @@ digits:
 l64a:
 .LFB39:
 	.cfi_startproc
-	adrp	x1, s.0
-	add	x1, x1, :lo12:s.0
+	mov	w1, w0
+	cbz	w0, .L174
+	adrp	x0, s.0
+	add	x0, x0, :lo12:s.0
 	adrp	x3, digits
 	add	x3, x3, :lo12:digits
-	b	.L160
-.L161:
-	and	w2, w0, 63
+.L173:
+	and	w2, w1, 63
 	ldrb	w2, [x3, w2, uxtw]
-	strb	w2, [x1], 1
-	lsr	w0, w0, 6
-.L160:
-	cbnz	w0, .L161
-	strb	wzr, [x1]
+	strb	w2, [x0], 1
+	lsr	w1, w1, 6
+	cbnz	w1, .L173
+.L172:
+	strb	wzr, [x0]
 	adrp	x0, s.0
 	add	x0, x0, :lo12:s.0
 	ret
+.L174:
+	adrp	x0, s.0
+	add	x0, x0, :lo12:s.0
+	b	.L172
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
@@ -976,18 +986,18 @@ rand:
 insque:
 .LFB42:
 	.cfi_startproc
-	cbz	x1, .L167
+	cbz	x1, .L181
 	ldr	x2, [x1]
 	stp	x2, x1, [x0]
 	str	x0, [x1]
 	ldr	x1, [x0]
-	cbz	x1, .L164
+	cbz	x1, .L178
 	str	x0, [x1, 8]
-.L164:
+.L178:
 	ret
-.L167:
+.L181:
 	stp	xzr, xzr, [x0]
-	b	.L164
+	b	.L178
 	.cfi_endproc
 .LFE42:
 	.size	insque, .-insque
@@ -998,15 +1008,15 @@ remque:
 .LFB43:
 	.cfi_startproc
 	ldr	x1, [x0]
-	cbz	x1, .L169
+	cbz	x1, .L183
 	ldp	x1, x2, [x0]
 	str	x2, [x1, 8]
-.L169:
+.L183:
 	ldr	x1, [x0, 8]
-	cbz	x1, .L168
+	cbz	x1, .L182
 	ldp	x1, x0, [x0]
 	str	x1, [x0]
-.L168:
+.L182:
 	ret
 	.cfi_endproc
 .LFE43:
@@ -1022,12 +1032,9 @@ lsearch:
 	.cfi_offset 29, -80
 	.cfi_offset 30, -72
 	mov	x29, sp
-	stp	x19, x20, [sp, 16]
 	stp	x21, x22, [sp, 32]
 	stp	x23, x24, [sp, 48]
 	stp	x25, x26, [sp, 64]
-	.cfi_offset 19, -64
-	.cfi_offset 20, -56
 	.cfi_offset 21, -48
 	.cfi_offset 22, -40
 	.cfi_offset 23, -32
@@ -1038,32 +1045,34 @@ lsearch:
 	mov	x25, x1
 	mov	x26, x2
 	mov	x21, x3
-	mov	x23, x4
 	ldr	x24, [x2]
+	cbz	x24, .L186
+	stp	x19, x20, [sp, 16]
+	.cfi_offset 20, -56
+	.cfi_offset 19, -64
+	mov	x23, x4
 	mov	x20, x1
 	mov	x19, 0
-	b	.L172
-.L173:
-	add	x19, x19, 1
-.L172:
-	cmp	x19, x24
-	beq	.L177
+.L189:
 	mov	x1, x20
 	mov	x0, x22
 	blr	x23
+	cbz	w0, .L192
+	add	x19, x19, 1
 	add	x20, x20, x21
-	cbnz	w0, .L173
-	madd	x0, x19, x21, x25
-	b	.L174
-.L177:
+	cmp	x19, x24
+	bne	.L189
+	ldp	x19, x20, [sp, 16]
+	.cfi_restore 20
+	.cfi_restore 19
+.L186:
 	add	x0, x24, 1
 	str	x0, [x26]
 	mov	x2, x21
 	mov	x1, x22
 	madd	x0, x21, x24, x25
 	bl	memcpy
-.L174:
-	ldp	x19, x20, [sp, 16]
+.L188:
 	ldp	x21, x22, [sp, 32]
 	ldp	x23, x24, [sp, 48]
 	ldp	x25, x26, [sp, 64]
@@ -1076,10 +1085,25 @@ lsearch:
 	.cfi_restore 24
 	.cfi_restore 21
 	.cfi_restore 22
-	.cfi_restore 19
-	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
+.L192:
+	.cfi_def_cfa_offset 80
+	.cfi_offset 19, -64
+	.cfi_offset 20, -56
+	.cfi_offset 21, -48
+	.cfi_offset 22, -40
+	.cfi_offset 23, -32
+	.cfi_offset 24, -24
+	.cfi_offset 25, -16
+	.cfi_offset 26, -8
+	.cfi_offset 29, -80
+	.cfi_offset 30, -72
+	madd	x0, x19, x21, x25
+	ldp	x19, x20, [sp, 16]
+	.cfi_restore 20
+	.cfi_restore 19
+	b	.L188
 	.cfi_endproc
 .LFE44:
 	.size	lsearch, .-lsearch
@@ -1094,56 +1118,70 @@ lfind:
 	.cfi_offset 29, -80
 	.cfi_offset 30, -72
 	mov	x29, sp
-	stp	x19, x20, [sp, 16]
-	stp	x21, x22, [sp, 32]
 	stp	x23, x24, [sp, 48]
-	str	x25, [sp, 64]
-	.cfi_offset 19, -64
-	.cfi_offset 20, -56
-	.cfi_offset 21, -48
-	.cfi_offset 22, -40
 	.cfi_offset 23, -32
 	.cfi_offset 24, -24
+	ldr	x24, [x2]
+	cbz	x24, .L197
+	stp	x19, x20, [sp, 16]
+	.cfi_offset 20, -56
+	.cfi_offset 19, -64
+	stp	x21, x22, [sp, 32]
+	.cfi_offset 22, -40
+	.cfi_offset 21, -48
+	str	x25, [sp, 64]
 	.cfi_offset 25, -16
-	mov	x23, x0
+	mov	x22, x0
 	mov	x25, x1
 	mov	x21, x3
-	mov	x22, x4
-	ldr	x24, [x2]
+	mov	x23, x4
 	mov	x20, x1
 	mov	x19, 0
-	b	.L179
-.L180:
-	add	x19, x19, 1
-.L179:
-	cmp	x19, x24
-	beq	.L184
+.L196:
 	mov	x1, x20
-	mov	x0, x23
-	blr	x22
+	mov	x0, x22
+	blr	x23
+	cbz	w0, .L200
+	add	x19, x19, 1
 	add	x20, x20, x21
-	cbnz	w0, .L180
-	madd	x0, x19, x21, x25
-	b	.L181
-.L184:
+	cmp	x19, x24
+	bne	.L196
 	mov	x0, 0
-.L181:
 	ldp	x19, x20, [sp, 16]
+	.cfi_remember_state
+	.cfi_restore 20
+	.cfi_restore 19
 	ldp	x21, x22, [sp, 32]
-	ldp	x23, x24, [sp, 48]
+	.cfi_restore 22
+	.cfi_restore 21
 	ldr	x25, [sp, 64]
+	.cfi_restore 25
+	b	.L194
+.L200:
+	.cfi_restore_state
+	madd	x0, x19, x21, x25
+	ldp	x19, x20, [sp, 16]
+	.cfi_restore 20
+	.cfi_restore 19
+	ldp	x21, x22, [sp, 32]
+	.cfi_restore 22
+	.cfi_restore 21
+	ldr	x25, [sp, 64]
+	.cfi_restore 25
+.L194:
+	ldp	x23, x24, [sp, 48]
 	ldp	x29, x30, [sp], 80
+	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
-	.cfi_restore 25
 	.cfi_restore 23
 	.cfi_restore 24
-	.cfi_restore 21
-	.cfi_restore 22
-	.cfi_restore 19
-	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
+.L197:
+	.cfi_restore_state
+	mov	x0, 0
+	b	.L194
 	.cfi_endproc
 .LFE45:
 	.size	lfind, .-lfind
@@ -1173,48 +1211,56 @@ atoi:
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	x19, x0
-	b	.L187
-.L188:
+	b	.L203
+.L204:
 	add	x19, x19, 1
-.L187:
+.L203:
 	ldrb	w0, [x19]
 	bl	isspace
-	cbnz	w0, .L188
+	cbnz	w0, .L204
 	ldrb	w0, [x19]
 	cmp	w0, 43
-	beq	.L194
+	beq	.L210
 	mov	w2, 0
 	cmp	w0, 45
-	bne	.L190
+	bne	.L206
 	mov	w2, 1
-.L189:
+.L205:
 	add	x19, x19, 1
-.L190:
+.L206:
+	ldrb	w0, [x19]
+	sub	w0, w0, #48
+	cmp	w0, 9
+	bhi	.L212
 	mov	w0, 0
-	b	.L191
-.L194:
-	mov	w2, 0
-	b	.L189
-.L192:
+.L208:
 	add	w0, w0, w0, lsl 2
 	lsl	w0, w0, 1
 	ldrb	w1, [x19], 1
 	sub	w1, w1, #48
 	sub	w0, w0, w1
-.L191:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
 	cmp	w1, 9
-	bls	.L192
+	bls	.L208
+.L207:
 	cmp	w2, 0
 	csneg	w0, w0, w0, ne
 	ldr	x19, [sp, 16]
 	ldp	x29, x30, [sp], 32
+	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_restore 19
 	.cfi_def_cfa_offset 0
 	ret
+.L210:
+	.cfi_restore_state
+	mov	w2, 0
+	b	.L205
+.L212:
+	mov	w0, 0
+	b	.L207
 	.cfi_endproc
 .LFE47:
 	.size	atoi, .-atoi
@@ -1232,48 +1278,56 @@ atol:
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	x19, x0
-	b	.L199
-.L200:
+	b	.L217
+.L218:
 	add	x19, x19, 1
-.L199:
+.L217:
 	ldrb	w0, [x19]
 	bl	isspace
-	cbnz	w0, .L200
+	cbnz	w0, .L218
 	ldrb	w0, [x19]
 	cmp	w0, 43
-	beq	.L206
+	beq	.L224
 	mov	w2, 0
 	cmp	w0, 45
-	bne	.L202
+	bne	.L220
 	mov	w2, 1
-.L201:
+.L219:
 	add	x19, x19, 1
-.L202:
+.L220:
+	ldrb	w0, [x19]
+	sub	w0, w0, #48
+	cmp	w0, 9
+	bhi	.L226
 	mov	x0, 0
-	b	.L203
-.L206:
-	mov	w2, 0
-	b	.L201
-.L204:
+.L222:
 	add	x0, x0, x0, lsl 2
 	lsl	x0, x0, 1
 	ldrb	w1, [x19], 1
 	sub	w1, w1, #48
 	sub	x0, x0, w1, sxtw
-.L203:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
 	cmp	w1, 9
-	bls	.L204
+	bls	.L222
+.L221:
 	cmp	w2, 0
 	csneg	x0, x0, x0, ne
 	ldr	x19, [sp, 16]
 	ldp	x29, x30, [sp], 32
+	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_restore 19
 	.cfi_def_cfa_offset 0
 	ret
+.L224:
+	.cfi_restore_state
+	mov	w2, 0
+	b	.L219
+.L226:
+	mov	x0, 0
+	b	.L221
 	.cfi_endproc
 .LFE48:
 	.size	atol, .-atol
@@ -1291,48 +1345,56 @@ atoll:
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	x19, x0
-	b	.L211
-.L212:
+	b	.L231
+.L232:
 	add	x19, x19, 1
-.L211:
+.L231:
 	ldrb	w0, [x19]
 	bl	isspace
-	cbnz	w0, .L212
+	cbnz	w0, .L232
 	ldrb	w0, [x19]
 	cmp	w0, 43
-	beq	.L218
+	beq	.L238
 	mov	w2, 0
 	cmp	w0, 45
-	bne	.L214
+	bne	.L234
 	mov	w2, 1
-.L213:
+.L233:
 	add	x19, x19, 1
-.L214:
+.L234:
+	ldrb	w0, [x19]
+	sub	w0, w0, #48
+	cmp	w0, 9
+	bhi	.L240
 	mov	x0, 0
-	b	.L215
-.L218:
-	mov	w2, 0
-	b	.L213
-.L216:
+.L236:
 	add	x0, x0, x0, lsl 2
 	lsl	x0, x0, 1
 	ldrb	w1, [x19], 1
 	sub	w1, w1, #48
 	sub	x0, x0, w1, sxtw
-.L215:
 	ldrb	w1, [x19]
 	sub	w1, w1, #48
 	cmp	w1, 9
-	bls	.L216
+	bls	.L236
+.L235:
 	cmp	w2, 0
 	csneg	x0, x0, x0, ne
 	ldr	x19, [sp, 16]
 	ldp	x29, x30, [sp], 32
+	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_restore 19
 	.cfi_def_cfa_offset 0
 	ret
+.L238:
+	.cfi_restore_state
+	mov	w2, 0
+	b	.L233
+.L240:
+	mov	x0, 0
+	b	.L235
 	.cfi_endproc
 .LFE49:
 	.size	atoll, .-atoll
@@ -1361,26 +1423,29 @@ bsearch:
 	mov	x19, x2
 	mov	x21, x3
 	mov	x23, x4
-	b	.L223
-.L231:
+	cbnz	x2, .L248
+	mov	x0, 0
+	b	.L245
+.L254:
 	lsr	x19, x19, 1
-.L223:
-	cbz	x19, .L230
+.L247:
+	cbz	x19, .L253
+.L248:
 	lsr	x20, x19, 1
 	madd	x20, x20, x21, x22
 	mov	x1, x20
 	mov	x0, x24
 	blr	x23
-	tbnz	w0, #31, .L231
+	tbnz	w0, #31, .L254
 	cmp	w0, 0
-	ble	.L228
+	ble	.L250
 	add	x22, x20, x21
 	sub	x0, x19, #1
 	sub	x19, x0, x19, lsr 1
-	b	.L223
-.L230:
+	b	.L247
+.L253:
 	mov	x0, 0
-.L226:
+.L245:
 	ldp	x19, x20, [sp, 16]
 	ldp	x21, x22, [sp, 32]
 	ldp	x23, x24, [sp, 48]
@@ -1396,10 +1461,10 @@ bsearch:
 	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
-.L228:
+.L250:
 	.cfi_restore_state
 	mov	x0, x20
-	b	.L226
+	b	.L245
 	.cfi_endproc
 .LFE50:
 	.size	bsearch, .-bsearch
@@ -1409,6 +1474,7 @@ bsearch:
 bsearch_r:
 .LFB51:
 	.cfi_startproc
+	cbz	w2, .L259
 	stp	x29, x30, [sp, -80]!
 	.cfi_def_cfa_offset 80
 	.cfi_offset 29, -80
@@ -1425,39 +1491,64 @@ bsearch_r:
 	.cfi_offset 23, -32
 	.cfi_offset 24, -24
 	.cfi_offset 25, -16
-	mov	x25, x0
+	mov	x23, x0
 	mov	x22, x3
 	mov	x24, x4
-	mov	x23, x5
+	mov	x25, x5
 	mov	w20, w2
 	mov	x21, x1
-	b	.L233
-.L235:
+	b	.L258
+.L257:
 	asr	w20, w20, 1
-.L233:
-	cbz	w20, .L239
+	cbz	w20, .L266
+.L258:
 	asr	w19, w20, 1
 	sxtw	x19, w19
 	madd	x19, x19, x22, x21
-	mov	x2, x23
+	mov	x2, x25
 	mov	x1, x19
-	mov	x0, x25
+	mov	x0, x23
 	blr	x24
-	cbz	w0, .L237
+	cbz	w0, .L260
 	cmp	w0, 0
-	ble	.L235
+	ble	.L257
 	add	x21, x19, x22
 	sub	w20, w20, #1
-	b	.L235
-.L239:
+	b	.L257
+.L266:
 	mov	x0, 0
-.L234:
+	b	.L256
+.L259:
+	.cfi_def_cfa_offset 0
+	.cfi_restore 19
+	.cfi_restore 20
+	.cfi_restore 21
+	.cfi_restore 22
+	.cfi_restore 23
+	.cfi_restore 24
+	.cfi_restore 25
+	.cfi_restore 29
+	.cfi_restore 30
+	mov	x0, 0
+	ret
+.L260:
+	.cfi_def_cfa_offset 80
+	.cfi_offset 19, -64
+	.cfi_offset 20, -56
+	.cfi_offset 21, -48
+	.cfi_offset 22, -40
+	.cfi_offset 23, -32
+	.cfi_offset 24, -24
+	.cfi_offset 25, -16
+	.cfi_offset 29, -80
+	.cfi_offset 30, -72
+	mov	x0, x19
+.L256:
 	ldp	x19, x20, [sp, 16]
 	ldp	x21, x22, [sp, 32]
 	ldp	x23, x24, [sp, 48]
 	ldr	x25, [sp, 64]
 	ldp	x29, x30, [sp], 80
-	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
 	.cfi_restore 25
@@ -1469,10 +1560,6 @@ bsearch_r:
 	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
-.L237:
-	.cfi_restore_state
-	mov	x0, x19
-	b	.L234
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r
@@ -1571,16 +1658,15 @@ lldiv:
 wcschr:
 .LFB59:
 	.cfi_startproc
-	b	.L248
-.L250:
-	add	x0, x0, 4
-.L248:
 	ldr	w2, [x0]
-	cbz	w2, .L249
+	cbz	w2, .L276
+.L275:
 	ldr	w2, [x0]
 	cmp	w1, w2
-	bne	.L250
-.L249:
+	beq	.L276
+	ldr	w2, [x0, 4]!
+	cbnz	w2, .L275
+.L276:
 	ldr	w1, [x0]
 	cmp	w1, 0
 	csel	x0, x0, xzr, ne
@@ -1595,30 +1681,30 @@ wcscmp:
 .LFB60:
 	.cfi_startproc
 	mov	x2, x0
-	b	.L254
-.L256:
-	add	x2, x2, 4
-	add	x1, x1, 4
-.L254:
-	ldr	w3, [x2]
+	ldr	w3, [x0]
 	ldr	w0, [x1]
 	cmp	w3, w0
-	bne	.L255
+	bne	.L283
+.L282:
 	ldr	w0, [x2]
-	cbz	w0, .L255
+	cbz	w0, .L283
 	ldr	w0, [x1]
-	cbnz	w0, .L256
-.L255:
+	cbz	w0, .L283
+	ldr	w3, [x2, 4]!
+	ldr	w0, [x1, 4]!
+	cmp	w3, w0
+	beq	.L282
+.L283:
 	ldr	w4, [x2]
 	ldr	w3, [x1]
 	mov	w0, -1
 	cmp	w4, w3
-	bcc	.L257
+	bcc	.L285
 	ldr	w2, [x2]
 	ldr	w0, [x1]
 	cmp	w2, w0
 	cset	w0, hi
-.L257:
+.L285:
 	ret
 	.cfi_endproc
 .LFE60:
@@ -1631,12 +1717,12 @@ wcscpy:
 	.cfi_startproc
 	mov	x2, 0
 	sub	x4, x0, #4
-.L260:
+.L289:
 	ldr	w3, [x1, x2]
 	str	w3, [x0, x2]
 	add	x2, x2, 4
 	ldr	w3, [x4, x2]
-	cbnz	w3, .L260
+	cbnz	w3, .L289
 	ret
 	.cfi_endproc
 .LFE61:
@@ -1647,16 +1733,19 @@ wcscpy:
 wcslen:
 .LFB62:
 	.cfi_startproc
+	ldr	w1, [x0]
+	cbz	w1, .L294
 	mov	x1, x0
-	b	.L263
-.L264:
-	add	x1, x1, 4
-.L263:
-	ldr	w2, [x1]
-	cbnz	w2, .L264
+.L293:
+	ldr	w2, [x1, 4]!
+	cbnz	w2, .L293
+.L292:
 	sub	x0, x1, x0
 	asr	x0, x0, 2
 	ret
+.L294:
+	mov	x1, x0
+	b	.L292
 	.cfi_endproc
 .LFE62:
 	.size	wcslen, .-wcslen
@@ -1667,33 +1756,33 @@ wcsncmp:
 .LFB63:
 	.cfi_startproc
 	mov	x3, x0
-.L266:
-	cbz	x2, .L267
+	cbz	x2, .L298
+.L297:
 	ldr	w4, [x3]
 	ldr	w0, [x1]
 	cmp	w4, w0
-	bne	.L267
+	bne	.L298
 	ldr	w0, [x3]
-	cbz	w0, .L267
+	cbz	w0, .L298
 	ldr	w0, [x1]
-	cbz	w0, .L267
-	sub	x2, x2, #1
+	cbz	w0, .L298
 	add	x3, x3, 4
 	add	x1, x1, 4
-	b	.L266
-.L267:
+	subs	x2, x2, #1
+	bne	.L297
+.L298:
 	mov	w0, 0
-	cbz	x2, .L269
+	cbz	x2, .L300
 	ldr	w4, [x3]
 	ldr	w2, [x1]
 	mov	w0, -1
 	cmp	w4, w2
-	bcc	.L269
+	bcc	.L300
 	ldr	w2, [x3]
 	ldr	w0, [x1]
 	cmp	w2, w0
 	cset	w0, hi
-.L269:
+.L300:
 	ret
 	.cfi_endproc
 .LFE63:
@@ -1704,16 +1793,15 @@ wcsncmp:
 wmemchr:
 .LFB64:
 	.cfi_startproc
-	b	.L273
-.L275:
-	sub	x2, x2, #1
-	add	x0, x0, 4
-.L273:
-	cbz	x2, .L274
+	cbz	x2, .L306
+.L305:
 	ldr	w3, [x0]
 	cmp	w1, w3
-	bne	.L275
-.L274:
+	beq	.L306
+	add	x0, x0, 4
+	subs	x2, x2, #1
+	bne	.L305
+.L306:
 	cmp	x2, 0
 	csel	x0, x0, xzr, ne
 	ret
@@ -1727,30 +1815,29 @@ wmemcmp:
 .LFB65:
 	.cfi_startproc
 	mov	x3, x0
-	b	.L279
-.L281:
-	sub	x2, x2, #1
-	add	x3, x3, 4
-	add	x1, x1, 4
-.L279:
-	cbz	x2, .L280
+	cbz	x2, .L313
+.L312:
 	ldr	w4, [x3]
 	ldr	w0, [x1]
 	cmp	w4, w0
-	beq	.L281
-.L280:
+	bne	.L313
+	add	x3, x3, 4
+	add	x1, x1, 4
+	subs	x2, x2, #1
+	bne	.L312
+.L313:
 	mov	w0, 0
-	cbz	x2, .L282
+	cbz	x2, .L315
 	ldr	w4, [x3]
 	ldr	w2, [x1]
 	mov	w0, -1
 	cmp	w4, w2
-	bcc	.L282
+	bcc	.L315
 	ldr	w2, [x3]
 	ldr	w0, [x1]
 	cmp	w2, w0
 	cset	w0, hi
-.L282:
+.L315:
 	ret
 	.cfi_endproc
 .LFE65:
@@ -1761,15 +1848,15 @@ wmemcmp:
 wmemcpy:
 .LFB66:
 	.cfi_startproc
+	cbz	x2, .L320
 	mov	x3, 0
-	b	.L286
-.L287:
+.L321:
 	ldr	w4, [x1, x3, lsl 2]
 	str	w4, [x0, x3, lsl 2]
 	add	x3, x3, 1
-.L286:
 	cmp	x3, x2
-	bne	.L287
+	bne	.L321
+.L320:
 	ret
 	.cfi_endproc
 .LFE66:
@@ -1781,29 +1868,31 @@ wmemmove:
 .LFB67:
 	.cfi_startproc
 	cmp	x0, x1
-	beq	.L289
+	beq	.L324
 	sub	x3, x0, x1
 	cmp	x3, x2, lsl 2
-	bcc	.L290
+	bcc	.L325
 	mov	x3, 0
-	b	.L291
-.L292:
-	ldr	w3, [x1, x2, lsl 2]
-	str	w3, [x0, x2, lsl 2]
-.L290:
-	sub	x2, x2, #1
-	cmn	x2, #1
-	bne	.L292
-.L289:
-	ret
-.L293:
+	cbz	x2, .L324
+.L326:
 	ldr	w4, [x1, x3, lsl 2]
 	str	w4, [x0, x3, lsl 2]
 	add	x3, x3, 1
-.L291:
 	cmp	x3, x2
-	bne	.L293
-	b	.L289
+	bne	.L326
+	b	.L324
+.L325:
+	sub	x3, x2, #1
+	cbz	x2, .L324
+	mov	x2, x3
+.L327:
+	ldr	w3, [x1, x2, lsl 2]
+	str	w3, [x0, x2, lsl 2]
+	sub	x2, x2, #1
+	cmn	x2, #1
+	bne	.L327
+.L324:
+	ret
 	.cfi_endproc
 .LFE67:
 	.size	wmemmove, .-wmemmove
@@ -1813,14 +1902,14 @@ wmemmove:
 wmemset:
 .LFB68:
 	.cfi_startproc
+	cbz	x2, .L333
 	mov	x3, 0
-	b	.L296
-.L297:
+.L334:
 	str	w1, [x0, x3, lsl 2]
 	add	x3, x3, 1
-.L296:
 	cmp	x3, x2
-	bne	.L297
+	bne	.L334
+.L333:
 	ret
 	.cfi_endproc
 .LFE68:
@@ -1832,30 +1921,28 @@ bcopy:
 .LFB69:
 	.cfi_startproc
 	cmp	x0, x1
-	bcs	.L308
+	bcs	.L337
+	cbz	x2, .L336
 	sub	x0, x0, #1
 	sub	x1, x1, #1
-	b	.L299
-.L301:
+.L339:
 	ldrb	w3, [x0, x2]
 	strb	w3, [x1, x2]
-	sub	x2, x2, #1
-.L299:
-	cbnz	x2, .L301
-.L298:
+	subs	x2, x2, #1
+	bne	.L339
+.L336:
 	ret
-.L308:
+.L337:
+	beq	.L336
+	cbz	x2, .L336
 	mov	x3, 0
-	bne	.L303
-	b	.L298
-.L304:
+.L340:
 	ldrb	w4, [x0, x3]
 	strb	w4, [x1, x3]
 	add	x3, x3, 1
-.L303:
 	cmp	x3, x2
-	bne	.L304
-	b	.L298
+	bne	.L340
+	b	.L336
 	.cfi_endproc
 .LFE69:
 	.size	bcopy, .-bcopy
@@ -2059,20 +2146,18 @@ ffs:
 .LFB83:
 	.cfi_startproc
 	mov	w1, 0
-.L323:
-	cmp	w1, 32
-	beq	.L327
+.L359:
 	lsr	w2, w0, w1
-	tbnz	x2, 0, .L328
+	tbnz	x2, 0, .L361
 	add	w1, w1, 1
-	b	.L323
-.L328:
-	add	w0, w1, 1
-.L325:
-	ret
-.L327:
+	cmp	w1, 32
+	bne	.L359
 	mov	w0, 0
-	b	.L325
+	b	.L358
+.L361:
+	add	w0, w1, 1
+.L358:
+	ret
 	.cfi_endproc
 .LFE83:
 	.size	ffs, .-ffs
@@ -2082,18 +2167,22 @@ ffs:
 libiberty_ffs:
 .LFB84:
 	.cfi_startproc
+	cbz	w0, .L365
+	tbnz	x0, 0, .L366
 	mov	w1, 1
-	cbnz	w0, .L331
-	mov	w0, 0
-	b	.L330
-.L332:
+.L364:
 	asr	w0, w0, 1
 	add	w1, w1, 1
-.L331:
-	tbz	x0, 0, .L332
+	tbz	x0, 0, .L364
 	mov	w0, w1
-.L330:
+.L363:
 	ret
+.L365:
+	mov	w0, 0
+	b	.L363
+.L366:
+	mov	w0, 1
+	b	.L363
 	.cfi_endproc
 .LFE84:
 	.size	libiberty_ffs, .-libiberty_ffs
@@ -2106,12 +2195,12 @@ gl_isinff:
 	mov	w0, 1
 	mvni	v31.2s, 0x80, lsl 16
 	fcmpe	s0, s31
-	bmi	.L335
+	bmi	.L369
 	mov	w0, 2139095039
 	fmov	s31, w0
 	fcmpe	s0, s31
 	cset	w0, gt
-.L335:
+.L369:
 	ret
 	.cfi_endproc
 .LFE85:
@@ -2126,12 +2215,12 @@ gl_isinfd:
 	fmov	d31, x0
 	mov	w0, 1
 	fcmpe	d0, d31
-	bmi	.L338
+	bmi	.L372
 	mov	x0, 9218868437227405311
 	fmov	d31, x0
 	fcmpe	d0, d31
 	cset	w0, gt
-.L338:
+.L372:
 	ret
 	.cfi_endproc
 .LFE86:
@@ -2154,7 +2243,7 @@ gl_isinfl:
 	bl	__lttf2
 	mov	w1, w0
 	mov	w0, 1
-	tbnz	w1, #31, .L341
+	tbnz	w1, #31, .L375
 	adrp	x0, .LC1
 	add	x0, x0, :lo12:.LC1
 	ldr	q1, [x0]
@@ -2162,7 +2251,7 @@ gl_isinfl:
 	bl	__gttf2
 	cmp	w0, 0
 	cset	w0, gt
-.L341:
+.L375:
 	ldp	x29, x30, [sp], 32
 	.cfi_restore 30
 	.cfi_restore 29
@@ -2205,25 +2294,25 @@ ldexpf:
 .LFB89:
 	.cfi_startproc
 	fcmp	s0, s0
-	bvs	.L348
+	bvs	.L382
 	fadd	s31, s0, s0
 	fcmp	s0, s31
-	beq	.L348
+	beq	.L382
 	cmp	w0, 0
 	fmov	s31, 2.0e+0
 	fmov	s30, 5.0e-1
 	fcsel	s31, s31, s30, ge
-	b	.L351
-.L350:
+	b	.L385
+.L384:
 	add	w0, w0, w0, lsr 31
 	asr	w0, w0, 1
-	cbz	w0, .L348
+	cbz	w0, .L382
 	fmul	s31, s31, s31
-.L351:
-	tbz	x0, 0, .L350
+.L385:
+	tbz	x0, 0, .L384
 	fmul	s0, s0, s31
-	b	.L350
-.L348:
+	b	.L384
+.L382:
 	ret
 	.cfi_endproc
 .LFE89:
@@ -2235,25 +2324,25 @@ ldexp:
 .LFB90:
 	.cfi_startproc
 	fcmp	d0, d0
-	bvs	.L354
+	bvs	.L388
 	fadd	d31, d0, d0
 	fcmp	d0, d31
-	beq	.L354
+	beq	.L388
 	cmp	w0, 0
 	fmov	d31, 2.0e+0
 	fmov	d30, 5.0e-1
 	fcsel	d31, d31, d30, ge
-	b	.L357
-.L356:
+	b	.L391
+.L390:
 	add	w0, w0, w0, lsr 31
 	asr	w0, w0, 1
-	cbz	w0, .L354
+	cbz	w0, .L388
 	fmul	d31, d31, d31
-.L357:
-	tbz	x0, 0, .L356
+.L391:
+	tbz	x0, 0, .L390
 	fmul	d0, d0, d31
-	b	.L356
-.L354:
+	b	.L390
+.L388:
 	ret
 	.cfi_endproc
 .LFE90:
@@ -2275,39 +2364,39 @@ ldexpl:
 	str	q0, [sp, 32]
 	mov	v1.16b, v0.16b
 	bl	__unordtf2
-	cbnz	w0, .L360
+	cbnz	w0, .L394
 	ldr	q1, [sp, 32]
 	mov	v0.16b, v1.16b
 	bl	__addtf3
 	mov	v1.16b, v0.16b
 	ldr	q0, [sp, 32]
 	bl	__netf2
-	cbz	w0, .L360
+	cbz	w0, .L394
 	adrp	x0, .LC2
 	add	x0, x0, :lo12:.LC2
 	ldr	q31, [x0]
 	str	q31, [sp, 48]
-	tbz	w19, #31, .L364
+	tbz	w19, #31, .L398
 	adrp	x0, .LC3
 	add	x0, x0, :lo12:.LC3
 	ldr	q31, [x0]
 	str	q31, [sp, 48]
-	b	.L364
-.L363:
+	b	.L398
+.L397:
 	add	w19, w19, w19, lsr 31
 	asr	w19, w19, 1
-	cbz	w19, .L360
+	cbz	w19, .L394
 	ldr	q1, [sp, 48]
 	mov	v0.16b, v1.16b
 	bl	__multf3
 	str	q0, [sp, 48]
-.L364:
-	tbz	x19, 0, .L363
+.L398:
+	tbz	x19, 0, .L397
 	ldp	q0, q1, [sp, 32]
 	bl	__multf3
 	str	q0, [sp, 32]
-	b	.L363
-.L360:
+	b	.L397
+.L394:
 	ldr	q0, [sp, 32]
 	ldr	x19, [sp, 16]
 	ldp	x29, x30, [sp], 64
@@ -2325,17 +2414,17 @@ ldexpl:
 memxor:
 .LFB92:
 	.cfi_startproc
+	cbz	x2, .L403
 	mov	x3, 0
-	b	.L369
-.L370:
+.L404:
 	ldrb	w5, [x1, x3]
 	ldrb	w4, [x0, x3]
 	eor	w4, w4, w5
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-.L369:
 	cmp	x3, x2
-	bne	.L370
+	bne	.L404
+.L403:
 	ret
 	.cfi_endproc
 .LFE92:
@@ -2361,20 +2450,19 @@ strncat:
 	mov	x19, x2
 	bl	strlen
 	add	x2, x21, x0
-	b	.L372
-.L374:
-	add	x20, x20, 1
-	add	x2, x2, 1
-	sub	x19, x19, #1
-.L372:
-	cbz	x19, .L373
+	cbz	x19, .L408
+.L407:
 	ldrb	w1, [x20]
 	strb	w1, [x2]
-	cbnz	w1, .L374
-.L373:
-	cbnz	x19, .L375
+	cbz	w1, .L408
+	add	x20, x20, 1
+	add	x2, x2, 1
+	subs	x19, x19, #1
+	bne	.L407
+.L408:
+	cbnz	x19, .L410
 	strb	wzr, [x2]
-.L375:
+.L410:
 	mov	x0, x21
 	ldp	x19, x20, [sp, 16]
 	ldr	x21, [sp, 32]
@@ -2397,16 +2485,17 @@ strnlen:
 	.cfi_startproc
 	mov	x2, x0
 	mov	x0, 0
-.L378:
-	cmp	x0, x1
-	beq	.L379
+	cbz	x1, .L415
+.L414:
 	ldrb	w3, [x2, x0]
-	cbnz	w3, .L380
-.L379:
+	cbnz	w3, .L416
+.L415:
 	ret
-.L380:
+.L416:
 	add	x0, x0, 1
-	b	.L378
+	cmp	x0, x1
+	bne	.L414
+	b	.L415
 	.cfi_endproc
 .LFE94:
 	.size	strnlen, .-strnlen
@@ -2416,25 +2505,27 @@ strnlen:
 strpbrk:
 .LFB95:
 	.cfi_startproc
-.L382:
 	ldrb	w2, [x0]
-	cbz	w2, .L388
+	cbz	w2, .L427
+.L420:
 	mov	x2, x1
-.L385:
+.L423:
 	ldrb	w3, [x2]
-	cbz	w3, .L389
+	cbz	w3, .L428
 	ldrb	w4, [x2], 1
 	ldrb	w3, [x0]
 	cmp	w4, w3
-	bne	.L385
-.L383:
+	bne	.L423
+.L421:
 	ret
-.L389:
-	add	x0, x0, 1
-	b	.L382
-.L388:
+.L427:
 	mov	x0, 0
-	b	.L383
+	b	.L421
+.L428:
+	ldrb	w2, [x0, 1]!
+	cbnz	w2, .L420
+	mov	x0, 0
+	b	.L421
 	.cfi_endproc
 .LFE95:
 	.size	strpbrk, .-strpbrk
@@ -2446,12 +2537,12 @@ strrchr:
 	.cfi_startproc
 	mov	x2, x0
 	mov	x0, 0
-.L392:
+.L431:
 	ldrb	w3, [x2]
 	cmp	w1, w3
 	csel	x0, x0, x2, ne
 	ldrb	w3, [x2], 1
-	cbnz	w3, .L392
+	cbnz	w3, .L431
 	ret
 	.cfi_endproc
 .LFE96:
@@ -2474,34 +2565,34 @@ strstr:
 	mov	x20, x1
 	mov	x0, x1
 	bl	strlen
-	cbz	x0, .L399
+	cbz	x0, .L438
 	stp	x21, x22, [sp, 32]
 	.cfi_offset 22, -8
 	.cfi_offset 21, -16
 	mov	x21, x0
 	ldrb	w22, [x20]
-.L397:
+.L436:
 	mov	w1, w22
 	mov	x0, x19
 	bl	strchr
 	mov	x19, x0
-	cbz	x0, .L402
+	cbz	x0, .L441
 	mov	x2, x21
 	mov	x1, x20
 	mov	x0, x19
 	bl	strncmp
-	cbz	w0, .L400
+	cbz	w0, .L439
 	add	x19, x19, 1
-	b	.L397
-.L402:
+	b	.L436
+.L441:
 	mov	x0, 0
 	ldp	x21, x22, [sp, 32]
 	.cfi_restore 22
 	.cfi_restore 21
-	b	.L396
-.L399:
+	b	.L435
+.L438:
 	mov	x0, x19
-.L396:
+.L435:
 	ldp	x19, x20, [sp, 16]
 	ldp	x29, x30, [sp], 48
 	.cfi_restore 30
@@ -2510,7 +2601,7 @@ strstr:
 	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
-.L400:
+.L439:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 19, -32
 	.cfi_offset 20, -24
@@ -2522,7 +2613,7 @@ strstr:
 	ldp	x21, x22, [sp, 32]
 	.cfi_restore 22
 	.cfi_restore 21
-	b	.L396
+	b	.L435
 	.cfi_endproc
 .LFE97:
 	.size	strstr, .-strstr
@@ -2533,23 +2624,23 @@ copysign:
 .LFB98:
 	.cfi_startproc
 	fcmpe	d0, #0.0
-	bmi	.L412
-.L404:
+	bmi	.L451
+.L443:
 	fcmpe	d0, #0.0
-	bgt	.L413
-	b	.L407
-.L413:
+	bgt	.L452
+	b	.L446
+.L452:
 	fcmpe	d1, #0.0
-	bmi	.L406
-.L407:
+	bmi	.L445
+.L446:
 	ret
-.L412:
+.L451:
 	fcmpe	d1, #0.0
-	bgt	.L406
-	b	.L404
-.L406:
+	bgt	.L445
+	b	.L443
+.L445:
 	fneg	d0, d0
-	b	.L407
+	b	.L446
 	.cfi_endproc
 .LFE98:
 	.size	copysign, .-copysign
@@ -2564,76 +2655,72 @@ memmem:
 	.cfi_offset 29, -64
 	.cfi_offset 30, -56
 	mov	x29, sp
-	stp	x21, x22, [sp, 32]
-	.cfi_offset 21, -32
-	.cfi_offset 22, -24
-	sub	x21, x1, x3
-	add	x21, x0, x21
-	cbz	x3, .L417
 	stp	x19, x20, [sp, 16]
-	.cfi_offset 20, -40
 	.cfi_offset 19, -48
-	mov	x20, x2
+	.cfi_offset 20, -40
+	sub	x20, x1, x3
+	add	x20, x0, x20
+	cbz	x3, .L456
 	cmp	x1, x3
-	bcc	.L422
+	bcc	.L460
+	cmp	x0, x20
+	bhi	.L461
+	stp	x21, x22, [sp, 32]
+	.cfi_offset 22, -24
+	.cfi_offset 21, -32
 	str	x23, [sp, 48]
 	.cfi_offset 23, -16
+	mov	x23, x2
+	ldrb	w22, [x23], 1
 	mov	x19, x0
-	add	x23, x2, 1
-	sub	x22, x3, #1
-	b	.L418
-.L419:
+	sub	x21, x3, #1
+	b	.L458
+.L457:
 	add	x19, x19, 1
-.L418:
-	cmp	x19, x21
-	bhi	.L425
-	ldrb	w1, [x19]
-	ldrb	w0, [x20]
-	cmp	w1, w0
-	bne	.L419
-	mov	x2, x22
+	cmp	x20, x19
+	bcc	.L465
+.L458:
+	ldrb	w0, [x19]
+	cmp	w0, w22
+	bne	.L457
+	mov	x2, x21
 	mov	x1, x23
 	add	x0, x19, 1
 	bl	memcmp
-	cbnz	w0, .L419
+	cbnz	w0, .L457
 	mov	x0, x19
-	ldp	x19, x20, [sp, 16]
+	ldp	x21, x22, [sp, 32]
 	.cfi_remember_state
-	.cfi_restore 20
-	.cfi_restore 19
+	.cfi_restore 22
+	.cfi_restore 21
 	ldr	x23, [sp, 48]
 	.cfi_restore 23
-	b	.L417
-.L425:
+	b	.L456
+.L465:
 	.cfi_restore_state
 	mov	x0, 0
-	ldp	x19, x20, [sp, 16]
-	.cfi_restore 20
-	.cfi_restore 19
+	ldp	x21, x22, [sp, 32]
+	.cfi_restore 22
+	.cfi_restore 21
 	ldr	x23, [sp, 48]
 	.cfi_restore 23
-.L417:
-	ldp	x21, x22, [sp, 32]
+.L456:
+	ldp	x19, x20, [sp, 16]
 	ldp	x29, x30, [sp], 64
+	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
-	.cfi_restore 21
-	.cfi_restore 22
+	.cfi_restore 19
+	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
-.L422:
-	.cfi_def_cfa_offset 64
-	.cfi_offset 19, -48
-	.cfi_offset 20, -40
-	.cfi_offset 21, -32
-	.cfi_offset 22, -24
-	.cfi_offset 29, -64
-	.cfi_offset 30, -56
+.L460:
+	.cfi_restore_state
 	mov	x0, 0
-	ldp	x19, x20, [sp, 16]
-	.cfi_restore 20
-	.cfi_restore 19
-	b	.L417
+	b	.L456
+.L461:
+	mov	x0, 0
+	b	.L456
 	.cfi_endproc
 .LFE99:
 	.size	memmem, .-memmem
@@ -2670,47 +2757,44 @@ frexp:
 .LFB101:
 	.cfi_startproc
 	fcmpe	d0, #0.0
-	bmi	.L441
+	bmi	.L479
 	mov	w2, 0
-.L429:
+.L469:
 	mov	w1, 0
-	fmov	d31, 1.0e+0
 	fmov	d30, 5.0e-1
+	fmov	d31, 1.0e+0
 	fcmpe	d0, d31
-	bge	.L431
-	fcmp	d0, #0.0
-	cset	w1, ne
-	fmov	d31, 5.0e-1
-	fcmpe	d0, d31
-	ccmp	w1, 0, 4, mi
-	mov	w1, 0
-	beq	.L434
-	mov	w1, 0
-	fmov	d31, 5.0e-1
-	b	.L435
-.L441:
-	fneg	d0, d0
-	mov	w2, 1
-	b	.L429
-.L433:
+	bge	.L473
+	b	.L486
+.L473:
 	add	w1, w1, 1
 	fmul	d0, d0, d30
-.L431:
 	fcmpe	d0, d31
-	bge	.L433
-.L434:
+	bge	.L473
+.L474:
 	str	w1, [x0]
 	fneg	d31, d0
 	cmp	w2, 0
 	fcsel	d0, d31, d0, ne
 	ret
-.L436:
+.L479:
+	fneg	d0, d0
+	mov	w2, 1
+	b	.L469
+.L486:
+	fcmp	d0, #0.0
+	cset	w3, ne
+	fmov	d31, 5.0e-1
+	fcmpe	d0, d31
+	mov	w1, 0
+	ccmp	w3, 0, 4, mi
+	beq	.L474
+.L475:
 	sub	w1, w1, #1
 	fadd	d0, d0, d0
-.L435:
 	fcmpe	d0, d31
-	bmi	.L436
-	b	.L434
+	bmi	.L475
+	b	.L474
 	.cfi_endproc
 .LFE101:
 	.size	frexp, .-frexp
@@ -2721,17 +2805,20 @@ __muldi3:
 .LFB102:
 	.cfi_startproc
 	mov	x2, x0
+	cbz	x0, .L490
 	mov	x0, 0
-	b	.L446
-.L447:
+.L489:
 	sbfx	x3, x2, 0, 1
 	and	x3, x1, x3
-	lsr	x2, x2, 1
 	add	x0, x0, x3
 	lsl	x1, x1, 1
-.L446:
-	cbnz	x2, .L447
+	lsr	x2, x2, 1
+	cbnz	x2, .L489
+.L488:
 	ret
+.L490:
+	mov	x0, 0
+	b	.L488
 	.cfi_endproc
 .LFE102:
 	.size	__muldi3, .-__muldi3
@@ -2742,38 +2829,34 @@ udivmodsi4:
 .LFB103:
 	.cfi_startproc
 	mov	w3, 1
-	b	.L449
-.L452:
+	cmp	w1, w0
+	bcs	.L494
+.L493:
+	tbnz	w1, #31, .L494
 	lsl	w1, w1, 1
 	lsl	w3, w3, 1
-.L449:
-	cmp	w1, w0
-	cset	w5, cc
-	cmp	w3, 0
-	cset	w4, ne
-	cmp	w5, 0
-	ccmp	w4, 0, 4, ne
-	beq	.L458
-	tbz	w1, #31, .L452
-	mov	w4, 0
-	b	.L451
-.L458:
-	mov	w4, 0
-	b	.L451
-.L454:
-	lsr	w3, w3, 1
-	lsr	w1, w1, 1
-.L451:
-	cbz	w3, .L459
 	cmp	w0, w1
-	bcc	.L454
-	sub	w0, w0, w1
-	orr	w4, w4, w3
-	b	.L454
-.L459:
+	cset	w4, hi
+	cmp	w3, 0
+	ccmp	w4, 0, 4, ne
+	bne	.L493
+.L494:
+	mov	w4, 0
+	cbnz	w3, .L495
+.L496:
 	cmp	x2, 0
 	csel	w0, w0, w4, ne
 	ret
+.L498:
+	lsr	w3, w3, 1
+	lsr	w1, w1, 1
+	cbz	w3, .L496
+.L495:
+	cmp	w0, w1
+	bcc	.L498
+	sub	w0, w0, w1
+	orr	w4, w4, w3
+	b	.L498
 	.cfi_endproc
 .LFE103:
 	.size	udivmodsi4, .-udivmodsi4
@@ -2817,17 +2900,20 @@ __mulsi3:
 .LFB106:
 	.cfi_startproc
 	mov	w2, w0
+	cbz	w0, .L516
 	mov	w0, 0
-	b	.L467
-.L468:
+.L515:
 	sbfx	x3, x2, 0, 1
 	and	w3, w3, w1
+	add	w0, w0, w3
 	lsr	w2, w2, 1
-	add	w0, w3, w0
 	lsl	w1, w1, 1
-.L467:
-	cbnz	w2, .L468
+	cbnz	w2, .L515
+.L514:
 	ret
+.L516:
+	mov	w0, 0
+	b	.L514
 	.cfi_endproc
 .LFE106:
 	.size	__mulsi3, .-__mulsi3
@@ -2837,45 +2923,45 @@ __mulsi3:
 __cmovd:
 .LFB107:
 	.cfi_startproc
-	lsr	w6, w2, 3
+	lsr	w5, w2, 3
 	and	w3, w2, -8
 	cmp	x0, x1
-	bcs	.L470
-.L472:
-	lsl	w6, w6, 3
+	bcs	.L519
+.L522:
+	lsl	w6, w5, 3
 	mov	x4, 0
-	b	.L471
-.L470:
-	add	x4, x1, w2, uxtw
-	cmp	x4, x0
-	bcc	.L472
-	b	.L473
-.L474:
+	cbz	w5, .L521
+.L525:
 	ldr	x5, [x1, x4]
 	str	x5, [x0, x4]
 	add	x4, x4, 8
-.L471:
 	cmp	x4, x6
-	bne	.L474
+	bne	.L525
+.L521:
+	cmp	w2, w3
+	bls	.L518
 	uxtw	x3, w3
-	b	.L475
-.L476:
+.L526:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-.L475:
 	cmp	w2, w3
-	bhi	.L476
-.L469:
+	bhi	.L526
+.L518:
 	ret
-.L478:
-	ldrb	w3, [x1, w2, uxtw]
-	strb	w3, [x0, w2, uxtw]
-.L473:
-	sub	w2, w2, #1
-	cmn	w2, #1
-	bne	.L478
-	b	.L469
+.L519:
+	add	x4, x1, w2, uxtw
+	cmp	x4, x0
+	bcc	.L522
+	sub	w3, w2, #1
+	cbz	w2, .L518
+.L527:
+	ldrb	w2, [x1, x3]
+	strb	w2, [x0, x3]
+	sub	x3, x3, #1
+	cmn	x3, #1
+	bne	.L527
+	b	.L518
 	.cfi_endproc
 .LFE107:
 	.size	__cmovd, .-__cmovd
@@ -2885,39 +2971,39 @@ __cmovd:
 __cmovh:
 .LFB108:
 	.cfi_startproc
-	lsr	w5, w2, 1
+	lsr	w4, w2, 1
 	cmp	x0, x1
-	bcs	.L480
-.L482:
-	lsl	w5, w5, 1
+	bcs	.L534
+.L537:
+	lsl	w5, w4, 1
 	mov	x3, 0
-	b	.L481
-.L480:
-	add	x3, x1, w2, uxtw
-	cmp	x3, x0
-	bcc	.L482
-	b	.L483
-.L484:
+	cbz	w4, .L536
+.L540:
 	ldrsh	w4, [x1, x3]
 	strh	w4, [x0, x3]
 	add	x3, x3, 2
-.L481:
 	cmp	x3, x5
-	bne	.L484
-	tbz	x2, 0, .L479
+	bne	.L540
+.L536:
+	tbz	x2, 0, .L533
 	sub	w2, w2, #1
 	ldrb	w1, [x1, w2, uxtw]
 	strb	w1, [x0, w2, uxtw]
-.L479:
+.L533:
 	ret
-.L486:
-	ldrb	w3, [x1, w2, uxtw]
-	strb	w3, [x0, w2, uxtw]
-.L483:
-	sub	w2, w2, #1
-	cmn	w2, #1
-	bne	.L486
-	b	.L479
+.L534:
+	add	x3, x1, w2, uxtw
+	cmp	x3, x0
+	bcc	.L537
+	sub	w3, w2, #1
+	cbz	w2, .L533
+.L541:
+	ldrb	w2, [x1, x3]
+	strb	w2, [x0, x3]
+	sub	x3, x3, #1
+	cmn	x3, #1
+	bne	.L541
+	b	.L533
 	.cfi_endproc
 .LFE108:
 	.size	__cmovh, .-__cmovh
@@ -2927,45 +3013,45 @@ __cmovh:
 __cmovw:
 .LFB109:
 	.cfi_startproc
-	lsr	w6, w2, 2
+	lsr	w5, w2, 2
 	and	w3, w2, -4
 	cmp	x0, x1
-	bcs	.L488
-.L490:
-	lsl	w6, w6, 2
+	bcs	.L547
+.L550:
+	lsl	w6, w5, 2
 	mov	x4, 0
-	b	.L489
-.L488:
-	add	x4, x1, w2, uxtw
-	cmp	x4, x0
-	bcc	.L490
-	b	.L491
-.L492:
+	cbz	w5, .L549
+.L553:
 	ldr	w5, [x1, x4]
 	str	w5, [x0, x4]
 	add	x4, x4, 4
-.L489:
 	cmp	x4, x6
-	bne	.L492
+	bne	.L553
+.L549:
+	cmp	w2, w3
+	bls	.L546
 	uxtw	x3, w3
-	b	.L493
-.L494:
+.L554:
 	ldrb	w4, [x1, x3]
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-.L493:
 	cmp	w2, w3
-	bhi	.L494
-.L487:
+	bhi	.L554
+.L546:
 	ret
-.L496:
-	ldrb	w3, [x1, w2, uxtw]
-	strb	w3, [x0, w2, uxtw]
-.L491:
-	sub	w2, w2, #1
-	cmn	w2, #1
-	bne	.L496
-	b	.L487
+.L547:
+	add	x4, x1, w2, uxtw
+	cmp	x4, x0
+	bcc	.L550
+	sub	w3, w2, #1
+	cbz	w2, .L546
+.L555:
+	ldrb	w2, [x1, x3]
+	strb	w2, [x0, x3]
+	sub	x3, x3, #1
+	cmn	x3, #1
+	bne	.L555
+	b	.L546
 	.cfi_endproc
 .LFE109:
 	.size	__cmovw, .-__cmovw
@@ -3046,15 +3132,14 @@ __clzhi2:
 	and	w3, w0, 65535
 	mov	w0, 0
 	mov	w2, 15
-.L504:
-	cmp	w0, 16
-	beq	.L505
+.L569:
 	sub	w1, w2, w0
 	asr	w1, w3, w1
-	tbnz	x1, 0, .L505
+	tbnz	x1, 0, .L568
 	add	w0, w0, 1
-	b	.L504
-.L505:
+	cmp	w0, 16
+	bne	.L569
+.L568:
 	ret
 	.cfi_endproc
 .LFE116:
@@ -3067,14 +3152,13 @@ __ctzhi2:
 	.cfi_startproc
 	and	w2, w0, 65535
 	mov	w0, 0
-.L508:
-	cmp	w0, 16
-	beq	.L509
+.L573:
 	asr	w1, w2, w0
-	tbnz	x1, 0, .L509
+	tbnz	x1, 0, .L572
 	add	w0, w0, 1
-	b	.L508
-.L509:
+	cmp	w0, 16
+	bne	.L573
+.L572:
 	ret
 	.cfi_endproc
 .LFE117:
@@ -3087,16 +3171,16 @@ __fixunssfsi:
 	.cfi_startproc
 	movi	v31.2s, 0x47, lsl 24
 	fcmpe	s0, s31
-	bge	.L515
+	bge	.L579
 	fcvtzs	x0, s0
-.L514:
+.L578:
 	ret
-.L515:
+.L579:
 	movi	v31.2s, 0x47, lsl 24
 	fsub	s0, s0, s31
 	fcvtzs	x0, s0
 	add	x0, x0, 32768
-	b	.L514
+	b	.L578
 	.cfi_endproc
 .LFE118:
 	.size	__fixunssfsi, .-__fixunssfsi
@@ -3109,15 +3193,13 @@ __parityhi2:
 	and	w3, w0, 65535
 	mov	w0, 0
 	mov	w1, 0
-	b	.L518
-.L519:
+.L582:
 	asr	w2, w3, w1
 	and	w2, w2, 1
-	add	w1, w1, 1
 	add	w0, w2, w0
-.L518:
+	add	w1, w1, 1
 	cmp	w1, 16
-	bne	.L519
+	bne	.L582
 	and	w0, w0, 1
 	ret
 	.cfi_endproc
@@ -3132,15 +3214,13 @@ __popcounthi2:
 	and	w3, w0, 65535
 	mov	w0, 0
 	mov	w1, 0
-	b	.L521
-.L522:
+.L585:
 	asr	w2, w3, w1
 	and	w2, w2, 1
-	add	w1, w1, 1
 	add	w0, w2, w0
-.L521:
+	add	w1, w1, 1
 	cmp	w1, 16
-	bne	.L522
+	bne	.L585
 	ret
 	.cfi_endproc
 .LFE120:
@@ -3152,17 +3232,20 @@ __mulsi3_iq2000:
 .LFB121:
 	.cfi_startproc
 	mov	w2, w0
+	cbz	w0, .L590
 	mov	w0, 0
-	b	.L524
-.L525:
+.L589:
 	sbfx	x3, x2, 0, 1
 	and	w3, w3, w1
+	add	w0, w0, w3
 	lsr	w2, w2, 1
-	add	w0, w3, w0
 	lsl	w1, w1, 1
-.L524:
-	cbnz	w2, .L525
+	cbnz	w2, .L589
+.L588:
 	ret
+.L590:
+	mov	w0, 0
+	b	.L588
 	.cfi_endproc
 .LFE121:
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -3172,21 +3255,23 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 .LFB122:
 	.cfi_startproc
-	mov	w3, 0
-	cbnz	w0, .L528
+	mov	w3, w0
 	mov	w0, 0
-	b	.L527
-.L529:
+	cbz	w3, .L593
+	cbz	w1, .L596
+	mov	w0, 0
+.L594:
 	sbfx	x2, x1, 0, 1
-	and	w2, w2, w0
+	and	w2, w2, w3
+	add	w0, w0, w2
+	lsl	w3, w3, 1
 	lsr	w1, w1, 1
-	add	w3, w2, w3
-	lsl	w0, w0, 1
-.L528:
-	cbnz	w1, .L529
-	mov	w0, w3
-.L527:
+	cbnz	w1, .L594
+.L593:
 	ret
+.L596:
+	mov	w0, 0
+	b	.L593
 	.cfi_endproc
 .LFE122:
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -3197,38 +3282,34 @@ __udivmodsi4:
 .LFB123:
 	.cfi_startproc
 	mov	w3, 1
-	b	.L532
-.L535:
+	cmp	w1, w0
+	bcs	.L600
+.L599:
+	tbnz	w1, #31, .L600
 	lsl	w1, w1, 1
 	lsl	w3, w3, 1
-.L532:
-	cmp	w1, w0
-	cset	w5, cc
-	cmp	w3, 0
-	cset	w4, ne
-	cmp	w5, 0
-	ccmp	w4, 0, 4, ne
-	beq	.L541
-	tbz	w1, #31, .L535
-	mov	w4, 0
-	b	.L534
-.L541:
-	mov	w4, 0
-	b	.L534
-.L537:
-	lsr	w3, w3, 1
-	lsr	w1, w1, 1
-.L534:
-	cbz	w3, .L542
 	cmp	w0, w1
-	bcc	.L537
-	sub	w0, w0, w1
-	orr	w4, w4, w3
-	b	.L537
-.L542:
+	cset	w4, hi
+	cmp	w3, 0
+	ccmp	w4, 0, 4, ne
+	bne	.L599
+.L600:
+	mov	w4, 0
+	cbnz	w3, .L601
+.L602:
 	cmp	w2, 0
 	csel	w0, w0, w4, ne
 	ret
+.L604:
+	lsr	w3, w3, 1
+	lsr	w1, w1, 1
+	cbz	w3, .L602
+.L601:
+	cmp	w0, w1
+	bcc	.L604
+	sub	w0, w0, w1
+	orr	w4, w4, w3
+	b	.L604
 	.cfi_endproc
 .LFE123:
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -3240,9 +3321,9 @@ __mspabi_cmpf:
 	.cfi_startproc
 	mov	w0, -1
 	fcmpe	s0, s1
-	bmi	.L544
+	bmi	.L614
 	cset	w0, gt
-.L544:
+.L614:
 	ret
 	.cfi_endproc
 .LFE124:
@@ -3255,9 +3336,9 @@ __mspabi_cmpd:
 	.cfi_startproc
 	mov	w0, -1
 	fcmpe	d0, d1
-	bmi	.L547
+	bmi	.L617
 	cset	w0, gt
-.L547:
+.L617:
 	ret
 	.cfi_endproc
 .LFE125:
@@ -3290,33 +3371,37 @@ __mspabi_mpyull:
 __mulhi3:
 .LFB128:
 	.cfi_startproc
+	mov	w4, w0
 	mov	w5, 0
-	tbnz	w1, #31, .L558
-.L552:
-	mov	w4, 0
+	tbnz	w1, #31, .L630
+.L622:
+	cbz	w1, .L627
+	mov	w0, 0
 	mov	w2, 0
-	b	.L553
-.L558:
-	neg	w1, w1
-	mov	w5, 1
-	b	.L552
-.L554:
+.L624:
 	sbfx	x3, x1, 0, 1
-	and	w3, w3, w0
+	and	w3, w3, w4
+	add	w0, w0, w3
+	lsl	w4, w4, 1
 	asr	w1, w1, 1
 	add	w2, w2, 1
 	and	w2, w2, 255
-	add	w4, w4, w3
-	lsl	w0, w0, 1
-.L553:
 	cmp	w1, 0
 	cset	w3, ne
 	cmp	w2, 31
 	ccmp	w3, 0, 4, ls
-	bne	.L554
+	bne	.L624
+.L623:
 	cmp	w5, 0
-	csneg	w0, w4, w4, eq
+	csneg	w0, w0, w0, eq
 	ret
+.L630:
+	neg	w1, w1
+	mov	w5, 1
+	b	.L622
+.L627:
+	mov	w0, 0
+	b	.L623
 	.cfi_endproc
 .LFE128:
 	.size	__mulhi3, .-__mulhi3
@@ -3334,10 +3419,10 @@ __divsi3:
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	w19, 0
-	tbnz	x0, #63, .L565
-.L560:
-	tbnz	x1, #63, .L566
-.L561:
+	tbnz	x0, #63, .L637
+.L632:
+	tbnz	x1, #63, .L638
+.L633:
 	mov	w2, 0
 	bl	__udivmodsi4
 	uxtw	x0, w0
@@ -3351,17 +3436,17 @@ __divsi3:
 	.cfi_restore 19
 	.cfi_def_cfa_offset 0
 	ret
-.L565:
+.L637:
 	.cfi_restore_state
 	neg	x0, x0
 	mov	w19, 1
-	b	.L560
-.L566:
+	b	.L632
+.L638:
 	neg	x1, x1
 	ubfx	x19, x19, 0, 1
 	eor	w19, w19, 1
 	and	w19, w19, 255
-	b	.L561
+	b	.L633
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3, .-__divsi3
@@ -3379,8 +3464,8 @@ __modsi3:
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	w19, 0
-	tbnz	x0, #63, .L572
-.L568:
+	tbnz	x0, #63, .L644
+.L640:
 	cmp	x1, 0
 	csneg	x1, x1, x1, ge
 	mov	w2, 1
@@ -3396,11 +3481,11 @@ __modsi3:
 	.cfi_restore 19
 	.cfi_def_cfa_offset 0
 	ret
-.L572:
+.L644:
 	.cfi_restore_state
 	neg	x0, x0
 	mov	w19, 1
-	b	.L568
+	b	.L640
 	.cfi_endproc
 .LFE130:
 	.size	__modsi3, .-__modsi3
@@ -3413,39 +3498,35 @@ __udivmodhi4:
 	and	w0, w0, 65535
 	and	w1, w1, 65535
 	mov	w3, 1
-	b	.L574
-.L577:
+	cmp	w1, w0
+	bcs	.L647
+.L646:
+	tbnz	x1, 15, .L647
 	ubfiz	w1, w1, 1, 15
 	ubfiz	w3, w3, 1, 15
-.L574:
-	cmp	w1, w0
-	cset	w5, cc
-	cmp	w3, 0
-	cset	w4, ne
-	cmp	w5, 0
-	ccmp	w4, 0, 4, ne
-	beq	.L583
-	tbz	x1, 15, .L577
-	mov	w4, 0
-	b	.L576
-.L583:
-	mov	w4, 0
-	b	.L576
-.L579:
-	lsr	w3, w3, 1
-	lsr	w1, w1, 1
-.L576:
-	cbz	w3, .L584
 	cmp	w0, w1
-	bcc	.L579
-	sub	w0, w0, w1
-	and	w0, w0, 65535
-	orr	w4, w4, w3
-	b	.L579
-.L584:
+	cset	w4, hi
+	cmp	w3, 0
+	ccmp	w4, 0, 4, ne
+	bne	.L646
+.L647:
+	mov	w4, 0
+	cbnz	w3, .L648
+.L649:
 	cmp	w2, 0
 	csel	w0, w0, w4, ne
 	ret
+.L651:
+	lsr	w3, w3, 1
+	lsr	w1, w1, 1
+	cbz	w3, .L649
+.L648:
+	cmp	w0, w1
+	bcc	.L651
+	sub	w0, w0, w1
+	and	w0, w0, 65535
+	orr	w4, w4, w3
+	b	.L651
 	.cfi_endproc
 .LFE131:
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -3456,38 +3537,34 @@ __udivmodsi4_libgcc:
 .LFB132:
 	.cfi_startproc
 	mov	x3, 1
-	b	.L586
-.L589:
+	cmp	x1, x0
+	bcs	.L662
+.L661:
+	tbnz	x1, 31, .L662
 	lsl	x1, x1, 1
 	lsl	x3, x3, 1
-.L586:
-	cmp	x1, x0
-	cset	w5, cc
-	cmp	x3, 0
-	cset	w4, ne
-	cmp	w5, 0
-	ccmp	w4, 0, 4, ne
-	beq	.L595
-	tbz	x1, 31, .L589
-	mov	x4, 0
-	b	.L588
-.L595:
-	mov	x4, 0
-	b	.L588
-.L591:
-	lsr	x3, x3, 1
-	lsr	x1, x1, 1
-.L588:
-	cbz	x3, .L596
 	cmp	x0, x1
-	bcc	.L591
-	sub	x0, x0, x1
-	orr	x4, x4, x3
-	b	.L591
-.L596:
+	cset	w4, hi
+	cmp	x3, 0
+	ccmp	w4, 0, 4, ne
+	bne	.L661
+.L662:
+	mov	x4, 0
+	cbnz	x3, .L663
+.L664:
 	cmp	w2, 0
 	csel	x0, x0, x4, ne
 	ret
+.L666:
+	lsr	x3, x3, 1
+	lsr	x1, x1, 1
+	cbz	x3, .L664
+.L663:
+	cmp	x0, x1
+	bcc	.L666
+	sub	x0, x0, x1
+	orr	x4, x4, x3
+	b	.L666
 	.cfi_endproc
 .LFE132:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -3498,15 +3575,15 @@ __ashldi3:
 .LFB133:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L598
+	tbz	x1, 5, .L676
 	mov	x0, 0
 	sub	w1, w1, #32
 	lsl	w2, w2, w1
 	bfi	x0, x2, 32, 32
-.L600:
+.L678:
 	ret
-.L598:
-	cbz	w1, .L600
+.L676:
+	cbz	w1, .L678
 	lsl	w3, w0, w1
 	mov	x0, 0
 	bfi	x0, x3, 0, 32
@@ -3516,7 +3593,7 @@ __ashldi3:
 	lsr	w2, w2, w1
 	orr	w2, w2, w3
 	bfi	x0, x2, 32, 32
-	b	.L600
+	b	.L678
 	.cfi_endproc
 .LFE133:
 	.size	__ashldi3, .-__ashldi3
@@ -3526,22 +3603,22 @@ __ashldi3:
 __ashlti3:
 .LFB134:
 	.cfi_startproc
-	tbz	x2, 6, .L603
+	tbz	x2, 6, .L681
 	mov	x3, 0
 	sub	w2, w2, #64
 	lsl	x1, x0, x2
-.L604:
+.L682:
 	mov	x0, x3
-.L605:
+.L683:
 	ret
-.L603:
-	cbz	w2, .L605
+.L681:
+	cbz	w2, .L683
 	lsl	x3, x0, x2
 	lsl	x1, x1, x2
 	neg	w2, w2
 	lsr	x2, x0, x2
 	orr	x1, x2, x1
-	b	.L604
+	b	.L682
 	.cfi_endproc
 .LFE134:
 	.size	__ashlti3, .-__ashlti3
@@ -3552,7 +3629,7 @@ __ashrdi3:
 .LFB135:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L608
+	tbz	x1, 5, .L686
 	asr	x3, x0, 32
 	asr	x2, x0, 63
 	mov	x0, 0
@@ -3560,10 +3637,10 @@ __ashrdi3:
 	sub	w1, w1, #32
 	asr	w1, w3, w1
 	bfi	x0, x1, 0, 32
-.L610:
+.L688:
 	ret
-.L608:
-	cbz	w1, .L610
+.L686:
+	cbz	w1, .L688
 	asr	x3, x0, 32
 	asr	w4, w3, w1
 	mov	x0, 0
@@ -3573,7 +3650,7 @@ __ashrdi3:
 	lsr	w2, w2, w1
 	orr	w3, w3, w2
 	bfi	x0, x3, 0, 32
-	b	.L610
+	b	.L688
 	.cfi_endproc
 .LFE135:
 	.size	__ashrdi3, .-__ashrdi3
@@ -3583,22 +3660,22 @@ __ashrdi3:
 __ashrti3:
 .LFB136:
 	.cfi_startproc
-	tbz	x2, 6, .L613
+	tbz	x2, 6, .L691
 	asr	x4, x1, 63
 	sub	w2, w2, #64
 	asr	x0, x1, x2
-.L614:
+.L692:
 	mov	x1, x4
-.L615:
+.L693:
 	ret
-.L613:
-	cbz	w2, .L615
+.L691:
+	cbz	w2, .L693
 	asr	x4, x1, x2
 	neg	w3, w2
 	lsl	x3, x1, x3
 	lsr	x0, x0, x2
 	orr	x0, x3, x0
-	b	.L614
+	b	.L692
 	.cfi_endproc
 .LFE136:
 	.size	__ashrti3, .-__ashrti3
@@ -3721,22 +3798,22 @@ __cmpdi2:
 	asr	x3, x0, 32
 	asr	x0, x1, 32
 	cmp	w3, w0
-	blt	.L623
+	blt	.L701
 	mov	x4, x3
 	mov	x3, x0
 	mov	w0, 2
 	cmp	w4, w3
-	bgt	.L622
+	bgt	.L700
 	mov	w0, 0
 	cmp	w2, w1
-	bcc	.L622
+	bcc	.L700
 	cset	w0, hi
 	add	w0, w0, 1
-.L622:
+.L700:
 	ret
-.L623:
+.L701:
 	mov	w0, 0
-	b	.L622
+	b	.L700
 	.cfi_endproc
 .LFE141:
 	.size	__cmpdi2, .-__cmpdi2
@@ -3770,15 +3847,15 @@ __cmpti2:
 	mov	x4, x0
 	mov	w0, 0
 	cmp	x1, x3
-	blt	.L630
+	blt	.L708
 	mov	w0, 2
-	bgt	.L630
+	bgt	.L708
 	mov	w0, 0
 	cmp	x4, x2
-	bcc	.L630
+	bcc	.L708
 	cset	w0, hi
 	add	w0, w0, 1
-.L630:
+.L708:
 	ret
 	.cfi_endproc
 .LFE143:
@@ -3844,19 +3921,19 @@ __ctzti2:
 __ffsti2:
 .LFB146:
 	.cfi_startproc
-	cbnz	x0, .L638
+	cbnz	x0, .L716
 	rbit	x0, x1
 	clz	x0, x0
 	add	w0, w0, 65
 	cmp	x1, 0
 	csel	w0, w0, wzr, ne
-.L639:
+.L717:
 	ret
-.L638:
+.L716:
 	rbit	x0, x0
 	clz	x0, x0
 	add	w0, w0, 1
-	b	.L639
+	b	.L717
 	.cfi_endproc
 .LFE146:
 	.size	__ffsti2, .-__ffsti2
@@ -3867,16 +3944,16 @@ __lshrdi3:
 .LFB147:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L642
+	tbz	x1, 5, .L720
 	mov	x0, 0
 	lsr	x2, x2, 32
 	sub	w1, w1, #32
 	lsr	w2, w2, w1
 	bfi	x0, x2, 0, 32
-.L644:
+.L722:
 	ret
-.L642:
-	cbz	w1, .L644
+.L720:
+	cbz	w1, .L722
 	lsr	x3, x0, 32
 	lsr	w4, w3, w1
 	mov	x0, 0
@@ -3886,7 +3963,7 @@ __lshrdi3:
 	lsr	w2, w2, w1
 	orr	w3, w3, w2
 	bfi	x0, x3, 0, 32
-	b	.L644
+	b	.L722
 	.cfi_endproc
 .LFE147:
 	.size	__lshrdi3, .-__lshrdi3
@@ -3896,22 +3973,22 @@ __lshrdi3:
 __lshrti3:
 .LFB148:
 	.cfi_startproc
-	tbz	x2, 6, .L647
+	tbz	x2, 6, .L725
 	mov	x4, 0
 	sub	w2, w2, #64
 	lsr	x0, x1, x2
-.L648:
+.L726:
 	mov	x1, x4
-.L649:
+.L727:
 	ret
-.L647:
-	cbz	w2, .L649
+.L725:
+	cbz	w2, .L727
 	lsr	x4, x1, x2
 	neg	w3, w2
 	lsl	x3, x1, x3
 	lsr	x0, x0, x2
 	orr	x0, x3, x0
-	b	.L648
+	b	.L726
 	.cfi_endproc
 .LFE148:
 	.size	__lshrti3, .-__lshrti3
@@ -4220,22 +4297,22 @@ __powidf2:
 	.cfi_startproc
 	lsr	w1, w0, 31
 	fmov	d31, 1.0e+0
-	b	.L668
-.L666:
+	b	.L746
+.L744:
 	add	w0, w0, w0, lsr 31
 	asr	w0, w0, 1
-	cbz	w0, .L667
+	cbz	w0, .L745
 	fmul	d0, d0, d0
-.L668:
-	tbz	x0, 0, .L666
+.L746:
+	tbz	x0, 0, .L744
 	fmul	d31, d31, d0
-	b	.L666
-.L667:
+	b	.L744
+.L745:
 	fmov	d0, d31
-	cbz	w1, .L669
+	cbz	w1, .L747
 	fmov	d0, 1.0e+0
 	fdiv	d0, d0, d31
-.L669:
+.L747:
 	ret
 	.cfi_endproc
 .LFE161:
@@ -4248,22 +4325,22 @@ __powisf2:
 	.cfi_startproc
 	lsr	w1, w0, 31
 	fmov	s31, 1.0e+0
-	b	.L674
-.L672:
+	b	.L752
+.L750:
 	add	w0, w0, w0, lsr 31
 	asr	w0, w0, 1
-	cbz	w0, .L673
+	cbz	w0, .L751
 	fmul	s0, s0, s0
-.L674:
-	tbz	x0, 0, .L672
+.L752:
+	tbz	x0, 0, .L750
 	fmul	s31, s31, s0
-	b	.L672
-.L673:
+	b	.L750
+.L751:
 	fmov	s0, s31
-	cbz	w1, .L675
+	cbz	w1, .L753
 	fmov	s0, 1.0e+0
 	fdiv	s0, s0, s31
-.L675:
+.L753:
 	ret
 	.cfi_endproc
 .LFE162:
@@ -4278,22 +4355,22 @@ __ucmpdi2:
 	lsr	x3, x0, 32
 	lsr	x0, x1, 32
 	cmp	w3, w0
-	bcc	.L679
+	bcc	.L757
 	mov	x4, x3
 	mov	x3, x0
 	mov	w0, 2
 	cmp	w4, w3
-	bhi	.L678
+	bhi	.L756
 	mov	w0, 0
 	cmp	w2, w1
-	bcc	.L678
+	bcc	.L756
 	cset	w0, hi
 	add	w0, w0, 1
-.L678:
+.L756:
 	ret
-.L679:
+.L757:
 	mov	w0, 0
-	b	.L678
+	b	.L756
 	.cfi_endproc
 .LFE163:
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4327,15 +4404,15 @@ __ucmpti2:
 	mov	x4, x0
 	mov	w0, 0
 	cmp	x1, x3
-	bcc	.L686
+	bcc	.L764
 	mov	w0, 2
-	bhi	.L686
+	bhi	.L764
 	mov	w0, 0
 	cmp	x4, x2
-	bcc	.L686
+	bcc	.L764
 	cset	w0, hi
 	add	w0, w0, 1
-.L686:
+.L764:
 	ret
 	.cfi_endproc
 .LFE165:
