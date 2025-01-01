@@ -1768,25 +1768,26 @@ wmemcmp:
 	sub	r8, 1
 	je	.L424
 .L420:
-	movzx	eax, WORD PTR [rdx]
-	cmp	WORD PTR [rcx], ax
+	movzx	eax, WORD PTR [rcx]
+	cmp	ax, WORD PTR [rdx]
 	je	.L422
 	test	r8, r8
 	je	.L424
-	movzx	ecx, WORD PTR [rcx]
-	mov	edx, eax
-	mov	eax, -1
-	cmp	cx, dx
+	movzx	ecx, WORD PTR [rdx]
+	mov	edx, -1
+	cmp	ax, cx
 	jb	.L419
-	xor	eax, eax
-	cmp	dx, cx
-	setb	al
+	xor	edx, edx
+	cmp	cx, ax
+	setb	dl
 .L419:
+	mov	eax, edx
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L424:
-	xor	eax, eax
+	xor	edx, edx
+	mov	eax, edx
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1858,12 +1859,13 @@ wmemmove:
 wmemset:
 	.seh_endprologue
 	mov	rax, rcx
+	mov	ecx, edx
 	test	r8, r8
 	je	.L450
 	xor	r9d, r9d
 	test	r8b, 1
 	je	.L451
-	mov	WORD PTR [rcx], dx
+	mov	WORD PTR [rax], dx
 	mov	r9d, 1
 	cmp	r9, r8
 	je	.L450
@@ -1871,10 +1873,9 @@ wmemset:
 	.p2align 4
 	.p2align 3
 .L451:
-	mov	WORD PTR [rax+r9*2], dx
-	add	r9, 1
-	mov	WORD PTR [rax+r9*2], dx
-	add	r9, 1
+	mov	WORD PTR [rax+r9*2], cx
+	mov	WORD PTR 2[rax+r9*2], cx
+	add	r9, 2
 	cmp	r9, r8
 	jne	.L451
 .L450:
@@ -2465,9 +2466,9 @@ strstr:
 	.seh_endprologue
 	mov	rax, rcx
 	mov	rsi, rdx
-	movzx	edx, BYTE PTR [rdx]
-	mov	rcx, rsi
-	test	dl, dl
+	movzx	r11d, BYTE PTR [rdx]
+	mov	rcx, rdx
+	test	r11b, r11b
 	je	.L601
 	.p2align 4
 	.p2align 4
@@ -2490,14 +2491,14 @@ strstr:
 	je	.L626
 .L610:
 	movzx	ecx, BYTE PTR [rax]
-	cmp	cl, dl
+	cmp	cl, r11b
 	jne	.L627
 	test	rax, rax
 	je	.L603
-	movzx	r8d, BYTE PTR [rax]
+	mov	r8d, r11d
 	mov	rcx, rsi
 	mov	r10, rax
-	test	r8b, r8b
+	test	r11b, r11b
 	jne	.L605
 	jmp	.L606
 	.p2align 4,,10
@@ -2513,10 +2514,10 @@ strstr:
 .L605:
 	movzx	r9d, BYTE PTR [rcx]
 	test	r9b, r9b
-	setne	r11b
+	setne	dl
 	cmp	r9b, r8b
 	sete	r9b
-	test	r11b, r9b
+	test	dl, r9b
 	jne	.L628
 .L606:
 	cmp	BYTE PTR [rcx], r8b
@@ -3268,7 +3269,7 @@ __mulsi3_lm32:
 	test	ecx, ecx
 	je	.L817
 	test	edx, edx
-	je	.L821
+	je	.L817
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3284,11 +3285,6 @@ __mulsi3_lm32:
 .L817:
 	mov	eax, r8d
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L821:
-	xor	r8d, r8d
-	jmp	.L817
 	.seh_endproc
 	.p2align 4
 	.globl	__udivmodsi4

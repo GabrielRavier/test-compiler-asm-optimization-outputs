@@ -140,16 +140,15 @@ memcmp:
 	subs	x2, x2, #1
 	beq	.L42
 .L38:
-	ldrb	w4, [x0]
-	ldrb	w3, [x1]
-	cmp	w4, w3
+	ldrb	w3, [x0]
+	ldrb	w4, [x1]
+	cmp	w3, w4
 	beq	.L40
-	cbz	x2, .L42
-	sub	w0, w4, w3
-	ret
-	.p2align 2,,3
+	sub	w0, w3, w4
+	cbnz	x2, .L37
 .L42:
 	mov	w0, 0
+.L37:
 	ret
 	.cfi_endproc
 .LFE5:
@@ -1879,7 +1878,6 @@ wmemcmp:
 	cmp	w4, w3
 	beq	.L372
 	cbz	x2, .L374
-	cmp	w4, w3
 	cset	w0, hi
 	csinv	w0, w0, wzr, cs
 	ret
@@ -2623,9 +2621,9 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	ldrb	w7, [x1]
+	ldrb	w6, [x1]
 	mov	x8, x1
-	cbz	w7, .L540
+	cbz	w6, .L540
 	.p2align 3,,7
 .L541:
 	ldrb	w2, [x8, 1]!
@@ -2641,18 +2639,18 @@ strstr:
 	cbz	w2, .L561
 .L548:
 	ldrb	w2, [x0]
-	cmp	w2, w7
+	cmp	w2, w6
 	bne	.L562
 	cbz	x0, .L542
-	ldrb	w4, [x0]
+	mov	w4, w6
 	mov	x2, x1
-	mov	x6, x0
-	cbnz	w4, .L544
+	mov	x7, x0
+	cbnz	w6, .L544
 	b	.L545
 	.p2align 2,,3
 .L546:
 	add	x2, x2, 1
-	ldrb	w4, [x6, 1]!
+	ldrb	w4, [x7, 1]!
 	cbz	w4, .L545
 .L544:
 	ldrb	w5, [x2]
@@ -2749,7 +2747,6 @@ memmem:
 	cmp	w7, w6
 	beq	.L577
 	cbz	x1, .L572
-	cmp	w7, w6
 	bne	.L574
 .L572:
 	ret
@@ -2803,16 +2800,15 @@ frexp:
 	bmi	.L610
 	mov	w2, 0
 .L600:
+	fmov	d31, 1.0e+0
 	mov	w1, 0
 	fmov	d30, 5.0e-1
-	fmov	d31, 1.0e+0
 	fcmpe	d0, d31
 	bge	.L604
-	fcmp	d0, #0.0
 	fmov	d31, 5.0e-1
+	fcmp	d0, #0.0
 	fccmpe	d0, d31, 0, ne
 	cset	w3, mi
-	mov	w1, 0
 	cbnz	w3, .L606
 	fneg	d31, d0
 	cmp	w2, 0

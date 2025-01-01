@@ -1838,11 +1838,10 @@ wcsncmp:
 .L401:
 	test	rdx, rdx
 	je	.L405
-	mov	ecx, DWORD PTR [rdi]
-	mov	edx, DWORD PTR [rsi]
-	xor	eax, eax
-	cmp	ecx, edx
+	mov	eax, DWORD PTR [rsi]
+	cmp	DWORD PTR [rdi], eax
 	setg	al
+	movzx	eax, al
 	mov	edx, -1
 	cmovl	eax, edx
 	ret
@@ -1903,16 +1902,14 @@ wmemcmp:
 	sub	rdx, 1
 	je	.L430
 .L426:
-	mov	eax, DWORD PTR [rsi]
-	cmp	DWORD PTR [rdi], eax
+	mov	eax, DWORD PTR [rdi]
+	cmp	eax, DWORD PTR [rsi]
 	je	.L428
 	test	rdx, rdx
 	je	.L430
-	mov	ecx, DWORD PTR [rdi]
-	mov	edx, eax
-	xor	eax, eax
-	cmp	ecx, edx
+	cmp	eax, DWORD PTR [rsi]
 	setg	al
+	movzx	eax, al
 	mov	edx, -1
 	cmovl	eax, edx
 	ret
@@ -2012,14 +2009,13 @@ wmemset:
 	mov	ecx, 1
 	cmp	rcx, rdx
 	je	.L472
-	.p2align 5
+	.p2align 4
 	.p2align 4
 	.p2align 3
 .L462:
 	mov	DWORD PTR [rax+rcx*4], esi
-	add	rcx, 1
-	mov	DWORD PTR [rax+rcx*4], esi
-	add	rcx, 1
+	mov	DWORD PTR [rax+4+rcx*4], esi
+	add	rcx, 2
 	cmp	rcx, rdx
 	jne	.L462
 .L461:
@@ -2661,9 +2657,9 @@ strstr:
 .LFB97:
 	.cfi_startproc
 	mov	rax, rdi
-	movzx	r10d, BYTE PTR [rsi]
+	movzx	r9d, BYTE PTR [rsi]
 	mov	rdx, rsi
-	test	r10b, r10b
+	test	r9b, r9b
 	je	.L614
 	.p2align 4
 	.p2align 4
@@ -2686,14 +2682,14 @@ strstr:
 	je	.L639
 .L623:
 	movzx	edx, BYTE PTR [rax]
-	cmp	dl, r10b
+	cmp	dl, r9b
 	jne	.L640
 	test	rax, rax
 	je	.L616
-	movzx	ecx, BYTE PTR [rax]
+	mov	ecx, r9d
 	mov	rdx, rsi
 	mov	r8, rax
-	test	cl, cl
+	test	r9b, r9b
 	jne	.L618
 	jmp	.L619
 	.p2align 4,,10
@@ -2709,10 +2705,10 @@ strstr:
 .L618:
 	movzx	edi, BYTE PTR [rdx]
 	test	dil, dil
-	setne	r9b
+	setne	r10b
 	cmp	dil, cl
 	sete	dil
-	test	r9b, dil
+	test	r10b, dil
 	jne	.L641
 .L619:
 	cmp	BYTE PTR [rdx], cl
@@ -3534,7 +3530,7 @@ __mulsi3_lm32:
 	test	edi, edi
 	je	.L845
 	test	esi, esi
-	je	.L849
+	je	.L845
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3550,11 +3546,6 @@ __mulsi3_lm32:
 .L845:
 	mov	eax, edx
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L849:
-	xor	edx, edx
-	jmp	.L845
 	.cfi_endproc
 .LFE122:
 	.size	__mulsi3_lm32, .-__mulsi3_lm32

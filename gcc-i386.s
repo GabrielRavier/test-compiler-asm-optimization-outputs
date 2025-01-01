@@ -2553,13 +2553,13 @@ wmemcmp:
 	sub	eax, 1
 	je	.L491
 .L487:
-	mov	ebx, DWORD PTR [edx]
-	cmp	DWORD PTR [ecx], ebx
+	mov	ebx, DWORD PTR [ecx]
+	cmp	ebx, DWORD PTR [edx]
 	je	.L489
 	test	eax, eax
 	je	.L491
 	mov	eax, -1
-	cmp	DWORD PTR [ecx], ebx
+	cmp	ebx, DWORD PTR [edx]
 	jl	.L486
 	setg	al
 	movzx	eax, al
@@ -3605,10 +3605,10 @@ strstr:
 	jne	.L713
 	test	eax, eax
 	je	.L684
-	movzx	ecx, BYTE PTR [eax]
+	mov	ecx, ebx
 	mov	edx, ebp
 	mov	esi, eax
-	test	cl, cl
+	test	bl, bl
 	je	.L687
 	mov	DWORD PTR [esp+20], eax
 	mov	DWORD PTR [esp+24], ebp
@@ -3972,16 +3972,15 @@ __muldi3:
 	.cfi_offset 3, -16
 	sub	esp, 8
 	.cfi_def_cfa_offset 24
-	mov	ecx, DWORD PTR [esp+24]
-	mov	ebx, DWORD PTR [esp+28]
 	mov	esi, DWORD PTR [esp+32]
 	mov	edi, DWORD PTR [esp+36]
-	mov	eax, ecx
-	or	ecx, ebx
-	je	.L792
-	mov	edx, ebx
+	mov	eax, DWORD PTR [esp+24]
+	mov	edx, DWORD PTR [esp+28]
+	mov	ecx, eax
 	mov	DWORD PTR [esp], 0
 	mov	DWORD PTR [esp+4], 0
+	or	ecx, edx
+	je	.L789
 	.p2align 6
 	.p2align 4
 	.p2align 3
@@ -4001,27 +4000,7 @@ __muldi3:
 	mov	ecx, eax
 	or	ecx, edx
 	jne	.L791
-	mov	eax, DWORD PTR [esp]
-	mov	edx, DWORD PTR [esp+4]
-	add	esp, 8
-	.cfi_remember_state
-	.cfi_def_cfa_offset 16
-	pop	ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 12
-	pop	esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 8
-	pop	edi
-	.cfi_restore 7
-	.cfi_def_cfa_offset 4
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L792:
-	.cfi_restore_state
-	mov	DWORD PTR [esp], 0
-	mov	DWORD PTR [esp+4], 0
+.L789:
 	mov	eax, DWORD PTR [esp]
 	mov	edx, DWORD PTR [esp+4]
 	add	esp, 8
@@ -4880,7 +4859,7 @@ __mulsi3_lm32:
 	test	ecx, ecx
 	je	.L927
 	test	edx, edx
-	je	.L931
+	je	.L927
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -4896,16 +4875,9 @@ __mulsi3_lm32:
 .L927:
 	mov	eax, ebx
 	pop	ebx
-	.cfi_remember_state
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L931:
-	.cfi_restore_state
-	xor	ebx, ebx
-	jmp	.L927
 	.cfi_endproc
 .LFE120:
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -5141,54 +5113,53 @@ __divsi3:
 	push	ebx
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
-	mov	ebx, DWORD PTR [esp+12]
-	mov	eax, DWORD PTR [esp+16]
+	mov	eax, DWORD PTR [esp+12]
+	mov	edx, DWORD PTR [esp+16]
 	xor	esi, esi
-	test	ebx, ebx
+	test	eax, eax
 	jns	.L978
-	neg	ebx
+	neg	eax
 	mov	esi, 1
 .L978:
-	test	eax, eax
+	test	edx, edx
 	jns	.L979
-	neg	eax
+	neg	edx
 	xor	esi, 1
 .L979:
-	mov	ecx, ebx
-	mov	edx, 1
-	cmp	eax, ebx
+	mov	ebx, eax
+	mov	ecx, 1
+	cmp	edx, eax
 	jb	.L981
 	jmp	.L998
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
 .L1001:
-	test	edx, edx
+	test	ecx, ecx
 	je	.L980
 .L981:
-	add	eax, eax
 	add	edx, edx
-	cmp	eax, ebx
+	add	ecx, ecx
+	cmp	edx, eax
 	jb	.L1001
 .L980:
-	test	edx, edx
+	test	ecx, ecx
 	je	.L989
 .L998:
-	xor	ebx, ebx
+	xor	eax, eax
 	.p2align 4
 	.p2align 4
 	.p2align 3
 .L985:
-	cmp	ecx, eax
+	cmp	ebx, edx
 	jb	.L984
-	sub	ecx, eax
-	or	ebx, edx
+	sub	ebx, edx
+	or	eax, ecx
 .L984:
-	shr	eax
 	shr	edx
+	shr	ecx
 	jne	.L985
 .L983:
-	mov	eax, ebx
 	test	esi, esi
 	je	.L977
 	neg	eax
@@ -5205,7 +5176,7 @@ __divsi3:
 	.p2align 3
 .L989:
 	.cfi_restore_state
-	xor	ebx, ebx
+	xor	eax, eax
 	jmp	.L983
 	.cfi_endproc
 .LFE127:
@@ -5223,48 +5194,48 @@ __modsi3:
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
 	mov	ebx, DWORD PTR [esp+12]
-	mov	eax, DWORD PTR [esp+16]
+	mov	edx, DWORD PTR [esp+16]
 	xor	esi, esi
 	test	ebx, ebx
 	jns	.L1003
 	neg	ebx
 	mov	esi, 1
 .L1003:
-	cdq
-	xor	eax, edx
-	sub	eax, edx
-	mov	ecx, ebx
-	mov	edx, 1
-	cmp	eax, ebx
+	mov	eax, edx
+	sar	eax, 31
+	xor	edx, eax
+	sub	edx, eax
+	mov	eax, ebx
+	mov	ecx, 1
+	cmp	edx, ebx
 	jb	.L1005
 	jmp	.L1019
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
 .L1027:
-	test	edx, edx
+	test	ecx, ecx
 	je	.L1004
 .L1005:
-	add	eax, eax
 	add	edx, edx
-	cmp	eax, ebx
+	add	ecx, ecx
+	cmp	edx, ebx
 	jb	.L1027
 .L1004:
-	test	edx, edx
+	test	ecx, ecx
 	je	.L1007
 	.p2align 4
 	.p2align 4
 	.p2align 3
 .L1019:
-	cmp	ecx, eax
+	cmp	eax, edx
 	jb	.L1008
-	sub	ecx, eax
+	sub	eax, edx
 .L1008:
-	shr	eax
 	shr	edx
+	shr	ecx
 	jne	.L1019
 .L1007:
-	mov	eax, ecx
 	test	esi, esi
 	je	.L1002
 	neg	eax
