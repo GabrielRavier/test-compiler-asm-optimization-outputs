@@ -46,28 +46,20 @@ make_tu:
 memmove:
 .LFB2:
 	.cfi_startproc
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	ldgr	%f0,%r11
+	.cfi_register 11, 16
 	lgr	%r11,%r15
 	.cfi_def_cfa_register 11
 	clgrjle	%r2,%r3,.L6
-	agrk	%r5,%r3,%r4
-	agrk	%r0,%r2,%r4
-	lgr	%r1,%r4
-	aghik	%r3,%r4,1
+	lgr	%r5,%r2
+	aghik	%r1,%r4,1
 	j	.L7
 .L8:
-	sgrk	%r10,%r5,%r4
-	sgrk	%r12,%r0,%r4
-	icy	%r10,-1(%r1,%r10)
-	stcy	%r10,-1(%r1,%r12)
-	aghi	%r1,-1
+	icy	%r0,-1(%r4,%r3)
+	stcy	%r0,-1(%r4,%r5)
+	aghi	%r4,-1
 .L7:
-	brctg	%r3,.L8
+	brctg	%r1,.L8
 	j	.L9
 .L6:
 	cgrjlh	%r2,%r3,.L12
@@ -83,13 +75,9 @@ memmove:
 .L10:
 	brctg	%r4,.L11
 .L9:
-	lgdr	%r12,%f0
-	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f0
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
-	lgdr	%r10,%f4
-	.cfi_restore 10
 	br	%r14
 	.cfi_endproc
 .LFE2:
@@ -1249,10 +1237,10 @@ l64a:
 	lgr	%r11,%r15
 	.cfi_def_cfa_register 11
 	larl	%r1,s.0
+	larl	%r4,digits
 	j	.L232
 .L233:
 	risbg	%r3,%r2,58,128+63,0
-	larl	%r4,digits
 	la	%r3,0(%r3,%r4)
 	mvc	0(1,%r1),0(%r3)
 	aghi	%r1,1
@@ -2349,28 +2337,19 @@ wmemset:
 bcopy:
 .LFB69:
 	.cfi_startproc
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	ldgr	%f0,%r11
+	.cfi_register 11, 16
 	lgr	%r11,%r15
 	.cfi_def_cfa_register 11
 	clgrjhe	%r2,%r3,.L394
-	agrk	%r5,%r2,%r4
-	agr	%r3,%r4
-	lgr	%r1,%r4
-	aghik	%r2,%r4,1
+	aghik	%r1,%r4,1
 	j	.L395
 .L396:
-	sgrk	%r10,%r5,%r4
-	sgrk	%r12,%r3,%r4
-	icy	%r0,-1(%r1,%r10)
-	stcy	%r0,-1(%r1,%r12)
-	aghi	%r1,-1
+	icy	%r5,-1(%r4,%r2)
+	stcy	%r5,-1(%r4,%r3)
+	aghi	%r4,-1
 .L395:
-	brctg	%r2,.L396
+	brctg	%r1,.L396
 	j	.L393
 .L394:
 	cgrjlh	%r2,%r3,.L400
@@ -2386,13 +2365,9 @@ bcopy:
 .L398:
 	brctg	%r4,.L399
 .L393:
-	lgdr	%r12,%f0
-	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f0
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
-	lgdr	%r10,%f4
-	.cfi_restore 10
 	br	%r14
 	.cfi_endproc
 .LFE69:
@@ -3250,7 +3225,7 @@ strstr:
 	jo	.-4
 	slgr	%r9,%r3
 	jhe	.L531
-	llc	%r8,0(%r3)
+	llgc	%r8,0(%r3)
 	j	.L529
 .L530:
 	lgr	%r4,%r9
@@ -3260,7 +3235,7 @@ strstr:
 	cije	%r2,0,.L532
 	aghi	%r12,1
 .L529:
-	lgfr	%r3,%r8
+	lgr	%r3,%r8
 	lgr	%r2,%r12
 	brasl	%r14,strchr@PLT
 	lgr	%r12,%r2
@@ -3322,7 +3297,8 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	stmg	%r8,%r15,64(%r15)
+	stmg	%r7,%r15,56(%r15)
+	.cfi_offset 7, -104
 	.cfi_offset 8, -96
 	.cfi_offset 9, -88
 	.cfi_offset 10, -80
@@ -3337,18 +3313,19 @@ memmem:
 	.cfi_def_cfa_register 11
 	lgr	%r12,%r2
 	lgr	%r10,%r4
-	lgr	%r8,%r5
 	sgrk	%r9,%r3,%r5
 	agr	%r9,%r2
 	cgije	%r5,0,.L553
 	clgrjh	%r5,%r3,.L554
+	aghik	%r8,%r4,1
+	aghik	%r7,%r5,-1
 	j	.L550
 .L552:
 	llc	%r2,0(%r12)
 	llc	%r1,0(%r10)
 	crjlh	%r2,%r1,.L551
-	aghik	%r4,%r8,-1
-	la	%r3,1(%r10)
+	lgr	%r4,%r7
+	lgr	%r3,%r8
 	la	%r2,1(%r12)
 	brasl	%r14,memcmp@PLT
 	cije	%r2,0,.L555
@@ -3366,7 +3343,7 @@ memmem:
 .L555:
 	lgr	%r2,%r12
 .L549:
-	lmg	%r8,%r15,224(%r11)
+	lmg	%r7,%r15,216(%r11)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -3375,6 +3352,7 @@ memmem:
 	.cfi_restore 10
 	.cfi_restore 9
 	.cfi_restore 8
+	.cfi_restore 7
 	.cfi_def_cfa 15, 160
 	br	%r14
 	.cfi_endproc
@@ -3941,11 +3919,11 @@ __clzhi2:
 	lgr	%r11,%r15
 	.cfi_def_cfa_register 11
 	lhi	%r4,0
+	lhi	%r5,15
 	lhi	%r3,17
 	j	.L661
 .L663:
-	lhi	%r1,15
-	sr	%r1,%r4
+	srk	%r1,%r5,%r4
 	srak	%r1,%r2,0(%r1)
 	tmll	%r1,1
 	jne	.L662

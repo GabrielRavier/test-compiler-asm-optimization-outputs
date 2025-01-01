@@ -307,6 +307,7 @@ memset:
 	.body
 	mov r8 = r32
 	mov r14 = r32
+	zxt1 r33 = r33
 	mov ar.lc = r34
 	br .L40
 	;;
@@ -484,6 +485,7 @@ strncmp:
 	(p6) mov r8 = r0
 	(p6) br.cond.dpnt .L62
 	mov r14 = r32
+	add r32 = r32, r34
 .L64:
 	mov r17 = r33
 	;;
@@ -493,17 +495,16 @@ strncmp:
 	cmp4.eq p6, p7 = 0, r15
 	(p6) br.cond.dpnt .L63
 	ld1 r15 = [r33]
-	add r16 = r32, r34
 	;;
-	cmp.ne p8, p9 = r14, r16
-	cmp4.ne p6, p7 = 0, r15
+	cmp4.ne p8, p9 = 0, r15
+	cmp.ne p6, p7 = r14, r32
 	;;
-	(p8) addl r15 = 1, r0
+	(p6) addl r15 = 1, r0
 	;;
-	(p9) mov r15 = r0
-	(p6) addl r16 = 1, r0
+	(p7) mov r15 = r0
+	(p8) addl r16 = 1, r0
 	;;
-	(p7) mov r16 = r0
+	(p9) mov r16 = r0
 	;;
 	and r15 = r16, r15
 	;;
@@ -1424,15 +1425,15 @@ l64a:
 	mov r2 = r12
 	.body
 	addl r15 = @gprel(s.0#), gp
+	movl r16 = @gprel(digits#)
+	;;
+	add r16 = r1, r16
 	br .L176
 	;;
 .L177:
-	and r16 = 63, r32
-	movl r14 = @gprel(digits#)
+	and r14 = 63, r32
 	;;
-	add r14 = r1, r14
-	;;
-	add r14 = r14, r16
+	add r14 = r16, r14
 	;;
 	ld1 r14 = [r14]
 	;;
@@ -3718,9 +3719,7 @@ strpbrk:
 	ld1 r15 = [r14]
 	;;
 	sxt1 r15 = r15
-	adds r14 = -1, r32
-	;;
-	ld1 r14 = [r14]
+	ld1 r14 = [r17]
 	;;
 	sxt1 r14 = r14
 	;;
@@ -3742,6 +3741,7 @@ strpbrk:
 	cmp4.eq p6, p7 = 0, r14
 	(p6) br.cond.dpnt .L391
 	mov r16 = r33
+	adds r17 = -1, r32
 	br .L389
 	;;
 .L391:
@@ -3878,14 +3878,14 @@ copysign:
 	.type	memmem#, @function
 	.proc memmem#
 memmem:
-	.prologue 14, 38
-	.save ar.pfs, r39
-	alloc r39 = ar.pfs, 4, 6, 3, 0
-	.vframe r40
-	mov r40 = r12
-	.save rp, r38
-	mov r38 = b0
-	mov r41 = r1
+	.prologue 14, 39
+	.save ar.pfs, r40
+	alloc r40 = ar.pfs, 4, 7, 3, 0
+	.vframe r41
+	mov r41 = r12
+	.save rp, r39
+	mov r39 = b0
+	mov r42 = r1
 	.body
 	sub r36 = r33, r35
 	;;
@@ -3898,6 +3898,8 @@ memmem:
 	;;
 	(p6) mov r8 = r0
 	(p6) br.cond.dpnt .L417
+	adds r38 = 1, r34
+	adds r35 = -1, r35
 	br .L418
 	;;
 .L420:
@@ -3910,11 +3912,11 @@ memmem:
 	;;
 	cmp4.ne p6, p7 = r14, r15
 	(p6) br.cond.dptk .L418
-	adds r44 = -1, r35
-	adds r43 = 1, r34
-	mov r42 = r32
+	mov r45 = r35
+	mov r44 = r38
+	mov r43 = r32
 	br.call.sptk.many b0 = memcmp#
-	mov r1 = r41
+	mov r1 = r42
 	;;
 	cmp4.eq p6, p7 = 0, r8
 	(p6) br.cond.dpnt .L423
@@ -3929,10 +3931,10 @@ memmem:
 .L423:
 	mov r8 = r37
 .L417:
-	mov ar.pfs = r39
-	mov b0 = r38
+	mov ar.pfs = r40
+	mov b0 = r39
 	.restore sp
-	mov r12 = r40
+	mov r12 = r41
 	br.ret.sptk.many b0
 	;;
 	.endp memmem#
@@ -3983,15 +3985,14 @@ frexp:
 	fcmp.ge p6, p7 = f8, f1
 	;;
 	(p6) mov r14 = r0
+	(p6) movl r16 = 0x3fe0000000000000
+	;;
+	(p6) setf.d f6 = r16
 	(p6) br.cond.dptk .L428
 	br .L440
 	;;
 .L430:
 	adds r14 = 1, r14
-	movl r16 = 0x3fe0000000000000
-	;;
-	setf.d f6 = r16
-	;;
 	fmpy.d f8 = f8, f6
 	br .L428
 	;;
@@ -4022,10 +4023,10 @@ frexp:
 	;;
 .L437:
 	mov r14 = r0
-.L432:
 	movl r16 = 0x3fe0000000000000
 	;;
 	setf.d f6 = r16
+.L432:
 	;;
 	fcmp.lt p6, p7 = f8, f6
 	;;

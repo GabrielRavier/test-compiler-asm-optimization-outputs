@@ -8,34 +8,24 @@
 memmove:
 .LFB0:
 	.cfi_startproc
-	stm	%r10,%r12,40(%r15)
-	.cfi_offset 10, -56
+	st	%r11,44(%r15)
 	.cfi_offset 11, -52
-	.cfi_offset 12, -48
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	clr	%r2,%r3
 	jle	.L2
-	ar	%r3,%r4
-	lr	%r10,%r3
-	lr	%r12,%r2
-	ar	%r12,%r4
+	ahi	%r3,-1
+	lr	%r5,%r2
+	ahi	%r5,-1
 	lr	%r1,%r4
-	lr	%r0,%r4
-	ahi	%r0,1
+	ahi	%r1,1
 	j	.L3
 .L4:
-	lr	%r5,%r10
-	sr	%r5,%r4
-	ahi	%r5,-1
-	lr	%r3,%r12
-	sr	%r3,%r4
-	ahi	%r3,-1
-	ic	%r5,0(%r1,%r5)
-	stc	%r5,0(%r1,%r3)
-	ahi	%r1,-1
+	ic	%r0,0(%r4,%r3)
+	stc	%r0,0(%r4,%r5)
+	ahi	%r4,-1
 .L3:
-	brct	%r0,.L4
+	brct	%r1,.L4
 	j	.L5
 .L2:
 	cr	%r2,%r3
@@ -52,10 +42,8 @@ memmove:
 .L6:
 	brct	%r4,.L7
 .L5:
-	lm	%r10,%r12,40(%r11)
-	.cfi_restore 12
+	l	%r11,44(%r11)
 	.cfi_restore 11
-	.cfi_restore 10
 	.cfi_def_cfa_register 15
 	br	%r14
 	.cfi_endproc
@@ -347,16 +335,15 @@ strchr:
 	.cfi_offset 11, -52
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
+	lhi	%r4,-4096
 .L59:
 	lhi	%r1,0
 	ic	%r1,0(%r2)
 	cr	%r3,%r1
 	je	.L58
 	ahi	%r2,1
-	lhi	%r1,-4096
-	lhi	%r4,0
-	ic	%r4,4095(%r2,%r1)
-	lr	%r1,%r4
+	lhi	%r1,0
+	ic	%r1,4095(%r2,%r4)
 	ltr	%r1,%r1
 	jne	.L59
 	lhi	%r2,0
@@ -1358,11 +1345,11 @@ l64a:
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	larl	%r1,s.0
+	larl	%r4,digits
 	j	.L236
 .L237:
 	lhi	%r3,63
 	nr	%r3,%r2
-	larl	%r4,digits
 	la	%r3,0(%r3,%r4)
 	mvc	0(1,%r1),0(%r3)
 	ahi	%r1,1
@@ -2427,14 +2414,14 @@ wcscpy:
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	lhi	%r1,0
-.L353:
-	l	%r4,0(%r1,%r3)
-	st	%r4,0(%r1,%r2)
-	ahi	%r1,4
 	lr	%r4,%r2
 	ahi	%r4,-4
-	la	%r4,0(%r1,%r4)
-	icm	%r4,15,0(%r4)
+.L353:
+	l	%r5,0(%r1,%r3)
+	st	%r5,0(%r1,%r2)
+	ahi	%r1,4
+	la	%r5,0(%r1,%r4)
+	icm	%r5,15,0(%r5)
 	jne	.L353
 	l	%r11,44(%r11)
 	.cfi_restore 11
@@ -2718,33 +2705,23 @@ wmemset:
 bcopy:
 .LFB67:
 	.cfi_startproc
-	stm	%r11,%r12,44(%r15)
+	st	%r11,44(%r15)
 	.cfi_offset 11, -52
-	.cfi_offset 12, -48
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	clr	%r2,%r3
 	jhe	.L405
-	ar	%r2,%r4
-	lr	%r12,%r2
-	ar	%r3,%r4
-	lr	%r0,%r3
+	ahi	%r2,-1
+	ahi	%r3,-1
 	lr	%r1,%r4
-	lr	%r5,%r4
-	ahi	%r5,1
+	ahi	%r1,1
 	j	.L406
 .L407:
-	lr	%r3,%r12
-	sr	%r3,%r4
-	ahi	%r3,-1
-	lr	%r2,%r0
-	sr	%r2,%r4
-	ahi	%r2,-1
-	ic	%r3,0(%r1,%r3)
-	stc	%r3,0(%r1,%r2)
-	ahi	%r1,-1
+	ic	%r5,0(%r4,%r2)
+	stc	%r5,0(%r4,%r3)
+	ahi	%r4,-1
 .L406:
-	brct	%r5,.L407
+	brct	%r1,.L407
 	j	.L404
 .L405:
 	cr	%r2,%r3
@@ -2761,8 +2738,7 @@ bcopy:
 .L409:
 	brct	%r4,.L410
 .L404:
-	lm	%r11,%r12,44(%r11)
-	.cfi_restore 12
+	l	%r11,44(%r11)
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
 	br	%r14
@@ -3747,6 +3723,7 @@ strrchr:
 	.cfi_def_cfa_register 11
 	lr	%r1,%r2
 	lhi	%r2,0
+	lhi	%r5,-4096
 .L545:
 	lhi	%r4,0
 	ic	%r4,0(%r1)
@@ -3755,10 +3732,8 @@ strrchr:
 	lr	%r2,%r1
 .L544:
 	ahi	%r1,1
-	lhi	%r4,-4096
-	lhi	%r5,0
-	ic	%r5,4095(%r1,%r4)
-	lr	%r4,%r5
+	lhi	%r4,0
+	ic	%r4,4095(%r1,%r5)
 	ltr	%r4,%r4
 	jne	.L545
 	l	%r11,44(%r11)
@@ -3875,7 +3850,8 @@ copysign:
 memmem:
 .LFB97:
 	.cfi_startproc
-	stm	%r8,%r15,32(%r15)
+	stm	%r7,%r15,28(%r15)
+	.cfi_offset 7, -68
 	.cfi_offset 8, -64
 	.cfi_offset 9, -60
 	.cfi_offset 10, -56
@@ -3889,7 +3865,6 @@ memmem:
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	lr	%r10,%r4
-	lr	%r8,%r5
 	lr	%r9,%r3
 	sr	%r9,%r5
 	ar	%r9,%r2
@@ -3898,6 +3873,10 @@ memmem:
 	clr	%r5,%r3
 	jh	.L577
 	lr	%r12,%r2
+	lr	%r8,%r4
+	ahi	%r8,1
+	ahi	%r5,-1
+	lr	%r7,%r5
 	j	.L573
 .L575:
 	lhi	%r2,0
@@ -3906,10 +3885,8 @@ memmem:
 	ic	%r1,0(%r10)
 	cr	%r2,%r1
 	jne	.L574
-	lr	%r4,%r8
-	ahi	%r4,-1
-	lr	%r3,%r10
-	ahi	%r3,1
+	lr	%r4,%r7
+	lr	%r3,%r8
 	lr	%r2,%r12
 	ahi	%r2,1
 	brasl	%r14,memcmp
@@ -3928,7 +3905,7 @@ memmem:
 .L578:
 	lr	%r2,%r12
 .L572:
-	lm	%r8,%r15,128(%r11)
+	lm	%r7,%r15,124(%r11)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -3937,6 +3914,7 @@ memmem:
 	.cfi_restore 10
 	.cfi_restore 9
 	.cfi_restore 8
+	.cfi_restore 7
 	.cfi_def_cfa 15, 96
 	br	%r14
 	.cfi_endproc
@@ -4622,18 +4600,19 @@ __clzhi2:
 	.cfi_def_cfa_register 11
 	lr	%r5,%r2
 	lhi	%r2,0
-	lhi	%r3,17
+	lhi	%r0,15
+	lhi	%r1,17
 	j	.L692
 .L694:
-	lhi	%r1,15
-	sr	%r1,%r2
-	lr	%r4,%r5
-	sra	%r4,0(%r1)
-	tml	%r4,1
+	lr	%r4,%r0
+	sr	%r4,%r2
+	lr	%r3,%r5
+	sra	%r3,0(%r4)
+	tml	%r3,1
 	jne	.L693
 	ahi	%r2,1
 .L692:
-	brct	%r3,.L694
+	brct	%r1,.L694
 .L693:
 	l	%r11,44(%r11)
 	.cfi_restore 11

@@ -1438,11 +1438,11 @@ l64a:
 	.cfi_def_cfa_register 31
 	addis 9,2,s.0@toc@ha
 	addi 9,9,s.0@toc@l
+	addis 8,2,digits@toc@ha
+	addi 8,8,digits@toc@l
 	b .L192
 .L193:
 	rldicl 10,3,0,58
-	addis 8,2,digits@toc@ha
-	addi 8,8,digits@toc@l
 	lbzx 10,8,10
 	stb 10,0(9)
 	addi 9,9,1
@@ -3826,7 +3826,7 @@ strstr:
 	beq 0,.L423
 	addi 30,30,1
 .L420:
-	extsw 4,27
+	mr 4,27
 	mr 3,30
 	bl strchr
 	mr. 30,3
@@ -3903,6 +3903,7 @@ memmem:
 	.localentry	memmem,.-memmem
 	mflr 0
 	std 0,16(1)
+	std 26,-48(1)
 	std 27,-40(1)
 	std 28,-32(1)
 	std 29,-24(1)
@@ -3911,6 +3912,7 @@ memmem:
 	stdu 1,-80(1)
 	.cfi_def_cfa_offset 80
 	.cfi_offset 65, 16
+	.cfi_offset 26, -48
 	.cfi_offset 27, -40
 	.cfi_offset 28, -32
 	.cfi_offset 29, -24
@@ -3920,7 +3922,6 @@ memmem:
 	.cfi_def_cfa_register 31
 	mr 30,3
 	mr 29,5
-	mr 27,6
 	subf 28,6,4
 	add 28,3,28
 	cmpdi 0,6,0
@@ -3930,14 +3931,16 @@ memmem:
 	neg 9,9
 	andi. 9,9,0xff
 	bne 0,.L443
+	addi 26,5,1
+	addi 27,6,-1
 	b .L439
 .L441:
 	lbz 10,0(30)
 	lbz 9,0(29)
 	cmpw 0,10,9
 	bne 0,.L440
-	addi 5,27,-1
-	addi 4,29,1
+	mr 5,27
+	mr 4,26
 	addi 3,30,1
 	bl memcmp
 	cmpwi 0,3,0
@@ -3959,6 +3962,7 @@ memmem:
 	.cfi_def_cfa 1, 0
 	ld 0,16(1)
 	mtlr 0
+	ld 26,-48(1)
 	ld 27,-40(1)
 	ld 28,-32(1)
 	ld 29,-24(1)
@@ -3966,7 +3970,7 @@ memmem:
 	ld 31,-8(1)
 	blr
 	.long 0
-	.byte 0,0,0,1,128,5,0,0
+	.byte 0,0,0,1,128,6,0,0
 	.cfi_endproc
 .LFE99:
 	.size	memmem,.-memmem
@@ -4036,8 +4040,9 @@ frexp:
 	addis 8,2,.LC32@toc@ha
 	lfd 0,.LC32@toc@l(8)
 	fcmpu 0,1,0
-	cror 2,1,2
-	beq 0,.L449
+	cror 2,0,3
+	fmr 12,0
+	bne 0,.L449
 	b .L465
 .L451:
 	addi 9,9,1
@@ -4045,9 +4050,7 @@ frexp:
 	lfd 0,.LC23@toc@l(8)
 	fmul 1,1,0
 .L449:
-	addis 8,2,.LC32@toc@ha
-	lfd 0,.LC32@toc@l(8)
-	fcmpu 0,1,0
+	fcmpu 0,1,12
 	cror 2,1,2
 	beq 0,.L451
 	b .L452
@@ -4069,9 +4072,9 @@ frexp:
 	b .L454
 .L460:
 	li 9,0
-.L454:
 	addis 8,2,.LC23@toc@ha
 	lfd 0,.LC23@toc@l(8)
+.L454:
 	fcmpu 0,1,0
 	blt 0,.L455
 	b .L452
