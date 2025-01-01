@@ -5,7 +5,6 @@
 	.type	memmove, @function
 memmove:
 	entry	sp, 32
-	mov.n	a7, sp
 	bgeu	a3, a2, .L2
 	add.n	a9, a3, a4
 	add.n	a8, a2, a4
@@ -38,7 +37,6 @@ memmove:
 	.type	memccpy, @function
 memccpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a4, a4, 0, 8
 	j	.L9
 .L11:
@@ -61,7 +59,6 @@ memccpy:
 	.type	memchr, @function
 memchr:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a3, a3, 0, 8
 	j	.L15
 .L17:
@@ -81,7 +78,6 @@ memchr:
 	.type	memcmp, @function
 memcmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L21
 .L23:
@@ -107,7 +103,6 @@ memcmp:
 	.type	memcpy, @function
 memcpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	add.n	a4, a2, a4
 	j	.L27
@@ -125,7 +120,6 @@ memcpy:
 	.type	memrchr, @function
 memrchr:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a3, a3, 0, 8
 	addi.n	a4, a4, -1
 	j	.L30
@@ -149,7 +143,6 @@ memrchr:
 	.type	memset, @function
 memset:
 	entry	sp, 32
-	mov.n	a7, sp
 	add.n	a4, a2, a4
 	mov.n	a8, a2
 	extui	a3, a3, 0, 8
@@ -166,7 +159,6 @@ memset:
 	.type	stpcpy, @function
 stpcpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	j	.L38
 .L39:
 	addi.n	a3, a3, 1
@@ -182,7 +174,6 @@ stpcpy:
 	.type	strchrnul, @function
 strchrnul:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a3, a3, 0, 8
 	j	.L41
 .L43:
@@ -199,7 +190,6 @@ strchrnul:
 	.type	strchr, @function
 strchr:
 	entry	sp, 32
-	mov.n	a7, sp
 .L46:
 	l8ui	a8, a2, 0
 	beq	a3, a8, .L45
@@ -216,7 +206,6 @@ strchr:
 	.type	strcmp, @function
 strcmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	j	.L50
 .L52:
 	addi.n	a2, a2, 1
@@ -237,7 +226,6 @@ strcmp:
 	.type	strlen, @function
 strlen:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L54
 .L55:
@@ -253,7 +241,6 @@ strlen:
 	.type	strncmp, @function
 strncmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a9, a2
 	movi.n	a2, 0
 	beqz.n	a4, .L57
@@ -288,7 +275,6 @@ strncmp:
 	.type	swab, @function
 swab:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	add.n	a10, a2, a4
 	j	.L63
@@ -309,7 +295,6 @@ swab:
 	.type	isalpha, @function
 isalpha:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 0x20
 	or	a8, a2, a8
 	addi	a8, a8, -97
@@ -326,7 +311,6 @@ isalpha:
 	.type	isascii, @function
 isascii:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 1
 	movi	a9, 0x7f
 	bgeu	a9, a2, .L68
@@ -340,7 +324,6 @@ isascii:
 	.type	isblank, @function
 isblank:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -32
 	nsau	a8, a8
 	srli	a8, a8, 5
@@ -355,7 +338,6 @@ isblank:
 	.type	iscntrl, @function
 iscntrl:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 1
 	movi.n	a9, 0x1f
 	bgeu	a9, a2, .L71
@@ -373,7 +355,6 @@ iscntrl:
 	.type	isdigit, @function
 isdigit:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -48
 	movi.n	a2, 1
 	movi.n	a9, 9
@@ -388,7 +369,6 @@ isdigit:
 	.type	isgraph, @function
 isgraph:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -33
 	movi.n	a2, 1
 	movi.n	a9, 0x5d
@@ -403,7 +383,6 @@ isgraph:
 	.type	islower, @function
 islower:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -97
 	movi.n	a2, 1
 	movi.n	a9, 0x19
@@ -418,7 +397,6 @@ islower:
 	.type	isprint, @function
 isprint:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -32
 	movi.n	a2, 1
 	movi.n	a9, 0x5e
@@ -433,7 +411,6 @@ isprint:
 	.type	isspace, @function
 isspace:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -32
 	nsau	a8, a8
 	srli	a8, a8, 5
@@ -451,7 +428,6 @@ isspace:
 	.type	isupper, @function
 isupper:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -65
 	movi.n	a2, 1
 	movi.n	a9, 0x19
@@ -469,7 +445,6 @@ isupper:
 	.type	iswcntrl, @function
 iswcntrl:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a9, a2
 	movi.n	a8, 1
 	movi.n	a10, 0x1f
@@ -503,7 +478,6 @@ iswcntrl:
 	.type	iswdigit, @function
 iswdigit:
 	entry	sp, 32
-	mov.n	a7, sp
 	addi	a8, a2, -48
 	movi.n	a2, 1
 	movi.n	a9, 9
@@ -527,7 +501,6 @@ iswdigit:
 	.type	iswprint, @function
 iswprint:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi	a9, 0xfe
 	bltu	a9, a2, .L94
@@ -580,7 +553,6 @@ iswprint:
 	.type	iswxdigit, @function
 iswxdigit:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	addi	a9, a2, -48
 	movi.n	a10, 9
@@ -600,7 +572,6 @@ iswxdigit:
 	.type	toascii, @function
 toascii:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 7
 	retw.n
 	.size	toascii, .-toascii
@@ -613,7 +584,6 @@ toascii:
 	.type	fdim, @function
 fdim:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -663,7 +633,6 @@ fdim:
 	.type	fdimf, @function
 fdimf:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a11, a2
 	mov.n	a10, a2
 	l32r	a8, .LC15
@@ -702,7 +671,8 @@ fdimf:
 	.type	fmax, @function
 fmax:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -721,11 +691,9 @@ fmax:
 	and	a9, a8, a2
 	and	a8, a8, a4
 	beq	a9, a8, .L126
-	mov.n	a8, a2
-	mov.n	a9, a3
 	bgez	a2, .L125
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L125
 .L126:
 	mov.n	a12, a4
@@ -734,24 +702,20 @@ fmax:
 	mov.n	a11, a3
 	l32r	a8, .LC20
 	callx8	a8
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	bltz	a10, .L125
 	j	.L133
 .L128:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L125
 .L129:
-	mov.n	a8, a2
-	mov.n	a9, a3
 	j	.L125
 .L133:
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a6
+	mov.n	a3, a7
 .L125:
-	mov.n	a2, a8
-	mov.n	a3, a9
 	retw.n
 	.size	fmax, .-fmax
 	.literal_position
@@ -763,8 +727,7 @@ fmax:
 	.type	fmaxf, @function
 fmaxf:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a2
+	mov.n	a7, a2
 	mov.n	a11, a2
 	mov.n	a10, a2
 	l32r	a8, .LC21
@@ -787,8 +750,8 @@ fmaxf:
 	mov.n	a10, a2
 	l32r	a8, .LC23
 	callx8	a8
-	movltz	a6, a3, a10
-	mov.n	a2, a6
+	movltz	a7, a3, a10
+	mov.n	a2, a7
 	j	.L135
 .L138:
 	mov.n	a2, a3
@@ -806,7 +769,8 @@ fmaxf:
 	.type	fmaxl, @function
 fmaxl:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -825,11 +789,9 @@ fmaxl:
 	and	a9, a8, a2
 	and	a8, a8, a4
 	beq	a9, a8, .L145
-	mov.n	a8, a2
-	mov.n	a9, a3
 	bgez	a2, .L144
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L144
 .L145:
 	mov.n	a12, a4
@@ -838,24 +800,20 @@ fmaxl:
 	mov.n	a11, a3
 	l32r	a8, .LC26
 	callx8	a8
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	bltz	a10, .L144
 	j	.L152
 .L147:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L144
 .L148:
-	mov.n	a8, a2
-	mov.n	a9, a3
 	j	.L144
 .L152:
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a6
+	mov.n	a3, a7
 .L144:
-	mov.n	a2, a8
-	mov.n	a3, a9
 	retw.n
 	.size	fmaxl, .-fmaxl
 	.literal_position
@@ -867,7 +825,8 @@ fmaxl:
 	.type	fmin, @function
 fmin:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -886,11 +845,11 @@ fmin:
 	and	a9, a8, a2
 	and	a8, a8, a4
 	beq	a9, a8, .L155
-	mov.n	a8, a4
-	mov.n	a9, a5
-	bgez	a2, .L154
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a4
+	mov.n	a3, a5
+	bgez	a6, .L154
+	mov.n	a2, a6
+	mov.n	a3, a7
 	j	.L154
 .L155:
 	mov.n	a12, a4
@@ -899,24 +858,18 @@ fmin:
 	mov.n	a11, a3
 	l32r	a8, .LC29
 	callx8	a8
-	mov.n	a8, a2
-	mov.n	a9, a3
 	bltz	a10, .L154
 	j	.L162
 .L157:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L154
 .L158:
-	mov.n	a8, a2
-	mov.n	a9, a3
 	j	.L154
 .L162:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 .L154:
-	mov.n	a2, a8
-	mov.n	a3, a9
 	retw.n
 	.size	fmin, .-fmin
 	.literal_position
@@ -928,8 +881,7 @@ fmin:
 	.type	fminf, @function
 fminf:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a2
+	mov.n	a7, a2
 	mov.n	a11, a2
 	mov.n	a10, a2
 	l32r	a8, .LC30
@@ -944,8 +896,8 @@ fminf:
 	and	a9, a8, a2
 	and	a8, a8, a3
 	beq	a9, a8, .L165
-	movgez	a6, a3, a2
-	mov.n	a2, a6
+	movgez	a7, a3, a2
+	mov.n	a2, a7
 	j	.L164
 .L165:
 	mov.n	a11, a3
@@ -971,7 +923,8 @@ fminf:
 	.type	fminl, @function
 fminl:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -990,11 +943,11 @@ fminl:
 	and	a9, a8, a2
 	and	a8, a8, a4
 	beq	a9, a8, .L174
-	mov.n	a8, a4
-	mov.n	a9, a5
-	bgez	a2, .L173
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a4
+	mov.n	a3, a5
+	bgez	a6, .L173
+	mov.n	a2, a6
+	mov.n	a3, a7
 	j	.L173
 .L174:
 	mov.n	a12, a4
@@ -1003,24 +956,18 @@ fminl:
 	mov.n	a11, a3
 	l32r	a8, .LC35
 	callx8	a8
-	mov.n	a8, a2
-	mov.n	a9, a3
 	bltz	a10, .L173
 	j	.L181
 .L176:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 	j	.L173
 .L177:
-	mov.n	a8, a2
-	mov.n	a9, a3
 	j	.L173
 .L181:
-	mov.n	a8, a4
-	mov.n	a9, a5
+	mov.n	a2, a4
+	mov.n	a3, a5
 .L173:
-	mov.n	a2, a8
-	mov.n	a3, a9
 	retw.n
 	.size	fminl, .-fminl
 	.section	.rodata
@@ -1038,7 +985,6 @@ digits:
 	.type	l64a, @function
 l64a:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32r	a9, .LC36
 	l32r	a10, .LC37
 	j	.L183
@@ -1065,7 +1011,6 @@ l64a:
 	.type	srand, @function
 srand:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a9, 0
 	mov.n	a8, a9
 	addi.n	a9, a2, -1
@@ -1084,19 +1029,18 @@ srand:
 	.type	rand, @function
 rand:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32r	a8, .LC39
 	l32i	a12, a8, 0
 	l32i	a13, a8, 4
 	l32r	a11, .LC40
-	mull	a6, a12, a11
+	mull	a7, a12, a11
 	l32r	a8, .LC41
 	mull	a8, a13, a8
-	add.n	a6, a6, a8
+	add.n	a7, a7, a8
 	mov.n	a10, a13
 	l32r	a8, .LC42
 	callx8	a8
-	add.n	a10, a6, a10
+	add.n	a10, a7, a10
 	movi.n	a13, 1
 	mov.n	a8, a10
 	add.n	a9, a11, a13
@@ -1115,7 +1059,6 @@ rand:
 	.type	insque, @function
 insque:
 	entry	sp, 32
-	mov.n	a7, sp
 	bnez.n	a3, .L189
 	movi.n	a8, 0
 	s32i	a8, a2, 4
@@ -1137,7 +1080,6 @@ insque:
 	.type	remque, @function
 remque:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32i	a8, a2, 0
 	beqz.n	a8, .L192
 	l32i	a9, a2, 4
@@ -1157,34 +1099,34 @@ remque:
 	.type	lsearch, @function
 lsearch:
 	entry	sp, 48
-	mov.n	a7, sp
-	s32i	a2, a7, 0
-	s32i	a3, a7, 4
-	s32i	a4, a7, 8
-	l32i	a2, a4, 0
-	movi.n	a4, 0
+	mov.n	a9, a3
+	s32i	a3, sp, 0
+	s32i	a4, sp, 4
+	l32i	a3, a4, 0
+	mov.n	a4, a9
+	movi.n	a7, 0
 	j	.L195
 .L198:
-	mov.n	a11, a3
-	l32i	a10, a7, 0
+	mov.n	a11, a4
+	mov.n	a10, a2
 	callx8	a6
-	add.n	a3, a3, a5
+	add.n	a4, a4, a5
 	bnez.n	a10, .L196
-	mull	a4, a4, a5
-	l32i	a8, a7, 4
-	add.n	a2, a8, a4
+	mull	a7, a7, a5
+	l32i	a8, sp, 0
+	add.n	a2, a8, a7
 	j	.L197
 .L196:
-	addi.n	a4, a4, 1
+	addi.n	a7, a7, 1
 .L195:
-	bne	a4, a2, .L198
-	addi.n	a8, a2, 1
-	l32i	a9, a7, 8
+	bne	a7, a3, .L198
+	addi.n	a8, a3, 1
+	l32i	a9, sp, 4
 	s32i	a8, a9, 0
-	mull	a10, a5, a2
+	mull	a10, a5, a3
 	mov.n	a12, a5
-	l32i	a11, a7, 0
-	l32i	a8, a7, 4
+	mov.n	a11, a2
+	l32i	a8, sp, 0
 	add.n	a10, a8, a10
 	l32r	a8, .LC43
 	callx8	a8
@@ -1197,26 +1139,26 @@ lsearch:
 	.type	lfind, @function
 lfind:
 	entry	sp, 48
-	mov.n	a7, sp
-	s32i	a2, a7, 0
-	s32i	a3, a7, 4
-	l32i	a2, a4, 0
-	movi.n	a4, 0
+	mov.n	a8, a3
+	s32i	a3, sp, 0
+	l32i	a3, a4, 0
+	mov.n	a4, a8
+	movi.n	a7, 0
 	j	.L200
 .L203:
-	mov.n	a11, a3
-	l32i	a10, a7, 0
+	mov.n	a11, a4
+	mov.n	a10, a2
 	callx8	a6
-	add.n	a3, a3, a5
+	add.n	a4, a4, a5
 	bnez.n	a10, .L201
-	mull	a4, a4, a5
-	l32i	a8, a7, 4
-	add.n	a2, a8, a4
+	mull	a7, a7, a5
+	l32i	a8, sp, 0
+	add.n	a2, a8, a7
 	j	.L202
 .L201:
-	addi.n	a4, a4, 1
+	addi.n	a7, a7, 1
 .L200:
-	bne	a4, a2, .L203
+	bne	a7, a3, .L203
 	movi.n	a2, 0
 .L202:
 	retw.n
@@ -1226,7 +1168,6 @@ lfind:
 	.type	abs, @function
 abs:
 	entry	sp, 32
-	mov.n	a7, sp
 	abs	a2, a2
 	retw.n
 	.size	abs, .-abs
@@ -1237,14 +1178,13 @@ abs:
 	.type	atoi, @function
 atoi:
 	entry	sp, 32
-	mov.n	a7, sp
-	l32r	a6, .LC44
+	l32r	a7, .LC44
 	j	.L206
 .L207:
 	addi.n	a2, a2, 1
 .L206:
 	l8ui	a10, a2, 0
-	callx8	a6
+	callx8	a7
 	bnez.n	a10, .L207
 	l8ui	a8, a2, 0
 	movi.n	a9, 0x2b
@@ -1284,14 +1224,13 @@ atoi:
 	.type	atol, @function
 atol:
 	entry	sp, 32
-	mov.n	a7, sp
-	l32r	a6, .LC45
+	l32r	a7, .LC45
 	j	.L217
 .L218:
 	addi.n	a2, a2, 1
 .L217:
 	l8ui	a10, a2, 0
-	callx8	a6
+	callx8	a7
 	bnez.n	a10, .L218
 	l8ui	a8, a2, 0
 	movi.n	a9, 0x2b
@@ -1332,101 +1271,96 @@ atol:
 	.type	atoll, @function
 atoll:
 	entry	sp, 48
-	mov.n	a7, sp
-	mov.n	a6, a2
-	l32r	a3, .LC46
+	l32r	a5, .LC46
 	j	.L228
 .L229:
-	addi.n	a6, a6, 1
+	addi.n	a2, a2, 1
 .L228:
-	l8ui	a10, a6, 0
-	callx8	a3
+	l8ui	a10, a2, 0
+	callx8	a5
 	bnez.n	a10, .L229
-	l8ui	a8, a6, 0
+	l8ui	a8, a2, 0
 	movi.n	a9, 0x2b
 	beq	a8, a9, .L237
 	movi.n	a9, 0x2d
-	s32i	a10, a7, 4
+	s32i	a10, sp, 0
 	bne	a8, a9, .L231
 	movi.n	a8, 1
-	s32i	a8, a7, 4
+	s32i	a8, sp, 0
 	j	.L230
 .L237:
 	movi.n	a8, 0
-	s32i	a8, a7, 4
+	s32i	a8, sp, 0
 .L230:
-	addi.n	a6, a6, 1
+	addi.n	a2, a2, 1
 .L231:
-	movi.n	a3, 0
-	mov.n	a2, a3
+	movi.n	a5, 0
+	mov.n	a4, a5
 	j	.L232
 .L234:
 	movi.n	a8, 0xa
-	mull	a8, a8, a2
-	s32i	a8, a7, 0
-	mov.n	a11, a3
-	movi.n	a10, 0xa
-	l32r	a9, .LC47
-	callx8	a9
-	l32i	a8, a7, 0
-	add.n	a10, a8, a10
-	l8ui	a8, a6, 0
+	mull	a3, a8, a4
+	mov.n	a11, a5
+	mov.n	a10, a8
+	l32r	a8, .LC47
+	callx8	a8
+	add.n	a10, a3, a10
+	l8ui	a8, a2, 0
 	addi	a8, a8, -48
-	mov.n	a5, a8
-	srai	a4, a8, 31
-	sub	a2, a10, a4
+	mov.n	a7, a8
+	srai	a6, a8, 31
+	sub	a4, a10, a6
 	bgeu	a11, a8, .L233
-	addi.n	a2, a2, -1
+	addi.n	a4, a4, -1
 .L233:
-	sub	a3, a11, a5
-	addi.n	a6, a6, 1
+	sub	a5, a11, a7
+	addi.n	a2, a2, 1
 .L232:
-	l8ui	a8, a6, 0
+	l8ui	a8, a2, 0
 	addi	a8, a8, -48
 	movi.n	a9, 9
 	bgeu	a9, a8, .L234
-	mov.n	a10, a2
-	mov.n	a11, a3
-	l32i	a8, a7, 4
+	mov.n	a2, a4
+	mov.n	a3, a5
+	l32i	a8, sp, 0
 	bnez.n	a8, .L235
 	movi.n	a9, 0
-	neg	a10, a2
-	bgeu	a9, a3, .L236
-	addi.n	a10, a10, -1
+	neg	a2, a4
+	bgeu	a9, a5, .L236
+	addi.n	a2, a2, -1
 .L236:
-	sub	a11, a9, a3
+	sub	a3, a9, a5
 .L235:
-	mov.n	a2, a10
-	mov.n	a3, a11
 	retw.n
 	.size	atoll, .-atoll
 	.align	4
 	.global	bsearch
 	.type	bsearch, @function
 bsearch:
-	entry	sp, 48
-	mov.n	a7, sp
-	s32i	a2, a7, 0
+	entry	sp, 32
 	j	.L241
 .L245:
-	srli	a2, a4, 1
-	mull	a2, a2, a5
-	add.n	a2, a3, a2
-	mov.n	a11, a2
-	l32i	a10, a7, 0
+	srli	a7, a4, 1
+	mull	a7, a7, a5
+	add.n	a7, a3, a7
+	mov.n	a11, a7
+	mov.n	a10, a2
 	callx8	a6
 	bgez	a10, .L242
 	srli	a4, a4, 1
 	j	.L241
 .L242:
-	blti	a10, 1, .L244
-	add.n	a3, a2, a5
+	blti	a10, 1, .L246
+	add.n	a3, a7, a5
 	srli	a8, a4, 1
 	addi.n	a4, a4, -1
 	sub	a4, a4, a8
 .L241:
 	bnez.n	a4, .L245
 	movi.n	a2, 0
+	j	.L244
+.L246:
+	mov.n	a2, a7
 .L244:
 	retw.n
 	.size	bsearch, .-bsearch
@@ -1435,17 +1369,15 @@ bsearch:
 	.type	bsearch_r, @function
 bsearch_r:
 	entry	sp, 48
-	s32i	a7, sp, 4
-	mov.n	a7, sp
-	s32i	a2, a7, 0
+	s32i	a2, sp, 0
 	j	.L248
 .L251:
 	srai	a2, a4, 1
 	mull	a2, a2, a5
 	add.n	a2, a3, a2
-	l32i	a12, a7, 4
+	mov.n	a12, a7
 	mov.n	a11, a2
-	l32i	a10, a7, 0
+	l32i	a10, sp, 0
 	callx8	a6
 	beqz.n	a10, .L249
 	blti	a10, 1, .L250
@@ -1464,7 +1396,6 @@ bsearch_r:
 	.type	div, @function
 div:
 	entry	sp, 48
-	mov.n	a7, sp
 	mov.n	a9, a2
 	mov.n	a8, a3
 	quos	a2, a9, a8
@@ -1476,7 +1407,6 @@ div:
 	.type	imaxabs, @function
 imaxabs:
 	entry	sp, 32
-	mov.n	a7, sp
 	srai	a9, a2, 31
 	xor	a10, a9, a2
 	xor	a11, a9, a3
@@ -1494,16 +1424,15 @@ imaxabs:
 	.global	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	entry	sp, 64
-	mov.n	a7, sp
+	entry	sp, 48
 	mov.n	a12, a4
 	mov.n	a13, a5
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC48
 	callx8	a8
-	s32i	a10, a7, 16
-	s32i	a11, a7, 20
+	mov.n	a6, a10
+	mov.n	a7, a11
 	mov.n	a12, a4
 	mov.n	a13, a5
 	mov.n	a10, a2
@@ -1511,13 +1440,9 @@ imaxdiv:
 	l32r	a8, .LC49
 	callx8	a8
 	mov.n	a5, a11
-	l32i	a8, a7, 16
-	l32i	a9, a7, 20
-	mov.n	a12, a8
-	mov.n	a13, a9
 	mov.n	a14, a10
-	mov.n	a2, a12
-	mov.n	a3, a13
+	mov.n	a2, a6
+	mov.n	a3, a7
 	mov.n	a4, a14
 	retw.n
 	.size	imaxdiv, .-imaxdiv
@@ -1526,7 +1451,6 @@ imaxdiv:
 	.type	labs, @function
 labs:
 	entry	sp, 32
-	mov.n	a7, sp
 	abs	a2, a2
 	retw.n
 	.size	labs, .-labs
@@ -1535,7 +1459,6 @@ labs:
 	.type	ldiv, @function
 ldiv:
 	entry	sp, 48
-	mov.n	a7, sp
 	mov.n	a9, a2
 	mov.n	a8, a3
 	quos	a2, a9, a8
@@ -1547,7 +1470,6 @@ ldiv:
 	.type	llabs, @function
 llabs:
 	entry	sp, 32
-	mov.n	a7, sp
 	srai	a9, a2, 31
 	xor	a10, a9, a2
 	xor	a11, a9, a3
@@ -1565,16 +1487,15 @@ llabs:
 	.global	lldiv
 	.type	lldiv, @function
 lldiv:
-	entry	sp, 64
-	mov.n	a7, sp
+	entry	sp, 48
 	mov.n	a12, a4
 	mov.n	a13, a5
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC50
 	callx8	a8
-	s32i	a10, a7, 16
-	s32i	a11, a7, 20
+	mov.n	a6, a10
+	mov.n	a7, a11
 	mov.n	a12, a4
 	mov.n	a13, a5
 	mov.n	a10, a2
@@ -1582,13 +1503,9 @@ lldiv:
 	l32r	a8, .LC51
 	callx8	a8
 	mov.n	a5, a11
-	l32i	a8, a7, 16
-	l32i	a9, a7, 20
-	mov.n	a12, a8
-	mov.n	a13, a9
 	mov.n	a14, a10
-	mov.n	a2, a12
-	mov.n	a3, a13
+	mov.n	a2, a6
+	mov.n	a3, a7
 	mov.n	a4, a14
 	retw.n
 	.size	lldiv, .-lldiv
@@ -1597,7 +1514,6 @@ lldiv:
 	.type	wcschr, @function
 wcschr:
 	entry	sp, 32
-	mov.n	a7, sp
 	j	.L265
 .L267:
 	addi.n	a2, a2, 4
@@ -1616,7 +1532,6 @@ wcschr:
 	.type	wcscmp, @function
 wcscmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L271
 .L273:
@@ -1647,7 +1562,6 @@ wcscmp:
 	.type	wcscpy, @function
 wcscpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 .L278:
 	l32i	a9, a3, 0
@@ -1662,7 +1576,6 @@ wcscpy:
 	.type	wcslen, @function
 wcslen:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L281
 .L282:
@@ -1679,7 +1592,6 @@ wcslen:
 	.type	wcsncmp, @function
 wcsncmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L284
 .L286:
@@ -1714,7 +1626,6 @@ wcsncmp:
 	.type	wmemchr, @function
 wmemchr:
 	entry	sp, 32
-	mov.n	a7, sp
 	j	.L292
 .L294:
 	addi.n	a4, a4, -1
@@ -1733,7 +1644,6 @@ wmemchr:
 	.type	wmemcmp, @function
 wmemcmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L298
 .L300:
@@ -1765,7 +1675,6 @@ wmemcmp:
 	.type	wmemcpy, @function
 wmemcpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L306
 .L307:
@@ -1783,7 +1692,6 @@ wmemcpy:
 	.type	wmemmove, @function
 wmemmove:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a9, a3
 	beq	a2, a3, .L309
 	sub	a8, a2, a3
@@ -1821,7 +1729,6 @@ wmemmove:
 	.type	wmemset, @function
 wmemset:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	j	.L316
 .L317:
@@ -1837,7 +1744,6 @@ wmemset:
 	.type	bcopy, @function
 bcopy:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a3
 	bgeu	a2, a3, .L319
 	add.n	a9, a2, a4
@@ -1871,7 +1777,6 @@ bcopy:
 	.type	rotl64, @function
 rotl64:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a11, 0x20
 	and	a12, a4, a11
 	movi.n	a14, 0
@@ -1911,7 +1816,6 @@ rotl64:
 	.type	rotr64, @function
 rotr64:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a11, 0x20
 	and	a12, a4, a11
 	movi.n	a14, 0
@@ -1951,7 +1855,6 @@ rotr64:
 	.type	rotl32, @function
 rotl32:
 	entry	sp, 32
-	mov.n	a7, sp
 	ssl	a3
 	src	a2, a2, a2
 	retw.n
@@ -1961,7 +1864,6 @@ rotl32:
 	.type	rotr32, @function
 rotr32:
 	entry	sp, 32
-	mov.n	a7, sp
 	ssr	a3
 	src	a2, a2, a2
 	retw.n
@@ -1971,7 +1873,6 @@ rotr32:
 	.type	rotl_sz, @function
 rotl_sz:
 	entry	sp, 32
-	mov.n	a7, sp
 	ssl	a3
 	src	a2, a2, a2
 	retw.n
@@ -1981,7 +1882,6 @@ rotl_sz:
 	.type	rotr_sz, @function
 rotr_sz:
 	entry	sp, 32
-	mov.n	a7, sp
 	ssr	a3
 	src	a2, a2, a2
 	retw.n
@@ -1991,7 +1891,6 @@ rotr_sz:
 	.type	rotl16, @function
 rotl16:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 16
 	ssl	a3
 	sll	a8, a2
@@ -2008,7 +1907,6 @@ rotl16:
 	.type	rotr16, @function
 rotr16:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 16
 	ssr	a3
 	srl	a8, a2
@@ -2025,7 +1923,6 @@ rotr16:
 	.type	rotl8, @function
 rotl8:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 8
 	ssl	a3
 	sll	a8, a2
@@ -2042,7 +1939,6 @@ rotl8:
 	.type	rotr8, @function
 rotr8:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 8
 	ssr	a3
 	srl	a8, a2
@@ -2059,7 +1955,6 @@ rotr8:
 	.type	bswap_16, @function
 bswap_16:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a8, a2, 8, 8
 	extui	a2, a2, 0, 8
 	slli	a2, a2, 8
@@ -2071,7 +1966,6 @@ bswap_16:
 	.type	bswap_32, @function
 bswap_32:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a9, a2, 24, 8
 	extui	a8, a2, 16, 8
 	slli	a8, a8, 16
@@ -2094,18 +1988,17 @@ bswap_32:
 	.type	bswap_64, @function
 bswap_64:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32r	a9, .LC56
 	movi.n	a13, 0
 	and	a12, a2, a9
 	mov.n	a8, a13
 	extui	a11, a12, 24, 8
-	l32r	a6, .LC57
-	and	a14, a2, a6
+	l32r	a7, .LC57
+	and	a14, a2, a7
 	srli	a13, a14, 8
 	or	a15, a13, a11
-	l32r	a5, .LC58
-	and	a12, a2, a5
+	l32r	a6, .LC58
+	and	a12, a2, a6
 	slli	a11, a12, 8
 	extui	a10, a12, 24, 8
 	or	a12, a8, a10
@@ -2122,14 +2015,14 @@ bswap_64:
 	slli	a13, a11, 8
 	or	a10, a14, a12
 	or	a11, a15, a13
-	and	a13, a3, a6
+	and	a13, a3, a7
 	srli	a9, a13, 8
 	slli	a14, a8, 24
 	or	a14, a9, a14
 	slli	a15, a13, 24
 	or	a12, a10, a14
 	or	a13, a11, a15
-	and	a11, a3, a5
+	and	a11, a3, a6
 	slli	a14, a11, 8
 	or	a10, a12, a14
 	mov.n	a11, a13
@@ -2144,7 +2037,6 @@ bswap_64:
 	.type	ffs, @function
 ffs:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 0
 	j	.L339
 .L342:
@@ -2166,7 +2058,6 @@ ffs:
 	.type	libiberty_ffs, @function
 libiberty_ffs:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	beqz.n	a8, .L344
@@ -2190,8 +2081,7 @@ libiberty_ffs:
 	.type	gl_isinff, @function
 gl_isinff:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a2
+	mov.n	a7, a2
 	l32r	a11, .LC64
 	mov.n	a10, a2
 	l32r	a8, .LC60
@@ -2199,7 +2089,7 @@ gl_isinff:
 	movi.n	a2, 1
 	bltz	a10, .L349
 	l32r	a11, .LC63
-	mov.n	a10, a6
+	mov.n	a10, a7
 	l32r	a8, .LC62
 	callx8	a8
 	bgei	a10, 1, .L349
@@ -2217,9 +2107,8 @@ gl_isinff:
 	.type	gl_isinfd, @function
 gl_isinfd:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a4, a2
-	mov.n	a5, a3
+	mov.n	a6, a2
+	mov.n	a7, a3
 	l32r	a12, .LC70
 	movi.n	a13, -1
 	mov.n	a10, a2
@@ -2230,7 +2119,7 @@ gl_isinfd:
 	bltz	a10, .L355
 	l32r	a12, .LC69
 	movi.n	a13, -1
-	mov.n	a10, a4
+	mov.n	a10, a6
 	mov.n	a11, a3
 	l32r	a8, .LC68
 	callx8	a8
@@ -2249,9 +2138,8 @@ gl_isinfd:
 	.type	gl_isinfl, @function
 gl_isinfl:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a4, a2
-	mov.n	a5, a3
+	mov.n	a6, a2
+	mov.n	a7, a3
 	l32r	a12, .LC76
 	movi.n	a13, -1
 	mov.n	a10, a2
@@ -2262,7 +2150,7 @@ gl_isinfl:
 	bltz	a10, .L361
 	l32r	a12, .LC75
 	movi.n	a13, -1
-	mov.n	a10, a4
+	mov.n	a10, a6
 	mov.n	a11, a3
 	l32r	a8, .LC74
 	callx8	a8
@@ -2278,7 +2166,6 @@ gl_isinfl:
 	.type	_Qp_itoq, @function
 _Qp_itoq:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a3
 	l32r	a8, .LC77
 	callx8	a8
@@ -2298,7 +2185,6 @@ _Qp_itoq:
 	.type	ldexpf, @function
 ldexpf:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a11, a2
 	mov.n	a10, a2
 	l32r	a8, .LC80
@@ -2313,26 +2199,26 @@ ldexpf:
 	l32r	a8, .LC82
 	callx8	a8
 	beqz.n	a10, .L368
-	l32r	a6, .LC84
+	l32r	a7, .LC84
 	l32r	a8, .LC85
-	movgez	a6, a8, a3
-	l32r	a4, .LC83
-	mov.n	a5, a4
+	movgez	a7, a8, a3
+	l32r	a5, .LC83
+	mov.n	a6, a5
 .L372:
 	bbci	a3, 31, .L371
-	mov.n	a11, a6
+	mov.n	a11, a7
 	mov.n	a10, a2
-	callx8	a4
+	callx8	a5
 	mov.n	a2, a10
 .L371:
 	extui	a8, a3, 31, 1
 	add.n	a8, a8, a3
 	srai	a3, a8, 1
 	beqz.n	a3, .L368
-	mov.n	a11, a6
-	mov.n	a10, a6
-	callx8	a5
-	mov.n	a6, a10
+	mov.n	a11, a7
+	mov.n	a10, a7
+	callx8	a6
+	mov.n	a7, a10
 	j	.L372
 .L368:
 	retw.n
@@ -2349,8 +2235,6 @@ ldexpf:
 	.type	ldexp, @function
 ldexp:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a4
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -2371,15 +2255,17 @@ ldexp:
 	l32r	a8, .LC90
 	callx8	a8
 	beqz.n	a10, .L376
-	l32r	a4, .LC93
-	movi.n	a5, 0
-	bgez	a6, .L380
-	l32r	a4, .LC92
-	movi.n	a5, 0
+	l32r	a6, .LC93
+	movi.n	a7, 0
+	bgez	a4, .L378
+	l32r	a6, .LC92
+	movi.n	a7, 0
+.L378:
+	l32r	a5, .LC91
 .L380:
-	bbci	a6, 31, .L379
-	mov.n	a12, a4
-	mov.n	a13, a5
+	bbci	a4, 31, .L379
+	mov.n	a12, a6
+	mov.n	a13, a7
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC91
@@ -2387,18 +2273,17 @@ ldexp:
 	mov.n	a2, a10
 	mov.n	a3, a11
 .L379:
-	extui	a8, a6, 31, 1
-	add.n	a8, a8, a6
-	srai	a6, a8, 1
-	beqz.n	a6, .L376
-	mov.n	a12, a4
-	mov.n	a13, a5
-	mov.n	a10, a4
-	mov.n	a11, a5
-	l32r	a8, .LC91
-	callx8	a8
-	mov.n	a4, a10
-	mov.n	a5, a11
+	extui	a8, a4, 31, 1
+	add.n	a8, a8, a4
+	srai	a4, a8, 1
+	beqz.n	a4, .L376
+	mov.n	a12, a6
+	mov.n	a13, a7
+	mov.n	a10, a6
+	mov.n	a11, a7
+	callx8	a5
+	mov.n	a6, a10
+	mov.n	a7, a11
 	j	.L380
 .L376:
 	retw.n
@@ -2415,8 +2300,6 @@ ldexp:
 	.type	ldexpl, @function
 ldexpl:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a4
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -2437,15 +2320,17 @@ ldexpl:
 	l32r	a8, .LC98
 	callx8	a8
 	beqz.n	a10, .L384
-	l32r	a4, .LC101
-	movi.n	a5, 0
-	bgez	a6, .L388
-	l32r	a4, .LC100
-	movi.n	a5, 0
+	l32r	a6, .LC101
+	movi.n	a7, 0
+	bgez	a4, .L386
+	l32r	a6, .LC100
+	movi.n	a7, 0
+.L386:
+	l32r	a5, .LC99
 .L388:
-	bbci	a6, 31, .L387
-	mov.n	a12, a4
-	mov.n	a13, a5
+	bbci	a4, 31, .L387
+	mov.n	a12, a6
+	mov.n	a13, a7
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC99
@@ -2453,18 +2338,17 @@ ldexpl:
 	mov.n	a2, a10
 	mov.n	a3, a11
 .L387:
-	extui	a8, a6, 31, 1
-	add.n	a8, a8, a6
-	srai	a6, a8, 1
-	beqz.n	a6, .L384
-	mov.n	a12, a4
-	mov.n	a13, a5
-	mov.n	a10, a4
-	mov.n	a11, a5
-	l32r	a8, .LC99
-	callx8	a8
-	mov.n	a4, a10
-	mov.n	a5, a11
+	extui	a8, a4, 31, 1
+	add.n	a8, a8, a4
+	srai	a4, a8, 1
+	beqz.n	a4, .L384
+	mov.n	a12, a6
+	mov.n	a13, a7
+	mov.n	a10, a6
+	mov.n	a11, a7
+	callx8	a5
+	mov.n	a6, a10
+	mov.n	a7, a11
 	j	.L388
 .L384:
 	retw.n
@@ -2474,7 +2358,6 @@ ldexpl:
 	.type	memxor, @function
 memxor:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	add.n	a4, a2, a4
 	j	.L392
@@ -2496,7 +2379,6 @@ memxor:
 	.type	strncat, @function
 strncat:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	l32r	a8, .LC102
 	callx8	a8
@@ -2523,7 +2405,6 @@ strncat:
 	.type	strnlen, @function
 strnlen:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	j	.L400
@@ -2542,7 +2423,6 @@ strnlen:
 	.type	strpbrk, @function
 strpbrk:
 	entry	sp, 32
-	mov.n	a7, sp
 	j	.L404
 .L406:
 	l8ui	a10, a8, 0
@@ -2568,7 +2448,6 @@ strpbrk:
 	.type	strrchr, @function
 strrchr:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 .L412:
@@ -2589,30 +2468,28 @@ strrchr:
 	.global	strstr
 	.type	strstr, @function
 strstr:
-	entry	sp, 48
-	mov.n	a7, sp
-	mov.n	a5, a2
+	entry	sp, 32
+	mov.n	a6, a2
 	mov.n	a10, a3
 	l32r	a8, .LC103
 	callx8	a8
-	mov.n	a6, a10
+	mov.n	a7, a10
 	beqz.n	a10, .L416
-	l8ui	a8, a3, 0
-	s32i	a8, a7, 0
-	l32r	a5, .LC105
+	l8ui	a5, a3, 0
+	l32r	a6, .LC105
 	l32r	a4, .LC104
 	j	.L417
 .L418:
-	mov.n	a12, a6
+	mov.n	a12, a7
 	mov.n	a11, a3
 	mov.n	a10, a2
 	callx8	a4
 	beqz.n	a10, .L416
 	addi.n	a2, a2, 1
 .L417:
-	l32i	a11, a7, 0
+	mov.n	a11, a5
 	mov.n	a10, a2
-	callx8	a5
+	callx8	a6
 	mov.n	a2, a10
 	bnez.n	a10, .L418
 .L416:
@@ -2627,7 +2504,8 @@ strstr:
 	.type	copysign, @function
 copysign:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a2
@@ -2645,8 +2523,8 @@ copysign:
 .L422:
 	movi.n	a12, 0
 	movi.n	a13, 0
-	mov.n	a10, a2
-	mov.n	a11, a3
+	mov.n	a10, a6
+	mov.n	a11, a7
 	l32r	a8, .LC108
 	callx8	a8
 	blti	a10, 1, .L432
@@ -2656,21 +2534,19 @@ copysign:
 	mov.n	a11, a5
 	l32r	a8, .LC107
 	callx8	a8
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a6
+	mov.n	a3, a7
 	bgez	a10, .L425
 .L424:
-	l32r	a10, .LC109
-	xor	a8, a2, a10
-	mov.n	a9, a3
+	l32r	a8, .LC109
+	xor	a2, a6, a8
+	mov.n	a3, a7
 	j	.L425
 .L432:
-	mov.n	a8, a2
-	mov.n	a9, a3
+	mov.n	a2, a6
+	mov.n	a3, a7
 	j	.L425
 .L425:
-	mov.n	a2, a8
-	mov.n	a3, a9
 	retw.n
 	.size	copysign, .-copysign
 	.literal_position
@@ -2679,11 +2555,10 @@ copysign:
 	.global	memmem
 	.type	memmem, @function
 memmem:
-	entry	sp, 48
-	mov.n	a7, sp
+	entry	sp, 32
 	mov.n	a8, a2
-	sub	a6, a3, a5
-	add.n	a6, a2, a6
+	sub	a7, a3, a5
+	add.n	a7, a2, a7
 	beqz.n	a5, .L435
 	movi.n	a9, 1
 	bltu	a3, a5, .L436
@@ -2693,15 +2568,14 @@ memmem:
 	bnez.n	a9, .L441
 	mov.n	a2, a8
 	addi.n	a3, a4, 1
-	addi.n	a8, a5, -1
-	s32i	a8, a7, 0
+	addi.n	a6, a5, -1
 	l32r	a5, .LC110
 	j	.L437
 .L439:
 	l8ui	a9, a2, 0
 	l8ui	a8, a4, 0
 	bne	a9, a8, .L438
-	l32i	a12, a7, 0
+	mov.n	a12, a6
 	mov.n	a11, a3
 	addi.n	a10, a2, 1
 	callx8	a5
@@ -2709,7 +2583,7 @@ memmem:
 .L438:
 	addi.n	a2, a2, 1
 .L437:
-	bgeu	a6, a2, .L439
+	bgeu	a7, a2, .L439
 	movi.n	a2, 0
 	j	.L435
 .L441:
@@ -2724,7 +2598,6 @@ memmem:
 	.type	mempcpy, @function
 mempcpy:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	mov.n	a12, a4
@@ -2747,24 +2620,20 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	entry	sp, 48
-	mov.n	a7, sp
-	s32i	a4, a7, 4
+	s32i	a4, sp, 0
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC113
 	callx8	a8
-	bgez	a10, .L461
+	movi.n	a7, 0
+	bgez	a10, .L445
 	l32r	a10, .LC114
 	xor	a8, a2, a10
 	mov.n	a2, a8
-	movi.n	a8, 1
-	s32i	a8, a7, 0
+	movi.n	a7, 1
 	j	.L445
-.L461:
-	movi.n	a8, 0
-	s32i	a8, a7, 0
 .L445:
 	l32r	a12, .LC122
 	movi.n	a13, 0
@@ -2835,10 +2704,9 @@ frexp:
 	callx8	a6
 	bltz	a10, .L454
 .L450:
-	l32i	a8, a7, 4
+	l32i	a8, sp, 0
 	s32i	a4, a8, 0
-	l32i	a8, a7, 0
-	beqz.n	a8, .L455
+	beqz.n	a7, .L455
 	l32r	a10, .LC114
 	xor	a8, a2, a10
 	mov.n	a2, a8
@@ -2850,48 +2718,47 @@ frexp:
 	.type	__muldi3, @function
 __muldi3:
 	entry	sp, 48
-	mov.n	a7, sp
-	movi.n	a10, 0
-	s32i	a10, a7, 4
-	s32i	a10, a7, 0
+	movi.n	a7, 0
+	s32i	a7, sp, 0
+	s32i	a7, sp, 4
 	j	.L464
 .L468:
 	movi.n	a14, 0
 	extui	a15, a3, 0, 1
-	or	a10, a14, a15
-	beqz.n	a10, .L465
-	l32i	a6, a7, 4
-	add.n	a11, a6, a5
-	movi.n	a6, 1
-	s32i	a6, a7, 8
-	l32i	a6, a7, 4
-	bltu	a11, a6, .L467
-	s32i	a14, a7, 8
+	or	a12, a14, a15
+	beqz.n	a12, .L465
+	l32i	a7, sp, 4
+	add.n	a13, a7, a5
+	movi.n	a7, 1
+	l32i	a6, sp, 4
+	bltu	a13, a6, .L467
+	mov.n	a7, a14
 .L467:
-	l32i	a6, a7, 0
-	add.n	a10, a6, a4
-	l32i	a6, a7, 8
-	add.n	a10, a6, a10
-	s32i	a10, a7, 0
-	s32i	a11, a7, 4
+	l32i	a6, sp, 0
+	add.n	a12, a6, a4
+	add.n	a12, a7, a12
+	s32i	a12, sp, 0
+	s32i	a13, sp, 4
 .L465:
-	extui	a10, a5, 31, 1
-	add.n	a12, a4, a4
-	or	a12, a10, a12
-	add.n	a13, a5, a5
-	mov.n	a4, a12
-	mov.n	a5, a13
-	slli	a10, a2, 31
-	srli	a9, a3, 1
-	or	a9, a10, a9
-	srli	a8, a2, 1
-	mov.n	a2, a8
-	mov.n	a3, a9
+	extui	a12, a5, 31, 1
+	add.n	a8, a4, a4
+	or	a8, a12, a8
+	add.n	a9, a5, a5
+	mov.n	a4, a8
+	mov.n	a5, a9
+	slli	a12, a2, 31
+	srli	a11, a3, 1
+	or	a11, a12, a11
+	srli	a10, a2, 1
+	mov.n	a2, a10
+	mov.n	a3, a11
 .L464:
-	or	a10, a2, a3
-	bnez.n	a10, .L468
-	l32i	a2, a7, 0
-	l32i	a3, a7, 4
+	or	a12, a2, a3
+	bnez.n	a12, .L468
+	l32i	a6, sp, 0
+	l32i	a7, sp, 4
+	mov.n	a2, a6
+	mov.n	a3, a7
 	retw.n
 	.size	__muldi3, .-__muldi3
 	.align	4
@@ -2899,7 +2766,6 @@ __muldi3:
 	.type	udivmodsi4, @function
 udivmodsi4:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 1
 	movi.n	a11, 1
 	movi.n	a12, 0
@@ -2938,7 +2804,6 @@ udivmodsi4:
 	.type	__clrsbqi2, @function
 __clrsbqi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a2, a2, 0, 8
 	slli	a8, a2, 8
 	nsau	a8, a8
@@ -2953,7 +2818,6 @@ __clrsbqi2:
 	.type	__clrsbdi2, @function
 __clrsbdi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a14, a2
 	mov.n	a15, a3
 	bgez	a2, .L484
@@ -2979,7 +2843,6 @@ __clrsbdi2:
 	.type	__mulsi3, @function
 __mulsi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	j	.L492
@@ -2998,7 +2861,6 @@ __mulsi3:
 	.type	__cmovd, @function
 __cmovd:
 	entry	sp, 32
-	mov.n	a7, sp
 	srli	a13, a4, 3
 	movi.n	a8, -8
 	and	a8, a4, a8
@@ -3045,7 +2907,6 @@ __cmovd:
 	.type	__cmovh, @function
 __cmovh:
 	entry	sp, 32
-	mov.n	a7, sp
 	srli	a11, a4, 1
 	bltu	a2, a3, .L506
 	add.n	a8, a3, a4
@@ -3085,7 +2946,6 @@ __cmovh:
 	.type	__cmovw, @function
 __cmovw:
 	entry	sp, 32
-	mov.n	a7, sp
 	srli	a12, a4, 2
 	movi.n	a8, -4
 	and	a8, a4, a8
@@ -3130,7 +2990,6 @@ __cmovw:
 	.type	__modi, @function
 __modi:
 	entry	sp, 32
-	mov.n	a7, sp
 	rems	a2, a2, a3
 	retw.n
 	.size	__modi, .-__modi
@@ -3141,7 +3000,6 @@ __modi:
 	.type	__uitod, @function
 __uitod:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	l32r	a8, .LC123
 	callx8	a8
@@ -3156,7 +3014,6 @@ __uitod:
 	.type	__uitof, @function
 __uitof:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	l32r	a8, .LC124
 	callx8	a8
@@ -3170,7 +3027,6 @@ __uitof:
 	.type	__ulltod, @function
 __ulltod:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC125
@@ -3186,7 +3042,6 @@ __ulltod:
 	.type	__ulltof, @function
 __ulltof:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC126
@@ -3199,7 +3054,6 @@ __ulltof:
 	.type	__umodi, @function
 __umodi:
 	entry	sp, 32
-	mov.n	a7, sp
 	remu	a2, a2, a3
 	retw.n
 	.size	__umodi, .-__umodi
@@ -3208,7 +3062,6 @@ __umodi:
 	.type	__clzhi2, @function
 __clzhi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a9, a2, 0, 16
 	movi.n	a2, 0
 	j	.L530
@@ -3226,7 +3079,6 @@ __clzhi2:
 	.type	__ctzhi2, @function
 __ctzhi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a9, a2, 0, 16
 	movi.n	a2, 0
 	j	.L534
@@ -3251,7 +3103,6 @@ __ctzhi2:
 	.type	__fixunssfsi, @function
 __fixunssfsi:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32r	a11, .LC132
 	mov.n	a10, a2
 	l32r	a8, .LC128
@@ -3279,7 +3130,6 @@ __fixunssfsi:
 	.type	__parityhi2, @function
 __parityhi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a11, a2, 0, 16
 	movi.n	a2, 0
 	mov.n	a8, a2
@@ -3304,7 +3154,6 @@ __parityhi2:
 	.type	__popcounthi2, @function
 __popcounthi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a11, a2, 0, 16
 	movi.n	a2, 0
 	mov.n	a8, a2
@@ -3328,7 +3177,6 @@ __popcounthi2:
 	.type	__mulsi3_iq2000, @function
 __mulsi3_iq2000:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	j	.L552
@@ -3347,7 +3195,6 @@ __mulsi3_iq2000:
 	.type	__mulsi3_lm32, @function
 __mulsi3_lm32:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	beqz.n	a8, .L556
@@ -3368,7 +3215,6 @@ __mulsi3_lm32:
 	.type	__udivmodsi4, @function
 __udivmodsi4:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 1
 	movi.n	a11, 1
 	movi.n	a12, 0
@@ -3410,8 +3256,7 @@ __udivmodsi4:
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
 	entry	sp, 32
-	mov.n	a7, sp
-	mov.n	a6, a2
+	mov.n	a7, a2
 	mov.n	a11, a3
 	mov.n	a10, a2
 	l32r	a8, .LC133
@@ -3419,7 +3264,7 @@ __mspabi_cmpf:
 	movi.n	a2, -1
 	bltz	a10, .L573
 	mov.n	a11, a3
-	mov.n	a10, a6
+	mov.n	a10, a7
 	l32r	a8, .LC134
 	callx8	a8
 	movi.n	a2, 1
@@ -3436,26 +3281,26 @@ __mspabi_cmpf:
 	.type	__mspabi_cmpd, @function
 __mspabi_cmpd:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a12, a4
 	mov.n	a13, a5
 	mov.n	a10, a2
 	mov.n	a11, a3
 	l32r	a8, .LC135
 	callx8	a8
-	movi.n	a8, -1
+	movi.n	a2, -1
 	bltz	a10, .L577
 	mov.n	a12, a4
 	mov.n	a13, a5
-	mov.n	a10, a2
+	mov.n	a10, a6
 	mov.n	a11, a3
 	l32r	a8, .LC136
 	callx8	a8
-	movi.n	a8, 1
+	movi.n	a2, 1
 	bgei	a10, 1, .L577
-	movi.n	a8, 0
+	movi.n	a2, 0
 .L577:
-	mov.n	a2, a8
 	retw.n
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 	.literal_position
@@ -3465,19 +3310,18 @@ __mspabi_cmpd:
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
 	entry	sp, 32
-	mov.n	a7, sp
 	srai	a12, a2, 31
 	mov.n	a11, a3
 	srai	a10, a3, 31
-	mull	a6, a12, a3
+	mull	a7, a12, a3
 	mull	a8, a10, a2
-	add.n	a6, a6, a8
+	add.n	a7, a7, a8
 	mov.n	a10, a2
 	l32r	a8, .LC137
 	callx8	a8
 	mov.n	a2, a10
 	mov.n	a3, a11
-	add.n	a2, a6, a2
+	add.n	a2, a7, a2
 	retw.n
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
 	.literal_position
@@ -3487,7 +3331,6 @@ __mspabi_mpysll:
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a11, a3
 	mov.n	a10, a2
 	l32r	a8, .LC138
@@ -3501,12 +3344,11 @@ __mspabi_mpyull:
 	.type	__mulhi3, @function
 __mulhi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a9, a2
-	movi.n	a6, 0
+	movi.n	a7, 0
 	bgez	a3, .L583
 	neg	a3, a3
-	movi.n	a6, 1
+	movi.n	a7, 1
 .L583:
 	movi.n	a10, 0
 	mov.n	a8, a10
@@ -3531,7 +3373,7 @@ __mulhi3:
 .L586:
 	bany	a12, a11, .L587
 	neg	a2, a10
-	moveqz	a2, a10, a6
+	moveqz	a2, a10, a7
 	retw.n
 	.size	__mulhi3, .-__mulhi3
 	.literal_position
@@ -3541,7 +3383,6 @@ __mulhi3:
 	.type	__divsi3, @function
 __divsi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	movi.n	a3, 0
@@ -3569,7 +3410,6 @@ __divsi3:
 	.type	__modsi3, @function
 __modsi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	movi.n	a2, 0
 	bgez	a10, .L597
@@ -3590,7 +3430,6 @@ __modsi3:
 	.type	__udivmodhi4, @function
 __udivmodhi4:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a9, a2, 0, 16
 	extui	a3, a3, 0, 16
 	movi.n	a8, 1
@@ -3635,7 +3474,6 @@ __udivmodhi4:
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
 	entry	sp, 32
-	mov.n	a7, sp
 	movi.n	a8, 1
 	movi.n	a11, 1
 	movi.n	a12, 0
@@ -3674,7 +3512,6 @@ __udivmodsi4_libgcc:
 	.type	__ashldi3, @function
 __ashldi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	bbci	a4, 26, .L624
@@ -3701,7 +3538,6 @@ __ashldi3:
 	.type	__ashrdi3, @function
 __ashrdi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	mov.n	a9, a3
 	bbci	a4, 26, .L629
@@ -3731,59 +3567,61 @@ __ashrdi3:
 	.type	__bswapdi2, @function
 __bswapdi2:
 	entry	sp, 64
-	mov.n	a7, sp
+	mov.n	a13, a3
 	movi.n	a5, 0
 	mov.n	a4, a5
 	extui	a5, a2, 24, 8
 	srli	a9, a2, 8
-	s32i	a4, a7, 8
-	l32r	a10, .LC141
-	and	a8, a9, a10
-	s32i	a8, a7, 12
-	slli	a15, a2, 8
+	s32i	a4, sp, 8
+	l32r	a7, .LC141
+	and	a8, a9, a7
+	s32i	a8, sp, 12
+	slli	a14, a2, 8
 	extui	a9, a3, 24, 8
-	or	a9, a15, a9
-	s32i	a4, a7, 16
-	l32r	a6, .LC142
-	and	a8, a9, a6
-	s32i	a8, a7, 20
-	slli	a14, a2, 24
-	srli	a11, a3, 8
-	or	a11, a14, a11
-	mov.n	a8, a4
-	extui	a9, a11, 24, 8
-	slli	a9, a9, 24
-	extui	a10, a3, 24, 8
-	or	a10, a10, a15
-	s32i	a10, a7, 0
-	slli	a10, a3, 8
-	s32i	a10, a7, 4
-	l32i	a10, a7, 0
-	extui	a10, a10, 0, 8
-	s32i	a10, a7, 24
-	srli	a12, a3, 8
-	or	a10, a12, a14
-	slli	a11, a3, 24
-	l32r	a13, .LC141
-	and	a14, a10, a13
-	l32i	a2, a7, 4
-	and	a12, a2, a6
-	mov.n	a3, a5
-	l32i	a4, a7, 8
-	l32i	a5, a7, 12
-	or	a10, a11, a4
-	or	a11, a3, a5
-	l32i	a4, a7, 16
-	l32i	a5, a7, 20
-	or	a2, a10, a4
-	or	a3, a11, a5
-	or	a10, a2, a8
-	or	a11, a3, a9
-	l32i	a6, a7, 24
+	or	a9, a14, a9
+	s32i	a4, sp, 16
+	l32r	a10, .LC142
+	and	a8, a9, a10
+	s32i	a8, sp, 20
+	slli	a6, a2, 24
+	srli	a9, a3, 8
+	or	a9, a6, a9
+	mov.n	a2, a4
+	extui	a3, a9, 24, 8
+	slli	a3, a3, 24
+	extui	a8, a13, 24, 8
+	or	a8, a8, a14
+	s32i	a8, sp, 0
+	slli	a8, a13, 8
+	s32i	a8, sp, 4
+	l32i	a8, sp, 0
+	extui	a14, a8, 0, 8
+	srli	a10, a13, 8
 	or	a8, a10, a6
-	or	a10, a8, a14
-	or	a2, a10, a12
-	mov.n	a3, a11
+	slli	a9, a13, 24
+	s32i	a4, sp, 28
+	and	a10, a8, a7
+	s32i	a10, sp, 24
+	l32i	a6, sp, 4
+	l32r	a12, .LC142
+	and	a10, a6, a12
+	mov.n	a6, a9
+	mov.n	a9, a5
+	l32i	a4, sp, 8
+	l32i	a5, sp, 12
+	or	a6, a6, a4
+	or	a7, a9, a5
+	l32i	a4, sp, 16
+	l32i	a5, sp, 20
+	or	a8, a6, a4
+	or	a9, a7, a5
+	or	a6, a8, a2
+	or	a7, a9, a3
+	or	a2, a6, a14
+	mov.n	a3, a7
+	l32i	a12, sp, 24
+	or	a8, a2, a12
+	or	a2, a8, a10
 	retw.n
 	.size	__bswapdi2, .-__bswapdi2
 	.align	4
@@ -3791,7 +3629,6 @@ __bswapdi2:
 	.type	__bswapsi2, @function
 __bswapsi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a10, a2, 24, 8
 	srli	a9, a2, 8
 	extui	a9, a9, 8, 8
@@ -3812,7 +3649,6 @@ __bswapsi2:
 	.type	__clzsi2, @function
 __clzsi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	l32r	a8, .LC146
 	movi.n	a10, 0
 	bltu	a8, a2, .L636
@@ -3867,7 +3703,6 @@ __clzsi2:
 	.type	__cmpdi2, @function
 __cmpdi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	blt	a8, a4, .L645
@@ -3888,7 +3723,6 @@ __cmpdi2:
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	mov.n	a12, a4
@@ -3903,7 +3737,6 @@ __aeabi_lcmp:
 	.type	__ctzsi2, @function
 __ctzsi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a8, a2, 0, 16
 	nsau	a8, a8
 	srli	a8, a8, 5
@@ -3948,7 +3781,6 @@ __ctzsi2:
 	.type	__lshrdi3, @function
 __lshrdi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	mov.n	a9, a3
 	bbci	a4, 26, .L661
@@ -3976,7 +3808,6 @@ __lshrdi3:
 	.type	__muldsi3, @function
 __muldsi3:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a13, a2
 	mov.n	a9, a3
 	extui	a11, a2, 0, 16
@@ -4010,17 +3841,17 @@ __muldsi3:
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
 	entry	sp, 32
-	mov.n	a7, sp
+	mov.n	a6, a2
+	mov.n	a7, a3
 	mov.n	a11, a5
 	mov.n	a10, a3
 	l32r	a8, .LC149
 	callx8	a8
-	mull	a8, a2, a5
-	mull	a4, a4, a3
-	add.n	a8, a8, a4
-	add.n	a12, a8, a10
-	mov.n	a2, a12
 	mov.n	a3, a11
+	mull	a8, a2, a5
+	mull	a4, a4, a7
+	add.n	a8, a8, a4
+	add.n	a2, a8, a10
 	retw.n
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align	4
@@ -4028,7 +3859,6 @@ __muldi3_compiler_rt:
 	.type	__negdi2, @function
 __negdi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	movi.n	a9, 0
@@ -4046,7 +3876,6 @@ __negdi2:
 	.type	__paritydi2, @function
 __paritydi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	xor	a2, a3, a2
 	extui	a8, a2, 16, 16
 	xor	a2, a2, a8
@@ -4068,7 +3897,6 @@ __paritydi2:
 	.type	__paritysi2, @function
 __paritysi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	extui	a8, a2, 16, 16
 	xor	a2, a8, a2
 	srli	a8, a2, 8
@@ -4091,7 +3919,6 @@ __paritysi2:
 	.type	__popcountdi2, @function
 __popcountdi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	slli	a10, a2, 31
 	srli	a9, a3, 1
 	or	a9, a10, a9
@@ -4147,7 +3974,6 @@ __popcountdi2:
 	.type	__popcountsi2, @function
 __popcountsi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	srli	a8, a2, 1
 	l32r	a9, .LC155
 	and	a8, a8, a9
@@ -4177,30 +4003,26 @@ __popcountsi2:
 	.type	__powidf2, @function
 __powidf2:
 	entry	sp, 48
-	mov.n	a7, sp
-	mov.n	a6, a4
 	extui	a8, a4, 31, 1
-	s32i	a8, a7, 8
-	l32r	a8, .LC161
-	movi.n	a9, 0
-	s32i.n	a8, a7, 0
-	s32i.n	a9, a7, 4
-	l32r	a4, .LC159
-	mov.n	a5, a4
+	s32i	a8, sp, 0
+	l32r	a6, .LC161
+	movi.n	a7, 0
+	l32r	a5, .LC159
 .L680:
-	bbci	a6, 31, .L678
+	bbci	a4, 31, .L678
 	mov.n	a12, a2
 	mov.n	a13, a3
-	l32i.n	a10, a7, 0
-	l32i.n	a11, a7, 4
-	callx8	a4
-	s32i.n	a10, a7, 0
-	s32i.n	a11, a7, 4
+	mov.n	a10, a6
+	mov.n	a11, a7
+	l32r	a8, .LC159
+	callx8	a8
+	mov.n	a6, a10
+	mov.n	a7, a11
 .L678:
-	extui	a8, a6, 31, 1
-	add.n	a8, a8, a6
-	srai	a6, a8, 1
-	beqz.n	a6, .L679
+	extui	a8, a4, 31, 1
+	add.n	a8, a8, a4
+	srai	a4, a8, 1
+	beqz.n	a4, .L679
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
@@ -4210,12 +4032,12 @@ __powidf2:
 	mov.n	a3, a11
 	j	.L680
 .L679:
-	l32i.n	a12, a7, 0
-	l32i.n	a13, a7, 4
-	mov.n	a2, a12
-	mov.n	a3, a13
-	l32i	a8, a7, 8
+	mov.n	a2, a6
+	mov.n	a3, a7
+	l32i	a8, sp, 0
 	beqz.n	a8, .L681
+	mov.n	a12, a6
+	mov.n	a13, a7
 	l32r	a10, .LC161
 	movi.n	a11, 0
 	l32r	a8, .LC160
@@ -4233,19 +4055,17 @@ __powidf2:
 	.global	__powisf2
 	.type	__powisf2, @function
 __powisf2:
-	entry	sp, 48
-	mov.n	a7, sp
-	extui	a8, a3, 31, 1
-	s32i	a8, a7, 0
-	l32r	a6, .LC165
-	l32r	a4, .LC163
-	mov.n	a5, a4
+	entry	sp, 32
+	extui	a4, a3, 31, 1
+	l32r	a7, .LC165
+	l32r	a5, .LC163
+	mov.n	a6, a5
 .L686:
 	bbci	a3, 31, .L684
 	mov.n	a11, a2
-	mov.n	a10, a6
-	callx8	a4
-	mov.n	a6, a10
+	mov.n	a10, a7
+	callx8	a5
+	mov.n	a7, a10
 .L684:
 	extui	a8, a3, 31, 1
 	add.n	a8, a8, a3
@@ -4253,14 +4073,13 @@ __powisf2:
 	beqz.n	a3, .L685
 	mov.n	a11, a2
 	mov.n	a10, a2
-	callx8	a5
+	callx8	a6
 	mov.n	a2, a10
 	j	.L686
 .L685:
-	mov.n	a2, a6
-	l32i	a8, a7, 0
-	beqz.n	a8, .L687
-	mov.n	a11, a6
+	mov.n	a2, a7
+	beqz.n	a4, .L687
+	mov.n	a11, a7
 	l32r	a10, .LC165
 	l32r	a8, .LC164
 	callx8	a8
@@ -4273,7 +4092,6 @@ __powisf2:
 	.type	__ucmpdi2, @function
 __ucmpdi2:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a8, a2
 	movi.n	a2, 0
 	bltu	a8, a4, .L690
@@ -4294,7 +4112,6 @@ __ucmpdi2:
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
 	entry	sp, 32
-	mov.n	a7, sp
 	mov.n	a10, a2
 	mov.n	a11, a3
 	mov.n	a12, a4

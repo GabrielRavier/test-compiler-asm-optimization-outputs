@@ -738,13 +738,8 @@ fmaxf:
 fmaxl:
 .LFB35:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+32]
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+24]
+	fld	TBYTE PTR [rsp+8]
 	fucomi	st, st(0)
 	jp	.L140
 	fxch	st(1)
@@ -767,20 +762,18 @@ fmaxl:
 	test	ah, 2
 	fcmovne	st, st(1)
 	fstp	st(1)
-	jmp	.L132
+	ret
 .L133:
 	fcomi	st, st(1)
 	fcmovbe	st, st(1)
 	fstp	st(1)
-	jmp	.L132
+	ret
 .L136:
 	fstp	st(0)
 	jmp	.L132
 .L140:
 	fstp	st(0)
 .L132:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE35:
@@ -862,13 +855,8 @@ fminf:
 fminl:
 .LFB38:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+32]
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+24]
+	fld	TBYTE PTR [rsp+8]
 	fucomi	st, st(0)
 	jp	.L163
 	fxch	st(1)
@@ -891,20 +879,18 @@ fminl:
 	test	ah, 2
 	fcmove	st, st(1)
 	fstp	st(1)
-	jmp	.L160
+	ret
 .L161:
 	fcomi	st, st(1)
 	fcmovnbe	st, st(1)
 	fstp	st(1)
-	jmp	.L160
+	ret
 .L163:
 	fstp	st(0)
 	jmp	.L160
 .L168:
 	fstp	st(0)
 .L160:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE38:
@@ -1017,66 +1003,75 @@ remque:
 lsearch:
 .LFB44:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
 	push	r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
 	push	r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
 	push	r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	push	rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
 	push	rbx
-	sub	rsp, 40
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
+	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	mov	r15, rdi
-	mov	QWORD PTR [rbp-64], rsi
-	mov	QWORD PTR [rbp-72], rdx
-	mov	r13, rcx
-	mov	QWORD PTR [rbp-56], r8
-	mov	r14, QWORD PTR [rdx]
-	mov	r12, rsi
+	sub	rsp, 24
+	.cfi_def_cfa_offset 80
+	mov	r14, rdi
+	mov	QWORD PTR [rsp], rsi
+	mov	QWORD PTR [rsp+8], rdx
+	mov	r12, rcx
+	mov	r15, r8
+	mov	r13, QWORD PTR [rdx]
+	mov	rbp, rsi
 	mov	ebx, 0
 	jmp	.L181
 .L184:
-	mov	rsi, r12
-	mov	rdi, r15
-	mov	rax, QWORD PTR [rbp-56]
-	call	rax
-	add	r12, r13
+	mov	rsi, rbp
+	mov	rdi, r14
+	call	r15
+	add	rbp, r12
 	test	eax, eax
 	jne	.L182
-	imul	rbx, r13
-	mov	rax, QWORD PTR [rbp-64]
+	imul	rbx, r12
+	mov	rax, QWORD PTR [rsp]
 	add	rax, rbx
 	jmp	.L183
 .L182:
 	add	rbx, 1
 .L181:
-	cmp	rbx, r14
+	cmp	rbx, r13
 	jne	.L184
-	lea	rax, [r14+1]
-	mov	rcx, QWORD PTR [rbp-72]
+	lea	rax, [r13+1]
+	mov	rcx, QWORD PTR [rsp+8]
 	mov	QWORD PTR [rcx], rax
-	imul	r14, r13
-	mov	rdi, QWORD PTR [rbp-64]
-	add	rdi, r14
-	mov	rdx, r13
-	mov	rsi, r15
+	imul	r13, r12
+	mov	rdi, QWORD PTR [rsp]
+	add	rdi, r13
+	mov	rdx, r12
+	mov	rsi, r14
 	call	memcpy
 .L183:
-	add	rsp, 40
+	add	rsp, 24
+	.cfi_def_cfa_offset 56
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 48
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	pop	r12
+	.cfi_def_cfa_offset 32
+	pop	r13
+	.cfi_def_cfa_offset 24
+	pop	r14
+	.cfi_def_cfa_offset 16
+	pop	r15
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE44:
@@ -1086,39 +1081,43 @@ lsearch:
 lfind:
 .LFB45:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
 	push	r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
 	push	r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
 	push	r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	push	rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
 	push	rbx
-	sub	rsp, 24
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
+	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	mov	QWORD PTR [rbp-56], rdi
-	mov	QWORD PTR [rbp-64], rsi
-	mov	r13, rcx
-	mov	r14, r8
+	sub	rsp, 24
+	.cfi_def_cfa_offset 80
+	mov	r14, rdi
+	mov	QWORD PTR [rsp+8], rsi
+	mov	r12, rcx
+	mov	r13, r8
 	mov	r15, QWORD PTR [rdx]
-	mov	r12, rsi
+	mov	rbp, rsi
 	mov	ebx, 0
 	jmp	.L186
 .L189:
-	mov	rsi, r12
-	mov	rdi, QWORD PTR [rbp-56]
-	call	r14
-	add	r12, r13
+	mov	rsi, rbp
+	mov	rdi, r14
+	call	r13
+	add	rbp, r12
 	test	eax, eax
 	jne	.L187
-	imul	rbx, r13
-	mov	rax, QWORD PTR [rbp-64]
+	imul	rbx, r12
+	mov	rax, QWORD PTR [rsp+8]
 	add	rax, rbx
 	jmp	.L188
 .L187:
@@ -1129,13 +1128,19 @@ lfind:
 	mov	eax, 0
 .L188:
 	add	rsp, 24
+	.cfi_def_cfa_offset 56
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 48
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	pop	r12
+	.cfi_def_cfa_offset 32
+	pop	r13
+	.cfi_def_cfa_offset 24
+	pop	r14
+	.cfi_def_cfa_offset 16
+	pop	r15
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE45:
@@ -1157,14 +1162,9 @@ abs:
 atoi:
 .LFB47:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rbx, rdi
 	jmp	.L192
 .L193:
@@ -1206,9 +1206,8 @@ atoi:
 	neg	eax
 	test	ecx, ecx
 	cmovne	eax, edx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE47:
@@ -1218,14 +1217,9 @@ atoi:
 atol:
 .LFB48:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rbx, rdi
 	jmp	.L203
 .L204:
@@ -1268,9 +1262,8 @@ atol:
 	neg	rax
 	test	ecx, ecx
 	cmovne	rax, rdx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE48:
@@ -1280,14 +1273,9 @@ atol:
 atoll:
 .LFB49:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rbx, rdi
 	jmp	.L214
 .L215:
@@ -1330,9 +1318,8 @@ atoll:
 	neg	rax
 	test	ecx, ecx
 	cmovne	rax, rdx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE49:
@@ -1342,63 +1329,73 @@ atoll:
 bsearch:
 .LFB50:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
 	push	r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
 	push	r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
 	push	r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	push	rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
 	push	rbx
-	sub	rsp, 24
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
+	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	mov	QWORD PTR [rbp-56], rdi
-	mov	r14, rsi
-	mov	r12, rdx
-	mov	r13, rcx
-	mov	r15, r8
+	sub	rsp, 8
+	.cfi_def_cfa_offset 64
+	mov	r15, rdi
+	mov	r13, rsi
+	mov	rbp, rdx
+	mov	r12, rcx
+	mov	r14, r8
 	jmp	.L225
 .L229:
-	mov	rbx, r12
+	mov	rbx, rbp
 	shr	rbx
-	imul	rbx, r13
-	add	rbx, r14
+	imul	rbx, r12
+	add	rbx, r13
 	mov	rsi, rbx
-	mov	rdi, QWORD PTR [rbp-56]
-	call	r15
+	mov	rdi, r15
+	call	r14
 	test	eax, eax
 	jns	.L226
-	shr	r12
+	shr	rbp
 	jmp	.L225
 .L226:
 	jle	.L230
-	lea	r14, [rbx+r13]
-	mov	rax, r12
+	lea	r13, [rbx+r12]
+	mov	rax, rbp
 	shr	rax
-	sub	r12, 1
-	sub	r12, rax
+	sub	rbp, 1
+	sub	rbp, rax
 .L225:
-	test	r12, r12
+	test	rbp, rbp
 	jne	.L229
 	mov	eax, 0
 	jmp	.L228
 .L230:
 	mov	rax, rbx
 .L228:
-	add	rsp, 24
+	add	rsp, 8
+	.cfi_def_cfa_offset 56
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 48
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	pop	r12
+	.cfi_def_cfa_offset 32
+	pop	r13
+	.cfi_def_cfa_offset 24
+	pop	r14
+	.cfi_def_cfa_offset 16
+	pop	r15
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE50:
@@ -1408,48 +1405,52 @@ bsearch:
 bsearch_r:
 .LFB51:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
 	push	r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
 	push	r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
 	push	r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	push	rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
 	push	rbx
-	sub	rsp, 24
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
+	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	mov	QWORD PTR [rbp-56], rdi
-	mov	r14, rcx
-	mov	r15, r8
-	mov	QWORD PTR [rbp-64], r9
-	mov	r12d, edx
-	mov	r13, rsi
+	sub	rsp, 24
+	.cfi_def_cfa_offset 80
+	mov	r15, rdi
+	mov	r13, rcx
+	mov	r14, r8
+	mov	QWORD PTR [rsp+8], r9
+	mov	ebp, edx
+	mov	r12, rsi
 	jmp	.L232
 .L235:
-	mov	ebx, r12d
+	mov	ebx, ebp
 	sar	ebx
 	movsx	rbx, ebx
-	imul	rbx, r14
-	add	rbx, r13
-	mov	rdx, QWORD PTR [rbp-64]
+	imul	rbx, r13
+	add	rbx, r12
+	mov	rdx, QWORD PTR [rsp+8]
 	mov	rsi, rbx
-	mov	rdi, QWORD PTR [rbp-56]
-	call	r15
+	mov	rdi, r15
+	call	r14
 	test	eax, eax
 	je	.L236
 	jle	.L234
-	lea	r13, [rbx+r14]
-	sub	r12d, 1
+	lea	r12, [rbx+r13]
+	sub	ebp, 1
 .L234:
-	sar	r12d
+	sar	ebp
 .L232:
-	test	r12d, r12d
+	test	ebp, ebp
 	jne	.L235
 	mov	eax, 0
 	jmp	.L233
@@ -1457,13 +1458,19 @@ bsearch_r:
 	mov	rax, rbx
 .L233:
 	add	rsp, 24
+	.cfi_def_cfa_offset 56
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 48
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	pop	r12
+	.cfi_def_cfa_offset 32
+	pop	r13
+	.cfi_def_cfa_offset 24
+	pop	r14
+	.cfi_def_cfa_offset 16
+	pop	r15
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE51:
@@ -2144,12 +2151,7 @@ gl_isinfd:
 gl_isinfl:
 .LFB87:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	mov	eax, 1
 	fld	TBYTE PTR .LC7[rip]
 	fcomip	st, st(1)
@@ -2164,8 +2166,6 @@ gl_isinfl:
 .L345:
 	fstp	st(0)
 .L340:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE87:
@@ -2175,18 +2175,11 @@ gl_isinfl:
 _Qp_itoq:
 .LFB88:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, esi
-	movsd	QWORD PTR [rbp-8], xmm0
-	fld	QWORD PTR [rbp-8]
+	movsd	QWORD PTR [rsp-16], xmm0
+	fld	QWORD PTR [rsp-16]
 	fstp	TBYTE PTR [rdi]
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE88:
@@ -2266,12 +2259,7 @@ ldexp:
 ldexpl:
 .LFB91:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	fld	TBYTE PTR [rbp+16]
+	fld	TBYTE PTR [rsp+8]
 	fucomi	st, st(0)
 	jp	.L364
 	fld	st(0)
@@ -2304,8 +2292,6 @@ ldexpl:
 .L371:
 	fstp	st(0)
 .L364:
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE91:
@@ -2338,33 +2324,30 @@ memxor:
 strncat:
 .LFB93:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	push	r13
 	push	r12
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+	push	rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 13, -24
-	.cfi_offset 12, -32
-	.cfi_offset 3, -40
-	mov	r13, rdi
-	mov	r12, rsi
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	mov	r12, rdi
+	mov	rbp, rsi
 	mov	rbx, rdx
 	call	strlen
-	add	rax, r13
+	add	rax, r12
 	jmp	.L376
 	.p2align 5
 .L378:
-	add	r12, 1
+	add	rbp, 1
 	add	rax, 1
 	sub	rbx, 1
 .L376:
 	test	rbx, rbx
 	je	.L377
-	movzx	edx, BYTE PTR [r12]
+	movzx	edx, BYTE PTR [rbp+0]
 	mov	BYTE PTR [rax], dl
 	test	dl, dl
 	jne	.L378
@@ -2373,13 +2356,13 @@ strncat:
 	jne	.L379
 	mov	BYTE PTR [rax], 0
 .L379:
-	mov	rax, r13
-	add	rsp, 8
+	mov	rax, r12
 	pop	rbx
-	pop	r12
-	pop	r13
+	.cfi_def_cfa_offset 24
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 16
+	pop	r12
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE93:
@@ -2456,39 +2439,38 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	push	r14
 	push	r13
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
 	push	r12
+	.cfi_def_cfa_offset 24
+	.cfi_offset 12, -24
+	push	rbp
+	.cfi_def_cfa_offset 32
+	.cfi_offset 6, -32
 	push	rbx
-	.cfi_offset 14, -24
-	.cfi_offset 13, -32
-	.cfi_offset 12, -40
-	.cfi_offset 3, -48
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
 	mov	rbx, rdi
-	mov	r12, rsi
+	mov	rbp, rsi
 	mov	rdi, rsi
 	call	strlen
-	mov	r13, rax
+	mov	r12, rax
 	mov	rax, rbx
-	test	r13, r13
+	test	r12, r12
 	je	.L397
-	movsx	r14d, BYTE PTR [r12]
+	movsx	r13d, BYTE PTR [rbp+0]
 	jmp	.L398
 .L399:
-	mov	rdx, r13
-	mov	rsi, r12
+	mov	rdx, r12
+	mov	rsi, rbp
 	mov	rdi, rbx
 	call	strncmp
 	test	eax, eax
 	je	.L401
 	add	rbx, 1
 .L398:
-	mov	esi, r14d
+	mov	esi, r13d
 	mov	rdi, rbx
 	call	strchr
 	mov	rbx, rax
@@ -2500,11 +2482,13 @@ strstr:
 	mov	rax, rbx
 .L397:
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
+	.cfi_def_cfa_offset 32
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 24
+	pop	r12
+	.cfi_def_cfa_offset 16
+	pop	r13
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE97:
@@ -2537,49 +2521,48 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	push	r15
 	push	r14
+	.cfi_def_cfa_offset 16
+	.cfi_offset 14, -16
 	push	r13
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
 	push	r12
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -32
+	push	rbp
+	.cfi_def_cfa_offset 40
+	.cfi_offset 6, -40
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
-	.cfi_offset 3, -56
-	mov	r12, rdx
-	mov	r13, rsi
-	sub	r13, rcx
-	add	r13, rdi
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+	mov	rbp, rdx
+	mov	r12, rsi
+	sub	r12, rcx
+	add	r12, rdi
 	mov	rax, rdi
 	test	rcx, rcx
 	je	.L416
 	cmp	rsi, rcx
 	jb	.L421
 	mov	rbx, rdi
-	lea	r14, [rcx-1]
-	lea	r15, [rdx+1]
+	lea	r13, [rcx-1]
+	lea	r14, [rdx+1]
 	jmp	.L417
 .L419:
-	movzx	eax, BYTE PTR [r12]
+	movzx	eax, BYTE PTR [rbp+0]
 	cmp	BYTE PTR [rbx], al
 	jne	.L418
 	lea	rdi, [rbx+1]
-	mov	rdx, r14
-	mov	rsi, r15
+	mov	rdx, r13
+	mov	rsi, r14
 	call	memcmp
 	test	eax, eax
 	je	.L422
 .L418:
 	add	rbx, 1
 .L417:
-	cmp	r13, rbx
+	cmp	r12, rbx
 	jnb	.L419
 	mov	eax, 0
 	jmp	.L416
@@ -2589,14 +2572,16 @@ memmem:
 .L422:
 	mov	rax, rbx
 .L416:
-	add	rsp, 8
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 40
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 32
+	pop	r12
+	.cfi_def_cfa_offset 24
+	pop	r13
+	.cfi_def_cfa_offset 16
+	pop	r14
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE99:
@@ -2606,20 +2591,14 @@ memmem:
 mempcpy:
 .LFB100:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	rbx, rdx
 	call	memcpy
 	add	rax, rbx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE100:
@@ -3349,14 +3328,9 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	ebx, 0
 	test	rdi, rdi
 	jns	.L570
@@ -3375,9 +3349,8 @@ __divsi3:
 	neg	rdx
 	test	ebx, ebx
 	cmovne	rax, rdx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE129:
@@ -3387,14 +3360,9 @@ __divsi3:
 __modsi3:
 .LFB130:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	mov	ebx, 0
 	test	rdi, rdi
 	jns	.L575
@@ -3411,9 +3379,8 @@ __modsi3:
 	neg	rdx
 	test	ebx, ebx
 	cmovne	rax, rdx
-	mov	rbx, QWORD PTR [rbp-8]
-	leave
-	.cfi_def_cfa 7, 8
+	pop	rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE130:
@@ -3811,15 +3778,8 @@ __cmpdi2:
 __aeabi_lcmp:
 .LFB142:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	call	__cmpdi2
 	sub	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE142:
@@ -4054,31 +4014,28 @@ __muldi3_compiler_rt:
 	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	push	r12
 	push	rbx
-	.cfi_offset 12, -24
-	.cfi_offset 3, -32
-	mov	r12, rdi
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	mov	rbp, rdi
 	mov	rbx, rsi
 	call	__muldsi3
 	mov	rcx, rax
 	sar	rcx, 32
-	mov	rdx, r12
+	mov	rdx, rbp
 	sar	rdx, 32
 	imul	edx, ebx
 	sar	rbx, 32
-	imul	ebx, r12d
+	imul	ebx, ebp
 	add	edx, ebx
 	lea	edx, [rdx+rcx]
 	sal	rdx, 32
 	mov	eax, eax
 	or	rax, rdx
 	pop	rbx
-	pop	r12
+	.cfi_def_cfa_offset 16
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE150:
@@ -4127,23 +4084,22 @@ __mulddi3:
 __multi3:
 .LFB152:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
-	push	r15
 	push	r14
+	.cfi_def_cfa_offset 16
+	.cfi_offset 14, -16
 	push	r13
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
 	push	r12
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -32
+	push	rbp
+	.cfi_def_cfa_offset 40
+	.cfi_offset 6, -40
 	push	rbx
-	sub	rsp, 8
-	.cfi_offset 15, -24
-	.cfi_offset 14, -32
-	.cfi_offset 13, -40
-	.cfi_offset 12, -48
-	.cfi_offset 3, -56
-	mov	r14, rdi
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+	mov	rbp, rdi
 	mov	rbx, rsi
 	mov	r12, rdx
 	mov	r13, rcx
@@ -4151,18 +4107,20 @@ __multi3:
 	call	__mulddi3
 	imul	rbx, r12
 	mov	rcx, r13
-	imul	rcx, r14
+	imul	rcx, rbp
 	add	rbx, rcx
 	add	rbx, rdx
 	mov	rdx, rbx
-	add	rsp, 8
 	pop	rbx
-	pop	r12
-	pop	r13
-	pop	r14
-	pop	r15
+	.cfi_def_cfa_offset 40
 	pop	rbp
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 32
+	pop	r12
+	.cfi_def_cfa_offset 24
+	pop	r13
+	.cfi_def_cfa_offset 16
+	pop	r14
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE152:
@@ -4481,15 +4439,8 @@ __ucmpdi2:
 __aeabi_ulcmp:
 .LFB164:
 	.cfi_startproc
-	push	rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	mov	rbp, rsp
-	.cfi_def_cfa_register 6
 	call	__ucmpdi2
 	sub	eax, 1
-	pop	rbp
-	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE164:

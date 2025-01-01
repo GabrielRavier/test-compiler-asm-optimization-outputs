@@ -5,40 +5,30 @@
 	.def	make_ti;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_ti
 make_ti:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR -8[rbp], rcx
-	mov	r9, QWORD PTR -8[rbp]
-	mov	QWORD PTR -16[rbp], rdx
-	mov	QWORD PTR -8[rbp], r9
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
-	add	rsp, 16
-	pop	rbp
+	mov	QWORD PTR 8[rsp], rcx
+	mov	r9, QWORD PTR 8[rsp]
+	mov	QWORD PTR [rsp], rdx
+	mov	QWORD PTR 8[rsp], r9
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	make_tu
 	.def	make_tu;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_tu
 make_tu:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
-	mov	QWORD PTR -8[rbp], rcx
-	mov	r9, QWORD PTR -8[rbp]
-	mov	QWORD PTR -16[rbp], rdx
-	mov	QWORD PTR -8[rbp], r9
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
-	add	rsp, 16
-	pop	rbp
+	mov	QWORD PTR 8[rsp], rcx
+	mov	r9, QWORD PTR 8[rsp]
+	mov	QWORD PTR [rsp], rdx
+	mov	QWORD PTR 8[rsp], r9
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	memmove
@@ -957,8 +947,6 @@ remque:
 	.def	lsearch;	.scl	2;	.type	32;	.endef
 	.seh_proc	lsearch
 lsearch:
-	push	rbp
-	.seh_pushreg	rbp
 	push	r15
 	.seh_pushreg	r15
 	push	r14
@@ -967,6 +955,8 @@ lsearch:
 	.seh_pushreg	r13
 	push	r12
 	.seh_pushreg	r12
+	push	rbp
+	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
@@ -975,113 +965,104 @@ lsearch:
 	.seh_pushreg	rbx
 	sub	rsp, 40
 	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
 	.seh_endprologue
-	mov	r13, rcx
-	mov	QWORD PTR 88[rbp], rdx
+	mov	r12, rcx
+	mov	r14, rdx
 	mov	r15, r8
 	mov	rdi, r9
-	mov	r14, QWORD PTR 112[rbp]
-	mov	r12, QWORD PTR [r8]
+	mov	r13, QWORD PTR 144[rsp]
+	mov	rbp, QWORD PTR [r8]
 	mov	rsi, rdx
 	mov	ebx, 0
 	jmp	.L183
 .L186:
 	mov	rdx, rsi
-	mov	rcx, r13
-	call	r14
+	mov	rcx, r12
+	call	r13
 	add	rsi, rdi
 	test	eax, eax
 	jne	.L184
 	imul	rbx, rdi
-	mov	rax, rbx
-	add	rax, QWORD PTR 88[rbp]
+	lea	rax, [r14+rbx]
 	jmp	.L185
 .L184:
 	add	rbx, 1
 .L183:
-	cmp	rbx, r12
+	cmp	rbx, rbp
 	jne	.L186
-	lea	rax, 1[r12]
+	lea	rax, 1[rbp]
 	mov	QWORD PTR [r15], rax
-	imul	r12, rdi
-	mov	rcx, r12
-	add	rcx, QWORD PTR 88[rbp]
+	imul	rbp, rdi
+	lea	rcx, [r14+rbp]
 	mov	r8, rdi
-	mov	rdx, r13
+	mov	rdx, r12
 	call	memcpy
 .L185:
 	add	rsp, 40
 	pop	rbx
 	pop	rsi
 	pop	rdi
+	pop	rbp
 	pop	r12
 	pop	r13
 	pop	r14
 	pop	r15
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	lfind
 	.def	lfind;	.scl	2;	.type	32;	.endef
 	.seh_proc	lfind
 lfind:
-	push	rbp
-	.seh_pushreg	rbp
-	push	r15
-	.seh_pushreg	r15
 	push	r14
 	.seh_pushreg	r14
 	push	r13
 	.seh_pushreg	r13
 	push	r12
 	.seh_pushreg	r12
+	push	rbp
+	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
-	mov	r12, rcx
-	mov	r14, rdx
+	mov	rbp, rcx
+	mov	r13, rdx
 	mov	rdi, r9
-	mov	r15, QWORD PTR 112[rbp]
-	mov	r13, QWORD PTR [r8]
+	mov	r14, QWORD PTR 128[rsp]
+	mov	r12, QWORD PTR [r8]
 	mov	rsi, rdx
 	mov	ebx, 0
 	jmp	.L188
 .L191:
 	mov	rdx, rsi
-	mov	rcx, r12
-	call	r15
+	mov	rcx, rbp
+	call	r14
 	add	rsi, rdi
 	test	eax, eax
 	jne	.L189
 	imul	rbx, rdi
-	lea	rax, [r14+rbx]
+	lea	rax, 0[r13+rbx]
 	jmp	.L190
 .L189:
 	add	rbx, 1
 .L188:
-	cmp	rbx, r13
+	cmp	rbx, r12
 	jne	.L191
 	mov	eax, 0
 .L190:
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
 	pop	rsi
 	pop	rdi
+	pop	rbp
 	pop	r12
 	pop	r13
 	pop	r14
-	pop	r15
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	abs
@@ -1098,14 +1079,10 @@ abs:
 	.def	atoi;	.scl	2;	.type	32;	.endef
 	.seh_proc	atoi
 atoi:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	rbx, rcx
 	jmp	.L194
@@ -1148,23 +1125,18 @@ atoi:
 	neg	eax
 	test	ecx, ecx
 	cmovne	eax, edx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	atol
 	.def	atol;	.scl	2;	.type	32;	.endef
 	.seh_proc	atol
 atol:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	rbx, rcx
 	jmp	.L205
@@ -1207,23 +1179,18 @@ atol:
 	neg	eax
 	test	ecx, ecx
 	cmovne	eax, edx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	atoll
 	.def	atoll;	.scl	2;	.type	32;	.endef
 	.seh_proc	atoll
 atoll:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	rbx, rcx
 	jmp	.L216
@@ -1267,55 +1234,50 @@ atoll:
 	neg	rax
 	test	ecx, ecx
 	cmovne	rax, rdx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	bsearch
 	.def	bsearch;	.scl	2;	.type	32;	.endef
 	.seh_proc	bsearch
 bsearch:
-	push	rbp
-	.seh_pushreg	rbp
-	push	r14
-	.seh_pushreg	r14
 	push	r13
 	.seh_pushreg	r13
 	push	r12
 	.seh_pushreg	r12
+	push	rbp
+	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 32
-	.seh_stackalloc	32
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	r13, rcx
-	mov	r12, rdx
+	mov	r12, rcx
+	mov	rbp, rdx
 	mov	rsi, r8
 	mov	rdi, r9
-	mov	r14, QWORD PTR 96[rbp]
+	mov	r13, QWORD PTR 128[rsp]
 	jmp	.L227
 .L231:
 	mov	rbx, rsi
 	shr	rbx
 	imul	rbx, rdi
-	add	rbx, r12
+	add	rbx, rbp
 	mov	rdx, rbx
-	mov	rcx, r13
-	call	r14
+	mov	rcx, r12
+	call	r13
 	test	eax, eax
 	jns	.L228
 	shr	rsi
 	jmp	.L227
 .L228:
 	jle	.L232
-	lea	r12, [rbx+rdi]
+	lea	rbp, [rbx+rdi]
 	mov	rax, rsi
 	shr	rax
 	sub	rsi, 1
@@ -1328,45 +1290,40 @@ bsearch:
 .L232:
 	mov	rax, rbx
 .L230:
-	add	rsp, 32
+	add	rsp, 40
 	pop	rbx
 	pop	rsi
 	pop	rdi
+	pop	rbp
 	pop	r12
 	pop	r13
-	pop	r14
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	bsearch_r
 	.def	bsearch_r;	.scl	2;	.type	32;	.endef
 	.seh_proc	bsearch_r
 bsearch_r:
-	push	rbp
-	.seh_pushreg	rbp
-	push	r15
-	.seh_pushreg	r15
 	push	r14
 	.seh_pushreg	r14
 	push	r13
 	.seh_pushreg	r13
 	push	r12
 	.seh_pushreg	r12
+	push	rbp
+	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
-	mov	r13, rcx
-	mov	r12, r9
-	mov	r15, QWORD PTR 112[rbp]
-	mov	r14, QWORD PTR 120[rbp]
+	mov	r12, rcx
+	mov	rbp, r9
+	mov	r14, QWORD PTR 128[rsp]
+	mov	r13, QWORD PTR 136[rsp]
 	mov	esi, r8d
 	mov	rdi, rdx
 	jmp	.L234
@@ -1374,16 +1331,16 @@ bsearch_r:
 	mov	ebx, esi
 	sar	ebx
 	movsx	rbx, ebx
-	imul	rbx, r12
+	imul	rbx, rbp
 	add	rbx, rdi
-	mov	r8, r14
+	mov	r8, r13
 	mov	rdx, rbx
-	mov	rcx, r13
-	call	r15
+	mov	rcx, r12
+	call	r14
 	test	eax, eax
 	je	.L238
 	jle	.L236
-	lea	rdi, [rbx+r12]
+	lea	rdi, [rbx+rbp]
 	sub	esi, 1
 .L236:
 	sar	esi
@@ -1395,15 +1352,14 @@ bsearch_r:
 .L238:
 	mov	rax, rbx
 .L235:
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
 	pop	rsi
 	pop	rdi
+	pop	rbp
 	pop	r12
 	pop	r13
 	pop	r14
-	pop	r15
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	div
@@ -2051,20 +2007,15 @@ gl_isinfl:
 	.def	_Qp_itoq;	.scl	2;	.type	32;	.endef
 	.seh_proc	_Qp_itoq
 _Qp_itoq:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, edx
-	movsd	QWORD PTR -8[rbp], xmm0
-	fld	QWORD PTR -8[rbp]
+	movsd	QWORD PTR 8[rsp], xmm0
+	fld	QWORD PTR 8[rsp]
 	fstp	TBYTE PTR [rcx]
-	add	rsp, 16
-	pop	rbp
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	ldexpf
@@ -2200,18 +2151,14 @@ memxor:
 	.def	strncat;	.scl	2;	.type	32;	.endef
 	.seh_proc	strncat
 strncat:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	rdi, rcx
 	mov	rsi, rdx
@@ -2237,11 +2184,10 @@ strncat:
 	mov	BYTE PTR [rax], 0
 .L381:
 	mov	rax, rdi
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
 	pop	rsi
 	pop	rdi
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	strnlen
@@ -2312,18 +2258,14 @@ strrchr:
 strstr:
 	push	rbp
 	.seh_pushreg	rbp
-	push	r12
-	.seh_pushreg	r12
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 32
-	.seh_stackalloc	32
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
 	mov	rbx, rcx
 	mov	rsi, rdx
@@ -2333,7 +2275,7 @@ strstr:
 	mov	rax, rbx
 	test	rdi, rdi
 	je	.L399
-	movsx	r12d, BYTE PTR [rsi]
+	movsx	ebp, BYTE PTR [rsi]
 	jmp	.L400
 .L401:
 	mov	r8, rdi
@@ -2344,7 +2286,7 @@ strstr:
 	je	.L403
 	add	rbx, 1
 .L400:
-	mov	edx, r12d
+	mov	edx, ebp
 	mov	rcx, rbx
 	call	strchr
 	mov	rbx, rax
@@ -2355,11 +2297,10 @@ strstr:
 .L403:
 	mov	rax, rbx
 .L399:
-	add	rsp, 32
+	add	rsp, 40
 	pop	rbx
 	pop	rsi
 	pop	rdi
-	pop	r12
 	pop	rbp
 	ret
 	.seh_endproc
@@ -2388,23 +2329,20 @@ copysign:
 	.def	memmem;	.scl	2;	.type	32;	.endef
 	.seh_proc	memmem
 memmem:
-	push	rbp
-	.seh_pushreg	rbp
-	push	r13
-	.seh_pushreg	r13
 	push	r12
 	.seh_pushreg	r12
+	push	rbp
+	.seh_pushreg	rbp
 	push	rdi
 	.seh_pushreg	rdi
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
+	mov	rbx, rcx
 	mov	rsi, r8
 	mov	rdi, rdx
 	sub	rdi, r9
@@ -2414,17 +2352,16 @@ memmem:
 	je	.L418
 	cmp	rdx, r9
 	jb	.L423
-	mov	rbx, rcx
-	lea	r12, -1[r9]
-	lea	r13, 1[r8]
+	lea	rbp, -1[r9]
+	lea	r12, 1[r8]
 	jmp	.L419
 .L421:
 	movzx	eax, BYTE PTR [rsi]
 	cmp	BYTE PTR [rbx], al
 	jne	.L420
 	lea	rcx, 1[rbx]
-	mov	r8, r12
-	mov	rdx, r13
+	mov	r8, rbp
+	mov	rdx, r12
 	call	memcmp
 	test	eax, eax
 	je	.L424
@@ -2441,34 +2378,28 @@ memmem:
 .L424:
 	mov	rax, rbx
 .L418:
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
 	pop	rsi
 	pop	rdi
-	pop	r12
-	pop	r13
 	pop	rbp
+	pop	r12
 	ret
 	.seh_endproc
 	.globl	mempcpy
 	.def	mempcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	mempcpy
 mempcpy:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	rbx, r8
 	call	memcpy
 	add	rax, rbx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	frexp
@@ -3151,14 +3082,10 @@ __mulhi3:
 	.def	__divsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__divsi3
 __divsi3:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	ebx, 0
 	test	ecx, ecx
@@ -3177,23 +3104,18 @@ __divsi3:
 	neg	edx
 	test	ebx, ebx
 	cmovne	eax, edx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	__modsi3
 	.def	__modsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__modsi3
 __modsi3:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 40
-	.seh_stackalloc	40
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 32
+	.seh_stackalloc	32
 	.seh_endprologue
 	mov	ebx, 0
 	test	ecx, ecx
@@ -3210,9 +3132,8 @@ __modsi3:
 	neg	edx
 	test	ebx, ebx
 	cmovne	eax, edx
-	add	rsp, 40
+	add	rsp, 32
 	pop	rbx
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	__udivmodhi4
@@ -3331,12 +3252,8 @@ __ashldi3:
 	.def	__ashlti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashlti3
 __ashlti3:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	mov	r10, QWORD PTR [rcx]
 	mov	r11, QWORD PTR 8[rcx]
@@ -3349,9 +3266,9 @@ __ashlti3:
 	mov	rdx, r10
 	jmp	.L608
 .L607:
-	mov	QWORD PTR -16[rbp], r10
-	mov	QWORD PTR -8[rbp], r11
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], r10
+	mov	QWORD PTR 8[rsp], r11
+	movdqa	xmm0, XMMWORD PTR [rsp]
 	test	edx, edx
 	je	.L609
 	mov	rax, r10
@@ -3367,12 +3284,11 @@ __ashlti3:
 	mov	rdx, rax
 	mov	rax, r9
 .L608:
-	mov	QWORD PTR -16[rbp], rax
-	mov	QWORD PTR -8[rbp], rdx
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 8[rsp], rdx
+	movdqa	xmm0, XMMWORD PTR [rsp]
 .L609:
-	add	rsp, 16
-	pop	rbp
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__ashrdi3
@@ -3415,12 +3331,8 @@ __ashrdi3:
 	.def	__ashrti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashrti3
 __ashrti3:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	mov	r10, QWORD PTR [rcx]
 	mov	r11, QWORD PTR 8[rcx]
@@ -3436,9 +3348,9 @@ __ashrti3:
 	mov	rax, r9
 	jmp	.L618
 .L617:
-	mov	QWORD PTR -16[rbp], r10
-	mov	QWORD PTR -8[rbp], r11
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], r10
+	mov	QWORD PTR 8[rsp], r11
+	movdqa	xmm0, XMMWORD PTR [rsp]
 	test	edx, edx
 	je	.L619
 	mov	r9, r11
@@ -3454,26 +3366,21 @@ __ashrti3:
 	or	r9, r10
 	mov	rax, r9
 .L618:
-	mov	QWORD PTR -16[rbp], rax
-	mov	QWORD PTR -8[rbp], rdx
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 8[rsp], rdx
+	movdqa	xmm0, XMMWORD PTR [rsp]
 .L619:
-	add	rsp, 16
-	pop	rbp
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__bswapdi2
 	.def	__bswapdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__bswapdi2
 __bswapdi2:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	lea	rbp, [rsp]
-	.seh_setframe	rbp, 0
 	.seh_endprologue
 	mov	rdx, rcx
 	mov	rsi, rcx
@@ -3509,7 +3416,6 @@ __bswapdi2:
 	or	rax, rcx
 	pop	rbx
 	pop	rsi
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	__bswapsi2
@@ -3633,17 +3539,12 @@ __cmpdi2:
 	.def	__aeabi_lcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	__aeabi_lcmp
 __aeabi_lcmp:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 32
-	.seh_stackalloc	32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
 	call	__cmpdi2
 	sub	eax, 1
-	add	rsp, 32
-	pop	rbp
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.globl	__cmpti2
@@ -3793,12 +3694,8 @@ __lshrdi3:
 	.def	__lshrti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__lshrti3
 __lshrti3:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	mov	r10, QWORD PTR [rcx]
 	mov	r11, QWORD PTR 8[rcx]
@@ -3811,9 +3708,9 @@ __lshrti3:
 	mov	edx, 0
 	jmp	.L667
 .L666:
-	mov	QWORD PTR -16[rbp], r10
-	mov	QWORD PTR -8[rbp], r11
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], r10
+	mov	QWORD PTR 8[rsp], r11
+	movdqa	xmm0, XMMWORD PTR [rsp]
 	test	edx, edx
 	je	.L668
 	mov	r9, r11
@@ -3829,12 +3726,11 @@ __lshrti3:
 	or	r9, r10
 	mov	rax, r9
 .L667:
-	mov	QWORD PTR -16[rbp], rax
-	mov	QWORD PTR -8[rbp], rdx
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
+	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 8[rsp], rdx
+	movdqa	xmm0, XMMWORD PTR [rsp]
 .L668:
-	add	rsp, 16
-	pop	rbp
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__muldsi3
@@ -3883,16 +3779,12 @@ __muldsi3:
 	.def	__muldi3_compiler_rt;	.scl	2;	.type	32;	.endef
 	.seh_proc	__muldi3_compiler_rt
 __muldi3_compiler_rt:
-	push	rbp
-	.seh_pushreg	rbp
 	push	rsi
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 32
-	.seh_stackalloc	32
-	lea	rbp, 32[rsp]
-	.seh_setframe	rbp, 32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
 	mov	rsi, rcx
 	mov	rbx, rdx
@@ -3909,22 +3801,17 @@ __muldi3_compiler_rt:
 	sal	rdx, 32
 	mov	eax, eax
 	or	rax, rdx
-	add	rsp, 32
+	add	rsp, 40
 	pop	rbx
 	pop	rsi
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	__mulddi3
 	.def	__mulddi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulddi3
 __mulddi3:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	mov	r9, rdx
 	mov	r10d, ecx
@@ -3955,19 +3842,16 @@ __mulddi3:
 	add	r8, rdx
 	imul	rcx, r9
 	add	rcx, r8
-	mov	QWORD PTR -16[rbp], r10
-	mov	QWORD PTR -8[rbp], rcx
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
-	add	rsp, 16
-	pop	rbp
+	mov	QWORD PTR [rsp], r10
+	mov	QWORD PTR 8[rsp], rcx
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__multi3
 	.def	__multi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__multi3
 __multi3:
-	push	rbp
-	.seh_pushreg	rbp
 	push	r14
 	.seh_pushreg	r14
 	push	r13
@@ -3980,10 +3864,8 @@ __multi3:
 	.seh_pushreg	rsi
 	push	rbx
 	.seh_pushreg	rbx
-	sub	rsp, 48
-	.seh_stackalloc	48
-	lea	rbp, 48[rsp]
-	.seh_setframe	rbp, 48
+	sub	rsp, 56
+	.seh_stackalloc	56
 	.seh_endprologue
 	mov	r12, QWORD PTR [rcx]
 	mov	r13, QWORD PTR 8[rcx]
@@ -3992,26 +3874,25 @@ __multi3:
 	mov	rdx, rsi
 	mov	rcx, r12
 	call	__mulddi3
-	movaps	XMMWORD PTR -16[rbp], xmm0
-	mov	r8, QWORD PTR -16[rbp]
-	mov	r9, QWORD PTR -8[rbp]
+	movaps	XMMWORD PTR 32[rsp], xmm0
+	mov	r8, QWORD PTR 32[rsp]
+	mov	r9, QWORD PTR 40[rsp]
 	mov	rax, r13
 	imul	rax, rsi
 	mov	rdx, rdi
 	imul	rdx, r12
 	add	rax, rdx
 	add	rax, r9
-	mov	QWORD PTR -16[rbp], r8
-	mov	QWORD PTR -8[rbp], rax
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
-	add	rsp, 48
+	mov	QWORD PTR 32[rsp], r8
+	mov	QWORD PTR 40[rsp], rax
+	movdqa	xmm0, XMMWORD PTR 32[rsp]
+	add	rsp, 56
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	pop	r12
 	pop	r13
 	pop	r14
-	pop	rbp
 	ret
 	.seh_endproc
 	.globl	__negdi2
@@ -4027,23 +3908,18 @@ __negdi2:
 	.def	__negti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__negti2
 __negti2:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 16
-	.seh_stackalloc	16
+	sub	rsp, 24
+	.seh_stackalloc	24
 	.seh_endprologue
 	mov	rax, QWORD PTR [rcx]
 	mov	rdx, QWORD PTR 8[rcx]
 	neg	rax
 	adc	rdx, 0
 	neg	rdx
-	mov	QWORD PTR -16[rbp], rax
-	mov	QWORD PTR -8[rbp], rdx
-	movdqa	xmm0, XMMWORD PTR -16[rbp]
-	add	rsp, 16
-	pop	rbp
+	mov	QWORD PTR [rsp], rax
+	mov	QWORD PTR 8[rsp], rdx
+	movdqa	xmm0, XMMWORD PTR [rsp]
+	add	rsp, 24
 	ret
 	.seh_endproc
 	.globl	__paritydi2
@@ -4320,17 +4196,12 @@ __ucmpdi2:
 	.def	__aeabi_ulcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	__aeabi_ulcmp
 __aeabi_ulcmp:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 32
-	.seh_stackalloc	32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
 	call	__ucmpdi2
 	sub	eax, 1
-	add	rsp, 32
-	pop	rbp
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.globl	__ucmpti2
