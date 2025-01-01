@@ -2590,40 +2590,40 @@ memmem:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, r8, r9, lr}
-	subs	r8, r3, #0
-	mov	lr, r0
+	subs	r6, r3, #0
+	mov	ip, r0
 	popeq	{r4, r5, r6, r7, r8, r9, pc}
-	cmp	r1, r8
+	cmp	r1, r6
 	bcc	.L634
-	sub	r1, r1, r8
+	sub	r1, r1, r6
 	adds	r7, r0, r1
 	bcs	.L634
+	mvn	r8, #1
 	ldrb	r9, [r2]	@ zero_extendqisi2
-	add	r6, r0, r8
 	b	.L631
 .L628:
-	cmp	r7, lr
-	add	r6, r6, #1
+	cmp	r7, ip
 	bcc	.L634
 .L631:
-	ldrb	r1, [lr]	@ zero_extendqisi2
-	mov	r0, lr
-	cmp	r1, r9
-	add	lr, lr, #1
+	ldrb	r3, [ip]	@ zero_extendqisi2
+	mov	r0, ip
+	cmp	r3, r9
+	add	ip, ip, #1
 	bne	.L628
-	cmp	r8, #1
+	cmp	r6, #1
 	popeq	{r4, r5, r6, r7, r8, r9, pc}
-	mov	ip, r2
-	sub	r1, lr, #1
+	mov	r3, r2
+	sub	lr, ip, #1
 	b	.L629
 .L630:
-	cmp	r5, #1
+	cmn	ip, r1
 	popeq	{r4, r5, r6, r7, r8, r9, pc}
 .L629:
-	ldrb	r4, [r1, #1]!	@ zero_extendqisi2
-	ldrb	r3, [ip, #1]!	@ zero_extendqisi2
-	sub	r5, r6, r1
-	cmp	r4, r3
+	ldrb	r5, [lr, #1]!	@ zero_extendqisi2
+	ldrb	r4, [r3, #1]!	@ zero_extendqisi2
+	sub	r1, r8, lr
+	cmp	r5, r4
+	add	r1, r1, r6
 	beq	.L630
 	b	.L628
 .L634:

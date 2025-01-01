@@ -3504,16 +3504,15 @@ memmem:
 	l.bf	.L726
 	l.sfltu	r4, r6
 	l.bf	.L728
-	l.sub	r27, r4, r6
-	l.add	r27, r3, r27
-	l.sfgtu	r3, r27
+	l.sub	r4, r4, r6
+	l.add	r25, r3, r4
+	l.sfgtu	r3, r25
 	l.bf	.L728
-	l.ori	r31, r0, 1
-	l.lbs	r29, 0(r5)
+	l.addi	r6, r6, -1
 	l.j	.L725
-	l.add	r25, r5, r6
+	l.lbs	r29, 0(r5)
 .L722:
-	l.sfgeu	r27, r3
+	l.sfgeu	r25, r3
 	l.bnf	.L728
 	 l.nop
 
@@ -3523,18 +3522,20 @@ memmem:
 	l.or	r11, r3, r3
 	l.bf	.L722
 	l.addi	r3, r3, 1
-	l.sfne	r6, r31
+	l.movhi	r17, hi(0)
+	l.sfne	r6, r17
 	l.bnf	.L720
-	l.addi	r17, r5, 1
-	l.or	r19, r3, r3
+	l.addi	r19, r5, 1
+	l.or	r17, r3, r3
+	l.add	r27, r3, r6
 .L723:
-	l.lbz	r23, 0(r19)
-	l.lbz	r21, 0(r17)
+	l.lbz	r23, 0(r17)
+	l.lbz	r21, 0(r19)
 	l.sfeq	r23, r21
 	l.addi	r17, r17, 1
 	l.bnf	.L722
 	l.addi	r19, r19, 1
-	l.sfeq	r17, r25
+	l.sfeq	r17, r27
 	l.bnf	.L723
 	 l.nop
 
@@ -3542,12 +3543,12 @@ memmem:
 	l.jr	r9
 	 l.nop
 
-.L728:
-	l.jr	r9
-	l.movhi	r11, hi(0)
 .L726:
 	l.jr	r9
 	l.or	r11, r3, r3
+.L728:
+	l.jr	r9
+	l.movhi	r11, hi(0)
 	.size	memmem, .-memmem
 	.align 4
 	.global	mempcpy

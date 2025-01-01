@@ -5656,16 +5656,16 @@ memmem:
 	.prologue
 	.mmi
 	cmp.eq p6, p7 = 0, r35
-	ld1.s r19 = [r34]
-	sub r20 = r33, r35
+	ld1.s r18 = [r34]
+	sub r19 = r33, r35
 	.mmi
-	add r18 = r32, r35
 	adds r21 = 1, r34
+	adds r20 = -1, r35
 	cmp.eq p8, p9 = 1, r35
 	;;
 	.mmi
 	(p6) mov r8 = r32
-	add r20 = r32, r20
+	add r19 = r32, r19
 	.save ar.lc, r2
 	mov r2 = ar.lc
 	.body
@@ -5681,18 +5681,18 @@ memmem:
 	;;
 	.mib
 	nop 0
-	cmp.ltu p6, p7 = r20, r32
+	cmp.ltu p6, p7 = r19, r32
 	(p6) br.cond.dpnt .L778
 	;;
 	.mmi
-	chk.s r19, .L786
+	chk.s r18, .L786
 	nop 0
 	nop 0
 .L787:
 	.pred.rel.mutex p8, p9
 	.mii
 	nop 0
-	sxt1 r19 = r19
+	sxt1 r18 = r18
 	nop 0
 	.align 32
 .L775:
@@ -5705,18 +5705,18 @@ memmem:
 	.mii
 	nop 0
 	sxt1 r14 = r14
-	sub r16 = r18, r32, 1
+	add r16 = r32, r20
 	;;
 	.mib
 	nop 0
-	cmp4.ne p6, p7 = r19, r14
+	cmp4.ne p6, p7 = r18, r14
 	(p7) br.cond.dpnt .L785
 	;;
 .L772:
 	.pred.rel.mutex p8, p9
 	.mib
-	adds r18 = 1, r18
-	cmp.leu p6, p7 = r32, r20
+	nop 0
+	cmp.leu p6, p7 = r32, r19
 	(p6) br.cond.dptk .L775
 .L778:
 	.mmi
@@ -5734,23 +5734,26 @@ memmem:
 	nop 0
 	nop 0
 	(p8) br.cond.dpnt .L770
-	;;
 	.mmi
-	mov r15 = r32
-	mov r14 = r21
-	mov ar.lc = r16
+	mov r14 = r32
+	mov r15 = r21
+	nop 0
+	.mii
+	sub r16 = r16, r32, 1
+	nop 0
 	;;
+	mov ar.lc = r16
 	.align 32
 .L773:
 	.pred.rel.mutex p8, p9
 	.mmi
-	ld1 r17 = [r15]
-	nop 0
-	adds r15 = 1, r15
-	.mmi
-	ld1 r16 = [r14]
+	ld1 r17 = [r14]
 	nop 0
 	adds r14 = 1, r14
+	.mmi
+	ld1 r16 = [r15]
+	nop 0
+	adds r15 = 1, r15
 	;;
 	.mbb
 	cmp4.eq p6, p7 = r16, r17
@@ -5764,7 +5767,7 @@ memmem:
 .L786:
 	.pred.rel.mutex p8, p9
 	.mib
-	ld1 r19 = [r34]
+	ld1 r18 = [r34]
 	nop 0
 	br .L787
 	.endp memmem#

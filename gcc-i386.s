@@ -3975,23 +3975,23 @@ memmem:
 	.cfi_offset 3, -20
 	mov	edx, DWORD PTR [esp+20]
 	mov	eax, DWORD PTR [esp+32]
-	mov	edi, DWORD PTR [esp+24]
-	mov	esi, DWORD PTR [esp+28]
+	mov	esi, DWORD PTR [esp+24]
+	mov	edi, DWORD PTR [esp+28]
 	mov	ecx, edx
 	test	eax, eax
 	je	.L711
-	cmp	edi, DWORD PTR [esp+32]
+	cmp	esi, DWORD PTR [esp+32]
 	jb	.L719
-	sub	edi, DWORD PTR [esp+32]
-	add	edi, edx
+	sub	esi, DWORD PTR [esp+32]
+	add	esi, edx
 	jc	.L719
-	movzx	ebp, BYTE PTR [esi]
+	movzx	ebp, BYTE PTR [edi]
 	jmp	.L716
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
 .L713:
-	cmp	edi, edx
+	cmp	esi, edx
 	jb	.L719
 .L716:
 	movzx	eax, BYTE PTR [edx]
@@ -4007,7 +4007,7 @@ memmem:
 	.p2align 4
 	.p2align 3
 .L714:
-	movzx	ebx, BYTE PTR [esi+eax]
+	movzx	ebx, BYTE PTR [edi+eax]
 	cmp	BYTE PTR [ecx+eax], bl
 	jne	.L713
 	add	eax, 1

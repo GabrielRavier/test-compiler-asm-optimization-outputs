@@ -3712,23 +3712,23 @@ LFB99:
 	.cfi_offset 3, -20
 	mov	edx, DWORD PTR [esp+20]
 	mov	eax, DWORD PTR [esp+32]
-	mov	edi, DWORD PTR [esp+24]
-	mov	esi, DWORD PTR [esp+28]
+	mov	esi, DWORD PTR [esp+24]
+	mov	edi, DWORD PTR [esp+28]
 	mov	ecx, edx
 	test	eax, eax
 	je	L688
-	cmp	edi, DWORD PTR [esp+32]
+	cmp	esi, DWORD PTR [esp+32]
 	jb	L696
-	sub	edi, DWORD PTR [esp+32]
-	add	edi, edx
+	sub	esi, DWORD PTR [esp+32]
+	add	esi, edx
 	jc	L696
-	movzx	ebp, BYTE PTR [esi]
+	movzx	ebp, BYTE PTR [edi]
 	jmp	L693
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
 L690:
-	cmp	edi, edx
+	cmp	esi, edx
 	jb	L696
 L693:
 	movzx	eax, BYTE PTR [edx]
@@ -3744,7 +3744,7 @@ L693:
 	.p2align 4
 	.p2align 3
 L691:
-	movzx	ebx, BYTE PTR [esi+eax]
+	movzx	ebx, BYTE PTR [edi+eax]
 	cmp	BYTE PTR [ecx+eax], bl
 	jne	L690
 	add	eax, 1

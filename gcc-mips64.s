@@ -4381,18 +4381,17 @@ memmem:
 	bne	$2,$0,.L796
 	dsubu	$5,$5,$7
 
-	daddu	$11,$4,$5
-	sltu	$2,$11,$4
+	daddu	$10,$4,$5
+	sltu	$2,$10,$4
 	bne	$2,$0,.L796
-	li	$13,1			# 0x1
+	daddiu	$7,$7,-1
 
-	lb	$12,0($6)
 	b	.L793
-	daddu	$10,$6,$7
+	lb	$12,0($6)
 
 	.align	3
 .L790:
-	sltu	$2,$11,$4
+	sltu	$2,$10,$4
 	bne	$2,$0,.L796
 	nop
 
@@ -4402,34 +4401,35 @@ memmem:
 	bne	$3,$12,.L790
 	daddiu	$4,$4,1
 
-	beq	$7,$13,.L803
-	daddiu	$3,$6,1
+	beq	$7,$0,.L803
+	daddiu	$5,$6,1
 
-	move	$5,$4
-	lbu	$9,0($5)
+	move	$3,$4
+	daddu	$11,$4,$7
+	lbu	$9,0($3)
 	.align	3
 .L801:
-	lbu	$8,0($3)
-	daddiu	$5,$5,1
-	bne	$9,$8,.L790
+	lbu	$8,0($5)
 	daddiu	$3,$3,1
+	bne	$9,$8,.L790
+	daddiu	$5,$5,1
 
-	bnel	$3,$10,.L801
-	lbu	$9,0($5)
+	bnel	$3,$11,.L801
+	lbu	$9,0($3)
 
 .L803:
 	jr	$31
 	nop
 
 	.align	3
-.L796:
-	jr	$31
-	move	$2,$0
-
-	.align	3
 .L794:
 	jr	$31
 	move	$2,$4
+
+	.align	3
+.L796:
+	jr	$31
+	move	$2,$0
 
 	.set	macro
 	.set	reorder

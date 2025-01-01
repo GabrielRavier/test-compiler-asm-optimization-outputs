@@ -3618,65 +3618,58 @@ copysign:
 memmem:
 .LFB97:
 	.cfi_startproc
-	mv	t1,a0
+	mv	a5,a0
 	beq	a3,zero,.L701
 	bltu	a1,a3,.L703
 	sub	a1,a1,a3
 	add	t2,a0,a1
 	bgtu	a0,t2,.L703
-	addi	sp,sp,-12
-	.cfi_def_cfa_offset 12
-	sw	s1,4(sp)
-	sw	s0,8(sp)
-	.cfi_offset 9, -8
+	addi	sp,sp,-8
+	.cfi_def_cfa_offset 8
+	sw	s0,4(sp)
 	.cfi_offset 8, -4
 	lbu	s0,0(a2)
-	li	s1,1
-	add	t0,a2,a3
-	mv	a1,a2
+	sw	s1,0(sp)
+	.cfi_offset 9, -8
+	addi	a3,a3,-1
 .L700:
-	lbu	a5,0(t1)
-	mv	a0,t1
-	addi	t1,t1,1
-	beq	a5,s0,.L710
-.L697:
-	bgeu	t2,t1,.L700
-	lw	s0,8(sp)
+	lbu	a4,0(a5)
+	mv	a0,a5
+	addi	a5,a5,1
+	beq	a4,s0,.L710
+	bgeu	t2,a5,.L700
+.L711:
+	li	a0,0
+.L695:
+	lw	s0,4(sp)
 	.cfi_remember_state
 	.cfi_restore 8
-	lw	s1,4(sp)
+	lw	s1,0(sp)
 	.cfi_restore 9
-	li	a0,0
-	addi	sp,sp,12
+	addi	sp,sp,8
 	.cfi_def_cfa_offset 0
 	jr	ra
 .L710:
 	.cfi_restore_state
-	addi	a5,a1,1
-	beq	a3,s1,.L695
-	mv	a4,t1
-	sw	a0,0(sp)
+	addi	a1,a2,1
+	beq	a3,zero,.L695
+	mv	a4,a5
+	add	s1,a5,a3
 	j	.L698
 .L699:
-	beq	a5,t0,.L711
+	beq	a4,s1,.L695
 .L698:
-	lbu	a0,0(a4)
-	lbu	a2,0(a5)
+	lbu	t0,0(a4)
+	lbu	t1,0(a1)
 	addi	a4,a4,1
-	addi	a5,a5,1
-	beq	a0,a2,.L699
-	j	.L697
-.L711:
-	lw	a0,0(sp)
-.L695:
-	lw	s0,8(sp)
-	.cfi_restore 8
-	lw	s1,4(sp)
-	.cfi_restore 9
-	addi	sp,sp,12
-	.cfi_def_cfa_offset 0
-	jr	ra
+	addi	a1,a1,1
+	beq	t0,t1,.L699
+	bgeu	t2,a5,.L700
+	j	.L711
 .L701:
+	.cfi_def_cfa_offset 0
+	.cfi_restore 8
+	.cfi_restore 9
 	ret
 .L703:
 	li	a0,0

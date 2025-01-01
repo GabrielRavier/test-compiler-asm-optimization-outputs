@@ -3139,56 +3139,56 @@ copysign:
 	.globl	memmem
 	.type	memmem, @function
 memmem:
-	movem.l #14392,-(%sp)
-	move.l 28(%sp),%a3
-	move.l 40(%sp),%d4
+	movem.l #12344,-(%sp)
+	move.l 24(%sp),%a1
+	move.l 36(%sp),%d0
 	jeq .L818
-	cmp.l 32(%sp),%d4
+	cmp.l 28(%sp),%d0
 	jhi .L820
-	move.l 32(%sp),%d0
-	sub.l %d4,%d0
-	move.l %a3,%d2
-	add.l %d0,%d2
-	cmp.l %a3,%d2
+	move.l 28(%sp),%d1
+	sub.l %d0,%d1
+	move.l %a1,%d2
+	add.l %d1,%d2
+	cmp.l %a1,%d2
 	jcs .L820
-	move.l 36(%sp),%a4
+	move.l 32(%sp),%a4
 	move.b (%a4)+,%d3
-	move.l %a3,%d0
-	add.l %d4,%d0
+	move.l %d0,%d1
+	subq.l #1,%d1
 .L817:
-	move.b (%a3),%d1
-	move.l %a3,%a0
-	addq.l #1,%a3
-	cmp.b %d1,%d3
+	move.b (%a1),%d0
+	move.l %a1,%a0
+	addq.l #1,%a1
+	cmp.b %d0,%d3
 	jeq .L828
 .L814:
-	addq.l #1,%d0
-	cmp.l %d2,%a3
+	cmp.l %d2,%a1
 	jls .L817
 .L820:
 	sub.l %a0,%a0
 .L812:
 	move.l %a0,%d0
-	movem.l (%sp)+,#7196
+	movem.l (%sp)+,#7180
 	rts
 .L828:
-	moveq #1,%d1
-	cmp.l %d4,%d1
+	tst.l %d1
 	jeq .L812
-	move.l %a3,%a1
-	move.l %a4,%a2
+	move.l %a4,%a3
+	move.l %a1,%a2
+	move.l %a1,%d0
+	add.l %d1,%d0
 .L815:
-	cmpm.b (%a2)+,(%a1)+
+	cmpm.b (%a3)+,(%a2)+
 	jne .L814
-	cmp.l %a1,%d0
+	cmp.l %a2,%d0
 	jne .L815
 	move.l %a0,%d0
-	movem.l (%sp)+,#7196
+	movem.l (%sp)+,#7180
 	rts
 .L818:
-	move.l %a3,%a0
+	move.l %a1,%a0
 	move.l %a0,%d0
-	movem.l (%sp)+,#7196
+	movem.l (%sp)+,#7180
 	rts
 	.size	memmem, .-memmem
 	.align	2

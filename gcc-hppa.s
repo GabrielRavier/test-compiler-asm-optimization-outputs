@@ -2966,8 +2966,8 @@ memmem:
 	or,<> %r23,%r0,%r23
 	b,n .L666
 	comb,>> %r23,%r25,.L668
-	sub %r25,%r23,%r22
-	addl %r26,%r22,%r22
+	sub %r25,%r23,%r25
+	addl %r26,%r25,%r22
 	comb,<<,n %r22,%r26,.L668
 	ldb 0(%r24),%r31
 	b .L665
@@ -2992,12 +2992,12 @@ memmem:
 	ldbx %r28(%r19),%r21
 .L660:
 	bv,n %r0(%r2)
-.L668:
-	bv %r0(%r2)
-	ldi 0,%r28
 .L666:
 	bv %r0(%r2)
 	copy %r26,%r28
+.L668:
+	bv %r0(%r2)
+	ldi 0,%r28
 	.EXIT
 	.PROCEND
 	.size	memmem, .-memmem

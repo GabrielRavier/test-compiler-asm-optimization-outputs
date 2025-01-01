@@ -3280,14 +3280,14 @@ memmem:
 	b,n .L713
 	cmpb,*>> %r23,%r25,.L715
 	sub %r25,%r23,%r25
-	add,l %r26,%r25,%r25
-	cmpb,*<<,n %r25,%r26,.L715
+	add,l %r26,%r25,%r22
+	cmpb,*<<,n %r22,%r26,.L715
 	ldb 0(%r24),%r29
-	add,l %r24,%r23,%r22
+	ldo -1(%r23),%r23
 	b .L712
 	extrd,s %r29,63,8,%r29
 .L709:
-	cmpclr,*<<= %r26,%r25,%r0
+	cmpclr,*<<= %r26,%r22,%r0
 	b,n .L715
 .L712:
 	ldb 0(%r26),%r31
@@ -3295,24 +3295,25 @@ memmem:
 	extrd,s %r31,63,8,%r31
 	cmpb,<> %r29,%r31,.L709
 	ldo 1(%r26),%r26
-	cmpib,*= 1,%r23,.L707
-	ldo 1(%r24),%r31
-	copy %r26,%r19
+	cmpb,*= %r0,%r23,.L707
+	ldo 1(%r24),%r19
+	copy %r26,%r31
+	add,l %r26,%r23,%r25
 .L710:
-	ldb 0(%r19),%r21
-	ldb 0(%r31),%r20
+	ldb 0(%r31),%r21
+	ldb 0(%r19),%r20
 	cmpb,<> %r20,%r21,.L709
 	ldo 1(%r31),%r31
-	cmpb,*<> %r22,%r31,.L710
+	cmpb,*<> %r25,%r31,.L710
 	ldo 1(%r19),%r19
 .L707:
 	bve,n (%r2)
-.L715:
-	bve (%r2)
-	ldi 0,%r28
 .L713:
 	bve (%r2)
 	copy %r26,%r28
+.L715:
+	bve (%r2)
+	ldi 0,%r28
 	.EXIT
 	.PROCEND
 	.size	memmem, .-memmem

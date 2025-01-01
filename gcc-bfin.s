@@ -3271,7 +3271,7 @@ _copysign:
 _memmem:
 	[--sp] = ( r7:6, p5:3 );
 
-	P5 = R0;
+	P2 = R0;
 	R0 = [SP+32];
 	cc =R0==0;
 	P4 = R1;
@@ -3279,57 +3279,55 @@ _memmem:
 	if cc jump .L651;
 	cc =R1<R0 (iu);
 	if cc jump .L653;
-	P2 = R0;
-	P4 -= P2;
-	P4 = P5 + P4;
-	cc =P5<=P4 (iu);
+	P1 = R0;
+	P4 -= P1;
+	P4 = P2 + P4;
+	cc =P2<=P4 (iu);
 	if !cc jump .L653;
-	R1 = P5;
+	R6 = R0;
 	cc =R0==1;
-	R2 = R1 + R0;
-	R7 = B [P3++] (X);
-	R6 = CC;
+	R6 += -1;
+	R3 = B [P3++] (X);
+	R7 = CC;
 	jump.s .L650;
 .L647:
-	cc =P4<P5 (iu);
-	R2 += 1;
+	cc =P4<P2 (iu);
 	if cc jump .L653;
 	nop;
 .L650:
-	R3 = P5;
-	P5 += 1;
-	R0 = B [P5+-1] (X);
+	R2 = P2;
+	P2 += 1;
+	R0 = B [P2+-1] (X);
 	R0 = R0.B (X);
-	cc =R0==R7;
+	cc =R0==R3;
 	if !cc jump .L647 (bp);
-	CC = R6;
+	CC = R7;
 	if cc jump .L645;
-	P2 = R2;
-	P0 = P5;
-	P1 = P3;
-	P2 -= P5;
-	LSETUP (.L648, .L658) LC1 = P2;
+	P5 = P3;
+	P0 = P2;
+	P1 = R6;
+	LSETUP (.L648, .L658) LC1 = P1;
 .L648:
 	R1 = B [P0++] (Z);
-	R0 = B [P1++] (Z);
+	R0 = B [P5++] (Z);
 	cc =R1==R0;
 	if !cc jump .L647;
 .L658:
 	nop;
 .L645:
-	R0 = R3;
-	( r7:6, p5:3 ) = [sp++];
-
-	rts;
-.L653:
-	R3 = 0 (X);
-	R0 = R3;
+	R0 = R2;
 	( r7:6, p5:3 ) = [sp++];
 
 	rts;
 .L651:
-	R3 = P5;
-	R0 = R3;
+	R2 = P2;
+	R0 = R2;
+	( r7:6, p5:3 ) = [sp++];
+
+	rts;
+.L653:
+	R2 = 0 (X);
+	R0 = R2;
 	( r7:6, p5:3 ) = [sp++];
 
 	rts;

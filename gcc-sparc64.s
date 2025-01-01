@@ -2745,28 +2745,28 @@ copysign:
 	.proc	0120
 memmem:
 	brz,pn	%o3, .L651
-	 mov	%o0, %g4
+	 mov	%o0, %g2
 	cmp	%o1, %o3
 	blu,a,pn %xcc, .L651
 	 mov	0, %o0
-	sub	%o1, %o3, %g5
-	add	%o0, %g5, %g5
-	cmp	%o0, %g5
+	sub	%o1, %o3, %o1
+	add	%o0, %o1, %o1
+	cmp	%o0, %o1
 	bgu,pn	%xcc, .L651
 	 mov	0, %o0
-	ldsb	[%o2], %o5
-	mov	%g4, %o0
+	ldsb	[%o2], %g5
+	mov	%g2, %o0
 .L652:
-	add	%g4, 1, %g4
-	ldub	[%g4-1], %g1
+	add	%g2, 1, %g2
+	ldub	[%g2-1], %g1
 	sll	%g1, 24, %g1
 	sra	%g1, 24, %g1
-	cmp	%g1, %o5
+	cmp	%g1, %g5
 	be,pn	%icc, .L647
-	 cmp	%g5, %g4
+	 cmp	%o1, %g2
 .L650:
 	bgeu,a,pt %xcc, .L652
-	 mov	%g4, %o0
+	 mov	%g2, %o0
 	jmp	%o7+8
 	 mov	0, %o0
 .L647:
@@ -2780,13 +2780,13 @@ memmem:
 	be,pn	%xcc, .L651
 	 nop
 .L638:
-	ldub	[%o0+%g1], %g3
-	ldub	[%o2+%g1], %g2
-	cmp	%g3, %g2
+	ldub	[%o0+%g1], %g4
+	ldub	[%o2+%g1], %g3
+	cmp	%g4, %g3
 	be,pt	%icc, .L639
 	 add	%g1, 1, %g1
 	ba,pt	%xcc, .L650
-	 cmp	%g5, %g4
+	 cmp	%o1, %g2
 .L651:
 	jmp	%o7+8
 	 nop

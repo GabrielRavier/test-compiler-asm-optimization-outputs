@@ -4777,15 +4777,15 @@ $L744:
 	rtsd	r15,8 
 	
 	addik	r1,r1,8
+$L750:
+	rtsd	r15, 8
+	
+	addk	r3,r5,r0
 $L759:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
 	addik	r1,r1,8
-$L750:
-	rtsd	r15, 8
-	
-	addk	r3,r5,r0
 $L752:
 	rtsd	r15, 8
 	

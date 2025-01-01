@@ -2918,38 +2918,38 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	mv	a7,a0
+	mv	a5,a0
 	beq	a3,zero,.L665
 	bltu	a1,a3,.L667
 	sub	a1,a1,a3
-	add	t3,a0,a1
-	bgtu	a0,t3,.L667
+	add	t1,a0,a1
+	bgtu	a0,t1,.L667
 	lbu	t4,0(a2)
-	li	t5,1
-	add	t1,a2,a3
+	addi	a3,a3,-1
 .L664:
-	lbu	a5,0(a7)
-	mv	a0,a7
-	addi	a7,a7,1
-	beq	a5,t4,.L670
+	lbu	a4,0(a5)
+	mv	a0,a5
+	addi	a5,a5,1
+	beq	a4,t4,.L670
 .L661:
-	bgeu	t3,a7,.L664
+	bgeu	t1,a5,.L664
 .L667:
 	li	a0,0
 	ret
 .L670:
-	addi	a5,a2,1
-	beq	a3,t5,.L671
-	mv	a4,a7
+	addi	a1,a2,1
+	beq	a3,zero,.L671
+	mv	a4,a5
+	add	t3,a5,a3
 	j	.L662
 .L663:
-	beq	a5,t1,.L672
+	beq	a4,t3,.L672
 .L662:
-	lbu	a6,0(a4)
-	lbu	a1,0(a5)
+	lbu	a7,0(a4)
+	lbu	a6,0(a1)
 	addi	a4,a4,1
-	addi	a5,a5,1
-	beq	a6,a1,.L663
+	addi	a1,a1,1
+	beq	a7,a6,.L663
 	j	.L661
 .L672:
 	ret

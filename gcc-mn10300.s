@@ -2580,25 +2580,25 @@ copysign:
 	.type	memmem, @function
 memmem:
 	movm [d2],(sp)
-	mov (20,sp),r1
-	mov (16,sp),r2
-	cmp 0,r1
+	mov (20,sp),r2
+	mov (16,sp),r3
+	cmp 0,r2
 	beq .L855
-	cmp r1,d1
+	cmp r2,d1
 	bcs .L857
-	sub r1,d1,r3
-	add d0,r3
-	cmp r3,d0
+	sub r2,d1
+	add d0,d1
+	cmp d1,d0
 	bhi .L857
-	movbu (r2),d2
+	movbu (r3),d2
 .L854:
-	movbu (d0),d1
+	movbu (d0),a1
 	mov_add d0, a0, 1, d0
-	extbu d1
-	cmp d2,d1
+	extbu a1
+	cmp d2,a1
 	beq .L862
 .L851:
-	cmp d0,r3
+	cmp d0,d1
 	bcc .L854
 .L857:
 	mov 0,a0
@@ -2606,15 +2606,15 @@ memmem:
 	mov a0,d0
 	retf [d2],4
 .L862:
-	cmp 1,r1
+	cmp 1,r2
 	beq .L849
-	mov 1,d1
+	mov 1,a1
 .L852:
-	movbu (d1,a0),r0
-	movbu (d1,r2),a1
-	add_cmp 1, d1, a1, r0
+	movbu (a1,a0),r1
+	movbu (a1,r3),r0
+	add_cmp 1, a1, r0, r1
 	bne .L851
-	cmp d1,r1
+	cmp a1,r2
 	bne .L852
 	mov a0,d0
 	retf [d2],4

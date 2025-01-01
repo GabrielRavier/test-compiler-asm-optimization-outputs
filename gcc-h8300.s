@@ -3470,57 +3470,62 @@ _memmem:
 	mov.l	er4,@-er7
 	mov.l	er5,@-er7
 	mov.l	er6,@-er7
-	sub.l	#12,er7
-	mov.l	er0,er4
-	mov.l	er2,@(8,er7)
-	mov.l	@(28,er7),er3
-	beq	.L786
-	cmp.l	er3,er1
+	sub.l	#16,er7
+	mov.l	er0,er3
+	mov.l	er2,er0
+	mov.l	er2,@(4,er7)
+	mov.l	@(32,er7),er2
+	beq	.L792
+	cmp.l	er2,er1
 	blo	.L794
-	sub.l	er3,er1
-	add.l	er0,er1
-	mov.l	er1,er5
-	cmp.l	er1,er0
+	sub.l	er2,er1
+	add.l	er3,er1
+	cmp.l	er1,er3
 	bhi	.L794
-	mov.b	@er2,r6l
-	mov.l	er3,er1
-	add.l	er2,er1
+	mov.b	@er0,r6l
+	subs	#1,er2
+	mov.l	er2,@er7
 .L791:
-	mov.b	@er4,r2l
-	mov.l	er4,er0
-	adds	#1,er4
+	mov.b	@er3,r2l
+	mov.l	er3,er0
+	adds	#1,er3
 	cmp.b	r6l,r2l
 	bne	.L788
-	mov.l	@(8,er7),er2
-	adds	#1,er2
-	mov.l	@(28,er7),er3
-	cmp.l	#1,er3
+	mov.l	@(4,er7),er4
+	adds	#1,er4
+	mov.l	@er7,er2
 	bne	.L795
 	bra	.L786
 .L790:
-	adds	#1,er3
 	adds	#1,er2
-	cmp.l	er1,er2
+	adds	#1,er4
+	cmp.l	er5,er2
 	bne	.L789
-	mov.l	@(4,er7),er0
+	mov.l	@(12,er7),er0
 	bra	.L786
 .L795:
-	mov.l	er4,er3
-	mov.l	er0,@(4,er7)
-	mov.l	er4,@er7
+	mov.l	er3,er2
+	mov.l	@er7,er5
+	add.l	er3,er5
+	mov.l	er0,@(12,er7)
+	mov.l	er3,@(8,er7)
 .L789:
-	mov.b	@er3,r0l
-	mov.b	@er2,r4l
-	cmp.b	r4l,r0l
+	mov.b	@er2,r0l
+	mov.b	@er4,r3l
+	cmp.b	r3l,r0l
 	beq	.L790
-	mov.l	@er7,er4
+	mov.l	@(8,er7),er3
 .L788:
-	cmp.l	er4,er5
+	cmp.l	er3,er1
 	bhs	.L791
+	bra	.L794
+.L792:
+	mov.l	er3,er0
+	bra	.L786
 .L794:
 	sub.l	er0,er0
 .L786:
-	add.l	#12,er7
+	add.l	#16,er7
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4

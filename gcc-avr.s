@@ -6479,66 +6479,67 @@ memmem:
 /* frame size = 0 */
 /* stack size = 7 */
 .L__stack_usage = 7
-	mov r26,r24
-	mov r27,r25
-	mov r30,r22
-	mov r31,r23
-	mov r16,r18
-	mov r17,r19
-	cp r16,__zero_reg__
-	cpc r17,__zero_reg__
+	mov r30,r24
+	mov r31,r25
+	mov r26,r22
+	mov r27,r23
+	mov r14,r18
+	mov r15,r19
+	cp r14,__zero_reg__
+	cpc r15,__zero_reg__
 	breq .L680
-	cp r30,r16
-	cpc r31,r17
+	cp r26,r14
+	cpc r27,r15
 	brlo .L688
-	mov r22,r30
-	mov r23,r31
-	sub r22,r16
-	sbc r23,r17
-	add r22,r26
-	adc r23,r27
-	cp r22,r26
-	cpc r23,r27
+	mov r22,r26
+	mov r23,r27
+	sub r22,r14
+	sbc r23,r15
+	add r22,r30
+	adc r23,r31
+	cp r22,r30
+	cpc r23,r31
 	brlo .L688
-	mov r14,r20
-	mov r15,r21
-	mov r30,r14
-	mov r31,r15
-	ld r13,Z+
-	mov r14,r30
-	mov r15,r31
-	mov r20,r26
-	mov r21,r27
-	add r20,r16
-	adc r21,r17
+	mov r16,r20
+	mov r17,r21
+	mov r26,r16
+	mov r27,r17
+	ld r13,X+
+	mov r16,r26
+	mov r17,r27
+	ldi r27,1
+	sub r14,r27
+	sbc r15,__zero_reg__
 	rjmp .L685
 .L682:
-	subi r20,-1
-	sbci r21,-1
-	cp r22,r26
-	cpc r23,r27
+	cp r22,r30
+	cpc r23,r31
 	brlo .L688
 .L685:
-	ld r18,X
-	mov r24,r26
-	mov r25,r27
-	adiw r26,1
+	ld r18,Z
+	mov r24,r30
+	mov r25,r31
+	adiw r30,1
 	cpse r18,r13
 	rjmp .L682
-	cpi r16,1
-	cpc r17,__zero_reg__
+	cp r14,__zero_reg__
+	cpc r15,__zero_reg__
 	breq .L680
-	mov r30,r26
-	mov r31,r27
-	mov r28,r14
-	mov r29,r15
+	mov r28,r16
+	mov r29,r17
+	mov r26,r30
+	mov r27,r31
+	mov r20,r30
+	mov r21,r31
+	add r20,r14
+	adc r21,r15
 .L683:
-	ld r19,Z+
+	ld r19,X+
 	ld r18,Y+
 	cpse r19,r18
 	rjmp .L682
-	cp r30,r20
-	cpc r31,r21
+	cp r26,r20
+	cpc r27,r21
 	brne .L683
 .L680:
 /* epilogue start */

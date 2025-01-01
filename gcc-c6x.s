@@ -3620,38 +3620,35 @@ copysign:
 	.global	memmem
 	.type	memmem, @function
 memmem:
-		cmpgtu	.l2	B6, B4, B5
+		mv	.d1	A4, A3
+	||	cmpgtu	.l2	B6, B4, B5
 	||	sub	.s2	B4, B6, B4
-	||	mv	.d1	A4, A7
 	||	mv	.s1x	B6, A0
 	[!A0]	b	.s1	.L833
-	||	add	.d1x	A7, B6, A9
 	||	cmpeq	.l2	1, B6, B0
-		mv	.l1x	B4, A16
-		add	.d1	A7, A16, A20
-	||	mv	.s1x	B5, A1
-		cmpltu	.l1	A20, A7, A2
-		nop	2
+		add	.d1x	A3, B4, A9
+		mv	.s1x	B5, A1
+	||	cmpltu	.l1	A9, A3, A2
+		nop	3
 	;; condjump to .L833 occurs
 	[A1]	b	.s1	.L841
 		nop	5
 	;; condjump to .L841 occurs
 	[A2]	b	.s1	.L841
-	||[!A2]	ldb	.d1t1	*A6, A17
+	||[!A2]	ldb	.d1t1	*A6, A16
 		nop	5
 	;; condjump to .L841 occurs
 .L838:
-		ldb	.d1t1	*A7, A3
-	||	mv	.l1	A7, A4
-	||	add	.s1	1, A7, A7
+		ldb	.d1t1	*A3, A5
+	||	mv	.l1	A3, A4
+	||	add	.s1	1, A3, A3
 		nop	4
-		cmpeq	.l1	A17, A3, A0
+		cmpeq	.l1	A16, A5, A0
 	[A0]	b	.s1	.L850
 		nop	5
 	;; condjump to .L850 occurs
 .L835:
-		cmpgtu	.l1	A7, A20, A1
-	||	add	.s1	1, A9, A9
+		cmpgtu	.l1	A3, A9, A1
 	[!A1]	b	.s1	.L838
 		nop	5
 	;; condjump to .L838 occurs
@@ -3663,17 +3660,17 @@ memmem:
 	;; return occurs
 .L850:
 	[B0]	b	.s1	.L833
-	||	sub	.d1	A7, 1, A5
-	||	mv	.l1	A6, A19
-		sub	.d1	A9, A7, A1
+	||	sub	.d1	A3, 1, A7
+	||	mv	.l1	A6, A18
+		add	.l1x	-1, B6, A1
 		nop	4
 	;; condjump to .L833 occurs
 .L836:
-		ldbu	.d1t1	*++A5[1], A18
+		ldbu	.d1t1	*++A7[1], A17
 	||	add	.s1	-1, A1, A1
-		ldbu	.d1t1	*++A19[1], A8
+		ldbu	.d1t1	*++A18[1], A8
 		nop	4
-		cmpeq	.l1	A8, A18, A0
+		cmpeq	.l1	A8, A17, A0
 	[!A0]	b	.s1	.L835
 		nop	5
 	;; condjump to .L835 occurs

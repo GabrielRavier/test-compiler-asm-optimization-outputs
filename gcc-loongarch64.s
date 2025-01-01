@@ -3228,23 +3228,23 @@ copysign:
 memmem:
 .LFB99 = .
 	.cfi_startproc
-	or	$r15,$r4,$r0
+	or	$r13,$r4,$r0
 	beqz	$r7,.L641
 	or	$r4,$r0,$r0
 	bltu	$r5,$r7,.L641
-	sub.d	$r16,$r5,$r7
-	add.d	$r16,$r15,$r16
-	bgtu	$r15,$r16,.L641
+	sub.d	$r5,$r5,$r7
+	add.d	$r16,$r13,$r5
+	bgtu	$r13,$r16,.L641
 	ld.b	$r17,$r6,0
 	addi.w	$r18,$r0,1			# 0x1
 	.align	3
 .L646:
-	ld.b	$r12,$r15,0
-	or	$r4,$r15,$r0
-	addi.d	$r15,$r15,1
+	ld.b	$r12,$r13,0
+	or	$r4,$r13,$r0
+	addi.d	$r13,$r13,1
 	beq	$r12,$r17,.L652
 .L643:
-	bgeu	$r16,$r15,.L646
+	bgeu	$r16,$r13,.L646
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
@@ -3256,16 +3256,16 @@ memmem:
 .L645:
 	beq	$r7,$r12,.L654
 .L644:
-	ldx.bu	$r14,$r4,$r12
-	ldx.bu	$r13,$r6,$r12
+	ldx.bu	$r15,$r4,$r12
+	ldx.bu	$r14,$r6,$r12
 	addi.d	$r12,$r12,1
-	beq	$r14,$r13,.L645
+	beq	$r15,$r14,.L645
 	b	.L643
 	.align	5
-.L654:
+.L641:
 	jr	$r1
 	.align	5
-.L641:
+.L654:
 	jr	$r1
 .L653:
 	jr	$r1

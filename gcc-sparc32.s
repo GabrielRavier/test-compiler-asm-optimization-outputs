@@ -2766,41 +2766,41 @@ copysign:
 memmem:
 	cmp	%o3, 0
 	be	.L750
-	 mov	%o0, %g4
+	 mov	%o0, %g2
 	cmp	%o1, %o3
 	blu	.L743
-	 sub	%o1, %o3, %o5
-	add	%o0, %o5, %o5
-	cmp	%o0, %o5
+	 sub	%o1, %o3, %o1
+	add	%o0, %o1, %o1
+	cmp	%o0, %o1
 	bgu	.L750
 	 mov	0, %o0
 	b	.L740
-	 ldsb	[%o2], %o4
+	 ldsb	[%o2], %o5
 .L737:
-	cmp	%o5, %g4
+	cmp	%o1, %g2
 	blu	.L750
 	 mov	0, %o0
 .L740:
-	ldub	[%g4], %g1
-	mov	%g4, %o0
+	ldub	[%g2], %g1
+	mov	%g2, %o0
 	sll	%g1, 24, %g1
 	sra	%g1, 24, %g1
-	cmp	%g1, %o4
+	cmp	%g1, %o5
 	bne	.L737
-	 add	%g4, 1, %g4
+	 add	%g2, 1, %g2
 	cmp	%o3, 1
 	be	.L748
 	 nop
 	mov	1, %g1
-	ldub	[%o0+%g1], %g3
+	ldub	[%o0+%g1], %g4
 .L749:
-	ldub	[%o2+%g1], %g2
-	cmp	%g3, %g2
+	ldub	[%o2+%g1], %g3
+	cmp	%g4, %g3
 	bne	.L737
 	 add	%g1, 1, %g1
 	cmp	%o3, %g1
 	bne,a	.L749
-	 ldub	[%o0+%g1], %g3
+	 ldub	[%o0+%g1], %g4
 .L750:
 	jmp	%o7+8
 	 nop

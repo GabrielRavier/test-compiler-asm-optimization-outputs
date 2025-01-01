@@ -3250,12 +3250,12 @@ memmem:
 .L604:
 	mov gr7, gr8
 	ret
-.L612:
-	setlos #0, gr7
-	mov gr7, gr8
-	ret
 .L610:
 	mov gr8, gr7
+	mov gr7, gr8
+	ret
+.L612:
+	setlos #0, gr7
 	mov gr7, gr8
 	ret
 	.size	memmem, .-memmem

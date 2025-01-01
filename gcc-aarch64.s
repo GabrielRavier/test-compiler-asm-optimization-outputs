@@ -2855,7 +2855,7 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	mov	x6, x0
+	mov	x4, x0
 	cbz	x3, .L585
 	cmp	x1, x3
 	bcc	.L593
@@ -2866,12 +2866,12 @@ memmem:
 	b	.L590
 	.p2align 2,,3
 .L587:
-	cmp	x7, x6
+	cmp	x7, x4
 	bcc	.L593
 .L590:
-	ldrb	w1, [x6]
-	mov	x0, x6
-	add	x6, x6, 1
+	ldrb	w1, [x4]
+	mov	x0, x4
+	add	x4, x4, 1
 	cmp	w1, w8
 	bne	.L587
 	cmp	x3, 1
@@ -2879,10 +2879,10 @@ memmem:
 	mov	x1, 1
 	.p2align 3,,7
 .L588:
-	ldrb	w5, [x0, x1]
-	ldrb	w4, [x2, x1]
+	ldrb	w6, [x0, x1]
+	ldrb	w5, [x2, x1]
 	add	x1, x1, 1
-	cmp	w5, w4
+	cmp	w6, w5
 	bne	.L587
 	cmp	x3, x1
 	bne	.L588

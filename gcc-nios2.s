@@ -2628,9 +2628,8 @@ memmem:
 	sub	r5, r5, r7
 	add	r10, r4, r5
 	bltu	r10, r4, .L706
-	ldb	r11, 0(r6)
-	cmpnei	r12, r7, 1
-	add	r9, r6, r7
+	ldb	r12, 0(r6)
+	addi	r7, r7, -1
 .L703:
 	ldbu	r3, 0(r4)
 	mov	r2, r4
@@ -2638,25 +2637,26 @@ memmem:
 	andi	r3, r3, 255
 	xori	r3, r3, 128
 	addi	r3, r3, -128
-	beq	r3, r11, .L709
+	beq	r3, r12, .L709
 .L700:
 	bgeu	r10, r4, .L703
 .L706:
 	mov	r2, zero
 	ret
 .L709:
-	addi	r3, r6, 1
-	beq	r12, zero, .L710
-	mov	r5, r4
+	addi	r5, r6, 1
+	beq	r7, zero, .L710
+	mov	r3, r4
+	add	r11, r4, r7
 	br	.L701
 .L702:
-	beq	r3, r9, .L711
+	beq	r3, r11, .L711
 .L701:
+	ldbu	r9, 0(r3)
 	ldbu	r8, 0(r5)
-	ldbu	r7, 0(r3)
-	addi	r5, r5, 1
 	addi	r3, r3, 1
-	beq	r8, r7, .L702
+	addi	r5, r5, 1
+	beq	r9, r8, .L702
 	br	.L700
 .L711:
 	ret

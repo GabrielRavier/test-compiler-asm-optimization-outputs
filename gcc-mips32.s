@@ -4310,19 +4310,19 @@ memmem:
 	bne	$2,$0,$L735
 	subu	$5,$5,$7
 
-	addu	$11,$4,$5
-	sltu	$2,$11,$4
+	addu	$10,$4,$5
+	sltu	$2,$10,$4
 	bne	$2,$0,$L736
-	li	$13,1			# 0x1
+	addiu	$7,$7,-1
 
 	lb	$12,0($6)
 	.option	pic0
 	b	$L733
-	.option	pic2
-	addu	$10,$6,$7
+	nop
 
+	.option	pic2
 $L730:
-	sltu	$2,$11,$4
+	sltu	$2,$10,$4
 	bne	$2,$0,$L735
 	nop
 
@@ -4332,31 +4332,32 @@ $L733:
 	bne	$3,$12,$L730
 	addiu	$4,$4,1
 
-	beq	$7,$13,$L741
-	addiu	$3,$6,1
+	beq	$7,$0,$L741
+	addiu	$5,$6,1
 
-	move	$5,$4
+	move	$3,$4
+	addu	$11,$4,$7
 $L731:
-	lbu	$8,0($3)
-	lbu	$9,0($5)
+	lbu	$9,0($3)
+	lbu	$8,0($5)
 	nop
 	bne	$9,$8,$L730
 	addiu	$3,$3,1
 
-	bne	$3,$10,$L731
+	bne	$3,$11,$L731
 	addiu	$5,$5,1
 
 $L741:
 	jr	$31
 	nop
 
-$L735:
-	jr	$31
-	move	$2,$0
-
 $L734:
 	jr	$31
 	move	$2,$4
+
+$L735:
+	jr	$31
+	move	$2,$0
 
 $L736:
 	jr	$31

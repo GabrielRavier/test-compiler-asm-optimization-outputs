@@ -3887,46 +3887,45 @@ $LFB99:
 	cpys $f31,$f31,$f31
 	mov $31,$0
 	bne $1,$L619
-	subq $17,$19,$7
-	addq $16,$7,$7
-	cmpule $16,$7,$1
+	subq $17,$19,$17
+	addq $16,$17,$6
+	cmpule $16,$6,$1
 	beq $1,$L619
 	lda $22,1($18)
-	ldq_u $8,0($18)
-	cmpeq $19,1,$23
-	addq $18,$19,$6
-	extqh $8,$22,$8
-	cpys $f31,$f31,$f31
-	sra $8,56,$8
+	ldq_u $7,0($18)
+	lda $19,-1($19)
+	extqh $7,$22,$7
+	sra $7,56,$7
 	br $31,$L624
 	.align 4
 $L621:
-	cmpult $7,$5,$5
-	bne $5,$L631
+	cmpult $6,$3,$3
+	bne $3,$L631
 $L624:
-	lda $5,1($16)
+	lda $3,1($16)
 	ldq_u $1,0($16)
 	mov $16,$0
-	mov $5,$16
-	extqh $1,$5,$1
+	mov $3,$16
+	extqh $1,$3,$1
 	sra $1,56,$1
-	cmpeq $1,$8,$1
+	cmpeq $1,$7,$1
 	beq $1,$L621
-	mov $22,$2
-	bne $23,$L632
-	mov $5,$4
+	mov $22,$4
+	beq $19,$L632
+	mov $3,$2
+	addq $3,$19,$8
 	.align 4
 $L622:
-	ldq_u $3,0($2)
-	ldq_u $1,0($4)
-	extbl $3,$2,$3
-	extbl $1,$4,$1
+	ldq_u $1,0($2)
+	ldq_u $5,0($4)
+	extbl $1,$2,$1
+	extbl $5,$4,$5
 	lda $2,1($2)
-	cmpeq $1,$3,$1
-	cmpeq $2,$6,$3
+	cmpeq $1,$5,$1
+	cmpeq $2,$8,$5
 	beq $1,$L621
 	lda $4,1($4)
-	beq $3,$L622
+	beq $5,$L622
 	ret $31,($26),1
 	.align 4
 $L631:
