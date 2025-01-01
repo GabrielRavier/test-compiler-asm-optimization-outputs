@@ -21,6 +21,8 @@ LFB2:
 	test	eax, eax
 	je	L3
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L4:
 	movzx	ecx, BYTE PTR [edx-1+eax]
 	mov	BYTE PTR [ebx-1+eax], cl
@@ -47,6 +49,8 @@ L2:
 	lea	esi, [eax+ebx]
 	mov	ecx, ebx
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L5:
 	add	edx, 1
 	add	ecx, 1
@@ -76,6 +80,8 @@ LFB3:
 	test	ecx, ecx
 	je	L11
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L10:
 	movzx	edx, BYTE PTR [ebx]
 	mov	BYTE PTR [eax], dl
@@ -114,6 +120,8 @@ LFB4:
 	test	edx, edx
 	je	L19
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L18:
 	movzx	ecx, BYTE PTR [eax]
 	cmp	ecx, ebx
@@ -146,6 +154,8 @@ LFB5:
 	test	edx, edx
 	je	L27
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L26:
 	movzx	ebx, BYTE PTR [ecx]
 	cmp	BYTE PTR [eax], bl
@@ -217,6 +227,8 @@ LFB7:
 	lea	eax, [ebx-1+eax]
 	sub	ebx, 1
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L37:
 	cmp	eax, ebx
 	je	L41
@@ -265,6 +277,8 @@ LFB8:
 	test	esi, 1
 	jne	L49
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L44:
 	mov	BYTE PTR [eax], cl
 	mov	BYTE PTR [eax+1], cl
@@ -305,6 +319,8 @@ LFB9:
 	test	cl, cl
 	je	L52
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L53:
 	add	edx, 1
 	add	eax, 1
@@ -328,6 +344,8 @@ LFB10:
 	test	dl, dl
 	je	L61
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L56:
 	cmp	edx, ecx
 	je	L55
@@ -353,6 +371,8 @@ LFB11:
 	mov	eax, DWORD PTR [esp+8]
 	mov	ebx, DWORD PTR [esp+12]
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L64:
 	movsx	ecx, BYTE PTR [eax]
 	cmp	ecx, ebx
@@ -390,6 +410,8 @@ LFB12:
 	jne	L68
 	mov	edx, 1
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L69:
 	movzx	eax, BYTE PTR [ebx+edx]
 	movzx	ecx, BYTE PTR [esi+edx]
@@ -419,6 +441,8 @@ LFB13:
 	cmp	BYTE PTR [edx], 0
 	je	L76
 	mov	eax, edx
+	.p2align 3
+	.p2align 4
 	.p2align 3
 L75:
 	add	eax, 1
@@ -463,6 +487,8 @@ LFB14:
 	je	L85
 	mov	edx, esi
 	lea	edi, [esi-1+ebx]
+	.p2align 4
+	.p2align 3
 L81:
 	movzx	ebx, BYTE PTR [edx]
 	test	bl, bl
@@ -519,6 +545,8 @@ LFB15:
 	and	ebx, -2
 	add	ebx, eax
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L90:
 	movzx	ecx, BYTE PTR [eax+1]
 	mov	BYTE PTR [edx], cl
@@ -1214,6 +1242,8 @@ LFB39:
 	je	L197
 	mov	edx, OFFSET FLAT:_s.0
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L196:
 	mov	ecx, eax
 	and	ecx, 63
@@ -1347,6 +1377,8 @@ LFB44:
 	mov	ebx, DWORD PTR [esp+68]
 	mov	esi, 0
 	mov	DWORD PTR [esp+24], edx
+	.p2align 4
+	.p2align 3
 L211:
 	mov	DWORD PTR [esp+28], ebx
 	mov	DWORD PTR [esp+4], ebx
@@ -1424,6 +1456,8 @@ LFB45:
 	je	L216
 	mov	ebx, DWORD PTR [esp+68]
 	mov	esi, 0
+	.p2align 4
+	.p2align 3
 L218:
 	mov	DWORD PTR [esp+28], ebx
 	mov	DWORD PTR [esp+4], ebx
@@ -1522,6 +1556,8 @@ L227:
 	cmp	edx, 9
 	ja	L229
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L228:
 	lea	eax, [eax+eax*4]
 	add	eax, eax
@@ -1607,6 +1643,8 @@ L240:
 	cmp	edx, 9
 	ja	L242
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L241:
 	lea	eax, [eax+eax*4]
 	add	eax, eax
@@ -1697,6 +1735,8 @@ L253:
 	cmp	esi, 9
 	ja	L255
 	.p2align 6
+	.p2align 4
+	.p2align 3
 L254:
 	mov	esi, eax
 	mov	edi, edx
@@ -1766,6 +1806,8 @@ LFB50:
 	mov	ebp, DWORD PTR [esp+60]
 	test	ebx, ebx
 	jne	L265
+	.p2align 4
+	.p2align 3
 L262:
 	mov	esi, 0
 L261:
@@ -2095,6 +2137,8 @@ LFB59:
 	test	dx, dx
 	je	L290
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L291:
 	add	eax, 2
 	movzx	edx, WORD PTR [eax]
@@ -2143,6 +2187,8 @@ LFB60:
 	je	L296
 	mov	DWORD PTR [esp], 2
 	.p2align 6
+	.p2align 4
+	.p2align 3
 L297:
 	mov	eax, DWORD PTR [esp]
 	movzx	edx, WORD PTR [edi+eax]
@@ -2197,6 +2243,8 @@ LFB61:
 	mov	ebx, DWORD PTR [esp+12]
 	mov	eax, 0
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L304:
 	movzx	edx, WORD PTR [ebx+eax]
 	mov	WORD PTR [ecx+eax], dx
@@ -2221,6 +2269,8 @@ LFB62:
 	je	L310
 	mov	eax, edx
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L309:
 	add	eax, 2
 	cmp	WORD PTR [eax], 0
@@ -2259,6 +2309,8 @@ LFB63:
 	mov	ebp, DWORD PTR [esp+28]
 	test	ebp, ebp
 	je	L314
+	.p2align 4
+	.p2align 3
 L313:
 	movzx	ebx, WORD PTR [ecx]
 	movzx	esi, WORD PTR [edx]
@@ -2315,6 +2367,8 @@ LFB64:
 	test	edx, edx
 	je	L324
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L323:
 	cmp	WORD PTR [eax], cx
 	je	L324
@@ -2343,6 +2397,8 @@ LFB65:
 	test	eax, eax
 	je	L331
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L330:
 	movzx	ebx, WORD PTR [edx]
 	cmp	WORD PTR [ecx], bx
@@ -2429,6 +2485,8 @@ LFB67:
 	test	esi, esi
 	je	L342
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L344:
 	add	edx, 2
 	add	eax, 2
@@ -2445,6 +2503,8 @@ L343:
 	test	esi, esi
 	je	L342
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L345:
 	movzx	ecx, WORD PTR [edx+eax*2]
 	mov	WORD PTR [ebx+eax*2], cx
@@ -2479,6 +2539,8 @@ LFB68:
 	lea	eax, [edx-1]
 	mov	edx, ebx
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L353:
 	add	edx, 2
 	mov	WORD PTR [edx-2], cx
@@ -2510,6 +2572,8 @@ LFB69:
 	test	eax, eax
 	je	L356
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L359:
 	movzx	ebx, BYTE PTR [edx-1+eax]
 	mov	BYTE PTR [ecx-1+eax], bl
@@ -2530,6 +2594,8 @@ L357:
 	je	L356
 	add	eax, edx
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L360:
 	add	edx, 1
 	add	ecx, 1
@@ -2853,6 +2919,8 @@ LFB83:
 	mov	edx, DWORD PTR [esp+4]
 	mov	eax, 0
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L387:
 	bt	edx, eax
 	jc	L389
@@ -2882,6 +2950,8 @@ LFB84:
 	jne	L390
 	mov	edx, 1
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L392:
 	sar	eax
 	add	edx, 1
@@ -3155,6 +3225,8 @@ LFB92:
 	add	ebx, eax
 	mov	edx, esi
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L439:
 	add	eax, 1
 	add	edx, 1
@@ -3199,6 +3271,8 @@ LFB93:
 	test	ebx, ebx
 	je	L444
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L443:
 	movzx	edx, BYTE PTR [esi]
 	mov	BYTE PTR [eax], dl
@@ -3279,6 +3353,8 @@ LFB95:
 L459:
 	mov	eax, esi
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L462:
 	movzx	edx, BYTE PTR [eax]
 	test	dl, dl
@@ -3327,6 +3403,8 @@ LFB96:
 	mov	esi, DWORD PTR [esp+16]
 	mov	ecx, 0
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L470:
 	movsx	ebx, BYTE PTR [eax]
 	cmp	ebx, esi
@@ -3374,6 +3452,8 @@ LFB97:
 	mov	edi, eax
 	mov	eax, DWORD PTR [esp+36]
 	movsx	ebp, BYTE PTR [eax]
+	.p2align 4
+	.p2align 3
 L476:
 	mov	DWORD PTR [esp+4], ebp
 	mov	DWORD PTR [esp], esi
@@ -3587,6 +3667,8 @@ L505:
 	fstp	st(1)
 	jb	L521
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L509:
 	add	eax, 1
 	fmul	DWORD PTR LC9
@@ -3630,6 +3712,8 @@ L514:
 L523:
 	mov	eax, 0
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L511:
 	sub	eax, 1
 	fadd	st, st(0)
@@ -3667,6 +3751,8 @@ LFB102:
 	mov	DWORD PTR [esp], 0
 	mov	DWORD PTR [esp+4], 0
 	.p2align 6
+	.p2align 4
+	.p2align 3
 L526:
 	mov	ecx, eax
 	and	ecx, 1
@@ -3724,6 +3810,8 @@ LFB103:
 	mov	edx, 1
 	cmp	eax, ecx
 	jnb	L532
+	.p2align 4
+	.p2align 3
 L531:
 	test	eax, eax
 	js	L532
@@ -3882,6 +3970,8 @@ LFB106:
 	je	L562
 	mov	ebx, 0
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L561:
 	mov	eax, edx
 	and	eax, 1
@@ -3942,6 +4032,8 @@ LFB107:
 	test	edi, edi
 	je	L565
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L567:
 	movzx	ecx, BYTE PTR [ebx+eax]
 	mov	BYTE PTR [edx+eax], cl
@@ -3960,6 +4052,8 @@ L566:
 	mov	DWORD PTR [esp+4], ebp
 	mov	DWORD PTR [esp+40], edi
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L570:
 	mov	edi, DWORD PTR [eax]
 	mov	ebp, DWORD PTR [eax+4]
@@ -3978,6 +4072,8 @@ L569:
 	add	edx, ebp
 	add	ebx, edi
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L571:
 	movzx	ecx, BYTE PTR [eax]
 	mov	BYTE PTR [edx], cl
@@ -4035,6 +4131,8 @@ LFB108:
 	test	edi, edi
 	je	L578
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L580:
 	movzx	edx, BYTE PTR [ebx+eax]
 	mov	BYTE PTR [esi+eax], dl
@@ -4051,6 +4149,8 @@ L579:
 	mov	edx, esi
 	lea	ebp, [ebx+ecx*2]
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L583:
 	movzx	ecx, WORD PTR [eax]
 	mov	WORD PTR [edx], cx
@@ -4113,6 +4213,8 @@ LFB109:
 	test	edi, edi
 	je	L588
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L590:
 	movzx	ecx, BYTE PTR [ebx+eax]
 	mov	BYTE PTR [edx+eax], cl
@@ -4130,6 +4232,8 @@ L589:
 	lea	esi, [ebx+esi*4]
 	mov	DWORD PTR [esp+20], edx
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L593:
 	mov	edx, DWORD PTR [eax]
 	mov	DWORD PTR [ecx], edx
@@ -4145,6 +4249,8 @@ L592:
 	add	edx, ebp
 	add	ebx, edi
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L594:
 	movzx	ecx, BYTE PTR [eax]
 	mov	BYTE PTR [edx], cl
@@ -4295,6 +4401,8 @@ LFB116:
 	movzx	ebx, WORD PTR [esp+8]
 	mov	ecx, 15
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L617:
 	mov	edx, ecx
 	sub	edx, eax
@@ -4319,6 +4427,8 @@ LFB117:
 	mov	eax, 0
 	movzx	edx, WORD PTR [esp+4]
 	.p2align 4
+	.p2align 4
+	.p2align 3
 L622:
 	bt	edx, eax
 	jc	L620
@@ -4385,6 +4495,8 @@ LFB119:
 	mov	ecx, 0
 	movzx	ebx, WORD PTR [esp+8]
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L634:
 	mov	edx, ebx
 	sar	edx, cl
@@ -4413,6 +4525,8 @@ LFB120:
 	mov	ecx, 0
 	movzx	ebx, WORD PTR [esp+8]
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L638:
 	mov	eax, ebx
 	sar	eax, cl
@@ -4443,6 +4557,8 @@ LFB121:
 	je	L644
 	mov	ebx, 0
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L643:
 	mov	eax, edx
 	and	eax, 1
@@ -4485,6 +4601,8 @@ LFB122:
 	je	L651
 	mov	ebx, 0
 	.p2align 5
+	.p2align 4
+	.p2align 3
 L649:
 	mov	eax, edx
 	and	eax, 1
@@ -4523,6 +4641,8 @@ LFB123:
 	mov	edx, 1
 	cmp	eax, ecx
 	jnb	L656
+	.p2align 4
+	.p2align 3
 L655:
 	test	eax, eax
 	js	L656
@@ -4699,6 +4819,8 @@ L683:
 	mov	ebx, 1
 	mov	esi, 0
 	.p2align 6
+	.p2align 4
+	.p2align 3
 L685:
 	mov	eax, edx
 	and	eax, 1
@@ -4858,6 +4980,8 @@ LFB131:
 	mov	edx, 1
 	cmp	ax, bx
 	jnb	L711
+	.p2align 4
+	.p2align 3
 L710:
 	test	ax, ax
 	js	L711
@@ -4911,6 +5035,8 @@ LFB132:
 	mov	edx, 1
 	cmp	eax, ecx
 	jnb	L728
+	.p2align 4
+	.p2align 3
 L727:
 	test	eax, eax
 	js	L728

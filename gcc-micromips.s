@@ -70,6 +70,7 @@ memmove:
 	beqz	$6,.L14
 	daddu	$3,$4,$6
 
+	.align	3
 .L8:
 	daddiu	$5,$5,-1
 	daddiu	$3,$3,-1
@@ -88,6 +89,7 @@ memmove:
 	daddu	$6,$4,$6
 
 	move	$3,$4
+	.align	3
 .L9:
 	daddiu	$5,$5,1
 	daddiu	$3,$3,1
@@ -117,6 +119,7 @@ memccpy:
 	beqz	$7,.L17
 	andi	$6,$6,0x00ff
 
+	.align	3
 .L16:
 	lbu	$2,0($5)
 	beq	$2,$6,.L17
@@ -158,6 +161,7 @@ memchr:
 	move	$2,$4
 
 	andi	$5,$5,0x00ff
+	.align	3
 .L25:
 	lbu	$2,0($4)
 	beq	$2,$5,.L33
@@ -195,6 +199,7 @@ memcmp:
 	.set	noreorder
 	.set	nomacro
 	beqzc	$6,.L36
+	.align	3
 .L35:
 	lbu	$3,0($4)
 	lbu	$2,0($5)
@@ -277,6 +282,7 @@ memrchr:
 	daddu	$6,$4,$6
 	daddiu	$4,$4,-1
 	andi	$5,$5,0x00ff
+	.align	3
 .L46:
 	beq	$6,$4,.L52
 	move	$2,$0
@@ -312,6 +318,7 @@ memset:
 
 	daddu	$6,$4,$6
 	move	$3,$4
+	.align	3
 .L55:
 	sb	$5,0($3)
 	daddiu	$3,$3,1
@@ -342,6 +349,7 @@ stpcpy:
 	beqz	$3,.L64
 	sb	$3,0($4)
 
+	.align	3
 .L61:
 	daddiu	$5,$5,1
 	daddiu	$2,$2,1
@@ -373,6 +381,7 @@ strchrnul:
 	andi	$5,$5,0x00ff
 
 	andi	$3,$3,0x00ff
+	.align	3
 .L75:
 	beq	$3,$5,.L74
 	nop
@@ -412,6 +421,7 @@ strchr:
 	.set	noreorder
 	.set	nomacro
 	move	$2,$4
+	.align	3
 .L78:
 	lb	$3,0($2)
 	beq	$3,$5,.L81
@@ -445,6 +455,7 @@ strcmp:
 	bne	$2,$3,.L84
 	nop
 
+	.align	3
 .L83:
 	beqz	$2,.L88
 	andi	$2,$2,0x00ff
@@ -484,6 +495,7 @@ strlen:
 	beqz	$2,.L95
 	move	$2,$4
 
+	.align	3
 .L91:
 	daddiu	$2,$2,1
 	lb	$5,0($2)
@@ -516,6 +528,7 @@ strncmp:
 	beqzc	$2,.L98
 	daddiu	$6,$6,-1
 	daddu	$6,$4,$6
+	.align	3
 .L99:
 	lbu	$3,0($5)
 	beqzc	$3,.L98
@@ -563,6 +576,7 @@ swab:
 
 	and	$6,$6,$2
 	daddu	$3,$4,$6
+	.align	3
 .L105:
 	lbu	$2,1($4)
 	sb	$2,0($5)
@@ -1585,6 +1599,7 @@ l64a:
 	daddiu	$4,$4,%got_ofst(s.0)
 	ld	$5,%got_page(digits)($6)
 	daddiu	$5,$5,%got_ofst(digits)
+	.align	3
 .L226:
 	andi	$3,$2,0x3f
 	daddu	$3,$3,$5
@@ -1770,6 +1785,7 @@ lsearch:
 	move	$20,$8
 	move	$16,$5
 	move	$17,$0
+	.align	3
 .L248:
 	move	$21,$16
 	move	$5,$16
@@ -1844,6 +1860,7 @@ lfind:
 	move	$19,$8
 	move	$16,$5
 	move	$17,$0
+	.align	3
 .L254:
 	move	$22,$16
 	move	$5,$16
@@ -1957,6 +1974,7 @@ atoi:
 	beqz	$4,.L268
 	sll	$4,$2,2
 
+	.align	3
 .L275:
 	addu	$4,$4,$2
 	sll	$4,$4,1
@@ -2046,6 +2064,7 @@ atol:
 	move	$5,$0
 
 	dsll	$4,$5,2
+	.align	3
 .L289:
 	daddu	$4,$4,$5
 	dsll	$4,$4,1
@@ -2132,6 +2151,7 @@ atoll:
 	move	$5,$0
 
 	dsll	$4,$5,2
+	.align	3
 .L303:
 	daddu	$4,$4,$5
 	dsll	$4,$4,1
@@ -2522,6 +2542,7 @@ wcschr:
 	beqz	$3,.L342
 	move	$2,$4
 
+	.align	3
 .L341:
 	beq	$5,$3,.L348
 	nop
@@ -2561,6 +2582,7 @@ wcscmp:
 	bne	$2,$3,.L351
 	nop
 
+	.align	3
 .L350:
 	beqzc	$2,.L351
 	beqz	$3,.L351
@@ -2602,6 +2624,7 @@ wcscpy:
 	.set	nomacro
 	move	$2,$4
 	move	$3,$4
+	.align	3
 .L358:
 	daddiu	$5,$5,4
 	daddiu	$3,$3,4
@@ -2631,6 +2654,7 @@ wcslen:
 	beqz	$2,.L362
 	move	$2,$4
 
+	.align	3
 .L363:
 	daddiu	$2,$2,4
 	lw	$3,0($2)
@@ -2658,6 +2682,7 @@ wcsncmp:
 	.set	noreorder
 	.set	nomacro
 	beqzc	$6,.L369
+	.align	3
 .L368:
 	lw	$2,0($4)
 	lw	$3,0($5)
@@ -2709,6 +2734,7 @@ wmemchr:
 	beqz	$6,.L378
 	move	$2,$4
 
+	.align	3
 .L377:
 	lw	$2,0($4)
 	beq	$2,$5,.L384
@@ -2746,6 +2772,7 @@ wmemcmp:
 	.set	noreorder
 	.set	nomacro
 	beqzc	$6,.L387
+	.align	3
 .L386:
 	lw	$3,0($4)
 	lw	$2,0($5)
@@ -2844,6 +2871,7 @@ wmemmove:
 	beqz	$6,.L409
 	li	$8,-1			# 0xffffffffffffffff
 
+	.align	3
 .L400:
 	daddiu	$5,$5,4
 	daddiu	$3,$3,4
@@ -2861,6 +2889,7 @@ wmemmove:
 
 	dsll	$3,$3,2
 	li	$7,-4			# 0xfffffffffffffffc
+	.align	3
 .L401:
 	daddu	$4,$5,$3
 	lw	$6,0($4)
@@ -2893,6 +2922,7 @@ wmemset:
 	daddiu	$3,$6,-1
 	move	$6,$4
 	li	$7,-1			# 0xffffffffffffffff
+	.align	3
 .L412:
 	daddiu	$6,$6,4
 	daddiu	$3,$3,-1
@@ -2925,6 +2955,7 @@ bcopy:
 	beqz	$6,.L425
 	daddu	$5,$5,$6
 
+	.align	3
 .L419:
 	daddiu	$2,$2,-1
 	daddiu	$5,$5,-1
@@ -2942,6 +2973,7 @@ bcopy:
 	beqz	$6,.L425
 	daddu	$6,$4,$6
 
+	.align	3
 .L420:
 	daddiu	$4,$4,1
 	daddiu	$5,$5,1
@@ -3296,6 +3328,7 @@ ffs:
 	move	$2,$0
 	li	$5,32			# 0x20
 	srl	$3,$4,$2
+	.align	3
 .L459:
 	andi	$3,$3,0x1
 	bnezc	$3,.L458
@@ -3334,6 +3367,7 @@ libiberty_ffs:
 	andi	$2,$4,0x1
 	bnezc	$2,.L466
 	li	$2,1			# 0x1
+	.align	3
 .L462:
 	sra	$4,$4,1
 	andi	$3,$4,0x1
@@ -3800,6 +3834,7 @@ memxor:
 
 	daddu	$6,$5,$6
 	move	$3,$4
+	.align	3
 .L528:
 	daddiu	$5,$5,1
 	daddiu	$3,$3,1
@@ -3847,6 +3882,7 @@ strncat:
 	beqz	$16,.L534
 	daddu	$2,$18,$2
 
+	.align	3
 .L533:
 	lb	$3,0($17)
 	beqz	$3,.L534
@@ -3930,6 +3966,7 @@ strpbrk:
 	move	$2,$4
 
 	move	$3,$5
+	.align	3
 .L555:
 	lb	$6,0($3)
 	beqzc	$6,.L561
@@ -4029,6 +4066,7 @@ strstr:
 	lb	$20,0($17)
 	ld	$19,%got_disp(strchr)($28)
 	ld	$21,%got_disp(strncmp)($28)
+	.align	3
 .L572:
 	move	$5,$20
 	move	$25,$19
@@ -4286,6 +4324,7 @@ frexp:
 
 	ld	$4,%got_page(.LC9)($6)
 	ldc1	$f1,%got_ofst(.LC9)($4)
+	.align	3
 .L609:
 	addiu	$2,$2,1
 	ldc1	$f2,0($sp)
@@ -4335,6 +4374,7 @@ frexp:
 
 	ld	$4,%got_page(.LC9)($6)
 	ldc1	$f0,%got_ofst(.LC9)($4)
+	.align	3
 .L612:
 	addiu	$2,$2,-1
 	ldc1	$f1,0($sp)
@@ -4370,6 +4410,7 @@ __muldi3:
 	.set	nomacro
 	beqzc	$4,.L631
 	move	$2,$0
+	.align	3
 .L630:
 	andi	$3,$4,0x1
 	dsubu	$3,$0,$3
@@ -4408,6 +4449,7 @@ udivmodsi4:
 
 	li	$2,32			# 0x20
 	li	$3,1			# 0x1
+	.align	3
 .L635:
 	bltz	$5,.L636
 	nop
@@ -4526,6 +4568,7 @@ __mulsi3:
 	.set	nomacro
 	beqzc	$4,.L659
 	move	$2,$0
+	.align	3
 .L658:
 	andi	$3,$4,0x1
 	subu	$3,$0,$3
@@ -4574,6 +4617,7 @@ __cmovd:
 	dext	$3,$3,0,32
 	daddu	$2,$5,$3
 	daddu	$4,$4,$3
+	.align	3
 .L669:
 	lb	$3,0($2)
 	sb	$3,0($4)
@@ -4592,6 +4636,7 @@ __cmovd:
 	move	$7,$4
 	dsll	$9,$9,3
 	daddu	$9,$9,$5
+	.align	3
 .L667:
 	ld	$8,0($3)
 	sd	$8,0($7)
@@ -4605,6 +4650,7 @@ __cmovd:
 	dext	$2,$2,0,32
 
 	daddu	$3,$5,$2
+	.align	3
 .L675:
 	lb	$7,0($3)
 	daddu	$3,$4,$2
@@ -4647,6 +4693,7 @@ __cmovh:
 	dext	$2,$2,0,32
 	daddu	$3,$5,$2
 	daddu	$2,$4,$2
+	.align	3
 .L684:
 	lb	$4,0($3)
 	sb	$4,0($2)
@@ -4665,6 +4712,7 @@ __cmovh:
 	move	$3,$4
 	dsll	$8,$8,1
 	daddu	$8,$8,$5
+	.align	3
 .L683:
 	lh	$7,0($2)
 	sh	$7,0($3)
@@ -4717,6 +4765,7 @@ __cmovw:
 	dext	$3,$3,0,32
 	daddu	$2,$5,$3
 	daddu	$4,$4,$3
+	.align	3
 .L698:
 	lb	$3,0($2)
 	sb	$3,0($4)
@@ -4735,6 +4784,7 @@ __cmovw:
 	move	$7,$4
 	dsll	$9,$9,2
 	daddu	$9,$9,$5
+	.align	3
 .L696:
 	lw	$8,0($3)
 	sw	$8,0($7)
@@ -4748,6 +4798,7 @@ __cmovw:
 	dext	$2,$2,0,32
 
 	daddu	$3,$5,$2
+	.align	3
 .L704:
 	lb	$7,0($3)
 	daddu	$3,$4,$2
@@ -4934,6 +4985,7 @@ __clzhi2:
 	li	$5,15			# 0xf
 	li	$6,16			# 0x10
 	subu	$3,$5,$2
+	.align	3
 .L728:
 	sra	$3,$4,$3
 	andi	$3,$3,0x1
@@ -4964,6 +5016,7 @@ __ctzhi2:
 	move	$2,$0
 	li	$5,16			# 0x10
 	sra	$3,$4,$2
+	.align	3
 .L735:
 	andi	$3,$3,0x1
 	bnezc	$3,.L736
@@ -5031,6 +5084,7 @@ __parityhi2:
 	move	$2,$0
 	move	$3,$0
 	li	$6,16			# 0x10
+	.align	3
 .L746:
 	sra	$5,$4,$3
 	andi	$5,$5,0x1
@@ -5061,6 +5115,7 @@ __popcounthi2:
 	move	$2,$0
 	move	$3,$0
 	li	$6,16			# 0x10
+	.align	3
 .L750:
 	sra	$5,$4,$3
 	andi	$5,$5,0x1
@@ -5088,6 +5143,7 @@ __mulsi3_iq2000:
 	.set	nomacro
 	beqzc	$4,.L756
 	move	$2,$0
+	.align	3
 .L755:
 	andi	$3,$4,0x1
 	subu	$3,$0,$3
@@ -5123,6 +5179,7 @@ __mulsi3_lm32:
 	beqzc	$4,.L762
 	beqzc	$5,.L763
 	move	$2,$0
+	.align	3
 .L761:
 	andi	$3,$5,0x1
 	subu	$3,$0,$3
@@ -5166,6 +5223,7 @@ __udivmodsi4:
 
 	li	$2,32			# 0x20
 	li	$3,1			# 0x1
+	.align	3
 .L767:
 	bltz	$5,.L768
 	nop
@@ -5339,6 +5397,7 @@ __mulhi3:
 	li	$6,32			# 0x20
 	move	$2,$0
 	andi	$3,$5,0x1
+	.align	3
 .L806:
 	subu	$3,$0,$3
 	and	$3,$3,$4
@@ -5506,6 +5565,7 @@ __udivmodhi4:
 	li	$4,16			# 0x10
 	li	$3,1			# 0x1
 	seh	$7,$5
+	.align	3
 .L839:
 	bltz	$7,.L826
 	nop
@@ -5580,6 +5640,7 @@ __udivmodsi4_libgcc:
 	li	$3,1			# 0x1
 	li	$9,1			# 0x1
 	dsll	$9,$9,31
+	.align	3
 .L842:
 	and	$7,$5,$9
 	bnezc	$7,.L843
@@ -5591,6 +5652,7 @@ __udivmodsi4_libgcc:
 	addiu	$4,$4,-1
 	bnezc	$4,.L842
 	move	$3,$7
+	.align	3
 .L843:
 	beqz	$3,.L851
 	move	$7,$0

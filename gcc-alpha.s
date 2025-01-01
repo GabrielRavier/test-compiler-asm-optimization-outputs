@@ -54,6 +54,7 @@ $LFB2:
 	addq $17,$18,$17
 	addq $16,$18,$2
 	beq $18,$L5
+	.align 4
 $L6:
 	lda $17,-1($17)
 	lda $2,-1($2)
@@ -76,6 +77,7 @@ $L4:
 	beq $18,$L5
 	addq $16,$18,$18
 	mov $16,$2
+	.align 4
 $L7:
 	lda $17,1($17)
 	lda $2,1($2)
@@ -107,6 +109,7 @@ $LFB3:
 	.prologue 0
 	and $18,0xff,$18
 	beq $19,$L12
+	.align 4
 $L11:
 	ldq_u $1,0($17)
 	extbl $1,$17,$1
@@ -142,6 +145,7 @@ $LFB4:
 	and $17,0xff,$17
 	mov $16,$0
 	beq $18,$L19
+	.align 4
 $L18:
 	ldq_u $1,0($16)
 	extbl $1,$16,$1
@@ -172,6 +176,7 @@ $LFB5:
 	.cfi_startproc
 	.prologue 0
 	beq $18,$L27
+	.align 4
 $L26:
 	ldq_u $1,0($16)
 	extbl $1,$16,$1
@@ -247,6 +252,7 @@ $LFB7:
 	lda $18,-1($18)
 	addq $16,$18,$18
 	lda $16,-1($16)
+	.align 4
 $L35:
 	cmpeq $18,$16,$1
 	bne $1,$L38
@@ -279,6 +285,7 @@ $LFB8:
 	beq $18,$L40
 	addq $16,$18,$18
 	mov $16,$1
+	.align 4
 $L41:
 	ldq_u $3,0($1)
 	mskbl $3,$1,$3
@@ -314,6 +321,7 @@ $LFB9:
 	bis $2,$3,$2
 	stq_u $2,0($16)
 	beq $1,$L44
+	.align 4
 $L45:
 	lda $17,1($17)
 	lda $0,1($0)
@@ -348,6 +356,7 @@ $LFB10:
 	extqh $1,$2,$1
 	sra $1,56,$1
 	beq $1,$L53
+	.align 4
 $L48:
 	and $1,0xff,$1
 	cmpeq $1,$17,$1
@@ -381,6 +390,7 @@ $LFB11:
 	.cfi_startproc
 	.prologue 0
 	mov $16,$0
+	.align 4
 $L57:
 	lda $2,1($0)
 	ldq_u $1,0($0)
@@ -418,6 +428,7 @@ $LFB12:
 	cmpeq $0,$1,$3
 	and $2,$3,$2
 	beq $2,$L60
+	.align 4
 $L61:
 	lda $16,1($16)
 	lda $17,1($17)
@@ -457,6 +468,7 @@ $LFB13:
 	sra $1,56,$1
 	mov $16,$0
 	beq $1,$L64
+	.align 4
 $L65:
 	lda $0,1($0)
 	lda $2,1($0)
@@ -488,6 +500,7 @@ $LFB14:
 	lda $18,-1($18)
 	mov $17,$2
 	addq $17,$18,$17
+	.align 4
 $L71:
 	ldq_u $1,0($2)
 	extbl $1,$2,$1
@@ -529,6 +542,7 @@ $LFB15:
 	bne $1,$L75
 	bic $18,1,$18
 	addq $16,$18,$4
+	.align 4
 $L77:
 	ldq_u $1,1($16)
 	lda $2,1($16)
@@ -1399,6 +1413,7 @@ $l64a..ng:
 	lda $2,s.0($2)		!gprellow
 	ldah $4,digits($29)		!gprelhigh
 	lda $4,digits($4)		!gprellow
+	.align 4
 $L161:
 	and $16,63,$3
 	addq $3,$4,$3
@@ -1564,6 +1579,7 @@ $lsearch..ng:
 	beq $11,$L174
 	mov $17,$9
 	mov $31,$10
+	.align 4
 $L176:
 	mov $9,$15
 	mov $9,$17
@@ -1653,6 +1669,7 @@ $lfind..ng:
 	beq $14,$L179
 	mov $17,$9
 	mov $31,$10
+	.align 4
 $L181:
 	mov $9,$15
 	mov $9,$17
@@ -1763,6 +1780,7 @@ $L188:
 	zapnot $3,15,$3
 	cmpule $3,9,$3
 	beq $3,$L190
+	.align 4
 $L189:
 	s4addl $2,$2,$2
 	addl $2,$2,$2
@@ -1849,6 +1867,7 @@ $L200:
 	cmpule $3,9,$3
 	mov $31,$2
 	beq $3,$L202
+	.align 4
 $L201:
 	s4addq $2,$2,$2
 	addq $2,$2,$2
@@ -1935,6 +1954,7 @@ $L211:
 	cmpule $3,9,$3
 	mov $31,$2
 	beq $3,$L213
+	.align 4
 $L212:
 	s4addq $2,$2,$2
 	addq $2,$2,$2
@@ -2004,6 +2024,7 @@ $bsearch..ng:
 	mov $19,$12
 	mov $20,$14
 	bne $18,$L222
+	.align 4
 $L219:
 	mov $31,$10
 $L218:
@@ -2091,6 +2112,7 @@ $bsearch_r..ng:
 	mov $21,$13
 	addl $31,$18,$10
 	bne $10,$L229
+	.align 4
 $L226:
 	mov $31,$9
 $L225:
@@ -2304,6 +2326,7 @@ $LFB59:
 	cmpult $31,$2,$3
 	and $1,$3,$1
 	beq $1,$L239
+	.align 4
 $L240:
 	lda $0,4($0)
 	ldl $2,0($0)
@@ -2336,6 +2359,7 @@ $LFB60:
 	cmpult $31,$0,$1
 	and $1,$2,$1
 	beq $1,$L244
+	.align 4
 $L245:
 	lda $16,4($16)
 	lda $17,4($17)
@@ -2368,6 +2392,7 @@ $LFB61:
 	.prologue 0
 	mov $16,$0
 	mov $16,$1
+	.align 4
 $L250:
 	lda $17,4($17)
 	lda $1,4($1)
@@ -2391,6 +2416,7 @@ $LFB62:
 	ldl $1,0($16)
 	mov $16,$0
 	beq $1,$L253
+	.align 4
 $L254:
 	lda $0,4($0)
 	ldl $1,0($0)
@@ -2413,6 +2439,7 @@ $LFB63:
 	.cfi_startproc
 	.prologue 0
 	beq $18,$L259
+	.align 4
 $L258:
 	ldl $2,0($16)
 	ldl $1,0($17)
@@ -2452,6 +2479,7 @@ $LFB64:
 	.prologue 0
 	mov $16,$0
 	beq $18,$L267
+	.align 4
 $L266:
 	ldl $1,0($16)
 	cmpeq $1,$17,$1
@@ -2481,6 +2509,7 @@ $LFB65:
 	.cfi_startproc
 	.prologue 0
 	beq $18,$L275
+	.align 4
 $L274:
 	ldl $1,0($16)
 	ldl $2,0($17)
@@ -2562,6 +2591,7 @@ $LFB67:
 	lda $2,-1($18)
 	mov $16,$1
 	beq $18,$L292
+	.align 4
 $L286:
 	lda $17,4($17)
 	lda $1,4($1)
@@ -2580,6 +2610,7 @@ $L285:
 	lda $1,-1($18)
 	beq $18,$L284
 	s4addq $1,0,$1
+	.align 4
 $L287:
 	addq $17,$1,$2
 	ldl $3,0($2)
@@ -2606,6 +2637,7 @@ $LFB68:
 	lda $1,-1($18)
 	beq $18,$L294
 	mov $16,$2
+	.align 4
 $L295:
 	lda $2,4($2)
 	stl $17,-4($2)
@@ -2632,6 +2664,7 @@ $LFB69:
 	addq $16,$18,$2
 	addq $17,$18,$17
 	beq $18,$L297
+	.align 4
 $L300:
 	lda $2,-1($2)
 	lda $17,-1($17)
@@ -2653,6 +2686,7 @@ $L298:
 	bne $1,$L297
 	beq $18,$L297
 	addq $16,$18,$18
+	.align 4
 $L301:
 	lda $16,1($16)
 	lda $17,1($17)
@@ -2958,6 +2992,7 @@ $LFB83:
 	.prologue 0
 	mov $31,$0
 	zapnot $16,15,$16
+	.align 4
 $L320:
 	srl $16,$0,$1
 	blbs $1,$L322
@@ -2989,6 +3024,7 @@ $LFB84:
 	and $16,1,$0
 	bne $0,$L324
 	lda $0,1($31)
+	.align 4
 $L325:
 	sra $16,1,$16
 	addl $0,1,$0
@@ -3412,6 +3448,7 @@ $LFB92:
 	beq $18,$L361
 	addq $17,$18,$18
 	mov $16,$2
+	.align 4
 $L362:
 	lda $17,1($17)
 	lda $2,1($2)
@@ -3465,6 +3502,7 @@ $strncat..ng:
 	lda $29,0($29)		!gpdisp!80
 	addq $11,$0,$0
 	beq $10,$L366
+	.align 4
 $L365:
 	lda $2,1($9)
 	ldq_u $1,0($9)
@@ -3554,6 +3592,7 @@ $LFB95:
 	beq $4,$L386
 $L380:
 	mov $17,$3
+	.align 4
 $L383:
 	lda $2,1($3)
 	ldq_u $1,0($3)
@@ -3592,6 +3631,7 @@ $LFB96:
 	.cfi_startproc
 	.prologue 0
 	mov $31,$0
+	.align 4
 $L390:
 	lda $2,1($16)
 	ldq_u $1,0($16)
@@ -3646,6 +3686,7 @@ $strstr..ng:
 	ldq_u $13,0($11)
 	extqh $13,$1,$13
 	sra $13,56,$13
+	.align 4
 $L395:
 	mov $13,$17
 	mov $10,$16
@@ -3868,6 +3909,7 @@ $L420:
 	fbeq $f10,$L438
 	ldah $3,$LC10($29)		!gprelhigh
 	lds $f12,$LC10($3)		!gprellow
+	.align 4
 $L424:
 	addl $1,1,$1
 	mult $f0,$f12,$f0
@@ -3903,6 +3945,7 @@ $L427:
 	blbc $3,$L425
 	ldah $3,$LC10($29)		!gprelhigh
 	lds $f11,$LC10($3)		!gprellow
+	.align 4
 $L428:
 	subl $1,1,$1
 	addt $f0,$f0,$f0
@@ -3924,6 +3967,7 @@ $LFB102:
 	.prologue 0
 	mov $31,$0
 	beq $16,$L440
+	.align 4
 $L442:
 	and $16,1,$1
 	subq $31,$1,$1
@@ -3953,6 +3997,7 @@ $LFB103:
 	lda $2,1($31)
 	zapnot $16,15,$4
 	beq $1,$L447
+	.align 4
 $L446:
 	cmplt $17,0,$1
 	bne $1,$L447
@@ -4080,6 +4125,7 @@ $LFB106:
 	mov $16,$0
 	beq $16,$L467
 	mov $31,$0
+	.align 4
 $L468:
 	and $16,1,$1
 	subl $31,$1,$1
@@ -4116,6 +4162,7 @@ $LFB107:
 	subl $18,1,$2
 	zapnot $2,15,$2
 	beq $18,$L483
+	.align 4
 $L478:
 	addq $17,$2,$1
 	lda $3,1($1)
@@ -4141,6 +4188,7 @@ $L472:
 	mov $17,$1
 	mov $16,$2
 	s8addq $4,$17,$4
+	.align 4
 $L476:
 	ldq $3,0($1)
 	stq $3,0($2)
@@ -4161,6 +4209,7 @@ $L475:
 	subl $18,$5,$18
 	zapnot $18,15,$18
 	addq $17,$18,$17
+	.align 4
 $L477:
 	lda $2,1($1)
 	ldq_u $1,0($1)
@@ -4200,6 +4249,7 @@ $LFB108:
 	subl $18,1,$2
 	zapnot $2,15,$2
 	beq $18,$L494
+	.align 4
 $L490:
 	addq $17,$2,$1
 	lda $3,1($1)
@@ -4226,6 +4276,7 @@ $L485:
 	mov $16,$2
 	addq $5,$5,$5
 	addq $5,$17,$5
+	.align 4
 $L489:
 	lda $3,2($1)
 	ldq_u $1,0($1)
@@ -4281,6 +4332,7 @@ $LFB109:
 	subl $18,1,$2
 	zapnot $2,15,$2
 	beq $18,$L507
+	.align 4
 $L502:
 	addq $17,$2,$1
 	lda $3,1($1)
@@ -4306,6 +4358,7 @@ $L496:
 	mov $17,$1
 	mov $16,$2
 	s4addq $4,$17,$4
+	.align 4
 $L500:
 	ldl $3,0($1)
 	stl $3,0($2)
@@ -4326,6 +4379,7 @@ $L499:
 	subl $18,$5,$18
 	zapnot $18,15,$18
 	addq $17,$18,$17
+	.align 4
 $L501:
 	lda $2,1($1)
 	ldq_u $1,0($1)
@@ -4512,6 +4566,7 @@ $LFB116:
 	.prologue 0
 	mov $31,$0
 	lda $2,15($31)
+	.align 4
 $L524:
 	subl $2,$0,$1
 	sra $16,$1,$1
@@ -4535,6 +4590,7 @@ $LFB117:
 	.cfi_startproc
 	.prologue 0
 	mov $31,$0
+	.align 4
 $L528:
 	sra $16,$0,$1
 	blbs $1,$L527
@@ -4598,6 +4654,7 @@ $LFB119:
 	.prologue 0
 	mov $31,$0
 	mov $31,$1
+	.align 4
 $L538:
 	sra $16,$1,$2
 	and $2,1,$2
@@ -4622,6 +4679,7 @@ $LFB120:
 	.prologue 0
 	mov $31,$0
 	mov $31,$1
+	.align 4
 $L541:
 	sra $16,$1,$2
 	and $2,1,$2
@@ -4646,6 +4704,7 @@ $LFB121:
 	mov $16,$0
 	beq $16,$L544
 	mov $31,$0
+	.align 4
 $L545:
 	and $16,1,$1
 	subl $31,$1,$1
@@ -4675,6 +4734,7 @@ $LFB122:
 	mov $17,$0
 	beq $17,$L549
 	mov $31,$0
+	.align 4
 $L550:
 	and $17,1,$1
 	subl $31,$1,$1
@@ -4705,6 +4765,7 @@ $LFB123:
 	lda $2,1($31)
 	zapnot $16,15,$4
 	beq $1,$L556
+	.align 4
 $L555:
 	cmplt $17,0,$1
 	bne $1,$L556
@@ -4834,6 +4895,7 @@ $L580:
 	beq $17,$L581
 	lda $2,1($31)
 	mov $31,$0
+	.align 4
 $L582:
 	and $17,1,$1
 	subl $31,$1,$1
@@ -4982,6 +5044,7 @@ $LFB131:
 	cmpult $17,$16,$2
 	lda $1,1($31)
 	beq $2,$L602
+	.align 4
 $L601:
 	srl $17,15,$2
 	bne $2,$L602
@@ -5029,6 +5092,7 @@ $LFB132:
 	cmpult $17,$16,$2
 	lda $1,1($31)
 	beq $2,$L617
+	.align 4
 $L616:
 	srl $17,31,$2
 	blbs $2,$L617
