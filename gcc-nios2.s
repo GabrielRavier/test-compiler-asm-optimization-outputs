@@ -4797,6 +4797,7 @@ __muldi3_compiler_rt:
 	stw	r17, 12(sp)
 	stw	r16, 8(sp)
 	addi	fp, sp, 32
+	mov	r18, r4
 	mov	r19, r5
 	mov	r16, r6
 	mov	r17, r7
@@ -4807,8 +4808,7 @@ __muldi3_compiler_rt:
 	mov	r7, r3
 	mov	r4, r2
 	mul	r3, r19, r16
-	ldw	r2, -32(fp)
-	mul	r2, r17, r2
+	mul	r2, r17, r18
 	add	r3, r3, r2
 	add	r3, r3, r7
 	mov	r6, r4

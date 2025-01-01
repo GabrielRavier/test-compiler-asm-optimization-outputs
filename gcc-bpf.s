@@ -8171,26 +8171,24 @@ __mulddi3:
 	.global	__multi3
 	.type	__multi3, @function
 __multi3:
-	r8 = r1
-	r9 = r2
+	*(u64 *) (r10+-64) = r1
+	*(u64 *) (r10+-56) = r2
+	r6 = r3
+	r7 = r4
 	r2 = r3
-	*(u64 *) (r10+-16) = r8
-	*(u64 *) (r10+-8) = r9
-	*(u64 *) (r10+-32) = r3
-	*(u64 *) (r10+-24) = r4
-	r1 = r8
 	call	__mulddi3
-	r8 = r0
-	r4 = *(u64 *) (r10+-8)
-	r0 = *(u64 *) (r10+-32)
-	r4 *= r0
-	r5 = *(u64 *) (r10+-16)
-	r9 = *(u64 *) (r10+-24)
-	r9 *= r5
-	r4 += r9
-	r4 += r1
-	r0 = r8
-	r1 = r4
+	r2 = r0
+	r3 = r1
+	r1 = *(u64 *) (r10+-56)
+	r1 *= r6
+	r0 = r7
+	r4 = *(u64 *) (r10+-64)
+	r0 *= r4
+	r1 += r0
+	r6 = r1
+	r6 += r3
+	r0 = r2
+	r1 = r6
 	exit
 	.size	__multi3, .-__multi3
 	.align	3

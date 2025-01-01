@@ -11232,14 +11232,22 @@ __muldi3_compiler_rt:
 	std Y+14,r15
 	std Y+15,r16
 	std Y+16,r17
-	ldd r18,Y+9
-	ldd r19,Y+10
-	ldd r20,Y+11
-	ldd r21,Y+12
-	ldd r22,Y+1
-	ldd r23,Y+2
-	ldd r24,Y+3
-	ldd r25,Y+4
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	mov r21,r11
+	mov r20,r10
+	mov r19,r9
+	mov r18,r8
+	mov r25,r15
+	mov r24,r14
+	mov r23,r13
+	mov r22,r12
 	rcall __muldsi3
 	std Y+25,r18
 	std Y+26,r19
@@ -11254,60 +11262,56 @@ __muldi3_compiler_rt:
 	ldd r24,Y+31
 	std Y+23,r24
 	std Y+24,r25
-	ldd r12,Y+21
-	ldd r13,Y+22
-	ldd r14,Y+23
-	ldd r15,Y+24
+	ldd r4,Y+21
+	ldd r5,Y+22
+	ldd r6,Y+23
+	ldd r7,Y+24
 	ldd r22,Y+5
 	ldd r23,Y+6
 	ldd r24,Y+7
 	ldd r25,Y+8
-	ldd r18,Y+9
-	ldd r19,Y+10
-	ldd r20,Y+11
-	ldd r21,Y+12
+	mov r21,r11
+	mov r20,r10
+	mov r19,r9
+	mov r18,r8
 	rcall __mulsi3
 	mov r8,r22
 	mov r9,r23
 	mov r10,r24
 	mov r11,r25
-	ldd r18,Y+1
-	ldd r19,Y+2
-	ldd r20,Y+3
-	ldd r21,Y+4
 	ldd r22,Y+13
 	ldd r23,Y+14
 	ldd r24,Y+15
 	ldd r25,Y+16
+	mov r21,r15
+	mov r20,r14
+	mov r19,r13
+	mov r18,r12
 	rcall __mulsi3
-	mov r27,r25
-	mov r26,r24
-	mov r25,r23
-	mov r24,r22
-	add r24,r8
-	adc r25,r9
-	adc r26,r10
-	adc r27,r11
-	add r24,r12
-	adc r25,r13
-	adc r26,r14
-	adc r27,r15
+	add r8,r22
+	adc r9,r23
+	adc r10,r24
+	adc r11,r25
+	add r4,r8
+	adc r5,r9
+	adc r6,r10
+	adc r7,r11
 	ldd r8,Y+25
 	ldd r9,Y+26
 	ldd r10,Y+27
 	ldd r11,Y+28
-	std Y+29,r24
-	std Y+30,r25
-	std Y+31,r26
-	std Y+32,r27
+	std Y+29,r4
+	std Y+30,r5
+	std Y+31,r6
+	std Y+32,r7
 	mov r18,r8
 	mov r19,r9
 	mov r20,r10
 	mov r21,r11
-	mov r22,r24
-	mov r23,r25
-	mov r24,r26
-	mov r25,r27
+	mov r22,r4
+	mov r23,r5
+	mov r24,r6
+	mov r25,r7
 /* epilogue start */
 	adiw r28,32
 	in __tmp_reg__,__SREG__

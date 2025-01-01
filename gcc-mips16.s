@@ -8480,19 +8480,20 @@ __mulddi3:
 	.ent	__multi3
 	.type	__multi3, @function
 __multi3:
-	.frame	$17,72,$31		# vars= 48, regs= 2/0, args= 32, gp= 8
-	.mask	0x80020000,-8
+	.frame	$17,104,$31		# vars= 72, regs= 3/0, args= 32, gp= 8
+	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-104
-	sd	$31,96($sp)
-	sd	$17,88($sp)
+	addiu	$sp,-136
+	sd	$31,128($sp)
+	sd	$17,120($sp)
+	sd	$16,112($sp)
 	addiu	$17,$sp,32
 	move	$3,$5
+	sd	$4,64($17)
+	move	$16,$7
+	sd	$6,72($17)
 	move	$5,$7
-	sd	$3,16($17)
-	sd	$4,8($17)
-	sd	$7,32($17)
-	sd	$6,24($17)
+	sd	$3,56($17)
 	.option	pic0
 	.set	noreorder
 	.set	nomacro
@@ -8504,12 +8505,11 @@ __multi3:
 
 	move	$6,$2
 	sd	$3,48($17)
-	ld	$2,8($17)
-	ld	$3,32($17)
-	dmult	$2,$3
+	ld	$2,64($17)
+	dmult	$2,$16
 	mflo	$3
-	ld	$2,24($17)
-	ld	$4,16($17)
+	ld	$2,72($17)
+	ld	$4,56($17)
 	dmult	$2,$4
 	mflo	$4
 	daddu	$3,$3,$4
@@ -8518,12 +8518,13 @@ __multi3:
 	ld	$3,48($17)
 	ld	$2,40($17)
 	move	$sp,$17
-	ld	$7,64($sp)
-	ld	$17,56($sp)
+	ld	$7,96($sp)
+	ld	$17,88($sp)
+	ld	$16,80($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$7
-	addiu	$sp,72
+	addiu	$sp,104
 	.set	macro
 	.set	reorder
 

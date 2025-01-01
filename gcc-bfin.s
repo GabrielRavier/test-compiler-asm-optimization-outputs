@@ -4951,6 +4951,8 @@ ___muldi3_compiler_rt:
 	[--sp] = ( r7:4 );
 
 	LINK 20;
+	[FP+-8] = R0;
+	[FP+-4] = R1;
 	R6 = R0;
 	R7 = R1;
 	[FP+32] = R2;

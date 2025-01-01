@@ -5893,8 +5893,7 @@ LFB143:
 	mov	eax, edi
 	imul	eax, ebx
 	mov	ecx, DWORD PTR [ebp-28]
-	mov	edi, DWORD PTR [ebp-36]
-	imul	ecx, edi
+	imul	ecx, esi
 	add	eax, ecx
 	add	eax, edx
 	mov	DWORD PTR [ebp-20], eax

@@ -5912,33 +5912,33 @@ ___muldi3_compiler_rt:
 	mov.l	er7,er6
 	mov.l	er4,@-er7
 	mov.l	er5,@-er7
-	sub.l	#32,er7
-	mov.l	er0,er2
-	mov.l	er1,er3
-	mov.l	@(8,er6),er0
-	mov.l	@(12,er6),er1
-	mov.l	er2,@(-16,er6)
-	mov.l	er3,@(-12,er6)
-	mov.l	er0,@(-24,er6)
-	mov.l	er1,@(-20,er6)
-	mov.l	er3,er0
+	sub.l	#52,er7
+	mov.l	er0,@(-48,er6)
+	mov.l	er1,@(-44,er6)
+	mov.l	@(8,er6),er4
+	mov.l	@(12,er6),er5
+	mov.l	er0,@(-52,er6)
+	mov.l	er4,@(-56,er6)
+	mov.l	er5,er1
+	mov.l	@(-44,er6),er0
 	jsr	@___muldsi3
 	mov.l	er0,@(-40,er6)
 	mov.l	er1,@(-36,er6)
-	mov.l	er0,er5
-	mov.l	@(-20,er6),er1
-	mov.l	@(-16,er6),er0
+	mov.l	er0,er2
+	mov.l	er2,@(-60,er6)
+	mov.l	er5,er1
+	mov.l	@(-52,er6),er0
 	jsr	@___mulsi3
 	mov.l	er0,er4
-	mov.l	@(-12,er6),er1
-	mov.l	@(-24,er6),er0
+	mov.l	@(-44,er6),er1
+	mov.l	@(-56,er6),er0
 	jsr	@___mulsi3
 	add.l	er0,er4
-	add.l	er4,er5
+	mov.l	@(-60,er6),er0
+	add.l	er4,er0
 	mov.l	@(-36,er6),er3
-	mov.l	er5,er0
 	mov.l	er3,er1
-	add.l	#32,er7
+	add.l	#52,er7
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	mov.l	@er7+,er6

@@ -4182,11 +4182,12 @@ __muldi3_compiler_rt:
 	mov (40,a3),d2
 	mov (44,a3),d3
 	mov d0,(-8,a3)
+	mov d1,(-4,a3)
 	mov_mov d2, r6, d2, d1
 	call +__muldsi3,[],0
 	mov_mov d0, r0, d1, r1
 	mul r5,d2,d0,d1
-	mov (-8,a3),d0
+	mov r4,d0
 	mul d3,d0
 	add d0,d1
 	add_mov r1, d1, r0, d0

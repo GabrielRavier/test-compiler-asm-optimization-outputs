@@ -5892,6 +5892,7 @@ __aeabi_lcmp:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	__cmpdi2
+	add	esp, 16
 	sub	eax, 1
 	leave
 	.cfi_restore 5
@@ -6117,12 +6118,12 @@ __muldi3_compiler_rt:
 	push	DWORD PTR [ebp-32]
 	push	esi
 	call	__muldsi3
+	add	esp, 8
 	mov	DWORD PTR [ebp-24], eax
 	mov	eax, edi
 	imul	eax, ebx
 	mov	ecx, DWORD PTR [ebp-28]
-	mov	edi, DWORD PTR [ebp-36]
-	imul	ecx, edi
+	imul	ecx, esi
 	add	eax, ecx
 	add	eax, edx
 	mov	DWORD PTR [ebp-20], eax
@@ -6500,6 +6501,7 @@ __aeabi_ulcmp:
 	push	DWORD PTR [ebp+12]
 	push	DWORD PTR [ebp+8]
 	call	__ucmpdi2
+	add	esp, 16
 	sub	eax, 1
 	leave
 	.cfi_restore 5
