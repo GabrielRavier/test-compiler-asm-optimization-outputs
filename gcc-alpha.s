@@ -84,7 +84,7 @@ $L7:
 	insbl $1,$4,$1
 	bis $1,$3,$1
 	stq_u $1,-1($2)
-	cmpeq $2,$18,$1
+	cmpeq $18,$2,$1
 	beq $1,$L7
 $L5:
 	ret $31,($26),1
@@ -111,7 +111,7 @@ $L11:
 	bis $2,$3,$2
 	stq_u $2,0($16)
 	and $1,0xff,$1
-	cmpeq $18,$1,$1
+	cmpeq $1,$18,$1
 	bne $1,$L19
 	lda $19,-1($19)
 	lda $17,1($17)
@@ -142,7 +142,7 @@ $LFB4:
 $L21:
 	ldq_u $1,0($16)
 	extbl $1,$16,$1
-	cmpeq $17,$1,$1
+	cmpeq $1,$17,$1
 	bne $1,$L27
 	lda $16,1($16)
 	lda $18,-1($18)
@@ -219,7 +219,7 @@ $L41:
 	insbl $1,$4,$1
 	bis $1,$3,$1
 	stq_u $1,-1($2)
-	cmpeq $2,$18,$1
+	cmpeq $18,$2,$1
 	beq $1,$L41
 $L40:
 	ret $31,($26),1
@@ -245,7 +245,7 @@ $L44:
 	mov $18,$0
 	ldq_u $1,0($18)
 	extbl $1,$18,$1
-	cmpeq $17,$1,$1
+	cmpeq $1,$17,$1
 	lda $18,-1($18)
 	beq $1,$L44
 	ret $31,($26),1
@@ -277,7 +277,7 @@ $L50:
 	bis $2,$3,$2
 	stq_u $2,0($1)
 	lda $1,1($1)
-	cmpeq $1,$18,$2
+	cmpeq $18,$1,$2
 	beq $2,$L50
 $L49:
 	ret $31,($26),1
@@ -340,7 +340,7 @@ $LFB10:
 $L57:
 	ldq_u $1,0($16)
 	extbl $1,$16,$1
-	cmpeq $17,$1,$1
+	cmpeq $1,$17,$1
 	bne $1,$L63
 	lda $16,1($16)
 	lda $2,1($16)
@@ -374,7 +374,7 @@ $L66:
 	ldq_u $1,0($0)
 	extqh $1,$2,$1
 	sra $1,56,$1
-	cmpeq $17,$1,$2
+	cmpeq $1,$17,$2
 	bne $2,$L65
 	lda $0,1($0)
 	bne $1,$L66
@@ -479,8 +479,8 @@ $LFB14:
 $L80:
 	ldq_u $2,0($17)
 	extbl $2,$17,$2
-	subq $5,$1,$3
-	cmpult $31,$3,$3
+	cmpeq $1,$5,$3
+	xor $3,1,$3
 	cmpult $31,$2,$4
 	and $3,$4,$3
 	beq $3,$L81
@@ -515,10 +515,8 @@ $LFB15:
 	.prologue 0
 	cmple $18,1,$1
 	bne $1,$L86
-	lda $5,-2($18)
-	bic $5,1,$5
-	lda $5,2($5)
-	addq $16,$5,$5
+	bic $18,1,$18
+	addq $16,$18,$5
 $L88:
 	lda $2,2($16)
 	ldq_u $1,1($16)
@@ -589,9 +587,9 @@ isblank:
 $LFB18:
 	.cfi_startproc
 	.prologue 0
-	cmpeq $16,32,$1
+	cmpeq $16,32,$0
 	cmpeq $16,9,$16
-	bis $16,$1,$0
+	bis $0,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE18:
@@ -686,11 +684,11 @@ isspace:
 $LFB24:
 	.cfi_startproc
 	.prologue 0
-	cmpeq $16,32,$1
-	subl $16,9,$0
-	zapnot $0,15,$0
-	cmpule $0,4,$0
-	bis $0,$1,$0
+	cmpeq $16,32,$0
+	subl $16,9,$16
+	zapnot $16,15,$16
+	cmpule $16,4,$16
+	bis $0,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE24:
@@ -1603,7 +1601,7 @@ $L205:
 	beq $0,$L202
 	lda $10,1($10)
 	addq $9,$12,$9
-	cmpeq $10,$11,$1
+	cmpeq $11,$10,$1
 	beq $1,$L205
 $L203:
 	lda $1,1($11)
@@ -1691,7 +1689,7 @@ $L209:
 	beq $0,$L207
 	lda $10,1($10)
 	addq $9,$13,$9
-	cmpeq $10,$14,$1
+	cmpeq $14,$10,$1
 	beq $1,$L209
 	mov $31,$15
 $L207:
@@ -2320,7 +2318,7 @@ $LFB59:
 	beq $1,$L273
 $L267:
 	ldl $1,0($16)
-	cmpeq $17,$1,$1
+	cmpeq $1,$17,$1
 	bne $1,$L274
 	lda $16,4($16)
 	ldl $1,0($16)
@@ -2466,7 +2464,7 @@ $LFB64:
 	beq $18,$L306
 $L301:
 	ldl $1,0($16)
-	cmpeq $17,$1,$1
+	cmpeq $1,$17,$1
 	bne $1,$L307
 	lda $18,-1($18)
 	lda $16,4($16)
@@ -2660,7 +2658,7 @@ $L342:
 	insbl $1,$3,$1
 	bis $1,$2,$1
 	stq_u $1,-1($17)
-	cmpeq $16,$18,$1
+	cmpeq $18,$16,$1
 	beq $1,$L342
 $L338:
 	ret $31,($26),1
@@ -2752,8 +2750,8 @@ $LFB74:
 	.prologue 0
 	sll $16,$17,$1
 	subq $31,$17,$17
-	srl $16,$17,$16
-	bis $16,$1,$0
+	srl $16,$17,$0
+	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE74:
@@ -2769,8 +2767,8 @@ $LFB75:
 	.prologue 0
 	srl $16,$17,$1
 	subq $31,$17,$17
-	sll $16,$17,$16
-	bis $16,$1,$0
+	sll $16,$17,$0
+	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE75:
@@ -2784,11 +2782,12 @@ rotl16:
 $LFB76:
 	.cfi_startproc
 	.prologue 0
-	sll $16,$17,$2
-	lda $1,16($31)
-	subl $1,$17,$1
-	srl $16,$1,$0
-	bis $0,$2,$0
+	and $17,15,$17
+	sll $16,$17,$0
+	subq $31,$17,$17
+	and $17,15,$17
+	srl $16,$17,$16
+	bis $0,$16,$0
 	zapnot $0,3,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -2803,11 +2802,11 @@ rotr16:
 $LFB77:
 	.cfi_startproc
 	.prologue 0
-	addl $31,$16,$0
-	srl $16,$17,$16
-	lda $1,16($31)
-	subl $1,$17,$1
-	sll $0,$1,$0
+	and $17,15,$17
+	srl $16,$17,$0
+	subq $31,$17,$17
+	and $17,15,$17
+	sll $16,$17,$16
 	bis $0,$16,$0
 	zapnot $0,3,$0
 	ret $31,($26),1
@@ -2823,11 +2822,12 @@ rotl8:
 $LFB78:
 	.cfi_startproc
 	.prologue 0
-	sll $16,$17,$2
-	lda $1,8($31)
-	subl $1,$17,$1
-	srl $16,$1,$0
-	bis $0,$2,$0
+	and $17,7,$17
+	sll $16,$17,$0
+	subq $31,$17,$17
+	and $17,7,$17
+	srl $16,$17,$16
+	bis $0,$16,$0
 	and $0,0xff,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -2842,11 +2842,11 @@ rotr8:
 $LFB79:
 	.cfi_startproc
 	.prologue 0
-	addl $31,$16,$0
-	srl $16,$17,$16
-	lda $1,8($31)
-	subl $1,$17,$1
-	sll $0,$1,$0
+	and $17,7,$17
+	srl $16,$17,$0
+	subq $31,$17,$17
+	and $17,7,$17
+	sll $16,$17,$16
 	bis $0,$16,$0
 	and $0,0xff,$0
 	ret $31,($26),1
@@ -2878,15 +2878,15 @@ bswap_32:
 $LFB81:
 	.cfi_startproc
 	.prologue 0
-	extbl $16,3,$3
-	zapnot $16,4,$1
-	srl $1,8,$1
-	zapnot $16,2,$2
-	sll $2,8,$2
-	insbl $16,3,$0
-	addl $31,$0,$0
-	bis $0,$2,$0
-	bis $0,$3,$0
+	extbl $16,3,$2
+	zapnot $16,4,$0
+	srl $0,8,$0
+	sll $16,8,$1
+	zapnot $1,4,$1
+	sll $16,24,$16
+	addl $31,$16,$16
+	bis $1,$16,$1
+	bis $2,$1,$1
 	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -2901,27 +2901,27 @@ bswap_64:
 $LFB82:
 	.cfi_startproc
 	.prologue 0
-	srl $16,56,$1
-	zapnot $16,64,$0
-	srl $0,40,$0
-	bis $0,$1,$0
-	zapnot $16,32,$1
-	srl $1,24,$1
-	bis $0,$1,$0
-	zapnot $16,16,$1
-	srl $1,8,$1
-	bis $0,$1,$0
-	zapnot $16,8,$1
-	sll $1,8,$1
-	bis $0,$1,$0
-	zapnot $16,4,$1
-	sll $1,24,$1
-	bis $0,$1,$0
-	zapnot $16,2,$1
-	sll $1,40,$1
-	bis $0,$1,$0
+	srl $16,56,$6
+	srl $16,40,$5
+	zapnot $5,2,$5
+	srl $16,24,$4
+	zapnot $4,4,$4
+	srl $16,8,$3
+	zapnot $3,8,$3
+	sll $16,8,$2
+	zapnot $2,16,$2
+	sll $16,24,$1
+	zapnot $1,32,$1
+	sll $16,40,$0
+	zapnot $0,64,$0
 	sll $16,56,$16
-	bis $0,$16,$0
+	bis $16,$6,$16
+	bis $5,$16,$5
+	bis $4,$5,$4
+	bis $3,$4,$3
+	bis $2,$3,$2
+	bis $1,$2,$1
+	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE82:
@@ -3147,7 +3147,7 @@ $ldexpf..ng:
 	cmptun $f10,$f10,$f11
 	fbne $f11,$L382
 	adds $f16,$f16,$f10
-	cmpteq $f16,$f10,$f10
+	cmpteq $f10,$f16,$f10
 	fbne $f10,$L382
 	cmplt $17,0,$1
 	ldah $2,$LC9($29)		!gprelhigh
@@ -3186,7 +3186,7 @@ $ldexp..ng:
 	cmptun $f16,$f16,$f10
 	fbne $f10,$L388
 	addt $f16,$f16,$f11
-	cmpteq $f16,$f11,$f10
+	cmpteq $f11,$f16,$f10
 	fbne $f10,$L388
 	cmplt $17,0,$1
 	bne $1,$L393
@@ -3268,12 +3268,10 @@ $ldexpl..ng:
 	jsr $26,($27),0		!lituse_jsr!64
 	ldah $29,0($26)		!gpdisp!65
 	lda $29,0($29)		!gpdisp!65
-	mov $16,$18
-	mov $17,$19
 	stq $15,160($30)
 	stq $14,168($30)
-	ldq $16,160($30)
-	ldq $17,168($30)
+	ldq $18,160($30)
+	ldq $19,168($30)
 	ldq $27,_OtsEqlX($29)		!literal!66
 	jsr $26,($27),0		!lituse_jsr!66
 	ldah $29,0($26)		!gpdisp!67
@@ -3392,7 +3390,7 @@ $L403:
 	insbl $1,$4,$1
 	bis $1,$3,$1
 	stq_u $1,-1($2)
-	cmpeq $17,$18,$1
+	cmpeq $18,$17,$1
 	beq $1,$L403
 $L402:
 	ret $31,($26),1
@@ -3490,7 +3488,7 @@ $L418:
 	ret $31,($26),1
 $L419:
 	lda $0,1($0)
-	cmpeq $0,$17,$1
+	cmpeq $17,$0,$1
 	beq $1,$L412
 	mov $17,$0
 	ret $31,($26),1
@@ -3559,7 +3557,7 @@ $L431:
 	ldq_u $1,0($16)
 	extqh $1,$2,$1
 	sra $1,56,$1
-	cmpeq $17,$1,$2
+	cmpeq $1,$17,$2
 	cmovne $2,$16,$0
 	lda $16,1($16)
 	bne $1,$L431
@@ -3841,15 +3839,15 @@ $L480:
 	fbeq $f10,$L468
 	bis $31,$31,$1
 $L468:
-	and $1,0xff,$2
-	lda $1,1($31)
+	and $1,0xff,$1
+	lda $2,1($31)
 	ldah $4,$LC10($29)		!gprelhigh
 	lds $f11,$LC10($4)		!gprellow
 	cmptlt $f0,$f11,$f10
 	fbne $f10,$L469
-	bis $31,$31,$1
+	bis $31,$31,$2
 $L469:
-	and $1,0xff,$1
+	and $2,0xff,$2
 	and $1,$2,$2
 	mov $31,$1
 	beq $2,$L467
@@ -3878,7 +3876,7 @@ $LFB102:
 $L484:
 	and $16,1,$1
 	subq $31,$1,$1
-	and $17,$1,$1
+	and $1,$17,$1
 	addq $0,$1,$0
 	addq $17,$17,$17
 	srl $16,1,$16
@@ -3902,41 +3900,42 @@ $LFB103:
 	cmpult $1,$2,$1
 	lda $2,1($31)
 	zapnot $16,15,$4
-	beq $1,$L490
+	beq $1,$L495
 $L488:
 	cmplt $17,0,$1
-	bne $1,$L490
-	addl $17,$17,$3
-	addl $31,$3,$17
-	addl $2,$2,$1
-	addl $31,$1,$2
-	zapnot $3,15,$3
-	cmpult $3,$4,$3
+	bne $1,$L495
+	addl $17,$17,$1
+	addl $31,$1,$17
+	addl $2,$2,$3
+	addl $31,$3,$2
 	zapnot $1,15,$1
-	cmpult $31,$1,$1
+	cmpult $1,$4,$1
+	zapnot $3,15,$3
+	cmpult $31,$3,$3
 	and $1,$3,$1
 	bne $1,$L488
-	mov $2,$0
-	beq $2,$L491
-$L490:
+	beq $2,$L501
+$L495:
 	mov $31,$0
-	br $31,$L494
-$L493:
+	br $31,$L493
+$L492:
 	zapnot $2,15,$2
 	srl $2,1,$2
 	zapnot $17,15,$17
 	srl $17,1,$17
-	beq $2,$L491
-$L494:
+	beq $2,$L494
+$L493:
 	zapnot $16,15,$1
 	zapnot $17,15,$3
 	cmpult $1,$3,$1
-	bne $1,$L493
+	bne $1,$L492
 	subl $16,$17,$16
-	bis $0,$2,$0
+	bis $2,$0,$0
 	addl $31,$0,$0
-	br $31,$L493
-$L491:
+	br $31,$L492
+$L501:
+	mov $2,$0
+$L494:
 	cmovne $18,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -3961,17 +3960,18 @@ $__clrsbqi2..ng:
 	sra $16,7,$1
 	sll $1,56,$1
 	sra $1,56,$1
-	xor $1,$16,$16
+	xor $16,$1,$2
+	cmpeq $16,$1,$16
 	lda $0,7($31)
-	beq $16,$L502
-	sll $16,8,$16
+	bne $16,$L503
+	sll $2,8,$16
 	zapnot $16,14,$16
 	ldq $27,__clzdi2($29)		!literal!90
 	jsr $26,($27),0		!lituse_jsr!90
 	ldah $29,0($26)		!gpdisp!91
 	lda $29,0($29)		!gpdisp!91
 	subl $0,33,$0
-$L502:
+$L503:
 	ldq $26,0($30)
 	lda $30,16($30)
 	.cfi_restore 26
@@ -3996,16 +3996,18 @@ $__clrsbdi2..ng:
 	stq $26,0($30)
 	.cfi_offset 26, -16
 	.prologue 1
-	sra $16,63,$1
-	xor $1,$16,$16
+	mov $16,$1
+	sra $16,63,$2
+	xor $16,$2,$16
+	cmpeq $1,$2,$1
 	lda $0,63($31)
-	beq $16,$L505
+	bne $1,$L506
 	ldq $27,__clzdi2($29)		!literal!93
 	jsr $26,($27),0		!lituse_jsr!93
 	ldah $29,0($26)		!gpdisp!94
 	lda $29,0($29)		!gpdisp!94
 	subl $0,1,$0
-$L505:
+$L506:
 	ldq $26,0($30)
 	lda $30,16($30)
 	.cfi_restore 26
@@ -4024,18 +4026,18 @@ $LFB106:
 	.cfi_startproc
 	.prologue 0
 	mov $16,$0
-	beq $16,$L508
+	beq $16,$L509
 	mov $31,$0
-$L509:
+$L510:
 	and $16,1,$1
 	subl $31,$1,$1
 	and $17,$1,$1
-	addl $0,$1,$0
+	addl $1,$0,$0
 	zapnot $16,15,$16
 	srl $16,1,$16
 	addl $17,$17,$17
-	bne $16,$L509
-$L508:
+	bne $16,$L510
+$L509:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE106:
@@ -4053,33 +4055,34 @@ $LFB107:
 	srl $3,3,$3
 	bic $18,7,$5
 	cmpult $16,$17,$1
-	beq $1,$L513
-$L516:
+	beq $1,$L514
+$L517:
 	mov $17,$1
 	mov $16,$2
 	s8addq $3,$17,$4
-	beq $3,$L515
-$L519:
+	beq $3,$L516
+$L520:
 	ldq $3,0($1)
 	stq $3,0($2)
 	lda $1,8($1)
 	lda $2,8($2)
 	cmpeq $1,$4,$3
-	beq $3,$L519
-$L515:
+	beq $3,$L520
+$L516:
 	zapnot $18,15,$1
 	zapnot $5,15,$2
 	cmpule $1,$2,$1
-	bne $1,$L512
+	bne $1,$L513
+	mov $2,$3
 	addq $17,$2,$1
 	addq $16,$2,$16
-	lda $17,1($17)
-	subl $18,1,$18
-	subl $18,$5,$18
-	zapnot $18,15,$18
-	addq $2,$17,$17
-	addq $17,$18,$17
-$L520:
+	lda $2,1($17)
+	subl $18,1,$17
+	subl $17,$5,$17
+	zapnot $17,15,$17
+	addq $3,$2,$3
+	addq $17,$3,$17
+$L521:
 	lda $2,1($1)
 	ldq_u $1,0($1)
 	extqh $1,$2,$1
@@ -4092,17 +4095,17 @@ $L520:
 	mov $2,$1
 	lda $16,1($16)
 	cmpeq $2,$17,$2
-	beq $2,$L520
+	beq $2,$L521
 	ret $31,($26),1
-$L513:
+$L514:
 	zapnot $18,15,$1
 	addq $17,$1,$1
 	cmpult $1,$16,$1
-	bne $1,$L516
+	bne $1,$L517
 	subl $18,1,$2
 	zapnot $2,15,$2
-	beq $18,$L527
-$L521:
+	beq $18,$L528
+$L522:
 	addq $17,$2,$1
 	lda $3,1($1)
 	ldq_u $1,0($1)
@@ -4116,10 +4119,10 @@ $L521:
 	stq_u $1,0($3)
 	lda $2,-1($2)
 	lda $1,1($2)
-	bne $1,$L521
-$L512:
+	bne $1,$L522
+$L513:
 	ret $31,($26),1
-$L527:
+$L528:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE107:
@@ -4136,14 +4139,14 @@ $LFB108:
 	zapnot $18,15,$3
 	srl $3,1,$3
 	cmpult $16,$17,$1
-	beq $1,$L529
-$L532:
+	beq $1,$L530
+$L533:
 	mov $17,$1
 	mov $16,$2
 	addq $3,$3,$5
 	addq $17,$5,$5
-	beq $3,$L531
-$L535:
+	beq $3,$L532
+$L536:
 	lda $3,2($1)
 	ldq_u $1,0($1)
 	extqh $1,$3,$1
@@ -4156,9 +4159,9 @@ $L535:
 	mov $3,$1
 	lda $2,2($2)
 	cmpeq $3,$5,$3
-	beq $3,$L535
-$L531:
-	blbc $18,$L528
+	beq $3,$L536
+$L532:
+	blbc $18,$L529
 	subl $18,1,$18
 	zapnot $18,15,$18
 	addq $17,$18,$17
@@ -4173,15 +4176,15 @@ $L531:
 	bis $1,$2,$1
 	stq_u $1,0($16)
 	ret $31,($26),1
-$L529:
+$L530:
 	zapnot $18,15,$1
 	addq $17,$1,$1
 	cmpult $1,$16,$1
-	bne $1,$L532
+	bne $1,$L533
 	subl $18,1,$2
 	zapnot $2,15,$2
-	beq $18,$L541
-$L536:
+	beq $18,$L542
+$L537:
 	addq $17,$2,$1
 	lda $3,1($1)
 	ldq_u $1,0($1)
@@ -4195,10 +4198,10 @@ $L536:
 	stq_u $1,0($3)
 	lda $2,-1($2)
 	lda $1,1($2)
-	bne $1,$L536
-$L528:
+	bne $1,$L537
+$L529:
 	ret $31,($26),1
-$L541:
+$L542:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE108:
@@ -4216,33 +4219,34 @@ $LFB109:
 	srl $3,2,$3
 	bic $18,3,$5
 	cmpult $16,$17,$1
-	beq $1,$L543
-$L546:
+	beq $1,$L544
+$L547:
 	mov $17,$1
 	mov $16,$2
 	s4addq $3,$17,$4
-	beq $3,$L545
-$L549:
+	beq $3,$L546
+$L550:
 	ldl $3,0($1)
 	stl $3,0($2)
 	lda $1,4($1)
 	lda $2,4($2)
 	cmpeq $1,$4,$3
-	beq $3,$L549
-$L545:
+	beq $3,$L550
+$L546:
 	zapnot $18,15,$1
 	zapnot $5,15,$2
 	cmpule $1,$2,$1
-	bne $1,$L542
+	bne $1,$L543
+	mov $2,$3
 	addq $17,$2,$1
 	addq $16,$2,$16
-	lda $17,1($17)
-	subl $18,1,$18
-	subl $18,$5,$18
-	zapnot $18,15,$18
-	addq $2,$17,$17
-	addq $17,$18,$17
-$L550:
+	lda $2,1($17)
+	subl $18,1,$17
+	subl $17,$5,$17
+	zapnot $17,15,$17
+	addq $3,$2,$3
+	addq $17,$3,$17
+$L551:
 	lda $2,1($1)
 	ldq_u $1,0($1)
 	extqh $1,$2,$1
@@ -4255,17 +4259,17 @@ $L550:
 	mov $2,$1
 	lda $16,1($16)
 	cmpeq $2,$17,$2
-	beq $2,$L550
+	beq $2,$L551
 	ret $31,($26),1
-$L543:
+$L544:
 	zapnot $18,15,$1
 	addq $17,$1,$1
 	cmpult $1,$16,$1
-	bne $1,$L546
+	bne $1,$L547
 	subl $18,1,$2
 	zapnot $2,15,$2
-	beq $18,$L557
-$L551:
+	beq $18,$L558
+$L552:
 	addq $17,$2,$1
 	lda $3,1($1)
 	ldq_u $1,0($1)
@@ -4279,10 +4283,10 @@ $L551:
 	stq_u $1,0($3)
 	lda $2,-1($2)
 	lda $1,1($2)
-	bne $1,$L551
-$L542:
+	bne $1,$L552
+$L543:
 	ret $31,($26),1
-$L557:
+$L558:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE109:
@@ -4360,16 +4364,16 @@ $LFB113:
 	lda $30,-16($30)
 	.cfi_def_cfa_offset 16
 	.prologue 0
-	blt $16,$L566
+	blt $16,$L567
 	stq $16,0($30)
 	ldt $f10,0($30)
 	cvtqt $f10,$f0
-$L565:
+$L566:
 	lda $30,16($30)
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ret $31,($26),1
-$L566:
+$L567:
 	.cfi_restore_state
 	srl $16,1,$1
 	and $16,1,$16
@@ -4378,7 +4382,7 @@ $L566:
 	ldt $f11,0($30)
 	cvtqt $f11,$f10
 	addt $f10,$f10,$f0
-	br $31,$L565
+	br $31,$L566
 	.cfi_endproc
 $LFE113:
 	.end __ulltod
@@ -4393,16 +4397,16 @@ $LFB114:
 	lda $30,-16($30)
 	.cfi_def_cfa_offset 16
 	.prologue 0
-	blt $16,$L569
+	blt $16,$L570
 	stq $16,0($30)
 	ldt $f10,0($30)
 	cvtqs $f10,$f0
-$L568:
+$L569:
 	lda $30,16($30)
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ret $31,($26),1
-$L569:
+$L570:
 	.cfi_restore_state
 	srl $16,1,$1
 	and $16,1,$16
@@ -4411,7 +4415,7 @@ $L569:
 	ldt $f11,0($30)
 	cvtqs $f11,$f10
 	adds $f10,$f10,$f0
-	br $31,$L568
+	br $31,$L569
 	.cfi_endproc
 $LFE114:
 	.end __ulltof
@@ -4446,14 +4450,14 @@ $LFB116:
 	.prologue 0
 	mov $31,$0
 	lda $2,15($31)
-$L574:
+$L575:
 	subl $2,$0,$1
 	sra $16,$1,$1
-	blbs $1,$L573
+	blbs $1,$L574
 	addl $0,1,$0
 	cmpeq $0,16,$1
-	beq $1,$L574
-$L573:
+	beq $1,$L575
+$L574:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE116:
@@ -4468,13 +4472,13 @@ $LFB117:
 	.cfi_startproc
 	.prologue 0
 	mov $31,$0
-$L578:
+$L579:
 	sra $16,$0,$1
-	blbs $1,$L577
+	blbs $1,$L578
 	addl $0,1,$0
 	cmpeq $0,16,$1
-	beq $1,$L578
-$L577:
+	beq $1,$L579
+$L578:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE117:
@@ -4495,16 +4499,16 @@ $__fixunssfsi..ng:
 	ldah $1,$LC17($29)		!gprelhigh
 	lds $f10,$LC17($1)		!gprellow
 	cmptle $f10,$f16,$f10
-	fbne $f10,$L586
+	fbne $f10,$L587
 	cvttq/c $f16,$f16
 	stt $f16,0($30)
 	ldq $0,0($30)
-$L580:
+$L581:
 	lda $30,16($30)
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ret $31,($26),1
-$L586:
+$L587:
 	.cfi_restore_state
 	lds $f11,$LC17($1)		!gprellow
 	subs $f16,$f11,$f10
@@ -4513,7 +4517,7 @@ $L586:
 	ldq $0,0($30)
 	ldah $0,1($0)
 	lda $0,-32768($0)
-	br $31,$L580
+	br $31,$L581
 	.cfi_endproc
 $LFE118:
 	.end __fixunssfsi
@@ -4528,13 +4532,13 @@ $LFB119:
 	.prologue 0
 	mov $31,$0
 	mov $31,$1
-$L588:
+$L589:
 	sra $16,$1,$2
 	and $2,1,$2
 	addl $2,$0,$0
 	addl $1,1,$1
 	cmpeq $1,16,$2
-	beq $2,$L588
+	beq $2,$L589
 	and $0,1,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -4551,13 +4555,13 @@ $LFB120:
 	.prologue 0
 	mov $31,$0
 	mov $31,$1
-$L591:
+$L592:
 	sra $16,$1,$2
 	and $2,1,$2
 	addl $2,$0,$0
 	addl $1,1,$1
 	cmpeq $1,16,$2
-	beq $2,$L591
+	beq $2,$L592
 	ret $31,($26),1
 	.cfi_endproc
 $LFE120:
@@ -4572,18 +4576,18 @@ $LFB121:
 	.cfi_startproc
 	.prologue 0
 	mov $16,$0
-	beq $16,$L594
+	beq $16,$L595
 	mov $31,$0
-$L595:
+$L596:
 	and $16,1,$1
 	subl $31,$1,$1
 	and $17,$1,$1
-	addl $0,$1,$0
+	addl $1,$0,$0
 	zapnot $16,15,$16
 	srl $16,1,$16
 	addl $17,$17,$17
-	bne $16,$L595
-$L594:
+	bne $16,$L596
+$L595:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE121:
@@ -4598,20 +4602,20 @@ $LFB122:
 	.cfi_startproc
 	.prologue 0
 	mov $16,$0
-	beq $16,$L599
+	beq $16,$L600
 	mov $17,$0
-	beq $17,$L599
+	beq $17,$L600
 	mov $31,$0
-$L600:
+$L601:
 	and $17,1,$1
 	subl $31,$1,$1
 	and $16,$1,$1
-	addl $0,$1,$0
+	addl $1,$0,$0
 	addl $16,$16,$16
 	zapnot $17,15,$17
 	srl $17,1,$17
-	bne $17,$L600
-$L599:
+	bne $17,$L601
+$L600:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE122:
@@ -4630,23 +4634,22 @@ $LFB123:
 	cmpult $1,$2,$1
 	lda $2,1($31)
 	zapnot $16,15,$4
-	beq $1,$L607
-$L605:
+	beq $1,$L613
+$L606:
 	cmplt $17,0,$1
-	bne $1,$L607
-	addl $17,$17,$3
-	addl $31,$3,$17
-	addl $2,$2,$1
-	addl $31,$1,$2
-	zapnot $3,15,$3
-	cmpult $3,$4,$3
+	bne $1,$L613
+	addl $17,$17,$1
+	addl $31,$1,$17
+	addl $2,$2,$3
+	addl $31,$3,$2
 	zapnot $1,15,$1
-	cmpult $31,$1,$1
+	cmpult $1,$4,$1
+	zapnot $3,15,$3
+	cmpult $31,$3,$3
 	and $1,$3,$1
-	bne $1,$L605
-	mov $2,$0
-	beq $2,$L608
-$L607:
+	bne $1,$L606
+	beq $2,$L619
+$L613:
 	mov $31,$0
 	br $31,$L611
 $L610:
@@ -4654,17 +4657,19 @@ $L610:
 	srl $2,1,$2
 	zapnot $17,15,$17
 	srl $17,1,$17
-	beq $2,$L608
+	beq $2,$L612
 $L611:
 	zapnot $16,15,$1
 	zapnot $17,15,$3
 	cmpult $1,$3,$1
 	bne $1,$L610
 	subl $16,$17,$16
-	bis $0,$2,$0
+	bis $2,$0,$0
 	addl $31,$0,$0
 	br $31,$L610
-$L608:
+$L619:
+	mov $2,$0
+$L612:
 	cmovne $18,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -4681,15 +4686,15 @@ $LFB124:
 	.prologue 0
 	cmptlt $f16,$f17,$f10
 	lda $0,-1($31)
-	fbne $f10,$L619
+	fbne $f10,$L621
 	lda $0,1($31)
 	cmptlt $f17,$f16,$f17
-	fbne $f17,$L620
+	fbne $f17,$L622
 	bis $31,$31,$0
-$L620:
+$L622:
 	and $0,0xff,$0
 	addl $31,$0,$0
-$L619:
+$L621:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE124:
@@ -4705,15 +4710,15 @@ $LFB125:
 	.prologue 0
 	cmptlt $f16,$f17,$f10
 	lda $0,-1($31)
-	fbne $f10,$L623
+	fbne $f10,$L625
 	lda $0,1($31)
 	cmptlt $f17,$f16,$f10
-	fbne $f10,$L624
+	fbne $f10,$L626
 	bis $31,$31,$0
-$L624:
+$L626:
 	and $0,0xff,$0
 	addl $31,$0,$0
-$L623:
+$L625:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE125:
@@ -4756,39 +4761,39 @@ $LFB128:
 	.cfi_startproc
 	.prologue 0
 	cmplt $17,0,$1
-	bne $1,$L636
-	beq $17,$L634
+	bne $1,$L638
+	beq $17,$L636
 	mov $31,$4
-$L630:
+$L632:
 	mov $31,$0
 	mov $31,$1
-$L632:
+$L634:
 	and $17,1,$2
 	subl $31,$2,$2
 	and $16,$2,$2
-	addl $0,$2,$0
+	addl $2,$0,$0
 	addl $16,$16,$16
 	sra $17,1,$17
 	lda $1,1($1)
+	and $1,0xff,$3
 	sll $1,56,$1
 	sra $1,56,$1
-	cmpult $31,$17,$3
-	and $1,0xff,$2
-	cmpule $2,31,$2
+	cmpult $31,$17,$2
+	cmpule $3,31,$3
 	and $2,$3,$2
-	bne $2,$L632
-$L631:
+	bne $2,$L634
+$L633:
 	subl $31,$0,$1
 	cmovne $4,$1,$0
 	ret $31,($26),1
-$L636:
+$L638:
 	subl $31,$17,$17
 	lda $4,1($31)
-	br $31,$L630
-$L634:
-	mov $31,$4
-	mov $31,$0
-	br $31,$L631
+	br $31,$L632
+$L636:
+	mov $17,$4
+	mov $17,$0
+	br $31,$L633
 	.cfi_endproc
 $LFE128:
 	.end __mulhi3
@@ -4809,9 +4814,9 @@ $__divsi3..ng:
 	.cfi_offset 26, -16
 	.prologue 1
 	cmplt $16,0,$1
-	bne $1,$L645
+	bne $1,$L647
 	cmplt $17,0,$1
-	bne $1,$L646
+	bne $1,$L648
 	mov $31,$18
 	addl $31,$17,$17
 	addl $31,$16,$16
@@ -4820,10 +4825,10 @@ $__divsi3..ng:
 	ldah $29,0($26)		!gpdisp!102
 	lda $29,0($29)		!gpdisp!102
 	zapnot $0,15,$0
-	br $31,$L637
-$L645:
+	br $31,$L639
+$L647:
 	subq $31,$16,$16
-	blt $17,$L647
+	blt $17,$L649
 	mov $31,$18
 	addl $31,$17,$17
 	addl $31,$16,$16
@@ -4832,16 +4837,16 @@ $L645:
 	ldah $29,0($26)		!gpdisp!104
 	lda $29,0($29)		!gpdisp!104
 	zapnot $0,15,$0
-$L641:
+$L643:
 	subq $31,$0,$0
-$L637:
+$L639:
 	ldq $26,0($30)
 	lda $30,16($30)
 	.cfi_remember_state
 	.cfi_restore 26
 	.cfi_def_cfa_offset 0
 	ret $31,($26),1
-$L646:
+$L648:
 	.cfi_restore_state
 	mov $31,$18
 	subl $31,$17,$17
@@ -4851,8 +4856,8 @@ $L646:
 	ldah $29,0($26)		!gpdisp!106
 	lda $29,0($29)		!gpdisp!106
 	zapnot $0,15,$0
-	br $31,$L641
-$L647:
+	br $31,$L643
+$L649:
 	mov $31,$18
 	subl $31,$17,$17
 	addl $31,$16,$16
@@ -4861,7 +4866,7 @@ $L647:
 	ldah $29,0($26)		!gpdisp!108
 	lda $29,0($29)		!gpdisp!108
 	zapnot $0,15,$0
-	br $31,$L637
+	br $31,$L639
 	.cfi_endproc
 $LFE129:
 	.end __divsi3
@@ -4882,7 +4887,7 @@ $__modsi3..ng:
 	.cfi_offset 26, -16
 	.prologue 1
 	cmplt $16,0,$1
-	bne $1,$L651
+	bne $1,$L653
 	subq $31,$17,$1
 	cmovge $17,$17,$1
 	lda $18,1($31)
@@ -4893,8 +4898,8 @@ $__modsi3..ng:
 	ldah $29,0($26)		!gpdisp!111
 	lda $29,0($29)		!gpdisp!111
 	zapnot $0,15,$0
-	br $31,$L648
-$L651:
+	br $31,$L650
+$L653:
 	subq $31,$17,$1
 	cmovge $17,$17,$1
 	lda $18,1($31)
@@ -4906,7 +4911,7 @@ $L651:
 	lda $29,0($29)		!gpdisp!113
 	zapnot $0,15,$0
 	subq $31,$0,$0
-$L648:
+$L650:
 	ldq $26,0($30)
 	lda $30,16($30)
 	.cfi_restore 26
@@ -4926,36 +4931,37 @@ $LFB131:
 	.prologue 0
 	cmpult $17,$16,$2
 	lda $1,1($31)
-	beq $2,$L655
-$L653:
+	beq $2,$L662
+$L655:
 	srl $17,15,$2
-	bne $2,$L655
+	bne $2,$L662
 	addl $17,$17,$17
 	zapnot $17,3,$17
 	addl $1,$1,$1
 	zapnot $1,3,$1
-	cmpult $17,$16,$3
-	cmpult $31,$1,$2
+	cmpult $17,$16,$2
+	cmpult $31,$1,$3
 	and $2,$3,$2
-	bne $2,$L653
-	mov $1,$0
-	beq $1,$L656
-$L655:
+	bne $2,$L655
+	beq $1,$L668
+$L662:
 	mov $31,$0
-	br $31,$L659
-$L658:
+	br $31,$L660
+$L659:
 	srl $1,1,$1
 	srl $17,1,$17
-	beq $1,$L656
-$L659:
+	beq $1,$L661
+$L660:
 	cmpult $16,$17,$2
-	bne $2,$L658
+	bne $2,$L659
 	subl $16,$17,$16
 	zapnot $16,3,$16
-	bis $0,$1,$0
+	bis $1,$0,$0
 	zapnot $0,3,$0
-	br $31,$L658
-$L656:
+	br $31,$L659
+$L668:
+	mov $1,$0
+$L661:
 	cmovne $18,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -4972,32 +4978,33 @@ $LFB132:
 	.prologue 0
 	cmpult $17,$16,$2
 	lda $1,1($31)
-	beq $2,$L669
-$L667:
+	beq $2,$L677
+$L670:
 	srl $17,31,$2
-	blbs $2,$L669
+	blbs $2,$L677
 	addq $17,$17,$17
 	addq $1,$1,$1
-	cmpult $17,$16,$3
-	cmpult $31,$1,$2
+	cmpult $17,$16,$2
+	cmpult $31,$1,$3
 	and $2,$3,$2
-	bne $2,$L667
-	mov $1,$0
-	beq $1,$L670
-$L669:
+	bne $2,$L670
+	beq $1,$L683
+$L677:
 	mov $31,$0
-	br $31,$L673
-$L672:
+	br $31,$L675
+$L674:
 	srl $1,1,$1
 	srl $17,1,$17
-	beq $1,$L670
-$L673:
+	beq $1,$L676
+$L675:
 	cmpult $16,$17,$2
-	bne $2,$L672
+	bne $2,$L674
 	subq $16,$17,$16
 	bis $0,$1,$0
-	br $31,$L672
-$L670:
+	br $31,$L674
+$L683:
+	mov $1,$0
+$L676:
 	cmovne $18,$16,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -5013,15 +5020,15 @@ $LFB133:
 	.cfi_startproc
 	.prologue 0
 	and $17,32,$1
-	beq $1,$L681
+	beq $1,$L685
 	addl $31,$16,$16
 	subl $17,32,$17
 	sll $16,$17,$16
 	sll $16,32,$0
 	ret $31,($26),1
-$L681:
+$L685:
 	mov $16,$0
-	beq $17,$L680
+	beq $17,$L684
 	addl $31,$16,$1
 	sll $1,$17,$0
 	sra $16,32,$16
@@ -5034,7 +5041,7 @@ $L681:
 	sll $1,32,$1
 	zapnot $0,15,$0
 	bis $0,$1,$0
-$L680:
+$L684:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE133:
@@ -5050,22 +5057,22 @@ $LFB134:
 	.prologue 0
 	mov $16,$0
 	and $19,64,$2
-	beq $2,$L686
+	beq $2,$L690
 	mov $31,$2
 	sll $17,$19,$1
-$L687:
+$L691:
 	stq $2,0($0)
 	stq $1,8($0)
 	ret $31,($26),1
-$L686:
-	beq $19,$L690
+$L690:
+	beq $19,$L694
 	sll $17,$19,$2
 	sll $18,$19,$3
 	subq $31,$19,$19
 	srl $17,$19,$1
-	bis $1,$3,$1
-	br $31,$L687
-$L690:
+	bis $3,$1,$1
+	br $31,$L691
+$L694:
 	stq $17,0($16)
 	stq $18,8($16)
 	ret $31,($26),1
@@ -5082,7 +5089,7 @@ $LFB135:
 	.cfi_startproc
 	.prologue 0
 	and $17,32,$1
-	beq $1,$L692
+	beq $1,$L696
 	sra $16,32,$0
 	sra $16,63,$16
 	subl $17,32,$17
@@ -5091,9 +5098,9 @@ $LFB135:
 	sll $16,32,$16
 	bis $16,$0,$0
 	ret $31,($26),1
-$L692:
+$L696:
 	mov $16,$0
-	beq $17,$L691
+	beq $17,$L695
 	sra $16,32,$1
 	sra $1,$17,$0
 	lda $2,32($31)
@@ -5105,7 +5112,7 @@ $L692:
 	zapnot $16,15,$16
 	sll $0,32,$0
 	bis $0,$16,$0
-$L691:
+$L695:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE135:
@@ -5121,22 +5128,22 @@ $LFB136:
 	.prologue 0
 	mov $16,$0
 	and $19,64,$2
-	beq $2,$L697
+	beq $2,$L701
 	sra $18,63,$2
 	sra $18,$19,$1
-$L698:
+$L702:
 	stq $1,0($0)
 	stq $2,8($0)
 	ret $31,($26),1
-$L697:
-	beq $19,$L701
+$L701:
+	beq $19,$L705
 	sra $18,$19,$2
 	subq $31,$19,$4
 	sll $18,$4,$1
 	srl $17,$19,$3
 	bis $1,$3,$1
-	br $31,$L698
-$L701:
+	br $31,$L702
+$L705:
 	stq $17,0($16)
 	stq $18,8($16)
 	ret $31,($26),1
@@ -5152,26 +5159,26 @@ __bswapdi2:
 $LFB137:
 	.cfi_startproc
 	.prologue 0
-	srl $16,56,$7
-	srl $16,40,$6
-	zapnot $6,2,$6
-	srl $16,24,$5
-	zapnot $5,4,$5
-	srl $16,8,$4
-	zapnot $4,8,$4
-	sll $16,8,$3
-	zapnot $3,16,$3
-	sll $16,24,$2
-	zapnot $2,32,$2
-	sll $16,40,$1
-	zapnot $1,64,$1
-	sll $16,56,$0
-	bis $0,$7,$0
-	bis $0,$6,$0
-	bis $0,$5,$0
-	bis $0,$4,$0
-	bis $0,$3,$0
-	bis $0,$2,$0
+	srl $16,56,$6
+	srl $16,40,$5
+	zapnot $5,2,$5
+	srl $16,24,$4
+	zapnot $4,4,$4
+	srl $16,8,$3
+	zapnot $3,8,$3
+	sll $16,8,$2
+	zapnot $2,16,$2
+	sll $16,24,$1
+	zapnot $1,32,$1
+	sll $16,40,$0
+	zapnot $0,64,$0
+	sll $16,56,$16
+	bis $6,$16,$6
+	bis $5,$6,$5
+	bis $4,$5,$4
+	bis $3,$4,$3
+	bis $2,$3,$2
+	bis $1,$2,$1
 	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -5186,15 +5193,15 @@ __bswapsi2:
 $LFB138:
 	.cfi_startproc
 	.prologue 0
-	extbl $16,3,$3
-	srl $16,8,$2
-	zapnot $2,2,$2
-	sll $16,8,$1
-	zapnot $1,4,$1
-	sll $16,24,$0
-	addl $31,$0,$0
-	bis $0,$3,$0
-	bis $0,$2,$0
+	extbl $16,3,$2
+	srl $16,8,$1
+	zapnot $1,2,$1
+	sll $16,8,$0
+	zapnot $0,4,$0
+	sll $16,24,$16
+	addl $31,$16,$16
+	bis $2,$16,$2
+	bis $1,$2,$1
 	bis $0,$1,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -5224,30 +5231,28 @@ $LFB139:
 	subl $4,$2,$4
 	zapnot $1,15,$1
 	srl $1,$4,$1
-	addl $2,$3,$0
+	addl $2,$3,$3
 	and $1,240,$2
 	cmpeq $2,0,$2
 	s4addl $2,0,$2
-	lda $3,4($31)
-	subl $3,$2,$3
+	lda $4,4($31)
+	subl $4,$2,$4
 	zapnot $1,15,$1
-	srl $1,$3,$1
-	addl $0,$2,$0
+	srl $1,$4,$1
+	addl $2,$3,$3
 	and $1,12,$2
 	cmpeq $2,0,$2
 	addl $2,$2,$2
-	lda $3,2($31)
-	subl $3,$2,$4
+	lda $0,2($31)
+	subl $0,$2,$4
 	zapnot $1,15,$1
 	srl $1,$4,$1
+	addl $2,$3,$2
+	and $1,2,$3
+	cmpult $31,$3,$3
+	subl $0,$1,$0
+	cmovne $3,0,$0
 	addl $0,$2,$0
-	and $1,2,$2
-	cmpult $31,$2,$2
-	xor $2,1,$2
-	subl $3,$1,$3
-	subl $31,$2,$2
-	and $3,$2,$3
-	addl $0,$3,$0
 	ret $31,($26),1
 	.cfi_endproc
 $LFE139:
@@ -5270,17 +5275,17 @@ $__clzti2..ng:
 	.cfi_offset 26, -16
 	.cfi_offset 9, -8
 	.prologue 1
-	cmpeq $17,0,$1
-	subq $31,$1,$9
-	lda $1,-1($1)
-	and $1,$17,$1
-	and $9,$16,$16
+	cmpeq $17,0,$9
+	subl $9,1,$1
+	addl $31,$1,$1
+	and $17,$1,$1
+	cmovne $17,0,$16
 	bis $1,$16,$16
 	ldq $27,__clzdi2($29)		!literal!115
 	jsr $26,($27),0		!lituse_jsr!115
 	ldah $29,0($26)		!gpdisp!116
 	lda $29,0($29)		!gpdisp!116
-	and $9,64,$9
+	sll $9,6,$9
 	addl $0,$9,$0
 	ldq $26,0($30)
 	ldq $9,8($30)
@@ -5305,22 +5310,22 @@ $LFB141:
 	sra $17,32,$2
 	cmplt $1,$2,$3
 	mov $31,$0
-	bne $3,$L707
+	bne $3,$L711
 	cmple $1,$2,$1
 	lda $0,2($31)
-	beq $1,$L707
+	beq $1,$L711
 	addl $31,$16,$1
 	addl $31,$17,$2
 	zapnot $16,15,$16
 	zapnot $17,15,$17
 	cmpult $16,$17,$16
 	mov $31,$0
-	bne $16,$L707
+	bne $16,$L711
 	zapnot $1,15,$1
 	zapnot $2,15,$2
 	cmpult $2,$1,$0
 	lda $0,1($0)
-$L707:
+$L711:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE141:
@@ -5365,16 +5370,16 @@ $LFB143:
 	.prologue 0
 	cmplt $17,$19,$1
 	mov $31,$0
-	bne $1,$L714
+	bne $1,$L718
 	cmple $17,$19,$17
 	lda $0,2($31)
-	beq $17,$L714
+	beq $17,$L718
 	cmpult $16,$18,$1
 	mov $31,$0
-	bne $1,$L714
+	bne $1,$L718
 	cmpult $18,$16,$0
 	lda $0,1($0)
-$L714:
+$L718:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE143:
@@ -5397,21 +5402,21 @@ $LFB144:
 	cmpeq $2,0,$2
 	zapnot $1,15,$1
 	extql $1,$2,$1
-	s8addl $2,$3,$2
-	and $1,15,$0
-	cmpeq $0,0,$0
-	s4addq $0,0,$3
+	s8addl $2,$3,$3
+	and $1,15,$2
+	cmpeq $2,0,$2
+	s4addq $2,0,$4
+	zapnot $1,15,$1
+	srl $1,$4,$1
+	s4addl $2,$3,$2
+	and $1,3,$3
+	cmpeq $3,0,$3
+	addl $3,$3,$0
+	addq $3,$3,$3
 	zapnot $1,15,$1
 	srl $1,$3,$1
-	s4addl $0,$2,$0
-	and $1,3,$2
-	cmpeq $2,0,$2
-	addl $2,$2,$3
-	addq $2,$2,$2
-	zapnot $1,15,$1
-	srl $1,$2,$1
 	and $1,3,$1
-	addl $0,$3,$0
+	addl $0,$2,$0
 	ornot $31,$1,$2
 	and $2,1,$3
 	srl $1,1,$1
@@ -5443,16 +5448,18 @@ $__ctzti2..ng:
 	.cfi_offset 9, -8
 	.prologue 1
 	mov $16,$1
-	cmpeq $16,0,$9
-	subq $31,$9,$9
-	and $9,$17,$16
-	bic $1,$9,$1
-	bis $1,$16,$16
+	mov $17,$16
+	cmpeq $1,0,$9
+	cmovne $1,0,$16
+	subl $9,1,$2
+	addl $31,$2,$2
+	and $1,$2,$1
+	bis $16,$1,$16
 	ldq $27,__ctzdi2($29)		!literal!121
 	jsr $26,($27),0		!lituse_jsr!121
 	ldah $29,0($26)		!gpdisp!122
 	lda $29,0($29)		!gpdisp!122
-	and $9,64,$9
+	sll $9,6,$9
 	addl $0,$9,$0
 	ldq $26,0($30)
 	ldq $9,8($30)
@@ -5480,23 +5487,23 @@ $__ffsti2..ng:
 	stq $26,0($30)
 	.cfi_offset 26, -16
 	.prologue 1
-	bne $16,$L722
+	bne $16,$L726
 	mov $31,$0
-	beq $17,$L723
+	beq $17,$L727
 	mov $17,$16
 	ldq $27,__ctzdi2($29)		!literal!124
 	jsr $26,($27),0		!lituse_jsr!124
 	ldah $29,0($26)		!gpdisp!125
 	lda $29,0($29)		!gpdisp!125
 	addl $0,65,$0
-	br $31,$L723
-$L722:
+	br $31,$L727
+$L726:
 	ldq $27,__ctzdi2($29)		!literal!126
 	jsr $26,($27),0		!lituse_jsr!126
 	ldah $29,0($26)		!gpdisp!127
 	lda $29,0($29)		!gpdisp!127
 	addl $0,1,$0
-$L723:
+$L727:
 	ldq $26,0($30)
 	lda $30,16($30)
 	.cfi_restore 26
@@ -5515,15 +5522,15 @@ $LFB147:
 	.cfi_startproc
 	.prologue 0
 	and $17,32,$1
-	beq $1,$L726
+	beq $1,$L730
 	subl $17,32,$17
 	srl $16,32,$16
 	srl $16,$17,$16
 	zapnot $16,15,$0
 	ret $31,($26),1
-$L726:
+$L730:
 	mov $16,$0
-	beq $17,$L725
+	beq $17,$L729
 	extll $16,4,$1
 	zapnot $1,15,$0
 	srl $0,$17,$0
@@ -5536,7 +5543,7 @@ $L726:
 	zapnot $16,15,$16
 	sll $0,32,$0
 	bis $0,$16,$0
-$L725:
+$L729:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE147:
@@ -5552,22 +5559,22 @@ $LFB148:
 	.prologue 0
 	mov $16,$0
 	and $19,64,$2
-	beq $2,$L731
+	beq $2,$L735
 	mov $31,$2
 	srl $18,$19,$1
-$L732:
+$L736:
 	stq $1,0($0)
 	stq $2,8($0)
 	ret $31,($26),1
-$L731:
-	beq $19,$L735
+$L735:
+	beq $19,$L739
 	srl $18,$19,$2
 	subq $31,$19,$4
 	sll $18,$4,$1
 	srl $17,$19,$3
 	bis $1,$3,$1
-	br $31,$L732
-$L735:
+	br $31,$L736
+$L739:
 	stq $17,0($16)
 	stq $18,8($16)
 	ret $31,($26),1
@@ -5583,32 +5590,32 @@ __muldsi3:
 $LFB149:
 	.cfi_startproc
 	.prologue 0
-	zapnot $16,3,$4
+	zapnot $16,3,$1
 	zapnot $17,3,$3
-	mull $4,$3,$2
-	zapnot $2,15,$1
-	srl $1,16,$1
+	mull $1,$3,$2
+	zapnot $2,15,$4
+	srl $4,16,$4
 	zapnot $2,3,$2
 	extwl $16,2,$16
-	mull $16,$3,$3
-	addl $1,$3,$1
-	sll $1,16,$3
-	addl $3,$2,$3
-	zapnot $1,15,$1
-	srl $1,16,$2
-	zapnot $3,15,$1
-	srl $1,16,$1
-	zapnot $3,3,$3
+	mull $3,$16,$3
+	addl $3,$4,$3
+	sll $3,16,$4
+	addl $2,$4,$2
+	zapnot $3,15,$3
+	srl $3,16,$3
+	zapnot $2,15,$4
+	srl $4,16,$4
+	zapnot $2,3,$0
 	extwl $17,2,$17
-	mull $4,$17,$4
+	mull $1,$17,$1
 	addl $1,$4,$1
-	sll $1,16,$0
-	addl $0,$3,$0
+	sll $1,16,$2
+	addl $0,$2,$0
 	zapnot $1,15,$1
 	srl $1,16,$1
-	addl $1,$2,$1
 	mull $16,$17,$16
-	addl $1,$16,$1
+	addl $3,$16,$3
+	addl $1,$3,$1
 	zapnot $1,15,$1
 	sll $1,32,$1
 	zapnot $0,15,$0
@@ -5641,23 +5648,23 @@ $__muldi3_compiler_rt..ng:
 	.cfi_offset 11, -24
 	.cfi_offset 12, -16
 	.prologue 1
-	mov $16,$9
+	mov $16,$12
 	mov $17,$10
 	addl $31,$16,$11
-	addl $31,$17,$12
-	mov $12,$17
+	addl $31,$17,$9
+	mov $9,$17
 	mov $11,$16
 	ldq $27,__muldsi3($29)		!literal!129
 	jsr $26,($27),0		!lituse_jsr!129
 	ldah $29,0($26)		!gpdisp!130
 	lda $29,0($29)		!gpdisp!130
-	sra $0,32,$2
-	sra $9,32,$1
-	mull $1,$12,$1
+	sra $0,32,$1
+	sra $12,32,$12
+	mull $9,$12,$9
 	sra $10,32,$10
-	mull $10,$11,$10
-	addl $1,$10,$1
-	addl $1,$2,$1
+	mull $11,$10,$11
+	addl $9,$11,$9
+	addl $1,$9,$1
 	zapnot $1,15,$1
 	sll $1,32,$1
 	zapnot $0,15,$0
@@ -5688,26 +5695,26 @@ $LFB151:
 	.cfi_startproc
 	.prologue 0
 	mov $16,$0
-	zapnot $17,15,$3
-	zapnot $18,15,$4
-	mulq $3,$4,$2
-	srl $2,32,$1
+	zapnot $17,15,$1
+	zapnot $18,15,$2
+	mulq $1,$2,$3
+	srl $3,32,$4
 	srl $17,32,$17
-	mulq $17,$4,$4
-	addq $1,$4,$1
-	srl $1,32,$4
-	zapnot $1,15,$1
+	mulq $2,$17,$2
+	addq $2,$4,$2
+	srl $2,32,$4
 	zapnot $2,15,$2
+	zapnot $3,15,$3
 	srl $18,32,$18
-	mulq $3,$18,$3
-	addq $1,$3,$1
-	sll $1,32,$3
-	addq $3,$2,$2
+	mulq $1,$18,$1
+	addq $1,$2,$1
+	sll $1,32,$2
+	addq $3,$2,$3
 	srl $1,32,$1
-	addq $1,$4,$1
 	mulq $17,$18,$17
-	addq $1,$17,$1
-	stq $2,0($16)
+	addq $4,$17,$2
+	addq $1,$2,$1
+	stq $3,0($16)
 	stq $1,8($16)
 	ret $31,($26),1
 	.cfi_endproc
@@ -5739,26 +5746,26 @@ $__multi3..ng:
 	.cfi_offset 12, -32
 	.cfi_offset 13, -24
 	.prologue 1
-	mov $16,$11
-	mov $18,$9
+	mov $16,$9
+	mov $18,$12
 	mov $19,$18
-	mov $17,$12
-	mov $19,$13
-	mov $20,$10
+	mov $17,$13
+	mov $19,$10
+	mov $20,$11
 	lda $16,48($30)
 	ldq $27,__mulddi3($29)		!literal!132
 	jsr $26,($27),__mulddi3		!lituse_jsr!132
 	ldah $29,0($26)		!gpdisp!133
 	lda $29,0($29)		!gpdisp!133
 	ldq $1,56($30)
-	mulq $9,$13,$9
 	mulq $10,$12,$10
-	addq $9,$10,$9
-	addq $9,$1,$9
-	ldq $1,48($30)
-	stq $1,0($11)
-	stq $9,8($11)
-	mov $11,$0
+	mulq $13,$11,$13
+	addq $10,$13,$10
+	addq $1,$10,$1
+	ldq $2,48($30)
+	stq $2,0($9)
+	stq $1,8($9)
+	mov $9,$0
 	ldq $26,0($30)
 	ldq $9,8($30)
 	ldq $10,16($30)
@@ -5921,12 +5928,12 @@ $__popcountdi2..ng:
 	ldq $2,$LC21($2)		!gprellow
 	and $1,$2,$1
 	sra $1,32,$2
+	addl $1,$2,$1
+	zapnot $1,15,$2
+	srl $2,16,$2
 	addl $2,$1,$1
 	zapnot $1,15,$0
-	srl $0,16,$0
-	addl $0,$1,$0
-	zapnot $0,15,$1
-	srl $1,8,$1
+	srl $0,8,$0
 	addl $0,$1,$0
 	and $0,127,$0
 	ret $31,($26),1
@@ -5956,15 +5963,15 @@ $LFB159:
 	addl $1,$2,$1
 	zapnot $1,15,$2
 	srl $2,4,$2
-	addl $2,$1,$2
-	ldah $1,3855($31)
-	lda $1,3855($1)
-	and $1,$2,$1
-	srl $1,16,$0
-	addq $0,$1,$2
-	srl $2,8,$2
-	addq $0,$2,$0
-	addq $0,$1,$0
+	addl $2,$1,$1
+	ldah $2,3855($31)
+	lda $2,3855($2)
+	and $2,$1,$2
+	srl $2,16,$1
+	addl $1,$2,$3
+	addq $1,$2,$0
+	srl $0,8,$0
+	addl $0,$3,$0
 	and $0,63,$0
 	ret $31,($26),1
 	.cfi_endproc
@@ -6006,27 +6013,27 @@ $__popcountti2..ng:
 	addq $3,$1,$1
 	cmpult $1,$3,$3
 	addq $4,$2,$2
+	addq $3,$2,$2
+	sll $2,60,$4
+	srl $1,4,$3
+	bis $4,$3,$3
+	srl $2,4,$4
+	addq $3,$1,$1
+	cmpult $1,$3,$3
+	addq $4,$2,$2
 	addq $3,$2,$3
-	sll $3,60,$4
-	srl $1,4,$2
-	bis $4,$2,$2
-	srl $3,4,$4
-	addq $2,$1,$1
-	cmpult $1,$2,$2
-	addq $4,$3,$3
-	addq $2,$3,$2
-	ldah $3,$LC21($29)		!gprelhigh
-	ldq $3,$LC21($3)		!gprellow
-	and $1,$3,$1
-	and $2,$3,$2
-	addq $2,$1,$2
-	sra $2,32,$1
+	ldah $2,$LC21($29)		!gprelhigh
+	ldq $2,$LC21($2)		!gprellow
+	and $1,$2,$1
+	and $3,$2,$3
+	addq $1,$3,$1
+	sra $1,32,$2
 	addl $1,$2,$1
+	zapnot $1,15,$2
+	srl $2,16,$2
+	addl $2,$1,$1
 	zapnot $1,15,$0
-	srl $0,16,$0
-	addl $0,$1,$0
-	zapnot $0,15,$1
-	srl $1,8,$1
+	srl $0,8,$0
 	addl $0,$1,$0
 	and $0,0xff,$0
 	ret $31,($26),1
@@ -6044,26 +6051,29 @@ $LFB161:
 	lda $29,0($29)		!gpdisp!136
 $__powidf2..ng:
 	.prologue 1
-	srl $17,63,$2
-	ldah $1,$LC16($29)		!gprelhigh
-	lds $f0,$LC16($1)		!gprellow
-	br $31,$L751
-$L749:
-	srl $17,63,$1
-	addq $1,$17,$17
-	sra $17,1,$17
-	beq $17,$L750
+	mov $17,$1
+	ldah $2,$LC16($29)		!gprelhigh
+	lds $f0,$LC16($2)		!gprellow
+	br $31,$L755
+$L753:
+	srl $1,63,$2
+	addq $2,$1,$1
+	sra $1,1,$1
+	beq $1,$L754
 	mult $f16,$f16,$f16
-$L751:
-	blbc $17,$L749
+$L755:
+	blbc $1,$L753
 	mult $f0,$f16,$f0
-	br $31,$L749
-$L750:
-	beq $2,$L748
+	br $31,$L753
+$L754:
+	cmplt $17,0,$17
+	bne $17,$L757
+$L752:
+	ret $31,($26),1
+$L757:
 	ldah $1,$LC16($29)		!gprelhigh
 	lds $f10,$LC16($1)		!gprellow
 	divt $f10,$f0,$f0
-$L748:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE161:
@@ -6079,26 +6089,29 @@ $LFB162:
 	lda $29,0($29)		!gpdisp!137
 $__powisf2..ng:
 	.prologue 1
-	srl $17,63,$2
-	ldah $1,$LC16($29)		!gprelhigh
-	lds $f0,$LC16($1)		!gprellow
-	br $31,$L756
-$L754:
-	srl $17,63,$1
-	addq $1,$17,$17
-	sra $17,1,$17
-	beq $17,$L755
+	mov $17,$1
+	ldah $2,$LC16($29)		!gprelhigh
+	lds $f0,$LC16($2)		!gprellow
+	br $31,$L761
+$L759:
+	srl $1,63,$2
+	addq $2,$1,$1
+	sra $1,1,$1
+	beq $1,$L760
 	muls $f16,$f16,$f16
-$L756:
-	blbc $17,$L754
+$L761:
+	blbc $1,$L759
 	muls $f0,$f16,$f0
-	br $31,$L754
-$L755:
-	beq $2,$L753
+	br $31,$L759
+$L760:
+	cmplt $17,0,$17
+	bne $17,$L763
+$L758:
+	ret $31,($26),1
+$L763:
 	ldah $1,$LC16($29)		!gprelhigh
 	lds $f10,$LC16($1)		!gprellow
 	divs $f10,$f0,$f0
-$L753:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE162:
@@ -6118,23 +6131,23 @@ $LFB163:
 	zapnot $3,15,$4
 	cmpult $2,$4,$2
 	mov $31,$0
-	bne $2,$L759
+	bne $2,$L765
 	zapnot $1,15,$1
 	cmpule $1,$4,$1
 	lda $0,2($31)
-	beq $1,$L759
+	beq $1,$L765
 	addl $31,$16,$1
 	addl $31,$17,$2
 	zapnot $16,15,$16
 	zapnot $17,15,$17
 	cmpult $16,$17,$16
 	mov $31,$0
-	bne $16,$L759
+	bne $16,$L765
 	zapnot $1,15,$1
 	zapnot $2,15,$2
 	cmpult $2,$1,$0
 	lda $0,1($0)
-$L759:
+$L765:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE163:
@@ -6179,16 +6192,16 @@ $LFB165:
 	.prologue 0
 	cmpult $17,$19,$1
 	mov $31,$0
-	bne $1,$L766
+	bne $1,$L772
 	cmpule $17,$19,$17
 	lda $0,2($31)
-	beq $17,$L766
+	beq $17,$L772
 	cmpult $16,$18,$1
 	mov $31,$0
-	bne $1,$L766
+	bne $1,$L772
 	cmpult $18,$16,$0
 	lda $0,1($0)
-$L766:
+$L772:
 	ret $31,($26),1
 	.cfi_endproc
 $LFE165:

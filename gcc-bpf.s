@@ -190,49 +190,49 @@ memccpy:
 	if r0 == 6 goto .L113
 	r5 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r5
-	if r3 == r5 goto .L116
+	if r5 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L113:
 	r9 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r9
-	if r3 == r9 goto .L116
+	if r9 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L112:
 	r0 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r0
-	if r3 == r0 goto .L116
+	if r0 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L111:
 	r5 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r5
-	if r3 == r5 goto .L116
+	if r5 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L110:
 	r9 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r9
-	if r3 == r9 goto .L116
+	if r9 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L109:
 	r0 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r0
-	if r3 == r0 goto .L116
+	if r0 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
 .L108:
 	r5 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r5
-	if r3 == r5 goto .L116
+	if r5 == r3 goto .L116
 	r4 += -1
 	r2 += 1
 	r1 += 1
@@ -240,7 +240,7 @@ memccpy:
 .L67:
 	r9 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r9
-	if r3 == r9 goto .L116
+	if r9 == r3 goto .L116
 	r4 += -1
 	r9 = r4
 	r5 = r2
@@ -250,31 +250,31 @@ memccpy:
 	r1 = r0
 	r2 = *(u8 *) (r2+1)
 	*(u8 *) (r0+0) = r2
-	if r3 == r2 goto .L116
+	if r2 == r3 goto .L116
 	r1 += 1
 	r4 = *(u8 *) (r5+1)
 	*(u8 *) (r1+0) = r4
-	if r3 == r4 goto .L116
+	if r4 == r3 goto .L116
 	r1 += 1
 	r2 = *(u8 *) (r5+2)
 	*(u8 *) (r1+0) = r2
-	if r3 == r2 goto .L116
+	if r2 == r3 goto .L116
 	r1 += 1
 	r4 = *(u8 *) (r5+3)
 	*(u8 *) (r1+0) = r4
-	if r3 == r4 goto .L116
+	if r4 == r3 goto .L116
 	r1 += 1
 	r2 = *(u8 *) (r5+4)
 	*(u8 *) (r1+0) = r2
-	if r3 == r2 goto .L116
+	if r2 == r3 goto .L116
 	r1 += 1
 	r4 = *(u8 *) (r5+5)
 	*(u8 *) (r1+0) = r4
-	if r3 == r4 goto .L116
+	if r4 == r3 goto .L116
 	r1 += 1
 	r2 = *(u8 *) (r5+6)
 	*(u8 *) (r1+0) = r2
-	if r3 == r2 goto .L116
+	if r2 == r3 goto .L116
 	r4 = r9
 	r4 += -7
 	r2 = r5
@@ -309,68 +309,68 @@ memchr:
 	if r0 == 5 goto .L162
 	if r0 == 6 goto .L163
 	r4 = *(u8 *) (r1+0)
-	if r2 == r4 goto .L166
+	if r4 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L163:
 	r5 = *(u8 *) (r1+0)
-	if r2 == r5 goto .L166
+	if r5 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L162:
 	r9 = *(u8 *) (r1+0)
-	if r2 == r9 goto .L166
+	if r9 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L161:
 	r0 = *(u8 *) (r1+0)
-	if r2 == r0 goto .L166
+	if r0 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L160:
 	r4 = *(u8 *) (r1+0)
-	if r2 == r4 goto .L166
+	if r4 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L159:
 	r5 = *(u8 *) (r1+0)
-	if r2 == r5 goto .L166
+	if r5 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 .L158:
 	r9 = *(u8 *) (r1+0)
-	if r2 == r9 goto .L166
+	if r9 == r2 goto .L166
 	r1 += 1
 	r3 += -1
 	if r3 == 0 goto .L121
 .L118:
 	r0 = *(u8 *) (r1+0)
-	if r2 == r0 goto .L166
+	if r0 == r2 goto .L166
 	r5 = r1
 	r5 += 1
 	r1 = r5
 	r3 += -1
 	r4 = r3
 	r3 = *(u8 *) (r5+0)
-	if r2 == r3 goto .L166
+	if r3 == r2 goto .L166
 	r1 += 1
 	r9 = *(u8 *) (r5+1)
-	if r2 == r9 goto .L166
+	if r9 == r2 goto .L166
 	r1 += 1
 	r0 = *(u8 *) (r5+2)
-	if r2 == r0 goto .L166
+	if r0 == r2 goto .L166
 	r1 += 1
 	r3 = *(u8 *) (r5+3)
-	if r2 == r3 goto .L166
+	if r3 == r2 goto .L166
 	r1 += 1
 	r9 = *(u8 *) (r5+4)
-	if r2 == r9 goto .L166
+	if r9 == r2 goto .L166
 	r1 += 1
 	r0 = *(u8 *) (r5+5)
-	if r2 == r0 goto .L166
+	if r0 == r2 goto .L166
 	r1 += 1
 	r3 = *(u8 *) (r5+6)
-	if r2 == r3 goto .L166
+	if r3 == r2 goto .L166
 	r5 += 7
 	r1 = r5
 	r3 = r4
@@ -607,7 +607,7 @@ memrchr:
 	r3 = r0
 	r5 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 	if r4 == 1 goto .L252
 	if r4 == 2 goto .L266
 	if r4 == 3 goto .L264
@@ -617,67 +617,67 @@ memrchr:
 	r3 = r0
 	r9 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 .L258:
 	r3 = r0
 	r4 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r4 goto .L251
+	if r4 == r2 goto .L251
 .L260:
 	r3 = r0
 	r5 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 .L262:
 	r3 = r0
 	r9 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 .L264:
 	r3 = r0
 	r4 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r4 goto .L251
+	if r4 == r2 goto .L251
 .L266:
 	r3 = r0
 	r5 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 .L252:
 	if r0 == r1 goto .L278
 	r3 = r0
 	r9 = *(u8 *) (r0+0)
 	r0 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 	r3 = r0
 	r5 = *(u8 *) (r0+0)
 	r4 = r0
 	r4 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 	r3 = r4
 	r9 = *(u8 *) (r4+0)
 	r4 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 	r3 = r4
 	r5 = *(u8 *) (r4+0)
 	r4 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 	r3 = r4
 	r9 = *(u8 *) (r4+0)
 	r4 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 	r3 = r4
 	r5 = *(u8 *) (r4+0)
 	r4 += -1
-	if r2 == r5 goto .L251
+	if r5 == r2 goto .L251
 	r3 = r4
 	r9 = *(u8 *) (r4+0)
 	r4 += -1
-	if r2 == r9 goto .L251
+	if r9 == r2 goto .L251
 	r3 = r4
 	r4 = *(u8 *) (r4+0)
 	r0 += -7
-	if r2 != r4 goto .L252
+	if r4 != r2 goto .L252
 	goto .L251
 .L278:
 	r3 = 0
@@ -696,11 +696,8 @@ memset:
 	r4 += r3
 	r0 = r1
 	r2 &= 0xff
-	r5 = r1
-	r5 ^= -1
 	r3 = r4
-	r3 += r5
-	r3 += 1
+	r3 -= r1
 	r3 &= 7
 	if r3 == 0 goto .L281
 	if r3 == 1 goto .L304
@@ -729,7 +726,7 @@ memset:
 .L304:
 	*(u8 *) (r0+0) = r2
 	r0 += 1
-	if r0 == r4 goto .L280
+	if r4 == r0 goto .L280
 .L281:
 	*(u8 *) (r0+0) = r2
 	r0 += 1
@@ -741,7 +738,7 @@ memset:
 	*(u8 *) (r0+5) = r2
 	*(u8 *) (r0+6) = r2
 	r0 += 7
-	if r0 != r4 goto .L281
+	if r4 != r0 goto .L281
 .L280:
 	r0 = r1
 	exit
@@ -820,7 +817,7 @@ strchrnul:
 	if r0 == 0 goto .L335
 .L330:
 	r3 = *(u8 *) (r1+0)
-	if r2 == r3 goto .L336
+	if r3 == r2 goto .L336
 	r1 += 1
 	r4 = *(u8 *) (r1+0)
 	if r4 != 0 goto .L330
@@ -844,7 +841,7 @@ strchr:
 	r3 = *(u8 *) (r0+0)
 	r3 <<= 56
 	r3 s>>= 56
-	if r2 == r3 goto .L338
+	if r3 == r2 goto .L338
 	r0 += 1
 	if r3 != 0 goto .L339
 	r0 = 0
@@ -1000,7 +997,7 @@ strncmp:
 .L368:
 	r9 = *(u8 *) (r2+0)
 	if r9 == 0 goto .L367
-	if r1 == r5 goto .L371
+	if r5 == r1 goto .L371
 	r4 = *(u8 *) (r1+0)
 	if r9 != r4 goto .L367
 	r0 = r1
@@ -1161,12 +1158,13 @@ swab:
 	.global	isalpha
 	.type	isalpha, @function
 isalpha:
-	r1 = r1;r1 &= 0xffffffff
+	r1 <<= 32
+	r1 s>>= 32
 	r1 |= 32
 	r1 += -97
-	r2 = r1;r2 &= 0xffffffff
+	r1 = r1;r1 &= 0xffffffff
 	r0 = 1
-	if r2 <= 24 goto .L432
+	if r1 <= 24 goto .L432
 	r0 = 0
 .L432:
 	r0 &= 1
@@ -2010,76 +2008,79 @@ atoi:
 	if r6 != 45 goto .L574
 	r4 = 1
 .L573:
-	r7 += 1
-	r3 = *(u8 *) (r7+0)
+	r2 = r7
+	r2 += 1
+	r3 = *(u8 *) (r7+1)
 	r3 <<= 56
 	r3 s>>= 56
 	r3 += -48
 	r5 = r3;r5 &= 0xffffffff
 	if r5 > 9 goto .L575
 .L578:
-	r2 = r7
-	r3 = 9
+	r3 = r2
+	r5 = 9
 .L576:
 	r1 = r0
 	r1 <<= 2
 	r0 += r1
 	r0 <<= 33
 	r0 s>>= 32
-	r7 += 1
-	r5 = *(u8 *) (r2+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r0 <<= 32
-	r0 s>>= 32
-	r9 = *(u8 *) (r7+0)
-	r9 <<= 56
-	r9 s>>= 56
-	r9 += -48
-	r1 = r9;r1 &= 0xffffffff
 	r2 += 1
-	if r3 <= r1 goto .L575
-	r5 = r0
-	r5 <<= 2
-	r0 += r5
-	r0 <<= 33
-	r0 s>>= 32
-	r7 += 1
-	r9 = *(u8 *) (r2+0)
+	r9 = *(u8 *) (r3+0)
 	r9 <<= 56
 	r9 s>>= 56
 	r9 += -48
 	r0 -= r9
 	r0 <<= 32
 	r0 s>>= 32
-	r1 = *(u8 *) (r7+0)
+	r1 = *(u8 *) (r2+0)
 	r1 <<= 56
 	r1 s>>= 56
 	r1 += -48
-	r5 = r1;r5 &= 0xffffffff
+	r9 = r1;r9 &= 0xffffffff
+	r3 += 1
+	if r5 <= r9 goto .L575
+	r1 = r0
+	r1 <<= 2
+	r0 += r1
+	r0 <<= 33
+	r0 s>>= 32
 	r2 += 1
-	if r3 > r5 goto .L576
+	r9 = *(u8 *) (r3+0)
+	r9 <<= 56
+	r9 s>>= 56
+	r9 += -48
+	r0 -= r9
+	r0 <<= 32
+	r0 s>>= 32
+	r1 = *(u8 *) (r2+0)
+	r1 <<= 56
+	r1 s>>= 56
+	r1 += -48
+	r9 = r1;r9 &= 0xffffffff
+	r3 += 1
+	if r5 > r9 goto .L576
 .L575:
 	if r4 == 0 goto .L579
 	exit
 .L580:
 	r4 = r0
 	goto .L573
+.L579:
+	r0 = -r0
+	r0 <<= 32
+	r0 s>>= 32
+	exit
 .L574:
 	r4 = *(u8 *) (r7+0)
 	r4 <<= 56
 	r4 s>>= 56
 	r4 += -48
 	r9 = r4;r9 &= 0xffffffff
+	if r9 > 8 goto .L579
 	r4 = r0
-	if r9 <= 8 goto .L578
-.L579:
-	r0 = -r0
-	r0 <<= 32
-	r0 s>>= 32
-	exit
+	r2 = r7
+	goto .L578
 	.size	atoi, .-atoi
 	.align	3
 	.global	atol
@@ -2095,7 +2096,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r8 = r7
 	r6 = *(u8 *) (r7+0)
@@ -2106,7 +2107,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2116,7 +2117,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2126,7 +2127,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2136,7 +2137,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2146,7 +2147,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2156,7 +2157,7 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2166,61 +2167,35 @@ atol:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L619
+	if r0 == 0 goto .L620
 	r7 += 1
 	goto .L595
-.L619:
+.L620:
 	if r6 == 43 goto .L597
 	if r6 != 45 goto .L598
 	r2 = 1
 .L597:
-	r7 += 1
-	r0 = *(u8 *) (r7+0)
+	r9 = r7
+	r9 += 1
+	r0 = *(u8 *) (r7+1)
 	r0 <<= 56
 	r0 s>>= 56
 	r0 += -48
 	r1 = r0;r1 &= 0xffffffff
 	if r1 > 9 goto .L604
 .L602:
-	r9 = r7
+	r5 = r9
 	r0 = 0
 	r3 = 9
 .L600:
 	r0 *= 10
-	r7 += 1
-	r5 = *(u8 *) (r9+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r1 = *(u8 *) (r7+0)
-	r1 <<= 56
-	r1 s>>= 56
-	r1 += -48
-	r4 = r1;r4 &= 0xffffffff
 	r9 += 1
-	if r3 <= r4 goto .L599
-	r0 *= 10
-	r5 = *(u8 *) (r9+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r1 = *(u8 *) (r7+1)
-	r1 <<= 56
-	r1 s>>= 56
-	r1 += -48
-	r4 = r1;r4 &= 0xffffffff
-	r5 = r9
-	r5 += 1
-	if r3 <= r4 goto .L599
-	r0 *= 10
 	r1 = *(u8 *) (r5+0)
 	r1 <<= 56
 	r1 s>>= 56
 	r1 += -48
 	r0 -= r1
-	r4 = *(u8 *) (r7+2)
+	r4 = *(u8 *) (r9+0)
 	r4 <<= 56
 	r4 s>>= 56
 	r4 += -48
@@ -2228,18 +2203,45 @@ atol:
 	r5 += 1
 	if r3 <= r1 goto .L599
 	r0 *= 10
-	r7 += 3
-	r5 = *(u8 *) (r5+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r4 = *(u8 *) (r7+0)
+	r6 = *(u8 *) (r5+0)
+	r6 <<= 56
+	r6 s>>= 56
+	r6 += -48
+	r0 -= r6
+	r4 = *(u8 *) (r9+1)
 	r4 <<= 56
 	r4 s>>= 56
 	r4 += -48
 	r1 = r4;r1 &= 0xffffffff
+	r6 = r5
+	r6 += 1
+	if r3 <= r1 goto .L599
+	r0 *= 10
+	r4 = *(u8 *) (r6+0)
+	r4 <<= 56
+	r4 s>>= 56
+	r4 += -48
+	r0 -= r4
+	r1 = *(u8 *) (r9+2)
+	r1 <<= 56
+	r1 s>>= 56
+	r1 += -48
+	r4 = r1;r4 &= 0xffffffff
+	r6 += 1
+	if r3 <= r4 goto .L599
+	r0 *= 10
 	r9 += 3
+	r1 = *(u8 *) (r6+0)
+	r1 <<= 56
+	r1 s>>= 56
+	r1 += -48
+	r0 -= r1
+	r4 = *(u8 *) (r9+0)
+	r4 <<= 56
+	r4 s>>= 56
+	r4 += -48
+	r1 = r4;r1 &= 0xffffffff
+	r5 += 3
 	if r3 > r1 goto .L600
 .L599:
 	if r2 == 0 goto .L603
@@ -2253,6 +2255,7 @@ atol:
 	r3 s>>= 56
 	r3 += -48
 	r4 = r3;r4 &= 0xffffffff
+	r9 = r7
 	if r4 <= 8 goto .L602
 	r0 = 0
 .L603:
@@ -2264,7 +2267,7 @@ atol:
 	.type	atoll, @function
 atoll:
 	r7 = r1
-.L621:
+.L622:
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
 	r6 s>>= 56
@@ -2273,7 +2276,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r8 = r7
 	r6 = *(u8 *) (r7+0)
@@ -2284,7 +2287,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2294,7 +2297,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2304,7 +2307,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2314,7 +2317,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2324,7 +2327,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2334,7 +2337,7 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
 	r6 = *(u8 *) (r7+0)
 	r6 <<= 56
@@ -2344,96 +2347,98 @@ atoll:
 	r0 <<= 32
 	r2 = r0
 	r2 s>>= 32
-	if r0 == 0 goto .L645
+	if r0 == 0 goto .L647
 	r7 += 1
-	goto .L621
-.L645:
-	if r6 == 43 goto .L623
-	if r6 != 45 goto .L624
+	goto .L622
+.L647:
+	if r6 == 43 goto .L624
+	if r6 != 45 goto .L625
 	r2 = 1
-.L623:
-	r7 += 1
-	r0 = *(u8 *) (r7+0)
+.L624:
+	r9 = r7
+	r9 += 1
+	r0 = *(u8 *) (r7+1)
 	r0 <<= 56
 	r0 s>>= 56
 	r0 += -48
 	r1 = r0;r1 &= 0xffffffff
-	if r1 > 9 goto .L630
-.L628:
-	r9 = r7
+	if r1 > 9 goto .L631
+.L629:
+	r5 = r9
 	r0 = 0
 	r3 = 9
-.L626:
+.L627:
 	r0 *= 10
-	r7 += 1
-	r5 = *(u8 *) (r9+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r1 = *(u8 *) (r7+0)
-	r1 <<= 56
-	r1 s>>= 56
-	r1 += -48
-	r4 = r1;r4 &= 0xffffffff
 	r9 += 1
-	if r3 <= r4 goto .L625
-	r0 *= 10
-	r5 = *(u8 *) (r9+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r1 = *(u8 *) (r7+1)
-	r1 <<= 56
-	r1 s>>= 56
-	r1 += -48
-	r4 = r1;r4 &= 0xffffffff
-	r5 = r9
-	r5 += 1
-	if r3 <= r4 goto .L625
-	r0 *= 10
 	r1 = *(u8 *) (r5+0)
 	r1 <<= 56
 	r1 s>>= 56
 	r1 += -48
 	r0 -= r1
-	r4 = *(u8 *) (r7+2)
+	r4 = *(u8 *) (r9+0)
 	r4 <<= 56
 	r4 s>>= 56
 	r4 += -48
 	r1 = r4;r1 &= 0xffffffff
 	r5 += 1
-	if r3 <= r1 goto .L625
+	if r3 <= r1 goto .L626
 	r0 *= 10
-	r7 += 3
-	r5 = *(u8 *) (r5+0)
-	r5 <<= 56
-	r5 s>>= 56
-	r5 += -48
-	r0 -= r5
-	r4 = *(u8 *) (r7+0)
+	r6 = *(u8 *) (r5+0)
+	r6 <<= 56
+	r6 s>>= 56
+	r6 += -48
+	r0 -= r6
+	r4 = *(u8 *) (r9+1)
 	r4 <<= 56
 	r4 s>>= 56
 	r4 += -48
 	r1 = r4;r1 &= 0xffffffff
+	r6 = r5
+	r6 += 1
+	if r3 <= r1 goto .L626
+	r0 *= 10
+	r4 = *(u8 *) (r6+0)
+	r4 <<= 56
+	r4 s>>= 56
+	r4 += -48
+	r0 -= r4
+	r1 = *(u8 *) (r9+2)
+	r1 <<= 56
+	r1 s>>= 56
+	r1 += -48
+	r4 = r1;r4 &= 0xffffffff
+	r6 += 1
+	if r3 <= r4 goto .L626
+	r0 *= 10
 	r9 += 3
-	if r3 > r1 goto .L626
-.L625:
-	if r2 == 0 goto .L629
+	r1 = *(u8 *) (r6+0)
+	r1 <<= 56
+	r1 s>>= 56
+	r1 += -48
+	r0 -= r1
+	r4 = *(u8 *) (r9+0)
+	r4 <<= 56
+	r4 s>>= 56
+	r4 += -48
+	r1 = r4;r1 &= 0xffffffff
+	r5 += 3
+	if r3 > r1 goto .L627
+.L626:
+	if r2 == 0 goto .L630
 	exit
-.L630:
+.L631:
 	r0 = 0
-	goto .L625
-.L624:
+	goto .L626
+.L625:
 	r3 = *(u8 *) (r7+0)
 	r3 <<= 56
 	r3 s>>= 56
 	r3 += -48
 	r4 = r3;r4 &= 0xffffffff
-	if r4 <= 8 goto .L628
+	r9 = r7
+	if r4 <= 8 goto .L629
 	r0 = 0
-.L629:
+.L630:
 	r0 = -r0
 	exit
 	.size	atoll, .-atoll
@@ -2468,12 +2473,12 @@ div:
 	.type	imaxabs, @function
 imaxabs:
 	r0 = r1
-	if r1 s< 0 goto .L649
-.L648:
+	if r1 s< 0 goto .L651
+.L650:
 	exit
-.L649:
+.L651:
 	r0 = -r0
-	goto .L648
+	goto .L650
 	.size	imaxabs, .-imaxabs
 	.align	3
 	.global	imaxdiv
@@ -2500,12 +2505,12 @@ imaxdiv:
 	.type	labs, @function
 labs:
 	r0 = r1
-	if r1 s< 0 goto .L653
-.L652:
+	if r1 s< 0 goto .L655
+.L654:
 	exit
-.L653:
+.L655:
 	r0 = -r0
-	goto .L652
+	goto .L654
 	.size	labs, .-labs
 	.align	3
 	.global	ldiv
@@ -2532,12 +2537,12 @@ ldiv:
 	.type	llabs, @function
 llabs:
 	r0 = r1
-	if r1 s< 0 goto .L657
-.L656:
+	if r1 s< 0 goto .L659
+.L658:
 	exit
-.L657:
+.L659:
 	r0 = -r0
-	goto .L656
+	goto .L658
 	.size	llabs, .-llabs
 	.align	3
 	.global	lldiv
@@ -2566,29 +2571,29 @@ wcschr:
 	r2 <<= 32
 	r2 s>>= 32
 	r0 = *(u32 *) (r1+0)
-	if r0 == 0 goto .L666
-.L660:
+	if r0 == 0 goto .L668
+.L662:
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r3 s>>= 32
-	if r2 == r3 goto .L667
+	if r3 == r2 goto .L669
 	r1 += 4
 	r0 = *(u32 *) (r1+0)
-	if r0 != 0 goto .L660
+	if r0 != 0 goto .L662
 	r0 = r1
-	goto .L662
-.L666:
-	exit
-.L667:
-	r0 = r1
-.L662:
-	r1 = *(u32 *) (r0+0)
-	if r1 == 0 goto .L668
-.L659:
-	exit
+	goto .L664
 .L668:
+	exit
+.L669:
+	r0 = r1
+.L664:
+	r1 = *(u32 *) (r0+0)
+	if r1 == 0 goto .L670
+.L661:
+	exit
+.L670:
 	r0 = 0
-	goto .L659
+	goto .L661
 	.size	wcschr, .-wcschr
 	.align	3
 	.global	wcscmp
@@ -2598,34 +2603,34 @@ wcscmp:
 	r0 <<= 32
 	r3 = *(u32 *) (r2+0)
 	r3 <<= 32
-	if r3 != r0 goto .L671
-.L670:
+	if r3 != r0 goto .L673
+.L672:
 	r4 = *(u32 *) (r1+0)
-	if r4 == 0 goto .L671
+	if r4 == 0 goto .L673
 	r5 = *(u32 *) (r2+0)
-	if r5 == 0 goto .L671
+	if r5 == 0 goto .L673
 	r1 += 4
 	r2 += 4
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r0 = *(u32 *) (r2+0)
 	r0 <<= 32
-	if r0 == r9 goto .L670
-.L671:
+	if r0 == r9 goto .L672
+.L673:
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r3 s>>= 32
 	r1 = *(u32 *) (r2+0)
 	r1 <<= 32
 	r1 s>>= 32
-	if r1 s>= r3 goto .L675
+	if r1 s>= r3 goto .L677
 	r0 = 1
-	if r3 s> r1 goto .L674
+	if r3 s> r1 goto .L676
 	r0 = 0
-.L674:
+.L676:
 	r0 &= 1
 	exit
-.L675:
+.L677:
 	r0 = -1
 	exit
 	.size	wcscmp, .-wcscmp
@@ -2634,14 +2639,14 @@ wcscmp:
 	.type	wcscpy, @function
 wcscpy:
 	r0 = r1
-.L678:
+.L680:
 	r3 = *(u32 *) (r2+0)
 	r3 <<= 32
 	r3 s>>= 32
 	*(u32 *) (r0+0) = r3
 	r0 += 4
 	r2 += 4
-	if r3 == 0 goto .L694
+	if r3 == 0 goto .L696
 	r9 = *(u32 *) (r2+0)
 	r9 <<= 32
 	r9 s>>= 32
@@ -2650,50 +2655,50 @@ wcscpy:
 	r4 += 4
 	r5 = r2
 	r5 += 4
-	if r9 == 0 goto .L694
+	if r9 == 0 goto .L696
 	r3 = *(u32 *) (r5+0)
 	r3 <<= 32
 	r3 s>>= 32
 	*(u32 *) (r4+0) = r3
 	r4 += 4
 	r5 += 4
-	if r3 == 0 goto .L694
+	if r3 == 0 goto .L696
 	r9 = *(u32 *) (r5+0)
 	r9 <<= 32
 	r9 s>>= 32
 	*(u32 *) (r4+0) = r9
 	r4 += 4
 	r5 += 4
-	if r9 == 0 goto .L694
+	if r9 == 0 goto .L696
 	r3 = *(u32 *) (r5+0)
 	r3 <<= 32
 	r3 s>>= 32
 	*(u32 *) (r4+0) = r3
 	r4 += 4
 	r5 += 4
-	if r3 == 0 goto .L694
+	if r3 == 0 goto .L696
 	r9 = *(u32 *) (r5+0)
 	r9 <<= 32
 	r9 s>>= 32
 	*(u32 *) (r4+0) = r9
 	r4 += 4
 	r5 += 4
-	if r9 == 0 goto .L694
+	if r9 == 0 goto .L696
 	r3 = *(u32 *) (r5+0)
 	r3 <<= 32
 	r3 s>>= 32
 	*(u32 *) (r4+0) = r3
 	r4 += 4
 	r5 += 4
-	if r3 == 0 goto .L694
+	if r3 == 0 goto .L696
 	r5 = *(u32 *) (r5+0)
 	r5 <<= 32
 	r5 s>>= 32
 	*(u32 *) (r4+0) = r5
 	r0 += 28
 	r2 += 28
-	if r5 != 0 goto .L678
-.L694:
+	if r5 != 0 goto .L680
+.L696:
 	r0 = r1
 	exit
 	.size	wcscpy, .-wcscpy
@@ -2702,38 +2707,38 @@ wcscpy:
 	.type	wcslen, @function
 wcslen:
 	r0 = *(u32 *) (r1+0)
-	if r0 == 0 goto .L698
+	if r0 == 0 goto .L700
 	r0 = r1
-.L697:
+.L699:
 	r0 += 4
 	r2 = r0
 	r3 = *(u32 *) (r0+0)
-	if r3 == 0 goto .L696
+	if r3 == 0 goto .L698
 	r0 += 4
 	r4 = *(u32 *) (r2+4)
-	if r4 == 0 goto .L696
+	if r4 == 0 goto .L698
 	r0 += 4
 	r5 = *(u32 *) (r2+8)
-	if r5 == 0 goto .L696
+	if r5 == 0 goto .L698
 	r0 += 4
 	r9 = *(u32 *) (r2+12)
-	if r9 == 0 goto .L696
+	if r9 == 0 goto .L698
 	r0 += 4
 	r3 = *(u32 *) (r2+16)
-	if r3 == 0 goto .L696
+	if r3 == 0 goto .L698
 	r0 += 4
 	r4 = *(u32 *) (r2+20)
-	if r4 == 0 goto .L696
+	if r4 == 0 goto .L698
 	r0 += 4
 	r5 = *(u32 *) (r2+24)
-	if r5 == 0 goto .L696
+	if r5 == 0 goto .L698
 	r0 += 4
 	r2 = *(u32 *) (r2+28)
-	if r2 != 0 goto .L697
-	goto .L696
-.L698:
+	if r2 != 0 goto .L699
+	goto .L698
+.L700:
 	r0 = r1
-.L696:
+.L698:
 	r0 -= r1
 	r0 s>>= 2
 	exit
@@ -2742,57 +2747,57 @@ wcslen:
 	.global	wcsncmp
 	.type	wcsncmp, @function
 wcsncmp:
-	if r3 == 0 goto .L740
+	if r3 == 0 goto .L742
 	r0 = r3
 	r0 &= 3
-	if r0 == 0 goto .L715
-	if r0 == 1 goto .L738
-	if r0 == 2 goto .L739
+	if r0 == 0 goto .L717
+	if r0 == 1 goto .L740
+	if r0 == 2 goto .L741
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
 	r5 = r9
 	r5 s>>= 32
-	if r4 != r9 goto .L717
-	if r5 == 0 goto .L717
+	if r4 != r9 goto .L719
+	if r5 == 0 goto .L719
 	r3 += -1
 	r1 += 4
 	r2 += 4
-.L739:
+.L741:
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r9 = *(u32 *) (r2+0)
 	r9 <<= 32
 	r4 = r0
 	r4 s>>= 32
-	if r9 != r0 goto .L717
-	if r4 == 0 goto .L717
+	if r9 != r0 goto .L719
+	if r4 == 0 goto .L719
 	r3 += -1
 	r1 += 4
 	r2 += 4
-.L738:
+.L740:
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r9 = *(u32 *) (r2+0)
 	r9 <<= 32
 	r5 = r0
 	r5 s>>= 32
-	if r9 != r0 goto .L717
-	if r5 == 0 goto .L717
+	if r9 != r0 goto .L719
+	if r5 == 0 goto .L719
 	r3 += -1
 	r1 += 4
 	r2 += 4
-	if r3 == 0 goto .L721
-.L715:
+	if r3 == 0 goto .L723
+.L717:
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
 	r9 = r0
 	r9 s>>= 32
-	if r4 != r0 goto .L717
-	if r9 == 0 goto .L717
+	if r4 != r0 goto .L719
+	if r9 == 0 goto .L719
 	r3 += -1
 	r5 = r3
 	r1 += 4
@@ -2805,8 +2810,8 @@ wcsncmp:
 	r9 <<= 32
 	r6 = r3
 	r6 s>>= 32
-	if r9 != r3 goto .L717
-	if r6 == 0 goto .L717
+	if r9 != r3 goto .L719
+	if r6 == 0 goto .L719
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
@@ -2815,8 +2820,8 @@ wcsncmp:
 	r3 <<= 32
 	r6 = r4
 	r6 s>>= 32
-	if r3 != r4 goto .L717
-	if r6 == 0 goto .L717
+	if r3 != r4 goto .L719
+	if r6 == 0 goto .L719
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
@@ -2825,35 +2830,35 @@ wcsncmp:
 	r9 <<= 32
 	r6 = r4
 	r6 s>>= 32
-	if r9 != r4 goto .L717
-	if r6 == 0 goto .L717
+	if r9 != r4 goto .L719
+	if r6 == 0 goto .L719
 	r3 = r5
 	r3 += -3
 	r1 += 4
 	r0 += 12
 	r2 = r0
-	if r5 != 3 goto .L715
-.L721:
+	if r5 != 3 goto .L717
+.L723:
 	r0 = 0
 	exit
-.L740:
+.L742:
 	r0 = 0
 	exit
-.L720:
+.L722:
 	r0 = 1
-	if r5 s> r1 goto .L719
+	if r5 s> r1 goto .L721
 	r0 = 0
-.L719:
+.L721:
 	r0 &= 1
 	exit
-.L717:
+.L719:
 	r5 = *(u32 *) (r1+0)
 	r5 <<= 32
 	r5 s>>= 32
 	r1 = *(u32 *) (r2+0)
 	r1 <<= 32
 	r1 s>>= 32
-	if r5 s>= r1 goto .L720
+	if r5 s>= r1 goto .L722
 	r0 = -1
 	exit
 	.size	wcsncmp, .-wcsncmp
@@ -2863,70 +2868,70 @@ wcsncmp:
 wmemchr:
 	r2 <<= 32
 	r2 s>>= 32
-	if r3 == 0 goto .L791
+	if r3 == 0 goto .L793
 	r0 = r3
 	r0 &= 7
-	if r0 == 0 goto .L745
-	if r0 == 1 goto .L785
-	if r0 == 2 goto .L786
-	if r0 == 3 goto .L787
-	if r0 == 4 goto .L788
-	if r0 == 5 goto .L789
-	if r0 == 6 goto .L790
+	if r0 == 0 goto .L747
+	if r0 == 1 goto .L787
+	if r0 == 2 goto .L788
+	if r0 == 3 goto .L789
+	if r0 == 4 goto .L790
+	if r0 == 5 goto .L791
+	if r0 == 6 goto .L792
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r4 s>>= 32
-	if r2 == r4 goto .L793
+	if r4 == r2 goto .L795
+	r3 += -1
+	r1 += 4
+.L792:
+	r5 = *(u32 *) (r1+0)
+	r5 <<= 32
+	r5 s>>= 32
+	if r5 == r2 goto .L795
+	r3 += -1
+	r1 += 4
+.L791:
+	r9 = *(u32 *) (r1+0)
+	r9 <<= 32
+	r9 s>>= 32
+	if r9 == r2 goto .L795
 	r3 += -1
 	r1 += 4
 .L790:
-	r5 = *(u32 *) (r1+0)
-	r5 <<= 32
-	r5 s>>= 32
-	if r2 == r5 goto .L793
+	r0 = *(u32 *) (r1+0)
+	r0 <<= 32
+	r0 s>>= 32
+	if r0 == r2 goto .L795
 	r3 += -1
 	r1 += 4
 .L789:
-	r9 = *(u32 *) (r1+0)
-	r9 <<= 32
-	r9 s>>= 32
-	if r2 == r9 goto .L793
-	r3 += -1
-	r1 += 4
-.L788:
-	r0 = *(u32 *) (r1+0)
-	r0 <<= 32
-	r0 s>>= 32
-	if r2 == r0 goto .L793
-	r3 += -1
-	r1 += 4
-.L787:
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r4 s>>= 32
-	if r2 == r4 goto .L793
+	if r4 == r2 goto .L795
 	r3 += -1
 	r1 += 4
-.L786:
+.L788:
 	r5 = *(u32 *) (r1+0)
 	r5 <<= 32
 	r5 s>>= 32
-	if r2 == r5 goto .L793
+	if r5 == r2 goto .L795
 	r3 += -1
 	r1 += 4
-.L785:
+.L787:
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r9 s>>= 32
-	if r2 == r9 goto .L793
+	if r9 == r2 goto .L795
 	r3 += -1
 	r1 += 4
-	if r3 == 0 goto .L748
-.L745:
+	if r3 == 0 goto .L750
+.L747:
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r0 s>>= 32
-	if r2 == r0 goto .L793
+	if r0 == r2 goto .L795
 	r3 += -1
 	r4 = r3
 	r5 = r1
@@ -2935,49 +2940,49 @@ wmemchr:
 	r3 = *(u32 *) (r5+0)
 	r3 <<= 32
 	r3 s>>= 32
-	if r2 == r3 goto .L793
+	if r3 == r2 goto .L795
 	r1 += 4
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r9 s>>= 32
-	if r2 == r9 goto .L793
+	if r9 == r2 goto .L795
 	r1 += 4
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r0 s>>= 32
-	if r2 == r0 goto .L793
+	if r0 == r2 goto .L795
 	r1 += 4
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r3 s>>= 32
-	if r2 == r3 goto .L793
+	if r3 == r2 goto .L795
 	r1 += 4
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r9 s>>= 32
-	if r2 == r9 goto .L793
+	if r9 == r2 goto .L795
 	r1 += 4
 	r0 = *(u32 *) (r1+0)
 	r0 <<= 32
 	r0 s>>= 32
-	if r2 == r0 goto .L793
+	if r0 == r2 goto .L795
 	r1 += 4
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r3 s>>= 32
-	if r2 == r3 goto .L793
+	if r3 == r2 goto .L795
 	r3 = r4
 	r3 += -7
 	r5 += 28
 	r1 = r5
-	if r4 != 7 goto .L745
-.L748:
-	r0 = 0
-	exit
-.L791:
+	if r4 != 7 goto .L747
+.L750:
 	r0 = 0
 	exit
 .L793:
+	r0 = 0
+	exit
+.L795:
 	r0 = r1
 	exit
 	.size	wmemchr, .-wmemchr
@@ -2985,21 +2990,39 @@ wmemchr:
 	.global	wmemcmp
 	.type	wmemcmp, @function
 wmemcmp:
-	if r3 == 0 goto .L844
+	if r3 == 0 goto .L846
 	r0 = r3
 	r0 &= 7
-	if r0 == 0 goto .L795
-	if r0 == 1 goto .L838
-	if r0 == 2 goto .L839
-	if r0 == 3 goto .L840
-	if r0 == 4 goto .L841
-	if r0 == 5 goto .L842
-	if r0 == 6 goto .L843
+	if r0 == 0 goto .L797
+	if r0 == 1 goto .L840
+	if r0 == 2 goto .L841
+	if r0 == 3 goto .L842
+	if r0 == 4 goto .L843
+	if r0 == 5 goto .L844
+	if r0 == 6 goto .L845
 	r5 = *(u32 *) (r1+0)
 	r5 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
-	if r4 != r5 goto .L847
+	if r4 != r5 goto .L849
+	r3 += -1
+	r1 += 4
+	r2 += 4
+.L845:
+	r9 = *(u32 *) (r1+0)
+	r9 <<= 32
+	r0 = *(u32 *) (r2+0)
+	r0 <<= 32
+	if r0 != r9 goto .L849
+	r3 += -1
+	r1 += 4
+	r2 += 4
+.L844:
+	r5 = *(u32 *) (r1+0)
+	r5 <<= 32
+	r4 = *(u32 *) (r2+0)
+	r4 <<= 32
+	if r4 != r5 goto .L849
 	r3 += -1
 	r1 += 4
 	r2 += 4
@@ -3008,7 +3031,7 @@ wmemcmp:
 	r9 <<= 32
 	r0 = *(u32 *) (r2+0)
 	r0 <<= 32
-	if r0 != r9 goto .L847
+	if r0 != r9 goto .L849
 	r3 += -1
 	r1 += 4
 	r2 += 4
@@ -3017,7 +3040,7 @@ wmemcmp:
 	r5 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
-	if r4 != r5 goto .L847
+	if r4 != r5 goto .L849
 	r3 += -1
 	r1 += 4
 	r2 += 4
@@ -3026,7 +3049,7 @@ wmemcmp:
 	r9 <<= 32
 	r0 = *(u32 *) (r2+0)
 	r0 <<= 32
-	if r0 != r9 goto .L847
+	if r0 != r9 goto .L849
 	r3 += -1
 	r1 += 4
 	r2 += 4
@@ -3035,35 +3058,17 @@ wmemcmp:
 	r5 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
-	if r4 != r5 goto .L847
+	if r4 != r5 goto .L849
 	r3 += -1
 	r1 += 4
 	r2 += 4
-.L839:
+	if r3 == 0 goto .L803
+.L797:
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r0 = *(u32 *) (r2+0)
 	r0 <<= 32
-	if r0 != r9 goto .L847
-	r3 += -1
-	r1 += 4
-	r2 += 4
-.L838:
-	r5 = *(u32 *) (r1+0)
-	r5 <<= 32
-	r4 = *(u32 *) (r2+0)
-	r4 <<= 32
-	if r4 != r5 goto .L847
-	r3 += -1
-	r1 += 4
-	r2 += 4
-	if r3 == 0 goto .L801
-.L795:
-	r9 = *(u32 *) (r1+0)
-	r9 <<= 32
-	r0 = *(u32 *) (r2+0)
-	r0 <<= 32
-	if r0 != r9 goto .L847
+	if r0 != r9 goto .L849
 	r3 += -1
 	r9 = r3
 	r1 += 4
@@ -3074,76 +3079,76 @@ wmemcmp:
 	r3 <<= 32
 	r5 = *(u32 *) (r0+0)
 	r5 <<= 32
-	if r5 != r3 goto .L847
+	if r5 != r3 goto .L849
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r3 = *(u32 *) (r2+0)
 	r3 <<= 32
-	if r3 != r4 goto .L847
+	if r3 != r4 goto .L849
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r5 = *(u32 *) (r2+0)
 	r5 <<= 32
-	if r5 != r4 goto .L847
+	if r5 != r4 goto .L849
 	r1 += 4
 	r2 += 4
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r4 = *(u32 *) (r2+0)
 	r4 <<= 32
-	if r4 != r3 goto .L847
+	if r4 != r3 goto .L849
 	r1 += 4
 	r2 += 4
 	r3 = *(u32 *) (r1+0)
 	r3 <<= 32
 	r5 = *(u32 *) (r2+0)
 	r5 <<= 32
-	if r5 != r3 goto .L847
+	if r5 != r3 goto .L849
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r3 = *(u32 *) (r2+0)
 	r3 <<= 32
-	if r3 != r4 goto .L847
+	if r3 != r4 goto .L849
 	r1 += 4
 	r2 += 4
 	r4 = *(u32 *) (r1+0)
 	r4 <<= 32
 	r5 = *(u32 *) (r2+0)
 	r5 <<= 32
-	if r5 != r4 goto .L847
+	if r5 != r4 goto .L849
 	r3 = r9
 	r3 += -7
 	r1 += 4
 	r0 += 28
 	r2 = r0
-	if r9 != 7 goto .L795
-.L801:
+	if r9 != 7 goto .L797
+.L803:
 	r0 = 0
 	exit
-.L844:
+.L846:
 	r0 = 0
 	exit
-.L800:
+.L802:
 	r0 = 1
-	if r9 s> r1 goto .L799
+	if r9 s> r1 goto .L801
 	r0 = 0
-.L799:
+.L801:
 	r0 &= 1
 	exit
-.L847:
+.L849:
 	r9 = *(u32 *) (r1+0)
 	r9 <<= 32
 	r9 s>>= 32
 	r1 = *(u32 *) (r2+0)
 	r1 <<= 32
 	r1 s>>= 32
-	if r9 s>= r1 goto .L800
+	if r9 s>= r1 goto .L802
 	r0 = -1
 	exit
 	.size	wmemcmp, .-wmemcmp
@@ -3153,59 +3158,59 @@ wmemcmp:
 wmemcpy:
 	r4 = r3
 	r4 += -1
-	if r3 == 0 goto .L849
+	if r3 == 0 goto .L851
 	r0 = r1
 	r3 &= 7
-	if r3 == 0 goto .L850
-	if r3 == 1 goto .L873
-	if r3 == 2 goto .L874
-	if r3 == 3 goto .L875
-	if r3 == 4 goto .L876
-	if r3 == 5 goto .L877
-	if r3 == 6 goto .L878
+	if r3 == 0 goto .L852
+	if r3 == 1 goto .L875
+	if r3 == 2 goto .L876
+	if r3 == 3 goto .L877
+	if r3 == 4 goto .L878
+	if r3 == 5 goto .L879
+	if r3 == 6 goto .L880
 	r3 = *(u32 *) (r2+0)
 	*(u32 *) (r1+0) = r3
 	r4 += -1
 	r0 += 4
 	r2 += 4
-.L878:
+.L880:
 	r5 = *(u32 *) (r2+0)
 	*(u32 *) (r0+0) = r5
+	r4 += -1
+	r0 += 4
+	r2 += 4
+.L879:
+	r9 = *(u32 *) (r2+0)
+	*(u32 *) (r0+0) = r9
+	r4 += -1
+	r0 += 4
+	r2 += 4
+.L878:
+	r3 = *(u32 *) (r2+0)
+	*(u32 *) (r0+0) = r3
 	r4 += -1
 	r0 += 4
 	r2 += 4
 .L877:
-	r9 = *(u32 *) (r2+0)
-	*(u32 *) (r0+0) = r9
-	r4 += -1
-	r0 += 4
-	r2 += 4
-.L876:
-	r3 = *(u32 *) (r2+0)
-	*(u32 *) (r0+0) = r3
-	r4 += -1
-	r0 += 4
-	r2 += 4
-.L875:
 	r5 = *(u32 *) (r2+0)
 	*(u32 *) (r0+0) = r5
 	r4 += -1
 	r0 += 4
 	r2 += 4
-.L874:
+.L876:
 	r9 = *(u32 *) (r2+0)
 	*(u32 *) (r0+0) = r9
 	r4 += -1
 	r0 += 4
 	r2 += 4
-.L873:
+.L875:
 	r3 = *(u32 *) (r2+0)
 	*(u32 *) (r0+0) = r3
 	r4 += -1
 	r0 += 4
 	r2 += 4
-	if r4 == -1 goto .L849
-.L850:
+	if r4 == -1 goto .L851
+.L852:
 	r5 = *(u32 *) (r2+0)
 	*(u32 *) (r0+0) = r5
 	r0 += 4
@@ -3227,8 +3232,8 @@ wmemcpy:
 	r4 += -8
 	r0 += 28
 	r2 += 28
-	if r4 != -1 goto .L850
-.L849:
+	if r4 != -1 goto .L852
+.L851:
 	r0 = r1
 	exit
 	.size	wmemcpy, .-wmemcpy
@@ -3236,168 +3241,174 @@ wmemcpy:
 	.global	wmemmove
 	.type	wmemmove, @function
 wmemmove:
-	if r1 == r2 goto .L881
+	if r1 == r2 goto .L883
 	r4 = r1
 	r0 = r2
 	r9 = r3
 	r9 <<= 2
 	r5 = r1
 	r5 -= r2
-	if r9 >= r5 goto .L882
+	if r9 >= r5 goto .L884
 	r2 = r3
 	r2 += -1
-	if r3 == 0 goto .L881
-	r3 &= 7
 	if r3 == 0 goto .L883
-	if r3 == 1 goto .L931
-	if r3 == 2 goto .L932
-	if r3 == 3 goto .L933
-	if r3 == 4 goto .L934
-	if r3 == 5 goto .L935
-	if r3 == 6 goto .L936
+	r3 &= 7
+	if r3 == 0 goto .L885
+	if r3 == 1 goto .L933
+	if r3 == 2 goto .L934
+	if r3 == 3 goto .L935
+	if r3 == 4 goto .L936
+	if r3 == 5 goto .L937
+	if r3 == 6 goto .L938
 	r3 = *(u32 *) (r0+0)
 	*(u32 *) (r1+0) = r3
 	r2 += -1
 	r4 += 4
 	r0 += 4
-.L936:
+.L938:
 	r9 = *(u32 *) (r0+0)
 	*(u32 *) (r4+0) = r9
+	r2 += -1
+	r4 += 4
+	r0 += 4
+.L937:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
+	r2 += -1
+	r4 += 4
+	r0 += 4
+.L936:
+	r3 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r3
 	r2 += -1
 	r4 += 4
 	r0 += 4
 .L935:
-	r5 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r5
+	r9 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r9
 	r2 += -1
 	r4 += 4
 	r0 += 4
 .L934:
-	r3 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r3
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r2 += -1
 	r4 += 4
 	r0 += 4
 .L933:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
-	r2 += -1
-	r4 += 4
-	r0 += 4
-.L932:
-	r5 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r5
-	r2 += -1
-	r4 += 4
-	r0 += 4
-.L931:
 	r3 = *(u32 *) (r0+0)
 	*(u32 *) (r4+0) = r3
 	r2 += -1
 	r4 += 4
 	r0 += 4
-	if r2 == -1 goto .L881
-.L883:
+	if r2 == -1 goto .L883
+.L885:
 	r9 = *(u32 *) (r0+0)
 	*(u32 *) (r4+0) = r9
-	r4 += 4
+	r5 = r4
+	r5 += 4
 	r0 += 4
-	r5 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r5
+	r4 = *(u32 *) (r0+0)
+	*(u32 *) (r5+0) = r4
 	r3 = *(u32 *) (r0+4)
-	*(u32 *) (r4+4) = r3
+	*(u32 *) (r5+4) = r3
 	r9 = *(u32 *) (r0+8)
-	*(u32 *) (r4+8) = r9
-	r5 = *(u32 *) (r0+12)
-	*(u32 *) (r4+12) = r5
+	*(u32 *) (r5+8) = r9
+	r4 = *(u32 *) (r0+12)
+	*(u32 *) (r5+12) = r4
 	r3 = *(u32 *) (r0+16)
-	*(u32 *) (r4+16) = r3
+	*(u32 *) (r5+16) = r3
 	r9 = *(u32 *) (r0+20)
-	*(u32 *) (r4+20) = r9
-	r5 = *(u32 *) (r0+24)
-	*(u32 *) (r4+24) = r5
+	*(u32 *) (r5+20) = r9
+	r4 = *(u32 *) (r0+24)
+	*(u32 *) (r5+24) = r4
 	r2 += -8
-	r4 += 28
+	r5 += 28
+	r4 = r5
 	r0 += 28
-	if r2 != -1 goto .L883
-	goto .L881
-.L882:
-	r4 = r3
-	r4 += -1
-	if r3 == 0 goto .L881
-	r4 <<= 2
-	r0 += r4
+	if r2 != -1 goto .L885
+	goto .L883
+.L884:
+	r5 = r3
+	r5 += -1
+	if r3 == 0 goto .L883
+	r5 <<= 2
+	r2 += r5
 	r3 = r1
-	r3 += r4
+	r3 += r5
+	r9 = r2
+	r9 -= r0
+	r9 >>= 2
+	r9 += 1
+	r9 &= 7
+	if r9 == 0 goto .L886
+	if r9 == 1 goto .L939
+	if r9 == 2 goto .L940
+	if r9 == 3 goto .L941
+	if r9 == 4 goto .L942
+	if r9 == 5 goto .L943
+	if r9 == 6 goto .L944
+	r4 = *(u32 *) (r2+0)
+	*(u32 *) (r3+0) = r4
 	r2 += -4
-	r4 >>= 2
-	r4 += 1
-	r4 &= 7
-	if r4 == 0 goto .L884
-	if r4 == 1 goto .L937
-	if r4 == 2 goto .L938
-	if r4 == 3 goto .L939
-	if r4 == 4 goto .L940
-	if r4 == 5 goto .L941
-	if r4 == 6 goto .L942
-	r9 = *(u32 *) (r0+0)
+	r3 += -4
+.L944:
+	r5 = *(u32 *) (r2+0)
+	*(u32 *) (r3+0) = r5
+	r2 += -4
+	r3 += -4
+.L943:
+	r9 = *(u32 *) (r2+0)
 	*(u32 *) (r3+0) = r9
-	r0 += -4
+	r2 += -4
 	r3 += -4
 .L942:
-	r5 = *(u32 *) (r0+0)
-	*(u32 *) (r3+0) = r5
-	r0 += -4
+	r4 = *(u32 *) (r2+0)
+	*(u32 *) (r3+0) = r4
+	r2 += -4
 	r3 += -4
 .L941:
-	r4 = *(u32 *) (r0+0)
-	*(u32 *) (r3+0) = r4
-	r0 += -4
+	r5 = *(u32 *) (r2+0)
+	*(u32 *) (r3+0) = r5
+	r2 += -4
 	r3 += -4
 .L940:
-	r9 = *(u32 *) (r0+0)
+	r9 = *(u32 *) (r2+0)
 	*(u32 *) (r3+0) = r9
-	r0 += -4
+	r2 += -4
 	r3 += -4
 .L939:
-	r5 = *(u32 *) (r0+0)
+	r4 = r2
+	r5 = *(u32 *) (r2+0)
 	*(u32 *) (r3+0) = r5
-	r0 += -4
+	r2 += -4
 	r3 += -4
-.L938:
-	r4 = *(u32 *) (r0+0)
-	*(u32 *) (r3+0) = r4
-	r0 += -4
-	r3 += -4
-.L937:
-	r9 = *(u32 *) (r0+0)
+	if r0 == r4 goto .L883
+.L886:
+	r9 = *(u32 *) (r2+0)
 	*(u32 *) (r3+0) = r9
-	r0 += -4
+	r2 += -4
 	r3 += -4
-	if r0 == r2 goto .L881
-.L884:
-	r5 = *(u32 *) (r0+0)
-	*(u32 *) (r3+0) = r5
-	r0 += -4
-	r3 += -4
-	r4 = *(u32 *) (r0+0)
+	r4 = *(u32 *) (r2+0)
 	*(u32 *) (r3+0) = r4
-	r9 = *(u32 *) (r0+-4)
-	*(u32 *) (r3+-4) = r9
-	r5 = *(u32 *) (r0+-8)
-	*(u32 *) (r3+-8) = r5
-	r4 = *(u32 *) (r0+-12)
+	r5 = *(u32 *) (r2+-4)
+	*(u32 *) (r3+-4) = r5
+	r9 = *(u32 *) (r2+-8)
+	*(u32 *) (r3+-8) = r9
+	r4 = *(u32 *) (r2+-12)
 	*(u32 *) (r3+-12) = r4
-	r9 = *(u32 *) (r0+-16)
-	*(u32 *) (r3+-16) = r9
-	r5 = *(u32 *) (r0+-20)
-	*(u32 *) (r3+-20) = r5
-	r4 = *(u32 *) (r0+-24)
-	*(u32 *) (r3+-24) = r4
-	r0 += -28
+	r5 = *(u32 *) (r2+-16)
+	*(u32 *) (r3+-16) = r5
+	r9 = *(u32 *) (r2+-20)
+	*(u32 *) (r3+-20) = r9
+	r4 = r2
+	r4 += -24
+	r5 = *(u32 *) (r4+0)
+	*(u32 *) (r3+-24) = r5
+	r2 += -28
 	r3 += -28
-	if r0 != r2 goto .L884
-.L881:
+	if r0 != r4 goto .L886
+.L883:
 	r0 = r1
 	exit
 	.size	wmemmove, .-wmemmove
@@ -3409,17 +3420,25 @@ wmemset:
 	r2 s>>= 32
 	r4 = r3
 	r4 += -1
-	if r3 == 0 goto .L946
+	if r3 == 0 goto .L948
 	r0 = r1
 	r3 &= 7
-	if r3 == 0 goto .L947
-	if r3 == 1 goto .L970
-	if r3 == 2 goto .L971
-	if r3 == 3 goto .L972
-	if r3 == 4 goto .L973
-	if r3 == 5 goto .L974
-	if r3 == 6 goto .L975
+	if r3 == 0 goto .L949
+	if r3 == 1 goto .L972
+	if r3 == 2 goto .L973
+	if r3 == 3 goto .L974
+	if r3 == 4 goto .L975
+	if r3 == 5 goto .L976
+	if r3 == 6 goto .L977
 	*(u32 *) (r1+0) = r2
+	r4 += -1
+	r0 += 4
+.L977:
+	*(u32 *) (r0+0) = r2
+	r4 += -1
+	r0 += 4
+.L976:
+	*(u32 *) (r0+0) = r2
 	r4 += -1
 	r0 += 4
 .L975:
@@ -3438,16 +3457,8 @@ wmemset:
 	*(u32 *) (r0+0) = r2
 	r4 += -1
 	r0 += 4
-.L971:
-	*(u32 *) (r0+0) = r2
-	r4 += -1
-	r0 += 4
-.L970:
-	*(u32 *) (r0+0) = r2
-	r4 += -1
-	r0 += 4
-	if r4 == -1 goto .L946
-.L947:
+	if r4 == -1 goto .L948
+.L949:
 	*(u32 *) (r0+0) = r2
 	r0 += 4
 	*(u32 *) (r0+0) = r2
@@ -3459,8 +3470,8 @@ wmemset:
 	*(u32 *) (r0+24) = r2
 	r4 += -8
 	r0 += 28
-	if r4 != -1 goto .L947
-.L946:
+	if r4 != -1 goto .L949
+.L948:
 	r0 = r1
 	exit
 	.size	wmemset, .-wmemset
@@ -3468,60 +3479,60 @@ wmemset:
 	.global	bcopy
 	.type	bcopy, @function
 bcopy:
-	if r1 >= r2 goto .L978
+	if r1 >= r2 goto .L980
 	r0 = r1
 	r0 += r3
 	r2 += r3
-	if r3 == 0 goto .L977
+	if r3 == 0 goto .L979
 	r4 = r1
 	r4 ^= -1
 	r3 = r0
 	r3 += r4
 	r3 += 1
 	r3 &= 7
-	if r3 == 0 goto .L980
-	if r3 == 1 goto .L1026
-	if r3 == 2 goto .L1027
-	if r3 == 3 goto .L1028
-	if r3 == 4 goto .L1029
-	if r3 == 5 goto .L1030
-	if r3 == 6 goto .L1031
+	if r3 == 0 goto .L982
+	if r3 == 1 goto .L1028
+	if r3 == 2 goto .L1029
+	if r3 == 3 goto .L1030
+	if r3 == 4 goto .L1031
+	if r3 == 5 goto .L1032
+	if r3 == 6 goto .L1033
 	r0 += -1
 	r2 += -1
 	r5 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r5
-.L1031:
+.L1033:
 	r0 += -1
 	r2 += -1
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r9
-.L1030:
+.L1032:
 	r0 += -1
 	r2 += -1
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r4
-.L1029:
+.L1031:
 	r0 += -1
 	r2 += -1
 	r3 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r3
-.L1028:
+.L1030:
 	r0 += -1
 	r2 += -1
 	r5 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r5
-.L1027:
+.L1029:
 	r0 += -1
 	r2 += -1
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r9
-.L1026:
+.L1028:
 	r0 += -1
 	r2 += -1
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r4
-	if r1 == r0 goto .L1040
-.L980:
+	if r1 == r0 goto .L1042
+.L982:
 	r0 += -1
 	r2 += -1
 	r3 = *(u8 *) (r0+0)
@@ -3542,11 +3553,11 @@ bcopy:
 	r2 += -7
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r4
-	if r1 != r0 goto .L980
+	if r1 != r0 goto .L982
 	exit
-.L978:
-	if r1 == r2 goto .L977
-	if r3 == 0 goto .L977
+.L980:
+	if r1 == r2 goto .L979
+	if r3 == 0 goto .L979
 	r0 = r1
 	r1 += r3
 	r3 = r0
@@ -3554,49 +3565,49 @@ bcopy:
 	r3 += r1
 	r3 += 1
 	r3 &= 7
-	if r3 == 0 goto .L981
-	if r3 == 1 goto .L1032
-	if r3 == 2 goto .L1033
-	if r3 == 3 goto .L1034
-	if r3 == 4 goto .L1035
-	if r3 == 5 goto .L1036
-	if r3 == 6 goto .L1037
+	if r3 == 0 goto .L983
+	if r3 == 1 goto .L1034
+	if r3 == 2 goto .L1035
+	if r3 == 3 goto .L1036
+	if r3 == 4 goto .L1037
+	if r3 == 5 goto .L1038
+	if r3 == 6 goto .L1039
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r4
 	r0 += 1
 	r2 += 1
-.L1037:
+.L1039:
 	r5 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r5
 	r0 += 1
 	r2 += 1
-.L1036:
+.L1038:
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r9
 	r0 += 1
 	r2 += 1
-.L1035:
+.L1037:
 	r3 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r3
 	r0 += 1
 	r2 += 1
-.L1034:
+.L1036:
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r4
 	r0 += 1
 	r2 += 1
-.L1033:
+.L1035:
 	r5 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r5
 	r0 += 1
 	r2 += 1
-.L1032:
+.L1034:
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r9
 	r0 += 1
 	r2 += 1
-	if r0 == r1 goto .L1041
-.L981:
+	if r0 == r1 goto .L1043
+.L983:
 	r3 = *(u8 *) (r0+0)
 	*(u8 *) (r2+0) = r3
 	r0 += 1
@@ -3617,12 +3628,12 @@ bcopy:
 	*(u8 *) (r2+6) = r9
 	r0 += 7
 	r2 += 7
-	if r0 != r1 goto .L981
-.L977:
+	if r0 != r1 goto .L983
+.L979:
 	exit
-.L1040:
+.L1042:
 	exit
-.L1041:
+.L1043:
 	exit
 	.size	bcopy, .-bcopy
 	.align	3
@@ -3699,13 +3710,15 @@ rotr32:
 	.global	rotl_sz
 	.type	rotl_sz, @function
 rotl_sz:
-	r2 = r2;r2 &= 0xffffffff
+	r2 <<= 32
+	r0 = r2
+	r0 s>>= 32
+	r2 >>= 32
 	r3 = r1
 	r3 <<= r2
-	r0 = 64
-	r0 -= r2
-	r4 = r0;r4 &= 0xffffffff
-	r1 >>= r4
+	r0 = -r0
+	r0 &= 63
+	r1 >>= r0
 	r0 = r1
 	r0 |= r3
 	exit
@@ -3714,13 +3727,15 @@ rotl_sz:
 	.global	rotr_sz
 	.type	rotr_sz, @function
 rotr_sz:
-	r2 = r2;r2 &= 0xffffffff
+	r2 <<= 32
+	r0 = r2
+	r0 s>>= 32
+	r2 >>= 32
 	r3 = r1
 	r3 >>= r2
-	r0 = 64
-	r0 -= r2
-	r4 = r0;r4 &= 0xffffffff
-	r1 <<= r4
+	r0 = -r0
+	r0 &= 63
+	r1 <<= r0
 	r0 = r1
 	r0 |= r3
 	exit
@@ -3730,18 +3745,15 @@ rotr_sz:
 	.type	rotl16, @function
 rotl16:
 	r1 &= 0xffff
-	r2 <<= 32
-	r4 = r2
-	r4 s>>= 32
-	r2 >>= 32
-	r3 = r1
-	r3 <<= r2
-	r0 = 16
-	r0 -= r4
-	r2 = r0;r2 &= 0xffffffff
+	r3 = r2
+	r3 &= 15
+	r0 = r1
+	r0 <<= r3
+	r2 = -r2
+	r2 &= 15
 	r1 >>= r2
-	r1 |= r3
-	r0 = r1;r0 &= 0xffff
+	r0 |= r1
+	r0 &= 0xffff
 	exit
 	.size	rotl16, .-rotl16
 	.align	3
@@ -3749,18 +3761,15 @@ rotl16:
 	.type	rotr16, @function
 rotr16:
 	r1 &= 0xffff
-	r2 <<= 32
-	r4 = r2
-	r4 s>>= 32
-	r2 >>= 32
-	r3 = r1
-	r3 >>= r2
-	r0 = 16
-	r0 -= r4
-	r2 = r0;r2 &= 0xffffffff
+	r3 = r2
+	r3 &= 15
+	r0 = r1
+	r0 >>= r3
+	r2 = -r2
+	r2 &= 15
 	r1 <<= r2
-	r1 |= r3
-	r0 = r1;r0 &= 0xffff
+	r0 |= r1
+	r0 &= 0xffff
 	exit
 	.size	rotr16, .-rotr16
 	.align	3
@@ -3768,18 +3777,15 @@ rotr16:
 	.type	rotl8, @function
 rotl8:
 	r1 &= 0xff
-	r2 <<= 32
-	r4 = r2
-	r4 s>>= 32
-	r2 >>= 32
-	r3 = r1
-	r3 <<= r2
-	r0 = 8
-	r0 -= r4
-	r2 = r0;r2 &= 0xffffffff
+	r3 = r2
+	r3 &= 7
+	r0 = r1
+	r0 <<= r3
+	r2 = -r2
+	r2 &= 7
 	r1 >>= r2
-	r1 |= r3
-	r0 = r1;r0 &= 0xff
+	r0 |= r1
+	r0 &= 0xff
 	exit
 	.size	rotl8, .-rotl8
 	.align	3
@@ -3787,18 +3793,15 @@ rotl8:
 	.type	rotr8, @function
 rotr8:
 	r1 &= 0xff
-	r2 <<= 32
-	r4 = r2
-	r4 s>>= 32
-	r2 >>= 32
-	r3 = r1
-	r3 >>= r2
-	r0 = 8
-	r0 -= r4
-	r2 = r0;r2 &= 0xffffffff
+	r3 = r2
+	r3 &= 7
+	r0 = r1
+	r0 >>= r3
+	r2 = -r2
+	r2 &= 7
 	r1 <<= r2
-	r1 |= r3
-	r0 = r1;r0 &= 0xff
+	r0 |= r1
+	r0 &= 0xff
 	exit
 	.size	rotr8, .-rotr8
 	.align	3
@@ -3819,55 +3822,57 @@ bswap_16:
 	.type	bswap_32, @function
 bswap_32:
 	r1 = r1;r1 &= 0xffffffff
-	r2 = r1
-	r2 >>= 24
-	r0 = r1
-	r0 &= 16711680
-	r0 >>= 8
-	r0 |= r2
 	r3 = r1
-	r3 &= 65280
-	r3 <<= 8
-	r0 |= r3
-	r1 &= 0xff
+	r3 >>= 24
+	r2 = r1
+	r2 >>= 8
+	r2 &= 65280
+	r0 = r1
+	r0 <<= 8
+	r0 &= 16711680
 	r1 <<= 24
-	r0 |= r1
+	r4 = r1;r4 &= 0xffffffff
+	r4 |= r3
+	r2 |= r4
+	r0 |= r2
 	exit
 	.size	bswap_32, .-bswap_32
 	.align	3
 	.global	bswap_64
 	.type	bswap_64, @function
 bswap_64:
-	r2 = r1
-	r2 >>= 56
-	r0 = r1
-	r0 >>= 40
-	r0 &= 65280
-	r0 |= r2
-	r3 = r1
-	r3 >>= 24
-	r3 &= 16711680
-	r0 |= r3
-	r4 = 1095216660480 ll
+	r6 = r1
+	r6 >>= 56
+	r9 = r1
+	r9 >>= 40
+	r9 &= 65280
 	r5 = r1
-	r5 &= r4
-	r5 >>= 8
-	r0 |= r5
-	r9 = 4278190080 ll
-	r2 = r1
-	r2 &= r9
-	r2 <<= 8
-	r0 |= r2
-	r3 = r1
-	r3 &= 16711680
-	r3 <<= 24
-	r0 |= r3
+	r5 >>= 24
+	r5 &= 16711680
 	r4 = r1
-	r4 &= 65280
-	r4 <<= 40
-	r0 |= r4
+	r4 >>= 8
+	r0 = 4278190080 ll
+	r4 &= r0
+	r3 = r1
+	r3 <<= 8
+	r2 = 1095216660480 ll
+	r3 &= r2
+	r2 = r1
+	r2 <<= 24
+	r7 = 280375465082880 ll
+	r2 &= r7
+	r0 = r1
+	r0 <<= 40
+	r7 = 71776119061217280 ll
+	r0 &= r7
 	r1 <<= 56
-	r0 |= r1
+	r1 |= r6
+	r9 |= r1
+	r5 |= r9
+	r4 |= r5
+	r3 |= r4
+	r2 |= r3
+	r0 |= r2
 	exit
 	.size	bswap_64, .-bswap_64
 	.align	3
@@ -3876,59 +3881,59 @@ bswap_64:
 ffs:
 	r0 = 0
 	r1 = r1;r1 &= 0xffffffff
-.L1058:
+.L1060:
 	r2 = r1
 	r2 >>= r0
 	r2 &= 1
-	if r2 != 0 goto .L1074
+	if r2 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r3 = r1
 	r3 >>= r0
 	r3 &= 1
-	if r3 != 0 goto .L1074
+	if r3 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r4 = r1
 	r4 >>= r0
 	r4 &= 1
-	if r4 != 0 goto .L1074
+	if r4 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r5 = r1
 	r5 >>= r0
 	r5 &= 1
-	if r5 != 0 goto .L1074
+	if r5 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r1
 	r9 >>= r0
 	r9 &= 1
-	if r9 != 0 goto .L1074
+	if r9 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r2 = r1
 	r2 >>= r0
 	r2 &= 1
-	if r2 != 0 goto .L1074
+	if r2 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r3 = r1
 	r3 >>= r0
 	r3 &= 1
-	if r3 != 0 goto .L1074
+	if r3 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
 	r4 = r1
 	r4 >>= r0
 	r4 &= 1
-	if r4 != 0 goto .L1074
+	if r4 != 0 goto .L1076
 	r0 += 1
 	r0 = r0;r0 &= 0xffffffff
-	if r0 != 32 goto .L1058
+	if r0 != 32 goto .L1060
 	r0 = 0
 	exit
-.L1074:
+.L1076:
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
@@ -3941,74 +3946,74 @@ libiberty_ffs:
 	r1 <<= 32
 	r2 = r1
 	r2 s>>= 32
-	if r1 == 0 goto .L1079
+	if r1 == 0 goto .L1081
 	r0 = r2
 	r0 &= 1
-	if r0 != 0 goto .L1077
+	if r0 != 0 goto .L1079
 	r0 = 1
-.L1078:
+.L1080:
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r1 = r2
 	r1 &= 1
-	if r1 != 0 goto .L1095
+	if r1 != 0 goto .L1097
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r3 = r2
 	r3 &= 1
-	if r3 != 0 goto .L1077
+	if r3 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r4 = r2
 	r4 &= 1
-	if r4 != 0 goto .L1077
+	if r4 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r5 = r2
 	r5 &= 1
-	if r5 != 0 goto .L1077
+	if r5 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r9 = r2
 	r9 &= 1
-	if r9 != 0 goto .L1077
+	if r9 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r1 = r2
 	r1 &= 1
-	if r1 != 0 goto .L1077
+	if r1 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r3 = r2
 	r3 &= 1
-	if r3 != 0 goto .L1077
+	if r3 != 0 goto .L1079
 	r2 s>>= 1
 	r0 += 1
 	r0 <<= 32
 	r0 s>>= 32
 	r4 = r2
 	r4 &= 1
-	if r4 == 0 goto .L1078
+	if r4 == 0 goto .L1080
 	exit
-.L1095:
+.L1097:
 	exit
-.L1079:
+.L1081:
 	r0 = r2
-.L1077:
+.L1079:
 	exit
 	.size	libiberty_ffs, .-libiberty_ffs
 	.align	3
@@ -4018,20 +4023,20 @@ gl_isinff:
 	r6 = r1
 	r2 = 0xff7fffff ll
 	call	__ltsf2
-	if r0 s<= 0 goto .L1099
+	if r0 s<= 0 goto .L1101
 	r7 = 1
 	r2 = 0x7f7fffff ll
 	r1 = r6
 	call	__gtsf2
-	if r0 s<= 0 goto .L1100
-.L1098:
+	if r0 s<= 0 goto .L1102
+.L1100:
 	r0 = r7
 	r0 &= 1
 	exit
-.L1100:
+.L1102:
 	r7 = 0
-	goto .L1098
-.L1099:
+	goto .L1100
+.L1101:
 	r0 = 1
 	exit
 	.size	gl_isinff, .-gl_isinff
@@ -4042,20 +4047,20 @@ gl_isinfd:
 	r6 = r1
 	r2 = 0xffefffffffffffff ll
 	call	__ltdf2
-	if r0 s<= 0 goto .L1104
+	if r0 s<= 0 goto .L1106
 	r7 = 1
 	r2 = 0x7fefffffffffffff ll
 	r1 = r6
 	call	__gtdf2
-	if r0 s<= 0 goto .L1105
-.L1103:
+	if r0 s<= 0 goto .L1107
+.L1105:
 	r0 = r7
 	r0 &= 1
 	exit
-.L1105:
+.L1107:
 	r7 = 0
-	goto .L1103
-.L1104:
+	goto .L1105
+.L1106:
 	r0 = 1
 	exit
 	.size	gl_isinfd, .-gl_isinfd
@@ -4066,20 +4071,20 @@ gl_isinfl:
 	r6 = r1
 	r2 = 0xffefffffffffffff ll
 	call	__ltdf2
-	if r0 s<= 0 goto .L1109
+	if r0 s<= 0 goto .L1111
 	r7 = 1
 	r2 = 0x7fefffffffffffff ll
 	r1 = r6
 	call	__gtdf2
-	if r0 s<= 0 goto .L1110
-.L1108:
+	if r0 s<= 0 goto .L1112
+.L1110:
 	r0 = r7
 	r0 &= 1
 	exit
-.L1110:
+.L1112:
 	r7 = 0
-	goto .L1108
-.L1109:
+	goto .L1110
+.L1111:
 	r0 = 1
 	exit
 	.size	gl_isinfl, .-gl_isinfl
@@ -4103,41 +4108,41 @@ ldexpf:
 	r6 = r2
 	r2 = r1
 	call	__unordsf2
-	if r0 != 0 goto .L1113
+	if r0 != 0 goto .L1115
 	r2 = r8
 	r1 = r8
 	call	__addsf3
-	r2 = r0
-	r1 = r8
+	r1 = r0
+	r2 = r8
 	call	__nesf2
-	if r0 == 0 goto .L1113
-	if r6 s< 0 goto .L1120
+	if r0 == 0 goto .L1115
+	if r6 s< 0 goto .L1122
 	r7 = 0x40000000 ll
-	goto .L1117
-.L1120:
+	goto .L1119
+.L1122:
 	r7 = 0x3f000000 ll
-	goto .L1117
-.L1116:
+	goto .L1119
+.L1118:
 	r1 = r6
 	r1 >>= 63
 	r1 += r6
 	r1 s>>= 1
 	r6 = r1
-	if r1 == 0 goto .L1113
+	if r1 == 0 goto .L1115
 	r2 = r7
 	r1 = r7
 	call	__mulsf3
 	r7 = r0
-.L1117:
+.L1119:
 	r0 = r6
 	r0 &= 1
-	if r0 == 0 goto .L1116
+	if r0 == 0 goto .L1118
 	r2 = r7
 	r1 = r8
 	call	__mulsf3
 	r8 = r0
-	goto .L1116
-.L1113:
+	goto .L1118
+.L1115:
 	r0 = r8
 	exit
 	.size	ldexpf, .-ldexpf
@@ -4151,41 +4156,41 @@ ldexp:
 	r6 = r2
 	r2 = r1
 	call	__unorddf2
-	if r0 != 0 goto .L1122
+	if r0 != 0 goto .L1124
 	r2 = r8
 	r1 = r8
 	call	__adddf3
-	r2 = r0
-	r1 = r8
+	r1 = r0
+	r2 = r8
 	call	__nedf2
-	if r0 == 0 goto .L1122
-	if r6 s< 0 goto .L1129
+	if r0 == 0 goto .L1124
+	if r6 s< 0 goto .L1131
 	r7 = 0x4000000000000000 ll
-	goto .L1126
-.L1129:
+	goto .L1128
+.L1131:
 	r7 = 0x3fe0000000000000 ll
-	goto .L1126
-.L1125:
+	goto .L1128
+.L1127:
 	r1 = r6
 	r1 >>= 63
 	r1 += r6
 	r1 s>>= 1
 	r6 = r1
-	if r1 == 0 goto .L1122
+	if r1 == 0 goto .L1124
 	r2 = r7
 	r1 = r7
 	call	__muldf3
 	r7 = r0
-.L1126:
+.L1128:
 	r0 = r6
 	r0 &= 1
-	if r0 == 0 goto .L1125
+	if r0 == 0 goto .L1127
 	r2 = r7
 	r1 = r8
 	call	__muldf3
 	r8 = r0
-	goto .L1125
-.L1122:
+	goto .L1127
+.L1124:
 	r0 = r8
 	exit
 	.size	ldexp, .-ldexp
@@ -4199,41 +4204,41 @@ ldexpl:
 	r6 = r2
 	r2 = r1
 	call	__unorddf2
-	if r0 != 0 goto .L1131
+	if r0 != 0 goto .L1133
 	r2 = r8
 	r1 = r8
 	call	__adddf3
-	r2 = r0
-	r1 = r8
+	r1 = r0
+	r2 = r8
 	call	__nedf2
-	if r0 == 0 goto .L1131
-	if r6 s< 0 goto .L1138
+	if r0 == 0 goto .L1133
+	if r6 s< 0 goto .L1140
 	r7 = 0x4000000000000000 ll
-	goto .L1135
-.L1138:
+	goto .L1137
+.L1140:
 	r7 = 0x3fe0000000000000 ll
-	goto .L1135
-.L1134:
+	goto .L1137
+.L1136:
 	r1 = r6
 	r1 >>= 63
 	r1 += r6
 	r1 s>>= 1
 	r6 = r1
-	if r1 == 0 goto .L1131
+	if r1 == 0 goto .L1133
 	r2 = r7
 	r1 = r7
 	call	__muldf3
 	r7 = r0
-.L1135:
+.L1137:
 	r0 = r6
 	r0 &= 1
-	if r0 == 0 goto .L1134
+	if r0 == 0 goto .L1136
 	r2 = r7
 	r1 = r8
 	call	__muldf3
 	r8 = r0
-	goto .L1134
-.L1131:
+	goto .L1136
+.L1133:
 	r0 = r8
 	exit
 	.size	ldexpl, .-ldexpl
@@ -4241,7 +4246,7 @@ ldexpl:
 	.global	memxor
 	.type	memxor, @function
 memxor:
-	if r3 == 0 goto .L1140
+	if r3 == 0 goto .L1142
 	r0 = r2
 	r4 = r1
 	r2 += r3
@@ -4250,31 +4255,31 @@ memxor:
 	r3 += r2
 	r3 += 1
 	r3 &= 3
-	if r3 == 0 goto .L1141
-	if r3 == 1 goto .L1152
-	if r3 == 2 goto .L1153
+	if r3 == 0 goto .L1143
+	if r3 == 1 goto .L1154
+	if r3 == 2 goto .L1155
 	r5 = *(u8 *) (r0+0)
 	r9 = *(u8 *) (r1+0)
 	r9 ^= r5
 	*(u8 *) (r1+0) = r9
 	r0 += 1
 	r4 += 1
-.L1153:
+.L1155:
 	r5 = *(u8 *) (r0+0)
 	r3 = *(u8 *) (r4+0)
 	r3 ^= r5
 	*(u8 *) (r4+0) = r3
 	r0 += 1
 	r4 += 1
-.L1152:
+.L1154:
 	r9 = *(u8 *) (r0+0)
 	r5 = *(u8 *) (r4+0)
 	r5 ^= r9
 	*(u8 *) (r4+0) = r5
 	r0 += 1
 	r4 += 1
-	if r0 == r2 goto .L1140
-.L1141:
+	if r0 == r2 goto .L1142
+.L1143:
 	r9 = *(u8 *) (r0+0)
 	r3 = *(u8 *) (r4+0)
 	r3 ^= r9
@@ -4298,8 +4303,8 @@ memxor:
 	*(u8 *) (r5+0) = r3
 	r0 += 3
 	r4 += 3
-	if r0 != r2 goto .L1141
-.L1140:
+	if r0 != r2 goto .L1143
+.L1142:
 	r0 = r1
 	exit
 	.size	memxor, .-memxor
@@ -4314,85 +4319,85 @@ strncat:
 	r1 = r0
 	r0 = r8
 	r0 += r1
-	if r7 == 0 goto .L1157
+	if r7 == 0 goto .L1159
 	r2 = r7
 	r2 &= 7
-	if r2 == 0 goto .L1156
-	if r2 == 1 goto .L1196
-	if r2 == 2 goto .L1197
-	if r2 == 3 goto .L1198
-	if r2 == 4 goto .L1199
-	if r2 == 5 goto .L1200
-	if r2 == 6 goto .L1201
+	if r2 == 0 goto .L1158
+	if r2 == 1 goto .L1198
+	if r2 == 2 goto .L1199
+	if r2 == 3 goto .L1200
+	if r2 == 4 goto .L1201
+	if r2 == 5 goto .L1202
+	if r2 == 6 goto .L1203
 	r3 = *(u8 *) (r6+0)
 	r3 <<= 56
 	r3 s>>= 56
 	*(u8 *) (r0+0) = r3
-	if r3 == 0 goto .L1159
+	if r3 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1201:
+.L1203:
 	r4 = *(u8 *) (r6+0)
 	r4 <<= 56
 	r4 s>>= 56
 	*(u8 *) (r0+0) = r4
-	if r4 == 0 goto .L1159
+	if r4 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1200:
+.L1202:
 	r5 = *(u8 *) (r6+0)
 	r5 <<= 56
 	r5 s>>= 56
 	*(u8 *) (r0+0) = r5
-	if r5 == 0 goto .L1159
+	if r5 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1199:
+.L1201:
 	r9 = *(u8 *) (r6+0)
 	r9 <<= 56
 	r9 s>>= 56
 	*(u8 *) (r0+0) = r9
-	if r9 == 0 goto .L1159
+	if r9 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1198:
+.L1200:
 	r1 = *(u8 *) (r6+0)
 	r1 <<= 56
 	r1 s>>= 56
 	*(u8 *) (r0+0) = r1
-	if r1 == 0 goto .L1159
+	if r1 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1197:
+.L1199:
 	r2 = *(u8 *) (r6+0)
 	r2 <<= 56
 	r2 s>>= 56
 	*(u8 *) (r0+0) = r2
-	if r2 == 0 goto .L1159
+	if r2 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-.L1196:
+.L1198:
 	r3 = *(u8 *) (r6+0)
 	r3 <<= 56
 	r3 s>>= 56
 	*(u8 *) (r0+0) = r3
-	if r3 == 0 goto .L1159
+	if r3 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r7 += -1
-	if r7 == 0 goto .L1157
-.L1156:
+	if r7 == 0 goto .L1159
+.L1158:
 	r4 = *(u8 *) (r6+0)
 	r4 <<= 56
 	r4 s>>= 56
 	*(u8 *) (r0+0) = r4
-	if r4 == 0 goto .L1159
+	if r4 == 0 goto .L1161
 	r6 += 1
 	r0 += 1
 	r5 = r7
@@ -4401,45 +4406,45 @@ strncat:
 	r9 <<= 56
 	r9 s>>= 56
 	*(u8 *) (r0+0) = r9
-	if r9 == 0 goto .L1159
+	if r9 == 0 goto .L1161
 	r1 = *(u8 *) (r6+1)
 	r1 <<= 56
 	r1 s>>= 56
 	*(u8 *) (r0+1) = r1
-	if r1 == 0 goto .L1159
+	if r1 == 0 goto .L1161
 	r2 = *(u8 *) (r6+2)
 	r2 <<= 56
 	r2 s>>= 56
 	*(u8 *) (r0+2) = r2
-	if r2 == 0 goto .L1159
+	if r2 == 0 goto .L1161
 	r3 = *(u8 *) (r6+3)
 	r3 <<= 56
 	r3 s>>= 56
 	*(u8 *) (r0+3) = r3
-	if r3 == 0 goto .L1159
+	if r3 == 0 goto .L1161
 	r4 = *(u8 *) (r6+4)
 	r4 <<= 56
 	r4 s>>= 56
 	*(u8 *) (r0+4) = r4
-	if r4 == 0 goto .L1159
+	if r4 == 0 goto .L1161
 	r9 = *(u8 *) (r6+5)
 	r9 <<= 56
 	r9 s>>= 56
 	*(u8 *) (r0+5) = r9
-	if r9 == 0 goto .L1159
+	if r9 == 0 goto .L1161
 	r1 = *(u8 *) (r6+6)
 	r1 <<= 56
 	r1 s>>= 56
 	*(u8 *) (r0+6) = r1
-	if r1 == 0 goto .L1159
+	if r1 == 0 goto .L1161
 	r6 += 7
 	r0 += 7
 	r7 = r5
 	r7 += -7
-	if r5 != 7 goto .L1156
-.L1157:
-	*(u8 *) (r0+0) = 0
+	if r5 != 7 goto .L1158
 .L1159:
+	*(u8 *) (r0+0) = 0
+.L1161:
 	r0 = r8
 	exit
 	.size	strncat, .-strncat
@@ -4448,148 +4453,145 @@ strncat:
 	.type	strnlen, @function
 strnlen:
 	r3 = 0
-	if r2 == r3 goto .L1251
-	r0 = r3
-	r0 ^= -1
-	r0 += r2
-	r0 += 1
+	if r2 == r3 goto .L1253
+	r0 = r2
 	r0 &= 7
-	if r0 == r3 goto .L1204
-	if r0 == 1 goto .L1245
-	if r0 == 2 goto .L1246
-	if r0 == 3 goto .L1247
-	if r0 == 4 goto .L1248
-	if r0 == 5 goto .L1249
-	if r0 == 6 goto .L1250
+	if r0 == r3 goto .L1206
+	if r0 == 1 goto .L1247
+	if r0 == 2 goto .L1248
+	if r0 == 3 goto .L1249
+	if r0 == 4 goto .L1250
+	if r0 == 5 goto .L1251
+	if r0 == 6 goto .L1252
 	r4 = r1
 	r4 += r3
 	r5 = *(u8 *) (r4+0)
-	if r5 == 0 goto .L1203
+	if r5 == 0 goto .L1205
+	r3 += 1
+.L1252:
+	r9 = r1
+	r9 += r3
+	r0 = *(u8 *) (r9+0)
+	if r0 != 0 goto .L1255
+.L1205:
+	r0 = r3
+	exit
+.L1253:
+	r3 = r2
+	goto .L1205
+.L1255:
+	r3 += 1
+.L1251:
+	r4 = r1
+	r4 += r3
+	r5 = *(u8 *) (r4+0)
+	if r5 == 0 goto .L1205
 	r3 += 1
 .L1250:
 	r9 = r1
 	r9 += r3
 	r0 = *(u8 *) (r9+0)
-	if r0 != 0 goto .L1253
-.L1203:
-	r0 = r3
-	exit
-.L1251:
-	r3 = r2
-	goto .L1203
-.L1253:
+	if r0 == 0 goto .L1205
 	r3 += 1
 .L1249:
 	r4 = r1
 	r4 += r3
 	r5 = *(u8 *) (r4+0)
-	if r5 == 0 goto .L1203
+	if r5 == 0 goto .L1205
 	r3 += 1
 .L1248:
 	r9 = r1
 	r9 += r3
 	r0 = *(u8 *) (r9+0)
-	if r0 == 0 goto .L1203
+	if r0 == 0 goto .L1205
 	r3 += 1
 .L1247:
 	r4 = r1
 	r4 += r3
 	r5 = *(u8 *) (r4+0)
-	if r5 == 0 goto .L1203
+	if r5 == 0 goto .L1205
 	r3 += 1
-.L1246:
+	if r2 == r3 goto .L1210
+.L1206:
 	r9 = r1
 	r9 += r3
 	r0 = *(u8 *) (r9+0)
-	if r0 == 0 goto .L1203
-	r3 += 1
-.L1245:
-	r4 = r1
-	r4 += r3
-	r5 = *(u8 *) (r4+0)
-	if r5 == 0 goto .L1203
-	r3 += 1
-	if r3 == r2 goto .L1208
-.L1204:
-	r9 = r1
-	r9 += r3
-	r0 = *(u8 *) (r9+0)
-	if r0 == 0 goto .L1203
+	if r0 == 0 goto .L1205
 	r5 = r3
 	r5 += 1
 	r3 = r5
 	r4 = r1
 	r4 += r5
 	r9 = *(u8 *) (r4+0)
-	if r9 == 0 goto .L1203
+	if r9 == 0 goto .L1205
 	r3 += 1
 	r0 = r1
 	r0 += r3
 	r4 = *(u8 *) (r0+0)
-	if r4 == 0 goto .L1203
+	if r4 == 0 goto .L1205
 	r3 += 1
 	r9 = r1
 	r9 += r3
 	r0 = *(u8 *) (r9+0)
-	if r0 == 0 goto .L1203
+	if r0 == 0 goto .L1205
 	r3 += 1
 	r4 = r1
 	r4 += r3
 	r9 = *(u8 *) (r4+0)
-	if r9 == 0 goto .L1203
+	if r9 == 0 goto .L1205
 	r3 += 1
 	r0 = r1
 	r0 += r3
 	r4 = *(u8 *) (r0+0)
-	if r4 == 0 goto .L1203
+	if r4 == 0 goto .L1205
 	r3 += 1
 	r9 = r1
 	r9 += r3
 	r0 = *(u8 *) (r9+0)
-	if r0 == 0 goto .L1203
+	if r0 == 0 goto .L1205
 	r3 += 1
 	r4 = r1
 	r4 += r3
 	r9 = *(u8 *) (r4+0)
-	if r9 == 0 goto .L1203
+	if r9 == 0 goto .L1205
 	r5 += 7
 	r3 = r5
-	if r5 != r2 goto .L1204
-.L1208:
+	if r2 != r5 goto .L1206
+.L1210:
 	r3 = r2
-	goto .L1203
+	goto .L1205
 	.size	strnlen, .-strnlen
 	.align	3
 	.global	strpbrk
 	.type	strpbrk, @function
 strpbrk:
 	r0 = *(u8 *) (r1+0)
-	if r0 == 0 goto .L1261
-.L1255:
+	if r0 == 0 goto .L1263
+.L1257:
 	r3 = r2
-.L1258:
+.L1260:
 	r5 = *(u8 *) (r3+0)
 	r5 <<= 56
 	r4 = r5
 	r4 s>>= 56
-	if r5 == 0 goto .L1262
+	if r5 == 0 goto .L1264
 	r3 += 1
 	r0 = *(u8 *) (r1+0)
 	r0 <<= 56
 	r0 s>>= 56
-	if r0 != r4 goto .L1258
-.L1256:
+	if r0 != r4 goto .L1260
+.L1258:
 	r0 = r1
 	exit
-.L1261:
+.L1263:
 	r1 = 0
-	goto .L1256
-.L1262:
+	goto .L1258
+.L1264:
 	r1 += 1
 	r9 = *(u8 *) (r1+0)
-	if r9 != 0 goto .L1255
+	if r9 != 0 goto .L1257
 	r1 = 0
-	goto .L1256
+	goto .L1258
 	.size	strpbrk, .-strpbrk
 	.align	3
 	.global	strrchr
@@ -4598,18 +4600,18 @@ strrchr:
 	r2 <<= 32
 	r2 s>>= 32
 	r3 = 0
-	goto .L1265
-.L1264:
+	goto .L1267
+.L1266:
 	r1 += 1
-	if r0 == 0 goto .L1268
-.L1265:
+	if r0 == 0 goto .L1270
+.L1267:
 	r0 = *(u8 *) (r1+0)
 	r0 <<= 56
 	r0 s>>= 56
-	if r2 != r0 goto .L1264
+	if r0 != r2 goto .L1266
 	r3 = r1
-	goto .L1264
-.L1268:
+	goto .L1266
+.L1270:
 	r0 = r3
 	exit
 	.size	strrchr, .-strrchr
@@ -4622,26 +4624,26 @@ strstr:
 	r1 = r2
 	call	strlen
 	r8 = r0
-	if r0 == 0 goto .L1269
+	if r0 == 0 goto .L1271
 	r0 = *(u8 *) (r7+0)
 	r0 <<= 56
 	r0 s>>= 56
 	*(u64 *) (r10+-8) = r0
-.L1271:
+.L1273:
 	r2 = *(u32 *) (r10+-8)
 	r1 = r6
 	call	strchr
 	r6 = r0
-	if r0 == 0 goto .L1269
+	if r0 == 0 goto .L1271
 	r3 = r8
 	r2 = r7
 	r1 = r6
 	call	strncmp
 	r0 <<= 32
-	if r0 == 0 goto .L1269
+	if r0 == 0 goto .L1271
 	r6 += 1
-	goto .L1271
-.L1269:
+	goto .L1273
+.L1271:
 	r0 = r6
 	exit
 	.size	strstr, .-strstr
@@ -4653,28 +4655,28 @@ copysign:
 	r7 = r2
 	r2 = 0x0000000000000000 ll
 	call	__ltdf2
-	if r0 s<= 0 goto .L1284
+	if r0 s<= 0 goto .L1286
 	r2 = 0x0000000000000000 ll
 	r1 = r6
 	call	__gtdf2
-	if r0 s<= 0 goto .L1278
+	if r0 s<= 0 goto .L1280
 	r2 = 0x0000000000000000 ll
 	r1 = r7
 	call	__ltdf2
-	if r0 s<= 0 goto .L1277
-.L1278:
+	if r0 s<= 0 goto .L1279
+.L1280:
 	r0 = r6
 	exit
-.L1284:
+.L1286:
 	r2 = 0x0000000000000000 ll
 	r1 = r7
 	call	__gtdf2
-	if r0 s<= 0 goto .L1278
-.L1277:
+	if r0 s<= 0 goto .L1280
+.L1279:
 	r0 = -9223372036854775808 ll
 	r0 ^= r6
 	r6 = r0
-	goto .L1278
+	goto .L1280
 	.size	copysign, .-copysign
 	.align	3
 	.global	memmem
@@ -4685,185 +4687,87 @@ memmem:
 	r0 -= r4
 	r1 += r0
 	*(u64 *) (r10+-24) = r1
-	if r4 == 0 goto .L1290
-	r5 = 1
-	if r4 >= r2 goto .L1287
-	r5 = 0
-.L1287:
-	r5 &= 0xff
-	if r5 != 0 goto .L1291
-	r2 = *(u64 *) (r10+-24)
-	if r6 > r2 goto .L1292
-	r9 = *(u8 *) (r3+0)
-	r9 <<= 56
+	if r4 == 0 goto .L1291
+	if r4 >= r2 goto .L1292
+	if r6 > r1 goto .L1293
+	r2 = *(u8 *) (r3+0)
+	r2 <<= 56
 	r4 += -1
 	*(u64 *) (r10+-8) = r4
 	r3 += 1
 	*(u64 *) (r10+-16) = r3
-	r2 -= r6
-	r2 &= 7
-	r8 = r2
+	r1 -= r6
+	r1 &= 7
+	r8 = r1
 	r3 = *(u8 *) (r6+0)
 	r3 <<= 56
-	r7 = r9
+	r7 = r2
 	r7 s>>= 56
-	if r3 == r9 goto .L1342
-.L1295:
+	if r3 == r2 goto .L1343
+.L1296:
 	r6 += 1
 	r4 = *(u64 *) (r10+-24)
-	if r4 < r6 goto .L1341
-	if r8 == 0 goto .L1289
-	if r8 == 1 goto .L1333
-	if r8 == 2 goto .L1334
-	if r8 == 3 goto .L1335
-	if r8 == 4 goto .L1336
-	if r8 == 5 goto .L1337
-	if r8 == 6 goto .L1338
-	r0 = *(u8 *) (r6+0)
-	r0 <<= 56
-	r0 s>>= 56
-	if r0 == r7 goto .L1343
-.L1297:
-	r6 += 1
-.L1338:
-	r1 = *(u8 *) (r6+0)
-	r1 <<= 56
-	r1 s>>= 56
-	if r1 == r7 goto .L1344
-.L1300:
-	r6 += 1
-.L1337:
+	if r4 < r6 goto .L1342
+	if r8 == 0 goto .L1290
+	if r8 == 1 goto .L1334
+	if r8 == 2 goto .L1335
+	if r8 == 3 goto .L1336
+	if r8 == 4 goto .L1337
+	if r8 == 5 goto .L1338
+	if r8 == 6 goto .L1339
 	r5 = *(u8 *) (r6+0)
 	r5 <<= 56
 	r5 s>>= 56
-	if r5 == r7 goto .L1345
-.L1303:
+	if r5 == r7 goto .L1344
+.L1298:
+	r6 += 1
+.L1339:
+	r9 = *(u8 *) (r6+0)
+	r9 <<= 56
+	r9 s>>= 56
+	if r9 == r7 goto .L1345
+.L1301:
+	r6 += 1
+.L1338:
+	r0 = *(u8 *) (r6+0)
+	r0 <<= 56
+	r0 s>>= 56
+	if r0 == r7 goto .L1346
+.L1304:
+	r6 += 1
+.L1337:
+	r1 = *(u8 *) (r6+0)
+	r1 <<= 56
+	r1 s>>= 56
+	if r1 == r7 goto .L1347
+.L1307:
 	r6 += 1
 .L1336:
 	r2 = *(u8 *) (r6+0)
 	r2 <<= 56
 	r2 s>>= 56
-	if r2 == r7 goto .L1346
-.L1306:
+	if r2 == r7 goto .L1348
+.L1310:
 	r6 += 1
 .L1335:
-	r9 = *(u8 *) (r6+0)
-	r9 <<= 56
-	r9 s>>= 56
-	if r9 == r7 goto .L1347
-.L1309:
-	r6 += 1
-.L1334:
 	r3 = *(u8 *) (r6+0)
 	r3 <<= 56
 	r3 s>>= 56
-	if r3 == r7 goto .L1348
-.L1312:
+	if r3 == r7 goto .L1349
+.L1313:
 	r6 += 1
-.L1333:
+.L1334:
 	r4 = *(u8 *) (r6+0)
 	r4 <<= 56
 	r4 s>>= 56
-	if r4 == r7 goto .L1349
-.L1315:
+	if r4 == r7 goto .L1350
+.L1316:
 	r6 += 1
-	r0 = *(u64 *) (r10+-24)
-	if r0 >= r6 goto .L1289
-.L1341:
-	r0 = 0
-	exit
-.L1350:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1288
-.L1293:
-	r0 = r6
-	exit
-.L1290:
-	r0 = r6
-	exit
-.L1291:
-	r0 = 0
-	exit
-.L1292:
-	r0 = 0
-	exit
+	r5 = *(u64 *) (r10+-24)
+	if r5 >= r6 goto .L1290
 .L1342:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1295
-	goto .L1293
-.L1343:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1297
-	goto .L1293
-.L1344:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1300
-	goto .L1293
-.L1345:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1303
-	goto .L1293
-.L1346:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1306
-	goto .L1293
-.L1347:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1309
-	goto .L1293
-.L1348:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1312
-	goto .L1293
-.L1349:
-	r3 = *(u64 *) (r10+-8)
-	r2 = *(u64 *) (r10+-16)
-	r1 = r6
-	r1 += 1
-	call	memcmp
-	r0 <<= 32
-	if r0 != 0 goto .L1315
-	goto .L1293
+	r0 = 0
+	exit
 .L1351:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4871,8 +4775,91 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1318
-	goto .L1293
+	if r0 != 0 goto .L1289
+.L1294:
+	r0 = r6
+	exit
+.L1291:
+	r0 = r6
+	exit
+.L1292:
+	r0 = 0
+	exit
+.L1293:
+	r0 = 0
+	exit
+.L1343:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1296
+	goto .L1294
+.L1344:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1298
+	goto .L1294
+.L1345:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1301
+	goto .L1294
+.L1346:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1304
+	goto .L1294
+.L1347:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1307
+	goto .L1294
+.L1348:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1310
+	goto .L1294
+.L1349:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1313
+	goto .L1294
+.L1350:
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1316
+	goto .L1294
 .L1352:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4880,8 +4867,8 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1320
-	goto .L1293
+	if r0 != 0 goto .L1319
+	goto .L1294
 .L1353:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4889,8 +4876,8 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1322
-	goto .L1293
+	if r0 != 0 goto .L1321
+	goto .L1294
 .L1354:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4898,8 +4885,8 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1324
-	goto .L1293
+	if r0 != 0 goto .L1323
+	goto .L1294
 .L1355:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4907,8 +4894,8 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1326
-	goto .L1293
+	if r0 != 0 goto .L1325
+	goto .L1294
 .L1356:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
@@ -4916,75 +4903,84 @@ memmem:
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1328
-	goto .L1293
-.L1330:
-	r6 = r8
-	r6 += 7
-	r5 = *(u64 *) (r10+-24)
-	if r5 < r6 goto .L1341
-.L1289:
-	r1 = *(u8 *) (r6+0)
-	r1 <<= 56
-	r1 s>>= 56
-	if r1 == r7 goto .L1350
-.L1288:
-	r6 += 1
-	r8 = r6
-	r5 = *(u8 *) (r6+0)
-	r5 <<= 56
-	r5 s>>= 56
-	if r5 == r7 goto .L1351
-.L1318:
-	r6 = r8
-	r6 += 1
-	r2 = *(u8 *) (r6+0)
-	r2 <<= 56
-	r2 s>>= 56
-	if r2 == r7 goto .L1352
-.L1320:
-	r6 = r8
-	r6 += 2
-	r9 = *(u8 *) (r6+0)
-	r9 <<= 56
-	r9 s>>= 56
-	if r9 == r7 goto .L1353
-.L1322:
-	r6 = r8
-	r6 += 3
-	r3 = *(u8 *) (r6+0)
-	r3 <<= 56
-	r3 s>>= 56
-	if r3 == r7 goto .L1354
-.L1324:
-	r6 = r8
-	r6 += 4
-	r4 = *(u8 *) (r6+0)
-	r4 <<= 56
-	r4 s>>= 56
-	if r4 == r7 goto .L1355
-.L1326:
-	r6 = r8
-	r6 += 5
-	r0 = *(u8 *) (r6+0)
-	r0 <<= 56
-	r0 s>>= 56
-	if r0 == r7 goto .L1356
-.L1328:
-	r6 = r8
-	r6 += 6
-	r1 = *(u8 *) (r6+0)
-	r1 <<= 56
-	r1 s>>= 56
-	if r1 != r7 goto .L1330
+	if r0 != 0 goto .L1327
+	goto .L1294
+.L1357:
 	r3 = *(u64 *) (r10+-8)
 	r2 = *(u64 *) (r10+-16)
 	r1 = r6
 	r1 += 1
 	call	memcmp
 	r0 <<= 32
-	if r0 != 0 goto .L1330
-	goto .L1293
+	if r0 != 0 goto .L1329
+	goto .L1294
+.L1331:
+	r6 = r8
+	r6 += 7
+	r0 = *(u64 *) (r10+-24)
+	if r0 < r6 goto .L1342
+.L1290:
+	r9 = *(u8 *) (r6+0)
+	r9 <<= 56
+	r9 s>>= 56
+	if r9 == r7 goto .L1351
+.L1289:
+	r6 += 1
+	r8 = r6
+	r0 = *(u8 *) (r6+0)
+	r0 <<= 56
+	r0 s>>= 56
+	if r0 == r7 goto .L1352
+.L1319:
+	r6 = r8
+	r6 += 1
+	r1 = *(u8 *) (r6+0)
+	r1 <<= 56
+	r1 s>>= 56
+	if r1 == r7 goto .L1353
+.L1321:
+	r6 = r8
+	r6 += 2
+	r2 = *(u8 *) (r6+0)
+	r2 <<= 56
+	r2 s>>= 56
+	if r2 == r7 goto .L1354
+.L1323:
+	r6 = r8
+	r6 += 3
+	r3 = *(u8 *) (r6+0)
+	r3 <<= 56
+	r3 s>>= 56
+	if r3 == r7 goto .L1355
+.L1325:
+	r6 = r8
+	r6 += 4
+	r4 = *(u8 *) (r6+0)
+	r4 <<= 56
+	r4 s>>= 56
+	if r4 == r7 goto .L1356
+.L1327:
+	r6 = r8
+	r6 += 5
+	r5 = *(u8 *) (r6+0)
+	r5 <<= 56
+	r5 s>>= 56
+	if r5 == r7 goto .L1357
+.L1329:
+	r6 = r8
+	r6 += 6
+	r9 = *(u8 *) (r6+0)
+	r9 <<= 56
+	r9 s>>= 56
+	if r9 != r7 goto .L1331
+	r3 = *(u64 *) (r10+-8)
+	r2 = *(u64 *) (r10+-16)
+	r1 = r6
+	r1 += 1
+	call	memcmp
+	r0 <<= 32
+	if r0 != 0 goto .L1331
+	goto .L1294
 	.size	memmem, .-memmem
 	.align	3
 	.global	frexp
@@ -4994,16 +4990,16 @@ frexp:
 	*(u64 *) (r10+-16) = r2
 	r2 = 0x0000000000000000 ll
 	call	__ltdf2
-	if r0 s<= 0 goto .L1393
+	if r0 s<= 0 goto .L1394
 	*(u64 *) (r10+-8) = 0
-.L1358:
+.L1359:
 	r2 = 0x3ff0000000000000 ll
 	r1 = r6
 	call	__gedf2
-	if r0 s< 0 goto .L1390
+	if r0 s< 0 goto .L1391
 	r7 = 0
 	r8 = 0x3fe0000000000000 ll
-.L1362:
+.L1363:
 	r7 += 1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5014,7 +5010,7 @@ frexp:
 	r2 = 0x3ff0000000000000 ll
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1363
+	if r0 s< 0 goto .L1364
 	r7 += 1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5025,7 +5021,7 @@ frexp:
 	r2 = 0x3ff0000000000000 ll
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1363
+	if r0 s< 0 goto .L1364
 	r7 += 1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5036,7 +5032,7 @@ frexp:
 	r2 = 0x3ff0000000000000 ll
 	r1 = r0
 	call	__gedf2
-	if r0 s< 0 goto .L1363
+	if r0 s< 0 goto .L1364
 	r7 += 1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5047,26 +5043,26 @@ frexp:
 	r2 = 0x3ff0000000000000 ll
 	r1 = r0
 	call	__gedf2
-	if r0 s>= 0 goto .L1362
-	goto .L1363
-.L1393:
+	if r0 s>= 0 goto .L1363
+	goto .L1364
+.L1394:
 	r0 = -9223372036854775808 ll
 	r0 ^= r6
 	r6 = r0
 	*(u64 *) (r10+-8) = 1
-	goto .L1358
-.L1390:
+	goto .L1359
+.L1391:
 	r2 = 0x3fe0000000000000 ll
 	r1 = r6
 	call	__ltdf2
-	if r0 s> 0 goto .L1391
+	if r0 s> 0 goto .L1392
 	r2 = 0x0000000000000000 ll
 	r1 = r6
 	call	__nedf2
-	if r0 == 0 goto .L1392
+	if r0 == 0 goto .L1393
 	r7 = 0
 	r8 = r7
-.L1366:
+.L1367:
 	r7 += -1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5077,7 +5073,7 @@ frexp:
 	r2 = 0x3fe0000000000000 ll
 	r1 = r0
 	call	__ltdf2
-	if r8 s< r0 goto .L1363
+	if r8 s< r0 goto .L1364
 	r7 += -1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5088,7 +5084,7 @@ frexp:
 	r2 = 0x3fe0000000000000 ll
 	r1 = r0
 	call	__ltdf2
-	if r8 s< r0 goto .L1363
+	if r8 s< r0 goto .L1364
 	r7 += -1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5099,7 +5095,7 @@ frexp:
 	r2 = 0x3fe0000000000000 ll
 	r1 = r0
 	call	__ltdf2
-	if r8 s< r0 goto .L1363
+	if r8 s< r0 goto .L1364
 	r7 += -1
 	r7 <<= 32
 	r7 s>>= 32
@@ -5110,110 +5106,102 @@ frexp:
 	r2 = 0x3fe0000000000000 ll
 	r1 = r0
 	call	__ltdf2
-	if r8 s>= r0 goto .L1366
-	goto .L1363
-.L1391:
+	if r8 s>= r0 goto .L1367
+	goto .L1364
+.L1392:
 	r7 = 0
-.L1363:
+.L1364:
 	r1 = *(u64 *) (r10+-16)
 	*(u32 *) (r1+0) = r7
 	r2 = *(u64 *) (r10+-8)
-	if r2 == 0 goto .L1367
+	if r2 == 0 goto .L1368
 	r3 = -9223372036854775808 ll
 	r3 ^= r6
 	r6 = r3
-.L1367:
+.L1368:
 	r0 = r6
 	exit
-.L1392:
+.L1393:
 	r7 = 0
-	goto .L1363
+	goto .L1364
 	.size	frexp, .-frexp
 	.align	3
 	.global	__muldi3
 	.type	__muldi3, @function
 __muldi3:
-	if r1 == 0 goto .L1397
+	if r1 == 0 goto .L1398
 	r0 = 0
-.L1396:
-	r3 = r1
-	r3 &= 1
-	r3 = -r3
-	r4 = r2
-	r4 &= r3
-	r0 += r4
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1413
-	r5 = r1
-	r5 &= 1
-	r5 = -r5
-	r9 = r2
-	r9 &= r5
-	r0 += r9
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r3 = r1
-	r3 &= 1
-	r3 = -r3
-	r4 = r2
-	r4 &= r3
-	r0 += r4
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r5 = r1
-	r5 &= 1
-	r5 = -r5
-	r9 = r2
-	r9 &= r5
-	r0 += r9
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r3 = r1
-	r3 &= 1
-	r3 = -r3
-	r4 = r2
-	r4 &= r3
-	r0 += r4
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r5 = r1
-	r5 &= 1
-	r5 = -r5
-	r9 = r2
-	r9 &= r5
-	r0 += r9
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r3 = r1
-	r3 &= 1
-	r3 = -r3
-	r4 = r2
-	r4 &= r3
-	r0 += r4
-	r2 += r2
-	r1 >>= 1
-	if r1 == 0 goto .L1394
-	r5 = r1
-	r5 &= 1
-	r5 = -r5
-	r9 = r2
-	r9 &= r5
-	r0 += r9
-	r2 += r2
-	r1 >>= 1
-	if r1 != 0 goto .L1396
-	exit
-.L1413:
-	exit
 .L1397:
+	r3 = r1
+	r3 &= 1
+	r3 = -r3
+	r3 &= r2
+	r0 += r3
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1414
+	r4 = r1
+	r4 &= 1
+	r4 = -r4
+	r4 &= r2
+	r0 += r4
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r5 = r1
+	r5 &= 1
+	r5 = -r5
+	r5 &= r2
+	r0 += r5
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r9 = r1
+	r9 &= 1
+	r9 = -r9
+	r9 &= r2
+	r0 += r9
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r3 = r1
+	r3 &= 1
+	r3 = -r3
+	r3 &= r2
+	r0 += r3
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r4 = r1
+	r4 &= 1
+	r4 = -r4
+	r4 &= r2
+	r0 += r4
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r5 = r1
+	r5 &= 1
+	r5 = -r5
+	r5 &= r2
+	r0 += r5
+	r2 += r2
+	r1 >>= 1
+	if r1 == 0 goto .L1395
+	r9 = r1
+	r9 &= 1
+	r9 = -r9
+	r9 &= r2
+	r0 += r9
+	r2 += r2
+	r1 >>= 1
+	if r1 != 0 goto .L1397
+	exit
+.L1414:
+	exit
+.L1398:
 	r0 = 0
-.L1394:
+.L1395:
 	exit
 	.size	__muldi3, .-__muldi3
 	.align	3
@@ -5223,102 +5211,96 @@ udivmodsi4:
 	r0 = r1;r0 &= 0xffffffff
 	r2 = r2;r2 &= 0xffffffff
 	r4 = 1
-	if r0 < r2 goto .L1418
+	if r0 < r2 goto .L1423
 	r9 = 32
 	r4 = 1
-.L1415:
+.L1416:
 	r1 = r2
 	r1 <<= 32
-	if r1 s< 0 goto .L1418
+	if r1 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r9 += -1
 	r5 = r9;r5 &= 0xffffffff
 	r9 = r2
 	r9 <<= 32
-	if r9 s< 0 goto .L1418
+	if r9 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r5 += -1
 	r5 = r5;r5 &= 0xffffffff
 	r1 = r2
 	r1 <<= 32
-	if r1 s< 0 goto .L1418
+	if r1 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r5 += -1
 	r9 = r5;r9 &= 0xffffffff
 	r5 = r2
 	r5 <<= 32
-	if r5 s< 0 goto .L1418
+	if r5 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r9 += -1
 	r9 = r9;r9 &= 0xffffffff
 	r1 = r2
 	r1 <<= 32
-	if r1 s< 0 goto .L1418
+	if r1 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r9 += -1
 	r5 = r9;r5 &= 0xffffffff
 	r9 = r2
 	r9 <<= 32
-	if r9 s< 0 goto .L1418
+	if r9 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r5 += -1
 	r5 = r5;r5 &= 0xffffffff
 	r1 = r2
 	r1 <<= 32
-	if r1 s< 0 goto .L1418
+	if r1 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r5 += -1
 	r9 = r5;r9 &= 0xffffffff
 	r5 = r2
 	r5 <<= 32
-	if r5 s< 0 goto .L1418
+	if r5 s< 0 goto .L1423
 	r2 += r2
 	r2 = r2;r2 &= 0xffffffff
 	r4 += r4
 	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1447
+	if r2 > r0 goto .L1418
 	r9 += -1
 	r9 = r9;r9 &= 0xffffffff
-	if r9 != 0 goto .L1415
+	if r9 != 0 goto .L1416
 .L1419:
-	if r3 != 0 goto .L1423
+	if r3 != 0 goto .L1424
 	r0 = r9
-.L1423:
+.L1424:
 	exit
-.L1447:
-	r9 = r4
-	if r4 == 0 goto .L1419
-.L1418:
-	r9 = 0
-	goto .L1422
 .L1421:
 	r4 >>= 1
 	r2 >>= 1
@@ -5327,9 +5309,18 @@ udivmodsi4:
 	if r2 >= r0 goto .L1421
 	r0 -= r2
 	r0 = r0;r0 &= 0xffffffff
-	r9 |= r4
-	r9 = r9;r9 &= 0xffffffff
+	r1 = r4
+	r1 |= r9
+	r9 = r1;r9 &= 0xffffffff
 	goto .L1421
+.L1418:
+	if r4 == 0 goto .L1441
+.L1423:
+	r9 = 0
+	goto .L1422
+.L1441:
+	r9 = r4
+	goto .L1419
 	.size	udivmodsi4, .-udivmodsi4
 	.align	3
 	.global	__clrsbqi2
@@ -5339,9 +5330,9 @@ __clrsbqi2:
 	r2 = r1
 	r2 s>>= 56
 	r1 s>>= 63
-	r0 = r1
-	r0 ^= r2
-	if r1 == r2 goto .L1450
+	r0 = r2
+	r0 ^= r1
+	if r2 == r1 goto .L1444
 	r0 = r0;r0 &= 0xffffffff
 	r0 <<= 8
 	r1 = r0;r1 &= 0xffffffff
@@ -5353,7 +5344,7 @@ __clrsbqi2:
 	r0 += r1
 	r0 s>>= 32
 	exit
-.L1450:
+.L1444:
 	r0 = 7
 	exit
 	.size	__clrsbqi2, .-__clrsbqi2
@@ -5364,16 +5355,15 @@ __clrsbdi2:
 	r0 = r1
 	r2 = r1
 	r2 s>>= 63
-	r1 = r2
-	r1 ^= r0
-	if r2 == r0 goto .L1453
+	r1 ^= r2
+	if r0 == r2 goto .L1447
 	call	__clzdi2
 	r0 <<= 32
 	r1 = -4294967296 ll
 	r0 += r1
 	r0 s>>= 32
 	exit
-.L1453:
+.L1447:
 	r0 = 63
 	exit
 	.size	__clrsbdi2, .-__clrsbdi2
@@ -5383,55 +5373,55 @@ __clrsbdi2:
 __mulsi3:
 	r1 = r1;r1 &= 0xffffffff
 	r4 = r2;r4 &= 0xffffffff
-	if r1 == 0 goto .L1457
+	if r1 == 0 goto .L1451
 	r0 = 0
-.L1456:
+.L1450:
 	r3 = r1
 	r3 &= 1
 	r3 = -r3
 	r3 &= r4
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r1 >>= 1
 	r4 += r4
 	r2 = r4;r2 &= 0xffffffff
-	if r1 == 0 goto .L1465
+	if r1 == 0 goto .L1459
 	r4 = r1
 	r4 &= 1
 	r4 = -r4
 	r4 &= r2
-	r0 += r4
-	r0 = r0;r0 &= 0xffffffff
+	r4 += r0
+	r0 = r4;r0 &= 0xffffffff
 	r1 >>= 1
 	r2 += r2
 	r5 = r2;r5 &= 0xffffffff
-	if r1 == 0 goto .L1455
+	if r1 == 0 goto .L1449
 	r9 = r1
 	r9 &= 1
 	r9 = -r9
 	r9 &= r5
-	r0 += r9
-	r0 = r0;r0 &= 0xffffffff
+	r9 += r0
+	r0 = r9;r0 &= 0xffffffff
 	r1 >>= 1
 	r5 += r5
 	r2 = r5;r2 &= 0xffffffff
-	if r1 == 0 goto .L1455
+	if r1 == 0 goto .L1449
 	r3 = r1
 	r3 &= 1
 	r3 = -r3
 	r3 &= r2
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r1 >>= 1
 	r2 += r2
 	r4 = r2;r4 &= 0xffffffff
-	if r1 != 0 goto .L1456
+	if r1 != 0 goto .L1450
 	exit
-.L1465:
+.L1459:
 	exit
-.L1457:
+.L1451:
 	r0 = r1
-.L1455:
+.L1449:
 	exit
 	.size	__mulsi3, .-__mulsi3
 	.align	3
@@ -5439,315 +5429,314 @@ __mulsi3:
 	.type	__cmovd, @function
 __cmovd:
 	r3 = r3;r3 &= 0xffffffff
-	r6 = r3
-	r6 >>= 3
 	r5 = r3
-	r5 &= -8
-	r5 = r5;r5 &= 0xffffffff
-	if r2 >= r1 goto .L1467
+	r5 >>= 3
+	r9 = r3
+	r9 &= -8
+	r9 = r9;r9 &= 0xffffffff
+	if r2 >= r1 goto .L1461
 	r0 = r2
 	r0 += r3
-	if r1 >= r0 goto .L1467
+	if r1 >= r0 goto .L1461
 	r4 = r3
 	r4 += -1
 	r0 = r4;r0 &= 0xffffffff
-	if r3 == 0 goto .L1466
-	r9 = r0
-	r9 += 1
-	r9 &= 7
-	if r9 == 0 goto .L1473
-	if r9 == 1 goto .L1542
-	if r9 == 2 goto .L1543
-	if r9 == 3 goto .L1544
-	if r9 == 4 goto .L1545
-	if r9 == 5 goto .L1546
-	if r9 == 6 goto .L1547
+	if r3 == 0 goto .L1460
+	r3 = r0
+	r3 += 1
+	r3 &= 7
+	if r3 == 0 goto .L1467
+	if r3 == 1 goto .L1536
+	if r3 == 2 goto .L1537
+	if r3 == 3 goto .L1538
+	if r3 == 4 goto .L1539
+	if r3 == 5 goto .L1540
+	if r3 == 6 goto .L1541
+	r5 = r2
+	r5 += r0
+	r9 = r1
+	r9 += r0
+	r4 = *(u8 *) (r5+0)
+	*(u8 *) (r9+0) = r4
+	r0 += -1
+.L1541:
 	r5 = r2
 	r5 += r0
 	r3 = r1
 	r3 += r0
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r3+0) = r4
-	r0 += -1
-.L1547:
-	r9 = r2
-	r9 += r0
-	r5 = r1
-	r5 += r0
-	r3 = *(u8 *) (r9+0)
-	*(u8 *) (r5+0) = r3
-	r0 += -1
-.L1546:
-	r4 = r2
-	r4 += r0
-	r9 = r1
-	r9 += r0
-	r5 = *(u8 *) (r4+0)
-	*(u8 *) (r9+0) = r5
-	r0 += -1
-.L1545:
-	r4 = r2
-	r4 += r0
-	r3 = r1
-	r3 += r0
-	r9 = *(u8 *) (r4+0)
+	r9 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r9
 	r0 += -1
-.L1544:
-	r5 = r2
+.L1540:
+	r4 = r2
+	r4 += r0
+	r5 = r1
 	r5 += r0
-	r3 = r1
-	r3 += r0
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r3+0) = r4
+	r3 = *(u8 *) (r4+0)
+	*(u8 *) (r5+0) = r3
 	r0 += -1
-.L1543:
+.L1539:
 	r9 = r2
 	r9 += r0
 	r5 = r1
 	r5 += r0
-	r3 = *(u8 *) (r9+0)
-	*(u8 *) (r5+0) = r3
+	r4 = *(u8 *) (r9+0)
+	*(u8 *) (r5+0) = r4
 	r0 += -1
-.L1542:
+.L1538:
+	r9 = r2
+	r9 += r0
+	r3 = r1
+	r3 += r0
+	r5 = *(u8 *) (r9+0)
+	*(u8 *) (r3+0) = r5
+	r0 += -1
+.L1537:
 	r4 = r2
 	r4 += r0
 	r9 = r1
 	r9 += r0
-	r5 = *(u8 *) (r4+0)
-	*(u8 *) (r9+0) = r5
+	r3 = *(u8 *) (r4+0)
+	*(u8 *) (r9+0) = r3
 	r0 += -1
-	if r0 == -1 goto .L1563
-.L1473:
-	r4 = r2
-	r4 += r0
+.L1536:
+	r5 = r2
+	r5 += r0
+	r9 = r1
+	r9 += r0
+	r4 = *(u8 *) (r5+0)
+	*(u8 *) (r9+0) = r4
+	r0 += -1
+	if r0 == -1 goto .L1557
+.L1467:
+	r5 = r2
+	r5 += r0
 	r3 = r1
 	r3 += r0
-	r9 = *(u8 *) (r4+0)
+	r9 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r9
 	r0 += -1
 	r3 = r0
-	r5 = r2
-	r5 += r0
+	r4 = r2
+	r4 += r0
 	r0 = r1
 	r0 += r3
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r0+0) = r4
+	r5 = *(u8 *) (r4+0)
+	*(u8 *) (r0+0) = r5
 	r9 = r3
 	r9 += -1
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -2
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -3
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -4
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -5
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -6
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r0 = r3
 	r0 += -7
-	if r3 != 6 goto .L1473
-.L1466:
+	if r3 != 6 goto .L1467
+.L1460:
 	exit
-.L1467:
-	if r6 == 0 goto .L1470
+.L1461:
+	if r5 == 0 goto .L1464
 	r0 = r2
 	r4 = r1
-	r6 <<= 3
-	r9 = r6
+	r5 <<= 3
 	r6 = r2
-	r6 += r9
-	r9 = r6
-	r9 -= r2
-	r9 += -8
-	r9 >>= 3
-	r9 += 1
-	r9 &= 7
-	if r9 == 0 goto .L1471
-	if r9 == 1 goto .L1548
-	if r9 == 2 goto .L1549
-	if r9 == 3 goto .L1550
-	if r9 == 4 goto .L1551
-	if r9 == 5 goto .L1552
-	if r9 == 6 goto .L1553
-	r9 = *(u64 *) (r2+0)
-	*(u64 *) (r1+0) = r9
+	r6 += r5
+	r5 = r6
+	r5 -= r2
+	r5 += -8
+	r5 >>= 3
+	r5 += 1
+	r5 &= 7
+	if r5 == 0 goto .L1465
+	if r5 == 1 goto .L1542
+	if r5 == 2 goto .L1543
+	if r5 == 3 goto .L1544
+	if r5 == 4 goto .L1545
+	if r5 == 5 goto .L1546
+	if r5 == 6 goto .L1547
+	r5 = *(u64 *) (r2+0)
+	*(u64 *) (r1+0) = r5
 	r0 += 8
 	r4 += 8
-.L1553:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1547:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-.L1552:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1546:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-.L1551:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1545:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-.L1550:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1544:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-.L1549:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1543:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-.L1548:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+.L1542:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-	if r0 == r6 goto .L1470
-.L1471:
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
+	if r0 == r6 goto .L1464
+.L1465:
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
 	r0 += 8
 	r4 += 8
-	r9 = *(u64 *) (r0+0)
-	*(u64 *) (r4+0) = r9
-	r9 = *(u64 *) (r0+8)
-	*(u64 *) (r4+8) = r9
-	r9 = *(u64 *) (r0+16)
-	*(u64 *) (r4+16) = r9
-	r9 = *(u64 *) (r0+24)
-	*(u64 *) (r4+24) = r9
-	r9 = *(u64 *) (r0+32)
-	*(u64 *) (r4+32) = r9
-	r9 = *(u64 *) (r0+40)
-	*(u64 *) (r4+40) = r9
-	r9 = *(u64 *) (r0+48)
-	*(u64 *) (r4+48) = r9
+	r5 = *(u64 *) (r0+0)
+	*(u64 *) (r4+0) = r5
+	r5 = *(u64 *) (r0+8)
+	*(u64 *) (r4+8) = r5
+	r5 = *(u64 *) (r0+16)
+	*(u64 *) (r4+16) = r5
+	r5 = *(u64 *) (r0+24)
+	*(u64 *) (r4+24) = r5
+	r5 = *(u64 *) (r0+32)
+	*(u64 *) (r4+32) = r5
+	r5 = *(u64 *) (r0+40)
+	*(u64 *) (r4+40) = r5
+	r5 = *(u64 *) (r0+48)
+	*(u64 *) (r4+48) = r5
 	r0 += 56
 	r4 += 56
-	if r0 != r6 goto .L1471
-.L1470:
-	if r5 > r3 goto .L1466
+	if r0 != r6 goto .L1465
+.L1464:
+	if r9 > r3 goto .L1460
 	r0 = r2
-	r0 += r5
-	r1 += r5
+	r0 += r9
+	r1 += r9
 	r2 += 1
 	r3 += -1
-	r3 -= r5
+	r3 -= r9
 	r3 = r3;r3 &= 0xffffffff
-	r5 += r2
-	r5 += r3
+	r9 += r2
+	r3 += r9
 	r2 = r0
 	r2 ^= -1
-	r2 += r5
+	r2 += r3
 	r2 += 1
 	r2 &= 7
-	if r2 == 0 goto .L1472
-	if r2 == 1 goto .L1554
-	if r2 == 2 goto .L1555
-	if r2 == 3 goto .L1556
-	if r2 == 4 goto .L1557
-	if r2 == 5 goto .L1558
-	if r2 == 6 goto .L1559
-	r4 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r4
-	r0 += 1
-	r1 += 1
-.L1559:
+	if r2 == 0 goto .L1466
+	if r2 == 1 goto .L1548
+	if r2 == 2 goto .L1549
+	if r2 == 3 goto .L1550
+	if r2 == 4 goto .L1551
+	if r2 == 5 goto .L1552
+	if r2 == 6 goto .L1553
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r9
 	r0 += 1
 	r1 += 1
-.L1558:
-	r3 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r3
-	r0 += 1
-	r1 += 1
-.L1557:
-	r2 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r2
-	r0 += 1
-	r1 += 1
-.L1556:
+.L1553:
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r4
 	r0 += 1
 	r1 += 1
-.L1555:
+.L1552:
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r5
+	r0 += 1
+	r1 += 1
+.L1551:
+	r2 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r2
+	r0 += 1
+	r1 += 1
+.L1550:
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r9
 	r0 += 1
 	r1 += 1
-.L1554:
-	r3 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r3
+.L1549:
+	r4 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r4
 	r0 += 1
 	r1 += 1
-	if r0 == r5 goto .L1564
-.L1472:
+.L1548:
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r5
+	r0 += 1
+	r1 += 1
+	if r0 == r3 goto .L1558
+.L1466:
 	r2 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r2
 	r0 += 1
 	r1 += 1
-	r4 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r4
-	r9 = *(u8 *) (r0+1)
-	*(u8 *) (r1+1) = r9
-	r3 = *(u8 *) (r0+2)
-	*(u8 *) (r1+2) = r3
+	r9 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r9
+	r4 = *(u8 *) (r0+1)
+	*(u8 *) (r1+1) = r4
+	r5 = *(u8 *) (r0+2)
+	*(u8 *) (r1+2) = r5
 	r2 = *(u8 *) (r0+3)
 	*(u8 *) (r1+3) = r2
-	r4 = *(u8 *) (r0+4)
-	*(u8 *) (r1+4) = r4
-	r9 = *(u8 *) (r0+5)
-	*(u8 *) (r1+5) = r9
-	r3 = *(u8 *) (r0+6)
-	*(u8 *) (r1+6) = r3
+	r9 = *(u8 *) (r0+4)
+	*(u8 *) (r1+4) = r9
+	r4 = *(u8 *) (r0+5)
+	*(u8 *) (r1+5) = r4
+	r5 = *(u8 *) (r0+6)
+	*(u8 *) (r1+6) = r5
 	r0 += 7
 	r1 += 7
-	if r0 != r5 goto .L1472
+	if r0 != r3 goto .L1466
 	exit
-.L1564:
+.L1558:
 	exit
-.L1563:
+.L1557:
 	exit
 	.size	__cmovd, .-__cmovd
 	.align	3
@@ -5757,24 +5746,24 @@ __cmovh:
 	r3 = r3;r3 &= 0xffffffff
 	r5 = r3
 	r5 >>= 1
-	if r2 >= r1 goto .L1566
+	if r2 >= r1 goto .L1560
 	r0 = r2
 	r0 += r3
-	if r1 >= r0 goto .L1566
+	if r1 >= r0 goto .L1560
 	r4 = r3
 	r4 += -1
 	r0 = r4;r0 &= 0xffffffff
-	if r3 == 0 goto .L1565
+	if r3 == 0 goto .L1559
 	r9 = r0
 	r9 += 1
 	r9 &= 7
-	if r9 == 0 goto .L1571
-	if r9 == 1 goto .L1618
-	if r9 == 2 goto .L1619
-	if r9 == 3 goto .L1620
-	if r9 == 4 goto .L1621
-	if r9 == 5 goto .L1622
-	if r9 == 6 goto .L1623
+	if r9 == 0 goto .L1565
+	if r9 == 1 goto .L1612
+	if r9 == 2 goto .L1613
+	if r9 == 3 goto .L1614
+	if r9 == 4 goto .L1615
+	if r9 == 5 goto .L1616
+	if r9 == 6 goto .L1617
 	r5 = r2
 	r5 += r0
 	r3 = r1
@@ -5782,7 +5771,7 @@ __cmovh:
 	r4 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r4
 	r0 += -1
-.L1623:
+.L1617:
 	r9 = r2
 	r9 += r0
 	r5 = r1
@@ -5790,7 +5779,7 @@ __cmovh:
 	r3 = *(u8 *) (r9+0)
 	*(u8 *) (r5+0) = r3
 	r0 += -1
-.L1622:
+.L1616:
 	r4 = r2
 	r4 += r0
 	r9 = r1
@@ -5798,7 +5787,7 @@ __cmovh:
 	r5 = *(u8 *) (r4+0)
 	*(u8 *) (r9+0) = r5
 	r0 += -1
-.L1621:
+.L1615:
 	r4 = r2
 	r4 += r0
 	r3 = r1
@@ -5806,7 +5795,7 @@ __cmovh:
 	r9 = *(u8 *) (r4+0)
 	*(u8 *) (r3+0) = r9
 	r0 += -1
-.L1620:
+.L1614:
 	r5 = r2
 	r5 += r0
 	r3 = r1
@@ -5814,7 +5803,7 @@ __cmovh:
 	r4 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r4
 	r0 += -1
-.L1619:
+.L1613:
 	r9 = r2
 	r9 += r0
 	r5 = r1
@@ -5822,7 +5811,7 @@ __cmovh:
 	r3 = *(u8 *) (r9+0)
 	*(u8 *) (r5+0) = r3
 	r0 += -1
-.L1618:
+.L1612:
 	r4 = r2
 	r4 += r0
 	r9 = r1
@@ -5830,8 +5819,8 @@ __cmovh:
 	r5 = *(u8 *) (r4+0)
 	*(u8 *) (r9+0) = r5
 	r0 += -1
-	if r0 == -1 goto .L1632
-.L1571:
+	if r0 == -1 goto .L1626
+.L1565:
 	r4 = r2
 	r4 += r0
 	r3 = r1
@@ -5896,11 +5885,11 @@ __cmovh:
 	*(u8 *) (r4+0) = r0
 	r0 = r3
 	r0 += -7
-	if r3 != 6 goto .L1571
-.L1565:
+	if r3 != 6 goto .L1565
+.L1559:
 	exit
-.L1566:
-	if r5 == 0 goto .L1569
+.L1560:
+	if r5 == 0 goto .L1563
 	r0 = r2
 	r4 = r1
 	r5 += r5
@@ -5912,49 +5901,49 @@ __cmovh:
 	r5 >>= 1
 	r5 += 1
 	r5 &= 7
-	if r5 == 0 goto .L1570
-	if r5 == 1 goto .L1624
-	if r5 == 2 goto .L1625
-	if r5 == 3 goto .L1626
-	if r5 == 4 goto .L1627
-	if r5 == 5 goto .L1628
-	if r5 == 6 goto .L1629
+	if r5 == 0 goto .L1564
+	if r5 == 1 goto .L1618
+	if r5 == 2 goto .L1619
+	if r5 == 3 goto .L1620
+	if r5 == 4 goto .L1621
+	if r5 == 5 goto .L1622
+	if r5 == 6 goto .L1623
 	r5 = *(u16 *) (r2+0)
 	*(u16 *) (r1+0) = r5
 	r0 += 2
 	r4 += 2
-.L1629:
+.L1623:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-.L1628:
+.L1622:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-.L1627:
+.L1621:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-.L1626:
+.L1620:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-.L1625:
+.L1619:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-.L1624:
+.L1618:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
 	r4 += 2
-	if r0 == r9 goto .L1569
-.L1570:
+	if r0 == r9 goto .L1563
+.L1564:
 	r5 = *(u16 *) (r0+0)
 	*(u16 *) (r4+0) = r5
 	r0 += 2
@@ -5975,11 +5964,11 @@ __cmovh:
 	*(u16 *) (r4+12) = r5
 	r0 += 14
 	r4 += 14
-	if r0 != r9 goto .L1570
-.L1569:
+	if r0 != r9 goto .L1564
+.L1563:
 	r0 = r3
 	r0 &= 1
-	if r0 == 0 goto .L1565
+	if r0 == 0 goto .L1559
 	r3 += -1
 	r3 = r3;r3 &= 0xffffffff
 	r2 += r3
@@ -5987,7 +5976,7 @@ __cmovh:
 	r2 = *(u8 *) (r2+0)
 	*(u8 *) (r1+0) = r2
 	exit
-.L1632:
+.L1626:
 	exit
 	.size	__cmovh, .-__cmovh
 	.align	3
@@ -5995,315 +5984,314 @@ __cmovh:
 	.type	__cmovw, @function
 __cmovw:
 	r3 = r3;r3 &= 0xffffffff
-	r6 = r3
-	r6 >>= 2
 	r5 = r3
-	r5 &= -4
-	r5 = r5;r5 &= 0xffffffff
-	if r2 >= r1 goto .L1634
+	r5 >>= 2
+	r9 = r3
+	r9 &= -4
+	r9 = r9;r9 &= 0xffffffff
+	if r2 >= r1 goto .L1628
 	r0 = r2
 	r0 += r3
-	if r1 >= r0 goto .L1634
+	if r1 >= r0 goto .L1628
 	r4 = r3
 	r4 += -1
 	r0 = r4;r0 &= 0xffffffff
-	if r3 == 0 goto .L1633
-	r9 = r0
-	r9 += 1
-	r9 &= 7
-	if r9 == 0 goto .L1640
-	if r9 == 1 goto .L1709
-	if r9 == 2 goto .L1710
-	if r9 == 3 goto .L1711
-	if r9 == 4 goto .L1712
-	if r9 == 5 goto .L1713
-	if r9 == 6 goto .L1714
+	if r3 == 0 goto .L1627
+	r3 = r0
+	r3 += 1
+	r3 &= 7
+	if r3 == 0 goto .L1634
+	if r3 == 1 goto .L1703
+	if r3 == 2 goto .L1704
+	if r3 == 3 goto .L1705
+	if r3 == 4 goto .L1706
+	if r3 == 5 goto .L1707
+	if r3 == 6 goto .L1708
+	r5 = r2
+	r5 += r0
+	r9 = r1
+	r9 += r0
+	r4 = *(u8 *) (r5+0)
+	*(u8 *) (r9+0) = r4
+	r0 += -1
+.L1708:
 	r5 = r2
 	r5 += r0
 	r3 = r1
 	r3 += r0
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r3+0) = r4
-	r0 += -1
-.L1714:
-	r9 = r2
-	r9 += r0
-	r5 = r1
-	r5 += r0
-	r3 = *(u8 *) (r9+0)
-	*(u8 *) (r5+0) = r3
-	r0 += -1
-.L1713:
-	r4 = r2
-	r4 += r0
-	r9 = r1
-	r9 += r0
-	r5 = *(u8 *) (r4+0)
-	*(u8 *) (r9+0) = r5
-	r0 += -1
-.L1712:
-	r4 = r2
-	r4 += r0
-	r3 = r1
-	r3 += r0
-	r9 = *(u8 *) (r4+0)
+	r9 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r9
 	r0 += -1
-.L1711:
-	r5 = r2
+.L1707:
+	r4 = r2
+	r4 += r0
+	r5 = r1
 	r5 += r0
-	r3 = r1
-	r3 += r0
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r3+0) = r4
+	r3 = *(u8 *) (r4+0)
+	*(u8 *) (r5+0) = r3
 	r0 += -1
-.L1710:
+.L1706:
 	r9 = r2
 	r9 += r0
 	r5 = r1
 	r5 += r0
-	r3 = *(u8 *) (r9+0)
-	*(u8 *) (r5+0) = r3
+	r4 = *(u8 *) (r9+0)
+	*(u8 *) (r5+0) = r4
 	r0 += -1
-.L1709:
+.L1705:
+	r9 = r2
+	r9 += r0
+	r3 = r1
+	r3 += r0
+	r5 = *(u8 *) (r9+0)
+	*(u8 *) (r3+0) = r5
+	r0 += -1
+.L1704:
 	r4 = r2
 	r4 += r0
 	r9 = r1
 	r9 += r0
-	r5 = *(u8 *) (r4+0)
-	*(u8 *) (r9+0) = r5
+	r3 = *(u8 *) (r4+0)
+	*(u8 *) (r9+0) = r3
 	r0 += -1
-	if r0 == -1 goto .L1730
-.L1640:
-	r4 = r2
-	r4 += r0
+.L1703:
+	r5 = r2
+	r5 += r0
+	r9 = r1
+	r9 += r0
+	r4 = *(u8 *) (r5+0)
+	*(u8 *) (r9+0) = r4
+	r0 += -1
+	if r0 == -1 goto .L1724
+.L1634:
+	r5 = r2
+	r5 += r0
 	r3 = r1
 	r3 += r0
-	r9 = *(u8 *) (r4+0)
+	r9 = *(u8 *) (r5+0)
 	*(u8 *) (r3+0) = r9
 	r0 += -1
 	r3 = r0
-	r5 = r2
-	r5 += r0
+	r4 = r2
+	r4 += r0
 	r0 = r1
 	r0 += r3
-	r4 = *(u8 *) (r5+0)
-	*(u8 *) (r0+0) = r4
+	r5 = *(u8 *) (r4+0)
+	*(u8 *) (r0+0) = r5
 	r9 = r3
 	r9 += -1
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -2
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -3
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -4
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -5
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r9 = r3
 	r9 += -6
-	r5 = r2
-	r5 += r9
+	r0 = r2
+	r0 += r9
 	r4 = r1
 	r4 += r9
-	r0 = *(u8 *) (r5+0)
-	*(u8 *) (r4+0) = r0
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r4+0) = r5
 	r0 = r3
 	r0 += -7
-	if r3 != 6 goto .L1640
-.L1633:
+	if r3 != 6 goto .L1634
+.L1627:
 	exit
-.L1634:
-	if r6 == 0 goto .L1637
+.L1628:
+	if r5 == 0 goto .L1631
 	r0 = r2
 	r4 = r1
-	r6 <<= 2
-	r9 = r6
+	r5 <<= 2
 	r6 = r2
-	r6 += r9
-	r9 = r6
-	r9 -= r2
-	r9 += -4
-	r9 >>= 2
-	r9 += 1
-	r9 &= 7
-	if r9 == 0 goto .L1638
-	if r9 == 1 goto .L1715
-	if r9 == 2 goto .L1716
-	if r9 == 3 goto .L1717
-	if r9 == 4 goto .L1718
-	if r9 == 5 goto .L1719
-	if r9 == 6 goto .L1720
-	r9 = *(u32 *) (r2+0)
-	*(u32 *) (r1+0) = r9
+	r6 += r5
+	r5 = r6
+	r5 -= r2
+	r5 += -4
+	r5 >>= 2
+	r5 += 1
+	r5 &= 7
+	if r5 == 0 goto .L1632
+	if r5 == 1 goto .L1709
+	if r5 == 2 goto .L1710
+	if r5 == 3 goto .L1711
+	if r5 == 4 goto .L1712
+	if r5 == 5 goto .L1713
+	if r5 == 6 goto .L1714
+	r5 = *(u32 *) (r2+0)
+	*(u32 *) (r1+0) = r5
 	r0 += 4
 	r4 += 4
-.L1720:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1714:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-.L1719:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1713:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-.L1718:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1712:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-.L1717:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1711:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-.L1716:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1710:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-.L1715:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+.L1709:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-	if r0 == r6 goto .L1637
-.L1638:
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
+	if r0 == r6 goto .L1631
+.L1632:
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
 	r0 += 4
 	r4 += 4
-	r9 = *(u32 *) (r0+0)
-	*(u32 *) (r4+0) = r9
-	r9 = *(u32 *) (r0+4)
-	*(u32 *) (r4+4) = r9
-	r9 = *(u32 *) (r0+8)
-	*(u32 *) (r4+8) = r9
-	r9 = *(u32 *) (r0+12)
-	*(u32 *) (r4+12) = r9
-	r9 = *(u32 *) (r0+16)
-	*(u32 *) (r4+16) = r9
-	r9 = *(u32 *) (r0+20)
-	*(u32 *) (r4+20) = r9
-	r9 = *(u32 *) (r0+24)
-	*(u32 *) (r4+24) = r9
+	r5 = *(u32 *) (r0+0)
+	*(u32 *) (r4+0) = r5
+	r5 = *(u32 *) (r0+4)
+	*(u32 *) (r4+4) = r5
+	r5 = *(u32 *) (r0+8)
+	*(u32 *) (r4+8) = r5
+	r5 = *(u32 *) (r0+12)
+	*(u32 *) (r4+12) = r5
+	r5 = *(u32 *) (r0+16)
+	*(u32 *) (r4+16) = r5
+	r5 = *(u32 *) (r0+20)
+	*(u32 *) (r4+20) = r5
+	r5 = *(u32 *) (r0+24)
+	*(u32 *) (r4+24) = r5
 	r0 += 28
 	r4 += 28
-	if r0 != r6 goto .L1638
-.L1637:
-	if r5 > r3 goto .L1633
+	if r0 != r6 goto .L1632
+.L1631:
+	if r9 > r3 goto .L1627
 	r0 = r2
-	r0 += r5
-	r1 += r5
+	r0 += r9
+	r1 += r9
 	r2 += 1
 	r3 += -1
-	r3 -= r5
+	r3 -= r9
 	r3 = r3;r3 &= 0xffffffff
-	r5 += r2
-	r5 += r3
+	r9 += r2
+	r3 += r9
 	r2 = r0
 	r2 ^= -1
-	r2 += r5
+	r2 += r3
 	r2 += 1
 	r2 &= 7
-	if r2 == 0 goto .L1639
-	if r2 == 1 goto .L1721
-	if r2 == 2 goto .L1722
-	if r2 == 3 goto .L1723
-	if r2 == 4 goto .L1724
-	if r2 == 5 goto .L1725
-	if r2 == 6 goto .L1726
-	r4 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r4
-	r0 += 1
-	r1 += 1
-.L1726:
+	if r2 == 0 goto .L1633
+	if r2 == 1 goto .L1715
+	if r2 == 2 goto .L1716
+	if r2 == 3 goto .L1717
+	if r2 == 4 goto .L1718
+	if r2 == 5 goto .L1719
+	if r2 == 6 goto .L1720
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r9
 	r0 += 1
 	r1 += 1
-.L1725:
-	r3 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r3
-	r0 += 1
-	r1 += 1
-.L1724:
-	r2 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r2
-	r0 += 1
-	r1 += 1
-.L1723:
+.L1720:
 	r4 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r4
 	r0 += 1
 	r1 += 1
-.L1722:
+.L1719:
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r5
+	r0 += 1
+	r1 += 1
+.L1718:
+	r2 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r2
+	r0 += 1
+	r1 += 1
+.L1717:
 	r9 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r9
 	r0 += 1
 	r1 += 1
-.L1721:
-	r3 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r3
+.L1716:
+	r4 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r4
 	r0 += 1
 	r1 += 1
-	if r0 == r5 goto .L1731
-.L1639:
+.L1715:
+	r5 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r5
+	r0 += 1
+	r1 += 1
+	if r0 == r3 goto .L1725
+.L1633:
 	r2 = *(u8 *) (r0+0)
 	*(u8 *) (r1+0) = r2
 	r0 += 1
 	r1 += 1
-	r4 = *(u8 *) (r0+0)
-	*(u8 *) (r1+0) = r4
-	r9 = *(u8 *) (r0+1)
-	*(u8 *) (r1+1) = r9
-	r3 = *(u8 *) (r0+2)
-	*(u8 *) (r1+2) = r3
+	r9 = *(u8 *) (r0+0)
+	*(u8 *) (r1+0) = r9
+	r4 = *(u8 *) (r0+1)
+	*(u8 *) (r1+1) = r4
+	r5 = *(u8 *) (r0+2)
+	*(u8 *) (r1+2) = r5
 	r2 = *(u8 *) (r0+3)
 	*(u8 *) (r1+3) = r2
-	r4 = *(u8 *) (r0+4)
-	*(u8 *) (r1+4) = r4
-	r9 = *(u8 *) (r0+5)
-	*(u8 *) (r1+5) = r9
-	r3 = *(u8 *) (r0+6)
-	*(u8 *) (r1+6) = r3
+	r9 = *(u8 *) (r0+4)
+	*(u8 *) (r1+4) = r9
+	r4 = *(u8 *) (r0+5)
+	*(u8 *) (r1+5) = r4
+	r5 = *(u8 *) (r0+6)
+	*(u8 *) (r1+6) = r5
 	r0 += 7
 	r1 += 7
-	if r0 != r5 goto .L1639
+	if r0 != r3 goto .L1633
 	exit
-.L1731:
+.L1725:
 	exit
-.L1730:
+.L1724:
 	exit
 	.size	__cmovw, .-__cmovw
 	.align	3
@@ -6361,222 +6349,201 @@ __umodi:
 	.type	__clzhi2, @function
 __clzhi2:
 	r1 &= 0xffff
+	r2 = r1
 	r0 = r1
-	r0 >>= 15
-	if r0 != 0 goto .L1740
+	r0 s>>= 15
+	if r0 != 0 goto .L1734
 	r0 = r1
 	r0 s>>= 14
-	r0 &= 1
+	if r0 != 0 goto .L1733
+	r3 = r1
+	r3 s>>= 13
+	if r3 != 0 goto .L1735
+	r4 = r1
+	r4 s>>= 12
+	if r4 != 0 goto .L1736
+	r5 = r1
+	r5 s>>= 11
+	if r5 != 0 goto .L1737
+	r9 = r1
+	r9 s>>= 10
+	if r9 != 0 goto .L1738
+	r0 = r1
+	r0 s>>= 9
 	if r0 != 0 goto .L1739
-	r2 = r1
-	r2 s>>= 13
-	r2 &= 1
-	if r2 != 0 goto .L1741
 	r3 = r1
-	r3 s>>= 12
-	r3 &= 1
-	if r3 != 0 goto .L1742
+	r3 s>>= 8
+	if r3 != 0 goto .L1740
 	r4 = r1
-	r4 s>>= 11
-	r4 &= 1
-	if r4 != 0 goto .L1743
+	r4 s>>= 7
+	if r4 != 0 goto .L1741
 	r5 = r1
-	r5 s>>= 10
-	r5 &= 1
-	if r5 != 0 goto .L1744
+	r5 s>>= 6
+	if r5 != 0 goto .L1742
 	r9 = r1
-	r9 s>>= 9
-	r9 &= 1
-	if r9 != 0 goto .L1745
+	r9 s>>= 5
+	if r9 != 0 goto .L1743
 	r0 = r1
-	r0 s>>= 8
-	r0 &= 1
-	if r0 != 0 goto .L1746
-	r2 = r1
-	r2 s>>= 7
-	r2 &= 1
-	if r2 != 0 goto .L1747
+	r0 s>>= 4
+	if r0 != 0 goto .L1744
 	r3 = r1
-	r3 s>>= 6
-	r3 &= 1
-	if r3 != 0 goto .L1748
+	r3 s>>= 3
+	if r3 != 0 goto .L1745
 	r4 = r1
-	r4 s>>= 5
-	r4 &= 1
-	if r4 != 0 goto .L1749
-	r5 = r1
-	r5 s>>= 4
-	r5 &= 1
-	if r5 != 0 goto .L1750
-	r9 = r1
-	r9 s>>= 3
-	r9 &= 1
-	if r9 != 0 goto .L1751
-	r0 = r1
-	r0 s>>= 2
-	r0 &= 1
-	if r0 != 0 goto .L1752
-	r2 = r1
+	r4 s>>= 2
+	if r4 != 0 goto .L1746
 	r2 s>>= 1
-	r2 &= 1
-	if r2 != 0 goto .L1753
+	if r2 != 0 goto .L1747
 	r1 &= 1
 	r0 = 16
-	r0 -= r1
-	exit
-.L1740:
-	r0 = 0
-	exit
-.L1741:
-	r0 = 2
-	exit
-.L1742:
-	r0 = 3
-	exit
-.L1743:
-	r0 = 4
-	exit
-.L1744:
-	r0 = 5
-	exit
-.L1745:
-	r0 = 6
-	exit
-.L1746:
-	r0 = 7
-	exit
-.L1747:
-	r0 = 8
-	exit
-.L1748:
-	r0 = 9
+	if r1 != 0 goto .L1749
+.L1733:
 	exit
 .L1749:
+	r0 = 15
+	exit
+.L1734:
+	r0 = 0
+	exit
+.L1735:
+	r0 = 2
+	exit
+.L1736:
+	r0 = 3
+	exit
+.L1737:
+	r0 = 4
+	exit
+.L1738:
+	r0 = 5
+	exit
+.L1739:
+	r0 = 6
+	exit
+.L1740:
+	r0 = 7
+	exit
+.L1741:
+	r0 = 8
+	exit
+.L1742:
+	r0 = 9
+	exit
+.L1743:
 	r0 = 10
 	exit
-.L1750:
+.L1744:
 	r0 = 11
 	exit
-.L1751:
+.L1745:
 	r0 = 12
 	exit
-.L1752:
+.L1746:
 	r0 = 13
 	exit
-.L1753:
+.L1747:
 	r0 = 14
-.L1739:
-	exit
+	goto .L1733
 	.size	__clzhi2, .-__clzhi2
 	.align	3
 	.global	__ctzhi2
 	.type	__ctzhi2, @function
 __ctzhi2:
-	r2 = r1;r2 &= 0xffff
-	r1 &= 1
-	if r1 != 0 goto .L1756
-	r0 = r2
-	r0 s>>= 1
-	r0 &= 1
-	if r0 != 0 goto .L1755
-	r0 = r2
-	r0 s>>= 2
-	r0 &= 1
-	if r0 != 0 goto .L1757
-	r1 = r2
-	r1 s>>= 3
-	r1 &= 1
-	if r1 != 0 goto .L1758
-	r3 = r2
-	r3 s>>= 4
-	r3 &= 1
-	if r3 != 0 goto .L1759
-	r4 = r2
-	r4 s>>= 5
-	r4 &= 1
-	if r4 != 0 goto .L1760
-	r5 = r2
-	r5 s>>= 6
-	r5 &= 1
-	if r5 != 0 goto .L1761
-	r9 = r2
-	r9 s>>= 7
-	r9 &= 1
-	if r9 != 0 goto .L1762
-	r0 = r2
-	r0 s>>= 8
-	r0 &= 1
-	if r0 != 0 goto .L1763
-	r1 = r2
-	r1 s>>= 9
-	r1 &= 1
-	if r1 != 0 goto .L1764
-	r3 = r2
-	r3 s>>= 10
-	r3 &= 1
-	if r3 != 0 goto .L1765
-	r4 = r2
-	r4 s>>= 11
-	r4 &= 1
-	if r4 != 0 goto .L1766
-	r5 = r2
-	r5 s>>= 12
-	r5 &= 1
-	if r5 != 0 goto .L1767
-	r9 = r2
-	r9 s>>= 13
-	r9 &= 1
-	if r9 != 0 goto .L1768
-	r0 = r2
-	r0 s>>= 14
-	r0 &= 1
-	if r0 != 0 goto .L1769
-	r2 >>= 15
+	r1 &= 0xffff
+	r0 = r1
+	r2 = r1
+	r2 &= 1
+	if r2 != 0 goto .L1752
+	r3 = r1
+	r3 &= 2
+	if r3 != 0 goto .L1753
+	r4 = r1
+	r4 &= 4
+	if r4 != 0 goto .L1754
+	r5 = r1
+	r5 &= 8
+	if r5 != 0 goto .L1755
+	r9 = r1
+	r9 &= 16
+	if r9 != 0 goto .L1756
+	r2 = r1
+	r2 &= 32
+	if r2 != 0 goto .L1757
+	r3 = r1
+	r3 &= 64
+	if r3 != 0 goto .L1758
+	r4 = r1
+	r4 &= 128
+	if r4 != 0 goto .L1759
+	r5 = r1
+	r5 &= 256
+	if r5 != 0 goto .L1760
+	r9 = r1
+	r9 &= 512
+	if r9 != 0 goto .L1761
+	r2 = r1
+	r2 &= 1024
+	if r2 != 0 goto .L1762
+	r3 = r1
+	r3 &= 2048
+	if r3 != 0 goto .L1763
+	r4 = r1
+	r4 &= 4096
+	if r4 != 0 goto .L1764
+	r5 = r1
+	r5 &= 8192
+	if r5 != 0 goto .L1765
+	r1 &= 16384
+	if r1 != 0 goto .L1766
+	r0 s>>= 15
+	r1 = r0
 	r0 = 16
-	r0 -= r2
+	r0 -= r1
 	exit
-.L1756:
+.L1752:
 	r0 = 0
 	exit
-.L1757:
+.L1753:
+	r0 = 1
+	exit
+.L1754:
 	r0 = 2
 	exit
-.L1758:
+.L1755:
 	r0 = 3
 	exit
-.L1759:
+.L1756:
 	r0 = 4
 	exit
-.L1760:
+.L1757:
 	r0 = 5
 	exit
-.L1761:
+.L1758:
 	r0 = 6
 	exit
-.L1762:
+.L1759:
 	r0 = 7
 	exit
-.L1763:
+.L1760:
 	r0 = 8
 	exit
-.L1764:
+.L1761:
 	r0 = 9
 	exit
-.L1765:
+.L1762:
 	r0 = 10
 	exit
-.L1766:
+.L1763:
 	r0 = 11
 	exit
-.L1767:
+.L1764:
 	r0 = 12
 	exit
-.L1768:
+.L1765:
 	r0 = 13
 	exit
-.L1769:
+.L1766:
 	r0 = 14
-.L1755:
 	exit
 	.size	__ctzhi2, .-__ctzhi2
 	.align	3
@@ -6586,11 +6553,11 @@ __fixunssfsi:
 	r6 = r1
 	r2 = 0x47000000 ll
 	call	__gesf2
-	if r0 s>= 0 goto .L1776
+	if r0 s>= 0 goto .L1773
 	r1 = r6
 	call	__fixsfdi
 	exit
-.L1776:
+.L1773:
 	r2 = 0x47000000 ll
 	r1 = r6
 	call	__subsf3
@@ -6603,7 +6570,8 @@ __fixunssfsi:
 	.global	__parityhi2
 	.type	__parityhi2, @function
 __parityhi2:
-	r0 = r1;r0 &= 0xffff
+	r1 &= 0xffff
+	r0 = r1
 	r1 &= 1
 	r2 = r0
 	r2 s>>= 1
@@ -6661,7 +6629,7 @@ __parityhi2:
 	r5 s>>= 14
 	r5 &= 1
 	r1 += r5
-	r0 >>= 15
+	r0 s>>= 15
 	r0 += r1
 	r0 &= 1
 	exit
@@ -6670,7 +6638,8 @@ __parityhi2:
 	.global	__popcounthi2
 	.type	__popcounthi2, @function
 __popcounthi2:
-	r0 = r1;r0 &= 0xffff
+	r1 &= 0xffff
+	r0 = r1
 	r1 &= 1
 	r2 = r0
 	r2 s>>= 1
@@ -6728,7 +6697,7 @@ __popcounthi2:
 	r5 s>>= 14
 	r5 &= 1
 	r1 += r5
-	r0 >>= 15
+	r0 s>>= 15
 	r0 += r1
 	exit
 	.size	__popcounthi2, .-__popcounthi2
@@ -6738,55 +6707,55 @@ __popcounthi2:
 __mulsi3_iq2000:
 	r1 = r1;r1 &= 0xffffffff
 	r4 = r2;r4 &= 0xffffffff
-	if r1 == 0 goto .L1782
+	if r1 == 0 goto .L1779
 	r0 = 0
-.L1781:
+.L1778:
 	r3 = r1
 	r3 &= 1
 	r3 = -r3
 	r3 &= r4
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r1 >>= 1
 	r4 += r4
 	r2 = r4;r2 &= 0xffffffff
-	if r1 == 0 goto .L1790
+	if r1 == 0 goto .L1787
 	r4 = r1
 	r4 &= 1
 	r4 = -r4
 	r4 &= r2
-	r0 += r4
-	r0 = r0;r0 &= 0xffffffff
+	r4 += r0
+	r0 = r4;r0 &= 0xffffffff
 	r1 >>= 1
 	r2 += r2
 	r5 = r2;r5 &= 0xffffffff
-	if r1 == 0 goto .L1780
+	if r1 == 0 goto .L1777
 	r9 = r1
 	r9 &= 1
 	r9 = -r9
 	r9 &= r5
-	r0 += r9
-	r0 = r0;r0 &= 0xffffffff
+	r9 += r0
+	r0 = r9;r0 &= 0xffffffff
 	r1 >>= 1
 	r5 += r5
 	r2 = r5;r2 &= 0xffffffff
-	if r1 == 0 goto .L1780
+	if r1 == 0 goto .L1777
 	r3 = r1
 	r3 &= 1
 	r3 = -r3
 	r3 &= r2
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r1 >>= 1
 	r2 += r2
 	r4 = r2;r4 &= 0xffffffff
-	if r1 != 0 goto .L1781
+	if r1 != 0 goto .L1778
 	exit
-.L1790:
+.L1787:
 	exit
-.L1782:
+.L1779:
 	r0 = r1
-.L1780:
+.L1777:
 	exit
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 	.align	3
@@ -6795,59 +6764,59 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 	r4 = r1;r4 &= 0xffffffff
 	r2 = r2;r2 &= 0xffffffff
-	if r4 == 0 goto .L1794
-	if r2 == 0 goto .L1795
+	if r4 == 0 goto .L1791
+	if r2 == 0 goto .L1792
 	r0 = 0
-.L1793:
+.L1790:
 	r3 = r2
 	r3 &= 1
 	r3 = -r3
 	r3 &= r4
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r4 += r4
 	r1 = r4;r1 &= 0xffffffff
 	r2 >>= 1
-	if r2 == 0 goto .L1803
+	if r2 == 0 goto .L1800
 	r4 = r2
 	r4 &= 1
 	r4 = -r4
 	r4 &= r1
-	r0 += r4
-	r0 = r0;r0 &= 0xffffffff
+	r4 += r0
+	r0 = r4;r0 &= 0xffffffff
 	r1 += r1
 	r5 = r1;r5 &= 0xffffffff
 	r2 >>= 1
-	if r2 == 0 goto .L1792
+	if r2 == 0 goto .L1789
 	r9 = r2
 	r9 &= 1
 	r9 = -r9
 	r9 &= r5
-	r0 += r9
-	r0 = r0;r0 &= 0xffffffff
+	r9 += r0
+	r0 = r9;r0 &= 0xffffffff
 	r5 += r5
 	r1 = r5;r1 &= 0xffffffff
 	r2 >>= 1
-	if r2 == 0 goto .L1792
+	if r2 == 0 goto .L1789
 	r3 = r2
 	r3 &= 1
 	r3 = -r3
 	r3 &= r1
-	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
+	r3 += r0
+	r0 = r3;r0 &= 0xffffffff
 	r1 += r1
 	r4 = r1;r4 &= 0xffffffff
 	r2 >>= 1
-	if r2 != 0 goto .L1793
+	if r2 != 0 goto .L1790
 	exit
-.L1803:
+.L1800:
 	exit
-.L1794:
+.L1791:
 	r0 = r4
 	exit
-.L1795:
-	r0 = r2
 .L1792:
+	r0 = r2
+.L1789:
 	exit
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 	.align	3
@@ -6859,113 +6828,116 @@ __udivmodsi4:
 	r3 <<= 32
 	r3 s>>= 32
 	r4 = 1
-	if r0 < r2 goto .L1808
+	if r0 < r2 goto .L1809
 	r9 = 32
 	r4 = 1
+.L1802:
+	r1 = r2
+	r1 <<= 32
+	if r1 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r9 += -1
+	r5 = r9;r5 &= 0xffffffff
+	r9 = r2
+	r9 <<= 32
+	if r9 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r5 += -1
+	r5 = r5;r5 &= 0xffffffff
+	r1 = r2
+	r1 <<= 32
+	if r1 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r5 += -1
+	r9 = r5;r9 &= 0xffffffff
+	r5 = r2
+	r5 <<= 32
+	if r5 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r9 += -1
+	r9 = r9;r9 &= 0xffffffff
+	r1 = r2
+	r1 <<= 32
+	if r1 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r9 += -1
+	r5 = r9;r5 &= 0xffffffff
+	r9 = r2
+	r9 <<= 32
+	if r9 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r5 += -1
+	r5 = r5;r5 &= 0xffffffff
+	r1 = r2
+	r1 <<= 32
+	if r1 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r5 += -1
+	r9 = r5;r9 &= 0xffffffff
+	r5 = r2
+	r5 <<= 32
+	if r5 s< 0 goto .L1809
+	r2 += r2
+	r2 = r2;r2 &= 0xffffffff
+	r4 += r4
+	r4 = r4;r4 &= 0xffffffff
+	if r2 > r0 goto .L1804
+	r9 += -1
+	r9 = r9;r9 &= 0xffffffff
+	if r9 != 0 goto .L1802
 .L1805:
-	r1 = r2
-	r1 <<= 32
-	if r1 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r9 += -1
-	r5 = r9;r5 &= 0xffffffff
-	r9 = r2
-	r9 <<= 32
-	if r9 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r5 += -1
-	r5 = r5;r5 &= 0xffffffff
-	r1 = r2
-	r1 <<= 32
-	if r1 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r5 += -1
-	r9 = r5;r9 &= 0xffffffff
-	r5 = r2
-	r5 <<= 32
-	if r5 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r9 += -1
-	r9 = r9;r9 &= 0xffffffff
-	r1 = r2
-	r1 <<= 32
-	if r1 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r9 += -1
-	r5 = r9;r5 &= 0xffffffff
-	r9 = r2
-	r9 <<= 32
-	if r9 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r5 += -1
-	r5 = r5;r5 &= 0xffffffff
-	r1 = r2
-	r1 <<= 32
-	if r1 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r5 += -1
-	r9 = r5;r9 &= 0xffffffff
-	r5 = r2
-	r5 <<= 32
-	if r5 s< 0 goto .L1808
-	r2 += r2
-	r2 = r2;r2 &= 0xffffffff
-	r4 += r4
-	r4 = r4;r4 &= 0xffffffff
-	if r0 <= r2 goto .L1837
-	r9 += -1
-	r9 = r9;r9 &= 0xffffffff
-	if r9 != 0 goto .L1805
-.L1809:
-	if r3 != 0 goto .L1813
+	if r3 != 0 goto .L1810
 	r0 = r9
-.L1813:
+.L1810:
 	exit
-.L1837:
-	r9 = r4
-	if r4 == 0 goto .L1809
-.L1808:
-	r9 = 0
-	goto .L1812
-.L1811:
+.L1807:
 	r4 >>= 1
 	r2 >>= 1
-	if r4 == 0 goto .L1809
-.L1812:
-	if r2 >= r0 goto .L1811
+	if r4 == 0 goto .L1805
+.L1808:
+	if r2 >= r0 goto .L1807
 	r0 -= r2
 	r0 = r0;r0 &= 0xffffffff
-	r9 |= r4
-	r9 = r9;r9 &= 0xffffffff
-	goto .L1811
+	r1 = r4
+	r1 |= r9
+	r9 = r1;r9 &= 0xffffffff
+	goto .L1807
+.L1804:
+	if r4 == 0 goto .L1827
+.L1809:
+	r9 = 0
+	goto .L1808
+.L1827:
+	r9 = r4
+	goto .L1805
 	.size	__udivmodsi4, .-__udivmodsi4
 	.align	3
 	.global	__mspabi_cmpf
@@ -6974,20 +6946,20 @@ __mspabi_cmpf:
 	r6 = r1
 	r7 = r2
 	call	__ltsf2
-	if r0 s<= 0 goto .L1841
+	if r0 s<= 0 goto .L1831
 	r8 = 1
 	r2 = r7
 	r1 = r6
 	call	__gtsf2
-	if r0 s<= 0 goto .L1842
-.L1840:
+	if r0 s<= 0 goto .L1832
+.L1830:
 	r0 = r8
 	r0 &= 1
 	exit
-.L1842:
+.L1832:
 	r8 = 0
-	goto .L1840
-.L1841:
+	goto .L1830
+.L1831:
 	r0 = -1
 	exit
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
@@ -6998,20 +6970,20 @@ __mspabi_cmpd:
 	r6 = r1
 	r7 = r2
 	call	__ltdf2
-	if r0 s<= 0 goto .L1846
+	if r0 s<= 0 goto .L1836
 	r8 = 1
 	r2 = r7
 	r1 = r6
 	call	__gtdf2
-	if r0 s<= 0 goto .L1847
-.L1845:
+	if r0 s<= 0 goto .L1837
+.L1835:
 	r0 = r8
 	r0 &= 1
 	exit
-.L1847:
+.L1837:
 	r8 = 0
-	goto .L1845
-.L1846:
+	goto .L1835
+.L1836:
 	r0 = -1
 	exit
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
@@ -7040,118 +7012,122 @@ __mulhi3:
 	r2 <<= 32
 	r3 = r2
 	r3 s>>= 32
-	if r2 s< 0 goto .L1863
+	if r2 s< 0 goto .L1853
 	r2 = 0
-	if r3 == r2 goto .L1864
-.L1855:
+	if r3 == r2 goto .L1854
+.L1845:
 	r4 = 32
 	r0 = 0
-.L1853:
-	r5 = r3
-	r5 &= 1
-	r5 = -r5
-	r9 = r1
-	r9 &= r5
-	r0 += r9
-	r0 <<= 32
+.L1843:
+	r9 = r3
+	r9 &= 1
+	r9 = -r9
+	r5 = r1
+	r5 &= r9
+	r5 += r0
+	r5 <<= 32
+	r0 = r5
 	r0 s>>= 32
 	r1 += r1
 	r1 <<= 32
 	r1 s>>= 32
 	r3 s>>= 1
-	if r3 == 0 goto .L1852
+	if r3 == 0 goto .L1842
 	r4 += -1
 	r4 &= 0xff
-	r5 = r3
-	r5 &= 1
-	r5 = -r5
-	r9 = r1
-	r9 &= r5
-	r0 += r9
-	r0 <<= 32
+	r9 = r3
+	r9 &= 1
+	r9 = -r9
+	r5 = r1
+	r5 &= r9
+	r5 += r0
+	r5 <<= 32
+	r0 = r5
 	r0 s>>= 32
 	r1 += r1
 	r1 <<= 32
 	r1 s>>= 32
 	r3 <<= 31
 	r3 s>>= 32
-	if r3 == 0 goto .L1852
+	if r3 == 0 goto .L1842
 	r4 += -1
 	r4 &= 0xff
-	r5 = r3
-	r5 &= 1
-	r5 = -r5
-	r9 = r1
-	r9 &= r5
-	r0 += r9
-	r0 <<= 32
+	r9 = r3
+	r9 &= 1
+	r9 = -r9
+	r5 = r1
+	r5 &= r9
+	r5 += r0
+	r5 <<= 32
+	r0 = r5
 	r0 s>>= 32
 	r1 += r1
 	r1 <<= 32
 	r1 s>>= 32
 	r3 s>>= 1
-	if r3 == 0 goto .L1852
+	if r3 == 0 goto .L1842
 	r4 += -1
 	r4 &= 0xff
-	r5 = r3
-	r5 &= 1
-	r5 = -r5
-	r9 = r1
-	r9 &= r5
-	r0 += r9
-	r0 <<= 32
+	r9 = r3
+	r9 &= 1
+	r9 = -r9
+	r5 = r1
+	r5 &= r9
+	r5 += r0
+	r5 <<= 32
+	r0 = r5
 	r0 s>>= 32
 	r1 += r1
 	r1 <<= 32
 	r1 s>>= 32
 	r3 s>>= 1
-	if r3 == 0 goto .L1852
+	if r3 == 0 goto .L1842
 	r4 += -1
 	r4 &= 0xff
-	if r4 != 0 goto .L1853
-.L1852:
-	if r2 == 0 goto .L1857
+	if r4 != 0 goto .L1843
+.L1842:
+	if r2 == 0 goto .L1847
 	r0 = -r0
 	r0 <<= 32
 	r0 s>>= 32
 	exit
-.L1863:
+.L1853:
 	r3 = -r3
 	r3 <<= 32
 	r3 s>>= 32
 	r2 = 1
-	goto .L1855
-.L1864:
+	goto .L1845
+.L1854:
 	r0 = r3
-.L1857:
+.L1847:
 	exit
 	.size	__mulhi3, .-__mulhi3
 	.align	3
 	.global	__divsi3
 	.type	__divsi3, @function
 __divsi3:
-	if r1 s< 0 goto .L1873
-	if r2 s< 0 goto .L1874
+	if r1 s< 0 goto .L1863
+	if r2 s< 0 goto .L1864
 	r3 = 0
 	call	__udivmodsi4
 	r0 = r0;r0 &= 0xffffffff
 	exit
-.L1873:
+.L1863:
 	r1 = -r1
-	if r2 s<= 0 goto .L1875
+	if r2 s<= 0 goto .L1865
 	r3 = 0
 	call	__udivmodsi4
 	r0 = r0;r0 &= 0xffffffff
-.L1869:
+.L1859:
 	r0 = -r0
 	exit
-.L1874:
+.L1864:
 	r3 = 0
 	r2 = -r2
 	call	__udivmodsi4
 	r0 = r0;r0 &= 0xffffffff
-	goto .L1869
-.L1875:
+	goto .L1859
+.L1865:
 	r3 = 0
 	r2 = -r2
 	call	__udivmodsi4
@@ -7163,30 +7139,30 @@ __divsi3:
 	.type	__modsi3, @function
 __modsi3:
 	r0 = r2
-	if r1 s< 0 goto .L1881
-	if r2 s< 0 goto .L1882
-.L1879:
+	if r1 s< 0 goto .L1871
+	if r2 s< 0 goto .L1872
+.L1869:
 	r3 = 1
 	call	__udivmodsi4
 	r0 = r0;r0 &= 0xffffffff
 	exit
-.L1881:
+.L1871:
 	r1 = -r1
-	if r2 s< 0 goto .L1883
-.L1878:
+	if r2 s< 0 goto .L1873
+.L1868:
 	r3 = 1
 	call	__udivmodsi4
 	r0 = r0;r0 &= 0xffffffff
 	r0 = -r0
 	exit
-.L1883:
+.L1873:
 	r0 = -r0
 	r2 = r0
-	goto .L1878
-.L1882:
+	goto .L1868
+.L1872:
 	r0 = -r0
 	r2 = r0
-	goto .L1879
+	goto .L1869
 	.size	__modsi3, .-__modsi3
 	.align	3
 	.global	__udivmodhi4
@@ -7196,347 +7172,411 @@ __udivmodhi4:
 	r2 &= 0xffff
 	r3 <<= 32
 	r3 s>>= 32
-	if r2 >= r0 goto .L1905
+	if r2 >= r0 goto .L1895
 	r1 = r2
 	r1 <<= 48
-	if r1 s<= 0 goto .L1906
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1907
-	r4 = r2
-	r4 <<= 48
-	if r4 s<= 0 goto .L1908
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1909
+	if r1 s<= 0 goto .L1896
 	r5 = r2
-	r5 <<= 48
-	if r5 s<= 0 goto .L1910
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1911
-	r9 = r2
-	r9 <<= 48
-	if r9 s<= 0 goto .L1912
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1913
-	r1 = r2
-	r1 <<= 48
-	if r1 s<= 0 goto .L1914
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1915
-	r4 = r2
+	r5 += r2
+	r5 &= 0xffff
+	if r5 > r0 goto .L1897
+	r4 = r5
 	r4 <<= 48
-	if r4 s<= 0 goto .L1916
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1917
+	if r4 s<= 0 goto .L1898
+	r9 = r2
+	r9 <<= 2
+	r9 &= 0xffff
+	if r9 > r0 goto .L1899
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1900
 	r5 = r2
-	r5 <<= 48
-	if r5 s<= 0 goto .L1918
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1919
-	r9 = r2
-	r9 <<= 48
-	if r9 s<= 0 goto .L1920
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1921
-	r1 = r2
-	r1 <<= 48
-	if r1 s<= 0 goto .L1922
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1923
-	r4 = r2
+	r5 <<= 3
+	r5 &= 0xffff
+	if r5 > r0 goto .L1901
+	r4 = r5
 	r4 <<= 48
-	if r4 s<= 0 goto .L1924
-	r2 += r2
+	if r4 s<= 0 goto .L1902
+	r9 = r2
+	r9 <<= 4
+	r9 &= 0xffff
+	if r9 > r0 goto .L1903
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1904
+	r5 = r2
+	r5 <<= 5
+	r5 &= 0xffff
+	if r5 > r0 goto .L1905
+	r4 = r5
+	r4 <<= 48
+	if r4 s<= 0 goto .L1906
+	r9 = r2
+	r9 <<= 6
+	r9 &= 0xffff
+	if r9 > r0 goto .L1907
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1908
+	r5 = r2
+	r5 <<= 7
+	r5 &= 0xffff
+	if r5 > r0 goto .L1909
+	r4 = r5
+	r4 <<= 48
+	if r4 s<= 0 goto .L1910
+	r9 = r2
+	r9 <<= 8
+	r9 &= 0xffff
+	if r9 > r0 goto .L1911
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1912
+	r5 = r2
+	r5 <<= 9
+	r5 &= 0xffff
+	if r5 > r0 goto .L1913
+	r4 = r5
+	r4 <<= 48
+	if r4 s<= 0 goto .L1914
+	r9 = r2
+	r9 <<= 10
+	r9 &= 0xffff
+	if r9 > r0 goto .L1915
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1916
+	r5 = r2
+	r5 <<= 11
+	r5 &= 0xffff
+	if r5 > r0 goto .L1917
+	r4 = r5
+	r4 <<= 48
+	if r4 s<= 0 goto .L1918
+	r9 = r2
+	r9 <<= 12
+	r9 &= 0xffff
+	if r9 > r0 goto .L1919
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1920
+	r5 = r2
+	r5 <<= 13
+	r5 &= 0xffff
+	if r5 > r0 goto .L1921
+	r4 = r5
+	r4 <<= 48
+	if r4 s<= 0 goto .L1922
+	r9 = r2
+	r9 <<= 14
+	r9 &= 0xffff
+	if r9 > r0 goto .L1923
+	r1 = r9
+	r1 <<= 48
+	if r1 s<= 0 goto .L1924
+	r2 <<= 15
 	r2 &= 0xffff
 	if r2 > r0 goto .L1925
-	r5 = r2
-	r5 <<= 48
-	if r5 s<= 0 goto .L1926
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1927
-	r9 = r2
-	r9 <<= 48
-	if r9 s<= 0 goto .L1928
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1929
-	r1 = r2
-	r1 <<= 48
-	if r1 s<= 0 goto .L1930
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1931
-	r4 = r2
-	r4 <<= 48
-	if r4 s<= 0 goto .L1932
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1933
-	r5 = r2
-	r5 <<= 48
-	if r5 s<= 0 goto .L1934
-	r2 += r2
-	r2 &= 0xffff
-	if r2 > r0 goto .L1935
-	r4 = 0
-	r1 = r2
-	r1 <<= 48
-	if r1 s< r4 goto .L1938
-.L1886:
-	if r3 != 0 goto .L1937
-	r0 = r4
+	r1 = 0
+	r4 = 32768
+	if r2 != r1 goto .L1875
+.L1876:
+	if r3 != 0 goto .L1927
+	r0 = r1
 	exit
-.L1938:
-	r9 = 32768
-	goto .L1885
-.L1903:
-	r0 -= r2
-	r0 &= 0xffff
-	r4 = r9
-.L1904:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 > r0 goto .L1887
-	r0 -= r2
-	r0 &= 0xffff
-	r5 = r9
-	r5 |= r4
-	r4 = r5;r4 &= 0xffff
-.L1887:
-	r9 >>= 1
-	r2 >>= 1
-	r2 &= 0xffff
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1888
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1888:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1889
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1889:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1890
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1890:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1891
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1891:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1892
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1892:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1893
-	r0 -= r2
-	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
 .L1893:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1894
 	r0 -= r2
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
+	r1 = r4
 .L1894:
+	r5 = r4
+	r5 >>= 1
+	r9 = r2
 	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1895
-	r0 -= r2
+	if r5 == 0 goto .L1876
+	if r9 > r0 goto .L1877
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1895:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1896
-	r0 -= r2
+	r5 |= r1
+	r1 = r5;r1 &= 0xffff
+.L1877:
+	r5 = r4
+	r5 >>= 2
+	r9 = r2
+	r9 >>= 2
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1878
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1896:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1897
-	r0 -= r2
+	r1 |= r5
+	r1 &= 0xffff
+.L1878:
+	r5 = r4
+	r5 >>= 3
+	r9 = r2
+	r9 >>= 3
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1879
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1897:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1898
-	r0 -= r2
+	r1 |= r5
+	r1 &= 0xffff
+.L1879:
+	r5 = r4
+	r5 >>= 4
+	r9 = r2
+	r9 >>= 4
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1880
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1898:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1899
-	r0 -= r2
+	r1 |= r5
+	r1 &= 0xffff
+.L1880:
+	r5 = r4
+	r5 >>= 5
+	r9 = r2
+	r9 >>= 5
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1881
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1899:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1900
-	r0 -= r2
+	r1 |= r5
+	r1 &= 0xffff
+.L1881:
+	r5 = r4
+	r5 >>= 6
+	r9 = r2
+	r9 >>= 6
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1882
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= r9
-	r4 &= 0xffff
-.L1900:
-	r9 >>= 1
-	r2 >>= 1
-	if r9 == 0 goto .L1886
-	if r2 >= r0 goto .L1886
-	r0 -= r2
+	r1 |= r5
+	r1 &= 0xffff
+.L1882:
+	r5 = r4
+	r5 >>= 7
+	r9 = r2
+	r9 >>= 7
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1883
+	r0 -= r9
 	r0 &= 0xffff
-	r4 |= 1
-	r4 &= 0xffff
-	goto .L1886
-.L1905:
-	r9 = 1
+	r1 |= r5
+	r1 &= 0xffff
+.L1883:
+	r5 = r4
+	r5 >>= 8
+	r9 = r2
+	r9 >>= 8
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1884
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1884:
+	r5 = r4
+	r5 >>= 9
+	r9 = r2
+	r9 >>= 9
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1885
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
 .L1885:
-	if r0 >= r2 goto .L1903
-	r4 = 0
-	goto .L1904
+	r5 = r4
+	r5 >>= 10
+	r9 = r2
+	r9 >>= 10
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1886
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1886:
+	r5 = r4
+	r5 >>= 11
+	r9 = r2
+	r9 >>= 11
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1887
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1887:
+	r5 = r4
+	r5 >>= 12
+	r9 = r2
+	r9 >>= 12
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1888
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1888:
+	r5 = r4
+	r5 >>= 13
+	r9 = r2
+	r9 >>= 13
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1889
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1889:
+	r5 = r4
+	r5 >>= 14
+	r9 = r2
+	r9 >>= 14
+	if r5 == 0 goto .L1876
+	if r9 >= r0 goto .L1890
+	r0 -= r9
+	r0 &= 0xffff
+	r1 |= r5
+	r1 &= 0xffff
+.L1890:
+	r4 >>= 15
+	r2 >>= 15
+	if r4 == 0 goto .L1876
+	if r2 >= r0 goto .L1876
+	r0 -= r2
+	r0 &= 0xffff
+	r1 |= 1
+	r1 &= 0xffff
+	goto .L1876
+.L1895:
+	r4 = 1
+.L1875:
+	if r0 >= r2 goto .L1893
+	r1 = 0
+	goto .L1894
+.L1896:
+	r4 = 1
+	goto .L1875
+.L1897:
+	r2 = r5
+	r4 = 2
+	goto .L1875
+.L1898:
+	r2 = r5
+	r4 = 2
+	goto .L1875
+.L1899:
+	r2 = r9
+	r4 = 4
+	goto .L1875
+.L1900:
+	r2 = r9
+	r4 = 4
+	goto .L1875
+.L1901:
+	r2 = r5
+	r4 = 8
+	goto .L1875
+.L1902:
+	r2 = r5
+	r4 = 8
+	goto .L1875
+.L1903:
+	r2 = r9
+	r4 = 16
+	goto .L1875
+.L1904:
+	r2 = r9
+	r4 = 16
+	goto .L1875
+.L1905:
+	r2 = r5
+	r4 = 32
+	goto .L1875
 .L1906:
-	r9 = 1
-	goto .L1885
+	r2 = r5
+	r4 = 32
+	goto .L1875
 .L1907:
-	r9 = 2
-	goto .L1885
+	r2 = r9
+	r4 = 64
+	goto .L1875
 .L1908:
-	r9 = 2
-	goto .L1885
+	r2 = r9
+	r4 = 64
+	goto .L1875
 .L1909:
-	r9 = 4
-	goto .L1885
+	r2 = r5
+	r4 = 128
+	goto .L1875
 .L1910:
-	r9 = 4
-	goto .L1885
+	r2 = r5
+	r4 = 128
+	goto .L1875
 .L1911:
-	r9 = 8
-	goto .L1885
+	r2 = r9
+	r4 = 256
+	goto .L1875
 .L1912:
-	r9 = 8
-	goto .L1885
+	r2 = r9
+	r4 = 256
+	goto .L1875
 .L1913:
-	r9 = 16
-	goto .L1885
+	r2 = r5
+	r4 = 512
+	goto .L1875
 .L1914:
-	r9 = 16
-	goto .L1885
+	r2 = r5
+	r4 = 512
+	goto .L1875
 .L1915:
-	r9 = 32
-	goto .L1885
+	r2 = r9
+	r4 = 1024
+	goto .L1875
 .L1916:
-	r9 = 32
-	goto .L1885
+	r2 = r9
+	r4 = 1024
+	goto .L1875
 .L1917:
-	r9 = 64
-	goto .L1885
+	r2 = r5
+	r4 = 2048
+	goto .L1875
 .L1918:
-	r9 = 64
-	goto .L1885
+	r2 = r5
+	r4 = 2048
+	goto .L1875
 .L1919:
-	r9 = 128
-	goto .L1885
+	r2 = r9
+	r4 = 4096
+	goto .L1875
 .L1920:
-	r9 = 128
-	goto .L1885
+	r2 = r9
+	r4 = 4096
+	goto .L1875
 .L1921:
-	r9 = 256
-	goto .L1885
+	r2 = r5
+	r4 = 8192
+	goto .L1875
 .L1922:
-	r9 = 256
-	goto .L1885
+	r2 = r5
+	r4 = 8192
+	goto .L1875
 .L1923:
-	r9 = 512
-	goto .L1885
+	r2 = r9
+	r4 = 16384
+	goto .L1875
 .L1924:
-	r9 = 512
-	goto .L1885
+	r2 = r9
+	r4 = 16384
+	goto .L1875
 .L1925:
-	r9 = 1024
-	goto .L1885
-.L1926:
-	r9 = 1024
-	goto .L1885
+	r4 = 32768
+	goto .L1875
 .L1927:
-	r9 = 2048
-	goto .L1885
-.L1928:
-	r9 = 2048
-	goto .L1885
-.L1929:
-	r9 = 4096
-	goto .L1885
-.L1930:
-	r9 = 4096
-	goto .L1885
-.L1931:
-	r9 = 8192
-	goto .L1885
-.L1932:
-	r9 = 8192
-	goto .L1885
-.L1933:
-	r9 = 16384
-	goto .L1885
-.L1934:
-	r9 = 16384
-	goto .L1885
-.L1935:
-	r9 = 32768
-	goto .L1885
-.L1937:
 	exit
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align	3
@@ -7546,99 +7586,101 @@ __udivmodsi4_libgcc:
 	r3 <<= 32
 	r3 s>>= 32
 	r4 = 1
-	if r1 < r2 goto .L1943
+	if r1 < r2 goto .L1936
 	r0 = 64
 	r4 = 1
 	r5 = 2147483648 ll
-.L1940:
+.L1929:
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
 	r9 = r2
 	r9 &= r5
-	if r9 != 0 goto .L1943
+	if r9 != 0 goto .L1936
 	r2 += r2
 	r4 += r4
-	if r1 <= r2 goto .L1973
+	if r2 > r1 goto .L1931
 	r0 += -1
 	r0 = r0;r0 &= 0xffffffff
-	if r0 != 0 goto .L1940
-.L1944:
-	if r3 != 0 goto .L1974
-.L1939:
+	if r0 != 0 goto .L1929
+.L1932:
+	if r3 != 0 goto .L1955
+.L1928:
 	r0 = r9
 	exit
-.L1973:
-	r9 = r4
-	if r4 == 0 goto .L1944
-.L1943:
-	r9 = 0
-	goto .L1947
-.L1946:
+.L1934:
 	r4 >>= 1
 	r2 >>= 1
-	if r4 == 0 goto .L1944
-.L1947:
-	if r2 >= r1 goto .L1946
+	if r4 == 0 goto .L1932
+.L1935:
+	if r2 >= r1 goto .L1934
 	r1 -= r2
 	r9 |= r4
-	goto .L1946
-.L1974:
+	goto .L1934
+.L1931:
+	if r4 == 0 goto .L1956
+.L1936:
+	r9 = 0
+	goto .L1935
+.L1956:
+	r9 = r4
+	goto .L1932
+.L1955:
 	r9 = r1
-	goto .L1939
+	goto .L1928
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align	3
 	.global	__ashldi3
@@ -7648,17 +7690,17 @@ __ashldi3:
 	r2 s>>= 32
 	r0 = r2
 	r0 &= 32
-	if r0 == 0 goto .L1976
+	if r0 == 0 goto .L1958
 	r1 = r1;r1 &= 0xffffffff
 	r2 += -32
 	r0 = r2;r0 &= 0xffffffff
 	r1 <<= r0
 	r1 <<= 32
-.L1977:
+.L1959:
 	r0 = r1
 	exit
-.L1976:
-	if r2 == 0 goto .L1979
+.L1958:
+	if r2 == 0 goto .L1961
 	r5 = r1;r5 &= 0xffffffff
 	r4 = r2;r4 &= 0xffffffff
 	r3 = r5
@@ -7673,8 +7715,8 @@ __ashldi3:
 	r5 <<= 32
 	r1 = r3;r1 &= 0xffffffff
 	r1 |= r5
-	goto .L1977
-.L1979:
+	goto .L1959
+.L1961:
 	r0 = r1
 	exit
 	.size	__ashldi3, .-__ashldi3
@@ -7688,34 +7730,34 @@ __ashlti3:
 	*(u64 *) (r10+-8) = r2
 	r0 = r3
 	r0 &= 64
-	if r0 == 0 goto .L1981
+	if r0 == 0 goto .L1963
 	*(u64 *) (r10+-32) = 0
 	r3 += -64
-	r4 = r3;r4 &= 0xffffffff
+	r2 = r3;r2 &= 0xffffffff
 	r0 = r1
-	r0 <<= r4
+	r0 <<= r2
 	*(u64 *) (r10+-24) = r0
-.L1982:
+.L1964:
 	r0 = *(u64 *) (r10+-32)
 	r1 = *(u64 *) (r10+-24)
 	exit
-.L1981:
-	if r3 == 0 goto .L1984
-	r4 = *(u64 *) (r10+-16)
+.L1963:
+	if r3 == 0 goto .L1966
+	r2 = *(u64 *) (r10+-16)
 	r1 = r3;r1 &= 0xffffffff
-	r2 = r4
-	r2 <<= r1
-	*(u64 *) (r10+-32) = r2
+	r4 = r2
+	r4 <<= r1
+	*(u64 *) (r10+-32) = r4
 	r5 = *(u64 *) (r10+-8)
 	r5 <<= r1
 	r9 = 64
 	r9 -= r3
 	r3 = r9;r3 &= 0xffffffff
-	r4 >>= r3
-	r4 |= r5
-	*(u64 *) (r10+-24) = r4
-	goto .L1982
-.L1984:
+	r2 >>= r3
+	r5 |= r2
+	*(u64 *) (r10+-24) = r5
+	goto .L1964
+.L1966:
 	r0 = r1
 	r1 = r2
 	exit
@@ -7728,7 +7770,7 @@ __ashrdi3:
 	r2 s>>= 32
 	r0 = r2
 	r0 &= 32
-	if r0 == 0 goto .L1986
+	if r0 == 0 goto .L1968
 	r5 = r1
 	r5 s>>= 32
 	r0 = r1
@@ -7742,8 +7784,8 @@ __ashrdi3:
 	r0 <<= 32
 	r0 |= r9
 	exit
-.L1986:
-	if r2 == 0 goto .L1989
+.L1968:
+	if r2 == 0 goto .L1971
 	r3 = r1
 	r3 s>>= 32
 	r0 = r3
@@ -7761,7 +7803,7 @@ __ashrdi3:
 	r0 <<= 32
 	r0 |= r3
 	exit
-.L1989:
+.L1971:
 	r0 = r1
 	exit
 	.size	__ashrdi3, .-__ashrdi3
@@ -7775,7 +7817,7 @@ __ashrti3:
 	*(u64 *) (r10+-8) = r2
 	r0 = r3
 	r0 &= 64
-	if r0 == 0 goto .L1991
+	if r0 == 0 goto .L1973
 	r0 = r2
 	r2 s>>= 63
 	*(u64 *) (r10+-24) = r2
@@ -7784,12 +7826,12 @@ __ashrti3:
 	r3 s>>= 32
 	r0 s>>= r3
 	*(u64 *) (r10+-32) = r0
-.L1992:
+.L1974:
 	r0 = *(u64 *) (r10+-32)
 	r1 = *(u64 *) (r10+-24)
 	exit
-.L1991:
-	if r3 == 0 goto .L1994
+.L1973:
+	if r3 == 0 goto .L1976
 	r2 = *(u64 *) (r10+-8)
 	r1 = r2
 	r1 s>>= r3
@@ -7803,8 +7845,8 @@ __ashrti3:
 	r9 >>= r3
 	r2 |= r9
 	*(u64 *) (r10+-32) = r2
-	goto .L1992
-.L1994:
+	goto .L1974
+.L1976:
 	r0 = r1
 	r1 = r2
 	exit
@@ -7813,38 +7855,37 @@ __ashrti3:
 	.global	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
-	r7 = r1
-	r7 >>= 56
 	r6 = r1
-	r6 >>= 40
-	r6 &= 65280
+	r6 >>= 56
 	r9 = r1
-	r9 >>= 24
-	r9 &= 16711680
+	r9 >>= 40
+	r9 &= 65280
 	r5 = r1
-	r5 >>= 8
-	r0 = 4278190080 ll
-	r5 &= r0
+	r5 >>= 24
+	r5 &= 16711680
 	r4 = r1
-	r4 <<= 8
-	r2 = 1095216660480 ll
-	r4 &= r2
+	r4 >>= 8
+	r0 = 4278190080 ll
+	r4 &= r0
 	r3 = r1
-	r3 <<= 24
-	r0 = 280375465082880 ll
-	r3 &= r0
+	r3 <<= 8
+	r2 = 1095216660480 ll
+	r3 &= r2
 	r2 = r1
-	r2 <<= 40
-	r0 = 71776119061217280 ll
-	r2 &= r0
+	r2 <<= 24
+	r7 = 280375465082880 ll
+	r2 &= r7
 	r0 = r1
-	r0 <<= 56
-	r0 |= r7
-	r0 |= r6
-	r0 |= r9
-	r0 |= r5
-	r0 |= r4
-	r0 |= r3
+	r0 <<= 40
+	r7 = 71776119061217280 ll
+	r0 &= r7
+	r1 <<= 56
+	r6 |= r1
+	r9 |= r6
+	r5 |= r9
+	r4 |= r5
+	r3 |= r4
+	r2 |= r3
 	r0 |= r2
 	exit
 	.size	__bswapdi2, .-__bswapdi2
@@ -7853,18 +7894,18 @@ __bswapdi2:
 	.type	__bswapsi2, @function
 __bswapsi2:
 	r1 = r1;r1 &= 0xffffffff
-	r4 = r1
-	r4 >>= 24
 	r3 = r1
-	r3 >>= 8
-	r3 &= 65280
+	r3 >>= 24
 	r2 = r1
-	r2 <<= 8
-	r2 &= 16711680
+	r2 >>= 8
+	r2 &= 65280
+	r0 = r1
+	r0 <<= 8
+	r0 &= 16711680
 	r1 <<= 24
-	r0 = r1;r0 &= 0xffffffff
-	r0 |= r4
-	r0 |= r3
+	r4 = r1;r4 &= 0xffffffff
+	r3 |= r4
+	r2 |= r3
 	r0 |= r2
 	exit
 	.size	__bswapsi2, .-__bswapsi2
@@ -7874,9 +7915,9 @@ __bswapsi2:
 __clzsi2:
 	r1 = r1;r1 &= 0xffffffff
 	r3 = 1
-	if r1 <= 65534 goto .L1998
+	if r1 <= 65534 goto .L1980
 	r3 = 0
-.L1998:
+.L1980:
 	r3 &= 1
 	r3 <<= 4
 	r0 = 16
@@ -7902,27 +7943,26 @@ __clzsi2:
 	r3 -= r5
 	r2 = r3;r2 &= 0xffffffff
 	r0 >>= r2
-	r4 = r0;r4 &= 0xffffffff
+	r9 = r0;r9 &= 0xffffffff
 	r5 += r1
 	r0 &= 12
 	r0 += -1
 	r0 >>= 63
 	r0 += r0
-	r9 = 2
-	r1 = r9
-	r1 -= r0
-	r3 = r1;r3 &= 0xffffffff
-	r4 >>= r3
+	r1 = 2
+	r4 = r1
+	r4 -= r0
+	r3 = r4;r3 &= 0xffffffff
+	r9 >>= r3
 	r0 += r5
-	r5 = r4
-	r5 &= r9
-	r5 >>= 1
-	r5 ^= 1
-	r9 -= r4
-	r2 = r9;r2 &= 0xffffffff
-	r5 = -r5
-	r5 &= r2
-	r0 += r5
+	r5 = r9
+	r5 &= r1
+	r1 -= r9
+	r2 = r1;r2 &= 0xffffffff
+	if r5 == 0 goto .L1982
+	r2 = 0
+.L1982:
+	r0 += r2
 	r0 <<= 32
 	r0 s>>= 32
 	exit
@@ -7932,27 +7972,37 @@ __clzsi2:
 	.type	__clzti2, @function
 __clzti2:
 	*(u64 *) (r10+-16) = r1
-	r1 = 1
-	if r2 == 0 goto .L2000
-	r1 = 0
-.L2000:
-	r1 &= 1
-	r6 = r1
-	r6 = -r6
-	r1 += -1
-	r1 &= r2
-	r2 = *(u64 *) (r10+-16)
+	r3 = r2
+	r6 = 1
+	if r2 == 0 goto .L1984
+	r6 = 0
+.L1984:
+	r6 &= 0xff
 	r0 = r6
-	r0 &= r2
-	r1 |= r0
+	r0 += -1
+	r2 &= r0
+	r1 = *(u64 *) (r10+-16)
+	r4 = 1
+	if r3 == 0 goto .L1985
+	r4 = 0
+.L1985:
+	r4 &= 0xff
+	if r4 == 0 goto .L1986
+	r5 = r1
+.L1987:
+	r1 = r2
+	r1 |= r5
 	call	__clzdi2
 	r0 <<= 32
 	r0 s>>= 32
-	r6 &= 64
+	r6 <<= 6
 	r0 += r6
 	r0 <<= 32
 	r0 s>>= 32
 	exit
+.L1986:
+	r5 = 0
+	goto .L1987
 	.size	__clzti2, .-__clzti2
 	.align	3
 	.global	__cmpdi2
@@ -7962,24 +8012,24 @@ __cmpdi2:
 	r3 s>>= 32
 	r0 = r2
 	r0 s>>= 32
-	if r0 s>= r3 goto .L2003
-	if r3 s> r0 goto .L2004
+	if r0 s>= r3 goto .L1990
+	if r3 s> r0 goto .L1991
 	r1 = r1;r1 &= 0xffffffff
 	r2 = r2;r2 &= 0xffffffff
-	if r2 >= r1 goto .L2005
-	if r1 > r2 goto .L2006
+	if r2 >= r1 goto .L1992
+	if r1 > r2 goto .L1993
 	r0 = 1
 	exit
-.L2003:
+.L1990:
 	r0 = 0
 	exit
-.L2004:
+.L1991:
 	r0 = 2
 	exit
-.L2005:
+.L1992:
 	r0 = 0
 	exit
-.L2006:
+.L1993:
 	r0 = 2
 	exit
 	.size	__cmpdi2, .-__cmpdi2
@@ -7998,22 +8048,22 @@ __aeabi_lcmp:
 	.global	__cmpti2
 	.type	__cmpti2, @function
 __cmpti2:
-	if r4 s>= r2 goto .L2010
-	if r2 s> r4 goto .L2011
-	if r3 >= r1 goto .L2012
-	if r1 > r3 goto .L2013
+	if r4 s>= r2 goto .L1997
+	if r2 s> r4 goto .L1998
+	if r3 >= r1 goto .L1999
+	if r1 > r3 goto .L2000
 	r0 = 1
 	exit
-.L2010:
+.L1997:
 	r0 = 0
 	exit
-.L2011:
+.L1998:
 	r0 = 2
 	exit
-.L2012:
+.L1999:
 	r0 = 0
 	exit
-.L2013:
+.L2000:
 	r0 = 2
 	exit
 	.size	__cmpti2, .-__cmpti2
@@ -8021,45 +8071,45 @@ __cmpti2:
 	.global	__ctzsi2
 	.type	__ctzsi2, @function
 __ctzsi2:
-	r0 = r1;r0 &= 0xffffffff
-	r3 = r1;r3 &= 0xffff
+	r3 = r1;r3 &= 0xffffffff
+	r4 = r1;r4 &= 0xffff
+	r4 += -1
+	r4 >>= 63
+	r4 <<= 4
+	r3 >>= r4
+	r2 = r3;r2 &= 0xffffffff
+	r3 &= 0xff
 	r3 += -1
 	r3 >>= 63
-	r3 <<= 4
-	r0 >>= r3
-	r2 = r0;r2 &= 0xffffffff
-	r0 &= 0xff
-	r0 += -1
-	r0 >>= 63
-	r0 <<= 3
-	r2 >>= r0
+	r3 <<= 3
+	r2 >>= r3
 	r1 = r2;r1 &= 0xffffffff
-	r0 += r3
+	r3 += r4
 	r2 &= 15
 	r2 += -1
 	r2 >>= 63
 	r2 <<= 2
 	r1 >>= r2
-	r4 = r1;r4 &= 0xffffffff
-	r0 += r2
+	r0 = r1;r0 &= 0xffffffff
+	r2 += r3
 	r1 &= 3
 	r1 += -1
 	r1 >>= 63
 	r1 <<= 1
-	r5 = r4
+	r5 = r0
 	r5 >>= r1
 	r5 &= 3
-	r0 += r1
-	r2 = r5
-	r2 ^= -1
-	r2 &= 1
+	r1 += r2
+	r0 = r5
+	r0 ^= -1
+	r0 &= 1
 	r5 >>= 1
 	r9 = 2
 	r9 -= r5
-	r3 = r9;r3 &= 0xffffffff
-	r2 = -r2
-	r3 &= r2
-	r0 += r3
+	r4 = r9;r4 &= 0xffffffff
+	r0 = -r0
+	r0 &= r4
+	r0 += r1
 	r0 <<= 32
 	r0 s>>= 32
 	exit
@@ -8070,23 +8120,29 @@ __ctzsi2:
 __ctzti2:
 	r0 = r1
 	*(u64 *) (r10+-8) = r2
+	r4 = r1
 	r6 = 1
-	if r1 == 0 goto .L2016
+	if r1 == 0 goto .L2003
 	r6 = 0
-.L2016:
-	r6 &= 1
-	r6 = -r6
+.L2003:
+	r6 &= 0xff
+	r3 = r6
 	r1 = *(u64 *) (r10+-8)
-	r2 = r6
-	r2 &= r1
-	r1 = r6
-	r1 ^= -1
-	r1 &= r0
-	r1 |= r2
+	r2 = 1
+	if r4 == 0 goto .L2004
+	r2 = 0
+.L2004:
+	r2 &= 0xff
+	if r2 != 0 goto .L2006
+	r1 = 0
+.L2006:
+	r3 += -1
+	r0 &= r3
+	r1 |= r0
 	call	__ctzdi2
 	r0 <<= 32
 	r0 s>>= 32
-	r6 &= 64
+	r6 <<= 6
 	r0 += r6
 	r0 <<= 32
 	r0 s>>= 32
@@ -8097,22 +8153,22 @@ __ctzti2:
 	.type	__ffsti2, @function
 __ffsti2:
 	*(u64 *) (r10+-8) = r2
-	if r1 != 0 goto .L2018
+	if r1 != 0 goto .L2008
 	r1 = r2
-	if r2 == 0 goto .L2020
+	if r2 == 0 goto .L2010
 	call	__ctzdi2
 	r0 += 65
 	r0 <<= 32
 	r0 s>>= 32
 	exit
-.L2018:
+.L2008:
 	call	__ctzdi2
 	r0 <<= 32
 	r1 = 4294967296 ll
 	r0 += r1
 	r0 s>>= 32
 	exit
-.L2020:
+.L2010:
 	r0 = 0
 	exit
 	.size	__ffsti2, .-__ffsti2
@@ -8124,7 +8180,7 @@ __lshrdi3:
 	r2 s>>= 32
 	r0 = r2
 	r0 &= 32
-	if r0 == 0 goto .L2022
+	if r0 == 0 goto .L2012
 	r0 = r1
 	r0 >>= 32
 	r2 += -32
@@ -8132,8 +8188,8 @@ __lshrdi3:
 	r0 >>= r4
 	r0 = r0;r0 &= 0xffffffff
 	exit
-.L2022:
-	if r2 == 0 goto .L2025
+.L2012:
+	if r2 == 0 goto .L2015
 	r4 = r1
 	r4 >>= 32
 	r5 = r2;r5 &= 0xffffffff
@@ -8150,7 +8206,7 @@ __lshrdi3:
 	r0 <<= 32
 	r0 |= r9
 	exit
-.L2025:
+.L2015:
 	r0 = r1
 	exit
 	.size	__lshrdi3, .-__lshrdi3
@@ -8164,19 +8220,19 @@ __lshrti3:
 	*(u64 *) (r10+-8) = r2
 	r0 = r3
 	r0 &= 64
-	if r0 == 0 goto .L2027
+	if r0 == 0 goto .L2017
 	*(u64 *) (r10+-24) = 0
 	r3 += -64
 	r4 = r3;r4 &= 0xffffffff
 	r0 = r2
 	r0 >>= r4
 	*(u64 *) (r10+-32) = r0
-.L2028:
+.L2018:
 	r0 = *(u64 *) (r10+-32)
 	r1 = *(u64 *) (r10+-24)
 	exit
-.L2027:
-	if r3 == 0 goto .L2030
+.L2017:
+	if r3 == 0 goto .L2020
 	r4 = *(u64 *) (r10+-8)
 	r2 = r3;r2 &= 0xffffffff
 	r1 = r4
@@ -8190,8 +8246,8 @@ __lshrti3:
 	r9 >>= r2
 	r4 |= r9
 	*(u64 *) (r10+-32) = r4
-	goto .L2028
-.L2030:
+	goto .L2018
+.L2020:
 	r0 = r1
 	r1 = r2
 	exit
@@ -8201,66 +8257,65 @@ __lshrti3:
 	.type	__muldsi3, @function
 __muldsi3:
 	r3 = r1;r3 &= 0xffffffff
-	r4 = r2;r4 &= 0xffffffff
-	r5 = r1;r5 &= 0xffff
-	r0 = r2;r0 &= 0xffff
-	r1 = r5
-	r1 *= r0
-	r2 = r1
-	r2 >>= 16
+	r0 = r2;r0 &= 0xffffffff
 	r1 &= 0xffff
+	r2 &= 0xffff
+	r4 = r1
+	r4 *= r2
+	r9 = r4
+	r9 >>= 16
+	r5 = r4;r5 &= 0xffff
 	r3 >>= 16
-	r9 = r3
-	r9 *= r0
+	r2 *= r3
 	r2 += r9
 	r2 = r2;r2 &= 0xffffffff
-	r0 = r2
-	r0 <<= 16
-	r0 += r1
-	r9 = r0;r9 &= 0xffffffff
-	r1 = r9
-	r1 >>= 16
-	r9 &= 0xffff
-	r4 >>= 16
-	r5 *= r4
+	r4 = r2
+	r4 <<= 16
+	r4 += r5
+	r4 = r4;r4 &= 0xffffffff
+	r2 >>= 16
+	r5 = r4
+	r5 >>= 16
+	r4 &= 0xffff
+	r0 >>= 16
+	r1 *= r0
 	r1 += r5
 	r1 = r1;r1 &= 0xffffffff
 	r5 = r1
 	r5 <<= 16
-	r5 += r9
-	r2 >>= 16
+	r5 += r4
 	r1 >>= 16
-	r1 += r2
-	r3 *= r4
-	r1 += r3
-	r1 <<= 32
+	r3 *= r0
+	r2 += r3
+	r2 += r1
+	r2 <<= 32
 	r0 = r5;r0 &= 0xffffffff
-	r0 |= r1
+	r0 |= r2
 	exit
 	.size	__muldsi3, .-__muldsi3
 	.align	3
 	.global	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	r6 = r1
+	r7 = r1
 	*(u64 *) (r10+-8) = r2
 	r8 = *(u32 *) (r10+-8)
-	r7 = r1;r7 &= 0xffffffff
+	r6 = r1;r6 &= 0xffffffff
 	r2 = r8
-	r1 = r7
+	r1 = r6
 	call	__muldsi3
 	r2 = r0
 	r2 >>= 32
-	r6 >>= 32
-	r6 *= r8
+	r7 >>= 32
+	r8 *= r7
 	r1 = *(u64 *) (r10+-8)
 	r1 >>= 32
-	r1 *= r7
-	r1 += r6
-	r1 += r2
-	r1 <<= 32
+	r6 *= r1
+	r6 += r8
+	r6 += r2
+	r6 <<= 32
 	r0 = r0;r0 &= 0xffffffff
-	r0 |= r1
+	r0 |= r6
 	exit
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align	3
@@ -8268,55 +8323,53 @@ __muldi3_compiler_rt:
 	.type	__mulddi3, @function
 __mulddi3:
 	r9 = 4294967295 ll
-	r0 = r1
-	r0 &= r9
-	r3 = r2
+	r3 = r1
 	r3 &= r9
+	r4 = r2
+	r4 &= r9
+	r0 = r3
+	r0 *= r4
 	r6 = r0
-	r6 *= r3
-	r4 = r6
-	r4 >>= 32
-	r6 &= r9
+	r6 >>= 32
+	r0 &= r9
 	r1 >>= 32
 	r5 = r1
-	r1 *= r3
-	r4 += r1
-	r3 = r4
-	r3 <<= 32
-	r1 = r3
-	r1 += r6
+	r4 *= r1
+	r4 += r6
+	r6 = r4
+	r6 <<= 32
+	r0 += r6
 	r4 >>= 32
-	r3 >>= 32
-	r1 &= r9
+	r6 >>= 32
+	r0 &= r9
 	r2 >>= 32
-	r0 *= r2
-	r3 += r0
-	r0 = r3
-	r0 <<= 32
-	r0 += r1
 	r1 = r3
+	r1 *= r2
+	r1 += r6
+	r9 = r1
+	r9 <<= 32
+	r0 += r9
 	r1 >>= 32
-	r1 += r4
 	r5 *= r2
-	r1 += r5
+	r4 += r5
+	r1 += r4
 	exit
 	.size	__mulddi3, .-__mulddi3
 	.align	3
 	.global	__multi3
 	.type	__multi3, @function
 __multi3:
-	*(u64 *) (r10+-56) = r1
-	r6 = r2
-	r8 = r3
-	r7 = r4
+	r7 = r1
+	r8 = r2
+	r6 = r3
+	*(u64 *) (r10+-56) = r4
 	r2 = r3
 	call	__mulddi3
 	r6 *= r8
 	r2 = *(u64 *) (r10+-56)
 	r7 *= r2
 	r6 += r7
-	r6 += r1
-	r1 = r6
+	r1 += r6
 	exit
 	.size	__multi3, .-__multi3
 	.align	3
@@ -8334,9 +8387,9 @@ __negti2:
 	r3 = r1
 	r3 = -r3
 	r0 = 1
-	if r1 != 0 goto .L2037
+	if r1 != 0 goto .L2027
 	r0 = 0
-.L2037:
+.L2027:
 	r1 = r2
 	r1 = -r1
 	r1 -= r0
@@ -8432,10 +8485,10 @@ __popcountdi2:
 	r5 &= r1
 	r9 = r5;r9 &= 0xffffffff
 	r5 >>= 32
-	r5 += r9
-	r2 = r5
+	r9 += r5
+	r2 = r9
 	r2 >>= 16
-	r2 += r5
+	r2 += r9
 	r0 = r2
 	r0 >>= 8
 	r0 += r2
@@ -8487,9 +8540,9 @@ __popcountti2:
 	r9 = r0
 	r9 -= r3
 	r3 = 1
-	if r9 > r0 goto .L2044
+	if r9 > r0 goto .L2034
 	r3 = 0
-.L2044:
+.L2034:
 	r2 -= r4
 	r2 -= r3
 	r0 = r2
@@ -8507,42 +8560,42 @@ __popcountti2:
 	r4 = r0
 	r4 += r9
 	r9 = 1
-	if r0 >= r4 goto .L2045
+	if r0 >= r4 goto .L2035
 	r9 = 0
-.L2045:
+.L2035:
 	r3 = r5
 	r3 += r2
 	r9 += r3
-	r1 = r9
-	r1 <<= 60
-	r2 = r4
-	r2 >>= 4
-	r1 |= r2
-	r5 = r9
+	r2 = r9
+	r9 <<= 60
+	r0 = r4
+	r0 >>= 4
+	r9 |= r0
+	r5 = r2
 	r5 >>= 4
-	r2 = r1
-	r2 += r4
-	r0 = 1
-	if r1 >= r2 goto .L2046
-	r0 = 0
-.L2046:
-	r5 += r9
-	r0 += r5
+	r0 = r9
+	r0 += r4
+	r1 = 1
+	if r9 >= r0 goto .L2036
+	r1 = 0
+.L2036:
+	r5 += r2
+	r1 += r5
 	r4 = 1085102592571150095 ll
-	r2 &= r4
 	r0 &= r4
-	r0 += r2
-	r9 = r0
-	r9 >>= 32
-	r0 += r9
-	r3 = r0;r3 &= 0xffffffff
-	r1 = r3
-	r1 >>= 16
-	r1 += r3
-	r2 = r1;r2 &= 0xffffffff
-	r0 = r2
+	r1 &= r4
+	r0 += r1
+	r3 = r0
+	r3 >>= 32
+	r0 += r3
+	r2 = r0;r2 &= 0xffffffff
+	r9 = r2
+	r9 >>= 16
+	r9 += r2
+	r1 = r9;r1 &= 0xffffffff
+	r0 = r1
 	r0 >>= 8
-	r0 += r2
+	r0 += r1
 	r0 &= 0xff
 	exit
 	.size	__popcountti2, .-__popcountti2
@@ -8552,42 +8605,43 @@ __popcountti2:
 __powidf2:
 	r6 = r1
 	r2 <<= 32
-	r7 = r2
-	r7 s>>= 32
-	r2 >>= 63
+	r2 s>>= 32
 	*(u64 *) (r10+-8) = r2
+	r7 = r2
 	r8 = 0x3ff0000000000000 ll
-	goto .L2050
-.L2048:
+	goto .L2040
+.L2038:
 	r1 = r7
 	r1 >>= 63
 	r1 += r7
 	r1 s>>= 1
 	r7 = r1
-	if r1 == 0 goto .L2049
+	if r1 == 0 goto .L2039
 	r2 = r6
 	r1 = r6
 	call	__muldf3
 	r6 = r0
-.L2050:
+.L2040:
 	r0 = r7
 	r0 &= 1
-	if r0 == 0 goto .L2048
+	if r0 == 0 goto .L2038
 	r2 = r6
 	r1 = r8
 	call	__muldf3
 	r8 = r0
-	goto .L2048
-.L2049:
+	goto .L2038
+.L2039:
 	r2 = *(u64 *) (r10+-8)
-	if r2 == 0 goto .L2047
+	if r2 s< 0 goto .L2042
+.L2037:
+	r0 = r8
+	exit
+.L2042:
 	r2 = r8
 	r1 = 0x3ff0000000000000 ll
 	call	__divdf3
 	r8 = r0
-.L2047:
-	r0 = r8
-	exit
+	goto .L2037
 	.size	__powidf2, .-__powidf2
 	.align	3
 	.global	__powisf2
@@ -8595,42 +8649,43 @@ __powidf2:
 __powisf2:
 	r6 = r1
 	r2 <<= 32
-	r7 = r2
-	r7 s>>= 32
-	r2 >>= 63
+	r2 s>>= 32
 	*(u64 *) (r10+-8) = r2
+	r7 = r2
 	r8 = 0x3f800000 ll
-	goto .L2055
-.L2053:
+	goto .L2046
+.L2044:
 	r1 = r7
 	r1 >>= 63
 	r1 += r7
 	r1 s>>= 1
 	r7 = r1
-	if r1 == 0 goto .L2054
+	if r1 == 0 goto .L2045
 	r2 = r6
 	r1 = r6
 	call	__mulsf3
 	r6 = r0
-.L2055:
+.L2046:
 	r0 = r7
 	r0 &= 1
-	if r0 == 0 goto .L2053
+	if r0 == 0 goto .L2044
 	r2 = r6
 	r1 = r8
 	call	__mulsf3
 	r8 = r0
-	goto .L2053
-.L2054:
+	goto .L2044
+.L2045:
 	r2 = *(u64 *) (r10+-8)
-	if r2 == 0 goto .L2052
+	if r2 s< 0 goto .L2048
+.L2043:
+	r0 = r8
+	exit
+.L2048:
 	r2 = r8
 	r1 = 0x3f800000 ll
 	call	__divsf3
 	r8 = r0
-.L2052:
-	r0 = r8
-	exit
+	goto .L2043
 	.size	__powisf2, .-__powisf2
 	.align	3
 	.global	__ucmpdi2
@@ -8640,24 +8695,24 @@ __ucmpdi2:
 	r3 >>= 32
 	r0 = r2
 	r0 >>= 32
-	if r0 >= r3 goto .L2059
-	if r3 > r0 goto .L2060
+	if r0 >= r3 goto .L2051
+	if r3 > r0 goto .L2052
 	r1 = r1;r1 &= 0xffffffff
 	r2 = r2;r2 &= 0xffffffff
-	if r2 >= r1 goto .L2061
-	if r1 > r2 goto .L2062
+	if r2 >= r1 goto .L2053
+	if r1 > r2 goto .L2054
 	r0 = 1
 	exit
-.L2059:
+.L2051:
 	r0 = 0
 	exit
-.L2060:
+.L2052:
 	r0 = 2
 	exit
-.L2061:
+.L2053:
 	r0 = 0
 	exit
-.L2062:
+.L2054:
 	r0 = 2
 	exit
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -8676,22 +8731,22 @@ __aeabi_ulcmp:
 	.global	__ucmpti2
 	.type	__ucmpti2, @function
 __ucmpti2:
-	if r4 >= r2 goto .L2066
-	if r2 > r4 goto .L2067
-	if r3 >= r1 goto .L2068
-	if r1 > r3 goto .L2069
+	if r4 >= r2 goto .L2058
+	if r2 > r4 goto .L2059
+	if r3 >= r1 goto .L2060
+	if r1 > r3 goto .L2061
 	r0 = 1
 	exit
-.L2066:
+.L2058:
 	r0 = 0
 	exit
-.L2067:
+.L2059:
 	r0 = 2
 	exit
-.L2068:
+.L2060:
 	r0 = 0
 	exit
-.L2069:
+.L2061:
 	r0 = 2
 	exit
 	.size	__ucmpti2, .-__ucmpti2
