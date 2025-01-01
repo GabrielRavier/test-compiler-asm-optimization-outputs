@@ -1310,13 +1310,70 @@ atoi:
 	.type	atol, @function
 atol:
 	.PROC
-	.CALLINFO FRAME=0,NO_CALLS,SAVE_RP
+	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	stw %r2,-20(%r30)
-	ldw -20(%r30),%r2
-	bl atoi,%r0
-	nop
-	nop
+	ldb 0(%r26),%r28
+	extrs %r28,31,8,%r28
+	ldo -9(%r28),%r19
+	comib,>>= 4,%r19,.L322
+	ldi 32,%r20
+	comiclr,<> 32,%r28,%r19
+	ldi 1,%r19
+	comib,= 0,%r19,.L326
+	ldi 43,%r19
+.L322:
+	ldbs,mb 1(%r26),%r28
+.L327:
+	extrs %r28,31,8,%r28
+	ldo -9(%r28),%r19
+	comib,>>=,n 4,%r19,.L327
+	ldbs,mb 1(%r26),%r28
+	comb,=,n %r20,%r28,.L327
+	ldbs,mb 1(%r26),%r28
+	ldi 43,%r19
+.L326:
+	comb,= %r19,%r28,.L309
+	ldi 45,%r19
+	comb,=,n %r19,%r28,.L325
+	ldb 0(%r26),%r19
+	extrs %r19,31,8,%r19
+	ldo -48(%r19),%r28
+	comib,<< 9,%r28,.L317
+	ldi 0,%r31
+.L311:
+	ldi 0,%r28
+.L314:
+	sh2addl %r28,%r28,%r28 
+	ldo -48(%r19),%r19
+	ldbs,mb 1(%r26),%r22
+	extrs %r19,31,8,%r20
+	zdep %r28,30,31,%r21
+	extrs %r22,31,8,%r19
+	ldo -48(%r19),%r22
+	comib,>>= 9,%r22,.L314
+	sub %r21,%r20,%r28
+	sub %r20,%r21,%r20
+	comiclr,<> 0,%r31,%r0
+	copy %r20,%r28
+	bv,n %r0(%r2)
+.L325:
+	ldb 1(%r26),%r19
+	ldi 1,%r31
+	extrs %r19,31,8,%r19
+	ldo -48(%r19),%r28
+	comib,>>= 9,%r28,.L311
+	ldo 1(%r26),%r26
+.L317:
+	bv %r0(%r2)
+	ldi 0,%r28
+.L309:
+	ldb 1(%r26),%r19
+	extrs %r19,31,8,%r19
+	ldo -48(%r19),%r28
+	comib,<< 9,%r28,.L317
+	ldo 1(%r26),%r26
+	b .L311
+	ldi 0,%r31
 	.EXIT
 	.PROCEND
 	.size	atol, .-atol
@@ -1330,37 +1387,37 @@ atoll:
 	ldb 0(%r26),%r28
 	extrs %r28,31,8,%r28
 	ldo -9(%r28),%r19
-	comib,>>= 4,%r19,.L324
+	comib,>>= 4,%r19,.L346
 	ldi 32,%r20
 	comiclr,<> 32,%r28,%r19
 	ldi 1,%r19
-	comib,= 0,%r19,.L329
+	comib,= 0,%r19,.L351
 	ldi 43,%r19
-.L324:
+.L346:
 	ldbs,mb 1(%r26),%r28
-.L330:
+.L352:
 	extrs %r28,31,8,%r28
 	ldo -9(%r28),%r19
-	comib,>>=,n 4,%r19,.L330
+	comib,>>=,n 4,%r19,.L352
 	ldbs,mb 1(%r26),%r28
-	comb,=,n %r20,%r28,.L330
+	comb,=,n %r20,%r28,.L352
 	ldbs,mb 1(%r26),%r28
 	ldi 43,%r19
-.L329:
-	comb,= %r19,%r28,.L310
+.L351:
+	comb,= %r19,%r28,.L332
 	ldi 45,%r19
-	comb,<>,n %r19,%r28,.L328
+	comb,<>,n %r19,%r28,.L350
 	ldb 1(%r26),%r19
 	extrs %r19,31,8,%r19
 	ldo -48(%r19),%r28
-	comib,<< 9,%r28,.L319
+	comib,<< 9,%r28,.L341
 	ldo 1(%r26),%r26
 	ldi 1,%r25
-.L313:
+.L335:
 	ldi 0,%r23
 	ldi 0,%r24
 	ldo -48(%r19),%r19
-.L331:
+.L353:
 	extrs %r19,31,8,%r19
 	ldbs,mb 1(%r26),%r31
 	shd %r23,%r24,30,%r28
@@ -1375,36 +1432,36 @@ atoll:
 	ldo -48(%r19),%r20
 	sub %r29,%r22,%r24
 	subb %r28,%r21,%r23
-	comib,>>=,n 9,%r20,.L331
+	comib,>>=,n 9,%r20,.L353
 	ldo -48(%r19),%r19
 	comiclr,= 0,%r25,%r0
-	b,n .L306
+	b,n .L328
 	sub %r22,%r29,%r24
 	subb %r21,%r28,%r23
-.L306:
+.L328:
 	copy %r23,%r28
 	copy %r24,%r29
 	bv,n %r0(%r2)
-.L328:
+.L350:
 	ldb 0(%r26),%r19
 	extrs %r19,31,8,%r19
 	ldo -48(%r19),%r28
-	comib,>>= 9,%r28,.L313
+	comib,>>= 9,%r28,.L335
 	ldi 0,%r25
-.L319:
+.L341:
 	ldi 0,%r23
 	ldi 0,%r24
 	copy %r23,%r28
 	copy %r24,%r29
 	bv,n %r0(%r2)
-.L310:
+.L332:
 	ldb 1(%r26),%r19
 	ldi 0,%r25
 	extrs %r19,31,8,%r19
 	ldo -48(%r19),%r28
-	comib,>>= 9,%r28,.L313
+	comib,>>= 9,%r28,.L335
 	ldo 1(%r26),%r26
-	b,n .L319
+	b,n .L341
 	.EXIT
 	.PROCEND
 	.size	atoll, .-atoll
@@ -1428,20 +1485,20 @@ bsearch:
 	fstds,ma %fr12,8(%r1)
 	stws %r23,-16(%sp)
 	fldws -16(%sp),%fr12L
-	movb,<> %r24,%r3,.L336
+	movb,<> %r24,%r3,.L358
 	ldw -180(%r30),%r8
-	b .L332
+	b .L354
 	ldi 0,%r5
-.L345:
-	comib,= 0,%r28,.L346
+.L367:
+	comib,= 0,%r28,.L368
 	copy %r5,%r28
 	fstws %fr12L,-16(%sp)
 	ldws -16(%sp),%r28
-	comib,= 0,%r3,.L333
+	comib,= 0,%r3,.L355
 	addl %r5,%r28,%r6
-.L336:
+.L358:
 	extru %r3,30,31,%r4
-.L347:
+.L369:
 	stws %r4,-16(%sp)
 	fldws -16(%sp),%fr22R
 	xmpyu %fr22R,%fr12L,%fr22
@@ -1454,16 +1511,16 @@ bsearch:
 	copy %r5,%r25
 	bl $$dyncall,%r31
 	copy %r31,%r2
-	movb,>= %r28,%r28,.L345
+	movb,>= %r28,%r28,.L367
 	uaddcm %r3,%r4,%r3
 	copy %r4,%r3
-	comib,<> 0,%r3,.L347
+	comib,<> 0,%r3,.L369
 	extru %r3,30,31,%r4
-.L333:
+.L355:
 	ldi 0,%r5
-.L332:
+.L354:
 	copy %r5,%r28
-.L346:
+.L368:
 	ldo -104(%r30),%r1
 	ldw -148(%r30),%r2
 	ldw -124(%r30),%r7
@@ -1499,18 +1556,18 @@ bsearch_r:
 	ldw -180(%r30),%r9
 	stws %r23,-16(%sp)
 	fldws -16(%sp),%fr12L
-	movb,<> %r24,%r3,.L349
+	movb,<> %r24,%r3,.L371
 	ldw -184(%r30),%r8
-	b .L348
+	b .L370
 	ldi 0,%r4
-.L359:
+.L381:
 	fstws %fr12L,-16(%sp)
 	ldws -16(%sp),%r28
-	comib,= 0,%r3,.L352
+	comib,= 0,%r3,.L374
 	addl %r4,%r28,%r6
-.L349:
+.L371:
 	extrs %r3,30,31,%r5
-.L360:
+.L382:
 	stws %r5,-16(%sp)
 	fldws -16(%sp),%fr22R
 	xmpyu %fr22R,%fr12L,%fr22
@@ -1524,16 +1581,16 @@ bsearch_r:
 	copy %r9,%r22
 	bl $$dyncall,%r31
 	copy %r31,%r2
-	movb,= %r28,%r28,.L348
+	movb,= %r28,%r28,.L370
 	ldo -1(%r3),%r3
-	comib,< 0,%r28,.L359
+	comib,< 0,%r28,.L381
 	extrs %r3,30,31,%r3
 	copy %r5,%r3
-	comib,<> 0,%r3,.L360
+	comib,<> 0,%r3,.L382
 	extrs %r3,30,31,%r5
-.L352:
+.L374:
 	ldi 0,%r4
-.L348:
+.L370:
 	copy %r4,%r28
 	ldo -96(%r30),%r1
 	ldw -148(%r30),%r2
@@ -1733,16 +1790,16 @@ wcschr:
 	.ENTRY
 	ldw 0(%r26),%r28
 	comiclr,= 0,%r28,%r0
-	b,n .L369
-	b,n .L368
-.L371:
+	b,n .L391
+	b,n .L390
+.L393:
 	comiclr,<> 0,%r28,%r0
-	b,n .L368
-.L369:
-	comb,<>,n %r28,%r25,.L371
+	b,n .L390
+.L391:
+	comb,<>,n %r28,%r25,.L393
 	ldws,mb 4(%r26),%r28
 	copy %r26,%r28
-.L368:
+.L390:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1757,18 +1814,18 @@ wcscmp:
 	ldw 0(%r25),%r20
 	ldw 0(%r26),%r19
 	ldi 4,%r28
-	comb,= %r20,%r19,.L375
+	comb,= %r20,%r19,.L397
 	ldo -4(%r25),%r25
-	b,n .L376
-.L377:
+	b,n .L398
+.L399:
 	ldo 4(%r28),%r28
 	ldwx %r25(%r28),%r20
 	comclr,= %r20,%r19,%r0
-	b,n .L376
-.L375:
-	comib,<>,n 0,%r19,.L377
+	b,n .L398
+.L397:
+	comib,<>,n 0,%r19,.L399
 	ldwx %r26(%r28),%r19
-.L376:
+.L398:
 	comclr,>= %r20,%r19,%r28
 	ldi 1,%r28
 	comclr,<= %r20,%r19,%r0
@@ -1786,11 +1843,11 @@ wcscpy:
 	.ENTRY
 	copy %r26,%r28
 	ldi 0,%r19
-.L383:
+.L405:
 	ldwx %r25(%r19),%r20
 	addl %r28,%r19,%r21
 	stw %r20,0(%r21)
-	comib,<> 0,%r20,.L383
+	comib,<> 0,%r20,.L405
 	ldo 4(%r19),%r19
 	bv,n %r0(%r2)
 	.EXIT
@@ -1804,15 +1861,15 @@ wcslen:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	ldw 0(%r26),%r28
-	comib,=,n 0,%r28,.L385
+	comib,=,n 0,%r28,.L407
 	copy %r26,%r28
 	ldws,mb 4(%r28),%r19
-.L390:
-	comib,<>,n 0,%r19,.L390
+.L412:
+	comib,<>,n 0,%r19,.L412
 	ldws,mb 4(%r28),%r19
 	sub %r28,%r26,%r28
 	extrs %r28,29,30,%r28
-.L385:
+.L407:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1825,27 +1882,27 @@ wcsncmp:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	or,= %r24,%r0,%r28
-	b,n .L392
-	b,n .L391
-.L403:
-	comib,= 0,%r19,.L396
+	b,n .L414
+	b,n .L413
+.L425:
+	comib,= 0,%r19,.L418
 	ldo -1(%r28),%r28
 	ldo 4(%r26),%r26
-	comib,= 0,%r28,.L391
+	comib,= 0,%r28,.L413
 	ldo 4(%r25),%r25
-.L392:
+.L414:
 	ldw 0(%r26),%r19
 	ldw 0(%r25),%r20
-	comb,= %r19,%r20,.L403
+	comb,= %r19,%r20,.L425
 	nop
-.L396:
+.L418:
 	ldw 0(%r26),%r20
 	ldw 0(%r25),%r19
 	comclr,>= %r19,%r20,%r28
 	ldi 1,%r28
 	comclr,<= %r19,%r20,%r0
 	ldi -1,%r28
-.L391:
+.L413:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1857,21 +1914,21 @@ wmemchr:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,<> %r24,%r24,.L405
+	movb,<> %r24,%r24,.L427
 	copy %r24,%r28
-	b,n .L410
-.L407:
-	comib,= 0,%r24,.L408
+	b,n .L432
+.L429:
+	comib,= 0,%r24,.L430
 	ldo 4(%r26),%r26
-.L405:
+.L427:
 	ldw 0(%r26),%r28
-	comb,<>,n %r25,%r28,.L407
+	comb,<>,n %r25,%r28,.L429
 	ldo -1(%r24),%r24
 	bv %r0(%r2)
 	copy %r26,%r28
-.L408:
+.L430:
 	copy %r24,%r28
-.L410:
+.L432:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1884,22 +1941,22 @@ wmemcmp:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	or,= %r24,%r0,%r28
-	b,n .L412
-	b,n .L411
-.L414:
+	b,n .L434
+	b,n .L433
+.L436:
 	ldo 4(%r26),%r26
-	comib,= 0,%r28,.L411
+	comib,= 0,%r28,.L433
 	ldo 4(%r25),%r25
-.L412:
+.L434:
 	ldw 0(%r26),%r20
 	ldw 0(%r25),%r19
-	comb,= %r19,%r20,.L414
+	comb,= %r19,%r20,.L436
 	ldo -1(%r28),%r28
 	comclr,>= %r19,%r20,%r28
 	ldi 1,%r28
 	comclr,<= %r19,%r20,%r0
 	ldi -1,%r28
-.L411:
+.L433:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1913,11 +1970,11 @@ wmemcpy:
 	.ENTRY
 	stw %r2,-20(%r30)
 	stwm %r3,64(%r30)
-	movb,= %r24,%r24,.L421
+	movb,= %r24,%r24,.L443
 	copy %r26,%r3
 	bl memcpy,%r2
 	zdep %r24,29,30,%r24
-.L421:
+.L443:
 	copy %r3,%r28
 	ldw -84(%r30),%r2
 	bv %r0(%r2)
@@ -1932,30 +1989,30 @@ wmemmove:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	comb,= %r25,%r26,.L433
+	comb,= %r25,%r26,.L455
 	copy %r26,%r28
 	sub %r26,%r25,%r20
 	zdep %r24,29,30,%r19
-	comb,<<= %r19,%r20,.L439
+	comb,<<= %r19,%r20,.L461
 	ldi 0,%r19
-	comib,=,n 0,%r24,.L433
+	comib,=,n 0,%r24,.L455
 	ldo -1(%r24),%r24
-.L430:
+.L452:
 	ldwx,s %r24(%r25),%r20
 	sh2addl %r24,%r28,%r19 
 	ldo -1(%r24),%r24
-	comib,<> -1,%r24,.L430
+	comib,<> -1,%r24,.L452
 	stw %r20,0(%r19)
-.L433:
+.L455:
 	bv,n %r0(%r2)
-.L439:
-	comb,= %r19,%r24,.L433
+.L461:
+	comb,= %r19,%r24,.L455
 	nop
-.L428:
+.L450:
 	ldwx,s %r19(%r25),%r21
 	sh2addl %r19,%r28,%r20 
 	ldo 1(%r19),%r19
-	comb,<> %r24,%r19,.L428
+	comb,<> %r24,%r19,.L450
 	stw %r21,0(%r20)
 	bv,n %r0(%r2)
 	.EXIT
@@ -1968,15 +2025,15 @@ wmemset:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,= %r24,%r24,.L441
+	movb,= %r24,%r24,.L463
 	copy %r26,%r28
 	ldi 0,%r19
-.L442:
+.L464:
 	sh2addl %r19,%r28,%r20 
 	ldo 1(%r19),%r19
-	comb,<> %r24,%r19,.L442
+	comb,<> %r24,%r19,.L464
 	stw %r25,0(%r20)
-.L441:
+.L463:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -1989,29 +2046,29 @@ bcopy:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	comclr,>> %r25,%r26,%r0
-	b,n .L448
-	comib,=,n 0,%r24,.L447
+	b,n .L470
+	comib,=,n 0,%r24,.L469
 	ldo -1(%r26),%r26
 	ldo -1(%r25),%r25
-.L450:
+.L472:
 	ldbx %r26(%r24),%r19
 	addl %r25,%r24,%r28
 	ldo -1(%r24),%r24
-	comib,<> 0,%r24,.L450
+	comib,<> 0,%r24,.L472
 	stb %r19,0(%r28)
-.L447:
+.L469:
 	bv,n %r0(%r2)
-.L448:
-	comb,= %r25,%r26,.L447
+.L470:
+	comb,= %r25,%r26,.L469
 	nop
-	comib,= 0,%r24,.L447
+	comib,= 0,%r24,.L469
 	nop
 	ldi 0,%r28
-.L451:
+.L473:
 	ldbx %r26(%r28),%r20
 	addl %r25,%r28,%r19
 	ldo 1(%r28),%r28
-	comb,<> %r28,%r24,.L451
+	comb,<> %r28,%r24,.L473
 	stb %r20,0(%r19)
 	bv,n %r0(%r2)
 	.EXIT
@@ -2024,23 +2081,23 @@ rotl64:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	bb,>= %r24,26,.L461
+	bb,>= %r24,26,.L483
 	subi 31,%r24,%r20
 	subi 31,%r24,%r28
 	ldi 0,%r29
 	mtsar %r28
 	sub %r0,%r24,%r24
 	zvdep %r26,32,%r28
-	bb,>= %r24,26,.L463
+	bb,>= %r24,26,.L485
 	extru %r24,31,6,%r19
-.L465:
+.L487:
 	mtsar %r19
 	vshd %r0,%r25,%r26
 	ldi 0,%r25
 	or %r26,%r29,%r29
 	bv %r0(%r2)
 	or %r25,%r28,%r28
-.L461:
+.L483:
 	mtsar %r20
 	uaddcm %r0,%r24,%r21
 	zvdep %r25,32,%r28
@@ -2051,9 +2108,9 @@ rotl64:
 	mtsar %r20
 	or %r19,%r28,%r28
 	zvdep %r26,32,%r29
-	bb,< %r24,26,.L465
+	bb,< %r24,26,.L487
 	extru %r24,31,6,%r19
-.L463:
+.L485:
 	mtsar %r19
 	zdep %r25,30,31,%r20
 	uaddcm %r0,%r19,%r21
@@ -2076,14 +2133,14 @@ rotr64:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	bb,>= %r24,26,.L467
+	bb,>= %r24,26,.L489
 	mtsar %r24
 	ldi 0,%r28
 	sub %r0,%r24,%r24
 	vshd %r0,%r25,%r20
-	bb,>= %r24,26,.L469
+	bb,>= %r24,26,.L491
 	extru %r24,31,6,%r19
-.L471:
+.L493:
 	subi 31,%r19,%r19
 	ldi 0,%r29
 	mtsar %r19
@@ -2091,7 +2148,7 @@ rotr64:
 	zvdep %r26,32,%r25
 	bv %r0(%r2)
 	or %r25,%r28,%r28
-.L467:
+.L489:
 	uaddcm %r0,%r24,%r21
 	vshd %r0,%r26,%r20
 	zdep %r25,30,31,%r19
@@ -2101,9 +2158,9 @@ rotr64:
 	zvdep %r19,32,%r19
 	sub %r0,%r24,%r24
 	or %r19,%r20,%r20
-	bb,< %r24,26,.L471
+	bb,< %r24,26,.L493
 	extru %r24,31,6,%r19
-.L469:
+.L491:
 	subi 31,%r19,%r22
 	mtsar %r22
 	uaddcm %r0,%r19,%r19
@@ -2315,19 +2372,19 @@ ffs:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	ldi 0,%r28
-	b .L486
+	b .L508
 	ldi 32,%r20
-.L489:
+.L511:
 	comclr,<> %r20,%r28,%r0
-	b,n .L488
-.L486:
+	b,n .L510
+.L508:
 	mtsar %r28
 	vshd %r0,%r26,%r19
 	extru %r19,31,1,%r19
-	comib,= 0,%r19,.L489
+	comib,= 0,%r19,.L511
 	ldo 1(%r28),%r28
 	bv,n %r0(%r2)
-.L488:
+.L510:
 	bv %r0(%r2)
 	copy %r19,%r28
 	.EXIT
@@ -2340,18 +2397,18 @@ libiberty_ffs:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,=,n %r26,%r26,.L493
+	movb,=,n %r26,%r26,.L515
 	extru %r26,31,1,%r28
-	comib,<>,n 0,%r28,.L490
+	comib,<>,n 0,%r28,.L512
 	ldi 1,%r28
-.L492:
+.L514:
 	extrs %r26,30,31,%r26
 	extru %r26,31,1,%r19
-	comib,= 0,%r19,.L492
+	comib,= 0,%r19,.L514
 	ldo 1(%r28),%r28
-.L490:
+.L512:
 	bv,n %r0(%r2)
-.L493:
+.L515:
 	bv %r0(%r2)
 	copy %r26,%r28
 	.EXIT
@@ -2377,16 +2434,16 @@ gl_isinff:
 	fldws 0(%r28),%fr22L
 	fcmp,sgl,!< %fr4L,%fr22L
 	ftest
-	b .L496
+	b .L518
 	ldi 1,%r28
 	ldil LR'.LC1,%r19
 	ldo RR'.LC1(%r19),%r19
 	fldws 0(%r19),%fr22L
 	fcmp,sgl,!> %fr4L,%fr22L
 	ftest
-	b,n .L496
+	b,n .L518
 	ldi 0,%r28
-.L496:
+.L518:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2413,16 +2470,16 @@ gl_isinfd:
 	fldds 0(%r28),%fr22
 	fcmp,dbl,!< %fr5,%fr22
 	ftest
-	b .L500
+	b .L522
 	ldi 1,%r28
 	ldil LR'.LC5,%r19
 	ldo RR'.LC5(%r19),%r19
 	fldds 0(%r19),%fr22
 	fcmp,dbl,!> %fr5,%fr22
 	ftest
-	b,n .L500
+	b,n .L522
 	ldi 0,%r28
-.L500:
+.L522:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2449,16 +2506,16 @@ gl_isinfl:
 	fldds 0(%r28),%fr22
 	fcmp,dbl,!< %fr5,%fr22
 	ftest
-	b .L504
+	b .L526
 	ldi 1,%r28
 	ldil LR'.LC9,%r19
 	ldo RR'.LC9(%r19),%r19
 	fldds 0(%r19),%fr22
 	fcmp,dbl,!> %fr5,%fr22
 	ftest
-	b,n .L504
+	b,n .L526
 	ldi 0,%r28
-.L504:
+.L526:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2495,45 +2552,45 @@ ldexpf:
 	.ENTRY
 	fcmp,sgl,!? %fr4L,%fr4L
 	ftest
-	b,n .L510
+	b,n .L532
 	fadd,sgl %fr4L,%fr4L,%fr22L
 	fcmp,sgl,!= %fr22L,%fr4L
 	ftest
-	b,n .L510
-	comib,> 0,%r25,.L522
+	b,n .L532
+	comib,> 0,%r25,.L544
 	ldil LR'.LC12,%r28
 	ldo RR'.LC12(%r28),%r28
 	fldws 0(%r28),%fr22L
-.L511:
+.L533:
 	extru %r25,31,1,%r28
-	comib,= 0,%r28,.L525
+	comib,= 0,%r28,.L547
 	extru %r25,0,1,%r28
-.L513:
+.L535:
 	fmpy,sgl %fr4L,%fr22L,%fr4L
 	extru %r25,0,1,%r28
-.L525:
+.L547:
 	addl %r28,%r25,%r25
 	extrs %r25,30,31,%r25
-	comib,= 0,%r25,.L510
+	comib,= 0,%r25,.L532
 	extru %r25,31,1,%r28
 	fmpy,sgl %fr22L,%fr22L,%fr22L
-	comib,<> 0,%r28,.L513
+	comib,<> 0,%r28,.L535
 	extru %r25,0,1,%r19
 	addl %r19,%r25,%r25
-.L524:
+.L546:
 	fmpy,sgl %fr22L,%fr22L,%fr22L
 	extrs %r25,30,31,%r25
 	extru %r25,31,1,%r28
-	comib,<> 0,%r28,.L513
+	comib,<> 0,%r28,.L535
 	extru %r25,0,1,%r19
-	b .L524
+	b .L546
 	addl %r19,%r25,%r25
-.L510:
+.L532:
 	bv,n %r0(%r2)
-.L522:
+.L544:
 	ldil LR'.LC13,%r28
 	ldo RR'.LC13(%r28),%r28
-	b .L511
+	b .L533
 	fldws 0(%r28),%fr22L
 	.EXIT
 	.PROCEND
@@ -2557,46 +2614,46 @@ ldexp:
 	.ENTRY
 	fcmp,dbl,!? %fr5,%fr5
 	ftest
-	b .L527
+	b .L549
 	fcpy,dbl %fr5,%fr4
 	fadd,dbl %fr5,%fr5,%fr22
 	fcmp,dbl,!= %fr22,%fr5
 	ftest
-	b,n .L527
-	comib,> 0,%r24,.L539
+	b,n .L549
+	comib,> 0,%r24,.L561
 	ldil LR'.LC16,%r28
 	ldo RR'.LC16(%r28),%r28
 	fldds 0(%r28),%fr22
-.L528:
+.L550:
 	extru %r24,31,1,%r28
-	comib,= 0,%r28,.L542
+	comib,= 0,%r28,.L564
 	extru %r24,0,1,%r28
-.L530:
+.L552:
 	fmpy,dbl %fr4,%fr22,%fr4
 	extru %r24,0,1,%r28
-.L542:
+.L564:
 	addl %r28,%r24,%r24
 	extrs %r24,30,31,%r24
-	comib,= 0,%r24,.L527
+	comib,= 0,%r24,.L549
 	extru %r24,31,1,%r28
 	fmpy,dbl %fr22,%fr22,%fr22
-	comib,<> 0,%r28,.L530
+	comib,<> 0,%r28,.L552
 	extru %r24,0,1,%r19
 	addl %r19,%r24,%r24
-.L541:
+.L563:
 	fmpy,dbl %fr22,%fr22,%fr22
 	extrs %r24,30,31,%r24
 	extru %r24,31,1,%r28
-	comib,<> 0,%r28,.L530
+	comib,<> 0,%r28,.L552
 	extru %r24,0,1,%r19
-	b .L541
+	b .L563
 	addl %r19,%r24,%r24
-.L527:
+.L549:
 	bv,n %r0(%r2)
-.L539:
+.L561:
 	ldil LR'.LC17,%r28
 	ldo RR'.LC17(%r28),%r28
-	b .L528
+	b .L550
 	fldds 0(%r28),%fr22
 	.EXIT
 	.PROCEND
@@ -2620,46 +2677,46 @@ ldexpl:
 	.ENTRY
 	fcmp,dbl,!? %fr5,%fr5
 	ftest
-	b .L544
+	b .L566
 	fcpy,dbl %fr5,%fr4
 	fadd,dbl %fr5,%fr5,%fr22
 	fcmp,dbl,!= %fr5,%fr22
 	ftest
-	b,n .L544
-	comib,> 0,%r24,.L556
+	b,n .L566
+	comib,> 0,%r24,.L578
 	ldil LR'.LC21,%r28
 	ldo RR'.LC21(%r28),%r28
 	fldds 0(%r28),%fr22
-.L545:
+.L567:
 	extru %r24,31,1,%r28
-	comib,= 0,%r28,.L559
+	comib,= 0,%r28,.L581
 	extru %r24,0,1,%r28
-.L547:
+.L569:
 	fmpy,dbl %fr4,%fr22,%fr4
 	extru %r24,0,1,%r28
-.L559:
+.L581:
 	addl %r28,%r24,%r24
 	extrs %r24,30,31,%r24
-	comib,= 0,%r24,.L544
+	comib,= 0,%r24,.L566
 	extru %r24,31,1,%r28
 	fmpy,dbl %fr22,%fr22,%fr22
-	comib,<> 0,%r28,.L547
+	comib,<> 0,%r28,.L569
 	extru %r24,0,1,%r19
 	addl %r19,%r24,%r24
-.L558:
+.L580:
 	fmpy,dbl %fr22,%fr22,%fr22
 	extrs %r24,30,31,%r24
 	extru %r24,31,1,%r28
-	comib,<> 0,%r28,.L547
+	comib,<> 0,%r28,.L569
 	extru %r24,0,1,%r19
-	b .L558
+	b .L580
 	addl %r19,%r24,%r24
-.L544:
+.L566:
 	bv,n %r0(%r2)
-.L556:
+.L578:
 	ldil LR'.LC20,%r28
 	ldo RR'.LC20(%r28),%r28
-	b .L545
+	b .L567
 	fldds 0(%r28),%fr22
 	.EXIT
 	.PROCEND
@@ -2671,18 +2728,18 @@ memxor:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,= %r24,%r24,.L561
+	movb,= %r24,%r24,.L583
 	copy %r26,%r28
 	ldi 0,%r19
-.L562:
+.L584:
 	ldbx %r28(%r19),%r20
 	ldbx %r25(%r19),%r22
 	addl %r28,%r19,%r21
 	xor %r20,%r22,%r20
 	ldo 1(%r19),%r19
-	comb,<> %r24,%r19,.L562
+	comb,<> %r24,%r19,.L584
 	stb %r20,0(%r21)
-.L561:
+.L583:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2695,32 +2752,32 @@ strncat:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	ldb 0(%r26),%r19
-	comib,= 0,%r19,.L574
+	comib,= 0,%r19,.L596
 	copy %r26,%r28
 	copy %r26,%r19
 	ldbs,mb 1(%r19),%r20
-.L582:
+.L604:
 	extrs %r20,31,8,%r20
-	comib,<>,n 0,%r20,.L582
+	comib,<>,n 0,%r20,.L604
 	ldbs,mb 1(%r19),%r20
-.L580:
+.L602:
 	comiclr,<> 0,%r24,%r0
-	b,n .L571
-.L581:
+	b,n .L593
+.L603:
 	ldb 0(%r25),%r20
 	stb %r20,0(%r19)
 	extrs %r20,31,8,%r20
-	comib,= 0,%r20,.L573
+	comib,= 0,%r20,.L595
 	ldo 1(%r25),%r25
 	ldo -1(%r24),%r24
-	comib,<> 0,%r24,.L581
+	comib,<> 0,%r24,.L603
 	ldo 1(%r19),%r19
-.L571:
+.L593:
 	stb %r0,0(%r19)
-.L573:
+.L595:
 	bv,n %r0(%r2)
-.L574:
-	b .L580
+.L596:
+	b .L602
 	copy %r26,%r19
 	.EXIT
 	.PROCEND
@@ -2732,17 +2789,17 @@ strnlen:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,= %r25,%r25,.L583
+	movb,= %r25,%r25,.L605
 	ldi 0,%r28
 	ldbx %r26(%r28),%r19
-.L591:
+.L613:
 	comiclr,= 0,%r19,%r0
-	b,n .L586
-.L583:
+	b,n .L608
+.L605:
 	bv,n %r0(%r2)
-.L586:
+.L608:
 	ldo 1(%r28),%r28
-	comb,<>,n %r28,%r25,.L591
+	comb,<>,n %r28,%r25,.L613
 	ldbx %r26(%r28),%r19
 	bv,n %r0(%r2)
 	.EXIT
@@ -2757,25 +2814,25 @@ strpbrk:
 	.ENTRY
 	ldb 0(%r26),%r21
 	extrs %r21,31,8,%r21
-	comib,= 0,%r21,.L597
+	comib,= 0,%r21,.L619
 	copy %r26,%r28
-	b .L596
+	b .L618
 	copy %r25,%r20
-.L595:
+.L617:
 	comclr,<> %r21,%r19,%r0
-	b,n .L594
-.L596:
+	b,n .L616
+.L618:
 	ldb 0(%r20),%r19
 	extrs %r19,31,8,%r19
-	comib,<> 0,%r19,.L595
+	comib,<> 0,%r19,.L617
 	ldo 1(%r20),%r20
 	ldbs,mb 1(%r28),%r21
 	extrs %r21,31,8,%r21
-	comib,<>,n 0,%r21,.L596
+	comib,<>,n 0,%r21,.L618
 	copy %r25,%r20
-.L597:
+.L619:
 	copy %r21,%r28
-.L594:
+.L616:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2788,12 +2845,12 @@ strrchr:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	ldi 0,%r28
-.L601:
+.L623:
 	ldb 0(%r26),%r19
 	extrs %r19,31,8,%r19
 	comclr,<> %r19,%r25,%r0
 	copy %r26,%r28
-	comib,<> 0,%r19,.L601
+	comib,<> 0,%r19,.L623
 	ldo 1(%r26),%r26
 	bv,n %r0(%r2)
 	.EXIT
@@ -2808,54 +2865,54 @@ strstr:
 	.ENTRY
 	ldb 0(%r25),%r31
 	extrs %r31,31,8,%r31
-	comib,= 0,%r31,.L615
+	comib,= 0,%r31,.L637
 	copy %r25,%r19
 	ldbs,mb 1(%r19),%r28
-.L626:
+.L648:
 	extrs %r28,31,8,%r28
-	comib,<>,n 0,%r28,.L626
+	comib,<>,n 0,%r28,.L648
 	ldbs,mb 1(%r19),%r28
-	comb,= %r25,%r19,.L615
+	comb,= %r25,%r19,.L637
 	sub %r19,%r25,%r28
 	ldo -1(%r25),%r29
 	extru %r31,31,8,%r23
-	b .L612
+	b .L634
 	addl %r29,%r28,%r29
-.L624:
-	comib,= 0,%r28,.L603
+.L646:
+	comib,= 0,%r28,.L625
 	ldo 1(%r26),%r26
-.L612:
+.L634:
 	ldb 0(%r26),%r28
-.L627:
+.L649:
 	extrs %r28,31,8,%r28
-	comb,<> %r31,%r28,.L624
+	comb,<> %r31,%r28,.L646
 	copy %r25,%r20
 	copy %r23,%r28
-	b .L607
+	b .L629
 	copy %r26,%r22
-.L625:
+.L647:
 	comclr,<> %r28,%r19,%r21
 	ldi 1,%r21
 	comiclr,= 0,%r19,%r19
 	ldi 1,%r19
 	and %r21,%r19,%r19
-	comib,=,n 0,%r19,.L608
+	comib,=,n 0,%r19,.L630
 	ldbs,mb 1(%r22),%r28
 	extru %r28,31,8,%r28
-	comib,= 0,%r28,.L608
+	comib,= 0,%r28,.L630
 	ldo 1(%r20),%r20
-.L607:
-	comb,<> %r29,%r20,.L625
+.L629:
+	comb,<> %r29,%r20,.L647
 	ldb 0(%r20),%r19
-.L608:
+.L630:
 	ldb 0(%r20),%r19
-	comb,=,n %r28,%r19,.L615
+	comb,=,n %r28,%r19,.L637
 	ldo 1(%r26),%r26
-	b .L627
+	b .L649
 	ldb 0(%r26),%r28
-.L615:
+.L637:
 	copy %r26,%r28
-.L603:
+.L625:
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2869,18 +2926,18 @@ copysign:
 	.ENTRY
 	fcmp,dbl,!< %fr5,%fr0
 	ftest
-	b .L635
+	b .L657
 	fcpy,dbl %fr5,%fr4
 	fcmp,dbl,!> %fr5,%fr0
 	ftest
-	b,n .L636
+	b,n .L658
 	bv,n %r0(%r2)
-.L636:
+.L658:
 	fcmp,dbl,!< %fr7,%fr0
 	ftest
-	b,n .L631
+	b,n .L653
 	bv,n %r0(%r2)
-.L631:
+.L653:
 	fstds %fr4,-16(%sp)
 	ldws -16(%sp),%r28
 	ldws -12(%sp),%r29
@@ -2891,10 +2948,10 @@ copysign:
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr4
 	bv,n %r0(%r2)
-.L635:
+.L657:
 	fcmp,dbl,!> %fr7,%fr0
 	ftest
-	b,n .L631
+	b,n .L653
 	bv,n %r0(%r2)
 	.EXIT
 	.PROCEND
@@ -2907,38 +2964,38 @@ memmem:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	or,<> %r23,%r0,%r23
-	b,n .L644
-	comb,>> %r23,%r25,.L646
+	b,n .L666
+	comb,>> %r23,%r25,.L668
 	sub %r25,%r23,%r22
 	addl %r26,%r22,%r22
-	comb,<<,n %r22,%r26,.L646
+	comb,<<,n %r22,%r26,.L668
 	ldb 0(%r24),%r31
-	b .L643
+	b .L665
 	extrs %r31,31,8,%r31
-.L640:
+.L662:
 	comclr,<<= %r26,%r22,%r0
-	b,n .L646
-.L643:
+	b,n .L668
+.L665:
 	ldb 0(%r26),%r19
 	copy %r26,%r28
 	extrs %r19,31,8,%r19
-	comb,<> %r31,%r19,.L640
+	comb,<> %r31,%r19,.L662
 	ldo 1(%r26),%r26
-	comib,=,n 1,%r23,.L638
+	comib,=,n 1,%r23,.L660
 	ldi 1,%r19
 	ldbx %r28(%r19),%r21
-.L649:
+.L671:
 	ldbx %r24(%r19),%r20
-	comb,<> %r20,%r21,.L640
+	comb,<> %r20,%r21,.L662
 	ldo 1(%r19),%r19
-	comb,<>,n %r19,%r23,.L649
+	comb,<>,n %r19,%r23,.L671
 	ldbx %r28(%r19),%r21
-.L638:
+.L660:
 	bv,n %r0(%r2)
-.L646:
+.L668:
 	bv %r0(%r2)
 	ldi 0,%r28
-.L644:
+.L666:
 	bv %r0(%r2)
 	copy %r26,%r28
 	.EXIT
@@ -2954,11 +3011,11 @@ mempcpy:
 	stw %r2,-20(%r30)
 	stwm %r4,64(%r30)
 	stw %r3,-60(%r30)
-	movb,= %r24,%r3,.L651
+	movb,= %r24,%r3,.L673
 	copy %r26,%r4
 	bl memmove,%r2
 	nop
-.L651:
+.L673:
 	addl %r4,%r3,%r28
 	ldw -84(%r30),%r2
 	ldw -60(%r30),%r3
@@ -2994,48 +3051,48 @@ frexp:
 	.ENTRY
 	fcmp,dbl,!< %fr5,%fr0
 	ftest
-	b .L672
+	b .L694
 	ldil LR'.LC26,%r19
 	ldo RR'.LC26(%r19),%r19
 	fldds 0(%r19),%fr22
 	fcmp,dbl,!>= %fr5,%fr22
 	ftest
-	b .L658
+	b .L680
 	ldi 0,%r20
 	ldil LR'.LC27,%r19
 	ldo RR'.LC27(%r19),%r19
 	fldds 0(%r19),%fr22
 	fcmp,dbl,!< %fr5,%fr22
 	ftest
-	b .L673
+	b .L695
 	fcmp,dbl,= %fr5,%fr0
 	fcpy,dbl %fr5,%fr4
 	stw %r0,0(%r24)
-.L655:
-.L680:
+.L677:
+.L702:
 	bv,n %r0(%r2)
-.L667:
+.L689:
 	stws %r28,-16(%sp)
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr5
 	ldi 1,%r20
 	ldo RR'.LC26(%r19),%r19
-.L658:
+.L680:
 	fldds 0(%r19),%fr23
 	ldi 0,%r28
 	ldil LR'.LC27,%r19
 	ldo RR'.LC27(%r19),%r19
 	fldds 0(%r19),%fr22
-.L664:
+.L686:
 	fmpy,dbl %fr5,%fr22,%fr5
 	fcmp,dbl,!>= %fr5,%fr23
 	ftest
-	b .L664
+	b .L686
 	ldo 1(%r28),%r28
 	stw %r28,0(%r24)
-	comib,= 0,%r20,.L655
+	comib,= 0,%r20,.L677
 	fcpy,dbl %fr5,%fr4
-.L678:
+.L700:
 	fstds %fr5,-16(%sp)
 	ldws -16(%sp),%r28
 	ldws -12(%sp),%r29
@@ -3046,7 +3103,7 @@ frexp:
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr4
 	bv,n %r0(%r2)
-.L672:
+.L694:
 	ldil LR'.LC24,%r28
 	ldo RR'.LC24(%r28),%r28
 	fldds 0(%r28),%fr22
@@ -3059,48 +3116,48 @@ frexp:
 	depi 0,0,1,%r28
 	copy %r20,%r29
 	ftest
-	b .L667
+	b .L689
 	ldil LR'.LC26,%r19
 	ldil LR'.LC25,%r19
 	ldo RR'.LC25(%r19),%r19
 	fldds 0(%r19),%fr22
 	fcmp,dbl,!> %fr5,%fr22
 	ftest
-	b .L668
+	b .L690
 	fcpy,dbl %fr5,%fr4
-	b .L680
+	b .L702
 	stw %r0,0(%r24)
-.L673:
+.L695:
 	ftest
-	b .L670
+	b .L692
 	fcpy,dbl %fr5,%fr4
-	b .L655
+	b .L677
 	stw %r0,0(%r24)
-.L668:
+.L690:
 	ldil LR'.LC27,%r19
 	ldi 1,%r20
 	ldo RR'.LC27(%r19),%r19
-.L659:
+.L681:
 	stws %r28,-16(%sp)
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr5
 	fldds 0(%r19),%fr22
 	ldi 0,%r28
-.L666:
+.L688:
 	fadd,dbl %fr5,%fr5,%fr5
 	fcmp,dbl,!< %fr5,%fr22
 	ftest
-	b .L666
+	b .L688
 	ldo -1(%r28),%r28
 	stw %r28,0(%r24)
-	comib,<> 0,%r20,.L678
+	comib,<> 0,%r20,.L700
 	fcpy,dbl %fr5,%fr4
-	b,n .L655
-.L670:
+	b,n .L677
+.L692:
 	fstds %fr5,-16(%sp)
 	ldws -16(%sp),%r28
 	ldws -12(%sp),%r29
-	b,n .L659
+	b,n .L681
 	.EXIT
 	.PROCEND
 	.size	frexp, .-frexp
@@ -3116,8 +3173,8 @@ __muldi3:
 	ldi 0,%r1
 	ldi 0,%r2
 	comiclr,<> 0,%r21,%r0
-	b,n .L681
-.L684:
+	b,n .L703
+.L706:
 	shd %r25,%r26,1,%r21
 	extru %r26,31,1,%r29
 	ldi 0,%r28
@@ -3131,9 +3188,9 @@ __muldi3:
 	shd %r23,%r24,31,%r23
 	add %r20,%r2,%r2
 	addc %r19,%r1,%r1
-	comb,<> %r28,%r31,.L684
+	comb,<> %r28,%r31,.L706
 	zdep %r24,30,31,%r24
-.L681:
+.L703:
 	copy %r1,%r28
 	copy %r2,%r29
 	ldw -20(%r30),%r2
@@ -3149,35 +3206,35 @@ udivmodsi4:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	copy %r26,%r28
-	comb,>> %r26,%r25,.L688
+	comb,>> %r26,%r25,.L710
 	ldi 1,%r19
-	b .L694
+	b .L716
 	ldi 0,%r20
-.L691:
-	comb,>>= %r25,%r28,.L690
+.L713:
+	comb,>>= %r25,%r28,.L712
 	zdep %r19,30,31,%r19
-	comib,= 0,%r19,.L707
+	comib,= 0,%r19,.L729
 	copy %r19,%r20
-.L688:
-	comib,<=,n 0,%r25,.L691
+.L710:
+	comib,<=,n 0,%r25,.L713
 	zdep %r25,30,31,%r25
 	ldi 0,%r20
-.L694:
-	comb,>>,n %r25,%r28,.L693
+.L716:
+	comb,>>,n %r25,%r28,.L715
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L693:
+.L715:
 	extru %r19,30,31,%r19
-	comib,<> 0,%r19,.L694
+	comib,<> 0,%r19,.L716
 	extru %r25,30,31,%r25
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
-.L690:
-	comib,<> 0,%r19,.L694
+.L712:
+	comib,<> 0,%r19,.L716
 	ldi 0,%r20
 	copy %r19,%r20
-.L707:
+.L729:
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
@@ -3195,7 +3252,7 @@ __clrsbqi2:
 	extrs %r26,31,8,%r19
 	extrs %r26,24+1-1,1,%r28
 	ldo 128(%r30),%r30
-	comb,= %r28,%r19,.L710
+	comb,= %r28,%r19,.L732
 	xor %r19,%r28,%r26
 	bl __clzsi2,%r2
 	zdep %r26,23,24,%r26
@@ -3203,7 +3260,7 @@ __clrsbqi2:
 	ldo -1(%r28),%r28
 	bv %r0(%r2)
 	ldo -128(%r30),%r30
-.L710:
+.L732:
 	ldi 7,%r28
 	ldw -148(%r30),%r2
 	bv %r0(%r2)
@@ -3224,17 +3281,17 @@ __clrsbdi2:
 	copy %r26,%r19
 	ldo 128(%r30),%r30
 	xor %r25,%r20,%r25
-	comb,= %r20,%r28,.L717
+	comb,= %r20,%r28,.L739
 	xor %r26,%r20,%r26
-.L715:
+.L737:
 	bl __clzdi2,%r2
 	nop
 	ldw -148(%r30),%r2
 	ldo -1(%r28),%r28
 	bv %r0(%r2)
 	ldo -128(%r30),%r30
-.L717:
-	comb,<> %r28,%r19,.L715
+.L739:
+	comb,<> %r28,%r19,.L737
 	ldi 63,%r28
 	ldw -148(%r30),%r2
 	bv %r0(%r2)
@@ -3249,17 +3306,17 @@ __mulsi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,=,n %r26,%r26,.L721
+	movb,=,n %r26,%r26,.L743
 	ldi 0,%r28
-.L720:
+.L742:
 	extrs %r26,31+1-1,1,%r19
 	extru %r26,30,31,%r26
 	and %r19,%r25,%r19
 	zdep %r25,30,31,%r25
-	comib,<> 0,%r26,.L720
+	comib,<> 0,%r26,.L742
 	addl %r28,%r19,%r28
 	bv,n %r0(%r2)
-.L721:
+.L743:
 	bv %r0(%r2)
 	copy %r26,%r28
 	.EXIT
@@ -3276,46 +3333,46 @@ __cmovd:
 	copy %r24,%r28
 	extru %r24,28,29,%r21
 	stw %r3,-60(%r30)
-	comb,>> %r25,%r26,.L727
+	comb,>> %r25,%r26,.L749
 	depi 0,31,3,%r28
 	addl %r25,%r24,%r19
 	comclr,<< %r19,%r26,%r0
-	b,n .L736
-.L727:
-	comib,=,n 0,%r21,.L726
+	b,n .L758
+.L749:
+	comib,=,n 0,%r21,.L748
 	copy %r25,%r19
 	copy %r26,%r20
 	sh3addl %r21,%r25,%r21 
-.L730:
+.L752:
 	ldw 0(%r19),%r3
 	ldw 4(%r19),%r4
 	stw %r3,0(%r20)
 	stw %r4,4(%r20)
 	ldo 8(%r19),%r19
-	comb,<> %r21,%r19,.L730
+	comb,<> %r21,%r19,.L752
 	ldo 8(%r20),%r20
-.L726:
-	comb,>>= %r28,%r24,.L737
+.L748:
+	comb,>>= %r28,%r24,.L759
 	ldw -60(%r30),%r3
-.L731:
+.L753:
 	ldbx %r25(%r28),%r20
 	addl %r26,%r28,%r19
 	ldo 1(%r28),%r28
-	comb,<> %r28,%r24,.L731
+	comb,<> %r28,%r24,.L753
 	stb %r20,0(%r19)
-.L723:
+.L745:
 	ldw -60(%r30),%r3
-.L737:
+.L759:
 	bv %r0(%r2)
 	ldwm -64(%r30),%r4
-.L736:
-	comib,= 0,%r24,.L723
+.L758:
+	comib,= 0,%r24,.L745
 	ldo -1(%r24),%r28
-.L728:
+.L750:
 	ldbx %r25(%r28),%r20
 	addl %r26,%r28,%r19
 	ldo -1(%r28),%r28
-	comib,<> -1,%r28,.L728
+	comib,<> -1,%r28,.L750
 	stb %r20,0(%r19)
 	ldw -60(%r30),%r3
 	bv %r0(%r2)
@@ -3330,38 +3387,38 @@ __cmovh:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	comb,>> %r25,%r26,.L742
+	comb,>> %r25,%r26,.L764
 	extru %r24,30,31,%r21
 	addl %r25,%r24,%r28
 	comclr,<< %r28,%r26,%r0
-	b,n .L754
-.L742:
+	b,n .L776
+.L764:
 	ldi 0,%r28
 	comclr,<> %r28,%r21,%r0
-	b,n .L741
-.L740:
+	b,n .L763
+.L762:
 	ldhx,s %r28(%r25),%r20
 	sh1addl %r28,%r26,%r19 
 	ldo 1(%r28),%r28
-	comb,<> %r28,%r21,.L740
+	comb,<> %r28,%r21,.L762
 	sth %r20,0(%r19)
-.L741:
+.L763:
 	extru %r24,31,1,%r28
-	comib,= 0,%r28,.L738
+	comib,= 0,%r28,.L760
 	ldo -1(%r24),%r24
 	ldbx %r25(%r24),%r28
 	addl %r26,%r24,%r26
 	stb %r28,0(%r26)
-.L738:
+.L760:
 	bv,n %r0(%r2)
-.L754:
-	comib,= 0,%r24,.L738
+.L776:
+	comib,= 0,%r24,.L760
 	ldo -1(%r24),%r28
-.L743:
+.L765:
 	ldbx %r25(%r28),%r20
 	addl %r26,%r28,%r19
 	ldo -1(%r28),%r28
-	comib,<> -1,%r28,.L743
+	comib,<> -1,%r28,.L765
 	stb %r20,0(%r19)
 	bv,n %r0(%r2)
 	.EXIT
@@ -3376,40 +3433,40 @@ __cmovw:
 	.ENTRY
 	copy %r24,%r28
 	extru %r24,29,30,%r22
-	comb,>> %r25,%r26,.L759
+	comb,>> %r25,%r26,.L781
 	depi 0,31,2,%r28
 	addl %r25,%r24,%r19
 	comclr,<< %r19,%r26,%r0
-	b,n .L769
-.L759:
+	b,n .L791
+.L781:
 	ldi 0,%r19
 	comclr,<> %r19,%r22,%r0
-	b,n .L758
-.L757:
+	b,n .L780
+.L779:
 	ldwx,s %r19(%r25),%r21
 	sh2addl %r19,%r26,%r20 
 	ldo 1(%r19),%r19
-	comb,<> %r19,%r22,.L757
+	comb,<> %r19,%r22,.L779
 	stw %r21,0(%r20)
-.L758:
+.L780:
 	comclr,<< %r28,%r24,%r0
-	b,n .L755
-.L762:
+	b,n .L777
+.L784:
 	ldbx %r25(%r28),%r20
 	addl %r26,%r28,%r19
 	ldo 1(%r28),%r28
-	comb,<> %r28,%r24,.L762
+	comb,<> %r28,%r24,.L784
 	stb %r20,0(%r19)
-.L755:
+.L777:
 	bv,n %r0(%r2)
-.L769:
-	comib,= 0,%r24,.L755
+.L791:
+	comib,= 0,%r24,.L777
 	ldo -1(%r24),%r28
-.L760:
+.L782:
 	ldbx %r25(%r28),%r20
 	addl %r26,%r28,%r19
 	ldo -1(%r28),%r28
-	comib,<> -1,%r28,.L760
+	comib,<> -1,%r28,.L782
 	stb %r20,0(%r19)
 	bv,n %r0(%r2)
 	.EXIT
@@ -3478,7 +3535,7 @@ __ulltod:
 	stw %r3,-124(%r30)
 	bl __cmpdi2,%r2
 	copy %r25,%r3
-	comib,>= 0,%r28,.L775
+	comib,>= 0,%r28,.L797
 	ldw -148(%r30),%r2
 	stws %r3,-16(%sp)
 	stws %r4,-12(%sp)
@@ -3487,7 +3544,7 @@ __ulltod:
 	ldw -124(%r30),%r3
 	bv %r0(%r2)
 	ldwm -128(%r30),%r4
-.L775:
+.L797:
 	shd %r3,%r4,1,%r19
 	extru %r3,30,31,%r28
 	ldw -124(%r30),%r3
@@ -3518,7 +3575,7 @@ __ulltof:
 	stw %r3,-124(%r30)
 	bl __cmpdi2,%r2
 	copy %r25,%r3
-	comib,>= 0,%r28,.L778
+	comib,>= 0,%r28,.L800
 	ldw -148(%r30),%r2
 	stws %r3,-16(%sp)
 	stws %r4,-12(%sp)
@@ -3527,7 +3584,7 @@ __ulltof:
 	ldw -124(%r30),%r3
 	bv %r0(%r2)
 	ldwm -128(%r30),%r4
-.L778:
+.L800:
 	shd %r3,%r4,1,%r19
 	extru %r3,30,31,%r28
 	ldw -124(%r30),%r3
@@ -3565,20 +3622,85 @@ __clzhi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldi 0,%r28
 	extru %r26,31,16,%r26
-	ldi 16,%r20
-	ldo 16(%r28),%r19
-.L784:
-	mtsar %r19
-	vextrs %r26,32,%r19
-	extru %r19,31,1,%r19
-	comib,<>,n 0,%r19,.L780
-	ldo 1(%r28),%r28
-	comb,<> %r20,%r28,.L784
-	ldo 16(%r28),%r19
-.L780:
+	extrs %r26,16,17,%r28
+	comib,<>,n 0,%r28,.L805
+	extrs %r26,17,18,%r28
+	comib,<>,n 0,%r28,.L802
+	extrs %r26,18,19,%r28
+	comib,<>,n 0,%r28,.L806
+	extrs %r26,19,20,%r28
+	comib,<>,n 0,%r28,.L807
+	extrs %r26,20,21,%r28
+	comib,<>,n 0,%r28,.L808
+	extrs %r26,21,22,%r28
+	comib,<>,n 0,%r28,.L809
+	extrs %r26,22,23,%r28
+	comib,<>,n 0,%r28,.L810
+	extrs %r26,23,24,%r28
+	comib,<>,n 0,%r28,.L811
+	extrs %r26,24,25,%r28
+	comib,<>,n 0,%r28,.L812
+	extrs %r26,25,26,%r28
+	comib,<>,n 0,%r28,.L813
+	extrs %r26,26,27,%r28
+	comib,<>,n 0,%r28,.L814
+	extrs %r26,27,28,%r28
+	comib,<>,n 0,%r28,.L815
+	extrs %r26,28,29,%r28
+	comib,<>,n 0,%r28,.L816
+	extrs %r26,29,30,%r28
+	comib,<>,n 0,%r28,.L817
+	extrs %r26,30,31,%r28
+	comiclr,= 0,%r28,%r0
+	b,n .L818
+	comiclr,<> 0,%r26,%r28
+	ldi 1,%r28
+	ldo 15(%r28),%r28
+.L802:
 	bv,n %r0(%r2)
+.L805:
+	bv %r0(%r2)
+	ldi 0,%r28
+.L816:
+	bv %r0(%r2)
+	ldi 12,%r28
+.L806:
+	bv %r0(%r2)
+	ldi 2,%r28
+.L807:
+	bv %r0(%r2)
+	ldi 3,%r28
+.L808:
+	bv %r0(%r2)
+	ldi 4,%r28
+.L809:
+	bv %r0(%r2)
+	ldi 5,%r28
+.L810:
+	bv %r0(%r2)
+	ldi 6,%r28
+.L811:
+	bv %r0(%r2)
+	ldi 7,%r28
+.L812:
+	bv %r0(%r2)
+	ldi 8,%r28
+.L813:
+	bv %r0(%r2)
+	ldi 9,%r28
+.L814:
+	bv %r0(%r2)
+	ldi 10,%r28
+.L815:
+	bv %r0(%r2)
+	ldi 11,%r28
+.L817:
+	bv %r0(%r2)
+	ldi 13,%r28
+.L818:
+	bv %r0(%r2)
+	ldi 14,%r28
 	.EXIT
 	.PROCEND
 	.size	__clzhi2, .-__clzhi2
@@ -3589,20 +3711,85 @@ __ctzhi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldi 0,%r28
-	extru %r26,31,16,%r26
-	ldi 16,%r20
-	subi 31,%r28,%r19
-.L789:
-	mtsar %r19
-	vextrs %r26,32,%r19
-	extru %r19,31,1,%r19
-	comib,<>,n 0,%r19,.L785
-	ldo 1(%r28),%r28
-	comb,<> %r20,%r28,.L789
-	subi 31,%r28,%r19
-.L785:
+	extru %r26,31,16,%r19
+	extru %r26,31,1,%r26
+	comib,<>,n 0,%r26,.L823
+	ldi 2,%r28
+	and %r19,%r28,%r20
+	comib,<> 0,%r20,.L824
+	ldi 4,%r20
+	and %r19,%r20,%r21
+	comib,<>,n 0,%r21,.L820
+	ldi 8,%r28
+	and %r19,%r28,%r21
+	comiclr,= 0,%r21,%r0
+	b,n .L826
+	extrs,>= %r19,27,1,%r0
+	b,n .L827
+	extrs,>= %r19,26,1,%r0
+	b,n .L828
+	extrs,>= %r19,25,1,%r0
+	b,n .L829
+	extrs,>= %r19,24,1,%r0
+	b,n .L830
+	extrs,>= %r19,23,1,%r0
+	b,n .L820
+	extrs,>= %r19,22,1,%r0
+	b,n .L832
+	extrs,>= %r19,21,1,%r0
+	b,n .L833
+	extrs,>= %r19,20,1,%r0
+	b,n .L834
+	extrs,>= %r19,19,1,%r0
+	b,n .L835
+	extrs,>= %r19,18,1,%r0
+	b,n .L836
+	bb,< %r19,17,.L837
+	extrs %r19,16,17,%r19
+	comiclr,<> 0,%r19,%r28
+	ldi 1,%r28
+	ldo 15(%r28),%r28
+.L820:
 	bv,n %r0(%r2)
+.L823:
+	bv %r0(%r2)
+	ldi 0,%r28
+.L824:
+	bv %r0(%r2)
+	ldi 1,%r28
+.L835:
+	bv %r0(%r2)
+	ldi 12,%r28
+.L826:
+	bv %r0(%r2)
+	ldi 3,%r28
+.L827:
+	bv %r0(%r2)
+	copy %r20,%r28
+.L828:
+	bv %r0(%r2)
+	ldi 5,%r28
+.L829:
+	bv %r0(%r2)
+	ldi 6,%r28
+.L830:
+	bv %r0(%r2)
+	ldi 7,%r28
+.L832:
+	bv %r0(%r2)
+	ldi 9,%r28
+.L833:
+	bv %r0(%r2)
+	ldi 10,%r28
+.L834:
+	bv %r0(%r2)
+	ldi 11,%r28
+.L836:
+	bv %r0(%r2)
+	ldi 13,%r28
+.L837:
+	bv %r0(%r2)
+	ldi 14,%r28
 	.EXIT
 	.PROCEND
 	.size	__ctzhi2, .-__ctzhi2
@@ -3623,13 +3810,13 @@ __fixunssfsi:
 	fldws 0(%r28),%fr22L
 	fcmp,sgl,!>= %fr4L,%fr22L
 	ftest
-	b .L794
+	b .L843
 	ldil L'32768,%r19
 	fcnvfxt,sgl,sgl %fr4L,%fr4L
 	fstws %fr4L,-16(%sp)
 	ldws -16(%sp),%r28
 	bv,n %r0(%r2)
-.L794:
+.L843:
 	fsub,sgl %fr4L,%fr22L,%fr4L
 	fcnvfxt,sgl,sgl %fr4L,%fr4L
 	fstws %fr4L,-16(%sp)
@@ -3646,18 +3833,37 @@ __parityhi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldi 0,%r28
-	extru %r26,31,16,%r26
-	copy %r28,%r19
-	ldi 16,%r21
-.L797:
-	subi 31,%r19,%r20
-	ldo 1(%r19),%r19
-	mtsar %r20
-	vextrs %r26,32,%r20
-	extru %r20,31,1,%r20
-	comb,<> %r21,%r19,.L797
-	addl %r28,%r20,%r28
+	extru %r26,31,1,%r20
+	extru %r26,29+1-1,1,%r28
+	extru %r26,30+1-1,1,%r19
+	addl %r19,%r20,%r19
+	extru %r26,28+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,27+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,26+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,25+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,24+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,23+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,22+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,21+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,20+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,19+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,18+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,17+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,16+1-1,1,%r26
+	addl %r19,%r28,%r28
+	addl %r28,%r26,%r28
 	bv %r0(%r2)
 	extru %r28,31,1,%r28
 	.EXIT
@@ -3670,19 +3876,38 @@ __popcounthi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldi 0,%r28
-	extru %r26,31,16,%r26
-	copy %r28,%r19
-	ldi 16,%r21
-.L800:
-	subi 31,%r19,%r20
-	ldo 1(%r19),%r19
-	mtsar %r20
-	vextrs %r26,32,%r20
-	extru %r20,31,1,%r20
-	comb,<> %r21,%r19,.L800
-	addl %r28,%r20,%r28
-	bv,n %r0(%r2)
+	extru %r26,31,1,%r28
+	extru %r26,29+1-1,1,%r20
+	extru %r26,30+1-1,1,%r19
+	addl %r19,%r28,%r19
+	extru %r26,28+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,27+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,26+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,25+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,24+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,23+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,22+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,21+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,20+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,19+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,18+1-1,1,%r28
+	addl %r19,%r20,%r19
+	extru %r26,17+1-1,1,%r20
+	addl %r19,%r28,%r19
+	extru %r26,16+1-1,1,%r28
+	addl %r19,%r20,%r19
+	bv %r0(%r2)
+	addl %r19,%r28,%r28
 	.EXIT
 	.PROCEND
 	.size	__popcounthi2, .-__popcounthi2
@@ -3693,17 +3918,17 @@ __mulsi3_iq2000:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,=,n %r26,%r26,.L805
+	movb,=,n %r26,%r26,.L850
 	ldi 0,%r28
-.L804:
+.L849:
 	extrs %r26,31+1-1,1,%r19
 	extru %r26,30,31,%r26
 	and %r19,%r25,%r19
 	zdep %r25,30,31,%r25
-	comib,<> 0,%r26,.L804
+	comib,<> 0,%r26,.L849
 	addl %r28,%r19,%r28
 	bv,n %r0(%r2)
-.L805:
+.L850:
 	bv %r0(%r2)
 	copy %r26,%r28
 	.EXIT
@@ -3717,21 +3942,21 @@ __mulsi3_lm32:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	or,<> %r26,%r0,%r26
-	b,n .L810
-	comib,=,n 0,%r25,.L811
+	b,n .L855
+	comib,=,n 0,%r25,.L856
 	ldi 0,%r28
-.L809:
+.L854:
 	extrs %r25,31+1-1,1,%r19
 	extru %r25,30,31,%r25
 	and %r19,%r26,%r19
 	zdep %r26,30,31,%r26
-	comib,<> 0,%r25,.L809
+	comib,<> 0,%r25,.L854
 	addl %r28,%r19,%r28
 	bv,n %r0(%r2)
-.L810:
+.L855:
 	bv %r0(%r2)
 	copy %r26,%r28
-.L811:
+.L856:
 	bv %r0(%r2)
 	copy %r25,%r28
 	.EXIT
@@ -3745,35 +3970,35 @@ __udivmodsi4:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	copy %r26,%r28
-	comb,<< %r25,%r26,.L814
+	comb,<< %r25,%r26,.L859
 	ldi 1,%r19
-	b .L820
+	b .L865
 	ldi 0,%r20
-.L817:
-	comb,>>= %r25,%r28,.L816
+.L862:
+	comb,>>= %r25,%r28,.L861
 	zdep %r19,30,31,%r19
-	comib,= 0,%r19,.L833
+	comib,= 0,%r19,.L878
 	copy %r19,%r20
-.L814:
-	comib,<=,n 0,%r25,.L817
+.L859:
+	comib,<=,n 0,%r25,.L862
 	zdep %r25,30,31,%r25
 	ldi 0,%r20
-.L820:
-	comb,>>,n %r25,%r28,.L819
+.L865:
+	comb,>>,n %r25,%r28,.L864
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L819:
+.L864:
 	extru %r19,30,31,%r19
-	comib,<> 0,%r19,.L820
+	comib,<> 0,%r19,.L865
 	extru %r25,30,31,%r25
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
-.L816:
-	comib,<> 0,%r19,.L820
+.L861:
+	comib,<> 0,%r19,.L865
 	ldi 0,%r20
 	copy %r19,%r20
-.L833:
+.L878:
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
@@ -3789,15 +4014,15 @@ __mspabi_cmpf:
 	.ENTRY
 	fcmp,sgl,!< %fr4L,%fr5L
 	ftest
-	b,n .L837
+	b,n .L882
 	fcmp,sgl,!> %fr4L,%fr5L
 	ftest
-	b .L834
+	b .L879
 	ldi 1,%r28
 	ldi 0,%r28
-.L834:
+.L879:
 	bv,n %r0(%r2)
-.L837:
+.L882:
 	bv %r0(%r2)
 	ldi -1,%r28
 	.EXIT
@@ -3812,15 +4037,15 @@ __mspabi_cmpd:
 	.ENTRY
 	fcmp,dbl,!< %fr5,%fr7
 	ftest
-	b,n .L841
+	b,n .L886
 	fcmp,dbl,!> %fr5,%fr7
 	ftest
-	b .L838
+	b .L883
 	ldi 1,%r28
 	ldi 0,%r28
-.L838:
+.L883:
 	bv,n %r0(%r2)
-.L841:
+.L886:
 	bv %r0(%r2)
 	ldi -1,%r28
 	.EXIT
@@ -3878,14 +4103,14 @@ __mulhi3:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	or,>= %r25,%r0,%r25
-	b,n .L853
-	comib,= 0,%r25,.L849
+	b,n .L898
+	comib,= 0,%r25,.L894
 	ldi 0,%r29
-.L846:
+.L891:
 	ldi 1,%r19
 	ldi 0,%r28
 	ldi 32,%r31
-.L848:
+.L893:
 	extrs %r25,31+1-1,1,%r21
 	comclr,= %r31,%r19,%r22
 	ldi 1,%r22
@@ -3897,17 +4122,17 @@ __mulhi3:
 	addl %r28,%r21,%r28
 	zdep %r26,30,31,%r26
 	and %r20,%r22,%r20
-	comib,<> 0,%r20,.L848
+	comib,<> 0,%r20,.L893
 	extru %r19,31,8,%r19
 	sub %r0,%r28,%r19
 	comiclr,= 0,%r29,%r0
 	copy %r19,%r28
 	bv,n %r0(%r2)
-.L853:
+.L898:
 	sub %r0,%r25,%r25
-	b .L846
+	b .L891
 	ldi 1,%r29
-.L849:
+.L894:
 	bv %r0(%r2)
 	copy %r25,%r28
 	.EXIT
@@ -3920,47 +4145,47 @@ __divsi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,< %r26,%r26,.L876
+	movb,< %r26,%r26,.L921
 	ldi 0,%r21
-.L855:
-	comib,<= 0,%r25,.L878
+.L900:
+	comib,<= 0,%r25,.L923
 	copy %r26,%r20
 	ldi 1,%r28
 	sub %r0,%r25,%r25
 	xor %r21,%r28,%r21
-.L878:
-	comb,<< %r25,%r26,.L857
+.L923:
+	comb,<< %r25,%r26,.L902
 	ldi 1,%r19
-	b .L863
+	b .L908
 	ldi 0,%r28
-.L877:
-	comib,= 0,%r19,.L859
+.L922:
+	comib,= 0,%r19,.L904
 	copy %r19,%r28
-.L857:
+.L902:
 	zdep %r25,30,31,%r25
-	comb,<< %r25,%r26,.L877
+	comb,<< %r25,%r26,.L922
 	zdep %r19,30,31,%r19
-	comib,=,n 0,%r19,.L875
+	comib,=,n 0,%r19,.L920
 	ldi 0,%r28
-.L863:
-	comb,<<,n %r20,%r25,.L862
+.L908:
+	comb,<<,n %r20,%r25,.L907
 	sub %r20,%r25,%r20
 	or %r28,%r19,%r28
-.L862:
+.L907:
 	extru %r19,30,31,%r19
-	comib,<> 0,%r19,.L863
+	comib,<> 0,%r19,.L908
 	extru %r25,30,31,%r25
-.L859:
+.L904:
 	sub %r0,%r28,%r19
 	comiclr,= 0,%r21,%r0
 	copy %r19,%r28
 	bv,n %r0(%r2)
-.L876:
+.L921:
 	sub %r0,%r26,%r26
-	b .L855
+	b .L900
 	ldi 1,%r21
-.L875:
-	b .L859
+.L920:
+	b .L904
 	copy %r19,%r28
 	.EXIT
 	.PROCEND
@@ -3972,42 +4197,42 @@ __modsi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	movb,>= %r26,%r26,.L880
+	movb,>= %r26,%r26,.L925
 	ldi 0,%r21
 	sub %r0,%r26,%r26
 	ldi 1,%r21
-.L880:
+.L925:
 	copy %r26,%r28
 	or,>= %r0,%r25,%r25
 	subi 0,%r25,%r25
-	comb,<< %r25,%r26,.L881
+	comb,<< %r25,%r26,.L926
 	ldi 1,%r19
-	b .L901
+	b .L946
 	sub %r28,%r25,%r20
-.L900:
+.L945:
 	comiclr,<> 0,%r19,%r0
-	b,n .L899
-.L881:
+	b,n .L944
+.L926:
 	zdep %r25,30,31,%r25
-	comb,<< %r25,%r26,.L900
+	comb,<< %r25,%r26,.L945
 	zdep %r19,30,31,%r19
 	comiclr,<> 0,%r19,%r0
-	b,n .L899
-.L887:
+	b,n .L944
+.L932:
 	sub %r28,%r25,%r20
-.L901:
+.L946:
 	extru %r19,30,31,%r19
 	comclr,<< %r28,%r25,%r0
 	copy %r20,%r28
-	comib,<> 0,%r19,.L887
+	comib,<> 0,%r19,.L932
 	extru %r25,30,31,%r25
-.L883:
+.L928:
 	sub %r0,%r28,%r19
 	comiclr,= 0,%r21,%r0
 	copy %r19,%r28
 	bv,n %r0(%r2)
-.L899:
-	b .L883
+.L944:
+	b .L928
 	copy %r26,%r28
 	.EXIT
 	.PROCEND
@@ -4019,45 +4244,208 @@ __udivmodhi4:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	extru %r26,31,16,%r28
+	extru %r26,31,16,%r26
 	extru %r25,31,16,%r25
-	comb,>> %r28,%r25,.L903
-	ldi 1,%r19
-	b .L909
-	ldi 0,%r20
-.L906:
-	zdep %r19,30,31,%r19
-	extru %r21,31,16,%r25
-	comb,>>= %r25,%r28,.L905
-	extru %r19,31,16,%r19
-	comib,= 0,%r19,.L922
-	copy %r19,%r20
-.L903:
-	extrs %r25,31,16,%r20
-	comib,<= 0,%r20,.L906
-	zdep %r25,30,31,%r21
-	ldi 0,%r20
-.L909:
-	comb,>>,n %r25,%r28,.L908
-	sub %r28,%r25,%r28
-	or %r19,%r20,%r20
+	comb,>> %r26,%r25,.L948
+	ldi 1,%r22
+	b .L1003
+	ldi 0,%r19
+.L951:
+	zdep %r22,30,31,%r19
 	extru %r28,31,16,%r28
-	extru %r20,31,16,%r20
-.L908:
-	extru %r19,30,31,%r19
-	comib,<> 0,%r19,.L909
-	extru %r25,30,31,%r25
+	comb,>>= %r28,%r26,.L950
+	extru %r19,31,16,%r19
+	comib,= 0,%r19,.L977
+	copy %r19,%r22
+	copy %r28,%r25
+.L948:
+	extrs %r25,31,16,%r19
+	comib,<= 0,%r19,.L951
+	zdep %r25,30,31,%r28
+	comb,>> %r25,%r26,.L974
+	ldi 0,%r19
+	sub %r26,%r25,%r26
+	copy %r22,%r19
+	extru %r26,31,16,%r26
+.L974:
+	extru %r22,15+16-1,16,%r21
+	comib,= 0,%r21,.L977
+	extru %r25,30,31,%r20
+.L955:
+	comb,>> %r20,%r26,.L1009
+	extru %r22,14+16-1,16,%r28
+	sub %r26,%r20,%r20
+	or %r19,%r21,%r21
+	extru %r20,31,16,%r26
+	extru %r21,31,16,%r19
+.L1009:
+	comib,= 0,%r28,.L977
+	extru %r25,29,30,%r20
+	comb,>>,n %r20,%r26,.L957
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L957:
+	extru %r22,13+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,28,29,%r20
+	comb,>>,n %r20,%r26,.L958
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L958:
+	extru %r22,12+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,27,28,%r20
+	comb,>>,n %r20,%r26,.L959
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L959:
+	extru %r22,11+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,26,27,%r20
+	comb,>>,n %r20,%r26,.L960
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L960:
+	extru %r22,10+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,25,26,%r20
+	comb,>>,n %r20,%r26,.L961
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L961:
+	extru %r22,9+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,24,25,%r20
+	comb,<<= %r20,%r26,.L1004
+	or %r19,%r28,%r28
+.L962:
+	extru %r22,8+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,23,24,%r20
+	comb,<<= %r20,%r26,.L1005
+	or %r19,%r28,%r28
+.L963:
+	extru %r22,7+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,22,23,%r20
+	comb,<<= %r20,%r26,.L1006
+	or %r19,%r28,%r28
+.L964:
+	extru %r22,6+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,21,22,%r20
+	comb,<<= %r20,%r26,.L1007
+	or %r19,%r28,%r28
+.L965:
+	extru %r22,5+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,20,21,%r20
+	comb,<<= %r20,%r26,.L1008
+	or %r19,%r28,%r28
+.L966:
+	extru %r22,4+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,19,20,%r20
+	comb,>>,n %r20,%r26,.L967
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L967:
+	extru %r22,3+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,18,19,%r20
+	comb,>>,n %r20,%r26,.L968
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L968:
+	extru %r22,2+16-1,16,%r28
+	comib,= 0,%r28,.L977
+	extru %r25,17,18,%r20
+	comb,>> %r20,%r26,.L969
+	sub %r26,%r20,%r20
+	or %r19,%r28,%r28
+	extru %r20,31,16,%r26
+	extru %r28,31,16,%r19
+.L969:
+	extru %r22,1+16-1,16,%r22
+	comib,= 0,%r22,.L977
+	extru %r25,16,17,%r25
+	comb,>> %r25,%r26,.L953
+	ldi 0,%r28
+	sub %r26,%r25,%r25
+	depi -1,31,1,%r19
+	extru %r25,31,16,%r28
+	b .L953
+	extru %r19,31,16,%r19
+.L977:
+	copy %r26,%r28
+.L953:
 	comiclr,<> 0,%r24,%r0
-	copy %r20,%r28
+	copy %r19,%r28
 	bv,n %r0(%r2)
-.L905:
-	comib,<> 0,%r19,.L909
-	ldi 0,%r20
-	copy %r19,%r20
-.L922:
-	comiclr,<> 0,%r24,%r0
-	copy %r20,%r28
-	bv,n %r0(%r2)
+.L950:
+	comib,=,n 0,%r19,.L953
+	copy %r26,%r28
+	comb,>>,n %r28,%r26,.L954
+	sub %r26,%r28,%r26
+	extru %r22,31,15,%r21
+	extru %r25,31,15,%r20
+	extru %r26,31,16,%r26
+	copy %r28,%r25
+	b .L955
+	copy %r19,%r22
+.L1004:
+	sub %r26,%r20,%r20
+	extru %r20,31,16,%r26
+	b .L962
+	extru %r28,31,16,%r19
+.L954:
+	extru %r22,31,15,%r21
+	extru %r25,31,15,%r20
+	copy %r19,%r22
+	copy %r28,%r25
+	b .L955
+	ldi 0,%r19
+.L1005:
+	sub %r26,%r20,%r20
+	extru %r20,31,16,%r26
+	b .L963
+	extru %r28,31,16,%r19
+.L1006:
+	sub %r26,%r20,%r20
+	extru %r20,31,16,%r26
+	b .L964
+	extru %r28,31,16,%r19
+.L1007:
+	sub %r26,%r20,%r20
+	extru %r20,31,16,%r26
+	b .L965
+	extru %r28,31,16,%r19
+.L1008:
+	sub %r26,%r20,%r20
+	extru %r20,31,16,%r26
+	b .L966
+	extru %r28,31,16,%r19
+.L1003:
+	copy %r26,%r28
+	comclr,<> %r26,%r25,%r0
+	copy %r22,%r19
+	comclr,<> %r26,%r25,%r0
+	ldi 0,%r28
+	b,n .L953
 	.EXIT
 	.PROCEND
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -4069,35 +4457,35 @@ __udivmodsi4_libgcc:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	copy %r26,%r28
-	comb,<< %r25,%r26,.L924
+	comb,<< %r25,%r26,.L1011
 	ldi 1,%r19
-	b .L930
+	b .L1017
 	ldi 0,%r20
-.L927:
-	comb,>>= %r25,%r28,.L926
+.L1014:
+	comb,>>= %r25,%r28,.L1013
 	zdep %r19,30,31,%r19
-	comib,= 0,%r19,.L943
+	comib,= 0,%r19,.L1030
 	copy %r19,%r20
-.L924:
-	comib,<=,n 0,%r25,.L927
+.L1011:
+	comib,<=,n 0,%r25,.L1014
 	zdep %r25,30,31,%r25
 	ldi 0,%r20
-.L930:
-	comb,>>,n %r25,%r28,.L929
+.L1017:
+	comb,>>,n %r25,%r28,.L1016
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L929:
+.L1016:
 	extru %r19,30,31,%r19
-	comib,<> 0,%r19,.L930
+	comib,<> 0,%r19,.L1017
 	extru %r25,30,31,%r25
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
-.L926:
-	comib,<> 0,%r19,.L930
+.L1013:
+	comib,<> 0,%r19,.L1017
 	ldi 0,%r20
 	copy %r19,%r20
-.L943:
+.L1030:
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
 	bv,n %r0(%r2)
@@ -4111,14 +4499,14 @@ __ashldi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	bb,>=,n %r24,26,.L945
+	bb,>=,n %r24,26,.L1032
 	subi 63,%r24,%r24
 	ldi 0,%r29
 	mtsar %r24
 	bv %r0(%r2)
 	zvdep %r26,32,%r28
-.L945:
-	comib,= 0,%r24,.L948
+.L1032:
+	comib,= 0,%r24,.L1035
 	subi 31,%r24,%r19
 	mtsar %r19
 	subi 32,%r24,%r24
@@ -4129,7 +4517,7 @@ __ashldi3:
 	or %r20,%r28,%r28
 	bv %r0(%r2)
 	zvdep %r26,32,%r29
-.L948:
+.L1035:
 	copy %r25,%r28
 	bv %r0(%r2)
 	copy %r26,%r29
@@ -4143,14 +4531,14 @@ __ashrdi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	bb,>=,n %r24,26,.L950
+	bb,>=,n %r24,26,.L1037
 	subi 63,%r24,%r24
 	extrs %r25,0,1,%r28
 	mtsar %r24
 	bv %r0(%r2)
 	vextrs %r25,32,%r29
-.L950:
-	comib,= 0,%r24,.L953
+.L1037:
+	comib,= 0,%r24,.L1040
 	mtsar %r24
 	subi 31,%r24,%r28
 	ldo -1(%r24),%r19
@@ -4161,7 +4549,7 @@ __ashrdi3:
 	or %r19,%r29,%r29
 	bv %r0(%r2)
 	vextrs %r25,32,%r28
-.L953:
+.L1040:
 	copy %r25,%r28
 	bv %r0(%r2)
 	copy %r26,%r29
@@ -4242,7 +4630,7 @@ __clzsi2:
 	vshd %r0,%r19,%r19
 	extrs,< %r19,30,1,%r0
 	subi 2,%r19,%r28
-.L958:
+.L1045:
 	addl %r20,%r21,%r20
 	bv %r0(%r2)
 	addl %r28,%r20,%r28
@@ -4257,19 +4645,19 @@ __cmpdi2:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	comclr,<= %r23,%r25,%r0
-	b,n .L964
+	b,n .L1051
 	comclr,>= %r23,%r25,%r0
-	b,n .L963
+	b,n .L1050
 	comclr,<<= %r24,%r26,%r0
-	b,n .L964
+	b,n .L1051
 	comclr,>>= %r24,%r26,%r28
 	ldi 1,%r28
 	bv %r0(%r2)
 	ldo 1(%r28),%r28
-.L964:
+.L1051:
 	bv %r0(%r2)
 	ldi 0,%r28
-.L963:
+.L1050:
 	bv %r0(%r2)
 	ldi 2,%r28
 	.EXIT
@@ -4283,18 +4671,18 @@ __aeabi_lcmp:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	comclr,<= %r23,%r25,%r0
-	b,n .L970
+	b,n .L1057
 	comclr,>= %r23,%r25,%r0
-	b,n .L969
+	b,n .L1056
 	comclr,<<= %r24,%r26,%r0
-	b,n .L970
+	b,n .L1057
 	comclr,>>= %r24,%r26,%r28
 	ldi 1,%r28
 	bv,n %r0(%r2)
-.L970:
+.L1057:
 	bv %r0(%r2)
 	ldi -1,%r28
-.L969:
+.L1056:
 	bv %r0(%r2)
 	ldi 1,%r28
 	.EXIT
@@ -4352,15 +4740,15 @@ __lshrdi3:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	bb,>= %r24,26,.L973
+	bb,>= %r24,26,.L1060
 	mtsar %r24
 	vshd %r0,%r25,%r29
 	ldi 0,%r25
 	copy %r25,%r28
-.L975:
+.L1062:
 	bv,n %r0(%r2)
-.L973:
-	comib,= 0,%r24,.L976
+.L1060:
+	comib,= 0,%r24,.L1063
 	ldo -1(%r24),%r28
 	mtsar %r24
 	vshd %r0,%r26,%r29
@@ -4369,9 +4757,9 @@ __lshrdi3:
 	mtsar %r24
 	or %r28,%r29,%r29
 	vshd %r0,%r25,%r25
-	b .L975
+	b .L1062
 	copy %r25,%r28
-.L976:
+.L1063:
 	copy %r25,%r28
 	bv %r0(%r2)
 	copy %r26,%r29
@@ -4659,41 +5047,41 @@ __powidf2:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	extru %r24,31,1,%r28
-	comib,= 0,%r28,.L990
+	comib,= 0,%r28,.L1077
 	ldil LR'.LC34,%r21
 	ldo RR'.LC34(%r21),%r21
 	copy %r24,%r28
 	fldds 0(%r21),%fr4
-.L987:
+.L1074:
 	fmpy,dbl %fr4,%fr5,%fr4
-.L985:
+.L1072:
 	extru %r28,0,1,%r19
 	addl %r19,%r28,%r28
 	extrs %r28,30,31,%r28
-	comib,= 0,%r28,.L986
+	comib,= 0,%r28,.L1073
 	extru %r28,31,1,%r19
 	fmpy,dbl %fr5,%fr5,%fr5
-	comib,<> 0,%r19,.L987
+	comib,<> 0,%r19,.L1074
 	extru %r28,0,1,%r20
 	addl %r20,%r28,%r28
-.L993:
+.L1080:
 	fmpy,dbl %fr5,%fr5,%fr5
 	extrs %r28,30,31,%r28
 	extru %r28,31,1,%r19
-	comib,<> 0,%r19,.L987
+	comib,<> 0,%r19,.L1074
 	extru %r28,0,1,%r20
-	b .L993
+	b .L1080
 	addl %r20,%r28,%r28
-.L986:
+.L1073:
 	comiclr,<= 0,%r24,%r0
-	b,n .L992
+	b,n .L1079
 	bv,n %r0(%r2)
-.L990:
+.L1077:
 	ldo RR'.LC34(%r21),%r21
 	copy %r24,%r28
-	b .L985
+	b .L1072
 	fldds 0(%r21),%fr4
-.L992:
+.L1079:
 	fldds 0(%r21),%fr22
 	bv %r0(%r2)
 	fdiv,dbl %fr22,%fr4,%fr4
@@ -4714,41 +5102,41 @@ __powisf2:
 	.ENTRY
 	fcpy,sgl %fr4L,%fr22L
 	extru %r25,31,1,%r28
-	comib,= 0,%r28,.L1000
+	comib,= 0,%r28,.L1087
 	ldil LR'.LC36,%r21
 	ldo RR'.LC36(%r21),%r21
 	copy %r25,%r28
 	fldws 0(%r21),%fr4L
-.L997:
+.L1084:
 	fmpy,sgl %fr4L,%fr22L,%fr4L
-.L995:
+.L1082:
 	extru %r28,0,1,%r19
 	addl %r19,%r28,%r28
 	extrs %r28,30,31,%r28
-	comib,= 0,%r28,.L996
+	comib,= 0,%r28,.L1083
 	extru %r28,31,1,%r19
 	fmpy,sgl %fr22L,%fr22L,%fr22L
-	comib,<> 0,%r19,.L997
+	comib,<> 0,%r19,.L1084
 	extru %r28,0,1,%r20
 	addl %r20,%r28,%r28
-.L1003:
+.L1090:
 	fmpy,sgl %fr22L,%fr22L,%fr22L
 	extrs %r28,30,31,%r28
 	extru %r28,31,1,%r19
-	comib,<> 0,%r19,.L997
+	comib,<> 0,%r19,.L1084
 	extru %r28,0,1,%r20
-	b .L1003
+	b .L1090
 	addl %r20,%r28,%r28
-.L996:
+.L1083:
 	comiclr,<= 0,%r25,%r0
-	b,n .L1002
+	b,n .L1089
 	bv,n %r0(%r2)
-.L1000:
+.L1087:
 	ldo RR'.LC36(%r21),%r21
 	copy %r25,%r28
-	b .L995
+	b .L1082
 	fldws 0(%r21),%fr4L
-.L1002:
+.L1089:
 	fldws 0(%r21),%fr22L
 	bv %r0(%r2)
 	fdiv,sgl %fr22L,%fr4L,%fr4L
@@ -4763,19 +5151,19 @@ __ucmpdi2:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	comclr,<<= %r23,%r25,%r0
-	b,n .L1008
+	b,n .L1095
 	comclr,>>= %r23,%r25,%r0
-	b,n .L1007
+	b,n .L1094
 	comclr,<<= %r24,%r26,%r0
-	b,n .L1008
+	b,n .L1095
 	comclr,>>= %r24,%r26,%r28
 	ldi 1,%r28
 	bv %r0(%r2)
 	ldo 1(%r28),%r28
-.L1008:
+.L1095:
 	bv %r0(%r2)
 	ldi 0,%r28
-.L1007:
+.L1094:
 	bv %r0(%r2)
 	ldi 2,%r28
 	.EXIT
@@ -4789,18 +5177,18 @@ __aeabi_ulcmp:
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
 	comclr,<<= %r23,%r25,%r0
-	b,n .L1014
+	b,n .L1101
 	comclr,>>= %r23,%r25,%r0
-	b,n .L1013
+	b,n .L1100
 	comclr,<<= %r24,%r26,%r0
-	b,n .L1014
+	b,n .L1101
 	comclr,>>= %r24,%r26,%r28
 	ldi 1,%r28
 	bv,n %r0(%r2)
-.L1014:
+.L1101:
 	bv %r0(%r2)
 	ldi -1,%r28
-.L1013:
+.L1100:
 	bv %r0(%r2)
 	ldi 1,%r28
 	.EXIT
