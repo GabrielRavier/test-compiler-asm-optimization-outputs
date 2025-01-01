@@ -1878,7 +1878,7 @@ _wmemmove:
 	bne	.L498
 	bra	.L495
 .L505:
-	mov.l	@er7,er4
+	mov.l	er0,er4
 .L497:
 	mov.w	@er5+,r2
 	mov.w	r2,@er4
