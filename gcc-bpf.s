@@ -4,16 +4,14 @@
 	.global	make_ti
 	.type	make_ti, @function
 make_ti:
-	r4 = r2
-	r0 = r4
+	r0 = r2
 	exit
 	.size	make_ti, .-make_ti
 	.align	3
 	.global	make_tu
 	.type	make_tu, @function
 make_tu:
-	r4 = r2
-	r0 = r4
+	r0 = r2
 	exit
 	.size	make_tu, .-make_tu
 	.align	3
@@ -7371,8 +7369,6 @@ __ashldi3:
 	.global	__ashlti3
 	.type	__ashlti3, @function
 __ashlti3:
-	r4 = r1
-	r5 = r2
 	r3 <<= 32
 	r3 s>>= 32
 	*(u64 *) (r10+-16) = r1
@@ -7382,32 +7378,34 @@ __ashlti3:
 	if r0 == 0 goto .L1731
 	*(u64 *) (r10+-32) = 0
 	r3 += -64
-	r9 = r3;r9 &= 0xffffffff
-	r4 <<= r9
-	*(u64 *) (r10+-24) = r4
+	r4 = r3;r4 &= 0xffffffff
+	r0 = r1
+	r0 <<= r4
+	*(u64 *) (r10+-24) = r0
 .L1732:
-	r4 = *(u64 *) (r10+-32)
-	r5 = *(u64 *) (r10+-24)
-.L1733:
-	r0 = r4
-	r1 = r5
+	r0 = *(u64 *) (r10+-32)
+	r1 = *(u64 *) (r10+-24)
 	exit
 .L1731:
-	if r3 == 0 goto .L1733
-	r9 = *(u64 *) (r10+-16)
+	if r3 == 0 goto .L1734
+	r4 = *(u64 *) (r10+-16)
 	r1 = r3;r1 &= 0xffffffff
-	r2 = r9
+	r2 = r4
 	r2 <<= r1
 	*(u64 *) (r10+-32) = r2
-	r4 = *(u64 *) (r10+-8)
-	r4 <<= r1
-	r5 = 64
-	r5 -= r3
-	r3 = r5;r3 &= 0xffffffff
-	r9 >>= r3
-	r9 |= r4
-	*(u64 *) (r10+-24) = r9
+	r5 = *(u64 *) (r10+-8)
+	r5 <<= r1
+	r9 = 64
+	r9 -= r3
+	r3 = r9;r3 &= 0xffffffff
+	r4 >>= r3
+	r4 |= r5
+	*(u64 *) (r10+-24) = r4
 	goto .L1732
+.L1734:
+	r0 = r1
+	r1 = r2
+	exit
 	.size	__ashlti3, .-__ashlti3
 	.align	3
 	.global	__ashrdi3
@@ -7456,8 +7454,6 @@ __ashrdi3:
 	.global	__ashrti3
 	.type	__ashrti3, @function
 __ashrti3:
-	r4 = r1
-	r5 = r2
 	r3 <<= 32
 	r3 s>>= 32
 	*(u64 *) (r10+-16) = r1
@@ -7466,36 +7462,37 @@ __ashrti3:
 	r0 &= 64
 	if r0 == 0 goto .L1741
 	r0 = r2
-	r0 s>>= 63
-	*(u64 *) (r10+-24) = r0
+	r2 s>>= 63
+	*(u64 *) (r10+-24) = r2
 	r3 += -64
 	r3 <<= 32
 	r3 s>>= 32
-	r5 s>>= r3
-	*(u64 *) (r10+-32) = r5
+	r0 s>>= r3
+	*(u64 *) (r10+-32) = r0
 .L1742:
-	r4 = *(u64 *) (r10+-32)
-	r5 = *(u64 *) (r10+-24)
-.L1743:
-	r0 = r4
-	r1 = r5
+	r0 = *(u64 *) (r10+-32)
+	r1 = *(u64 *) (r10+-24)
 	exit
 .L1741:
-	if r3 == 0 goto .L1743
+	if r3 == 0 goto .L1744
 	r2 = *(u64 *) (r10+-8)
 	r1 = r2
 	r1 s>>= r3
 	*(u64 *) (r10+-24) = r1
-	r9 = 64
-	r9 -= r3
-	r4 = r9;r4 &= 0xffffffff
-	r2 <<= r4
+	r4 = 64
+	r4 -= r3
+	r5 = r4;r5 &= 0xffffffff
+	r2 <<= r5
 	r3 = r3;r3 &= 0xffffffff
-	r5 = *(u64 *) (r10+-16)
-	r5 >>= r3
-	r2 |= r5
+	r9 = *(u64 *) (r10+-16)
+	r9 >>= r3
+	r2 |= r9
 	*(u64 *) (r10+-32) = r2
 	goto .L1742
+.L1744:
+	r0 = r1
+	r1 = r2
+	exit
 	.size	__ashrti3, .-__ashrti3
 	.align	3
 	.global	__bswapdi2
@@ -7701,11 +7698,12 @@ __aeabi_lcmp:
 	.global	__cmpti2
 	.type	__cmpti2, @function
 __cmpti2:
-	r8 = r1
+	*(u64 *) (r10+-16) = r1
 	if r4 s>= r2 goto .L1767
 	if r2 s> r4 goto .L1768
-	if r3 >= r1 goto .L1769
-	if r1 > r3 goto .L1770
+	r2 = *(u64 *) (r10+-16)
+	if r3 >= r2 goto .L1769
+	if r2 > r3 goto .L1770
 	r0 = 1
 	exit
 .L1767:
@@ -7878,46 +7876,43 @@ __lshrdi3:
 	.global	__lshrti3
 	.type	__lshrti3, @function
 __lshrti3:
-	r4 = r1
-	r5 = r2
 	r3 <<= 32
 	r3 s>>= 32
-	r1 = r2
-	*(u64 *) (r10+-16) = r4
+	*(u64 *) (r10+-16) = r1
 	*(u64 *) (r10+-8) = r2
-	r2 = r3
-	r2 &= 64
-	if r2 == 0 goto .L1792
+	r0 = r3
+	r0 &= 64
+	if r0 == 0 goto .L1792
 	*(u64 *) (r10+-24) = 0
 	r3 += -64
-	r2 = r3;r2 &= 0xffffffff
-	r1 >>= r2
-	*(u64 *) (r10+-32) = r1
+	r4 = r3;r4 &= 0xffffffff
+	r0 = r2
+	r0 >>= r4
+	*(u64 *) (r10+-32) = r0
 .L1793:
-	r9 = *(u64 *) (r10+-32)
-	r0 = *(u64 *) (r10+-24)
-	r4 = r9
-	r5 = r0
-.L1794:
-	r0 = r4
-	r1 = r5
+	r0 = *(u64 *) (r10+-32)
+	r1 = *(u64 *) (r10+-24)
 	exit
 .L1792:
-	if r3 == 0 goto .L1794
-	r9 = *(u64 *) (r10+-8)
-	r4 = r3;r4 &= 0xffffffff
-	r5 = r9
-	r5 >>= r4
-	*(u64 *) (r10+-24) = r5
-	r0 = 64
-	r0 -= r3
-	r3 = r0;r3 &= 0xffffffff
-	r9 <<= r3
-	r1 = *(u64 *) (r10+-16)
-	r1 >>= r4
-	r9 |= r1
-	*(u64 *) (r10+-32) = r9
+	if r3 == 0 goto .L1795
+	r4 = *(u64 *) (r10+-8)
+	r2 = r3;r2 &= 0xffffffff
+	r1 = r4
+	r1 >>= r2
+	*(u64 *) (r10+-24) = r1
+	r5 = 64
+	r5 -= r3
+	r3 = r5;r3 &= 0xffffffff
+	r4 <<= r3
+	r9 = *(u64 *) (r10+-16)
+	r9 >>= r2
+	r4 |= r9
+	*(u64 *) (r10+-32) = r4
 	goto .L1793
+.L1795:
+	r0 = r1
+	r1 = r2
+	exit
 	.size	__lshrti3, .-__lshrti3
 	.align	3
 	.global	__muldsi3
@@ -8000,63 +7995,54 @@ __muldi3_compiler_rt:
 	.global	__mulddi3
 	.type	__mulddi3, @function
 __mulddi3:
-	r9 = 4294967295 ll
-	r5 = r1
-	r5 &= r9
-	r0 = r2
-	r0 &= r9
-	r4 = r5
-	r4 *= r0
-	r3 = r4
-	r3 >>= 32
-	r4 &= r9
+	r5 = 4294967295 ll
+	r0 = r1
+	r0 &= r5
+	r3 = r2
+	r3 &= r5
+	r9 = r0
+	r9 *= r3
+	r4 = r9
+	r4 >>= 32
+	r9 &= r5
 	r1 >>= 32
-	r8 = r1
-	r8 *= r0
-	r3 += r8
+	r6 = r1
+	r6 *= r3
+	r4 += r6
+	r3 = r4
+	r3 <<= 32
+	r6 = r3
+	r6 += r9
+	r4 >>= 32
+	r3 >>= 32
+	r6 &= r5
+	r2 >>= 32
+	r0 *= r2
+	r3 += r0
 	r0 = r3
 	r0 <<= 32
-	r8 = r0
-	r8 += r4
+	r0 += r6
 	r3 >>= 32
-	r0 >>= 32
-	r4 = r8
-	r4 &= r9
-	r2 >>= 32
-	r5 *= r2
-	r0 += r5
-	r5 = r0
-	r5 <<= 32
-	r0 >>= 32
-	r0 += r3
+	r3 += r4
 	r1 *= r2
-	r1 += r0
-	r5 += r4
-	r8 = r5
-	r0 = r5
+	r1 += r3
 	exit
 	.size	__mulddi3, .-__mulddi3
 	.align	3
 	.global	__multi3
 	.type	__multi3, @function
 __multi3:
-	*(u64 *) (r10+-64) = r1
-	*(u64 *) (r10+-56) = r2
-	r6 = r3
+	*(u64 *) (r10+-56) = r1
+	r6 = r2
+	r8 = r3
 	r7 = r4
 	r2 = r3
 	call	__mulddi3
-	r2 = r0
-	r3 = r1
-	r1 = *(u64 *) (r10+-56)
-	r1 *= r6
-	r0 = r7
-	r4 = *(u64 *) (r10+-64)
-	r0 *= r4
-	r1 += r0
-	r6 = r1
-	r6 += r3
-	r0 = r2
+	r6 *= r8
+	r2 = *(u64 *) (r10+-56)
+	r7 *= r2
+	r6 += r7
+	r6 += r1
 	r1 = r6
 	exit
 	.size	__multi3, .-__multi3
@@ -8072,24 +8058,16 @@ __negdi2:
 	.global	__negti2
 	.type	__negti2, @function
 __negti2:
-	r5 = r2
-	r2 = r1
-	r3 = r5
-	r9 = 0
-	r4 = r9
-	r0 = r9
-	r0 -= r2
-	r6 = 1
-	if r0 > r9 goto .L1802
-	r6 = r9
+	r3 = r1
+	r3 = -r3
+	r0 = 1
+	if r1 != 0 goto .L1802
+	r0 = 0
 .L1802:
-	r1 = r4
-	r1 -= r3
-	r9 = r1
-	r9 -= r6
-	r2 = r0
-	r0 = r2
-	r1 = r9
+	r1 = r2
+	r1 = -r1
+	r1 -= r0
+	r0 = r3
 	exit
 	.size	__negti2, .-__negti2
 	.align	3
@@ -8119,23 +8097,23 @@ __paritydi2:
 	.global	__parityti2
 	.type	__parityti2, @function
 __parityti2:
-	r1 ^= r2
-	r0 = r1
+	r2 ^= r1
+	r0 = r2
 	r0 >>= 32
-	r2 = r1;r2 &= 0xffffffff
+	r2 = r2;r2 &= 0xffffffff
 	r0 ^= r2
-	r3 = r0
-	r3 >>= 16
-	r3 ^= r0
+	r1 = r0
+	r1 >>= 16
+	r1 ^= r0
+	r3 = r1
+	r3 >>= 8
+	r3 ^= r1
 	r4 = r3
-	r4 >>= 8
+	r4 >>= 4
 	r4 ^= r3
-	r9 = r4
-	r9 >>= 4
-	r9 ^= r4
-	r9 &= 15
+	r4 &= 15
 	r0 = 27030
-	r0 s>>= r9
+	r0 s>>= r4
 	r0 &= 1
 	exit
 	.size	__parityti2, .-__parityti2
@@ -8223,94 +8201,72 @@ __popcountsi2:
 	.global	__popcountti2
 	.type	__popcountti2, @function
 __popcountti2:
-	r4 = r1
-	r5 = r2
-	r0 = r4
-	r1 = r2
-	r8 = r2
-	r8 <<= 63
-	r2 = r4
-	r2 >>= 1
-	r8 |= r2
-	r9 = r8
-	r3 = r5
-	r3 >>= 1
-	r8 = 6148914691236517205 ll
-	r4 = r9
-	r4 &= r8
-	r5 = r3
-	r5 &= r8
-	r2 = r0
-	r2 -= r4
-	r9 = 1
-	if r2 > r0 goto .L1809
-	r9 = 0
+	r0 = r1
+	r3 = r2
+	r3 <<= 63
+	r1 >>= 1
+	r3 |= r1
+	r4 = r2
+	r4 >>= 1
+	r5 = 6148914691236517205 ll
+	r3 &= r5
+	r4 &= r5
+	r9 = r0
+	r9 -= r3
+	r3 = 1
+	if r9 > r0 goto .L1809
+	r3 = 0
 .L1809:
-	r3 = r1
-	r3 -= r5
-	r4 = r3
-	r4 -= r9
+	r2 -= r4
+	r2 -= r3
 	r0 = r2
-	r1 = r4
-	r4 <<= 62
-	r2 = r0
-	r2 >>= 2
-	r4 |= r2
-	r9 = r4
-	r3 = r1
-	r3 >>= 2
-	r8 = 3689348814741910323 ll
-	r4 = r9
-	r4 &= r8
-	r5 = r3
-	r5 &= r8
-	r2 = r0
-	r2 &= r8
-	r3 = r1
-	r3 &= r8
-	r8 = r4
-	r8 += r2
-	r0 = 1
-	if r4 >= r8 goto .L1810
-	r0 = 0
-.L1810:
-	r9 = r5
-	r9 += r3
-	r0 += r9
+	r0 <<= 62
+	r1 = r9
+	r1 >>= 2
+	r0 |= r1
+	r5 = r2
+	r5 >>= 2
+	r4 = 3689348814741910323 ll
+	r0 &= r4
+	r5 &= r4
+	r9 &= r4
+	r2 &= r4
 	r4 = r0
-	r0 = r8
-	r1 = r4
-	r8 = r4
-	r8 <<= 60
-	r2 = r0
+	r4 += r9
+	r9 = 1
+	if r0 >= r4 goto .L1810
+	r9 = 0
+.L1810:
+	r3 = r5
+	r3 += r2
+	r9 += r3
+	r1 = r9
+	r1 <<= 60
+	r2 = r4
 	r2 >>= 4
-	r8 |= r2
-	r3 = r4
-	r3 >>= 4
-	r4 = r8
-	r4 += r0
+	r1 |= r2
+	r5 = r9
+	r5 >>= 4
+	r2 = r1
+	r2 += r4
 	r0 = 1
-	if r8 >= r4 goto .L1811
+	if r1 >= r2 goto .L1811
 	r0 = 0
 .L1811:
-	r5 = r3
-	r5 += r1
-	r1 = r0
-	r1 += r5
-	r8 = r4
-	r2 = 1085102592571150095 ll
-	r0 = r4
-	r0 &= r2
-	r1 &= r2
-	r1 += r0
-	r4 = r1
-	r4 >>= 32
-	r1 += r4
-	r5 = r1;r5 &= 0xffffffff
-	r9 = r5
-	r9 >>= 16
-	r9 += r5
-	r2 = r9;r2 &= 0xffffffff
+	r5 += r9
+	r0 += r5
+	r4 = 1085102592571150095 ll
+	r2 &= r4
+	r0 &= r4
+	r0 += r2
+	r9 = r0
+	r9 >>= 32
+	r0 += r9
+	r3 = r0;r3 &= 0xffffffff
+	r1 = r3
+	r1 >>= 16
+	r1 += r3
+	r2 = r1;r2 &= 0xffffffff
 	r0 = r2
 	r0 >>= 8
 	r0 += r2
@@ -8451,11 +8407,12 @@ __aeabi_ulcmp:
 	.global	__ucmpti2
 	.type	__ucmpti2, @function
 __ucmpti2:
-	r8 = r1
+	*(u64 *) (r10+-16) = r1
 	if r4 >= r2 goto .L1833
 	if r2 > r4 goto .L1834
-	if r3 >= r1 goto .L1835
-	if r1 > r3 goto .L1836
+	r2 = *(u64 *) (r10+-16)
+	if r3 >= r2 goto .L1835
+	if r2 > r3 goto .L1836
 	r0 = 1
 	exit
 .L1833:

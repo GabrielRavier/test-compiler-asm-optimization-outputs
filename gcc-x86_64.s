@@ -3819,20 +3819,22 @@ __cmpti2:
 	.cfi_startproc
 	mov	rax, rdx
 	mov	rdx, rcx
-	mov	ecx, 0
-	cmp	rsi, rdx
+	mov	rcx, rax
+	mov	rax, rdx
+	mov	edx, 0
+	cmp	rsi, rax
 	jl	.L683
-	mov	ecx, 2
+	mov	edx, 2
 	jg	.L683
-	mov	ecx, 0
-	cmp	rdi, rax
+	mov	edx, 0
+	cmp	rdi, rcx
 	jb	.L683
-	cmp	rax, rdi
-	setb	cl
-	movzx	ecx, cl
-	add	ecx, 1
+	cmp	rcx, rdi
+	setb	dl
+	movzx	edx, dl
+	add	edx, 1
 .L683:
-	mov	eax, ecx
+	mov	eax, edx
 	ret
 	.cfi_endproc
 .LFE143:
@@ -4112,42 +4114,40 @@ __mulddi3:
 __multi3:
 .LFB152:
 	.cfi_startproc
-	push	r14
-	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
 	push	r13
-	.cfi_def_cfa_offset 24
-	.cfi_offset 13, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
 	push	r12
-	.cfi_def_cfa_offset 32
-	.cfi_offset 12, -32
+	.cfi_def_cfa_offset 24
+	.cfi_offset 12, -24
 	push	rbp
-	.cfi_def_cfa_offset 40
-	.cfi_offset 6, -40
+	.cfi_def_cfa_offset 32
+	.cfi_offset 6, -32
 	push	rbx
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
+	sub	rsp, 8
 	.cfi_def_cfa_offset 48
-	.cfi_offset 3, -48
-	mov	rbp, rdi
+	mov	r12, rdi
 	mov	rbx, rsi
-	mov	r12, rdx
-	mov	r13, rcx
+	mov	r13, rdx
+	mov	rbp, rcx
 	mov	rsi, rdx
 	call	__mulddi3
-	imul	rbx, r12
-	mov	rcx, r13
-	imul	rcx, rbp
-	add	rbx, rcx
+	imul	rbx, r13
+	imul	rbp, r12
+	add	rbx, rbp
 	add	rbx, rdx
 	mov	rdx, rbx
-	pop	rbx
+	add	rsp, 8
 	.cfi_def_cfa_offset 40
-	pop	rbp
+	pop	rbx
 	.cfi_def_cfa_offset 32
-	pop	r12
+	pop	rbp
 	.cfi_def_cfa_offset 24
-	pop	r13
+	pop	r12
 	.cfi_def_cfa_offset 16
-	pop	r14
+	pop	r13
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
@@ -4484,21 +4484,23 @@ __ucmpti2:
 	.cfi_startproc
 	mov	rax, rdx
 	mov	rdx, rcx
-	mov	ecx, 0
-	cmp	rsi, rdx
+	mov	rcx, rax
+	mov	rax, rdx
+	mov	edx, 0
+	cmp	rsi, rax
 	jb	.L746
-	mov	ecx, 2
-	cmp	rdx, rsi
+	mov	edx, 2
+	cmp	rax, rsi
 	jb	.L746
-	mov	ecx, 0
-	cmp	rdi, rax
+	mov	edx, 0
+	cmp	rdi, rcx
 	jb	.L746
-	cmp	rax, rdi
-	setb	cl
-	movzx	ecx, cl
-	add	ecx, 1
+	cmp	rcx, rdi
+	setb	dl
+	movzx	edx, dl
+	add	edx, 1
 .L746:
-	mov	eax, ecx
+	mov	eax, edx
 	ret
 	.cfi_endproc
 .LFE165:

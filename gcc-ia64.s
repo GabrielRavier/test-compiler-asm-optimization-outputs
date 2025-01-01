@@ -2013,10 +2013,9 @@ imaxdiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r37
-	mov r15 = r8
+	mov r9 = r8
 	mov r8 = r34
 	;;
-	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2064,10 +2063,9 @@ ldiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r37
-	mov r15 = r8
+	mov r9 = r8
 	mov r8 = r34
 	;;
-	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -2115,10 +2113,9 @@ lldiv:
 	;;
 	br.call.sptk.many b0 = __moddi3#
 	mov r1 = r37
-	mov r15 = r8
+	mov r9 = r8
 	mov r8 = r34
 	;;
-	mov r9 = r15
 	mov ar.pfs = r36
 	mov b0 = r35
 	.restore sp
@@ -4721,19 +4718,17 @@ __ashlti3:
 .L620:
 	cmp4.eq p6, p7 = 0, r34
 	;;
-	(p7) addp4 r14 = r34, r0
-	(p7) mov r8 = r0
-	(p7) mov r9 = r0
+	(p7) addp4 r9 = r34, r0
 	;;
-	(p7) shl r8 = r32, r14
-	(p7) shl r14 = r33, r14
+	(p7) shl r8 = r32, r9
+	(p7) shl r9 = r33, r9
 	(p7) sub r34 = 64, r34
 	;;
 	(p7) addp4 r34 = r34, r0
 	;;
 	(p7) shr.u r32 = r32, r34
 	;;
-	(p7) or r9 = r14, r32
+	(p7) or r9 = r9, r32
 	(p6) mov r8 = r32
 	;;
 	(p6) mov r9 = r33
@@ -4808,30 +4803,28 @@ __ashrti3:
 	shr r9 = r33, 63
 	adds r34 = -64, r34
 	;;
-	sxt4 r34 = r34
+	sxt4 r8 = r34
 	;;
-	shr r8 = r33, r34
+	shr r8 = r33, r8
 .L632:
 	br.ret.sptk.many b0
 	;;
 .L630:
 	cmp4.eq p6, p7 = 0, r34
 	;;
-	(p7) sxt4 r14 = r34
-	(p7) mov r8 = r0
-	(p7) mov r9 = r0
+	(p7) sxt4 r9 = r34
 	;;
-	(p7) shr r9 = r33, r14
+	(p7) shr r9 = r33, r9
 	(p7) sub r14 = 64, r34
 	;;
 	(p7) addp4 r14 = r14, r0
 	;;
-	(p7) shl r14 = r33, r14
+	(p7) shl r33 = r33, r14
 	(p7) addp4 r34 = r34, r0
 	;;
-	(p7) shr.u r32 = r32, r34
+	(p7) shr.u r8 = r32, r34
 	;;
-	(p7) or r8 = r32, r14
+	(p7) or r8 = r8, r33
 	;;
 	(p6) mov r8 = r32
 	(p6) mov r9 = r33
@@ -5019,12 +5012,12 @@ __clzti2:
 	sub r16 = r0, r15
 	adds r14 = -1, r15
 	;;
-	and r14 = r33, r14
-	and r16 = r32, r16
+	and r33 = r33, r14
+	and r32 = r32, r16
 	;;
-	or r16 = r16, r14
+	or r32 = r32, r33
 	;;
-	setf.sig f6 = r16
+	setf.sig f6 = r32
 	;;
 	fcvt.xuf f6 = f6
 	;;
@@ -5210,10 +5203,10 @@ __ctzti2:
 	;;
 	sub r14 = r0, r8
 	;;
-	and r15 = r33, r14
+	and r33 = r33, r14
 	andcm r14 = r32, r14
 	;;
-	or r14 = r15, r14
+	or r14 = r33, r14
 	;;
 	adds r15 = -1, r14
 	;;
@@ -5242,11 +5235,11 @@ __ffsti2:
 	(p6) br.cond.dptk .L671
 	adds r14 = -1, r33
 	;;
-	andcm r14 = r14, r33
+	andcm r33 = r14, r33
 	;;
-	popcnt r14 = r14
+	popcnt r33 = r33
 	;;
-	adds r8 = 65, r14
+	adds r8 = 65, r33
 	br .L671
 	;;
 .L670:
@@ -5328,28 +5321,26 @@ __lshrti3:
 	mov r9 = r0
 	adds r34 = -64, r34
 	;;
-	addp4 r34 = r34, r0
+	addp4 r8 = r34, r0
 	;;
-	shr.u r8 = r33, r34
+	shr.u r8 = r33, r8
 .L681:
 	br.ret.sptk.many b0
 	;;
 .L679:
 	cmp4.eq p6, p7 = 0, r34
 	;;
-	(p7) addp4 r14 = r34, r0
-	(p7) mov r8 = r0
-	(p7) mov r9 = r0
+	(p7) addp4 r8 = r34, r0
 	;;
-	(p7) shr.u r9 = r33, r14
+	(p7) shr.u r9 = r33, r8
 	(p7) sub r34 = 64, r34
 	;;
 	(p7) addp4 r34 = r34, r0
 	;;
-	(p7) shl r34 = r33, r34
-	(p7) shr.u r32 = r32, r14
+	(p7) shl r33 = r33, r34
+	(p7) shr.u r8 = r32, r8
 	;;
-	(p7) or r8 = r32, r34
+	(p7) or r8 = r8, r33
 	;;
 	(p6) mov r8 = r32
 	(p6) mov r9 = r33
@@ -5496,58 +5487,57 @@ __muldi3_compiler_rt:
 __mulddi3:
 	.prologue
 	.body
-	addp4 r15 = 4294967295 - 0x100000000, r0
+	addp4 r16 = 4294967295 - 0x100000000, r0
 	;;
-	and r14 = r15, r32
+	and r14 = r16, r32
 	;;
 	setf.sig f8 = r14
-	and r14 = r15, r33
+	and r14 = r16, r33
 	;;
-	setf.sig f6 = r14
+	setf.sig f7 = r14
 	;;
-	xmpy.l f7 = f8, f6
+	xmpy.l f6 = f8, f7
 	;;
-	getf.sig r16 = f7
+	getf.sig r15 = f6
 	;;
-	shr.u r14 = r16, 32
-	and r16 = r15, r16
+	shr.u r14 = r15, 32
+	and r15 = r16, r15
 	shr.u r32 = r32, 32
 	;;
-	setf.sig f7 = r32
+	setf.sig f6 = r32
 	setf.sig f9 = r14
 	;;
-	xma.l f9 = f7, f6, f9
+	xma.l f9 = f6, f7, f9
 	;;
 	getf.sig r14 = f9
 	;;
 	shl r17 = r14, 32
 	;;
-	add r8 = r17, r16
-	shr.u r9 = r14, 32
+	add r15 = r17, r15
+	shr.u r18 = r14, 32
+	shr.u r14 = r17, 32
 	;;
-	shr.u r14 = r8, 32
-	and r15 = r8, r15
+	and r15 = r16, r15
 	shr.u r33 = r33, 32
 	;;
-	setf.sig f6 = r33
+	setf.sig f7 = r33
 	setf.sig f9 = r14
 	;;
-	xma.l f9 = f8, f6, f9
+	xma.l f9 = f8, f7, f9
 	;;
 	getf.sig r14 = f9
 	;;
-	shl r16 = r14, 32
-	;;
-	add r8 = r16, r15
+	shl r8 = r14, 32
 	shr.u r14 = r14, 32
 	;;
-	add r14 = r14, r9
+	add r14 = r14, r18
 	;;
 	setf.sig f8 = r14
 	;;
-	xma.l f8 = f7, f6, f8
+	xma.l f8 = f6, f7, f8
 	;;
 	getf.sig r9 = f8
+	add r8 = r8, r15
 	br.ret.sptk.many b0
 	;;
 	.endp __mulddi3#
@@ -5572,8 +5562,8 @@ __multi3:
 	setf.sig f8 = r32
 	;;
 	xmpy.l f6 = f7, f8
-	setf.sig f7 = r33
-	setf.sig f8 = r34
+	setf.sig f7 = r34
+	setf.sig f8 = r33
 	;;
 	xma.l f7 = f7, f8, f6
 	;;
@@ -5651,15 +5641,15 @@ __paritydi2:
 __parityti2:
 	.prologue
 	.body
-	xor r32 = r33, r32
+	xor r33 = r32, r33
 	;;
-	extr r14 = r32, 32, 32
+	extr r14 = r33, 32, 32
 	;;
-	xor r32 = r14, r32
+	xor r33 = r14, r33
 	;;
-	extr.u r14 = r32, 16, 16
+	extr.u r14 = r33, 16, 16
 	;;
-	xor r14 = r32, r14
+	xor r14 = r33, r14
 	;;
 	extr.u r15 = r14, 8, 24
 	;;
@@ -5799,12 +5789,12 @@ __popcountsi2:
 __popcountti2:
 	.prologue
 	.body
-	shrp r18 = r33, r32, 1
-	shr.u r19 = r33, 1
+	shrp r20 = r33, r32, 1
+	shr.u r21 = r33, 1
 	movl r14 = 6148914691236517205
 	;;
-	and r16 = r14, r18
-	and r17 = r14, r19
+	and r16 = r14, r20
+	and r17 = r14, r21
 	;;
 	sub r14 = r32, r16
 	;;

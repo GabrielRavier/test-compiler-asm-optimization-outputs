@@ -7,9 +7,9 @@
 make_ti:
 .LFB0:
 	.cfi_startproc
-	mov	x2, x1
-	mov	x1, x0
-	mov	x0, x2
+	mov	x2, x0
+	mov	x0, x1
+	mov	x1, x2
 	ret
 	.cfi_endproc
 .LFE0:
@@ -20,9 +20,9 @@ make_ti:
 make_tu:
 .LFB1:
 	.cfi_startproc
-	mov	x2, x1
-	mov	x1, x0
-	mov	x0, x2
+	mov	x2, x0
+	mov	x0, x1
+	mov	x1, x2
 	ret
 	.cfi_endproc
 .LFE1:
@@ -1510,8 +1510,7 @@ imaxdiv:
 	.cfi_startproc
 	mov	x2, x0
 	sdiv	x0, x0, x1
-	msub	x5, x0, x1, x2
-	mov	x1, x5
+	msub	x1, x0, x1, x2
 	ret
 	.cfi_endproc
 .LFE54:
@@ -1536,8 +1535,7 @@ ldiv:
 	.cfi_startproc
 	mov	x2, x0
 	sdiv	x0, x0, x1
-	msub	x5, x0, x1, x2
-	mov	x1, x5
+	msub	x1, x0, x1, x2
 	ret
 	.cfi_endproc
 .LFE56:
@@ -1562,8 +1560,7 @@ lldiv:
 	.cfi_startproc
 	mov	x2, x0
 	sdiv	x0, x0, x1
-	msub	x5, x0, x1, x2
-	mov	x1, x5
+	msub	x1, x0, x1, x2
 	ret
 	.cfi_endproc
 .LFE58:
@@ -3521,21 +3518,20 @@ __ashlti3:
 .LFB134:
 	.cfi_startproc
 	tbz	x2, 6, .L635
-	mov	x4, 0
+	mov	x3, 0
 	sub	w2, w2, #64
-	lsl	x5, x0, x2
+	lsl	x1, x0, x2
 .L636:
-	mov	x0, x4
-	mov	x1, x5
+	mov	x0, x3
 .L637:
 	ret
 .L635:
 	cbz	w2, .L637
-	lsl	x4, x0, x2
-	lsl	x3, x1, x2
+	lsl	x3, x0, x2
+	lsl	x1, x1, x2
 	neg	w2, w2
-	lsr	x1, x0, x2
-	orr	x5, x1, x3
+	lsr	x2, x0, x2
+	orr	x1, x2, x1
 	b	.L636
 	.cfi_endproc
 .LFE134:
@@ -3579,21 +3575,20 @@ __ashrti3:
 .LFB136:
 	.cfi_startproc
 	tbz	x2, 6, .L645
-	asr	x5, x1, 63
+	asr	x4, x1, 63
 	sub	w2, w2, #64
-	asr	x4, x1, x2
+	asr	x0, x1, x2
 .L646:
-	mov	x0, x4
-	mov	x1, x5
+	mov	x1, x4
 .L647:
 	ret
 .L645:
 	cbz	w2, .L647
-	asr	x5, x1, x2
+	asr	x4, x1, x2
 	neg	w3, w2
 	lsl	x3, x1, x3
-	lsr	x1, x0, x2
-	orr	x4, x3, x1
+	lsr	x0, x0, x2
+	orr	x0, x3, x0
 	b	.L646
 	.cfi_endproc
 .LFE136:
@@ -3691,13 +3686,11 @@ __clzsi2:
 __clzti2:
 .LFB140:
 	.cfi_startproc
-	mov	x2, x0
-	mov	x3, x1
 	cmp	x1, 0
-	csetm	x0, eq
-	csetm	x1, ne
-	and	x1, x1, x3
-	and	x0, x0, x2
+	csetm	x3, eq
+	csetm	x2, ne
+	and	x1, x2, x1
+	and	x0, x3, x0
 	orr	x0, x1, x0
 	clz	x0, x0
 	cset	w1, eq
@@ -3820,17 +3813,15 @@ __ctzsi2:
 __ctzti2:
 .LFB145:
 	.cfi_startproc
-	mov	x2, x0
-	mov	x3, x1
 	cmp	x0, 0
-	csetm	x1, eq
-	and	x0, x1, x3
-	bic	x1, x2, x1
-	orr	x1, x1, x0
-	rbit	x1, x1
-	clz	x1, x1
+	csetm	x2, eq
+	and	x1, x2, x1
+	bic	x2, x0, x2
+	orr	x2, x2, x1
+	rbit	x2, x2
+	clz	x2, x2
 	cset	w0, eq
-	add	w0, w1, w0, lsl 6
+	add	w0, w2, w0, lsl 6
 	ret
 	.cfi_endproc
 .LFE145:
@@ -3894,21 +3885,20 @@ __lshrti3:
 .LFB148:
 	.cfi_startproc
 	tbz	x2, 6, .L695
-	mov	x5, 0
+	mov	x4, 0
 	sub	w2, w2, #64
-	lsr	x4, x1, x2
+	lsr	x0, x1, x2
 .L696:
-	mov	x0, x4
-	mov	x1, x5
+	mov	x1, x4
 .L697:
 	ret
 .L695:
 	cbz	w2, .L697
-	lsr	x5, x1, x2
+	lsr	x4, x1, x2
 	neg	w3, w2
 	lsl	x3, x1, x3
-	lsr	x1, x0, x2
-	orr	x4, x3, x1
+	lsr	x0, x0, x2
+	orr	x0, x3, x0
 	b	.L696
 	.cfi_endproc
 .LFE148:
@@ -3992,23 +3982,20 @@ __muldi3_compiler_rt:
 __mulddi3:
 .LFB151:
 	.cfi_startproc
-	mov	x3, x1
-	and	x6, x0, 4294967295
-	and	x5, x1, 4294967295
-	mul	x2, x6, x5
-	and	x7, x2, 4294967295
-	lsr	x4, x0, 32
-	mul	x5, x4, x5
-	add	x2, x5, x2, lsr 32
-	add	x0, x7, x2, lsl 32
-	lsr	x1, x2, 32
-	lsr	x2, x0, 32
-	and	x5, x0, 4294967295
-	lsr	x3, x3, 32
-	madd	x2, x6, x3, x2
-	add	x0, x5, x2, lsl 32
-	add	x2, x1, x2, lsr 32
-	madd	x1, x4, x3, x2
+	and	x4, x0, 4294967295
+	and	x2, x1, 4294967295
+	mul	x5, x4, x2
+	lsr	x3, x0, 32
+	mul	x2, x3, x2
+	add	x2, x2, x5, lsr 32
+	lsr	x6, x2, 32
+	lsr	x1, x1, 32
+	mul	x4, x4, x1
+	add	x2, x4, w2, uxtw
+	lsl	x0, x2, 32
+	add	x2, x6, x2, lsr 32
+	add	x0, x0, w5, uxtw
+	madd	x1, x3, x1, x2
 	ret
 	.cfi_endproc
 .LFE151:
@@ -4024,30 +4011,30 @@ __multi3:
 	.cfi_offset 29, -48
 	.cfi_offset 30, -40
 	mov	x29, sp
-	stp	x20, x21, [sp, 16]
-	stp	x22, x23, [sp, 32]
-	.cfi_offset 20, -32
-	.cfi_offset 21, -24
-	.cfi_offset 22, -16
-	.cfi_offset 23, -8
-	mov	x22, x0
-	mov	x23, x1
-	mov	x20, x2
-	mov	x21, x3
+	stp	x19, x20, [sp, 16]
+	stp	x21, x22, [sp, 32]
+	.cfi_offset 19, -32
+	.cfi_offset 20, -24
+	.cfi_offset 21, -16
+	.cfi_offset 22, -8
+	mov	x21, x0
+	mov	x22, x1
+	mov	x19, x2
+	mov	x20, x3
 	mov	x1, x2
 	bl	__mulddi3
-	mul	x2, x21, x22
-	madd	x20, x23, x20, x2
-	add	x1, x20, x1
-	ldp	x20, x21, [sp, 16]
-	ldp	x22, x23, [sp, 32]
+	mul	x20, x20, x21
+	madd	x19, x19, x22, x20
+	add	x1, x19, x1
+	ldp	x19, x20, [sp, 16]
+	ldp	x21, x22, [sp, 32]
 	ldp	x29, x30, [sp], 48
 	.cfi_restore 30
 	.cfi_restore 29
-	.cfi_restore 22
-	.cfi_restore 23
-	.cfi_restore 20
 	.cfi_restore 21
+	.cfi_restore 22
+	.cfi_restore 19
+	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
 	.cfi_endproc
@@ -4070,8 +4057,7 @@ __negdi2:
 __negti2:
 .LFB154:
 	.cfi_startproc
-	negs	x2, x0
-	mov	x0, x2
+	negs	x0, x0
 	sbc	x1, xzr, x1
 	ret
 	.cfi_endproc
@@ -4102,15 +4088,15 @@ __paritydi2:
 __parityti2:
 .LFB156:
 	.cfi_startproc
-	eor	x0, x0, x1
-	asr	x1, x0, 32
-	eor	w0, w0, w1
-	eor	w0, w0, w0, lsr 16
-	eor	w0, w0, w0, lsr 8
-	eor	w0, w0, w0, lsr 4
-	and	w0, w0, 15
-	mov	w1, 27030
-	asr	w0, w1, w0
+	eor	x1, x1, x0
+	asr	x0, x1, 32
+	eor	w1, w1, w0
+	eor	w1, w1, w1, lsr 16
+	eor	w1, w1, w1, lsr 8
+	eor	w1, w1, w1, lsr 4
+	and	w1, w1, 15
+	mov	w0, 27030
+	asr	w0, w0, w1
 	and	w0, w0, 1
 	ret
 	.cfi_endproc
@@ -4183,32 +4169,30 @@ __popcountsi2:
 __popcountti2:
 .LFB160:
 	.cfi_startproc
-	lsr	x2, x0, 1
-	orr	x2, x2, x1, lsl 63
+	mov	x2, x0
+	extr	x0, x1, x0, 1
 	lsr	x3, x1, 1
-	and	x4, x2, 6148914691236517205
-	and	x5, x3, 6148914691236517205
-	subs	x0, x0, x4
-	sbc	x3, x1, x5
-	lsr	x6, x0, 2
-	orr	x6, x6, x3, lsl 62
-	lsr	x7, x3, 2
-	and	x4, x6, 3689348814741910323
-	and	x5, x7, 3689348814741910323
-	and	x6, x0, 3689348814741910323
-	and	x7, x3, 3689348814741910323
-	adds	x2, x4, x6
-	adc	x6, x5, x7
-	lsr	x8, x2, 4
-	orr	x8, x8, x6, lsl 60
-	lsr	x9, x6, 4
-	adds	x2, x8, x2
-	adc	x5, x6, x9
-	and	x0, x2, 1085102592571150095
-	and	x1, x5, 1085102592571150095
-	add	x2, x1, x0
-	lsr	x0, x2, 32
-	add	w0, w0, w2
+	and	x0, x0, 6148914691236517205
+	and	x3, x3, 6148914691236517205
+	subs	x2, x2, x0
+	sbc	x1, x1, x3
+	extr	x3, x1, x2, 2
+	lsr	x0, x1, 2
+	and	x3, x3, 3689348814741910323
+	and	x0, x0, 3689348814741910323
+	and	x2, x2, 3689348814741910323
+	and	x1, x1, 3689348814741910323
+	adds	x3, x3, x2
+	adc	x0, x0, x1
+	extr	x2, x0, x3, 4
+	lsr	x1, x0, 4
+	adds	x2, x2, x3
+	adc	x0, x0, x1
+	and	x2, x2, 1085102592571150095
+	and	x0, x0, 1085102592571150095
+	add	x0, x0, x2
+	lsr	x1, x0, 32
+	add	w0, w1, w0
 	add	w0, w0, w0, lsr 16
 	add	w0, w0, w0, lsr 8
 	and	w0, w0, 255
