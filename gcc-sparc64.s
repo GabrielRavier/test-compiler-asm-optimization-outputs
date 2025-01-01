@@ -1300,59 +1300,9 @@ atol:
 	.type	atoll, #function
 	.proc	05
 atoll:
-.L322:
-	ldub	[%o0], %g2
-	sll	%g2, 24, %g2
-	sra	%g2, 24, %g1
-	add	%g1, -9, %g3
-	cmp	%g3, 4
-	mov	0, %g3
-	movleu	%icc, 1, %g3
-	xor	%g1, 32, %g1
-	cmp	%g0, %g1
-	subx	%g0, -1, %g1
-	orcc	%g3, %g1, %g0
-	be,pn	%icc, .L306
-	 sra	%g2, 24, %g2
-	ba,pt	%xcc, .L322
-	 add	%o0, 1, %o0
-.L306:
-	cmp	%g2, 43
-	be,pn	%icc, .L308
-	 mov	0, %g4
-	cmp	%g2, 45
-	bne,a,pt %icc, .L323
-	 ldub	[%o0], %g1
-	mov	1, %g4
-.L308:
-	add	%o0, 1, %o0
-	ldub	[%o0], %g1
-.L323:
-	ldsb	[%o0], %g2
-	add	%g2, -48, %g2
-	cmp	%g2, 9
-	bgu,pn	%icc, .L311
-	 mov	0, %g3
-.L310:
-	sllx	%g3, 2, %g2
-	add	%g2, %g3, %g2
-	add	%g2, %g2, %g2
-	add	%o0, 1, %o0
-	add	%g1, -48, %g1
-	sllx	%g1, 56, %g1
-	srax	%g1, 56, %g1
-	sub	%g2, %g1, %g3
-	ldsb	[%o0], %g2
-	add	%g2, -48, %g2
-	cmp	%g2, 9
-	bleu,pt	%icc, .L310
-	 ldub	[%o0], %g1
-.L311:
-	sub	%g0, %g3, %g1
-	cmp	%g4, 0
-	move	%icc, %g1, %g3
-	jmp	%o7+8
-	 mov	%g3, %o0
+	or	%o7, %g0, %g1
+	call	atol, 0
+	 or	%g1, %g0, %o7
 	.size	atoll, .-atoll
 	.align 4
 	.align 32
@@ -1361,9 +1311,9 @@ atoll:
 	.proc	0120
 bsearch:
 	save	%sp, -176, %sp
-.L329:
-.L334:
-	brz,pn	%i2, .L325
+.L311:
+.L316:
+	brz,pn	%i2, .L307
 	 srlx	%i2, 1, %l0
 	mulx	%l0, %i3, %i5
 	add	%i1, %i5, %i5
@@ -1371,17 +1321,17 @@ bsearch:
 	call	%i4, 0
 	 mov	%i0, %o0
 	cmp	%o0, 0
-	bl,a,pn	%icc, .L329
+	bl,a,pn	%icc, .L311
 	 mov	%l0, %i2
-	ble,pn	%icc, .L324
+	ble,pn	%icc, .L306
 	 nop
 	add	%i5, %i3, %i1
 	add	%i2, -1, %i2
-	ba,pt	%xcc, .L334
+	ba,pt	%xcc, .L316
 	 sub	%i2, %l0, %i2
-.L325:
+.L307:
 	mov	0, %i5
-.L324:
+.L306:
 	return	%i7+8
 	 mov	%o5, %o0
 	.size	bsearch, .-bsearch
@@ -1393,19 +1343,19 @@ bsearch:
 bsearch_r:
 	save	%sp, -176, %sp
 	cmp	%i2, 0
-	bne,pt	%icc, .L339
+	bne,pt	%icc, .L321
 	 mov	%i2, %l0
-.L336:
+.L318:
 	mov	0, %i2
-.L335:
+.L317:
 	return	%i7+8
 	 mov	%o2, %o0
-.L338:
+.L320:
 	cmp	%l1, 0
-.L341:
-	be,pn	%icc, .L336
+.L323:
+	be,pn	%icc, .L318
 	 mov	%l1, %l0
-.L339:
+.L321:
 	sra	%l0, 1, %i2
 	mov	%i2, %l1
 	mulx	%i2, %i3, %i2
@@ -1415,13 +1365,13 @@ bsearch_r:
 	call	%i4, 0
 	 mov	%i0, %o0
 	cmp	%o0, 0
-	be,pn	%icc, .L335
+	be,pn	%icc, .L317
 	 nop
-	ble,pn	%icc, .L341
+	ble,pn	%icc, .L323
 	 cmp	%l1, 0
 	add	%i2, %i3, %i1
 	add	%l0, -1, %l0
-	ba,pt	%xcc, .L338
+	ba,pt	%xcc, .L320
 	 sra	%l0, 1, %l1
 	.size	bsearch_r, .-bsearch_r
 	.align 4
@@ -1526,7 +1476,7 @@ lldiv:
 	.type	wcschr, #function
 	.proc	0104
 wcschr:
-.L357:
+.L339:
 	lduw	[%o0], %g1
 	xor	%g1, %o1, %g2
 	cmp	%g0, %g2
@@ -1534,11 +1484,11 @@ wcschr:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be,pn	%icc, .L350
+	be,pn	%icc, .L332
 	 cmp	%g1, 0
-	ba,pt	%xcc, .L357
+	ba,pt	%xcc, .L339
 	 add	%o0, 4, %o0
-.L350:
+.L332:
 	jmp	%o7+8
 	 move	%icc, 0, %o0
 	.size	wcschr, .-wcschr
@@ -1559,10 +1509,10 @@ wcscmp:
 	cmp	%g0, %g3
 	addx	%g0, 0, %g2
 	andcc	%g1, %g2, %g0
-	be,pn	%icc, .L367
+	be,pn	%icc, .L349
 	 cmp	%g4, %g3
 	mov	4, %g1
-.L360:
+.L342:
 	lduw	[%o0+%g1], %g4
 	lduw	[%o1+%g1], %g3
 	cmp	%g0, %g4
@@ -1574,15 +1524,15 @@ wcscmp:
 	cmp	%g0, %g3
 	addx	%g0, 0, %g5
 	andcc	%g2, %g5, %g0
-	bne,pt	%icc, .L360
+	bne,pt	%icc, .L342
 	 add	%g1, 4, %g1
 	cmp	%g4, %g3
-.L367:
-	bl,pt	%icc, .L361
+.L349:
+	bl,pt	%icc, .L343
 	 mov	-1, %o0
 	mov	0, %o0
 	movg	%icc, 1, %o0
-.L361:
+.L343:
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
 	.size	wcscmp, .-wcscmp
@@ -1593,11 +1543,11 @@ wcscmp:
 	.proc	0104
 wcscpy:
 	mov	0, %g1
-.L369:
+.L351:
 	lduw	[%o1+%g1], %g2
 	st	%g2, [%o0+%g1]
 	cmp	%g2, 0
-	bne,pt	%icc, .L369
+	bne,pt	%icc, .L351
 	 add	%g1, 4, %g1
 	jmp	%o7+8
 	 nop
@@ -1610,15 +1560,15 @@ wcscpy:
 wcslen:
 	lduw	[%o0], %g1
 	cmp	%g1, 0
-	be,pn	%icc, .L372
+	be,pn	%icc, .L354
 	 mov	%o0, %g1
 	add	%g1, 4, %g1
-.L376:
+.L358:
 	lduw	[%g1], %g2
 	cmp	%g2, 0
-	bne,a,pt %icc, .L376
+	bne,a,pt %icc, .L358
 	 add	%g1, 4, %g1
-.L372:
+.L354:
 	sub	%g1, %o0, %o0
 	jmp	%o7+8
 	 srax	%o0, 2, %o0
@@ -1629,13 +1579,13 @@ wcslen:
 	.type	wcsncmp, #function
 	.proc	04
 wcsncmp:
-	ba,pt	%xcc, .L390
+	ba,pt	%xcc, .L372
 	 nop
-.L380:
+.L362:
 	add	%o0, 4, %o0
 	add	%o1, 4, %o1
-.L390:
-	brz,a,pn %o2, .L391
+.L372:
+	brz,a,pn %o2, .L373
 	 mov	0, %o0
 	lduw	[%o0], %g1
 	lduw	[%o1], %g3
@@ -1648,19 +1598,19 @@ wcsncmp:
 	cmp	%g0, %g3
 	addx	%g0, 0, %g2
 	andcc	%g1, %g2, %g0
-	bne,a,pt %icc, .L380
+	bne,a,pt %icc, .L362
 	 add	%o2, -1, %o2
-	brz,a,pt %o2, .L382
+	brz,a,pt %o2, .L364
 	 mov	0, %o0
 	lduw	[%o0], %g2
 	cmp	%g2, %g3
-	bl,pt	%icc, .L381
+	bl,pt	%icc, .L363
 	 mov	-1, %o0
 	mov	0, %o0
 	movg	%icc, 1, %o0
-.L382:
-.L381:
-.L391:
+.L364:
+.L363:
+.L373:
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
 	.size	wcsncmp, .-wcsncmp
@@ -1670,23 +1620,23 @@ wcsncmp:
 	.type	wmemchr, #function
 	.proc	0104
 wmemchr:
-	ba,pt	%xcc, .L401
+	ba,pt	%xcc, .L383
 	 nop
-.L395:
+.L377:
 	add	%o0, 4, %o0
-.L401:
-	brz,pn	%o2, .L398
+.L383:
+	brz,pn	%o2, .L380
 	 nop
 	lduw	[%o0], %g1
 	cmp	%g1, %o1
-	bne,a,pt %icc, .L395
+	bne,a,pt %icc, .L377
 	 add	%o2, -1, %o2
-	brz,pn	%o2, .L398
+	brz,pn	%o2, .L380
 	 nop
-.L392:
+.L374:
 	jmp	%o7+8
 	 nop
-.L398:
+.L380:
 	jmp	%o7+8
 	 mov	0, %o0
 	.size	wmemchr, .-wmemchr
@@ -1696,29 +1646,29 @@ wmemchr:
 	.type	wmemcmp, #function
 	.proc	04
 wmemcmp:
-	ba,pt	%xcc, .L415
+	ba,pt	%xcc, .L397
 	 nop
-.L405:
+.L387:
 	add	%o0, 4, %o0
 	add	%o1, 4, %o1
-.L415:
-	brz,a,pn %o2, .L416
+.L397:
+	brz,a,pn %o2, .L398
 	 mov	0, %o0
 	lduw	[%o0], %g2
 	lduw	[%o1], %g1
 	cmp	%g2, %g1
-	be,a,pt	%icc, .L405
+	be,a,pt	%icc, .L387
 	 add	%o2, -1, %o2
-	brz,a,pt %o2, .L407
+	brz,a,pt %o2, .L389
 	 mov	0, %o0
 	cmp	%g2, %g1
-	bl,pt	%icc, .L406
+	bl,pt	%icc, .L388
 	 mov	-1, %o0
 	mov	0, %o0
 	movg	%icc, 1, %o0
-.L407:
-.L406:
-.L416:
+.L389:
+.L388:
+.L398:
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
 	.size	wmemcmp, .-wmemcmp
@@ -1729,13 +1679,13 @@ wmemcmp:
 	.proc	0104
 wmemcpy:
 	save	%sp, -176, %sp
-	brz,pn	%i2, .L422
+	brz,pn	%i2, .L404
 	 nop
 	sllx	%i2, 2, %o2
 	mov	%i1, %o1
 	call	memcpy, 0
 	 mov	%i0, %o0
-.L422:
+.L404:
 	return	%i7+8
 	 nop
 	.size	wmemcpy, .-wmemcpy
@@ -1746,37 +1696,37 @@ wmemcpy:
 	.proc	0104
 wmemmove:
 	cmp	%o0, %o1
-	be,pn	%xcc, .L437
+	be,pn	%xcc, .L419
 	 nop
 	sub	%o0, %o1, %g2
 	sllx	%o2, 2, %g3
 	cmp	%g2, %g3
-	blu,pt	%xcc, .L425
+	blu,pt	%xcc, .L407
 	 add	%o2, -1, %g1
-	brz,pn	%o2, .L438
+	brz,pn	%o2, .L420
 	 mov	0, %g2
-.L426:
+.L408:
 	lduw	[%o1+%g2], %g3
 	st	%g3, [%o0+%g2]
 	add	%g1, -1, %g1
 	cmp	%g1, -1
-	bne,pt	%xcc, .L426
+	bne,pt	%xcc, .L408
 	 add	%g2, 4, %g2
-.L438:
+.L420:
 	jmp	%o7+8
 	 nop
-.L425:
-	brz,pn	%o2, .L437
+.L407:
+	brz,pn	%o2, .L419
 	 nop
 	sllx	%g1, 2, %g1
 	lduw	[%o1+%g1], %g2
-.L436:
+.L418:
 	st	%g2, [%o0+%g1]
 	add	%g1, -4, %g1
 	cmp	%g1, -4
-	bne,a,pt %xcc, .L436
+	bne,a,pt %xcc, .L418
 	 lduw	[%o1+%g1], %g2
-.L437:
+.L419:
 	jmp	%o7+8
 	 nop
 	.size	wmemmove, .-wmemmove
@@ -1786,16 +1736,16 @@ wmemmove:
 	.type	wmemset, #function
 	.proc	0104
 wmemset:
-	brz,pn	%o2, .L446
+	brz,pn	%o2, .L428
 	 add	%o2, -1, %g1
 	mov	%o0, %g2
-.L441:
+.L423:
 	add	%g2, 4, %g2
 	add	%g1, -1, %g1
 	cmp	%g1, -1
-	bne,pt	%xcc, .L441
+	bne,pt	%xcc, .L423
 	 st	%o1, [%g2-4]
-.L446:
+.L428:
 	jmp	%o7+8
 	 nop
 	.size	wmemset, .-wmemset
@@ -1806,34 +1756,34 @@ wmemset:
 	.proc	020
 bcopy:
 	cmp	%o0, %o1
-	bgeu,pt	%xcc, .L448
+	bgeu,pt	%xcc, .L430
 	 nop
-	brz,pn	%o2, .L462
+	brz,pn	%o2, .L444
 	 nop
 	add	%o0, -1, %o0
 	add	%o1, -1, %o1
 	ldub	[%o0+%o2], %g1
-.L460:
+.L442:
 	stb	%g1, [%o1+%o2]
 	add	%o2, -1, %o2
-	brnz,a,pt %o2, .L460
+	brnz,a,pt %o2, .L442
 	 ldub	[%o0+%o2], %g1
 	jmp	%o7+8
 	 nop
-.L448:
-	be,pn	%xcc, .L462
+.L430:
+	be,pn	%xcc, .L444
 	 nop
-	brz,pn	%o2, .L462
+	brz,pn	%o2, .L444
 	 nop
 	mov	0, %g1
 	ldub	[%o0+%g1], %g2
-.L461:
+.L443:
 	stb	%g2, [%o1+%g1]
 	add	%g1, 1, %g1
 	cmp	%o2, %g1
-	bne,a,pt %xcc, .L461
+	bne,a,pt %xcc, .L443
 	 ldub	[%o0+%g1], %g2
-.L462:
+.L444:
 	jmp	%o7+8
 	 nop
 	.size	bcopy, .-bcopy
@@ -2049,15 +1999,15 @@ bswap_64:
 ffs:
 	mov	0, %g1
 	srl	%o0, %g1, %g2
-.L482:
+.L464:
 	andcc	%g2, 1, %g0
-	bne,pn	%xcc, .L479
+	bne,pn	%xcc, .L461
 	 add	%g1, 1, %g1
 	cmp	%g1, 32
-	bne,pt	%icc, .L482
+	bne,pt	%icc, .L464
 	 srl	%o0, %g1, %g2
 	mov	0, %g1
-.L479:
+.L461:
 	jmp	%o7+8
 	 sra	%g1, 0, %o0
 	.size	ffs, .-ffs
@@ -2067,19 +2017,19 @@ ffs:
 	.type	libiberty_ffs, #function
 	.proc	04
 libiberty_ffs:
-	brz,pn	%o0, .L484
+	brz,pn	%o0, .L466
 	 mov	0, %g2
 	andcc	%o0, 1, %g2
-	bne,pn	%icc, .L484
+	bne,pn	%icc, .L466
 	 nop
 	mov	1, %g2
-.L485:
+.L467:
 	sra	%o0, 1, %g1
 	sra	%g1, 0, %o0
 	andcc	%g1, 1, %g0
-	be,pt	%xcc, .L485
+	be,pt	%xcc, .L467
 	 add	%g2, 1, %g2
-.L484:
+.L466:
 	jmp	%o7+8
 	 sra	%g2, 0, %o0
 	.size	libiberty_ffs, .-libiberty_ffs
@@ -2100,14 +2050,14 @@ gl_isinff:
 	sethi	%hi(.LC0), %g1
 	ld	[%g1+%lo(.LC0)], %f8
 	fcmpes	%fcc2, %f1, %f8
-	fbl,pt	%fcc2, .L491
+	fbl,pt	%fcc2, .L473
 	 mov	1, %o0
 	sethi	%hi(.LC1), %g1
 	ld	[%g1+%lo(.LC1)], %f8
 	fcmpes	%fcc3, %f1, %f8
 	mov	0, %o0
 	movg	%fcc3, 1, %o0
-.L491:
+.L473:
 	jmp	%o7+8
 	 and	%o0, 1, %o0
 	.size	gl_isinff, .-gl_isinff
@@ -2130,14 +2080,14 @@ gl_isinfd:
 	sethi	%hi(.LC4), %g1
 	ldd	[%g1+%lo(.LC4)], %f8
 	fcmped	%fcc0, %f0, %f8
-	fbl,pt	%fcc0, .L494
+	fbl,pt	%fcc0, .L476
 	 mov	1, %o0
 	sethi	%hi(.LC5), %g1
 	ldd	[%g1+%lo(.LC5)], %f8
 	fcmped	%fcc1, %f0, %f8
 	mov	0, %o0
 	movg	%fcc1, 1, %o0
-.L494:
+.L476:
 	jmp	%o7+8
 	 and	%o0, 1, %o0
 	.size	gl_isinfd, .-gl_isinfd
@@ -2174,7 +2124,7 @@ gl_isinfl:
 	add	%fp, 2015, %o1
 	call	_Qp_flt, 0
 	 add	%fp, 2031, %o0
-	brnz,pt	%o0, .L497
+	brnz,pt	%o0, .L479
 	 mov	1, %i0
 	ldd	[%fp+1967], %f0
 	ldd	[%fp+1975], %f2
@@ -2190,7 +2140,7 @@ gl_isinfl:
 	 add	%fp, 1999, %o0
 	mov	0, %i0
 	movrne	%o0, 1, %i0
-.L497:
+.L479:
 	return	%i7+8
 	 and	%o0, 1, %o0
 	.size	gl_isinfl, .-gl_isinfl
@@ -2224,34 +2174,34 @@ _Qp_itoq:
 	.proc	06
 ldexpf:
 	fcmps	%fcc2, %f1, %f1
-	fbu,pn	%fcc2, .L501
+	fbu,pn	%fcc2, .L483
 	 nop
 	fadds	%f1, %f1, %f8
 	fcmps	%fcc3, %f8, %f1
-	fbe,pt	%fcc3, .L501
+	fbe,pt	%fcc3, .L483
 	 nop
 	cmp	%o1, 0
 	sethi	%hi(.LC13), %g1
 	ld	[%g1+%lo(.LC13)], %f9
 	sethi	%hi(.LC12), %g1
 	ld	[%g1+%lo(.LC12)], %f8
-	ba,pt	%xcc, .L504
+	ba,pt	%xcc, .L486
 	 fmovsl	%icc, %f9, %f8
-.L503:
+.L485:
 	srl	%o1, 31, %g1
-.L512:
+.L494:
 	add	%g1, %o1, %o1
 	sra	%o1, 1, %o1
-	brz,pn	%o1, .L501
+	brz,pn	%o1, .L483
 	 nop
 	fmuls	%f8, %f8, %f8
-.L504:
+.L486:
 	andcc	%o1, 1, %g0
-	bne,a,pt %xcc, .L503
+	bne,a,pt %xcc, .L485
 	 fmuls	%f1, %f8, %f1
-	ba,pt	%xcc, .L512
+	ba,pt	%xcc, .L494
 	 srl	%o1, 31, %g1
-.L501:
+.L483:
 	jmp	%o7+8
 	 fmovs	%f1, %f0
 	.size	ldexpf, .-ldexpf
@@ -2272,34 +2222,34 @@ ldexpf:
 	.proc	07
 ldexp:
 	fcmpd	%fcc0, %f0, %f0
-	fbu,pn	%fcc0, .L526
+	fbu,pn	%fcc0, .L508
 	 nop
 	faddd	%f0, %f0, %f8
 	fcmpd	%fcc1, %f8, %f0
-	fbe,pt	%fcc1, .L526
+	fbe,pt	%fcc1, .L508
 	 nop
 	cmp	%o1, 0
 	sethi	%hi(.LC17), %g1
 	ldd	[%g1+%lo(.LC17)], %f10
 	sethi	%hi(.LC16), %g1
 	ldd	[%g1+%lo(.LC16)], %f8
-	ba,pt	%xcc, .L517
+	ba,pt	%xcc, .L499
 	 fmovdl	%icc, %f10, %f8
-.L516:
+.L498:
 	srl	%o1, 31, %g1
-.L525:
+.L507:
 	add	%g1, %o1, %o1
 	sra	%o1, 1, %o1
-	brz,pn	%o1, .L526
+	brz,pn	%o1, .L508
 	 nop
 	fmuld	%f8, %f8, %f8
-.L517:
+.L499:
 	andcc	%o1, 1, %g0
-	bne,a,pt %xcc, .L516
+	bne,a,pt %xcc, .L498
 	 fmuld	%f0, %f8, %f0
-	ba,pt	%xcc, .L525
+	ba,pt	%xcc, .L507
 	 srl	%o1, 31, %g1
-.L526:
+.L508:
 	jmp	%o7+8
 	 nop
 	.size	ldexp, .-ldexp
@@ -2336,7 +2286,7 @@ ldexpl:
 	call	_Qp_cmp, 0
 	 add	%fp, 2031, %o0
 	cmp	%o0, 3
-	be,pn	%xcc, .L528
+	be,pn	%xcc, .L510
 	 ldx	[%fp+1727], %g2
 	ldx	[%fp+1735], %g3
 	stx	%g2, [%fp+1983]
@@ -2358,23 +2308,23 @@ ldexpl:
 	add	%fp, 1935, %o1
 	call	_Qp_feq, 0
 	 add	%fp, 1951, %o0
-	brnz,pt	%o0, .L542
+	brnz,pt	%o0, .L524
 	 ldd	[%fp+1727], %f0
 	sethi	%hi(.LC20), %g1
 	ldx	[%g1+%lo(.LC20)], %i4
 	cmp	%i2, 0
-	bge,pt	%icc, .L531
+	bge,pt	%icc, .L513
 	 ldx	[%g1+%lo(.LC20+8)], %i5
 	sethi	%hi(.LC21), %g1
 	ldx	[%g1+%lo(.LC21)], %i4
-	ba,pt	%xcc, .L531
+	ba,pt	%xcc, .L513
 	 ldx	[%g1+%lo(.LC21+8)], %i5
-.L530:
+.L512:
 	srl	%i2, 31, %g1
-.L543:
+.L525:
 	add	%g1, %i2, %i2
 	sra	%i2, 1, %i2
-	brz,pn	%i2, .L528
+	brz,pn	%i2, .L510
 	 add	%fp, 1743, %o2
 	stx	%i4, [%fp+1759]
 	stx	%i5, [%fp+1767]
@@ -2385,9 +2335,9 @@ ldexpl:
 	 add	%fp, 1775, %o0
 	ldx	[%fp+1775], %i4
 	ldx	[%fp+1783], %i5
-.L531:
+.L513:
 	andcc	%i2, 1, %g0
-	be,pt	%xcc, .L543
+	be,pt	%xcc, .L525
 	 srl	%i2, 31, %g1
 	ldx	[%fp+1727], %g2
 	ldx	[%fp+1735], %g3
@@ -2402,11 +2352,11 @@ ldexpl:
 	ldx	[%fp+1871], %g2
 	ldx	[%fp+1879], %g3
 	stx	%g2, [%fp+1727]
-	ba,pt	%xcc, .L530
+	ba,pt	%xcc, .L512
 	 stx	%g3, [%fp+1735]
-.L528:
+.L510:
 	ldd	[%fp+1727], %f0
-.L542:
+.L524:
 	ldd	[%fp+1735], %f2
 	return	%i7+8
 	 nop
@@ -2417,19 +2367,19 @@ ldexpl:
 	.type	memxor, #function
 	.proc	0120
 memxor:
-	brz,pn	%o2, .L552
+	brz,pn	%o2, .L534
 	 nop
 	mov	0, %g1
 	ldub	[%o0+%g1], %g2
-.L551:
+.L533:
 	ldub	[%o1+%g1], %g3
 	xor	%g2, %g3, %g2
 	stb	%g2, [%o0+%g1]
 	add	%g1, 1, %g1
 	cmp	%g1, %o2
-	bne,a,pt %xcc, .L551
+	bne,a,pt %xcc, .L533
 	 ldub	[%o0+%g1], %g2
-.L552:
+.L534:
 	jmp	%o7+8
 	 nop
 	.size	memxor, .-memxor
@@ -2441,31 +2391,31 @@ memxor:
 strncat:
 	ldsb	[%o0], %g1
 	cmp	%g1, 0
-	be,pn	%icc, .L567
+	be,pn	%icc, .L549
 	 mov	%o0, %g1
 	add	%g1, 1, %g1
-.L568:
+.L550:
 	ldsb	[%g1], %g2
 	cmp	%g2, 0
-	bne,a,pt %icc, .L568
+	bne,a,pt %icc, .L550
 	 add	%g1, 1, %g1
-	ba,pt	%xcc, .L567
+	ba,pt	%xcc, .L549
 	 nop
-.L558:
+.L540:
 	add	%g1, 1, %g1
 	add	%o2, -1, %o2
-.L567:
-	brz,a,pn %o2, .L569
+.L549:
+	brz,a,pn %o2, .L551
 	 stb	%g0, [%g1]
 	ldub	[%o1], %g2
 	stb	%g2, [%g1]
 	sll	%g2, 24, %g2
 	cmp	%g2, 0
-	bne,a,pt %icc, .L558
+	bne,a,pt %icc, .L540
 	 add	%o1, 1, %o1
-	brz,a,pt %o2, .L569
+	brz,a,pt %o2, .L551
 	 stb	%g0, [%g1]
-.L569:
+.L551:
 	jmp	%o7+8
 	 nop
 	.size	strncat, .-strncat
@@ -2475,21 +2425,21 @@ strncat:
 	.type	strnlen, #function
 	.proc	017
 strnlen:
-	brz,pn	%o1, .L570
+	brz,pn	%o1, .L552
 	 mov	0, %g1
 	ldsb	[%o0+%g1], %g2
-.L577:
+.L559:
 	cmp	%g2, 0
-	bne,a,pn %icc, .L573
+	bne,a,pn %icc, .L555
 	 add	%g1, 1, %g1
-.L570:
+.L552:
 	jmp	%o7+8
 	 mov	%g1, %o0
-.L573:
+.L555:
 	cmp	%o1, %g1
-	bne,a,pt %xcc, .L577
+	bne,a,pt %xcc, .L559
 	 ldsb	[%o0+%g1], %g2
-	ba,pt	%xcc, .L570
+	ba,pt	%xcc, .L552
 	 nop
 	.size	strnlen, .-strnlen
 	.align 4
@@ -2498,28 +2448,28 @@ strnlen:
 	.type	strpbrk, #function
 	.proc	0102
 strpbrk:
-.L586:
+.L568:
 	ldub	[%o0], %g3
 	sll	%g3, 24, %g3
 	cmp	%g3, 0
-	be,pn	%icc, .L583
+	be,pn	%icc, .L565
 	 nop
 	mov	%o1, %g1
 	sra	%g3, 24, %g3
-.L582:
+.L564:
 	ldsb	[%g1], %g2
 	cmp	%g2, 0
-	be,pn	%icc, .L587
+	be,pn	%icc, .L569
 	 cmp	%g2, %g3
-	bne,pt	%icc, .L582
+	bne,pt	%icc, .L564
 	 add	%g1, 1, %g1
-.L580:
+.L562:
 	jmp	%o7+8
 	 nop
-.L587:
-	ba,pt	%xcc, .L586
+.L569:
+	ba,pt	%xcc, .L568
 	 add	%o0, 1, %o0
-.L583:
+.L565:
 	jmp	%o7+8
 	 mov	0, %o0
 	.size	strpbrk, .-strpbrk
@@ -2531,12 +2481,12 @@ strpbrk:
 strrchr:
 	mov	%o0, %g1
 	mov	0, %o0
-.L590:
+.L572:
 	ldsb	[%g1], %g2
 	cmp	%g2, %o1
 	move	%icc, %g1, %o0
 	cmp	%g2, 0
-	bne,pt	%icc, .L590
+	bne,pt	%icc, .L572
 	 add	%g1, 1, %g1
 	jmp	%o7+8
 	 nop
@@ -2550,31 +2500,31 @@ strstr:
 	ldub	[%o1], %o4
 	sll	%o4, 24, %o4
 	cmp	%o4, 0
-	be,pn	%icc, .L594
+	be,pn	%icc, .L576
 	 mov	%o1, %g1
 	add	%g1, 1, %g1
-.L615:
+.L597:
 	ldsb	[%g1], %g2
 	cmp	%g2, 0
-	bne,a,pt %icc, .L615
+	bne,a,pt %icc, .L597
 	 add	%g1, 1, %g1
-.L594:
+.L576:
 	sub	%g1, %o1, %g1
-	brz,pn	%g1, .L617
+	brz,pn	%g1, .L599
 	 nop
 	sra	%o4, 24, %o4
 	add	%o1, -1, %o3
-	ba,pt	%xcc, .L602
+	ba,pt	%xcc, .L584
 	 add	%o3, %g1, %o3
-.L601:
-	brz,pn	%o0, .L617
+.L583:
+	brz,pn	%o0, .L599
 	 nop
 	ldub	[%o0], %g5
 	mov	%o1, %g2
 	cmp	%g5, 0
-	be,pn	%icc, .L599
+	be,pn	%icc, .L581
 	 mov	%o0, %o5
-.L598:
+.L580:
 	ldub	[%g2], %g1
 	cmp	%g0, %g1
 	addx	%g0, 0, %g3
@@ -2586,30 +2536,30 @@ strstr:
 	mov	0, %g1
 	movrne	%g4, 1, %g1
 	andcc	%g3, %g1, %g0
-	be,a,pn	%icc, .L616
+	be,a,pn	%icc, .L598
 	 ldub	[%g2], %g1
 	add	%o5, 1, %o5
 	ldub	[%o5], %g5
 	cmp	%g5, 0
-	bne,pt	%icc, .L598
+	bne,pt	%icc, .L580
 	 add	%g2, 1, %g2
-.L599:
+.L581:
 	ldub	[%g2], %g1
-.L616:
+.L598:
 	cmp	%g1, %g5
-	be,pn	%icc, .L617
+	be,pn	%icc, .L599
 	 nop
 	add	%o0, 1, %o0
-.L602:
+.L584:
 	ldsb	[%o0], %g1
 	cmp	%g1, %o4
-	be,pn	%icc, .L601
+	be,pn	%icc, .L583
 	 cmp	%g1, 0
-	bne,pt	%icc, .L602
+	bne,pt	%icc, .L584
 	 add	%o0, 1, %o0
 	jmp	%o7+8
 	 mov	0, %o0
-.L617:
+.L599:
 	jmp	%o7+8
 	 nop
 	.size	strstr, .-strstr
@@ -2621,23 +2571,23 @@ strstr:
 copysign:
 	fzero	%f8
 	fcmped	%fcc2, %f0, %f8
-	fbl,a,pn %fcc2, .L627
+	fbl,a,pn %fcc2, .L609
 	 fcmped	%fcc3, %f2, %f8
-.L619:
+.L601:
 	fzero	%f8
 	fcmped	%fcc0, %f0, %f8
-	fbule,pn %fcc0, .L628
+	fbule,pn %fcc0, .L610
 	 nop
 	fcmped	%fcc1, %f2, %f8
-	fbl,pn	%fcc1, .L621
+	fbl,pn	%fcc1, .L603
 	 nop
-.L628:
+.L610:
 	jmp	%o7+8
 	 nop
-.L627:
-	fbule,pt %fcc3, .L619
+.L609:
+	fbule,pt %fcc3, .L601
 	 nop
-.L621:
+.L603:
 	jmp	%o7+8
 	 fnegd	%f0, %f0
 	.size	copysign, .-copysign
@@ -2647,53 +2597,53 @@ copysign:
 	.type	memmem, #function
 	.proc	0120
 memmem:
-	brz,pn	%o3, .L655
+	brz,pn	%o3, .L637
 	 mov	%o0, %o5
 	cmp	%o1, %o3
-	blu,pn	%xcc, .L639
+	blu,pn	%xcc, .L621
 	 sub	%o1, %o3, %o4
 	add	%o0, %o4, %o4
 	cmp	%o0, %o4
-	bgu,pn	%xcc, .L655
+	bgu,pn	%xcc, .L637
 	 mov	0, %o0
-	ba,pt	%xcc, .L636
+	ba,pt	%xcc, .L618
 	 ldsb	[%o2], %o1
-.L653:
-	brz,pt	%g1, .L654
+.L635:
+	brz,pt	%g1, .L636
 	 nop
-	be,pn	%icc, .L654
+	be,pn	%icc, .L636
 	 nop
-.L631:
+.L613:
 	cmp	%o5, %o4
-	bgu,pn	%xcc, .L655
+	bgu,pn	%xcc, .L637
 	 mov	0, %o0
-.L636:
+.L618:
 	ldub	[%o5], %g1
 	mov	%o5, %o0
 	sll	%g1, 24, %g1
 	sra	%g1, 24, %g1
 	cmp	%g1, %o1
-	bne,pt	%icc, .L631
+	bne,pt	%icc, .L613
 	 add	%o5, 1, %o5
 	add	%o3, -1, %g1
-	brz,pn	%g1, .L655
+	brz,pn	%g1, .L637
 	 add	%o2, 1, %g2
 	mov	%o5, %g3
-.L632:
+.L614:
 	ldub	[%g3], %g5
 	ldub	[%g2], %g4
 	cmp	%g5, %g4
-	bne,pn	%icc, .L653
+	bne,pn	%icc, .L635
 	 add	%g3, 1, %g3
 	add	%g1, -1, %g1
-	brnz,pt	%g1, .L632
+	brnz,pt	%g1, .L614
 	 add	%g2, 1, %g2
-.L655:
+.L637:
 	jmp	%o7+8
 	 nop
-.L639:
+.L621:
 	mov	0, %o0
-.L654:
+.L636:
 	jmp	%o7+8
 	 nop
 	.size	memmem, .-memmem
@@ -2704,13 +2654,13 @@ memmem:
 	.proc	0120
 mempcpy:
 	save	%sp, -176, %sp
-	brz,pn	%i2, .L657
+	brz,pn	%i2, .L639
 	 nop
 	mov	%i2, %o2
 	mov	%i1, %o1
 	call	memmove, 0
 	 mov	%i0, %o0
-.L657:
+.L639:
 	return	%i7+8
 	 add	%o0, %o2, %o0
 	.size	mempcpy, .-mempcpy
@@ -2732,33 +2682,33 @@ mempcpy:
 frexp:
 	fzero	%f8
 	fcmped	%fcc2, %f0, %f8
-	fbl,a,pn %fcc2, .L682
+	fbl,a,pn %fcc2, .L664
 	 fnegd	%f0, %f0
 	mov	0, %g2
-.L662:
+.L644:
 	sethi	%hi(.LC24), %g3
 	ldd	[%g3+%lo(.LC24)], %f8
 	fcmped	%fcc3, %f0, %f8
-	fbul,pn	%fcc3, .L681
+	fbul,pn	%fcc3, .L663
 	 mov	0, %g1
 	sethi	%hi(.LC25), %g4
 	ldd	[%g4+%lo(.LC25)], %f10
-.L666:
+.L648:
 	fmuld	%f0, %f10, %f0
 	fcmped	%fcc0, %f0, %f8
-	fbge,pt	%fcc0, .L666
+	fbge,pt	%fcc0, .L648
 	 add	%g1, 1, %g1
-.L667:
+.L649:
 	st	%g1, [%o1]
-.L683:
+.L665:
 	fnegd	%f0, %f8
 	cmp	%g2, 0
 	jmp	%o7+8
 	 fmovdne	%icc, %f8, %f0
-.L682:
-	ba,pt	%xcc, .L662
+.L664:
+	ba,pt	%xcc, .L644
 	 mov	1, %g2
-.L681:
+.L663:
 	fzero	%f8
 	fcmpd	%fcc1, %f0, %f8
 	mov	0, %g4
@@ -2769,14 +2719,14 @@ frexp:
 	mov	0, %g3
 	movl	%fcc2, 1, %g3
 	andcc	%g4, %g3, %g0
-	be,pt	%icc, .L667
+	be,pt	%icc, .L649
 	 mov	0, %g1
-.L668:
+.L650:
 	faddd	%f0, %f0, %f0
 	fcmped	%fcc3, %f0, %f8
-	fbl,pt	%fcc3, .L668
+	fbl,pt	%fcc3, .L650
 	 add	%g1, -1, %g1
-	ba,pt	%xcc, .L683
+	ba,pt	%xcc, .L665
 	 st	%g1, [%o1]
 	.size	frexp, .-frexp
 	.align 4
@@ -2786,17 +2736,17 @@ frexp:
 	.proc	05
 __muldi3:
 	mov	%o0, %g2
-	brz,pn	%g2, .L690
+	brz,pn	%g2, .L672
 	 mov	0, %o0
-.L686:
+.L668:
 	and	%g2, 1, %g1
 	sub	%g0, %g1, %g1
 	and	%g1, %o1, %g1
 	add	%o0, %g1, %o0
 	srlx	%g2, 1, %g2
-	brnz,pt	%g2, .L686
+	brnz,pt	%g2, .L668
 	 add	%o1, %o1, %o1
-.L690:
+.L672:
 	jmp	%o7+8
 	 nop
 	.size	__muldi3, .-__muldi3
@@ -2807,11 +2757,11 @@ __muldi3:
 	.proc	016
 udivmodsi4:
 	cmp	%o1, %o0
-	bgeu,pn	%icc, .L700
+	bgeu,pn	%icc, .L682
 	 mov	1, %g1
 	cmp	%o1, 0
-.L706:
-	bl,pn	%icc, .L705
+.L688:
+	bl,pn	%icc, .L687
 	 cmp	%g1, 0
 	add	%o1, %o1, %g2
 	srl	%g2, 0, %o1
@@ -2821,30 +2771,30 @@ udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	bne,pt	%icc, .L706
+	bne,pt	%icc, .L688
 	 cmp	%o1, 0
 	cmp	%g1, 0
-.L705:
-	be,pn	%icc, .L695
+.L687:
+	be,pn	%icc, .L677
 	 mov	0, %g2
-.L700:
-	ba,pt	%xcc, .L694
+.L682:
+	ba,pt	%xcc, .L676
 	 mov	0, %g2
-.L697:
+.L679:
 	srl	%g1, 1, %g1
-.L707:
+.L689:
 	cmp	%g1, 0
-	be,pn	%icc, .L695
+	be,pn	%icc, .L677
 	 srlx	%o1, 1, %o1
-.L694:
+.L676:
 	cmp	%o0, %o1
-	blu,a,pt %icc, .L707
+	blu,a,pt %icc, .L689
 	 srl	%g1, 1, %g1
 	sub	%o0, %o1, %o0
 	srl	%o0, 0, %o0
-	ba,pt	%xcc, .L697
+	ba,pt	%xcc, .L679
 	 or	%g2, %g1, %g2
-.L695:
+.L677:
 	mov	%o0, %g1
 	movre	%o2, %g2, %g1
 	jmp	%o7+8
@@ -2860,13 +2810,13 @@ __clrsbqi2:
 	sra	%i0, 7, %g2
 	xor	%g2, %i0, %g1
 	cmp	%g2, %i0
-	be,pn	%icc, .L709
+	be,pn	%icc, .L691
 	 mov	7, %o0
 	sll	%g1, 8, %o0
 	call	__clzdi2, 0
 	 srl	%o0, 0, %o0
 	add	%o0, -33, %o0
-.L709:
+.L691:
 	sra	%o0, 0, %i0
 	return	%i7+8
 	 nop
@@ -2881,12 +2831,12 @@ __clrsbdi2:
 	srax	%i0, 63, %g2
 	xor	%i0, %g2, %o0
 	cmp	%i0, %g2
-	be,pn	%xcc, .L712
+	be,pn	%xcc, .L694
 	 mov	63, %g1
 	call	__clzdi2, 0
 	 nop
 	add	%o0, -1, %g1
-.L712:
+.L694:
 	return	%i7+8
 	 sra	%g1, 0, %o0
 	.size	__clrsbdi2, .-__clrsbdi2
@@ -2896,18 +2846,18 @@ __clrsbdi2:
 	.type	__mulsi3, #function
 	.proc	016
 __mulsi3:
-	brz,pn	%o0, .L715
+	brz,pn	%o0, .L697
 	 mov	0, %g2
-.L716:
+.L698:
 	and	%o0, 1, %g1
 	sub	%g0, %g1, %g1
 	and	%g1, %o1, %g1
 	add	%g2, %g1, %g2
 	srlx	%o0, 1, %o0
 	add	%o1, %o1, %o1
-	brnz,pt	%o0, .L716
+	brnz,pt	%o0, .L698
 	 srl	%o1, 0, %o1
-.L715:
+.L697:
 	jmp	%o7+8
 	 srl	%g2, 0, %o0
 	.size	__mulsi3, .-__mulsi3
@@ -2919,52 +2869,52 @@ __mulsi3:
 __cmovd:
 	srl	%o2, 3, %g4
 	cmp	%o0, %o1
-	blu,pt	%xcc, .L720
+	blu,pt	%xcc, .L702
 	 and	%o2, -8, %g1
 	add	%o1, %o2, %g2
 	cmp	%o0, %g2
-	bgu,pt	%xcc, .L735
+	bgu,pt	%xcc, .L717
 	 cmp	%g4, 0
 	add	%o2, -1, %g1
-	brz,pn	%o2, .L741
+	brz,pn	%o2, .L723
 	 srl	%g1, 0, %g1
 	ldub	[%o1+%g1], %g2
-.L736:
+.L718:
 	stb	%g2, [%o0+%g1]
 	add	%g1, -1, %g1
 	cmp	%g1, -1
-	bne,a,pt %xcc, .L736
+	bne,a,pt %xcc, .L718
 	 ldub	[%o1+%g1], %g2
-.L741:
+.L723:
 	jmp	%o7+8
 	 nop
-.L720:
+.L702:
 	cmp	%g4, 0
-.L735:
-	be,pn	%icc, .L737
+.L717:
+	be,pn	%icc, .L719
 	 cmp	%g1, %o2
 	sllx	%g4, 3, %g4
 	mov	0, %g2
 	ldx	[%o1+%g2], %g3
-.L738:
+.L720:
 	stx	%g3, [%o0+%g2]
 	add	%g2, 8, %g2
 	cmp	%g4, %g2
-	bne,a,pt %xcc, .L738
+	bne,a,pt %xcc, .L720
 	 ldx	[%o1+%g2], %g3
 	cmp	%g1, %o2
-.L737:
-	bgeu,pn	%icc, .L740
+.L719:
+	bgeu,pn	%icc, .L722
 	 nop
 	srl	%g1, 0, %g1
 	ldub	[%o1+%g1], %g2
-.L739:
+.L721:
 	stb	%g2, [%o0+%g1]
 	add	%g1, 1, %g1
 	cmp	%g1, %o2
-	blu,a,pt %icc, .L739
+	blu,a,pt %icc, .L721
 	 ldub	[%o1+%g1], %g2
-.L740:
+.L722:
 	jmp	%o7+8
 	 nop
 	.size	__cmovd, .-__cmovd
@@ -2975,45 +2925,45 @@ __cmovd:
 	.proc	020
 __cmovh:
 	cmp	%o0, %o1
-	blu,pt	%xcc, .L743
+	blu,pt	%xcc, .L725
 	 srl	%o2, 1, %g3
 	add	%o1, %o2, %g1
 	cmp	%o0, %g1
-	bgu,pt	%xcc, .L759
+	bgu,pt	%xcc, .L741
 	 cmp	%g3, 0
 	add	%o2, -1, %g1
-	brz,pn	%o2, .L764
+	brz,pn	%o2, .L746
 	 srl	%g1, 0, %g1
 	ldub	[%o1+%g1], %g2
-.L760:
+.L742:
 	stb	%g2, [%o0+%g1]
 	add	%g1, -1, %g1
 	cmp	%g1, -1
-	bne,a,pt %xcc, .L760
+	bne,a,pt %xcc, .L742
 	 ldub	[%o1+%g1], %g2
-.L764:
+.L746:
 	jmp	%o7+8
 	 nop
-.L763:
+.L745:
 	jmp	%o7+8
 	 nop
-.L743:
+.L725:
 	cmp	%g3, 0
-.L759:
-	be,pn	%icc, .L761
+.L741:
+	be,pn	%icc, .L743
 	 andcc	%o2, 1, %g0
 	add	%g3, %g3, %g3
 	mov	0, %g1
 	lduh	[%o1+%g1], %g2
-.L762:
+.L744:
 	sth	%g2, [%o0+%g1]
 	add	%g1, 2, %g1
 	cmp	%g3, %g1
-	bne,a,pt %xcc, .L762
+	bne,a,pt %xcc, .L744
 	 lduh	[%o1+%g1], %g2
 	andcc	%o2, 1, %g0
-.L761:
-	be,pt	%xcc, .L763
+.L743:
+	be,pt	%xcc, .L745
 	 nop
 	add	%o2, -1, %o2
 	srl	%o2, 0, %o2
@@ -3029,52 +2979,52 @@ __cmovh:
 __cmovw:
 	srl	%o2, 2, %g4
 	cmp	%o0, %o1
-	blu,pt	%xcc, .L766
+	blu,pt	%xcc, .L748
 	 and	%o2, -4, %g1
 	add	%o1, %o2, %g2
 	cmp	%o0, %g2
-	bgu,pt	%xcc, .L781
+	bgu,pt	%xcc, .L763
 	 cmp	%g4, 0
 	add	%o2, -1, %g1
-	brz,pn	%o2, .L787
+	brz,pn	%o2, .L769
 	 srl	%g1, 0, %g1
 	ldub	[%o1+%g1], %g2
-.L782:
+.L764:
 	stb	%g2, [%o0+%g1]
 	add	%g1, -1, %g1
 	cmp	%g1, -1
-	bne,a,pt %xcc, .L782
+	bne,a,pt %xcc, .L764
 	 ldub	[%o1+%g1], %g2
-.L787:
+.L769:
 	jmp	%o7+8
 	 nop
-.L766:
+.L748:
 	cmp	%g4, 0
-.L781:
-	be,pn	%icc, .L783
+.L763:
+	be,pn	%icc, .L765
 	 cmp	%g1, %o2
 	sllx	%g4, 2, %g4
 	mov	0, %g2
 	lduw	[%o1+%g2], %g3
-.L784:
+.L766:
 	st	%g3, [%o0+%g2]
 	add	%g2, 4, %g2
 	cmp	%g4, %g2
-	bne,a,pt %xcc, .L784
+	bne,a,pt %xcc, .L766
 	 lduw	[%o1+%g2], %g3
 	cmp	%g1, %o2
-.L783:
-	bgeu,pn	%icc, .L786
+.L765:
+	bgeu,pn	%icc, .L768
 	 nop
 	srl	%g1, 0, %g1
 	ldub	[%o1+%g1], %g2
-.L785:
+.L767:
 	stb	%g2, [%o0+%g1]
 	add	%g1, 1, %g1
 	cmp	%g1, %o2
-	blu,a,pt %icc, .L785
+	blu,a,pt %icc, .L767
 	 ldub	[%o1+%g1], %g2
-.L786:
+.L768:
 	jmp	%o7+8
 	 nop
 	.size	__cmovw, .-__cmovw
@@ -3125,21 +3075,21 @@ __uitof:
 	.proc	07
 __ulltod:
 	add	%sp, -144, %sp
-	brlz,pn	%o0, .L796
+	brlz,pn	%o0, .L778
 	 srlx	%o0, 1, %g1
 	stx	%o0, [%sp+2183]
 	ldd	[%sp+2183], %f8
 	fxtod	%f8, %f0
-.L797:
+.L779:
 	jmp	%o7+8
 	 add	%sp, 144, %sp
-.L796:
+.L778:
 	and	%o0, 1, %o0
 	or	%g1, %o0, %g1
 	stx	%g1, [%sp+2183]
 	ldd	[%sp+2183], %f8
 	fxtod	%f8, %f0
-	ba,pt	%xcc, .L797
+	ba,pt	%xcc, .L779
 	 faddd	%f0, %f0, %f0
 	.size	__ulltod, .-__ulltod
 	.align 4
@@ -3149,21 +3099,21 @@ __ulltod:
 	.proc	06
 __ulltof:
 	add	%sp, -144, %sp
-	brlz,pn	%o0, .L799
+	brlz,pn	%o0, .L781
 	 srlx	%o0, 1, %g1
 	stx	%o0, [%sp+2183]
 	ldd	[%sp+2183], %f8
 	fxtos	%f8, %f0
-.L800:
+.L782:
 	jmp	%o7+8
 	 add	%sp, 144, %sp
-.L799:
+.L781:
 	and	%o0, 1, %o0
 	or	%g1, %o0, %g1
 	stx	%g1, [%sp+2183]
 	ldd	[%sp+2183], %f8
 	fxtos	%f8, %f0
-	ba,pt	%xcc, .L800
+	ba,pt	%xcc, .L782
 	 fadds	%f0, %f0, %f0
 	.size	__ulltof, .-__ulltof
 	.align 4
@@ -3188,16 +3138,16 @@ __clzhi2:
 	mov	0, %g1
 	mov	15, %g3
 	sub	%g3, %g1, %g2
-.L806:
+.L788:
 	sra	%o0, %g2, %g2
 	andcc	%g2, 1, %g0
-	bne,pn	%xcc, .L803
+	bne,pn	%xcc, .L785
 	 nop
 	add	%g1, 1, %g1
 	cmp	%g1, 16
-	bne,a,pt %icc, .L806
+	bne,a,pt %icc, .L788
 	 sub	%g3, %g1, %g2
-.L803:
+.L785:
 	jmp	%o7+8
 	 sra	%g1, 0, %o0
 	.size	__clzhi2, .-__clzhi2
@@ -3209,15 +3159,15 @@ __clzhi2:
 __ctzhi2:
 	mov	0, %g1
 	sra	%o0, %g1, %g2
-.L811:
+.L793:
 	andcc	%g2, 1, %g0
-	bne,pn	%xcc, .L808
+	bne,pn	%xcc, .L790
 	 nop
 	add	%g1, 1, %g1
 	cmp	%g1, 16
-	bne,a,pt %icc, .L811
+	bne,a,pt %icc, .L793
 	 sra	%o0, %g1, %g2
-.L808:
+.L790:
 	jmp	%o7+8
 	 sra	%g1, 0, %o0
 	.size	__ctzhi2, .-__ctzhi2
@@ -3236,21 +3186,21 @@ __fixunssfsi:
 	sethi	%hi(.LC28), %g1
 	ld	[%g1+%lo(.LC28)], %f8
 	fcmpes	%fcc0, %f1, %f8
-	fbge,a,pn %fcc0, .L818
+	fbge,a,pn %fcc0, .L800
 	 fsubs	%f1, %f8, %f1
 	fstox	%f1, %f8
 	std	%f8, [%sp+2183]
-.L812:
+.L794:
 	ldx	[%sp+2183], %o0
 	jmp	%o7+8
 	 add	%sp, 144, %sp
-.L818:
+.L800:
 	fstox	%f1, %f8
 	std	%f8, [%sp+2183]
 	sethi	%hi(32768), %g1
 	ldx	[%sp+2183], %g2
 	add	%g2, %g1, %g1
-	ba,pt	%xcc, .L812
+	ba,pt	%xcc, .L794
 	 stx	%g1, [%sp+2183]
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align 4
@@ -3261,12 +3211,12 @@ __fixunssfsi:
 __parityhi2:
 	mov	0, %g3
 	mov	0, %g1
-.L820:
+.L802:
 	sra	%o0, %g1, %g2
 	and	%g2, 1, %g2
 	add	%g1, 1, %g1
 	cmp	%g1, 16
-	bne,pt	%icc, .L820
+	bne,pt	%icc, .L802
 	 add	%g3, %g2, %g3
 	jmp	%o7+8
 	 and	%g3, 1, %o0
@@ -3279,12 +3229,12 @@ __parityhi2:
 __popcounthi2:
 	mov	0, %g3
 	mov	0, %g1
-.L823:
+.L805:
 	sra	%o0, %g1, %g2
 	and	%g2, 1, %g2
 	add	%g1, 1, %g1
 	cmp	%g1, 16
-	bne,pt	%icc, .L823
+	bne,pt	%icc, .L805
 	 add	%g3, %g2, %g3
 	jmp	%o7+8
 	 sra	%g3, 0, %o0
@@ -3295,18 +3245,18 @@ __popcounthi2:
 	.type	__mulsi3_iq2000, #function
 	.proc	016
 __mulsi3_iq2000:
-	brz,pn	%o0, .L826
+	brz,pn	%o0, .L808
 	 mov	0, %g2
-.L827:
+.L809:
 	and	%o0, 1, %g1
 	sub	%g0, %g1, %g1
 	and	%g1, %o1, %g1
 	add	%g2, %g1, %g2
-	srlx	%o0, 1, %o0
-	add	%o1, %o1, %o1
-	brnz,pt	%o0, .L827
-	 srl	%o1, 0, %o1
-.L826:
+	srl	%o0, 1, %o0
+	cmp	%o0, 0
+	bne,pt	%icc, .L809
+	 add	%o1, %o1, %o1
+.L808:
 	jmp	%o7+8
 	 srl	%g2, 0, %o0
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -3316,21 +3266,21 @@ __mulsi3_iq2000:
 	.type	__mulsi3_lm32, #function
 	.proc	016
 __mulsi3_lm32:
-	brz,pn	%o0, .L831
+	brz,pn	%o0, .L813
 	 mov	0, %g2
-	brz,pn	%o1, .L837
+	brz,pn	%o1, .L819
 	 nop
-.L832:
+.L814:
 	and	%o1, 1, %g1
 	sub	%g0, %g1, %g1
 	and	%g1, %o0, %g1
 	add	%g2, %g1, %g2
 	add	%o0, %o0, %o0
 	srlx	%o1, 1, %o1
-	brnz,pt	%o1, .L832
+	brnz,pt	%o1, .L814
 	 srl	%o0, 0, %o0
-.L831:
-.L837:
+.L813:
+.L819:
 	jmp	%o7+8
 	 srl	%g2, 0, %o0
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -3341,11 +3291,11 @@ __mulsi3_lm32:
 	.proc	016
 __udivmodsi4:
 	cmp	%o1, %o0
-	bgeu,pn	%icc, .L847
+	bgeu,pn	%icc, .L829
 	 mov	1, %g1
 	cmp	%o1, 0
-.L853:
-	bl,pn	%icc, .L852
+.L835:
+	bl,pn	%icc, .L834
 	 cmp	%g1, 0
 	add	%o1, %o1, %g2
 	srl	%g2, 0, %o1
@@ -3355,30 +3305,30 @@ __udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	bne,pt	%icc, .L853
+	bne,pt	%icc, .L835
 	 cmp	%o1, 0
 	cmp	%g1, 0
-.L852:
-	be,pn	%icc, .L842
+.L834:
+	be,pn	%icc, .L824
 	 mov	0, %g2
-.L847:
-	ba,pt	%xcc, .L841
+.L829:
+	ba,pt	%xcc, .L823
 	 mov	0, %g2
-.L844:
+.L826:
 	srl	%g1, 1, %g1
-.L854:
+.L836:
 	cmp	%g1, 0
-	be,pn	%icc, .L842
+	be,pn	%icc, .L824
 	 srlx	%o1, 1, %o1
-.L841:
+.L823:
 	cmp	%o0, %o1
-	blu,a,pt %icc, .L854
+	blu,a,pt %icc, .L836
 	 srl	%g1, 1, %g1
 	sub	%o0, %o1, %o0
 	srl	%o0, 0, %o0
-	ba,pt	%xcc, .L844
+	ba,pt	%xcc, .L826
 	 or	%g2, %g1, %g2
-.L842:
+.L824:
 	mov	%o0, %g1
 	movre	%o2, %g2, %g1
 	jmp	%o7+8
@@ -3391,11 +3341,11 @@ __udivmodsi4:
 	.proc	04
 __mspabi_cmpf:
 	fcmpes	%fcc1, %f1, %f3
-	fbl,pn	%fcc1, .L856
+	fbl,pn	%fcc1, .L838
 	 mov	-1, %o0
 	mov	0, %o0
 	movg	%fcc1, 1, %o0
-.L856:
+.L838:
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
@@ -3406,11 +3356,11 @@ __mspabi_cmpf:
 	.proc	04
 __mspabi_cmpd:
 	fcmped	%fcc3, %f0, %f2
-	fbl,pn	%fcc3, .L859
+	fbl,pn	%fcc3, .L841
 	 mov	-1, %o0
 	mov	0, %o0
 	movg	%fcc3, 1, %o0
-.L859:
+.L841:
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
@@ -3439,13 +3389,13 @@ __mspabi_mpyull:
 	.proc	04
 __mulhi3:
 	cmp	%o1, 0
-	bl,pn	%icc, .L873
+	bl,pn	%icc, .L855
 	 mov	0, %g5
-.L864:
-	brz,pn	%o1, .L865
+.L846:
+	brz,pn	%o1, .L847
 	 mov	0, %g3
 	mov	1, %g2
-.L866:
+.L848:
 	and	%o1, 1, %g1
 	sub	%g0, %g1, %g1
 	and	%g1, %o0, %g1
@@ -3460,18 +3410,18 @@ __mulhi3:
 	mov	0, %g1
 	movleu	%icc, 1, %g1
 	andcc	%g4, %g1, %g0
-	bne,pt	%icc, .L866
+	bne,pt	%icc, .L848
 	 add	%g2, 1, %g2
-.L865:
+.L847:
 	sub	%g0, %g3, %g1
 	cmp	%g5, 0
 	movne	%icc, %g1, %g3
 	jmp	%o7+8
 	 sra	%g3, 0, %o0
-.L873:
+.L855:
 	sub	%g0, %o1, %o1
 	sra	%o1, 0, %o1
-	ba,pt	%xcc, .L864
+	ba,pt	%xcc, .L846
 	 mov	1, %g5
 	.size	__mulhi3, .-__mulhi3
 	.align 4
@@ -3480,20 +3430,20 @@ __mulhi3:
 	.type	__divsi3, #function
 	.proc	05
 __divsi3:
-	brlz,pn	%o0, .L892
+	brlz,pn	%o0, .L874
 	 mov	0, %o5
-.L875:
-	brlz,a,pn %o1, .L893
+.L857:
+	brlz,a,pn %o1, .L875
 	 sub	%g0, %o1, %o1
-.L876:
+.L858:
 	mov	%o0, %g3
 	mov	%o1, %g1
 	cmp	%o0, %o1
-	bleu,pn	%icc, .L886
+	bleu,pn	%icc, .L868
 	 mov	1, %g2
 	cmp	%g1, 0
-.L896:
-	bl,pn	%icc, .L895
+.L878:
+	bl,pn	%icc, .L877
 	 cmp	%g2, 0
 	add	%g1, %g1, %g1
 	add	%g2, %g2, %g2
@@ -3502,36 +3452,36 @@ __divsi3:
 	cmp	%g0, %g2
 	addx	%g0, 0, %g4
 	andcc	%g5, %g4, %g0
-	bne,pt	%icc, .L896
+	bne,pt	%icc, .L878
 	 cmp	%g1, 0
 	cmp	%g2, 0
-.L895:
-	be,pn	%icc, .L880
+.L877:
+	be,pn	%icc, .L862
 	 mov	0, %o0
-.L886:
-	ba,pt	%xcc, .L879
+.L868:
+	ba,pt	%xcc, .L861
 	 mov	0, %o0
-.L892:
+.L874:
 	sub	%g0, %o0, %o0
-	ba,pt	%xcc, .L875
+	ba,pt	%xcc, .L857
 	 mov	1, %o5
-.L893:
-	ba,pt	%xcc, .L876
+.L875:
+	ba,pt	%xcc, .L858
 	 xor	%o5, 1, %o5
-.L894:
+.L876:
 	or	%o0, %g2, %o0
 	srl	%g2, 1, %g2
-.L897:
-	cmp	%g2, 0
-	be,pn	%icc, .L880
-	 srl	%g1, 1, %g1
 .L879:
+	cmp	%g2, 0
+	be,pn	%icc, .L862
+	 srl	%g1, 1, %g1
+.L861:
 	cmp	%g3, %g1
-	blu,a,pt %icc, .L897
+	blu,a,pt %icc, .L879
 	 srl	%g2, 1, %g2
-	ba,pt	%xcc, .L894
+	ba,pt	%xcc, .L876
 	 sub	%g3, %g1, %g3
-.L880:
+.L862:
 	srl	%o0, 0, %o0
 	sub	%g0, %o0, %g1
 	cmp	%o5, 0
@@ -3544,20 +3494,20 @@ __divsi3:
 	.type	__modsi3, #function
 	.proc	05
 __modsi3:
-	brlz,pn	%o0, .L916
+	brlz,pn	%o0, .L898
 	 mov	0, %o5
-.L899:
+.L881:
 	mov	%o0, %g3
 	srax	%o1, 63, %g1
 	xor	%g1, %o1, %o1
 	sub	%o1, %g1, %o1
 	mov	%o1, %g1
 	cmp	%o0, %o1
-	bleu,pn	%icc, .L911
+	bleu,pn	%icc, .L893
 	 mov	1, %g2
 	cmp	%g1, 0
-.L918:
-	bl,pn	%icc, .L917
+.L900:
+	bl,pn	%icc, .L899
 	 cmp	%g2, 0
 	add	%g1, %g1, %g1
 	add	%g2, %g2, %g2
@@ -3566,24 +3516,24 @@ __modsi3:
 	cmp	%g0, %g2
 	addx	%g0, 0, %g4
 	andcc	%g5, %g4, %g0
-	bne,a,pt %icc, .L918
+	bne,a,pt %icc, .L900
 	 cmp	%g1, 0
-	ba,pt	%xcc, .L917
-	 cmp	%g2, 0
-.L916:
-	sub	%g0, %o0, %o0
 	ba,pt	%xcc, .L899
+	 cmp	%g2, 0
+.L898:
+	sub	%g0, %o0, %o0
+	ba,pt	%xcc, .L881
 	 mov	1, %o5
-.L911:
+.L893:
 	sub	%g3, %g1, %g4
-.L919:
+.L901:
 	cmp	%g3, %g1
 	movgeu	%icc, %g4, %g3
 	srl	%g2, 1, %g2
 	srl	%g1, 1, %g1
 	cmp	%g2, 0
-.L917:
-	bne,pt	%icc, .L919
+.L899:
+	bne,pt	%icc, .L901
 	 sub	%g3, %g1, %g4
 	srl	%g3, 0, %o0
 	sub	%g0, %o0, %g1
@@ -3598,12 +3548,12 @@ __modsi3:
 	.proc	015
 __udivmodhi4:
 	cmp	%o1, %o0
-	bgeu,pn	%icc, .L922
+	bgeu,pn	%icc, .L904
 	 mov	1, %g1
 	sll	%o1, 16, %g2
-.L935:
+.L917:
 	cmp	%g2, 0
-	bl,pn	%icc, .L922
+	bl,pn	%icc, .L904
 	 add	%g1, %g1, %g2
 	sllx	%o1, 49, %o1
 	srlx	%o1, 48, %o1
@@ -3614,37 +3564,37 @@ __udivmodhi4:
 	cmp	%g0, %g2
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	bne,pt	%icc, .L935
+	bne,pt	%icc, .L917
 	 sll	%o1, 16, %g2
-.L922:
+.L904:
 	sll	%g1, 16, %g2
 	cmp	%g2, 0
-	bne,pt	%icc, .L923
+	bne,pt	%icc, .L905
 	 mov	0, %g3
 	mov	%g1, %g3
-.L924:
+.L906:
 	mov	%o0, %g1
 	movre	%o2, %g3, %g1
 	mov	%g1, %g3
 	sllx	%g3, 48, %o0
 	jmp	%o7+8
 	 srlx	%o0, 48, %o0
-.L926:
+.L908:
 	srl	%g2, 17, %g2
-.L936:
+.L918:
 	mov	%g2, %g1
 	cmp	%g2, 0
-	be,pn	%icc, .L924
+	be,pn	%icc, .L906
 	 srlx	%o1, 1, %o1
 	sll	%g1, 16, %g2
-.L923:
+.L905:
 	cmp	%o0, %o1
-	blu,a,pt %icc, .L936
+	blu,a,pt %icc, .L918
 	 srl	%g2, 17, %g2
 	sub	%o0, %o1, %o0
 	sllx	%o0, 48, %o0
 	srlx	%o0, 48, %o0
-	ba,pt	%xcc, .L926
+	ba,pt	%xcc, .L908
 	 or	%g1, %g3, %g3
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align 4
@@ -3655,11 +3605,11 @@ __udivmodhi4:
 __udivmodsi4_libgcc:
 	mov	1, %g1
 	cmp	%o1, %o0
-	bgeu,pn	%xcc, .L946
+	bgeu,pn	%xcc, .L928
 	 sethi	%hi(2147483648), %g4
 	and	%o1, %g4, %g2
-.L951:
-	brnz,pn	%g2, .L939
+.L933:
+	brnz,pn	%g2, .L921
 	 mov	0, %g3
 	add	%o1, %o1, %o1
 	add	%g1, %g1, %g1
@@ -3667,27 +3617,27 @@ __udivmodsi4_libgcc:
 	movgu	%xcc, 1, %g2
 	movrne	%g1, 1, %g3
 	andcc	%g2, %g3, %g0
-	bne,a,pt %icc, .L951
+	bne,a,pt %icc, .L933
 	 and	%o1, %g4, %g2
-.L939:
-	brz,pn	%g1, .L941
+.L921:
+	brz,pn	%g1, .L923
 	 mov	0, %g2
-.L946:
-	ba,pt	%xcc, .L940
+.L928:
+	ba,pt	%xcc, .L922
 	 mov	0, %g2
-.L943:
+.L925:
 	srlx	%g1, 1, %g1
-.L952:
-	brz,pn	%g1, .L941
+.L934:
+	brz,pn	%g1, .L923
 	 srlx	%o1, 1, %o1
-.L940:
+.L922:
 	cmp	%o0, %o1
-	blu,a,pt %xcc, .L952
+	blu,a,pt %xcc, .L934
 	 srlx	%g1, 1, %g1
 	sub	%o0, %o1, %o0
-	ba,pt	%xcc, .L943
+	ba,pt	%xcc, .L925
 	 or	%g2, %g1, %g2
-.L941:
+.L923:
 	jmp	%o7+8
 	 movre	%o2, %g2, %o0
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -3698,26 +3648,26 @@ __udivmodsi4_libgcc:
 	.proc	05
 __ashldi3:
 	andcc	%o1, 32, %g0
-	be,pt	%xcc, .L954
+	be,pt	%xcc, .L936
 	 mov	%o0, %g1
 	sll	%o0, %o1, %g1
 	mov	0, %o0
-.L955:
+.L937:
 	sllx	%g1, 32, %g1
 	srl	%o0, 0, %o0
 	or	%o0, %g1, %o0
-.L959:
+.L941:
 	jmp	%o7+8
 	 nop
-.L954:
-	brz,pn	%o1, .L959
+.L936:
+	brz,pn	%o1, .L941
 	 nop
 	sll	%o0, %o1, %o0
 	sub	%g0, %o1, %g2
 	srl	%g1, %g2, %g2
 	srax	%g1, 32, %g1
 	sll	%g1, %o1, %g1
-	ba,pt	%xcc, .L955
+	ba,pt	%xcc, .L937
 	 or	%g2, %g1, %g1
 	.size	__ashldi3, .-__ashldi3
 	.align 4
@@ -3727,22 +3677,22 @@ __ashldi3:
 	.proc	05
 __ashlti3:
 	andcc	%o2, 64, %g0
-	be,pt	%xcc, .L961
+	be,pt	%xcc, .L943
 	 mov	0, %g1
 	sllx	%o1, %o2, %o0
-.L962:
+.L944:
 	mov	%g1, %o1
-.L965:
+.L947:
 	jmp	%o7+8
 	 nop
-.L961:
-	brz,pn	%o2, .L965
+.L943:
+	brz,pn	%o2, .L947
 	 nop
 	sllx	%o1, %o2, %g1
 	sub	%g0, %o2, %g2
 	srlx	%o1, %g2, %o1
 	sllx	%o0, %o2, %o0
-	ba,pt	%xcc, .L962
+	ba,pt	%xcc, .L944
 	 or	%o1, %o0, %o0
 	.size	__ashlti3, .-__ashlti3
 	.align 4
@@ -3752,27 +3702,27 @@ __ashlti3:
 	.proc	05
 __ashrdi3:
 	andcc	%o1, 32, %g0
-	be,pt	%xcc, .L967
+	be,pt	%xcc, .L949
 	 mov	%o0, %g1
 	srax	%o0, 32, %g1
 	sra	%g1, 31, %o0
 	sra	%g1, %o1, %g1
-.L968:
+.L950:
 	srl	%g1, 0, %g1
 	sllx	%o0, 32, %o0
 	or	%o0, %g1, %o0
-.L972:
+.L954:
 	jmp	%o7+8
 	 nop
-.L967:
-	brz,pn	%o1, .L972
+.L949:
+	brz,pn	%o1, .L954
 	 nop
 	srax	%o0, 32, %g2
 	sra	%g2, %o1, %o0
 	sub	%g0, %o1, %g3
 	sll	%g2, %g3, %g2
 	srl	%g1, %o1, %g1
-	ba,pt	%xcc, .L968
+	ba,pt	%xcc, .L950
 	 or	%g2, %g1, %g1
 	.size	__ashrdi3, .-__ashrdi3
 	.align 4
@@ -3782,22 +3732,22 @@ __ashrdi3:
 	.proc	05
 __ashrti3:
 	andcc	%o2, 64, %g0
-	be,pt	%xcc, .L974
+	be,pt	%xcc, .L956
 	 srax	%o0, 63, %g1
 	srax	%o0, %o2, %o1
-.L975:
+.L957:
 	mov	%g1, %o0
-.L978:
+.L960:
 	jmp	%o7+8
 	 nop
-.L974:
-	brz,pn	%o2, .L978
+.L956:
+	brz,pn	%o2, .L960
 	 nop
 	srax	%o0, %o2, %g1
 	sub	%g0, %o2, %g2
 	sllx	%o0, %g2, %o0
 	srlx	%o1, %o2, %o1
-	ba,pt	%xcc, .L975
+	ba,pt	%xcc, .L957
 	 or	%o0, %o1, %o1
 	.size	__ashrti3, .-__ashrti3
 	.align 4
@@ -3932,16 +3882,16 @@ __cmpdi2:
 	srax	%o0, 32, %g3
 	srax	%o1, 32, %g2
 	cmp	%g3, %g2
-	bl,pn	%icc, .L984
+	bl,pn	%icc, .L966
 	 mov	0, %g1
-	bg,pn	%icc, .L984
+	bg,pn	%icc, .L966
 	 mov	2, %g1
 	cmp	%o0, %o1
-	blu,pn	%icc, .L984
+	blu,pn	%icc, .L966
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%icc, 2, %g1
-.L984:
+.L966:
 	jmp	%o7+8
 	 and	%g1, 3, %o0
 	.size	__cmpdi2, .-__cmpdi2
@@ -3954,16 +3904,16 @@ __aeabi_lcmp:
 	srax	%o0, 32, %g3
 	srax	%o1, 32, %g2
 	cmp	%g3, %g2
-	bl,pn	%icc, .L990
+	bl,pn	%icc, .L972
 	 mov	0, %g1
-	bg,pn	%icc, .L990
+	bg,pn	%icc, .L972
 	 mov	2, %g1
 	cmp	%o0, %o1
-	blu,pn	%icc, .L990
+	blu,pn	%icc, .L972
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%icc, 2, %g1
-.L990:
+.L972:
 	add	%g1, -1, %o0
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
@@ -3975,16 +3925,16 @@ __aeabi_lcmp:
 	.proc	04
 __cmpti2:
 	cmp	%o0, %o2
-	bl,pn	%xcc, .L996
+	bl,pn	%xcc, .L978
 	 mov	0, %g1
-	bg,pn	%xcc, .L996
+	bg,pn	%xcc, .L978
 	 mov	2, %g1
 	cmp	%o1, %o3
-	blu,pn	%xcc, .L996
+	blu,pn	%xcc, .L978
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%xcc, 2, %g1
-.L996:
+.L978:
 	jmp	%o7+8
 	 and	%g1, 3, %o0
 	.size	__cmpti2, .-__cmpti2
@@ -4059,19 +4009,19 @@ __ctzti2:
 	.proc	04
 __ffsti2:
 	save	%sp, -176, %sp
-	brnz,pt	%i1, .L1004
+	brnz,pt	%i1, .L986
 	 nop
-	brz,pt	%i0, .L1005
+	brz,pt	%i0, .L987
 	 mov	0, %o0
 	call	__ctzdi2, 0
 	 mov	%i0, %o0
-	ba,pt	%xcc, .L1005
+	ba,pt	%xcc, .L987
 	 add	%o0, 65, %o0
-.L1004:
+.L986:
 	call	__ctzdi2, 0
 	 mov	%i1, %o0
 	add	%o0, 1, %o0
-.L1005:
+.L987:
 	sra	%o0, 0, %i0
 	return	%i7+8
 	 nop
@@ -4083,27 +4033,27 @@ __ffsti2:
 	.proc	05
 __lshrdi3:
 	andcc	%o1, 32, %g0
-	be,pt	%xcc, .L1009
+	be,pt	%xcc, .L991
 	 mov	%o0, %g1
 	srlx	%o0, 32, %g1
 	srl	%g1, %o1, %g1
 	mov	0, %o0
-.L1010:
+.L992:
 	srl	%g1, 0, %g1
 	sllx	%o0, 32, %o0
 	or	%o0, %g1, %o0
-.L1014:
+.L996:
 	jmp	%o7+8
 	 nop
-.L1009:
-	brz,pn	%o1, .L1014
+.L991:
+	brz,pn	%o1, .L996
 	 nop
 	srlx	%o0, 32, %g2
 	srl	%g2, %o1, %o0
 	sub	%g0, %o1, %g3
 	sll	%g2, %g3, %g2
 	srl	%g1, %o1, %g1
-	ba,pt	%xcc, .L1010
+	ba,pt	%xcc, .L992
 	 or	%g2, %g1, %g1
 	.size	__lshrdi3, .-__lshrdi3
 	.align 4
@@ -4113,22 +4063,22 @@ __lshrdi3:
 	.proc	05
 __lshrti3:
 	andcc	%o2, 64, %g0
-	be,pt	%xcc, .L1016
+	be,pt	%xcc, .L998
 	 mov	0, %g1
 	srlx	%o0, %o2, %o1
-.L1017:
+.L999:
 	mov	%g1, %o0
-.L1020:
+.L1002:
 	jmp	%o7+8
 	 nop
-.L1016:
-	brz,pn	%o2, .L1020
+.L998:
+	brz,pn	%o2, .L1002
 	 nop
 	srlx	%o0, %o2, %g1
 	sub	%g0, %o2, %g2
 	sllx	%o0, %g2, %o0
 	srlx	%o1, %o2, %o1
-	ba,pt	%xcc, .L1017
+	ba,pt	%xcc, .L999
 	 or	%o0, %o1, %o1
 	.size	__lshrti3, .-__lshrti3
 	.align 4
@@ -4508,29 +4458,29 @@ __powidf2:
 	fmovd	%f0, %f8
 	mov	%o1, %g1
 	sethi	%hi(.LC30), %g2
-	ba,pt	%xcc, .L1036
+	ba,pt	%xcc, .L1018
 	 ldd	[%g2+%lo(.LC30)], %f0
-.L1034:
+.L1016:
 	srl	%g1, 31, %g2
-.L1042:
+.L1024:
 	add	%g2, %g1, %g1
 	sra	%g1, 1, %g1
-	brz,pn	%g1, .L1035
+	brz,pn	%g1, .L1017
 	 cmp	%o1, 0
 	fmuld	%f8, %f8, %f8
-.L1036:
+.L1018:
 	andcc	%g1, 1, %g0
-	bne,a,pt %xcc, .L1034
+	bne,a,pt %xcc, .L1016
 	 fmuld	%f0, %f8, %f0
-	ba,pt	%xcc, .L1042
+	ba,pt	%xcc, .L1024
 	 srl	%g1, 31, %g2
-.L1035:
-	bl,a,pn	%icc, .L1041
+.L1017:
+	bl,a,pn	%icc, .L1023
 	 sethi	%hi(.LC30), %g1
-.L1033:
+.L1015:
 	jmp	%o7+8
 	 nop
-.L1041:
+.L1023:
 	ldd	[%g1+%lo(.LC30)], %f8
 	jmp	%o7+8
 	 fdivd	%f8, %f0, %f0
@@ -4548,29 +4498,29 @@ __powidf2:
 __powisf2:
 	mov	%o1, %g1
 	sethi	%hi(.LC32), %g2
-	ba,pt	%xcc, .L1046
+	ba,pt	%xcc, .L1028
 	 ld	[%g2+%lo(.LC32)], %f0
-.L1044:
+.L1026:
 	srl	%g1, 31, %g2
-.L1052:
+.L1034:
 	add	%g2, %g1, %g1
 	sra	%g1, 1, %g1
-	brz,pn	%g1, .L1045
+	brz,pn	%g1, .L1027
 	 cmp	%o1, 0
 	fmuls	%f1, %f1, %f1
-.L1046:
+.L1028:
 	andcc	%g1, 1, %g0
-	bne,a,pt %xcc, .L1044
+	bne,a,pt %xcc, .L1026
 	 fmuls	%f0, %f1, %f0
-	ba,pt	%xcc, .L1052
+	ba,pt	%xcc, .L1034
 	 srl	%g1, 31, %g2
-.L1045:
-	bl,a,pn	%icc, .L1051
+.L1027:
+	bl,a,pn	%icc, .L1033
 	 sethi	%hi(.LC32), %g1
-.L1043:
+.L1025:
 	jmp	%o7+8
 	 nop
-.L1051:
+.L1033:
 	ld	[%g1+%lo(.LC32)], %f8
 	jmp	%o7+8
 	 fdivs	%f8, %f0, %f0
@@ -4584,16 +4534,16 @@ __ucmpdi2:
 	srlx	%o0, 32, %g3
 	srlx	%o1, 32, %g2
 	cmp	%g3, %g2
-	blu,pn	%icc, .L1054
+	blu,pn	%icc, .L1036
 	 mov	0, %g1
-	bgu,pn	%icc, .L1054
+	bgu,pn	%icc, .L1036
 	 mov	2, %g1
 	cmp	%o0, %o1
-	blu,pn	%icc, .L1054
+	blu,pn	%icc, .L1036
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%icc, 2, %g1
-.L1054:
+.L1036:
 	jmp	%o7+8
 	 and	%g1, 3, %o0
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4606,16 +4556,16 @@ __aeabi_ulcmp:
 	srlx	%o0, 32, %g3
 	srlx	%o1, 32, %g2
 	cmp	%g3, %g2
-	blu,pn	%icc, .L1060
+	blu,pn	%icc, .L1042
 	 mov	0, %g1
-	bgu,pn	%icc, .L1060
+	bgu,pn	%icc, .L1042
 	 mov	2, %g1
 	cmp	%o0, %o1
-	blu,pn	%icc, .L1060
+	blu,pn	%icc, .L1042
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%icc, 2, %g1
-.L1060:
+.L1042:
 	add	%g1, -1, %o0
 	jmp	%o7+8
 	 sra	%o0, 0, %o0
@@ -4627,16 +4577,16 @@ __aeabi_ulcmp:
 	.proc	04
 __ucmpti2:
 	cmp	%o0, %o2
-	blu,pn	%xcc, .L1066
+	blu,pn	%xcc, .L1048
 	 mov	0, %g1
-	bgu,pn	%xcc, .L1066
+	bgu,pn	%xcc, .L1048
 	 mov	2, %g1
 	cmp	%o1, %o3
-	blu,pn	%xcc, .L1066
+	blu,pn	%xcc, .L1048
 	 mov	0, %g1
 	mov	1, %g1
 	movgu	%xcc, 2, %g1
-.L1066:
+.L1048:
 	jmp	%o7+8
 	 and	%g1, 3, %o0
 	.size	__ucmpti2, .-__ucmpti2

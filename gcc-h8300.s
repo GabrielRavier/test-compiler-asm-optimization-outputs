@@ -2926,7 +2926,8 @@ _ldexpf:
 	mov.l	er5,er1
 	mov.l	er5,er0
 	jsr	@___addsf3
-	mov.l	er5,er1
+	mov.l	er0,er1
+	mov.l	er5,er0
 	jsr	@___nesf2
 	mov.l	er0,er0
 	beq	.L675
@@ -3032,7 +3033,8 @@ _ldexpl:
 	mov.l	er5,er1
 	mov.l	er5,er0
 	jsr	@___addsf3
-	mov.l	er5,er1
+	mov.l	er0,er1
+	mov.l	er5,er0
 	jsr	@___nesf2
 	mov.l	er0,er0
 	beq	.L705
@@ -4523,8 +4525,8 @@ ___udivmodhi4:
 ___udivmodsi4_libgcc:
 	mov.l	er4,@-er7
 	mov.l	er0,er4
-	cmp.l	er0,er1
-	blo	.L1079
+	cmp.l	er1,er0
+	bhi	.L1079
 	sub.l	er3,er3
 	add.b	#1,r3l
 	bra	.L1080

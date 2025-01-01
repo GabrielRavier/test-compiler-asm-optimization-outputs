@@ -5284,18 +5284,18 @@ ldexpf:
 	ldd r24,Y+23
 	ldd r25,Y+24
 	rcall __addsf3
-	std Y+25,r14
-	std Y+26,r15
-	std Y+27,r16
-	std Y+28,r17
+	std Y+25,r22
+	std Y+26,r23
+	std Y+27,r24
+	std Y+28,r25
 	ldd r18,Y+25
 	ldd r19,Y+26
 	ldd r20,Y+27
 	ldd r21,Y+28
-	std Y+29,r22
-	std Y+30,r23
-	std Y+31,r24
-	std Y+32,r25
+	std Y+29,r14
+	std Y+30,r15
+	std Y+31,r16
+	std Y+32,r17
 	ldd r22,Y+29
 	ldd r23,Y+30
 	ldd r24,Y+31
