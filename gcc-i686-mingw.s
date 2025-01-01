@@ -3878,13 +3878,12 @@ LFB101:
 	.cfi_def_cfa_register 5
 	fld	QWORD PTR [ebp+8]
 	fldz
+	mov	edx, 0
 	fcomip	st, st(1)
-	jbe	L449
+	jbe	L436
 	fchs
 	mov	edx, 1
 	jmp	L436
-L449:
-	mov	edx, 0
 L436:
 	mov	eax, 0
 	fld1

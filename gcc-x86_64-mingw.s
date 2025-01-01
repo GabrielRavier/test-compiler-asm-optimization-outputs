@@ -2485,13 +2485,12 @@ mempcpy:
 frexp:
 	.seh_endprologue
 	pxor	xmm1, xmm1
+	mov	ecx, 0
 	comisd	xmm1, xmm0
-	jbe	.L434
+	jbe	.L421
 	xorpd	xmm0, XMMWORD PTR .LC13[rip]
 	mov	ecx, 1
 	jmp	.L421
-.L434:
-	mov	ecx, 0
 .L421:
 	mov	eax, 0
 	comisd	xmm0, QWORD PTR .LC14[rip]

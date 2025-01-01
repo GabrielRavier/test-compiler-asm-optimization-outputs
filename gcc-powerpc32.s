@@ -456,9 +456,9 @@ strncmp:
 	.cfi_def_cfa_register 31
 	li 9,0
 	cmpwi 0,5,0
-	beq- 0,.L63
 	mtctr 5
-	b .L64
+	bne+ 0,.L64
+	b .L63
 .L66:
 	addi 3,3,1
 	addi 4,4,1
@@ -4889,14 +4889,13 @@ frexp:
 	li 5,0
 	li 6,0
 	bl __ltdf2
+	li 26,0
 	cmpwi 0,3,0
-	bge+ 0,.L476
+	bge+ 0,.L459
 	addis 10,28,0x8000
 	mr 28,10
 	li 26,1
 	b .L459
-.L476:
-	li 26,0
 .L459:
 	lis 5,0x3ff0
 	li 6,0
@@ -4931,17 +4930,18 @@ frexp:
 	mr 3,28
 	mr 4,29
 	bl __ltdf2
+	li 30,0
 	cmpwi 0,3,0
-	bge- 0,.L478
+	bge- 0,.L464
 	li 5,0
 	li 6,0
 	mr 3,28
 	mr 4,29
 	bl __nedf2
-	cmpwi 0,3,0
-	bne- 0,.L472
 	li 30,0
-	b .L464
+	cmpwi 0,3,0
+	beq- 0,.L464
+	b .L472
 .L467:
 	addi 30,30,-1
 	mr 5,28
@@ -4963,8 +4963,6 @@ frexp:
 	cmpwi 0,3,0
 	blt+ 0,.L467
 	b .L464
-.L478:
-	li 30,0
 .L464:
 	stw 30,0(27)
 	cmpwi 0,26,0
@@ -5195,10 +5193,9 @@ __clrsbdi2:
 	li 3,63
 	or. 9,10,11
 	beq- 0,.L501
-	cmpwi 0,10,0
-	beq- 0,.L503
 	cntlzw 3,10
-	b .L504
+	cmpwi 0,10,0
+	bne- 0,.L504
 .L503:
 	cntlzw 3,11
 	addi 3,3,32

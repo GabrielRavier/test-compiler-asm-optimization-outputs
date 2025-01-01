@@ -4243,12 +4243,11 @@ frexp:
 	.cfi_def_cfa 8, 0
 	fmv.d.x	fa5,zero
 	flt.d	a5,fa0,fa5
-	beq	a5,zero,.L453
+	li	a3,0
+	beq	a5,zero,.L437
 	fneg.d	fa0,fa0
 	li	a3,1
 	j	.L437
-.L453:
-	li	a3,0
 .L437:
 	lui	a5,%hi(.LC13)
 	fld	fa5,%lo(.LC13)(a5)

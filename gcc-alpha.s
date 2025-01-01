@@ -678,9 +678,9 @@ $LFB14:
 	.cfi_def_cfa_register 15
 	.prologue 0
 	mov $31,$0
-	beq $18,$L58
 	mov $16,$2
-	br $31,$L59
+	bne $18,$L59
+	br $31,$L58
 $L61:
 	lda $2,1($2)
 	lda $17,1($17)
@@ -1340,7 +1340,8 @@ $LFB31:
 	cmptun $f17,$f17,$f10
 	fbne $f10,$L98
 	cmptlt $f17,$f16,$f10
-	fbeq $f10,$L101
+	cpys $f31,$f31,$f0
+	fbeq $f10,$L95
 	subt $f16,$f17,$f0
 	br $31,$L95
 $L97:
@@ -1349,8 +1350,6 @@ $L97:
 $L98:
 	cpys $f17,$f17,$f0
 	br $31,$L95
-$L101:
-	cpys $f31,$f31,$f0
 $L95:
 	mov $15,$30
 	ldq $26,0($30)
@@ -1388,7 +1387,8 @@ $LFB32:
 	cmptun $f10,$f10,$f11
 	fbne $f11,$L106
 	cmptlt $f17,$f16,$f10
-	fbeq $f10,$L109
+	cpys $f31,$f31,$f0
+	fbeq $f10,$L103
 	subs $f16,$f17,$f0
 	br $31,$L103
 $L105:
@@ -1397,8 +1397,6 @@ $L105:
 $L106:
 	cpys $f17,$f17,$f0
 	br $31,$L103
-$L109:
-	cpys $f31,$f31,$f0
 $L103:
 	mov $15,$30
 	ldq $26,0($30)
@@ -3510,10 +3508,10 @@ $L295:
 	br $31,$L293
 $L294:
 	cmpeq $16,$17,$1
-	bne $1,$L293
 	addq $17,$18,$18
 	mov $16,$2
-	br $31,$L298
+	beq $1,$L298
+	br $31,$L293
 $L299:
 	lda $2,1($2)
 	lda $17,1($17)
@@ -4915,17 +4913,13 @@ $LFB98:
 	fbne $f10,$L392
 $L390:
 	cmptlt $f31,$f16,$f10
-	fbeq $f10,$L400
+	cpys $f16,$f16,$f0
+	fbeq $f10,$L393
 	cmptlt $f17,$f31,$f10
-	fbeq $f10,$L401
+	fbeq $f10,$L393
 $L392:
 	cpysn $f16,$f16,$f0
 	br $31,$L393
-$L400:
-	cpys $f16,$f16,$f0
-	br $31,$L393
-$L401:
-	cpys $f16,$f16,$f0
 $L393:
 	mov $15,$30
 	ldq $26,0($30)
@@ -4974,9 +4968,9 @@ $memmem..ng:
 	beq $19,$L403
 	cmpult $17,$19,$17
 	mov $31,$0
-	bne $17,$L403
 	mov $16,$9
-	br $31,$L404
+	beq $17,$L404
+	br $31,$L403
 $L406:
 	lda $2,1($9)
 	ldq_u $1,0($9)
@@ -5088,12 +5082,11 @@ $frexp..ng:
 	.prologue 1
 	cpys $f16,$f16,$f0
 	cmptlt $f16,$f31,$f10
-	fbeq $f10,$L427
+	mov $31,$3
+	fbeq $f10,$L412
 	cpysn $f16,$f16,$f0
 	lda $3,1($31)
 	br $31,$L412
-$L427:
-	mov $31,$3
 $L412:
 	ldah $1,$LC16($29)		!gprelhigh
 	lds $f11,$LC16($1)		!gprellow

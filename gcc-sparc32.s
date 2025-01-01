@@ -293,11 +293,11 @@ strlen:
 strncmp:
 	save	%sp, -96, %sp
 	mov	%i0, %g4
+	mov	0, %i0
 	cmp	%i2, 0
-	be	.L71
-	 mov	0, %i0
-	b	.L66
+	bne	.L66
 	 mov	%g4, %g2
+	b,a	.L71
 .L68:
 	add	%i1, 1, %i1
 .L66:

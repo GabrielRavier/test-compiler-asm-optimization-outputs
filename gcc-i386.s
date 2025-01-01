@@ -4054,12 +4054,11 @@ frexp:
 	fcomp	st(1)
 	fnstsw	ax
 	sahf
-	jbe	.L459
+	mov	ecx, 0
+	jbe	.L444
 	fchs
 	mov	ecx, 1
 	jmp	.L444
-.L459:
-	mov	ecx, 0
 .L444:
 	fld1
 	fxch	st(1)

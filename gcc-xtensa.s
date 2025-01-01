@@ -255,9 +255,9 @@ strncmp:
 	mov.n	a7, sp
 	mov.n	a12, a2
 	movi.n	a2, 0
-	beqz.n	a4, .L57
 	mov.n	a9, a12
-	j	.L58
+	bnez.n	a4, .L58
+	j	.L57
 .L60:
 	addi.n	a9, a9, 1
 	addi.n	a3, a3, 1
@@ -2657,7 +2657,9 @@ copysign:
 	mov.n	a11, a5
 	l32r	a8, .LC107
 	callx8	a8
-	bgez	a10, .L433
+	mov.n	a8, a2
+	mov.n	a9, a3
+	bgez	a10, .L425
 .L424:
 	l32r	a10, .LC109
 	xor	a8, a2, a10
@@ -2667,9 +2669,6 @@ copysign:
 	mov.n	a8, a2
 	mov.n	a9, a3
 	j	.L425
-.L433:
-	mov.n	a8, a2
-	mov.n	a9, a3
 .L425:
 	mov.n	a2, a8
 	mov.n	a3, a9
@@ -2753,14 +2752,13 @@ frexp:
 	mov.n	a11, a3
 	l32r	a8, .LC113
 	callx8	a8
-	bgez	a10, .L461
+	movi.n	a5, 0
+	bgez	a10, .L445
 	l32r	a10, .LC114
 	xor	a8, a2, a10
 	mov.n	a2, a8
 	movi.n	a5, 1
 	j	.L445
-.L461:
-	movi.n	a5, 0
 .L445:
 	l32r	a12, .LC122
 	movi.n	a13, 0

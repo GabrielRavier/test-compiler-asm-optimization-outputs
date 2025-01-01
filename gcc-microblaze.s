@@ -5051,13 +5051,12 @@ frexp:
 	brlid	r15,__ltdf2
 	
 	addk	r23,r6,r0
-	bgeid	r3,$L502
-	addik	r26,r0,1	# 0x1
-	addik	r4,r22,-2147483648
-	brid	$L487
-	addk	r22,r4,r0
-$L502:
+	bgeid	r3,$L487
 	addk	r26,r0,r0
+	addik	r4,r22,-2147483648
+	addk	r22,r4,r0
+	brid	$L487
+	addik	r26,r0,1	# 0x1
 $L487:
 	addik	r7,r0,0x3ff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo

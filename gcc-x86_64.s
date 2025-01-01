@@ -2639,13 +2639,12 @@ frexp:
 .LFB101:
 	.cfi_startproc
 	pxor	xmm1, xmm1
+	mov	edx, 0
 	comisd	xmm1, xmm0
-	jbe	.L432
+	jbe	.L419
 	xorpd	xmm0, XMMWORD PTR .LC13[rip]
 	mov	edx, 1
 	jmp	.L419
-.L432:
-	mov	edx, 0
 .L419:
 	mov	eax, 0
 	comisd	xmm0, QWORD PTR .LC14[rip]

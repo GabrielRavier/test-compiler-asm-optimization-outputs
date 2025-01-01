@@ -767,15 +767,15 @@ fmaxl:
 	cmp	w1, w0
 	beq	.L131
 	ldr	x0, [sp, 40]
-	tbz	x0, #63, .L135
 	ldr	q0, [sp, 16]
-	b	.L130
+	tbnz	x0, #63, .L130
+	b	.L135
 .L131:
 	ldp	q1, q0, [sp, 16]
 	bl	__lttf2
-	tbz	w0, #31, .L138
 	ldr	q0, [sp, 16]
-	b	.L130
+	tbnz	w0, #31, .L130
+	b	.L138
 .L133:
 	ldr	q0, [sp, 16]
 	b	.L130
@@ -884,15 +884,15 @@ fminl:
 	cmp	w1, w0
 	beq	.L159
 	ldr	x0, [sp, 40]
-	tbz	x0, #63, .L163
 	ldr	q0, [sp, 32]
-	b	.L158
+	tbnz	x0, #63, .L158
+	b	.L163
 .L159:
 	ldp	q1, q0, [sp, 16]
 	bl	__lttf2
-	tbz	w0, #31, .L166
 	ldr	q0, [sp, 32]
-	b	.L158
+	tbnz	w0, #31, .L158
+	b	.L166
 .L161:
 	ldr	q0, [sp, 16]
 	b	.L158
@@ -2677,9 +2677,9 @@ frexp:
 	fmov	d31, 5.0e-1
 	fcmpe	d0, d31
 	ccmp	w1, 0, 4, mi
-	bne	.L424
 	mov	w1, 0
-	b	.L418
+	beq	.L418
+	b	.L424
 .L420:
 	sub	w1, w1, #1
 	fadd	d0, d0, d0

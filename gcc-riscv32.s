@@ -4832,15 +4832,16 @@ frexp:
 	lw	a0,-20(s0)
 	lw	a1,-16(s0)
 	call	__ltdf2
-	bge	a0,zero,.L471
+	li	s1,0
+	bge	a0,zero,.L458
 	li	a2,0
 	li	a3,0
 	lw	a0,-20(s0)
 	lw	a1,-16(s0)
 	call	__nedf2
-	bne	a0,zero,.L466
 	li	s1,0
-	j	.L458
+	beq	a0,zero,.L458
+	j	.L466
 .L461:
 	addi	s1,s1,-1
 	lw	a0,-20(s0)
@@ -4862,8 +4863,6 @@ frexp:
 	call	__ltdf2
 	blt	a0,zero,.L461
 	j	.L458
-.L471:
-	li	s1,0
 .L458:
 	lw	a5,-28(s0)
 	sw	s1,0(a5)

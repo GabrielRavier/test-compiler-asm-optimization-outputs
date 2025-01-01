@@ -3798,10 +3798,10 @@ frexp:
 	fcmp.slt.d	$fcc0,$f0,$f1
 	bceqz	$fcc0,.L443
 	movgr2fr.d	$f1,$r0
-	fcmp.cune.d	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L438
 	or	$r12,$r0,$r0
-	b	.L430
+	fcmp.cune.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L430
+	b	.L438
 .L433:
 	addi.w	$r12,$r12,-1
 	fadd.d	$f0,$f0,$f0
@@ -4540,9 +4540,9 @@ __mulsi3_lm32:
 	.cfi_def_cfa 22, 0
 	or	$r14,$r4,$r0
 	or	$r4,$r0,$r0
-	beqz	$r14,.L533
 	or	$r12,$r0,$r0
-	b	.L534
+	bnez	$r14,.L534
+	b	.L533
 .L536:
 	andi	$r15,$r5,1
 	add.w	$r13,$r12,$r14

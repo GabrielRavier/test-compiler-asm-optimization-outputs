@@ -562,9 +562,9 @@ strncmp:
 	.cfi_def_cfa_register 31
 	li 9,0
 	cmpdi 0,5,0
-	beq- 0,.L65
 	mtctr 5
-	b .L66
+	bne+ 0,.L66
+	b .L65
 .L68:
 	addi 3,3,1
 	addi 4,4,1
@@ -4467,13 +4467,12 @@ frexp:
 	.cfi_def_cfa_register 31
 	addis 9,2,.LC1@toc@ha
 	lfs 0,.LC1@toc@l(9)
+	li 10,0
 	fcmpu 0,1,0
-	bnl+ 0,.L464
+	bnl+ 0,.L447
 	fneg 1,1
 	li 10,1
 	b .L447
-.L464:
-	li 10,0
 .L447:
 	li 9,0
 	addis 8,2,.LC31@toc@ha
@@ -4497,14 +4496,15 @@ frexp:
 .L465:
 	addis 9,2,.LC17@toc@ha
 	lfs 0,.LC17@toc@l(9)
+	li 9,0
 	fcmpu 0,1,0
-	bnl- 0,.L466
+	bnl- 0,.L452
 	addis 9,2,.LC1@toc@ha
 	lfs 0,.LC1@toc@l(9)
-	fcmpu 0,1,0
-	bne- 0,.L460
 	li 9,0
-	b .L452
+	fcmpu 0,1,0
+	beq- 0,.L452
+	b .L460
 .L455:
 	addi 9,9,-1
 	fadd 1,1,1
@@ -4517,8 +4517,6 @@ frexp:
 	fcmpu 0,1,0
 	blt+ 0,.L455
 	b .L452
-.L466:
-	li 9,0
 .L452:
 	stw 9,0(4)
 	cmpwi 0,10,0
