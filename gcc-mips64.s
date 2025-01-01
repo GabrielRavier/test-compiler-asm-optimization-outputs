@@ -1765,19 +1765,16 @@ remque:
 	.set	noreorder
 	.set	nomacro
 	ld	$2,0($4)
-	beql	$2,$0,.L330
-	ld	$2,8($4)
-
-	ld	$3,8($4)
-	sd	$3,8($2)
-	ld	$2,8($4)
-.L330:
 	beq	$2,$0,.L331
-	nop
+	ld	$3,8($4)
 
-	ld	$3,0($4)
-	sd	$3,0($2)
+	sd	$3,8($2)
+	ld	$3,8($4)
 .L331:
+	bnel	$3,$0,.L330
+	sd	$2,0($3)
+
+.L330:
 	jr	$31
 	nop
 
@@ -1799,20 +1796,20 @@ lsearch:
 	.set	noreorder
 	.set	nomacro
 	daddiu	$sp,$sp,-96
-	sd	$fp,80($sp)
+	sd	$19,32($sp)
+	ld	$19,0($6)
 	sd	$28,72($sp)
+	lui	$28,%hi(%neg(%gp_rel(lsearch)))
+	daddu	$28,$28,$25
+	sd	$fp,80($sp)
 	sd	$23,64($sp)
 	sd	$20,40($sp)
 	sd	$18,24($sp)
 	sd	$31,88($sp)
 	sd	$22,56($sp)
 	sd	$21,48($sp)
-	sd	$19,32($sp)
 	sd	$17,16($sp)
 	sd	$16,8($sp)
-	ld	$19,0($6)
-	lui	$28,%hi(%neg(%gp_rel(lsearch)))
-	daddu	$28,$28,$25
 	daddiu	$28,$28,%lo(%neg(%gp_rel(lsearch)))
 	move	$23,$6
 	move	$20,$4
@@ -3603,12 +3600,12 @@ _Qp_itoq:
 1:	jalr	$25
 	move	$16,$4
 
-	sdc1	$f2,8($16)
-	sdc1	$f0,0($16)
 	ld	$31,40($sp)
 	ld	$28,32($sp)
 	ld	$19,24($sp)
 	ld	$18,16($sp)
+	sdc1	$f2,8($16)
+	sdc1	$f0,0($16)
 	ld	$16,8($sp)
 	jr	$31
 	daddiu	$sp,$sp,48

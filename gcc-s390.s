@@ -1592,10 +1592,9 @@ remque:
 	l	%r3,4(%r2)
 	st	%r3,4(%r1)
 .L428:
-	icm	%r4,15,4(%r2)
+	icm	%r2,15,4(%r2)
 	ber	%r14
-	l	%r2,0(%r2)
-	st	%r2,0(%r4)
+	st	%r1,0(%r2)
 	br	%r14
 	.cfi_endproc
 .LFE41:

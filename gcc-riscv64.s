@@ -1089,10 +1089,9 @@ remque:
 	ld	a4,8(a0)
 	sd	a4,8(a5)
 .L249:
-	ld	a5,8(a0)
-	beq	a5,zero,.L248
-	ld	a4,0(a0)
-	sd	a4,0(a5)
+	ld	a4,8(a0)
+	beq	a4,zero,.L248
+	sd	a5,0(a4)
 .L248:
 	ret
 	.cfi_endproc
@@ -1106,21 +1105,21 @@ lsearch:
 	.cfi_startproc
 	addi	sp,sp,-80
 	.cfi_def_cfa_offset 80
+	sd	s3,40(sp)
+	.cfi_offset 19, -40
+	ld	s3,0(a2)
 	sd	s2,48(sp)
 	sd	s4,32(sp)
 	sd	s7,8(sp)
 	sd	s8,0(sp)
 	sd	ra,72(sp)
-	sd	s3,40(sp)
 	sd	s5,24(sp)
 	.cfi_offset 18, -32
 	.cfi_offset 20, -48
 	.cfi_offset 23, -72
 	.cfi_offset 24, -80
 	.cfi_offset 1, -8
-	.cfi_offset 19, -40
 	.cfi_offset 21, -56
-	ld	s3,0(a2)
 	mv	s7,a2
 	mv	s4,a0
 	mv	s8,a1
@@ -2399,10 +2398,10 @@ _Qp_itoq:
 	.cfi_offset 1, -8
 	mv	s0,a0
 	call	__extenddftf2
-	sd	a0,0(s0)
-	sd	a1,8(s0)
 	ld	ra,8(sp)
 	.cfi_restore 1
+	sd	a0,0(s0)
+	sd	a1,8(s0)
 	ld	s0,0(sp)
 	.cfi_restore 8
 	addi	sp,sp,16

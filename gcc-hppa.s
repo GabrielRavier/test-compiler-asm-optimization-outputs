@@ -1079,10 +1079,9 @@ remque:
 	ldw 4(%r26),%r19
 	stw %r19,4(%r28)
 .L261:
-	ldw 4(%r26),%r28
-	comib,=,n 0,%r28,.L260
-	ldw 0(%r26),%r19
-	stw %r19,0(%r28)
+	ldw 4(%r26),%r19
+	comiclr,= 0,%r19,%r0
+	stw %r28,0(%r19)
 .L260:
 	bv,n %r0(%r2)
 	.EXIT

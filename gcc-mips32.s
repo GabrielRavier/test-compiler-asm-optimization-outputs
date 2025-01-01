@@ -1658,14 +1658,12 @@ remque:
 	nop
 	sw	$3,4($2)
 $L269:
-	lw	$2,4($4)
+	lw	$3,4($4)
 	nop
-	beq	$2,$0,$L277
+	beq	$3,$0,$L277
 	nop
 
-	lw	$3,0($4)
-	nop
-	sw	$3,0($2)
+	sw	$2,0($3)
 $L277:
 	jr	$31
 	nop
@@ -1686,22 +1684,22 @@ lsearch:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$28,%hi(__gnu_local_gp)
 	addiu	$sp,$sp,-64
+	lui	$28,%hi(__gnu_local_gp)
+	sw	$19,36($sp)
+	lw	$19,0($6)
 	addiu	$28,$28,%lo(__gnu_local_gp)
 	sw	$fp,56($sp)
 	sw	$23,52($sp)
 	sw	$22,48($sp)
 	sw	$20,40($sp)
 	sw	$18,32($sp)
+	lw	$22,80($sp)
 	sw	$31,60($sp)
 	sw	$21,44($sp)
-	sw	$19,36($sp)
 	sw	$17,28($sp)
 	sw	$16,24($sp)
 	.cprestore	16
-	lw	$19,0($6)
-	lw	$22,80($sp)
 	move	$23,$6
 	move	$20,$4
 	move	$fp,$5
@@ -2340,11 +2338,11 @@ imaxdiv:
 1:	jalr	$25
 	sw	$2,0($16)
 
-	sw	$2,8($16)
-	sw	$3,12($16)
 	lw	$31,36($sp)
+	sw	$2,8($16)
 	lw	$18,32($sp)
 	lw	$17,28($sp)
+	sw	$3,12($16)
 	move	$2,$16
 	lw	$16,24($sp)
 	jr	$31
@@ -2479,11 +2477,11 @@ lldiv:
 1:	jalr	$25
 	sw	$2,0($16)
 
-	sw	$2,8($16)
-	sw	$3,12($16)
 	lw	$31,36($sp)
+	sw	$2,8($16)
 	lw	$18,32($sp)
 	lw	$17,28($sp)
+	sw	$3,12($16)
 	move	$2,$16
 	lw	$16,24($sp)
 	jr	$31

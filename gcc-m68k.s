@@ -1247,10 +1247,10 @@ remque:
 	jeq .L327
 	move.l 4(%a0),4(%a1)
 .L327:
-	move.l 4(%a0),%a1
-	cmp.w #0,%a1
+	move.l 4(%a0),%a0
+	cmp.w #0,%a0
 	jeq .L326
-	move.l (%a0),(%a1)
+	move.l %a1,(%a0)
 .L326:
 	rts
 	.size	remque, .-remque

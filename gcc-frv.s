@@ -1189,11 +1189,10 @@ remque:
 	ckne icc0, cc4
 	cld @(gr8,gr6), gr5, cc4, 1
 	cst gr5, @(gr4,gr6), cc4, 1
-	ldi @(gr8,4), gr4
-	cmpi gr4, #0, icc0
+	ldi @(gr8,4), gr5
+	cmpi gr5, #0, icc0
 	ckne icc0, cc4
-	cld @(gr8,gr0), gr5, cc4, 1
-	cst gr5, @(gr4,gr0), cc4, 1
+	cst gr4, @(gr5,gr0), cc4, 1
 	ret
 	.size	remque, .-remque
 	.p2align 4

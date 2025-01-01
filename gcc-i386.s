@@ -1490,11 +1490,10 @@ remque:
 	mov	ecx, DWORD PTR [eax+4]
 	mov	DWORD PTR [edx+4], ecx
 .L288:
-	mov	edx, DWORD PTR [eax+4]
-	test	edx, edx
+	mov	eax, DWORD PTR [eax+4]
+	test	eax, eax
 	je	.L287
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [edx], eax
+	mov	DWORD PTR [eax], edx
 .L287:
 	ret
 	.cfi_endproc

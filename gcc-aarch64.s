@@ -1074,10 +1074,9 @@ remque:
 	ldr	x2, [x0, 8]
 	str	x2, [x1, 8]
 .L210:
-	ldr	x1, [x0, 8]
-	cbz	x1, .L209
-	ldr	x0, [x0]
-	str	x0, [x1]
+	ldr	x0, [x0, 8]
+	cbz	x0, .L209
+	str	x1, [x0]
 .L209:
 	ret
 	.cfi_endproc
@@ -1108,8 +1107,8 @@ lsearch:
 	.cfi_offset 26, -24
 	mov	x25, x2
 	mov	x26, x1
-	str	x27, [sp, 80]
 	ldr	x24, [x2]
+	str	x27, [sp, 80]
 	.cfi_offset 27, -16
 	cbz	x24, .L219
 	mov	x23, x4

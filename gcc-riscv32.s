@@ -889,23 +889,17 @@ fmaxf:
 fmaxl:
 .LFB33:
 	.cfi_startproc
-	addi	sp,sp,-72
-	.cfi_def_cfa_offset 72
-	sw	s1,60(sp)
-	sw	ra,68(sp)
-	sw	s0,64(sp)
-	.cfi_offset 9, -12
-	.cfi_offset 1, -4
-	.cfi_offset 8, -8
 	lw	a3,8(a1)
 	lw	a4,12(a1)
 	lw	t0,0(a1)
 	lw	t1,4(a1)
-	sw	a3,52(sp)
+	addi	sp,sp,-72
+	.cfi_def_cfa_offset 72
 	sw	t0,44(sp)
 	sw	t0,28(sp)
 	sw	t1,48(sp)
 	sw	t1,32(sp)
+	sw	a3,52(sp)
 	sw	a3,36(sp)
 	sw	a4,56(sp)
 	sw	a4,40(sp)
@@ -914,9 +908,15 @@ fmaxl:
 	sw	a4,12(sp)
 	lw	a3,8(a2)
 	lw	a4,4(a2)
-	mv	s1,a0
+	sw	s1,60(sp)
 	addi	a1,sp,28
+	.cfi_offset 9, -12
+	mv	s1,a0
 	addi	a0,sp,44
+	sw	s0,64(sp)
+	sw	ra,68(sp)
+	.cfi_offset 8, -8
+	.cfi_offset 1, -4
 	lw	s0,12(a2)
 	sw	t0,24(sp)
 	sw	t1,20(sp)
@@ -972,15 +972,15 @@ fmaxl:
 	lw	a3,16(sp)
 	lw	a4,12(sp)
 .L198:
-	sw	t0,0(s1)
-	sw	t1,4(s1)
-	sw	a3,8(s1)
-	sw	a4,12(s1)
 	lw	ra,68(sp)
 	.cfi_remember_state
 	.cfi_restore 1
 	lw	s0,64(sp)
 	.cfi_restore 8
+	sw	t0,0(s1)
+	sw	t1,4(s1)
+	sw	a3,8(s1)
+	sw	a4,12(s1)
 	mv	a0,s1
 	lw	s1,60(sp)
 	.cfi_restore 9
@@ -1147,18 +1147,12 @@ fminf:
 fminl:
 .LFB36:
 	.cfi_startproc
-	addi	sp,sp,-72
-	.cfi_def_cfa_offset 72
-	sw	s0,64(sp)
-	sw	ra,68(sp)
-	sw	s1,60(sp)
-	.cfi_offset 8, -8
-	.cfi_offset 1, -4
-	.cfi_offset 9, -12
 	lw	a3,4(a1)
 	lw	a5,0(a1)
 	lw	t1,8(a1)
 	lw	a4,12(a1)
+	addi	sp,sp,-72
+	.cfi_def_cfa_offset 72
 	sw	a5,44(sp)
 	sw	a5,28(sp)
 	sw	a3,48(sp)
@@ -1171,13 +1165,19 @@ fminl:
 	lw	t0,4(a2)
 	sw	a3,4(sp)
 	lw	a3,8(a2)
-	mv	s0,a0
+	sw	s0,64(sp)
 	addi	a1,sp,28
+	.cfi_offset 8, -8
+	mv	s0,a0
 	addi	a0,sp,44
+	sw	s1,60(sp)
 	sw	t2,20(sp)
 	sw	t0,16(sp)
 	sw	a3,12(sp)
+	.cfi_offset 9, -12
 	lw	s1,12(a2)
+	sw	ra,68(sp)
+	.cfi_offset 1, -4
 	sw	a5,0(sp)
 	sw	t1,8(sp)
 	sw	a4,24(sp)
@@ -1213,13 +1213,13 @@ fminl:
 	lw	a3,8(sp)
 	mv	s1,a4
 .L238:
-	sw	t2,0(s0)
-	sw	t0,4(s0)
-	sw	a3,8(s0)
 	sw	s1,12(s0)
 	lw	ra,68(sp)
 	.cfi_remember_state
 	.cfi_restore 1
+	sw	t2,0(s0)
+	sw	t0,4(s0)
+	sw	a3,8(s0)
 	mv	a0,s0
 	lw	s0,64(sp)
 	.cfi_restore 8
@@ -1372,10 +1372,9 @@ remque:
 	lw	a4,4(a0)
 	sw	a4,4(a5)
 .L268:
-	lw	a5,4(a0)
-	beq	a5,zero,.L267
-	lw	a4,0(a0)
-	sw	a4,0(a5)
+	lw	a4,4(a0)
+	beq	a4,zero,.L267
+	sw	a5,0(a4)
 .L267:
 	ret
 	.cfi_endproc
@@ -1387,14 +1386,14 @@ remque:
 lsearch:
 .LFB42:
 	.cfi_startproc
+	lw	a5,0(a2)
 	addi	sp,sp,-40
 	.cfi_def_cfa_offset 40
 	sw	ra,36(sp)
 	sw	s0,32(sp)
-	lw	a5,0(a2)
 	sw	a2,24(sp)
-	sw	a0,4(sp)
 	sw	a5,8(sp)
+	sw	a0,4(sp)
 	sw	a1,20(sp)
 	sw	a3,12(sp)
 	sw	a4,16(sp)
@@ -1893,9 +1892,9 @@ imaxdiv:
 	mv	a1,s1
 	call	__moddi3
 	sw	a0,8(s0)
-	sw	a1,12(s0)
 	lw	ra,20(sp)
 	.cfi_restore 1
+	sw	a1,12(s0)
 	mv	a0,s0
 	lw	s0,16(sp)
 	.cfi_restore 8
@@ -2006,9 +2005,9 @@ lldiv:
 	mv	a1,s1
 	call	__moddi3
 	sw	a0,8(s0)
-	sw	a1,12(s0)
 	lw	ra,20(sp)
 	.cfi_restore 1
+	sw	a1,12(s0)
 	mv	a0,s0
 	lw	s0,16(sp)
 	.cfi_restore 8
@@ -2751,21 +2750,21 @@ gl_isinfl:
 	.cfi_startproc
 	addi	sp,sp,-56
 	.cfi_def_cfa_offset 56
-	sw	s0,48(sp)
-	sw	ra,52(sp)
-	sw	s1,44(sp)
-	.cfi_offset 8, -8
-	.cfi_offset 1, -4
-	.cfi_offset 9, -12
 	lw	a2,0(a0)
 	lw	a3,4(a0)
 	lw	a4,8(a0)
+	sw	s1,44(sp)
+	.cfi_offset 9, -12
 	lw	s1,12(a0)
 	li	a5,-65536
-	li	s0,-1
+	sw	s0,48(sp)
 	addi	a5,a5,-1
+	.cfi_offset 8, -8
+	li	s0,-1
 	addi	a0,sp,28
 	addi	a1,sp,12
+	sw	ra,52(sp)
+	.cfi_offset 1, -4
 	sw	a2,28(sp)
 	sw	a2,8(sp)
 	sw	a3,32(sp)
@@ -2834,12 +2833,12 @@ _Qp_itoq:
 	lw	a3,4(sp)
 	lw	a4,8(sp)
 	lw	a5,12(sp)
+	lw	ra,20(sp)
+	.cfi_restore 1
 	sw	a2,0(s0)
 	sw	a3,4(s0)
 	sw	a4,8(s0)
 	sw	a5,12(s0)
-	lw	ra,20(sp)
-	.cfi_restore 1
 	lw	s0,16(sp)
 	.cfi_restore 8
 	addi	sp,sp,24
@@ -3028,23 +3027,23 @@ ldexpl:
 	.cfi_startproc
 	addi	sp,sp,-108
 	.cfi_def_cfa_offset 108
-	sw	s0,100(sp)
-	sw	ra,104(sp)
-	sw	s1,96(sp)
-	.cfi_offset 8, -8
-	.cfi_offset 1, -4
-	.cfi_offset 9, -12
 	lw	t0,0(a1)
-	lw	s1,4(a1)
 	lw	a5,8(a1)
 	lw	a4,12(a1)
+	sw	s1,96(sp)
+	.cfi_offset 9, -12
+	lw	s1,4(a1)
 	mv	t1,a0
 	addi	a1,sp,64
 	addi	a0,sp,80
+	sw	s0,100(sp)
 	sw	t0,80(sp)
 	sw	t0,64(sp)
 	sw	t0,16(sp)
 	sw	t1,12(sp)
+	sw	ra,104(sp)
+	.cfi_offset 8, -8
+	.cfi_offset 1, -4
 	sw	s1,8(sp)
 	sw	s1,84(sp)
 	sw	s1,68(sp)
@@ -3162,20 +3161,20 @@ ldexpl:
 	mv	t0,s1
 .L586:
 	lw	a5,8(sp)
-	sw	t0,0(t1)
-	mv	a0,t1
-	sw	a5,4(t1)
-	lw	a5,0(sp)
-	sw	a5,8(t1)
-	lw	a5,4(sp)
-	sw	a5,12(t1)
 	lw	ra,104(sp)
 	.cfi_remember_state
 	.cfi_restore 1
 	lw	s0,100(sp)
 	.cfi_restore 8
+	sw	a5,4(t1)
+	lw	a5,0(sp)
+	sw	t0,0(t1)
 	lw	s1,96(sp)
 	.cfi_restore 9
+	sw	a5,8(t1)
+	lw	a5,4(sp)
+	mv	a0,t1
+	sw	a5,12(t1)
 	addi	sp,sp,108
 	.cfi_def_cfa_offset 0
 	jr	ra

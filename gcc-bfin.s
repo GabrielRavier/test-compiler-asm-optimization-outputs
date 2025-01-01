@@ -1275,14 +1275,10 @@ _remque:
 	R0 = [P2+4];
 	[P1+4] = R0;
 .L246:
-	P1 = [P2+4];
-	cc =P1==0;
+	P2 = [P2+4];
+	cc =P2==0;
 	if cc jump .L245;
-	nop;
-	nop;
-	nop;
-	R0 = [P2];
-	[P1] = R0;
+	[P2] = P1;
 .L245:
 	rts;
 	.size	_remque, .-_remque

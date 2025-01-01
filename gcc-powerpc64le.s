@@ -1426,11 +1426,10 @@ remque:
 	ld 10,8(3)
 	std 10,8(9)
 .L311:
-	ld 9,8(3)
-	cmpdi 0,9,0
+	ld 10,8(3)
+	cmpdi 0,10,0
 	beqlr 0
-	ld 10,0(3)
-	std 10,0(9)
+	std 9,0(10)
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -1449,30 +1448,30 @@ lsearch:
 	addi 2,2,.TOC.-.LCF44@l
 	.localentry	lsearch,.-lsearch
 	mflr 0
+	std 27,-40(1)
+	.cfi_register 65, 0
+	.cfi_offset 27, -40
+	ld 27,0(5)
 	std 23,-72(1)
 	std 24,-64(1)
-	.cfi_register 65, 0
 	.cfi_offset 23, -72
 	.cfi_offset 24, -64
 	mr 23,4
+	mr 24,5
 	std 26,-48(1)
 	std 28,-32(1)
-	mr 24,5
 	.cfi_offset 26, -48
 	.cfi_offset 28, -32
 	mr 26,3
-	std 25,-56(1)
-	std 27,-40(1)
 	mr 28,6
+	std 25,-56(1)
+	cmpdi 0,27,0
 	std 0,16(1)
 	stdu 1,-112(1)
 	.cfi_def_cfa_offset 112
 	.cfi_offset 25, -56
-	.cfi_offset 27, -40
 	.cfi_offset 65, 16
 	std 2,24(1)
-	ld 27,0(5)
-	cmpdi 0,27,0
 	beq 0,.L320
 	std 29,88(1)
 	.cfi_offset 29, -24

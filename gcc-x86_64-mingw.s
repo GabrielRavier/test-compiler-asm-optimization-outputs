@@ -1048,11 +1048,10 @@ remque:
 	mov	rdx, QWORD PTR 8[rcx]
 	mov	QWORD PTR 8[rax], rdx
 .L242:
-	mov	rax, QWORD PTR 8[rcx]
-	test	rax, rax
+	mov	rdx, QWORD PTR 8[rcx]
+	test	rdx, rdx
 	je	.L241
-	mov	rdx, QWORD PTR [rcx]
-	mov	QWORD PTR [rax], rdx
+	mov	QWORD PTR [rdx], rax
 .L241:
 	ret
 	.seh_endproc

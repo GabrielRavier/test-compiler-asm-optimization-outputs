@@ -1102,17 +1102,14 @@ insque:
 	.proc	020
 remque:
 	ldx	[%o0], %g1
-	brz,a,pn %g1, .L240
-	 ldx	[%o0+8], %g1
-	ldx	[%o0+8], %g2
-	stx	%g2, [%g1+8]
-	ldx	[%o0+8], %g1
-.L240:
 	brz,pn	%g1, .L241
-	 nop
-	ldx	[%o0], %g2
-	stx	%g2, [%g1]
+	 ldx	[%o0+8], %g2
+	stx	%g2, [%g1+8]
+	ldx	[%o0+8], %g2
 .L241:
+	brnz,a,pt %g2, .L240
+	 stx	%g1, [%g2]
+.L240:
 	jmp	%o7+8
 	 nop
 	.size	remque, .-remque

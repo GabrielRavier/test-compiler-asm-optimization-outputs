@@ -955,10 +955,9 @@ remque:
 	ldw	r3, 4(r4)
 	stw	r3, 4(r2)
 .L263:
-	ldw	r2, 4(r4)
-	beq	r2, zero, .L262
-	ldw	r3, 0(r4)
-	stw	r3, 0(r2)
+	ldw	r3, 4(r4)
+	beq	r3, zero, .L262
+	stw	r2, 0(r3)
 .L262:
 	ret
 	.size	remque, .-remque
@@ -967,6 +966,8 @@ remque:
 	.type	lsearch, @function
 lsearch:
 	addi	sp, sp, -40
+	stw	r17, 12(sp)
+	ldw	r17, 0(r6)
 	stw	r20, 24(sp)
 	stw	r18, 16(sp)
 	stw	r16, 8(sp)
@@ -974,8 +975,6 @@ lsearch:
 	stw	fp, 32(sp)
 	stw	r21, 28(sp)
 	stw	r19, 20(sp)
-	stw	r17, 12(sp)
-	ldw	r17, 0(r6)
 	stw	r6, 4(sp)
 	stw	r5, 0(sp)
 	ldw	r20, 40(sp)

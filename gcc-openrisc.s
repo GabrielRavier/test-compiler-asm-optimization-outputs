@@ -1301,10 +1301,10 @@ rand:
 	l.movhi	r5, hi(1481703424)
 	l.movhi	r6, hi(1284833280)
 	l.movhi	r16, ha(.LANCHOR0)
-	l.sw	4(r1), r9
 	l.addi	r16, r16, lo(.LANCHOR0)
 	l.ori	r5, r5, 62509
 	l.ori	r6, r6, 32557
+	l.sw	4(r1), r9
 	l.lwz	r3, 8(r16)
 	l.jal	__muldi3
 	l.lwz	r4, 12(r16)
@@ -1360,19 +1360,16 @@ remque:
 	l.lwz	r17, 0(r3)
 	l.sfeq	r17, r19
 	l.bf	.L288
-	 l.nop
-
+	l.movhi	r21, hi(0)
 	l.lwz	r19, 4(r3)
 	l.sw	4(r17), r19
-	l.movhi	r19, hi(0)
 .L288:
-	l.lwz	r17, 4(r3)
-	l.sfeq	r17, r19
+	l.lwz	r19, 4(r3)
+	l.sfeq	r19, r21
 	l.bf	.L279
 	 l.nop
 
-	l.lwz	r19, 0(r3)
-	l.sw	0(r17), r19
+	l.sw	0(r19), r17
 .L279:
 	l.jr	r9
 	 l.nop
@@ -1383,18 +1380,18 @@ remque:
 	.type	lsearch, @function
 lsearch:
 	l.addi	r1, r1, -40
+	l.movhi	r17, hi(0)
 	l.sw	12(r1), r20
+	l.sw	16(r1), r22
 	l.sw	20(r1), r24
 	l.sw	28(r1), r28
 	l.sw	32(r1), r30
+	l.lwz	r22, 0(r5)
 	l.sw	0(r1), r14
 	l.sw	4(r1), r16
 	l.sw	8(r1), r18
-	l.sw	16(r1), r22
 	l.sw	24(r1), r26
 	l.sw	36(r1), r9
-	l.movhi	r17, hi(0)
-	l.lwz	r22, 0(r5)
 	l.sfeq	r22, r17
 	l.or	r28, r5, r5
 	l.or	r24, r3, r3
@@ -2859,8 +2856,8 @@ _Qp_itoq:
 	l.or	r3, r4, r4
 	l.sw	0(r16), r11
 	l.sw	4(r16), r12
-	l.lwz	r16, 0(r1)
 	l.lwz	r9, 4(r1)
+	l.lwz	r16, 0(r1)
 	l.jr	r9
 	l.addi	r1, r1, 8
 	.size	_Qp_itoq, .-_Qp_itoq

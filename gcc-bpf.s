@@ -1780,10 +1780,9 @@ remque:
 	r2 = *(u64 *) (r1+8)
 	*(u64 *) (r0+8) = r2
 .L716:
-	r3 = *(u64 *) (r1+8)
-	if r3 == 0 goto .L715
-	r1 = *(u64 *) (r1+0)
-	*(u64 *) (r3+0) = r1
+	r1 = *(u64 *) (r1+8)
+	if r1 == 0 goto .L715
+	*(u64 *) (r1+0) = r0
 .L715:
 	exit
 	.size	remque, .-remque

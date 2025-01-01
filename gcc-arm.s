@@ -989,13 +989,13 @@ srand:
 rand:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	str	lr, [sp, #-4]!
 	ldr	r2, .L216
 	ldr	r0, .L216+4
 	ldr	ip, [r2, #8]
 	ldr	r3, [r2, #12]
 	mul	r0, ip, r0
 	ldr	r1, .L216+8
+	str	lr, [sp, #-4]!
 	mla	r0, r1, r3, r0
 	umull	r3, lr, ip, r1
 	adds	r3, r3, #1
@@ -1048,10 +1048,9 @@ remque:
 	cmp	r3, #0
 	ldrne	r2, [r0, #4]
 	strne	r2, [r3, #4]
-	ldr	r3, [r0, #4]
-	cmp	r3, #0
-	ldrne	r2, [r0]
-	strne	r2, [r3]
+	ldr	r2, [r0, #4]
+	cmp	r2, #0
+	strne	r3, [r2]
 	mov	pc, lr
 	.size	remque, .-remque
 	.align	2

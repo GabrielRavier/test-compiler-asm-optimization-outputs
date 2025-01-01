@@ -1235,10 +1235,9 @@ remque:
 	ldd 8(%r26),%r31
 	std %r31,8(%r28)
 .L286:
-	ldd 8(%r26),%r28
-	cmpb,*=,n %r0,%r28,.L285
-	ldd 0(%r26),%r31
-	std %r31,0(%r28)
+	ldd 8(%r26),%r31
+	cmpclr,*= %r0,%r31,%r0
+	std %r28,0(%r31)
 .L285:
 	bve,n (%r2)
 	.EXIT

@@ -2477,14 +2477,13 @@ remque:
 	st -X,r24
 	sbiw r26,2
 .L276:
-	ldd r26,Z+2
-	ldd r27,Z+3
-	sbiw r26,0
+	ldd __tmp_reg__,Z+2
+	ldd r31,Z+3
+	mov r30,__tmp_reg__
+	sbiw r30,0
 	breq .L275
-	ld r24,Z
-	ldd r25,Z+1
-	st X+,r24
-	st X,r25
+	std Z+1,r27
+	st Z,r26
 .L275:
 /* epilogue start */
 	ret
@@ -11212,10 +11211,6 @@ __popcountdi2:
 	std Y+2,r19
 	std Y+3,r20
 	std Y+4,r21
-	std Y+5,r22
-	std Y+6,r23
-	std Y+7,r24
-	std Y+8,r25
 	ldd r24,Y+1
 	ldd r25,Y+2
 	ldd r26,Y+3

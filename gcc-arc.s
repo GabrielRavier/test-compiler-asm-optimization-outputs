@@ -984,12 +984,11 @@ remque:
 	st_s	r3,[r2,4]		;16
 	.align 2
 .L310:
-	ld_s	r2,[r0,4]		;15
-	tst_s	r2,r2
+	ld_s	r3,[r0,4]		;15
+	tst_s	r3,r3
 	jeq_s	[blink]
-	ld_s	r3,[r0]		;15
 	j_s.d	[blink]
-	st_s	r3,[r2]		;16
+	st_s	r2,[r3]		;16
 	.size	remque, .-remque
 	.align 4
 	.global	lsearch

@@ -1607,10 +1607,9 @@ remque:
 	lwi	r4,r5,4
 	swi	r4,r3,4
 $L299:
-	lwi	r3,r5,4
-	beqi	r3,$L298
-	lwi	r4,r5,0
-	swi	r4,r3,0
+	lwi	r4,r5,4
+	beqi	r4,$L298
+	swi	r3,r4,0
 $L298:
 	rtsd	r15,8 
 	nop		# Unfilled delay slot

@@ -1365,14 +1365,14 @@ srand:
 		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 	||	add	.s1	-1, A4, A4
 	||	mvk	.d1	0, A3
-		nop	4
+		nop	3
+		ret	.s2	B3
 		addaw	.d1x	B14, (seed), A5
+	||	ldw	.d2t2	*+B15(8), B14
+	||	add	.s2	8, B15, B15
 		stw	.d1t1	A3, *+A5(4)
 		stw	.d1t1	A4, *A5
-	||	ret	.s2	B3
-		ldw	.d2t2	*+B15(8), B14
-	||	add	.s2	8, B15, B15
-		nop	4
+		nop	2
 	;; return occurs
 	.size	srand, .-srand
 	.align	2
@@ -1389,23 +1389,22 @@ rand:
 		mvklh	.s1	22609, A4
 		nop	1
 		addaw	.d1x	B14, (seed), A6
+	||	ldw	.d2t2	*+B15(8), B14
+	||	add	.s2	8, B15, B15
 		ldw	.d1t1	*A6, A7
 		ldw	.d1t1	*+A6(4), A3
 		nop	3
 		mpy32	.m1	A7, A4, A9
 		mpy32	.m1	A3, A5, A8
 		mpy32u	.m1	A7, A5, A1:A0
-		nop	2
+		ret	.s2	B3
+		nop	1
 		add	.d1	A8, A9, A16
 		addu	.l1	A0, A18, A5:A4
 	||	add	.s1	A16, A1, A17
 		add	.d1	A5, A17, A5
 		stdw	.d1t1	A5:A4, *A6
-	||	ret	.s2	B3
 	||	shru	.s1	A5, 1, A4
-		ldw	.d2t2	*+B15(8), B14
-	||	add	.s2	8, B15, B15
-		nop	4
 	;; return occurs
 	.size	rand, .-rand
 	.align	2
@@ -1416,9 +1415,9 @@ insque:
 	[!A0]	b	.s1	.L320
 	||[!A0]	stw	.d1t2	B4, *A4
 	[!A0]	stw	.d1t2	B4, *+A4(4)
-	[A0]	ldw	.d2t1	*B4, A3
-	||[A0]	stw	.d1t2	B4, *+A4(4)
-		nop	4
+	||[A0]	ldw	.d2t1	*B4, A3
+	[A0]	stw	.d1t2	B4, *+A4(4)
+		nop	3
 	;; condjump to .L320 occurs
 		stw	.d1t1	A3, *A4
 		stw	.d2t1	A4, *B4
@@ -1439,12 +1438,11 @@ remque:
 	[A0]	ldw	.d1t1	*+A4(4), A3
 		nop	4
 	[A0]	stw	.d1t1	A3, *+A0(4)
-		ldw	.d1t1	*+A4(4), A1
-		nop	4
+		ldw	.d1t1	*+A4(4), A3
 		ret	.s2	B3
-	||[A1]	ldw	.d1t1	*A4, A3
-		nop	4
-	[A1]	stw	.d1t1	A3, *A1
+		nop	3
+		mv	.d1	A3, A1
+	[A1]	stw	.d1t1	A0, *A3
 	;; return occurs
 	.size	remque, .-remque
 	.align	2
@@ -1452,27 +1450,26 @@ remque:
 	.type	lsearch, @function
 lsearch:
 		subah	.d2	B15, 24, B15
-		stdw	.d2t2	B11:B10, *+B15(32)
+		stdw	.d2t1	A13:A12, *+B15(16)
+		ldw	.d1t1	*A6, A13
+	||	stw	.d2t2	B14, *+B15(44)
+		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
+	||	mv	.l1x	B6, A12
 		stdw	.d2t1	A11:A10, *+B15(8)
 		stw	.d2t1	A15, *+B15(48)
-		stw	.d2t2	B14, *+B15(44)
-		stw	.d2t1	A14, *+B15(24)
-		stdw	.d2t1	A13:A12, *+B15(16)
-		stw	.d2t2	B12, *+B15(40)
-		stw	.d2t2	B3, *+B15(28)
-		ldw	.d1t1	*A6, A13
-	||	ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
-	||	mv	.s1	A8, A15
-	||	mv	.l1x	B4, A10
-	||	mv	.l2x	A6, B11
-	||	mv	.s2	B4, B10
-		mvk	.d1	0, A11
-	||	mv	.s1	A4, A14
-	||	mv	.l1x	B6, A12
-		nop	3
+		mv	.l1	A8, A15
+	||	mv	.s1x	B4, A10
+	||	mvk	.d1	0, A11
+	||	stdw	.d2t2	B11:B10, *+B15(32)
 		mv	.d1	A13, A0
+	||	stw	.d2t1	A14, *+B15(24)
 	[!A0]	b	.s1	.L339
-		nop	5
+	||	stw	.d2t2	B12, *+B15(40)
+		stw	.d2t2	B3, *+B15(28)
+		mv	.s2x	A6, B11
+	||	mv	.d1	A4, A14
+	||	mv	.d2	B4, B10
+		nop	3
 	;; condjump to .L339 occurs
 .L341:
 		call	.s2x	A15
@@ -1527,24 +1524,23 @@ lsearch:
 	.type	lfind, @function
 lfind:
 		subah	.d2	B15, 20, B15
+		stw	.d2t1	A15, *+B15(40)
+		ldw	.d1t1	*A6, A15
+	||	stw	.d2t2	B14, *+B15(36)
+		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 		stdw	.d2t1	A13:A12, *+B15(16)
 		stdw	.d2t1	A11:A10, *+B15(8)
-		stw	.d2t2	B14, *+B15(36)
 		stw	.d2t1	A14, *+B15(24)
-		stw	.d2t1	A15, *+B15(40)
-		stw	.d2t2	B10, *+B15(32)
-		stw	.d2t2	B3, *+B15(28)
-		ldw	.d1t1	*A6, A15
-	||	ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
+		mv	.d1	A15, A0
 	||	mv	.s1	A4, A12
 	||	mv	.l1x	B6, A14
+	||	stw	.d2t2	B10, *+B15(32)
+	[!A0]	b	.s1	.L358
+	||	stw	.d2t2	B3, *+B15(28)
 		mv	.l1	A8, A13
 	||	mv	.s1x	B4, A10
 	||	mvk	.d1	0, A11
-		nop	3
-		mv	.d1	A15, A0
-	[!A0]	b	.s1	.L358
-		nop	5
+		nop	4
 	;; condjump to .L358 occurs
 .L360:
 		call	.s2x	A13
@@ -2042,16 +2038,16 @@ imaxdiv:
 	;; call to (__c6xabi_remlli) occurs, with return value
 		nop	4
 .L452:
-		dmv	.s1	A5, A4, A9:A8
-	||	mv	.d1	A10, A4
-		stdw	.d1t1	A9:A8, *+A10(8)
 		ldw	.d2t2	*+B15(24), B3
-		ldw	.d2t1	*+B15(8), A10
+	||	dmv	.s1	A5, A4, A9:A8
+	||	mv	.d1	A10, A4
 		ldw	.d2t1	*+B15(12), A12
 		ldw	.d2t1	*+B15(16), A13
 		ldw	.d2t1	*+B15(20), A14
+		ldw	.d2t2	*+B15(28), B14
+	||	stdw	.d1t1	A9:A8, *+A10(8)
 		ret	.s2	B3
-	||	ldw	.d2t2	*+B15(28), B14
+	||	ldw	.d2t1	*+B15(8), A10
 		ldw	.d2t1	*+B15(32), A15
 	||	addk	.s2	32, B15
 		nop	4
@@ -2131,16 +2127,16 @@ lldiv:
 	;; call to (__c6xabi_remlli) occurs, with return value
 		nop	4
 .L463:
-		dmv	.s1	A5, A4, A9:A8
-	||	mv	.d1	A10, A4
-		stdw	.d1t1	A9:A8, *+A10(8)
 		ldw	.d2t2	*+B15(24), B3
-		ldw	.d2t1	*+B15(8), A10
+	||	dmv	.s1	A5, A4, A9:A8
+	||	mv	.d1	A10, A4
 		ldw	.d2t1	*+B15(12), A12
 		ldw	.d2t1	*+B15(16), A13
 		ldw	.d2t1	*+B15(20), A14
+		ldw	.d2t2	*+B15(28), B14
+	||	stdw	.d1t1	A9:A8, *+A10(8)
 		ret	.s2	B3
-	||	ldw	.d2t2	*+B15(28), B14
+	||	ldw	.d2t1	*+B15(8), A10
 		ldw	.d2t1	*+B15(32), A15
 	||	addk	.s2	32, B15
 		nop	4
@@ -2953,9 +2949,9 @@ gl_isinfl:
 _Qp_itoq:
 		sub	.d2	B15, 16, B15
 		stw	.d2t2	B3, *+B15(12)
-		stw	.d2t1	A10, *+B15(8)
+		stw	.d2t2	B14, *+B15(16)
 		call	.s2	(__c6xabi_fltid)
-	||	stw	.d2t2	B14, *+B15(16)
+	||	stw	.d2t1	A10, *+B15(8)
 		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 	||	mv	.d1	A4, A10
 	||	mv	.s1x	B4, A4
@@ -2963,10 +2959,10 @@ _Qp_itoq:
 	;; call to (__c6xabi_fltid) occurs, with return value
 		nop	4
 .L668:
-		stdw	.d1t1	A5:A4, *A10
 		ldw	.d2t2	*+B15(12), B3
-		ldw	.d2t1	*+B15(8), A10
+	||	stdw	.d1t1	A5:A4, *A10
 		ldw	.d2t2	*+B15(16), B14
+		ldw	.d2t1	*+B15(8), A10
 	||	addk	.s2	16, B15
 		nop	2
 		ret	.s2	B3

@@ -1240,10 +1240,9 @@ remque:
 	ld.d	$r13,$r4,8
 	st.d	$r13,$r12,8
 .L242:
-	ld.d	$r12,$r4,8
-	beqz	$r12,.L241
-	ldptr.d	$r13,$r4,0
-	stptr.d	$r13,$r12,0
+	ld.d	$r13,$r4,8
+	beqz	$r13,.L241
+	stptr.d	$r12,$r13,0
 .L241:
 	jr	$r1
 	.cfi_endproc
@@ -1258,21 +1257,21 @@ lsearch:
 	.cfi_startproc
 	addi.d	$r3,$r3,-80
 	.cfi_def_cfa_offset 80
+	st.d	$r26,$r3,40
+	.cfi_offset 26, -40
+	ldptr.d	$r26,$r6,0
 	st.d	$r25,$r3,48
 	st.d	$r27,$r3,32
 	st.d	$r29,$r3,16
 	st.d	$r30,$r3,8
 	st.d	$r1,$r3,72
-	st.d	$r26,$r3,40
 	st.d	$r28,$r3,24
 	.cfi_offset 25, -32
 	.cfi_offset 27, -48
 	.cfi_offset 29, -64
 	.cfi_offset 30, -72
 	.cfi_offset 1, -8
-	.cfi_offset 26, -40
 	.cfi_offset 28, -56
-	ldptr.d	$r26,$r6,0
 	or	$r29,$r6,$r0
 	or	$r27,$r4,$r0
 	or	$r30,$r5,$r0
@@ -2578,10 +2577,10 @@ _Qp_itoq:
 	.cfi_offset 1, -8
 	or	$r23,$r4,$r0
 	bl	%plt(__extenddftf2)
-	stptr.d	$r4,$r23,0
-	st.d	$r5,$r23,8
 	ld.d	$r1,$r3,8
 	.cfi_restore 1
+	stptr.d	$r4,$r23,0
+	st.d	$r5,$r23,8
 	ldptr.d	$r23,$r3,0
 	.cfi_restore 23
 	addi.d	$r3,$r3,16

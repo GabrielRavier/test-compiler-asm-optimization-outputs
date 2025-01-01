@@ -2054,10 +2054,9 @@ remque:
 	lw	$3,4($4)
 	sw	$3,4($2)
 $L292:
-	lw	$2,4($4)
-	beqz	$2,$L300
-	lw	$3,0($4)
-	sw	$3,0($2)
+	lw	$3,4($4)
+	beqz	$3,$L300
+	sw	$2,0($3)
 $L300:
 	jr	$31
 	.end	remque
@@ -2075,13 +2074,13 @@ lsearch:
 	addiu	$sp,-72
 	lw	$2,$L317
 	sw	$6,88($sp)
-	sw	$2,32($sp)
 	move	$28,$2
+	sw	$2,32($sp)
 	lw	$2,88($sp)
 	sd	$31,64($sp)
+	lw	$2,0($2)
 	sd	$17,56($sp)
 	sd	$16,48($sp)
-	lw	$2,0($2)
 	sw	$4,72($sp)
 	sw	$5,80($sp)
 	sw	$7,96($sp)
@@ -2179,11 +2178,11 @@ lfind:
 	.frame	$sp,72,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
+	lw	$2,0($6)
 	addiu	$sp,-72
 	sd	$31,64($sp)
 	sd	$17,56($sp)
 	sd	$16,48($sp)
-	lw	$2,0($6)
 	sw	$4,72($sp)
 	sw	$7,96($sp)
 	sw	$2,44($sp)
@@ -3910,8 +3909,8 @@ _Qp_itoq:
 	.set	macro
 	.set	reorder
 
-	sd	$2,0($16)
 	ld	$7,48($sp)
+	sd	$2,0($16)
 	ld	$16,40($sp)
 	.set	noreorder
 	.set	nomacro

@@ -1015,10 +1015,9 @@ remque:
 	l32i	a9, a2, 4
 	s32i	a9, a8, 4
 .L270:
-	l32i	a8, a2, 4
-	beqz.n	a8, .L269
-	l32i	a9, a2, 0
-	s32i	a9, a8, 0
+	l32i	a9, a2, 4
+	beqz.n	a9, .L269
+	s32i	a8, a9, 0
 .L269:
 	retw.n
 	.size	remque, .-remque

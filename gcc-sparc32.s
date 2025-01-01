@@ -1078,18 +1078,15 @@ insque:
 remque:
 	ld	[%o0], %g1
 	cmp	%g1, 0
-	be,a	.L291
-	 ld	[%o0+4], %g1
-	ld	[%o0+4], %g2
-	st	%g2, [%g1+4]
-	ld	[%o0+4], %g1
-.L291:
-	cmp	%g1, 0
 	be	.L292
-	 nop
-	ld	[%o0], %g2
-	st	%g2, [%g1]
+	 ld	[%o0+4], %g2
+	st	%g2, [%g1+4]
+	ld	[%o0+4], %g2
 .L292:
+	cmp	%g2, 0
+	bne,a	.L291
+	 st	%g1, [%g2]
+.L291:
 	jmp	%o7+8
 	 nop
 	.size	remque, .-remque

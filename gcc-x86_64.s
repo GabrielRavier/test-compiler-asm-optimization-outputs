@@ -1106,11 +1106,10 @@ remque:
 	mov	rdx, QWORD PTR [rdi+8]
 	mov	QWORD PTR [rax+8], rdx
 .L245:
-	mov	rax, QWORD PTR [rdi+8]
-	test	rax, rax
+	mov	rdx, QWORD PTR [rdi+8]
+	test	rdx, rdx
 	je	.L244
-	mov	rdx, QWORD PTR [rdi]
-	mov	QWORD PTR [rax], rdx
+	mov	QWORD PTR [rdx], rax
 .L244:
 	ret
 	.cfi_endproc

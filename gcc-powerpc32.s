@@ -1676,11 +1676,10 @@ remque:
 	lwz 10,4(3)
 	stw 10,4(9)
 .L320:
-	lwz 9,4(3)
-	cmpwi 0,9,0
+	lwz 10,4(3)
+	cmpwi 0,10,0
 	beqlr- 0
-	lwz 10,0(3)
-	stw 10,0(9)
+	stw 9,0(10)
 	blr
 	.cfi_endproc
 .LFE41:
@@ -1694,10 +1693,14 @@ lsearch:
 	stwu 1,-48(1)
 	.cfi_def_cfa_offset 48
 	mflr 0
-	stw 23,12(1)
+	stw 28,32(1)
 	.cfi_register 65, 0
+	.cfi_offset 28, -16
+	lwz 28,0(5)
+	stw 23,12(1)
 	.cfi_offset 23, -36
 	mr 23,4
+	cmpwi 0,28,0
 	stw 24,16(1)
 	.cfi_offset 24, -32
 	mr 24,5
@@ -1709,12 +1712,8 @@ lsearch:
 	mr 29,6
 	stw 0,52(1)
 	stw 26,24(1)
-	stw 28,32(1)
 	.cfi_offset 65, 4
 	.cfi_offset 26, -24
-	.cfi_offset 28, -16
-	lwz 28,0(5)
-	cmpwi 0,28,0
 	beq- 0,.L329
 	stw 25,20(1)
 	.cfi_offset 25, -28
@@ -2330,14 +2329,14 @@ imaxdiv:
 	stw 4,4(31)
 	mr 4,30
 	bl __moddi3
+	lwz 0,36(1)
 	stw 3,8(31)
 	mr 3,31
 	stw 4,12(31)
-	lwz 0,36(1)
-	lwz 27,12(1)
-	lwz 28,16(1)
 	mtlr 0
 	.cfi_restore 65
+	lwz 27,12(1)
+	lwz 28,16(1)
 	lwz 29,20(1)
 	lwz 30,24(1)
 	lwz 31,28(1)
@@ -2434,14 +2433,14 @@ lldiv:
 	stw 4,4(31)
 	mr 4,30
 	bl __moddi3
+	lwz 0,36(1)
 	stw 3,8(31)
 	mr 3,31
 	stw 4,12(31)
-	lwz 0,36(1)
-	lwz 27,12(1)
-	lwz 28,16(1)
 	mtlr 0
 	.cfi_restore 65
+	lwz 27,12(1)
+	lwz 28,16(1)
 	lwz 29,20(1)
 	lwz 30,24(1)
 	lwz 31,28(1)
@@ -3431,17 +3430,17 @@ _Qp_itoq:
 	.cfi_offset 65, 4
 	bl __floatsidf
 	bl __gcc_dtoq
+	lwz 0,20(1)
 	stw 3,0(31)
 	stw 4,4(31)
+	mtlr 0
+	.cfi_restore 65
 	stw 5,8(31)
 	stw 6,12(31)
-	lwz 0,20(1)
 	lwz 31,12(1)
 	addi 1,1,16
 	.cfi_restore 31
 	.cfi_def_cfa_offset 0
-	mtlr 0
-	.cfi_restore 65
 	blr
 	.cfi_endproc
 .LFE86:

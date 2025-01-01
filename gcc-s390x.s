@@ -1280,10 +1280,9 @@ remque:
 	lg	%r3,8(%r2)
 	stg	%r3,8(%r1)
 .L408:
-	ltg	%r4,8(%r2)
+	ltg	%r2,8(%r2)
 	ber	%r14
-	lg	%r2,0(%r2)
-	stg	%r2,0(%r4)
+	stg	%r1,0(%r2)
 	br	%r14
 	.cfi_endproc
 .LFE43:

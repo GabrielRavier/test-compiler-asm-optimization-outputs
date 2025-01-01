@@ -1006,11 +1006,10 @@ remque:
 	mov (4,d0),a0
 	mov a0,(4,d1)
 .L355:
-	mov (4,d0),d1
-	cmp 0,d1
+	mov (4,d0),d0
+	cmp 0,d0
 	beq .L354
-	mov (d0),d0
-	mov d0,(d1)
+	mov d1,(d0)
 .L354:
 	retf [],0
 	.size	remque, .-remque

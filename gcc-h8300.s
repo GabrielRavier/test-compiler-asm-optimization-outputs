@@ -1010,10 +1010,9 @@ _remque:
 	mov.l	@(4,er0),er3
 	mov.l	er3,@(4,er2)
 .L282:
-	mov.l	@(4,er0),er2
+	mov.l	@(4,er0),er3
 	beq	.L290
-	mov.l	@er0,er3
-	mov.l	er3,@er2
+	mov.l	er2,@er3
 .L290:
 	rts
 	.size	_remque, .-_remque
