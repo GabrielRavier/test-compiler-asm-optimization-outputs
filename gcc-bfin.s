@@ -4,44 +4,43 @@
 .global _memmove;
 .type _memmove, STT_FUNC;
 _memmove:
-	[--sp] = ( p5:5 );
+	[--sp] = ( p5:4 );
 
-	R3 = R0;
+	P4 = R0;
 	P5 = R1;
 	P2 = R2;
-	cc =R0<=R1 (iu);
+	cc =P4<=P5 (iu);
 	if cc jump .L2 (bp);
 	P1 = P5 + P2;
 	cc =P2==0;
 	if cc jump .L3;
 	P2 += -1;
-	P0 = R3;
-	P2 = P0 + P2;
+	P2 = P4 + P2;
 	P0 = P1;
 	P0 += -1;
 	P1 -= P5;
-	LSETUP (.L4, .L9) LC1 = P1;
+	LSETUP (.L4, .L10) LC1 = P1;
 .L4:
 	R0 = B [P0] (X);
 	P0 += -1;
-.L9:
+.L10:
 	B [P2--] = R0;
 .L3:
-	R0 = R3;
-	( p5:5 ) = [sp++];
+	R0 = P4;
+	( p5:4 ) = [sp++];
 
 	rts;
 .L2:
-	cc =R0==R1;
+	cc =P4==P5;
 	if cc jump .L3;
 	cc =P2==0;
 	if cc jump .L3;
 	nop;
-	P1 = R3;
-	LSETUP (.L5, .L8) LC1 = P2;
+	P1 = R0;
+	LSETUP (.L5, .L9) LC1 = P2;
 .L5:
 	R0 = B [P5++] (X);
-.L8:
+.L9:
 	B [P1++] = R0;
 	jump.s .L3;
 	.size	_memmove, .-_memmove
@@ -54,30 +53,30 @@ _memccpy:
 	R1 = [SP+12];
 	R2 = R2.B (Z);
 	cc =R1==0;
-	if cc jump .L11;
+	if cc jump .L12;
 	P2 = R0;
 	P1 = R1;
-	LSETUP (.L12, .L17) LC1 = P1;
-.L12:
+	LSETUP (.L13, .L18) LC1 = P1;
+.L13:
 	R3 = P2;
 	R0 = B [P0++] (X);
 	B [P2++] = R0;
 	R0 = R0.B (Z);
 	cc =R0==R2;
-	if cc jump .L11;
-.L17:
+	if cc jump .L12;
+.L18:
 	R1 += -1;
 	R3 = P2;
-.L11:
+.L12:
 	cc =R1==0;
-	if cc jump .L15;
+	if cc jump .L16;
 	R3 += 1;
-.L10:
+.L11:
 	R0 = R3;
 	rts;
-.L15:
+.L16:
 	R3 = 0 (X);
-	jump.s .L10;
+	jump.s .L11;
 	.size	_memccpy, .-_memccpy
 	.align 4
 .global _memchr;
@@ -87,28 +86,28 @@ _memchr:
 	R1 = R2;
 	R3 = R3.B (Z);
 	cc =R2==0;
-	if cc jump .L23;
+	if cc jump .L24;
 	P2 = R2;
-	LSETUP (.L20, .L26) LC1 = P2;
-.L20:
+	LSETUP (.L21, .L27) LC1 = P2;
+.L21:
 	P1 = R0;
 	R0 += 1;
 	R2 = B [P1] (Z);
 	cc =R2==R3;
-	if cc jump .L19;
-.L26:
+	if cc jump .L20;
+.L27:
 	R1 += -1;
-.L23:
+.L24:
 	P1 = R0;
-.L19:
+.L20:
 	cc =R1==0;
-	if cc jump .L25;
-.L18:
+	if cc jump .L26;
+.L19:
 	R0 = P1;
 	rts;
-.L25:
+.L26:
 	P1 = 0 (X);
-	jump.s .L18;
+	jump.s .L19;
 	.size	_memchr, .-_memchr
 	.align 4
 .global _memcmp;
@@ -119,12 +118,12 @@ _memcmp:
 	P0 = R0;
 	P1 = R1;
 	cc =R2==0;
-	if cc jump .L28;
+	if cc jump .L29;
 	R1 = R0;
 	R0 = P1;
 	P2 = R2;
-	LSETUP (.L29, .L34) LC1 = P2;
-.L29:
+	LSETUP (.L30, .L35) LC1 = P2;
+.L30:
 	P1 = R0;
 	P0 = R1;
 	R1 += 1;
@@ -132,24 +131,24 @@ _memcmp:
 	R7 = B [P0] (Z);
 	R3 = B [P1] (Z);
 	cc =R7==R3;
-	if !cc jump .L28;
-.L34:
+	if !cc jump .L29;
+.L35:
 	R2 += -1;
 	P0 = R1;
 	P1 = R0;
-.L28:
+.L29:
 	cc =R2==0;
-	if cc jump .L32 (bp);
+	if cc jump .L33 (bp);
 	R0 = B [P0] (Z);
 	R1 = B [P1] (Z);
 	R0 = R0 - R1;
-.L27:
+.L28:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L32:
+.L33:
 	R0 = 0 (X);
-	jump.s .L27;
+	jump.s .L28;
 	.size	_memcmp, .-_memcmp
 	.align 4
 .global _memcpy;
@@ -159,10 +158,10 @@ _memcpy:
 	SP += -12;
 	R3 = R0;
 	cc =R2==0;
-	if cc jump .L36;
+	if cc jump .L37;
 	call _memcpy;
 	R3 = R0;
-.L36:
+.L37:
 	R0 = R3;
 	SP += 12;
 	RETS = [SP++];
@@ -180,19 +179,19 @@ _memrchr:
 	R0 += -1;
 	R0 = R3 + R0;
 	R3 += -1;
-.L38:
+.L39:
 	cc =R0==R3;
-	if cc jump .L41;
+	if cc jump .L42;
 	nop;
 	P2 = R0;
 	R0 += -1;
 	R1 = B [P2] (Z);
 	cc =R1==R7;
-	if !cc jump .L38 (bp);
-	jump.s .L37;
-.L41:
+	if !cc jump .L39 (bp);
+	jump.s .L38;
+.L42:
 	P2 = 0 (X);
-.L37:
+.L38:
 	R0 = P2;
 	( r7:7 ) = [sp++];
 
@@ -206,13 +205,13 @@ _memset:
 	R0 = R1;
 	P2 = R2;
 	cc =P2==0;
-	if cc jump .L43;
+	if cc jump .L44;
 	P1 = R3;
-	LSETUP (.L44, .L46) LC1 = P2;
-.L44:
-.L46:
+	LSETUP (.L45, .L47) LC1 = P2;
+.L45:
+.L47:
 	B [P1++] = R0;
-.L43:
+.L44:
 	R0 = R3;
 	rts;
 	.size	_memset, .-_memset
@@ -226,22 +225,22 @@ _stpcpy:
 	B [P2] = R0;
 	R0 = R0.B (X);
 	cc =R0==0;
-	if cc jump .L50;
+	if cc jump .L51;
 	P1 += 1;
 	P2 += 1;
-.L49:
+.L50:
 	R1 = P2;
 	R0 = B [P1++] (X);
 	B [P2++] = R0;
 	R0 = R0.B (X);
 	cc =R0==0;
-	if !cc jump .L49 (bp);
-.L47:
+	if !cc jump .L50 (bp);
+.L48:
 	R0 = R1;
 	rts;
-.L50:
+.L51:
 	R1 = P2;
-	jump.s .L47;
+	jump.s .L48;
 	.size	_stpcpy, .-_stpcpy
 	.align 4
 .global _strchrnul;
@@ -252,19 +251,19 @@ _strchrnul:
 	R0 = B [P2] (X);
 	R1 = R0.B (X);
 	cc =R1==0;
-	if cc jump .L52;
-.L53:
+	if cc jump .L53;
+.L54:
 	R0 = R0.B (Z);
 	cc =R0==R2;
-	if cc jump .L52;
+	if cc jump .L53;
 	nop;
 	nop;
 	P2 += 1;
 	R0 = B [P2] (X);
 	R1 = R0.B (X);
 	cc =R1==0;
-	if !cc jump .L53 (bp);
-.L52:
+	if !cc jump .L54 (bp);
+.L53:
 	R0 = P2;
 	rts;
 	.size	_strchrnul, .-_strchrnul
@@ -273,15 +272,15 @@ _strchrnul:
 .type _strchr, STT_FUNC;
 _strchr:
 	P2 = R0;
-.L60:
+.L61:
 	R2 = P2;
 	R0 = B [P2++] (X);
 	cc =R0==R1;
-	if cc jump .L58;
+	if cc jump .L59;
 	cc =R0==0;
-	if !cc jump .L60 (bp);
+	if !cc jump .L61 (bp);
 	R2 = 0 (X);
-.L58:
+.L59:
 	R0 = R2;
 	rts;
 	.size	_strchr, .-_strchr
@@ -296,13 +295,13 @@ _strcmp:
 	R3 = R0.B (X);
 	R2 = R1.B (X);
 	cc =R3==R2;
-	if !cc jump .L63;
+	if !cc jump .L64;
 	P1 += 1;
 	P2 += 1;
-.L64:
+.L65:
 	R2 = R0.B (X);
 	cc =R2==0;
-	if cc jump .L63;
+	if cc jump .L64;
 	nop;
 	nop;
 	nop;
@@ -311,8 +310,8 @@ _strcmp:
 	R3 = R0.B (X);
 	R2 = R1.B (X);
 	cc =R3==R2;
-	if cc jump .L64 (bp);
-.L63:
+	if cc jump .L65 (bp);
+.L64:
 	R0 = R0.B (Z);
 	R1 = R1.B (Z);
 	R0 = R0 - R1;
@@ -325,22 +324,22 @@ _strlen:
 	P1 = R0;
 	R0 = B [P1] (X);
 	cc =R0==0;
-	if cc jump .L69;
+	if cc jump .L70;
 	R0 = P1;
 	R0 += 1;
-.L68:
+.L69:
 	P2 = R0;
 	R0 += 1;
 	R1 = B [P2] (X);
 	cc =R1==0;
-	if !cc jump .L68 (bp);
-.L67:
+	if !cc jump .L69 (bp);
+.L68:
 	P2 -= P1;
 	R0 = P2;
 	rts;
-.L69:
+.L70:
 	P2 = P1;
-	jump.s .L67;
+	jump.s .L68;
 	.size	_strlen, .-_strlen
 	.align 4
 .global _strncmp;
@@ -352,48 +351,48 @@ _strncmp:
 	P5 = R1;
 	P2 = R2;
 	cc =P2==0;
-	if cc jump .L76;
+	if cc jump .L77;
 	nop;
 	nop;
 	nop;
 	R0 = B [P0] (X);
 	R1 = R0.B (Z);
 	cc =R1==0;
-	if cc jump .L73;
+	if cc jump .L74;
 	P0 += 1;
 	P1 = P5;
-.L74:
+.L75:
 	P5 = P1;
 	R1 = B [P1++] (Z);
 	cc =R1==0;
-	if cc jump .L73;
+	if cc jump .L74;
 	P2 += -1;
 	cc =P2==0;
-	if !cc jump .L78;
-	jump.s .L73;
-.L78:
+	if !cc jump .L79;
+	jump.s .L74;
+.L79:
 	R2 = R0.B (Z);
 	cc =R1==R2;
-	if !cc jump .L73;
+	if !cc jump .L74;
 	nop;
 	nop;
 	nop;
 	R0 = B [P0++] (X);
 	R1 = R0.B (Z);
 	cc =R1==0;
-	if !cc jump .L74 (bp);
+	if !cc jump .L75 (bp);
 	P5 = P1;
-.L73:
+.L74:
 	R0 = R0.B (Z);
 	R1 = B [P5] (Z);
 	R0 = R0 - R1;
-.L71:
+.L72:
 	( p5:5 ) = [sp++];
 
 	rts;
-.L76:
+.L77:
 	R0 = 0 (X);
-	jump.s .L71;
+	jump.s .L72;
 	.size	_strncmp, .-_strncmp
 	.align 4
 .global _swab;
@@ -403,22 +402,22 @@ _swab:
 	P1 = R1;
 	R0 = R2;
 	cc =R2<=1;
-	if cc jump .L79;
+	if cc jump .L80;
 	BITCLR (R0,0);
 	P0 = R0;
 	P0 += -2;
 	P0 = P0 >> 1;
 	P0 += 1;
-	LSETUP (.L81, .L83) LC1 = P0;
-.L81:
+	LSETUP (.L82, .L84) LC1 = P0;
+.L82:
 	R0 = B [P2+1] (X);
 	B [P1] = R0;
 	R0 = B [P2] (X);
 	B [P1+1] = R0;
 	P1 += 2;
-.L83:
+.L84:
 	P2 += 2;
-.L79:
+.L80:
 	rts;
 	.size	_swab, .-_swab
 	.align 4
@@ -449,15 +448,15 @@ _isascii:
 _isblank:
 	R1 = 32 (X);
 	cc =R0==R1;
-	if cc jump .L88;
+	if cc jump .L89;
 	R1 = 9 (X);
 	cc =R0==R1;
 	R0 = CC;
-.L86:
+.L87:
 	rts;
-.L88:
+.L89:
 	R0 = 1 (X);
-	jump.s .L86;
+	jump.s .L87;
 	.size	_isblank, .-_isblank
 	.align 4
 .global _iscntrl;
@@ -465,15 +464,15 @@ _isblank:
 _iscntrl:
 	R1 = 31 (X);
 	cc =R0<=R1 (iu);
-	if cc jump .L91 (bp);
+	if cc jump .L92 (bp);
 	R1 = 127 (X);
 	cc =R0==R1;
 	R0 = CC;
-.L89:
+.L90:
 	rts;
-.L91:
+.L92:
 	R0 = 1 (X);
-	jump.s .L89;
+	jump.s .L90;
 	.size	_iscntrl, .-_iscntrl
 	.align 4
 .global _isdigit;
@@ -499,10 +498,12 @@ _isgraph:
 .global _islower;
 .type _islower, STT_FUNC;
 _islower:
-	R1 = -97 (X);
-	R0 = R0 + R1;
-	R1 = 25 (X);
-	cc =R0<=R1 (iu);
+	P2 = R0;
+	R0 = -97 (X);
+	P1 = R0;
+	P2 = P2 + P1;
+	P1 = 25 (X);
+	cc =P2<=P1 (iu);
 	R0 = CC;
 	rts;
 	.size	_islower, .-_islower
@@ -522,24 +523,26 @@ _isprint:
 _isspace:
 	R1 = 32 (X);
 	cc =R0==R1;
-	if cc jump .L98;
+	if cc jump .L99;
 	R0 += -9;
 	cc =R0<=4 (iu);
 	R0 = CC;
-.L96:
+.L97:
 	rts;
-.L98:
+.L99:
 	R0 = 1 (X);
-	jump.s .L96;
+	jump.s .L97;
 	.size	_isspace, .-_isspace
 	.align 4
 .global _isupper;
 .type _isupper, STT_FUNC;
 _isupper:
-	R1 = -65 (X);
-	R0 = R0 + R1;
-	R1 = 25 (X);
-	cc =R0<=R1 (iu);
+	P2 = R0;
+	R0 = -65 (X);
+	P1 = R0;
+	P2 = P2 + P1;
+	P1 = 25 (X);
+	cc =P2<=P1 (iu);
 	R0 = CC;
 	rts;
 	.size	_isupper, .-_isupper
@@ -547,27 +550,29 @@ _isupper:
 .global _iswcntrl;
 .type _iswcntrl, STT_FUNC;
 _iswcntrl:
-	R1 = 31 (X);
-	cc =R0<=R1 (iu);
-	if cc jump .L104 (bp);
-	R1 = -127 (X);
-	R1 = R0 + R1;
-	R2 = 32 (X);
-	cc =R1<=R2 (iu);
-	if cc jump .L104 (bp);
-	R1 = -8232 (X);
-	R1 = R0 + R1;
-	cc =R1<=1 (iu);
-	if cc jump .L104;
-	R1 = 7 (X);
-	R1.H = 65535;
-	R0 = R0 + R1;
-	cc =R0<=2 (iu);
+	P2 = R0;
+	P0 = 31 (X);
+	cc =P2<=P0 (iu);
+	if cc jump .L105 (bp);
+	P1 = -127 (X);
+	P1 = P2 + P1;
+	P0 = 32 (X);
+	cc =P1<=P0 (iu);
+	if cc jump .L105 (bp);
+	P1 = -8232 (X);
+	P1 = P2 + P1;
+	cc =P1<=1 (iu);
+	if cc jump .L105;
+	R0 = 7 (X);
+	R0.H = 65535;
+	P1 = R0;
+	P2 = P2 + P1;
+	cc =P2<=2 (iu);
 	R0 = CC;
-	jump.s .L100;
-.L104:
+	jump.s .L101;
+.L105:
 	R0 = 1 (X);
-.L100:
+.L101:
 	rts;
 	.size	_iswcntrl, .-_iswcntrl
 	.align 4
@@ -586,35 +591,35 @@ _iswdigit:
 _iswprint:
 	R1 = 254 (X);
 	cc =R0<=R1 (iu);
-	if cc jump .L113;
+	if cc jump .L114;
 	R1 = 8231 (X);
 	cc =R0<=R1 (iu);
-	if cc jump .L111;
+	if cc jump .L112;
 	R1 = -8234 (X);
 	R1 = R0 + R1;
 	R2 = 47061 (Z);
 	cc =R1<=R2 (iu);
-	if cc jump .L111;
+	if cc jump .L112;
 	R1 = -7 (X);
 	R1 <<= 13;
 	R1 = R0 + R1;
 	R2 = 8184 (X);
 	cc =R1<=R2 (iu);
-	if cc jump .L111;
+	if cc jump .L112;
 	R1 = -16383 (X);
 	R1 <<= 2;
 	R1 = R0 + R1;
 	R2 = 3 (X);
 	BITSET (R2, 20);
 	cc =R1<=R2 (iu);
-	if !cc jump .L112;
+	if !cc jump .L113;
 	R1 = 65534 (Z);
 	R0 = R0 & R1;
 	cc =R0==R1;
 	R0 = CC;
 	BITTGL (R0, 0);
-	jump.s .L106;
-.L113:
+	jump.s .L107;
+.L114:
 	R0 += 1;
 	R1 = 127 (X);
 	R0 = R0 & R1;
@@ -622,14 +627,14 @@ _iswprint:
 	cc =R0<=R2 (iu);
 	R0 = CC;
 	BITTGL (R0, 0);
-	jump.s .L106;
-.L111:
-	R0 = 1 (X);
-.L106:
-	rts;
+	jump.s .L107;
 .L112:
+	R0 = 1 (X);
+.L107:
+	rts;
+.L113:
 	R0 = 0 (X);
-	jump.s .L106;
+	jump.s .L107;
 	.size	_iswprint, .-_iswprint
 	.align 4
 .global _iswxdigit;
@@ -639,17 +644,17 @@ _iswxdigit:
 	R1 += -48;
 	R2 = 9 (X);
 	cc =R1<=R2 (iu);
-	if cc jump .L116 (bp);
+	if cc jump .L117 (bp);
 	BITSET (R0, 5);
 	R1 = -97 (X);
 	R0 = R0 + R1;
 	cc =R0<=5 (iu);
 	R0 = CC;
-.L114:
+.L115:
 	rts;
-.L116:
+.L117:
 	R0 = 1 (X);
-	jump.s .L114;
+	jump.s .L115;
 	.size	_iswxdigit, .-_iswxdigit
 	.align 4
 .global _toascii;
@@ -678,7 +683,7 @@ _fdim:
 	R1 = [SP+36];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L121;
+	if !cc jump .L122;
 	R7 = [SP+44];
 	[SP+12] = R7;
 	R2 = [SP+40];
@@ -686,14 +691,14 @@ _fdim:
 	R1 = [SP+44];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L122;
+	if !cc jump .L123;
 	[SP+12] = R7;
 	R2 = [SP+40];
 	R0 = [SP+32];
 	R1 = [SP+36];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L125 (bp);
+	if cc jump .L126 (bp);
 	[SP+12] = R7;
 	R2 = [SP+40];
 	R0 = [SP+32];
@@ -701,7 +706,7 @@ _fdim:
 	call ___subdf3;
 	[SP+16] = R0;
 	[SP+20] = R1;
-.L118:
+.L119:
 	R0 = [SP+16];
 	R1 = [SP+20];
 	SP += 24;
@@ -709,24 +714,24 @@ _fdim:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L121:
+.L122:
 	R0 = [SP+32];
 	R1 = [SP+36];
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L118;
-.L122:
+	jump.s .L119;
+.L123:
 	R1 = [SP+40];
 	R2 = [SP+44];
 	[SP+16] = R1;
 	[SP+20] = R2;
-	jump.s .L118;
-.L125:
+	jump.s .L119;
+.L126:
 	R0 = 0 (X);
 	R1 = 0 (X);
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L118;
+	jump.s .L119;
 	.size	_fdim, .-_fdim
 	.align 4
 .global _fdimf;
@@ -741,34 +746,34 @@ _fdimf:
 	R1 = R0;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L126;
+	if !cc jump .L127;
 	R1 = R6;
 	R0 = R6;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L130;
+	if !cc jump .L131;
 	R1 = R6;
 	R0 = R7;
 	call ___gtsf2;
 	cc =R0<=0;
-	if cc jump .L133 (bp);
+	if cc jump .L134 (bp);
 	R1 = R6;
 	R0 = R7;
 	call ___subsf3;
 	R7 = R0;
-.L126:
+.L127:
 	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
 	( r7:6 ) = [sp++];
 
 	rts;
-.L130:
+.L131:
 	R7 = R6;
-	jump.s .L126;
-.L133:
+	jump.s .L127;
+.L134:
 	R7 = 0 (X);
-	jump.s .L126;
+	jump.s .L127;
 	.size	_fdimf, .-_fdimf
 	.align 4
 .global _fmax;
@@ -787,7 +792,7 @@ _fmax:
 	R1 = [SP+44];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L142;
+	if !cc jump .L143;
 	R7 = [SP+52];
 	[SP+12] = R7;
 	R2 = [SP+48];
@@ -795,7 +800,7 @@ _fmax:
 	R1 = [SP+52];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L141;
+	if !cc jump .L142;
 	R0 = [SP+44];
 	R0 >>>= 31;
 	R0 <<= 31;
@@ -803,16 +808,16 @@ _fmax:
 	R1 >>>= 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L136 (bp);
+	if cc jump .L137 (bp);
 	cc =R0==0;
-	if !cc jump .L142 (bp);
-.L141:
+	if !cc jump .L143 (bp);
+.L142:
 	R0 = [SP+40];
 	R1 = [SP+44];
 	[SP+24] = R0;
 	[SP+28] = R1;
-	jump.s .L134;
-.L136:
+	jump.s .L135;
+.L137:
 	[SP+12] = R7;
 	R2 = [SP+48];
 	R0 = [SP+40];
@@ -820,14 +825,14 @@ _fmax:
 	call ___ltdf2;
 	R0 >>= 31;
 	cc =R0==0;
-	if cc jump .L137 (bp);
-.L142:
+	if cc jump .L138 (bp);
+.L143:
 	R0 = [SP+48];
 	R1 = [SP+52];
-.L143:
+.L144:
 	[SP+24] = R0;
 	[SP+28] = R1;
-.L134:
+.L135:
 	R0 = [SP+24];
 	R1 = [SP+28];
 	SP += 32;
@@ -835,10 +840,10 @@ _fmax:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L137:
+.L138:
 	R0 = [SP+40];
 	R1 = [SP+44];
-	jump.s .L143;
+	jump.s .L144;
 	.size	_fmax, .-_fmax
 	.align 4
 .global _fmaxf;
@@ -853,36 +858,36 @@ _fmaxf:
 	R1 = R0;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L144;
+	if !cc jump .L145;
 	R1 = R7;
 	R0 = R7;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L151;
+	if !cc jump .L152;
 	R0 = R6 >>> 31;
 	R0 <<= 31;
 	R1 = R7 >>> 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L146 (bp);
-.L153:
+	if cc jump .L147 (bp);
+.L154:
 	cc =R0==0;
-	if !cc jump .L144 (bp);
-.L151:
+	if !cc jump .L145 (bp);
+.L152:
 	R7 = R6;
-.L144:
+.L145:
 	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
 	( r7:6 ) = [sp++];
 
 	rts;
-.L146:
+.L147:
 	R1 = R7;
 	R0 = R6;
 	call ___ltsf2;
 	R0 >>= 31;
-	jump.s .L153;
+	jump.s .L154;
 	.size	_fmaxf, .-_fmaxf
 	.align 4
 .global _fmaxl;
@@ -901,7 +906,7 @@ _fmaxl:
 	R1 = [SP+44];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L162;
+	if !cc jump .L163;
 	R7 = [SP+52];
 	[SP+12] = R7;
 	R2 = [SP+48];
@@ -909,7 +914,7 @@ _fmaxl:
 	R1 = [SP+52];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L161;
+	if !cc jump .L162;
 	R0 = [SP+44];
 	R0 >>>= 31;
 	R0 <<= 31;
@@ -917,16 +922,16 @@ _fmaxl:
 	R1 >>>= 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L156 (bp);
+	if cc jump .L157 (bp);
 	cc =R0==0;
-	if !cc jump .L162 (bp);
-.L161:
+	if !cc jump .L163 (bp);
+.L162:
 	R0 = [SP+40];
 	R1 = [SP+44];
 	[SP+24] = R0;
 	[SP+28] = R1;
-	jump.s .L154;
-.L156:
+	jump.s .L155;
+.L157:
 	[SP+12] = R7;
 	R2 = [SP+48];
 	R0 = [SP+40];
@@ -934,14 +939,14 @@ _fmaxl:
 	call ___ltdf2;
 	R0 >>= 31;
 	cc =R0==0;
-	if cc jump .L157 (bp);
-.L162:
+	if cc jump .L158 (bp);
+.L163:
 	R0 = [SP+48];
 	R1 = [SP+52];
-.L163:
+.L164:
 	[SP+24] = R0;
 	[SP+28] = R1;
-.L154:
+.L155:
 	R0 = [SP+24];
 	R1 = [SP+28];
 	SP += 32;
@@ -949,10 +954,10 @@ _fmaxl:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L157:
+.L158:
 	R0 = [SP+40];
 	R1 = [SP+44];
-	jump.s .L163;
+	jump.s .L164;
 	.size	_fmaxl, .-_fmaxl
 	.align 4
 .global _fmin;
@@ -971,7 +976,7 @@ _fmin:
 	R1 = [SP+36];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L170;
+	if !cc jump .L171;
 	R7 = [SP+44];
 	[SP+12] = R7;
 	R2 = [SP+40];
@@ -979,7 +984,7 @@ _fmin:
 	R1 = [SP+44];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L172;
+	if !cc jump .L173;
 	R0 = [SP+36];
 	R0 >>>= 31;
 	R0 <<= 31;
@@ -987,16 +992,16 @@ _fmin:
 	R1 >>>= 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L166 (bp);
+	if cc jump .L167 (bp);
 	cc =R0==0;
-	if !cc jump .L172 (bp);
-.L170:
+	if !cc jump .L173 (bp);
+.L171:
 	R0 = [SP+40];
 	R1 = [SP+44];
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L164;
-.L166:
+	jump.s .L165;
+.L167:
 	[SP+12] = R7;
 	R2 = [SP+40];
 	R0 = [SP+32];
@@ -1004,14 +1009,14 @@ _fmin:
 	call ___ltdf2;
 	R0 >>= 31;
 	cc =R0==0;
-	if cc jump .L167 (bp);
-.L172:
+	if cc jump .L168 (bp);
+.L173:
 	R0 = [SP+32];
 	R1 = [SP+36];
-.L173:
+.L174:
 	[SP+16] = R0;
 	[SP+20] = R1;
-.L164:
+.L165:
 	R0 = [SP+16];
 	R1 = [SP+20];
 	SP += 24;
@@ -1019,10 +1024,10 @@ _fmin:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L167:
+.L168:
 	R0 = [SP+40];
 	R1 = [SP+44];
-	jump.s .L173;
+	jump.s .L174;
 	.size	_fmin, .-_fmin
 	.align 4
 .global _fminf;
@@ -1037,36 +1042,36 @@ _fminf:
 	R1 = R0;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L180;
+	if !cc jump .L181;
 	R1 = R6;
 	R0 = R6;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L174;
+	if !cc jump .L175;
 	R0 = R7 >>> 31;
 	R0 <<= 31;
 	R1 = R6 >>> 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L176 (bp);
-.L183:
+	if cc jump .L177 (bp);
+.L184:
 	cc =R0==0;
-	if !cc jump .L174 (bp);
-.L180:
+	if !cc jump .L175 (bp);
+.L181:
 	R7 = R6;
-.L174:
+.L175:
 	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
 	( r7:6 ) = [sp++];
 
 	rts;
-.L176:
+.L177:
 	R1 = R6;
 	R0 = R7;
 	call ___ltsf2;
 	R0 >>= 31;
-	jump.s .L183;
+	jump.s .L184;
 	.size	_fminf, .-_fminf
 	.align 4
 .global _fminl;
@@ -1085,7 +1090,7 @@ _fminl:
 	R1 = [SP+36];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L190;
+	if !cc jump .L191;
 	R7 = [SP+44];
 	[SP+12] = R7;
 	R2 = [SP+40];
@@ -1093,7 +1098,7 @@ _fminl:
 	R1 = [SP+44];
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L192;
+	if !cc jump .L193;
 	R0 = [SP+36];
 	R0 >>>= 31;
 	R0 <<= 31;
@@ -1101,16 +1106,16 @@ _fminl:
 	R1 >>>= 31;
 	R1 <<= 31;
 	cc =R0==R1;
-	if cc jump .L186 (bp);
+	if cc jump .L187 (bp);
 	cc =R0==0;
-	if !cc jump .L192 (bp);
-.L190:
+	if !cc jump .L193 (bp);
+.L191:
 	R0 = [SP+40];
 	R1 = [SP+44];
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L184;
-.L186:
+	jump.s .L185;
+.L187:
 	[SP+12] = R7;
 	R2 = [SP+40];
 	R0 = [SP+32];
@@ -1118,14 +1123,14 @@ _fminl:
 	call ___ltdf2;
 	R0 >>= 31;
 	cc =R0==0;
-	if cc jump .L187 (bp);
-.L192:
+	if cc jump .L188 (bp);
+.L193:
 	R0 = [SP+32];
 	R1 = [SP+36];
-.L193:
+.L194:
 	[SP+16] = R0;
 	[SP+20] = R1;
-.L184:
+.L185:
 	R0 = [SP+16];
 	R1 = [SP+20];
 	SP += 24;
@@ -1133,10 +1138,10 @@ _fminl:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L187:
+.L188:
 	R0 = [SP+40];
 	R1 = [SP+44];
-	jump.s .L193;
+	jump.s .L194;
 	.size	_fminl, .-_fminl
 	.align 4
 .global _l64a;
@@ -1145,11 +1150,11 @@ _l64a:
 	P1.H = _s.0;
 	P1.L = _s.0;
 	cc =R0==0;
-	if cc jump .L195;
+	if cc jump .L196;
 	R3.H = _digits;
 	R3.L = _digits;
 	R2 = 63 (X);
-.L196:
+.L197:
 	R1 = R0 & R2;
 	R1 = R3 + R1;
 	P2 = R1;
@@ -1157,8 +1162,8 @@ _l64a:
 	B [P1++] = R1;
 	R0 >>= 6;
 	cc =R0==0;
-	if !cc jump .L196 (bp);
-.L195:
+	if !cc jump .L197 (bp);
+.L196:
 	R0 = 0 (X);
 	B [P1] = R0;
 	R0.H = _s.0;
@@ -1216,22 +1221,22 @@ _insque:
 	P2 = R0;
 	P1 = R1;
 	cc =P1==0;
-	if cc jump .L204;
+	if cc jump .L205;
 	R0 = [P1];
 	[P2] = R0;
 	[P2+4] = R1;
 	[P1] = P2;
 	P1 = [P2];
 	cc =P1==0;
-	if cc jump .L201;
+	if cc jump .L202;
 	[P1+4] = P2;
-.L201:
+.L202:
 	rts;
-.L204:
+.L205:
 	R0 = 0 (X);
 	[P2+4] = R0;
 	[P2] = R0;
-	jump.s .L201;
+	jump.s .L202;
 	.size	_insque, .-_insque
 	.align 4
 .global _remque;
@@ -1240,22 +1245,22 @@ _remque:
 	P2 = R0;
 	P1 = [P2];
 	cc =P1==0;
-	if cc jump .L206;
+	if cc jump .L207;
 	nop;
 	nop;
 	nop;
 	R0 = [P2+4];
 	[P1+4] = R0;
-.L206:
+.L207:
 	P1 = [P2+4];
 	cc =P1==0;
-	if cc jump .L205;
+	if cc jump .L206;
 	nop;
 	nop;
 	nop;
 	R0 = [P2];
 	[P1] = R0;
-.L205:
+.L206:
 	rts;
 	.size	_remque, .-_remque
 	.align 4
@@ -1272,23 +1277,23 @@ _lsearch:
 	P4 = [SP+64];
 	R6 = [FP];
 	cc =R6==0;
-	if cc jump .L209;
+	if cc jump .L210;
 	R7 = R1;
 	P3 = 0 (X);
-.L211:
+.L212:
 	R4 = R7;
 	R1 = R7;
 	R0 = R5;
 	call (P4);
 	cc =R0==0;
-	if cc jump .L208;
+	if cc jump .L209;
 	P3 += 1;
 	R0 = P5;
 	R7 = R7 + R0;
 	R0 = P3;
 	cc =R6==R0;
-	if !cc jump .L211 (bp);
-.L209:
+	if !cc jump .L212 (bp);
+.L210:
 	R0 = R6;
 	R0 += 1;
 	[FP] = R0;
@@ -1302,7 +1307,7 @@ _lsearch:
 	R0 = P3;
 	call _memcpy;
 	R4 = R0;
-.L208:
+.L209:
 	R0 = R4;
 	SP += 12;
 	FP = [SP++];
@@ -1326,23 +1331,23 @@ _lfind:
 	P5 = [SP+60];
 	R4 = [P2];
 	cc =R4==0;
-	if cc jump .L214;
+	if cc jump .L215;
 	R6 = 0 (X);
-.L216:
+.L217:
 	P3 = R7;
 	R1 = R7;
 	R0 = R5;
 	call (P5);
 	cc =R0==0;
-	if cc jump .L213;
+	if cc jump .L214;
 	R6 += 1;
 	R0 = P4;
 	R7 = R7 + R0;
 	cc =R4==R6;
-	if !cc jump .L216 (bp);
-.L214:
+	if !cc jump .L217 (bp);
+.L215:
 	P3 = 0 (X);
-.L213:
+.L214:
 	R0 = P3;
 	SP += 12;
 	RETS = [SP++];
@@ -1369,58 +1374,58 @@ _atoi:
 	[--SP] = RETS;
 	SP += -12;
 	P5 = R0;
-.L220:
+.L221:
 	R7 = P5;
 	R6 = B [P5++] (X);
 	R0 = R6;
 	call _isspace;
 	P2 = R0;
 	cc =P2==0;
-	if !cc jump .L220 (bp);
+	if !cc jump .L221 (bp);
 	R0 = 43 (X);
 	cc =R6==R0;
-	if cc jump .L227;
+	if cc jump .L228;
 	R3 = 45 (X);
 	cc =R6==R3;
-	if !cc jump .L228 (bp);
+	if !cc jump .L229 (bp);
 	R2 = 1 (X);
-.L221:
-	R7 += 1;
 .L222:
-	P1 = R7;
-	jump.s .L232;
-.L227:
-	R2 = P2;
-	jump.s .L221;
+	R7 += 1;
 .L223:
+	P1 = R7;
+	jump.s .L233;
+.L228:
+	R2 = P2;
+	jump.s .L222;
+.L224:
 	P2 = P2 + (P2 << 2);
 	P2 = P2 + P2;
 	R0 += -48;
 	R0 = R0.B (X);
 	P0 = R0;
 	P2 -= P0;
-.L232:
+.L233:
 	R0 = B [P1++] (X);
 	R1 = R0.B (X);
 	R1 += -48;
 	R3 = 9 (X);
 	cc =R1<=R3 (iu);
-	if cc jump .L223 (bp);
+	if cc jump .L224 (bp);
 	cc =R2==0;
-	if !cc jump .L219 (bp);
+	if !cc jump .L220 (bp);
 	R0 = P2;
 	R0 = -R0;
 	P2 = R0;
-.L219:
+.L220:
 	R0 = P2;
 	SP += 12;
 	RETS = [SP++];
 	( r7:6, p5:5 ) = [sp++];
 
 	rts;
-.L228:
+.L229:
 	R2 = P2;
-	jump.s .L222;
+	jump.s .L223;
 	.size	_atoi, .-_atoi
 	.align 4
 .global _atol;
@@ -1431,58 +1436,58 @@ _atol:
 	[--SP] = RETS;
 	SP += -12;
 	P5 = R0;
-.L234:
+.L235:
 	R7 = P5;
 	R6 = B [P5++] (X);
 	R0 = R6;
 	call _isspace;
 	P2 = R0;
 	cc =P2==0;
-	if !cc jump .L234 (bp);
+	if !cc jump .L235 (bp);
 	R0 = 43 (X);
 	cc =R6==R0;
-	if cc jump .L241;
+	if cc jump .L242;
 	R3 = 45 (X);
 	cc =R6==R3;
-	if !cc jump .L242 (bp);
+	if !cc jump .L243 (bp);
 	R2 = 1 (X);
-.L235:
-	R7 += 1;
 .L236:
-	P1 = R7;
-	jump.s .L246;
-.L241:
-	R2 = P2;
-	jump.s .L235;
+	R7 += 1;
 .L237:
+	P1 = R7;
+	jump.s .L247;
+.L242:
+	R2 = P2;
+	jump.s .L236;
+.L238:
 	P2 = P2 + (P2 << 2);
 	P2 = P2 + P2;
 	R0 += -48;
 	R0 = R0.B (X);
 	P0 = R0;
 	P2 -= P0;
-.L246:
+.L247:
 	R0 = B [P1++] (X);
 	R1 = R0.B (X);
 	R1 += -48;
 	R3 = 9 (X);
 	cc =R1<=R3 (iu);
-	if cc jump .L237 (bp);
+	if cc jump .L238 (bp);
 	cc =R2==0;
-	if !cc jump .L233 (bp);
+	if !cc jump .L234 (bp);
 	R0 = P2;
 	R0 = -R0;
 	P2 = R0;
-.L233:
+.L234:
 	R0 = P2;
 	SP += 12;
 	RETS = [SP++];
 	( r7:6, p5:5 ) = [sp++];
 
 	rts;
-.L242:
+.L243:
 	R2 = P2;
-	jump.s .L236;
+	jump.s .L237;
 	.size	_atol, .-_atol
 	.align 4
 .global _atoll;
@@ -1493,36 +1498,36 @@ _atoll:
 	[--SP] = RETS;
 	SP += -24;
 	P4 = R0;
-.L248:
+.L249:
 	P5 = P4;
 	R7 = B [P4++] (X);
 	R0 = R7;
 	call _isspace;
 	R6 = R0;
 	cc =R0==0;
-	if !cc jump .L248 (bp);
+	if !cc jump .L249 (bp);
 	R0 = 43 (X);
 	cc =R7==R0;
-	if cc jump .L249;
+	if cc jump .L250;
 	R1 = 45 (X);
 	cc =R7==R1;
-	if !cc jump .L250 (bp);
+	if !cc jump .L251 (bp);
 	R6 = 1 (X);
-.L249:
-	P5 += 1;
 .L250:
+	P5 += 1;
+.L251:
 	nop;
 	R7 = B [P5] (X);
 	R0 = R7.B (X);
 	R0 += -48;
 	R1 = 9 (X);
 	cc =R0<=R1 (iu);
-	if !cc jump .L257;
+	if !cc jump .L258;
 	P5 += 1;
 	R4 = 0 (X);
 	R1 = 0 (X);
 	R5 = 0 (X);
-.L251:
+.L252:
 	[SP+12] = R5;
 	R2 = 10 (X);
 	R0 = R4;
@@ -1546,26 +1551,26 @@ _atoll:
 	R0 += -48;
 	R2 = 9 (X);
 	cc =R0<=R2 (iu);
-	if cc jump .L251 (bp);
-.L252:
+	if cc jump .L252 (bp);
+.L253:
 	cc =R6==0;
-	if !cc jump .L247 (bp);
+	if !cc jump .L248 (bp);
 	CC = R4;
 	R0 = CC;
 	R1 = -R1;
 	R4 = -R4;
 	R1 = R1 - R0;
-.L247:
+.L248:
 	R0 = R4;
 	SP += 24;
 	RETS = [SP++];
 	( r7:4, p5:4 ) = [sp++];
 
 	rts;
-.L257:
+.L258:
 	R4 = 0 (X);
 	R1 = 0 (X);
-	jump.s .L252;
+	jump.s .L253;
 	.size	_atoll, .-_atoll
 	.align 4
 .global _bsearch;
@@ -1580,12 +1585,12 @@ _bsearch:
 	R7 = R2;
 	R4 = [SP+56];
 	P4 = [SP+60];
-	jump.s .L265;
-.L263:
+	jump.s .L266;
+.L264:
 	R7 = P3;
-.L265:
+.L266:
 	cc =R7==0;
-	if cc jump .L259;
+	if cc jump .L260;
 	P2 = R7;
 	P3 = P2 >> 1;
 	R6 = P3;
@@ -1595,17 +1600,17 @@ _bsearch:
 	R0 = P5;
 	call (P4);
 	cc =R0<0;
-	if cc jump .L263;
+	if cc jump .L264;
 	cc =R0<=0;
-	if cc jump .L258;
+	if cc jump .L259;
 	R5 = R6 + R4;
 	R7 += -1;
 	R0 = P3;
 	R7 = R7 - R0;
-	jump.s .L265;
-.L259:
+	jump.s .L266;
+.L260:
 	R6 = 0 (X);
-.L258:
+.L259:
 	R0 = R6;
 	SP += 12;
 	RETS = [SP++];
@@ -1623,26 +1628,26 @@ _bsearch_r:
 	SP += -12;
 	P5 = R0;
 	R5 = R1;
+	R6 = R2;
 	R4 = [SP+56];
 	P3 = [SP+60];
 	P4 = [SP+64];
-	R6 = R2;
 	cc =R2==0;
-	if !cc jump .L270 (bp);
-.L267:
+	if !cc jump .L271 (bp);
+.L268:
 	R7 = 0 (X);
-.L266:
+.L267:
 	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
 	( r7:4, p5:3 ) = [sp++];
 
 	rts;
-.L269:
+.L270:
 	R6 >>>= 1;
 	cc =R6==0;
-	if cc jump .L267;
-.L270:
+	if cc jump .L268;
+.L271:
 	R7 = R6 >>> 1;
 	R7 *= R4;
 	R7 = R5 + R7;
@@ -1651,12 +1656,12 @@ _bsearch_r:
 	R0 = P5;
 	call (P3);
 	cc =R0==0;
-	if cc jump .L266;
+	if cc jump .L267;
 	cc =R0<=0;
-	if cc jump .L269;
+	if cc jump .L270;
 	R5 = R7 + R4;
 	R6 += -1;
-	jump.s .L269;
+	jump.s .L270;
 	.size	_bsearch_r, .-_bsearch_r
 	.align 4
 .global _div;
@@ -1691,17 +1696,17 @@ _imaxabs:
 	R0 = [SP];
 	R1 = [SP+4];
 	cc =R1<0;
-	if cc jump .L276;
-.L274:
+	if cc jump .L277;
+.L275:
 	SP += 8;
 	rts;
-.L276:
+.L277:
 	CC = R0;
 	R2 = CC;
 	R1 = -R1;
 	R0 = -R0;
 	R1 = R1 - R2;
-	jump.s .L274;
+	jump.s .L275;
 	.size	_imaxabs, .-_imaxabs
 	.align 4
 .global _imaxdiv;
@@ -1777,17 +1782,17 @@ _llabs:
 	R0 = [SP];
 	R1 = [SP+4];
 	cc =R1<0;
-	if cc jump .L283;
-.L281:
+	if cc jump .L284;
+.L282:
 	SP += 8;
 	rts;
-.L283:
+.L284:
 	CC = R0;
 	R2 = CC;
 	R1 = -R1;
 	R0 = -R0;
 	R1 = R1 - R2;
-	jump.s .L281;
+	jump.s .L282;
 	.size	_llabs, .-_llabs
 	.align 4
 .global _lldiv;
@@ -1827,25 +1832,25 @@ _wcschr:
 	P2 = R0;
 	R0 = [P2];
 	cc =R0==0;
-	if cc jump .L287;
-.L286:
+	if cc jump .L288;
+.L287:
 	cc =R1==R0;
-	if cc jump .L287;
+	if cc jump .L288;
 	nop;
 	nop;
 	P2 += 4;
 	R0 = [P2];
 	cc =R0==0;
-	if !cc jump .L286 (bp);
-.L287:
+	if !cc jump .L287 (bp);
+.L288:
 	cc =R0==0;
-	if cc jump .L292;
-.L285:
+	if cc jump .L293;
+.L286:
 	R0 = P2;
 	rts;
-.L292:
+.L293:
 	P2 = 0 (X);
-	jump.s .L285;
+	jump.s .L286;
 	.size	_wcschr, .-_wcschr
 	.align 4
 .global _wcscmp;
@@ -1856,31 +1861,31 @@ _wcscmp:
 	R0 = [P1];
 	R1 = [P2];
 	cc =R0==R1;
-	if !cc jump .L294;
+	if !cc jump .L295;
 	P1 += 4;
 	P2 += 4;
-.L295:
+.L296:
 	cc =R0==0;
-	if cc jump .L294;
+	if cc jump .L295;
 	cc =R1==0;
-	if cc jump .L294;
+	if cc jump .L295;
 	nop;
 	nop;
 	nop;
 	R0 = [P1++];
 	R1 = [P2++];
 	cc =R0==R1;
-	if cc jump .L295 (bp);
-.L294:
+	if cc jump .L296 (bp);
+.L295:
 	cc =R0<R1;
-	if cc jump .L298 (bp);
+	if cc jump .L299 (bp);
 	cc =R1<R0;
 	R0 = CC;
-.L293:
+.L294:
 	rts;
-.L298:
+.L299:
 	R0 = -1 (X);
-	jump.s .L293;
+	jump.s .L294;
 	.size	_wcscmp, .-_wcscmp
 	.align 4
 .global _wcscpy;
@@ -1889,12 +1894,12 @@ _wcscpy:
 	R2 = R0;
 	P2 = R1;
 	P1 = R0;
-.L300:
+.L301:
 	nop;
 	R0 = [P2++];
 	[P1++] = R0;
 	cc =R0==0;
-	if !cc jump .L300 (bp);
+	if !cc jump .L301 (bp);
 	R0 = R2;
 	rts;
 	.size	_wcscpy, .-_wcscpy
@@ -1905,23 +1910,23 @@ _wcslen:
 	P1 = R0;
 	R0 = [P1];
 	cc =R0==0;
-	if cc jump .L305;
+	if cc jump .L306;
 	R0 = P1;
 	R0 += 4;
-.L304:
+.L305:
 	P2 = R0;
 	R0 += 4;
 	R1 = [P2];
 	cc =R1==0;
-	if !cc jump .L304 (bp);
-.L303:
+	if !cc jump .L305 (bp);
+.L304:
 	P2 -= P1;
 	R0 = P2;
 	R0 >>>= 2;
 	rts;
-.L305:
+.L306:
 	P2 = P1;
-	jump.s .L303;
+	jump.s .L304;
 	.size	_wcslen, .-_wcslen
 	.align 4
 .global _wcsncmp;
@@ -1932,44 +1937,44 @@ _wcsncmp:
 	P5 = R0;
 	P0 = R1;
 	cc =R2==0;
-	if cc jump .L308;
+	if cc jump .L309;
 	P2 = R0;
 	R0 = R1;
 	P1 = R2;
-	LSETUP (.L309, .L315) LC1 = P1;
-.L309:
+	LSETUP (.L310, .L316) LC1 = P1;
+.L310:
 	P0 = R0;
 	P5 = P2;
 	R1 = [P2++];
 	R0 += 4;
 	R3 = [P0];
 	cc =R1==R3;
-	if !cc jump .L308;
+	if !cc jump .L309;
 	cc =R1==0;
-	if cc jump .L308;
-.L315:
+	if cc jump .L309;
+.L316:
 	R2 += -1;
 	P5 = P2;
 	P0 = R0;
-.L308:
+.L309:
 	cc =R2==0;
-	if cc jump .L312 (bp);
+	if cc jump .L313 (bp);
 	R0 = [P5];
 	R1 = [P0];
 	cc =R0<R1;
-	if cc jump .L313 (bp);
+	if cc jump .L314 (bp);
 	cc =R1<R0;
 	R0 = CC;
-	jump.s .L307;
-.L312:
+	jump.s .L308;
+.L313:
 	R0 = 0 (X);
-.L307:
+.L308:
 	( p5:5 ) = [sp++];
 
 	rts;
-.L313:
+.L314:
 	R0 = -1 (X);
-	jump.s .L307;
+	jump.s .L308;
 	.size	_wcsncmp, .-_wcsncmp
 	.align 4
 .global _wmemchr;
@@ -1978,28 +1983,28 @@ _wmemchr:
 	R3 = R1;
 	R1 = R2;
 	cc =R2==0;
-	if cc jump .L321;
+	if cc jump .L322;
 	P2 = R2;
-	LSETUP (.L318, .L324) LC1 = P2;
-.L318:
+	LSETUP (.L319, .L325) LC1 = P2;
+.L319:
 	P1 = R0;
 	R0 += 4;
 	R2 = [P1];
 	cc =R2==R3;
-	if cc jump .L317;
-.L324:
+	if cc jump .L318;
+.L325:
 	R1 += -1;
-.L321:
+.L322:
 	P1 = R0;
-.L317:
+.L318:
 	cc =R1==0;
-	if cc jump .L323;
-.L316:
+	if cc jump .L324;
+.L317:
 	R0 = P1;
 	rts;
-.L323:
+.L324:
 	P1 = 0 (X);
-	jump.s .L316;
+	jump.s .L317;
 	.size	_wmemchr, .-_wmemchr
 	.align 4
 .global _wmemcmp;
@@ -2010,12 +2015,12 @@ _wmemcmp:
 	P0 = R0;
 	P1 = R1;
 	cc =R2==0;
-	if cc jump .L326;
+	if cc jump .L327;
 	R1 = R0;
 	R0 = P1;
 	P2 = R2;
-	LSETUP (.L327, .L333) LC1 = P2;
-.L327:
+	LSETUP (.L328, .L334) LC1 = P2;
+.L328:
 	P1 = R0;
 	P0 = R1;
 	R1 += 4;
@@ -2023,30 +2028,30 @@ _wmemcmp:
 	R3 = [P1];
 	R7 = [P0];
 	cc =R7==R3;
-	if !cc jump .L326;
-.L333:
+	if !cc jump .L327;
+.L334:
 	R2 += -1;
 	P0 = R1;
 	P1 = R0;
-.L326:
+.L327:
 	cc =R2==0;
-	if cc jump .L330 (bp);
+	if cc jump .L331 (bp);
 	R0 = [P0];
 	R1 = [P1];
 	cc =R0<R1;
-	if cc jump .L331 (bp);
+	if cc jump .L332 (bp);
 	cc =R1<R0;
 	R0 = CC;
-	jump.s .L325;
-.L330:
+	jump.s .L326;
+.L331:
 	R0 = 0 (X);
-.L325:
+.L326:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L331:
+.L332:
 	R0 = -1 (X);
-	jump.s .L325;
+	jump.s .L326;
 	.size	_wmemcmp, .-_wmemcmp
 	.align 4
 .global _wmemcpy;
@@ -2057,13 +2062,13 @@ _wmemcpy:
 	R3 = R0;
 	R0 = R2;
 	cc =R2==0;
-	if cc jump .L335;
+	if cc jump .L336;
 	R0 <<= 2;
 	R2 = R0;
 	R0 = R3;
 	call _memcpy;
 	R3 = R0;
-.L335:
+.L336:
 	R0 = R3;
 	SP += 12;
 	RETS = [SP++];
@@ -2080,41 +2085,41 @@ _wmemmove:
 	R1 = R2;
 	R0 = P1;
 	cc =R3==R0;
-	if cc jump .L337;
+	if cc jump .L338;
 	P0 = R3;
 	P2 = R2;
 	P2 += -1;
 	R7 = R3 - R0;
 	R2 <<= 2;
 	cc =R7<R2 (iu);
-	if cc jump .L338 (bp);
+	if cc jump .L339 (bp);
 	P2 += 1;
 	cc =R1==0;
-	if cc jump .L337;
+	if cc jump .L338;
 	nop;
 	nop;
-	LSETUP (.L339, .L345) LC1 = P2;
-.L339:
+	LSETUP (.L340, .L346) LC1 = P2;
+.L340:
 	R0 = [P1++];
-.L345:
+.L346:
 	[P0++] = R0;
-	jump.s .L337;
-.L338:
+	jump.s .L338;
+.L339:
 	cc =R1==0;
-	if cc jump .L337;
+	if cc jump .L338;
 	P2 = P2 << 2;
 	P1 = P1 + P2;
 	P5 = R3;
 	P0 = P5 + P2;
 	P2 = P2 >> 2;
 	P2 += 1;
-	LSETUP (.L340, .L344) LC1 = P2;
-.L340:
+	LSETUP (.L341, .L345) LC1 = P2;
+.L341:
 	R0 = [P1];
 	P1 += -4;
-.L344:
+.L345:
 	[P0--] = R0;
-.L337:
+.L338:
 	R0 = R3;
 	( r7:7, p5:5 ) = [sp++];
 
@@ -2129,14 +2134,14 @@ _wmemset:
 	P2 = R2;
 	P2 += -1;
 	cc =R2==0;
-	if cc jump .L347;
+	if cc jump .L348;
 	P1 = R3;
 	P2 += 1;
-	LSETUP (.L348, .L350) LC1 = P2;
-.L348:
-.L350:
+	LSETUP (.L349, .L351) LC1 = P2;
+.L349:
+.L351:
 	[P1++] = R0;
-.L347:
+.L348:
 	R0 = R3;
 	rts;
 	.size	_wmemset, .-_wmemset
@@ -2144,45 +2149,44 @@ _wmemset:
 .global _bcopy;
 .type _bcopy, STT_FUNC;
 _bcopy:
-	[--sp] = ( p5:5 );
+	[--sp] = ( p5:4 );
 
-	P5 = R0;
+	P4 = R0;
 	P2 = R1;
 	P1 = R2;
-	cc =P5<P2 (iu);
-	if !cc jump .L352 (bp);
-	P0 = P5 + P1;
-	R0 = P0;
+	cc =P4<P2 (iu);
+	if !cc jump .L353 (bp);
+	P0 = P4 + P1;
 	cc =P1==0;
-	if cc jump .L351;
+	if cc jump .L352;
 	P1 += -1;
 	P2 = P2 + P1;
-	P0 += -1;
-	P1 = R0;
-	P1 -= P5;
-	LSETUP (.L354, .L359) LC1 = P1;
-.L354:
-	R0 = B [P0] (X);
-	P0 += -1;
-.L359:
+	P5 = P0;
+	P5 += -1;
+	P0 -= P4;
+	LSETUP (.L355, .L360) LC1 = P0;
+.L355:
+	R0 = B [P5] (X);
+	P5 += -1;
+.L360:
 	B [P2--] = R0;
-.L351:
-	( p5:5 ) = [sp++];
+.L352:
+	( p5:4 ) = [sp++];
 
 	rts;
-.L352:
-	cc =P5==P2;
-	if cc jump .L351;
+.L353:
+	cc =P4==P2;
+	if cc jump .L352;
 	cc =P1==0;
-	if cc jump .L351;
+	if cc jump .L352;
 	nop;
 	nop;
-	LSETUP (.L355, .L358) LC1 = P1;
-.L355:
-	R0 = B [P5++] (X);
-.L358:
+	LSETUP (.L356, .L359) LC1 = P1;
+.L356:
+	R0 = B [P4++] (X);
+.L359:
 	B [P2++] = R0;
-	jump.s .L351;
+	jump.s .L352;
 	.size	_bcopy, .-_bcopy
 	.align 4
 .global _rotl64;
@@ -2408,8 +2412,8 @@ _rotr8:
 .type _bswap_16, STT_FUNC;
 _bswap_16:
 	R1 = R0;
-	R0 = R1 >> 8;
-	R0 = R0.B (Z);
+	R0 = R0.L (Z);
+	R0 >>= 8;
 	R1 <<= 8;
 	R0 = R0 | R1;
 	rts;
@@ -2452,11 +2456,7 @@ _bswap_64:
 	R7 = R7 & R6;
 	R3 = R3 | R7;
 	R1 <<= 24;
-	R7 = R0 >> 8;
-	R7 = R1 | R7;
-	R7 >>>= 24;
-	R7 <<= 24;
-	R3 = R3 | R7;
+	R3 = R3 | R1;
 	R7 = R0 << 8;
 	R4 = R0 >> 24;
 	R2 = R2 | R4;
@@ -2478,17 +2478,17 @@ _ffs:
 	R2 = R0;
 	R0 = 0 (X);
 	P2 = 32 (X);
-	LSETUP (.L376, .L378) LC1 = P2;
-.L376:
+	LSETUP (.L377, .L379) LC1 = P2;
+.L377:
 	R1 = R2;
 	R1 >>= R0;
 	cc = !BITTST (R1,0);
 	R0 += 1;
-	if !cc jump .L373;
-.L378:
+	if !cc jump .L374;
+.L379:
 	nop;
 	R0 = 0 (X);
-.L373:
+.L374:
 	rts;
 	.size	_ffs, .-_ffs
 	.align 4
@@ -2496,23 +2496,23 @@ _ffs:
 .type _libiberty_ffs, STT_FUNC;
 _libiberty_ffs:
 	cc =R0==0;
-	if cc jump .L382;
+	if cc jump .L383;
 	R1 = 1 (X);
 	R1 = R0 & R1;
 	cc =R1==0;
-	if !cc jump .L379;
+	if !cc jump .L380;
 	R1 = 1 (X);
-.L381:
+.L382:
 	R0 >>>= 1;
 	R1 += 1;
 	cc = !BITTST (R0,0);
-	if cc jump .L381 (bp);
-.L379:
+	if cc jump .L382 (bp);
+.L380:
 	R0 = R1;
 	rts;
-.L382:
+.L383:
 	R1 = R0;
-	jump.s .L379;
+	jump.s .L380;
 	.size	_libiberty_ffs, .-_libiberty_ffs
 	.align 4
 .global _gl_isinff;
@@ -2527,28 +2527,28 @@ _gl_isinff:
 	R1.H = 65407;
 	call ___ltsf2;
 	cc =R0<0;
-	if cc jump .L387 (bp);
+	if cc jump .L388 (bp);
 	R6 = 1 (X);
 	R1 = -1 (X);
 	R1.H = 32639;
 	R0 = R7;
 	call ___gtsf2;
 	cc =R0<=0;
-	if cc jump .L388;
-.L386:
+	if cc jump .L389;
+.L387:
 	R0 = R6;
-.L384:
+.L385:
 	SP += 12;
 	RETS = [SP++];
 	( r7:6 ) = [sp++];
 
 	rts;
-.L388:
+.L389:
 	R6 = 0 (X);
-	jump.s .L386;
-.L387:
+	jump.s .L387;
+.L388:
 	R0 = 1 (X);
-	jump.s .L384;
+	jump.s .L385;
 	.size	_gl_isinff, .-_gl_isinff
 	.align 4
 .global _gl_isinfd;
@@ -2568,7 +2568,7 @@ _gl_isinfd:
 	R1 = [SP+36];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L392 (bp);
+	if cc jump .L393 (bp);
 	R7 = 1 (X);
 	R0 = -1 (X);
 	R0.H = 32751;
@@ -2578,21 +2578,21 @@ _gl_isinfd:
 	R1 = [SP+36];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L393;
-.L391:
+	if cc jump .L394;
+.L392:
 	R0 = R7;
-.L389:
+.L390:
 	SP += 24;
 	RETS = [SP++];
 	( r7:7 ) = [sp++];
 
 	rts;
-.L393:
+.L394:
 	R7 = 0 (X);
-	jump.s .L391;
-.L392:
+	jump.s .L392;
+.L393:
 	R0 = 1 (X);
-	jump.s .L389;
+	jump.s .L390;
 	.size	_gl_isinfd, .-_gl_isinfd
 	.align 4
 .global _gl_isinfl;
@@ -2612,7 +2612,7 @@ _gl_isinfl:
 	R1 = [SP+36];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L397 (bp);
+	if cc jump .L398 (bp);
 	R7 = 1 (X);
 	R0 = -1 (X);
 	R0.H = 32751;
@@ -2622,21 +2622,21 @@ _gl_isinfl:
 	R1 = [SP+36];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L398;
-.L396:
+	if cc jump .L399;
+.L397:
 	R0 = R7;
-.L394:
+.L395:
 	SP += 24;
 	RETS = [SP++];
 	( r7:7 ) = [sp++];
 
 	rts;
-.L398:
+.L399:
 	R7 = 0 (X);
-	jump.s .L396;
-.L397:
+	jump.s .L397;
+.L398:
 	R0 = 1 (X);
-	jump.s .L394;
+	jump.s .L395;
 	.size	_gl_isinfl, .-_gl_isinfl
 	.align 4
 .global __Qp_itoq;
@@ -2670,42 +2670,42 @@ _ldexpf:
 	R1 = R0;
 	call ___unordsf2;
 	cc =R0==0;
-	if !cc jump .L401;
+	if !cc jump .L402;
 	R1 = R5;
 	R0 = R5;
 	call ___addsf3;
 	R1 = R5;
 	call ___nesf2;
 	cc =R0==0;
-	if cc jump .L401 (bp);
+	if cc jump .L402 (bp);
 	cc =R7<0;
-	if cc jump .L408;
+	if cc jump .L409;
 	R6 = 1 (X);
 	R6 <<= 30;
-	jump.s .L405;
-.L408:
+	jump.s .L406;
+.L409:
 	R6 = 63 (X);
 	R6 <<= 24;
-	jump.s .L405;
-.L404:
+	jump.s .L406;
+.L405:
 	R0 = R7 >> 31;
 	R7 = R0 + R7;
 	R7 >>>= 1;
 	cc =R7==0;
-	if cc jump .L401;
+	if cc jump .L402;
 	R1 = R6;
 	R0 = R6;
 	call ___mulsf3;
 	R6 = R0;
-.L405:
+.L406:
 	cc = !BITTST (R7,0);
-	if cc jump .L404 (bp);
+	if cc jump .L405 (bp);
 	R1 = R6;
 	R0 = R5;
 	call ___mulsf3;
 	R5 = R0;
-	jump.s .L404;
-.L401:
+	jump.s .L405;
+.L402:
 	R0 = R5;
 	SP += 12;
 	RETS = [SP++];
@@ -2717,71 +2717,75 @@ _ldexpf:
 .global _ldexp;
 .type _ldexp, STT_FUNC;
 _ldexp:
-	[--sp] = ( r7:5 );
+	[--sp] = ( r7:7 );
 
+	[--SP] = R4;
+	[--SP] = R5;
 	[--SP] = RETS;
 	SP += -32;
 	[SP+48] = R0;
 	[SP+52] = R1;
-	R5 = R2;
-	R7 = R1;
+	R7 = R2;
+	R5 = R1;
 	[SP+12] = R1;
 	R2 = R0;
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L410;
-	[SP+12] = R7;
+	if !cc jump .L411;
+	[SP+12] = R5;
 	R2 = [SP+48];
 	R0 = [SP+48];
 	R1 = [SP+52];
 	call ___adddf3;
 	[SP+24] = R0;
 	[SP+28] = R1;
-	[SP+12] = R7;
+	[SP+12] = R5;
 	R2 = [SP+48];
 	call ___nedf2;
 	cc =R0==0;
-	if cc jump .L410 (bp);
-	R6 = 0 (X);
-	cc =R5<0;
-	if cc jump .L417;
-	R7 = 1 (X);
-	R7 <<= 30;
-	jump.s .L414;
-.L417:
-	R7 = 511 (X);
-	R7 <<= 21;
-	jump.s .L414;
-.L413:
-	R0 = R5 >> 31;
-	R5 = R0 + R5;
-	R5 >>>= 1;
-	cc =R5==0;
-	if cc jump .L410;
-	[SP+12] = R7;
-	R2 = R6;
-	R0 = R6;
-	R1 = R7;
-	call ___muldf3;
-	R6 = R0;
-	R7 = R1;
+	if cc jump .L411 (bp);
+	R4 = 0 (X);
+	cc =R7<0;
+	if cc jump .L418;
+	R5 = 1 (X);
+	R5 <<= 30;
+	jump.s .L415;
+.L418:
+	R5 = 511 (X);
+	R5 <<= 21;
+	jump.s .L415;
 .L414:
-	cc = !BITTST (R5,0);
-	if cc jump .L413 (bp);
-	[SP+12] = R7;
-	R2 = R6;
+	R0 = R7 >> 31;
+	R7 = R0 + R7;
+	R7 >>>= 1;
+	cc =R7==0;
+	if cc jump .L411;
+	[SP+12] = R5;
+	R2 = R4;
+	R0 = R4;
+	R1 = R5;
+	call ___muldf3;
+	R4 = R0;
+	R5 = R1;
+.L415:
+	cc = !BITTST (R7,0);
+	if cc jump .L414 (bp);
+	[SP+12] = R5;
+	R2 = R4;
 	R0 = [SP+48];
 	R1 = [SP+52];
 	call ___muldf3;
 	[SP+48] = R0;
 	[SP+52] = R1;
-	jump.s .L413;
-.L410:
+	jump.s .L414;
+.L411:
 	R0 = [SP+48];
 	R1 = [SP+52];
 	SP += 32;
 	RETS = [SP++];
-	( r7:5 ) = [sp++];
+	R5 = [SP++];
+	R4 = [SP++];
+	( r7:7 ) = [sp++];
 
 	rts;
 	.size	_ldexp, .-_ldexp
@@ -2789,71 +2793,75 @@ _ldexp:
 .global _ldexpl;
 .type _ldexpl, STT_FUNC;
 _ldexpl:
-	[--sp] = ( r7:5 );
+	[--sp] = ( r7:7 );
 
+	[--SP] = R4;
+	[--SP] = R5;
 	[--SP] = RETS;
 	SP += -32;
 	[SP+48] = R0;
 	[SP+52] = R1;
-	R5 = R2;
-	R7 = R1;
+	R7 = R2;
+	R5 = R1;
 	[SP+12] = R1;
 	R2 = R0;
 	call ___unorddf2;
 	cc =R0==0;
-	if !cc jump .L419;
-	[SP+12] = R7;
+	if !cc jump .L420;
+	[SP+12] = R5;
 	R2 = [SP+48];
 	R0 = [SP+48];
 	R1 = [SP+52];
 	call ___adddf3;
 	[SP+24] = R0;
 	[SP+28] = R1;
-	[SP+12] = R7;
+	[SP+12] = R5;
 	R2 = [SP+48];
 	call ___nedf2;
 	cc =R0==0;
-	if cc jump .L419 (bp);
-	R6 = 0 (X);
-	cc =R5<0;
-	if cc jump .L426;
-	R7 = 1 (X);
-	R7 <<= 30;
-	jump.s .L423;
-.L426:
-	R7 = 511 (X);
-	R7 <<= 21;
-	jump.s .L423;
-.L422:
-	R0 = R5 >> 31;
-	R5 = R0 + R5;
-	R5 >>>= 1;
-	cc =R5==0;
-	if cc jump .L419;
-	[SP+12] = R7;
-	R2 = R6;
-	R0 = R6;
-	R1 = R7;
-	call ___muldf3;
-	R6 = R0;
-	R7 = R1;
+	if cc jump .L420 (bp);
+	R4 = 0 (X);
+	cc =R7<0;
+	if cc jump .L427;
+	R5 = 1 (X);
+	R5 <<= 30;
+	jump.s .L424;
+.L427:
+	R5 = 511 (X);
+	R5 <<= 21;
+	jump.s .L424;
 .L423:
-	cc = !BITTST (R5,0);
-	if cc jump .L422 (bp);
-	[SP+12] = R7;
-	R2 = R6;
+	R0 = R7 >> 31;
+	R7 = R0 + R7;
+	R7 >>>= 1;
+	cc =R7==0;
+	if cc jump .L420;
+	[SP+12] = R5;
+	R2 = R4;
+	R0 = R4;
+	R1 = R5;
+	call ___muldf3;
+	R4 = R0;
+	R5 = R1;
+.L424:
+	cc = !BITTST (R7,0);
+	if cc jump .L423 (bp);
+	[SP+12] = R5;
+	R2 = R4;
 	R0 = [SP+48];
 	R1 = [SP+52];
 	call ___muldf3;
 	[SP+48] = R0;
 	[SP+52] = R1;
-	jump.s .L422;
-.L419:
+	jump.s .L423;
+.L420:
 	R0 = [SP+48];
 	R1 = [SP+52];
 	SP += 32;
 	RETS = [SP++];
-	( r7:5 ) = [sp++];
+	R5 = [SP++];
+	R4 = [SP++];
+	( r7:7 ) = [sp++];
 
 	rts;
 	.size	_ldexpl, .-_ldexpl
@@ -2865,17 +2873,17 @@ _memxor:
 	P0 = R1;
 	P2 = R2;
 	cc =P2==0;
-	if cc jump .L428;
+	if cc jump .L429;
 	nop;
 	P1 = R0;
-	LSETUP (.L429, .L431) LC1 = P2;
-.L429:
+	LSETUP (.L430, .L432) LC1 = P2;
+.L430:
 	R0 = B [P1++] (X);
 	R1 = B [P0++] (X);
 	R0 = R0 ^ R1;
-.L431:
+.L432:
 	B [P1+-1] = R0;
-.L428:
+.L429:
 	R0 = R3;
 	rts;
 	.size	_memxor, .-_memxor
@@ -2883,43 +2891,42 @@ _memxor:
 .global _strncat;
 .type _strncat, STT_FUNC;
 _strncat:
-	[--sp] = ( r7:5, p5:5 );
+	[--sp] = ( r7:6, p5:4 );
 
 	[--SP] = RETS;
 	SP += -12;
-	R5 = R0;
+	P4 = R0;
 	R6 = R1;
 	R7 = R2;
 	call _strlen;
 	P5 = R0;
-	P2 = R5;
-	P5 = P2 + P5;
+	P5 = P4 + P5;
 	cc =R7==0;
-	if cc jump .L433;
+	if cc jump .L434;
 	P0 = R6;
 	P2 = P5;
 	P1 = R7;
-	LSETUP (.L434, .L438) LC1 = P1;
-.L434:
+	LSETUP (.L435, .L439) LC1 = P1;
+.L435:
 	P5 = P2;
 	R0 = B [P0++] (X);
 	B [P2++] = R0;
 	R0 = R0.B (X);
 	cc =R0==0;
-	if cc jump .L433;
-.L438:
+	if cc jump .L434;
+.L439:
 	R7 += -1;
 	P5 = P2;
-.L433:
+.L434:
 	cc =R7==0;
-	if !cc jump .L436 (bp);
+	if !cc jump .L437 (bp);
 	R0 = 0 (X);
 	B [P5] = R0;
-.L436:
-	R0 = R5;
+.L437:
+	R0 = P4;
 	SP += 12;
 	RETS = [SP++];
-	( r7:5, p5:5 ) = [sp++];
+	( r7:6, p5:4 ) = [sp++];
 
 	rts;
 	.size	_strncat, .-_strncat
@@ -2930,24 +2937,24 @@ _strnlen:
 	P2 = R0;
 	R0 = R1;
 	cc =R1==0;
-	if cc jump .L446;
+	if cc jump .L447;
 	R1 = 0 (X);
 	R3 = R0 - R1;
 	P0 = R3;
-	LSETUP (.L441, .L448) LC1 = P0;
-.L441:
+	LSETUP (.L442, .L449) LC1 = P0;
+.L442:
 	R2 = B [P2++] (X);
 	cc =R2==0;
-	if !cc jump .L447;
-.L439:
+	if !cc jump .L448;
+.L440:
 	R0 = R1;
 	rts;
-.L447:
 .L448:
+.L449:
 	R1 += 1;
-.L446:
+.L447:
 	R1 = R0;
-	jump.s .L439;
+	jump.s .L440;
 	.size	_strnlen, .-_strnlen
 	.align 4
 .global _strpbrk;
@@ -2958,30 +2965,30 @@ _strpbrk:
 	R1 = B [P1] (X);
 	R0 = R1.B (X);
 	cc =R0==0;
-	if cc jump .L454;
+	if cc jump .L455;
 	nop;
-.L450:
+.L451:
 	P2 = R2;
 	R1 = R1.B (X);
-.L453:
+.L454:
 	nop;
 	R0 = B [P2++] (X);
 	cc =R0==0;
-	if cc jump .L456;
+	if cc jump .L457;
 	cc =R0==R1;
-	if !cc jump .L453 (bp);
-.L451:
+	if !cc jump .L454 (bp);
+.L452:
 	R0 = P1;
 	rts;
-.L456:
+.L457:
 	P1 += 1;
 	R1 = B [P1] (X);
 	R0 = R1.B (X);
 	cc =R0==0;
-	if !cc jump .L450 (bp);
-.L454:
+	if !cc jump .L451 (bp);
+.L455:
 	P1 = 0 (X);
-	jump.s .L451;
+	jump.s .L452;
 	.size	_strpbrk, .-_strpbrk
 	.align 4
 .global _strrchr;
@@ -2990,22 +2997,22 @@ _strrchr:
 	P2 = R0;
 	R3 = R1;
 	P1 = 0 (X);
-	jump.s .L459;
-.L458:
+	jump.s .L460;
+.L459:
 	R0 = R0.B (X);
 	cc =R0==0;
-	if cc jump .L462;
+	if cc jump .L463;
 	nop;
 	nop;
-.L459:
+.L460:
 	R2 = P2;
 	R0 = B [P2++] (X);
 	R1 = R0.B (X);
 	cc =R1==R3;
-	if !cc jump .L458 (bp);
+	if !cc jump .L459 (bp);
 	P1 = R2;
-	jump.s .L458;
-.L462:
+	jump.s .L459;
+.L463:
 	R0 = P1;
 	rts;
 	.size	_strrchr, .-_strrchr
@@ -3023,27 +3030,27 @@ _strstr:
 	call _strlen;
 	R6 = R0;
 	cc =R0==0;
-	if cc jump .L463;
+	if cc jump .L464;
 	nop;
 	nop;
 	nop;
 	R5 = B [P5] (X);
-.L465:
+.L466:
 	R1 = R5;
 	R0 = R7;
 	call _strchr;
 	R7 = R0;
 	cc =R0==0;
-	if cc jump .L463;
+	if cc jump .L464;
 	R2 = R6;
 	R1 = P5;
 	R0 = R7;
 	call _strncmp;
 	cc =R0==0;
-	if cc jump .L463;
+	if cc jump .L464;
 	R7 += 1;
-	jump.s .L465;
-.L463:
+	jump.s .L466;
+.L464:
 	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
@@ -3067,8 +3074,8 @@ _copysign:
 	R2 = 0 (X);
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L477;
-.L469:
+	if cc jump .L478;
+.L470:
 	R7 = 0 (X);
 	[SP+12] = R7;
 	R2 = 0 (X);
@@ -3076,15 +3083,15 @@ _copysign:
 	R1 = [SP+36];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L472;
+	if cc jump .L473;
 	[SP+12] = R7;
 	R2 = 0 (X);
 	R0 = [SP+40];
 	R1 = [SP+44];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L471;
-.L472:
+	if cc jump .L472;
+.L473:
 	R0 = [SP+32];
 	R1 = [SP+36];
 	SP += 24;
@@ -3092,78 +3099,79 @@ _copysign:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L477:
+.L478:
 	[SP+12] = R7;
 	R2 = 0 (X);
 	R0 = [SP+40];
 	R1 = [SP+44];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L469 (bp);
-.L471:
+	if cc jump .L470 (bp);
+.L472:
 	R0 = [SP+32];
 	R1 = [SP+36];
 	BITTGL (R1, 31);
 	[SP+32] = R0;
 	[SP+36] = R1;
-	jump.s .L472;
+	jump.s .L473;
 	.size	_copysign, .-_copysign
 	.align 4
 .global _memmem;
 .type _memmem, STT_FUNC;
 _memmem:
-	[--sp] = ( r7:4, p5:4 );
+	[--sp] = ( r7:5, p5:3 );
 
 	[--SP] = RETS;
 	SP += -12;
 	P5 = R0;
-	P4 = R2;
-	R4 = [SP+52];
-	cc =R4==0;
-	if cc jump .L482;
-	cc =R1<R4 (iu);
-	if cc jump .L484;
-	R7 = R1 - R4;
-	R7 = R0 + R7;
-	cc =R0<=R7 (iu);
-	if !cc jump .L484;
+	P4 = R1;
+	P3 = R2;
+	R5 = [SP+52];
+	cc =R5==0;
+	if cc jump .L483;
+	cc =R1<R5 (iu);
+	if cc jump .L485;
+	P2 = R5;
+	P4 -= P2;
+	P4 = P5 + P4;
+	cc =P5<=P4 (iu);
+	if !cc jump .L485;
 	nop;
 	nop;
 	nop;
-	R5 = B [P4++] (X);
-	R4 += -1;
-	jump.s .L481;
-.L480:
-	R0 = P5;
-	cc =R0<=R7 (iu);
-	if !cc jump .L484;
-	nop;
-	nop;
-	nop;
+	R6 = B [P3++] (X);
+	R5 += -1;
+	jump.s .L482;
 .L481:
+	cc =P5<=P4 (iu);
+	if !cc jump .L485;
+	nop;
+	nop;
+	nop;
+.L482:
 	R0 = B [P5] (X);
-	R6 = P5;
+	R7 = P5;
 	P5 += 1;
 	R0 = R0.B (X);
-	cc =R0==R5;
-	if !cc jump .L480 (bp);
-	R2 = R4;
-	R1 = P4;
+	cc =R0==R6;
+	if !cc jump .L481 (bp);
+	R2 = R5;
+	R1 = P3;
 	R0 = P5;
 	call _memcmp;
 	cc =R0==0;
-	if !cc jump .L480 (bp);
-	jump.s .L478;
-.L482:
-	R6 = R0;
-	jump.s .L478;
-.L484:
-	R6 = 0 (X);
-.L478:
-	R0 = R6;
+	if !cc jump .L481 (bp);
+	jump.s .L479;
+.L483:
+	R7 = R0;
+	jump.s .L479;
+.L485:
+	R7 = 0 (X);
+.L479:
+	R0 = R7;
 	SP += 12;
 	RETS = [SP++];
-	( r7:4, p5:4 ) = [sp++];
+	( r7:5, p5:3 ) = [sp++];
 
 	rts;
 	.size	_memmem, .-_memmem
@@ -3202,9 +3210,9 @@ _frexp:
 	R1 = [SP+52];
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L511;
+	if cc jump .L512;
 	R4 = 0 (X);
-.L488:
+.L489:
 	R0 = 1023 (X);
 	R0 <<= 20;
 	[SP+12] = R0;
@@ -3213,13 +3221,13 @@ _frexp:
 	R1 = [SP+52];
 	call ___gedf2;
 	cc =R0<0;
-	if cc jump .L508;
+	if cc jump .L509;
 	R7 = 0 (X);
 	R5 = 511 (X);
 	R5 <<= 21;
 	R6 = 1023 (X);
 	R6 <<= 20;
-.L492:
+.L493:
 	R7 += 1;
 	[SP+12] = R5;
 	R2 = 0 (X);
@@ -3232,17 +3240,17 @@ _frexp:
 	R2 = 0 (X);
 	call ___gedf2;
 	cc =R0<0;
-	if !cc jump .L492 (bp);
-.L493:
+	if !cc jump .L493 (bp);
+.L494:
 	[P5] = R7;
 	cc =R4==0;
-	if cc jump .L497 (bp);
+	if cc jump .L498 (bp);
 	R0 = [SP+48];
 	R1 = [SP+52];
 	BITTGL (R1, 31);
 	[SP+48] = R0;
 	[SP+52] = R1;
-.L497:
+.L498:
 	R0 = [SP+48];
 	R1 = [SP+52];
 	SP += 24;
@@ -3250,15 +3258,15 @@ _frexp:
 	( r7:4, p5:5 ) = [sp++];
 
 	rts;
-.L511:
+.L512:
 	R0 = [SP+48];
 	R1 = [SP+52];
 	BITTGL (R1, 31);
 	[SP+48] = R0;
 	[SP+52] = R1;
 	R4 = 1 (X);
-	jump.s .L488;
-.L508:
+	jump.s .L489;
+.L509:
 	R0 = 511 (X);
 	R0 <<= 21;
 	[SP+12] = R0;
@@ -3267,7 +3275,7 @@ _frexp:
 	R1 = [SP+52];
 	call ___ltdf2;
 	cc =R0<0;
-	if !cc jump .L509 (bp);
+	if !cc jump .L510 (bp);
 	R0 = 0 (X);
 	[SP+12] = R0;
 	R2 = 0 (X);
@@ -3276,10 +3284,10 @@ _frexp:
 	call ___nedf2;
 	R7 = 0 (X);
 	cc =R0==0;
-	if cc jump .L493 (bp);
+	if cc jump .L494 (bp);
 	R6 = 511 (X);
 	R6 <<= 21;
-.L496:
+.L497:
 	R7 += -1;
 	R0 = [SP+52];
 	[SP+12] = R0;
@@ -3293,11 +3301,11 @@ _frexp:
 	R2 = 0 (X);
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L496 (bp);
-	jump.s .L493;
-.L509:
+	if cc jump .L497 (bp);
+	jump.s .L494;
+.L510:
 	R7 = 0 (X);
-	jump.s .L493;
+	jump.s .L494;
 	.size	_frexp, .-_frexp
 	.align 4
 .global ___muldi3;
@@ -3311,44 +3319,42 @@ ___muldi3:
 	[SP+20] = R1;
 	R1 = [SP+16];
 	R0 = [SP+20];
-	R7 = R2;
-	R6 = [SP+68];
-	P3 = R1;
-	R4 = R0;
+	R6 = R2;
+	R4 = [SP+68];
+	R7 = R1;
+	R5 = R0;
 	R0 = R0 | R1;
-	R5 = 0 (X);
+	P3 = 0 (X);
 	P5 = 0 (X);
 	cc =R0==0;
-	if cc jump .L512;
+	if cc jump .L513;
 	P4 = 1 (X);
-.L515:
-	R1 = P3;
-	R2 = P4;
-	R0 = R1 & R2;
-	[SP+12] = R6;
-	R2 = R7;
+.L516:
+	R1 = P4;
+	R0 = R7 & R1;
+	[SP+12] = R4;
+	R2 = R6;
 	R1 = 0 (X);
 	call ___muldi3;
-	R5 = R0 + R5; cc = ac0;
-	R2 = CC;
-	P2 = R1;
-	P5 = P2 + P5;
-	P2 = R2;
-	P5 = P5 + P2;
-	CC = R0 < R0;
-	R7 = ROT R7 BY 1;
-	R6 = ROT R6 BY 1;
-	CC = R0 < R0;
-	R1 = ROT R4 BY -1;
 	R2 = P3;
-	R0 = ROT R2 BY -1;
+	R0 = R0 + R2; cc = ac0;
+	R2 = CC;
+	R3 = P5;
+	R1 = R1 + R3;
 	P3 = R0;
-	R4 = R1;
-	R0 = R0 | R1;
+	R1 = R1 + R2;
+	P5 = R1;
+	CC = R0 < R0;
+	R6 = ROT R6 BY 1;
+	R4 = ROT R4 BY 1;
+	CC = R0 < R0;
+	R5 = ROT R5 BY -1;
+	R7 = ROT R7 BY -1;
+	R0 = R7 | R5;
 	cc =R0==0;
-	if !cc jump .L515 (bp);
-.L512:
-	R0 = R5;
+	if !cc jump .L516 (bp);
+.L513:
+	R0 = P3;
 	R1 = P5;
 	SP += 24;
 	RETS = [SP++];
@@ -3365,48 +3371,48 @@ _udivmodsi4:
 	P1 = R2;
 	R1 = 1 (X);
 	cc =R0<R3 (iu);
-	if !cc jump .L520;
+	if !cc jump .L521;
 	R2 = 32 (X);
 	R1 = 1 (X);
 	P2 = 32 (X);
-	LSETUP (.L519, .L534) LC1 = P2;
-.L519:
+	LSETUP (.L520, .L535) LC1 = P2;
+.L520:
 	cc =R0<0;
-	if cc jump .L520;
+	if cc jump .L521;
 	R0 <<= 1;
 	R1 <<= 1;
 	cc =R3<=R0 (iu);
-	if cc jump .L520;
-.L534:
+	if cc jump .L521;
+.L535:
 	R2 += -1;
 	R1 = R2;
-.L520:
+.L521:
 	cc =R1==0;
-	if cc jump .L528;
+	if cc jump .L529;
 	R2 = 0 (X);
-	jump.s .L524;
-.L523:
+	jump.s .L525;
+.L524:
 	R1 >>= 1;
 	R0 >>= 1;
 	cc =R1==0;
-	if cc jump .L522;
-.L524:
+	if cc jump .L523;
+.L525:
 	cc =R3<R0 (iu);
-	if cc jump .L523 (bp);
+	if cc jump .L524 (bp);
 	R3 = R3 - R0;
 	R2 = R2 | R1;
-	jump.s .L523;
-.L528:
+	jump.s .L524;
+.L529:
 	R2 = R1;
-.L522:
+.L523:
 	cc =P1==0;
-	if !cc jump .L533;
-.L518:
+	if !cc jump .L534;
+.L519:
 	R0 = R2;
 	rts;
-.L533:
+.L534:
 	R2 = R3;
-	jump.s .L518;
+	jump.s .L519;
 	.size	_udivmodsi4, .-_udivmodsi4
 	.align 4
 .global ___clrsbqi2;
@@ -3417,20 +3423,19 @@ ___clrsbqi2:
 	R2 = R0.B (X);
 	R1 = R2 >>> 7;
 	R0 = R1 ^ R0;
-	R1 = R1.B (X);
 	cc =R2==R1;
-	if cc jump .L537;
+	if cc jump .L538;
 	R0 = R0.B (X);
 	R0 <<= 8;
 	call ___clzsi2;
 	R0 += -1;
-.L535:
+.L536:
 	SP += 12;
 	RETS = [SP++];
 	rts;
-.L537:
+.L538:
 	R0 = 7 (X);
-	jump.s .L535;
+	jump.s .L536;
 	.size	___clrsbqi2, .-___clrsbqi2
 	.align 4
 .global ___clrsbdi2;
@@ -3446,23 +3451,23 @@ ___clrsbdi2:
 	R7 = R2 ^ R1;
 	R3 = R0 ^ R1;
 	cc =R2==R1;
-	if cc jump .L544;
-.L542:
+	if cc jump .L545;
+.L543:
 	R0 = R7;
 	R1 = R3;
 	call ___clzdi2;
 	R0 += -1;
-.L538:
+.L539:
 	SP += 12;
 	RETS = [SP++];
 	( r7:7 ) = [sp++];
 
 	rts;
-.L544:
+.L545:
 	cc =R0==R1;
-	if !cc jump .L542 (bp);
+	if !cc jump .L543 (bp);
 	R0 = 63 (X);
-	jump.s .L538;
+	jump.s .L539;
 	.size	___clrsbdi2, .-___clrsbdi2
 	.align 4
 .global ___mulsi3;
@@ -3472,10 +3477,10 @@ ___mulsi3:
 
 	R2 = R0;
 	cc =R0==0;
-	if cc jump .L548;
+	if cc jump .L549;
 	R3 = 0 (X);
 	R7 = 1 (X);
-.L547:
+.L548:
 	R0 = R2 & R7;
 	R0 = -R0;
 	R0 = R0 & R1;
@@ -3483,83 +3488,85 @@ ___mulsi3:
 	R2 >>= 1;
 	R1 <<= 1;
 	cc =R2==0;
-	if !cc jump .L547 (bp);
-.L545:
+	if !cc jump .L548 (bp);
+.L546:
 	R0 = R3;
 	( r7:7 ) = [sp++];
 
 	rts;
-.L548:
+.L549:
 	R3 = R0;
-	jump.s .L545;
+	jump.s .L546;
 	.size	___mulsi3, .-___mulsi3
 	.align 4
 .global ___cmovd;
 .type ___cmovd, STT_FUNC;
 ___cmovd:
-	[--sp] = ( r7:7, p5:4 );
+	[--sp] = ( r7:6, p5:5 );
 
 	P0 = R0;
 	P1 = R1;
+	R7 = R1;
 	P2 = R2;
 	R0 = R2;
 	R1 = R2 >> 3;
-	R7 = -8 (X);
-	R7 = R2 & R7;
-	cc =P0<P1 (iu);
-	if cc jump .L551 (bp);
-	R3 = P1;
-	R2 = R3 + R2;
+	R6 = -8 (X);
+	R6 = R2 & R6;
+	R2 = P0;
+	cc =R2<R7 (iu);
+	if cc jump .L552 (bp);
+	R2 = R7 + R0;
 	R3 = P0;
 	cc =R3<=R2 (iu);
-	if !cc jump .L551 (bp);
+	if !cc jump .L552 (bp);
 	P2 += -1;
 	cc =R0==0;
-	if cc jump .L550;
+	if cc jump .L551;
 	P1 = P1 + P2;
 	P0 = P0 + P2;
 	P2 += 1;
-	LSETUP (.L557, .L563) LC1 = P2;
-.L557:
+	LSETUP (.L558, .L564) LC1 = P2;
+.L558:
 	R0 = B [P1] (X);
 	P1 += -1;
-.L563:
+.L564:
 	B [P0--] = R0;
-	jump.s .L550;
-.L551:
+	jump.s .L551;
+.L552:
 	cc =R1==0;
-	if cc jump .L554;
-	P4 = P0;
-	P5 = P1;
+	if cc jump .L555;
+	P5 = P0;
+	P1 = R7;
 	R1 <<= 3;
 	R1 += -8;
 	R1 >>= 3;
 	P2 = R1;
 	P2 += 1;
-	LSETUP (.L555, .L562) LC1 = P2;
-.L555:
-	R2 = [P5];
-	R3 = [P5+4];
-	[P4] = R2;
-	[P4+4] = R3;
-	P5 += 8;
-.L562:
-	P4 += 8;
-.L554:
-	cc =R0<=R7 (iu);
-	if cc jump .L550;
-	P2 = R7;
-	P0 = P0 + P2;
-	P1 = P1 + P2;
-	R0 = R0 - R7;
-	P2 = R0;
-	LSETUP (.L556, .L561) LC1 = P2;
+	LSETUP (.L556, .L563) LC1 = P2;
 .L556:
+	R2 = [P1];
+	R3 = [P1+4];
+	[P5] = R2;
+	[P5+4] = R3;
+	P1 += 8;
+.L563:
+	P5 += 8;
+.L555:
+	cc =R0<=R6 (iu);
+	if cc jump .L551;
+	P2 = R6;
+	P0 = P0 + P2;
+	R7 = R7 + R6;
+	P1 = R7;
+	R0 = R0 - R6;
+	P2 = R0;
+	LSETUP (.L557, .L562) LC1 = P2;
+.L557:
 	R0 = B [P1++] (X);
-.L561:
+.L562:
 	B [P0++] = R0;
-.L550:
-	( r7:7, p5:4 ) = [sp++];
+.L551:
+	( r7:6, p5:5 ) = [sp++];
 
 	rts;
 	.size	___cmovd, .-___cmovd
@@ -3567,58 +3574,61 @@ ___cmovd:
 .global ___cmovh;
 .type ___cmovh, STT_FUNC;
 ___cmovh:
-	[--sp] = ( r7:7, p5:5 );
+	[--sp] = ( p5:3 );
 
-	R3 = R0;
+	P1 = R0;
+	P4 = R0;
 	P2 = R1;
+	P5 = R1;
+	R1 = R2;
 	R0 = R2 >> 1;
-	cc =R3<R1 (iu);
-	if cc jump .L565 (bp);
-	R7 = R1 + R2;
-	cc =R3<=R7 (iu);
-	if !cc jump .L565 (bp);
-	P0 = R2;
+	cc =P1<P2 (iu);
+	if cc jump .L566 (bp);
+	R3 = P2;
+	R2 = R3 + R2;
+	R3 = P1;
+	cc =R3<=R2 (iu);
+	if !cc jump .L566 (bp);
+	P0 = R1;
 	P0 += -1;
-	cc =R2==0;
-	if cc jump .L564;
-	P2 = P2 + P0;
-	P5 = R3;
-	P1 = P5 + P0;
+	cc =R1==0;
+	if cc jump .L565;
+	P5 = P2 + P0;
+	P4 = P1 + P0;
 	P0 += 1;
-	LSETUP (.L570, .L574) LC1 = P0;
-.L570:
-	R0 = B [P2] (X);
-	P2 += -1;
-.L574:
-	B [P1--] = R0;
-	jump.s .L564;
-.L565:
+	LSETUP (.L571, .L575) LC1 = P0;
+.L571:
+	R0 = B [P5] (X);
+	P5 += -1;
+.L575:
+	B [P4--] = R0;
+	jump.s .L565;
+.L566:
 	cc =R0==0;
-	if cc jump .L568;
-	P0 = R3;
-	P1 = R1;
-	P5 = R0;
-	P2 = P5 + P5;
+	if cc jump .L569;
+	P0 = P4;
+	P1 = P5;
+	P3 = R0;
+	P2 = P3 + P3;
 	P2 += -2;
 	P2 = P2 >> 1;
 	P2 += 1;
-	LSETUP (.L569, .L573) LC1 = P2;
-.L569:
+	LSETUP (.L570, .L574) LC1 = P2;
+.L570:
 	R0 = W [P1++] (X);
-.L573:
+.L574:
 	W [P0++] = R0;
-.L568:
-	cc = !BITTST (R2,0);
-	if cc jump .L564 (bp);
-	R2 += -1;
-	R1 = R1 + R2;
-	P2 = R1;
-	R0 = B [P2] (X);
-	R3 = R3 + R2;
-	P1 = R3;
+.L569:
+	cc = !BITTST (R1,0);
+	if cc jump .L565 (bp);
+	P1 = R1;
+	P1 += -1;
+	P5 = P5 + P1;
+	R0 = B [P5] (X);
+	P1 = P4 + P1;
 	B [P1] = R0;
-.L564:
-	( r7:7, p5:5 ) = [sp++];
+.L565:
+	( p5:3 ) = [sp++];
 
 	rts;
 	.size	___cmovh, .-___cmovh
@@ -3626,64 +3636,66 @@ ___cmovh:
 .global ___cmovw;
 .type ___cmovw, STT_FUNC;
 ___cmovw:
-	[--sp] = ( p5:4 );
+	[--sp] = ( r7:6, p5:4 );
 
 	P0 = R0;
 	P1 = R1;
+	R3 = R1;
 	P2 = R2;
 	R0 = R2;
-	P2 = P2 >> 2;
+	R1 = R2 >> 2;
 	R2 = -4 (X);
 	R2 = R0 & R2;
-	cc =P0<P1 (iu);
-	if cc jump .L576 (bp);
-	R3 = R1 + R0;
-	R1 = P0;
-	cc =R1<=R3 (iu);
-	if !cc jump .L576 (bp);
-	P2 = R0;
+	R6 = P0;
+	cc =R6<R3 (iu);
+	if cc jump .L577 (bp);
+	R7 = R3 + R0;
+	cc =R6<=R7 (iu);
+	if !cc jump .L577 (bp);
 	P2 += -1;
 	cc =R0==0;
-	if cc jump .L575;
+	if cc jump .L576;
 	P1 = P1 + P2;
 	P0 = P0 + P2;
 	P2 += 1;
-	LSETUP (.L582, .L588) LC1 = P2;
-.L582:
+	LSETUP (.L583, .L589) LC1 = P2;
+.L583:
 	R0 = B [P1] (X);
 	P1 += -1;
-.L588:
+.L589:
 	B [P0--] = R0;
-	jump.s .L575;
-.L576:
-	cc =P2==0;
-	if cc jump .L579;
-	P4 = P0;
-	P5 = P1;
-	P2 = P2 << 2;
+	jump.s .L576;
+.L577:
+	cc =R1==0;
+	if cc jump .L580;
+	P5 = P0;
+	P1 = R3;
+	P4 = R1;
+	P2 = P4 << 2;
 	P2 += -4;
 	P2 = P2 >> 2;
 	P2 += 1;
-	LSETUP (.L580, .L587) LC1 = P2;
+	LSETUP (.L581, .L588) LC1 = P2;
+.L581:
+	R1 = [P1++];
+.L588:
+	[P5++] = R1;
 .L580:
-	R1 = [P5++];
-.L587:
-	[P4++] = R1;
-.L579:
 	cc =R0<=R2 (iu);
-	if cc jump .L575;
-	P2 = R2;
-	P0 = P0 + P2;
-	P1 = P1 + P2;
+	if cc jump .L576;
+	P5 = R2;
+	P0 = P0 + P5;
+	R3 = R3 + R2;
+	P1 = R3;
 	R0 = R0 - R2;
 	P2 = R0;
-	LSETUP (.L581, .L586) LC1 = P2;
-.L581:
+	LSETUP (.L582, .L587) LC1 = P2;
+.L582:
 	R0 = B [P1++] (X);
-.L586:
+.L587:
 	B [P0++] = R0;
-.L575:
-	( p5:4 ) = [sp++];
+.L576:
+	( r7:6, p5:4 ) = [sp++];
 
 	rts;
 	.size	___cmovw, .-___cmovw
@@ -3772,16 +3784,16 @@ ___clzhi2:
 	R3 = R3.L (Z);
 	R7 = 15 (X);
 	P2 = 16 (X);
-	LSETUP (.L597, .L599) LC1 = P2;
-.L597:
+	LSETUP (.L598, .L600) LC1 = P2;
+.L598:
 	R2 = R7 - R0;
 	R1 = R3;
 	R1 >>>= R2;
 	cc = !BITTST (R1,0);
-	if !cc jump .L595;
-.L599:
+	if !cc jump .L596;
+.L600:
 	R0 += 1;
-.L595:
+.L596:
 	( r7:7 ) = [sp++];
 
 	rts;
@@ -3794,15 +3806,15 @@ ___ctzhi2:
 	R0 = 0 (X);
 	R2 = R2.L (Z);
 	P2 = 16 (X);
-	LSETUP (.L602, .L604) LC1 = P2;
-.L602:
+	LSETUP (.L603, .L605) LC1 = P2;
+.L603:
 	R1 = R2;
 	R1 >>>= R0;
 	cc = !BITTST (R1,0);
-	if !cc jump .L600;
-.L604:
+	if !cc jump .L601;
+.L605:
 	R0 += 1;
-.L600:
+.L601:
 	rts;
 	.size	___ctzhi2, .-___ctzhi2
 	.align 4
@@ -3819,23 +3831,23 @@ ___fixunssfsi:
 	R1 = R6;
 	call ___gesf2;
 	cc =R0<0;
-	if !cc jump .L611;
+	if !cc jump .L612;
 	R0 = R7;
 	call ___fixsfsi;
-.L605:
+.L606:
 	SP += 12;
 	RETS = [SP++];
 	( r7:6 ) = [sp++];
 
 	rts;
-.L611:
+.L612:
 	R1 = R6;
 	R0 = R7;
 	call ___subsf3;
 	call ___fixsfsi;
 	R1 = 32768 (Z);
 	R0 = R0 + R1;
-	jump.s .L605;
+	jump.s .L606;
 	.size	___fixunssfsi, .-___fixunssfsi
 	.align 4
 .global ___parityhi2;
@@ -3848,13 +3860,13 @@ ___parityhi2:
 	R3 = R0.L (Z);
 	R7 = 1 (X);
 	P2 = 16 (X);
-	LSETUP (.L613, .L615) LC1 = P2;
-.L613:
+	LSETUP (.L614, .L616) LC1 = P2;
+.L614:
 	R0 = R3;
 	R0 >>>= R1;
 	R0 = R0 & R7;
 	R2 = R2 + R0;
-.L615:
+.L616:
 	R1 += 1;
 	R2 = R2 & R7;
 	R0 = R2;
@@ -3873,13 +3885,13 @@ ___popcounthi2:
 	R3 = R0.L (Z);
 	R7 = 1 (X);
 	P2 = 16 (X);
-	LSETUP (.L617, .L619) LC1 = P2;
-.L617:
+	LSETUP (.L618, .L620) LC1 = P2;
+.L618:
 	R0 = R3;
 	R0 >>>= R1;
 	R0 = R0 & R7;
 	R2 = R2 + R0;
-.L619:
+.L620:
 	R1 += 1;
 	R0 = R2;
 	( r7:7 ) = [sp++];
@@ -3894,10 +3906,10 @@ ___mulsi3_iq2000:
 
 	R2 = R0;
 	cc =R0==0;
-	if cc jump .L623;
+	if cc jump .L624;
 	R3 = 0 (X);
 	R7 = 1 (X);
-.L622:
+.L623:
 	R0 = R2 & R7;
 	R0 = -R0;
 	R0 = R0 & R1;
@@ -3905,15 +3917,15 @@ ___mulsi3_iq2000:
 	R2 >>= 1;
 	R1 <<= 1;
 	cc =R2==0;
-	if !cc jump .L622 (bp);
-.L620:
+	if !cc jump .L623 (bp);
+.L621:
 	R0 = R3;
 	( r7:7 ) = [sp++];
 
 	rts;
-.L623:
+.L624:
 	R3 = R0;
-	jump.s .L620;
+	jump.s .L621;
 	.size	___mulsi3_iq2000, .-___mulsi3_iq2000
 	.align 4
 .global ___mulsi3_lm32;
@@ -3923,12 +3935,12 @@ ___mulsi3_lm32:
 
 	R2 = R0;
 	cc =R0==0;
-	if cc jump .L628;
-	cc =R1==0;
 	if cc jump .L629;
+	cc =R1==0;
+	if cc jump .L630;
 	R3 = 0 (X);
 	R7 = 1 (X);
-.L627:
+.L628:
 	R0 = R1 & R7;
 	R0 = -R0;
 	R0 = R0 & R2;
@@ -3936,18 +3948,18 @@ ___mulsi3_lm32:
 	R2 <<= 1;
 	R1 >>= 1;
 	cc =R1==0;
-	if !cc jump .L627 (bp);
-.L625:
+	if !cc jump .L628 (bp);
+.L626:
 	R0 = R3;
 	( r7:7 ) = [sp++];
 
 	rts;
-.L628:
-	R3 = R0;
-	jump.s .L625;
 .L629:
+	R3 = R0;
+	jump.s .L626;
+.L630:
 	R3 = R1;
-	jump.s .L625;
+	jump.s .L626;
 	.size	___mulsi3_lm32, .-___mulsi3_lm32
 	.align 4
 .global ___udivmodsi4;
@@ -3958,48 +3970,48 @@ ___udivmodsi4:
 	P1 = R2;
 	R1 = 1 (X);
 	cc =R0<R3 (iu);
-	if !cc jump .L633;
+	if !cc jump .L634;
 	R2 = 32 (X);
 	R1 = 1 (X);
 	P2 = 32 (X);
-	LSETUP (.L632, .L647) LC1 = P2;
-.L632:
+	LSETUP (.L633, .L648) LC1 = P2;
+.L633:
 	cc =R0<0;
-	if cc jump .L633;
+	if cc jump .L634;
 	R0 <<= 1;
 	R1 <<= 1;
 	cc =R3<=R0 (iu);
-	if cc jump .L633;
-.L647:
+	if cc jump .L634;
+.L648:
 	R2 += -1;
 	R1 = R2;
-.L633:
+.L634:
 	cc =R1==0;
-	if cc jump .L641;
+	if cc jump .L642;
 	R2 = 0 (X);
-	jump.s .L637;
-.L636:
+	jump.s .L638;
+.L637:
 	R1 >>= 1;
 	R0 >>= 1;
 	cc =R1==0;
-	if cc jump .L635;
-.L637:
+	if cc jump .L636;
+.L638:
 	cc =R3<R0 (iu);
-	if cc jump .L636 (bp);
+	if cc jump .L637 (bp);
 	R3 = R3 - R0;
 	R2 = R2 | R1;
-	jump.s .L636;
-.L641:
+	jump.s .L637;
+.L642:
 	R2 = R1;
-.L635:
+.L636:
 	cc =P1==0;
-	if !cc jump .L646;
-.L631:
+	if !cc jump .L647;
+.L632:
 	R0 = R2;
 	rts;
-.L646:
+.L647:
 	R2 = R3;
-	jump.s .L631;
+	jump.s .L632;
 	.size	___udivmodsi4, .-___udivmodsi4
 	.align 4
 .global ___mspabi_cmpf;
@@ -4013,27 +4025,27 @@ ___mspabi_cmpf:
 	R6 = R1;
 	call ___ltsf2;
 	cc =R0<0;
-	if cc jump .L651;
+	if cc jump .L652;
 	R5 = 1 (X);
 	R1 = R6;
 	R0 = R7;
 	call ___gtsf2;
 	cc =R0<=0;
-	if cc jump .L652;
-.L650:
+	if cc jump .L653;
+.L651:
 	R0 = R5;
-.L648:
+.L649:
 	SP += 12;
 	RETS = [SP++];
 	( r7:5 ) = [sp++];
 
 	rts;
-.L652:
+.L653:
 	R5 = 0 (X);
-	jump.s .L650;
-.L651:
+	jump.s .L651;
+.L652:
 	R0 = -1 (X);
-	jump.s .L648;
+	jump.s .L649;
 	.size	___mspabi_cmpf, .-___mspabi_cmpf
 	.align 4
 .global ___mspabi_cmpd;
@@ -4053,7 +4065,7 @@ ___mspabi_cmpd:
 	R2 = R6;
 	call ___ltdf2;
 	cc =R0<0;
-	if cc jump .L656;
+	if cc jump .L657;
 	R7 = 1 (X);
 	[SP+12] = R5;
 	R2 = R6;
@@ -4061,21 +4073,21 @@ ___mspabi_cmpd:
 	R1 = [SP+44];
 	call ___gtdf2;
 	cc =R0<=0;
-	if cc jump .L657;
-.L655:
+	if cc jump .L658;
+.L656:
 	R0 = R7;
-.L653:
+.L654:
 	SP += 24;
 	RETS = [SP++];
 	( r7:5 ) = [sp++];
 
 	rts;
-.L657:
+.L658:
 	R7 = 0 (X);
-	jump.s .L655;
-.L656:
+	jump.s .L656;
+.L657:
 	R0 = -1 (X);
-	jump.s .L653;
+	jump.s .L654;
 	.size	___mspabi_cmpd, .-___mspabi_cmpd
 	.align 4
 .global ___mspabi_mpysll;
@@ -4127,15 +4139,15 @@ ___mulhi3:
 
 	R2 = R0;
 	cc =R1<0;
-	if cc jump .L668;
+	if cc jump .L669;
 	P1 = 0 (X);
-.L661:
+.L662:
 	cc =R1==0;
-	if cc jump .L666;
+	if cc jump .L667;
 	P2 = 32 (X);
 	R3 = 0 (X);
 	R7 = 1 (X);
-.L663:
+.L664:
 	R0 = R1 & R7;
 	R0 = -R0;
 	R0 = R0 & R2;
@@ -4143,29 +4155,29 @@ ___mulhi3:
 	R2 <<= 1;
 	R1 >>>= 1;
 	cc =R1==0;
-	if cc jump .L662;
+	if cc jump .L663;
 	R0 = P2;
 	R0 += -1;
 	P2 = R0;
 	R0 = R0.B (Z);
 	cc =R0==0;
-	if !cc jump .L663 (bp);
-.L662:
+	if !cc jump .L664 (bp);
+.L663:
 	cc =P1==0;
-	if cc jump .L660 (bp);
+	if cc jump .L661 (bp);
 	R3 = -R3;
-.L660:
+.L661:
 	R0 = R3;
 	( r7:7 ) = [sp++];
 
 	rts;
-.L668:
+.L669:
 	R1 = -R1;
 	P1 = 1 (X);
-	jump.s .L661;
-.L666:
-	R3 = R1;
 	jump.s .L662;
+.L667:
+	R3 = R1;
+	jump.s .L663;
 	.size	___mulhi3, .-___mulhi3
 	.align 4
 .global ___divsi3;
@@ -4176,31 +4188,31 @@ ___divsi3:
 	[--SP] = RETS;
 	SP += -12;
 	cc =R0<0;
-	if cc jump .L674;
-	R7 = 0 (X);
-.L670:
-	cc =R1<0;
 	if cc jump .L675;
+	R7 = 0 (X);
 .L671:
+	cc =R1<0;
+	if cc jump .L676;
+.L672:
 	R2 = 0 (X);
 	call ___udivmodsi4;
 	cc =R7==0;
-	if cc jump .L669 (bp);
+	if cc jump .L670 (bp);
 	R0 = -R0;
-.L669:
+.L670:
 	SP += 12;
 	RETS = [SP++];
 	( r7:7 ) = [sp++];
 
 	rts;
-.L674:
+.L675:
 	R0 = -R0;
 	R7 = 1 (X);
-	jump.s .L670;
-.L675:
+	jump.s .L671;
+.L676:
 	R1 = -R1;
 	BITTGL (R7, 0);
-	jump.s .L671;
+	jump.s .L672;
 	.size	___divsi3, .-___divsi3
 	.align 4
 .global ___modsi3;
@@ -4213,27 +4225,27 @@ ___modsi3:
 	R3 = R0;
 	R0 = R1;
 	cc =R3<0;
-	if cc jump .L680;
+	if cc jump .L681;
 	R7 = 0 (X);
-.L677:
+.L678:
 	R0 = abs R0;
 	R2 = 1 (X);
 	R1 = R0;
 	R0 = R3;
 	call ___udivmodsi4;
 	cc =R7==0;
-	if cc jump .L676 (bp);
+	if cc jump .L677 (bp);
 	R0 = -R0;
-.L676:
+.L677:
 	SP += 12;
 	RETS = [SP++];
 	( r7:7 ) = [sp++];
 
 	rts;
-.L680:
+.L681:
 	R3 = -R3;
 	R7 = 1 (X);
-	jump.s .L677;
+	jump.s .L678;
 	.size	___modsi3, .-___modsi3
 	.align 4
 .global ___udivmodhi4;
@@ -4248,58 +4260,58 @@ ___udivmodhi4:
 	R1 = R3.L (Z);
 	cc =R2<R1 (iu);
 	R1 = 1 (X);
-	if !cc jump .L683;
+	if !cc jump .L684;
 	R7 = R3.L (Z);
 	P2 = 16 (X);
-	LSETUP (.L682, .L697) LC1 = P2;
-.L682:
+	LSETUP (.L683, .L698) LC1 = P2;
+.L683:
 	R2 = R0.L (X);
 	cc =R2<0;
-	if cc jump .L683;
+	if cc jump .L684;
 	R2 = R0 << 1;
 	R0 = R2;
 	R1 <<= 1;
 	R2 = R2.L (Z);
 	cc =R7<=R2 (iu);
-	if cc jump .L683;
-.L697:
+	if cc jump .L684;
+.L698:
 	nop;
 	R1 = 0 (X);
-.L683:
+.L684:
 	R2 = R1.L (Z);
 	cc =R2==0;
-	if cc jump .L691;
+	if cc jump .L692;
 	R6 = 0 (X);
-	jump.s .L687;
-.L686:
+	jump.s .L688;
+.L687:
 	R1 = R1.L (Z);
 	R2 = R1 >> 1;
 	R1 = R2;
 	R0 <<= 16;
 	R0 >>= 17;
 	cc =R2==0;
-	if cc jump .L685;
-.L687:
+	if cc jump .L686;
+.L688:
 	R2 = R3.L (Z);
 	R7 = R0.L (Z);
 	cc =R2<R7 (iu);
-	if cc jump .L686 (bp);
+	if cc jump .L687 (bp);
 	R3 = R3 - R0;
 	R6 = R1 | R6;
-	jump.s .L686;
-.L691:
+	jump.s .L687;
+.L692:
 	R6 = R1;
-.L685:
+.L686:
 	cc =P1==0;
-	if !cc jump .L696;
-.L681:
+	if !cc jump .L697;
+.L682:
 	R0 = R6;
 	( r7:6 ) = [sp++];
 
 	rts;
-.L696:
+.L697:
 	R6 = R3;
-	jump.s .L681;
+	jump.s .L682;
 	.size	___udivmodhi4, .-___udivmodhi4
 	.align 4
 .global ___udivmodsi4_libgcc;
@@ -4310,48 +4322,48 @@ ___udivmodsi4_libgcc:
 	P1 = R2;
 	R1 = 1 (X);
 	cc =R0<R3 (iu);
-	if !cc jump .L700;
+	if !cc jump .L701;
 	R2 = 32 (X);
 	R1 = 1 (X);
 	P2 = 32 (X);
-	LSETUP (.L699, .L714) LC1 = P2;
-.L699:
+	LSETUP (.L700, .L715) LC1 = P2;
+.L700:
 	cc =R0<0;
-	if cc jump .L700;
+	if cc jump .L701;
 	R0 <<= 1;
 	R1 <<= 1;
 	cc =R3<=R0 (iu);
-	if cc jump .L700;
-.L714:
+	if cc jump .L701;
+.L715:
 	R2 += -1;
 	R1 = R2;
-.L700:
+.L701:
 	cc =R1==0;
-	if cc jump .L708;
+	if cc jump .L709;
 	R2 = 0 (X);
-	jump.s .L704;
-.L703:
+	jump.s .L705;
+.L704:
 	R1 >>= 1;
 	R0 >>= 1;
 	cc =R1==0;
-	if cc jump .L702;
-.L704:
+	if cc jump .L703;
+.L705:
 	cc =R3<R0 (iu);
-	if cc jump .L703 (bp);
+	if cc jump .L704 (bp);
 	R3 = R3 - R0;
 	R2 = R2 | R1;
-	jump.s .L703;
-.L708:
+	jump.s .L704;
+.L709:
 	R2 = R1;
-.L702:
+.L703:
 	cc =P1==0;
-	if !cc jump .L713;
-.L698:
+	if !cc jump .L714;
+.L699:
 	R0 = R2;
 	rts;
-.L713:
+.L714:
 	R2 = R3;
-	jump.s .L698;
+	jump.s .L699;
 	.size	___udivmodsi4_libgcc, .-___udivmodsi4_libgcc
 	.align 4
 .global ___ashldi3;
@@ -4362,20 +4374,20 @@ ___ashldi3:
 	R3 = R1;
 	R1 = R2;
 	cc = !BITTST (R2,5);
-	if cc jump .L716 (bp);
+	if cc jump .L717 (bp);
 	R2 += -32;
 	R1 = R0;
 	R1 <<= R2;
 	R2 = 0 (X);
-.L717:
-	R0 = R2;
 .L718:
+	R0 = R2;
+.L719:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L716:
+.L717:
 	cc =R2==0;
-	if cc jump .L719;
+	if cc jump .L720;
 	R2 = R0;
 	R2 <<= R1;
 	R7 = 32 (X);
@@ -4383,10 +4395,10 @@ ___ashldi3:
 	R0 >>= R7;
 	R3 <<= R1;
 	R1 = R0 | R3;
-	jump.s .L717;
-.L719:
-	R1 = R3;
 	jump.s .L718;
+.L720:
+	R1 = R3;
+	jump.s .L719;
 	.size	___ashldi3, .-___ashldi3
 	.align 4
 .global ___ashrdi3;
@@ -4397,20 +4409,20 @@ ___ashrdi3:
 	R3 = R1;
 	R1 = R2;
 	cc = !BITTST (R2,5);
-	if cc jump .L721 (bp);
+	if cc jump .L722 (bp);
 	R2 = R3 >>> 31;
 	R1 += -32;
 	R0 = R3;
 	R0 >>>= R1;
-.L722:
-	R1 = R2;
 .L723:
+	R1 = R2;
+.L724:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L721:
+.L722:
 	cc =R2==0;
-	if cc jump .L724;
+	if cc jump .L725;
 	R2 = R3;
 	R2 >>>= R1;
 	R7 = 32 (X);
@@ -4418,10 +4430,10 @@ ___ashrdi3:
 	R3 <<= R7;
 	R0 >>= R1;
 	R0 = R3 | R0;
-	jump.s .L722;
-.L724:
-	R1 = R3;
 	jump.s .L723;
+.L725:
+	R1 = R3;
+	jump.s .L724;
 	.size	___ashrdi3, .-___ashrdi3
 	.align 4
 .global ___bswapdi2;
@@ -4443,11 +4455,7 @@ ___bswapdi2:
 	R7 = R7 & R6;
 	R3 = R3 | R7;
 	R1 <<= 24;
-	R7 = R0 >> 8;
-	R7 = R1 | R7;
-	R7 >>>= 24;
-	R7 <<= 24;
-	R3 = R3 | R7;
+	R3 = R3 | R1;
 	R7 = R0 << 8;
 	R4 = R0 >> 24;
 	R2 = R2 | R4;
@@ -4539,22 +4547,22 @@ ___cmpdi2:
 	R1 = R2;
 	R2 = [SP+12];
 	cc =R0<R2;
-	if cc jump .L732;
+	if cc jump .L733;
 	cc =R0<=R2;
-	if !cc jump .L733;
+	if !cc jump .L734;
 	cc =R3<R1 (iu);
-	if cc jump .L732;
+	if cc jump .L733;
 	cc =R3<=R1 (iu);
-	if !cc jump .L733;
+	if !cc jump .L734;
 	R0 = 1 (X);
-	jump.s .L728;
-.L732:
-	R0 = 0 (X);
-.L728:
-	rts;
+	jump.s .L729;
 .L733:
+	R0 = 0 (X);
+.L729:
+	rts;
+.L734:
 	R0 = 2 (X);
-	jump.s .L728;
+	jump.s .L729;
 	.size	___cmpdi2, .-___cmpdi2
 	.align 4
 .global ___aeabi_lcmp;
@@ -4606,12 +4614,12 @@ ___ctzsi2:
 	R0 >>= R2;
 	R0 = R0 & R1;
 	R1 = ~R0;
-	R1 <<= 31;
+	R7 = 1 (X);
+	R1 = R1 & R7;
 	R0 >>= 1;
 	R7 = 2 (X);
-	R7 = R7 - R0;
-	R0 = R1 >>> 31;
-	R0 = R0 & R7;
+	R0 = R7 - R0;
+	R0 = R1.L * R0.L (FU);
 	R2 = R2 + R3;
 	R0 = R0 + R2;
 	( r7:7 ) = [sp++];
@@ -4627,20 +4635,20 @@ ___lshrdi3:
 	R3 = R1;
 	R1 = R2;
 	cc = !BITTST (R2,5);
-	if cc jump .L737 (bp);
+	if cc jump .L738 (bp);
 	R1 += -32;
 	R0 = R3;
 	R0 >>= R1;
 	R2 = 0 (X);
-.L738:
-	R1 = R2;
 .L739:
+	R1 = R2;
+.L740:
 	( r7:7 ) = [sp++];
 
 	rts;
-.L737:
+.L738:
 	cc =R2==0;
-	if cc jump .L740;
+	if cc jump .L741;
 	R2 = R3;
 	R2 >>= R1;
 	R7 = 32 (X);
@@ -4648,10 +4656,10 @@ ___lshrdi3:
 	R3 <<= R7;
 	R0 >>= R1;
 	R0 = R3 | R0;
-	jump.s .L738;
-.L740:
-	R1 = R3;
 	jump.s .L739;
+.L741:
+	R1 = R3;
+	jump.s .L740;
 	.size	___lshrdi3, .-___lshrdi3
 	.align 4
 .global ___muldsi3;
@@ -4659,29 +4667,25 @@ ___lshrdi3:
 ___muldsi3:
 	[--sp] = ( r7:6 );
 
-	R3 = R0;
-	R7 = R1;
-	R2 = R0.L (Z);
-	R0 = R1.L (Z);
-	R1 = R2;
-	R1 *= R0;
-	R6 = R1 >> 16;
-	R3 >>= 16;
-	R0 *= R3;
-	R0 = R0 + R6;
-	R6 = R0.L (Z);
-	R7 >>= 16;
-	R2 *= R7;
-	R2 = R2 + R6;
-	R1 = R1.L (Z);
-	R6 = R2 << 16;
-	R6 = R1 + R6;
-	R1 = R0 >> 16;
-	R3 *= R7;
-	R1 = R1 + R3;
+	R2 = R1;
+	R3 = R0.L * R1.L (FU);
+	R6 = R3 >> 16;
+	R7 = R0 >> 16;
+	R1 = R1.L * R7.L (FU);
+	R1 = R1 + R6;
+	R6 = R1.L (Z);
 	R2 >>= 16;
-	R1 = R1 + R2;
-	R0 = R6;
+	R0 = R0.L * R2.L (FU);
+	R0 = R0 + R6;
+	R3 = R3.L (Z);
+	R6 = R0 << 16;
+	R3 = R3 + R6;
+	R1 >>= 16;
+	R7 = R7.L * R2.L (FU);
+	R1 = R1 + R7;
+	R0 >>= 16;
+	R1 = R1 + R0;
+	R0 = R3;
 	( r7:6 ) = [sp++];
 
 	rts;
@@ -4857,44 +4861,44 @@ ___powidf2:
 
 	[--SP] = RETS;
 	SP += -32;
-	R6 = R0;
-	R7 = R1;
-	R4 = R2;
-	R5 = R2;
+	R4 = R0;
+	R5 = R1;
+	R6 = R2;
+	R7 = R2;
 	R2 = 0 (X);
 	R3 = 1023 (X);
 	R3 <<= 20;
 	[SP+16] = R2;
 	[SP+20] = R3;
-	jump.s .L751;
-.L749:
-	R0 = R5 >> 31;
-	R5 = R0 + R5;
-	R5 >>>= 1;
-	cc =R5==0;
-	if cc jump .L750;
-	[SP+12] = R7;
-	R2 = R6;
-	R0 = R6;
-	R1 = R7;
+	jump.s .L752;
+.L750:
+	R0 = R7 >> 31;
+	R7 = R0 + R7;
+	R7 >>>= 1;
+	cc =R7==0;
+	if cc jump .L751;
+	[SP+12] = R5;
+	R2 = R4;
+	R0 = R4;
+	R1 = R5;
 	call ___muldf3;
-	R6 = R0;
-	R7 = R1;
-.L751:
-	cc = !BITTST (R5,0);
-	if cc jump .L749 (bp);
-	[SP+12] = R7;
-	R2 = R6;
+	R4 = R0;
+	R5 = R1;
+.L752:
+	cc = !BITTST (R7,0);
+	if cc jump .L750 (bp);
+	[SP+12] = R5;
+	R2 = R4;
 	R0 = [SP+16];
 	R1 = [SP+20];
 	call ___muldf3;
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L749;
-.L750:
-	cc =R4<0;
-	if cc jump .L753;
-.L748:
+	jump.s .L750;
+.L751:
+	cc =R6<0;
+	if cc jump .L754;
+.L749:
 	R0 = [SP+16];
 	R1 = [SP+20];
 	SP += 32;
@@ -4902,7 +4906,7 @@ ___powidf2:
 	( r7:4 ) = [sp++];
 
 	rts;
-.L753:
+.L754:
 	R0 = [SP+20];
 	[SP+12] = R0;
 	R2 = [SP+16];
@@ -4912,7 +4916,7 @@ ___powidf2:
 	call ___divdf3;
 	[SP+16] = R0;
 	[SP+20] = R1;
-	jump.s .L748;
+	jump.s .L749;
 	.size	___powidf2, .-___powidf2
 	.align 4
 .global ___powisf2;
@@ -4927,42 +4931,42 @@ ___powisf2:
 	R7 = R1;
 	R5 = 127 (X);
 	R5 <<= 23;
-	jump.s .L757;
-.L755:
+	jump.s .L758;
+.L756:
 	R0 = R7 >> 31;
 	R7 = R0 + R7;
 	R7 >>>= 1;
 	cc =R7==0;
-	if cc jump .L756;
+	if cc jump .L757;
 	R1 = R6;
 	R0 = R6;
 	call ___mulsf3;
 	R6 = R0;
-.L757:
+.L758:
 	cc = !BITTST (R7,0);
-	if cc jump .L755 (bp);
+	if cc jump .L756 (bp);
 	R1 = R6;
 	R0 = R5;
 	call ___mulsf3;
 	R5 = R0;
-	jump.s .L755;
-.L756:
+	jump.s .L756;
+.L757:
 	cc =R4<0;
-	if cc jump .L759;
-.L754:
+	if cc jump .L760;
+.L755:
 	R0 = R5;
 	SP += 12;
 	RETS = [SP++];
 	( r7:4 ) = [sp++];
 
 	rts;
-.L759:
+.L760:
 	R1 = R5;
 	R0 = 127 (X);
 	R0 <<= 23;
 	call ___divsf3;
 	R5 = R0;
-	jump.s .L754;
+	jump.s .L755;
 	.size	___powisf2, .-___powisf2
 	.align 4
 .global ___ucmpdi2;
@@ -4973,22 +4977,22 @@ ___ucmpdi2:
 	R1 = R2;
 	R2 = [SP+12];
 	cc =R0<R2 (iu);
-	if cc jump .L764;
+	if cc jump .L765;
 	cc =R0<=R2 (iu);
-	if !cc jump .L765;
+	if !cc jump .L766;
 	cc =R3<R1 (iu);
-	if cc jump .L764;
+	if cc jump .L765;
 	cc =R3<=R1 (iu);
-	if !cc jump .L765;
+	if !cc jump .L766;
 	R0 = 1 (X);
-	jump.s .L760;
-.L764:
-	R0 = 0 (X);
-.L760:
-	rts;
+	jump.s .L761;
 .L765:
+	R0 = 0 (X);
+.L761:
+	rts;
+.L766:
 	R0 = 2 (X);
-	jump.s .L760;
+	jump.s .L761;
 	.size	___ucmpdi2, .-___ucmpdi2
 	.align 4
 .global ___aeabi_ulcmp;
