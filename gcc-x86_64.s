@@ -43,6 +43,8 @@ memmove:
 	sub	rdx, 1
 	jne	.L6
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L4:
 	cmp	rdi, rsi
 	je	.L5
@@ -184,6 +186,8 @@ memrchr:
 	cmp	ecx, esi
 	jne	.L35
 	jmp	.L34
+	.p2align 4,,10
+	.p2align 3
 .L38:
 	mov	edx, 0
 .L34:
@@ -216,6 +220,8 @@ memset:
 	jne	.L41
 .L40:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L46:
 	mov	BYTE PTR [rax], sil
 	add	rcx, 1
@@ -341,6 +347,8 @@ strlen:
 .L68:
 	sub	rax, rdi
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L70:
 	mov	rax, rdi
 	jmp	.L68
@@ -579,6 +587,8 @@ iswcntrl:
 	setbe	al
 	movzx	eax, al
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L96:
 	mov	eax, 1
 .L94:
@@ -626,6 +636,8 @@ iswprint:
 	setne	al
 	movzx	eax, al
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L105:
 	add	edi, 1
 	and	edi, 127
@@ -633,6 +645,8 @@ iswprint:
 	seta	al
 	movzx	eax, al
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L102:
 	mov	eax, 1
 .L99:
@@ -686,9 +700,13 @@ fdim:
 	jbe	.L117
 	subsd	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L114:
 	movapd	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L117:
 	pxor	xmm0, xmm0
 .L110:
@@ -710,9 +728,13 @@ fdimf:
 	jbe	.L125
 	subss	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L122:
 	movaps	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L125:
 	pxor	xmm0, xmm0
 .L118:
@@ -740,6 +762,8 @@ fmax:
 	jne	.L126
 	movapd	xmm1, xmm0
 	jmp	.L126
+	.p2align 4,,10
+	.p2align 3
 .L128:
 	movapd	xmm2, xmm1
 	maxsd	xmm2, xmm0
@@ -747,6 +771,8 @@ fmax:
 .L126:
 	movapd	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L132:
 	movapd	xmm1, xmm0
 	jmp	.L126
@@ -773,6 +799,8 @@ fmaxf:
 	jne	.L134
 	movaps	xmm1, xmm0
 	jmp	.L134
+	.p2align 4,,10
+	.p2align 3
 .L136:
 	movaps	xmm2, xmm1
 	maxss	xmm2, xmm0
@@ -780,6 +808,8 @@ fmaxf:
 .L134:
 	movaps	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L140:
 	movaps	xmm1, xmm0
 	jmp	.L134
@@ -814,14 +844,20 @@ fmaxl:
 	fcmove	st, st(1)
 	fstp	st(1)
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L144:
 	fcomi	st, st(1)
 	fcmovbe	st, st(1)
 	fstp	st(1)
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L147:
 	fstp	st(0)
 	jmp	.L142
+	.p2align 4,,10
+	.p2align 3
 .L150:
 	fstp	st(0)
 .L142:
@@ -849,11 +885,15 @@ fmin:
 	jne	.L151
 	movapd	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L153:
 	movapd	xmm2, xmm0
 	minsd	xmm2, xmm1
 	movapd	xmm0, xmm2
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L156:
 	movapd	xmm0, xmm1
 .L151:
@@ -881,11 +921,15 @@ fminf:
 	jne	.L159
 	movaps	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L161:
 	movaps	xmm2, xmm0
 	minss	xmm2, xmm1
 	movaps	xmm0, xmm2
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L164:
 	movaps	xmm0, xmm1
 .L159:
@@ -921,14 +965,20 @@ fminl:
 	fcmovne	st, st(1)
 	fstp	st(1)
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L169:
 	fcomi	st, st(1)
 	fcmovnbe	st, st(1)
 	fstp	st(1)
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L173:
 	fstp	st(0)
 	jmp	.L167
+	.p2align 4,,10
+	.p2align 3
 .L175:
 	fstp	st(0)
 .L167:
@@ -959,6 +1009,8 @@ l64a:
 	mov	BYTE PTR [rdx], 0
 	mov	eax, OFFSET FLAT:s.0
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L179:
 	mov	edx, OFFSET FLAT:s.0
 	jmp	.L177
@@ -1010,6 +1062,8 @@ insque:
 	mov	QWORD PTR [rax+8], rdi
 .L183:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L186:
 	mov	QWORD PTR [rdi+8], 0
 	mov	QWORD PTR [rdi], 0
@@ -1211,6 +1265,8 @@ atoi:
 	.cfi_offset 3, -24
 	mov	rbx, rdi
 	jmp	.L204
+	.p2align 4,,10
+	.p2align 3
 .L205:
 	add	rbx, 1
 .L204:
@@ -1257,6 +1313,8 @@ atoi:
 	pop	rbp
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L211:
 	.cfi_restore_state
 	mov	esi, eax
@@ -1278,6 +1336,8 @@ atol:
 	.cfi_offset 3, -24
 	mov	rbx, rdi
 	jmp	.L217
+	.p2align 4,,10
+	.p2align 3
 .L218:
 	add	rbx, 1
 .L217:
@@ -1341,6 +1401,8 @@ atoll:
 	.cfi_offset 3, -24
 	mov	rbx, rdi
 	jmp	.L229
+	.p2align 4,,10
+	.p2align 3
 .L230:
 	add	rbx, 1
 .L229:
@@ -1424,6 +1486,8 @@ bsearch:
 	mov	r13, rcx
 	mov	r15, r8
 	jmp	.L244
+	.p2align 4,,10
+	.p2align 3
 .L245:
 	mov	rbx, r12
 .L242:
@@ -1445,6 +1509,8 @@ bsearch:
 	sub	rbx, 1
 	sub	rbx, r12
 	jmp	.L242
+	.p2align 4,,10
+	.p2align 3
 .L241:
 	mov	ebp, 0
 .L240:
@@ -1502,6 +1568,8 @@ bsearch_r:
 	mov	r14, r8
 	mov	ebp, edx
 	jmp	.L252
+	.p2align 4,,10
+	.p2align 3
 .L251:
 	sar	ebp
 	je	.L249
@@ -1521,6 +1589,8 @@ bsearch_r:
 	lea	r13, [rbx+r12]
 	sub	ebp, 1
 	jmp	.L251
+	.p2align 4,,10
+	.p2align 3
 .L249:
 	mov	ebx, 0
 .L248:
@@ -1742,6 +1812,8 @@ wcslen:
 	sub	rax, rdi
 	sar	rax, 2
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L281:
 	mov	rax, rdi
 	jmp	.L279
@@ -1891,8 +1963,12 @@ wmemmove:
 	jne	.L313
 .L311:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L319:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L312:
 	lea	rcx, [rdx-1]
 	test	rdx, rdx
@@ -1930,6 +2006,8 @@ wmemset:
 	jne	.L322
 .L321:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L327:
 	mov	DWORD PTR [rdi+rcx*4], esi
 	add	rcx, 1
@@ -1956,6 +2034,8 @@ bcopy:
 	sub	rdx, 1
 	jne	.L331
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L329:
 	je	.L328
 	test	rdx, rdx
@@ -2197,6 +2277,8 @@ ffs:
 	jne	.L351
 	mov	eax, 0
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L353:
 	add	eax, 1
 	ret
@@ -2280,6 +2362,8 @@ gl_isinfl:
 	seta	al
 	movzx	eax, al
 	jmp	.L365
+	.p2align 4,,10
+	.p2align 3
 .L368:
 	fstp	st(0)
 .L365:
@@ -2317,6 +2401,8 @@ ldexpf:
 	jne	.L377
 .L371:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L377:
 	movss	xmm1, DWORD PTR .LC9[rip]
 	test	edi, edi
@@ -2324,6 +2410,8 @@ ldexpf:
 	movss	xmm1, DWORD PTR .LC10[rip]
 	jmp	.L375
 	.p2align 5
+	.p2align 4,,10
+	.p2align 3
 .L374:
 	mov	eax, edi
 	shr	eax, 31
@@ -2355,6 +2443,8 @@ ldexp:
 	jne	.L385
 .L379:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L385:
 	movsd	xmm1, QWORD PTR .LC11[rip]
 	test	edi, edi
@@ -2362,6 +2452,8 @@ ldexp:
 	movsd	xmm1, QWORD PTR .LC12[rip]
 	jmp	.L383
 	.p2align 5
+	.p2align 4,,10
+	.p2align 3
 .L382:
 	mov	eax, edi
 	shr	eax, 31
@@ -2393,19 +2485,27 @@ ldexpl:
 	jp	.L393
 	jne	.L393
 	jmp	.L387
+	.p2align 4,,10
+	.p2align 3
 .L395:
 	fstp	st(0)
 .L387:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L393:
 	test	edi, edi
 	js	.L394
 	fld	DWORD PTR .LC9[rip]
 	jmp	.L391
+	.p2align 4,,10
+	.p2align 3
 .L394:
 	fld	DWORD PTR .LC10[rip]
 	jmp	.L391
 	.p2align 5
+	.p2align 4,,10
+	.p2align 3
 .L390:
 	mov	eax, edi
 	shr	eax, 31
@@ -2508,9 +2608,13 @@ strnlen:
 	jne	.L415
 .L407:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L414:
 	mov	rax, rsi
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L415:
 	add	rax, 1
 	cmp	rsi, rax
@@ -2545,6 +2649,8 @@ strpbrk:
 .L423:
 	mov	eax, 0
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L424:
 	add	rax, 1
 	movzx	r8d, BYTE PTR [rax]
@@ -2620,6 +2726,8 @@ strstr:
 	je	.L430
 	lea	rbp, [rbx+1]
 	jmp	.L432
+	.p2align 4,,10
+	.p2align 3
 .L430:
 	mov	rax, rbx
 	pop	rbx
@@ -2653,6 +2761,8 @@ copysign:
 	ja	.L439
 .L440:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L445:
 	comisd	xmm1, xmm2
 	jbe	.L437
@@ -2698,6 +2808,8 @@ memmem:
 	lea	r12, [rdx+1]
 	jmp	.L449
 	.p2align 4
+	.p2align 4,,10
+	.p2align 3
 .L448:
 	add	rbx, 1
 	cmp	rbp, rbx
@@ -2713,6 +2825,8 @@ memmem:
 	jne	.L448
 	mov	rax, rbx
 	jmp	.L446
+	.p2align 4,,10
+	.p2align 3
 .L459:
 	mov	eax, 0
 .L446:
@@ -2744,6 +2858,8 @@ memmem:
 	.cfi_offset 14, -16
 	mov	eax, 0
 	jmp	.L446
+	.p2align 4,,10
+	.p2align 3
 .L456:
 	.cfi_def_cfa_offset 8
 	.cfi_restore 3
@@ -2802,10 +2918,14 @@ frexp:
 	xorpd	xmm0, XMMWORD PTR .LC13[rip]
 .L470:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L480:
 	xorpd	xmm0, XMMWORD PTR .LC13[rip]
 	mov	edx, 1
 	jmp	.L463
+	.p2align 4,,10
+	.p2align 3
 .L479:
 	pxor	xmm1, xmm1
 	ucomisd	xmm0, xmm1
@@ -2820,6 +2940,8 @@ frexp:
 .L472:
 	mov	eax, 0
 	jmp	.L468
+	.p2align 4,,10
+	.p2align 3
 .L481:
 	mov	eax, 0
 	.p2align 4
@@ -2855,6 +2977,8 @@ __muldi3:
 .L482:
 	mov	rax, rcx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L485:
 	mov	ecx, 0
 	jmp	.L482
@@ -2890,6 +3014,8 @@ udivmodsi4:
 	mov	eax, ecx
 	ret
 	.p2align 4
+	.p2align 4,,10
+	.p2align 3
 .L494:
 	shr	esi
 	shr	eax
@@ -2971,6 +3097,8 @@ __mulsi3:
 .L509:
 	mov	eax, edx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L512:
 	mov	edx, edi
 	jmp	.L509
@@ -3007,6 +3135,8 @@ __cmovd:
 	ret
 .L526:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L515:
 	test	ecx, ecx
 	je	.L518
@@ -3062,6 +3192,8 @@ __cmovh:
 	ret
 .L537:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L528:
 	test	eax, eax
 	je	.L531
@@ -3114,6 +3246,8 @@ __cmovw:
 	ret
 .L550:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L539:
 	test	ecx, ecx
 	je	.L542
@@ -3191,6 +3325,8 @@ __ulltod:
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rdi
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L559:
 	mov	rax, rdi
 	shr	rax
@@ -3214,6 +3350,8 @@ __ulltof:
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rdi
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L562:
 	mov	rax, rdi
 	shr	rax
@@ -3293,6 +3431,8 @@ __fixunssfsi:
 	jnb	.L579
 	cvttss2si	rax, xmm0
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L579:
 	subss	xmm0, DWORD PTR .LC15[rip]
 	cvttss2si	rax, xmm0
@@ -3369,6 +3509,8 @@ __mulsi3_iq2000:
 .L586:
 	mov	eax, edx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L589:
 	mov	edx, edi
 	jmp	.L586
@@ -3400,6 +3542,8 @@ __mulsi3_lm32:
 .L591:
 	mov	eax, edx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L595:
 	mov	edx, esi
 	jmp	.L591
@@ -3435,6 +3579,8 @@ __udivmodsi4:
 	mov	eax, ecx
 	ret
 	.p2align 4
+	.p2align 4,,10
+	.p2align 3
 .L604:
 	shr	esi
 	shr	eax
@@ -3542,10 +3688,14 @@ __mulhi3:
 	cmovne	ecx, eax
 	mov	eax, ecx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L629:
 	neg	esi
 	mov	r9d, 1
 	jmp	.L622
+	.p2align 4,,10
+	.p2align 3
 .L627:
 	mov	ecx, esi
 	jmp	.L623
@@ -3579,11 +3729,15 @@ __divsi3:
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L637:
 	.cfi_restore_state
 	neg	rdi
 	mov	ebx, 1
 	jmp	.L631
+	.p2align 4,,10
+	.p2align 3
 .L638:
 	neg	rsi
 	xor	ebx, 1
@@ -3618,6 +3772,8 @@ __modsi3:
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L645:
 	.cfi_restore_state
 	neg	rdi
@@ -3657,6 +3813,8 @@ __udivmodhi4:
 	mov	eax, esi
 	ret
 	.p2align 4
+	.p2align 4,,10
+	.p2align 3
 .L653:
 	shr	ax
 	shr	cx
@@ -3699,6 +3857,8 @@ __udivmodsi4_libgcc:
 	mov	rax, rcx
 	ret
 	.p2align 4
+	.p2align 4,,10
+	.p2align 3
 .L669:
 	shr	rsi
 	shr	rax
@@ -3728,6 +3888,8 @@ __ashldi3:
 	or	rax, rdi
 .L678:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L679:
 	mov	rax, rdi
 	test	esi, esi
@@ -3760,6 +3922,8 @@ __ashlti3:
 .L685:
 	mov	rdx, rdi
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L684:
 	test	edx, edx
 	je	.L687
@@ -3773,6 +3937,8 @@ __ashlti3:
 	sal	rsi, cl
 	or	rdi, rsi
 	jmp	.L685
+	.p2align 4,,10
+	.p2align 3
 .L687:
 	mov	rax, rdi
 	mov	rdx, rsi
@@ -3798,6 +3964,8 @@ __ashrdi3:
 	or	rax, rdi
 .L688:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L689:
 	mov	rax, rdi
 	test	esi, esi
@@ -3833,6 +4001,8 @@ __ashrti3:
 	mov	rax, rsi
 	mov	rdx, r8
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L694:
 	test	edx, edx
 	je	.L697
@@ -3846,6 +4016,8 @@ __ashrti3:
 	shr	rdi, cl
 	or	rsi, rdi
 	jmp	.L695
+	.p2align 4,,10
+	.p2align 3
 .L697:
 	mov	rax, rdi
 	mov	rdx, rsi
@@ -4134,6 +4306,8 @@ __ffsti2:
 	mov	edx, 0
 	cmove	eax, edx
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L718:
 	rep bsf	rdi, rdi
 	lea	eax, [rdi+1]
@@ -4158,6 +4332,8 @@ __lshrdi3:
 	or	rax, rdi
 .L721:
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L722:
 	mov	rax, rdi
 	test	esi, esi
@@ -4192,6 +4368,8 @@ __lshrti3:
 	mov	rax, rsi
 	mov	rdx, r8
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L727:
 	test	edx, edx
 	je	.L730
@@ -4205,6 +4383,8 @@ __lshrti3:
 	shr	rdi, cl
 	or	rsi, rdi
 	jmp	.L728
+	.p2align 4,,10
+	.p2align 3
 .L730:
 	mov	rax, rdi
 	mov	rdx, rsi
@@ -4593,6 +4773,8 @@ __powidf2:
 	movsd	xmm1, QWORD PTR .LC14[rip]
 	jmp	.L748
 	.p2align 5
+	.p2align 4,,10
+	.p2align 3
 .L746:
 	mov	eax, edx
 	shr	eax, 31
@@ -4606,12 +4788,16 @@ __powidf2:
 	je	.L746
 	mulsd	xmm1, xmm0
 	jmp	.L746
+	.p2align 4,,10
+	.p2align 3
 .L747:
 	test	edi, edi
 	js	.L750
 .L745:
 	movapd	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L750:
 	movsd	xmm0, QWORD PTR .LC14[rip]
 	divsd	xmm0, xmm1
@@ -4630,6 +4816,8 @@ __powisf2:
 	movss	xmm1, DWORD PTR .LC16[rip]
 	jmp	.L754
 	.p2align 5
+	.p2align 4,,10
+	.p2align 3
 .L752:
 	mov	eax, edx
 	shr	eax, 31
@@ -4643,12 +4831,16 @@ __powisf2:
 	je	.L752
 	mulss	xmm1, xmm0
 	jmp	.L752
+	.p2align 4,,10
+	.p2align 3
 .L753:
 	test	edi, edi
 	js	.L756
 .L751:
 	movaps	xmm0, xmm1
 	ret
+	.p2align 4,,10
+	.p2align 3
 .L756:
 	movss	xmm0, DWORD PTR .LC16[rip]
 	divss	xmm0, xmm1

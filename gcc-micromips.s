@@ -79,6 +79,7 @@ memmove:
 
 .L14:
 	jrc	$31
+	.align	3
 .L6:
 	beq	$4,$5,.L13
 	nop
@@ -131,6 +132,7 @@ memccpy:
 	jr	$31
 	daddiu	$2,$4,1
 
+	.align	3
 .L20:
 	jr	$31
 	move	$2,$0
@@ -168,6 +170,7 @@ memchr:
 	b	.L26
 	move	$2,$4
 
+	.align	3
 .L33:
 	move	$2,$4
 .L26:
@@ -210,6 +213,7 @@ memcmp:
 	jr	$31
 	subu	$2,$2,$3
 
+	.align	3
 .L39:
 	jr	$31
 	move	$2,$0
@@ -385,6 +389,7 @@ strchrnul:
 	jr	$31
 	move	$2,$4
 
+	.align	3
 .L74:
 	jr	$31
 	move	$2,$4
@@ -484,6 +489,7 @@ strlen:
 	lb	$5,0($2)
 	bnezc	$5,.L91
 .L90:
+	.align	3
 .L95:
 	jr	$31
 	dsubu	$2,$2,$4
@@ -529,6 +535,7 @@ strncmp:
 	jr	$31
 	subu	$2,$2,$3
 
+	.align	3
 .L101:
 	jr	$31
 	move	$2,$0
@@ -633,6 +640,7 @@ isblank:
 	jr	$31
 	sltu	$2,$4,1
 
+	.align	3
 .L115:
 	jr	$31
 	li	$2,1			# 0x1
@@ -661,6 +669,7 @@ iscntrl:
 	jr	$31
 	sltu	$2,$4,1
 
+	.align	3
 .L119:
 	jr	$31
 	li	$2,1			# 0x1
@@ -773,6 +782,7 @@ isspace:
 	jr	$31
 	sltu	$2,$4,5
 
+	.align	3
 .L131:
 	jr	$31
 	li	$2,1			# 0x1
@@ -829,14 +839,17 @@ iswcntrl:
 	jr	$31
 	sltu	$2,$4,3
 
+	.align	3
 .L137:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L138:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L139:
 	jr	$31
 	li	$2,1			# 0x1
@@ -908,24 +921,29 @@ iswprint:
 	jr	$31
 	sltu	$2,$0,$2
 
+	.align	3
 .L151:
 	andi	$2,$2,0x7f
 	sltu	$2,$2,33
 	jr	$31
 	sltu	$2,$2,1
 
+	.align	3
 .L146:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L147:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L148:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L149:
 	jr	$31
 	move	$2,$0
@@ -955,6 +973,7 @@ iswxdigit:
 	jr	$31
 	sltu	$2,$2,6
 
+	.align	3
 .L154:
 	jr	$31
 	li	$2,1			# 0x1
@@ -1010,14 +1029,17 @@ fdim:
 	jr	$31
 	sub.d	$f0,$f12,$f13
 
+	.align	3
 .L161:
 	jr	$31
 	mov.d	$f0,$f12
 
+	.align	3
 .L162:
 	jr	$31
 	mov.d	$f0,$f13
 
+	.align	3
 .L165:
 	jr	$31
 	dmtc1	$0,$f0
@@ -1053,14 +1075,17 @@ fdimf:
 	jr	$31
 	sub.s	$f0,$f12,$f13
 
+	.align	3
 .L170:
 	jr	$31
 	mov.s	$f0,$f12
 
+	.align	3
 .L171:
 	jr	$31
 	mov.s	$f0,$f13
 
+	.align	3
 .L174:
 	jr	$31
 	mtc1	$0,$f0
@@ -1104,16 +1129,19 @@ fmax:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L178:
 	ldc1	$f1,8($sp)
 	c.lt.d	$fcc2,$f0,$f1
 	b	.L176
 	movt.d	$f0,$f1,$fcc2
 
+	.align	3
 .L179:
 	b	.L176
 	ldc1	$f0,8($sp)
 
+	.align	3
 .L180:
 	b	.L176
 	ldc1	$f0,0($sp)
@@ -1158,6 +1186,7 @@ fmaxf:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L185:
 	lwc1	$f0,0($sp)
 	lwc1	$f1,4($sp)
@@ -1165,10 +1194,12 @@ fmaxf:
 	b	.L183
 	movt.s	$f0,$f1,$fcc2
 
+	.align	3
 .L186:
 	b	.L183
 	lwc1	$f0,4($sp)
 
+	.align	3
 .L187:
 	b	.L183
 	lwc1	$f0,0($sp)
@@ -1257,6 +1288,7 @@ fmaxl:
 	ld	$17,40($sp)
 	ld	$16,32($sp)
 	jraddiusp	112
+	.align	3
 .L192:
 	sd	$fp,0($sp)
 	sd	$20,8($sp)
@@ -1275,15 +1307,18 @@ fmaxl:
 	b	.L190
 	move	$2,$20
 
+	.align	3
 .L193:
 	move	$fp,$22
 	b	.L190
 	move	$2,$21
 
+	.align	3
 .L196:
 	b	.L190
 	move	$2,$20
 
+	.align	3
 .L197:
 	move	$fp,$22
 	b	.L190
@@ -1328,16 +1363,19 @@ fmin:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L202:
 	ldc1	$f0,0($sp)
 	c.lt.d	$fcc2,$f0,$f1
 	b	.L200
 	movf.d	$f0,$f1,$fcc2
 
+	.align	3
 .L203:
 	b	.L200
 	ldc1	$f0,8($sp)
 
+	.align	3
 .L204:
 	b	.L200
 	ldc1	$f0,0($sp)
@@ -1382,6 +1420,7 @@ fminf:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L209:
 	lwc1	$f0,0($sp)
 	lwc1	$f1,4($sp)
@@ -1389,10 +1428,12 @@ fminf:
 	b	.L207
 	movf.s	$f0,$f1,$fcc2
 
+	.align	3
 .L210:
 	b	.L207
 	lwc1	$f0,4($sp)
 
+	.align	3
 .L211:
 	b	.L207
 	lwc1	$f0,0($sp)
@@ -1480,6 +1521,7 @@ fminl:
 	ld	$17,40($sp)
 	ld	$16,32($sp)
 	jraddiusp	112
+	.align	3
 .L216:
 	sd	$22,0($sp)
 	sd	$21,8($sp)
@@ -1498,16 +1540,19 @@ fminl:
 	b	.L214
 	move	$2,$20
 
+	.align	3
 .L217:
 	move	$fp,$22
 	b	.L214
 	move	$2,$21
 
+	.align	3
 .L220:
 	move	$fp,$22
 	b	.L214
 	move	$2,$21
 
+	.align	3
 .L221:
 	b	.L214
 	move	$2,$20
@@ -1555,6 +1600,7 @@ l64a:
 	jr	$31
 	daddiu	$2,$2,%got_ofst(s.0)
 
+	.align	3
 .L227:
 	ld	$4,%got_page(s.0)($6)
 	b	.L225
@@ -1648,6 +1694,7 @@ insque:
 	sd	$4,8($2)
 .L239:
 	jrc	$31
+	.align	3
 .L238:
 	sd	$0,8($4)
 	jr	$31
@@ -1846,6 +1893,7 @@ abs:
 	jr	$31
 	move	$2,$4
 
+	.align	3
 .L261:
 	jr	$31
 	subu	$2,$0,$4
@@ -1880,6 +1928,7 @@ atoi:
 	b	.L263
 	ld	$18,%got_disp(isspace)($28)
 
+	.align	3
 .L264:
 	daddiu	$16,$16,1
 .L263:
@@ -1932,6 +1981,7 @@ atoi:
 	ld	$17,16($sp)
 	ld	$16,8($sp)
 	jraddiusp	48
+	.align	3
 .L270:
 	b	.L265
 	move	$5,$2
@@ -1966,6 +2016,7 @@ atol:
 	b	.L278
 	ld	$18,%got_disp(isspace)($28)
 
+	.align	3
 .L279:
 	daddiu	$16,$16,1
 .L278:
@@ -2051,6 +2102,7 @@ atoll:
 	b	.L292
 	ld	$18,%got_disp(isspace)($28)
 
+	.align	3
 .L293:
 	daddiu	$16,$16,1
 .L292:
@@ -2141,6 +2193,7 @@ bsearch:
 	b	.L309
 	move	$21,$8
 
+	.align	3
 .L310:
 	move	$16,$18
 .L307:
@@ -2167,6 +2220,7 @@ bsearch:
 	b	.L307
 	dsubu	$16,$16,$18
 
+	.align	3
 .L306:
 	move	$17,$0
 .L305:
@@ -2217,6 +2271,7 @@ bsearch_r:
 	b	.L317
 	move	$16,$6
 
+	.align	3
 .L316:
 	sra	$16,$16,1
 	beqz	$16,.L313
@@ -2241,6 +2296,7 @@ bsearch_r:
 	b	.L316
 	addiu	$16,$16,-1
 
+	.align	3
 .L314:
 	move	$17,$0
 .L313:
@@ -2308,6 +2364,7 @@ imaxabs:
 
 .L323:
 	jrc	$31
+	.align	3
 .L325:
 	jr	$31
 	dsubu	$2,$0,$4
@@ -2360,6 +2417,7 @@ labs:
 
 .L329:
 	jrc	$31
+	.align	3
 .L331:
 	jr	$31
 	dsubu	$2,$0,$4
@@ -2412,6 +2470,7 @@ llabs:
 
 .L335:
 	jrc	$31
+	.align	3
 .L337:
 	jr	$31
 	dsubu	$2,$0,$4
@@ -2473,6 +2532,7 @@ wcschr:
 	b	.L342
 	move	$2,$4
 
+	.align	3
 .L348:
 	move	$2,$4
 .L342:
@@ -2518,6 +2578,7 @@ wcscmp:
 	jr	$31
 	slt	$2,$3,$2
 
+	.align	3
 .L354:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
@@ -2618,10 +2679,12 @@ wcsncmp:
 	jr	$31
 	slt	$2,$3,$2
 
+	.align	3
 .L372:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L373:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
@@ -2658,6 +2721,7 @@ wmemchr:
 	b	.L378
 	move	$2,$4
 
+	.align	3
 .L384:
 	move	$2,$4
 .L378:
@@ -2702,10 +2766,12 @@ wmemcmp:
 	jr	$31
 	slt	$2,$3,$2
 
+	.align	3
 .L390:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L391:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
@@ -2788,6 +2854,7 @@ wmemmove:
 
 .L409:
 	jrc	$31
+	.align	3
 .L399:
 	beqz	$6,.L409
 	daddiu	$3,$6,-1
@@ -2867,6 +2934,7 @@ bcopy:
 
 .L425:
 	jrc	$31
+	.align	3
 .L417:
 	beq	$4,$5,.L424
 	nop
@@ -3238,6 +3306,7 @@ ffs:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L458:
 	jr	$31
 	addiu	$2,$2,1
@@ -3309,6 +3378,7 @@ gl_isinff:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L471:
 	li	$2,1			# 0x1
 .L473:
@@ -3347,6 +3417,7 @@ gl_isinfd:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L477:
 	li	$2,1			# 0x1
 .L479:
@@ -3403,6 +3474,7 @@ gl_isinfl:
 
 	slt	$2,$0,$2
 .L481:
+	.align	3
 .L485:
 	ld	$31,40($sp)
 	ld	$28,32($sp)
@@ -3486,11 +3558,13 @@ ldexpf:
 	b	.L492
 	lwc1	$f1,%got_ofst(.LC6)($2)
 
+	.align	3
 .L498:
 	ld	$2,%got_page(.LC7)($3)
 	b	.L492
 	lwc1	$f1,%got_ofst(.LC7)($2)
 
+	.align	3
 .L499:
 	addu	$5,$2,$5
 	sra	$5,$5,1
@@ -3540,11 +3614,13 @@ ldexp:
 	b	.L505
 	ldc1	$f1,%got_ofst(.LC8)($2)
 
+	.align	3
 .L511:
 	ld	$2,%got_page(.LC9)($3)
 	b	.L505
 	ldc1	$f1,%got_ofst(.LC9)($2)
 
+	.align	3
 .L512:
 	addu	$5,$2,$5
 	sra	$5,$5,1
@@ -3637,14 +3713,17 @@ ldexpl:
 	b	.L519
 	ld	$16,%got_ofst(.LC10)($2)
 
+	.align	3
 .L523:
 	ld	$2,%got_page(.LC11)($28)
 	ld	$17,%got_ofst(.LC11+8)($2)
 	b	.L519
 	ld	$16,%got_ofst(.LC11)($2)
 
+	.align	3
 .L518:
 	srl	$2,$22,31
+	.align	3
 .L525:
 	addu	$2,$2,$22
 	sra	$22,$2,1
@@ -3679,8 +3758,10 @@ ldexpl:
 	b	.L518
 	dmfc1	$23,$f2
 
+	.align	3
 .L515:
 	dmtc1	$fp,$f0
+	.align	3
 .L524:
 	dmtc1	$23,$f2
 	ld	$31,136($sp)
@@ -3813,10 +3894,12 @@ strnlen:
 	bnezc	$3,.L549
 .L539:
 	jrc	$31
+	.align	3
 .L548:
 	jr	$31
 	move	$2,$5
 
+	.align	3
 .L549:
 	daddiu	$2,$2,1
 	bne	$5,$2,.L550
@@ -3859,6 +3942,7 @@ strpbrk:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L561:
 	daddiu	$2,$2,1
 	lb	$7,0($2)
@@ -3888,6 +3972,7 @@ strrchr:
 	b	.L564
 	move	$2,$0
 
+	.align	3
 .L563:
 	beqz	$3,.L569
 	daddiu	$4,$4,1
@@ -3967,8 +4052,10 @@ strstr:
 	b	.L572
 	daddiu	$16,$16,1
 
+	.align	3
 .L570:
 	move	$2,$16
+	.align	3
 .L576:
 	ld	$31,56($sp)
 	ld	$28,48($sp)
@@ -4018,6 +4105,7 @@ copysign:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L587:
 	c.lt.d	$fcc1,$f0,$f13
 	bc1f	$fcc1,.L589
@@ -4077,8 +4165,10 @@ memmem:
 	b	.L593
 	ld	$21,%got_disp(memcmp)($28)
 
+	.align	3
 .L592:
 	daddiu	$16,$16,1
+	.align	3
 .L601:
 	sltu	$2,$17,$16
 	bnez	$2,.L600
@@ -4100,6 +4190,7 @@ memmem:
 
 	daddiu	$16,$16,-1
 	move	$2,$16
+	.align	3
 .L600:
 .L590:
 	ld	$31,56($sp)
@@ -4111,6 +4202,7 @@ memmem:
 	ld	$17,8($sp)
 	ld	$16,0($sp)
 	jraddiusp	64
+	.align	3
 .L594:
 	b	.L590
 	move	$2,$4
@@ -4203,6 +4295,7 @@ frexp:
 	sdc1	$f2,0($sp)
 
 .L610:
+	.align	3
 .L627:
 	beqz	$3,.L613
 	sw	$2,0($5)
@@ -4217,6 +4310,7 @@ frexp:
 	jr	$31
 	daddiu	$sp,$sp,16
 
+	.align	3
 .L626:
 	li	$2,-1			# 0xffffffffffffffff
 	dsll	$2,$2,63
@@ -4226,6 +4320,7 @@ frexp:
 	b	.L605
 	li	$3,1			# 0x1
 
+	.align	3
 .L623:
 	ld	$2,%got_page(.LC9)($6)
 	ldc1	$f0,%got_ofst(.LC9)($2)
@@ -4251,6 +4346,7 @@ frexp:
 	b	.L610
 	nop
 
+	.align	3
 .L624:
 	b	.L610
 	move	$2,$0
@@ -4284,6 +4380,7 @@ __muldi3:
 	dsll	$5,$5,1
 
 	jrc	$31
+	.align	3
 .L631:
 	jr	$31
 	move	$2,$0
@@ -4328,6 +4425,7 @@ udivmodsi4:
 	b	.L640
 	move	$2,$0
 
+	.align	3
 .L639:
 	dext	$3,$3,1,31
 	beqz	$3,.L638
@@ -4340,6 +4438,7 @@ udivmodsi4:
 	b	.L639
 	or	$2,$2,$3
 
+	.align	3
 .L644:
 	move	$2,$3
 .L638:
@@ -4373,6 +4472,7 @@ __clrsbqi2:
 	jr	$31
 	addiu	$2,$2,-1
 
+	.align	3
 .L650:
 	jr	$31
 	li	$2,7			# 0x7
@@ -4402,6 +4502,7 @@ __clrsbdi2:
 	jr	$31
 	addiu	$2,$2,-1
 
+	.align	3
 .L654:
 	jr	$31
 	li	$2,63			# 0x3f
@@ -4435,6 +4536,7 @@ __mulsi3:
 	sll	$5,$5,1
 
 	jrc	$31
+	.align	3
 .L659:
 	jr	$31
 	move	$2,$4
@@ -4482,6 +4584,7 @@ __cmovd:
 
 .L677:
 	jrc	$31
+	.align	3
 .L663:
 	beqz	$9,.L666
 	move	$3,$5
@@ -4554,6 +4657,7 @@ __cmovh:
 
 .L690:
 	jrc	$31
+	.align	3
 .L679:
 	beqz	$8,.L682
 	move	$2,$5
@@ -4623,6 +4727,7 @@ __cmovw:
 
 .L706:
 	jrc	$31
+	.align	3
 .L692:
 	beqz	$9,.L695
 	move	$3,$5
@@ -4744,6 +4849,7 @@ __ulltod:
 	jr	$31
 	cvt.d.l	$f0,$f0
 
+	.align	3
 .L715:
 	dsrl	$4,$4,1
 	or	$2,$2,$4
@@ -4776,6 +4882,7 @@ __ulltof:
 	jr	$31
 	cvt.s.l	$f0,$f0
 
+	.align	3
 .L719:
 	dsrl	$4,$4,1
 	or	$2,$2,$4
@@ -4896,6 +5003,7 @@ __fixunssfsi:
 	jr	$31
 	dmfc1	$2,$f0
 
+	.align	3
 .L744:
 	sub.s	$f12,$f12,$f0
 	trunc.l.s $f0,$f12
@@ -4990,6 +5098,7 @@ __mulsi3_iq2000:
 	sll	$5,$5,1
 
 	jrc	$31
+	.align	3
 .L756:
 	jr	$31
 	move	$2,$4
@@ -5024,10 +5133,12 @@ __mulsi3_lm32:
 	sll	$4,$4,1
 
 	jrc	$31
+	.align	3
 .L762:
 	jr	$31
 	move	$2,$4
 
+	.align	3
 .L763:
 	jr	$31
 	move	$2,$5
@@ -5072,6 +5183,7 @@ __udivmodsi4:
 	b	.L772
 	move	$2,$0
 
+	.align	3
 .L771:
 	dext	$3,$3,1,31
 	beqz	$3,.L770
@@ -5084,6 +5196,7 @@ __udivmodsi4:
 	b	.L771
 	or	$2,$2,$3
 
+	.align	3
 .L776:
 	move	$2,$3
 .L770:
@@ -5118,6 +5231,7 @@ __mspabi_cmpf:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L783:
 	li	$2,-1			# 0xffffffffffffffff
 .L785:
@@ -5150,6 +5264,7 @@ __mspabi_cmpd:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L789:
 	li	$2,-1			# 0xffffffffffffffff
 .L791:
@@ -5242,6 +5357,7 @@ __mulhi3:
 	subu	$2,$0,$2
 .L807:
 	jrc	$31
+	.align	3
 .L805:
 	subu	$5,$0,$5
 	b	.L797
@@ -5295,11 +5411,13 @@ __divsi3:
 	ld	$28,16($sp)
 	ld	$16,8($sp)
 	jraddiusp	32
+	.align	3
 .L814:
 	dsubu	$4,$0,$4
 	b	.L809
 	li	$16,1			# 0x1
 
+	.align	3
 .L815:
 	dsubu	$5,$0,$5
 	b	.L810
@@ -5353,11 +5471,13 @@ __modsi3:
 	ld	$28,16($sp)
 	ld	$16,8($sp)
 	jraddiusp	32
+	.align	3
 .L822:
 	dsubu	$4,$0,$4
 	b	.L817
 	li	$16,1			# 0x1
 
+	.align	3
 .L823:
 	b	.L818
 	dsubu	$2,$0,$5
@@ -5413,6 +5533,7 @@ __udivmodhi4:
 	b	.L826
 	li	$3,1			# 0x1
 
+	.align	3
 .L829:
 	dsrl	$3,$3,1
 	beqz	$3,.L828
@@ -5427,6 +5548,7 @@ __udivmodhi4:
 	b	.L829
 	andi	$4,$4,0xffff
 
+	.align	3
 .L834:
 	move	$4,$3
 .L828:
@@ -5480,6 +5602,7 @@ __udivmodsi4_libgcc:
 	b	.L843
 	li	$3,1			# 0x1
 
+	.align	3
 .L846:
 	dsrl	$3,$3,1
 	beqz	$3,.L845
@@ -5527,6 +5650,7 @@ __ashldi3:
 	jr	$31
 	dins	$2,$5,32,32
 
+	.align	3
 .L858:
 	beqz	$5,.L861
 	subu	$6,$0,$5
@@ -5539,6 +5663,7 @@ __ashldi3:
 	b	.L859
 	or	$5,$5,$2
 
+	.align	3
 .L861:
 	jr	$31
 	move	$2,$4
@@ -5567,6 +5692,7 @@ __ashlti3:
 	jr	$31
 	move	$3,$0
 
+	.align	3
 .L864:
 	beqzc	$6,.L867
 	dsll	$3,$5,$6
@@ -5576,6 +5702,7 @@ __ashlti3:
 	jr	$31
 	or	$2,$2,$5
 
+	.align	3
 .L867:
 	move	$2,$4
 	jr	$31
@@ -5609,6 +5736,7 @@ __ashrdi3:
 	jr	$31
 	dins	$2,$5,0,32
 
+	.align	3
 .L870:
 	beqz	$5,.L873
 	subu	$6,$0,$5
@@ -5621,6 +5749,7 @@ __ashrdi3:
 	b	.L871
 	or	$5,$5,$2
 
+	.align	3
 .L873:
 	jr	$31
 	move	$2,$4
@@ -5651,6 +5780,7 @@ __ashrti3:
 	jr	$31
 	move	$3,$5
 
+	.align	3
 .L876:
 	beqzc	$6,.L879
 	dsra	$2,$4,$6
@@ -5660,6 +5790,7 @@ __ashrti3:
 	b	.L878
 	or	$5,$5,$4
 
+	.align	3
 .L879:
 	b	.L878
 	move	$2,$4
@@ -5850,18 +5981,22 @@ __cmpdi2:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L891:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L892:
 	jr	$31
 	li	$2,2			# 0x2
 
+	.align	3
 .L893:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L894:
 	jr	$31
 	li	$2,2			# 0x2
@@ -5928,18 +6063,22 @@ __cmpti2:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L900:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L901:
 	jr	$31
 	li	$2,2			# 0x2
 
+	.align	3
 .L902:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L903:
 	jr	$31
 	li	$2,2			# 0x2
@@ -6055,6 +6194,7 @@ __ffsti2:
 	jr	$31
 	addiu	$2,$2,65
 
+	.align	3
 .L910:
 	and	$5,$5,$2
 	dclz	$5,$5
@@ -6063,6 +6203,7 @@ __ffsti2:
 	jr	$31
 	addiu	$2,$2,1
 
+	.align	3
 .L912:
 	jr	$31
 	move	$2,$0
@@ -6096,6 +6237,7 @@ __lshrdi3:
 	jr	$31
 	dins	$2,$5,0,32
 
+	.align	3
 .L915:
 	beqz	$5,.L918
 	subu	$6,$0,$5
@@ -6108,6 +6250,7 @@ __lshrdi3:
 	b	.L916
 	or	$5,$5,$2
 
+	.align	3
 .L918:
 	jr	$31
 	move	$2,$4
@@ -6138,6 +6281,7 @@ __lshrti3:
 	jr	$31
 	move	$3,$5
 
+	.align	3
 .L921:
 	beqzc	$6,.L924
 	dsrl	$2,$4,$6
@@ -6147,6 +6291,7 @@ __lshrti3:
 	b	.L923
 	or	$5,$5,$4
 
+	.align	3
 .L924:
 	b	.L923
 	move	$2,$4
@@ -6674,6 +6819,7 @@ __powidf2:
 	b	.L953
 	ldc1	$f0,%got_ofst(.LC12)($3)
 
+	.align	3
 .L957:
 	addu	$2,$3,$2
 	sra	$2,$2,1
@@ -6687,12 +6833,14 @@ __powidf2:
 	b	.L957
 	mul.d	$f0,$f0,$f12
 
+	.align	3
 .L952:
 	bltz	$5,.L956
 	ld	$2,%got_page(.LC12)($4)
 
 .L950:
 	jrc	$31
+	.align	3
 .L956:
 	ldc1	$f1,%got_ofst(.LC12)($2)
 	jr	$31
@@ -6723,6 +6871,7 @@ __powisf2:
 	b	.L961
 	lwc1	$f0,%got_ofst(.LC14)($3)
 
+	.align	3
 .L965:
 	addu	$2,$3,$2
 	sra	$2,$2,1
@@ -6736,12 +6885,14 @@ __powisf2:
 	b	.L965
 	mul.s	$f0,$f0,$f12
 
+	.align	3
 .L960:
 	bltz	$5,.L964
 	ld	$2,%got_page(.LC14)($4)
 
 .L958:
 	jrc	$31
+	.align	3
 .L964:
 	lwc1	$f1,%got_ofst(.LC14)($2)
 	jr	$31
@@ -6781,18 +6932,22 @@ __ucmpdi2:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L968:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L969:
 	jr	$31
 	li	$2,2			# 0x2
 
+	.align	3
 .L970:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L971:
 	jr	$31
 	li	$2,2			# 0x2
@@ -6859,18 +7014,22 @@ __ucmpti2:
 	jr	$31
 	li	$2,1			# 0x1
 
+	.align	3
 .L977:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L978:
 	jr	$31
 	li	$2,2			# 0x2
 
+	.align	3
 .L979:
 	jr	$31
 	move	$2,$0
 
+	.align	3
 .L980:
 	jr	$31
 	li	$2,2			# 0x2
