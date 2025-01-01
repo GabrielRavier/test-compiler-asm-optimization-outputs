@@ -6709,7 +6709,7 @@ __ucmpti2:
 	.type	s.0, @object
 	.set	.LC0,.LC27+8
 	.set	.LC1,.LC27
-	.section	.rodata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 2
 .LC6:
 	.long	-8388609
@@ -6718,6 +6718,7 @@ __ucmpti2:
 	.long	2139095039
 	.set	.LC10,.LC14
 	.set	.LC11,.LC15
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align 4
 .LC14:
 	.long	-1
@@ -6730,12 +6731,14 @@ __ucmpti2:
 	.long	2146435071
 	.long	-2
 	.long	2089811967
+	.section	.rodata.cst4
 	.align 2
 .LC19:
 	.long	1056964608
 	.set	.LC20,.LC28+4
 	.set	.LC23,.LC27
 	.set	.LC24,.LC28
+	.section	.rodata.cst16
 	.align 4
 .LC27:
 	.long	0
@@ -6748,10 +6751,12 @@ __ucmpti2:
 	.long	1073741824
 	.long	0
 	.long	0
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 3
 .LC32:
 	.long	0
 	.long	1072693248
+	.section	.rodata.cst4
 	.align 2
 .LC33:
 	.long	1065353216

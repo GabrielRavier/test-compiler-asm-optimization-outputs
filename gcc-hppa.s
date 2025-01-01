@@ -2842,7 +2842,7 @@ libiberty_ffs:
 	.EXIT
 	.PROCEND
 	.size	libiberty_ffs, .-libiberty_ffs
-	.section	.rodata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC0:
 	.word	-8388609
@@ -2881,7 +2881,7 @@ gl_isinff:
 	.EXIT
 	.PROCEND
 	.size	gl_isinff, .-gl_isinff
-	.section	.rodata
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC4:
 	.word	-1048577
@@ -2922,7 +2922,7 @@ gl_isinfd:
 	.EXIT
 	.PROCEND
 	.size	gl_isinfd, .-gl_isinfd
-	.section	.rodata
+	.section	.rodata.cst8
 	.align 8
 .LC8:
 	.word	-1048577
@@ -2983,7 +2983,7 @@ _Qp_itoq:
 	.EXIT
 	.PROCEND
 	.size	_Qp_itoq, .-_Qp_itoq
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC12:
 	.word	1056964608
@@ -3036,7 +3036,7 @@ ldexpf:
 	.EXIT
 	.PROCEND
 	.size	ldexpf, .-ldexpf
-	.section	.rodata
+	.section	.rodata.cst8
 	.align 8
 .LC16:
 	.word	1071644672
@@ -3092,7 +3092,7 @@ ldexp:
 	.EXIT
 	.PROCEND
 	.size	ldexp, .-ldexp
-	.section	.rodata
+	.section	.rodata.cst8
 	.align 8
 .LC20:
 	.word	1071644672
@@ -3490,7 +3490,7 @@ mempcpy:
 	.EXIT
 	.PROCEND
 	.size	mempcpy, .-mempcpy
-	.section	.rodata
+	.section	.rodata.cst8
 	.align 8
 .LC24:
 	.word	1072693248
@@ -4190,7 +4190,7 @@ __ctzhi2:
 	.EXIT
 	.PROCEND
 	.size	__ctzhi2, .-__ctzhi2
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC28:
 	.word	1191182336
@@ -5400,7 +5400,7 @@ __popcountsi2:
 	.EXIT
 	.PROCEND
 	.size	__popcountsi2, .-__popcountsi2
-	.section	.rodata
+	.section	.rodata.cst8
 	.align 8
 .LC30:
 	.word	1072693248
@@ -5446,7 +5446,7 @@ __powidf2:
 	.EXIT
 	.PROCEND
 	.size	__powidf2, .-__powidf2
-	.section	.rodata
+	.section	.rodata.cst4
 	.align 4
 .LC32:
 	.word	1065353216

@@ -1290,7 +1290,7 @@ srand:
 	.cfi_endproc
 .LFE40:
 	.size	srand, .-srand
-	.section	.rodata
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align	8
 .LC0:
 	.quad	6364136223846793005
@@ -5572,7 +5572,7 @@ __popcountsi2:
 	.cfi_endproc
 .LFE159:
 	.size	__popcountsi2, .-__popcountsi2
-	.section	.rodata
+	.section	.rodata.cst8
 	.align	8
 .LC19:
 	.quad	6148914691236517205

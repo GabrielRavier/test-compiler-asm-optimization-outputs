@@ -646,7 +646,7 @@ fdim:
 	jmp	%i7+8
 	 restore
 	.size	fdim, .-fdim
-	.section	".rodata"
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC2:
 	.long	0
@@ -2213,7 +2213,7 @@ libiberty_ffs:
 	jmp	%i7+8
 	 restore
 	.size	libiberty_ffs, .-libiberty_ffs
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC4:
 	.long	-8388609
@@ -2245,7 +2245,7 @@ gl_isinff:
 	jmp	%i7+8
 	 restore
 	.size	gl_isinff, .-gl_isinff
-	.section	".rodata"
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC8:
 	.long	-1048577
@@ -2279,7 +2279,7 @@ gl_isinfd:
 	jmp	%i7+8
 	 restore
 	.size	gl_isinfd, .-gl_isinfd
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC12:
 	.long	-1048577
@@ -2326,7 +2326,7 @@ _Qp_itoq:
 	jmp	%i7+8
 	 restore
 	.size	_Qp_itoq, .-_Qp_itoq
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC16:
 	.long	1056964608
@@ -2373,7 +2373,7 @@ ldexpf:
 	jmp	%i7+8
 	 restore
 	.size	ldexpf, .-ldexpf
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC20:
 	.long	1071644672
@@ -2422,7 +2422,7 @@ ldexp:
 	jmp	%i7+8
 	 restore
 	.size	ldexp, .-ldexp
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC24:
 	.long	1071644672
@@ -2723,7 +2723,7 @@ mempcpy:
 	jmp	%i7+8
 	 restore %o0, %i2, %o0
 	.size	mempcpy, .-mempcpy
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC31:
 	.long	1072693248
@@ -3110,7 +3110,7 @@ __modi:
 	jmp	%i7+8
 	 restore %g0, %o0, %o0
 	.size	__modi, .-__modi
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC36:
 	.long	1106247680
@@ -3134,7 +3134,7 @@ __uitod:
 	jmp	%i7+8
 	 restore
 	.size	__uitod, .-__uitod
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC38:
 	.long	1106247680
@@ -3239,7 +3239,7 @@ __ctzhi2:
 	jmp	%i7+8
 	 restore %g0, %g1, %o0
 	.size	__ctzhi2, .-__ctzhi2
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC40:
 	.long	1191182336
@@ -4129,7 +4129,7 @@ __popcountsi2:
 	jmp	%i7+8
 	 restore
 	.size	__popcountsi2, .-__popcountsi2
-	.section	".rodata"
+	.section	.rodata.cst8
 	.align 8
 .LC42:
 	.long	1072693248
@@ -4170,7 +4170,7 @@ __powidf2:
 	jmp	%i7+8
 	 restore
 	.size	__powidf2, .-__powidf2
-	.section	".rodata"
+	.section	.rodata.cst4
 	.align 4
 .LC44:
 	.long	1065353216

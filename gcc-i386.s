@@ -6512,13 +6512,14 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,4
-	.section	.rodata
+	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC2:
 	.long	-8388609
 	.align 4
 .LC3:
 	.long	2139095039
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC4:
 	.long	-1
@@ -6527,16 +6528,20 @@ __aeabi_ulcmp:
 .LC5:
 	.long	-1
 	.long	2146435071
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16
 .LC6:
 	.long	-1
 	.long	-1
 	.long	65534
 	.align 16
+	.align 16
 .LC7:
 	.long	-1
 	.long	-1
 	.long	32766
+	.align 16
+	.section	.rodata.cst4
 	.align 4
 .LC8:
 	.long	1056964608

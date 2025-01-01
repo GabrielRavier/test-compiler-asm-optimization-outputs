@@ -7190,17 +7190,19 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,4
-	.section	.rodata
+	.section	.srodata.cst8,"aM",@progbits,8
 	.align	3
 .LC0:
 	.word	1284865837
 	.word	1481765933
+	.section	.srodata.cst4,"aM",@progbits,4
 	.align	2
 .LC1:
 	.word	-8388609
 	.align	2
 .LC2:
 	.word	2139095039
+	.section	.srodata.cst8
 	.align	3
 .LC3:
 	.word	-1
@@ -7209,6 +7211,7 @@ __aeabi_ulcmp:
 .LC4:
 	.word	-1
 	.word	2146435071
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
 .LC5:
 	.word	-1
@@ -7221,15 +7224,18 @@ __aeabi_ulcmp:
 	.word	-1
 	.word	-1
 	.word	2147418111
+	.section	.srodata.cst4
 	.align	2
 .LC7:
 	.word	1056964608
 	.set	.LC8,.LC12+12
+	.section	.srodata.cst8
 	.align	3
 .LC9:
 	.word	0
 	.word	1071644672
 	.set	.LC10,.LC12+8
+	.section	.rodata.cst16
 	.align	4
 .LC11:
 	.word	0
@@ -7242,10 +7248,12 @@ __aeabi_ulcmp:
 	.word	0
 	.word	0
 	.word	1073741824
+	.section	.srodata.cst8
 	.align	3
 .LC13:
 	.word	0
 	.word	1072693248
+	.section	.srodata.cst4
 	.align	2
 .LC14:
 	.word	1191182336

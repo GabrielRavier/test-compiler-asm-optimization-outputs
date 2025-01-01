@@ -3341,7 +3341,7 @@ gl_isinfd:
 	br.ret.sptk.many b0
 	;;
 	.endp gl_isinfd#
-	.section	.rodata
+	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16
 .LC0:
 	data4	-1
@@ -3506,7 +3506,7 @@ ldexp:
 	br.ret.sptk.many b0
 	;;
 	.endp ldexp#
-	.section	.rodata
+	.section	.rodata.cst16
 	.align 16
 .LC4:
 	data4	0
