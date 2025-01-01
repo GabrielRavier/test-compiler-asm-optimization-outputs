@@ -44,7 +44,7 @@ memmove:
 		stb	.d1t1	A7, *++A6[1]
 	[A2]	b	.s2	.L5
 		nop	5
-		b	.s2	.L3
+		ret	.s2	B3
 		nop	5
 	.size	memmove, .-memmove
 	.align	2
@@ -53,11 +53,11 @@ memmove:
 memccpy:
 		extu	.s1	A6, 24, 24, A6
 		mv	.l1x	B6, A0
-	[!A0]	b	.s2	.L20
+	[!A0]	b	.s2	.L21
 		nop	5
 		sub	.d2	B4, 1, B4
 		mv	.d1	A4, A3
-.L17:
+.L18:
 		sub	.d1	A0, 1, A0
 		mv	.d1	A3, A4
 		ldb	.d2t1	*++B4[1], A5
@@ -65,21 +65,20 @@ memccpy:
 		stb	.d1t1	A5, *A3++[1]
 		extu	.s1	A5, 24, 24, A7
 		cmpeq	.l1	A6, A7, A2
-	[A2]	b	.s2	.L28
+	[A2]	b	.s2	.L31
 		nop	5
 		sub	.d2	B6, 1, B6
-	[A0]	b	.s2	.L17
+	[A0]	b	.s2	.L18
 		nop	5
-.L20:
+.L21:
 		mvk	.d1	0, A4
-		b	.s2	.L15
+		ret	.s2	B3
 		nop	5
-.L28:
+.L31:
 		mv	.l1x	B6, A1
 	[A1]	mv	.d1	A3, A4
-	[!A1]	b	.s2	.L20
+	[!A1]	b	.s2	.L21
 		nop	5
-.L15:
 		ret	.s2	B3
 		nop	5
 	.size	memccpy, .-memccpy
@@ -89,10 +88,10 @@ memccpy:
 memchr:
 		extu	.s2	B4, 24, 24, B4
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L35
+	[!A0]	b	.s2	.L38
 		nop	5
 		mv	.d1	A4, A3
-.L31:
+.L34:
 		sub	.d1	A0, 1, A0
 		mv	.d1	A3, A4
 		add	.d1	A3, 1, A3
@@ -100,20 +99,19 @@ memchr:
 		nop	4
 		mv	.l1x	B4, A5
 		cmpeq	.l1	A5, A7, A2
-	[A2]	b	.s2	.L39
+	[A2]	b	.s2	.L44
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A0]	b	.s2	.L31
+	[A0]	b	.s2	.L34
 		nop	5
-.L35:
+.L38:
 		mvk	.d1	0, A4
-		b	.s2	.L29
+		ret	.s2	B3
 		nop	5
-.L39:
+.L44:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L35
+	[!A1]	b	.s2	.L38
 		nop	5
-.L29:
 		ret	.s2	B3
 		nop	5
 	.size	memchr, .-memchr
@@ -122,11 +120,11 @@ memchr:
 	.type	memcmp, @function
 memcmp:
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L45
+	[!A0]	b	.s2	.L50
 		nop	5
 		mv	.d1	A4, A5
 		mv	.l1x	B4, A3
-.L42:
+.L47:
 		sub	.d1	A0, 1, A0
 		mv	.l2x	A3, B4
 		mv	.d1	A5, A4
@@ -137,23 +135,22 @@ memcmp:
 		ldbu	.d2t1	*B4, A7
 		nop	4
 		cmpeq	.l1	A7, A8, A2
-	[!A2]	b	.s2	.L53
+	[!A2]	b	.s2	.L59
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A0]	b	.s2	.L42
+	[A0]	b	.s2	.L47
 		nop	5
-.L45:
+.L50:
 		mvk	.d1	0, A4
-		b	.s2	.L40
+		ret	.s2	B3
 		nop	5
-.L53:
+.L59:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L45
+	[!A1]	b	.s2	.L50
 		nop	5
 		ldbu	.d1t1	*A4, A6
 		nop	4
 		sub	.d1	A6, A7, A4
-.L40:
 		ret	.s2	B3
 		nop	5
 	.size	memcmp, .-memcmp
@@ -169,10 +166,10 @@ memcpy:
 		nop	4
 		mv	.d1	A4, A10
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L55
+	[!A0]	b	.s2	.L61
 		nop	5
 		callp	.s2	(memcpy), B3
-.L55:
+.L61:
 		mv	.d1	A10, A4
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
@@ -192,27 +189,27 @@ memrchr:
 		sub	.d1	A6, 1, A3
 		add	.d1	A4, A3, A7
 		add	.d1	A6, 1, A1
-.L62:
 		sub	.d1	A1, 1, A1
-	[A1]	b	.s2	.L64
+	[A1]	b	.s2	.L71
 		nop	5
-		b	.s2	.L67
+.L74:
+		mvk	.d1	0, A4
+.L68:
+		ret	.s2	B3
 		nop	5
-.L64:
+.L71:
+		sub	.d1	A1, 1, A1
 		mv	.d1	A7, A4
 		sub	.d1	A7, 1, A7
 		ldbu	.d1t1	*A4, A6
 		nop	4
 		mv	.l1x	B4, A5
 		cmpeq	.l1	A5, A6, A0
-	[!A0]	b	.s2	.L62
+	[A0]	b	.s2	.L68
 		nop	5
-		b	.s2	.L61
+	[A1]	b	.s2	.L71
 		nop	5
-.L67:
-		mvk	.d1	0, A4
-.L61:
-		ret	.s2	B3
+		b	.s2	.L74
 		nop	5
 	.size	memrchr, .-memrchr
 	.align	2
@@ -220,15 +217,15 @@ memrchr:
 	.type	memset, @function
 memset:
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L69
+	[!A0]	b	.s2	.L76
 		nop	5
 		mv	.d1	A4, A3
-.L70:
+.L77:
 		sub	.d1	A0, 1, A0
 		stb	.d1t2	B4, *A3++[1]
-	[A0]	b	.s2	.L70
+	[A0]	b	.s2	.L77
 		nop	5
-.L69:
+.L76:
 		ret	.s2	B3
 		nop	5
 	.size	memset, .-memset
@@ -241,18 +238,18 @@ stpcpy:
 		nop	4
 		stb	.d1t1	A5, *A4
 		ext	.s1	A5, 24, 24, A0
-	[!A0]	b	.s2	.L76
+	[!A0]	b	.s2	.L84
 		nop	5
 		add	.d1	A3, 1, A6
-.L78:
+.L86:
 		mv	.d1	A6, A4
 		ldb	.d2t1	*++B4[1], A7
 		nop	4
 		stb	.d1t1	A7, *A6++[1]
 		ext	.s1	A7, 24, 24, A1
-	[A1]	b	.s2	.L78
+	[A1]	b	.s2	.L86
 		nop	5
-.L76:
+.L84:
 		ret	.s2	B3
 		nop	5
 	.size	stpcpy, .-stpcpy
@@ -264,20 +261,20 @@ strchrnul:
 		ldb	.d1t1	*A4, A6
 		nop	4
 		ext	.s1	A6, 24, 24, A1
-	[!A1]	b	.s2	.L82
+	[!A1]	b	.s2	.L91
 		nop	5
-.L83:
+.L92:
 		extu	.s1	A6, 24, 24, A5
 		mv	.l1x	B4, A3
 		cmpeq	.l1	A3, A5, A0
-	[A0]	b	.s2	.L82
+	[A0]	b	.s2	.L91
 		nop	5
 		ldb	.d1t1	*++A4[1], A6
 		nop	4
 		ext	.s1	A6, 24, 24, A1
-	[A1]	b	.s2	.L83
+	[A1]	b	.s2	.L92
 		nop	5
-.L82:
+.L91:
 		ret	.s2	B3
 		nop	5
 	.size	strchrnul, .-strchrnul
@@ -286,7 +283,7 @@ strchrnul:
 	.type	strchr, @function
 strchr:
 		mv	.d1	A4, A3
-.L92:
+.L102:
 		mv	.d1	A3, A4
 		ldb	.d1t1	*A3++[1], A6
 		nop	4
@@ -294,13 +291,13 @@ strchr:
 		ext	.s1	A6, 24, 24, A7
 		mv	.l1x	B4, A8
 		cmpeq	.l1	A8, A7, A0
-	[A0]	b	.s2	.L90
+	[A0]	b	.s2	.L100
 		nop	5
 		mv	.d1	A5, A1
-	[A1]	b	.s2	.L92
+	[A1]	b	.s2	.L102
 		nop	5
 		mvk	.d1	0, A4
-.L90:
+.L100:
 		ret	.s2	B3
 		nop	5
 	.size	strchr, .-strchr
@@ -312,22 +309,28 @@ strcmp:
 		nop	4
 		ldb	.d2t1	*B4, A17
 		nop	4
-.L102:
 		ext	.s1	A6, 24, 24, A3
 		cmpeq	.l1	0, A3, A7
 		cmpeq	.l1	0, A7, A8
 		ext	.s1	A17, 24, 24, A9
 		cmpeq	.l1	A9, A3, A16
 		and	.d1	A16, A8, A0
-	[!A0]	b	.s2	.L96
+	[!A0]	b	.s2	.L107
 		nop	5
+.L116:
 		ldb	.d1t1	*++A4[1], A6
 		nop	4
 		ldb	.d2t1	*++B4[1], A17
 		nop	4
-		b	.s2	.L102
+		ext	.s1	A6, 24, 24, A3
+		cmpeq	.l1	0, A3, A7
+		cmpeq	.l1	0, A7, A8
+		ext	.s1	A17, 24, 24, A9
+		cmpeq	.l1	A9, A3, A16
+		and	.d1	A16, A8, A0
+	[A0]	b	.s2	.L116
 		nop	5
-.L96:
+.L107:
 		extu	.s1	A6, 24, 24, A4
 		extu	.s1	A17, 24, 24, A5
 		sub	.d1	A4, A5, A4
@@ -340,21 +343,21 @@ strcmp:
 strlen:
 		ldb	.d1t1	*A4, A0
 		nop	4
-	[!A0]	b	.s2	.L107
+	[!A0]	b	.s2	.L120
 		nop	5
 		mv	.d1	A4, A5
-.L106:
+.L119:
 		ldb	.d1t1	*++A5[1], A1
 		nop	4
-	[A1]	b	.s2	.L106
+	[A1]	b	.s2	.L119
 		nop	5
-.L105:
 		sub	.d1	A5, A4, A4
 		ret	.s2	B3
 		nop	5
-.L107:
+.L120:
 		mv	.d1	A4, A5
-		b	.s2	.L105
+		sub	.d1	A5, A4, A4
+		ret	.s2	B3
 		nop	5
 	.size	strlen, .-strlen
 	.align	2
@@ -363,16 +366,16 @@ strlen:
 strncmp:
 		mv	.d1	A6, A0
 	[!A0]	mvk	.d1	0, A4
-	[!A0]	b	.s2	.L110
+	[!A0]	b	.s2	.L124
 		nop	5
 		ldbu	.d1t1	*A4, A7
 		nop	4
 		mv	.d1	A7, A1
-	[!A1]	b	.s2	.L112
+	[!A1]	b	.s2	.L126
 		nop	5
 		mv	.l1x	B4, A5
 		add	.d1	A5, A6, A6
-.L113:
+.L127:
 		mv	.l2x	A5, B4
 		ldbu	.d1t1	*A5++[1], A8
 		nop	4
@@ -383,19 +386,19 @@ strncmp:
 		cmpeq	.l1	A5, A6, A18
 		cmpeq	.l1	0, A18, A19
 		and	.d1	A17, A19, A2
-	[!A2]	b	.s2	.L112
+	[!A2]	b	.s2	.L126
 		nop	5
 		ldbu	.d1t1	*++A4[1], A7
 		nop	4
 		mv	.d1	A7, A0
-	[A0]	b	.s2	.L113
+	[A0]	b	.s2	.L127
 		nop	5
 		mv	.l2x	A5, B4
-.L112:
+.L126:
 		ldbu	.d2t1	*B4, A4
 		nop	4
 		sub	.d1	A7, A4, A4
-.L110:
+.L124:
 		ret	.s2	B3
 		nop	5
 	.size	strncmp, .-strncmp
@@ -404,13 +407,13 @@ strncmp:
 	.type	swab, @function
 swab:
 		cmplt	.l1	1, A6, A0
-	[!A0]	b	.s2	.L121
+	[!A0]	b	.s2	.L136
 		nop	5
 		and	.d1	-2, A6, A3
 		sub	.d1	A3, 2, A6
 		shru	.s1	A6, 1, A5
 		add	.d1	A5, 1, A1
-.L123:
+.L138:
 		sub	.d1	A1, 1, A1
 		ldb	.d1t1	*+A4(1), A7
 		nop	4
@@ -419,9 +422,9 @@ swab:
 		nop	4
 		stb	.d2t1	A8, *+B4(1)
 		add	.d2	B4, 2, B4
-	[A1]	b	.s2	.L123
+	[A1]	b	.s2	.L138
 		nop	5
-.L121:
+.L136:
 		ret	.s2	B3
 		nop	5
 	.size	swab, .-swab
@@ -546,23 +549,22 @@ iswcntrl:
 		cmpltu	.l1	31, A4, A9
 		cmpeq	.l1	0, A9, A16
 		or	.d1	A16, A8, A0
-	[A0]	b	.s2	.L149
+	[A0]	b	.s2	.L165
 		nop	5
 		mvk	.s1	-8232, A17
 		add	.d1	A4, A17, A18
 		cmpltu	.l1	1, A18, A1
-	[!A1]	b	.s2	.L149
+	[!A1]	b	.s2	.L165
 		nop	5
 		mvk	.d1	7, A19
 		mvklh	.s1	65535, A19
 		add	.d1	A4, A19, A4
 		cmpltu	.l1	2, A4, A20
 		cmpeq	.l1	0, A20, A4
-		b	.s2	.L146
+		ret	.s2	B3
 		nop	5
-.L149:
+.L165:
 		mvk	.d1	1, A4
-.L146:
 		ret	.s2	B3
 		nop	5
 	.size	iswcntrl, .-iswcntrl
@@ -582,7 +584,7 @@ iswdigit:
 iswprint:
 		mvk	.s1	254, A3
 		cmpltu	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L160
+	[!A0]	b	.s2	.L178
 		nop	5
 		mvk	.s1	-8234, A5
 		add	.d1	A4, A5, A6
@@ -594,14 +596,14 @@ iswprint:
 		cmpltu	.l1	A16, A4, A17
 		cmpeq	.l1	0, A17, A18
 		or	.d1	A18, A9, A1
-	[A1]	b	.s2	.L157
+	[A1]	b	.s2	.L174
 		nop	5
 		mvk	.s1	8192, A19
 		mvklh	.s1	65535, A19
 		add	.d1	A4, A19, A20
 		mvk	.s1	8184, A21
 		cmpltu	.l1	A21, A20, A2
-	[!A2]	b	.s2	.L157
+	[!A2]	b	.s2	.L174
 		nop	5
 		mvk	.d1	4, A22
 		mvklh	.s1	65535, A22
@@ -610,25 +612,25 @@ iswprint:
 		mvklh	.s1	16, A24
 		cmpltu	.l1	A24, A23, A0
 	[A0]	mvk	.d1	0, A4
-	[A0]	b	.s2	.L153
+	[A0]	b	.s2	.L170
 		nop	5
 		mvk	.d1	-2, A25
 		mvklh	.s1	0, A25
 		and	.d1	A25, A4, A4
 		cmpeq	.l1	A25, A4, A26
 		cmpeq	.l1	0, A26, A4
-		b	.s2	.L153
+.L170:
+		ret	.s2	B3
 		nop	5
-.L160:
+.L174:
+		mvk	.d1	1, A4
+		ret	.s2	B3
+		nop	5
+.L178:
 		add	.d1	A4, 1, A27
 		clr	.s1	A27, 7, 31, A28
 		mvk	.s1	32, A29
 		cmpltu	.l1	A29, A28, A4
-		b	.s2	.L153
-		nop	5
-.L157:
-		mvk	.d1	1, A4
-.L153:
 		ret	.s2	B3
 		nop	5
 	.size	iswprint, .-iswprint
@@ -675,7 +677,7 @@ fdim:
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
 	[A0]	dmv	.s1	A11, A10, A5:A4
-	[A0]	b	.s2	.L167
+	[A0]	b	.s2	.L185
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -683,7 +685,7 @@ fdim:
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
 	[A0]	dmv	.s1	A13, A12, A5:A4
-	[A0]	b	.s2	.L167
+	[A0]	b	.s2	.L185
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -692,13 +694,13 @@ fdim:
 		mv	.d1	A4, A0
 	[!A0]	mvk	.d1	0, A4
 	[!A0]	mvk	.d1	0, A5
-	[!A0]	b	.s2	.L167
+	[!A0]	b	.s2	.L185
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_subd), B3
-.L167:
+.L185:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -732,26 +734,26 @@ fdimf:
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A0
 	[A0]	mv	.d1	A10, A4
-	[A0]	b	.s2	.L180
+	[A0]	b	.s2	.L199
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A11, A4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A1
 	[A1]	mv	.d1	A11, A4
-	[A1]	b	.s2	.L180
+	[A1]	b	.s2	.L199
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_gtf), B3
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	0, A4
-	[!A2]	b	.s2	.L180
+	[!A2]	b	.s2	.L199
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_subf), B3
-.L180:
+.L199:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -784,38 +786,50 @@ fmax:
 		mv	.l2x	A13, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L201
+	[A0]	b	.s2	.L221
 		nop	5
 		mv	.l2x	A10, B4
 		mv	.l2x	A11, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L200
+	[A1]	b	.s2	.L220
 		nop	5
 		clr	.s1	A13, 0, 30, A4
 		clr	.s1	A11, 0, 30, A6
 		cmpeq	.l1	A6, A4, A2
-	[A2]	b	.s2	.L195
+	[A2]	b	.s2	.L215
 		nop	5
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L201
+	[!A1]	b	.s2	.L220
 		nop	5
-.L200:
-		dmv	.s1	A13, A12, A5:A4
-		b	.s2	.L193
+.L221:
+		dmv	.s1	A11, A10, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
-.L195:
+.L215:
 		mv	.l2x	A10, B4
 		mv	.l2x	A11, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[!A0]	b	.s2	.L200
+	[A0]	b	.s2	.L221
 		nop	5
-.L201:
-		dmv	.s1	A11, A10, A5:A4
-.L193:
+.L220:
+		dmv	.s1	A13, A12, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -848,35 +862,47 @@ fmaxf:
 		mv	.l2x	A4, B4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L216
+	[A0]	b	.s2	.L237
 		nop	5
 		mv	.l2x	A10, B4
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L215
+	[A1]	b	.s2	.L236
 		nop	5
 		clr	.s1	A11, 0, 30, A3
 		clr	.s1	A10, 0, 30, A4
 		cmpeq	.l1	A4, A3, A2
-	[A2]	b	.s2	.L210
+	[A2]	b	.s2	.L231
 		nop	5
 		mv	.d1	A3, A1
-	[A1]	b	.s2	.L216
+	[!A1]	b	.s2	.L236
 		nop	5
-.L215:
-		mv	.d1	A11, A4
-		b	.s2	.L208
+.L237:
+		mv	.d1	A10, A4
+.L229:
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t2	*+B15(20), B3
+		nop	4
+		ldw	.d2t2	*+B15(24), B14
+		nop	4
+		add	.d2	B15, 24, B15
+		ret	.s2	B3
 		nop	5
-.L210:
+.L231:
 		mv	.l2x	A10, B4
 		mv	.d1	A11, A4
 		callp	.s2	(__c6xabi_ltf), B3
 		mv	.d1	A4, A0
 	[!A0]	mv	.d1	A11, A10
-.L216:
 		mv	.d1	A10, A4
-.L208:
+		b	.s2	.L229
+		nop	5
+.L236:
+		mv	.d1	A11, A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -909,38 +935,50 @@ fmaxl:
 		mv	.l2x	A13, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L231
+	[A0]	b	.s2	.L253
 		nop	5
 		mv	.l2x	A10, B4
 		mv	.l2x	A11, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L230
+	[A1]	b	.s2	.L252
 		nop	5
 		clr	.s1	A13, 0, 30, A4
 		clr	.s1	A11, 0, 30, A6
 		cmpeq	.l1	A6, A4, A2
-	[A2]	b	.s2	.L225
+	[A2]	b	.s2	.L247
 		nop	5
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L231
+	[!A1]	b	.s2	.L252
 		nop	5
-.L230:
-		dmv	.s1	A13, A12, A5:A4
-		b	.s2	.L223
+.L253:
+		dmv	.s1	A11, A10, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
-.L225:
+.L247:
 		mv	.l2x	A10, B4
 		mv	.l2x	A11, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[!A0]	b	.s2	.L230
+	[A0]	b	.s2	.L253
 		nop	5
-.L231:
-		dmv	.s1	A11, A10, A5:A4
-.L223:
+.L252:
+		dmv	.s1	A13, A12, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -977,26 +1015,25 @@ fmin:
 		mv	.l2x	A11, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L244
+	[A0]	b	.s2	.L267
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L246
+	[A1]	b	.s2	.L269
 		nop	5
 		clr	.s1	A11, 0, 30, A4
 		clr	.s1	A13, 0, 30, A6
 		cmpeq	.l1	A6, A4, A2
-	[A2]	b	.s2	.L240
+	[A2]	b	.s2	.L263
 		nop	5
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L246
+	[!A1]	b	.s2	.L267
 		nop	5
-.L244:
-		dmv	.s1	A13, A12, A5:A4
-.L238:
+.L269:
+		dmv	.s1	A11, A10, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -1012,17 +1049,30 @@ fmin:
 		addab	.d2	B15, 32, B15
 		ret	.s2	B3
 		nop	5
-.L240:
+.L263:
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[!A0]	b	.s2	.L244
+	[A0]	b	.s2	.L269
 		nop	5
-.L246:
-		dmv	.s1	A11, A10, A5:A4
-		b	.s2	.L238
+.L267:
+		dmv	.s1	A13, A12, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
 	.size	fmin, .-fmin
 	.align	2
@@ -1041,35 +1091,47 @@ fminf:
 		mv	.l2x	A4, B4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L259
+	[A0]	b	.s2	.L283
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A11, A4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L261
+	[A1]	b	.s2	.L285
 		nop	5
 		clr	.s1	A10, 0, 30, A3
 		clr	.s1	A11, 0, 30, A4
 		cmpeq	.l1	A4, A3, A2
-	[A2]	b	.s2	.L255
+	[A2]	b	.s2	.L279
 		nop	5
 		mv	.d1	A3, A1
-	[A1]	b	.s2	.L261
+	[!A1]	b	.s2	.L283
 		nop	5
-.L259:
-		mv	.d1	A11, A4
-		b	.s2	.L253
+.L285:
+		mv	.d1	A10, A4
+.L277:
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t2	*+B15(20), B3
+		nop	4
+		ldw	.d2t2	*+B15(24), B14
+		nop	4
+		add	.d2	B15, 24, B15
+		ret	.s2	B3
 		nop	5
-.L255:
+.L279:
 		mv	.l2x	A11, B4
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_ltf), B3
 		mv	.d1	A4, A0
 	[!A0]	mv	.d1	A11, A10
-.L261:
 		mv	.d1	A10, A4
-.L253:
+		b	.s2	.L277
+		nop	5
+.L283:
+		mv	.d1	A11, A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -1102,26 +1164,25 @@ fminl:
 		mv	.l2x	A11, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L274
+	[A0]	b	.s2	.L299
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L276
+	[A1]	b	.s2	.L301
 		nop	5
 		clr	.s1	A11, 0, 30, A4
 		clr	.s1	A13, 0, 30, A6
 		cmpeq	.l1	A6, A4, A2
-	[A2]	b	.s2	.L270
+	[A2]	b	.s2	.L295
 		nop	5
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L276
+	[!A1]	b	.s2	.L299
 		nop	5
-.L274:
-		dmv	.s1	A13, A12, A5:A4
-.L268:
+.L301:
+		dmv	.s1	A11, A10, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -1137,17 +1198,30 @@ fminl:
 		addab	.d2	B15, 32, B15
 		ret	.s2	B3
 		nop	5
-.L270:
+.L295:
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[!A0]	b	.s2	.L274
+	[A0]	b	.s2	.L301
 		nop	5
-.L276:
-		dmv	.s1	A11, A10, A5:A4
-		b	.s2	.L268
+.L299:
+		dmv	.s1	A13, A12, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
 	.size	fminl, .-fminl
 	.align	2
@@ -1162,21 +1236,21 @@ l64a:
 		ldw	.d2t1	*+B14($GOT(s.0)), A4
 		nop	4
 		mv	.d1	A4, A5
-	[!A0]	b	.s2	.L284
+	[!A0]	b	.s2	.L310
 		nop	5
 		ldw	.d2t1	*+B14($GOT(digits)), A7
 		nop	4
 		mvk	.s1	63, A6
-.L285:
+.L311:
 		and	.d1	A6, A0, A3
 		add	.d1	A7, A3, A8
 		ldb	.d1t1	*A8, A9
 		nop	4
 		stb	.d1t1	A9, *A5++[1]
 		shru	.s1	A0, 6, A0
-	[A0]	b	.s2	.L285
+	[A0]	b	.s2	.L311
 		nop	5
-.L284:
+.L310:
 		mvk	.d1	0, A16
 		stb	.d1t1	A16, *A5
 		ldw	.d2t2	*+B15(8), B14
@@ -1247,7 +1321,7 @@ insque:
 		mv	.l1x	B4, A0
 	[!A0]	stw	.d1t2	B4, *+A4(4)
 	[!A0]	stw	.d1t2	B4, *A4
-	[!A0]	b	.s2	.L293
+	[!A0]	b	.s2	.L320
 		nop	5
 		ldw	.d2t1	*B4, A3
 		nop	4
@@ -1257,7 +1331,7 @@ insque:
 		ldw	.d1t1	*A4, A1
 		nop	4
 	[A1]	stw	.d1t1	A4, *+A1(4)
-.L293:
+.L320:
 		ret	.s2	B3
 		nop	5
 	.size	insque, .-insque
@@ -1301,39 +1375,39 @@ lsearch:
 		ldw	.d1t1	*A6, A13
 		nop	4
 		mv	.d1	A13, A0
-	[!A0]	b	.s2	.L311
+	[!A0]	b	.s2	.L339
 		nop	5
 		mv	.l1x	B4, A10
 		mvk	.d1	0, A11
-.L313:
+.L341:
 		mv	.l2x	A10, B12
 		mv	.l2x	A10, B4
 		mv	.d1	A14, A4
 		call	.s2x	A15
-		addkpc	.s2	.L326, B3, 4
-.L326:
+		addkpc	.s2	.L355, B3, 4
+.L355:
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L310
+	[!A1]	b	.s2	.L338
 		nop	5
 		add	.d1	A11, 1, A11
 		add	.d1	A10, A12, A10
 		cmpeq	.l1	A11, A13, A2
-	[!A2]	b	.s2	.L313
+	[!A2]	b	.s2	.L341
 		nop	5
-.L311:
+.L339:
 		add	.d1	A13, 1, A3
 		stw	.d2t1	A3, *B11
 		mpy32	.m1	A12, A13, A4
 		nop	3
 		add	.d2x	B10, A4, B12
 		mv	.d1	A12, A0
-	[!A0]	b	.s2	.L310
+	[!A0]	b	.s2	.L338
 		nop	5
 		mv	.d1	A12, A6
 		mv	.l2x	A14, B4
 		mv	.l1x	B12, A4
 		callp	.s2	(memmove), B3
-.L310:
+.L338:
 		mv	.l1x	B12, A4
 		lddw	.d2t1	*+B15(8), A11:A10
 		nop	4
@@ -1375,28 +1449,28 @@ lfind:
 		ldw	.d1t1	*A6, A15
 		nop	4
 		mv	.d1	A15, A0
-	[!A0]	b	.s2	.L329
+	[!A0]	b	.s2	.L358
 		nop	5
 		mv	.l1x	B4, A10
 		mvk	.d1	0, A11
-.L331:
+.L360:
 		mv	.l2x	A10, B10
 		mv	.l2x	A10, B4
 		mv	.d1	A12, A4
 		call	.s2x	A13
-		addkpc	.s2	.L340, B3, 4
-.L340:
+		addkpc	.s2	.L370, B3, 4
+.L370:
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L328
+	[!A1]	b	.s2	.L357
 		nop	5
 		add	.d1	A11, 1, A11
 		add	.d1	A10, A14, A10
 		cmpeq	.l1	A11, A15, A2
-	[!A2]	b	.s2	.L331
+	[!A2]	b	.s2	.L360
 		nop	5
-.L329:
+.L358:
 		mvk	.d2	0, B10
-.L328:
+.L357:
 		mv	.l1x	B10, A4
 		lddw	.d2t1	*+B15(8), A11:A10
 		nop	4
@@ -1441,9 +1515,9 @@ atoi:
 		mvk	.s1	32, A16
 		cmpeq	.l1	A16, A7, A17
 		or	.d1	A17, A9, A0
-	[!A0]	b	.s2	.L344
+	[!A0]	b	.s2	.L374
 		nop	5
-.L345:
+.L375:
 		ldb	.d1t1	*++A5[1], A18
 		nop	4
 		shl	.s1	A18, 24, A4
@@ -1453,37 +1527,31 @@ atoi:
 		cmpeq	.l1	0, A21, A22
 		cmpeq	.l1	A16, A19, A23
 		or	.d1	A23, A22, A1
-	[A1]	b	.s2	.L345
+	[A1]	b	.s2	.L375
 		nop	5
-.L344:
+.L374:
 		mvk	.d1	0, A24
 		mvklh	.s1	11008, A24
 		cmpeq	.l1	A24, A4, A2
-	[A2]	b	.s2	.L351
+	[A2]	b	.s2	.L381
 		nop	5
 		mvk	.d1	0, A25
 		mvklh	.s1	11520, A25
 		cmpeq	.l1	A25, A4, A0
 	[A0]	mvk	.d2	1, B0
-	[A0]	b	.s2	.L346
+	[!A0]	b	.s2	.L391
 		nop	5
-		mvk	.d2	0, B0
-		b	.s2	.L347
-		nop	5
-.L351:
-		mvk	.d2	0, B0
-.L346:
 		add	.d1	A5, 1, A5
-.L347:
+.L377:
 		ldb	.d1t1	*A5, A26
 		nop	4
 		ext	.s1	A26, 24, 24, A27
 		subah	.d1	A27, 24, A27
 		mvk	.d1	0, A4
 		cmpltu	.l2x	9, A27, B1
-	[B1]	b	.s2	.L349
+	[B1]	b	.s2	.L379
 		nop	5
-.L348:
+.L378:
 		shl	.s1	A4, 2, A28
 		add	.d1	A28, A4, A29
 		shl	.s1	A29, 1, A30
@@ -1495,11 +1563,28 @@ atoi:
 		ext	.s1	A26, 24, 24, A3
 		subah	.d1	A3, 24, A3
 		cmpltu	.l2x	9, A3, B2
-	[!B2]	b	.s2	.L348
+	[!B2]	b	.s2	.L378
 		nop	5
-.L349:
+.L379:
 	[!B0]	neg	.l1	A4, A4
 		ret	.s2	B3
+		nop	5
+.L391:
+		mvk	.d2	0, B0
+		ldb	.d1t1	*A5, A26
+		nop	4
+		ext	.s1	A26, 24, 24, A27
+		subah	.d1	A27, 24, A27
+		mvk	.d1	0, A4
+		cmpltu	.l2x	9, A27, B1
+	[!B1]	b	.s2	.L378
+		nop	5
+		b	.s2	.L379
+		nop	5
+.L381:
+		mvk	.d2	0, B0
+		add	.d1	A5, 1, A5
+		b	.s2	.L377
 		nop	5
 	.size	atoi, .-atoi
 	.align	2
@@ -1535,9 +1620,9 @@ atoll:
 		mvk	.s1	32, A16
 		cmpeq	.l1	A16, A6, A17
 		or	.d1	A17, A9, A0
-	[!A0]	b	.s2	.L364
+	[!A0]	b	.s2	.L396
 		nop	5
-.L365:
+.L397:
 		ldb	.d1t1	*++A8[1], A18
 		nop	4
 		shl	.s1	A18, 24, A4
@@ -1547,28 +1632,22 @@ atoll:
 		cmpeq	.l1	0, A21, A22
 		cmpeq	.l1	A16, A19, A23
 		or	.d1	A23, A22, A1
-	[A1]	b	.s2	.L365
+	[A1]	b	.s2	.L397
 		nop	5
-.L364:
+.L396:
 		mvk	.d1	0, A24
 		mvklh	.s1	11008, A24
 		cmpeq	.l1	A24, A4, A2
-	[A2]	b	.s2	.L371
+	[A2]	b	.s2	.L403
 		nop	5
 		mvk	.d1	0, A25
 		mvklh	.s1	11520, A25
 		cmpeq	.l1	A25, A4, A0
 	[A0]	mvk	.d2	1, B0
-	[A0]	b	.s2	.L366
+	[!A0]	b	.s2	.L413
 		nop	5
-		mvk	.d2	0, B0
-		b	.s2	.L367
-		nop	5
-.L371:
-		mvk	.d2	0, B0
-.L366:
 		add	.d1	A8, 1, A8
-.L367:
+.L399:
 		ldb	.d1t1	*A8, A26
 		nop	4
 		ext	.s1	A26, 24, 24, A27
@@ -1576,9 +1655,9 @@ atoll:
 		mvk	.d1	0, A4
 		mvk	.d1	0, A5
 		cmpltu	.l1	9, A27, A1
-	[A1]	b	.s2	.L369
+	[A1]	b	.s2	.L401
 		nop	5
-.L368:
+.L400:
 		addu	.l1	A4, A4, A1:A0
 		add	.d1	A1, A5, A28
 		add	.d1	A28, A5, A29
@@ -1603,14 +1682,32 @@ atoll:
 		ext	.s1	A26, 24, 24, A21
 		subah	.d1	A21, 24, A21
 		cmpltu	.l1	9, A21, A1
-	[!A1]	b	.s2	.L368
+	[!A1]	b	.s2	.L400
 		nop	5
-.L369:
+.L401:
 	[!B0]	neg	.l1	A4, A4
 	[!B0]	cmpltu	.l1	0, A4, A1
 	[!B0]	neg	.l1	A5, A5
 	[!B0]	sub	.d1	A5, A1, A5
 		ret	.s2	B3
+		nop	5
+.L413:
+		mvk	.d2	0, B0
+		ldb	.d1t1	*A8, A26
+		nop	4
+		ext	.s1	A26, 24, 24, A27
+		subah	.d1	A27, 24, A27
+		mvk	.d1	0, A4
+		mvk	.d1	0, A5
+		cmpltu	.l1	9, A27, A1
+	[!A1]	b	.s2	.L400
+		nop	5
+		b	.s2	.L401
+		nop	5
+.L403:
+		mvk	.d2	0, B0
+		add	.d1	A8, 1, A8
+		b	.s2	.L399
 		nop	5
 	.size	atoll, .-atoll
 	.align	2
@@ -1632,14 +1729,11 @@ bsearch:
 		mv	.d1	A6, A10
 		mv	.l1x	B6, A12
 		mv	.d1	A8, A15
-		b	.s2	.L390
-		nop	5
-.L385:
-		mv	.l1x	B10, A10
-.L390:
+.L424:
 		mv	.d1	A10, A0
-	[!A0]	b	.s2	.L381
+	[!A0]	b	.s2	.L415
 		nop	5
+.L427:
 		shru	.s2x	A10, 1, B10
 		mpy32	.m1x	A12, B10, A3
 		nop	3
@@ -1647,23 +1741,24 @@ bsearch:
 		mv	.l2x	A11, B4
 		mv	.d1	A14, A4
 		call	.s2x	A15
-		addkpc	.s2	.L392, B3, 4
-.L392:
+		addkpc	.s2	.L428, B3, 4
+.L428:
 		cmpgt	.l1	0, A4, A1
-	[A1]	b	.s2	.L385
+	[A1]	b	.s2	.L419
 		nop	5
 		cmplt	.l1	0, A4, A2
-	[!A2]	b	.s2	.L380
+	[!A2]	b	.s2	.L414
 		nop	5
 		add	.d1	A11, A12, A13
 		sub	.d1	A10, 1, A10
 		mv	.l1x	B10, A4
 		sub	.d1	A10, A4, A10
-		b	.s2	.L390
+		mv	.d1	A10, A0
+	[A0]	b	.s2	.L427
 		nop	5
-.L381:
+.L415:
 		mvk	.d1	0, A11
-.L380:
+.L414:
 		mv	.d1	A11, A4
 		lddw	.d2t1	*+B15(8), A11:A10
 		nop	4
@@ -1681,6 +1776,10 @@ bsearch:
 		nop	4
 		addab	.d2	B15, 40, B15
 		ret	.s2	B3
+		nop	5
+.L419:
+		mv	.l1x	B10, A10
+		b	.s2	.L424
 		nop	5
 	.size	bsearch, .-bsearch
 	.align	2
@@ -1707,9 +1806,9 @@ bsearch_r:
 		mv	.d1	A8, A15
 		mv	.l1x	B8, A13
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L394
+	[!A0]	b	.s2	.L430
 		nop	5
-.L397:
+.L433:
 		shr	.s2x	A10, 1, B11
 		mpy32	.m2x	B11, A11, B10
 		nop	3
@@ -1718,10 +1817,10 @@ bsearch_r:
 		mv	.d2	B10, B4
 		mv	.d1	A14, A4
 		call	.s2x	A15
-		addkpc	.s2	.L406, B3, 4
-.L406:
+		addkpc	.s2	.L443, B3, 4
+.L443:
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L393
+	[!A1]	b	.s2	.L429
 		nop	5
 		cmplt	.l1	0, A4, A2
 	[A2]	add	.d1x	A11, B10, A12
@@ -1729,11 +1828,11 @@ bsearch_r:
 	[A2]	shr	.s2x	A10, 1, B11
 		mv	.l1x	B11, A10
 		mv	.l1x	B11, A0
-	[A0]	b	.s2	.L397
+	[A0]	b	.s2	.L433
 		nop	5
-.L394:
+.L430:
 		mvk	.d2	0, B10
-.L393:
+.L429:
 		mv	.l1x	B10, A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
@@ -1766,8 +1865,8 @@ div:
 		sub	.d2	B15, 16, B15
 		stw	.d2t2	B3, *+B15(16)
 		call	.s2	__c6xabi_divremi
-		addkpc	.s2	.L409, B3, 4
-.L409:
+		addkpc	.s2	.L446, B3, 4
+.L446:
 		ldw	.d2t2	*+B15(16), B3
 		nop	4
 		add	.d2	B15, 16, B15
@@ -1849,8 +1948,8 @@ ldiv:
 		sub	.d2	B15, 16, B15
 		stw	.d2t2	B3, *+B15(16)
 		call	.s2	__c6xabi_divremi
-		addkpc	.s2	.L420, B3, 4
-.L420:
+		addkpc	.s2	.L457, B3, 4
+.L457:
 		ldw	.d2t2	*+B15(16), B3
 		nop	4
 		add	.d2	B15, 16, B15
@@ -1922,20 +2021,24 @@ wcschr:
 		ldw	.d1t1	*A4, A5
 		nop	4
 		cmpeq	.l1x	A5, B4, A9
-.L435:
 		cmpeq	.l1	0, A9, A6
 		cmpeq	.l1	0, A5, A3
 		cmpeq	.l1	0, A3, A7
 		and	.d1	A7, A6, A0
-	[!A0]	b	.s2	.L428
+	[!A0]	b	.s2	.L465
 		nop	5
+.L475:
 		ldw	.d1t1	*++A4[1], A5
 		nop	4
 		mv	.l1x	B4, A8
 		cmpeq	.l1	A8, A5, A9
-		b	.s2	.L435
+		cmpeq	.l1	0, A9, A6
+		cmpeq	.l1	0, A5, A3
+		cmpeq	.l1	0, A3, A7
+		and	.d1	A7, A6, A0
+	[A0]	b	.s2	.L475
 		nop	5
-.L428:
+.L465:
 		mv	.d1	A5, A1
 	[!A1]	mvk	.d1	0, A4
 		ret	.s2	B3
@@ -1949,7 +2052,6 @@ wcscmp:
 		nop	4
 		ldw	.d2t1	*B4, A6
 		nop	4
-.L446:
 		cmpeq	.l1	0, A5, A3
 		cmpeq	.l1	0, A3, A7
 		cmpeq	.l1	A6, A5, A8
@@ -1957,15 +2059,23 @@ wcscmp:
 		cmpeq	.l1	0, A6, A16
 		cmpeq	.l1	0, A16, A17
 		and	.d1	A9, A17, A0
-	[!A0]	b	.s2	.L438
+	[!A0]	b	.s2	.L477
 		nop	5
+.L488:
 		ldw	.d1t1	*++A4[1], A5
 		nop	4
 		ldw	.d2t1	*++B4[1], A6
 		nop	4
-		b	.s2	.L446
+		cmpeq	.l1	0, A5, A3
+		cmpeq	.l1	0, A3, A7
+		cmpeq	.l1	A6, A5, A8
+		and	.d1	A8, A7, A9
+		cmpeq	.l1	0, A6, A16
+		cmpeq	.l1	0, A16, A17
+		and	.d1	A9, A17, A0
+	[A0]	b	.s2	.L488
 		nop	5
-.L438:
+.L477:
 		cmpgt	.l1	A6, A5, A1
 	[!A1]	cmplt	.l1	A6, A5, A4
 	[A1]	mvk	.d1	-1, A4
@@ -1977,11 +2087,11 @@ wcscmp:
 	.type	wcscpy, @function
 wcscpy:
 		sub	.d1	A4, 4, A3
-.L449:
+.L490:
 		ldw	.d2t1	*B4++[1], A0
 		nop	4
 		stw	.d1t1	A0, *++A3[1]
-	[A0]	b	.s2	.L449
+	[A0]	b	.s2	.L490
 		nop	5
 		ret	.s2	B3
 		nop	5
@@ -1992,22 +2102,23 @@ wcscpy:
 wcslen:
 		ldw	.d1t1	*A4, A0
 		nop	4
-	[!A0]	b	.s2	.L455
+	[!A0]	b	.s2	.L497
 		nop	5
 		mv	.d1	A4, A5
-.L454:
+.L496:
 		ldw	.d1t1	*++A5[1], A1
 		nop	4
-	[A1]	b	.s2	.L454
+	[A1]	b	.s2	.L496
 		nop	5
-.L453:
 		sub	.d1	A5, A4, A4
 		shr	.s1	A4, 2, A4
 		ret	.s2	B3
 		nop	5
-.L455:
+.L497:
 		mv	.d1	A4, A5
-		b	.s2	.L453
+		sub	.d1	A5, A4, A4
+		shr	.s1	A4, 2, A4
+		ret	.s2	B3
 		nop	5
 	.size	wcslen, .-wcslen
 	.align	2
@@ -2015,11 +2126,11 @@ wcslen:
 	.type	wcsncmp, @function
 wcsncmp:
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L463
+	[!A0]	b	.s2	.L506
 		nop	5
 		mv	.d1	A4, A8
 		mv	.l1x	B4, A7
-.L460:
+.L503:
 		sub	.d1	A0, 1, A0
 		mv	.l2x	A7, B4
 		mv	.d1	A8, A4
@@ -2034,19 +2145,19 @@ wcsncmp:
 		cmpeq	.l1	0, A9, A19
 		cmpeq	.l1	0, A19, A20
 		and	.d1	A18, A20, A2
-	[!A2]	b	.s2	.L472
+	[!A2]	b	.s2	.L516
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A0]	b	.s2	.L460
+	[A0]	b	.s2	.L503
 		nop	5
-.L463:
+.L506:
 		mvk	.d1	0, A4
-.L458:
+.L501:
 		ret	.s2	B3
 		nop	5
-.L472:
+.L516:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L463
+	[!A1]	b	.s2	.L506
 		nop	5
 		ldw	.d1t1	*A4, A4
 		nop	4
@@ -2054,10 +2165,10 @@ wcsncmp:
 		nop	4
 		cmpgt	.l1	A6, A4, A1
 	[!A1]	cmplt	.l1	A6, A4, A4
-	[!A1]	b	.s2	.L458
+	[!A1]	b	.s2	.L501
 		nop	5
 		mvk	.d1	-1, A4
-		b	.s2	.L458
+		ret	.s2	B3
 		nop	5
 	.size	wcsncmp, .-wcsncmp
 	.align	2
@@ -2065,10 +2176,10 @@ wcsncmp:
 	.type	wmemchr, @function
 wmemchr:
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L479
+	[!A0]	b	.s2	.L523
 		nop	5
 		mv	.d1	A4, A3
-.L475:
+.L519:
 		sub	.d1	A0, 1, A0
 		mv	.d1	A3, A4
 		add	.d1	A3, 4, A3
@@ -2076,20 +2187,19 @@ wmemchr:
 		nop	4
 		mv	.l1x	B4, A5
 		cmpeq	.l1	A5, A7, A2
-	[A2]	b	.s2	.L483
+	[A2]	b	.s2	.L529
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A0]	b	.s2	.L475
+	[A0]	b	.s2	.L519
 		nop	5
-.L479:
+.L523:
 		mvk	.d1	0, A4
-		b	.s2	.L473
+		ret	.s2	B3
 		nop	5
-.L483:
+.L529:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L479
+	[!A1]	b	.s2	.L523
 		nop	5
-.L473:
 		ret	.s2	B3
 		nop	5
 	.size	wmemchr, .-wmemchr
@@ -2098,11 +2208,11 @@ wmemchr:
 	.type	wmemcmp, @function
 wmemcmp:
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L489
+	[!A0]	b	.s2	.L535
 		nop	5
 		mv	.d1	A4, A5
 		mv	.l1x	B4, A3
-.L486:
+.L532:
 		sub	.d1	A0, 1, A0
 		mv	.l2x	A3, B4
 		mv	.d1	A5, A4
@@ -2113,28 +2223,28 @@ wmemcmp:
 		ldw	.d2t1	*B4, A7
 		nop	4
 		cmpeq	.l1	A7, A8, A2
-	[!A2]	b	.s2	.L498
+	[!A2]	b	.s2	.L545
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A0]	b	.s2	.L486
+	[A0]	b	.s2	.L532
 		nop	5
-.L489:
+.L535:
 		mvk	.d1	0, A4
-.L484:
+.L530:
 		ret	.s2	B3
 		nop	5
-.L498:
+.L545:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L489
+	[!A1]	b	.s2	.L535
 		nop	5
 		ldw	.d1t1	*A4, A4
 		nop	4
 		cmpgt	.l1	A7, A4, A1
 	[!A1]	cmplt	.l1	A7, A4, A4
-	[!A1]	b	.s2	.L484
+	[!A1]	b	.s2	.L530
 		nop	5
 		mvk	.d1	-1, A4
-		b	.s2	.L484
+		ret	.s2	B3
 		nop	5
 	.size	wmemcmp, .-wmemcmp
 	.align	2
@@ -2149,11 +2259,11 @@ wmemcpy:
 		nop	4
 		mv	.d1	A4, A10
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L500
+	[!A0]	b	.s2	.L547
 		nop	5
 		shl	.s1	A6, 2, A6
 		callp	.s2	(memcpy), B3
-.L500:
+.L547:
 		mv	.d1	A10, A4
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
@@ -2171,44 +2281,44 @@ wmemcpy:
 wmemmove:
 		mv	.l1x	B4, A3
 		cmpeq	.l1	A3, A4, A0
-	[A0]	b	.s2	.L507
+	[A0]	b	.s2	.L555
 		nop	5
 		shl	.s1	A6, 2, A5
 		sub	.d1	A4, A3, A7
 		cmpgtu	.l1	A5, A7, A1
-	[A1]	b	.s2	.L508
+	[!A1]	b	.s2	.L567
 		nop	5
-		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L507
-		nop	5
-		sub	.d1	A4, 4, A8
-		mv	.d1	A6, A0
-.L511:
-		sub	.d1	A0, 1, A0
-		ldw	.d2t1	*B4++[1], A6
-		nop	4
-		stw	.d1t1	A6, *++A8[1]
-	[A0]	b	.s2	.L511
-		nop	5
-		b	.s2	.L507
-		nop	5
-.L508:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L507
+	[!A1]	b	.s2	.L555
 		nop	5
 		add	.d2x	B4, A5, B4
 		add	.d1	A4, A5, A9
 		sub	.d1	A5, 4, A16
 		shru	.s1	A16, 2, A17
 		add	.d1	A17, 1, A2
-.L510:
+.L558:
 		sub	.d1	A2, 1, A2
 		ldw	.d2t1	*--B4[1], A18
 		nop	4
 		stw	.d1t1	A18, *--A9[1]
-	[A2]	b	.s2	.L510
+	[A2]	b	.s2	.L558
 		nop	5
-.L507:
+.L555:
+		ret	.s2	B3
+		nop	5
+.L567:
+		mv	.d1	A6, A2
+	[!A2]	b	.s2	.L555
+		nop	5
+		sub	.d1	A4, 4, A8
+		mv	.d1	A6, A0
+.L559:
+		sub	.d1	A0, 1, A0
+		ldw	.d2t1	*B4++[1], A6
+		nop	4
+		stw	.d1t1	A6, *++A8[1]
+	[A0]	b	.s2	.L559
+		nop	5
 		ret	.s2	B3
 		nop	5
 	.size	wmemmove, .-wmemmove
@@ -2217,16 +2327,16 @@ wmemmove:
 	.type	wmemset, @function
 wmemset:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L519
+	[!A1]	b	.s2	.L569
 		nop	5
 		mv	.d1	A4, A3
 		mv	.d1	A6, A0
-.L520:
+.L570:
 		sub	.d1	A0, 1, A0
 		stw	.d1t2	B4, *A3++[1]
-	[A0]	b	.s2	.L520
+	[A0]	b	.s2	.L570
 		nop	5
-.L519:
+.L569:
 		ret	.s2	B3
 		nop	5
 	.size	wmemset, .-wmemset
@@ -2236,40 +2346,40 @@ wmemset:
 bcopy:
 		mv	.l1x	B4, A3
 		cmpgtu	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L527
+	[!A0]	b	.s2	.L578
 		nop	5
 		add	.d1	A4, A6, A7
 		add	.d2x	B4, A6, B5
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L526
+	[!A0]	b	.s2	.L577
 		nop	5
 		sub	.d1	A7, A4, A1
-.L529:
+.L580:
 		sub	.d1	A1, 1, A1
 		ldb	.d1t1	*--A7[1], A4
 		nop	4
 		stb	.d2t1	A4, *--B5[1]
-	[A1]	b	.s2	.L529
+	[A1]	b	.s2	.L580
 		nop	5
-.L526:
+.L577:
 		ret	.s2	B3
 		nop	5
-.L527:
+.L578:
 		cmpeq	.l1	A3, A4, A1
-	[A1]	b	.s2	.L526
+	[A1]	b	.s2	.L577
 		nop	5
 		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L526
+	[!A2]	b	.s2	.L577
 		nop	5
 		sub	.d2	B4, 1, B4
-.L530:
+.L581:
 		sub	.d1	A2, 1, A2
 		ldb	.d1t1	*A4++[1], A6
 		nop	4
 		stb	.d2t1	A6, *++B4[1]
-	[A2]	b	.s2	.L530
+	[A2]	b	.s2	.L581
 		nop	5
-		b	.s2	.L526
+		ret	.s2	B3
 		nop	5
 	.size	bcopy, .-bcopy
 	.align	2
@@ -2482,21 +2592,20 @@ bswap_64:
 ffs:
 		mvk	.d1	0, A3
 		mvk	.s1	32, A1
-.L577:
+.L629:
 		sub	.d1	A1, 1, A1
 		shru	.s1	A4, A3, A5
 		and	.d1	1, A5, A0
 		add	.d1	A3, 1, A3
-	[A0]	b	.s2	.L580
+	[A0]	b	.s2	.L633
 		nop	5
-	[A1]	b	.s2	.L577
+	[A1]	b	.s2	.L629
 		nop	5
 		mvk	.d1	0, A4
-		b	.s2	.L574
+		ret	.s2	B3
 		nop	5
-.L580:
+.L633:
 		mv	.d1	A3, A4
-.L574:
 		ret	.s2	B3
 		nop	5
 	.size	ffs, .-ffs
@@ -2506,20 +2615,20 @@ ffs:
 libiberty_ffs:
 		mv	.d1	A4, A0
 	[!A0]	mvk	.d1	0, A4
-	[!A0]	b	.s2	.L581
+	[!A0]	b	.s2	.L634
 		nop	5
 		and	.d1	1, A0, A4
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L581
+	[A1]	b	.s2	.L634
 		nop	5
 		mvk	.d1	1, A4
-.L583:
+.L636:
 		shr	.s1	A0, 1, A0
 		add	.d1	A4, 1, A4
 		and	.d1	1, A0, A1
-	[!A1]	b	.s2	.L583
+	[!A1]	b	.s2	.L636
 		nop	5
-.L581:
+.L634:
 		ret	.s2	B3
 		nop	5
 	.size	libiberty_ffs, .-libiberty_ffs
@@ -2539,7 +2648,7 @@ gl_isinff:
 		callp	.s2	(__c6xabi_ltf), B3
 		mv	.d1	A4, A0
 	[A0]	mvk	.d1	1, A4
-	[A0]	b	.s2	.L588
+	[A0]	b	.s2	.L642
 		nop	5
 		mvk	.d2	-1, B4
 		mvklh	.s2	32639, B4
@@ -2547,7 +2656,7 @@ gl_isinff:
 		callp	.s2	(__c6xabi_gtf), B3
 		cmpeq	.l1	0, A4, A4
 		xor	.d1	1, A4, A4
-.L588:
+.L642:
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
 		ldw	.d2t2	*+B15(12), B3
@@ -2576,7 +2685,7 @@ gl_isinfd:
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
 	[A0]	mvk	.d1	1, A4
-	[A0]	b	.s2	.L595
+	[A0]	b	.s2	.L650
 		nop	5
 		mvk	.d2	-1, B4
 		mvk	.d2	-1, B5
@@ -2585,7 +2694,7 @@ gl_isinfd:
 		callp	.s2	(__c6xabi_gtd), B3
 		cmpeq	.l1	0, A4, A4
 		xor	.d1	1, A4, A4
-.L595:
+.L650:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -2616,7 +2725,7 @@ gl_isinfl:
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
 	[A0]	mvk	.d1	1, A4
-	[A0]	b	.s2	.L602
+	[A0]	b	.s2	.L658
 		nop	5
 		mvk	.d2	-1, B4
 		mvk	.d2	-1, B5
@@ -2625,7 +2734,7 @@ gl_isinfl:
 		callp	.s2	(__c6xabi_gtd), B3
 		cmpeq	.l1	0, A4, A4
 		xor	.d1	1, A4, A4
-.L602:
+.L658:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -2678,7 +2787,7 @@ ldexpf:
 		mv	.l2x	A4, B4
 		callp	.s2	(__c6xabi_unordf), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L613
+	[A0]	b	.s2	.L670
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.d1	A12, A4
@@ -2686,36 +2795,34 @@ ldexpf:
 		mv	.l2x	A12, B4
 		callp	.s2	(__c6xabi_eqf), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L613
+	[A1]	b	.s2	.L670
 		nop	5
 		mvk	.d1	0, A11
 		cmpgt	.l1	0, A10, A2
 	[A2]	mvklh	.s1	16128, A11
 	[!A2]	mvklh	.s1	16384, A11
-		b	.s2	.L616
-		nop	5
-.L615:
-		shru	.s1	A10, 31, A3
-		add	.d1	A3, A10, A10
-		shr	.s1	A10, 1, A10
-		mv	.d1	A10, A1
-	[!A1]	b	.s2	.L613
-		nop	5
-		mv	.l2x	A11, B4
-		mv	.d1	A11, A4
-		callp	.s2	(__c6xabi_mpyf), B3
-		mv	.d1	A4, A11
-.L616:
+.L673:
 		and	.d1	1, A10, A0
-	[!A0]	b	.s2	.L615
+	[!A0]	b	.s2	.L672
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A12, A4
 		callp	.s2	(__c6xabi_mpyf), B3
 		mv	.d1	A4, A12
-		b	.s2	.L615
+.L672:
+		shru	.s1	A10, 31, A3
+		add	.d1	A3, A10, A10
+		shr	.s1	A10, 1, A10
+		mv	.d1	A10, A1
+	[!A1]	b	.s2	.L670
 		nop	5
-.L613:
+		mv	.l2x	A11, B4
+		mv	.d1	A11, A4
+		callp	.s2	(__c6xabi_mpyf), B3
+		mv	.d1	A4, A11
+		b	.s2	.L673
+		nop	5
+.L670:
 		mv	.d1	A12, A4
 		lddw	.d2t1	*+B15(8), A11:A10
 		nop	4
@@ -2749,7 +2856,7 @@ ldexp:
 		mv	.l2x	A15, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L631
+	[A0]	b	.s2	.L689
 		nop	5
 		mv	.l2x	A14, B4
 		mv	.l2x	A15, B5
@@ -2759,21 +2866,28 @@ ldexp:
 		mv	.l2x	A15, B5
 		callp	.s2	(__c6xabi_eqd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L631
+	[A1]	b	.s2	.L689
 		nop	5
 		mvk	.d1	0, A12
 		mvk	.d1	0, A13
 		cmpgt	.l1	0, A10, A2
 	[A2]	mvklh	.s1	16352, A13
 	[!A2]	mvklh	.s1	16384, A13
-		b	.s2	.L634
+.L692:
+		and	.d1	1, A10, A0
+	[!A0]	b	.s2	.L691
 		nop	5
-.L633:
+		mv	.l2x	A12, B4
+		mv	.l2x	A13, B5
+		dmv	.s1	A15, A14, A5:A4
+		callp	.s2	(__c6xabi_mpyd), B3
+		dmv	.s1	A5, A4, A15:A14
+.L691:
 		shru	.s1	A10, 31, A3
 		add	.d1	A3, A10, A10
 		shr	.s1	A10, 1, A10
 		mv	.d1	A10, A1
-	[!A1]	b	.s2	.L631
+	[!A1]	b	.s2	.L689
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -2781,18 +2895,9 @@ ldexp:
 		mv	.d1	A13, A5
 		callp	.s2	(__c6xabi_mpyd), B3
 		dmv	.s1	A5, A4, A13:A12
-.L634:
-		and	.d1	1, A10, A0
-	[!A0]	b	.s2	.L633
+		b	.s2	.L692
 		nop	5
-		mv	.l2x	A12, B4
-		mv	.l2x	A13, B5
-		dmv	.s1	A15, A14, A5:A4
-		callp	.s2	(__c6xabi_mpyd), B3
-		dmv	.s1	A5, A4, A15:A14
-		b	.s2	.L633
-		nop	5
-.L631:
+.L689:
 		dmv	.s1	A15, A14, A5:A4
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
@@ -2832,7 +2937,7 @@ ldexpl:
 		mv	.l2x	A15, B5
 		callp	.s2	(__c6xabi_unordd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L649
+	[A0]	b	.s2	.L708
 		nop	5
 		mv	.l2x	A14, B4
 		mv	.l2x	A15, B5
@@ -2843,21 +2948,28 @@ ldexpl:
 		dmv	.s1	A15, A14, A5:A4
 		callp	.s2	(__c6xabi_eqd), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L649
+	[A1]	b	.s2	.L708
 		nop	5
 		mvk	.d1	0, A12
 		mvk	.d1	0, A13
 		cmpgt	.l1	0, A10, A2
 	[A2]	mvklh	.s1	16352, A13
 	[!A2]	mvklh	.s1	16384, A13
-		b	.s2	.L652
+.L711:
+		and	.d1	1, A10, A0
+	[!A0]	b	.s2	.L710
 		nop	5
-.L651:
+		mv	.l2x	A12, B4
+		mv	.l2x	A13, B5
+		dmv	.s1	A15, A14, A5:A4
+		callp	.s2	(__c6xabi_mpyd), B3
+		dmv	.s1	A5, A4, A15:A14
+.L710:
 		shru	.s1	A10, 31, A3
 		add	.d1	A3, A10, A10
 		shr	.s1	A10, 1, A10
 		mv	.d1	A10, A1
-	[!A1]	b	.s2	.L649
+	[!A1]	b	.s2	.L708
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -2865,18 +2977,9 @@ ldexpl:
 		mv	.d1	A13, A5
 		callp	.s2	(__c6xabi_mpyd), B3
 		dmv	.s1	A5, A4, A13:A12
-.L652:
-		and	.d1	1, A10, A0
-	[!A0]	b	.s2	.L651
+		b	.s2	.L711
 		nop	5
-		mv	.l2x	A12, B4
-		mv	.l2x	A13, B5
-		dmv	.s1	A15, A14, A5:A4
-		callp	.s2	(__c6xabi_mpyd), B3
-		dmv	.s1	A5, A4, A15:A14
-		b	.s2	.L651
-		nop	5
-.L649:
+.L708:
 		dmv	.s1	A15, A14, A5:A4
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
@@ -2901,10 +3004,10 @@ ldexpl:
 	.type	memxor, @function
 memxor:
 		mv	.d1	A6, A1
-	[!A1]	b	.s2	.L667
+	[!A1]	b	.s2	.L727
 		nop	5
 		mv	.d1	A4, A3
-.L668:
+.L728:
 		sub	.d1	A1, 1, A1
 		ldb	.d1t1	*A3++[1], A6
 		nop	4
@@ -2912,9 +3015,9 @@ memxor:
 		nop	4
 		xor	.d1	A5, A6, A7
 		stb	.d1t1	A7, *-A3(1)
-	[A1]	b	.s2	.L668
+	[A1]	b	.s2	.L728
 		nop	5
-.L667:
+.L727:
 		ret	.s2	B3
 		nop	5
 	.size	memxor, .-memxor
@@ -2925,43 +3028,45 @@ strncat:
 		ldb	.d1t1	*A4, A0
 		nop	4
 		mv	.d1	A4, A5
-	[!A0]	b	.s2	.L675
+	[!A0]	b	.s2	.L736
 		nop	5
-.L676:
+.L737:
 		ldb	.d1t1	*++A5[1], A1
 		nop	4
-	[A1]	b	.s2	.L676
+	[A1]	b	.s2	.L737
 		nop	5
-.L675:
+.L736:
 		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L683
+	[!A2]	b	.s2	.L744
 		nop	5
 		sub	.d2	B4, 1, B4
 		mv	.d1	A5, A3
-.L678:
+.L739:
 		sub	.d1	A2, 1, A2
 		mv	.d1	A3, A5
 		ldb	.d2t1	*++B4[1], A7
 		nop	4
 		stb	.d1t1	A7, *A3++[1]
 		ext	.s1	A7, 24, 24, A0
-	[!A0]	b	.s2	.L689
+	[!A0]	b	.s2	.L751
 		nop	5
 		sub	.d1	A6, 1, A6
-	[A2]	b	.s2	.L678
+	[A2]	b	.s2	.L739
 		nop	5
 		mv	.d1	A3, A5
-		b	.s2	.L683
-		nop	5
-.L689:
-		mv	.d1	A6, A1
-	[A1]	b	.s2	.L680
-		nop	5
-.L683:
+.L744:
 		mvk	.d1	0, A6
 		stb	.d1t1	A6, *A5
-.L680:
+.L741:
 		ret	.s2	B3
+		nop	5
+.L751:
+		mv	.d1	A6, A1
+	[A1]	b	.s2	.L741
+		nop	5
+		mvk	.d1	0, A6
+		stb	.d1t1	A6, *A5
+		b	.s2	.L741
 		nop	5
 	.size	strncat, .-strncat
 	.align	2
@@ -2971,24 +3076,24 @@ strnlen:
 		mv	.d1	A4, A5
 		mv	.l1x	B4, A1
 		mvk	.d1	0, A4
-	[!A1]	b	.s2	.L690
+	[!A1]	b	.s2	.L752
 		nop	5
-.L691:
+.L753:
 		sub	.d2	B4, 1, B4
 		add	.d1	A5, A4, A3
 		ldb	.d1t1	*A3, A1
 		nop	4
-	[A1]	b	.s2	.L693
+	[A1]	b	.s2	.L755
 		nop	5
-.L690:
+.L752:
 		ret	.s2	B3
 		nop	5
-.L693:
+.L755:
 		add	.d1	A4, 1, A4
 		mv	.l1x	B4, A1
-	[A1]	b	.s2	.L691
+	[A1]	b	.s2	.L753
 		nop	5
-		b	.s2	.L690
+		ret	.s2	B3
 		nop	5
 	.size	strnlen, .-strnlen
 	.align	2
@@ -3000,35 +3105,34 @@ strpbrk:
 		shl	.s1	A3, 24, A16
 		ext	.s1	A3, 24, 24, A0
 	[A0]	sub	.d2	B4, 1, B4
-	[!A0]	b	.s2	.L703
+	[!A0]	b	.s2	.L766
 		nop	5
-.L699:
+.L762:
 		mv	.l1x	B4, A5
 		shr	.s1	A16, 24, A6
-.L702:
+.L765:
 		ldb	.d1t1	*++A5[1], A7
 		nop	4
 		shl	.s1	A7, 24, A8
 		ext	.s1	A7, 24, 24, A1
-	[!A1]	b	.s2	.L707
+	[!A1]	b	.s2	.L771
 		nop	5
 		shr	.s1	A8, 24, A17
 		cmpeq	.l1	A6, A17, A0
-	[!A0]	b	.s2	.L702
+	[!A0]	b	.s2	.L765
 		nop	5
-.L700:
 		ret	.s2	B3
 		nop	5
-.L707:
+.L771:
 		ldb	.d1t1	*++A4[1], A9
 		nop	4
 		shl	.s1	A9, 24, A16
 		ext	.s1	A9, 24, 24, A2
-	[A2]	b	.s2	.L699
+	[A2]	b	.s2	.L762
 		nop	5
-.L703:
+.L766:
 		mvk	.d1	0, A4
-		b	.s2	.L700
+		ret	.s2	B3
 		nop	5
 	.size	strpbrk, .-strpbrk
 	.align	2
@@ -3037,7 +3141,7 @@ strpbrk:
 strrchr:
 		mv	.d1	A4, A3
 		mvk	.d1	0, A4
-.L710:
+.L774:
 		mv	.d1	A3, A6
 		ldb	.d1t1	*A3++[1], A7
 		nop	4
@@ -3047,7 +3151,7 @@ strrchr:
 		cmpeq	.l1	A9, A8, A0
 	[A0]	mv	.d1	A6, A4
 		mv	.d1	A5, A1
-	[A1]	b	.s2	.L710
+	[A1]	b	.s2	.L774
 		nop	5
 		ret	.s2	B3
 		nop	5
@@ -3062,40 +3166,49 @@ strstr:
 		shl	.s1	A4, 24, A8
 		ext	.s1	A4, 24, 24, A0
 		mv	.l1x	B4, A9
-	[!A0]	b	.s2	.L715
+	[!A0]	b	.s2	.L780
 		nop	5
-.L716:
+.L781:
 		ldb	.d1t1	*++A9[1], A1
 		nop	4
-	[A1]	b	.s2	.L716
+	[A1]	b	.s2	.L781
 		nop	5
-.L715:
+.L780:
 		mv	.l1x	B4, A5
 		sub	.d1	A9, A5, A26
 		mv	.d1	A26, A2
 	[A2]	shr	.s1	A8, 24, A8
 	[A2]	add	.d1x	A26, B4, A26
-	[A2]	b	.s2	.L723
+	[!A2]	b	.s2	.L798
 		nop	5
+.L788:
 		mv	.d1	A29, A4
-		b	.s2	.L714
+		ldb	.d1t1	*A29++[1], A6
+		nop	4
+		shl	.s1	A6, 24, A7
+		ext	.s1	A6, 24, 24, A16
+		cmpeq	.l1	A8, A16, A0
+	[A0]	b	.s2	.L787
 		nop	5
-.L727:
-		mv	.l1x	B4, A17
-		b	.s2	.L719
+		mv	.d1	A7, A1
+	[A1]	b	.s2	.L788
 		nop	5
-.L722:
+		mvk	.d1	0, A4
+.L779:
+		ret	.s2	B3
+		nop	5
+.L787:
 		mv	.d1	A4, A2
-	[!A2]	b	.s2	.L714
+	[!A2]	b	.s2	.L779
 		nop	5
 		ldbu	.d1t1	*A4, A27
 		nop	4
 		mv	.d1	A27, A0
-	[!A0]	b	.s2	.L727
+	[!A0]	b	.s2	.L792
 		nop	5
 		mv	.d1	A4, A25
 		mv	.l1x	B4, A24
-.L720:
+.L785:
 		mv	.d1	A24, A17
 		ldbu	.d1t1	*A24++[1], A18
 		nop	4
@@ -3106,36 +3219,30 @@ strstr:
 		cmpeq	.l1	A24, A26, A22
 		cmpeq	.l1	0, A22, A23
 		and	.d1	A21, A23, A1
-	[!A1]	b	.s2	.L719
+	[!A1]	b	.s2	.L784
 		nop	5
 		ldbu	.d1t1	*++A25[1], A27
 		nop	4
 		mv	.d1	A27, A2
-	[A2]	b	.s2	.L720
+	[A2]	b	.s2	.L785
 		nop	5
 		mv	.d1	A24, A17
-.L719:
+.L784:
 		ldbu	.d1t1	*A17, A28
 		nop	4
 		cmpeq	.l1	A27, A28, A0
-	[A0]	b	.s2	.L714
+	[A0]	b	.s2	.L779
 		nop	5
 		add	.d1	A4, 1, A29
-.L723:
+		b	.s2	.L788
+		nop	5
+.L798:
 		mv	.d1	A29, A4
-		ldb	.d1t1	*A29++[1], A6
-		nop	4
-		shl	.s1	A6, 24, A7
-		ext	.s1	A6, 24, 24, A16
-		cmpeq	.l1	A8, A16, A0
-	[A0]	b	.s2	.L722
-		nop	5
-		mv	.d1	A7, A1
-	[A1]	b	.s2	.L723
-		nop	5
-		mvk	.d1	0, A4
-.L714:
 		ret	.s2	B3
+		nop	5
+.L792:
+		mv	.l1x	B4, A17
+		b	.s2	.L784
 		nop	5
 	.size	strstr, .-strstr
 	.align	2
@@ -3158,24 +3265,24 @@ copysign:
 		mvk	.d2	0, B5
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L742
+	[A0]	b	.s2	.L810
 		nop	5
-.L733:
+.L800:
 		mvk	.d2	0, B4
 		mvk	.d2	0, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_gtd), B3
 		mv	.d1	A4, A2
-	[!A2]	b	.s2	.L736
+	[!A2]	b	.s2	.L803
 		nop	5
 		mvk	.d2	0, B4
 		mvk	.d2	0, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L735
+	[A0]	b	.s2	.L802
 		nop	5
-.L736:
+.L803:
 		dmv	.s1	A11, A10, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
@@ -3192,21 +3299,35 @@ copysign:
 		addab	.d2	B15, 32, B15
 		ret	.s2	B3
 		nop	5
-.L742:
+.L810:
 		mvk	.d2	0, B4
 		mvk	.d2	0, B5
 		dmv	.s1	A13, A12, A5:A4
 		callp	.s2	(__c6xabi_gtd), B3
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L733
+	[!A1]	b	.s2	.L800
 		nop	5
-.L735:
+.L802:
 		mv	.d1	A10, A0
 		mvk	.d1	0, A3
 		mvklh	.s1	32768, A3
 		xor	.d1	A3, A11, A1
 		dmv	.s1	A1, A0, A11:A10
-		b	.s2	.L736
+		dmv	.s1	A11, A10, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
 	.size	copysign, .-copysign
 	.align	2
@@ -3215,50 +3336,45 @@ copysign:
 memmem:
 		mv	.d1	A4, A16
 		mv	.l1x	B6, A0
-	[!A0]	b	.s2	.L747
+	[!A0]	b	.s2	.L815
 		nop	5
 		cmpgtu	.l2	B6, B4, B5
 		mv	.l1x	B5, A1
-	[A1]	b	.s2	.L757
+	[A1]	b	.s2	.L825
 		nop	5
 		sub	.d2	B4, B6, B4
 		mv	.l1x	B4, A17
 		add	.d1	A16, A17, A23
 		cmpltu	.l1	A23, A16, A2
-	[A2]	b	.s2	.L757
+	[A2]	b	.s2	.L825
 		nop	5
 		ldb	.d1t1	*A6++[1], A18
 		nop	4
-		b	.s2	.L754
-		nop	5
-.L769:
-	[!A2]	b	.s2	.L747
-		nop	5
-		ldbu	.d1t1	*A8, A22
-		nop	4
-		sub	.d1	A22, A9, A1
-	[!A1]	b	.s2	.L747
-		nop	5
-.L749:
-		cmpltu	.l1	A23, A16, A2
-	[A2]	b	.s2	.L757
-		nop	5
-.L754:
+.L822:
 		ldb	.d1t1	*A16, A3
 		nop	4
 		mv	.d1	A16, A4
 		add	.d1	A16, 1, A16
 		ext	.s1	A3, 24, 24, A5
 		cmpeq	.l1	A18, A5, A0
-	[!A0]	b	.s2	.L749
+	[A0]	b	.s2	.L838
 		nop	5
+		cmpltu	.l1	A23, A16, A2
+	[!A2]	b	.s2	.L822
+		nop	5
+.L825:
+		mvk	.d1	0, A4
+.L815:
+		ret	.s2	B3
+		nop	5
+.L838:
 		add	.l1x	-1, B6, A2
-	[!A2]	b	.s2	.L747
+	[!A2]	b	.s2	.L815
 		nop	5
 		mv	.d1	A16, A19
 		mv	.d1	A6, A20
 		mv	.d1	A2, A1
-.L751:
+.L819:
 		sub	.d1	A1, 1, A1
 		mv	.d1	A20, A7
 		mv	.d1	A19, A8
@@ -3269,17 +3385,25 @@ memmem:
 		ldbu	.d1t1	*A7, A9
 		nop	4
 		cmpeq	.l1	A9, A21, A0
-	[!A0]	b	.s2	.L769
+	[!A0]	b	.s2	.L839
 		nop	5
 		sub	.d1	A2, 1, A2
-	[A1]	b	.s2	.L751
+	[A1]	b	.s2	.L819
 		nop	5
-.L747:
 		ret	.s2	B3
 		nop	5
-.L757:
-		mvk	.d1	0, A4
-		b	.s2	.L747
+.L839:
+	[!A2]	b	.s2	.L815
+		nop	5
+		ldbu	.d1t1	*A8, A22
+		nop	4
+		sub	.d1	A22, A9, A1
+	[!A1]	b	.s2	.L815
+		nop	5
+		cmpltu	.l1	A23, A16, A2
+	[!A2]	b	.s2	.L822
+		nop	5
+		b	.s2	.L825
 		nop	5
 	.size	memmem, .-memmem
 	.align	2
@@ -3296,10 +3420,10 @@ mempcpy:
 		mv	.d1	A4, A11
 		mv	.d1	A6, A10
 		mv	.d1	A6, A0
-	[!A0]	b	.s2	.L771
+	[!A0]	b	.s2	.L841
 		nop	5
 		callp	.s2	(memmove), B3
-.L771:
+.L841:
 		add	.d1	A11, A10, A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
@@ -3335,17 +3459,17 @@ frexp:
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
 	[!A0]	mvk	.d2	0, B12
-	[A0]	b	.s2	.L800
+	[A0]	b	.s2	.L873
 		nop	5
-.L778:
 		mvk	.d2	0, B4
 		mvk	.d2	0, B5
 		mvklh	.s2	16368, B5
 		dmv	.s1	A11, A10, A5:A4
 		callp	.s2	(__c6xabi_ged), B3
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L798
+	[!A1]	b	.s2	.L869
 		nop	5
+.L874:
 		mvk	.d1	0, A12
 		mvk	.d2	0, B10
 		mvk	.d2	0, B11
@@ -3353,7 +3477,7 @@ frexp:
 		mvk	.d1	0, A14
 		mvk	.d1	0, A15
 		mvklh	.s1	16368, A15
-.L782:
+.L853:
 		add	.d1	A12, 1, A12
 		dmv	.s2	B11, B10, B5:B4
 		dmv	.s1	A11, A10, A5:A4
@@ -3363,19 +3487,19 @@ frexp:
 		mv	.l2x	A15, B5
 		callp	.s2	(__c6xabi_ged), B3
 		mv	.d1	A4, A1
-	[A1]	b	.s2	.L782
+	[A1]	b	.s2	.L853
 		nop	5
-.L783:
+.L854:
 		stw	.d1t1	A12, *A13
 		mv	.l1x	B12, A0
-	[!A0]	b	.s2	.L787
+	[!A0]	b	.s2	.L858
 		nop	5
 		mv	.d1	A10, A0
 		mvk	.d1	0, A6
 		mvklh	.s1	32768, A6
 		xor	.d1	A6, A11, A1
 		dmv	.s1	A1, A0, A11:A10
-.L787:
+.L858:
 		dmv	.s1	A11, A10, A5:A4
 		lddw	.d2t1	*+B15(8), A11:A10
 		nop	4
@@ -3396,16 +3520,22 @@ frexp:
 		addab	.d2	B15, 48, B15
 		ret	.s2	B3
 		nop	5
-.L800:
+.L873:
 		mv	.d1	A10, A0
 		mvk	.d1	0, A3
 		mvklh	.s1	32768, A3
 		xor	.d1	A3, A11, A1
 		dmv	.s1	A1, A0, A11:A10
 		mvk	.d2	1, B12
-		b	.s2	.L778
+		mvk	.d2	0, B4
+		mvk	.d2	0, B5
+		mvklh	.s2	16368, B5
+		dmv	.s1	A11, A10, A5:A4
+		callp	.s2	(__c6xabi_ged), B3
+		mv	.d1	A4, A1
+	[A1]	b	.s2	.L874
 		nop	5
-.L798:
+.L869:
 		mvk	.d2	0, B4
 		mvk	.d2	0, B5
 		dmv	.s1	A11, A10, A5:A4
@@ -3420,12 +3550,12 @@ frexp:
 		xor	.d1	1, A4, A5
 		and	.d1	A12, A5, A0
 		mvk	.d1	0, A12
-	[!A0]	b	.s2	.L783
+	[!A0]	b	.s2	.L854
 		nop	5
 		mvk	.d1	0, A14
 		mvk	.d1	0, A15
 		mvklh	.s1	16352, A15
-.L786:
+.L857:
 		sub	.d1	A12, 1, A12
 		mv	.l2x	A10, B4
 		mv	.l2x	A11, B5
@@ -3437,9 +3567,22 @@ frexp:
 		mv	.l2x	A15, B5
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A2
-	[A2]	b	.s2	.L786
+	[!A2]	b	.s2	.L854
 		nop	5
-		b	.s2	.L783
+		sub	.d1	A12, 1, A12
+		mv	.l2x	A10, B4
+		mv	.l2x	A11, B5
+		mv	.d1	A10, A4
+		mv	.d1	A11, A5
+		callp	.s2	(__c6xabi_addd), B3
+		dmv	.s1	A5, A4, A11:A10
+		mv	.l2x	A14, B4
+		mv	.l2x	A15, B5
+		callp	.s2	(__c6xabi_ltd), B3
+		mv	.d1	A4, A2
+	[A2]	b	.s2	.L857
+		nop	5
+		b	.s2	.L854
 		nop	5
 	.size	frexp, .-frexp
 	.align	2
@@ -3451,9 +3594,9 @@ __muldi3:
 		or	.d1	A5, A4, A0
 		mvk	.d1	0, A4
 		mvk	.d1	0, A5
-	[!A0]	b	.s2	.L809
+	[!A0]	b	.s2	.L886
 		nop	5
-.L811:
+.L888:
 		and	.d1	1, A23, A6
 		neg	.l1	A6, A8
 		and	.d1x	A8, B4, A16
@@ -3473,9 +3616,9 @@ __muldi3:
 		or	.d1	A3, A22, A23
 		shru	.s1	A7, 1, A7
 		or	.d1	A7, A23, A1
-	[A1]	b	.s2	.L811
+	[A1]	b	.s2	.L888
 		nop	5
-.L809:
+.L886:
 		ret	.s2	B3
 		nop	5
 	.size	__muldi3, .-__muldi3
@@ -3485,12 +3628,12 @@ __muldi3:
 udivmodsi4:
 		mv	.d1	A4, A7
 		cmpgtu	.l1x	A4, B4, A0
-	[!A0]	b	.s2	.L829
+	[!A0]	b	.s2	.L908
 		nop	5
 		mvk	.d1	1, A2
-.L816:
+.L894:
 		cmpgt	.l1x	0, B4, A1
-	[A1]	b	.s2	.L817
+	[A1]	b	.s2	.L895
 		nop	5
 		shl	.s2	B4, 1, B4
 		shl	.s1	A2, 1, A2
@@ -3499,31 +3642,31 @@ udivmodsi4:
 		cmpeq	.l1	0, A2, A5
 		cmpeq	.l1	0, A5, A9
 		and	.d1	A9, A8, A1
-	[A1]	b	.s2	.L816
+	[A1]	b	.s2	.L894
 		nop	5
-.L817:
+.L895:
 	[!A2]	mvk	.d1	0, A4
-	[!A2]	b	.s2	.L819
+	[!A2]	b	.s2	.L897
 		nop	5
-.L824:
 		mvk	.d1	0, A4
-.L818:
+.L896:
 		mv	.l1x	B4, A16
 		cmpgtu	.l1	A16, A7, A1
 	[!A1]	sub	.d1	A7, A16, A7
 	[!A1]	or	.d1	A2, A4, A4
 		shru	.s1	A2, 1, A2
 		shru	.s2	B4, 1, B4
-	[A2]	b	.s2	.L818
+	[A2]	b	.s2	.L896
 		nop	5
-.L819:
+.L897:
 		mv	.d1	A6, A0
 	[A0]	mv	.d1	A7, A4
 		ret	.s2	B3
 		nop	5
-.L829:
+.L908:
 		mvk	.d1	1, A2
-		b	.s2	.L824
+		mvk	.d1	0, A4
+		b	.s2	.L896
 		nop	5
 	.size	udivmodsi4, .-udivmodsi4
 	.align	2
@@ -3555,14 +3698,14 @@ __clrsbdi2:
 		mv	.d1	A4, A1
 	[A1]	cmpeq	.l1	A3, A5, A1
 	[A1]	mvk	.s1	63, A4
-	[A1]	b	.s2	.L834
+	[A1]	b	.s2	.L913
 		nop	5
 		mv	.d1	A6, A0
 	[A0]	lmbd	.l1	1, A6, A4
 	[!A0]	lmbd	.l1	1, A7, A4
 	[!A0]	addah	.d1	A4, 16, A4
 		sub	.d1	A4, 1, A4
-.L834:
+.L913:
 		ret	.s2	B3
 		nop	5
 	.size	__clrsbdi2, .-__clrsbdi2
@@ -3573,9 +3716,9 @@ __mulsi3:
 		mv	.d1	A4, A3
 		mv	.d1	A4, A0
 		mvk	.d1	0, A4
-	[!A0]	b	.s2	.L840
+	[!A0]	b	.s2	.L920
 		nop	5
-.L842:
+.L922:
 		and	.d1	1, A3, A5
 		neg	.l1	A5, A6
 		and	.d1x	A6, B4, A7
@@ -3583,9 +3726,9 @@ __mulsi3:
 		shru	.s1	A3, 1, A3
 		shl	.s2	B4, 1, B4
 		mv	.d1	A3, A1
-	[A1]	b	.s2	.L842
+	[A1]	b	.s2	.L922
 		nop	5
-.L840:
+.L920:
 		ret	.s2	B3
 		nop	5
 	.size	__mulsi3, .-__mulsi3
@@ -3597,10 +3740,14 @@ __cmovd:
 		and	.d1	-8, A6, A7
 		mv	.l1x	B4, A3
 		cmpgtu	.l1	A3, A4, A1
-	[!A1]	b	.s2	.L847
+	[A1]	b	.s2	.L931
 		nop	5
-.L850:
-	[!A0]	b	.s2	.L849
+		add	.d1x	A6, B4, A8
+		cmpgtu	.l1	A4, A8, A1
+	[!A1]	b	.s2	.L942
+		nop	5
+.L931:
+	[!A0]	b	.s2	.L930
 		nop	5
 		add	.l1x	-8, B4, A16
 		sub	.d1	A4, 8, A17
@@ -3608,16 +3755,16 @@ __cmovd:
 		sub	.d1	A9, 8, A18
 		shru	.s1	A18, 3, A19
 		add	.d1	A19, 1, A1
-.L853:
+.L934:
 		sub	.d1	A1, 1, A1
 		lddw	.d1t1	*++A16[1], A21:A20
 		nop	4
 		stdw	.d1t1	A21:A20, *++A17[1]
-	[A1]	b	.s2	.L853
+	[A1]	b	.s2	.L934
 		nop	5
-.L849:
+.L930:
 		cmpltu	.l1	A7, A6, A2
-	[!A2]	b	.s2	.L846
+	[!A2]	b	.s2	.L927
 		nop	5
 		sub	.d1	A7, 1, A21
 		add	.d1x	A21, B4, A22
@@ -3625,34 +3772,30 @@ __cmovd:
 		add	.l1x	-1, B4, A24
 		add	.d1	A24, A6, A25
 		sub	.d1	A25, A22, A0
-.L854:
+.L935:
 		sub	.d1	A0, 1, A0
 		ldb	.d1t1	*++A22[1], A26
 		nop	4
 		stb	.d1t1	A26, *++A23[1]
-	[A0]	b	.s2	.L854
+	[A0]	b	.s2	.L935
 		nop	5
-.L846:
+.L927:
 		ret	.s2	B3
 		nop	5
-.L847:
-		add	.d1x	A6, B4, A8
-		cmpgtu	.l1	A4, A8, A1
-	[A1]	b	.s2	.L850
-		nop	5
+.L942:
 		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L846
+	[!A2]	b	.s2	.L927
 		nop	5
 		add	.d1	A4, A6, A4
 		sub	.d1	A8, A3, A0
-.L855:
+.L936:
 		sub	.d1	A0, 1, A0
 		ldb	.d1t1	*--A8[1], A6
 		nop	4
 		stb	.d1t1	A6, *--A4[1]
-	[A0]	b	.s2	.L855
+	[A0]	b	.s2	.L936
 		nop	5
-		b	.s2	.L846
+		ret	.s2	B3
 		nop	5
 	.size	__cmovd, .-__cmovd
 	.align	2
@@ -3662,10 +3805,14 @@ __cmovh:
 		shru	.s1	A6, 1, A0
 		mv	.l1x	B4, A3
 		cmpgtu	.l1	A3, A4, A1
-	[!A1]	b	.s2	.L861
+	[A1]	b	.s2	.L947
 		nop	5
-.L864:
-	[!A0]	b	.s2	.L863
+		add	.d1x	A6, B4, A5
+		cmpgtu	.l1	A4, A5, A1
+	[!A1]	b	.s2	.L959
+		nop	5
+.L947:
+	[!A0]	b	.s2	.L946
 		nop	5
 		add	.l1x	-2, B4, A8
 		sub	.d1	A4, 2, A9
@@ -3673,16 +3820,16 @@ __cmovh:
 		sub	.d1	A16, 2, A17
 		shru	.s1	A17, 1, A18
 		add	.d1	A18, 1, A1
-.L867:
+.L950:
 		sub	.d1	A1, 1, A1
 		ldh	.d1t1	*++A8[1], A19
 		nop	4
 		sth	.d1t1	A19, *++A9[1]
-	[A1]	b	.s2	.L867
+	[A1]	b	.s2	.L950
 		nop	5
-.L863:
+.L946:
 		and	.d1	1, A6, A2
-	[!A2]	b	.s2	.L860
+	[!A2]	b	.s2	.L943
 		nop	5
 		sub	.d1	A6, 1, A20
 		add	.d1x	A20, B4, A21
@@ -3690,27 +3837,23 @@ __cmovh:
 		nop	4
 		add	.d1	A4, A20, A23
 		stb	.d1t1	A22, *A23
-.L860:
+.L943:
 		ret	.s2	B3
 		nop	5
-.L861:
-		add	.d1x	A6, B4, A5
-		cmpgtu	.l1	A4, A5, A1
-	[A1]	b	.s2	.L864
-		nop	5
+.L959:
 		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L860
+	[!A2]	b	.s2	.L943
 		nop	5
 		add	.d1	A4, A6, A6
 		sub	.d1	A5, A3, A0
-.L868:
+.L951:
 		sub	.d1	A0, 1, A0
 		ldb	.d1t1	*--A5[1], A7
 		nop	4
 		stb	.d1t1	A7, *--A6[1]
-	[A0]	b	.s2	.L868
+	[A0]	b	.s2	.L951
 		nop	5
-		b	.s2	.L860
+		ret	.s2	B3
 		nop	5
 	.size	__cmovh, .-__cmovh
 	.align	2
@@ -3721,10 +3864,14 @@ __cmovw:
 		and	.d1	-4, A6, A8
 		mv	.l1x	B4, A3
 		cmpgtu	.l1	A3, A4, A1
-	[!A1]	b	.s2	.L876
+	[A1]	b	.s2	.L964
 		nop	5
-.L879:
-	[!A0]	b	.s2	.L878
+		add	.d1x	A6, B4, A7
+		cmpgtu	.l1	A4, A7, A1
+	[!A1]	b	.s2	.L975
+		nop	5
+.L964:
+	[!A0]	b	.s2	.L963
 		nop	5
 		add	.l1x	-4, B4, A9
 		sub	.d1	A4, 4, A16
@@ -3732,16 +3879,16 @@ __cmovw:
 		sub	.d1	A17, 4, A18
 		shru	.s1	A18, 2, A19
 		add	.d1	A19, 1, A1
-.L882:
+.L967:
 		sub	.d1	A1, 1, A1
 		ldw	.d1t1	*++A9[1], A20
 		nop	4
 		stw	.d1t1	A20, *++A16[1]
-	[A1]	b	.s2	.L882
+	[A1]	b	.s2	.L967
 		nop	5
-.L878:
+.L963:
 		cmpltu	.l1	A8, A6, A2
-	[!A2]	b	.s2	.L875
+	[!A2]	b	.s2	.L960
 		nop	5
 		sub	.d1	A8, 1, A21
 		add	.d1x	A21, B4, A22
@@ -3749,34 +3896,30 @@ __cmovw:
 		add	.l1x	-1, B4, A24
 		add	.d1	A24, A6, A25
 		sub	.d1	A25, A22, A0
-.L883:
+.L968:
 		sub	.d1	A0, 1, A0
 		ldb	.d1t1	*++A22[1], A26
 		nop	4
 		stb	.d1t1	A26, *++A23[1]
-	[A0]	b	.s2	.L883
+	[A0]	b	.s2	.L968
 		nop	5
-.L875:
+.L960:
 		ret	.s2	B3
 		nop	5
-.L876:
-		add	.d1x	A6, B4, A7
-		cmpgtu	.l1	A4, A7, A1
-	[A1]	b	.s2	.L879
-		nop	5
+.L975:
 		mv	.d1	A6, A2
-	[!A2]	b	.s2	.L875
+	[!A2]	b	.s2	.L960
 		nop	5
 		add	.d1	A4, A6, A4
 		sub	.d1	A7, A3, A0
-.L884:
+.L969:
 		sub	.d1	A0, 1, A0
 		ldb	.d1t1	*--A7[1], A6
 		nop	4
 		stb	.d1t1	A6, *--A4[1]
-	[A0]	b	.s2	.L884
+	[A0]	b	.s2	.L969
 		nop	5
-		b	.s2	.L875
+		ret	.s2	B3
 		nop	5
 	.size	__cmovw, .-__cmovw
 	.align	2
@@ -3786,8 +3929,8 @@ __modi:
 		sub	.d2	B15, 8, B15
 		stw	.d2t2	B3, *+B15(8)
 		call	.s2	__c6xabi_remi
-		addkpc	.s2	.L891, B3, 4
-.L891:
+		addkpc	.s2	.L978, B3, 4
+.L978:
 		ldw	.d2t2	*+B15(8), B3
 		nop	4
 		add	.d2	B15, 8, B15
@@ -3873,8 +4016,8 @@ __umodi:
 		sub	.d2	B15, 8, B15
 		stw	.d2t2	B3, *+B15(8)
 		call	.s2	__c6xabi_remu
-		addkpc	.s2	.L906, B3, 4
-.L906:
+		addkpc	.s2	.L993, B3, 4
+.L993:
 		ldw	.d2t2	*+B15(8), B3
 		nop	4
 		add	.d2	B15, 8, B15
@@ -3888,17 +4031,17 @@ __clzhi2:
 		mvk	.d1	0, A3
 		extu	.s1	A4, 16, 16, A4
 		mvk	.s1	16, A1
-.L909:
+.L996:
 		sub	.d1	A1, 1, A1
 		sub	.l1	15, A3, A5
 		shr	.s1	A4, A5, A6
 		and	.d1	1, A6, A0
-	[A0]	b	.s2	.L907
+	[A0]	b	.s2	.L994
 		nop	5
 		add	.d1	A3, 1, A3
-	[A1]	b	.s2	.L909
+	[A1]	b	.s2	.L996
 		nop	5
-.L907:
+.L994:
 		mv	.d1	A3, A4
 		ret	.s2	B3
 		nop	5
@@ -3910,16 +4053,16 @@ __ctzhi2:
 		mvk	.d1	0, A3
 		extu	.s1	A4, 16, 16, A4
 		mvk	.s1	16, A1
-.L914:
+.L1002:
 		sub	.d1	A1, 1, A1
 		shr	.s1	A4, A3, A5
 		and	.d1	1, A5, A0
-	[A0]	b	.s2	.L912
+	[A0]	b	.s2	.L1000
 		nop	5
 		add	.d1	A3, 1, A3
-	[A1]	b	.s2	.L914
+	[A1]	b	.s2	.L1002
 		nop	5
-.L912:
+.L1000:
 		mv	.d1	A3, A4
 		ret	.s2	B3
 		nop	5
@@ -3939,11 +4082,10 @@ __fixunssfsi:
 		mvklh	.s2	18176, B4
 		callp	.s2	(__c6xabi_gef), B3
 		mv	.d1	A4, A0
-	[A0]	b	.s2	.L924
+	[A0]	b	.s2	.L1014
 		nop	5
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_fixfi), B3
-.L917:
 		ldw	.d2t1	*+B15(8), A10
 		nop	4
 		ldw	.d2t2	*+B15(12), B3
@@ -3953,7 +4095,7 @@ __fixunssfsi:
 		add	.d2	B15, 16, B15
 		ret	.s2	B3
 		nop	5
-.L924:
+.L1014:
 		mvk	.d2	0, B4
 		mvklh	.s2	18176, B4
 		mv	.d1	A10, A4
@@ -3962,7 +4104,14 @@ __fixunssfsi:
 		mvk	.s1	-32768, A3
 		mvklh	.s1	0, A3
 		add	.d1	A4, A3, A4
-		b	.s2	.L917
+		ldw	.d2t1	*+B15(8), A10
+		nop	4
+		ldw	.d2t2	*+B15(12), B3
+		nop	4
+		ldw	.d2t2	*+B15(16), B14
+		nop	4
+		add	.d2	B15, 16, B15
+		ret	.s2	B3
 		nop	5
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align	2
@@ -3973,13 +4122,13 @@ __parityhi2:
 		mvk	.d1	0, A3
 		extu	.s1	A4, 16, 16, A4
 		mvk	.s1	16, A1
-.L930:
+.L1020:
 		sub	.d1	A1, 1, A1
 		shr	.s1	A4, A3, A6
 		and	.d1	1, A6, A7
 		add	.d1	A5, A7, A5
 		add	.d1	A3, 1, A3
-	[A1]	b	.s2	.L930
+	[A1]	b	.s2	.L1020
 		nop	5
 		and	.d1	1, A5, A4
 		ret	.s2	B3
@@ -3993,13 +4142,13 @@ __popcounthi2:
 		mvk	.d1	0, A3
 		extu	.s1	A4, 16, 16, A4
 		mvk	.s1	16, A1
-.L934:
+.L1025:
 		sub	.d1	A1, 1, A1
 		shr	.s1	A4, A3, A6
 		and	.d1	1, A6, A7
 		add	.d1	A5, A7, A5
 		add	.d1	A3, 1, A3
-	[A1]	b	.s2	.L934
+	[A1]	b	.s2	.L1025
 		nop	5
 		mv	.d1	A5, A4
 		ret	.s2	B3
@@ -4012,9 +4161,9 @@ __mulsi3_iq2000:
 		mv	.d1	A4, A3
 		mv	.d1	A4, A0
 		mvk	.d1	0, A4
-	[!A0]	b	.s2	.L937
+	[!A0]	b	.s2	.L1029
 		nop	5
-.L939:
+.L1031:
 		and	.d1	1, A3, A5
 		neg	.l1	A5, A6
 		and	.d1x	A6, B4, A7
@@ -4022,9 +4171,9 @@ __mulsi3_iq2000:
 		shru	.s1	A3, 1, A3
 		shl	.s2	B4, 1, B4
 		mv	.d1	A3, A1
-	[A1]	b	.s2	.L939
+	[A1]	b	.s2	.L1031
 		nop	5
-.L937:
+.L1029:
 		ret	.s2	B3
 		nop	5
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -4035,13 +4184,13 @@ __mulsi3_lm32:
 		mv	.d1	A4, A3
 		mv	.d1	A4, A0
 	[!A0]	mvk	.d1	0, A4
-	[!A0]	b	.s2	.L943
+	[!A0]	b	.s2	.L1036
 		nop	5
 		mv	.l1x	B4, A1
 		mvk	.d1	0, A4
-	[!A1]	b	.s2	.L943
+	[!A1]	b	.s2	.L1036
 		nop	5
-.L945:
+.L1038:
 		and	.d1x	1, B4, A5
 		neg	.l1	A5, A6
 		and	.d1	A3, A6, A7
@@ -4049,9 +4198,9 @@ __mulsi3_lm32:
 		shl	.s1	A3, 1, A3
 		shru	.s2	B4, 1, B4
 		mv	.l1x	B4, A2
-	[A2]	b	.s2	.L945
+	[A2]	b	.s2	.L1038
 		nop	5
-.L943:
+.L1036:
 		ret	.s2	B3
 		nop	5
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -4062,12 +4211,12 @@ __udivmodsi4:
 		mv	.d1	A4, A7
 		mv	.l1x	B4, A3
 		cmpltu	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L964
+	[!A0]	b	.s2	.L1059
 		nop	5
 		mvk	.d1	1, A2
-.L951:
+.L1045:
 		cmpgt	.l1x	0, B4, A1
-	[A1]	b	.s2	.L952
+	[A1]	b	.s2	.L1046
 		nop	5
 		shl	.s2	B4, 1, B4
 		shl	.s1	A2, 1, A2
@@ -4076,31 +4225,31 @@ __udivmodsi4:
 		cmpeq	.l1	0, A2, A5
 		cmpeq	.l1	0, A5, A9
 		and	.d1	A9, A8, A1
-	[A1]	b	.s2	.L951
+	[A1]	b	.s2	.L1045
 		nop	5
-.L952:
+.L1046:
 	[!A2]	mvk	.d1	0, A4
-	[!A2]	b	.s2	.L954
+	[!A2]	b	.s2	.L1048
 		nop	5
-.L959:
 		mvk	.d1	0, A4
-.L953:
+.L1047:
 		mv	.l1x	B4, A16
 		cmpgtu	.l1	A16, A7, A1
 	[!A1]	sub	.d1	A7, A16, A7
 	[!A1]	or	.d1	A2, A4, A4
 		shru	.s1	A2, 1, A2
 		shru	.s2	B4, 1, B4
-	[A2]	b	.s2	.L953
+	[A2]	b	.s2	.L1047
 		nop	5
-.L954:
+.L1048:
 		mv	.d1	A6, A0
 	[A0]	mv	.d1	A7, A4
 		ret	.s2	B3
 		nop	5
-.L964:
+.L1059:
 		mvk	.d1	1, A2
-		b	.s2	.L959
+		mvk	.d1	0, A4
+		b	.s2	.L1047
 		nop	5
 	.size	__udivmodsi4, .-__udivmodsi4
 	.align	2
@@ -4119,14 +4268,14 @@ __mspabi_cmpf:
 		callp	.s2	(__c6xabi_ltf), B3
 		mv	.d1	A4, A0
 	[A0]	mvk	.d1	-1, A4
-	[A0]	b	.s2	.L965
+	[A0]	b	.s2	.L1060
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A10, A4
 		callp	.s2	(__c6xabi_gtf), B3
 		cmpeq	.l1	0, A4, A4
 		xor	.d1	1, A4, A4
-.L965:
+.L1060:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -4158,7 +4307,7 @@ __mspabi_cmpd:
 		callp	.s2	(__c6xabi_ltd), B3
 		mv	.d1	A4, A0
 	[A0]	mvk	.d1	-1, A4
-	[A0]	b	.s2	.L972
+	[A0]	b	.s2	.L1068
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -4166,7 +4315,7 @@ __mspabi_cmpd:
 		callp	.s2	(__c6xabi_gtd), B3
 		cmpeq	.l1	0, A4, A4
 		xor	.d1	1, A4, A4
-.L972:
+.L1068:
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
 		ldw	.d2t1	*+B15(16), A11
@@ -4212,12 +4361,12 @@ __mulhi3:
 	[!A0]	mvk	.d1	0, A1
 		mv	.l1x	B4, A2
 	[!A2]	mvk	.d1	0, A4
-	[!A2]	b	.s2	.L985
+	[!A2]	b	.s2	.L1082
 		nop	5
 		mvk	.d1	1, A5
 		mvk	.d1	0, A4
 		mvk	.s1	31, A7
-.L986:
+.L1083:
 		and	.d1x	1, B4, A3
 		neg	.l1	A3, A8
 		and	.d1	A6, A8, A9
@@ -4231,9 +4380,9 @@ __mulhi3:
 		cmpeq	.l1	0, A19, A20
 		add	.d1	A5, 1, A5
 		and	.d1	A20, A17, A0
-	[A0]	b	.s2	.L986
+	[A0]	b	.s2	.L1083
 		nop	5
-.L985:
+.L1082:
 	[A1]	neg	.l1	A4, A4
 		ret	.s2	B3
 		nop	5
@@ -4252,10 +4401,10 @@ __divsi3:
 		mv	.d1	A4, A6
 		mv	.l1x	B4, A3
 		cmpltu	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L1005
+	[!A0]	b	.s2	.L1103
 		nop	5
 		mvk	.d1	1, A0
-.L999:
+.L1097:
 		shl	.s2	B4, 1, B4
 		shl	.s1	A0, 1, A0
 		mv	.l1x	B4, A5
@@ -4263,30 +4412,30 @@ __divsi3:
 		cmpeq	.l1	0, A0, A8
 		cmpeq	.l1	0, A8, A9
 		and	.d1	A9, A7, A2
-	[A2]	b	.s2	.L999
+	[A2]	b	.s2	.L1097
 		nop	5
 	[!A0]	mvk	.d1	0, A9
-	[!A0]	b	.s2	.L1000
+	[!A0]	b	.s2	.L1098
 		nop	5
-.L1013:
 		mvk	.d1	0, A9
-.L1002:
+.L1100:
 		mv	.l1x	B4, A4
 		cmpgtu	.l1	A4, A6, A2
 	[!A2]	sub	.d1	A6, A4, A6
 	[!A2]	or	.d1	A0, A9, A9
 		shru	.s1	A0, 1, A0
 		shru	.s2	B4, 1, B4
-	[A0]	b	.s2	.L1002
+	[A0]	b	.s2	.L1100
 		nop	5
-.L1000:
+.L1098:
 		mv	.d1	A9, A4
 	[A1]	neg	.l1	A9, A4
 		ret	.s2	B3
 		nop	5
-.L1005:
+.L1103:
 		mvk	.d1	1, A0
-		b	.s2	.L1013
+		mvk	.d1	0, A9
+		b	.s2	.L1100
 		nop	5
 	.size	__divsi3, .-__divsi3
 	.align	2
@@ -4304,10 +4453,10 @@ __modsi3:
 		sub	.d2	B4, B5, B6
 		mv	.l1x	B6, A5
 		cmpltu	.l1	A5, A4, A2
-	[!A2]	b	.s2	.L1024
+	[!A2]	b	.s2	.L1123
 		nop	5
 		mvk	.d1	1, A0
-.L1018:
+.L1117:
 		shl	.s2	B6, 1, B6
 		shl	.s1	A0, 1, A0
 		mv	.l1x	B6, A7
@@ -4315,27 +4464,32 @@ __modsi3:
 		cmpeq	.l1	0, A0, A9
 		cmpeq	.l1	0, A9, A16
 		and	.d1	A16, A8, A2
-	[A2]	b	.s2	.L1018
+	[A2]	b	.s2	.L1117
 		nop	5
-.L1035:
-	[!A0]	b	.s2	.L1037
+	[!A0]	b	.s2	.L1137
 		nop	5
-.L1029:
+.L1128:
 		mv	.l1x	B6, A4
 		cmpgtu	.l1	A4, A6, A2
 	[!A2]	sub	.d1	A6, A4, A6
 		shru	.s1	A0, 1, A0
 		shru	.s2	B6, 1, B6
-		b	.s2	.L1035
+.L1138:
+	[A0]	b	.s2	.L1128
 		nop	5
-.L1024:
-		mvk	.d1	1, A0
-		b	.s2	.L1029
-		nop	5
-.L1037:
+.L1137:
 		mv	.d1	A6, A4
 	[A1]	neg	.l1	A6, A4
 		ret	.s2	B3
+		nop	5
+.L1123:
+		mvk	.d1	1, A0
+		mv	.l1x	B6, A4
+		cmpgtu	.l1	A4, A6, A2
+	[!A2]	sub	.d1	A6, A4, A6
+		shru	.s1	A0, 1, A0
+		shru	.s2	B6, 1, B6
+		b	.s2	.L1138
 		nop	5
 	.size	__modsi3, .-__modsi3
 	.align	2
@@ -4348,13 +4502,13 @@ __udivmodhi4:
 		extu	.s1	A4, 16, 16, A26
 		mvk	.d1	1, A7
 		cmpgtu	.l1	A26, A25, A0
-	[!A0]	b	.s2	.L1054
+	[!A0]	b	.s2	.L1156
 		nop	5
-.L1039:
+.L1140:
 		mv	.l1x	B4, A9
 		ext	.s1	A9, 16, 16, A16
 		cmpgt	.l1	0, A16, A1
-	[A1]	b	.s2	.L1040
+	[A1]	b	.s2	.L1141
 		nop	5
 		shl	.s1x	B4, 1, A17
 		mv	.l2x	A17, B4
@@ -4366,29 +4520,17 @@ __udivmodhi4:
 		cmpeq	.l1	0, A21, A22
 		cmpeq	.l1	0, A22, A23
 		and	.d1	A23, A20, A2
-	[A2]	b	.s2	.L1039
+	[A2]	b	.s2	.L1140
 		nop	5
-.L1040:
+.L1141:
 		extu	.s1	A7, 16, 16, A0
 	[!A0]	mv	.d1	A7, A4
-	[!A0]	b	.s2	.L1042
+	[!A0]	b	.s2	.L1143
 		nop	5
 		mv	.l1x	B4, A4
 		extu	.s1	A4, 16, 16, A25
-.L1047:
 		mvk	.d1	0, A4
-		b	.s2	.L1041
-		nop	5
-.L1054:
-		mvk	.d1	1, A0
-		b	.s2	.L1047
-		nop	5
-.L1055:
-		mv	.l1x	B4, A24
-		extu	.s1	A24, 16, 16, A25
-		extu	.s1	A8, 16, 16, A26
-		extu	.s1	A0, 16, 16, A0
-.L1041:
+.L1142:
 		cmpgtu	.l1	A25, A26, A5
 		mv	.d1	A5, A1
 	[!A1]	mv	.l1x	B4, A5
@@ -4397,12 +4539,32 @@ __udivmodhi4:
 		shru	.s1	A0, 1, A0
 		mv	.d1	A0, A7
 		shru	.s2x	A25, 1, B4
-	[A0]	b	.s2	.L1055
+	[!A0]	b	.s2	.L1143
 		nop	5
-.L1042:
+.L1157:
+		mv	.l1x	B4, A24
+		extu	.s1	A24, 16, 16, A25
+		extu	.s1	A8, 16, 16, A26
+		extu	.s1	A0, 16, 16, A0
+		cmpgtu	.l1	A25, A26, A5
+		mv	.d1	A5, A1
+	[!A1]	mv	.l1x	B4, A5
+	[!A1]	sub	.d1	A8, A5, A8
+	[!A1]	or	.d1	A4, A7, A4
+		shru	.s1	A0, 1, A0
+		mv	.d1	A0, A7
+		shru	.s2x	A25, 1, B4
+	[A0]	b	.s2	.L1157
+		nop	5
+.L1143:
 		mv	.d1	A6, A2
 	[A2]	mv	.d1	A8, A4
 		ret	.s2	B3
+		nop	5
+.L1156:
+		mvk	.d1	1, A0
+		mvk	.d1	0, A4
+		b	.s2	.L1142
 		nop	5
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align	2
@@ -4412,12 +4574,12 @@ __udivmodsi4_libgcc:
 		mv	.d1	A4, A7
 		mv	.l1x	B4, A3
 		cmpltu	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L1070
+	[!A0]	b	.s2	.L1173
 		nop	5
 		mvk	.d1	1, A2
-.L1057:
+.L1159:
 		cmpgt	.l1x	0, B4, A1
-	[A1]	b	.s2	.L1058
+	[A1]	b	.s2	.L1160
 		nop	5
 		shl	.s2	B4, 1, B4
 		shl	.s1	A2, 1, A2
@@ -4426,31 +4588,31 @@ __udivmodsi4_libgcc:
 		cmpeq	.l1	0, A2, A5
 		cmpeq	.l1	0, A5, A9
 		and	.d1	A9, A8, A1
-	[A1]	b	.s2	.L1057
+	[A1]	b	.s2	.L1159
 		nop	5
-.L1058:
+.L1160:
 	[!A2]	mvk	.d1	0, A4
-	[!A2]	b	.s2	.L1060
+	[!A2]	b	.s2	.L1162
 		nop	5
-.L1065:
 		mvk	.d1	0, A4
-.L1059:
+.L1161:
 		mv	.l1x	B4, A16
 		cmpgtu	.l1	A16, A7, A1
 	[!A1]	sub	.d1	A7, A16, A7
 	[!A1]	or	.d1	A2, A4, A4
 		shru	.s1	A2, 1, A2
 		shru	.s2	B4, 1, B4
-	[A2]	b	.s2	.L1059
+	[A2]	b	.s2	.L1161
 		nop	5
-.L1060:
+.L1162:
 		mv	.d1	A6, A0
 	[A0]	mv	.d1	A7, A4
 		ret	.s2	B3
 		nop	5
-.L1070:
+.L1173:
 		mvk	.d1	1, A2
-		b	.s2	.L1065
+		mvk	.d1	0, A4
+		b	.s2	.L1161
 		nop	5
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align	2
@@ -4459,27 +4621,27 @@ __udivmodsi4_libgcc:
 __ashldi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s2	.L1072
+	[!A1]	b	.s2	.L1175
 		nop	5
 		subah	.d2	B4, 16, B4
 		mv	.l1x	B4, A8
 		shl	.s1	A4, A8, A5
 		mvk	.d1	0, A3
-.L1073:
 		mv	.d1	A3, A4
-.L1074:
+.L1177:
 		ret	.s2	B3
 		nop	5
-.L1072:
+.L1175:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s2	.L1074
+	[!A2]	b	.s2	.L1177
 		nop	5
 		shl	.s1	A4, A2, A3
 		sub	.d1	A6, A2, A7
 		shru	.s1	A4, A7, A4
 		shl	.s1	A5, A2, A5
 		or	.d1	A5, A4, A5
-		b	.s2	.L1073
+		mv	.d1	A3, A4
+		b	.s2	.L1177
 		nop	5
 	.size	__ashldi3, .-__ashldi3
 	.align	2
@@ -4488,27 +4650,27 @@ __ashldi3:
 __ashrdi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s2	.L1078
+	[!A1]	b	.s2	.L1182
 		nop	5
 		shr	.s1	A5, 31, A3
 		subah	.d2	B4, 16, B4
 		mv	.l1x	B4, A8
 		shr	.s1	A5, A8, A4
-.L1079:
 		mv	.d1	A3, A5
-.L1080:
+.L1184:
 		ret	.s2	B3
 		nop	5
-.L1078:
+.L1182:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s2	.L1080
+	[!A2]	b	.s2	.L1184
 		nop	5
 		shr	.s1	A5, A2, A3
 		sub	.d1	A6, A2, A7
 		shl	.s1	A5, A7, A5
 		shru	.s1	A4, A2, A4
 		or	.d1	A4, A5, A4
-		b	.s2	.L1079
+		mv	.d1	A3, A5
+		b	.s2	.L1184
 		nop	5
 	.size	__ashrdi3, .-__ashrdi3
 	.align	2
@@ -4582,27 +4744,28 @@ __clzsi2:
 __cmpdi2:
 		mv	.l1x	B5, A3
 		cmpgt	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1095
+	[A0]	b	.s2	.L1200
 		nop	5
 		cmplt	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1096
+	[A0]	b	.s2	.L1201
 		nop	5
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
-	[A1]	b	.s2	.L1095
+	[A1]	b	.s2	.L1200
 		nop	5
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	[!A2]	b	.s2	.L1091
+	[A2]	b	.s2	.L1201
 		nop	5
-.L1096:
-		mvk	.d1	2, A4
-		b	.s2	.L1091
+		ret	.s2	B3
 		nop	5
-.L1095:
+.L1200:
 		mvk	.d1	0, A4
-.L1091:
+		ret	.s2	B3
+		nop	5
+.L1201:
+		mvk	.d1	2, A4
 		ret	.s2	B3
 		nop	5
 	.size	__cmpdi2, .-__cmpdi2
@@ -4612,27 +4775,30 @@ __cmpdi2:
 __aeabi_lcmp:
 		mv	.l1x	B5, A3
 		cmpgt	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1102
+	[A0]	b	.s2	.L1208
 		nop	5
 		cmplt	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1103
+	[A0]	b	.s2	.L1209
 		nop	5
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
-	[A1]	b	.s2	.L1102
+	[A1]	b	.s2	.L1208
 		nop	5
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	[!A2]	b	.s2	.L1099
+	[A2]	b	.s2	.L1209
 		nop	5
-.L1103:
-		mvk	.d1	2, A4
-		b	.s2	.L1099
+		sub	.d1	A4, 1, A4
+		ret	.s2	B3
 		nop	5
-.L1102:
+.L1208:
 		mvk	.d1	0, A4
-.L1099:
+		sub	.d1	A4, 1, A4
+		ret	.s2	B3
+		nop	5
+.L1209:
+		mvk	.d1	2, A4
 		sub	.d1	A4, 1, A4
 		ret	.s2	B3
 		nop	5
@@ -4677,27 +4843,27 @@ __ctzsi2:
 __lshrdi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s2	.L1108
+	[!A1]	b	.s2	.L1215
 		nop	5
 		subah	.d2	B4, 16, B4
 		mv	.l1x	B4, A8
 		shru	.s1	A5, A8, A4
 		mvk	.d1	0, A3
-.L1109:
 		mv	.d1	A3, A5
-.L1110:
+.L1217:
 		ret	.s2	B3
 		nop	5
-.L1108:
+.L1215:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s2	.L1110
+	[!A2]	b	.s2	.L1217
 		nop	5
 		shru	.s1	A5, A2, A3
 		sub	.d1	A6, A2, A7
 		shl	.s1	A5, A7, A5
 		shru	.s1	A4, A2, A4
 		or	.d1	A4, A5, A4
-		b	.s2	.L1109
+		mv	.d1	A3, A5
+		b	.s2	.L1217
 		nop	5
 	.size	__lshrdi3, .-__lshrdi3
 	.align	2
@@ -4906,14 +5072,21 @@ __powidf2:
 		mvk	.d1	0, A14
 		mvk	.d1	0, A15
 		mvklh	.s1	16368, A15
-		b	.s2	.L1130
+.L1238:
+		and	.d1	1, A10, A0
+	[!A0]	b	.s2	.L1236
 		nop	5
-.L1128:
+		mv	.l2x	A12, B4
+		mv	.l2x	A13, B5
+		dmv	.s1	A15, A14, A5:A4
+		callp	.s2	(__c6xabi_mpyd), B3
+		dmv	.s1	A5, A4, A15:A14
+.L1236:
 		shru	.s1	A10, 31, A3
 		add	.d1	A3, A10, A10
 		shr	.s1	A10, 1, A10
 		mv	.d1	A10, A1
-	[!A1]	b	.s2	.L1129
+	[!A1]	b	.s2	.L1237
 		nop	5
 		mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
@@ -4921,22 +5094,12 @@ __powidf2:
 		mv	.d1	A13, A5
 		callp	.s2	(__c6xabi_mpyd), B3
 		dmv	.s1	A5, A4, A13:A12
-.L1130:
-		and	.d1	1, A10, A0
-	[!A0]	b	.s2	.L1128
+		b	.s2	.L1238
 		nop	5
-		mv	.l2x	A12, B4
-		mv	.l2x	A13, B5
-		dmv	.s1	A15, A14, A5:A4
-		callp	.s2	(__c6xabi_mpyd), B3
-		dmv	.s1	A5, A4, A15:A14
-		b	.s2	.L1128
-		nop	5
-.L1129:
+.L1237:
 		cmpgt	.l1	0, A11, A2
-	[A2]	b	.s2	.L1136
+	[A2]	b	.s2	.L1245
 		nop	5
-.L1127:
 		dmv	.s1	A15, A14, A5:A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
@@ -4957,7 +5120,7 @@ __powidf2:
 		addab	.d2	B15, 40, B15
 		ret	.s2	B3
 		nop	5
-.L1136:
+.L1245:
 		mv	.l2x	A14, B4
 		mv	.l2x	A15, B5
 		mvk	.d1	0, A4
@@ -4965,7 +5128,25 @@ __powidf2:
 		mvklh	.s1	16368, A5
 		callp	.s2	(__c6xabi_divd), B3
 		dmv	.s1	A5, A4, A15:A14
-		b	.s2	.L1127
+		dmv	.s1	A15, A14, A5:A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t1	*+B15(28), A14
+		nop	4
+		ldw	.d2t2	*+B15(32), B3
+		nop	4
+		ldw	.d2t2	*+B15(36), B14
+		nop	4
+		ldw	.d2t1	*+B15(40), A15
+		nop	4
+		addab	.d2	B15, 40, B15
+		ret	.s2	B3
 		nop	5
 	.size	__powidf2, .-__powidf2
 	.align	2
@@ -4986,34 +5167,31 @@ __powisf2:
 		mv	.l1x	B4, A10
 		mvk	.d1	0, A12
 		mvklh	.s1	16256, A12
-		b	.s2	.L1143
-		nop	5
-.L1141:
-		shru	.s1	A10, 31, A3
-		add	.d1	A3, A10, A10
-		shr	.s1	A10, 1, A10
-		mv	.d1	A10, A1
-	[!A1]	b	.s2	.L1142
-		nop	5
-		mv	.l2x	A11, B4
-		mv	.d1	A11, A4
-		callp	.s2	(__c6xabi_mpyf), B3
-		mv	.d1	A4, A11
-.L1143:
+.L1252:
 		and	.d1	1, A10, A0
-	[!A0]	b	.s2	.L1141
+	[!A0]	b	.s2	.L1250
 		nop	5
 		mv	.l2x	A11, B4
 		mv	.d1	A12, A4
 		callp	.s2	(__c6xabi_mpyf), B3
 		mv	.d1	A4, A12
-		b	.s2	.L1141
+.L1250:
+		shru	.s1	A10, 31, A3
+		add	.d1	A3, A10, A10
+		shr	.s1	A10, 1, A10
+		mv	.d1	A10, A1
+	[!A1]	b	.s2	.L1251
 		nop	5
-.L1142:
+		mv	.l2x	A11, B4
+		mv	.d1	A11, A4
+		callp	.s2	(__c6xabi_mpyf), B3
+		mv	.d1	A4, A11
+		b	.s2	.L1252
+		nop	5
+.L1251:
 		cmpgt	.l1	0, A13, A2
-	[A2]	b	.s2	.L1149
+	[A2]	b	.s2	.L1259
 		nop	5
-.L1140:
 		mv	.d1	A12, A4
 		ldw	.d2t1	*+B15(12), A10
 		nop	4
@@ -5030,13 +5208,27 @@ __powisf2:
 		addab	.d2	B15, 32, B15
 		ret	.s2	B3
 		nop	5
-.L1149:
+.L1259:
 		mv	.l2x	A12, B4
 		mvk	.d1	0, A4
 		mvklh	.s1	16256, A4
 		callp	.s2	(__c6xabi_divf), B3
 		mv	.d1	A4, A12
-		b	.s2	.L1140
+		mv	.d1	A12, A4
+		ldw	.d2t1	*+B15(12), A10
+		nop	4
+		ldw	.d2t1	*+B15(16), A11
+		nop	4
+		ldw	.d2t1	*+B15(20), A12
+		nop	4
+		ldw	.d2t1	*+B15(24), A13
+		nop	4
+		ldw	.d2t2	*+B15(28), B3
+		nop	4
+		ldw	.d2t2	*+B15(32), B14
+		nop	4
+		addab	.d2	B15, 32, B15
+		ret	.s2	B3
 		nop	5
 	.size	__powisf2, .-__powisf2
 	.align	2
@@ -5045,27 +5237,28 @@ __powisf2:
 __ucmpdi2:
 		mv	.l1x	B5, A3
 		cmpgtu	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1157
+	[A0]	b	.s2	.L1267
 		nop	5
 		cmpltu	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1158
+	[A0]	b	.s2	.L1268
 		nop	5
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
-	[A1]	b	.s2	.L1157
+	[A1]	b	.s2	.L1267
 		nop	5
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	[!A2]	b	.s2	.L1153
+	[A2]	b	.s2	.L1268
 		nop	5
-.L1158:
-		mvk	.d1	2, A4
-		b	.s2	.L1153
+		ret	.s2	B3
 		nop	5
-.L1157:
+.L1267:
 		mvk	.d1	0, A4
-.L1153:
+		ret	.s2	B3
+		nop	5
+.L1268:
+		mvk	.d1	2, A4
 		ret	.s2	B3
 		nop	5
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -5075,27 +5268,30 @@ __ucmpdi2:
 __aeabi_ulcmp:
 		mv	.l1x	B5, A3
 		cmpgtu	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1164
+	[A0]	b	.s2	.L1275
 		nop	5
 		cmpltu	.l1	A3, A5, A0
-	[A0]	b	.s2	.L1165
+	[A0]	b	.s2	.L1276
 		nop	5
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
-	[A1]	b	.s2	.L1164
+	[A1]	b	.s2	.L1275
 		nop	5
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	[!A2]	b	.s2	.L1161
+	[A2]	b	.s2	.L1276
 		nop	5
-.L1165:
-		mvk	.d1	2, A4
-		b	.s2	.L1161
+		sub	.d1	A4, 1, A4
+		ret	.s2	B3
 		nop	5
-.L1164:
+.L1275:
 		mvk	.d1	0, A4
-.L1161:
+		sub	.d1	A4, 1, A4
+		ret	.s2	B3
+		nop	5
+.L1276:
+		mvk	.d1	2, A4
 		sub	.d1	A4, 1, A4
 		ret	.s2	B3
 		nop	5
