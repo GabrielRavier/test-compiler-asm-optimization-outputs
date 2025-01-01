@@ -1144,13 +1144,6 @@ fminl:
 	.cfi_endproc
 .LFE36:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	2
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-.text
 	.align	8
 .globl l64a
 	.type	l64a, @function
@@ -1159,8 +1152,8 @@ l64a:
 	.cfi_startproc
 	ltr	%r2,%r2
 	je	.L263
-	larl	%r1,s.0
-	larl	%r4,digits
+	larl	%r1,.LANCHOR0
+	larl	%r4,.LANCHOR1
 .L262:
 	lhi	%r3,63
 	nr	%r3,%r2
@@ -1172,27 +1165,25 @@ l64a:
 	jne	.L262
 .L261:
 	mvi	0(%r1),0
-	larl	%r2,s.0
+	larl	%r2,.LANCHOR0
 	br	%r14
 .L263:
-	larl	%r1,s.0
+	larl	%r1,.LANCHOR0
 	j	.L261
 	.cfi_endproc
 .LFE37:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	8
 .globl srand
 	.type	srand, @function
 srand:
 .LFB38:
 	.cfi_startproc
-	larl	%r1,seed
+	larl	%r1,.LANCHOR0
 	lhi	%r3,0
-	st	%r3,0(%r1)
+	st	%r3,8(%r1)
 	ahi	%r2,-1
-	st	%r2,4(%r1)
+	st	%r2,12(%r1)
 	br	%r14
 	.cfi_endproc
 .LFE38:
@@ -1208,8 +1199,8 @@ rand:
 	.cfi_offset 11, -52
 	.cfi_offset 12, -48
 	.cfi_offset 13, -44
-	larl	%r1,seed
-	lm	%r4,%r5,0(%r1)
+	larl	%r1,.LANCHOR0
+	lm	%r4,%r5,8(%r1)
 	lr	%r2,%r4
 	lr	%r3,%r5
 	sldl	%r2,4
@@ -1278,7 +1269,7 @@ rand:
 	alcr	%r4,%r2
 	lr	%r2,%r4
 	lr	%r3,%r5
-	stm	%r2,%r3,0(%r1)
+	stm	%r2,%r3,8(%r1)
 	srdl	%r2,33
 	lr	%r2,%r3
 	lm	%r10,%r13,40(%r15)
@@ -5249,8 +5240,25 @@ __aeabi_ulcmp:
 	.cfi_endproc
 .LFE150:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
-	.local	s.0
-	.comm	s.0,7,2
+.bss
+	.align	8
+	.set	.LANCHOR0,. + 0
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
+	.section	.rodata
+	.align	2
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 .globl __floatundisf
 .globl __floatundidf
 .globl __clzdi2

@@ -1507,13 +1507,6 @@ $L215:
 	.end	fminl
 $Lfe37:
 	.size	fminl,$Lfe37-fminl
-	.rodata
-	.align	2
-	.type	digits,@object
-	.size	digits,65
-digits:
-	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
-	.text
 	.align	2
 	.globl	l64a
 	.ent	l64a
@@ -1551,10 +1544,6 @@ $L222:
 	.end	l64a
 $Lfe38:
 	.size	l64a,$Lfe38-l64a
-	.bss
-	.lcomm	seed,8,4
-	.type	seed, @object
-	.text
 	.align	2
 	.globl	srand
 	.ent	srand
@@ -7686,4 +7675,12 @@ $Lfe151:
 	.bss
 	.lcomm	s.0,7,4
 	.type	s.0, @object
+	.lcomm	seed,8,4
+	.type	seed, @object
+	.rodata
+	.align	2
+	.type	digits,@object
+	.size	digits,65
+digits:
+	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
 	.section	.note.GNU-stack,"",@progbits

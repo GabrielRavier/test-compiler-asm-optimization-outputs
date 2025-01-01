@@ -882,13 +882,6 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	3
-	.type	digits, %object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align	2
 	.global	l64a
 	.type	l64a, %function
@@ -897,10 +890,10 @@ l64a:
 	.cfi_startproc
 	mov	w1, w0
 	cbz	w0, .L173
-	adrp	x0, s.0
-	add	x0, x0, :lo12:s.0
-	adrp	x3, digits
-	add	x3, x3, :lo12:digits
+	adrp	x0, .LANCHOR0
+	add	x0, x0, :lo12:.LANCHOR0
+	adrp	x3, .LANCHOR1
+	add	x3, x3, :lo12:.LANCHOR1
 .L172:
 	and	w2, w1, 63
 	ldrb	w2, [x3, w2, uxtw]
@@ -909,18 +902,16 @@ l64a:
 	cbnz	w1, .L172
 .L171:
 	strb	wzr, [x0]
-	adrp	x0, s.0
-	add	x0, x0, :lo12:s.0
+	adrp	x0, .LANCHOR0
+	add	x0, x0, :lo12:.LANCHOR0
 	ret
 .L173:
-	adrp	x0, s.0
-	add	x0, x0, :lo12:s.0
+	adrp	x0, .LANCHOR0
+	add	x0, x0, :lo12:.LANCHOR0
 	b	.L171
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	2
 	.global	srand
 	.type	srand, %function
@@ -928,8 +919,8 @@ srand:
 .LFB40:
 	.cfi_startproc
 	sub	w0, w0, #1
-	adrp	x1, seed
-	str	x0, [x1, #:lo12:seed]
+	adrp	x1, .LANCHOR0+8
+	str	x0, [x1, #:lo12:.LANCHOR0+8]
 	ret
 	.cfi_endproc
 .LFE40:
@@ -940,15 +931,16 @@ srand:
 rand:
 .LFB41:
 	.cfi_startproc
-	adrp	x1, seed
-	ldr	x0, [x1, #:lo12:seed]
+	adrp	x1, .LANCHOR0
+	add	x1, x1, :lo12:.LANCHOR0
+	ldr	x0, [x1, 8]
 	mov	x2, 32557
 	movk	x2, 0x4c95, lsl 16
 	movk	x2, 0xf42d, lsl 32
 	movk	x2, 0x5851, lsl 48
 	mul	x0, x0, x2
 	add	x0, x0, 1
-	str	x0, [x1, #:lo12:seed]
+	str	x0, [x1, 8]
 	lsr	x0, x0, 33
 	ret
 	.cfi_endproc
@@ -4311,8 +4303,6 @@ __ucmpti2:
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
-	.local	s.0
-	.comm	s.0,7,8
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
 .LC0:
@@ -4338,6 +4328,25 @@ __ucmpti2:
 	.word	0
 	.word	0
 	.word	1073610752
+	.section	.rodata
+	.align	3
+	.set	.LANCHOR1,. + 0
+	.type	digits, %object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	.bss
+	.align	3
+	.set	.LANCHOR0,. + 0
+	.type	s.0, %object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, %object
+	.size	seed, 8
+seed:
+	.zero	8
 	.global	__multf3
 	.global	__netf2
 	.global	__addtf3

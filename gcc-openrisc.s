@@ -1221,12 +1221,6 @@ fminl:
 	l.j	.L210
 	l.or	r12, r20, r20
 	.size	fminl, .-fminl
-	.section	.rodata
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	.text
 	.align 4
 	.global	l64a
 	.type	l64a, @function
@@ -1236,10 +1230,10 @@ l64a:
 	l.bf	.L223
 	 l.nop
 
-	l.movhi	r19, ha(s.0)
-	l.addi	r19, r19, lo(s.0)
-	l.movhi	r21, ha(digits)
-	l.addi	r21, r21, lo(digits)
+	l.movhi	r19, ha(.LANCHOR0)
+	l.addi	r19, r19, lo(.LANCHOR0)
+	l.movhi	r21, ha(.LANCHOR1)
+	l.addi	r21, r21, lo(.LANCHOR1)
 .L222:
 	l.andi	r17, r3, 63
 	l.add	r17, r21, r17
@@ -1253,44 +1247,41 @@ l64a:
 	l.addi	r19, r19, 1
 .L221:
 	l.sb	0(r19), r0
-	l.movhi	r11, ha(s.0)
+	l.movhi	r11, ha(.LANCHOR0)
 	l.jr	r9
-	l.addi	r11, r11, lo(s.0)
+	l.addi	r11, r11, lo(.LANCHOR0)
 .L223:
-	l.movhi	r19, ha(s.0)
+	l.movhi	r19, ha(.LANCHOR0)
 	l.j	.L221
-	l.addi	r19, r19, lo(s.0)
+	l.addi	r19, r19, lo(.LANCHOR0)
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,4
 	.align 4
 	.global	srand
 	.type	srand, @function
 srand:
-	l.movhi	r17, ha(seed)
-	l.addi	r19, r17, lo(seed)
+	l.movhi	r17, ha(.LANCHOR0)
+	l.addi	r17, r17, lo(.LANCHOR0)
 	l.addi	r3, r3, -1
-	l.sw	4(r19), r3
+	l.sw	12(r17), r3
 	l.jr	r9
-	l.sw	lo(seed)(r17), r0
+	l.sw	8(r17), r0
 	.size	srand, .-srand
 	.align 4
 	.global	rand
 	.type	rand, @function
 rand:
-	l.addi	r1, r1, -12
+	l.addi	r1, r1, -8
 	l.sw	0(r1), r16
-	l.sw	4(r1), r18
-	l.sw	8(r1), r9
-	l.movhi	r16, ha(seed)
-	l.addi	r18, r16, lo(seed)
+	l.sw	4(r1), r9
+	l.movhi	r16, ha(.LANCHOR0)
+	l.addi	r16, r16, lo(.LANCHOR0)
 	l.movhi	r5, hi(1481703424)
 	l.ori	r5, r5, 62509
 	l.movhi	r6, hi(1284833280)
 	l.ori	r6, r6, 32557
-	l.lwz	r3, lo(seed)(r16)
+	l.lwz	r3, 8(r16)
 	l.jal	__muldi3
-	l.lwz	r4, 4(r18)
+	l.lwz	r4, 12(r16)
 	l.addi	r19, r12, 1
 	l.xori	r17, r0, -1
 	l.sfgeu	r12, r17
@@ -1299,15 +1290,14 @@ rand:
 	l.movhi	r17, hi(0)
 .L227:
 	l.add	r11, r17, r11
-	l.sw	lo(seed)(r16), r11
-	l.sw	4(r18), r19
+	l.sw	8(r16), r11
+	l.sw	12(r16), r19
 	l.ori	r17, r0, 1
 	l.srl	r11, r11, r17
 	l.lwz	r16, 0(r1)
-	l.lwz	r18, 4(r1)
-	l.lwz	r9, 8(r1)
+	l.lwz	r9, 4(r1)
 	l.jr	r9
-	l.addi	r1, r1, 12
+	l.addi	r1, r1, 8
 	.size	rand, .-rand
 	.align 4
 	.global	insque
@@ -5437,8 +5427,24 @@ __aeabi_ulcmp:
 	l.jr	r9
 	l.addi	r1, r1, 4
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
-	.local	s.0
-	.comm	s.0,7,1
+	.section	.bss
+	.align 4
+	.set	.LANCHOR0,. + 0
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
+	.section	.rodata
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divsf3
 	.global	__divdf3
 	.global	__fixsfsi

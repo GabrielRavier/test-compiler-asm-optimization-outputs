@@ -2056,14 +2056,6 @@ $L209:
 __pend_fminl_209:
 	.end	fminl
 	.size	fminl, .-fminl
-	.rdata
-	.align	3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
-	.ascii	"stuvwxyz\000"
-	.text
 	.align	2
 	.globl	l64a
 	.set	mips16
@@ -2105,8 +2097,6 @@ $L215:
 __pend_l64a_214:
 	.end	l64a
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	2
 	.globl	srand
 	.set	mips16
@@ -8675,6 +8665,15 @@ $L908:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
+	.local	seed
+	.comm	seed,8,8
+	.rdata
+	.align	3
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
+	.ascii	"stuvwxyz\000"
 	.globl	__mips16_divsf3
 	.globl	__mips16_divdf3
 	.globl	__ctzdi2

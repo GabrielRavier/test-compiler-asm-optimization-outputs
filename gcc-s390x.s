@@ -1020,13 +1020,6 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	2
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-.text
 	.align	8
 .globl l64a
 	.type	l64a, @function
@@ -1035,8 +1028,8 @@ l64a:
 	.cfi_startproc
 	lr	%r1,%r2
 	cije	%r2,0,.L256
-	larl	%r2,s.0
-	larl	%r4,digits
+	larl	%r2,.LANCHOR0
+	larl	%r4,.LANCHOR1
 .L255:
 	risbg	%r3,%r1,58,128+63,0
 	la	%r3,0(%r3,%r4)
@@ -1046,16 +1039,14 @@ l64a:
 	cijlh	%r1,0,.L255
 .L254:
 	mvi	0(%r2),0
-	larl	%r2,s.0
+	larl	%r2,.LANCHOR0
 	br	%r14
 .L256:
-	larl	%r2,s.0
+	larl	%r2,.LANCHOR0
 	j	.L254
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	8
 .globl srand
 	.type	srand, @function
@@ -1064,7 +1055,7 @@ srand:
 	.cfi_startproc
 	ahi	%r2,-1
 	llgfr	%r2,%r2
-	stgrl	%r2,seed
+	stgrl	%r2,.LANCHOR0+8
 	br	%r14
 	.cfi_endproc
 .LFE40:
@@ -1080,11 +1071,11 @@ srand:
 rand:
 .LFB41:
 	.cfi_startproc
+	larl	%r1,.LANCHOR0
 	lgrl	%r2,.LC0
-	larl	%r1,seed
-	msg	%r2,0(%r1)
+	msg	%r2,8(%r1)
 	aghi	%r2,1
-	stgrl	%r2,seed
+	stg	%r2,8(%r1)
 	srlg	%r2,%r2,33
 	br	%r14
 	.cfi_endproc
@@ -4776,7 +4767,24 @@ __ucmpti2:
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
-	.local	s.0
-	.comm	s.0,7,2
+.bss
+	.align	8
+	.set	.LANCHOR0,. + 0
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
+	.section	.rodata
+	.align	2
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
 	.section	.note.GNU-stack,"",@progbits

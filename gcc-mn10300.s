@@ -950,12 +950,6 @@ fminl:
 	mov_mov a2, a0, a3, a1
 	jmp .L192
 	.size	fminl, .-fminl
-	.section	.rodata
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section .text
 	.global l64a
 	.type	l64a, @function
 l64a:
@@ -981,8 +975,6 @@ l64a:
 	mov +s.0,d1
 	jmp .L202
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,4
 	.global srand
 	.type	srand, @function
 srand:
@@ -4110,6 +4102,13 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,1
+	.local	seed
+	.comm	seed,8,4
+	.section	.rodata
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global __divsf3
 	.global __divdf3
 	.global __fixsfsi

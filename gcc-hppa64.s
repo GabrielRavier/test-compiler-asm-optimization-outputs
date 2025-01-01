@@ -1165,13 +1165,6 @@ fminl:
 	.EXIT
 	.PROCEND
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align 8
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.stringz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align 8
 .globl l64a
 	.type	l64a, @function
@@ -1204,8 +1197,6 @@ l64a:
 	.EXIT
 	.PROCEND
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align 8
 .globl srand
 	.type	srand, @function
@@ -5768,6 +5759,14 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
+	.local	seed
+	.comm	seed,8,8
+	.section	.rodata
+	.align 8
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.stringz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 .globl __ctzdi2
 .globl __clzdi2
 .globl __multf3

@@ -1823,12 +1823,6 @@ fminl:
 	r0 = r6
 	exit
 	.size	fminl, .-fminl
-	.section	.rodata
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align	3
 	.global	l64a
 	.type	l64a, @function
@@ -1896,8 +1890,6 @@ l64a:
 	r0 = s.0 ll
 	goto .L563
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	3
 	.global	srand
 	.type	srand, @function
@@ -8994,6 +8986,13 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,1
+	.local	seed
+	.comm	seed,8,8
+	.section	.rodata
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divsf3
 	.global	__divdf3
 	.global	__ctzdi2

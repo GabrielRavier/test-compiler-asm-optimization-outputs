@@ -964,13 +964,6 @@ fminl:
 	mov	r3, r16
 	br	.L187
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	2
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	.text
 	.align	2
 	.global	l64a
 	.type	l64a, @function
@@ -994,13 +987,6 @@ l64a:
 	addi	r3, gp, %gprel(s.0)
 	br	.L198
 	.size	l64a, .-l64a
-	.section	.sbss
-	.type	seed, @object
-	.size	seed, 8
-	.align	2
-seed:
-	.zero	8
-	.section	.text
 	.align	2
 	.global	srand
 	.type	srand, @function
@@ -4285,6 +4271,17 @@ __aeabi_ulcmp:
 	.align	0
 s.0:
 	.zero	7
+	.type	seed, @object
+	.size	seed, 8
+	.align	2
+seed:
+	.zero	8
+	.section	.rodata
+	.align	2
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divsf3
 	.global	__divdf3
 	.global	__fixsfsi

@@ -961,13 +961,6 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align	1
 	.globl	l64a
 	.type	l64a, @function
@@ -978,9 +971,9 @@ l64a:
 	beq	a0,zero,.L192
 	lui	a4,%hi(s.0)
 	addi	a4,a4,%lo(s.0)
-	lui	a2,%hi(digits)
+	lui	a2,%hi(.LANCHOR0)
 .L191:
-	addi	a5,a2,%lo(digits)
+	addi	a5,a2,%lo(.LANCHOR0)
 	andi	a3,a0,63
 	add	a5,a5,a3
 	lbu	a5,0(a5)
@@ -1000,8 +993,6 @@ l64a:
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	1
 	.globl	srand
 	.type	srand, @function
@@ -4898,8 +4889,6 @@ __ucmpti2:
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
-	.local	s.0
-	.comm	s.0,7,8
 	.section	.srodata.cst4,"aM",@progbits,4
 	.align	2
 .LC1:
@@ -4965,6 +4954,24 @@ __ucmpti2:
 	.align	2
 .LC18:
 	.word	1065353216
+	.section	.rodata
+	.align	3
+	.set	.LANCHOR0,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	.section	.sbss,"aw",@nobits
+	.align	3
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
 	.globl	__ctzdi2
 	.globl	__clzdi2
 	.globl	__multf3

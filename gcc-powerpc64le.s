@@ -1061,13 +1061,6 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl,.-fminl
-	.section	.rodata
-	.align 3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	".text"
 	.align 2
 	.globl l64a
 	.type	l64a, @function
@@ -1081,10 +1074,10 @@ l64a:
 	mr 9,3
 	cmpwi 0,3,0
 	beq 0,.L201
-	addis 10,2,s.0@toc@ha
-	addi 10,10,s.0@toc@l
-	addis 7,2,digits@toc@ha
-	addi 7,7,digits@toc@l
+	addis 10,2,.LANCHOR0@toc@ha
+	addi 10,10,.LANCHOR0@toc@l
+	addis 7,2,.LANCHOR1@toc@ha
+	addi 7,7,.LANCHOR1@toc@l
 .L200:
 	rldicl 8,9,0,58
 	lbzx 8,7,8
@@ -1096,20 +1089,18 @@ l64a:
 .L199:
 	li 9,0
 	stb 9,0(10)
-	addis 3,2,s.0@toc@ha
-	addi 3,3,s.0@toc@l
+	addis 3,2,.LANCHOR0@toc@ha
+	addi 3,3,.LANCHOR0@toc@l
 	blr
 .L201:
-	addis 10,2,s.0@toc@ha
-	addi 10,10,s.0@toc@l
+	addis 10,2,.LANCHOR0@toc@ha
+	addi 10,10,.LANCHOR0@toc@l
 	b .L199
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
 .LFE39:
 	.size	l64a,.-l64a
-	.lcomm	seed,8,8
-	.type	seed, @object
 	.align 2
 	.globl srand
 	.type	srand, @function
@@ -1122,8 +1113,8 @@ srand:
 	.localentry	srand,.-srand
 	addi 3,3,-1
 	rldicl 3,3,0,32
-	addis 9,2,seed@toc@ha
-	std 3,seed@toc@l(9)
+	addis 9,2,.LANCHOR0+8@toc@ha
+	std 3,.LANCHOR0+8@toc@l(9)
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -1145,11 +1136,11 @@ rand:
 	lis 10,0x5851
 	ori 10,10,0xf42d
 	rldimi 9,10,32,0
-	addis 10,2,seed@toc@ha
-	ld 3,seed@toc@l(10)
+	addis 10,2,.LANCHOR0+8@toc@ha
+	ld 3,.LANCHOR0+8@toc@l(10)
 	mulld 3,3,9
 	addi 3,3,1
-	std 3,seed@toc@l(10)
+	std 3,.LANCHOR0+8@toc@l(10)
 	srdi 3,3,33
 	blr
 	.long 0
@@ -5490,8 +5481,6 @@ __ucmpti2:
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2,.-__ucmpti2
-	.lcomm	s.0,7,8
-	.type	s.0, @object
 	.set	.LC0,.LC27+8
 	.set	.LC1,.LC27
 	.section	.rodata.cst4,"aM",@progbits,4
@@ -5548,6 +5537,25 @@ __ucmpti2:
 	.align 2
 .LC37:
 	.long	1191182336
+	.section	.rodata
+	.align 3
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	.section	".bss"
+	.align 3
+	.set	.LANCHOR0,. + 0
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
 	.globl __gcc_qmul
 	.globl __gcc_qadd
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"

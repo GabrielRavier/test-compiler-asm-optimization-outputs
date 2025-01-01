@@ -936,14 +936,6 @@ fminl:
 	vmov.f64	d0, d1
 	mov	pc, lr
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	2
-	.type	digits, %object
-	.size	digits, 65
-digits:
-	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
-	.ascii	"nopqrstuvwxyz\000"
-	.text
 	.align	2
 	.global	l64a
 	.syntax unified
@@ -974,11 +966,9 @@ l64a:
 .L188:
 	.align	2
 .L187:
-	.word	s.0
-	.word	digits
+	.word	.LANCHOR0
+	.word	.LANCHOR1
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	2
 	.global	srand
 	.syntax unified
@@ -990,14 +980,14 @@ srand:
 	@ link register save eliminated.
 	ldr	r3, .L190
 	sub	r0, r0, #1
-	str	r0, [r3]
+	str	r0, [r3, #8]
 	mov	r2, #0
-	str	r2, [r3, #4]
+	str	r2, [r3, #12]
 	mov	pc, lr
 .L191:
 	.align	2
 .L190:
-	.word	seed
+	.word	.LANCHOR0
 	.size	srand, .-srand
 	.align	2
 	.global	rand
@@ -1009,23 +999,23 @@ rand:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	str	lr, [sp, #-4]!
 	ldr	r2, .L194
-	ldr	r3, [r2, #4]
+	ldr	r3, [r2, #12]
 	ldr	r1, .L194+4
-	ldr	ip, [r2]
+	ldr	ip, [r2, #8]
 	ldr	r0, .L194+8
 	mul	r0, ip, r0
 	mla	r0, r1, r3, r0
 	umull	r3, lr, ip, r1
 	adds	r3, r3, #1
 	adc	r0, r0, lr
-	str	r3, [r2]
-	str	r0, [r2, #4]
+	str	r3, [r2, #8]
+	str	r0, [r2, #12]
 	lsr	r0, r0, #1
 	ldr	pc, [sp], #4
 .L195:
 	.align	2
 .L194:
-	.word	seed
+	.word	.LANCHOR0
 	.word	1284865837
 	.word	1481765933
 	.size	rand, .-rand
@@ -4038,8 +4028,26 @@ __aeabi_ulcmp:
 	sub	r0, r0, #1
 	pop	{r4, pc}
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
-	.local	s.0
-	.comm	s.0,7,4
+	.section	.rodata
+	.align	2
+	.set	.LANCHOR1,. + 0
+	.type	digits, %object
+	.size	digits, 65
+digits:
+	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
+	.ascii	"nopqrstuvwxyz\000"
+	.bss
+	.align	3
+	.set	.LANCHOR0,. + 0
+	.type	s.0, %object
+	.size	s.0, 7
+s.0:
+	.space	7
+	.space	1
+	.type	seed, %object
+	.size	seed, 8
+seed:
+	.space	8
 	.global	__aeabi_uidivmod
 	.global	__aeabi_ul2f
 	.global	__aeabi_ul2d

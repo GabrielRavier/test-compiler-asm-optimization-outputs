@@ -978,13 +978,6 @@ fminl:
 	return	%i7+8
 	 nop
 	.size	fminl, .-fminl
-	.section	".rodata"
-	.align 8
-	.type	digits, #object
-	.size	digits, 65
-digits:
-	.asciz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	".text"
 	.align 4
 	.global l64a
 	.type	l64a, #function
@@ -1015,8 +1008,6 @@ l64a:
 	ba,pt	%xcc, .L190
 	 or	%g2, %lo(s.0), %g2
 	.size	l64a, .-l64a
-	.local	seed
-	.common	seed,8,8
 	.align 4
 	.global srand
 	.type	srand, #function
@@ -4404,6 +4395,14 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.common	s.0,7,8
+	.local	seed
+	.common	seed,8,8
+	.section	".rodata"
+	.align 8
+	.type	digits, #object
+	.size	digits, 65
+digits:
+	.asciz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global __ctzdi2
 	.global __clzdi2
 	.global _Qp_mul

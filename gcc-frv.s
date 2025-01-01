@@ -1135,13 +1135,6 @@ fminl:
 	mov gr19, gr9
 	bra .L177
 	.size	fminl, .-fminl
-	.section	.rodata
-	.p2align 2
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.p2align 4
 	.globl l64a
 	.type	l64a, @function
@@ -1174,13 +1167,6 @@ l64a:
 	add gr4,gr15,gr4
 	bra .L187
 	.size	l64a, .-l64a
-	.section	.sbss,"aw",@nobits
-	.p2align 3
-	.type	seed, @object
-	.size	seed, 8
-seed:
-	.zero	8
-	.text
 	.p2align 4
 	.globl srand
 	.type	srand, @function
@@ -4855,12 +4841,23 @@ __aeabi_ulcmp:
 	addi sp,#16,sp
 	jmpl @(gr5,gr0)
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
-	.section	.sbss
+	.section	.sbss,"aw",@nobits
 	.p2align 2
 	.type	s.0, @object
 	.size	s.0, 7
 s.0:
 	.zero	7
+	.p2align 3
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
+	.section	.rodata
+	.p2align 2
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.globl __divf
 	.globl __divd
 	.globl __ftoi

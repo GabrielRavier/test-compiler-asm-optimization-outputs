@@ -882,13 +882,6 @@ fminl:
 	vadd2	r0,r14,0
 	b_s	.L250
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align 4
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	.text
 	.align 4
 	.global	l64a
 	.type	l64a, @function
@@ -912,13 +905,6 @@ l64a:
 	mov_s	r2,@s.0	;13
 	b_s	.L261
 	.size	l64a, .-l64a
-	.section	.bss
-	.align 4
-	.type	seed, @object
-	.size	seed, 8
-seed:
-	.zero	8
-	.section	.text
 	.align 4
 	.global	srand
 	.type	srand, @function
@@ -3977,6 +3963,17 @@ __aeabi_ulcmp:
 	.size	s.0, 7
 s.0:
 	.zero	7
+	.align 4
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
+	.section	.rodata
+	.align 4
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divsf3
 	.global	__divdf3
 	.global	__fixsfsi

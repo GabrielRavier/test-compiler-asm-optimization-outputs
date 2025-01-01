@@ -1473,14 +1473,6 @@ fminl:
 	.set	reorder
 	.end	fminl
 	.size	fminl, .-fminl
-	.rdata
-	.align	3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
-	.ascii	"stuvwxyz\000"
-	.text
 	.align	2
 	.globl	l64a
 	.set	nomips16
@@ -1528,8 +1520,6 @@ l64a:
 	.set	reorder
 	.end	l64a
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	2
 	.globl	srand
 	.set	nomips16
@@ -6754,6 +6744,15 @@ __ucmpti2:
 	.size	__ucmpti2, .-__ucmpti2
 	.local	s.0
 	.comm	s.0,7,8
+	.local	seed
+	.comm	seed,8,8
+	.rdata
+	.align	3
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
+	.ascii	"stuvwxyz\000"
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align	2
 .LC0:

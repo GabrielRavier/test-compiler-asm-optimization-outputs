@@ -964,13 +964,6 @@ fminl:
 	b	.L214
 	 fmovs	%f9, %f1
 	.size	fminl, .-fminl
-	.section	".rodata"
-	.align 8
-	.type	digits, #object
-	.size	digits, 65
-digits:
-	.asciz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	".text"
 	.align 4
 	.global l64a
 	.type	l64a, #function
@@ -1001,8 +994,6 @@ l64a:
 	b	.L224
 	 or	%g2, %lo(s.0), %g2
 	.size	l64a, .-l64a
-	.local	seed
-	.common	seed,8,8
 	.align 4
 	.global srand
 	.type	srand, #function
@@ -4267,6 +4258,14 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.common	s.0,7,8
+	.local	seed
+	.common	seed,8,8
+	.section	".rodata"
+	.align 8
+	.type	digits, #object
+	.size	digits, 65
+digits:
+	.asciz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global .urem
 	.global __floatundisf
 	.global __floatundidf

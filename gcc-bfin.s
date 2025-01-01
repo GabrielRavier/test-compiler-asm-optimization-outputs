@@ -1207,13 +1207,6 @@ _fminl:
 	[SP+20] = R1;
 	jump.s .L190;
 	.size	_fminl, .-_fminl
-	.section	.rodata
-	.align 4
-	.type	_digits, @object
-	.size	_digits, 65
-_digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-.text;
 	.align 4
 .global _l64a;
 .type _l64a, STT_FUNC;
@@ -1245,8 +1238,6 @@ _l64a:
 	P1.L = _s.0;
 	jump.s .L200;
 	.size	_l64a, .-_l64a
-	.local	_seed
-	.comm	_seed,8,4
 	.align 4
 .global _srand;
 .type _srand, STT_FUNC;
@@ -5170,6 +5161,14 @@ ___aeabi_ulcmp:
 	.size	___aeabi_ulcmp, .-___aeabi_ulcmp
 	.local	_s.0
 	.comm	_s.0,7,1
+	.local	_seed
+	.comm	_seed,8,4
+	.section	.rodata
+	.align 4
+	.type	_digits, @object
+	.size	_digits, 65
+_digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 .global ___divsf3;
 .global ___divdf3;
 .global ___fixsfsi;

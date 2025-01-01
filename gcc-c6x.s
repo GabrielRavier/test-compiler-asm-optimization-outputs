@@ -1131,13 +1131,6 @@ fminl:
 		ret	.s2	B3
 		nop	5
 	.size	fminl, .-fminl
-	.section	.const,"a"
-	.align	3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-.text;
 	.align	2
 	.global	l64a
 	.type	l64a, @function
@@ -1179,13 +1172,6 @@ l64a:
 		b	.s2	.L211
 		nop	5
 	.size	l64a, .-l64a
-	.section	".bss","aw",@nobits
-	.type	seed, @object
-	.size	seed, 8
-	.align	3
-seed:
-	.zero	8
-.text;
 	.align	2
 	.global	srand
 	.type	srand, @function
@@ -5183,6 +5169,18 @@ __aeabi_ulcmp:
 	.align	3
 s.0:
 	.zero	7
+	.section	".bss","aw",@nobits
+	.type	seed, @object
+	.size	seed, 8
+	.align	3
+seed:
+	.zero	8
+	.section	.const,"a"
+	.align	3
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__c6xabi_divf
 	.global	__c6xabi_divd
 	.global	__c6xabi_fixfi

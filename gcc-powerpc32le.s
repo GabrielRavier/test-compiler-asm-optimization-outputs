@@ -1341,13 +1341,6 @@ fminl:
 	.cfi_endproc
 .LFE36:
 	.size	fminl,.-fminl
-	.section	.rodata
-	.align 2
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section	".text"
 	.align 2
 	.globl l64a
 	.type	l64a, @function
@@ -1356,10 +1349,10 @@ l64a:
 	.cfi_startproc
 	cmpwi 0,3,0
 	beq- 0,.L212
-	lis 9,s.0@ha
-	la 9,s.0@l(9)
-	lis 8,digits@ha
-	la 8,digits@l(8)
+	lis 9,.LANCHOR0@ha
+	la 9,.LANCHOR0@l(9)
+	lis 8,.LANCHOR1@ha
+	la 8,.LANCHOR1@l(8)
 .L211:
 	rlwinm 10,3,0,26,31
 	lbzx 10,8,10
@@ -1370,30 +1363,28 @@ l64a:
 .L210:
 	li 10,0
 	stb 10,0(9)
-	lis 3,s.0@ha
-	la 3,s.0@l(3)
+	lis 3,.LANCHOR0@ha
+	la 3,.LANCHOR0@l(3)
 	blr
 .L212:
-	lis 9,s.0@ha
-	la 9,s.0@l(9)
+	lis 9,.LANCHOR0@ha
+	la 9,.LANCHOR0@l(9)
 	b .L210
 	.cfi_endproc
 .LFE37:
 	.size	l64a,.-l64a
-	.lcomm	seed,8,8
-	.type	seed, @object
 	.align 2
 	.globl srand
 	.type	srand, @function
 srand:
 .LFB38:
 	.cfi_startproc
-	lis 9,seed@ha
-	la 10,seed@l(9)
+	lis 9,.LANCHOR0@ha
+	la 9,.LANCHOR0@l(9)
 	addi 3,3,-1
-	stw 3,seed@l(9)
-	li 9,0
-	stw 9,4(10)
+	stw 3,8(9)
+	li 10,0
+	stw 10,12(9)
 	blr
 	.cfi_endproc
 .LFE38:
@@ -1404,23 +1395,23 @@ srand:
 rand:
 .LFB39:
 	.cfi_startproc
-	lis 8,seed@ha
-	la 6,seed@l(8)
-	lis 9,0x4c95
-	ori 9,9,0x7f2d
-	lwz 3,4(6)
-	mullw 3,9,3
-	lwz 7,seed@l(8)
-	lis 10,0x5851
-	ori 10,10,0xf42d
-	mullw 10,10,7
-	add 3,3,10
-	mullw 10,9,7
-	mulhwu 9,9,7
-	addic 10,10,1
-	adde 3,3,9
-	stw 10,seed@l(8)
-	stw 3,4(6)
+	lis 9,.LANCHOR0@ha
+	la 9,.LANCHOR0@l(9)
+	lis 10,0x4c95
+	ori 10,10,0x7f2d
+	lwz 3,12(9)
+	mullw 3,10,3
+	lwz 7,8(9)
+	lis 8,0x5851
+	ori 8,8,0xf42d
+	mullw 8,8,7
+	add 3,3,8
+	mullw 8,10,7
+	mulhwu 10,10,7
+	addic 8,8,1
+	adde 3,3,10
+	stw 8,8(9)
+	stw 3,12(9)
 	srwi 3,3,1
 	blr
 	.cfi_endproc
@@ -5642,8 +5633,25 @@ __aeabi_ulcmp:
 	.cfi_endproc
 .LFE150:
 	.size	__aeabi_ulcmp,.-__aeabi_ulcmp
-	.lcomm	s.0,7,4
+	.section	.rodata
+	.align 2
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+	.section	".bss"
+	.align 3
+	.set	.LANCHOR0,. + 0
 	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.zero	7
+	.zero	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.zero	8
 	.globl __divsf3
 	.globl __divdf3
 	.globl __fixsfsi

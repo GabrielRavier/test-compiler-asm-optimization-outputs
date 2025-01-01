@@ -972,13 +972,6 @@ fminl:
 .L195:
 	retw.n
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	4
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.literal_position
 	.literal .LC36, s.0
 	.literal .LC37, digits
@@ -1007,8 +1000,6 @@ l64a:
 	l32r	a2, .LC36
 	retw.n
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.literal_position
 	.literal .LC38, seed
 	.align	4
@@ -4188,6 +4179,14 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,4
+	.local	seed
+	.comm	seed,8,8
+	.section	.rodata
+	.align	4
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divsf3
 	.global	__divdf3
 	.global	__umulsidi3

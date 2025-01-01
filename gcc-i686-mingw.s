@@ -1094,11 +1094,6 @@ L186:
 	ret
 	.cfi_endproc
 LFE38:
-	.section .rdata,"dr"
-	.align 32
-_digits:
-	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
-	.text
 	.globl	_l64a
 	.def	_l64a;	.scl	2;	.type	32;	.endef
 _l64a:
@@ -1127,7 +1122,6 @@ L199:
 	jmp	L197
 	.cfi_endproc
 LFE39:
-.lcomm _seed,8,8
 	.globl	_srand
 	.def	_srand;	.scl	2;	.type	32;	.endef
 _srand:
@@ -5457,7 +5451,11 @@ LFB152:
 	.cfi_endproc
 LFE152:
 .lcomm _s.0,7,4
+.lcomm _seed,8,8
 	.section .rdata,"dr"
+	.align 32
+_digits:
+	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
 	.align 4
 LC2:
 	.long	-8388609

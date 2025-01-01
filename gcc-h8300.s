@@ -963,12 +963,6 @@ _fminl:
 	mov.l	@er7+,er4
 	rts
 	.size	_fminl, .-_fminl
-	.section	.rodata
-	.type	_digits, @object
-	.size	_digits, 65
-_digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.section .text
 	.align 1
 	.global _l64a
 _l64a:
@@ -999,8 +993,6 @@ _l64a:
 	mov.l	#_s___0,er0
 	rts
 	.size	_l64a, .-_l64a
-	.local	_seed
-	.comm	_seed,8,4
 	.align 1
 	.global _srand
 _srand:
@@ -5965,6 +5957,13 @@ ___aeabi_ulcmp:
 	.size	___aeabi_ulcmp, .-___aeabi_ulcmp
 	.local	_s___0
 	.comm	_s___0,7,1
+	.local	_seed
+	.comm	_seed,8,4
+	.section	.rodata
+	.type	_digits, @object
+	.size	_digits, 65
+_digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global ___divsf3
 	.global ___fixsfsi
 	.global ___floatundisf

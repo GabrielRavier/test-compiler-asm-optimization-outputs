@@ -1187,13 +1187,6 @@ fminl:
 	.cfi_endproc
 .LFE36:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align 32
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.globl	l64a
 	.type	l64a, @function
 l64a:
@@ -1223,8 +1216,6 @@ l64a:
 	.cfi_endproc
 .LFE37:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.globl	srand
 	.type	srand, @function
 srand:
@@ -5830,6 +5821,14 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,4
+	.local	seed
+	.comm	seed,8,8
+	.section	.rodata
+	.align 32
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
 .LC2:

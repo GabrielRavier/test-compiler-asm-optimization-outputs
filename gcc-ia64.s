@@ -1272,13 +1272,6 @@ fminl:
 	br .L171
 	;;
 	.endp fminl#
-	.section	.rodata
-	.align 8
-	.type	digits#, @object
-	.size	digits#, 65
-digits:
-	stringz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align 16
 	.global l64a#
 	.type	l64a#, @function
@@ -1315,13 +1308,6 @@ l64a:
 	br.ret.sptk.many b0
 	;;
 	.endp l64a#
-	.sbss
-	.align 8
-	.type	seed#, @object
-	.size	seed#, 8
-seed:
-	.skip	8
-	.text
 	.align 16
 	.global srand#
 	.type	srand#, @function
@@ -6264,6 +6250,17 @@ __ucmpti2:
 	.size	s.0#, 7
 s.0:
 	.skip	7
+	.align 8
+	.type	seed#, @object
+	.size	seed#, 8
+seed:
+	.skip	8
+	.section	.rodata
+	.align 8
+	.type	digits#, @object
+	.size	digits#, 65
+digits:
+	stringz	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global __umoddi3#
 	.global __moddi3#
 	.global __divdi3#

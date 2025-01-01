@@ -1229,12 +1229,6 @@ fminl:
 	move.l %d5,%a6
 	jra .L177
 	.size	fminl, .-fminl
-	.section	.rodata
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align	2
 	.globl	l64a
 	.type	l64a, @function
@@ -1258,8 +1252,6 @@ l64a:
 	lea (s.0),%a0
 	jra .L185
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,2
 	.align	2
 	.globl	srand
 	.type	srand, @function
@@ -5052,6 +5044,13 @@ __aeabi_ulcmp:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.local	s.0
 	.comm	s.0,7,1
+	.local	seed
+	.comm	seed,8,2
+	.section	.rodata
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.globl	__divsf3
 	.globl	__divdf3
 	.globl	__fixsfsi

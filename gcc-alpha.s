@@ -1317,12 +1317,6 @@ $L167:
 	.cfi_endproc
 $LFE38:
 	.end fminl
-	.section	.rodata
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.text
 	.align 2
 	.globl l64a
 	.ent l64a
@@ -1368,13 +1362,6 @@ $L171:
 	.cfi_endproc
 $LFE39:
 	.end l64a
-	.section	.sbss,"aw"
-	.type	seed, @object
-	.size	seed, 8
-	.align 3
-seed:
-	.zero	8
-	.text
 	.align 2
 	.globl srand
 	.ent srand
@@ -6112,6 +6099,16 @@ $LFE165:
 	.size	s.0, 7
 s.0:
 	.zero	7
+	.type	seed, @object
+	.size	seed, 8
+	.align 3
+seed:
+	.zero	8
+	.section	.rodata
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 3
 $LC0:

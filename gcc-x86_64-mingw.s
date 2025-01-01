@@ -839,11 +839,6 @@ fminl:
 	fstp	st(0)
 	jmp	.L167
 	.seh_endproc
-	.section .rdata,"dr"
-	.align 32
-digits:
-	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
-	.text
 	.globl	l64a
 	.def	l64a;	.scl	2;	.type	32;	.endef
 	.seh_proc	l64a
@@ -868,7 +863,6 @@ l64a:
 	lea	rax, s.0[rip]
 	ret
 	.seh_endproc
-.lcomm seed,8,8
 	.globl	srand
 	.def	srand;	.scl	2;	.type	32;	.endef
 	.seh_proc	srand
@@ -4277,7 +4271,11 @@ __ucmpti2:
 	ret
 	.seh_endproc
 .lcomm s.0,7,1
+.lcomm seed,8,8
 	.section .rdata,"dr"
+	.align 32
+digits:
+	.ascii "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\0"
 	.align 4
 .LC3:
 	.long	-8388609

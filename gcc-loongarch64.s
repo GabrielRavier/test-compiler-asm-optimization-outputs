@@ -997,14 +997,6 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
-	.section	.rodata
-	.align	3
-	.type	digits, @object
-	.size	digits, 65
-digits:
-	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
-	.ascii	"stuvwxyz\000"
-	.text
 	.align	2
 	.globl	l64a
 	.type	l64a, @function
@@ -1012,9 +1004,9 @@ l64a:
 .LFB39 = .
 	.cfi_startproc
 	slli.w	$r4,$r4,0
-	la.local	$r12,s.0
+	la.local	$r12,.LANCHOR0
 	beqz	$r4,.L187
-	la.local	$r14,digits
+	la.local	$r14,.LANCHOR1
 .L188:
 	andi	$r13,$r4,63
 	ldx.bu	$r13,$r14,$r13
@@ -1024,13 +1016,11 @@ l64a:
 	bnez	$r4,.L188
 .L187:
 	st.b	$r0,$r12,0
-	la.local	$r4,s.0
+	la.local	$r4,.LANCHOR0
 	jr	$r1
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
-	.local	seed
-	.comm	seed,8,8
 	.align	2
 	.globl	srand
 	.type	srand, @function
@@ -1039,8 +1029,8 @@ srand:
 	.cfi_startproc
 	addi.w	$r4,$r4,-1
 	bstrpick.d	$r4,$r4,31,0
-	pcalau12i	$r12,%pc_hi20(seed)
-	st.d	$r4,$r12,%pc_lo12(seed)
+	pcalau12i	$r12,%pc_hi20(.LANCHOR0+8)
+	st.d	$r4,$r12,%pc_lo12(.LANCHOR0+8)
 	jr	$r1
 	.cfi_endproc
 .LFE40:
@@ -1051,15 +1041,15 @@ srand:
 rand:
 .LFB41 = .
 	.cfi_startproc
-	la.local	$r12,seed
-	ldptr.d	$r4,$r12,0
+	la.local	$r12,.LANCHOR0
+	ld.d	$r4,$r12,8
 	lu12i.w	$r13,1284861952>>12			# 0x4c957000
 	ori	$r13,$r13,3885
 	lu32i.d	$r13,0x1f42d00000000>>32
 	lu52i.d	$r13,$r13,0x5850000000000000>>52
 	mul.d	$r4,$r4,$r13
 	addi.d	$r4,$r4,1
-	stptr.d	$r4,$r12,0
+	st.d	$r4,$r12,8
 	srli.d	$r4,$r4,33
 	jr	$r1
 	.cfi_endproc
@@ -4761,8 +4751,6 @@ __ucmpti2:
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
-	.local	s.0
-	.comm	s.0,7,8
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align	2
 .LC0:
@@ -4828,6 +4816,26 @@ __ucmpti2:
 	.align	2
 .LC21:
 	.word	1065353216
+	.section	.rodata
+	.align	3
+	.set	.LANCHOR1,. + 0
+	.type	digits, @object
+	.size	digits, 65
+digits:
+	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
+	.ascii	"stuvwxyz\000"
+	.section	.bss,"aw",@nobits
+	.align	3
+	.set	.LANCHOR0,. + 0
+	.type	s.0, @object
+	.size	s.0, 7
+s.0:
+	.space	7
+	.space	1
+	.type	seed, @object
+	.size	seed, 8
+seed:
+	.space	8
 
 
 	.globl	__multf3
