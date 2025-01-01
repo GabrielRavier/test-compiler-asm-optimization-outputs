@@ -1359,8 +1359,7 @@ div:
 	mov	r0, r1
 	mov	r1, r2
 	bl	__aeabi_idivmod
-	str	r0, [r4]
-	str	r1, [r4, #4]
+	stm	r4, {r0, r1}
 	mov	r0, r4
 	pop	{r4, pc}
 	.size	div, .-div
@@ -1427,8 +1426,7 @@ ldiv:
 	mov	r0, r1
 	mov	r1, r2
 	bl	__aeabi_idivmod
-	str	r0, [r4]
-	str	r1, [r4, #4]
+	stm	r4, {r0, r1}
 	mov	r0, r4
 	pop	{r4, pc}
 	.size	ldiv, .-ldiv

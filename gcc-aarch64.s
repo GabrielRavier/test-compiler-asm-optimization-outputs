@@ -562,13 +562,13 @@ iswcntrl:
 	ccmp	w1, 31, 0, hi
 	mov	w0, 1
 	bls	.L123
-	sub	w2, w1, #8192
-	sub	w2, w2, #40
+	mov	w2, -8232
+	add	w2, w1, w2
 	mov	w0, 1
 	cmp	w2, w0
 	bls	.L123
-	sub	w1, w1, #61440
-	sub	w1, w1, #4089
+	mov	w0, -65529
+	add	w1, w1, w0
 	cmp	w1, 2
 	cset	w0, ls
 .L123:
@@ -600,8 +600,8 @@ iswprint:
 	mov	w1, w0
 	cmp	w0, 254
 	bls	.L134
-	sub	w2, w0, #8192
-	sub	w2, w2, #42
+	mov	w2, -8234
+	add	w2, w0, w2
 	mov	w0, 47061
 	cmp	w2, w0
 	mov	w0, 1
@@ -612,8 +612,8 @@ iswprint:
 	mov	w2, 8184
 	cmp	w3, w2
 	bls	.L128
-	sub	w3, w1, #61440
-	sub	w3, w3, #4092
+	mov	w0, -65532
+	add	w3, w1, w0
 	mov	w0, 0
 	mov	w2, 3
 	movk	w2, 0x10, lsl 16
@@ -820,9 +820,9 @@ fmaxl:
 	mov	v0.16b, v1.16b
 	bl	__unordtf2
 	cbnz	w0, .L174
+	ldr	x1, [sp, 24]
 	ldr	x0, [sp, 40]
 	lsr	x0, x0, 63
-	ldr	x1, [sp, 24]
 	lsr	x1, x1, 63
 	cmp	w0, w1
 	beq	.L169
@@ -932,9 +932,9 @@ fminl:
 	mov	v0.16b, v1.16b
 	bl	__unordtf2
 	cbnz	w0, .L197
+	ldr	x1, [sp, 24]
 	ldr	x0, [sp, 40]
 	lsr	x0, x0, 63
-	ldr	x1, [sp, 24]
 	lsr	x1, x1, 63
 	cmp	w0, w1
 	beq	.L191
@@ -1016,11 +1016,11 @@ rand:
 	.cfi_startproc
 	adrp	x1, .LANCHOR0
 	add	x1, x1, :lo12:.LANCHOR0
-	ldr	x0, [x1, 8]
 	mov	x2, 32557
 	movk	x2, 0x4c95, lsl 16
 	movk	x2, 0xf42d, lsl 32
 	movk	x2, 0x5851, lsl 48
+	ldr	x0, [x1, 8]
 	mul	x0, x0, x2
 	add	x0, x0, 1
 	str	x0, [x1, 8]
@@ -1088,19 +1088,19 @@ lsearch:
 	stp	x21, x22, [sp, 32]
 	stp	x23, x24, [sp, 48]
 	stp	x25, x26, [sp, 64]
-	str	x27, [sp, 80]
 	.cfi_offset 21, -64
 	.cfi_offset 22, -56
 	.cfi_offset 23, -48
 	.cfi_offset 24, -40
 	.cfi_offset 25, -32
 	.cfi_offset 26, -24
-	.cfi_offset 27, -16
 	mov	x22, x0
 	mov	x26, x1
 	mov	x25, x2
 	mov	x21, x3
+	str	x27, [sp, 80]
 	ldr	x24, [x2]
+	.cfi_offset 27, -16
 	cbz	x24, .L223
 	stp	x19, x20, [sp, 16]
 	.cfi_offset 20, -72
@@ -1124,8 +1124,8 @@ lsearch:
 	.cfi_restore 19
 .L223:
 	add	x0, x24, 1
-	str	x0, [x25]
 	madd	x27, x21, x24, x26
+	str	x0, [x25]
 	cbz	x21, .L222
 	mov	x2, x21
 	mov	x1, x22
@@ -1173,11 +1173,11 @@ lfind:
 	.cfi_offset 30, -72
 	mov	x29, sp
 	stp	x23, x24, [sp, 48]
-	str	x25, [sp, 64]
 	.cfi_offset 23, -32
 	.cfi_offset 24, -24
-	.cfi_offset 25, -16
 	ldr	x24, [x2]
+	str	x25, [sp, 64]
+	.cfi_offset 25, -16
 	cbz	x24, .L240
 	stp	x19, x20, [sp, 16]
 	.cfi_offset 20, -56
@@ -1383,12 +1383,12 @@ bsearch:
 	stp	x23, x24, [sp, 48]
 	.cfi_offset 24, -24
 	.cfi_offset 23, -32
-	str	x25, [sp, 64]
-	.cfi_offset 25, -16
 	mov	x24, x0
 	mov	x23, x1
 	mov	x19, x2
 	mov	x22, x3
+	str	x25, [sp, 64]
+	.cfi_offset 25, -16
 	mov	x25, x4
 	b	.L292
 	.p2align 2,,3
@@ -1675,8 +1675,8 @@ wcscmp:
 .LFB60:
 	.cfi_startproc
 	ldr	w4, [x0]
-	ldr	w3, [x1]
 	cmp	w4, 0
+	ldr	w3, [x1]
 	ccmp	w4, w3, 0, ne
 	ccmp	w3, 0, 4, eq
 	beq	.L329
@@ -1752,8 +1752,8 @@ wcsncmp:
 	.p2align 3,,7
 .L346:
 	ldr	w4, [x0]
-	ldr	w3, [x1]
 	cmp	w4, 0
+	ldr	w3, [x1]
 	ccmp	w4, w3, 0, ne
 	ccmp	w3, 0, 4, eq
 	beq	.L357
@@ -2278,10 +2278,10 @@ _Qp_itoq:
 	.cfi_offset 29, -32
 	.cfi_offset 30, -24
 	mov	x29, sp
+	scvtf	d0, w1
 	str	x19, [sp, 16]
 	.cfi_offset 19, -16
 	mov	x19, x0
-	scvtf	d0, w1
 	bl	__extenddftf2
 	str	q0, [x19]
 	ldr	x19, [sp, 16]
@@ -2372,11 +2372,11 @@ ldexpl:
 	.cfi_offset 29, -64
 	.cfi_offset 30, -56
 	mov	x29, sp
+	str	q0, [sp, 32]
+	mov	v1.16b, v0.16b
 	str	x19, [sp, 16]
 	.cfi_offset 19, -48
 	mov	w19, w0
-	str	q0, [sp, 32]
-	mov	v1.16b, v0.16b
 	bl	__unordtf2
 	cbnz	w0, .L483
 	ldr	q1, [sp, 32]
@@ -2756,10 +2756,10 @@ frexp:
 	fcmpe	d0, d31
 	bge	.L602
 .L603:
-	str	w1, [x0]
 	fneg	d31, d0
 	cmp	w2, 0
 	fcsel	d0, d31, d0, ne
+	str	w1, [x0]
 	ret
 	.p2align 2,,3
 .L608:
@@ -3514,8 +3514,7 @@ __modsi3:
 	b	.L788
 	.p2align 2,,3
 .L800:
-	sub	w0, w4, w2
-	cmp	w4, w2
+	subs	w0, w4, w2
 	csel	w4, w0, w4, cs
 	lsr	w3, w3, 1
 	lsr	w2, w2, 1

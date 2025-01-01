@@ -2410,8 +2410,7 @@ copysign:
 	bgez	a10, .L624
 .L623:
 	l32r	a10, .LC103
-	xor	a8, a2, a10
-	mov.n	a2, a8
+	xor	a2, a2, a10
 .L624:
 	retw.n
 	.size	copysign, .-copysign
@@ -2489,8 +2488,7 @@ frexp:
 	movi.n	a8, 0
 	bgez	a10, .L669
 	l32r	a10, .LC108
-	xor	a8, a2, a10
-	mov.n	a2, a8
+	xor	a2, a2, a10
 	movi.n	a8, 1
 	s32i	a8, sp, 0
 	j	.L643
@@ -2557,8 +2555,7 @@ frexp:
 	l32i	a8, sp, 0
 	beqz.n	a8, .L652
 	l32r	a10, .LC108
-	xor	a8, a2, a10
-	mov.n	a2, a8
+	xor	a2, a2, a10
 .L652:
 	retw.n
 	.size	frexp, .-frexp

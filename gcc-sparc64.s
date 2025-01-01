@@ -999,8 +999,7 @@ fminl:
 	.type	l64a, #function
 	.proc	0102
 l64a:
-	mov	%o0, %g1
-	cmp	%o0, 0
+	orcc	%o0, 0, %g1
 	sethi	%hi(s.0), %o0
 	or	%o0, %lo(s.0), %o0
 	be,pn	%icc, .L218
@@ -1342,21 +1341,19 @@ bsearch:
 	.proc	0120
 bsearch_r:
 	save	%sp, -176, %sp
-	cmp	%i2, 0
-	bne,pt	%icc, .L321
-	 mov	%i2, %l0
+	orcc	%i2, 0, %l0
+	bne,pt	%icc, .L323
+	 sra	%l0, 1, %i2
 .L318:
 	mov	0, %i2
 .L317:
 	return	%i7+8
 	 mov	%o2, %o0
 .L320:
-	cmp	%l1, 0
-.L323:
+	orcc	%l1, 0, %l0
 	be,pn	%icc, .L318
-	 mov	%l1, %l0
-.L321:
-	sra	%l0, 1, %i2
+	 sra	%l0, 1, %i2
+.L323:
 	mov	%i2, %l1
 	mulx	%i2, %i3, %i2
 	add	%i1, %i2, %i2
@@ -1367,10 +1364,9 @@ bsearch_r:
 	cmp	%o0, 0
 	be,pn	%icc, .L317
 	 nop
-	ble,pn	%icc, .L323
-	 cmp	%l1, 0
+	ble,pn	%icc, .L320
+	 add	%l0, -1, %l0
 	add	%i2, %i3, %i1
-	add	%l0, -1, %l0
 	ba,pt	%xcc, .L320
 	 sra	%l0, 1, %l1
 	.size	bsearch_r, .-bsearch_r

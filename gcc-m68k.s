@@ -2470,8 +2470,8 @@ ldexpf:
 	move.l %d4,-(%sp)
 	move.l %d4,-(%sp)
 	jsr __addsf3
-	addq.l #8,%sp
-	move.l %d4,-(%sp)
+	addq.l #4,%sp
+	move.l %d4,(%sp)
 	move.l %d0,-(%sp)
 	jsr __nesf2
 	addq.l #8,%sp
@@ -2533,8 +2533,8 @@ ldexp:
 	move.l %d7,-(%sp)
 	move.l %d6,-(%sp)
 	jsr __adddf3
-	lea (16,%sp),%sp
-	move.l %d7,-(%sp)
+	lea (12,%sp),%sp
+	move.l %d7,(%sp)
 	move.l %d6,-(%sp)
 	move.l %d1,-(%sp)
 	move.l %d0,-(%sp)
@@ -3635,8 +3635,8 @@ __fixunssfsi:
 	move.l %d3,-(%sp)
 	move.l %d2,-(%sp)
 	jsr __subsf3
-	addq.l #8,%sp
-	move.l %d0,-(%sp)
+	addq.l #4,%sp
+	move.l %d0,(%sp)
 	jsr __fixsfsi
 	addq.l #4,%sp
 	add.l #32768,%d0
@@ -4519,7 +4519,6 @@ __muldi3_compiler_rt:
 	move.w %d3,%d0
 	mulu.w %d7,%d0
 	add.l %d5,%d0
-	moveq #0,%d5
 	move.w %d1,%d5
 	move.l %d0,%d1
 	swap %d1

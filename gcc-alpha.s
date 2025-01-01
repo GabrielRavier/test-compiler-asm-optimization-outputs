@@ -225,7 +225,7 @@ $memcpy..ng:
 	mov $16,$9
 	beq $18,$L54
 	ldq $27,memcpy($29)		!literal!2
-	jsr $26,($27),0		!lituse_jsr!2
+	jsr $26,($27),memcpy		!lituse_jsr!2
 	ldah $29,0($26)		!gpdisp!3
 	lda $29,0($29)		!gpdisp!3
 $L54:
@@ -1078,17 +1078,17 @@ $fmaxl..ng:
 	stq $5,136($30)
 	stq $6,112($30)
 	stq $7,120($30)
-	ldq $27,_OtsEqlX($29)		!literal!5
-	jsr $26,($27),0		!lituse_jsr!5
-	ldah $29,0($26)		!gpdisp!6
-	lda $29,0($29)		!gpdisp!6
+	ldq $27,_OtsEqlX($29)		!literal!9
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!9
+	ldah $29,0($26)		!gpdisp!10
+	lda $29,0($29)		!gpdisp!10
 	blt $0,$L178
 	mov $10,$16
 	mov $14,$17
 	mov $10,$18
 	mov $14,$19
 	ldq $27,_OtsEqlX($29)		!literal!7
-	jsr $26,($27),0		!lituse_jsr!7
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!7
 	ldah $29,0($26)		!gpdisp!8
 	lda $29,0($29)		!gpdisp!8
 	blt $0,$L173
@@ -1135,10 +1135,10 @@ $L174:
 	ldq $18,96($30)
 	ldq $19,104($30)
 	stq $14,112($30)
-	ldq $27,_OtsLssX($29)		!literal!9
-	jsr $26,($27),0		!lituse_jsr!9
-	ldah $29,0($26)		!gpdisp!10
-	lda $29,0($29)		!gpdisp!10
+	ldq $27,_OtsLssX($29)		!literal!5
+	jsr $26,($27),_OtsLssX		!lituse_jsr!5
+	ldah $29,0($26)		!gpdisp!6
+	lda $29,0($29)		!gpdisp!6
 	cmplt $31,$0,$0
 	cmovne $0,$10,$9
 	cmovne $0,$14,$11
@@ -1298,17 +1298,17 @@ $fminl..ng:
 	stq $7,120($30)
 	stq $22,96($30)
 	stq $23,104($30)
-	ldq $27,_OtsEqlX($29)		!literal!12
-	jsr $26,($27),0		!lituse_jsr!12
-	ldah $29,0($26)		!gpdisp!13
-	lda $29,0($29)		!gpdisp!13
+	ldq $27,_OtsEqlX($29)		!literal!16
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!16
+	ldah $29,0($26)		!gpdisp!17
+	lda $29,0($29)		!gpdisp!17
 	blt $0,$L194
 	mov $13,$16
 	mov $12,$17
 	mov $13,$18
 	mov $12,$19
 	ldq $27,_OtsEqlX($29)		!literal!14
-	jsr $26,($27),0		!lituse_jsr!14
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!14
 	ldah $29,0($26)		!gpdisp!15
 	lda $29,0($29)		!gpdisp!15
 	blt $0,$L199
@@ -1355,10 +1355,10 @@ $L195:
 	ldq $19,88($30)
 	stq $14,104($30)
 	stq $15,96($30)
-	ldq $27,_OtsLssX($29)		!literal!16
-	jsr $26,($27),0		!lituse_jsr!16
-	ldah $29,0($26)		!gpdisp!17
-	lda $29,0($29)		!gpdisp!17
+	ldq $27,_OtsLssX($29)		!literal!12
+	jsr $26,($27),_OtsLssX		!lituse_jsr!12
+	ldah $29,0($26)		!gpdisp!13
+	lda $29,0($29)		!gpdisp!13
 	cmplt $31,$0,$0
 	cmovne $0,$15,$13
 	cmovne $0,$14,$12
@@ -1556,8 +1556,8 @@ $L228:
 	mov $11,$16
 	mov $12,$27
 	jsr $26,($27),0
-	ldah $29,0($26)		!gpdisp!22
-	lda $29,0($29)		!gpdisp!22
+	ldah $29,0($26)		!gpdisp!24
+	lda $29,0($29)		!gpdisp!24
 	beq $0,$L225
 	lda $15,1($15)
 	addq $14,$9,$14
@@ -1574,10 +1574,10 @@ $L226:
 	mov $9,$18
 	mov $11,$17
 	mov $13,$16
-	ldq $27,memmove($29)		!literal!23
-	jsr $26,($27),0		!lituse_jsr!23
-	ldah $29,0($26)		!gpdisp!24
-	lda $29,0($29)		!gpdisp!24
+	ldq $27,memmove($29)		!literal!22
+	jsr $26,($27),memmove		!lituse_jsr!22
+	ldah $29,0($26)		!gpdisp!23
+	lda $29,0($29)		!gpdisp!23
 $L225:
 	mov $13,$0
 	ldq $26,0($30)
@@ -2420,7 +2420,7 @@ $wmemcpy..ng:
 	beq $18,$L386
 	s4addq $18,0,$18
 	ldq $27,memcpy($29)		!literal!46
-	jsr $26,($27),0		!lituse_jsr!46
+	jsr $26,($27),memcpy		!lituse_jsr!46
 	ldah $29,0($26)		!gpdisp!47
 	lda $29,0($29)		!gpdisp!47
 $L386:
@@ -2971,10 +2971,10 @@ $gl_isinfl..ng:
 	lda $1,$LC7($1)		!gprellow
 	ldq $18,0($1)
 	ldq $19,8($1)
-	ldq $27,_OtsLssX($29)		!literal!51
-	jsr $26,($27),0		!lituse_jsr!51
-	ldah $29,0($26)		!gpdisp!52
-	lda $29,0($29)		!gpdisp!52
+	ldq $27,_OtsLssX($29)		!literal!53
+	jsr $26,($27),_OtsLssX		!lituse_jsr!53
+	ldah $29,0($26)		!gpdisp!54
+	lda $29,0($29)		!gpdisp!54
 	lda $1,1($31)
 	bgt $0,$L457
 	mov $10,$16
@@ -2983,10 +2983,10 @@ $gl_isinfl..ng:
 	lda $1,$LC8($1)		!gprellow
 	ldq $18,0($1)
 	ldq $19,8($1)
-	ldq $27,_OtsGtrX($29)		!literal!53
-	jsr $26,($27),0		!lituse_jsr!53
-	ldah $29,0($26)		!gpdisp!54
-	lda $29,0($29)		!gpdisp!54
+	ldq $27,_OtsGtrX($29)		!literal!51
+	jsr $26,($27),_OtsGtrX		!lituse_jsr!51
+	ldah $29,0($26)		!gpdisp!52
+	lda $29,0($29)		!gpdisp!52
 	cmplt $31,$0,$1
 $L457:
 	mov $1,$0
@@ -3026,7 +3026,7 @@ $_Qp_itoq..ng:
 	ldt $f10,16($30)
 	cvtqt $f10,$f16
 	ldq $27,_OtsConvertFloatTX($29)		!literal!56
-	jsr $26,($27),0		!lituse_jsr!56
+	jsr $26,($27),_OtsConvertFloatTX		!lituse_jsr!56
 	ldah $29,0($26)		!gpdisp!57
 	lda $29,0($29)		!gpdisp!57
 	stq $16,0($9)
@@ -3172,28 +3172,28 @@ $ldexpl..ng:
 	stq $3,168($30)
 	stq $4,144($30)
 	stq $5,152($30)
-	ldq $27,_OtsEqlX($29)		!literal!61
-	jsr $26,($27),0		!lituse_jsr!61
-	ldah $29,0($26)		!gpdisp!62
-	lda $29,0($29)		!gpdisp!62
+	ldq $27,_OtsEqlX($29)		!literal!69
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!69
+	ldah $29,0($26)		!gpdisp!70
+	lda $29,0($29)		!gpdisp!70
 	blt $0,$L486
 	mov $10,$16
 	mov $9,$17
 	mov $10,$18
 	mov $9,$19
 	lda $20,2($31)
-	ldq $27,_OtsAddX($29)		!literal!63
-	jsr $26,($27),0		!lituse_jsr!63
-	ldah $29,0($26)		!gpdisp!64
-	lda $29,0($29)		!gpdisp!64
+	ldq $27,_OtsAddX($29)		!literal!65
+	jsr $26,($27),_OtsAddX		!lituse_jsr!65
+	ldah $29,0($26)		!gpdisp!66
+	lda $29,0($29)		!gpdisp!66
 	stq $10,128($30)
 	stq $9,136($30)
 	ldq $18,128($30)
 	ldq $19,136($30)
-	ldq $27,_OtsEqlX($29)		!literal!65
-	jsr $26,($27),0		!lituse_jsr!65
-	ldah $29,0($26)		!gpdisp!66
-	lda $29,0($29)		!gpdisp!66
+	ldq $27,_OtsEqlX($29)		!literal!67
+	jsr $26,($27),_OtsEqlX		!lituse_jsr!67
+	ldah $29,0($26)		!gpdisp!68
+	lda $29,0($29)		!gpdisp!68
 	bgt $0,$L486
 	cmplt $12,0,$2
 	bne $2,$L497
@@ -3222,10 +3222,10 @@ $L488:
 	mov $3,$18
 	mov $11,$19
 	lda $20,2($31)
-	ldq $27,_OtsMulX($29)		!literal!67
-	jsr $26,($27),0		!lituse_jsr!67
-	ldah $29,0($26)		!gpdisp!68
-	lda $29,0($29)		!gpdisp!68
+	ldq $27,_OtsMulX($29)		!literal!61
+	jsr $26,($27),_OtsMulX		!lituse_jsr!61
+	ldah $29,0($26)		!gpdisp!62
+	lda $29,0($29)		!gpdisp!62
 	mov $16,$3
 	mov $17,$11
 $L489:
@@ -3240,10 +3240,10 @@ $L489:
 	ldq $19,104($30)
 	lda $20,2($31)
 	stq $3,168($30)
-	ldq $27,_OtsMulX($29)		!literal!69
-	jsr $26,($27),0		!lituse_jsr!69
-	ldah $29,0($26)		!gpdisp!70
-	lda $29,0($29)		!gpdisp!70
+	ldq $27,_OtsMulX($29)		!literal!63
+	jsr $26,($27),_OtsMulX		!lituse_jsr!63
+	ldah $29,0($26)		!gpdisp!64
+	lda $29,0($29)		!gpdisp!64
 	mov $16,$10
 	mov $17,$9
 	ldq $3,168($30)
@@ -3679,7 +3679,7 @@ $mempcpy..ng:
 	mov $18,$10
 	beq $18,$L600
 	ldq $27,memmove($29)		!literal!72
-	jsr $26,($27),0		!lituse_jsr!72
+	jsr $26,($27),memmove		!lituse_jsr!72
 	ldah $29,0($26)		!gpdisp!73
 	lda $29,0($29)		!gpdisp!73
 $L600:
@@ -3872,7 +3872,7 @@ $__clrsbqi2..ng:
 	sll $1,8,$16
 	zapnot $16,14,$16
 	ldq $27,__clzdi2($29)		!literal!76
-	jsr $26,($27),0		!lituse_jsr!76
+	jsr $26,($27),__clzdi2		!lituse_jsr!76
 	ldah $29,0($26)		!gpdisp!77
 	lda $29,0($29)		!gpdisp!77
 	subl $0,33,$0
@@ -3909,7 +3909,7 @@ $__clrsbdi2..ng:
 	lda $0,63($31)
 	bne $1,$L654
 	ldq $27,__clzdi2($29)		!literal!79
-	jsr $26,($27),0		!lituse_jsr!79
+	jsr $26,($27),__clzdi2		!lituse_jsr!79
 	ldah $29,0($26)		!gpdisp!80
 	lda $29,0($29)		!gpdisp!80
 	subl $0,1,$0
@@ -5242,7 +5242,7 @@ $__clzti2..ng:
 	cmovne $17,0,$16
 	bis $1,$16,$16
 	ldq $27,__clzdi2($29)		!literal!87
-	jsr $26,($27),0		!lituse_jsr!87
+	jsr $26,($27),__clzdi2		!lituse_jsr!87
 	ldah $29,0($26)		!gpdisp!88
 	lda $29,0($29)		!gpdisp!88
 	sll $9,6,$9
@@ -5415,7 +5415,7 @@ $__ctzti2..ng:
 	and $1,$16,$16
 	bis $17,$16,$16
 	ldq $27,__ctzdi2($29)		!literal!90
-	jsr $26,($27),0		!lituse_jsr!90
+	jsr $26,($27),__ctzdi2		!lituse_jsr!90
 	ldah $29,0($26)		!gpdisp!91
 	lda $29,0($29)		!gpdisp!91
 	sll $9,6,$9
@@ -5451,18 +5451,18 @@ $__ffsti2..ng:
 	mov $31,$0
 	beq $17,$L920
 	mov $17,$16
-	ldq $27,__ctzdi2($29)		!literal!93
-	jsr $26,($27),0		!lituse_jsr!93
-	ldah $29,0($26)		!gpdisp!94
-	lda $29,0($29)		!gpdisp!94
+	ldq $27,__ctzdi2($29)		!literal!95
+	jsr $26,($27),__ctzdi2		!lituse_jsr!95
+	ldah $29,0($26)		!gpdisp!96
+	lda $29,0($29)		!gpdisp!96
 	addl $0,65,$0
 	br $31,$L920
 	.align 4
 $L919:
-	ldq $27,__ctzdi2($29)		!literal!95
-	jsr $26,($27),0		!lituse_jsr!95
-	ldah $29,0($26)		!gpdisp!96
-	lda $29,0($29)		!gpdisp!96
+	ldq $27,__ctzdi2($29)		!literal!93
+	jsr $26,($27),__ctzdi2		!lituse_jsr!93
+	ldah $29,0($26)		!gpdisp!94
+	lda $29,0($29)		!gpdisp!94
 	addl $0,1,$0
 $L920:
 	ldq $26,0($30)

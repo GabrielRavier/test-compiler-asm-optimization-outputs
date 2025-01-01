@@ -912,8 +912,9 @@ _l64a:
 	beq	.L266
 	mov.l	#_digits,er1
 .L267:
-	mov.l	er0,er2
-	and.l	#63,er2
+	sub.l	er2,er2
+	mov.b	r0l,r2l
+	and	#63,r2l
 	add.l	er1,er2
 	mov.b	@er2,r2l
 	mov.b	r2l,@er3
@@ -2339,9 +2340,8 @@ _bswap_64:
 	extu.w	r2
 	mov.w	r2,e5
 	sub.l	er2,er2
-	mov.l	er5,er4
-	and	#0,r4l
-	sub.w	e4,e4
+	sub.l	er4,er4
+	mov.b	r5h,r4h
 	mov.l	er0,er6
 	or.l	er2,er6
 	mov.l	er3,er0
@@ -2476,10 +2476,10 @@ _bswap_64:
 	shll.l	er2
 	mov.l	er2,er0
 	add.l	er3,er0
-	mov.l	er0,er2
-	and	#0,r2h
-	sub.w	e2,e2
-	mov.l	er2,er0
+	sub.l	er2,er2
+	mov.b	r0l,r2l
+	mov.l	er2,er4
+	mov.l	er4,er0
 	mov.l	@(16,er7),er1
 	or.l	er1,er0
 	mov.l	er0,er2
@@ -3491,8 +3491,9 @@ ___muldi3:
 .L857:
 	sub.l	er2,er2
 	mov.l	er2,@(24,er7)
-	mov.l	er5,er2
-	and.l	#1,er2
+	sub.l	er2,er2
+	mov.b	r5l,r2l
+	and	#1,r2l
 	mov.l	er2,@(28,er7)
 	sub.l	er0,er0
 	mov.l	@(28,er7),er6
@@ -4735,9 +4736,8 @@ ___bswapdi2:
 	extu.w	r2
 	mov.w	r2,e5
 	sub.l	er2,er2
-	mov.l	er5,er4
-	and	#0,r4l
-	sub.w	e4,e4
+	sub.l	er4,er4
+	mov.b	r5h,r4h
 	mov.l	er0,er6
 	or.l	er2,er6
 	mov.l	er3,er0
@@ -4872,10 +4872,10 @@ ___bswapdi2:
 	shll.l	er2
 	mov.l	er2,er0
 	add.l	er3,er0
-	mov.l	er0,er2
-	and	#0,r2h
-	sub.w	e2,e2
-	mov.l	er2,er0
+	sub.l	er2,er2
+	mov.b	r0l,r2l
+	mov.l	er2,er4
+	mov.l	er4,er0
 	mov.l	@(16,er7),er1
 	or.l	er1,er0
 	mov.l	er0,er2
@@ -5229,9 +5229,8 @@ ___clzsi2:
 	add.b	#-1,r3l
 	bne	.L1161
 .L1162:
-	mov.l	er2,er1
-	and	#0,r1l
-	sub.w	e1,e1
+	sub.l	er1,er1
+	mov.b	r2h,r1h
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er1,er1
@@ -5251,8 +5250,9 @@ ___clzsi2:
 	bne	.L1163
 .L1164:
 	add.l	er3,er0
-	mov.l	er2,er1
-	and.l	#240,er1
+	sub.l	er1,er1
+	mov.b	r2l,r1l
+	and	#240,r1l
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er1,er1
@@ -5272,8 +5272,9 @@ ___clzsi2:
 .L1166:
 	add.l	er0,er3
 	mov.l	er3,er4
-	mov.l	er2,er0
-	and.l	#12,er0
+	sub.l	er0,er0
+	mov.b	r2l,r0l
+	and	#12,r0l
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er0,er0
@@ -5401,8 +5402,9 @@ ___ctzsi2:
 	bne	.L1200
 .L1201:
 	add.l	er0,er3
-	mov.l	er2,er0
-	and.l	#15,er0
+	sub.l	er0,er0
+	mov.b	r2l,r0l
+	and	#15,r0l
 	sub.l	er1,er1
 	add.b	#1,r1l
 	mov.l	er0,er0
@@ -5419,8 +5421,9 @@ ___ctzsi2:
 	bne	.L1202
 .L1203:
 	add.l	er3,er1
-	mov.l	er2,er0
-	and.l	#3,er0
+	sub.l	er0,er0
+	mov.b	r2l,r0l
+	and	#3,r0l
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er0,er0
