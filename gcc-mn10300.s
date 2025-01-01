@@ -1255,10 +1255,10 @@ bsearch:
 	mov (60,sp),a3
 	mov (64,sp),r5
 	mov_mov d0, r4, d1, a2
-.L446:
+.L449:
 	cmp 0,d2
 	beq .L437
-.L449:
+.L452:
 	mov d2,r6
 	lsr 1,r6
 	mul r6,a3,d0,d3
@@ -1270,13 +1270,13 @@ bsearch:
 	blt .L441
 	add a3,d3,a2
 	cmp 0,d0
-	bgt .L446
+	bne .L449
 	mov_mov d3, d0, d3, a0
 	ret [d2,d3,a2,a3,exreg1],44
 .L441:
 	mov r6,d2
 	cmp 0,d2
-	bne .L449
+	bne .L452
 .L437:
 	clr d3
 	mov_mov d3, d0, d3, a0
@@ -1292,10 +1292,10 @@ bsearch_r:
 	mov (68,sp),r5
 	mov (72,sp),r4
 	mov_mov d0, a3, d1, d3
-.L462:
+.L465:
 	cmp 0,d2
-	beq .L465
-.L451:
+	beq .L468
+.L454:
 	mov d2,r7
 	asr 1,r7
 	mul r7,a2,d0,r6
@@ -1305,19 +1305,19 @@ bsearch_r:
 	calls (a0)
 	add -1,d2
 	cmp_asr 0, d0, 1, d2
-	beq .L450
-	ble .L455
+	beq .L453
+	ble .L458
 	add a2,r6,d3
 	cmp 0,d2
-	bne .L451
-.L465:
+	bne .L454
+.L468:
 	clr r6
-.L450:
+.L453:
 	mov_mov r6, d0, r6, a0
 	ret [d2,d3,a2,a3,exreg1],48
-.L455:
+.L458:
 	mov r7,d2
-	jmp .L462
+	jmp .L465
 	.size	bsearch_r, .-bsearch_r
 	.global div
 	.type	div, @function
@@ -1334,10 +1334,10 @@ imaxabs:
 	movm [d2],(sp)
 	cmp_mov 0, d1, d0, r0
 	mov_mov d0, a0, d1, a1
-	blt .L473
+	blt .L476
 	mov_mov a0, d0, a1, d1
 	retf [d2],4
-.L473:
+.L476:
 	clr d0
 	sub r0,d0,a0
 	subc d1,d0,a1
@@ -1373,9 +1373,9 @@ imaxdiv:
 	.type	labs, @function
 labs:
 	cmp 0,d0
-	blt .L480
+	blt .L483
 	retf [],0
-.L480:
+.L483:
 	not d0
 	inc d0
 	retf [],0
@@ -1395,10 +1395,10 @@ llabs:
 	movm [d2],(sp)
 	cmp_mov 0, d1, d0, r0
 	mov_mov d0, a0, d1, a1
-	blt .L488
+	blt .L491
 	mov_mov a0, d0, a1, d1
 	retf [d2],4
-.L488:
+.L491:
 	clr d0
 	sub r0,d0,a0
 	subc d1,d0,a1
@@ -1435,17 +1435,17 @@ lldiv:
 wcschr:
 	mov (d0),a0
 	cmp 0,a0
-	beq .L491
-.L492:
+	beq .L494
+.L495:
 	cmp a0,d1
-	beq .L499
+	beq .L502
 	mov (4,d0),a0
 	add_cmp 4, d0, 0, a0
-	bne .L492
-.L491:
+	bne .L495
+.L494:
 	mov a0,d0
 	retf [],0
-.L499:
+.L502:
 	mov_mov d0, a0, d0, d0
 	retf [],0
 	.size	wcschr, .-wcschr
@@ -1456,24 +1456,22 @@ wcscmp:
 	mov (d0),a1
 	add_mov -4, d1, 4, a0
 	cmp r0,a1
-	bne .L502
-.L501:
+	bne .L505
+.L504:
 	cmp 0,a1
-	beq .L502
-	cmp 0,r0
-	beq .L502
+	beq .L505
 	mov (a0,d0),a1
 	inc4 a0
 	mov (a0,d1),r0
 	cmp r0,a1
-	beq .L501
-.L502:
+	beq .L504
+.L505:
 	cmp r0,a1
-	blt .L507
+	blt .L510
 	mov 1,d0
 	ble .L514
 	retf [],0
-.L507:
+.L510:
 	mov -1,d0
 	retf [],0
 .L514:
@@ -2451,7 +2449,7 @@ strstr:
 	extbu d3
 .L803:
 	movbu (d0),a0
-	cmp r3,a0
+	cmp a0,r3
 	beq .L802
 	add_cmp 1, d0, 0, a0
 	bne .L803
@@ -2462,7 +2460,7 @@ strstr:
 	mov_mov d1, r1, d0, a1
 	mov d3,r0
 .L797:
-	cmp a1,d2
+	cmp d2,a1
 	beq .L799
 	add_cmp 1, a1, a0, r0
 	bne .L800
@@ -2477,7 +2475,7 @@ strstr:
 	inc d0
 	jmp .L803
 .L799:
-	cmp a0,r0
+	cmp r0,a0
 	bne .L800
 .L806:
 	mov_mov d0, a0, d0, d0
@@ -2784,17 +2782,16 @@ udivmodsi4:
 	blt .L886
 	add d1,d1
 	cmp_asl d1, a1, 1, a0
-	bls .L901
+	bls .L887
 	cmp 0,d0
 	bne .L885
-.L888:
 	cmp 0,r0
 	bne .L902
 .L884:
 	retf [],0
-.L901:
-	cmp_mov 0, a0, a0, d0
-	beq .L888
+.L887:
+	cmp 0,a0
+	beq .L894
 .L886:
 	clr d0
 .L891:
@@ -2810,6 +2807,10 @@ udivmodsi4:
 .L902:
 	mov a1,d0
 	retf [],0
+.L894:
+	cmp_mov 0, r0, a0, d0
+	beq .L884
+	jmp .L902
 	.size	udivmodsi4, .-udivmodsi4
 	.global __clrsbqi2
 	.type	__clrsbqi2, @function
@@ -3384,8 +3385,8 @@ __divsi3:
 .L1099:
 	clr d0
 .L1104:
-	cmp r0,d1
-	bhi .L1103
+	cmp d1,r0
+	bcs .L1103
 	or_sub a0, d0, d1, r0
 .L1103:
 	lsr 1,a0
@@ -3466,7 +3467,7 @@ __udivmodhi4:
 	exthu d1,a0
 	exthu d0
 	cmp d0,a0
-	bcc .L1158
+	bcc .L1160
 	mov 16,d0
 	mov 1,r0
 	exthu r2,r1
@@ -3481,18 +3482,18 @@ __udivmodhi4:
 	cmp d2,r1
 	mov a1,d1
 	mov r3,r0
-	bls .L1159
+	bls .L1146
 	cmp 0,d0
 	bne .L1144
 	mov (16,sp),d1
 	cmp 0,d1
-	bne .L1160
+	bne .L1161
 .L1143:
 	retf [d2],4
-.L1159:
+.L1146:
 	exthu r3,d0
 	cmp 0,d0
-	beq .L1161
+	beq .L1154
 .L1145:
 	clr d0
 .L1150:
@@ -3511,20 +3512,20 @@ __udivmodhi4:
 	mov (16,sp),d1
 	cmp 0,d1
 	beq .L1143
-.L1160:
+.L1161:
 	mov r2,d0
 	retf [d2],4
-.L1158:
+.L1160:
 	mov d0,r1
 	mov 1,r0
 	clr d0
 	jmp .L1150
-.L1161:
+.L1154:
 	mov (16,sp),d1
 	mov r3,d0
 	cmp 0,d1
 	beq .L1143
-	jmp .L1160
+	jmp .L1161
 	.size	__udivmodhi4, .-__udivmodhi4
 	.global __udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
