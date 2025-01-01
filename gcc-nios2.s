@@ -101,8 +101,8 @@ memcmp:
 	.type	memcpy, @function
 memcpy:
 	addi	sp, sp, -8
-	stw	ra, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 4(sp)
 	mov	r16, r4
 	beq	r6, zero, .L52
 	call	memcpy
@@ -118,13 +118,13 @@ memcpy:
 	.type	memrchr, @function
 memrchr:
 	addi	r6, r6, -1
-	andi	r5, r5, 0xff
 	add	r6, r4, r6
+	andi	r5, r5, 0xff
 	addi	r4, r4, -1
 .L58:
 	beq	r6, r4, .L61
-	mov	r2, r6
 	ldbu	r3, 0(r6)
+	mov	r2, r6
 	addi	r6, r6, -1
 	bne	r3, r5, .L58
 	ret
@@ -160,8 +160,8 @@ stpcpy:
 	beq	r3, zero, .L70
 .L71:
 	ldbu	r3, 1(r5)
-	addi	r5, r5, 1
 	addi	r2, r2, 1
+	addi	r5, r5, 1
 	andi	r4, r3, 255
 	xori	r4, r4, 128
 	addi	r4, r4, -128
@@ -174,8 +174,8 @@ stpcpy:
 	.global	strchrnul
 	.type	strchrnul, @function
 strchrnul:
-	mov	r2, r4
 	ldbu	r3, 0(r4)
+	mov	r2, r4
 	andi	r5, r5, 0xff
 	andi	r4, r3, 255
 	xori	r4, r4, 128
@@ -219,10 +219,10 @@ strcmp:
 	ldbu	r2, 0(r4)
 	ldbu	r6, 0(r5)
 	andi	r3, r2, 255
-	xori	r3, r3, 128
-	addi	r3, r3, -128
 	andi	r7, r6, 255
+	xori	r3, r3, 128
 	xori	r7, r7, 128
+	addi	r3, r3, -128
 	addi	r7, r7, -128
 	bne	r3, r7, .L91
 .L90:
@@ -231,16 +231,16 @@ strcmp:
 	ldbu	r6, 1(r5)
 	addi	r4, r4, 1
 	andi	r3, r2, 255
-	xori	r3, r3, 128
-	addi	r3, r3, -128
 	andi	r7, r6, 255
+	xori	r3, r3, 128
 	xori	r7, r7, 128
+	addi	r3, r3, -128
 	addi	r7, r7, -128
 	addi	r5, r5, 1
 	beq	r3, r7, .L90
 .L91:
-	andi	r2, r2, 0xff
 	andi	r6, r6, 0xff
+	andi	r2, r2, 0xff
 	sub	r2, r2, r6
 	ret
 	.size	strcmp, .-strcmp
@@ -276,8 +276,8 @@ strncmp:
 	beq	r4, r6, .L101
 	bne	r3, r2, .L101
 	ldbu	r2, 1(r4)
-	addi	r4, r4, 1
 	addi	r5, r5, 1
+	addi	r4, r4, 1
 	beq	r2, zero, .L101
 .L102:
 	ldbu	r3, 0(r5)
@@ -498,17 +498,17 @@ toascii:
 	.type	fdim, @function
 fdim:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
-	mov	r17, r4
-	mov	r16, r5
 	mov	r19, r6
 	mov	r18, r7
 	mov	r6, r4
 	mov	r7, r5
+	stw	r17, 4(sp)
+	stw	r16, 0(sp)
+	stw	ra, 16(sp)
+	mov	r17, r4
+	mov	r16, r5
 	call	__unorddf2
 	bne	r2, zero, .L157
 	mov	r6, r19
@@ -554,12 +554,12 @@ fdim:
 	.type	fdimf, @function
 fdimf:
 	addi	sp, sp, -12
-	stw	ra, 8(sp)
 	stw	r17, 4(sp)
-	stw	r16, 0(sp)
-	mov	r16, r4
 	mov	r17, r5
 	mov	r5, r4
+	stw	r16, 0(sp)
+	stw	ra, 8(sp)
+	mov	r16, r4
 	call	__unordsf2
 	bne	r2, zero, .L167
 	mov	r5, r17
@@ -594,17 +594,17 @@ fdimf:
 	.type	fmax, @function
 fmax:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
-	stw	r19, 12(sp)
-	stw	r18, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r19, r4
-	mov	r18, r5
 	mov	r17, r6
 	mov	r16, r7
 	mov	r6, r4
 	mov	r7, r5
+	stw	r19, 12(sp)
+	stw	r18, 8(sp)
+	stw	ra, 16(sp)
+	mov	r19, r4
+	mov	r18, r5
 	call	__unorddf2
 	bne	r2, zero, .L182
 	mov	r6, r17
@@ -647,12 +647,12 @@ fmax:
 	.type	fmaxf, @function
 fmaxf:
 	addi	sp, sp, -12
-	stw	ra, 8(sp)
 	stw	r17, 4(sp)
-	stw	r16, 0(sp)
-	mov	r16, r4
 	mov	r17, r5
 	mov	r5, r4
+	stw	r16, 0(sp)
+	stw	ra, 8(sp)
+	mov	r16, r4
 	call	__unordsf2
 	bne	r2, zero, .L194
 	mov	r5, r17
@@ -688,17 +688,17 @@ fmaxf:
 	.type	fmaxl, @function
 fmaxl:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
-	stw	r19, 12(sp)
-	stw	r18, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r19, r4
-	mov	r18, r5
 	mov	r17, r6
 	mov	r16, r7
 	mov	r6, r4
 	mov	r7, r5
+	stw	r19, 12(sp)
+	stw	r18, 8(sp)
+	stw	ra, 16(sp)
+	mov	r19, r4
+	mov	r18, r5
 	call	__unorddf2
 	bne	r2, zero, .L207
 	mov	r6, r17
@@ -741,17 +741,17 @@ fmaxl:
 	.type	fmin, @function
 fmin:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
+	mov	r19, r7
+	mov	r18, r6
+	mov	r7, r5
+	mov	r6, r4
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 16(sp)
 	mov	r17, r4
 	mov	r16, r5
-	mov	r18, r6
-	mov	r19, r7
-	mov	r6, r4
-	mov	r7, r5
 	call	__unorddf2
 	bne	r2, zero, .L217
 	mov	r6, r18
@@ -794,12 +794,12 @@ fmin:
 	.type	fminf, @function
 fminf:
 	addi	sp, sp, -12
-	stw	ra, 8(sp)
-	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r17, r4
 	mov	r16, r5
 	mov	r5, r4
+	stw	r17, 4(sp)
+	stw	ra, 8(sp)
+	mov	r17, r4
 	call	__unordsf2
 	bne	r2, zero, .L229
 	mov	r5, r16
@@ -835,17 +835,17 @@ fminf:
 	.type	fminl, @function
 fminl:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
+	mov	r19, r7
+	mov	r18, r6
+	mov	r7, r5
+	mov	r6, r4
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 16(sp)
 	mov	r17, r4
 	mov	r16, r5
-	mov	r18, r6
-	mov	r19, r7
-	mov	r6, r4
-	mov	r7, r5
 	call	__unorddf2
 	bne	r2, zero, .L242
 	mov	r6, r18
@@ -916,21 +916,21 @@ srand:
 	.global	rand
 	.type	rand, @function
 rand:
-	addi	sp, sp, -4
-	stw	ra, 0(sp)
 	ldw	r4, %gprel(seed)(gp)
 	ldw	r5, %gprel(seed+4)(gp)
 	movhi	r6, 19605
 	movhi	r7, 22610
+	addi	sp, sp, -4
 	addi	r6, r6, 32557
 	addi	r7, r7, -3027
+	stw	ra, 0(sp)
 	call	__muldi3
 	addi	r4, r2, 1
 	cmpltu	r2, r4, r2
 	add	r2, r2, r3
-	stw	r4, %gprel(seed)(gp)
 	stw	r2, %gprel(seed+4)(gp)
 	srli	r2, r2, 1
+	stw	r4, %gprel(seed)(gp)
 	ldw	ra, 0(sp)
 	addi	sp, sp, 4
 	ret
@@ -975,19 +975,19 @@ remque:
 	.type	lsearch, @function
 lsearch:
 	addi	sp, sp, -40
+	stw	r20, 24(sp)
+	stw	r18, 16(sp)
+	stw	r16, 8(sp)
 	stw	ra, 36(sp)
 	stw	fp, 32(sp)
 	stw	r21, 28(sp)
-	stw	r20, 24(sp)
 	stw	r19, 20(sp)
-	stw	r18, 16(sp)
 	stw	r17, 12(sp)
-	stw	r16, 8(sp)
-	stw	r6, 4(sp)
 	ldw	r17, 0(r6)
+	stw	r6, 4(sp)
+	stw	r5, 0(sp)
 	ldw	r20, 40(sp)
 	mov	r18, r4
-	stw	r5, 0(sp)
 	mov	r16, r7
 	beq	r17, zero, .L273
 	mov	r21, r5
@@ -1016,9 +1016,9 @@ lsearch:
 	addi	sp, sp, 40
 	ret
 .L273:
+	ldw	r2, 4(sp)
 	mul	r19, r16, r17
 	addi	r17, r17, 1
-	ldw	r2, 4(sp)
 	stw	r17, 0(r2)
 	ldw	r2, 0(sp)
 	add	r19, r2, r19
@@ -1034,15 +1034,15 @@ lsearch:
 	.type	lfind, @function
 lfind:
 	addi	sp, sp, -32
+	stw	r19, 12(sp)
+	ldw	r19, 0(r6)
+	stw	r20, 16(sp)
 	stw	ra, 28(sp)
 	stw	fp, 24(sp)
 	stw	r21, 20(sp)
-	stw	r20, 16(sp)
-	stw	r19, 12(sp)
 	stw	r18, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	ldw	r19, 0(r6)
 	ldw	r20, 32(sp)
 	beq	r19, zero, .L290
 	mov	r18, r4
@@ -1119,14 +1119,14 @@ atoi:
 	addi	r4, r4, 1
 	addi	r3, r6, -48
 	ldbu	r6, 0(r4)
-	muli	r2, r2, 10
 	andi	r5, r3, 255
-	xori	r5, r5, 128
-	addi	r5, r5, -128
+	muli	r2, r2, 10
 	andi	r3, r6, 255
 	xori	r3, r3, 128
 	addi	r3, r3, -128
+	xori	r5, r5, 128
 	addi	r3, r3, -48
+	addi	r5, r5, -128
 	cmpltui	r3, r3, 10
 	sub	r2, r2, r5
 	bne	r3, zero, .L310
@@ -1153,9 +1153,9 @@ atol:
 	.type	atoll, @function
 atoll:
 	addi	sp, sp, -16
+	stw	r17, 4(sp)
 	stw	ra, 12(sp)
 	stw	r18, 8(sp)
-	stw	r17, 4(sp)
 	stw	r16, 0(sp)
 	mov	r17, r4
 	br	.L321
@@ -1174,12 +1174,12 @@ atoll:
 	beq	r2, zero, .L337
 .L325:
 	ldbu	r18, 0(r17)
+	mov	r4, zero
+	mov	r5, zero
 	andi	r2, r18, 255
 	xori	r2, r2, 128
 	addi	r2, r2, -128
 	addi	r2, r2, -48
-	mov	r4, zero
-	mov	r5, zero
 	cmpltui	r2, r2, 10
 	beq	r2, zero, .L327
 .L326:
@@ -1192,14 +1192,14 @@ atoll:
 	andi	r4, r4, 255
 	xori	r4, r4, 128
 	addi	r4, r4, -128
-	srai	r7, r4, 31
 	andi	r5, r18, 255
+	srai	r7, r4, 31
 	xori	r5, r5, 128
 	addi	r5, r5, -128
-	sub	r4, r2, r4
 	addi	r6, r5, -48
-	cmpltu	r2, r2, r4
+	sub	r4, r2, r4
 	sub	r5, r3, r7
+	cmpltu	r2, r2, r4
 	cmpltui	r3, r6, 10
 	sub	r5, r5, r2
 	bne	r3, zero, .L326
@@ -1229,9 +1229,9 @@ atoll:
 	.type	bsearch, @function
 bsearch:
 	addi	sp, sp, -32
+	stw	r21, 20(sp)
 	stw	ra, 28(sp)
 	stw	fp, 24(sp)
-	stw	r21, 20(sp)
 	stw	r20, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
@@ -1253,8 +1253,8 @@ bsearch:
 	blt	r2, zero, .L343
 	bge	zero, r2, .L338
 	addi	r16, r16, -1
-	add	r19, r17, r18
 	sub	r16, r16, fp
+	add	r19, r17, r18
 	bne	r16, zero, .L342
 .L339:
 	mov	r17, zero
@@ -1280,9 +1280,9 @@ bsearch:
 	.type	bsearch_r, @function
 bsearch_r:
 	addi	sp, sp, -32
+	stw	r21, 20(sp)
 	stw	ra, 28(sp)
 	stw	fp, 24(sp)
-	stw	r21, 20(sp)
 	stw	r20, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
@@ -1336,11 +1336,11 @@ div:
 	stw	ra, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r16, r4
 	mov	r17, r5
+	mov	r16, r4
 	call	__divsi3
-	mov	r5, r17
 	mov	r4, r16
+	mov	r5, r17
 	mov	r16, r2
 	call	__modsi3
 	mov	r3, r2
@@ -1370,21 +1370,21 @@ imaxabs:
 	.type	imaxdiv, @function
 imaxdiv:
 	addi	sp, sp, -28
-	stw	ra, 20(sp)
 	stw	r20, 16(sp)
+	ldw	r20, 28(sp)
+	stw	r17, 4(sp)
+	mov	r17, r6
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
-	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	ldw	r20, 28(sp)
 	mov	r18, r5
-	mov	r17, r6
-	mov	r19, r7
 	mov	r16, r4
+	mov	r19, r7
 	mov	r6, r7
-	mov	r7, r20
 	mov	r4, r5
+	mov	r7, r20
 	mov	r5, r17
+	stw	ra, 20(sp)
 	call	__divdi3
 	stw	r2, 0(r16)
 	stw	r3, 4(r16)
@@ -1394,8 +1394,8 @@ imaxdiv:
 	mov	r5, r17
 	call	__moddi3
 	stw	r2, 8(r16)
-	stw	r3, 12(r16)
 	mov	r2, r16
+	stw	r3, 12(r16)
 	ldw	ra, 20(sp)
 	ldw	r20, 16(sp)
 	ldw	r19, 12(sp)
@@ -1423,11 +1423,11 @@ ldiv:
 	stw	ra, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r16, r4
 	mov	r17, r5
+	mov	r16, r4
 	call	__divsi3
-	mov	r5, r17
 	mov	r4, r16
+	mov	r5, r17
 	mov	r16, r2
 	call	__modsi3
 	mov	r3, r2
@@ -1457,21 +1457,21 @@ llabs:
 	.type	lldiv, @function
 lldiv:
 	addi	sp, sp, -28
-	stw	ra, 20(sp)
 	stw	r20, 16(sp)
+	ldw	r20, 28(sp)
+	stw	r17, 4(sp)
+	mov	r17, r6
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
-	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	ldw	r20, 28(sp)
 	mov	r18, r5
-	mov	r17, r6
-	mov	r19, r7
 	mov	r16, r4
+	mov	r19, r7
 	mov	r6, r7
-	mov	r7, r20
 	mov	r4, r5
+	mov	r7, r20
 	mov	r5, r17
+	stw	ra, 20(sp)
 	call	__divdi3
 	stw	r2, 0(r16)
 	stw	r3, 4(r16)
@@ -1481,8 +1481,8 @@ lldiv:
 	mov	r5, r17
 	call	__moddi3
 	stw	r2, 8(r16)
-	stw	r3, 12(r16)
 	mov	r2, r16
+	stw	r3, 12(r16)
 	ldw	ra, 20(sp)
 	ldw	r20, 16(sp)
 	ldw	r19, 12(sp)
@@ -1542,8 +1542,8 @@ wcscpy:
 	mov	r3, r4
 .L401:
 	ldw	r6, 0(r5)
-	addi	r5, r5, 4
 	addi	r3, r3, 4
+	addi	r5, r5, 4
 	stw	r6, -4(r3)
 	bne	r6, zero, .L401
 	ret
@@ -1645,8 +1645,8 @@ wmemcmp:
 	.type	wmemcpy, @function
 wmemcpy:
 	addi	sp, sp, -8
-	stw	ra, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 4(sp)
 	mov	r16, r4
 	beq	r6, zero, .L452
 	slli	r6, r6, 2
@@ -1706,8 +1706,8 @@ wmemset:
 	mov	r6, r4
 .L473:
 	addi	r3, r3, -1
-	cmpnei	r7, r3, -1
 	stw	r5, 0(r6)
+	cmpnei	r7, r3, -1
 	addi	r6, r6, 4
 	bne	r7, zero, .L473
 .L472:
@@ -1747,17 +1747,17 @@ bcopy:
 rotl64:
 	addi	r3, r6, -32
 	blt	r3, zero, .L492
-	sll	r3, r4, r3
-	mov	r2, zero
 	sub	r6, zero, r6
 	andi	r6, r6, 63
 	addi	r7, r6, -32
+	sll	r3, r4, r3
+	mov	r2, zero
 	blt	r7, zero, .L494
 .L496:
 	srl	r4, r5, r7
 	mov	r5, zero
-	or	r2, r4, r2
 	or	r3, r5, r3
+	or	r2, r4, r2
 	ret
 .L492:
 	srli	r7, r4, 1
@@ -1766,9 +1766,9 @@ rotl64:
 	srl	r7, r7, r2
 	sll	r3, r5, r6
 	sll	r2, r4, r6
-	or	r3, r7, r3
 	sub	r6, zero, r6
 	andi	r6, r6, 63
+	or	r3, r7, r3
 	addi	r7, r6, -32
 	bge	r7, zero, .L496
 .L494:
@@ -1789,11 +1789,11 @@ rotl64:
 rotr64:
 	addi	r2, r6, -32
 	blt	r2, zero, .L498
-	srl	r2, r5, r2
-	mov	r3, zero
 	sub	r6, zero, r6
 	andi	r6, r6, 63
 	addi	r7, r6, -32
+	srl	r2, r5, r2
+	mov	r3, zero
 	blt	r7, zero, .L500
 .L502:
 	sll	r5, r4, r7
@@ -1808,9 +1808,9 @@ rotr64:
 	sll	r7, r7, r2
 	srl	r2, r4, r6
 	srl	r3, r5, r6
-	or	r2, r7, r2
 	sub	r6, zero, r6
 	andi	r6, r6, 63
+	or	r2, r7, r2
 	addi	r7, r6, -32
 	bge	r7, zero, .L502
 .L500:
@@ -1919,8 +1919,8 @@ bswap_16:
 	.global	bswap_32
 	.type	bswap_32, @function
 bswap_32:
-	slli	r2, r4, 24
 	srli	r5, r4, 24
+	slli	r2, r4, 24
 	srli	r3, r4, 8
 	slli	r4, r4, 8
 	or	r2, r2, r5
@@ -1935,10 +1935,10 @@ bswap_32:
 	.type	bswap_64, @function
 bswap_64:
 	srli	r8, r5, 8
+	srli	r9, r4, 24
 	slli	r3, r4, 24
 	srli	r2, r5, 24
 	slli	r7, r5, 8
-	srli	r9, r4, 24
 	srli	r6, r4, 8
 	slli	r4, r4, 8
 	slli	r5, r5, 24
@@ -1965,8 +1965,8 @@ ffs:
 	beq	r3, zero, .L519
 .L517:
 	srl	r3, r4, r2
-	andi	r3, r3, 1
 	addi	r2, r2, 1
+	andi	r3, r3, 1
 	beq	r3, zero, .L520
 	ret
 .L519:
@@ -1996,11 +1996,11 @@ libiberty_ffs:
 	.global	gl_isinff
 	.type	gl_isinff, @function
 gl_isinff:
-	addi	sp, sp, -8
-	stw	ra, 4(sp)
-	stw	r16, 0(sp)
 	movhi	r5, 65408
+	addi	sp, sp, -8
 	addi	r5, r5, -1
+	stw	r16, 0(sp)
+	stw	ra, 4(sp)
 	mov	r16, r4
 	call	__ltsf2
 	blt	r2, zero, .L530
@@ -2024,13 +2024,13 @@ gl_isinff:
 	.global	gl_isinfd
 	.type	gl_isinfd, @function
 gl_isinfd:
-	addi	sp, sp, -12
-	stw	ra, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
 	movhi	r7, 65520
+	addi	sp, sp, -12
 	movi	r6, -1
 	addi	r7, r7, -1
+	stw	r17, 4(sp)
+	stw	r16, 0(sp)
+	stw	ra, 8(sp)
 	mov	r17, r4
 	mov	r16, r5
 	call	__ltdf2
@@ -2056,13 +2056,13 @@ gl_isinfd:
 	.global	gl_isinfl
 	.type	gl_isinfl, @function
 gl_isinfl:
-	addi	sp, sp, -12
-	stw	ra, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
 	movhi	r7, 65520
+	addi	sp, sp, -12
 	movi	r6, -1
 	addi	r7, r7, -1
+	stw	r17, 4(sp)
+	stw	r16, 0(sp)
+	stw	ra, 8(sp)
 	mov	r17, r4
 	mov	r16, r5
 	call	__ltdf2
@@ -2089,10 +2089,10 @@ gl_isinfl:
 	.type	_Qp_itoq, @function
 _Qp_itoq:
 	addi	sp, sp, -8
-	stw	ra, 4(sp)
 	stw	r16, 0(sp)
 	mov	r16, r4
 	mov	r4, r5
+	stw	ra, 4(sp)
 	call	__floatsidf
 	stw	r2, 0(r16)
 	stw	r3, 4(r16)
@@ -2106,13 +2106,13 @@ _Qp_itoq:
 	.type	ldexpf, @function
 ldexpf:
 	addi	sp, sp, -16
-	stw	ra, 12(sp)
-	stw	r18, 8(sp)
-	stw	r17, 4(sp)
 	stw	r16, 0(sp)
-	mov	r18, r4
 	mov	r16, r5
 	mov	r5, r4
+	stw	r18, 8(sp)
+	stw	ra, 12(sp)
+	stw	r17, 4(sp)
+	mov	r18, r4
 	call	__unordsf2
 	bne	r2, zero, .L545
 	mov	r5, r18
@@ -2133,8 +2133,8 @@ ldexpf:
 .L548:
 	andi	r2, r16, 1
 	beq	r2, zero, .L547
-	mov	r5, r17
 	mov	r4, r18
+	mov	r5, r17
 	call	__mulsf3
 	mov	r18, r2
 .L547:
@@ -2159,15 +2159,15 @@ ldexpf:
 	.type	ldexp, @function
 ldexp:
 	addi	sp, sp, -24
-	stw	ra, 20(sp)
+	stw	r16, 8(sp)
+	mov	r7, r5
+	mov	r16, r6
+	mov	r6, r4
 	stw	r18, 16(sp)
 	stw	r17, 12(sp)
-	stw	r16, 8(sp)
+	stw	ra, 20(sp)
 	mov	r18, r4
 	mov	r17, r5
-	mov	r16, r6
-	mov	r7, r5
-	mov	r6, r4
 	call	__unorddf2
 	bne	r2, zero, .L563
 	mov	r6, r18
@@ -2194,15 +2194,15 @@ ldexp:
 .L566:
 	andi	r2, r16, 1
 	beq	r2, zero, .L565
-	stw	r6, 4(sp)
-	stw	r7, 0(sp)
 	mov	r4, r18
 	mov	r5, r17
+	stw	r6, 4(sp)
+	stw	r7, 0(sp)
 	call	__muldf3
-	mov	r18, r2
-	mov	r17, r3
 	ldw	r6, 4(sp)
 	ldw	r7, 0(sp)
+	mov	r18, r2
+	mov	r17, r3
 .L565:
 	srli	r2, r16, 31
 	add	r16, r2, r16
@@ -2226,15 +2226,15 @@ ldexp:
 	.type	ldexpl, @function
 ldexpl:
 	addi	sp, sp, -24
-	stw	ra, 20(sp)
+	stw	r16, 8(sp)
+	mov	r7, r5
+	mov	r16, r6
+	mov	r6, r4
 	stw	r18, 16(sp)
 	stw	r17, 12(sp)
-	stw	r16, 8(sp)
+	stw	ra, 20(sp)
 	mov	r18, r4
 	mov	r17, r5
-	mov	r16, r6
-	mov	r7, r5
-	mov	r6, r4
 	call	__unorddf2
 	bne	r2, zero, .L581
 	mov	r6, r18
@@ -2261,15 +2261,15 @@ ldexpl:
 .L584:
 	andi	r2, r16, 1
 	beq	r2, zero, .L583
-	stw	r6, 4(sp)
-	stw	r7, 0(sp)
 	mov	r4, r18
 	mov	r5, r17
+	stw	r6, 4(sp)
+	stw	r7, 0(sp)
 	call	__muldf3
-	mov	r18, r2
-	mov	r17, r3
 	ldw	r6, 4(sp)
 	ldw	r7, 0(sp)
+	mov	r18, r2
+	mov	r17, r3
 .L583:
 	srli	r2, r16, 31
 	add	r16, r2, r16
@@ -2299,8 +2299,8 @@ memxor:
 .L600:
 	ldbu	r7, 0(r3)
 	ldbu	r8, 0(r5)
-	addi	r5, r5, 1
 	addi	r3, r3, 1
+	addi	r5, r5, 1
 	xor	r7, r7, r8
 	stb	r7, -1(r3)
 	bne	r6, r5, .L600
@@ -2311,8 +2311,8 @@ memxor:
 	.global	strncat
 	.type	strncat, @function
 strncat:
-	mov	r2, r4
 	ldb	r3, 0(r4)
+	mov	r2, r4
 	beq	r3, zero, .L612
 	mov	r3, r4
 .L607:
@@ -2364,8 +2364,8 @@ strnlen:
 	.global	strpbrk
 	.type	strpbrk, @function
 strpbrk:
-	mov	r2, r4
 	ldb	r7, 0(r4)
+	mov	r2, r4
 	beq	r7, zero, .L634
 .L630:
 	mov	r3, r5
@@ -2435,8 +2435,8 @@ strstr:
 	beq	r4, r9, .L646
 	bne	r7, r3, .L646
 	ldbu	r3, 1(r4)
-	addi	r4, r4, 1
 	addi	r6, r6, 1
+	addi	r4, r4, 1
 	beq	r3, zero, .L646
 .L647:
 	ldbu	r7, 0(r6)
@@ -2460,15 +2460,15 @@ strstr:
 	.type	copysign, @function
 copysign:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
 	mov	r19, r6
 	mov	r18, r7
 	mov	r6, zero
 	mov	r7, zero
+	stw	r17, 4(sp)
+	stw	r16, 0(sp)
+	stw	ra, 16(sp)
 	mov	r17, r4
 	mov	r16, r5
 	call	__ltdf2
@@ -2562,9 +2562,9 @@ memmem:
 	.type	mempcpy, @function
 mempcpy:
 	addi	sp, sp, -12
-	stw	ra, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 8(sp)
 	mov	r16, r6
 	mov	r17, r4
 	beq	r6, zero, .L705
@@ -2582,15 +2582,15 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	addi	sp, sp, -24
-	stw	ra, 20(sp)
-	stw	r20, 16(sp)
 	stw	r19, 12(sp)
-	stw	r18, 8(sp)
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
+	mov	r7, zero
 	mov	r19, r6
 	mov	r6, zero
-	mov	r7, zero
+	stw	r18, 8(sp)
+	stw	r16, 0(sp)
+	stw	ra, 20(sp)
+	stw	r20, 16(sp)
+	stw	r17, 4(sp)
 	mov	r18, r4
 	mov	r16, r5
 	call	__ltdf2
@@ -2605,18 +2605,18 @@ frexp:
 	blt	r2, zero, .L732
 	mov	r17, zero
 .L715:
-	mov	r6, zero
-	movhi	r7, 16352
 	mov	r4, r18
 	mov	r5, r16
-	addi	r17, r17, 1
+	mov	r6, zero
+	movhi	r7, 16352
 	call	__muldf3
-	mov	r18, r2
-	mov	r16, r3
 	mov	r6, zero
 	movhi	r7, 16368
 	mov	r4, r2
 	mov	r5, r3
+	addi	r17, r17, 1
+	mov	r18, r2
+	mov	r16, r3
 	call	__gedf2
 	bge	r2, zero, .L715
 .L716:
@@ -2657,14 +2657,14 @@ frexp:
 	mov	r7, r16
 	mov	r4, r18
 	mov	r5, r16
-	addi	r17, r17, -1
 	call	__adddf3
-	mov	r18, r2
-	mov	r16, r3
 	mov	r6, zero
 	movhi	r7, 16352
 	mov	r4, r2
 	mov	r5, r3
+	addi	r17, r17, -1
+	mov	r18, r2
+	mov	r16, r3
 	call	__ltdf2
 	blt	r2, zero, .L718
 	br	.L716
@@ -2694,8 +2694,8 @@ __muldi3:
 	mov	r21, zero
 .L739:
 	mov	r6, r19
-	mov	r7, r17
 	andi	r4, r16, 1
+	mov	r7, r17
 	mov	r5, zero
 	call	__muldi3
 	slli	r5, r18, 31
@@ -2708,10 +2708,10 @@ __muldi3:
 	cmpltu	r6, r2, r20
 	add	r3, r21, r3
 	or	r5, r16, r18
+	slli	r19, r19, 1
 	mov	r20, r2
 	add	r21, r6, r3
 	or	r17, r4, r17
-	slli	r19, r19, 1
 	bne	r5, zero, .L739
 .L736:
 	mov	r2, r20
@@ -2776,12 +2776,12 @@ __clrsbqi2:
 	srai	r2, r3, 7
 	xor	r4, r2, r4
 	beq	r3, r2, .L759
-	addi	sp, sp, -4
-	stw	ra, 0(sp)
 	andi	r4, r4, 255
 	xori	r4, r4, 128
 	addi	r4, r4, -128
 	slli	r4, r4, 8
+	addi	sp, sp, -4
+	stw	ra, 0(sp)
 	call	__clzsi2
 	addi	r2, r2, -1
 	ldw	ra, 0(sp)
@@ -2795,9 +2795,9 @@ __clrsbqi2:
 	.global	__clrsbdi2
 	.type	__clrsbdi2, @function
 __clrsbdi2:
-	mov	r3, r5
 	srai	r6, r5, 31
 	mov	r2, r4
+	mov	r3, r5
 	xor	r4, r4, r6
 	xor	r5, r5, r6
 	beq	r2, r6, .L773
@@ -2835,8 +2835,8 @@ __mulsi3:
 	.global	__cmovd
 	.type	__cmovd, @function
 __cmovd:
-	srli	r9, r6, 3
 	movi	r10, -8
+	srli	r9, r6, 3
 	and	r10, r6, r10
 	bltu	r4, r5, .L783
 	add	r2, r5, r6
@@ -2931,8 +2931,8 @@ __cmovh:
 	.global	__cmovw
 	.type	__cmovw, @function
 __cmovw:
-	srli	r8, r6, 2
 	movi	r9, -4
+	srli	r8, r6, 2
 	and	r9, r6, r9
 	bltu	r4, r5, .L814
 	add	r2, r5, r6
@@ -3082,9 +3082,9 @@ __ctzhi2:
 	.type	__fixunssfsi, @function
 __fixunssfsi:
 	addi	sp, sp, -8
-	stw	ra, 4(sp)
-	stw	r16, 0(sp)
 	movhi	r5, 18176
+	stw	r16, 0(sp)
+	stw	ra, 4(sp)
 	mov	r16, r4
 	call	__gesf2
 	bge	r2, zero, .L852
@@ -3218,9 +3218,9 @@ __udivmodsi4:
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
 	addi	sp, sp, -12
-	stw	ra, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 8(sp)
 	mov	r16, r4
 	mov	r17, r5
 	call	__ltsf2
@@ -3244,11 +3244,11 @@ __mspabi_cmpf:
 	.type	__mspabi_cmpd, @function
 __mspabi_cmpd:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 16(sp)
 	mov	r17, r4
 	mov	r16, r5
 	mov	r19, r6
@@ -3277,11 +3277,11 @@ __mspabi_cmpd:
 	.global	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
+	srai	r7, r5, 31
+	mov	r6, r5
+	srai	r5, r4, 31
 	addi	sp, sp, -4
 	stw	ra, 0(sp)
-	mov	r6, r5
-	srai	r7, r5, 31
-	srai	r5, r4, 31
 	call	__muldi3
 	ldw	ra, 0(sp)
 	addi	sp, sp, 4
@@ -3292,10 +3292,10 @@ __mspabi_mpysll:
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
 	addi	sp, sp, -4
-	stw	ra, 0(sp)
 	mov	r6, r5
 	mov	r7, zero
 	mov	r5, zero
+	stw	ra, 0(sp)
 	call	__muldi3
 	ldw	ra, 0(sp)
 	addi	sp, sp, 4
@@ -3576,10 +3576,10 @@ __ashrdi3:
 	.type	__bswapdi2, @function
 __bswapdi2:
 	srli	r8, r5, 8
+	srli	r9, r4, 24
 	srli	r2, r5, 24
 	slli	r3, r4, 24
 	slli	r7, r5, 8
-	srli	r9, r4, 24
 	srli	r6, r4, 8
 	slli	r4, r4, 8
 	slli	r5, r5, 24
@@ -3599,8 +3599,8 @@ __bswapdi2:
 	.global	__bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
-	srli	r2, r4, 24
 	slli	r5, r4, 24
+	srli	r2, r4, 24
 	srli	r3, r4, 8
 	slli	r4, r4, 8
 	or	r2, r2, r5
@@ -3618,20 +3618,20 @@ __clzsi2:
 	cmpgeu	r5, r5, r4
 	slli	r5, r5, 4
 	movi	r2, 16
+	movi	r6, 8
 	sub	r2, r2, r5
 	srl	r3, r4, r2
 	movi	r2, 2
 	andi	r4, r3, 65280
 	cmpeq	r4, r4, zero
 	slli	r4, r4, 3
-	movi	r6, 8
 	sub	r6, r6, r4
 	srl	r3, r3, r6
 	add	r5, r4, r5
+	movi	r6, 4
 	andi	r4, r3, 240
 	cmpeq	r4, r4, zero
 	slli	r4, r4, 2
-	movi	r6, 4
 	sub	r6, r6, r4
 	srl	r3, r3, r6
 	add	r5, r4, r5
@@ -3648,8 +3648,8 @@ __clzsi2:
 	add	r2, r2, r4
 	ret
 .L1003:
-	mov	r2, zero
 	add	r4, r4, r5
+	mov	r2, zero
 	add	r2, r2, r4
 	ret
 	.size	__clzsi2, .-__clzsi2
@@ -3713,11 +3713,11 @@ __ctzsi2:
 	add	r2, r2, r2
 	srl	r3, r3, r2
 	add	r2, r2, r4
+	movi	r4, 2
 	andi	r3, r3, 3
 	srli	r5, r3, 1
 	nor	r3, zero, r3
 	andi	r3, r3, 1
-	movi	r4, 2
 	sub	r4, r4, r5
 	mul	r3, r3, r4
 	add	r2, r3, r2
@@ -3793,9 +3793,9 @@ __muldi3_compiler_rt:
 	srli	r8, r8, 16
 	srli	r10, r2, 16
 	mul	r4, r4, r7
-	slli	r2, r2, 16
 	mul	r6, r6, r5
 	add	r8, r8, r9
+	slli	r2, r2, 16
 	add	r8, r8, r10
 	andi	r3, r3, 0xffff
 	add	r4, r4, r8
@@ -3839,9 +3839,9 @@ __paritysi2:
 	srli	r4, r2, 8
 	xor	r4, r4, r2
 	srli	r3, r4, 4
+	movi	r2, 27030
 	xor	r3, r3, r4
 	andi	r3, r3, 15
-	movi	r2, 27030
 	sra	r2, r2, r3
 	andi	r2, r2, 1
 	ret
@@ -3873,8 +3873,8 @@ __popcountdi2:
 	add	r2, r4, r2
 	and	r6, r6, r3
 	and	r5, r5, r3
-	cmpltu	r4, r2, r4
 	add	r3, r6, r5
+	cmpltu	r4, r2, r4
 	add	r4, r4, r3
 	slli	r7, r4, 28
 	srli	r3, r2, 4
@@ -3908,8 +3908,8 @@ __popcountsi2:
 	srli	r3, r4, 2
 	movhi	r2, 13107
 	addi	r2, r2, 13107
-	and	r3, r3, r2
 	and	r4, r4, r2
+	and	r3, r3, r2
 	add	r3, r3, r4
 	srli	r2, r3, 4
 	movhi	r4, 3855
@@ -3928,12 +3928,12 @@ __popcountsi2:
 	.type	__powidf2, @function
 __powidf2:
 	addi	sp, sp, -28
-	stw	ra, 24(sp)
-	stw	r19, 20(sp)
 	stw	r18, 16(sp)
+	mov	r18, r6
+	stw	r19, 20(sp)
 	stw	r17, 12(sp)
 	stw	r16, 8(sp)
-	mov	r18, r6
+	stw	ra, 24(sp)
 	mov	r6, r4
 	mov	r7, r5
 	mov	r16, r18
@@ -3949,15 +3949,15 @@ __powidf2:
 .L1034:
 	andi	r2, r16, 1
 	beq	r2, zero, .L1032
-	stw	r6, 4(sp)
-	stw	r7, 0(sp)
 	mov	r4, r19
 	mov	r5, r17
+	stw	r6, 4(sp)
+	stw	r7, 0(sp)
 	call	__muldf3
-	mov	r19, r2
-	mov	r17, r3
 	ldw	r6, 4(sp)
 	ldw	r7, 0(sp)
+	mov	r19, r2
+	mov	r17, r3
 .L1032:
 	srli	r2, r16, 31
 	add	r16, r2, r16
@@ -3987,11 +3987,11 @@ __powidf2:
 	.type	__powisf2, @function
 __powisf2:
 	addi	sp, sp, -20
-	stw	ra, 16(sp)
 	stw	r19, 12(sp)
 	stw	r18, 8(sp)
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	stw	ra, 16(sp)
 	mov	r19, r5
 	mov	r17, r4
 	mov	r16, r5
@@ -4005,8 +4005,8 @@ __powisf2:
 .L1044:
 	andi	r2, r16, 1
 	beq	r2, zero, .L1042
-	mov	r5, r17
 	mov	r4, r18
+	mov	r5, r17
 	call	__mulsf3
 	mov	r18, r2
 .L1042:

@@ -67,18 +67,18 @@ memmove:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	sltu	$5,$4
+	move	$2,$4
 	bteqz	$L7
 	addu	$5,$5,$6
 	addu	$3,$4,$6
 	beqz	$6,$L17
 $L9:
-	addiu	$5,-1
 	addiu	$3,-1
-	lb	$4,0($5)
-	sb	$4,0($3)
+	lb	$4,-1($5)
 	cmp	$2,$3
+	addiu	$5,-1
+	sb	$4,0($3)
 	btnez	$L9
 	jr	$31
 $L7:
@@ -89,10 +89,10 @@ $L7:
 	addu	$6,$4,$6
 $L10:
 	lb	$4,0($5)
-	sb	$4,0($3)
 	addiu	$3,1
-	addiu	$5,1
+	sb	$4,-1($3)
 	cmp	$3,$6
+	addiu	$5,1
 	btnez	$L10
 $L17:
 	jr	$31
@@ -153,8 +153,8 @@ memchr:
 	bnez	$6,$L31
 	b	$L36
 $L33:
-	addiu	$4,1
 	addiu	$6,-1
+	addiu	$4,1
 	beqz	$6,$L36
 $L31:
 	lbu	$3,0($4)
@@ -223,13 +223,13 @@ memcpy:
 	.mask	0x80000000,-8
 	.fmask	0x00000000,0
 	beqz	$6,$L58
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L61
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$2,%call16(memcpy)($2)
+	sd	$31,40($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -237,8 +237,6 @@ memcpy:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -274,16 +272,16 @@ memrchr:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	zeb	$5
 	addiu	$6,-1
 	addu	$6,$4,$6
+	zeb	$5
 	addiu	$4,-1
 $L63:
 	cmp	$6,$4
 	bteqz	$L66
 	move	$2,$6
-	addiu	$6,-1
 	lbu	$3,0($2)
+	addiu	$6,-1
 	xor	$3,$5
 	bnez	$3,$L63
 	jr	$31
@@ -330,14 +328,14 @@ stpcpy:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	lb	$3,0($5)
+	move	$2,$4
 	sb	$3,0($4)
 	beqz	$3,$L80
 $L76:
+	lb	$3,1($5)
 	addiu	$5,1
 	addiu	$2,1
-	lb	$3,0($5)
 	sb	$3,0($2)
 	bnez	$3,$L76
 $L80:
@@ -354,14 +352,14 @@ strchrnul:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
+	lb	$3,0($4)
 	move	$2,$4
 	zeb	$5
-	lb	$3,0($4)
 	bnez	$3,$L82
 	jr	$31
 $L84:
+	lb	$3,1($2)
 	addiu	$2,1
-	lb	$3,0($2)
 	beqz	$3,$L87
 $L82:
 	zeb	$3
@@ -422,8 +420,8 @@ $L98:
 	cmp	$2,$3
 	bteqz	$L99
 $L96:
-	zeb	$2
 	zeb	$3
+	zeb	$2
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -447,8 +445,8 @@ strlen:
 	beqz	$2,$L103
 	move	$2,$4
 $L102:
+	lb	$5,1($2)
 	addiu	$2,1
-	lb	$5,0($2)
 	bnez	$5,$L102
 	.set	noreorder
 	.set	nomacro
@@ -490,9 +488,9 @@ $L107:
 	bteqz	$L106
 	xor	$3,$2
 	bnez	$3,$L106
+	lbu	$2,1($4)
 	addiu	$4,1
 	addiu	$5,1
-	lbu	$2,0($4)
 	bnez	$2,$L107
 $L106:
 	lbu	$3,0($5)
@@ -531,12 +529,12 @@ swab:
 	addu	$6,$4,$6
 $L121:
 	lbu	$2,1($4)
+	addiu	$4,2
 	sb	$2,0($5)
-	lbu	$2,0($4)
+	lbu	$2,-2($4)
+	cmp	$4,$6
 	sb	$2,1($5)
 	addiu	$5,2
-	addiu	$4,2
-	cmp	$4,$6
 	btnez	$L121
 $L122:
 	jr	$31
@@ -879,9 +877,9 @@ iswprint:
 	sltu	$2,8185
 	btnez	$L151
 	li	$2,65532
+	lw	$3,$L156
 	neg	$2,$2
 	addu	$2,$4,$2
-	lw	$3,$L156
 	sltu	$3,$2
 	btnez	$L152
 	li	$2,65534
@@ -906,8 +904,8 @@ $L151:
 	.set	reorder
 
 $L154:
-	addiu	$4,1
 	li	$2,127
+	addiu	$4,1
 	and	$4,$2
 	sltu	$4,33
 	move	$2,$24
@@ -1020,29 +1018,29 @@ fdim:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L171
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	move	$16,$4
-	sd	$5,72($sp)
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_unorddf2)($17)
+	sd	$5,72($sp)
+	move	$5,$4
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$16,$4
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L164
-	lw	$2,%call16(__mips16_unorddf2)($17)
 	ld	$5,72($sp)
+	lw	$2,%call16(__mips16_unorddf2)($17)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -1063,16 +1061,14 @@ fdim:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,1
+	move	$28,$6
 	bteqz	$L170
 	ld	$2,$L172
 $L161:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1142,29 +1138,29 @@ fdimf:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L183
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	move	$16,$4
-	sw	$5,72($sp)
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_unordsf2)($17)
+	sw	$5,72($sp)
+	move	$5,$4
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$16,$4
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L176
-	lw	$2,%call16(__mips16_unordsf2)($17)
 	lw	$5,72($sp)
+	lw	$2,%call16(__mips16_unordsf2)($17)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -1185,16 +1181,14 @@ fdimf:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,1
+	move	$28,$6
 	bteqz	$L182
 	lw	$2,$L184
 $L173:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1262,21 +1256,21 @@ fmax:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L198
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$17,$4
-	move	$16,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unorddf2)($2)
+	sd	$16,40($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$17,48($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$17,$4
 	.set	macro
 	.set	reorder
 
@@ -1314,8 +1308,8 @@ fmax:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L193
 	move	$16,$17
 $L193:
@@ -1324,8 +1318,6 @@ $L185:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1377,21 +1369,21 @@ fmaxf:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L212
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$17,$4
-	move	$16,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unordsf2)($2)
+	sd	$16,40($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$17,48($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$17,$4
 	.set	macro
 	.set	reorder
 
@@ -1428,8 +1420,8 @@ fmaxf:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L207
 	move	$16,$17
 $L207:
@@ -1438,8 +1430,6 @@ $L199:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1493,21 +1483,21 @@ fmaxl:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L227
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$17,$4
-	move	$16,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unorddf2)($2)
+	sd	$16,40($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$17,48($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$17,$4
 	.set	macro
 	.set	reorder
 
@@ -1545,8 +1535,8 @@ fmaxl:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L222
 	move	$16,$17
 $L222:
@@ -1555,8 +1545,6 @@ $L214:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1608,21 +1596,21 @@ fmin:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L241
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$16,$4
-	move	$17,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unorddf2)($2)
+	sd	$17,48($sp)
+	move	$17,$5
+	move	$5,$4
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$16,$4
 	.set	macro
 	.set	reorder
 
@@ -1660,8 +1648,8 @@ fmin:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L236
 	move	$16,$17
 $L236:
@@ -1670,8 +1658,6 @@ $L228:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1723,21 +1709,21 @@ fminf:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L255
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$16,$4
-	move	$17,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unordsf2)($2)
+	sd	$17,48($sp)
+	move	$17,$5
+	move	$5,$4
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$16,$4
 	.set	macro
 	.set	reorder
 
@@ -1774,8 +1760,8 @@ fminf:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L250
 	move	$16,$17
 $L250:
@@ -1784,8 +1770,6 @@ $L242:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1839,21 +1823,21 @@ fminl:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L270
+	addiu	$sp,-64
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$16,$4
-	move	$17,$5
 	move	$2,$28
 	lw	$2,%call16(__mips16_unorddf2)($2)
+	sd	$17,48($sp)
+	move	$17,$5
+	move	$5,$4
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	move	$16,$4
 	.set	macro
 	.set	reorder
 
@@ -1891,8 +1875,8 @@ fminl:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L265
 	move	$16,$17
 $L265:
@@ -1901,8 +1885,6 @@ $L257:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -1945,9 +1927,9 @@ $L273:
 	and	$2,$4
 	addu	$2,$5,$2
 	lbu	$2,0($2)
+	srl	$4,$4,6
 	sb	$2,0($3)
 	addiu	$3,1
-	srl	$4,$4,6
 	bnez	$4,$L273
 $L272:
 	li	$2,0
@@ -2038,8 +2020,8 @@ insque:
 	.fmask	0x00000000,0
 	beqz	$5,$L289
 	lw	$2,0($5)
-	sw	$2,0($4)
 	sw	$5,4($4)
+	sw	$2,0($4)
 	sw	$4,0($5)
 	lw	$2,0($4)
 	beqz	$2,$L290
@@ -2091,39 +2073,39 @@ lsearch:
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-72
+	lw	$2,$L317
+	sw	$6,88($sp)
+	sw	$2,32($sp)
+	move	$28,$2
+	lw	$2,88($sp)
 	sd	$31,64($sp)
 	sd	$17,56($sp)
 	sd	$16,48($sp)
-	lw	$2,$L317
-	move	$28,$2
-	sw	$2,32($sp)
+	lw	$2,0($2)
 	sw	$4,72($sp)
 	sw	$5,80($sp)
-	sw	$6,88($sp)
 	sw	$7,96($sp)
-	lw	$2,88($sp)
-	lw	$2,0($2)
 	sw	$2,44($sp)
 	beqz	$2,$L302
 	lw	$17,80($sp)
 	li	$16,0
 	b	$L304
 $L316:
-	addiu	$16,1
 	lw	$2,96($sp)
+	addiu	$16,1
 	addu	$17,$17,$2
 	lw	$2,44($sp)
 	cmp	$2,$16
 	bteqz	$L302
 $L304:
-	sw	$17,40($sp)
-	move	$5,$17
-	lw	$4,72($sp)
 	lw	$2,108($sp)
+	lw	$4,72($sp)
+	move	$5,$17
+	move	$25,$2
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$25,$2
+	sw	$17,40($sp)
 	.set	macro
 	.set	reorder
 
@@ -2131,8 +2113,8 @@ $L304:
 	move	$28,$6
 	bnez	$2,$L316
 $L301:
-	lw	$2,40($sp)
 	ld	$7,64($sp)
+	lw	$2,40($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
 	.set	noreorder
@@ -2144,22 +2126,22 @@ $L301:
 
 $L302:
 	lw	$3,44($sp)
-	addiu	$2,$3,1
 	lw	$4,88($sp)
+	addiu	$2,$3,1
 	sw	$2,0($4)
 	lw	$2,96($sp)
 	mult	$2,$3
-	mflo	$2
 	lw	$3,80($sp)
+	mflo	$2
 	addu	$2,$3,$2
-	sw	$2,40($sp)
 	lw	$3,96($sp)
+	sw	$2,40($sp)
 	beqz	$3,$L301
-	move	$6,$3
-	lw	$5,72($sp)
 	move	$4,$2
 	move	$2,$28
 	lw	$2,%call16(memmove)($2)
+	lw	$5,72($sp)
+	move	$6,$3
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -2167,10 +2149,8 @@ $L302:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	lw	$2,40($sp)
 	ld	$7,64($sp)
+	lw	$2,40($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
 	.set	noreorder
@@ -2203,37 +2183,37 @@ lfind:
 	sd	$31,64($sp)
 	sd	$17,56($sp)
 	sd	$16,48($sp)
+	lw	$2,0($6)
 	sw	$4,72($sp)
 	sw	$7,96($sp)
-	lw	$2,0($6)
 	sw	$2,44($sp)
 	beqz	$2,$L319
 	move	$17,$5
 	li	$16,0
 	b	$L321
 $L329:
-	addiu	$16,1
 	lw	$2,96($sp)
+	addiu	$16,1
 	addu	$17,$17,$2
 	lw	$2,44($sp)
 	cmp	$2,$16
 	bteqz	$L319
 $L321:
-	sw	$17,40($sp)
-	move	$5,$17
-	lw	$4,72($sp)
 	lw	$2,108($sp)
+	lw	$4,72($sp)
+	move	$5,$17
+	move	$25,$2
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$25,$2
+	sw	$17,40($sp)
 	.set	macro
 	.set	reorder
 
 	bnez	$2,$L329
 $L318:
-	lw	$2,40($sp)
 	ld	$7,64($sp)
+	lw	$2,40($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
 	.set	noreorder
@@ -2259,8 +2239,8 @@ abs:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	slt	$4,0
+	move	$2,$4
 	btnez	$L332
 	jr	$31
 $L332:
@@ -2300,8 +2280,8 @@ $L346:
 	bteqz	$L343
 	cmpi	$3,45
 	bteqz	$L347
-	li	$6,0
 	lb	$3,0($4)
+	li	$6,0
 	addiu	$3,-48
 	sltu	$3,10
 	btnez	$L339
@@ -2313,17 +2293,17 @@ $L348:
 $L347:
 	li	$6,1
 $L337:
+	lb	$3,1($4)
 	addiu	$4,1
-	lb	$3,0($4)
 	addiu	$3,-48
 	sltu	$3,10
 	bteqz	$L340
 $L339:
 	sll	$5,$2,2
 	addu	$5,$5,$2
+	seb	$3
 	sll	$5,$5,1
 	addiu	$4,1
-	seb	$3
 	subu	$2,$5,$3
 	lb	$3,0($4)
 	addiu	$3,-48
@@ -2389,16 +2369,16 @@ $L366:
 	bteqz	$L367
 $L356:
 	lb	$3,0($4)
+	li	$2,0
 	addiu	$3,-48
 	sltu	$3,10
-	li	$2,0
 	bteqz	$L358
 $L357:
 	dsll	$5,$2,2
 	daddu	$5,$5,$2
+	seb	$3
 	dsll	$5,$5,1
 	addiu	$4,1
-	seb	$3
 	dsubu	$2,$5,$3
 	lb	$3,0($4)
 	addiu	$3,-48
@@ -2437,16 +2417,16 @@ bsearch:
 	beqz	$6,$L370
 	move	$16,$6
 $L373:
-	srl	$17,$16,1
 	lw	$2,96($sp)
+	srl	$17,$16,1
 	mult	$17,$2
-	mflo	$2
 	lw	$3,80($sp)
+	mflo	$2
+	lw	$4,72($sp)
 	addu	$2,$3,$2
 	sw	$2,40($sp)
-	lw	$5,40($sp)
-	lw	$4,72($sp)
 	lw	$3,108($sp)
+	lw	$5,40($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$3
@@ -2460,17 +2440,17 @@ $L373:
 	btnez	$L369
 	lw	$2,40($sp)
 	lw	$3,96($sp)
-	addu	$2,$2,$3
-	sw	$2,80($sp)
 	addiu	$16,-1
+	addu	$2,$2,$3
 	subu	$16,$16,$17
+	sw	$2,80($sp)
 	bnez	$16,$L373
 $L370:
 	li	$2,0
 	sw	$2,40($sp)
 $L369:
-	lw	$2,40($sp)
 	ld	$7,64($sp)
+	lw	$2,40($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
 	.set	noreorder
@@ -2506,21 +2486,21 @@ bsearch_r:
 	beqz	$6,$L380
 	move	$16,$6
 $L383:
-	sra	$7,$16,1
 	lw	$2,96($sp)
+	sra	$7,$16,1
 	mult	$7,$2
-	sw	$7,40($sp)
-	mflo	$17
 	lw	$2,80($sp)
-	addu	$17,$2,$17
+	mflo	$17
 	lw	$6,116($sp)
-	move	$5,$17
-	lw	$4,72($sp)
+	addu	$17,$2,$17
 	lw	$2,108($sp)
+	lw	$4,72($sp)
+	move	$5,$17
+	move	$25,$2
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$25,$2
+	sw	$7,40($sp)
 	.set	macro
 	.set	reorder
 
@@ -2529,9 +2509,9 @@ $L383:
 	lw	$7,40($sp)
 	btnez	$L382
 	lw	$2,96($sp)
+	addiu	$16,-1
 	addu	$2,$17,$2
 	sw	$2,80($sp)
-	addiu	$16,-1
 	sra	$7,$16,1
 $L382:
 	move	$16,$7
@@ -2539,10 +2519,10 @@ $L382:
 $L380:
 	li	$17,0
 $L379:
-	move	$2,$17
 	ld	$7,64($sp)
-	ld	$17,56($sp)
 	ld	$16,48($sp)
+	move	$2,$17
+	ld	$17,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -2562,18 +2542,18 @@ div:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	div	$0,$5,$6
 	bnez	$6,1f
 	break	7
 1:
+	move	$2,$4
 	mfhi	$3
 	mflo	$4
-	sw	$4,0($2)
+	sw	$3,4($2)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	sw	$3,4($2)
+	sw	$4,0($2)
 	.set	macro
 	.set	reorder
 
@@ -2589,8 +2569,8 @@ imaxabs:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	slt	$4,0
+	move	$2,$4
 	btnez	$L394
 	jr	$31
 $L394:
@@ -2614,18 +2594,18 @@ imaxdiv:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	ddiv	$0,$5,$6
 	bnez	$6,1f
 	break	7
 1:
+	move	$2,$4
 	mfhi	$3
 	mflo	$4
-	sd	$4,0($2)
+	sd	$3,8($2)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	sd	$3,8($2)
+	sd	$4,0($2)
 	.set	macro
 	.set	reorder
 
@@ -2641,8 +2621,8 @@ labs:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	slt	$4,0
+	move	$2,$4
 	btnez	$L398
 	jr	$31
 $L398:
@@ -2665,18 +2645,18 @@ ldiv:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	div	$0,$5,$6
 	bnez	$6,1f
 	break	7
 1:
+	move	$2,$4
 	mfhi	$3
 	mflo	$4
-	sw	$4,0($2)
+	sw	$3,4($2)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	sw	$3,4($2)
+	sw	$4,0($2)
 	.set	macro
 	.set	reorder
 
@@ -2692,8 +2672,8 @@ llabs:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	slt	$4,0
+	move	$2,$4
 	btnez	$L402
 	jr	$31
 $L402:
@@ -2717,18 +2697,18 @@ lldiv:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	ddiv	$0,$5,$6
 	bnez	$6,1f
 	break	7
 1:
+	move	$2,$4
 	mfhi	$3
 	mflo	$4
-	sd	$4,0($2)
+	sd	$3,8($2)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	sd	$3,8($2)
+	sd	$4,0($2)
 	.set	macro
 	.set	reorder
 
@@ -2749,8 +2729,8 @@ wcschr:
 $L415:
 	cmp	$5,$3
 	bteqz	$L414
+	lw	$3,4($4)
 	addiu	$4,4
-	lw	$3,0($4)
 	bnez	$3,$L415
 $L410:
 	.set	noreorder
@@ -2823,8 +2803,8 @@ wcscpy:
 	move	$3,$4
 $L428:
 	lw	$6,0($5)
-	sw	$6,0($3)
 	addiu	$3,4
+	sw	$6,-4($3)
 	addiu	$5,4
 	bnez	$6,$L428
 	jr	$31
@@ -2844,8 +2824,8 @@ wcslen:
 	beqz	$2,$L432
 	move	$2,$4
 $L431:
+	lw	$3,4($2)
 	addiu	$2,4
-	lw	$3,0($2)
 	bnez	$3,$L431
 	subu	$2,$2,$4
 	.set	noreorder
@@ -3015,14 +2995,14 @@ wmemcpy:
 	.mask	0x80000000,-8
 	.fmask	0x00000000,0
 	beqz	$6,$L480
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L483
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
-	sll	$6,$6,2
 	move	$2,$28
 	lw	$2,%call16(memcpy)($2)
+	sll	$6,$6,2
+	sd	$31,40($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -3030,8 +3010,6 @@ wmemcpy:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -3067,18 +3045,18 @@ wmemmove:
 	.frame	$sp,16,$31		# vars= 0, regs= 2/0, args= 0, gp= 0
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
-	move	$2,$4
 	cmp	$4,$5
+	move	$2,$4
 	bteqz	$L497
 	addiu	$sp,-16
 	sd	$17,8($sp)
 	sd	$16,0($sp)
-	move	$16,$4
-	move	$7,$5
-	addiu	$3,$6,-1
 	subu	$17,$4,$5
+	move	$16,$4
 	sll	$4,$6,2
 	sltu	$17,$4
+	move	$7,$5
+	addiu	$3,$6,-1
 	bteqz	$L496
 	beqz	$6,$L485
 	sll	$3,$3,2
@@ -3086,8 +3064,8 @@ $L488:
 	addu	$4,$5,$3
 	lw	$6,0($4)
 	addu	$4,$2,$3
-	sw	$6,0($4)
 	addiu	$3,-4
+	sw	$6,0($4)
 	addiu	$4,$3,4
 	bnez	$4,$L488
 $L485:
@@ -3104,11 +3082,11 @@ $L496:
 	beqz	$6,$L485
 $L487:
 	lw	$4,0($7)
-	sw	$4,0($16)
 	addiu	$3,-1
+	sw	$4,0($16)
+	addiu	$4,$3,1
 	addiu	$16,4
 	addiu	$7,4
-	addiu	$4,$3,1
 	bnez	$4,$L487
 	ld	$17,8($sp)
 	ld	$16,0($sp)
@@ -3138,10 +3116,10 @@ wmemset:
 	beqz	$6,$L504
 	move	$6,$4
 $L500:
-	sw	$5,0($6)
 	addiu	$3,-1
-	addiu	$6,4
 	addiu	$7,$3,1
+	sw	$5,0($6)
+	addiu	$6,4
 	bnez	$7,$L500
 $L504:
 	jr	$31
@@ -3164,10 +3142,10 @@ bcopy:
 	beqz	$6,$L516
 $L508:
 	addiu	$2,-1
-	addiu	$5,-1
 	lb	$3,0($2)
-	sb	$3,0($5)
 	cmp	$4,$2
+	addiu	$5,-1
+	sb	$3,0($5)
 	btnez	$L508
 	jr	$31
 $L506:
@@ -3177,10 +3155,10 @@ $L506:
 	addu	$6,$4,$6
 $L509:
 	lb	$2,0($4)
-	sb	$2,0($5)
 	addiu	$4,1
-	addiu	$5,1
 	cmp	$4,$6
+	sb	$2,0($5)
+	addiu	$5,1
 	btnez	$L509
 $L516:
 	jr	$31
@@ -3464,15 +3442,15 @@ bswap_32:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	sll	$2,$4,24
 	srl	$3,$4,24
+	sll	$2,$4,24
 	or	$2,$3
-	srl	$3,$4,8
 	li	$5,65280
+	srl	$3,$4,8
 	and	$3,$5
 	or	$2,$3
-	sll	$4,$4,8
 	lw	$3,$L531
+	sll	$4,$4,8
 	and	$4,$3
 	.set	noreorder
 	.set	nomacro
@@ -3500,31 +3478,31 @@ bswap_64:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	dsll	$3,$4,56
 	move	$2,$4
+	dsll	$3,$4,56
 	dsrl	$2,56
 	or	$3,$2
 	move	$2,$4
-	dsrl	$2,40
 	li	$5,65280
+	dsrl	$2,40
 	and	$2,$5
 	or	$3,$2
+	ld	$5,$L534
 	move	$2,$4
 	dsrl	$2,24
-	ld	$5,$L534
 	and	$2,$5
 	or	$3,$2
+	ld	$5,$L535
 	move	$2,$4
 	dsrl	$2,8
-	ld	$5,$L535
 	and	$2,$5
+	ld	$5,$L536
 	or	$3,$2
 	dsll	$2,$4,8
-	ld	$5,$L536
 	and	$2,$5
+	ld	$5,$L537
 	or	$3,$2
 	dsll	$2,$4,24
-	ld	$5,$L537
 	and	$2,$5
 	or	$3,$2
 	dsll	$2,$4,40
@@ -3604,9 +3582,9 @@ libiberty_ffs:
 	li	$2,1
 $L547:
 	sra	$4,$4,1
-	addiu	$2,1
 	li	$3,1
 	and	$3,$4
+	addiu	$2,1
 	beqz	$3,$L547
 	jr	$31
 $L548:
@@ -3641,16 +3619,16 @@ gl_isinff:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L557
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	lw	$2,%call16(__mips16_ltsf2)($17)
+	sw	$2,32($sp)
 	lw	$5,$L558
+	lw	$2,%call16(__mips16_ltsf2)($17)
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -3659,8 +3637,8 @@ gl_isinff:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L555
 	lw	$17,%call16(__mips16_gtsf2)($17)
 	lw	$5,$L559
@@ -3671,15 +3649,13 @@ gl_isinff:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
+	ld	$7,56($sp)
 	slt	$2,1
 	move	$2,$24
 	sltu	$2,1
-	move	$2,$24
-	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	move	$2,$24
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3688,10 +3664,10 @@ gl_isinff:
 	.set	reorder
 
 $L555:
-	li	$2,1
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	li	$2,1
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3738,16 +3714,16 @@ gl_isinfd:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L565
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	lw	$2,%call16(__mips16_ltdf2)($17)
+	sw	$2,32($sp)
 	ld	$5,$L566
+	lw	$2,%call16(__mips16_ltdf2)($17)
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -3756,8 +3732,8 @@ gl_isinfd:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L563
 	lw	$17,%call16(__mips16_gtdf2)($17)
 	ld	$5,$L567
@@ -3768,15 +3744,13 @@ gl_isinfd:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
+	ld	$7,56($sp)
 	slt	$2,1
 	move	$2,$24
 	sltu	$2,1
-	move	$2,$24
-	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	move	$2,$24
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3785,10 +3759,10 @@ gl_isinfd:
 	.set	reorder
 
 $L563:
-	li	$2,1
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	li	$2,1
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3838,16 +3812,16 @@ gl_isinfl:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L573
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	lw	$2,%call16(__mips16_ltdf2)($17)
+	sw	$2,32($sp)
 	ld	$5,$L574
+	lw	$2,%call16(__mips16_ltdf2)($17)
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -3856,8 +3830,8 @@ gl_isinfl:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L571
 	lw	$17,%call16(__mips16_gtdf2)($17)
 	ld	$5,$L575
@@ -3868,15 +3842,13 @@ gl_isinfl:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
+	ld	$7,56($sp)
 	slt	$2,1
 	move	$2,$24
 	sltu	$2,1
-	move	$2,$24
-	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	move	$2,$24
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3885,10 +3857,10 @@ gl_isinfl:
 	.set	reorder
 
 $L571:
-	li	$2,1
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	li	$2,1
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -3922,15 +3894,15 @@ _Qp_itoq:
 	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
 	.mask	0x80010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$31,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L578
+	addiu	$sp,-56
 	move	$28,$2
 	sw	$2,32($sp)
-	move	$16,$4
 	move	$2,$28
 	lw	$2,%call16(__mips16_floatsidf)($2)
+	sd	$16,40($sp)
+	move	$16,$4
+	sd	$31,48($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -3938,8 +3910,6 @@ _Qp_itoq:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	sd	$2,0($16)
 	ld	$7,48($sp)
 	ld	$16,40($sp)
@@ -3985,29 +3955,29 @@ ldexpf:
 	.frame	$sp,72,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L596
+	addiu	$sp,-72
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,56($sp)
 	move	$17,$28
-	sw	$4,72($sp)
-	move	$16,$5
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_unordsf2)($17)
+	sd	$16,48($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$31,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	sw	$4,72($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L580
-	lw	$2,%call16(__mips16_addsf3)($17)
 	lw	$5,72($sp)
+	lw	$2,%call16(__mips16_addsf3)($17)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -4016,9 +3986,9 @@ ldexpf:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
-	lw	$7,%call16(__mips16_nesf2)($17)
 	lw	$5,72($sp)
+	lw	$7,%call16(__mips16_nesf2)($17)
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$7
@@ -4043,25 +4013,25 @@ $L595:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$5,$2
+	move	$28,$6
 $L584:
 	li	$2,1
 	and	$2,$16
 	beqz	$2,$L583
 	lw	$2,%call16(__mips16_mulsf3)($17)
-	sw	$5,40($sp)
+	lw	$4,72($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	lw	$4,72($sp)
+	sw	$5,40($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
+	lw	$5,40($sp)
 	move	$28,$6
 	sw	$2,72($sp)
-	lw	$5,40($sp)
 $L583:
 	srl	$2,$16,31
 	addu	$16,$2,$16
@@ -4077,8 +4047,6 @@ $L580:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -4131,29 +4099,29 @@ ldexp:
 	.frame	$sp,72,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L616
+	addiu	$sp,-72
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,56($sp)
 	move	$17,$28
-	sd	$4,72($sp)
-	move	$16,$5
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_unorddf2)($17)
+	sd	$16,48($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$31,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	sd	$4,72($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L600
-	lw	$2,%call16(__mips16_adddf3)($17)
 	ld	$5,72($sp)
+	lw	$2,%call16(__mips16_adddf3)($17)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -4162,9 +4130,9 @@ ldexp:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
-	lw	$7,%call16(__mips16_nedf2)($17)
 	ld	$5,72($sp)
+	lw	$7,%call16(__mips16_nedf2)($17)
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$7
@@ -4189,25 +4157,25 @@ $L615:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$5,$2
+	move	$28,$6
 $L604:
 	li	$2,1
 	and	$2,$16
 	beqz	$2,$L603
 	lw	$2,%call16(__mips16_muldf3)($17)
-	sd	$5,40($sp)
+	ld	$4,72($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	ld	$4,72($sp)
+	sd	$5,40($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
+	ld	$5,40($sp)
 	move	$28,$6
 	sd	$2,72($sp)
-	ld	$5,40($sp)
 $L603:
 	srl	$2,$16,31
 	addu	$16,$2,$16
@@ -4223,8 +4191,6 @@ $L600:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -4280,29 +4246,29 @@ ldexpl:
 	.frame	$sp,72,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L636
+	addiu	$sp,-72
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,56($sp)
 	move	$17,$28
-	sd	$4,72($sp)
-	move	$16,$5
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_unorddf2)($17)
+	sd	$16,48($sp)
+	move	$16,$5
+	move	$5,$4
+	sd	$31,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$5,$4
+	sd	$4,72($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
 	move	$28,$6
 	bnez	$2,$L620
-	lw	$2,%call16(__mips16_adddf3)($17)
 	ld	$5,72($sp)
+	lw	$2,%call16(__mips16_adddf3)($17)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -4311,13 +4277,13 @@ ldexpl:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
+	ld	$4,72($sp)
 	lw	$7,%call16(__mips16_nedf2)($17)
-	move	$5,$2
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$7
-	ld	$4,72($sp)
+	move	$5,$2
 	.set	macro
 	.set	reorder
 
@@ -4338,25 +4304,25 @@ $L635:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$5,$2
+	move	$28,$6
 $L624:
 	li	$2,1
 	and	$2,$16
 	beqz	$2,$L623
 	lw	$2,%call16(__mips16_muldf3)($17)
-	sd	$5,40($sp)
+	ld	$4,72($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	ld	$4,72($sp)
+	sd	$5,40($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
+	ld	$5,40($sp)
 	move	$28,$6
 	sd	$2,72($sp)
-	ld	$5,40($sp)
 $L623:
 	srl	$2,$16,31
 	addu	$16,$2,$16
@@ -4372,8 +4338,6 @@ $L620:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -4416,17 +4380,17 @@ memxor:
 	move	$2,$4
 	beqz	$6,$L649
 	addiu	$sp,-8
-	sd	$16,0($sp)
 	move	$3,$4
+	sd	$16,0($sp)
 	addu	$16,$5,$6
 $L641:
 	lbu	$7,0($3)
 	lbu	$6,0($5)
-	xor	$7,$6
-	sb	$7,0($3)
 	addiu	$5,1
-	addiu	$3,1
+	xor	$7,$6
 	cmp	$5,$16
+	sb	$7,0($3)
+	addiu	$3,1
 	btnez	$L641
 	ld	$16,0($sp)
 	.set	noreorder
@@ -4450,13 +4414,13 @@ strncat:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	lb	$3,0($4)
+	move	$2,$4
 	beqz	$3,$L657
 	move	$3,$4
 $L652:
+	lb	$7,1($3)
 	addiu	$3,1
-	lb	$7,0($3)
 	bnez	$7,$L652
 $L662:
 	beqz	$6,$L659
@@ -4464,9 +4428,9 @@ $L664:
 	lb	$7,0($5)
 	sb	$7,0($3)
 	beqz	$7,$L663
+	addiu	$6,-1
 	addiu	$5,1
 	addiu	$3,1
-	addiu	$6,-1
 	bnez	$6,$L664
 $L659:
 	sb	$6,0($3)
@@ -4528,21 +4492,21 @@ strpbrk:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	move	$2,$4
 	lb	$7,0($4)
+	move	$2,$4
 	beqz	$7,$L682
 $L677:
 	move	$6,$5
 $L680:
 	lb	$3,0($6)
 	beqz	$3,$L683
-	addiu	$6,1
 	xor	$3,$7
+	addiu	$6,1
 	bnez	$3,$L680
 	jr	$31
 $L683:
+	lb	$7,1($2)
 	addiu	$2,1
-	lb	$7,0($2)
 	bnez	$7,$L677
 	.set	noreorder
 	.set	nomacro
@@ -4599,13 +4563,13 @@ strstr:
 	addiu	$sp,-16
 	sd	$17,8($sp)
 	sd	$16,0($sp)
+	lb	$16,0($5)
 	move	$2,$4
 	move	$8,$5
-	lb	$16,0($5)
 	beqz	$16,$L690
 $L691:
+	lb	$4,1($5)
 	addiu	$5,1
-	lb	$4,0($5)
 	bnez	$4,$L691
 $L690:
 	move	$3,$8
@@ -4620,8 +4584,8 @@ $L698:
 	cmp	$3,$16
 	btnez	$L713
 	beqz	$2,$L692
-	addiu	$17,$5,-1
 	lbu	$6,0($2)
+	addiu	$17,$5,-1
 	beqz	$6,$L701
 	addu	$17,$2,$17
 	move	$7,$8
@@ -4633,9 +4597,9 @@ $L695:
 	bteqz	$L694
 	xor	$3,$6
 	bnez	$3,$L694
+	lbu	$6,1($4)
 	addiu	$4,1
 	addiu	$7,1
-	lbu	$6,0($4)
 	bnez	$6,$L695
 $L694:
 	lbu	$3,0($7)
@@ -4687,17 +4651,17 @@ copysign:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L725
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
+	sw	$2,32($sp)
 	sd	$5,72($sp)
 	lw	$2,%call16(__mips16_ltdf2)($17)
 	ld	$5,$L726
+	sd	$16,40($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -4706,8 +4670,8 @@ copysign:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L724
 $L715:
 	lw	$2,%call16(__mips16_gtdf2)($17)
@@ -4720,8 +4684,8 @@ $L715:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,1
+	move	$28,$6
 	btnez	$L718
 	lw	$17,%call16(__mips16_ltdf2)($17)
 	ld	$5,$L726
@@ -4733,8 +4697,8 @@ $L715:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L717
 $L718:
 	move	$6,$28
@@ -4746,8 +4710,6 @@ $L718:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -4769,8 +4731,8 @@ $L724:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,1
+	move	$28,$6
 	btnez	$L715
 $L717:
 	ld	$2,$L727
@@ -4805,21 +4767,21 @@ memmem:
 	beqz	$7,$L736
 	sltu	$5,$7
 	btnez	$L757
-	move	$8,$6
 	subu	$5,$5,$7
+	move	$8,$6
 	addu	$6,$4,$5
 	sltu	$6,$4
 	btnez	$L757
-	move	$9,$7
 	move	$3,$8
 	lb	$3,0($3)
+	move	$9,$7
 	move	$10,$3
 $L750:
 	lb	$3,0($2)
-	move	$7,$2
-	addiu	$2,1
 	move	$4,$10
 	xor	$3,$4
+	move	$7,$2
+	addiu	$2,1
 	beqz	$3,$L758
 	sltu	$6,$2
 	bteqz	$L750
@@ -4866,9 +4828,9 @@ $L731:
 	bteqz	$L733
 	bnez	$3,$L759
 $L728:
-	move	$2,$7
 	ld	$17,8($sp)
 	ld	$16,0($sp)
+	move	$2,$7
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -4883,19 +4845,19 @@ $L730:
 	sltu	$6,$2
 	btnez	$L760
 	lb	$3,0($2)
-	move	$7,$2
-	addiu	$2,1
 	move	$4,$10
 	xor	$3,$4
+	move	$7,$2
+	addiu	$2,1
 	bnez	$3,$L730
 	move	$3,$8
 	addiu	$5,$3,1
 	move	$3,$9
 	addiu	$3,-1
 	bnez	$3,$L739
-	move	$2,$7
 	ld	$17,8($sp)
 	ld	$16,0($sp)
+	move	$2,$7
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -4905,9 +4867,9 @@ $L730:
 
 $L760:
 	li	$7,0
-	move	$2,$7
 	ld	$17,8($sp)
 	ld	$16,0($sp)
+	move	$2,$7
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -4928,10 +4890,10 @@ mempcpy:
 	.mask	0x80010000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-56
-	sd	$31,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L767
 	move	$28,$2
+	sd	$16,40($sp)
+	sd	$31,48($sp)
 	sw	$2,32($sp)
 	move	$16,$6
 	beqz	$6,$L762
@@ -4944,12 +4906,10 @@ mempcpy:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	move	$4,$2
 $L762:
-	addu	$2,$4,$16
 	ld	$7,48($sp)
+	addu	$2,$4,$16
 	ld	$16,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -4993,17 +4953,17 @@ frexp:
 	.frame	$sp,72,$31		# vars= 8, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L796
+	addiu	$sp,-72
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$16,48($sp)
 	move	$16,$28
+	sw	$2,32($sp)
 	sw	$5,80($sp)
 	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L797
+	sd	$17,56($sp)
+	sd	$31,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5012,13 +4972,13 @@ frexp:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L794
 	li	$2,0
 	sw	$2,44($sp)
-	lw	$2,%call16(__mips16_gedf2)($16)
 	ld	$5,$L798
+	lw	$2,%call16(__mips16_gedf2)($16)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5027,18 +4987,18 @@ frexp:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L790
 $L795:
 	li	$2,0
 	sw	$2,40($sp)
 $L773:
 	lw	$2,40($sp)
+	ld	$5,$L799
 	addiu	$2,1
 	sw	$2,40($sp)
 	lw	$2,%call16(__mips16_muldf3)($16)
-	ld	$5,$L799
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5047,10 +5007,10 @@ $L773:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$17,$2
-	lw	$2,%call16(__mips16_gedf2)($16)
 	ld	$5,$L798
+	lw	$2,%call16(__mips16_gedf2)($16)
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5059,8 +5019,8 @@ $L773:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	bteqz	$L773
 $L774:
 	lw	$2,80($sp)
@@ -5080,8 +5040,6 @@ $L778:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -5094,11 +5052,11 @@ $L778:
 
 $L794:
 	ld	$2,$L800
+	ld	$5,$L798
 	xor	$17,$2
 	li	$2,1
 	sw	$2,44($sp)
 	lw	$2,%call16(__mips16_gedf2)($16)
-	ld	$5,$L798
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5107,8 +5065,8 @@ $L794:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	bteqz	$L795
 $L790:
 	lw	$2,%call16(__mips16_ltdf2)($16)
@@ -5121,8 +5079,8 @@ $L790:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	bteqz	$L792
 	lw	$2,%call16(__mips16_nedf2)($16)
 	ld	$5,$L797
@@ -5140,10 +5098,10 @@ $L790:
 	sw	$2,40($sp)
 $L777:
 	lw	$2,40($sp)
+	move	$5,$17
 	addiu	$2,-1
 	sw	$2,40($sp)
 	lw	$2,%call16(__mips16_adddf3)($16)
-	move	$5,$17
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5152,10 +5110,10 @@ $L777:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$17,$2
-	lw	$2,%call16(__mips16_ltdf2)($16)
 	ld	$5,$L799
+	lw	$2,%call16(__mips16_ltdf2)($16)
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5164,8 +5122,8 @@ $L777:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L777
 	b	$L774
 $L792:
@@ -5209,9 +5167,9 @@ $L803:
 	dsll	$3,$4,63
 	dsra	$3,63
 	and	$3,$5
+	dsrl	$4,1
 	daddu	$2,$2,$3
 	dsll	$5,$5,1
-	dsrl	$4,1
 	bnez	$4,$L803
 	jr	$31
 $L805:
@@ -5237,8 +5195,8 @@ $L808:
 	slt	$5,0
 	btnez	$L809
 	sll	$5,$5,1
-	sll	$3,$3,1
 	sltu	$5,$4
+	sll	$3,$3,1
 	bteqz	$L809
 	addiu	$2,-1
 	bnez	$2,$L808
@@ -5285,16 +5243,16 @@ __clrsbqi2:
 	cmp	$2,$4
 	bteqz	$L827
 	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L832
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$24
 	sll	$2,$2,8
 	dsll	$4,$2,32
-	dsrl	$4,32
 	move	$2,$28
 	lw	$2,%call16(__clzdi2)($2)
+	dsrl	$4,32
+	sd	$31,40($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5302,10 +5260,8 @@ __clrsbqi2:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	addiu	$2,-33
 	ld	$7,40($sp)
+	addiu	$2,-33
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -5344,13 +5300,13 @@ __clrsbdi2:
 	dsra	$2,63
 	xor	$4,$2
 	beqz	$4,$L835
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L840
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$2,%call16(__clzdi2)($2)
+	sd	$31,40($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5358,10 +5314,8 @@ __clrsbdi2:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	addiu	$2,-1
 	ld	$7,40($sp)
+	addiu	$2,-1
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -5403,8 +5357,8 @@ $L843:
 	and	$3,$4
 	neg	$3,$3
 	and	$3,$5
-	addu	$2,$2,$3
 	srl	$4,$4,1
+	addu	$2,$2,$3
 	sll	$5,$5,1
 	bnez	$4,$L843
 	jr	$31
@@ -5423,29 +5377,29 @@ __cmovd:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	sd	$17,8($sp)
 	sd	$16,0($sp)
-	srl	$7,$6,3
 	li	$16,8
 	neg	$16,$16
-	and	$16,$6
 	sltu	$4,$5
+	sd	$17,8($sp)
+	srl	$7,$6,3
+	and	$16,$6
 	btnez	$L848
 	addu	$2,$5,$6
 	sltu	$2,$4
 	bteqz	$L858
 $L848:
 	beqz	$7,$L851
+	sll	$7,$7,3
 	move	$2,$5
 	move	$3,$4
-	sll	$7,$7,3
 	addu	$7,$7,$5
 $L852:
 	ld	$17,0($2)
-	sd	$17,0($3)
 	addiu	$2,8
-	addiu	$3,8
 	cmp	$2,$7
+	sd	$17,0($3)
+	addiu	$3,8
 	btnez	$L852
 $L851:
 	sltu	$16,$6
@@ -5455,10 +5409,10 @@ $L851:
 	addu	$5,$5,$6
 $L853:
 	lb	$3,0($2)
-	sb	$3,0($4)
 	addiu	$2,1
-	addiu	$4,1
 	cmp	$2,$5
+	sb	$3,0($4)
+	addiu	$4,1
 	btnez	$L853
 $L847:
 	ld	$17,8($sp)
@@ -5477,8 +5431,8 @@ $L849:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
-	sb	$6,0($3)
 	addiu	$2,-1
+	sb	$6,0($3)
 	addiu	$3,$2,1
 	bnez	$3,$L849
 	ld	$17,8($sp)
@@ -5503,25 +5457,25 @@ __cmovh:
 	.mask	0x00010000,0
 	.fmask	0x00000000,0
 	addiu	$sp,-8
+	sltu	$4,$5
 	sd	$16,0($sp)
 	srl	$16,$6,1
-	sltu	$4,$5
 	btnez	$L860
 	addu	$2,$5,$6
 	sltu	$2,$4
 	bteqz	$L872
 $L860:
 	beqz	$16,$L863
+	sll	$16,$16,1
 	move	$2,$5
 	move	$3,$4
-	sll	$16,$16,1
 	addu	$16,$16,$5
 $L864:
 	lh	$7,0($2)
-	sh	$7,0($3)
 	addiu	$2,2
-	addiu	$3,2
 	cmp	$2,$16
+	sh	$7,0($3)
+	addiu	$3,2
 	btnez	$L864
 $L863:
 	li	$2,1
@@ -5547,8 +5501,8 @@ $L861:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
-	sb	$6,0($3)
 	addiu	$2,-1
+	sb	$6,0($3)
 	addiu	$3,$2,1
 	bnez	$3,$L861
 	ld	$16,0($sp)
@@ -5572,29 +5526,29 @@ __cmovw:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	sd	$17,8($sp)
 	sd	$16,0($sp)
-	srl	$7,$6,2
 	li	$16,4
 	neg	$16,$16
-	and	$16,$6
 	sltu	$4,$5
+	sd	$17,8($sp)
+	srl	$7,$6,2
+	and	$16,$6
 	btnez	$L874
 	addu	$2,$5,$6
 	sltu	$2,$4
 	bteqz	$L884
 $L874:
 	beqz	$7,$L877
+	sll	$7,$7,2
 	move	$2,$5
 	move	$3,$4
-	sll	$7,$7,2
 	addu	$7,$7,$5
 $L878:
 	lw	$17,0($2)
-	sw	$17,0($3)
 	addiu	$2,4
-	addiu	$3,4
 	cmp	$2,$7
+	sw	$17,0($3)
+	addiu	$3,4
 	btnez	$L878
 $L877:
 	sltu	$16,$6
@@ -5604,10 +5558,10 @@ $L877:
 	addu	$5,$5,$6
 $L879:
 	lb	$3,0($2)
-	sb	$3,0($4)
 	addiu	$2,1
-	addiu	$4,1
 	cmp	$2,$5
+	sb	$3,0($4)
+	addiu	$4,1
 	btnez	$L879
 $L873:
 	ld	$17,8($sp)
@@ -5626,8 +5580,8 @@ $L875:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
-	sb	$6,0($3)
 	addiu	$2,-1
+	sb	$6,0($3)
 	addiu	$3,$2,1
 	bnez	$3,$L875
 	ld	$17,8($sp)
@@ -5674,21 +5628,19 @@ __uitod:
 	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
 	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L888
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$2,%call16(__mips16_floatunsidf)($2)
+	sd	$31,40($sp)
 	jalr	$2
 	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -5716,21 +5668,19 @@ __uitof:
 	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
 	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L891
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$2,%call16(__mips16_floatunsisf)($2)
+	sd	$31,40($sp)
 	jalr	$2
 	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -5758,31 +5708,34 @@ __ulltod:
 	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
 	.mask	0x80040000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$31,48($sp)
-	move	$3,$18
-	sd	$3,40($sp)
 	lw	$2,$L894
+	addiu	$sp,-56
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$5,%got(__mips16_call_stub_df_0)($2)
 	lw	$2,%call16(__floatundidf)($2)
+	move	$3,$18
+	sd	$31,48($sp)
+	.set	noreorder
+	.set	nomacro
 	jalr	$5
+	sd	$3,40($sp)
+	.set	macro
+	.set	reorder
+
 	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,48($sp)
 	ld	$6,40($sp)
-	move	$18,$6
+	addiu	$sp,56
 	.set	noreorder
 	.set	nomacro
 	jr	$7
-	addiu	$sp,56
+	move	$18,$6
 	.set	macro
 	.set	reorder
 
@@ -5805,31 +5758,34 @@ __ulltof:
 	.frame	$sp,56,$31		# vars= 0, regs= 2/0, args= 32, gp= 8
 	.mask	0x80040000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-56
-	sd	$31,48($sp)
-	move	$3,$18
-	sd	$3,40($sp)
 	lw	$2,$L897
+	addiu	$sp,-56
 	move	$28,$2
 	sw	$2,32($sp)
 	move	$2,$28
 	lw	$5,%got(__mips16_call_stub_sf_0)($2)
 	lw	$2,%call16(__floatundisf)($2)
+	move	$3,$18
+	sd	$31,48($sp)
+	.set	noreorder
+	.set	nomacro
 	jalr	$5
+	sd	$3,40($sp)
+	.set	macro
+	.set	reorder
+
 	lw	$6,32($sp)
 	move	$28,$6
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
 	jalr	$6
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,48($sp)
 	ld	$6,40($sp)
-	move	$18,$6
+	addiu	$sp,56
 	.set	noreorder
 	.set	nomacro
 	jr	$7
-	addiu	$sp,56
+	move	$18,$6
 	.set	macro
 	.set	reorder
 
@@ -5941,16 +5897,16 @@ __fixunssfsi:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L915
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$16,40($sp)
 	move	$16,$28
-	lw	$2,%call16(__mips16_gesf2)($16)
+	sw	$2,32($sp)
 	lw	$5,$L916
+	lw	$2,%call16(__mips16_gesf2)($16)
+	sd	$17,48($sp)
+	sd	$31,56($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -5959,8 +5915,8 @@ __fixunssfsi:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	bteqz	$L914
 	lw	$16,%call16(__mips16_fix_truncsfsi)($16)
 	.set	noreorder
@@ -5970,8 +5926,6 @@ __fixunssfsi:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
@@ -5993,8 +5947,8 @@ $L914:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	lw	$16,%call16(__mips16_fix_truncsfsi)($16)
+	move	$28,$6
 	.set	noreorder
 	.set	nomacro
 	jalr	$16
@@ -6002,13 +5956,11 @@ $L914:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	li	$3,32768
-	addu	$2,$2,$3
 	ld	$7,56($sp)
+	li	$3,32768
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	addu	$2,$2,$3
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -6043,10 +5995,10 @@ $L918:
 	move	$5,$4
 	sra	$5,$3
 	li	$6,1
-	and	$5,$6
-	addu	$2,$2,$5
 	addiu	$3,1
+	and	$5,$6
 	cmpi	$3,16
+	addu	$2,$2,$5
 	btnez	$L918
 	.set	noreorder
 	.set	nomacro
@@ -6073,10 +6025,10 @@ $L920:
 	move	$5,$4
 	sra	$5,$3
 	li	$6,1
-	and	$5,$6
-	addu	$2,$2,$5
 	addiu	$3,1
+	and	$5,$6
 	cmpi	$3,16
+	addu	$2,$2,$5
 	btnez	$L920
 	jr	$31
 	.end	__popcounthi2
@@ -6098,8 +6050,8 @@ $L923:
 	and	$3,$4
 	neg	$3,$3
 	and	$3,$5
-	addu	$2,$2,$3
 	srl	$4,$4,1
+	addu	$2,$2,$3
 	sll	$5,$5,1
 	bnez	$4,$L923
 	jr	$31
@@ -6125,9 +6077,9 @@ $L929:
 	and	$3,$5
 	neg	$3,$3
 	and	$3,$4
+	srl	$5,$5,1
 	addu	$2,$2,$3
 	sll	$4,$4,1
-	srl	$5,$5,1
 	bnez	$5,$L929
 	jr	$31
 $L932:
@@ -6153,8 +6105,8 @@ $L935:
 	slt	$5,0
 	btnez	$L936
 	sll	$5,$5,1
-	sll	$3,$3,1
 	sltu	$5,$4
+	sll	$3,$3,1
 	bteqz	$L936
 	addiu	$2,-1
 	bnez	$2,$L935
@@ -6214,16 +6166,16 @@ __mspabi_cmpf:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L957
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	sw	$4,64($sp)
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_ltsf2)($17)
+	sd	$16,40($sp)
+	sd	$31,56($sp)
+	sw	$4,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -6232,27 +6184,25 @@ __mspabi_cmpf:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L955
 	lw	$17,%call16(__mips16_gtsf2)($17)
-	move	$5,$16
+	lw	$4,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$17
-	lw	$4,64($sp)
+	move	$5,$16
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
+	ld	$7,56($sp)
 	slt	$2,1
 	move	$2,$24
 	sltu	$2,1
-	move	$2,$24
-	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	move	$2,$24
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -6261,11 +6211,11 @@ __mspabi_cmpf:
 	.set	reorder
 
 $L955:
-	li	$2,1
-	neg	$2,$2
 	ld	$7,56($sp)
+	li	$2,1
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	neg	$2,$2
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -6309,16 +6259,16 @@ __mspabi_cmpd:
 	.frame	$sp,64,$31		# vars= 0, regs= 3/0, args= 32, gp= 8
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-64
-	sd	$31,56($sp)
-	sd	$17,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L963
+	addiu	$sp,-64
 	move	$28,$2
-	sw	$2,32($sp)
+	sd	$17,48($sp)
 	move	$17,$28
-	sd	$4,64($sp)
+	sw	$2,32($sp)
 	lw	$2,%call16(__mips16_ltdf2)($17)
+	sd	$16,40($sp)
+	sd	$31,56($sp)
+	sd	$4,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
@@ -6327,27 +6277,25 @@ __mspabi_cmpd:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	slt	$2,0
+	move	$28,$6
 	btnez	$L961
 	lw	$17,%call16(__mips16_gtdf2)($17)
-	move	$5,$16
+	ld	$4,64($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$17
-	ld	$4,64($sp)
+	move	$5,$16
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
+	ld	$7,56($sp)
 	slt	$2,1
 	move	$2,$24
 	sltu	$2,1
-	move	$2,$24
-	ld	$7,56($sp)
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	move	$2,$24
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -6356,11 +6304,11 @@ __mspabi_cmpd:
 	.set	reorder
 
 $L961:
-	li	$2,1
-	neg	$2,$2
 	ld	$7,56($sp)
+	li	$2,1
 	ld	$17,48($sp)
 	ld	$16,40($sp)
+	neg	$2,$2
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -6454,9 +6402,9 @@ $L969:
 	and	$3,$5
 	neg	$3,$3
 	and	$3,$4
+	sra	$5,$5,1
 	addu	$2,$2,$3
 	sll	$4,$4,1
-	sra	$5,$5,1
 	bnez	$5,$L980
 $L968:
 	beqz	$7,$L981
@@ -6488,12 +6436,12 @@ __divsi3:
 $L983:
 	slt	$5,0
 	bteqz	$L984
-	neg	$5,$5
 	li	$2,1
+	neg	$5,$5
 	xor	$7,$2
 $L984:
-	move	$6,$4
 	sltu	$5,$4
+	move	$6,$4
 	bteqz	$L992
 	li	$2,32
 	li	$3,1
@@ -6503,8 +6451,8 @@ $L1001:
 	beqz	$2,$L993
 $L986:
 	sll	$5,$5,1
-	sll	$3,$3,1
 	sltu	$5,$4
+	sll	$3,$3,1
 	btnez	$L1001
 	beqz	$3,$L993
 	li	$2,0
@@ -6549,8 +6497,8 @@ __modsi3:
 	btnez	$L1021
 	li	$7,0
 $L1004:
-	move	$2,$4
 	slt	$5,0
+	move	$2,$4
 	btnez	$L1022
 $L1005:
 	sltu	$5,$4
@@ -6563,8 +6511,8 @@ $L1023:
 	beqz	$6,$L1008
 $L1007:
 	sll	$5,$5,1
-	sll	$3,$3,1
 	sltu	$5,$4
+	sll	$3,$3,1
 	btnez	$L1023
 	beqz	$3,$L1008
 $L1010:
@@ -6615,8 +6563,8 @@ $L1026:
 	sll	$5,$5,1
 	zeh	$5
 	sll	$3,$3,1
-	zeh	$3
 	sltu	$5,$4
+	zeh	$3
 	bteqz	$L1027
 	addiu	$2,-1
 	bnez	$2,$L1026
@@ -6633,8 +6581,8 @@ $L1031:
 	sltu	$4,$5
 	btnez	$L1030
 	subu	$4,$4,$5
-	zeh	$4
 	or	$2,$3
+	zeh	$4
 	zeh	$2
 $L1030:
 	srl	$3,$3,1
@@ -6670,8 +6618,8 @@ $L1044:
 	slt	$5,0
 	btnez	$L1045
 	sll	$5,$5,1
-	sll	$3,$3,1
 	sltu	$5,$4
+	sll	$3,$3,1
 	bteqz	$L1045
 	addiu	$2,-1
 	bnez	$2,$L1044
@@ -6719,11 +6667,11 @@ __ashldi3:
 	and	$2,$3
 	beqz	$2,$L1062
 	sll	$2,$4,0
-	sll	$2,$5
 	li	$6,0
-	dsll	$2,$2,32
+	sll	$2,$5
 	dsll	$6,$6,32
 	dsrl	$6,32
+	dsll	$2,$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -6735,15 +6683,15 @@ $L1062:
 	beqz	$5,$L1065
 	sll	$2,$4,0
 	move	$6,$2
-	sll	$6,$5
 	subu	$3,$3,$5
-	srl	$2,$3
 	dsra	$4,32
+	sll	$6,$5
+	srl	$2,$3
 	sll	$4,$5
 	or	$2,$4
-	dsll	$2,$2,32
 	dsll	$6,$6,32
 	dsrl	$6,32
+	dsll	$2,$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -6778,10 +6726,10 @@ __ashlti3:
 	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
 	li	$2,64
 	move	$3,$6
 	and	$3,$2
+	addiu	$sp,-24
 	beqz	$3,$L1069
 	move	$2,$5
 	dsll	$2,$6
@@ -6795,12 +6743,12 @@ __ashlti3:
 
 $L1069:
 	beqz	$6,$L1072
-	move	$3,$5
-	dsll	$3,$6
 	subu	$2,$2,$6
+	move	$3,$5
 	dsrl	$5,$2
 	move	$2,$4
 	dsll	$2,$6
+	dsll	$3,$6
 	or	$2,$5
 	.set	noreorder
 	.set	nomacro
@@ -6838,11 +6786,11 @@ __ashrdi3:
 	move	$2,$4
 	dsra	$2,32
 	dsra	$4,63
-	move	$6,$4
 	sra	$2,$5
+	move	$6,$4
 	dsll	$2,$2,32
-	dsrl	$2,32
 	dsll	$6,$6,32
+	dsrl	$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -6854,16 +6802,16 @@ $L1075:
 	move	$2,$4
 	beqz	$5,$L1081
 	dsra	$2,32
-	move	$6,$2
-	sra	$6,$5
 	subu	$3,$3,$5
-	sll	$2,$3
 	sll	$4,$4,0
+	move	$6,$2
 	srl	$4,$5
+	sll	$2,$3
 	or	$2,$4
+	sra	$6,$5
 	dsll	$2,$2,32
-	dsrl	$2,32
 	dsll	$6,$6,32
+	dsrl	$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -6892,14 +6840,14 @@ __ashrti3:
 	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
 	li	$3,64
 	move	$2,$6
 	and	$2,$3
+	addiu	$sp,-24
 	beqz	$2,$L1083
 	move	$2,$4
-	dsra	$2,63
 	dsra	$4,$6
+	dsra	$2,63
 	move	$3,$4
 	.set	noreorder
 	.set	nomacro
@@ -6911,11 +6859,11 @@ __ashrti3:
 $L1083:
 	move	$2,$4
 	beqz	$6,$L1086
-	dsra	$2,$6
 	subu	$3,$3,$6
 	dsll	$4,$3
 	dsrl	$5,$6
 	or	$4,$5
+	dsra	$2,$6
 	move	$3,$4
 	.set	noreorder
 	.set	nomacro
@@ -6947,30 +6895,30 @@ __bswapdi2:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	move	$3,$4
-	dsrl	$3,56
 	dsll	$2,$4,56
+	dsrl	$3,56
 	or	$3,$2
 	move	$2,$4
-	dsrl	$2,40
 	li	$5,65280
+	dsrl	$2,40
 	and	$2,$5
 	or	$3,$2
+	ld	$5,$L1090
 	move	$2,$4
 	dsrl	$2,24
-	ld	$5,$L1090
 	and	$2,$5
 	or	$3,$2
+	ld	$5,$L1091
 	move	$2,$4
 	dsrl	$2,8
-	ld	$5,$L1091
 	and	$2,$5
+	ld	$5,$L1092
 	or	$3,$2
 	dsll	$2,$4,8
-	ld	$5,$L1092
 	and	$2,$5
+	ld	$5,$L1093
 	or	$3,$2
 	dsll	$2,$4,24
-	ld	$5,$L1093
 	and	$2,$5
 	or	$3,$2
 	dsll	$2,$4,40
@@ -7010,15 +6958,15 @@ __bswapsi2:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	srl	$2,$4,24
 	sll	$3,$4,24
+	srl	$2,$4,24
 	or	$2,$3
-	srl	$3,$4,8
 	li	$5,65280
+	srl	$3,$4,8
 	and	$3,$5
 	or	$2,$3
-	sll	$4,$4,8
 	lw	$3,$L1097
+	sll	$4,$4,8
 	and	$4,$3
 	.set	noreorder
 	.set	nomacro
@@ -7047,6 +6995,7 @@ __clzsi2:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	lw	$2,$L1102
+	li	$5,8
 	sltu	$4,$2
 	move	$3,$24
 	sll	$3,$3,4
@@ -7058,7 +7007,6 @@ __clzsi2:
 	sltu	$2,1
 	move	$2,$24
 	sll	$2,$2,3
-	li	$5,8
 	subu	$5,$5,$2
 	srl	$4,$5
 	addu	$3,$2,$3
@@ -7079,8 +7027,8 @@ __clzsi2:
 	li	$2,2
 	subu	$3,$2,$5
 	srl	$4,$3
-	srl	$3,$4,1
 	li	$7,1
+	srl	$3,$4,1
 	and	$3,$7
 	li	$7,1
 	xor	$3,$7
@@ -7096,8 +7044,8 @@ __clzsi2:
 	.set	reorder
 
 $L1099:
-	li	$2,0
 	addu	$5,$5,$6
+	li	$2,0
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -7125,14 +7073,14 @@ __clzti2:
 	.mask	0x80010000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-56
-	sd	$31,48($sp)
-	sd	$16,40($sp)
+	sltu	$4,1
 	lw	$2,$L1107
+	sd	$16,40($sp)
+	move	$16,$24
 	move	$28,$2
 	sw	$2,32($sp)
-	sltu	$4,1
-	move	$16,$24
 	addiu	$2,$16,-1
+	sd	$31,48($sp)
 	and	$2,$4
 	beqz	$16,$L1104
 	move	$4,$5
@@ -7140,18 +7088,16 @@ $L1105:
 	move	$5,$28
 	lw	$5,%call16(__clzdi2)($5)
 	or	$4,$2
+	move	$25,$5
 	.set	noreorder
 	.set	nomacro
 	jalr	$5
-	move	$25,$5
+	sll	$16,$16,6
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	sll	$16,$16,6
-	addu	$2,$16,$2
 	ld	$7,48($sp)
+	addu	$2,$16,$2
 	ld	$16,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -7183,12 +7129,12 @@ __cmpdi2:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	move	$2,$4
-	dsra	$2,32
-	sll	$7,$2,0
 	move	$3,$5
+	dsra	$2,32
 	dsra	$3,32
-	sll	$6,$3,0
 	slt	$2,$3
+	sll	$7,$2,0
+	sll	$6,$3,0
 	btnez	$L1112
 	slt	$6,$7
 	btnez	$L1111
@@ -7242,12 +7188,12 @@ __aeabi_lcmp:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	move	$2,$4
-	dsra	$2,32
-	sll	$7,$2,0
 	move	$3,$5
+	dsra	$2,32
 	dsra	$3,32
-	sll	$6,$3,0
 	slt	$2,$3
+	sll	$7,$2,0
+	sll	$6,$3,0
 	btnez	$L1118
 	slt	$6,$7
 	btnez	$L1119
@@ -7403,13 +7349,13 @@ __ctzti2:
 	.mask	0x80010000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-56
-	sd	$31,48($sp)
-	sd	$16,40($sp)
 	lw	$2,$L1131
-	move	$28,$2
-	sw	$2,32($sp)
-	move	$2,$5
 	sltu	$5,1
+	move	$28,$2
+	sd	$16,40($sp)
+	sw	$2,32($sp)
+	sd	$31,48($sp)
+	move	$2,$5
 	move	$16,$24
 	beqz	$5,$L1129
 	li	$4,0
@@ -7419,18 +7365,16 @@ $L1129:
 	move	$2,$28
 	lw	$2,%call16(__ctzdi2)($2)
 	or	$4,$5
+	move	$25,$2
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	move	$25,$2
+	sll	$16,$16,6
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	sll	$16,$16,6
-	addu	$2,$16,$2
 	ld	$7,48($sp)
+	addu	$2,$16,$2
 	ld	$16,40($sp)
 	.set	noreorder
 	.set	nomacro
@@ -7458,16 +7402,16 @@ __ffsti2:
 	.frame	$sp,48,$31		# vars= 0, regs= 1/0, args= 32, gp= 8
 	.mask	0x80000000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-48
-	sd	$31,40($sp)
 	lw	$2,$L1138
+	addiu	$sp,-48
 	move	$28,$2
 	sw	$2,32($sp)
+	sd	$31,40($sp)
 	move	$2,$28
 	bnez	$5,$L1133
 	bnez	$4,$L1137
-	li	$2,0
 	ld	$7,40($sp)
+	li	$2,0
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -7485,10 +7429,8 @@ $L1133:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	addiu	$2,1
 	ld	$7,40($sp)
+	addiu	$2,1
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -7505,10 +7447,8 @@ $L1137:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
-	addiu	$2,65
 	ld	$7,40($sp)
+	addiu	$2,65
 	.set	noreorder
 	.set	nomacro
 	jr	$7
@@ -7544,8 +7484,8 @@ __lshrdi3:
 	srl	$2,$5
 	li	$6,0
 	dsll	$2,$2,32
-	dsrl	$2,32
 	dsll	$6,$6,32
+	dsrl	$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -7558,16 +7498,16 @@ $L1140:
 	beqz	$5,$L1146
 	dsrl	$2,32
 	sll	$2,$2,0
-	move	$6,$2
-	srl	$6,$5
 	subu	$3,$3,$5
-	sll	$2,$3
 	sll	$4,$4,0
+	move	$6,$2
 	srl	$4,$5
+	sll	$2,$3
 	or	$2,$4
+	srl	$6,$5
 	dsll	$2,$2,32
-	dsrl	$2,32
 	dsll	$6,$6,32
+	dsrl	$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -7596,10 +7536,10 @@ __lshrti3:
 	.frame	$sp,24,$31		# vars= 16, regs= 0/0, args= 0, gp= 8
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	addiu	$sp,-24
 	li	$3,64
 	move	$2,$6
 	and	$2,$3
+	addiu	$sp,-24
 	beqz	$2,$L1148
 	dsrl	$4,$6
 	li	$2,0
@@ -7614,11 +7554,11 @@ __lshrti3:
 $L1148:
 	move	$2,$4
 	beqz	$6,$L1151
-	dsrl	$2,$6
 	subu	$3,$3,$6
 	dsll	$4,$3
 	dsrl	$5,$6
 	or	$4,$5
+	dsrl	$2,$6
 	move	$3,$4
 	.set	noreorder
 	.set	nomacro
@@ -7650,51 +7590,51 @@ __muldsi3:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	sd	$17,8($sp)
-	sd	$16,0($sp)
 	li	$7,65535
+	move	$2,$5
+	sd	$17,8($sp)
 	move	$17,$4
 	and	$17,$7
-	move	$2,$5
 	and	$2,$7
 	mult	$17,$2
+	srl	$4,$4,8
+	srl	$4,$4,8
 	mflo	$6
+	mult	$2,$4
+	sd	$16,0($sp)
+	mflo	$3
 	srl	$16,$6,8
 	srl	$16,$16,8
-	srl	$4,$4,8
-	srl	$4,$4,8
-	mult	$2,$4
-	mflo	$3
+	srl	$5,$5,8
+	srl	$5,$5,8
 	addu	$3,$3,$16
-	and	$6,$7
+	mult	$17,$5
 	sll	$16,$3,8
+	and	$6,$7
 	sll	$16,$16,8
 	addu	$2,$6,$16
-	srl	$16,$16,8
-	srl	$16,$16,8
-	srl	$5,$5,8
-	srl	$5,$5,8
-	mult	$17,$5
 	mflo	$6
+	srl	$16,$16,8
+	mult	$4,$5
+	srl	$16,$16,8
 	addu	$6,$6,$16
+	mflo	$4
 	and	$2,$7
+	srl	$3,$3,8
 	sll	$7,$6,8
 	sll	$7,$7,8
+	srl	$3,$3,8
+	srl	$6,$6,8
 	addu	$2,$2,$7
-	srl	$3,$3,8
-	srl	$3,$3,8
-	mult	$4,$5
-	mflo	$4
 	addu	$3,$3,$4
 	srl	$6,$6,8
-	srl	$6,$6,8
 	addu	$3,$3,$6
-	dsll	$3,$3,32
 	dsll	$2,$2,32
+	dsll	$3,$3,32
 	dsrl	$2,32
-	or	$2,$3
 	ld	$17,8($sp)
 	ld	$16,0($sp)
+	or	$2,$3
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -7715,30 +7655,29 @@ __muldi3_compiler_rt:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	sd	$17,8($sp)
-	sd	$16,0($sp)
-	move	$12,$4
-	sll	$16,$4,0
 	sll	$7,$5,0
-	li	$17,65535
+	sd	$16,0($sp)
+	sll	$16,$4,0
+	sd	$17,8($sp)
 	move	$2,$16
-	and	$2,$17
-	move	$11,$2
+	li	$17,65535
 	move	$3,$7
+	and	$2,$17
 	and	$3,$17
 	mult	$2,$3
-	mflo	$2
-	srl	$6,$2,8
-	srl	$6,$6,8
+	move	$12,$4
 	srl	$4,$16,8
 	srl	$4,$4,8
-	move	$10,$4
+	move	$11,$2
+	mflo	$2
 	mult	$3,$4
+	srl	$6,$2,8
 	mflo	$3
+	srl	$6,$6,8
 	addu	$6,$3,$6
-	and	$2,$17
 	sll	$3,$6,8
 	sll	$3,$3,8
+	and	$2,$17
 	move	$8,$3
 	addu	$3,$2,$3
 	move	$2,$8
@@ -7748,47 +7687,48 @@ __muldi3_compiler_rt:
 	srl	$2,$7,8
 	srl	$2,$2,8
 	move	$9,$2
+	move	$10,$4
 	move	$2,$11
 	move	$4,$9
 	mult	$2,$4
-	mflo	$2
 	move	$4,$8
-	addu	$2,$2,$4
+	mflo	$2
 	and	$3,$17
+	addu	$2,$2,$4
 	sll	$17,$2,8
 	sll	$17,$17,8
-	addu	$3,$3,$17
-	srl	$6,$6,8
-	srl	$6,$6,8
 	move	$4,$10
+	addu	$3,$3,$17
 	move	$17,$9
 	mult	$4,$17
+	srl	$6,$6,8
 	mflo	$17
+	srl	$6,$6,8
+	srl	$2,$2,8
 	addu	$6,$6,$17
 	srl	$2,$2,8
-	srl	$2,$2,8
-	addu	$6,$6,$2
-	dsll	$6,$6,32
-	dsll	$3,$3,32
-	dsrl	$3,32
-	or	$3,$6
 	dsra	$5,32
 	mult	$16,$5
+	addu	$6,$6,$2
+	move	$4,$12
+	dsll	$3,$3,32
+	dsll	$6,$6,32
+	dsra	$4,32
+	dsrl	$3,32
+	or	$3,$6
 	mflo	$2
+	mult	$7,$4
 	move	$5,$3
+	mflo	$4
 	dsra	$5,32
 	addu	$2,$2,$5
-	move	$4,$12
-	dsra	$4,32
-	mult	$7,$4
-	mflo	$4
 	addu	$2,$2,$4
-	dsll	$2,$2,32
 	dsll	$3,$3,32
 	dsrl	$3,32
-	or	$2,$3
+	dsll	$2,$2,32
 	ld	$17,8($sp)
 	ld	$16,0($sp)
+	or	$2,$3
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -7808,57 +7748,57 @@ __mulddi3:
 	.frame	$sp,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
 	.mask	0x00010000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-32
-	sd	$16,24($sp)
 	sll	$7,$4,0
 	sll	$3,$5,0
 	multu	$7,$3
+	dsrl	$4,32
 	mflo	$6
+	sll	$4,$4,0
 	mfhi	$2
 	dsll	$6,$6,32
-	dsrl	$6,32
-	dsll	$2,$2,32
-	or	$6,$2
-	move	$16,$6
-	dsrl	$16,32
-	dsrl	$4,32
-	sll	$4,$4,0
 	multu	$3,$4
+	dsll	$2,$2,32
+	dsrl	$6,32
+	or	$6,$2
+	dsrl	$5,32
 	mflo	$2
+	sll	$5,$5,0
 	mfhi	$3
 	dsll	$2,$2,32
-	dsrl	$2,32
-	dsll	$3,$3,32
-	or	$2,$3
-	daddu	$2,$2,$16
-	dsll	$16,$2,32
-	dsrl	$16,32
-	dsrl	$5,32
-	sll	$5,$5,0
 	multu	$7,$5
-	mflo	$3
-	mfhi	$7
 	dsll	$3,$3,32
-	dsrl	$3,32
-	dsll	$7,$7,32
-	or	$3,$7
-	daddu	$3,$3,$16
-	dsll	$6,$6,32
-	dsrl	$6,32
-	dsll	$7,$3,32
-	daddu	$6,$6,$7
-	sd	$6,16($sp)
 	dsrl	$2,32
+	addiu	$sp,-32
+	mfhi	$7
+	or	$2,$3
+	mflo	$3
 	multu	$4,$5
+	sd	$16,24($sp)
+	move	$16,$6
 	mflo	$4
+	dsrl	$16,32
 	mfhi	$5
+	daddu	$2,$2,$16
+	dsll	$3,$3,32
+	dsll	$16,$2,32
+	dsll	$7,$7,32
+	dsrl	$3,32
 	dsll	$4,$4,32
-	dsrl	$4,32
+	dsrl	$16,32
+	or	$3,$7
 	dsll	$5,$5,32
+	dsrl	$4,32
+	daddu	$3,$3,$16
 	or	$4,$5
+	dsll	$6,$6,32
+	dsrl	$2,32
+	dsll	$7,$3,32
 	daddu	$2,$2,$4
 	dsrl	$3,32
+	dsrl	$6,32
 	daddu	$2,$2,$3
+	daddu	$6,$6,$7
+	sd	$6,16($sp)
 	sd	$2,8($sp)
 	ld	$3,16($sp)
 	ld	$2,8($sp)
@@ -7882,79 +7822,79 @@ __multi3:
 	.frame	$sp,40,$31		# vars= 16, regs= 2/0, args= 0, gp= 8
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
-	addiu	$sp,-40
-	sd	$17,32($sp)
-	sd	$16,24($sp)
-	move	$11,$4
 	sll	$2,$5,0
-	move	$9,$2
 	sll	$3,$7,0
 	multu	$2,$3
+	addiu	$sp,-40
+	sd	$16,24($sp)
 	mflo	$16
+	move	$9,$2
 	mfhi	$2
 	dsll	$16,$16,32
-	dsrl	$16,32
 	dsll	$2,$2,32
+	dsrl	$16,32
 	or	$16,$2
-	move	$17,$16
-	dsrl	$17,32
 	move	$2,$5
 	dsrl	$2,32
 	sll	$2,$2,0
-	move	$8,$2
 	multu	$3,$2
+	move	$8,$2
 	mflo	$2
 	mfhi	$3
 	dsll	$2,$2,32
-	dsrl	$2,32
+	sd	$17,32($sp)
 	dsll	$3,$3,32
+	move	$17,$16
+	dsrl	$2,32
+	dsrl	$17,32
 	or	$2,$3
 	daddu	$2,$2,$17
 	dsll	$3,$2,32
-	dsrl	$3,32
-	move	$10,$3
 	move	$17,$7
+	dsrl	$3,32
 	dsrl	$17,32
+	move	$10,$3
 	sll	$17,$17,0
 	move	$3,$9
 	multu	$3,$17
+	move	$11,$4
 	mflo	$3
 	mfhi	$4
 	dsll	$3,$3,32
-	dsrl	$3,32
 	dsll	$4,$4,32
+	dsrl	$3,32
 	or	$3,$4
 	move	$4,$10
 	daddu	$3,$3,$4
 	dsll	$16,$16,32
-	dsrl	$16,32
 	dsll	$4,$3,32
+	dsrl	$16,32
 	daddu	$16,$16,$4
-	sd	$16,16($sp)
-	dsrl	$2,32
 	move	$4,$8
 	multu	$4,$17
-	mflo	$16
+	sd	$16,16($sp)
 	mfhi	$17
+	mflo	$16
+	dmult	$5,$6
 	dsll	$16,$16,32
-	dsrl	$16,32
 	dsll	$17,$17,32
+	dsrl	$16,32
 	or	$16,$17
+	dsrl	$2,32
 	daddu	$2,$2,$16
 	dsrl	$3,32
 	daddu	$2,$2,$3
-	dmult	$5,$6
 	mflo	$3
+	ld	$17,32($sp)
 	daddu	$2,$3,$2
 	move	$3,$11
 	dmult	$7,$3
+	ld	$16,24($sp)
 	mflo	$3
 	daddu	$2,$2,$3
 	sd	$2,8($sp)
 	ld	$3,16($sp)
 	ld	$2,8($sp)
-	ld	$17,32($sp)
-	ld	$16,24($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
@@ -8121,16 +8061,16 @@ __popcountdi2:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
+	ld	$3,$L1168
 	move	$2,$4
 	dsrl	$2,1
-	ld	$3,$L1168
 	and	$2,$3
 	dsubu	$4,$4,$2
+	ld	$3,$L1169
 	move	$2,$4
 	dsrl	$2,2
-	ld	$3,$L1169
-	and	$2,$3
 	and	$4,$3
+	and	$2,$3
 	daddu	$2,$2,$4
 	move	$3,$2
 	dsrl	$3,4
@@ -8139,8 +8079,8 @@ __popcountdi2:
 	and	$3,$2
 	move	$2,$3
 	dsrl	$2,32
-	sll	$2,$2,0
 	sll	$3,$3,0
+	sll	$2,$2,0
 	addu	$2,$2,$3
 	srl	$3,$2,8
 	srl	$3,$3,8
@@ -8178,12 +8118,12 @@ __popcountsi2:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	srl	$2,$4,1
 	lw	$3,$L1173
+	srl	$2,$4,1
 	and	$2,$3
 	subu	$4,$4,$2
-	srl	$3,$4,2
 	lw	$2,$L1174
+	srl	$3,$4,2
 	and	$3,$2
 	and	$4,$2
 	addu	$3,$3,$4
@@ -8227,55 +8167,55 @@ __popcountti2:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	dsll	$2,$4,63
 	move	$3,$5
+	ld	$6,$L1178
+	dsll	$2,$4,63
 	dsrl	$3,1
 	or	$2,$3
-	move	$3,$4
-	dsrl	$3,1
-	ld	$6,$L1178
-	and	$3,$6
 	and	$2,$6
+	move	$3,$4
 	dsubu	$2,$5,$2
+	dsrl	$3,1
+	and	$3,$6
 	sltu	$5,$2
 	move	$5,$24
 	dsubu	$4,$4,$3
 	dsubu	$4,$4,$5
-	dsll	$3,$4,62
 	move	$5,$2
+	ld	$6,$L1179
+	dsll	$3,$4,62
 	dsrl	$5,2
 	or	$3,$5
-	move	$5,$4
-	dsrl	$5,2
-	ld	$6,$L1179
-	and	$5,$6
 	and	$3,$6
-	and	$4,$6
+	move	$5,$4
 	and	$2,$6
 	daddu	$2,$3,$2
+	dsrl	$5,2
+	and	$5,$6
 	sltu	$2,$3
+	and	$4,$6
 	move	$3,$24
 	daddu	$4,$5,$4
 	daddu	$4,$3,$4
-	dsll	$3,$4,60
 	move	$5,$2
+	dsll	$3,$4,60
 	dsrl	$5,4
 	or	$3,$5
-	move	$5,$4
-	dsrl	$5,4
 	daddu	$2,$3,$2
+	move	$5,$4
 	sltu	$2,$3
-	move	$3,$24
+	dsrl	$5,4
 	daddu	$5,$5,$4
-	daddu	$3,$3,$5
+	move	$3,$24
 	ld	$4,$L1180
-	and	$3,$4
+	daddu	$3,$3,$5
 	and	$2,$4
+	and	$3,$4
 	daddu	$3,$3,$2
 	move	$2,$3
 	dsrl	$2,32
-	sll	$2,$2,0
 	sll	$3,$3,0
+	sll	$2,$2,0
 	addu	$2,$2,$3
 	srl	$3,$2,8
 	srl	$3,$3,8
@@ -8329,17 +8269,17 @@ __powidf2:
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L1191
 	move	$28,$2
 	sw	$2,32($sp)
+	ld	$2,$L1192
+	sw	$5,80($sp)
+	sd	$17,56($sp)
+	sd	$16,48($sp)
+	sd	$31,64($sp)
+	lw	$16,80($sp)
 	move	$17,$28
 	move	$8,$4
-	sw	$5,80($sp)
-	lw	$16,80($sp)
-	ld	$2,$L1192
 	sd	$2,40($sp)
 	b	$L1184
 $L1190:
@@ -8353,26 +8293,26 @@ $L1190:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$8,$2
+	move	$28,$6
 $L1184:
 	li	$2,1
 	and	$2,$16
 	beqz	$2,$L1182
 	lw	$2,%call16(__mips16_muldf3)($17)
+	ld	$4,40($sp)
 	move	$5,$8
-	sd	$5,72($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	ld	$4,40($sp)
+	sd	$5,72($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	sd	$2,40($sp)
 	ld	$2,72($sp)
+	move	$28,$6
 	move	$8,$2
 $L1182:
 	srl	$2,$16,31
@@ -8392,8 +8332,8 @@ $L1182:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	sd	$2,40($sp)
+	move	$28,$6
 $L1181:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_df)($6)
@@ -8404,8 +8344,6 @@ $L1181:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -8456,17 +8394,17 @@ __powisf2:
 	.mask	0x80030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-72
-	sd	$31,64($sp)
-	sd	$17,56($sp)
-	sd	$16,48($sp)
 	lw	$2,$L1203
 	move	$28,$2
 	sw	$2,32($sp)
+	lw	$2,$L1204
+	sw	$5,80($sp)
+	sd	$17,56($sp)
+	sd	$16,48($sp)
+	sd	$31,64($sp)
+	lw	$16,80($sp)
 	move	$17,$28
 	move	$8,$4
-	sw	$5,80($sp)
-	lw	$16,80($sp)
-	lw	$2,$L1204
 	sw	$2,40($sp)
 	b	$L1196
 $L1202:
@@ -8480,26 +8418,26 @@ $L1202:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	move	$8,$2
+	move	$28,$6
 $L1196:
 	li	$2,1
 	and	$2,$16
 	beqz	$2,$L1194
 	lw	$2,%call16(__mips16_mulsf3)($17)
+	lw	$4,40($sp)
 	move	$5,$8
-	sw	$5,72($sp)
 	.set	noreorder
 	.set	nomacro
 	jalr	$2
-	lw	$4,40($sp)
+	sw	$5,72($sp)
 	.set	macro
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	sw	$2,40($sp)
 	lw	$2,72($sp)
+	move	$28,$6
 	move	$8,$2
 $L1194:
 	srl	$2,$16,31
@@ -8519,8 +8457,8 @@ $L1194:
 	.set	reorder
 
 	lw	$6,32($sp)
-	move	$28,$6
 	sw	$2,40($sp)
+	move	$28,$6
 $L1193:
 	move	$6,$28
 	lw	$6,%got(__mips16_ret_sf)($6)
@@ -8531,8 +8469,6 @@ $L1193:
 	.set	macro
 	.set	reorder
 
-	lw	$6,32($sp)
-	move	$28,$6
 	ld	$7,64($sp)
 	ld	$17,56($sp)
 	ld	$16,48($sp)
@@ -8565,10 +8501,10 @@ __ucmpdi2:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	move	$3,$4
-	dsrl	$3,32
-	sll	$3,$3,0
 	move	$2,$5
+	dsrl	$3,32
 	dsrl	$2,32
+	sll	$3,$3,0
 	sll	$2,$2,0
 	sltu	$3,$2
 	btnez	$L1209
@@ -8624,10 +8560,10 @@ __aeabi_ulcmp:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	move	$3,$4
-	dsrl	$3,32
-	sll	$3,$3,0
 	move	$2,$5
+	dsrl	$3,32
 	dsrl	$2,32
+	sll	$3,$3,0
 	sll	$2,$2,0
 	sltu	$3,$2
 	btnez	$L1215
