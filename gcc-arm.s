@@ -1763,17 +1763,15 @@ wmemmove:
 	sub	r3, r0, r1
 	cmp	r3, r2, lsl #2
 	subcs	r3, r0, #4
-	bcs	.L323
-	add	r1, r1, r2, lsl #2
-	sub	r2, r2, #1
-	add	r2, r0, r2, lsl #2
-	sub	ip, r0, #4
-	b	.L324
+	addcc	r3, r1, r2, lsl #2
+	addcc	r2, r0, r2, lsl #2
+	bcc	.L324
+	b	.L323
 .L328:
-	ldr	r3, [r1, #-4]!
-	str	r3, [r2], #-4
+	ldr	ip, [r3, #-4]!
+	str	ip, [r2, #-4]!
 .L324:
-	cmp	r2, ip
+	cmp	r3, r1
 	bne	.L328
 	mov	pc, lr
 .L329:
@@ -2605,24 +2603,28 @@ __muldi3:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}
-	mov	r6, r1
-	mov	ip, r0
+	mov	r5, r1
+	mov	lr, r0
 	mov	r0, #0
 	mov	r1, r0
+	mov	r6, r0
 	b	.L495
 .L499:
-	and	r4, ip, #1
-	umull	r5, lr, r2, r4
-	mla	lr, r4, r3, lr
-	adds	r0, r0, r5
-	adc	r1, lr, r1
+	and	ip, lr, #1
+	rsbs	ip, ip, #0
+	rsc	r4, r6, #0
+	and	ip, ip, r2
+	and	r4, r4, r3
+	adds	r0, r0, ip
+	adc	r4, r1, r4
 	adds	r2, r2, r2
 	adc	r3, r3, r3
-	lsr	ip, ip, #1
-	orr	ip, ip, r6, lsl #31
-	lsr	r6, r6, #1
+	lsr	lr, lr, #1
+	orr	lr, lr, r5, lsl #31
+	lsr	r5, r5, #1
+	mov	r1, r4
 .L495:
-	orrs	lr, ip, r6
+	orrs	ip, lr, r5
 	bne	.L499
 	pop	{r4, r5, r6, pc}
 	.size	__muldi3, .-__muldi3
@@ -2739,23 +2741,22 @@ __cmovd:
 	lsr	r4, r2, #3
 	bic	ip, r2, #7
 	cmp	r0, r1
-	bcc	.L532
-	add	r3, r1, r2
-	cmp	r3, r0
-	bcs	.L533
-.L532:
+	bcs	.L532
+.L534:
 	mov	r3, r1
 	mov	lr, r0
 	add	r4, r1, r4, lsl #3
-	b	.L534
-.L533:
+	b	.L533
+.L532:
 	add	r3, r1, r2
-	add	r0, r0, r2
-	b	.L535
+	cmp	r3, r0
+	addcs	r0, r0, r2
+	bcs	.L535
+	b	.L534
 .L536:
 	vldmia.64	r3!, {d7}	@ int
 	vstmia.64	lr!, {d7}	@ int
-.L534:
+.L533:
 	cmp	r3, r4
 	bne	.L536
 	sub	ip, ip, #1
@@ -2790,23 +2791,22 @@ __cmovh:
 	push	{r4, lr}
 	lsr	r4, r2, #1
 	cmp	r0, r1
-	bcc	.L546
-	add	r3, r1, r2
-	cmp	r3, r0
-	bcs	.L547
-.L546:
+	bcs	.L546
+.L548:
 	sub	r3, r1, #2
 	sub	ip, r0, #2
 	add	r4, r3, r4, lsl #1
-	b	.L548
-.L547:
+	b	.L547
+.L546:
 	add	r3, r1, r2
-	add	r0, r0, r2
-	b	.L549
+	cmp	r3, r0
+	addcs	r0, r0, r2
+	bcs	.L549
+	b	.L548
 .L550:
 	ldrsh	lr, [r3, #2]!
 	strh	lr, [ip, #2]!	@ movhi
-.L548:
+.L547:
 	cmp	r3, r4
 	bne	.L550
 	tst	r2, #1
@@ -2834,23 +2834,22 @@ __cmovw:
 	lsr	r5, r2, #2
 	bic	ip, r2, #3
 	cmp	r0, r1
-	bcc	.L556
-	add	r3, r1, r2
-	cmp	r3, r0
-	bcs	.L557
-.L556:
+	bcs	.L556
+.L558:
 	sub	r3, r1, #4
 	sub	lr, r0, #4
 	add	r5, r3, r5, lsl #2
-	b	.L558
-.L557:
+	b	.L557
+.L556:
 	add	r3, r1, r2
-	add	r2, r0, r2
-	b	.L559
+	cmp	r3, r0
+	addcs	r2, r0, r2
+	bcs	.L559
+	b	.L558
 .L560:
 	ldr	r4, [r3, #4]!
 	str	r4, [lr, #4]!
-.L558:
+.L557:
 	cmp	r3, r5
 	bne	.L560
 	sub	ip, ip, #1
@@ -3515,11 +3514,13 @@ __clzsi2:
 	rsb	r0, r1, #2
 	lsr	r3, r3, r0
 	add	r2, r2, r1
-	tst	r3, #2
-	moveq	r0, #1
-	movne	r0, #0
+	and	r0, r3, #2
+	rsbs	r0, r0, #1
+	movcc	r0, #0
 	rsb	r3, r3, #2
-	mla	r0, r3, r0, r2
+	rsb	r0, r0, #0
+	and	r0, r0, r3
+	add	r0, r2, r0
 	mov	pc, lr
 	.size	__clzsi2, .-__clzsi2
 	.align	2

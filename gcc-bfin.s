@@ -2158,9 +2158,9 @@ _wmemmove:
 	R0 += -1;
 	P0 = R0;
 	P2 = P0 << 2;
-	P1 = P1 + P2;
 	P5 = R3;
 	P0 = P5 + P2;
+	P1 = P1 + P2;
 	P2 += 4;
 	P2 = P2 >> 2;
 	P2 += 1;
@@ -3566,69 +3566,68 @@ ___mulsi3:
 .global ___cmovd;
 .type ___cmovd, STT_FUNC;
 ___cmovd:
-	[--sp] = ( r7:6, p5:5 );
+	[--sp] = ( r7:7, p5:4 );
 
 	P2 = R0;
+	P1 = R1;
+	P0 = R1;
 	R7 = R2;
-	R2 >>= 3;
+	R1 = R2 >> 3;
 	R0 = -8 (X);
-	R0 = R7 & R0;
-	R3 = P2;
-	cc =R3<R1 (iu);
-	if cc jump .L501 (bp);
-	R3 = R1 + R7;
-	R6 = P2;
-	cc =R3<R6 (iu);
-	if !cc jump .L502 (bp);
-.L501:
-	P5 = R1;
-	P0 = P2;
-	P1 = R2;
+	R0 = R2 & R0;
+	cc =P2<P1 (iu);
+	if !cc jump .L501 (bp);
+.L503:
+	P4 = P0;
+	P5 = P2;
+	P1 = R1;
 	P1 += 1;
-	jump.s .L503;
-.L502:
+	jump.s .L502;
+.L501:
+	R3 = P1;
+	R2 = R3 + R2;
+	R3 = P2;
+	cc =R2<R3 (iu);
+	if cc jump .L503 (bp);
 	R7 += -1;
-	R0 = R1 + R7;
-	P0 = R0;
 	P1 = R7;
+	P5 = P0 + P1;
 	P2 = P2 + P1;
-	R1 += -1;
+	P0 += -1;
 	jump.s .L504;
 .L505:
-	R2 = [P5];
-	R3 = [P5+4];
-	[P0] = R2;
-	[P0+4] = R3;
+	R2 = [P4];
+	R3 = [P4+4];
+	[P5] = R2;
+	[P5+4] = R3;
+	P4 += 8;
 	P5 += 8;
-	P0 += 8;
-.L503:
+.L502:
 	P1 += -1;
 	cc =P1==0;
 	if !cc jump .L505;
-	R1 = R1 + R0;
-	P1 = R1;
-	P0 = R0;
-	P2 = P2 + P0;
+	P1 = R0;
+	P0 = P0 + P1;
+	P2 = P2 + P1;
 	jump.s .L506;
 .L507:
 	nop;
-	R1 = B [P1++] (X);
+	R1 = B [P0++] (X);
 	B [P2++] = R1;
 	R0 += 1;
 .L506:
 	cc =R7<=R0 (iu);
 	if !cc jump .L507 (bp);
 .L500:
-	( r7:6, p5:5 ) = [sp++];
+	( r7:7, p5:4 ) = [sp++];
 
 	rts;
 .L509:
 	nop;
-	R0 = B [P0--] (X);
+	R0 = B [P5--] (X);
 	B [P2--] = R0;
 .L504:
-	R0 = P0;
-	cc =R0==R1;
+	cc =P5==P0;
 	if !cc jump .L509 (bp);
 	jump.s .L500;
 	.size	___cmovd, .-___cmovd
@@ -3640,16 +3639,16 @@ ___cmovh:
 	P1 = R2;
 	P2 = P1 >> 1;
 	cc =R0<R1 (iu);
-	if cc jump .L511 (bp);
-	R0 = R1 + R2;
-	cc =R0<R3 (iu);
-	if !cc jump .L512 (bp);
-.L511:
+	if !cc jump .L511 (bp);
+.L513:
 	P0 = R3;
 	P1 = R1;
 	P2 += 1;
-	jump.s .L513;
-.L512:
+	jump.s .L512;
+.L511:
+	R0 = R1 + R2;
+	cc =R0<R3 (iu);
+	if cc jump .L513 (bp);
 	R2 += -1;
 	R0 = R1 + R2;
 	P1 = R0;
@@ -3660,7 +3659,7 @@ ___cmovh:
 .L515:
 	R0 = W [P1++] (X);
 	W [P0++] = R0;
-.L513:
+.L512:
 	P2 += -1;
 	cc =P2==0;
 	if !cc jump .L515;
@@ -3698,17 +3697,17 @@ ___cmovw:
 	R0 = R2 & R0;
 	R3 = P2;
 	cc =R3<R1 (iu);
-	if cc jump .L519 (bp);
-	R3 = R1 + R2;
-	R7 = P2;
-	cc =R3<R7 (iu);
-	if !cc jump .L520 (bp);
-.L519:
+	if !cc jump .L519 (bp);
+.L521:
 	P5 = P2;
 	P0 = R1;
 	P1 += 1;
-	jump.s .L521;
-.L520:
+	jump.s .L520;
+.L519:
+	R3 = R1 + R2;
+	R7 = P2;
+	cc =R3<R7 (iu);
+	if cc jump .L521 (bp);
 	R2 += -1;
 	R0 = R1 + R2;
 	P0 = R0;
@@ -3719,7 +3718,7 @@ ___cmovw:
 .L523:
 	R3 = [P0++];
 	[P5++] = R3;
-.L521:
+.L520:
 	P1 += -1;
 	cc =P1==0;
 	if !cc jump .L523;
@@ -4606,18 +4605,18 @@ ___clzsi2:
 	R2 = 12 (X);
 	R2 = R0 & R2;
 	cc =R2==0;
-	R3 = CC;
-	R3 <<= 1;
-	R2 = 2 (X);
-	R7 = R2 - R3;
+	R2 = CC;
+	R2 <<= 1;
+	R3 = 2 (X);
+	R7 = R3 - R2;
 	R0 >>= R7;
-	R1 = R1 + R3;
-	R3 = R0 & R2;
-	cc =R3==0;
-	R3 = CC;
-	R2 = R2 - R0;
-	R2 *= R3;
 	R1 = R1 + R2;
+	R2 = R0 & R3;
+	R2 >>= 1;
+	R3 = R3 - R0;
+	R2 += -1;
+	R0 = R2 & R3;
+	R1 = R1 + R0;
 	R0 = R1;
 	( r7:7 ) = [sp++];
 

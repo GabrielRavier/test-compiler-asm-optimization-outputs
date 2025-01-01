@@ -3951,19 +3951,19 @@ __muldi3:
 	b .L520
 .L523:
 	rlwinm 10,9,0,31,31
-	mullw 7,6,10
-	mullw 11,5,10
-	mulhwu 10,5,10
-	add 10,7,10
-	addc 3,3,11
-	srwi 7,5,31
-	rlwimi 7,6,1,0,31-1
+	subfic 10,10,0
+	subfe 7,7,7
+	and 7,6,7
+	and 10,5,10
+	addc 3,3,10
+	srwi 10,5,31
+	rlwimi 10,6,1,0,31-1
 	slwi 5,5,1
-	mr 6,7
+	mr 6,10
 	srwi 9,9,1
 	rlwimi 9,8,31,0,31-31
 	srwi 8,8,1
-	adde 4,4,10
+	adde 4,4,7
 .L520:
 	or. 10,9,8
 	bne+ 0,.L523
@@ -4091,11 +4091,11 @@ __cmovd:
 	srwi 9,5,3
 	rlwinm 10,5,0,0,28
 	cmplw 0,3,4
-	blt- 0,.L552
+	blt- 0,.L554
 	add 8,4,5
 	cmplw 0,8,3
-	blt- 0,.L552
-	add 4,4,5
+	blt- 0,.L554
+	mr 4,8
 	add 3,3,5
 	addi 9,5,1
 	mtctr 9
@@ -4122,7 +4122,7 @@ __cmovd:
 .L555:
 	bdnz .L560
 	blr
-.L552:
+.L554:
 	addi 7,4,-8
 	addi 8,3,-8
 	addi 9,9,1
@@ -4185,18 +4185,18 @@ __cmovh:
 	.cfi_startproc
 	srwi 9,5,1
 	cmplw 0,3,4
-	blt- 0,.L574
-	add 10,4,5
-	cmplw 0,10,3
-	bge- 0,.L575
-.L574:
+	bge- 0,.L574
+.L576:
 	addi 8,4,-2
 	addi 10,3,-2
 	addi 9,9,1
 	mtctr 9
-	b .L576
-.L575:
-	add 4,4,5
+	b .L575
+.L574:
+	add 10,4,5
+	cmplw 0,10,3
+	blt- 0,.L576
+	mr 4,10
 	add 3,3,5
 	addi 9,5,1
 	mtctr 9
@@ -4204,7 +4204,7 @@ __cmovh:
 .L578:
 	lhzu 9,2(8)
 	sthu 9,2(10)
-.L576:
+.L575:
 	bdnz .L578
 	andi. 9,5,0x1
 	beqlr- 0
@@ -4230,18 +4230,18 @@ __cmovw:
 	srwi 9,5,2
 	rlwinm 10,5,0,0,29
 	cmplw 0,3,4
-	blt- 0,.L582
-	add 8,4,5
-	cmplw 0,8,3
-	bge- 0,.L583
-.L582:
+	bge- 0,.L582
+.L584:
 	addi 7,4,-4
 	addi 8,3,-4
 	addi 9,9,1
 	mtctr 9
-	b .L584
-.L583:
-	add 4,4,5
+	b .L583
+.L582:
+	add 8,4,5
+	cmplw 0,8,3
+	blt- 0,.L584
+	mr 4,8
 	add 3,3,5
 	addi 9,5,1
 	mtctr 9
@@ -4249,7 +4249,7 @@ __cmovw:
 .L586:
 	lwzu 9,4(7)
 	stwu 9,4(8)
-.L584:
+.L583:
 	bdnz .L586
 	subf 9,10,5
 	addi 9,9,1
@@ -5099,11 +5099,10 @@ __clzsi2:
 	subfic 7,8,2
 	srw 9,9,7
 	add 10,10,8
-	rlwinm 3,9,0,30,30
-	cntlzw 3,3
-	srwi 3,3,5
+	rlwinm 3,9,31,31,31
 	subfic 9,9,2
-	mullw 3,3,9
+	addi 3,3,-1
+	and 3,3,9
 	add 3,10,3
 	blr
 	.cfi_endproc
