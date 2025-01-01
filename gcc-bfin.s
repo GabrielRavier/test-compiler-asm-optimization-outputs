@@ -455,14 +455,10 @@ _isblank:
 	if cc jump .L72;
 	R1 = 9 (X);
 	cc =R0==R1;
-	if !cc jump .L73 (bp);
-	R0 = 1 (X);
+	R0 = CC;
 	jump.s .L71;
 .L72:
 	R0 = 1 (X);
-	jump.s .L71;
-.L73:
-	R0 = 0 (X);
 .L71:
 	UNLINK;
 	rts;
@@ -477,14 +473,10 @@ _iscntrl:
 	if cc jump .L76 (bp);
 	R1 = 127 (X);
 	cc =R0==R1;
-	if !cc jump .L77 (bp);
-	R0 = 1 (X);
+	R0 = CC;
 	jump.s .L75;
 .L76:
 	R0 = 1 (X);
-	jump.s .L75;
-.L77:
-	R0 = 0 (X);
 .L75:
 	UNLINK;
 	rts;
@@ -547,15 +539,11 @@ _isspace:
 	cc =R0==R1;
 	if cc jump .L84;
 	R0 += -9;
-	cc =R0<=4 (iu);
-	if !cc jump .L85 (bp);
-	R0 = 1 (X);
+	cc =R0<5 (iu);
+	R0 = CC;
 	jump.s .L83;
 .L84:
 	R0 = 1 (X);
-	jump.s .L83;
-.L85:
-	R0 = 0 (X);
 .L83:
 	UNLINK;
 	rts;
@@ -593,9 +581,8 @@ _iswcntrl:
 	R1 = 7 (X);
 	R1.H = 65535;
 	R0 = R0 + R1;
-	cc =R0<=2 (iu);
-	if !cc jump .L92 (bp);
-	R0 = 1 (X);
+	cc =R0<3 (iu);
+	R0 = CC;
 	jump.s .L88;
 .L89:
 	R0 = 1 (X);
@@ -605,9 +592,6 @@ _iswcntrl:
 	jump.s .L88;
 .L91:
 	R0 = 1 (X);
-	jump.s .L88;
-.L92:
-	R0 = 0 (X);
 .L88:
 	UNLINK;
 	rts;
@@ -699,15 +683,11 @@ _iswxdigit:
 	BITSET (R0, 5);
 	R1 = -97 (X);
 	R0 = R0 + R1;
-	cc =R0<=5 (iu);
-	if !cc jump .L105 (bp);
-	R0 = 1 (X);
+	cc =R0<6 (iu);
+	R0 = CC;
 	jump.s .L103;
 .L104:
 	R0 = 1 (X);
-	jump.s .L103;
-.L105:
-	R0 = 0 (X);
 .L103:
 	UNLINK;
 	rts;
@@ -4370,19 +4350,20 @@ ___modsi3:
 	[--sp] = ( r7:7 );
 
 	LINK 12;
-	cc =R0<0;
+	R3 = R0;
+	R0 = R1;
+	cc =R3<0;
 	if !cc jump .L606 (bp);
-	R0 = -R0;
+	R3 = -R3;
 	R7 = 1 (X);
 	jump.s .L603;
 .L606:
 	R7 = 0 (X);
 .L603:
-	cc =R1<0;
-	if !cc jump .L604 (bp);
-	R1 = -R1;
-.L604:
+	R0 = abs R0;
 	R2 = 1 (X);
+	R1 = R0;
+	R0 = R3;
 	call ___udivmodsi4;
 	cc =R7==0;
 	if cc jump .L605 (bp);

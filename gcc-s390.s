@@ -730,14 +730,12 @@ isspace:
 	ahi	%r2,-9
 	lhi	%r1,4
 	clr	%r2,%r1
-	jh	.L110
-	lhi	%r2,1
+	lhi	%r2,0
+	slbr	%r2,%r2
+	lcr	%r2,%r2
 	j	.L108
 .L109:
 	lhi	%r2,1
-	j	.L108
-.L110:
-	lhi	%r2,0
 .L108:
 	l	%r11,44(%r11)
 	.cfi_restore 11
@@ -795,8 +793,9 @@ iswcntrl:
 	a	%r2,.L121-.L120(%r5)
 	lhi	%r1,2
 	clr	%r2,%r1
-	jh	.L119
-	lhi	%r2,1
+	lhi	%r2,0
+	slbr	%r2,%r2
+	lcr	%r2,%r2
 	j	.L115
 .L116:
 	lhi	%r2,1
@@ -806,9 +805,6 @@ iswcntrl:
 	j	.L115
 .L118:
 	lhi	%r2,1
-	j	.L115
-.L119:
-	lhi	%r2,0
 .L115:
 	l	%r11,44(%r11)
 	.cfi_restore 11
@@ -948,14 +944,12 @@ iswxdigit:
 	ahi	%r2,-97
 	lhi	%r1,5
 	clr	%r2,%r1
-	jh	.L141
-	lhi	%r2,1
+	lhi	%r2,0
+	slbr	%r2,%r2
+	lcr	%r2,%r2
 	j	.L139
 .L140:
 	lhi	%r2,1
-	j	.L139
-.L141:
-	lhi	%r2,0
 .L139:
 	l	%r11,44(%r11)
 	.cfi_restore 11
@@ -1425,85 +1419,67 @@ rand:
 	lr	%r11,%r15
 	.cfi_def_cfa_register 11
 	larl	%r1,seed
-	lm	%r2,%r3,0(%r1)
+	lm	%r4,%r5,0(%r1)
+	lr	%r2,%r4
+	lr	%r3,%r5
+	sldl	%r2,4
+	slr	%r3,%r5
+	slbr	%r2,%r4
 	lr	%r12,%r2
 	lr	%r13,%r3
-	sldl	%r12,4
+	sldl	%r12,6
 	slr	%r13,%r3
 	slbr	%r12,%r2
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,6
-	slr	%r5,%r13
-	slbr	%r4,%r12
-	lr	%r12,%r4
-	lr	%r13,%r5
-	sldl	%r12,7
-	alr	%r5,%r13
-	alcr	%r4,%r12
-	sldl	%r4,2
-	lr	%r12,%r4
-	lr	%r13,%r5
+	lr	%r2,%r12
+	lr	%r3,%r13
+	sldl	%r2,7
 	alr	%r13,%r3
 	alcr	%r12,%r2
-	lr	%r8,%r12
-	lr	%r9,%r13
-	sldl	%r8,6
-	slr	%r9,%r13
-	slbr	%r8,%r12
-	lr	%r12,%r8
-	lr	%r13,%r9
-	sldl	%r12,7
-	alr	%r13,%r3
-	alcr	%r12,%r2
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,2
-	alr	%r5,%r3
-	alcr	%r4,%r2
-	lr	%r8,%r4
-	lr	%r9,%r5
+	sldl	%r12,2
+	alr	%r13,%r5
+	alcr	%r12,%r4
+	lr	%r2,%r12
+	lr	%r3,%r13
+	sldl	%r2,6
+	slr	%r3,%r13
+	slbr	%r2,%r12
+	sldl	%r2,7
+	alr	%r3,%r5
+	alcr	%r2,%r4
+	sldl	%r2,2
+	alr	%r3,%r5
+	alcr	%r2,%r4
+	lr	%r8,%r2
+	lr	%r9,%r3
 	sldl	%r8,3
-	slr	%r9,%r5
-	slbr	%r8,%r4
+	slr	%r9,%r3
+	slbr	%r8,%r2
 	lr	%r12,%r8
 	lr	%r13,%r9
 	sldl	%r12,3
 	slr	%r13,%r9
 	slbr	%r12,%r8
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,6
-	slr	%r5,%r13
-	slbr	%r4,%r12
-	sldl	%r4,2
-	lr	%r12,%r4
-	lr	%r13,%r5
-	slr	%r13,%r3
-	slbr	%r12,%r2
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,7
-	slr	%r5,%r3
-	slbr	%r4,%r2
-	sldl	%r4,2
-	lr	%r12,%r4
-	lr	%r13,%r5
-	alr	%r13,%r3
-	alcr	%r12,%r2
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,2
-	slr	%r5,%r3
-	slbr	%r4,%r2
-	sldl	%r4,2
-	lr	%r12,%r4
-	lr	%r13,%r5
-	slr	%r13,%r3
-	slbr	%r12,%r2
-	lr	%r4,%r12
-	lr	%r5,%r13
-	sldl	%r4,2
+	lr	%r2,%r12
+	lr	%r3,%r13
+	sldl	%r2,6
+	slr	%r3,%r13
+	slbr	%r2,%r12
+	sldl	%r2,2
+	slr	%r3,%r5
+	slbr	%r2,%r4
+	sldl	%r2,7
+	slr	%r3,%r5
+	slbr	%r2,%r4
+	sldl	%r2,2
+	alr	%r3,%r5
+	alcr	%r2,%r4
+	sldl	%r2,2
+	slr	%r3,%r5
+	slbr	%r2,%r4
+	sldl	%r2,2
+	slr	%r3,%r5
+	slbr	%r2,%r4
+	sldl	%r2,2
 	alr	%r3,%r5
 	alcr	%r2,%r4
 	lhi	%r4,0
@@ -5151,11 +5127,8 @@ __modsi3:
 .L780:
 	lhi	%r12,0
 .L777:
-	ltr	%r3,%r3
-	jhe	.L778
-	lcr	%r3,%r3
-.L778:
 	lhi	%r4,1
+	lpr	%r3,%r3
 	brasl	%r14,__udivmodsi4
 	ltr	%r12,%r12
 	je	.L779

@@ -740,23 +740,14 @@ isblank:
 	beq	$4,$2,$L72
 	move	$fp,$sp
 
-	li	$2,9			# 0x9
-	bne	$4,$2,$L73
-	li	$2,1			# 0x1
-
+	xori	$4,$4,0x9
 	.option	pic0
 	b	$L71
-	nop
-
 	.option	pic2
+	sltu	$2,$4,1
+
 $L72:
-	.option	pic0
-	b	$L71
-	.option	pic2
 	li	$2,1			# 0x1
-
-$L73:
-	move	$2,$0
 $L71:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -785,23 +776,14 @@ iscntrl:
 	bne	$2,$0,$L76
 	move	$fp,$sp
 
-	li	$2,127			# 0x7f
-	bne	$4,$2,$L77
-	li	$2,1			# 0x1
-
+	xori	$4,$4,0x7f
 	.option	pic0
 	b	$L75
-	nop
-
 	.option	pic2
+	sltu	$2,$4,1
+
 $L76:
-	.option	pic0
-	b	$L75
-	.option	pic2
 	li	$2,1			# 0x1
-
-$L77:
-	move	$2,$0
 $L75:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -935,23 +917,13 @@ isspace:
 	move	$fp,$sp
 
 	addiu	$4,$4,-9
-	sltu	$4,$4,5
-	beq	$4,$0,$L85
-	li	$2,1			# 0x1
-
 	.option	pic0
 	b	$L83
-	nop
-
 	.option	pic2
+	sltu	$2,$4,5
+
 $L84:
-	.option	pic0
-	b	$L83
-	.option	pic2
 	li	$2,1			# 0x1
-
-$L85:
-	move	$2,$0
 $L83:
 	move	$sp,$fp
 	lw	$fp,4($sp)
@@ -1013,34 +985,24 @@ iswcntrl:
 
 	addiu	$2,$4,-8232
 	sltu	$2,$2,2
-	bne	$2,$0,$L93
-	li	$2,1			# 0x1
-
+	bne	$2,$0,$L91
 	li	$2,-65536			# 0xffffffffffff0000
+
 	addiu	$2,$2,7
 	addu	$4,$4,$2
-	sltu	$4,$4,3
-	beq	$4,$0,$L92
-	li	$2,1			# 0x1
-
 	.option	pic0
 	b	$L88
-	nop
-
 	.option	pic2
+	sltu	$2,$4,3
+
 $L89:
 	.option	pic0
 	b	$L88
 	.option	pic2
 	li	$2,1			# 0x1
 
-	.option	pic0
-	b	$L88
-	.option	pic2
+$L91:
 	li	$2,1			# 0x1
-
-$L92:
-	move	$2,$0
 $L88:
 $L93:
 	move	$sp,$fp
@@ -1128,17 +1090,14 @@ $L96:
 	addiu	$3,$3,4
 	sltu	$2,$2,$3
 	beq	$2,$0,$L101
-	andi	$4,$4,0xfffe
+	andi	$2,$4,0xfffe
 
-	li	$2,65534			# 0xfffe
-	beq	$4,$2,$L102
-	li	$2,1			# 0x1
-
+	xori	$2,$2,0xfffe
 	.option	pic0
 	b	$L97
-	nop
-
 	.option	pic2
+	sltu	$2,$0,$2
+
 $L98:
 	.option	pic0
 	b	$L97
@@ -1151,12 +1110,6 @@ $L98:
 	li	$2,1			# 0x1
 
 $L101:
-	.option	pic0
-	b	$L97
-	.option	pic2
-	move	$2,$0
-
-$L102:
 	move	$2,$0
 $L97:
 $L103:
@@ -1188,25 +1141,15 @@ iswxdigit:
 	bne	$2,$0,$L106
 	move	$fp,$sp
 
-	ori	$4,$4,0x20
-	addiu	$4,$4,-97
-	sltu	$4,$4,6
-	beq	$4,$0,$L107
-	li	$2,1			# 0x1
-
+	ori	$2,$4,0x20
+	addiu	$2,$2,-97
 	.option	pic0
 	b	$L105
-	nop
-
 	.option	pic2
+	sltu	$2,$2,6
+
 $L106:
-	.option	pic0
-	b	$L105
-	.option	pic2
 	li	$2,1			# 0x1
-
-$L107:
-	move	$2,$0
 $L105:
 	move	$sp,$fp
 	lw	$fp,4($sp)

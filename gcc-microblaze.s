@@ -29,17 +29,15 @@ $L3:
 	brid	$L9
 	addk	r1,r19,r0
 $L2:
-	xor	r4,r5,r6
-	bnei	r4,$L8
+	xor	r5,r5,r6
+	bneid	r5,$L6
+	addk	r4,r0,r0
 	brid	$L9
 	addk	r1,r19,r0
 $L7:
 	lbu	r5,r4,r6
 	sb	r5,r4,r3
-	brid	$L6
 	addik	r4,r4,1
-$L8:
-	addk	r4,r0,r0
 $L6:
 	xor	r5,r4,r7
 	bnei	r5,$L7
@@ -64,22 +62,23 @@ memccpy:
 	addk	r19,r1,r0
 	brid	$L11
 	andi	r7,r7,0x00ff
-$L16:
+$L17:
 	addik	r6,r6,1
 	addik	r5,r5,1
 $L11:
-	beqi	r8,$L12
-	lbui	r4,r6,0
-	sbi	r4,r5,0
-	xor	r4,r7,r4
-	bneid	r4,$L16
+	beqid	r8,$L16
+	addk	r3,r0,r0
+	lbui	r3,r6,0
+	sbi	r3,r5,0
+	xor	r3,r7,r3
+	bneid	r3,$L17
 	addik	r8,r8,-1
 	addik	r8,r8,1
-$L12:
-	bneid	r8,$L14
-	addik	r3,r5,1
+	beqid	r8,$L14
 	addk	r3,r0,r0
+	addik	r3,r5,1
 $L14:
+$L16:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -98,22 +97,22 @@ memchr:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L18
+	brid	$L19
 	andi	r6,r6,0x00ff
-$L23:
+$L24:
 	addik	r7,r7,-1
-$L18:
-	beqi	r7,$L19
+$L19:
+	beqi	r7,$L20
 	lbui	r4,r5,0
 	xor	r4,r6,r4
-	bneid	r4,$L23
+	bneid	r4,$L24
 	addik	r5,r5,1
 	addik	r5,r5,-1
-$L19:
-	bneid	r7,$L21
+$L20:
+	bneid	r7,$L22
 	addk	r3,r5,r0
 	addk	r3,r0,r0
-$L21:
+$L22:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -131,28 +130,27 @@ memcmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L25
+	brid	$L26
 	addk	r19,r1,r0
-$L30:
+$L32:
 	addik	r5,r5,1
 	addik	r6,r6,1
-$L25:
-	beqi	r7,$L26
+$L26:
+	beqid	r7,$L31
+	addk	r3,r0,r0
 	lbui	r3,r5,0
 	lbui	r4,r6,0
 	xor	r3,r3,r4
-	beqid	r3,$L30
+	beqid	r3,$L32
 	addik	r7,r7,-1
 	addik	r7,r7,1
-$L26:
-	beqi	r7,$L29
+	beqid	r7,$L29
+	addk	r3,r0,r0
 	lbui	r3,r5,0
 	lbui	r4,r6,0
-	brid	$L28
 	rsubk	r3,r4,r3
 $L29:
-	addk	r3,r0,r0
-$L28:
+$L31:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -172,15 +170,15 @@ memcpy:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r5,r0
-	brid	$L32
+	brid	$L34
 	addk	r4,r0,r0
-$L33:
+$L35:
 	lbu	r5,r4,r6
 	sb	r5,r4,r3
 	addik	r4,r4,1
-$L32:
+$L34:
 	xor	r8,r4,r7
-	bnei	r8,$L33
+	bnei	r8,$L35
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -200,22 +198,22 @@ memrchr:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	andi	r6,r6,0x00ff
-	brid	$L35
+	brid	$L37
 	addik	r7,r7,-1
-$L37:
+$L39:
 	lbu	r4,r7,r5
 	xor	r4,r6,r4
-	bneid	r4,$L38
+	bneid	r4,$L40
 	addik	r8,r7,-1
-	brid	$L36
+	brid	$L38
 	addk	r3,r5,r7
-$L38:
+$L40:
 	addk	r7,r8,r0
-$L35:
+$L37:
 	xori	r4,r7,-1
-	bneid	r4,$L37
+	bneid	r4,$L39
 	addk	r3,r0,r0
-$L36:
+$L38:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -236,14 +234,14 @@ memset:
 	addk	r19,r1,r0
 	addk	r3,r5,r0
 	addk	r7,r5,r7
-	brid	$L40
+	brid	$L42
 	addk	r4,r5,r0
-$L41:
+$L43:
 	sbi	r6,r4,0
 	addik	r4,r4,1
-$L40:
+$L42:
 	xor	r8,r4,r7
-	bnei	r8,$L41
+	bnei	r8,$L43
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -262,16 +260,16 @@ stpcpy:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L43
+	brid	$L45
 	addk	r3,r5,r0
-$L44:
+$L46:
 	addik	r6,r6,1
 	addik	r3,r3,1
-$L43:
+$L45:
 	lbui	r4,r6,0
 	sbi	r4,r3,0
 	sext8	r4,r4
-	bnei	r4,$L44
+	bnei	r4,$L46
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -291,16 +289,16 @@ strchrnul:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r5,r0
-	brid	$L46
+	brid	$L48
 	andi	r6,r6,0x00ff
-$L46:
+$L48:
 	lbui	r4,r3,0
-	beqid	r4,$L47
+	beqid	r4,$L49
 	xor	r4,r6,r4
-	bneid	r4,$L46
+	bneid	r4,$L48
 	addik	r3,r3,1
 	addik	r3,r3,-1
-$L47:
+$L49:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -319,20 +317,20 @@ strchr:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-$L51:
+$L53:
 	lbui	r4,r5,0
 	sext8	r4,r4
 	xor	r4,r6,r4
-	beqid	r4,$L52
+	beqid	r4,$L54
 	addk	r3,r5,r0
 	addik	r5,r5,1
 	lbui	r3,r5,-1
-	bnei	r3,$L51
-	brid	$L53
+	bnei	r3,$L53
+	brid	$L55
 	addk	r1,r19,r0
-$L52:
+$L54:
 	addk	r1,r19,r0
-$L53:
+$L55:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -349,21 +347,21 @@ strcmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L55
+	brid	$L57
 	addk	r19,r1,r0
-$L59:
+$L61:
 	addik	r6,r6,1
-$L55:
+$L57:
 	lbui	r4,r5,0
 	lbui	r3,r6,0
 	xor	r3,r3,r4
 	sext8	r3,r3
-	bnei	r3,$L58
-	bneid	r4,$L59
+	bnei	r3,$L60
+	bneid	r4,$L61
 	addik	r5,r5,1
 	addik	r5,r5,-1
 	lbui	r4,r5,0
-$L58:
+$L60:
 	lbui	r3,r6,0
 	rsubk	r3,r3,r4
 	addk	r1,r19,r0
@@ -384,13 +382,13 @@ strlen:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L61
+	brid	$L63
 	addk	r3,r5,r0
-$L62:
+$L64:
 	addik	r3,r3,1
-$L61:
+$L63:
 	lbui	r6,r3,0
-	bnei	r6,$L62
+	bnei	r6,$L64
 	rsubk	r3,r5,r3
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -409,15 +407,15 @@ strncmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	beqid	r7,$L68
+	beqid	r7,$L70
 	addk	r19,r1,r0
-	brid	$L65
+	brid	$L67
 	addk	r4,r5,r0
-$L70:
+$L72:
 	addik	r6,r6,1
-$L65:
+$L67:
 	lbui	r3,r4,0
-	beqi	r3,$L69
+	beqi	r3,$L71
 	lbui	r8,r6,0
 	addik	r3,r7,-1
 	addk	r3,r3,r5
@@ -426,22 +424,22 @@ $L65:
 	or	r3,r3,r9
 	rsubk	r8,r8,r0
 	and	r3,r8,r3
-	bgei	r3,$L66
+	bgei	r3,$L68
 	lbui	r3,r4,0
 	lbui	r8,r6,0
 	xor	r3,r3,r8
-	beqid	r3,$L70
+	beqid	r3,$L72
 	addik	r4,r4,1
 	addik	r4,r4,-1
-$L66:
-	lbui	r3,r4,0
-$L69:
-	lbui	r4,r6,0
-	brid	$L64
-	rsubk	r3,r4,r3
 $L68:
+	lbui	r3,r4,0
+$L71:
+	lbui	r4,r6,0
+	brid	$L66
+	rsubk	r3,r4,r3
+$L70:
 	addk	r3,r0,r0
-$L64:
+$L66:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -460,21 +458,21 @@ swab:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L72
+	brid	$L74
 	addk	r3,r5,r0
-$L73:
+$L75:
 	lbui	r4,r3,1
 	sbi	r4,r6,0
 	lbui	r4,r3,0
 	sbi	r4,r6,1
 	addik	r6,r6,2
 	addik	r3,r3,2
-$L72:
+$L74:
 	addk	r4,r5,r7
 	rsubk	r4,r3,r4
 	addik	r8,r0,1	# 0x1
 	cmp	r18,r4,r8
-	blti	r18,$L73
+	blti	r18,$L75
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -497,10 +495,10 @@ isalpha:
 	addik	r5,r5,-97
 	addik	r4,r0,25	# 0x19
 	cmpu	r18,r5,r4
-	bgeid	r18,$L75
+	bgeid	r18,$L77
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L75:
+$L77:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -522,10 +520,10 @@ isascii:
 	addk	r19,r1,r0
 	addik	r4,r0,127	# 0x7f
 	cmpu	r18,r5,r4
-	bgeid	r18,$L77
+	bgeid	r18,$L79
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L77:
+$L79:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -606,10 +604,10 @@ iscntrl:
 	addk	r19,r1,r0
 	addik	r4,r0,31	# 0x1f
 	cmpu	r18,r5,r4
-	bgeid	r18,$L80
+	bgeid	r18,$L82
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L80:
+$L82:
 	andi	r3,r3,0x00ff
 	xori	r5,r5,127
 	rsubk	r4,r5,r0
@@ -669,10 +667,10 @@ isdigit:
 	addik	r5,r5,-48
 	addik	r4,r0,9	# 0x9
 	cmpu	r18,r5,r4
-	bgeid	r18,$L82
+	bgeid	r18,$L84
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L82:
+$L84:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -695,10 +693,10 @@ isgraph:
 	addik	r5,r5,-33
 	addik	r4,r0,93	# 0x5d
 	cmpu	r18,r5,r4
-	bgeid	r18,$L84
+	bgeid	r18,$L86
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L84:
+$L86:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -721,10 +719,10 @@ islower:
 	addik	r5,r5,-97
 	addik	r4,r0,25	# 0x19
 	cmpu	r18,r5,r4
-	bgeid	r18,$L86
+	bgeid	r18,$L88
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L86:
+$L88:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -747,10 +745,10 @@ isprint:
 	addik	r5,r5,-32
 	addik	r4,r0,94	# 0x5e
 	cmpu	r18,r5,r4
-	bgeid	r18,$L88
+	bgeid	r18,$L90
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L88:
+$L90:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -809,10 +807,10 @@ isspace:
 	addik	r5,r5,-9
 	addik	r6,r0,4	# 0x4
 	cmpu	r18,r5,r6
-	bgeid	r18,$L90
+	bgeid	r18,$L92
 	addik	r4,r0,1	# 0x1
 	addk	r4,r0,r0
-$L90:
+$L92:
 	andi	r4,r4,0x00ff
 	or	r3,r4,r3
 	addk	r1,r19,r0
@@ -836,10 +834,10 @@ isupper:
 	addik	r5,r5,-65
 	addik	r4,r0,25	# 0x19
 	cmpu	r18,r5,r4
-	bgeid	r18,$L92
+	bgeid	r18,$L94
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L92:
+$L94:
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -861,40 +859,33 @@ iswcntrl:
 	addk	r19,r1,r0
 	addik	r4,r0,31	# 0x1f
 	cmpu	r18,r5,r4
-	bgeid	r18,$L94
+	bgeid	r18,$L96
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L94:
+$L96:
 	andi	r3,r3,0x00ff
 	addik	r7,r5,-127
 	addik	r6,r0,32	# 0x20
 	cmpu	r18,r7,r6
-	bgeid	r18,$L95
+	bgeid	r18,$L97
 	addik	r4,r0,1	# 0x1
 	addk	r4,r0,r0
-$L95:
+$L97:
 	andi	r4,r4,0x00ff
-	or	r3,r3,r4
-	bneid	r3,$L100
+	or	r4,r3,r4
+	bneid	r4,$L98
 	addik	r3,r0,1	# 0x1
-	addik	r4,r5,-8232
-	cmpu	r18,r4,r3
-	bgei	r18,$L100
+	addik	r6,r5,-8232
+	cmpu	r18,r6,r3
+	bgeid	r18,$L98
+	addik	r4,r0,2	# 0x2
 	addik	r5,r5,-65529
-	addik	r3,r0,2	# 0x2
-	cmpu	r18,r5,r3
-	bltid	r18,$L99
-	addik	r3,r0,1	# 0x1
-	brid	$L101
-	addk	r1,r19,r0
-	brid	$L96
-	addik	r3,r0,1	# 0x1
-$L99:
+	cmpu	r18,r5,r4
+	bltid	r18,$L98
 	addk	r3,r0,r0
-$L96:
-$L100:
+	addik	r3,r0,1	# 0x1
+$L98:
 	addk	r1,r19,r0
-$L101:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -1012,27 +1003,21 @@ iswxdigit:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	addik	r4,r5,-48
-	addik	r3,r0,9	# 0x9
-	cmpu	r18,r4,r3
-	bgeid	r18,$L118
 	addk	r19,r1,r0
+	addik	r6,r5,-48
+	addik	r4,r0,9	# 0x9
+	cmpu	r18,r6,r4
+	bgeid	r18,$L117
+	addik	r3,r0,1	# 0x1
 	ori	r5,r5,32
 	addik	r5,r5,-97
-	addik	r3,r0,5	# 0x5
-	cmpu	r18,r5,r3
-	bltid	r18,$L119
-	addik	r3,r0,1	# 0x1
-	brid	$L120
-	addk	r1,r19,r0
-$L118:
-	brid	$L117
-	addik	r3,r0,1	# 0x1
-$L119:
+	addik	r4,r0,5	# 0x5
+	cmpu	r18,r5,r4
+	bltid	r18,$L117
 	addk	r3,r0,r0
+	addik	r3,r0,1	# 0x1
 $L117:
 	addk	r1,r19,r0
-$L120:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -1082,21 +1067,21 @@ fdim:
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L123
+	bneid	r3,$L122
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r24,r0
 	brlid	r15,__unorddf2
 	
 	addk	r6,r25,r0
-	bneid	r3,$L126
+	bneid	r3,$L125
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r22,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r23,r0
-	bleid	r3,$L129
+	bleid	r3,$L128
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r22,r0
@@ -1104,16 +1089,16 @@ fdim:
 	
 	addk	r6,r23,r0
 	addk	r22,r3,r0
-	brid	$L123
+	brid	$L122
 	addk	r23,r4,r0
-$L126:
+$L125:
 	addk	r22,r24,r0
-	brid	$L123
+	brid	$L122
 	addk	r23,r25,r0
-$L129:
+$L128:
 	addk	r22,r0,r0
 	addk	r23,r0,r0
-$L123:
+$L122:
 	addk	r3,r22,r0
 	addk	r4,r23,r0
 	lwi	r15,r1,0
@@ -1147,38 +1132,38 @@ fdimf:
 	brlid	r15,__unordsf2
 	
 	addk	r19,r1,r0
-	bnei	r3,$L133
+	bnei	r3,$L132
 	addk	r6,r23,r0
 	addk	r5,r23,r0
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
-	bnei	r3,$L134
+	bnei	r3,$L133
 	addk	r6,r23,r0
 	addk	r5,r22,r0
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
-	blei	r3,$L137
+	blei	r3,$L136
 	addk	r6,r23,r0
 	addk	r5,r22,r0
 	brlid	r15,__subsf3
 	nop		# Unfilled delay slot
 
-	brid	$L138
+	brid	$L137
+	lwi	r15,r1,0
+$L132:
+	addk	r3,r22,r0
+	brid	$L137
 	lwi	r15,r1,0
 $L133:
-	addk	r3,r22,r0
-	brid	$L138
-	lwi	r15,r1,0
-$L134:
 	addk	r3,r23,r0
-	brid	$L138
+	brid	$L137
 	lwi	r15,r1,0
-$L137:
+$L136:
 	addk	r3,r0,r0
 	lwi	r15,r1,0
-$L138:
+$L137:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -1204,54 +1189,55 @@ fmax:
 	swi	r24,r1,40
 	swi	r25,r1,44
 	addk	r19,r1,r0
-	addk	r22,r5,r0
-	addk	r23,r6,r0
-	addk	r24,r7,r0
-	addk	r25,r8,r0
+	addk	r24,r5,r0
+	addk	r25,r6,r0
+	addk	r22,r7,r0
+	addk	r23,r8,r0
 	addk	r7,r5,r0
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L140
-	addk	r7,r24,r0
-	addk	r8,r25,r0
-	addk	r5,r24,r0
+	bneid	r3,$L142
+	addk	r7,r22,r0
+	addk	r8,r23,r0
+	addk	r5,r22,r0
 	brlid	r15,__unorddf2
 	
-	addk	r6,r25,r0
-	bneid	r3,$L144
-	xor	r3,r24,r22
-	bgeid	r3,$L141
-	addk	r7,r24,r0
-	bgeid	r22,$L145
-	addk	r3,r24,r0
-	brid	$L150
-	addk	r4,r25,r0
-$L141:
-	addk	r8,r25,r0
-	addk	r5,r22,r0
+	addk	r6,r23,r0
+	bneid	r3,$L143
+	xor	r3,r22,r24
+	bgeid	r3,$L140
+	addk	r4,r24,r0
+	bgeid	r24,$L139
+	addk	r5,r25,r0
+	addk	r4,r22,r0
+	brid	$L139
+	addk	r5,r23,r0
+$L140:
+	addk	r7,r22,r0
+	addk	r8,r23,r0
+	addk	r5,r24,r0
 	brlid	r15,__ltdf2
 	
-	addk	r6,r23,r0
-	bgeid	r3,$L148
-	addk	r3,r24,r0
-	brid	$L150
-	addk	r4,r25,r0
-$L144:
-	addk	r24,r22,r0
-	brid	$L140
-	addk	r25,r23,r0
-$L145:
-	addk	r24,r22,r0
-	brid	$L140
-	addk	r25,r23,r0
-$L148:
-	addk	r24,r22,r0
-	addk	r25,r23,r0
-$L140:
-	addk	r3,r24,r0
-	addk	r4,r25,r0
-$L150:
+	addk	r6,r25,r0
+	addk	r4,r22,r0
+	bltid	r3,$L139
+	addk	r5,r23,r0
+	brid	$L147
+	addk	r4,r24,r0
+$L142:
+	addk	r4,r22,r0
+	brid	$L139
+	addk	r5,r23,r0
+$L143:
+	addk	r4,r24,r0
+	brid	$L139
+	addk	r5,r25,r0
+$L147:
+	addk	r5,r25,r0
+$L139:
+	addk	r3,r4,r0
+	addk	r4,r5,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1277,53 +1263,53 @@ fmaxf:
 	swi	r19,r1,28
 	swi	r22,r1,32
 	swi	r23,r1,36
-	addk	r22,r5,r0
-	addk	r23,r6,r0
+	addk	r23,r5,r0
+	addk	r22,r6,r0
 	addk	r6,r5,r0
 	brlid	r15,__unordsf2
 	
 	addk	r19,r1,r0
-	bnei	r3,$L155
-	addk	r6,r23,r0
-	addk	r5,r23,r0
+	bnei	r3,$L152
+	addk	r6,r22,r0
+	addk	r5,r22,r0
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
-	bnei	r3,$L156
-	xor	r3,r23,r22
-	bgei	r3,$L153
-	bgeid	r22,$L157
-	addk	r3,r22,r0
+	bnei	r3,$L153
+	xor	r3,r22,r23
+	bgei	r3,$L150
 	addk	r3,r23,r0
-	brid	$L161
+	bgeid	r23,$L149
 	lwi	r15,r1,0
-$L153:
-	addk	r6,r23,r0
-	addk	r5,r22,r0
+	addk	r3,r22,r0
+	brid	$L159
+	addk	r1,r19,r0
+$L150:
+	addk	r6,r22,r0
+	addk	r5,r23,r0
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
-	bgeid	r3,$L160
-	lwi	r15,r1,0
-	addk	r3,r23,r0
-	brid	$L162
-	addk	r1,r19,r0
-$L155:
-	addk	r3,r23,r0
-	brid	$L161
-	lwi	r15,r1,0
-$L156:
+	addk	r4,r3,r0
 	addk	r3,r22,r0
-	brid	$L161
+	bltid	r4,$L158
+	lwi	r15,r1,0
+	bri	$L157
+$L152:
+	addk	r3,r22,r0
+	brid	$L158
+	lwi	r15,r1,0
+$L153:
+	addk	r3,r23,r0
+	brid	$L158
 	lwi	r15,r1,0
 $L157:
-	brid	$L161
+	addk	r3,r23,r0
+$L149:
 	lwi	r15,r1,0
-$L160:
-	addk	r3,r22,r0
-$L161:
+$L158:
 	addk	r1,r19,r0
-$L162:
+$L159:
 	lwi	r19,r1,28
 	lwi	r22,r1,32
 	lwi	r23,r1,36
@@ -1348,54 +1334,55 @@ fmaxl:
 	swi	r24,r1,40
 	swi	r25,r1,44
 	addk	r19,r1,r0
-	addk	r22,r5,r0
-	addk	r23,r6,r0
-	addk	r24,r7,r0
-	addk	r25,r8,r0
+	addk	r24,r5,r0
+	addk	r25,r6,r0
+	addk	r22,r7,r0
+	addk	r23,r8,r0
 	addk	r7,r5,r0
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
 	bneid	r3,$L164
-	addk	r7,r24,r0
-	addk	r8,r25,r0
-	addk	r5,r24,r0
+	addk	r7,r22,r0
+	addk	r8,r23,r0
+	addk	r5,r22,r0
 	brlid	r15,__unorddf2
 	
-	addk	r6,r25,r0
-	bneid	r3,$L168
-	xor	r3,r24,r22
-	bgeid	r3,$L165
-	addk	r7,r24,r0
-	bgeid	r22,$L169
-	addk	r3,r24,r0
-	brid	$L174
-	addk	r4,r25,r0
-$L165:
-	addk	r8,r25,r0
-	addk	r5,r22,r0
+	addk	r6,r23,r0
+	bneid	r3,$L165
+	xor	r3,r22,r24
+	bgeid	r3,$L162
+	addk	r4,r24,r0
+	bgeid	r24,$L161
+	addk	r5,r25,r0
+	addk	r4,r22,r0
+	brid	$L161
+	addk	r5,r23,r0
+$L162:
+	addk	r7,r22,r0
+	addk	r8,r23,r0
+	addk	r5,r24,r0
 	brlid	r15,__ltdf2
 	
-	addk	r6,r23,r0
-	bgeid	r3,$L172
-	addk	r3,r24,r0
-	brid	$L174
-	addk	r4,r25,r0
-$L168:
-	addk	r24,r22,r0
-	brid	$L164
-	addk	r25,r23,r0
-$L169:
-	addk	r24,r22,r0
-	brid	$L164
-	addk	r25,r23,r0
-$L172:
-	addk	r24,r22,r0
-	addk	r25,r23,r0
+	addk	r6,r25,r0
+	addk	r4,r22,r0
+	bltid	r3,$L161
+	addk	r5,r23,r0
+	brid	$L169
+	addk	r4,r24,r0
 $L164:
-	addk	r3,r24,r0
-	addk	r4,r25,r0
-$L174:
+	addk	r4,r22,r0
+	brid	$L161
+	addk	r5,r23,r0
+$L165:
+	addk	r4,r24,r0
+	brid	$L161
+	addk	r5,r25,r0
+$L169:
+	addk	r5,r25,r0
+$L161:
+	addk	r3,r4,r0
+	addk	r4,r5,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1432,40 +1419,47 @@ fmin:
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L176
+	bneid	r3,$L174
 	addk	r7,r22,r0
 	addk	r8,r23,r0
 	addk	r5,r22,r0
 	brlid	r15,__unorddf2
 	
 	addk	r6,r23,r0
-	bneid	r3,$L180
+	bneid	r3,$L175
 	xor	r3,r22,r24
-	bgeid	r3,$L177
+	bgeid	r3,$L172
 	addk	r7,r22,r0
-	bgeid	r24,$L185
-	addk	r3,r22,r0
-	addk	r22,r24,r0
-	brid	$L176
-	addk	r23,r25,r0
-$L177:
+	addk	r4,r22,r0
+	bgeid	r24,$L171
+	addk	r5,r23,r0
+	addk	r4,r24,r0
+	brid	$L171
+	addk	r5,r25,r0
+$L172:
 	addk	r8,r23,r0
 	addk	r5,r24,r0
 	brlid	r15,__ltdf2
 	
 	addk	r6,r25,r0
-	bgeid	r3,$L185
-	addk	r3,r22,r0
-	addk	r22,r24,r0
-	brid	$L176
-	addk	r23,r25,r0
-$L180:
-	addk	r22,r24,r0
-	addk	r23,r25,r0
-$L176:
-	addk	r3,r22,r0
-$L185:
-	addk	r4,r23,r0
+	addk	r4,r24,r0
+	bltid	r3,$L171
+	addk	r5,r25,r0
+	brid	$L179
+	addk	r4,r22,r0
+$L174:
+	addk	r4,r22,r0
+	brid	$L171
+	addk	r5,r23,r0
+$L175:
+	addk	r4,r24,r0
+	brid	$L171
+	addk	r5,r25,r0
+$L179:
+	addk	r5,r23,r0
+$L171:
+	addk	r3,r4,r0
+	addk	r4,r5,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1497,47 +1491,47 @@ fminf:
 	brlid	r15,__unordsf2
 	
 	addk	r19,r1,r0
-	bnei	r3,$L190
+	bnei	r3,$L184
 	addk	r6,r22,r0
 	addk	r5,r22,r0
 	brlid	r15,__unordsf2
 	nop		# Unfilled delay slot
 
-	bnei	r3,$L191
+	bnei	r3,$L185
 	xor	r3,r22,r23
-	bgei	r3,$L188
-	bgeid	r23,$L192
-	addk	r3,r23,r0
-	brid	$L196
+	bgei	r3,$L182
+	addk	r3,r22,r0
+	bgeid	r23,$L181
 	lwi	r15,r1,0
-$L188:
+	addk	r3,r23,r0
+	brid	$L191
+	addk	r1,r19,r0
+$L182:
 	addk	r6,r22,r0
 	addk	r5,r23,r0
 	brlid	r15,__ltsf2
 	nop		# Unfilled delay slot
 
-	bgeid	r3,$L195
-	lwi	r15,r1,0
+	addk	r4,r3,r0
 	addk	r3,r23,r0
-	brid	$L197
-	addk	r1,r19,r0
+	bltid	r4,$L190
+	lwi	r15,r1,0
+	bri	$L189
+$L184:
+	addk	r3,r22,r0
+	brid	$L190
+	lwi	r15,r1,0
+$L185:
+	addk	r3,r23,r0
+	brid	$L190
+	lwi	r15,r1,0
+$L189:
+	addk	r3,r22,r0
+$L181:
+	lwi	r15,r1,0
 $L190:
-	addk	r3,r22,r0
-	brid	$L196
-	lwi	r15,r1,0
-$L191:
-	addk	r3,r23,r0
-	brid	$L196
-	lwi	r15,r1,0
-$L192:
-	addk	r3,r22,r0
-	brid	$L196
-	lwi	r15,r1,0
-$L195:
-	addk	r3,r22,r0
-$L196:
 	addk	r1,r19,r0
-$L197:
+$L191:
 	lwi	r19,r1,28
 	lwi	r22,r1,32
 	lwi	r23,r1,36
@@ -1570,40 +1564,47 @@ fminl:
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L199
+	bneid	r3,$L196
 	addk	r7,r22,r0
 	addk	r8,r23,r0
 	addk	r5,r22,r0
 	brlid	r15,__unorddf2
 	
 	addk	r6,r23,r0
-	bneid	r3,$L203
+	bneid	r3,$L197
 	xor	r3,r22,r24
-	bgeid	r3,$L200
+	bgeid	r3,$L194
 	addk	r7,r22,r0
-	bgeid	r24,$L208
-	addk	r3,r22,r0
-	addk	r22,r24,r0
-	brid	$L199
-	addk	r23,r25,r0
-$L200:
+	addk	r4,r22,r0
+	bgeid	r24,$L193
+	addk	r5,r23,r0
+	addk	r4,r24,r0
+	brid	$L193
+	addk	r5,r25,r0
+$L194:
 	addk	r8,r23,r0
 	addk	r5,r24,r0
 	brlid	r15,__ltdf2
 	
 	addk	r6,r25,r0
-	bgeid	r3,$L208
-	addk	r3,r22,r0
-	addk	r22,r24,r0
-	brid	$L199
-	addk	r23,r25,r0
-$L203:
-	addk	r22,r24,r0
-	addk	r23,r25,r0
-$L199:
-	addk	r3,r22,r0
-$L208:
-	addk	r4,r23,r0
+	addk	r4,r24,r0
+	bltid	r3,$L193
+	addk	r5,r25,r0
+	brid	$L201
+	addk	r4,r22,r0
+$L196:
+	addk	r4,r22,r0
+	brid	$L193
+	addk	r5,r23,r0
+$L197:
+	addk	r4,r24,r0
+	brid	$L193
+	addk	r5,r25,r0
+$L201:
+	addk	r5,r23,r0
+$L193:
+	addk	r3,r4,r0
+	addk	r4,r5,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1634,9 +1635,9 @@ l64a:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addik	r3,r0,s.0
-	brid	$L210
+	brid	$L203
 	addk	r19,r1,r0
-$L211:
+$L204:
 	lbui	r4,r4,digits
 	sbi	r4,r3,0
 	addik	r3,r3,1
@@ -1648,8 +1649,8 @@ $L211:
 	srl	r5,r5
 	srl	r5,r5
 	srl	r5,r5
-$L210:
-	bneid	r5,$L211
+$L203:
+	bneid	r5,$L204
 	andi	r4,r5,63 #and1
 	sbi	r0,r3,0
 	addik	r3,r0,s.0
@@ -1732,20 +1733,20 @@ insque:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	bneid	r6,$L215
+	bneid	r6,$L208
 	addk	r19,r1,r0
 	swi	r0,r5,4
-	brid	$L214
+	brid	$L207
 	swi	r0,r5,0
-$L215:
+$L208:
 	lwi	r3,r6,0
 	swi	r3,r5,0
 	swi	r6,r5,4
 	swi	r5,r6,0
 	lwi	r3,r5,0
-	beqi	r3,$L214
+	beqi	r3,$L207
 	swi	r5,r3,4
-$L214:
+$L207:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -1764,16 +1765,16 @@ remque:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	lwi	r3,r5,0
-	beqid	r3,$L218
+	beqid	r3,$L211
 	addk	r19,r1,r0
 	lwi	r4,r5,4
 	swi	r4,r3,4
-$L218:
+$L211:
 	lwi	r3,r5,4
-	beqi	r3,$L217
+	beqi	r3,$L210
 	lwi	r4,r5,0
 	swi	r4,r3,0
-$L217:
+$L210:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -1808,25 +1809,25 @@ lsearch:
 	addk	r26,r9,r0
 	lwi	r29,r7,0
 	addk	r23,r6,r0
-	brid	$L221
+	brid	$L214
 	addk	r22,r0,r0
-$L224:
+$L217:
 	brald	r15,r26
 	
 	addk	r5,r25,r0
-	bneid	r3,$L222
+	bneid	r3,$L215
 	addk	r23,r23,r24
 	addk	r6,r24,r0
 	brlid	r15,__mulsi3
 	
 	addk	r5,r22,r0
-	brid	$L223
+	brid	$L216
 	addk	r3,r27,r3
-$L222:
+$L215:
 	addik	r22,r22,1
-$L221:
+$L214:
 	xor	r4,r22,r29
-	bneid	r4,$L224
+	bneid	r4,$L217
 	addk	r6,r23,r0
 	addik	r3,r29,1
 	swi	r3,r28,0
@@ -1839,7 +1840,7 @@ $L221:
 	brlid	r15,memcpy
 	
 	addk	r5,r27,r3
-$L223:
+$L216:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1881,28 +1882,28 @@ lfind:
 	addk	r25,r9,r0
 	lwi	r27,r7,0
 	addk	r23,r6,r0
-	brid	$L226
+	brid	$L219
 	addk	r22,r0,r0
-$L229:
+$L222:
 	brald	r15,r25
 	
 	addk	r5,r26,r0
-	bneid	r3,$L227
+	bneid	r3,$L220
 	addk	r23,r23,r24
 	addk	r6,r24,r0
 	brlid	r15,__mulsi3
 	
 	addk	r5,r22,r0
-	brid	$L228
+	brid	$L221
 	addk	r3,r28,r3
-$L227:
+$L220:
 	addik	r22,r22,1
-$L226:
+$L219:
 	xor	r4,r22,r27
-	bneid	r4,$L229
+	bneid	r4,$L222
 	addk	r6,r23,r0
 	addk	r3,r0,r0
-$L228:
+$L221:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -1983,50 +1984,54 @@ atoi:
 	swi	r19,r1,28
 	swi	r22,r1,32
 	addk	r19,r1,r0
-	brid	$L232
+	brid	$L225
 	addk	r22,r5,r0
-$L233:
+$L226:
 	addik	r22,r22,1
-$L232:
+$L225:
 	lbui	r5,r22,0
 	brlid	r15,isspace
 	
 	sext8	r5,r5
-	bnei	r3,$L233
+	bnei	r3,$L226
 	lbui	r3,r22,0
 	sext8	r3,r3
 	xori	r4,r3,43
-	beqid	r4,$L239
-	addk	r6,r0,r0
+	beqid	r4,$L232
 	xori	r3,r3,45
-	bnei	r3,$L240
+	bneid	r3,$L228
+	addk	r6,r0,r0
+	brid	$L227
 	addik	r6,r0,1	# 0x1
-$L239:
+$L232:
+	addk	r6,r0,r0
+$L227:
 	addik	r22,r22,1
-$L240:
-	brid	$L236
-	addk	r3,r0,r0
-$L237:
-	addk	r4,r3,r3
-	addk	r4,r4,r4
-	addk	r3,r4,r3
-	addk	r4,r3,r3
-	lbui	r3,r22,-1
-	sext8	r3,r3
-	addik	r3,r3,-48
-	rsubk	r3,r3,r4
-$L236:
-	lbui	r4,r22,0
+$L228:
+	brid	$L229
+	addk	r4,r0,r0
+$L230:
+	addk	r3,r4,r4
+	addk	r3,r3,r3
+	addk	r3,r3,r4
+	addk	r3,r3,r3
+	lbui	r4,r22,-1
 	sext8	r4,r4
 	addik	r4,r4,-48
+	rsubk	r4,r4,r3
+$L229:
+	lbui	r3,r22,0
+	sext8	r3,r3
+	addik	r3,r3,-48
 	addik	r5,r0,9	# 0x9
-	cmpu	r18,r4,r5
-	bgeid	r18,$L237
+	cmpu	r18,r3,r5
+	bgeid	r18,$L230
 	addik	r22,r22,1
-	bneid	r6,$L242
+	bneid	r6,$L231
+	addk	r3,r4,r0
+	rsubk	r3,r4,r0
+$L231:
 	lwi	r15,r1,0
-	rsubk	r3,r3,r0
-$L242:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -2048,50 +2053,54 @@ atol:
 	swi	r19,r1,28
 	swi	r22,r1,32
 	addk	r19,r1,r0
-	brid	$L244
+	brid	$L236
 	addk	r22,r5,r0
-$L245:
+$L237:
 	addik	r22,r22,1
-$L244:
+$L236:
 	lbui	r5,r22,0
 	brlid	r15,isspace
 	
 	sext8	r5,r5
-	bnei	r3,$L245
+	bnei	r3,$L237
 	lbui	r3,r22,0
 	sext8	r3,r3
 	xori	r4,r3,43
-	beqid	r4,$L251
-	addk	r6,r0,r0
+	beqid	r4,$L243
 	xori	r3,r3,45
-	bnei	r3,$L252
+	bneid	r3,$L239
+	addk	r6,r0,r0
+	brid	$L238
 	addik	r6,r0,1	# 0x1
-$L251:
+$L243:
+	addk	r6,r0,r0
+$L238:
 	addik	r22,r22,1
-$L252:
-	brid	$L248
-	addk	r3,r0,r0
-$L249:
-	addk	r4,r3,r3
-	addk	r4,r4,r4
-	addk	r3,r4,r3
-	addk	r4,r3,r3
-	lbui	r3,r22,-1
-	sext8	r3,r3
-	addik	r3,r3,-48
-	rsubk	r3,r3,r4
-$L248:
-	lbui	r4,r22,0
+$L239:
+	brid	$L240
+	addk	r4,r0,r0
+$L241:
+	addk	r3,r4,r4
+	addk	r3,r3,r3
+	addk	r3,r3,r4
+	addk	r3,r3,r3
+	lbui	r4,r22,-1
 	sext8	r4,r4
 	addik	r4,r4,-48
+	rsubk	r4,r4,r3
+$L240:
+	lbui	r3,r22,0
+	sext8	r3,r3
+	addik	r3,r3,-48
 	addik	r5,r0,9	# 0x9
-	cmpu	r18,r4,r5
-	bgeid	r18,$L249
+	cmpu	r18,r3,r5
+	bgeid	r18,$L241
 	addik	r22,r22,1
-	bneid	r6,$L254
+	bneid	r6,$L242
+	addk	r3,r4,r0
+	rsubk	r3,r4,r0
+$L242:
 	lwi	r15,r1,0
-	rsubk	r3,r3,r0
-$L254:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -2117,32 +2126,35 @@ atoll:
 	swi	r25,r1,44
 	swi	r26,r1,48
 	addk	r19,r1,r0
-	brid	$L256
+	brid	$L247
 	addk	r26,r5,r0
-$L257:
+$L248:
 	addik	r26,r26,1
-$L256:
+$L247:
 	lbui	r5,r26,0
 	brlid	r15,isspace
 	
 	sext8	r5,r5
-	bnei	r3,$L257
+	bnei	r3,$L248
 	lbui	r3,r26,0
 	sext8	r3,r3
 	xori	r4,r3,43
-	beqid	r4,$L263
-	addk	r8,r0,r0
+	beqi	r4,$L254
 	xori	r3,r3,45
-	bnei	r3,$L264
+	bneid	r3,$L250
+	addk	r8,r0,r0
+	brid	$L249
 	addik	r8,r0,1	# 0x1
-$L263:
+$L254:
+	addk	r8,r0,r0
+$L249:
 	addik	r26,r26,1
-$L264:
+$L250:
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x00000000 #li => la
-	brid	$L266
+	brid	$L257
 	lbui	r3,r26,0
-$L261:
+$L252:
 	addk	r3,r0,r5
 	srl	r3,r5
 	srl	r3,r3
@@ -2229,20 +2241,21 @@ $L261:
 	rsub	r5,r7,r25
 	rsubc	r4,r6,r24
 	lbui	r3,r26,0
-$L266:
+$L257:
 	sext8	r3,r3
 	addik	r3,r3,-48
 	addik	r6,r0,9	# 0x9
 	cmpu	r18,r3,r6
-	bgeid	r18,$L261
+	bgeid	r18,$L252
 	addik	r26,r26,1
-	bneid	r8,$L267
-	addk	r3,r4,r0
-	rsub	r5,r5,r0
-	rsubc	r4,r4,r0
-	addk	r3,r4,r0
-$L267:
-	addk	r4,r5,r0
+	addk	r6,r4,r0
+	bneid	r8,$L253
+	addk	r7,r5,r0
+	rsub	r7,r5,r0
+	rsubc	r6,r4,r0
+$L253:
+	addk	r3,r6,r0
+	addk	r4,r7,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -2278,9 +2291,9 @@ bsearch:
 	addk	r25,r6,r0
 	addk	r22,r7,r0
 	addk	r24,r8,r0
-	brid	$L269
+	brid	$L259
 	addk	r26,r9,r0
-$L273:
+$L263:
 	brlid	r15,__mulsi3
 	
 	srl	r5,r22
@@ -2289,23 +2302,23 @@ $L273:
 	brald	r15,r26
 	
 	addk	r5,r27,r0
-	bgei	r3,$L270
-	brid	$L269
+	bgei	r3,$L260
+	brid	$L259
 	srl	r22,r22
-$L270:
-	bleid	r3,$L274
+$L260:
+	bleid	r3,$L264
 	addk	r25,r23,r24
 	srl	r3,r22
 	addik	r22,r22,-1
 	rsubk	r22,r3,r22
-$L269:
-	bneid	r22,$L273
+$L259:
+	bneid	r22,$L263
 	addk	r6,r24,r0
-	brid	$L272
+	brid	$L262
 	addk	r3,r0,r0
-$L274:
+$L264:
 	addk	r3,r23,r0
-$L272:
+$L262:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -2344,9 +2357,9 @@ bsearch_r:
 	addk	r27,r9,r0
 	addk	r26,r10,r0
 	addk	r22,r7,r0
-	brid	$L276
+	brid	$L266
 	addk	r24,r6,r0
-$L279:
+$L269:
 	brlid	r15,__mulsi3
 	
 	sra	r5,r22
@@ -2356,20 +2369,20 @@ $L279:
 	brald	r15,r27
 	
 	addk	r5,r28,r0
-	beqi	r3,$L280
-	blei	r3,$L278
+	beqi	r3,$L270
+	blei	r3,$L268
 	addk	r24,r23,r25
 	addik	r22,r22,-1
-$L278:
+$L268:
 	sra	r22,r22
-$L276:
-	bneid	r22,$L279
+$L266:
+	bneid	r22,$L269
 	addk	r6,r25,r0
-	brid	$L277
+	brid	$L267
 	addk	r3,r0,r0
-$L280:
+$L270:
 	addk	r3,r23,r0
-$L277:
+$L267:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -2775,21 +2788,21 @@ wcschr:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L289
+	brid	$L279
 	addk	r19,r1,r0
-$L289:
+$L279:
 	lwi	r3,r5,0
-	beqid	r3,$L290
+	beqid	r3,$L280
 	xor	r3,r6,r3
-	bneid	r3,$L289
+	bneid	r3,$L279
 	addik	r5,r5,4
 	addik	r5,r5,-4
-$L290:
+$L280:
 	lwi	r3,r5,0
-	bneid	r3,$L292
+	bneid	r3,$L282
 	addk	r3,r5,r0
 	addk	r3,r0,r0
-$L292:
+$L282:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -2807,37 +2820,33 @@ wcscmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L295
+	brid	$L285
 	addk	r19,r1,r0
-$L301:
+$L291:
 	addik	r6,r6,4
-$L295:
+$L285:
 	lwi	r3,r5,0
 	lwi	r4,r6,0
 	xor	r3,r3,r4
-	bnei	r3,$L296
+	bnei	r3,$L286
 	lwi	r3,r5,0
-	beqi	r3,$L296
-	bneid	r4,$L301
+	beqi	r3,$L286
+	bneid	r4,$L291
 	addik	r5,r5,4
 	addik	r5,r5,-4
-$L296:
-	lwi	r4,r5,0
-	lwi	r3,r6,0
-	cmp	r18,r3,r4
-	bltid	r18,$L300
-	addk	r5,r4,r0
-	addk	r4,r3,r0
-	cmp	r18,r5,r4
-	bltid	r18,$L299
+$L286:
+	lwi	r7,r5,0
+	lwi	r4,r6,0
+	cmp	r18,r4,r7
+	bltid	r18,$L288
+	addik	r3,r0,-1	# 0xffffffffffffffff
+	cmp	r18,r7,r4
+	bltid	r18,$L289
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L299:
-	brid	$L298
+$L289:
 	andi	r3,r3,0x00ff
-$L300:
-	addik	r3,r0,-1	# 0xffffffffffffffff
-$L298:
+$L288:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -2858,13 +2867,13 @@ wcscpy:
 	addk	r19,r1,r0
 	addk	r3,r5,r0
 	addk	r4,r0,r0
-$L303:
+$L293:
 	lw	r5,r4,r6
 	sw	r5,r4,r3
 	addik	r4,r4,4
 	addik	r5,r3,-4
 	lw	r5,r4,r5
-	bnei	r5,$L303
+	bnei	r5,$L293
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -2883,13 +2892,13 @@ wcslen:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L305
+	brid	$L295
 	addk	r3,r5,r0
-$L306:
+$L296:
 	addik	r3,r3,4
-$L305:
+$L295:
 	lwi	r4,r3,0
-	bnei	r4,$L306
+	bnei	r4,$L296
 	rsubk	r3,r5,r3
 	addk	r4,r3,r0
 	addk	r3,r0,r4
@@ -2912,43 +2921,39 @@ wcsncmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L308
+	brid	$L298
 	addk	r19,r1,r0
-$L315:
+$L306:
 	addik	r5,r5,4
 	addik	r6,r6,4
-$L308:
-	beqid	r7,$L316
+$L298:
+	beqid	r7,$L305
 	addk	r3,r0,r0
 	lwi	r3,r5,0
 	lwi	r4,r6,0
 	xor	r3,r3,r4
-	bnei	r3,$L309
+	bnei	r3,$L299
 	lwi	r3,r5,0
-	beqi	r3,$L309
-	bneid	r4,$L315
+	beqi	r3,$L299
+	bneid	r4,$L306
 	addik	r7,r7,-1
 	addik	r7,r7,1
-$L309:
-	beqid	r7,$L316
+$L299:
+	beqid	r7,$L301
 	addk	r3,r0,r0
-	lwi	r4,r5,0
-	lwi	r3,r6,0
-	cmp	r18,r3,r4
-	blti	r18,$L314
-	addk	r5,r4,r0
-	addk	r4,r3,r0
-	cmp	r18,r5,r4
-	bltid	r18,$L312
+	lwi	r7,r5,0
+	lwi	r4,r6,0
+	cmp	r18,r4,r7
+	bltid	r18,$L301
+	addik	r3,r0,-1	# 0xffffffffffffffff
+	cmp	r18,r7,r4
+	bltid	r18,$L302
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L312:
-	brid	$L311
+$L302:
 	andi	r3,r3,0x00ff
-$L314:
-	addik	r3,r0,-1	# 0xffffffffffffffff
-$L311:
-$L316:
+$L301:
+$L305:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -2966,22 +2971,22 @@ wmemchr:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L318
+	brid	$L308
 	addk	r19,r1,r0
-$L323:
+$L313:
 	addik	r5,r5,4
-$L318:
-	beqi	r7,$L319
+$L308:
+	beqi	r7,$L309
 	lwi	r4,r5,0
 	xor	r4,r6,r4
-	bneid	r4,$L323
+	bneid	r4,$L313
 	addik	r7,r7,-1
 	addik	r7,r7,1
-$L319:
-	bneid	r7,$L321
+$L309:
+	bneid	r7,$L311
 	addk	r3,r5,r0
 	addk	r3,r0,r0
-$L321:
+$L311:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -2999,39 +3004,35 @@ wmemcmp:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L325
+	brid	$L315
 	addk	r19,r1,r0
-$L332:
+$L323:
 	addik	r5,r5,4
 	addik	r6,r6,4
-$L325:
-	beqid	r7,$L333
+$L315:
+	beqid	r7,$L322
 	addk	r3,r0,r0
 	lwi	r3,r5,0
 	lwi	r4,r6,0
 	xor	r3,r3,r4
-	beqid	r3,$L332
+	beqid	r3,$L323
 	addik	r7,r7,-1
 	addik	r7,r7,1
-	beqid	r7,$L333
+	beqid	r7,$L318
 	addk	r3,r0,r0
-	lwi	r4,r5,0
-	lwi	r3,r6,0
-	cmp	r18,r3,r4
-	blti	r18,$L331
-	addk	r5,r4,r0
-	addk	r4,r3,r0
-	cmp	r18,r5,r4
-	bltid	r18,$L329
+	lwi	r7,r5,0
+	lwi	r4,r6,0
+	cmp	r18,r4,r7
+	bltid	r18,$L318
+	addik	r3,r0,-1	# 0xffffffffffffffff
+	cmp	r18,r7,r4
+	bltid	r18,$L319
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L329:
-	brid	$L328
+$L319:
 	andi	r3,r3,0x00ff
-$L331:
-	addik	r3,r0,-1	# 0xffffffffffffffff
-$L328:
-$L333:
+$L318:
+$L322:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -3051,16 +3052,16 @@ wmemcpy:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r5,r0
-	brid	$L335
+	brid	$L325
 	addk	r4,r0,r0
-$L336:
+$L326:
 	lw	r5,r4,r6
 	sw	r5,r4,r3
 	addik	r4,r4,4
-$L335:
+$L325:
 	addik	r7,r7,-1
 	xori	r8,r7,-1
-	bnei	r8,$L336
+	bnei	r8,$L326
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -3080,39 +3081,39 @@ wmemmove:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	xor	r4,r5,r6
-	beqid	r4,$L338
+	beqid	r4,$L328
 	addk	r3,r5,r0
 	rsubk	r5,r6,r5
 	addk	r4,r7,r7
 	addk	r4,r4,r4
 	cmpu	r18,r4,r5
-	bgeid	r18,$L343
+	bgeid	r18,$L333
 	addik	r4,r4,-4
-	brid	$L346
+	brid	$L336
 	xori	r5,r4,-4
-$L341:
+$L331:
 	lw	r5,r4,r6
 	sw	r5,r4,r3
 	addik	r4,r4,-4
 	xori	r5,r4,-4
-$L346:
-	bnei	r5,$L341
-	brid	$L345
+$L336:
+	bnei	r5,$L331
+	brid	$L335
 	addk	r1,r19,r0
-$L342:
+$L332:
 	lw	r5,r4,r6
 	sw	r5,r4,r3
-	brid	$L339
+	brid	$L329
 	addik	r4,r4,4
-$L343:
+$L333:
 	addk	r4,r0,r0
-$L339:
+$L329:
 	addik	r7,r7,-1
 	xori	r5,r7,-1
-	bnei	r5,$L342
-$L338:
+	bnei	r5,$L332
+$L328:
 	addk	r1,r19,r0
-$L345:
+$L335:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -3131,15 +3132,15 @@ wmemset:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r5,r0
-	brid	$L348
+	brid	$L338
 	addk	r4,r5,r0
-$L349:
+$L339:
 	addik	r4,r4,4
 	swi	r6,r4,-4
-$L348:
+$L338:
 	addik	r7,r7,-1
 	xori	r8,r7,-1
-	bnei	r8,$L349
+	bnei	r8,$L339
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -3158,41 +3159,39 @@ bcopy:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	cmpu	r18,r6,r5
-	bgeid	r18,$L351
+	bgeid	r18,$L341
 	addk	r19,r1,r0
 	addk	r5,r5,r7
 	addk	r6,r6,r7
-	brid	$L352
+	brid	$L342
 	addk	r3,r7,r0
-$L353:
+$L343:
 	addik	r8,r8,-1
 	rsubk	r4,r7,r6
 	addik	r4,r4,-1
 	lbu	r8,r3,r8
 	sb	r8,r3,r4
 	addik	r3,r3,-1
-$L352:
-	bneid	r3,$L353
+$L342:
+	bneid	r3,$L343
 	rsubk	r8,r7,r5
-	brid	$L358
+	brid	$L348
 	addk	r1,r19,r0
-$L351:
-	xor	r3,r5,r6
-	bnei	r3,$L357
-	brid	$L358
+$L341:
+	xor	r4,r5,r6
+	bneid	r4,$L345
+	addk	r3,r0,r0
+	brid	$L348
 	addk	r1,r19,r0
-$L356:
+$L346:
 	lbu	r4,r3,r5
 	sb	r4,r3,r6
-	brid	$L355
 	addik	r3,r3,1
-$L357:
-	addk	r3,r0,r0
-$L355:
+$L345:
 	xor	r4,r3,r7
-	bnei	r4,$L356
+	bnei	r4,$L346
 	addk	r1,r19,r0
-$L358:
+$L348:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -3212,7 +3211,7 @@ rotl64:
 	addk	r19,r1,r0
 	addk	r4,r5,r0
 	andi	r3,r7,32 #and1
-	beqid	r3,$L360
+	beqid	r3,$L350
 	addk	r5,r6,r0
 	andi	r18,r7,31
 	addk	r8,r0,r6
@@ -3221,9 +3220,9 @@ rotl64:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r8,r8,r8
-	brid	$L361
+	brid	$L351
 	addk	r9,r0,r0
-$L360:
+$L350:
 	srl	r8,r6
 	xori	r6,r7,-1
 	andi	r18,r6,31
@@ -3248,10 +3247,10 @@ $L360:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r9,r9,r9
-$L361:
+$L351:
 	rsubk	r3,r7,r0
 	andi	r3,r3,32 #and1
-	beqid	r3,$L362
+	beqid	r3,$L352
 	addk	r10,r0,r0
 	rsubk	r7,r7,r0
 	andi	r18,r7,31
@@ -3261,9 +3260,9 @@ $L361:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r11,r11
-	brid	$L364
+	brid	$L354
 	or	r4,r10,r8
-$L362:
+$L352:
 	addk	r10,r4,r4
 	rsubk	r7,r7,r0
 	andi	r7,r7,63 #and1
@@ -3291,7 +3290,7 @@ $L362:
 	bneid	r18,.-4
 	srl	r10,r10
 	or	r4,r10,r8
-$L364:
+$L354:
 	or	r5,r11,r9
 	addk	r3,r4,r0
 	addk	r4,r5,r0
@@ -3315,7 +3314,7 @@ rotr64:
 	addk	r19,r1,r0
 	addk	r4,r5,r0
 	andi	r3,r7,32 #and1
-	beqid	r3,$L366
+	beqid	r3,$L356
 	addk	r5,r6,r0
 	andi	r18,r7,31
 	addk	r9,r0,r4
@@ -3324,9 +3323,9 @@ rotr64:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r9,r9
-	brid	$L367
+	brid	$L357
 	addk	r8,r0,r0
-$L366:
+$L356:
 	addk	r8,r4,r4
 	xori	r6,r7,-1
 	andi	r18,r6,31
@@ -3351,10 +3350,10 @@ $L366:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r8,r8
-$L367:
+$L357:
 	rsubk	r3,r7,r0
 	andi	r3,r3,32 #and1
-	beqid	r3,$L368
+	beqid	r3,$L358
 	addk	r11,r0,r0
 	rsubk	r7,r7,r0
 	andi	r18,r7,31
@@ -3364,9 +3363,9 @@ $L367:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r10,r10,r10
-	brid	$L370
+	brid	$L360
 	or	r4,r10,r8
-$L368:
+$L358:
 	srl	r10,r5
 	rsubk	r7,r7,r0
 	andi	r7,r7,63 #and1
@@ -3394,7 +3393,7 @@ $L368:
 	bneid	r18,.-4
 	addk	r11,r11,r11
 	or	r4,r10,r8
-$L370:
+$L360:
 	or	r5,r11,r9
 	addk	r3,r4,r0
 	addk	r4,r5,r0
@@ -4039,9 +4038,9 @@ ffs:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L383
+	brid	$L373
 	addk	r3,r0,r0
-$L386:
+$L376:
 	andi	r18,r3,31
 	addk	r4,r0,r5
 	beqid	r18,.+20
@@ -4050,16 +4049,16 @@ $L386:
 	bneid	r18,.-4
 	srl	r4,r4
 	andi	r4,r4,1 #and1
-	beqid	r4,$L383
+	beqid	r4,$L373
 	addik	r3,r3,1
 	addik	r3,r3,-1
-	brid	$L385
+	brid	$L375
 	addik	r3,r3,1
-$L383:
+$L373:
 	xori	r4,r3,32
-	bnei	r4,$L386
+	bnei	r4,$L376
 	addk	r3,r0,r0
-$L385:
+$L375:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -4077,22 +4076,22 @@ libiberty_ffs:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	beqid	r5,$L391
+	beqid	r5,$L381
 	addk	r19,r1,r0
-	brid	$L389
+	brid	$L379
 	addik	r3,r0,1	# 0x1
-$L390:
+$L380:
 	sra	r5,r5
 	addik	r3,r3,1
-$L389:
+$L379:
 	andi	r4,r5,1 #and1
-	beqi	r4,$L390
-	brid	$L392
+	beqi	r4,$L380
+	brid	$L382
 	addk	r1,r19,r0
-$L391:
+$L381:
 	addk	r3,r0,r0
 	addk	r1,r19,r0
-$L392:
+$L382:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -4124,18 +4123,18 @@ gl_isinff:
 	brlid	r15,__ltsf2
 	
 	addk	r19,r1,r0
-	bltid	r3,$L400
-	addik	r3,r0,1	# 0x1
+	bltid	r3,$L384
+	addik	r4,r0,1	# 0x1
 	lwi	r6,r0,$LC1
 	addk	r5,r22,r0
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
-	bgtid	r3,$L394
-	addik	r3,r0,1	# 0x1
-	addk	r3,r0,r0
-$L394:
-$L400:
+	bgtid	r3,$L384
+	addik	r4,r0,1	# 0x1
+	addk	r4,r0,r0
+$L384:
+	addk	r3,r4,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -4175,19 +4174,19 @@ gl_isinfd:
 	brlid	r15,__ltdf2
 	
 	addk	r23,r6,r0
-	bltid	r3,$L408
-	addik	r3,r0,1	# 0x1
+	bltid	r3,$L390
+	addik	r4,r0,1	# 0x1
 	lwi	r7,r0,$LC3
 	lwi	r8,r0,$LC3+4
 	addk	r5,r22,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r23,r0
-	bgtid	r3,$L402
-	addik	r3,r0,1	# 0x1
-	addk	r3,r0,r0
-$L402:
-$L408:
+	bgtid	r3,$L390
+	addik	r4,r0,1	# 0x1
+	addk	r4,r0,r0
+$L390:
+	addk	r3,r4,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -4228,19 +4227,19 @@ gl_isinfl:
 	brlid	r15,__ltdf2
 	
 	addk	r23,r6,r0
-	bltid	r3,$L416
-	addik	r3,r0,1	# 0x1
+	bltid	r3,$L396
+	addik	r4,r0,1	# 0x1
 	lwi	r7,r0,$LC5
 	lwi	r8,r0,$LC5+4
 	addk	r5,r22,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r23,r0
-	bgtid	r3,$L410
-	addik	r3,r0,1	# 0x1
-	addk	r3,r0,r0
-$L410:
-$L416:
+	bgtid	r3,$L396
+	addik	r4,r0,1	# 0x1
+	addk	r4,r0,r0
+$L396:
+	addk	r3,r4,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -4301,7 +4300,7 @@ ldexpf:
 	brlid	r15,__unordsf2
 	
 	addk	r19,r1,r0
-	bnei	r3,$L419
+	bnei	r3,$L403
 	addk	r6,r24,r0
 	addk	r5,r24,r0
 	brlid	r15,__addsf3
@@ -4312,22 +4311,20 @@ ldexpf:
 	brlid	r15,__nesf2
 	nop		# Unfilled delay slot
 
-	beqi	r3,$L419
-	bgeid	r22,$L424
+	beqi	r3,$L403
+	addik	r23,r0,0x40000000
+	bgeid	r22,$L410
 	andi	r3,r22,1 #and1
 	addik	r23,r0,0x3f000000
-	bri	$L426
-$L424:
-	addik	r23,r0,0x40000000
-$L426:
-	beqi	r3,$L422
+$L410:
+	beqi	r3,$L406
 	addk	r6,r23,r0
 	addk	r5,r24,r0
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
 	addk	r24,r3,r0
-$L422:
+$L406:
 	addk	r3,r0,r22
 	srl	r3,r22
 	srl	r3,r3
@@ -4362,16 +4359,16 @@ $L422:
 	srl	r3,r3
 	addk	r22,r3,r22
 	sra	r22,r22
-	beqi	r22,$L419
+	beqi	r22,$L403
 	addk	r6,r23,r0
 	addk	r5,r23,r0
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
 	addk	r23,r3,r0
-	brid	$L426
+	brid	$L410
 	andi	r3,r22,1 #and1
-$L419:
+$L403:
 	addk	r3,r24,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -4408,7 +4405,7 @@ ldexp:
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L428
+	bneid	r3,$L412
 	addk	r7,r26,r0
 	addk	r8,r27,r0
 	addk	r5,r26,r0
@@ -4421,20 +4418,20 @@ ldexp:
 	brlid	r15,__nedf2
 	
 	addk	r6,r27,r0
-	beqid	r3,$L436
+	beqid	r3,$L420
 	addk	r3,r26,r0
-	bgeid	r22,$L433
+	bgeid	r22,$L417
 	andi	r3,r22,1 #and1
 	addik	r24,r0,0x3fe00000 
 	addik	r25,r0,0x00000000 #Xfer Lo
-	bri	$L435
-$L433:
+	bri	$L419
+$L417:
 	addik	r24,r0,0x40000000 
 	addik	r25,r0,0x00000000 #Xfer Lo
-$L432:
+$L416:
 	andi	r3,r22,1 #and1
-$L435:
-	beqid	r3,$L431
+$L419:
+	beqid	r3,$L415
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r26,r0
@@ -4443,7 +4440,7 @@ $L435:
 	addk	r6,r27,r0
 	addk	r26,r3,r0
 	addk	r27,r4,r0
-$L431:
+$L415:
 	addk	r4,r0,r22
 	srl	r4,r22
 	srl	r4,r4
@@ -4478,7 +4475,7 @@ $L431:
 	srl	r4,r4
 	addk	r4,r4,r22
 	sra	r22,r4
-	beqid	r22,$L428
+	beqid	r22,$L412
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r24,r0
@@ -4486,11 +4483,11 @@ $L431:
 	
 	addk	r6,r25,r0
 	addk	r24,r3,r0
-	brid	$L432
+	brid	$L416
 	addk	r25,r4,r0
-$L428:
+$L412:
 	addk	r3,r26,r0
-$L436:
+$L420:
 	addk	r4,r27,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -4529,7 +4526,7 @@ ldexpl:
 	brlid	r15,__unorddf2
 	
 	addk	r8,r6,r0
-	bneid	r3,$L438
+	bneid	r3,$L422
 	addk	r7,r26,r0
 	addk	r8,r27,r0
 	addk	r5,r26,r0
@@ -4542,20 +4539,20 @@ ldexpl:
 	brlid	r15,__nedf2
 	
 	addk	r6,r27,r0
-	beqid	r3,$L446
+	beqid	r3,$L430
 	addk	r3,r26,r0
-	bgeid	r22,$L443
+	bgeid	r22,$L427
 	andi	r3,r22,1 #and1
 	addik	r24,r0,0x3fe00000 
 	addik	r25,r0,0x00000000 #Xfer Lo
-	bri	$L445
-$L443:
+	bri	$L429
+$L427:
 	addik	r24,r0,0x40000000 
 	addik	r25,r0,0x00000000 #Xfer Lo
-$L442:
+$L426:
 	andi	r3,r22,1 #and1
-$L445:
-	beqid	r3,$L441
+$L429:
+	beqid	r3,$L425
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r26,r0
@@ -4564,7 +4561,7 @@ $L445:
 	addk	r6,r27,r0
 	addk	r26,r3,r0
 	addk	r27,r4,r0
-$L441:
+$L425:
 	addk	r4,r0,r22
 	srl	r4,r22
 	srl	r4,r4
@@ -4599,7 +4596,7 @@ $L441:
 	srl	r4,r4
 	addk	r4,r4,r22
 	sra	r22,r4
-	beqid	r22,$L438
+	beqid	r22,$L422
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r24,r0
@@ -4607,11 +4604,11 @@ $L441:
 	
 	addk	r6,r25,r0
 	addk	r24,r3,r0
-	brid	$L442
+	brid	$L426
 	addk	r25,r4,r0
-$L438:
+$L422:
 	addk	r3,r26,r0
-$L446:
+$L430:
 	addk	r4,r27,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -4638,17 +4635,17 @@ memxor:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r5,r0
-	brid	$L448
+	brid	$L432
 	addk	r4,r0,r0
-$L449:
+$L433:
 	lbu	r5,r4,r6
 	lbu	r8,r4,r3
 	xor	r8,r8,r5
 	sb	r8,r4,r3
 	addik	r4,r4,1
-$L448:
+$L432:
 	xor	r5,r4,r7
-	bnei	r5,$L449
+	bnei	r5,$L433
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -4676,22 +4673,22 @@ strncat:
 	brlid	r15,strlen
 	
 	addk	r22,r7,r0
-	brid	$L451
+	brid	$L435
 	addk	r3,r24,r3
-$L453:
+$L437:
 	addik	r3,r3,1
 	addik	r22,r22,-1
-$L451:
-	beqi	r22,$L452
+$L435:
+	beqi	r22,$L436
 	lbui	r4,r23,0
 	sbi	r4,r3,0
 	sext8	r4,r4
-	bneid	r4,$L453
+	bneid	r4,$L437
 	addik	r23,r23,1
-$L452:
-	bnei	r22,$L454
+$L436:
+	bnei	r22,$L438
 	sbi	r0,r3,0
-$L454:
+$L438:
 	addk	r3,r24,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -4715,16 +4712,16 @@ strnlen:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L456
+	brid	$L440
 	addk	r3,r0,r0
-$L458:
+$L442:
 	addik	r3,r3,1
-$L456:
+$L440:
 	xor	r4,r3,r6
-	beqi	r4,$L457
+	beqi	r4,$L441
 	lbu	r4,r3,r5
-	bnei	r4,$L458
-$L457:
+	bnei	r4,$L442
+$L441:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -4742,30 +4739,30 @@ strpbrk:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	brid	$L460
+	brid	$L444
 	addk	r19,r1,r0
-$L462:
+$L446:
 	lbui	r8,r7,-1
 	lbui	r4,r5,0
 	xor	r4,r4,r8
 	sext8	r4,r4
-	bneid	r4,$L463
+	bneid	r4,$L447
 	addk	r3,r5,r0
-	brid	$L464
+	brid	$L448
 	addk	r1,r19,r0
-$L465:
+$L449:
 	addk	r7,r6,r0
-$L463:
+$L447:
 	lbui	r4,r7,0
-	bneid	r4,$L462
+	bneid	r4,$L446
 	addik	r7,r7,1
 	addik	r7,r7,-1
 	addik	r5,r5,1
-$L460:
+$L444:
 	lbui	r3,r5,0
-	bnei	r3,$L465
+	bnei	r3,$L449
 	addk	r1,r19,r0
-$L464:
+$L448:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -4784,16 +4781,16 @@ strrchr:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r0,r0
-$L469:
+$L453:
 	lbui	r4,r5,0
 	sext8	r4,r4
 	xor	r4,r6,r4
-	bnei	r4,$L468
+	bnei	r4,$L452
 	addk	r3,r5,r0
-$L468:
+$L452:
 	addik	r5,r5,1
 	lbui	r4,r5,-1
-	bnei	r4,$L469
+	bnei	r4,$L453
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -4822,33 +4819,33 @@ strstr:
 	brlid	r15,strlen
 	
 	addk	r5,r6,r0
-	beqid	r3,$L475
+	beqid	r3,$L459
 	addk	r24,r3,r0
 	lbui	r25,r23,0
-	brid	$L473
+	brid	$L457
 	sext8	r25,r25
-$L474:
+$L458:
 	addk	r7,r24,r0
 	addk	r6,r23,r0
 	brlid	r15,strncmp
 	
 	addk	r5,r22,r0
-	beqid	r3,$L476
+	beqid	r3,$L460
 	addk	r3,r22,r0
 	addik	r22,r22,1
-$L473:
+$L457:
 	addk	r6,r25,r0
 	brlid	r15,strchr
 	
 	addk	r5,r22,r0
-	bneid	r3,$L474
+	bneid	r3,$L458
 	addk	r22,r3,r0
-	brid	$L472
+	brid	$L456
 	addk	r3,r0,r0
-$L475:
+$L459:
 	addk	r3,r22,r0
-$L476:
-$L472:
+$L460:
+$L456:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -4885,22 +4882,22 @@ copysign:
 	brlid	r15,__ltdf2
 	
 	addk	r23,r6,r0
-	bgeid	r3,$L478
+	bgeid	r3,$L462
 	addk	r5,r24,r0
 	addk	r7,r0,r0
 	addk	r8,r0,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r25,r0
-	bgti	r3,$L480
-$L478:
+	bgti	r3,$L464
+$L462:
 	addk	r7,r0,r0
 	addk	r8,r0,r0
 	addk	r5,r22,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r23,r0
-	bleid	r3,$L488
+	bleid	r3,$L472
 	addk	r4,r22,r0
 	addk	r7,r0,r0
 	addk	r8,r0,r0
@@ -4908,18 +4905,18 @@ $L478:
 	brlid	r15,__ltdf2
 	
 	addk	r6,r25,r0
-	bgei	r3,$L489
-$L480:
+	bgei	r3,$L473
+$L464:
 	addik	r4,r22,-2147483648
-	brid	$L481
+	brid	$L465
 	addk	r5,r23,r0
-$L488:
-	brid	$L481
+$L472:
+	brid	$L465
 	addk	r5,r23,r0
-$L489:
+$L473:
 	addk	r4,r22,r0
 	addk	r5,r23,r0
-$L481:
+$L465:
 	addk	r3,r4,r0
 	addk	r4,r5,r0
 	lwi	r15,r1,0
@@ -4954,45 +4951,45 @@ memmem:
 	addk	r23,r7,r0
 	addk	r25,r8,r0
 	rsubk	r24,r8,r6
-	beqid	r8,$L496
+	beqid	r8,$L480
 	addk	r24,r5,r24
 	cmpu	r18,r8,r6
-	bltid	r18,$L492
+	bltid	r18,$L476
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L492:
+$L476:
 	andi	r3,r3,0x00ff
-	bneid	r3,$L499
+	bneid	r3,$L483
 	addk	r3,r0,r0
-	bri	$L493
-$L495:
+	bri	$L477
+$L479:
 	lbui	r3,r22,0
 	lbui	r4,r23,0
 	xor	r4,r4,r3
 	sext8	r4,r4
-	bneid	r4,$L494
+	bneid	r4,$L478
 	addik	r7,r25,-1
 	addik	r6,r23,1
 	brlid	r15,memcmp
 	
 	addik	r5,r22,1
-	beqid	r3,$L498
+	beqid	r3,$L482
 	addk	r3,r22,r0
-$L494:
+$L478:
 	addik	r22,r22,1
-$L493:
+$L477:
 	cmpu	r18,r22,r24
-	bgeid	r18,$L495
+	bgeid	r18,$L479
 	addk	r3,r0,r0
-	brid	$L500
+	brid	$L484
 	lwi	r15,r1,0
-$L496:
+$L480:
 	addk	r3,r5,r0
-$L498:
-$L491:
-$L499:
+$L482:
+$L475:
+$L483:
 	lwi	r15,r1,0
-$L500:
+$L484:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -5036,9 +5033,9 @@ $Lfe99:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	r19,56,r15		# vars= 0, regs= 7, args= 24
-	.mask	0x0fc88000
-	addik	r1,r1,-56
+	.frame	r19,52,r15		# vars= 0, regs= 6, args= 24
+	.mask	0x07c88000
+	addik	r1,r1,-52
 	swi	r15,r1,0
 	swi	r19,r1,28
 	swi	r22,r1,32
@@ -5046,7 +5043,6 @@ frexp:
 	swi	r24,r1,40
 	swi	r25,r1,44
 	swi	r26,r1,48
-	swi	r27,r1,52
 	addk	r19,r1,r0
 	addk	r22,r5,r0
 	addk	r25,r7,r0
@@ -5055,25 +5051,25 @@ frexp:
 	brlid	r15,__ltdf2
 	
 	addk	r23,r6,r0
-	bgeid	r3,$L518
+	bgeid	r3,$L502
 	addik	r26,r0,1	# 0x1
 	addik	r4,r22,-2147483648
-	brid	$L503
+	brid	$L487
 	addk	r22,r4,r0
-$L518:
+$L502:
 	addk	r26,r0,r0
-$L503:
+$L487:
 	addik	r7,r0,0x3ff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
 	addk	r5,r22,r0
 	brlid	r15,__gedf2
 	
 	addk	r6,r23,r0
-	bgeid	r3,$L515
+	bgeid	r3,$L489
+	addk	r24,r0,r0
+	brid	$L503
 	addik	r24,r0,1	# 0x1
-	brid	$L519
-	addk	r5,r22,r0
-$L507:
+$L491:
 	addik	r24,r24,1
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
@@ -5081,47 +5077,74 @@ $L507:
 	
 	addk	r6,r23,r0
 	addk	r22,r3,r0
-	brid	$L505
 	addk	r23,r4,r0
-$L515:
-	addk	r24,r0,r0
-$L505:
+$L489:
 	addik	r7,r0,0x3ff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
 	addk	r5,r22,r0
 	brlid	r15,__gedf2
 	
 	addk	r6,r23,r0
-	bgeid	r3,$L507
+	bgeid	r3,$L491
 	addk	r5,r22,r0
-	brid	$L520
+	brid	$L504
 	swi	r24,r25,0
-$L519:
+$L503:
 	addk	r7,r0,r0
 	addk	r8,r0,r0
+	addk	r5,r22,r0
 	brlid	r15,__nedf2
 	
 	addk	r6,r23,r0
-	bneid	r3,$L521
+	bneid	r3,$L505
 	andi	r24,r24,0x00ff
 	addk	r24,r0,r0
 	andi	r24,r24,0x00ff
-$L521:
-	addik	r27,r0,1	# 0x1
+$L505:
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
 	addk	r5,r22,r0
 	brlid	r15,__ltdf2
 	
 	addk	r6,r23,r0
-	blti	r3,$L510
-	addk	r27,r0,r0
-$L510:
-	and	r24,r24,r27
-	bnei	r24,$L516
-	brid	$L520
+	addk	r4,r0,r3
+	srl	r4,r3
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	and	r4,r4,r24
+	bneid	r4,$L500
+	addk	r24,r0,r0
+	brid	$L504
 	swi	r24,r25,0
-$L512:
+$L496:
 	addik	r24,r24,-1
 	addk	r8,r23,r0
 	addk	r5,r22,r0
@@ -5129,27 +5152,24 @@ $L512:
 	
 	addk	r6,r23,r0
 	addk	r22,r3,r0
-	brid	$L511
 	addk	r23,r4,r0
-$L516:
-	addk	r24,r0,r0
-$L511:
+$L500:
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
 	addk	r5,r22,r0
 	brlid	r15,__ltdf2
 	
 	addk	r6,r23,r0
-	bltid	r3,$L512
+	bltid	r3,$L496
 	addk	r7,r22,r0
 	swi	r24,r25,0
-$L520:
-	beqid	r26,$L522
+$L504:
+	beqid	r26,$L506
 	addk	r3,r22,r0
 	addik	r4,r22,-2147483648
 	addk	r22,r4,r0
 	addk	r3,r22,r0
-$L522:
+$L506:
 	addk	r4,r23,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -5159,10 +5179,9 @@ $L522:
 	lwi	r24,r1,40
 	lwi	r25,r1,44
 	lwi	r26,r1,48
-	lwi	r27,r1,52
 	rtsd	r15,8 
 	
-	addik	r1,r1,56
+	addik	r1,r1,52
 	.end	frexp
 $Lfe100:
 	.size	frexp,$Lfe100-frexp
@@ -5185,15 +5204,15 @@ __muldi3:
 	addk	r7,r8,r0
 	addik	r8,r0,0x00000000
 	addik	r9,r0,0x00000000 #li => la
-	brid	$L524
+	brid	$L508
 	addk	r19,r1,r0
-$L527:
+$L511:
 	andi	r25,r5,1 #and1
 	or	r3,r24,r25
-	beqi	r3,$L525
+	beqi	r3,$L509
 	add	r9,r9,r7
 	addc	r8,r8,r6
-$L525:
+$L509:
 	addk	r3,r0,r7
 	srl	r3,r7
 	srl	r3,r3
@@ -5239,9 +5258,9 @@ $L525:
 	srl	r22,r4
 	addk	r4,r22,r0
 	addk	r5,r23,r0
-$L524:
+$L508:
 	or	r3,r4,r5
-	bneid	r3,$L527
+	bneid	r3,$L511
 	addk	r24,r0,r0
 	addk	r3,r8,r0
 	addk	r4,r9,r0
@@ -5267,17 +5286,17 @@ udivmodsi4:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L529
+	brid	$L513
 	addik	r4,r0,1	# 0x1
-$L532:
+$L516:
 	addk	r6,r6,r6
 	addk	r4,r4,r4
-$L529:
+$L513:
 	cmpu	r18,r5,r6
-	bltid	r18,$L530
+	bltid	r18,$L514
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L530:
+$L514:
 	rsubk	r9,r4,r0
 	or	r9,r9,r4
 	addk	r8,r0,r9
@@ -5313,26 +5332,26 @@ $L530:
 	srl	r8,r8
 	srl	r8,r8
 	and	r8,r8,r3
-	beqi	r8,$L537
-	bgei	r6,$L532
-	brid	$L534
+	beqi	r8,$L521
+	bgei	r6,$L516
+	brid	$L518
 	addk	r3,r0,r0
-$L535:
+$L519:
 	cmpu	r18,r6,r5
-	blti	r18,$L533
+	blti	r18,$L517
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L533:
+$L517:
 	srl	r4,r4
-	brid	$L534
+	brid	$L518
 	srl	r6,r6
-$L537:
+$L521:
 	addk	r3,r0,r0
-$L534:
-	bnei	r4,$L535
-	beqi	r7,$L536
+$L518:
+	bnei	r4,$L519
+	beqi	r7,$L520
 	addk	r3,r5,r0
-$L536:
+$L520:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -5351,11 +5370,41 @@ __clrsbqi2:
 	addik	r1,r1,-32
 	swi	r15,r1,0
 	swi	r19,r1,28
-	bgeid	r5,$L540
+	addk	r3,r0,r5
+	sra	r3,r5
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	xor	r5,r5,r3
+	beqid	r5,$L526
 	addk	r19,r1,r0
-	xori	r5,r5,-1
-$L540:
-	beqid	r5,$L542
 	addk	r5,r5,r5
 	addk	r5,r5,r5
 	addk	r5,r5,r5
@@ -5366,11 +5415,11 @@ $L540:
 	brlid	r15,__clzsi2
 	
 	addk	r5,r5,r5
-	brid	$L541
+	brid	$L525
 	addik	r3,r3,-1
-$L542:
+$L526:
 	addik	r3,r0,7	# 0x7
-$L541:
+$L525:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -5392,24 +5441,24 @@ __clrsbdi2:
 	swi	r19,r1,28
 	addk	r19,r1,r0
 	addk	r4,r5,r0
-	bgeid	r4,$L544
+	bgeid	r4,$L528
 	addk	r5,r6,r0
 	xori	r6,r4,-1
 	xori	r7,r5,-1
 	addk	r4,r6,r0
 	addk	r5,r7,r0
-$L544:
+$L528:
 	or	r3,r4,r5
-	beqid	r3,$L548
+	beqid	r3,$L532
 	addk	r6,r5,r0
 	brlid	r15,__clzdi2
 	
 	addk	r5,r4,r0
-	brid	$L546
+	brid	$L530
 	addik	r3,r3,-1
-$L548:
+$L532:
 	addik	r3,r0,63	# 0x3f
-$L546:
+$L530:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -5429,16 +5478,16 @@ __mulsi3:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L550
+	brid	$L534
 	addk	r3,r0,r0
-$L552:
-	beqi	r4,$L551
+$L536:
+	beqi	r4,$L535
 	addk	r3,r3,r6
-$L551:
+$L535:
 	srl	r5,r5
 	addk	r6,r6,r6
-$L550:
-	bneid	r5,$L552
+$L534:
+	bneid	r5,$L536
 	andi	r4,r5,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -5465,21 +5514,21 @@ __cmovd:
 	srl	r11,r11
 	srl	r11,r11
 	cmpu	r18,r6,r5
-	bgeid	r18,$L554
+	bgeid	r18,$L538
 	andi	r3,r7,-8 #and1
 	addk	r9,r6,r0
-$L565:
+$L549:
 	addk	r8,r5,r0
-	brid	$L555
+	brid	$L539
 	addk	r4,r0,r0
-$L554:
+$L538:
 	addk	r4,r6,r7
 	cmpu	r18,r5,r4
-	bltid	r18,$L565
+	bltid	r18,$L549
 	addk	r9,r6,r0
-	brid	$L563
+	brid	$L547
 	addik	r7,r7,-1
-$L558:
+$L542:
 	lwi	r22,r9,0
 	lwi	r23,r9,4
 	swi	r22,r8,0
@@ -5487,28 +5536,28 @@ $L558:
 	addik	r4,r4,1
 	addik	r9,r9,8
 	addik	r8,r8,8
-$L555:
+$L539:
 	xor	r10,r4,r11
-	bnei	r10,$L558
-	bri	$L559
-$L560:
+	bnei	r10,$L542
+	bri	$L543
+$L544:
 	lbu	r4,r3,r6
 	sb	r4,r3,r5
 	addik	r3,r3,1
-$L559:
+$L543:
 	cmpu	r18,r7,r3
-	blti	r18,$L560
-	brid	$L564
+	blti	r18,$L544
+	brid	$L548
 	addk	r1,r19,r0
-$L562:
+$L546:
 	lbu	r3,r7,r6
 	sb	r3,r7,r5
 	addik	r7,r7,-1
-$L563:
+$L547:
 	xori	r3,r7,-1
-	bnei	r3,$L562
+	bnei	r3,$L546
 	addk	r1,r19,r0
-$L564:
+$L548:
 	lwi	r19,r1,4
 	lwi	r22,r1,8
 	lwi	r23,r1,12
@@ -5529,39 +5578,39 @@ __cmovh:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	cmpu	r18,r6,r5
-	bgeid	r18,$L567
+	bgeid	r18,$L551
 	srl	r8,r7
-$L569:
+$L553:
 	addk	r8,r8,r8
-	brid	$L568
+	brid	$L552
 	addk	r3,r0,r0
-$L567:
+$L551:
 	addk	r3,r6,r7
 	cmpu	r18,r5,r3
-	blti	r18,$L569
-	brid	$L574
+	blti	r18,$L553
+	brid	$L558
 	addik	r7,r7,-1
-$L571:
+$L555:
 	lhu	r4,r3,r6
 	sh	r4,r3,r5
 	addik	r3,r3,2
-$L568:
+$L552:
 	xor	r4,r3,r8
-	bnei	r4,$L571
+	bnei	r4,$L555
 	andi	r3,r7,1 #and1
-	beqi	r3,$L566
+	beqi	r3,$L550
 	addik	r7,r7,-1
 	lbu	r3,r7,r6
-	brid	$L566
+	brid	$L550
 	sb	r3,r7,r5
-$L573:
+$L557:
 	lbu	r3,r7,r6
 	sb	r3,r7,r5
 	addik	r7,r7,-1
-$L574:
+$L558:
 	xori	r3,r7,-1
-	bnei	r3,$L573
-$L566:
+	bnei	r3,$L557
+$L550:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -5584,45 +5633,45 @@ __cmovw:
 	srl	r9,r7
 	srl	r9,r9
 	cmpu	r18,r6,r5
-	bgeid	r18,$L576
+	bgeid	r18,$L560
 	andi	r3,r7,-4 #and1
-$L578:
+$L562:
 	addk	r9,r9,r9
 	addk	r9,r9,r9
-	brid	$L577
+	brid	$L561
 	addk	r4,r0,r0
-$L576:
+$L560:
 	addk	r4,r6,r7
 	cmpu	r18,r5,r4
-	blti	r18,$L578
-	brid	$L585
+	blti	r18,$L562
+	brid	$L569
 	addik	r7,r7,-1
-$L580:
+$L564:
 	lw	r8,r4,r6
 	sw	r8,r4,r5
 	addik	r4,r4,4
-$L577:
+$L561:
 	xor	r8,r4,r9
-	bnei	r8,$L580
-	bri	$L581
-$L582:
+	bnei	r8,$L564
+	bri	$L565
+$L566:
 	lbu	r4,r3,r6
 	sb	r4,r3,r5
 	addik	r3,r3,1
-$L581:
+$L565:
 	cmpu	r18,r7,r3
-	blti	r18,$L582
-	brid	$L586
+	blti	r18,$L566
+	brid	$L570
 	addk	r1,r19,r0
-$L584:
+$L568:
 	lbu	r3,r7,r6
 	sb	r3,r7,r5
 	addik	r7,r7,-1
-$L585:
+$L569:
 	xori	r3,r7,-1
-	bnei	r3,$L584
+	bnei	r3,$L568
 	addk	r1,r19,r0
-$L586:
+$L570:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -5772,9 +5821,9 @@ __clzhi2:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L594
+	brid	$L578
 	addk	r3,r0,r0
-$L596:
+$L580:
 	rsubk	r6,r3,r4
 	andi	r18,r6,31
 	addk	r4,r0,r5
@@ -5784,13 +5833,13 @@ $L596:
 	bneid	r18,.-4
 	sra	r4,r4
 	andi	r4,r4,1 #and1
-	bnei	r4,$L595
+	bnei	r4,$L579
 	addik	r3,r3,1
-$L594:
+$L578:
 	xori	r4,r3,16
-	bneid	r4,$L596
+	bneid	r4,$L580
 	addik	r4,r0,15	# 0xf
-$L595:
+$L579:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -5809,9 +5858,9 @@ __ctzhi2:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L598
+	brid	$L582
 	addk	r3,r0,r0
-$L600:
+$L584:
 	andi	r18,r3,31
 	addk	r4,r0,r5
 	beqid	r18,.+20
@@ -5820,12 +5869,12 @@ $L600:
 	bneid	r18,.-4
 	sra	r4,r4
 	andi	r4,r4,1 #and1
-	bnei	r4,$L599
+	bnei	r4,$L583
 	addik	r3,r3,1
-$L598:
+$L582:
 	xori	r4,r3,16
-	bnei	r4,$L600
-$L599:
+	bnei	r4,$L584
+$L583:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -5850,7 +5899,7 @@ __fixunssfsi:
 	brlid	r15,__gesf2
 	
 	addk	r19,r1,r0
-	blti	r3,$L606
+	blti	r3,$L590
 	addik	r6,r0,0x47000000
 	addk	r5,r22,r0
 	brlid	r15,__subsf3
@@ -5861,15 +5910,15 @@ __fixunssfsi:
 	nop		# Unfilled delay slot
 
 	addik	r3,r3,32768
-	brid	$L607
+	brid	$L591
 	lwi	r15,r1,0
-$L606:
+$L590:
 	addk	r5,r22,r0
 	brlid	r15,__fixsfsi
 	nop		# Unfilled delay slot
 
 	lwi	r15,r1,0
-$L607:
+$L591:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -5890,9 +5939,9 @@ __parityhi2:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r0,r0
-	brid	$L609
+	brid	$L593
 	addk	r4,r3,r0
-$L611:
+$L595:
 	andi	r18,r4,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -5901,13 +5950,13 @@ $L611:
 	bneid	r18,.-4
 	sra	r6,r6
 	andi	r6,r6,1 #and1
-	beqi	r6,$L610
+	beqi	r6,$L594
 	addik	r3,r3,1
-$L610:
+$L594:
 	addik	r4,r4,1
-$L609:
+$L593:
 	xori	r6,r4,16
-	bnei	r6,$L611
+	bnei	r6,$L595
 	andi	r3,r3,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -5928,9 +5977,9 @@ __popcounthi2:
 	swi	r19,r1,4
 	addk	r19,r1,r0
 	addk	r3,r0,r0
-	brid	$L613
+	brid	$L597
 	addk	r4,r3,r0
-$L615:
+$L599:
 	andi	r18,r4,31
 	addk	r6,r0,r5
 	beqid	r18,.+20
@@ -5939,13 +5988,13 @@ $L615:
 	bneid	r18,.-4
 	sra	r6,r6
 	andi	r6,r6,1 #and1
-	beqi	r6,$L614
+	beqi	r6,$L598
 	addik	r3,r3,1
-$L614:
+$L598:
 	addik	r4,r4,1
-$L613:
+$L597:
 	xori	r6,r4,16
-	bnei	r6,$L615
+	bnei	r6,$L599
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -5964,16 +6013,16 @@ __mulsi3_iq2000:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L617
+	brid	$L601
 	addk	r3,r0,r0
-$L619:
-	beqi	r4,$L618
+$L603:
+	beqi	r4,$L602
 	addk	r3,r3,r6
-$L618:
+$L602:
 	srl	r5,r5
 	addk	r6,r6,r6
-$L617:
-	bneid	r5,$L619
+$L601:
+	bneid	r5,$L603
 	andi	r4,r5,1 #and1
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -5992,25 +6041,25 @@ __mulsi3_lm32:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	beqid	r5,$L625
+	beqid	r5,$L609
 	addk	r19,r1,r0
-	brid	$L622
+	brid	$L606
 	addk	r3,r0,r0
-$L624:
-	beqi	r4,$L623
+$L608:
+	beqi	r4,$L607
 	addk	r3,r3,r5
-$L623:
+$L607:
 	addk	r5,r5,r5
 	srl	r6,r6
-$L622:
-	bneid	r6,$L624
+$L606:
+	bneid	r6,$L608
 	andi	r4,r6,1 #and1
-	brid	$L626
+	brid	$L610
 	addk	r1,r19,r0
-$L625:
+$L609:
 	addk	r3,r0,r0
 	addk	r1,r19,r0
-$L626:
+$L610:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -6028,17 +6077,17 @@ __udivmodsi4:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L628
+	brid	$L612
 	addik	r4,r0,1	# 0x1
-$L631:
+$L615:
 	addk	r6,r6,r6
 	addk	r4,r4,r4
-$L628:
+$L612:
 	cmpu	r18,r5,r6
-	bltid	r18,$L629
+	bltid	r18,$L613
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L629:
+$L613:
 	rsubk	r9,r4,r0
 	or	r9,r9,r4
 	addk	r8,r0,r9
@@ -6074,26 +6123,26 @@ $L629:
 	srl	r8,r8
 	srl	r8,r8
 	and	r8,r8,r3
-	beqi	r8,$L636
-	bgei	r6,$L631
-	brid	$L633
+	beqi	r8,$L620
+	bgei	r6,$L615
+	brid	$L617
 	addk	r3,r0,r0
-$L634:
+$L618:
 	cmpu	r18,r6,r5
-	blti	r18,$L632
+	blti	r18,$L616
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L632:
+$L616:
 	srl	r4,r4
-	brid	$L633
+	brid	$L617
 	srl	r6,r6
-$L636:
+$L620:
 	addk	r3,r0,r0
-$L633:
-	bnei	r4,$L634
-	beqi	r7,$L635
+$L617:
+	bnei	r4,$L618
+	beqi	r7,$L619
 	addk	r3,r5,r0
-$L635:
+$L619:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -6119,18 +6168,18 @@ __mspabi_cmpf:
 	brlid	r15,__ltsf2
 	
 	addk	r19,r1,r0
-	bltid	r3,$L642
+	bltid	r3,$L626
 	addik	r3,r0,-1	# 0xffffffffffffffff
 	addk	r6,r23,r0
 	addk	r5,r22,r0
 	brlid	r15,__gtsf2
 	nop		# Unfilled delay slot
 
-	bleid	r3,$L639
+	bleid	r3,$L623
 	addk	r3,r0,r0
 	addik	r3,r0,1	# 0x1
-$L639:
-$L642:
+$L623:
+$L626:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -6163,25 +6212,25 @@ __mspabi_cmpd:
 	brlid	r15,__ltdf2
 	
 	addk	r25,r8,r0
-	bltid	r3,$L645
+	bltid	r3,$L629
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r22,r0
 	brlid	r15,__gtdf2
 	
 	addk	r6,r23,r0
-	bgtid	r3,$L646
+	bgtid	r3,$L630
 	addk	r3,r0,r0
-	brid	$L647
+	brid	$L631
 	lwi	r15,r1,0
-$L645:
-	brid	$L644
+$L629:
+	brid	$L628
 	addik	r3,r0,-1	# 0xffffffffffffffff
-$L646:
+$L630:
 	addik	r3,r0,1	# 0x1
-$L644:
+$L628:
 	lwi	r15,r1,0
-$L647:
+$L631:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -6266,73 +6315,72 @@ __mulhi3:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	bgeid	r6,$L657
 	addk	r19,r1,r0
-	rsubk	r6,r6,r0
-	brid	$L651
-	addik	r11,r0,1	# 0x1
-$L657:
+	bgeid	r6,$L635
 	addk	r11,r0,r0
-$L651:
-	addk	r3,r0,r0
-	brid	$L652
-	addk	r4,r3,r0
-$L655:
-	andi	r7,r6,1 #and1
-	beqi	r7,$L653
-	addk	r3,r3,r5
-$L653:
+	rsubk	r6,r6,r0
+	addik	r11,r0,1	# 0x1
+$L635:
+	addk	r10,r0,r0
+	brid	$L636
+	addk	r3,r10,r0
+$L639:
+	andi	r4,r6,1 #and1
+	beqi	r4,$L637
+	addk	r10,r10,r5
+$L637:
 	addk	r5,r5,r5
 	sra	r6,r6
-	addik	r4,r4,1
-	sext8	r4,r4
-$L652:
-	rsubk	r8,r6,r0
-	or	r8,r8,r6
-	addk	r7,r0,r8
-	srl	r7,r8
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	srl	r7,r7
-	andi	r8,r4,0x00ff
-	addik	r10,r0,31	# 0x1f
-	cmpu	r18,r8,r10
-	bgeid	r18,$L654
-	addik	r9,r0,1	# 0x1
-	addk	r9,r0,r0
-$L654:
-	and	r7,r7,r9
-	bnei	r7,$L655
-	beqi	r11,$L656
-	rsubk	r3,r3,r0
-$L656:
+	addik	r3,r3,1
+	sext8	r3,r3
+$L636:
+	rsubk	r7,r6,r0
+	or	r7,r7,r6
+	addk	r4,r0,r7
+	srl	r4,r7
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	srl	r4,r4
+	andi	r7,r3,0x00ff
+	addik	r9,r0,31	# 0x1f
+	cmpu	r18,r7,r9
+	bgeid	r18,$L638
+	addik	r8,r0,1	# 0x1
+	addk	r8,r0,r0
+$L638:
+	and	r4,r4,r8
+	bnei	r4,$L639
+	beqid	r11,$L640
+	addk	r3,r10,r0
+	rsubk	r3,r10,r0
+$L640:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -6352,25 +6400,23 @@ __divsi3:
 	swi	r15,r1,0
 	swi	r19,r1,28
 	swi	r22,r1,32
-	bgeid	r5,$L663
 	addk	r19,r1,r0
-	rsubk	r5,r5,r0
-	brid	$L660
-	addik	r22,r0,1	# 0x1
-$L663:
+	bgeid	r5,$L644
 	addk	r22,r0,r0
-$L660:
-	bgei	r6,$L661
+	rsubk	r5,r5,r0
+	addik	r22,r0,1	# 0x1
+$L644:
+	bgei	r6,$L645
 	rsubk	r6,r6,r0
 	xori	r22,r22,1
-$L661:
+$L645:
 	brlid	r15,__udivmodsi4
 	
 	addk	r7,r0,r0
-	beqid	r22,$L664
+	beqid	r22,$L648
 	lwi	r15,r1,0
 	rsubk	r3,r3,r0
-$L664:
+$L648:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -6391,24 +6437,53 @@ __modsi3:
 	swi	r15,r1,0
 	swi	r19,r1,28
 	swi	r22,r1,32
-	bgeid	r5,$L669
 	addk	r19,r1,r0
-	rsubk	r5,r5,r0
-	brid	$L666
-	addik	r22,r0,1	# 0x1
-$L669:
+	bgeid	r5,$L650
 	addk	r22,r0,r0
-$L666:
-	bgei	r6,$L667
-	rsubk	r6,r6,r0
-$L667:
+	rsubk	r5,r5,r0
+	addik	r22,r0,1	# 0x1
+$L650:
+	addk	r3,r0,r6
+	sra	r3,r6
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	sra	r3,r3
+	xor	r6,r6,r3
+	addik	r7,r0,1	# 0x1
 	brlid	r15,__udivmodsi4
 	
-	addik	r7,r0,1	# 0x1
-	beqid	r22,$L670
+	rsubk	r6,r3,r6
+	beqid	r22,$L654
 	lwi	r15,r1,0
 	rsubk	r3,r3,r0
-$L670:
+$L654:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -6428,19 +6503,19 @@ __udivmodhi4:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L672
+	brid	$L656
 	addik	r4,r0,1	# 0x1
-$L675:
+$L659:
 	addk	r6,r6,r6
 	andi	r6,r6,0xffff
 	addk	r4,r4,r4
 	andi	r4,r4,0xffff
-$L672:
+$L656:
 	cmpu	r18,r5,r6
-	bltid	r18,$L673
+	bltid	r18,$L657
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L673:
+$L657:
 	rsubk	r9,r4,r0
 	addk	r8,r0,r9
 	srl	r8,r9
@@ -6475,28 +6550,28 @@ $L673:
 	srl	r8,r8
 	srl	r8,r8
 	and	r8,r8,r3
-	beqid	r8,$L680
+	beqid	r8,$L664
 	sext16	r3,r6
-	bgei	r3,$L675
-	brid	$L677
+	bgei	r3,$L659
+	brid	$L661
 	addk	r3,r0,r0
-$L678:
+$L662:
 	cmpu	r18,r6,r5
-	blti	r18,$L676
+	blti	r18,$L660
 	rsubk	r5,r6,r5
 	andi	r5,r5,0xffff
 	or	r3,r3,r4
-$L676:
+$L660:
 	srl	r4,r4
-	brid	$L677
+	brid	$L661
 	srl	r6,r6
-$L680:
+$L664:
 	addk	r3,r0,r0
-$L677:
-	bnei	r4,$L678
-	beqi	r7,$L679
+$L661:
+	bnei	r4,$L662
+	beqi	r7,$L663
 	addk	r3,r5,r0
-$L679:
+$L663:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -6515,17 +6590,17 @@ __udivmodsi4_libgcc:
 	addik	r1,r1,-8
 	swi	r19,r1,4
 	addk	r19,r1,r0
-	brid	$L683
+	brid	$L667
 	addik	r4,r0,1	# 0x1
-$L686:
+$L670:
 	addk	r6,r6,r6
 	addk	r4,r4,r4
-$L683:
+$L667:
 	cmpu	r18,r5,r6
-	bltid	r18,$L684
+	bltid	r18,$L668
 	addik	r3,r0,1	# 0x1
 	addk	r3,r0,r0
-$L684:
+$L668:
 	rsubk	r9,r4,r0
 	or	r9,r9,r4
 	addk	r8,r0,r9
@@ -6561,26 +6636,26 @@ $L684:
 	srl	r8,r8
 	srl	r8,r8
 	and	r8,r8,r3
-	beqi	r8,$L691
-	bgei	r6,$L686
-	brid	$L688
+	beqi	r8,$L675
+	bgei	r6,$L670
+	brid	$L672
 	addk	r3,r0,r0
-$L689:
+$L673:
 	cmpu	r18,r6,r5
-	blti	r18,$L687
+	blti	r18,$L671
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L687:
+$L671:
 	srl	r4,r4
-	brid	$L688
+	brid	$L672
 	srl	r6,r6
-$L691:
+$L675:
 	addk	r3,r0,r0
-$L688:
-	bnei	r4,$L689
-	beqi	r7,$L690
+$L672:
+	bnei	r4,$L673
+	beqi	r7,$L674
 	addk	r3,r5,r0
-$L690:
+$L674:
 	addk	r1,r19,r0
 	lwi	r19,r1,4
 	rtsd	r15,8 
@@ -6601,7 +6676,7 @@ __ashldi3:
 	addk	r19,r1,r0
 	addk	r8,r5,r0
 	andi	r3,r7,32 #and1
-	beqid	r3,$L694
+	beqid	r3,$L678
 	addk	r9,r6,r0
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x00000000 #li => la
@@ -6612,10 +6687,10 @@ __ashldi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	addk	r4,r4,r4
-	brid	$L698
+	brid	$L682
 	addk	r3,r4,r0
-$L694:
-	beqi	r7,$L697
+$L678:
+	beqi	r7,$L681
 	andi	r18,r7,31
 	addk	r5,r0,r6
 	beqid	r18,.+20
@@ -6639,14 +6714,14 @@ $L694:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r6,r6
-	brid	$L696
+	brid	$L680
 	or	r4,r6,r3
-$L697:
+$L681:
 	addk	r4,r5,r0
 	addk	r5,r6,r0
-$L696:
+$L680:
 	addk	r3,r4,r0
-$L698:
+$L682:
 	addk	r4,r5,r0
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -6668,7 +6743,7 @@ __ashrdi3:
 	addk	r19,r1,r0
 	addk	r8,r5,r0
 	andi	r3,r7,32 #and1
-	beqid	r3,$L700
+	beqid	r3,$L684
 	addk	r9,r6,r0
 	addk	r4,r0,r5
 	sra	r4,r5
@@ -6709,10 +6784,10 @@ __ashrdi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	sra	r5,r5
-	brid	$L704
+	brid	$L688
 	addk	r3,r4,r0
-$L700:
-	beqid	r7,$L703
+$L684:
+	beqid	r7,$L687
 	addik	r3,r0,32	# 0x20
 	andi	r18,r7,31
 	addk	r4,r0,r5
@@ -6736,14 +6811,14 @@ $L700:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	brid	$L702
+	brid	$L686
 	or	r5,r6,r3
-$L703:
+$L687:
 	addk	r4,r5,r0
 	addk	r5,r6,r0
-$L702:
+$L686:
 	addk	r3,r4,r0
-$L704:
+$L688:
 	addk	r4,r5,r0
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -7046,15 +7121,13 @@ __clzsi2:
 	swi	r15,r1,0
 	swi	r19,r1,28
 	swi	r22,r1,32
+	addk	r19,r1,r0
 	addik	r3,r0,65535
 	cmpu	r18,r5,r3
-	bltid	r18,$L712
-	addk	r19,r1,r0
-	brid	$L708
-	addik	r22,r0,16	# 0x10
-$L712:
+	bltid	r18,$L692
 	addk	r22,r0,r0
-$L708:
+	addik	r22,r0,16	# 0x10
+$L692:
 	addik	r3,r0,16	# 0x10
 	rsubk	r3,r22,r3
 	andi	r18,r3,31
@@ -7064,11 +7137,11 @@ $L708:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r6,r6
-	andi	r3,r6,65280 #and2
-	beqid	r3,$L709
-	addik	r3,r0,8	# 0x8
+	andi	r4,r6,65280 #and2
+	bneid	r4,$L693
 	addk	r3,r0,r0
-$L709:
+	addik	r3,r0,8	# 0x8
+$L693:
 	addik	r4,r0,8	# 0x8
 	rsubk	r4,r3,r4
 	addk	r5,r6,r0
@@ -7080,11 +7153,11 @@ $L709:
 	bneid	r18,.-4
 	srl	r6,r6
 	addk	r22,r22,r3
-	andi	r3,r6,240 #and1
-	beqid	r3,$L710
-	addik	r3,r0,4	# 0x4
+	andi	r4,r6,240 #and1
+	bneid	r4,$L694
 	addk	r3,r0,r0
-$L710:
+	addik	r3,r0,4	# 0x4
+$L694:
 	addik	r4,r0,4	# 0x4
 	rsubk	r4,r3,r4
 	addk	r5,r6,r0
@@ -7096,11 +7169,11 @@ $L710:
 	bneid	r18,.-4
 	srl	r6,r6
 	addk	r22,r22,r3
-	andi	r3,r6,12 #and1
-	beqid	r3,$L711
-	addik	r3,r0,2	# 0x2
+	andi	r4,r6,12 #and1
+	bneid	r4,$L695
 	addk	r3,r0,r0
-$L711:
+	addik	r3,r0,2	# 0x2
+$L695:
 	addik	r5,r0,2	# 0x2
 	rsubk	r4,r3,r5
 	addk	r7,r6,r0
@@ -7176,30 +7249,30 @@ __cmpdi2:
 	addk	r5,r6,r0
 	addk	r6,r7,r0
 	cmp	r18,r6,r4
-	bltid	r18,$L718
+	bltid	r18,$L702
 	addk	r19,r1,r0
 	cmp	r18,r4,r6
-	bltid	r18,$L722
+	bltid	r18,$L706
 	addik	r3,r0,2	# 0x2
 	cmpu	r18,r8,r5
-	bltid	r18,$L722
+	bltid	r18,$L706
 	addk	r3,r0,r0
 	cmpu	r18,r5,r8
-	bltid	r18,$L721
+	bltid	r18,$L705
 	addik	r3,r0,1	# 0x1
-	brid	$L723
+	brid	$L707
 	addk	r1,r19,r0
-$L718:
-	brid	$L717
+$L702:
+	brid	$L701
 	addk	r3,r0,r0
-	brid	$L717
+	brid	$L701
 	addk	r3,r0,r0
-$L721:
+$L705:
 	addik	r3,r0,2	# 0x2
-$L717:
-$L722:
+$L701:
+$L706:
 	addk	r1,r19,r0
-$L723:
+$L707:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	
@@ -7239,14 +7312,12 @@ __ctzsi2:
 	.mask	0x00080000
 	addik	r1,r1,-8
 	swi	r19,r1,4
-	andi	r3,r5,65535 #and2
-	bneid	r3,$L730
 	addk	r19,r1,r0
-	brid	$L726
-	addik	r3,r0,16	# 0x10
-$L730:
+	andi	r4,r5,65535 #and2
+	bneid	r4,$L710
 	addk	r3,r0,r0
-$L726:
+	addik	r3,r0,16	# 0x10
+$L710:
 	andi	r18,r3,31
 	addk	r4,r0,r5
 	beqid	r18,.+20
@@ -7254,11 +7325,11 @@ $L726:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r4,r4
-	andi	r5,r4,255 #and1
-	beqid	r5,$L727
+	andi	r6,r4,255 #and1
+	bneid	r6,$L711
+	addk	r5,r0,r0
 	addik	r5,r0,8	# 0x8
-	addk	r5,r0,r0
-$L727:
+$L711:
 	addk	r6,r4,r0
 	andi	r18,r5,31
 	addk	r4,r0,r6
@@ -7268,11 +7339,11 @@ $L727:
 	bneid	r18,.-4
 	srl	r4,r4
 	addk	r3,r3,r5
-	andi	r5,r4,15 #and1
-	beqid	r5,$L728
+	andi	r6,r4,15 #and1
+	bneid	r6,$L712
+	addk	r5,r0,r0
 	addik	r5,r0,4	# 0x4
-	addk	r5,r0,r0
-$L728:
+$L712:
 	addk	r6,r4,r0
 	andi	r18,r5,31
 	addk	r4,r0,r6
@@ -7282,11 +7353,11 @@ $L728:
 	bneid	r18,.-4
 	srl	r4,r4
 	addk	r3,r3,r5
-	andi	r5,r4,3 #and1
-	beqid	r5,$L729
-	addik	r5,r0,2	# 0x2
+	andi	r6,r4,3 #and1
+	bneid	r6,$L713
 	addk	r5,r0,r0
-$L729:
+	addik	r5,r0,2	# 0x2
+$L713:
 	addk	r6,r4,r0
 	andi	r18,r5,31
 	addk	r4,r0,r6
@@ -7325,7 +7396,7 @@ __lshrdi3:
 	addk	r19,r1,r0
 	addk	r8,r5,r0
 	andi	r3,r7,32 #and1
-	beqid	r3,$L735
+	beqid	r3,$L719
 	addk	r9,r6,r0
 	addik	r4,r0,0x00000000
 	addik	r5,r0,0x00000000 #li => la
@@ -7336,10 +7407,10 @@ __lshrdi3:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r5,r5
-	brid	$L739
+	brid	$L723
 	addk	r3,r4,r0
-$L735:
-	beqid	r7,$L738
+$L719:
+	beqid	r7,$L722
 	addik	r3,r0,32	# 0x20
 	andi	r18,r7,31
 	addk	r4,r0,r5
@@ -7363,14 +7434,14 @@ $L735:
 	addik	r18,r18,-1
 	bneid	r18,.-4
 	srl	r3,r3
-	brid	$L737
+	brid	$L721
 	or	r5,r6,r3
-$L738:
+$L722:
 	addk	r4,r5,r0
 	addk	r5,r6,r0
-$L737:
+$L721:
 	addk	r3,r4,r0
-$L739:
+$L723:
 	addk	r4,r5,r0
 	addk	r1,r19,r0
 	lwi	r19,r1,4
@@ -8007,9 +8078,9 @@ __powidf2:
 	srl	r23,r23
 	addik	r26,r0,0x3ff00000 
 	addik	r27,r0,0x00000000 #Xfer Lo
-$L750:
+$L734:
 	andi	r3,r22,1 #and1
-	beqid	r3,$L748
+	beqid	r3,$L732
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r26,r0
@@ -8018,7 +8089,7 @@ $L750:
 	addk	r6,r27,r0
 	addk	r26,r3,r0
 	addk	r27,r4,r0
-$L748:
+$L732:
 	addk	r4,r0,r22
 	srl	r4,r22
 	srl	r4,r4
@@ -8053,7 +8124,7 @@ $L748:
 	srl	r4,r4
 	addk	r4,r4,r22
 	sra	r22,r4
-	beqid	r22,$L749
+	beqid	r22,$L733
 	addk	r7,r24,r0
 	addk	r8,r25,r0
 	addk	r5,r24,r0
@@ -8061,22 +8132,23 @@ $L748:
 	
 	addk	r6,r25,r0
 	addk	r24,r3,r0
-	brid	$L750
+	brid	$L734
 	addk	r25,r4,r0
-$L749:
-	beqid	r23,$L753
-	addk	r3,r26,r0
+$L733:
+	addk	r4,r26,r0
+	beqid	r23,$L735
+	addk	r5,r27,r0
 	addk	r7,r26,r0
 	addik	r5,r0,0x3ff00000 
 	addik	r6,r0,0x00000000 #Xfer Lo
 	brlid	r15,__divdf3
 	
 	addk	r8,r27,r0
-	addk	r26,r3,r0
-	addk	r27,r4,r0
-	addk	r3,r26,r0
-$L753:
-	addk	r4,r27,r0
+	addk	r5,r4,r0
+	addk	r4,r3,r0
+$L735:
+	addk	r3,r4,r0
+	addk	r4,r5,r0
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,28
@@ -8143,15 +8215,15 @@ __powisf2:
 	srl	r25,r25
 	addik	r24,r0,0x3f800000
 	andi	r3,r22,1 #and1
-$L760:
-	beqi	r3,$L755
+$L743:
+	beqi	r3,$L738
 	addk	r6,r23,r0
 	addk	r5,r24,r0
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
 	addk	r24,r3,r0
-$L755:
+$L738:
 	addk	r3,r0,r22
 	srl	r3,r22
 	srl	r3,r3
@@ -8186,28 +8258,26 @@ $L755:
 	srl	r3,r3
 	addk	r22,r3,r22
 	sra	r22,r22
-	beqi	r22,$L756
+	beqi	r22,$L739
 	addk	r6,r23,r0
 	addk	r5,r23,r0
 	brlid	r15,__mulsf3
 	nop		# Unfilled delay slot
 
 	addk	r23,r3,r0
-	brid	$L760
+	brid	$L743
 	andi	r3,r22,1 #and1
-$L756:
-	beqi	r25,$L759
+$L739:
+	addk	r3,r24,r0
+	beqid	r25,$L744
+	lwi	r15,r1,0
 	addk	r6,r24,r0
 	addik	r5,r0,0x3f800000
 	brlid	r15,__divsf3
 	nop		# Unfilled delay slot
 
-	brid	$L761
 	lwi	r15,r1,0
-$L759:
-	addk	r3,r24,r0
-	lwi	r15,r1,0
-$L761:
+$L744:
 	addk	r1,r19,r0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -8233,30 +8303,30 @@ __ucmpdi2:
 	addk	r5,r6,r0
 	addk	r6,r7,r0
 	cmpu	r18,r6,r4
-	bltid	r18,$L764
+	bltid	r18,$L747
 	addk	r19,r1,r0
 	cmpu	r18,r4,r6
-	bltid	r18,$L768
+	bltid	r18,$L751
 	addik	r3,r0,2	# 0x2
 	cmpu	r18,r8,r5
-	bltid	r18,$L768
+	bltid	r18,$L751
 	addk	r3,r0,r0
 	cmpu	r18,r5,r8
-	bltid	r18,$L767
+	bltid	r18,$L750
 	addik	r3,r0,1	# 0x1
-	brid	$L769
+	brid	$L752
 	addk	r1,r19,r0
-$L764:
-	brid	$L763
+$L747:
+	brid	$L746
 	addk	r3,r0,r0
-	brid	$L763
+	brid	$L746
 	addk	r3,r0,r0
-$L767:
+$L750:
 	addik	r3,r0,2	# 0x2
-$L763:
-$L768:
+$L746:
+$L751:
 	addk	r1,r19,r0
-$L769:
+$L752:
 	lwi	r19,r1,4
 	rtsd	r15,8 
 	

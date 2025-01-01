@@ -4835,15 +4835,14 @@ __aeabi_lcmp:
 __ctzsi2:
 	link.w %fp,#0
 	move.l %d2,-(%sp)
-	move.l 8(%fp),%d2
-	tst.w %d2
+	move.l 8(%fp),%d1
+	tst.w %d1
 	jne .L658
 	moveq #16,%d0
 	jra .L654
 .L658:
 	moveq #0,%d0
 .L654:
-	move.l %d2,%d1
 	lsr.l %d0,%d1
 	move.l %d0,%a0
 	tst.b %d1
@@ -5084,10 +5083,9 @@ __paritydi2:
 	.type	__paritysi2, @function
 __paritysi2:
 	link.w %fp,#0
+	moveq #0,%d0
+	move.w 8(%fp),%d0
 	move.l 8(%fp),%d1
-	move.l %d1,%d0
-	clr.w %d0
-	swap %d0
 	eor.l %d1,%d0
 	move.l %d0,%d1
 	lsr.l #8,%d1
@@ -5173,10 +5171,8 @@ __popcountdi2:
 	.type	__popcountsi2, @function
 __popcountsi2:
 	link.w %fp,#0
-	move.l %d2,-(%sp)
-	move.l 8(%fp),%d2
-	move.l %d2,%d1
-	move.l %d2,%d0
+	move.l 8(%fp),%d1
+	move.l %d1,%d0
 	lsr.l #1,%d0
 	and.l #1431655765,%d0
 	sub.l %d0,%d1
@@ -5198,7 +5194,6 @@ __popcountsi2:
 	add.l %d1,%d0
 	moveq #63,%d1
 	and.l %d1,%d0
-	move.l (%sp)+,%d2
 	unlk %fp
 	rts
 	.size	__popcountsi2, .-__popcountsi2
