@@ -1642,40 +1642,40 @@ atoll:
 	.type	bsearch, @function
 bsearch:
 	movem.l #16176,-(%sp)
-	move.l 36(%sp),%d7
-	move.l 40(%sp),%d5
+	move.l 36(%sp),%d6
+	move.l 40(%sp),%d4
 	move.l 44(%sp),%d2
-	move.l 48(%sp),%d6
+	move.l 48(%sp),%d5
 	move.l 52(%sp),%a2
 	tst.l %d2
 	jeq .L243
 	lea __mulsi3,%a3
 	jra .L246
 .L247:
-	move.l %d4,%d2
+	move.l %d7,%d2
 .L244:
 	tst.l %d2
 	jeq .L243
 .L246:
-	move.l %d2,%d4
-	lsr.l #1,%d4
-	move.l %d6,-(%sp)
-	move.l %d4,-(%sp)
+	move.l %d2,%d7
+	lsr.l #1,%d7
+	move.l %d5,-(%sp)
+	move.l %d7,-(%sp)
 	jsr (%a3)
 	addq.l #8,%sp
-	move.l %d5,%d3
+	move.l %d4,%d3
 	add.l %d0,%d3
 	move.l %d3,-(%sp)
-	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
 	tst.l %d0
 	jlt .L247
 	jle .L242
-	move.l %d3,%d5
-	add.l %d6,%d5
+	move.l %d3,%d4
+	add.l %d5,%d4
 	subq.l #1,%d2
-	sub.l %d4,%d2
+	sub.l %d7,%d2
 	jra .L244
 .L243:
 	moveq #0,%d3
@@ -2753,80 +2753,78 @@ ldexpf:
 	.globl	ldexp
 	.type	ldexp, @function
 ldexp:
-	subq.l #8,%sp
-	movem.l #15924,-(%sp)
-	move.l 44(%sp),%d4
-	move.l 48(%sp),%d5
-	move.l 52(%sp),%d6
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
+	movem.l #12094,-(%sp)
+	move.l 44(%sp),%d6
+	move.l 48(%sp),%d7
+	move.l 52(%sp),%d2
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
 	jsr __unorddf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jne .L397
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
 	jsr __adddf3
 	lea (16,%sp),%sp
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
 	move.l %d1,-(%sp)
 	move.l %d0,-(%sp)
 	jsr __nedf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jeq .L397
-	tst.l %d6
+	tst.l %d2
 	jlt .L404
-	move.l #1073741824,%a2
-	sub.l %a3,%a3
+	move.l #1073741824,%a4
+	sub.l %a5,%a5
 .L399:
-	lea __muldf3,%a5
+	lea __muldf3,%a6
 	jra .L401
 .L404:
-	move.l #1071644672,%a2
-	sub.l %a3,%a3
+	move.l #1071644672,%a4
+	sub.l %a5,%a5
 	jra .L399
 .L400:
-	move.l %d6,%d6
+	move.l %d2,%d2
 	jpl .L405
-	addq.l #1,%d6
+	addq.l #1,%d2
 .L405:
-	asr.l #1,%d6
+	asr.l #1,%d2
 	jeq .L397
-	move.l %a3,-(%sp)
-	move.l %a2,-(%sp)
-	move.l %a3,-(%sp)
-	move.l %a2,-(%sp)
-	jsr (%a5)
+	move.l %a5,-(%sp)
+	move.l %a4,-(%sp)
+	move.l %a5,-(%sp)
+	move.l %a4,-(%sp)
+	jsr (%a6)
 	lea (16,%sp),%sp
-	move.l %d0,%d2
-	move.l %d1,%d3
-	move.l %d2,%a2
-	move.l %d3,%a3
+	move.l %d0,%d4
+	move.l %d1,%d5
+	move.l %d4,%a4
+	move.l %d5,%a5
 .L401:
-	btst #0,%d6
+	btst #0,%d2
 	jeq .L400
-	move.l %a3,-(%sp)
-	move.l %a2,-(%sp)
-	move.l %d5,-(%sp)
-	move.l %d4,-(%sp)
-	jsr (%a5)
+	move.l %a5,-(%sp)
+	move.l %a4,-(%sp)
+	move.l %d7,-(%sp)
+	move.l %d6,-(%sp)
+	jsr (%a6)
 	lea (16,%sp),%sp
-	move.l %d0,32(%sp)
-	move.l %d1,36(%sp)
-	move.l 32(%sp),%d4
-	move.l 36(%sp),%d5
+	move.l %d0,%a2
+	move.l %d1,%a3
+	move.l %a2,%d6
+	move.l %a3,%d7
 	jra .L400
 .L397:
-	move.l %d4,%d0
-	move.l %d5,%d1
-	movem.l (%sp)+,#11388
-	addq.l #8,%sp
+	move.l %d6,%d0
+	move.l %d7,%d1
+	movem.l (%sp)+,#31988
 	rts
 	.size	ldexp, .-ldexp
 	.section	.rodata
@@ -4655,10 +4653,10 @@ __lshrdi3:
 __muldsi3:
 	movem.l #16160,-(%sp)
 	move.l 32(%sp),%d6
-	move.l 36(%sp),%d5
+	move.l 36(%sp),%d4
 	move.l %d6,%d7
 	and.l #65535,%d7
-	move.l %d5,%d3
+	move.l %d4,%d3
 	and.l #65535,%d3
 	lea __mulsi3,%a2
 	move.l %d3,-(%sp)
@@ -4666,26 +4664,26 @@ __muldsi3:
 	jsr (%a2)
 	addq.l #8,%sp
 	move.l %d0,%d2
-	move.l %d0,%d4
-	clr.w %d4
-	swap %d4
+	move.l %d0,%d5
+	clr.w %d5
+	swap %d5
 	clr.w %d6
 	swap %d6
 	move.l %d6,-(%sp)
 	move.l %d3,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
-	add.l %d0,%d4
+	add.l %d0,%d5
 	and.l #65535,%d2
-	move.l %d4,%d3
+	move.l %d5,%d3
 	swap %d3
 	clr.w %d3
 	add.l %d3,%d2
 	clr.w %d3
 	swap %d3
-	clr.w %d5
-	swap %d5
-	move.l %d5,-(%sp)
+	clr.w %d4
+	swap %d4
+	move.l %d4,-(%sp)
 	move.l %d7,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
@@ -4695,17 +4693,17 @@ __muldsi3:
 	swap %d0
 	clr.w %d0
 	add.l %d0,%d2
-	clr.w %d4
-	swap %d4
-	move.l %d5,-(%sp)
+	clr.w %d5
+	swap %d5
+	move.l %d4,-(%sp)
 	move.l %d6,-(%sp)
 	jsr (%a2)
 	addq.l #8,%sp
-	add.l %d0,%d4
+	add.l %d0,%d5
 	move.l %d3,%d0
 	clr.w %d0
 	swap %d0
-	add.l %d4,%d0
+	add.l %d5,%d0
 	move.l %d2,%d1
 	movem.l (%sp)+,#1276
 	rts

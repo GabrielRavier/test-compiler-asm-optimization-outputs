@@ -165,19 +165,16 @@ memcmp:
 	.def	memcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	memcpy
 memcpy:
-	push	rbx
-	.seh_pushreg	rbx
-	sub	rsp, 32
-	.seh_stackalloc	32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	rbx, rcx
 	test	r8, r8
 	je	.L32
 	call	memcpy
+	mov	rcx, rax
 .L32:
-	mov	rax, rbx
-	add	rsp, 32
-	pop	rbx
+	mov	rax, rcx
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1082,41 +1079,41 @@ lsearch:
 	sub	rsp, 40
 	.seh_stackalloc	40
 	.seh_endprologue
-	mov	r12, rcx
+	mov	rbp, rcx
 	mov	QWORD PTR 120[rsp], rdx
 	mov	r15, r8
-	mov	rbp, r9
-	mov	r14, QWORD PTR 144[rsp]
-	mov	rdi, QWORD PTR [r8]
-	test	rdi, rdi
+	mov	rdi, r9
+	mov	r13, QWORD PTR 144[rsp]
+	mov	rsi, QWORD PTR [r8]
+	test	rsi, rsi
 	je	.L187
 	mov	rbx, rdx
-	mov	esi, 0
+	mov	r14d, 0
 	.p2align 4
 	.p2align 3
 .L189:
-	mov	r13, rbx
+	mov	r12, rbx
 	mov	rdx, rbx
-	mov	rcx, r12
-	call	r14
+	mov	rcx, rbp
+	call	r13
 	test	eax, eax
 	je	.L186
-	add	rsi, 1
-	add	rbx, rbp
-	cmp	rdi, rsi
+	add	r14, 1
+	add	rbx, rdi
+	cmp	rsi, r14
 	jne	.L189
 .L187:
-	lea	rax, 1[rdi]
+	lea	rax, 1[rsi]
 	mov	QWORD PTR [r15], rax
-	imul	rdi, rbp
-	add	rdi, QWORD PTR 120[rsp]
-	mov	rcx, rdi
-	mov	r8, rbp
-	mov	rdx, r12
+	imul	rsi, rdi
+	add	rsi, QWORD PTR 120[rsp]
+	mov	rcx, rsi
+	mov	r8, rdi
+	mov	rdx, rbp
 	call	memcpy
-	mov	r13, rdi
+	mov	r12, rsi
 .L186:
-	mov	rax, r13
+	mov	rax, r12
 	add	rsp, 40
 	pop	rbx
 	pop	rsi
@@ -1418,11 +1415,11 @@ bsearch:
 	sub	rsp, 32
 	.seh_stackalloc	32
 	.seh_endprologue
-	mov	r13, rcx
-	mov	r12, rdx
+	mov	r12, rcx
+	mov	rbp, rdx
 	mov	rbx, r8
-	mov	rbp, r9
-	mov	r14, QWORD PTR 128[rsp]
+	mov	rdi, r9
+	mov	r13, QWORD PTR 128[rsp]
 	test	r8, r8
 	jne	.L236
 	.p2align 4
@@ -1443,25 +1440,25 @@ bsearch:
 	.p2align 4,,10
 	.p2align 3
 .L237:
-	mov	rbx, rdi
+	mov	rbx, r14
 .L234:
 	test	rbx, rbx
 	je	.L233
 .L236:
-	mov	rdi, rbx
-	shr	rdi
-	mov	rsi, rdi
-	imul	rsi, rbp
-	add	rsi, r12
+	mov	r14, rbx
+	shr	r14
+	mov	rsi, r14
+	imul	rsi, rdi
+	add	rsi, rbp
 	mov	rdx, rsi
-	mov	rcx, r13
-	call	r14
+	mov	rcx, r12
+	call	r13
 	test	eax, eax
 	js	.L237
 	jle	.L232
-	lea	r12, [rsi+rbp]
+	lea	rbp, [rsi+rdi]
 	sub	rbx, 1
-	sub	rbx, rdi
+	sub	rbx, r14
 	jmp	.L234
 	.seh_endproc
 	.p2align 4
@@ -1486,12 +1483,12 @@ bsearch_r:
 	sub	rsp, 32
 	.seh_stackalloc	32
 	.seh_endprologue
-	mov	r12, rcx
-	mov	rbp, rdx
-	mov	rdi, r9
-	mov	r14, QWORD PTR 128[rsp]
-	mov	r13, QWORD PTR 136[rsp]
-	mov	esi, r8d
+	mov	rbp, rcx
+	mov	rdi, rdx
+	mov	rsi, r9
+	mov	r13, QWORD PTR 128[rsp]
+	mov	r12, QWORD PTR 136[rsp]
+	mov	r14d, r8d
 	test	r8d, r8d
 	jne	.L243
 	.p2align 4
@@ -1512,23 +1509,23 @@ bsearch_r:
 	.p2align 4,,10
 	.p2align 3
 .L242:
-	sar	esi
+	sar	r14d
 	je	.L240
 .L243:
-	mov	ebx, esi
+	mov	ebx, r14d
 	sar	ebx
 	movsx	rbx, ebx
-	imul	rbx, rdi
-	add	rbx, rbp
-	mov	r8, r13
+	imul	rbx, rsi
+	add	rbx, rdi
+	mov	r8, r12
 	mov	rdx, rbx
-	mov	rcx, r12
-	call	r14
+	mov	rcx, rbp
+	call	r13
 	test	eax, eax
 	je	.L239
 	jle	.L242
-	lea	rbp, [rbx+rdi]
-	sub	esi, 1
+	lea	rdi, [rbx+rsi]
+	sub	r14d, 1
 	jmp	.L242
 	.seh_endproc
 	.p2align 4
@@ -1839,20 +1836,17 @@ wmemcmp:
 	.def	wmemcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemcpy
 wmemcpy:
-	push	rbx
-	.seh_pushreg	rbx
-	sub	rsp, 32
-	.seh_stackalloc	32
+	sub	rsp, 40
+	.seh_stackalloc	40
 	.seh_endprologue
-	mov	rbx, rcx
 	test	r8, r8
 	je	.L298
 	add	r8, r8
 	call	memcpy
+	mov	rcx, rax
 .L298:
-	mov	rax, rbx
-	add	rsp, 32
-	pop	rbx
+	mov	rax, rcx
+	add	rsp, 40
 	ret
 	.seh_endproc
 	.p2align 4
@@ -4284,10 +4278,10 @@ __muldi3_compiler_rt:
 	imul	edx, esi
 	sar	rsi, 32
 	imul	ebx, esi
-	add	ebx, edx
-	mov	rdx, rax
-	sar	rdx, 32
-	lea	edx, [rbx+rdx]
+	add	edx, ebx
+	mov	rcx, rax
+	sar	rcx, 32
+	lea	edx, [rdx+rcx]
 	sal	rdx, 32
 	mov	eax, eax
 	or	rax, rdx
@@ -4353,9 +4347,9 @@ __multi3:
 	.seh_stackalloc	56
 	.seh_endprologue
 	mov	rsi, QWORD PTR [rcx]
-	mov	rdi, QWORD PTR 8[rcx]
+	mov	rbp, QWORD PTR 8[rcx]
 	mov	rbx, QWORD PTR [rdx]
-	mov	rbp, QWORD PTR 8[rdx]
+	mov	rdi, QWORD PTR 8[rdx]
 	mov	rdx, rbx
 	mov	rcx, rsi
 	call	__mulddi3
@@ -4364,8 +4358,8 @@ __multi3:
 	mov	rax, QWORD PTR 40[rsp]
 	mov	QWORD PTR 32[rsp], rdx
 	mov	QWORD PTR 40[rsp], rax
-	imul	rbx, rdi
-	imul	rsi, rbp
+	imul	rbx, rbp
+	imul	rsi, rdi
 	add	rbx, rsi
 	add	rbx, rax
 	mov	rax, QWORD PTR 32[rsp]

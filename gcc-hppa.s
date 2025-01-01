@@ -124,19 +124,20 @@ memcmp:
 	.type	memcpy, @function
 memcpy:
 	.PROC
-	.CALLINFO FRAME=64,CALLS,SAVE_RP,ENTRY_GR=3
+	.CALLINFO FRAME=64,CALLS,SAVE_RP
 	.ENTRY
 	stw %r2,-20(%r30)
-	stwm %r3,64(%r30)
+	ldo 64(%r30),%r30
 	movb,= %r24,%r24,.L33
-	copy %r26,%r3
+	copy %r26,%r19
 	bl memcpy,%r2
 	nop
+	copy %r28,%r19
 .L33:
-	copy %r3,%r28
+	copy %r19,%r28
 	ldw -84(%r30),%r2
 	bv %r0(%r2)
-	ldwm -64(%r30),%r3
+	ldo -64(%r30),%r30
 	.EXIT
 	.PROCEND
 	.size	memcpy, .-memcpy
@@ -1407,23 +1408,23 @@ atoll:
 	stw %r5,-60(%r30)
 	stw %r4,-56(%r30)
 	stw %r3,-52(%r30)
-	copy %r26,%r5
+	copy %r26,%r3
 .L235:
-	ldb 0(%r5),%r6
-	extrs %r6,31,8,%r6
+	ldb 0(%r3),%r4
+	extrs %r4,31,8,%r4
 	bl isspace,%r2
-	copy %r6,%r26
+	copy %r4,%r26
 	movb,<>,n %r28,%r20,.L235
-	ldo 1(%r5),%r5
+	ldo 1(%r3),%r3
 	ldi 43,%r28
-	comb,= %r28,%r6,.L236
+	comb,= %r28,%r4,.L236
 	ldi 45,%r28
-	comb,<>,n %r28,%r6,.L237
+	comb,<>,n %r28,%r4,.L237
 	ldi 1,%r20
 .L236:
-	ldo 1(%r5),%r5
+	ldo 1(%r3),%r3
 .L237:
-	ldb 0(%r5),%r19
+	ldb 0(%r3),%r19
 	extrs %r19,31,8,%r19
 	ldo -48(%r19),%r21
 	ldi 0,%r28
@@ -1438,12 +1439,11 @@ atoll:
 	zdep %r29,30,31,%r29
 	ldo -48(%r19),%r19
 	extrs %r19,31,8,%r19
-	copy %r19,%r4
-	extrs %r19,0,1,%r19
-	copy %r19,%r3
-	sub %r29,%r4,%r29
-	subb %r28,%r3,%r28
-	ldbs,mb 1(%r5),%r19
+	copy %r19,%r6
+	extrs %r19,0,1,%r5
+	sub %r29,%r6,%r29
+	subb %r28,%r5,%r28
+	ldbs,mb 1(%r3),%r19
 	extrs %r19,31,8,%r19
 	ldo -48(%r19),%r21
 	comib,>>= 9,%r21,.L244
@@ -1974,19 +1974,20 @@ wmemcmp:
 	.type	wmemcpy, @function
 wmemcpy:
 	.PROC
-	.CALLINFO FRAME=64,CALLS,SAVE_RP,ENTRY_GR=3
+	.CALLINFO FRAME=64,CALLS,SAVE_RP
 	.ENTRY
 	stw %r2,-20(%r30)
-	stwm %r3,64(%r30)
+	ldo 64(%r30),%r30
 	movb,= %r24,%r24,.L322
-	copy %r26,%r3
+	copy %r26,%r19
 	bl memcpy,%r2
 	zdep %r24,29,30,%r24
+	copy %r28,%r19
 .L322:
-	copy %r3,%r28
+	copy %r19,%r28
 	ldw -84(%r30),%r2
 	bv %r0(%r2)
-	ldwm -64(%r30),%r3
+	ldo -64(%r30),%r30
 	.EXIT
 	.PROCEND
 	.size	wmemcpy, .-wmemcpy

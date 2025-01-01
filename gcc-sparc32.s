@@ -3981,17 +3981,17 @@ __muldsi3:
 	call	.umul, 0
 	 mov	%l1, %o0
 	add	%o0, %i3, %i3
-	and	%i5, %i2, %i1
+	and	%i5, %i2, %i5
 	sll	%i3, 16, %g1
-	add	%i1, %g1, %i1
+	add	%i5, %g1, %i1
 	srl	%i4, 16, %i4
 	mov	%l0, %o1
 	call	.umul, 0
 	 mov	%i0, %o0
 	add	%i4, %o0, %i4
-	srl	%i3, 16, %i3
+	srl	%i3, 16, %i0
 	jmp	%i7+8
-	 restore %i4, %i3, %o0
+	 restore %i4, %i0, %o0
 	.size	__muldsi3, .-__muldsi3
 	.align 4
 	.global __muldi3_compiler_rt

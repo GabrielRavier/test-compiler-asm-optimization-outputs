@@ -143,20 +143,19 @@ memcmp:
 	.type	memcpy, @function
 memcpy:
 	.PROC
-	.CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=4
+	.CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=3
 	.ENTRY
 	std %r2,-16(%r30)
 	std,ma %r4,128(%r30)
-	std %r3,-120(%r30)
 	cmpb,*= %r0,%r24,.L34
-	copy %r26,%r3
+	copy %r26,%r31
 	ldo -48(%r30),%r29
 	b,l memcpy,%r2
 	nop
+	copy %r28,%r31
 .L34:
-	copy %r3,%r28
+	copy %r31,%r28
 	ldd -144(%r30),%r2
-	ldd -120(%r30),%r3
 	bve (%r2)
 	ldd,mb -128(%r30),%r4
 	.EXIT
@@ -2249,20 +2248,19 @@ wmemcmp:
 	.type	wmemcpy, @function
 wmemcpy:
 	.PROC
-	.CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=4
+	.CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=3
 	.ENTRY
 	std %r2,-16(%r30)
 	std,ma %r4,128(%r30)
-	std %r3,-120(%r30)
 	cmpb,*= %r0,%r24,.L339
-	copy %r26,%r3
+	copy %r26,%r31
 	ldo -48(%r30),%r29
 	b,l memcpy,%r2
 	depd,z %r24,61,62,%r24
+	copy %r28,%r31
 .L339:
-	copy %r3,%r28
+	copy %r31,%r28
 	ldd -144(%r30),%r2
-	ldd -120(%r30),%r3
 	bve (%r2)
 	ldd,mb -128(%r30),%r4
 	.EXIT
@@ -3020,8 +3018,8 @@ ldexpl:
 	copy %r28,%r3
 	copy %r29,%r5
 .L419:
-	extrw,u %r6,31,1,%r31
-	cmpib,= 0,%r31,.L423
+	extrw,u %r6,31,1,%r28
+	cmpib,= 0,%r28,.L423
 	extrw,u %r6,0,1,%r31
 	copy %r3,%r24
 	copy %r5,%r23

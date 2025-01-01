@@ -2170,12 +2170,10 @@ gl_isinfd:
 	.proc	04
 gl_isinfl:
 	save	%sp, -256, %sp
+	std	%f0, [%fp+2031]
+	std	%f2, [%fp+2039]
 	std	%f0, [%fp+1967]
 	std	%f2, [%fp+1975]
-	ldx	[%fp+1967], %g2
-	ldx	[%fp+1975], %g3
-	stx	%g2, [%fp+2031]
-	stx	%g3, [%fp+2039]
 	sethi	%hi(.LC8), %g1
 	ldx	[%g1+%lo(.LC8)], %g2
 	ldx	[%g1+%lo(.LC8+8)], %g3
@@ -2186,10 +2184,10 @@ gl_isinfl:
 	 add	%fp, 2031, %o0
 	brnz,pt	%o0, .L386
 	 mov	1, %i0
-	ldx	[%fp+1967], %g2
-	ldx	[%fp+1975], %g3
-	stx	%g2, [%fp+1999]
-	stx	%g3, [%fp+2007]
+	ldd	[%fp+1967], %f0
+	ldd	[%fp+1975], %f2
+	std	%f0, [%fp+1999]
+	std	%f2, [%fp+2007]
 	sethi	%hi(.LC9), %g1
 	ldx	[%g1+%lo(.LC9)], %g2
 	ldx	[%g1+%lo(.LC9+8)], %g3
@@ -2334,24 +2332,24 @@ ldexp:
 	.proc	07
 ldexpl:
 	save	%sp, -496, %sp
+	std	%f0, [%fp+2031]
+	std	%f2, [%fp+2039]
+	std	%f0, [%fp+2015]
+	std	%f2, [%fp+2023]
 	std	%f0, [%fp+1727]
 	std	%f2, [%fp+1735]
-	ldx	[%fp+1727], %i0
-	ldx	[%fp+1735], %i1
-	stx	%i0, [%fp+2031]
-	stx	%i1, [%fp+2039]
-	stx	%i0, [%fp+2015]
-	stx	%i1, [%fp+2023]
 	add	%fp, 2015, %o1
 	call	_Qp_cmp, 0
 	 add	%fp, 2031, %o0
 	cmp	%o0, 3
-	be,pn	%xcc, .L405
-	 add	%fp, 1967, %o2
-	stx	%i0, [%fp+1983]
-	stx	%i1, [%fp+1991]
-	stx	%i0, [%fp+1967]
-	stx	%i1, [%fp+1975]
+	ldd	[%fp+1727], %f0
+	be,pn	%xcc, .L412
+	 ldd	[%fp+1735], %f2
+	std	%f0, [%fp+1983]
+	std	%f2, [%fp+1991]
+	std	%f0, [%fp+1967]
+	std	%f2, [%fp+1975]
+	add	%fp, 1967, %o2
 	add	%fp, 1983, %o1
 	call	_Qp_add, 0
 	 add	%fp, 1999, %o0
@@ -2359,24 +2357,27 @@ ldexpl:
 	ldx	[%fp+2007], %g3
 	stx	%g2, [%fp+1951]
 	stx	%g3, [%fp+1959]
-	stx	%i0, [%fp+1935]
-	stx	%i1, [%fp+1943]
+	ldd	[%fp+1727], %f0
+	ldd	[%fp+1735], %f2
+	std	%f0, [%fp+1935]
+	std	%f2, [%fp+1943]
 	add	%fp, 1935, %o1
 	call	_Qp_feq, 0
 	 add	%fp, 1951, %o0
-	brnz,a,pt %o0, .L411
-	 stx	%i0, [%fp+1727]
+	ldd	[%fp+1727], %f0
+	brnz,pt	%o0, .L412
+	 ldd	[%fp+1735], %f2
 	sethi	%hi(.LC20), %g1
 	ldx	[%g1+%lo(.LC20)], %i4
 	cmp	%i2, 0
 	bl,pn	%icc, .L410
 	 ldx	[%g1+%lo(.LC20+8)], %i5
 .L406:
-	add	%fp, 1871, %l4
-	add	%fp, 1855, %l3
-	add	%fp, 1839, %l2
-	add	%fp, 1775, %l1
-	add	%fp, 1759, %l0
+	add	%fp, 1871, %l2
+	add	%fp, 1855, %l1
+	add	%fp, 1839, %l0
+	add	%fp, 1775, %i0
+	add	%fp, 1759, %i1
 	ba,pt	%xcc, .L408
 	 add	%fp, 1743, %i3
 .L410:
@@ -2386,41 +2387,41 @@ ldexpl:
 	 ldx	[%g1+%lo(.LC21+8)], %i5
 .L407:
 	srl	%i2, 31, %g1
-.L412:
-	add	%g1, %i2, %g1
-	sra	%g1, 1, %i2
-	brz,pn	%i2, .L405
-	 mov	%i3, %o2
+.L411:
+	add	%g1, %i2, %i2
+	sra	%i2, 1, %i2
+	brz,pn	%i2, .L412
+	 nop
+	std	%f0, [%fp+1727]
+	std	%f2, [%fp+1735]
 	stx	%i4, [%fp+1759]
 	stx	%i5, [%fp+1767]
 	stx	%i4, [%fp+1743]
 	stx	%i5, [%fp+1751]
-	mov	%l0, %o1
+	mov	%i3, %o2
+	mov	%i1, %o1
 	call	_Qp_mul, 0
-	 mov	%l1, %o0
+	 mov	%i0, %o0
 	ldx	[%fp+1775], %i4
 	ldx	[%fp+1783], %i5
-.L408:
-	andcc	%i2, 1, %g0
-	be,pt	%xcc, .L412
-	 srl	%i2, 31, %g1
-	stx	%i0, [%fp+1855]
-	stx	%i1, [%fp+1863]
-	stx	%i4, [%fp+1839]
-	stx	%i5, [%fp+1847]
-	mov	%l2, %o2
-	mov	%l3, %o1
-	call	_Qp_mul, 0
-	 mov	%l4, %o0
-	ldx	[%fp+1871], %i0
-	ba,pt	%xcc, .L407
-	 ldx	[%fp+1879], %i1
-.L405:
-	stx	%i0, [%fp+1727]
-.L411:
-	stx	%i1, [%fp+1735]
 	ldd	[%fp+1727], %f0
 	ldd	[%fp+1735], %f2
+.L408:
+	andcc	%i2, 1, %g0
+	be,pt	%xcc, .L411
+	 srl	%i2, 31, %g1
+	std	%f0, [%fp+1855]
+	std	%f2, [%fp+1863]
+	stx	%i4, [%fp+1839]
+	stx	%i5, [%fp+1847]
+	mov	%l0, %o2
+	mov	%l1, %o1
+	call	_Qp_mul, 0
+	 mov	%l2, %o0
+	ldd	[%fp+1871], %f0
+	ba,pt	%xcc, .L407
+	 ldd	[%fp+1879], %f2
+.L412:
 	return	%i7+8
 	 nop
 	.size	ldexpl, .-ldexpl

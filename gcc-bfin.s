@@ -157,20 +157,17 @@ _memcmp:
 .global _memcpy;
 .type _memcpy, STT_FUNC;
 _memcpy:
-	[--sp] = ( r7:7 );
-
 	[--SP] = RETS;
 	SP += -12;
-	R7 = R0;
+	R3 = R0;
 	cc =R2==0;
 	if cc jump .L36;
 	call _memcpy;
+	R3 = R0;
 .L36:
-	R0 = R7;
+	R0 = R3;
 	SP += 12;
 	RETS = [SP++];
-	( r7:7 ) = [sp++];
-
 	rts;
 	.size	_memcpy, .-_memcpy
 	.align 4
@@ -1349,43 +1346,45 @@ _lsearch:
 	[--sp] = ( r7:4, p5:3 );
 
 	LINK 12;
-	R4 = R0;
+	R5 = R0;
 	[SP+52] = R1;
 	FP = R2;
-	P4 = [SP+60];
-	P3 = [SP+64];
-	R5 = [FP];
-	cc =R5==0;
+	P5 = [SP+60];
+	P4 = [SP+64];
+	R6 = [FP];
+	cc =R6==0;
 	if cc jump .L203;
 	R7 = R1;
-	R6 = 0 (X);
+	P3 = 0 (X);
 .L205:
-	P5 = R7;
+	R4 = R7;
 	R1 = R7;
-	R0 = R4;
-	call (P3);
+	R0 = R5;
+	call (P4);
 	cc =R0==0;
 	if cc jump .L202;
-	R6 += 1;
-	R0 = P4;
+	P3 += 1;
+	R0 = P5;
 	R7 = R7 + R0;
-	cc =R5==R6;
+	R0 = P3;
+	cc =R6==R0;
 	if !cc jump .L205 (bp);
 .L203:
-	R0 = R5;
+	R0 = R6;
 	R0 += 1;
 	[FP] = R0;
-	R0 = P4;
-	R5 *= R0;
-	R0 = [SP+52];
-	R5 = R0 + R5;
-	R2 = P4;
-	R1 = R4;
-	R0 = R5;
-	call _memcpy;
-	P5 = R0;
-.L202:
 	R0 = P5;
+	R6 *= R0;
+	P1 = [SP+52];
+	P2 = R6;
+	P3 = P1 + P2;
+	R2 = P5;
+	R1 = R5;
+	R0 = P3;
+	call _memcpy;
+	R4 = R0;
+.L202:
+	R0 = R4;
 	SP += 12;
 	FP = [SP++];
 	RETS = [SP++];
@@ -1670,11 +1669,11 @@ _bsearch:
 
 	[--SP] = RETS;
 	SP += -12;
-	P4 = R0;
-	R4 = R1;
+	P5 = R0;
+	R5 = R1;
 	R7 = R2;
-	P5 = [SP+56];
-	P3 = [SP+60];
+	R4 = [SP+56];
+	P4 = [SP+60];
 	cc =R2==0;
 	if !cc jump .L254 (bp);
 .L251:
@@ -1687,26 +1686,27 @@ _bsearch:
 
 	rts;
 .L255:
-	R7 = R5;
+	R7 = P3;
 .L252:
 	cc =R7==0;
 	if cc jump .L251;
 .L254:
-	R5 = R7 >> 1;
-	R6 = P5;
-	R6 *= R5;
-	R6 = R4 + R6;
+	P2 = R7;
+	P3 = P2 >> 1;
+	R6 = P3;
+	R6 *= R4;
+	R6 = R5 + R6;
 	R1 = R6;
-	R0 = P4;
-	call (P3);
+	R0 = P5;
+	call (P4);
 	cc =R0<0;
 	if cc jump .L255;
 	cc =R0<=0;
 	if cc jump .L250;
-	R0 = P5;
-	R4 = R6 + R0;
+	R5 = R6 + R4;
 	R7 += -1;
-	R7 = R7 - R5;
+	R0 = P3;
+	R7 = R7 - R0;
 	jump.s .L252;
 	.size	_bsearch, .-_bsearch
 	.align 4
@@ -2150,24 +2150,21 @@ _wmemcmp:
 .global _wmemcpy;
 .type _wmemcpy, STT_FUNC;
 _wmemcpy:
-	[--sp] = ( r7:7 );
-
 	[--SP] = RETS;
 	SP += -12;
-	R7 = R0;
+	R3 = R0;
 	R0 = R2;
 	cc =R2==0;
 	if cc jump .L326;
 	R0 <<= 2;
 	R2 = R0;
-	R0 = R7;
+	R0 = R3;
 	call _memcpy;
+	R3 = R0;
 .L326:
-	R0 = R7;
+	R0 = R3;
 	SP += 12;
 	RETS = [SP++];
-	( r7:7 ) = [sp++];
-
 	rts;
 	.size	_wmemcpy, .-_wmemcpy
 	.align 4
@@ -2999,16 +2996,16 @@ _strncat:
 
 	[--SP] = RETS;
 	SP += -12;
-	R6 = R0;
-	R5 = R1;
+	R5 = R0;
+	R6 = R1;
 	R7 = R2;
 	call _strlen;
 	P5 = R0;
-	P2 = R6;
+	P2 = R5;
 	P5 = P2 + P5;
 	cc =R7==0;
 	if cc jump .L425;
-	P0 = R5;
+	P0 = R6;
 	P2 = P5;
 	P1 = R7;
 	LSETUP (.L426, .L430) LC1 = P1;
@@ -3028,7 +3025,7 @@ _strncat:
 	R0 = 0 (X);
 	B [P5] = R0;
 .L428:
-	R0 = R6;
+	R0 = R5;
 	SP += 12;
 	RETS = [SP++];
 	( r7:5, p5:5 ) = [sp++];
@@ -3429,54 +3426,55 @@ ___muldi3:
 	SP += -24;
 	[SP+16] = R0;
 	[SP+20] = R1;
-	R1 = R0;
+	R1 = [SP+16];
 	R0 = [SP+20];
 	R7 = R2;
 	R6 = [SP+68];
-	R5 = R1;
-	P5 = R0;
+	P3 = R1;
+	R4 = R0;
 	R0 = R0 | R1;
 	cc =R0==0;
 	if cc jump .L510;
-	R4 = 0 (X);
-	P4 = 0 (X);
-	P3 = 1 (X);
+	R5 = 0 (X);
+	P5 = 0 (X);
+	P4 = 1 (X);
 .L509:
 	R1 = P3;
-	R0 = R5 & R1;
+	R2 = P4;
+	R0 = R1 & R2;
 	[SP+12] = R6;
 	R2 = R7;
 	R1 = 0 (X);
 	call ___muldi3;
-	R4 = R0 + R4; cc = ac0;
+	R5 = R0 + R5; cc = ac0;
 	R2 = CC;
 	P2 = R1;
-	P4 = P2 + P4;
+	P5 = P2 + P5;
 	P2 = R2;
-	P4 = P4 + P2;
+	P5 = P5 + P2;
 	CC = R0 < R0;
 	R7 = ROT R7 BY 1;
 	R6 = ROT R6 BY 1;
 	CC = R0 < R0;
-	R0 = P5;
-	R1 = ROT R0 BY -1;
-	R0 = ROT R5 BY -1;
-	R5 = R0;
-	P5 = R1;
+	R1 = ROT R4 BY -1;
+	R2 = P3;
+	R0 = ROT R2 BY -1;
+	P3 = R0;
+	R4 = R1;
 	R0 = R0 | R1;
 	cc =R0==0;
 	if !cc jump .L509 (bp);
 .L506:
-	R0 = R4;
-	R1 = P4;
+	R0 = R5;
+	R1 = P5;
 	SP += 24;
 	RETS = [SP++];
 	( r7:4, p5:3 ) = [sp++];
 
 	rts;
 .L510:
-	R4 = 0 (X);
-	P4 = 0 (X);
+	R5 = 0 (X);
+	P5 = 0 (X);
 	jump.s .L506;
 	.size	___muldi3, .-___muldi3
 	.align 4
