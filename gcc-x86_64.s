@@ -1,6 +1,7 @@
 	.file	"mini-libc.c"
 	.intel_syntax noprefix
 	.text
+	.p2align 4
 	.globl	make_ti
 	.type	make_ti, @function
 make_ti:
@@ -12,6 +13,7 @@ make_ti:
 	.cfi_endproc
 .LFE0:
 	.size	make_ti, .-make_ti
+	.p2align 4
 	.globl	make_tu
 	.type	make_tu, @function
 make_tu:
@@ -23,6 +25,7 @@ make_tu:
 	.cfi_endproc
 .LFE1:
 	.size	make_tu, .-make_tu
+	.p2align 4
 	.globl	memmove
 	.type	memmove, @function
 memmove:
@@ -58,6 +61,7 @@ memmove:
 	.cfi_endproc
 .LFE2:
 	.size	memmove, .-memmove
+	.p2align 4
 	.globl	memccpy
 	.type	memccpy, @function
 memccpy:
@@ -85,6 +89,7 @@ memccpy:
 	.cfi_endproc
 .LFE3:
 	.size	memccpy, .-memccpy
+	.p2align 4
 	.globl	memchr
 	.type	memchr, @function
 memchr:
@@ -110,6 +115,7 @@ memchr:
 	.cfi_endproc
 .LFE4:
 	.size	memchr, .-memchr
+	.p2align 4
 	.globl	memcmp
 	.type	memcmp, @function
 memcmp:
@@ -138,6 +144,7 @@ memcmp:
 	.cfi_endproc
 .LFE5:
 	.size	memcmp, .-memcmp
+	.p2align 4
 	.globl	memcpy
 	.type	memcpy, @function
 memcpy:
@@ -158,6 +165,7 @@ memcpy:
 	.cfi_endproc
 .LFE6:
 	.size	memcpy, .-memcpy
+	.p2align 4
 	.globl	memrchr
 	.type	memrchr, @function
 memrchr:
@@ -184,6 +192,7 @@ memrchr:
 	.cfi_endproc
 .LFE7:
 	.size	memrchr, .-memrchr
+	.p2align 4
 	.globl	memset
 	.type	memset, @function
 memset:
@@ -216,6 +225,7 @@ memset:
 	.cfi_endproc
 .LFE8:
 	.size	memset, .-memset
+	.p2align 4
 	.globl	stpcpy
 	.type	stpcpy, @function
 stpcpy:
@@ -239,6 +249,7 @@ stpcpy:
 	.cfi_endproc
 .LFE9:
 	.size	stpcpy, .-stpcpy
+	.p2align 4
 	.globl	strchrnul
 	.type	strchrnul, @function
 strchrnul:
@@ -264,6 +275,7 @@ strchrnul:
 	.cfi_endproc
 .LFE10:
 	.size	strchrnul, .-strchrnul
+	.p2align 4
 	.globl	strchr
 	.type	strchr, @function
 strchr:
@@ -284,6 +296,7 @@ strchr:
 	.cfi_endproc
 .LFE11:
 	.size	strchr, .-strchr
+	.p2align 4
 	.globl	strcmp
 	.type	strcmp, @function
 strcmp:
@@ -311,6 +324,7 @@ strcmp:
 	.cfi_endproc
 .LFE12:
 	.size	strcmp, .-strcmp
+	.p2align 4
 	.globl	strlen
 	.type	strlen, @function
 strlen:
@@ -333,6 +347,7 @@ strlen:
 	.cfi_endproc
 .LFE13:
 	.size	strlen, .-strlen
+	.p2align 4
 	.globl	strncmp
 	.type	strncmp, @function
 strncmp:
@@ -372,6 +387,7 @@ strncmp:
 	.cfi_endproc
 .LFE14:
 	.size	strncmp, .-strncmp
+	.p2align 4
 	.globl	swab
 	.type	swab, @function
 swab:
@@ -396,6 +412,7 @@ swab:
 	.cfi_endproc
 .LFE15:
 	.size	swab, .-swab
+	.p2align 4
 	.globl	isalpha
 	.type	isalpha, @function
 isalpha:
@@ -410,6 +427,7 @@ isalpha:
 	.cfi_endproc
 .LFE16:
 	.size	isalpha, .-isalpha
+	.p2align 4
 	.globl	isascii
 	.type	isascii, @function
 isascii:
@@ -422,6 +440,7 @@ isascii:
 	.cfi_endproc
 .LFE17:
 	.size	isascii, .-isascii
+	.p2align 4
 	.globl	isblank
 	.type	isblank, @function
 isblank:
@@ -437,6 +456,7 @@ isblank:
 	.cfi_endproc
 .LFE18:
 	.size	isblank, .-isblank
+	.p2align 4
 	.globl	iscntrl
 	.type	iscntrl, @function
 iscntrl:
@@ -452,6 +472,7 @@ iscntrl:
 	.cfi_endproc
 .LFE19:
 	.size	iscntrl, .-iscntrl
+	.p2align 4
 	.globl	isdigit
 	.type	isdigit, @function
 isdigit:
@@ -465,6 +486,7 @@ isdigit:
 	.cfi_endproc
 .LFE20:
 	.size	isdigit, .-isdigit
+	.p2align 4
 	.globl	isgraph
 	.type	isgraph, @function
 isgraph:
@@ -478,6 +500,7 @@ isgraph:
 	.cfi_endproc
 .LFE21:
 	.size	isgraph, .-isgraph
+	.p2align 4
 	.globl	islower
 	.type	islower, @function
 islower:
@@ -491,6 +514,7 @@ islower:
 	.cfi_endproc
 .LFE22:
 	.size	islower, .-islower
+	.p2align 4
 	.globl	isprint
 	.type	isprint, @function
 isprint:
@@ -504,6 +528,7 @@ isprint:
 	.cfi_endproc
 .LFE23:
 	.size	isprint, .-isprint
+	.p2align 4
 	.globl	isspace
 	.type	isspace, @function
 isspace:
@@ -520,6 +545,7 @@ isspace:
 	.cfi_endproc
 .LFE24:
 	.size	isspace, .-isspace
+	.p2align 4
 	.globl	isupper
 	.type	isupper, @function
 isupper:
@@ -533,6 +559,7 @@ isupper:
 	.cfi_endproc
 .LFE25:
 	.size	isupper, .-isupper
+	.p2align 4
 	.globl	iswcntrl
 	.type	iswcntrl, @function
 iswcntrl:
@@ -559,6 +586,7 @@ iswcntrl:
 	.cfi_endproc
 .LFE26:
 	.size	iswcntrl, .-iswcntrl
+	.p2align 4
 	.globl	iswdigit
 	.type	iswdigit, @function
 iswdigit:
@@ -572,6 +600,7 @@ iswdigit:
 	.cfi_endproc
 .LFE27:
 	.size	iswdigit, .-iswdigit
+	.p2align 4
 	.globl	iswprint
 	.type	iswprint, @function
 iswprint:
@@ -611,6 +640,7 @@ iswprint:
 	.cfi_endproc
 .LFE28:
 	.size	iswprint, .-iswprint
+	.p2align 4
 	.globl	iswxdigit
 	.type	iswxdigit, @function
 iswxdigit:
@@ -630,6 +660,7 @@ iswxdigit:
 	.cfi_endproc
 .LFE29:
 	.size	iswxdigit, .-iswxdigit
+	.p2align 4
 	.globl	toascii
 	.type	toascii, @function
 toascii:
@@ -641,6 +672,7 @@ toascii:
 	.cfi_endproc
 .LFE30:
 	.size	toascii, .-toascii
+	.p2align 4
 	.globl	fdim
 	.type	fdim, @function
 fdim:
@@ -664,6 +696,7 @@ fdim:
 	.cfi_endproc
 .LFE31:
 	.size	fdim, .-fdim
+	.p2align 4
 	.globl	fdimf
 	.type	fdimf, @function
 fdimf:
@@ -687,6 +720,7 @@ fdimf:
 	.cfi_endproc
 .LFE32:
 	.size	fdimf, .-fdimf
+	.p2align 4
 	.globl	fmax
 	.type	fmax, @function
 fmax:
@@ -719,6 +753,7 @@ fmax:
 	.cfi_endproc
 .LFE33:
 	.size	fmax, .-fmax
+	.p2align 4
 	.globl	fmaxf
 	.type	fmaxf, @function
 fmaxf:
@@ -751,6 +786,7 @@ fmaxf:
 	.cfi_endproc
 .LFE34:
 	.size	fmaxf, .-fmaxf
+	.p2align 4
 	.globl	fmaxl
 	.type	fmaxl, @function
 fmaxl:
@@ -793,6 +829,7 @@ fmaxl:
 	.cfi_endproc
 .LFE35:
 	.size	fmaxl, .-fmaxl
+	.p2align 4
 	.globl	fmin
 	.type	fmin, @function
 fmin:
@@ -824,6 +861,7 @@ fmin:
 	.cfi_endproc
 .LFE36:
 	.size	fmin, .-fmin
+	.p2align 4
 	.globl	fminf
 	.type	fminf, @function
 fminf:
@@ -855,6 +893,7 @@ fminf:
 	.cfi_endproc
 .LFE37:
 	.size	fminf, .-fminf
+	.p2align 4
 	.globl	fminl
 	.type	fminl, @function
 fminl:
@@ -897,6 +936,7 @@ fminl:
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
+	.p2align 4
 	.globl	l64a
 	.type	l64a, @function
 l64a:
@@ -925,6 +965,7 @@ l64a:
 	.cfi_endproc
 .LFE39:
 	.size	l64a, .-l64a
+	.p2align 4
 	.globl	srand
 	.type	srand, @function
 srand:
@@ -936,6 +977,7 @@ srand:
 	.cfi_endproc
 .LFE40:
 	.size	srand, .-srand
+	.p2align 4
 	.globl	rand
 	.type	rand, @function
 rand:
@@ -950,6 +992,7 @@ rand:
 	.cfi_endproc
 .LFE41:
 	.size	rand, .-rand
+	.p2align 4
 	.globl	insque
 	.type	insque, @function
 insque:
@@ -974,6 +1017,7 @@ insque:
 	.cfi_endproc
 .LFE42:
 	.size	insque, .-insque
+	.p2align 4
 	.globl	remque
 	.type	remque, @function
 remque:
@@ -995,6 +1039,7 @@ remque:
 	.cfi_endproc
 .LFE43:
 	.size	remque, .-remque
+	.p2align 4
 	.globl	lsearch
 	.type	lsearch, @function
 lsearch:
@@ -1072,6 +1117,7 @@ lsearch:
 	.cfi_endproc
 .LFE44:
 	.size	lsearch, .-lsearch
+	.p2align 4
 	.globl	lfind
 	.type	lfind, @function
 lfind:
@@ -1138,6 +1184,7 @@ lfind:
 	.cfi_endproc
 .LFE45:
 	.size	lfind, .-lfind
+	.p2align 4
 	.globl	abs
 	.type	abs, @function
 abs:
@@ -1150,6 +1197,7 @@ abs:
 	.cfi_endproc
 .LFE46:
 	.size	abs, .-abs
+	.p2align 4
 	.globl	atoi
 	.type	atoi, @function
 atoi:
@@ -1216,6 +1264,7 @@ atoi:
 	.cfi_endproc
 .LFE47:
 	.size	atoi, .-atoi
+	.p2align 4
 	.globl	atol
 	.type	atol, @function
 atol:
@@ -1278,6 +1327,7 @@ atol:
 	.cfi_endproc
 .LFE48:
 	.size	atol, .-atol
+	.p2align 4
 	.globl	atoll
 	.type	atoll, @function
 atoll:
@@ -1340,6 +1390,7 @@ atoll:
 	.cfi_endproc
 .LFE49:
 	.size	atoll, .-atoll
+	.p2align 4
 	.globl	bsearch
 	.type	bsearch, @function
 bsearch:
@@ -1416,6 +1467,7 @@ bsearch:
 	.cfi_endproc
 .LFE50:
 	.size	bsearch, .-bsearch
+	.p2align 4
 	.globl	bsearch_r
 	.type	bsearch_r, @function
 bsearch_r:
@@ -1491,6 +1543,7 @@ bsearch_r:
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r
+	.p2align 4
 	.globl	div
 	.type	div, @function
 div:
@@ -1505,6 +1558,7 @@ div:
 	.cfi_endproc
 .LFE52:
 	.size	div, .-div
+	.p2align 4
 	.globl	imaxabs
 	.type	imaxabs, @function
 imaxabs:
@@ -1517,6 +1571,7 @@ imaxabs:
 	.cfi_endproc
 .LFE53:
 	.size	imaxabs, .-imaxabs
+	.p2align 4
 	.globl	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
@@ -1529,6 +1584,7 @@ imaxdiv:
 	.cfi_endproc
 .LFE54:
 	.size	imaxdiv, .-imaxdiv
+	.p2align 4
 	.globl	labs
 	.type	labs, @function
 labs:
@@ -1541,6 +1597,7 @@ labs:
 	.cfi_endproc
 .LFE55:
 	.size	labs, .-labs
+	.p2align 4
 	.globl	ldiv
 	.type	ldiv, @function
 ldiv:
@@ -1553,6 +1610,7 @@ ldiv:
 	.cfi_endproc
 .LFE56:
 	.size	ldiv, .-ldiv
+	.p2align 4
 	.globl	llabs
 	.type	llabs, @function
 llabs:
@@ -1565,6 +1623,7 @@ llabs:
 	.cfi_endproc
 .LFE57:
 	.size	llabs, .-llabs
+	.p2align 4
 	.globl	lldiv
 	.type	lldiv, @function
 lldiv:
@@ -1577,6 +1636,7 @@ lldiv:
 	.cfi_endproc
 .LFE58:
 	.size	lldiv, .-lldiv
+	.p2align 4
 	.globl	wcschr
 	.type	wcschr, @function
 wcschr:
@@ -1604,6 +1664,7 @@ wcschr:
 	.cfi_endproc
 .LFE59:
 	.size	wcschr, .-wcschr
+	.p2align 4
 	.globl	wcscmp
 	.type	wcscmp, @function
 wcscmp:
@@ -1644,6 +1705,7 @@ wcscmp:
 	.cfi_endproc
 .LFE60:
 	.size	wcscmp, .-wcscmp
+	.p2align 4
 	.globl	wcscpy
 	.type	wcscpy, @function
 wcscpy:
@@ -1662,6 +1724,7 @@ wcscpy:
 	.cfi_endproc
 .LFE61:
 	.size	wcscpy, .-wcscpy
+	.p2align 4
 	.globl	wcslen
 	.type	wcslen, @function
 wcslen:
@@ -1685,6 +1748,7 @@ wcslen:
 	.cfi_endproc
 .LFE62:
 	.size	wcslen, .-wcslen
+	.p2align 4
 	.globl	wcsncmp
 	.type	wcsncmp, @function
 wcsncmp:
@@ -1723,6 +1787,7 @@ wcsncmp:
 	.cfi_endproc
 .LFE63:
 	.size	wcsncmp, .-wcsncmp
+	.p2align 4
 	.globl	wmemchr
 	.type	wmemchr, @function
 wmemchr:
@@ -1746,6 +1811,7 @@ wmemchr:
 	.cfi_endproc
 .LFE64:
 	.size	wmemchr, .-wmemchr
+	.p2align 4
 	.globl	wmemcmp
 	.type	wmemcmp, @function
 wmemcmp:
@@ -1778,6 +1844,7 @@ wmemcmp:
 	.cfi_endproc
 .LFE65:
 	.size	wmemcmp, .-wmemcmp
+	.p2align 4
 	.globl	wmemcpy
 	.type	wmemcpy, @function
 wmemcpy:
@@ -1799,6 +1866,7 @@ wmemcpy:
 	.cfi_endproc
 .LFE66:
 	.size	wmemcpy, .-wmemcpy
+	.p2align 4
 	.globl	wmemmove
 	.type	wmemmove, @function
 wmemmove:
@@ -1840,6 +1908,7 @@ wmemmove:
 	.cfi_endproc
 .LFE67:
 	.size	wmemmove, .-wmemmove
+	.p2align 4
 	.globl	wmemset
 	.type	wmemset, @function
 wmemset:
@@ -1870,6 +1939,7 @@ wmemset:
 	.cfi_endproc
 .LFE68:
 	.size	wmemset, .-wmemset
+	.p2align 4
 	.globl	bcopy
 	.type	bcopy, @function
 bcopy:
@@ -1903,6 +1973,7 @@ bcopy:
 	.cfi_endproc
 .LFE69:
 	.size	bcopy, .-bcopy
+	.p2align 4
 	.globl	rotl64
 	.type	rotl64, @function
 rotl64:
@@ -1915,6 +1986,7 @@ rotl64:
 	.cfi_endproc
 .LFE70:
 	.size	rotl64, .-rotl64
+	.p2align 4
 	.globl	rotr64
 	.type	rotr64, @function
 rotr64:
@@ -1927,6 +1999,7 @@ rotr64:
 	.cfi_endproc
 .LFE71:
 	.size	rotr64, .-rotr64
+	.p2align 4
 	.globl	rotl32
 	.type	rotl32, @function
 rotl32:
@@ -1939,6 +2012,7 @@ rotl32:
 	.cfi_endproc
 .LFE72:
 	.size	rotl32, .-rotl32
+	.p2align 4
 	.globl	rotr32
 	.type	rotr32, @function
 rotr32:
@@ -1951,6 +2025,7 @@ rotr32:
 	.cfi_endproc
 .LFE73:
 	.size	rotr32, .-rotr32
+	.p2align 4
 	.globl	rotl_sz
 	.type	rotl_sz, @function
 rotl_sz:
@@ -1963,6 +2038,7 @@ rotl_sz:
 	.cfi_endproc
 .LFE74:
 	.size	rotl_sz, .-rotl_sz
+	.p2align 4
 	.globl	rotr_sz
 	.type	rotr_sz, @function
 rotr_sz:
@@ -1975,6 +2051,7 @@ rotr_sz:
 	.cfi_endproc
 .LFE75:
 	.size	rotr_sz, .-rotr_sz
+	.p2align 4
 	.globl	rotl16
 	.type	rotl16, @function
 rotl16:
@@ -1987,6 +2064,7 @@ rotl16:
 	.cfi_endproc
 .LFE76:
 	.size	rotl16, .-rotl16
+	.p2align 4
 	.globl	rotr16
 	.type	rotr16, @function
 rotr16:
@@ -1999,6 +2077,7 @@ rotr16:
 	.cfi_endproc
 .LFE77:
 	.size	rotr16, .-rotr16
+	.p2align 4
 	.globl	rotl8
 	.type	rotl8, @function
 rotl8:
@@ -2011,6 +2090,7 @@ rotl8:
 	.cfi_endproc
 .LFE78:
 	.size	rotl8, .-rotl8
+	.p2align 4
 	.globl	rotr8
 	.type	rotr8, @function
 rotr8:
@@ -2023,6 +2103,7 @@ rotr8:
 	.cfi_endproc
 .LFE79:
 	.size	rotr8, .-rotr8
+	.p2align 4
 	.globl	bswap_16
 	.type	bswap_16, @function
 bswap_16:
@@ -2036,6 +2117,7 @@ bswap_16:
 	.cfi_endproc
 .LFE80:
 	.size	bswap_16, .-bswap_16
+	.p2align 4
 	.globl	bswap_32
 	.type	bswap_32, @function
 bswap_32:
@@ -2057,6 +2139,7 @@ bswap_32:
 	.cfi_endproc
 .LFE81:
 	.size	bswap_32, .-bswap_32
+	.p2align 4
 	.globl	bswap_64
 	.type	bswap_64, @function
 bswap_64:
@@ -2098,6 +2181,7 @@ bswap_64:
 	.cfi_endproc
 .LFE82:
 	.size	bswap_64, .-bswap_64
+	.p2align 4
 	.globl	ffs
 	.type	ffs, @function
 ffs:
@@ -2119,6 +2203,7 @@ ffs:
 	.cfi_endproc
 .LFE83:
 	.size	ffs, .-ffs
+	.p2align 4
 	.globl	libiberty_ffs
 	.type	libiberty_ffs, @function
 libiberty_ffs:
@@ -2141,6 +2226,7 @@ libiberty_ffs:
 	.cfi_endproc
 .LFE84:
 	.size	libiberty_ffs, .-libiberty_ffs
+	.p2align 4
 	.globl	gl_isinff
 	.type	gl_isinff, @function
 gl_isinff:
@@ -2158,6 +2244,7 @@ gl_isinff:
 	.cfi_endproc
 .LFE85:
 	.size	gl_isinff, .-gl_isinff
+	.p2align 4
 	.globl	gl_isinfd
 	.type	gl_isinfd, @function
 gl_isinfd:
@@ -2175,6 +2262,7 @@ gl_isinfd:
 	.cfi_endproc
 .LFE86:
 	.size	gl_isinfd, .-gl_isinfd
+	.p2align 4
 	.globl	gl_isinfl
 	.type	gl_isinfl, @function
 gl_isinfl:
@@ -2199,6 +2287,7 @@ gl_isinfl:
 	.cfi_endproc
 .LFE87:
 	.size	gl_isinfl, .-gl_isinfl
+	.p2align 4
 	.globl	_Qp_itoq
 	.type	_Qp_itoq, @function
 _Qp_itoq:
@@ -2213,6 +2302,7 @@ _Qp_itoq:
 	.cfi_endproc
 .LFE88:
 	.size	_Qp_itoq, .-_Qp_itoq
+	.p2align 4
 	.globl	ldexpf
 	.type	ldexpf, @function
 ldexpf:
@@ -2250,6 +2340,7 @@ ldexpf:
 	.cfi_endproc
 .LFE89:
 	.size	ldexpf, .-ldexpf
+	.p2align 4
 	.globl	ldexp
 	.type	ldexp, @function
 ldexp:
@@ -2287,6 +2378,7 @@ ldexp:
 	.cfi_endproc
 .LFE90:
 	.size	ldexp, .-ldexp
+	.p2align 4
 	.globl	ldexpl
 	.type	ldexpl, @function
 ldexpl:
@@ -2330,6 +2422,7 @@ ldexpl:
 	.cfi_endproc
 .LFE91:
 	.size	ldexpl, .-ldexpl
+	.p2align 4
 	.globl	memxor
 	.type	memxor, @function
 memxor:
@@ -2353,6 +2446,7 @@ memxor:
 	.cfi_endproc
 .LFE92:
 	.size	memxor, .-memxor
+	.p2align 4
 	.globl	strncat
 	.type	strncat, @function
 strncat:
@@ -2400,6 +2494,7 @@ strncat:
 	.cfi_endproc
 .LFE93:
 	.size	strncat, .-strncat
+	.p2align 4
 	.globl	strnlen
 	.type	strnlen, @function
 strnlen:
@@ -2425,6 +2520,7 @@ strnlen:
 	.cfi_endproc
 .LFE94:
 	.size	strnlen, .-strnlen
+	.p2align 4
 	.globl	strpbrk
 	.type	strpbrk, @function
 strpbrk:
@@ -2459,6 +2555,7 @@ strpbrk:
 	.cfi_endproc
 .LFE95:
 	.size	strpbrk, .-strpbrk
+	.p2align 4
 	.globl	strrchr
 	.type	strrchr, @function
 strrchr:
@@ -2478,6 +2575,7 @@ strrchr:
 	.cfi_endproc
 .LFE96:
 	.size	strrchr, .-strrchr
+	.p2align 4
 	.globl	strstr
 	.type	strstr, @function
 strstr:
@@ -2538,6 +2636,7 @@ strstr:
 	.cfi_endproc
 .LFE97:
 	.size	strstr, .-strstr
+	.p2align 4
 	.globl	copysign
 	.type	copysign, @function
 copysign:
@@ -2563,6 +2662,7 @@ copysign:
 	.cfi_endproc
 .LFE98:
 	.size	copysign, .-copysign
+	.p2align 4
 	.globl	memmem
 	.type	memmem, @function
 memmem:
@@ -2655,6 +2755,7 @@ memmem:
 	.cfi_endproc
 .LFE99:
 	.size	memmem, .-memmem
+	.p2align 4
 	.globl	mempcpy
 	.type	mempcpy, @function
 mempcpy:
@@ -2672,6 +2773,7 @@ mempcpy:
 	.cfi_endproc
 .LFE100:
 	.size	mempcpy, .-mempcpy
+	.p2align 4
 	.globl	frexp
 	.type	frexp, @function
 frexp:
@@ -2730,6 +2832,7 @@ frexp:
 	.cfi_endproc
 .LFE101:
 	.size	frexp, .-frexp
+	.p2align 4
 	.globl	__muldi3
 	.type	__muldi3, @function
 __muldi3:
@@ -2758,6 +2861,7 @@ __muldi3:
 	.cfi_endproc
 .LFE102:
 	.size	__muldi3, .-__muldi3
+	.p2align 4
 	.globl	udivmodsi4
 	.type	udivmodsi4, @function
 udivmodsi4:
@@ -2799,6 +2903,7 @@ udivmodsi4:
 	.cfi_endproc
 .LFE103:
 	.size	udivmodsi4, .-udivmodsi4
+	.p2align 4
 	.globl	__clrsbqi2
 	.type	__clrsbqi2, @function
 __clrsbqi2:
@@ -2822,6 +2927,7 @@ __clrsbqi2:
 	.cfi_endproc
 .LFE104:
 	.size	__clrsbqi2, .-__clrsbqi2
+	.p2align 4
 	.globl	__clrsbdi2
 	.type	__clrsbdi2, @function
 __clrsbdi2:
@@ -2843,6 +2949,7 @@ __clrsbdi2:
 	.cfi_endproc
 .LFE105:
 	.size	__clrsbdi2, .-__clrsbdi2
+	.p2align 4
 	.globl	__mulsi3
 	.type	__mulsi3, @function
 __mulsi3:
@@ -2870,6 +2977,7 @@ __mulsi3:
 	.cfi_endproc
 .LFE106:
 	.size	__mulsi3, .-__mulsi3
+	.p2align 4
 	.globl	__cmovd
 	.type	__cmovd, @function
 __cmovd:
@@ -2925,6 +3033,7 @@ __cmovd:
 	.cfi_endproc
 .LFE107:
 	.size	__cmovd, .-__cmovd
+	.p2align 4
 	.globl	__cmovh
 	.type	__cmovh, @function
 __cmovh:
@@ -2975,6 +3084,7 @@ __cmovh:
 	.cfi_endproc
 .LFE108:
 	.size	__cmovh, .-__cmovh
+	.p2align 4
 	.globl	__cmovw
 	.type	__cmovw, @function
 __cmovw:
@@ -3030,6 +3140,7 @@ __cmovw:
 	.cfi_endproc
 .LFE109:
 	.size	__cmovw, .-__cmovw
+	.p2align 4
 	.globl	__modi
 	.type	__modi, @function
 __modi:
@@ -3043,6 +3154,7 @@ __modi:
 	.cfi_endproc
 .LFE110:
 	.size	__modi, .-__modi
+	.p2align 4
 	.globl	__uitod
 	.type	__uitod, @function
 __uitod:
@@ -3055,6 +3167,7 @@ __uitod:
 	.cfi_endproc
 .LFE111:
 	.size	__uitod, .-__uitod
+	.p2align 4
 	.globl	__uitof
 	.type	__uitof, @function
 __uitof:
@@ -3067,6 +3180,7 @@ __uitof:
 	.cfi_endproc
 .LFE112:
 	.size	__uitof, .-__uitof
+	.p2align 4
 	.globl	__ulltod
 	.type	__ulltod, @function
 __ulltod:
@@ -3089,6 +3203,7 @@ __ulltod:
 	.cfi_endproc
 .LFE113:
 	.size	__ulltod, .-__ulltod
+	.p2align 4
 	.globl	__ulltof
 	.type	__ulltof, @function
 __ulltof:
@@ -3111,6 +3226,7 @@ __ulltof:
 	.cfi_endproc
 .LFE114:
 	.size	__ulltof, .-__ulltof
+	.p2align 4
 	.globl	__umodi
 	.type	__umodi, @function
 __umodi:
@@ -3124,6 +3240,7 @@ __umodi:
 	.cfi_endproc
 .LFE115:
 	.size	__umodi, .-__umodi
+	.p2align 4
 	.globl	__clzhi2
 	.type	__clzhi2, @function
 __clzhi2:
@@ -3146,6 +3263,7 @@ __clzhi2:
 	.cfi_endproc
 .LFE116:
 	.size	__clzhi2, .-__clzhi2
+	.p2align 4
 	.globl	__ctzhi2
 	.type	__ctzhi2, @function
 __ctzhi2:
@@ -3165,6 +3283,7 @@ __ctzhi2:
 	.cfi_endproc
 .LFE117:
 	.size	__ctzhi2, .-__ctzhi2
+	.p2align 4
 	.globl	__fixunssfsi
 	.type	__fixunssfsi, @function
 __fixunssfsi:
@@ -3182,6 +3301,7 @@ __fixunssfsi:
 	.cfi_endproc
 .LFE118:
 	.size	__fixunssfsi, .-__fixunssfsi
+	.p2align 4
 	.globl	__parityhi2
 	.type	__parityhi2, @function
 __parityhi2:
@@ -3204,6 +3324,7 @@ __parityhi2:
 	.cfi_endproc
 .LFE119:
 	.size	__parityhi2, .-__parityhi2
+	.p2align 4
 	.globl	__popcounthi2
 	.type	__popcounthi2, @function
 __popcounthi2:
@@ -3226,6 +3347,7 @@ __popcounthi2:
 	.cfi_endproc
 .LFE120:
 	.size	__popcounthi2, .-__popcounthi2
+	.p2align 4
 	.globl	__mulsi3_iq2000
 	.type	__mulsi3_iq2000, @function
 __mulsi3_iq2000:
@@ -3253,6 +3375,7 @@ __mulsi3_iq2000:
 	.cfi_endproc
 .LFE121:
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
+	.p2align 4
 	.globl	__mulsi3_lm32
 	.type	__mulsi3_lm32, @function
 __mulsi3_lm32:
@@ -3283,6 +3406,7 @@ __mulsi3_lm32:
 	.cfi_endproc
 .LFE122:
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
+	.p2align 4
 	.globl	__udivmodsi4
 	.type	__udivmodsi4, @function
 __udivmodsi4:
@@ -3324,6 +3448,7 @@ __udivmodsi4:
 	.cfi_endproc
 .LFE123:
 	.size	__udivmodsi4, .-__udivmodsi4
+	.p2align 4
 	.globl	__mspabi_cmpf
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
@@ -3340,6 +3465,7 @@ __mspabi_cmpf:
 	.cfi_endproc
 .LFE124:
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
+	.p2align 4
 	.globl	__mspabi_cmpd
 	.type	__mspabi_cmpd, @function
 __mspabi_cmpd:
@@ -3356,6 +3482,7 @@ __mspabi_cmpd:
 	.cfi_endproc
 .LFE125:
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
+	.p2align 4
 	.globl	__mspabi_mpysll
 	.type	__mspabi_mpysll, @function
 __mspabi_mpysll:
@@ -3367,6 +3494,7 @@ __mspabi_mpysll:
 	.cfi_endproc
 .LFE126:
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
+	.p2align 4
 	.globl	__mspabi_mpyull
 	.type	__mspabi_mpyull, @function
 __mspabi_mpyull:
@@ -3378,6 +3506,7 @@ __mspabi_mpyull:
 	.cfi_endproc
 .LFE127:
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
+	.p2align 4
 	.globl	__mulhi3
 	.type	__mulhi3, @function
 __mulhi3:
@@ -3423,6 +3552,7 @@ __mulhi3:
 	.cfi_endproc
 .LFE128:
 	.size	__mulhi3, .-__mulhi3
+	.p2align 4
 	.globl	__divsi3
 	.type	__divsi3, @function
 __divsi3:
@@ -3461,6 +3591,7 @@ __divsi3:
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3, .-__divsi3
+	.p2align 4
 	.globl	__modsi3
 	.type	__modsi3, @function
 __modsi3:
@@ -3495,6 +3626,7 @@ __modsi3:
 	.cfi_endproc
 .LFE130:
 	.size	__modsi3, .-__modsi3
+	.p2align 4
 	.globl	__udivmodhi4
 	.type	__udivmodhi4, @function
 __udivmodhi4:
@@ -3538,6 +3670,7 @@ __udivmodhi4:
 	.cfi_endproc
 .LFE131:
 	.size	__udivmodhi4, .-__udivmodhi4
+	.p2align 4
 	.globl	__udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
@@ -3579,6 +3712,7 @@ __udivmodsi4_libgcc:
 	.cfi_endproc
 .LFE132:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
+	.p2align 4
 	.globl	__ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
@@ -3612,6 +3746,7 @@ __ashldi3:
 	.cfi_endproc
 .LFE133:
 	.size	__ashldi3, .-__ashldi3
+	.p2align 4
 	.globl	__ashlti3
 	.type	__ashlti3, @function
 __ashlti3:
@@ -3645,6 +3780,7 @@ __ashlti3:
 	.cfi_endproc
 .LFE134:
 	.size	__ashlti3, .-__ashlti3
+	.p2align 4
 	.globl	__ashrdi3
 	.type	__ashrdi3, @function
 __ashrdi3:
@@ -3681,6 +3817,7 @@ __ashrdi3:
 	.cfi_endproc
 .LFE135:
 	.size	__ashrdi3, .-__ashrdi3
+	.p2align 4
 	.globl	__ashrti3
 	.type	__ashrti3, @function
 __ashrti3:
@@ -3716,6 +3853,7 @@ __ashrti3:
 	.cfi_endproc
 .LFE136:
 	.size	__ashrti3, .-__ashrti3
+	.p2align 4
 	.globl	__bswapdi2
 	.type	__bswapdi2, @function
 __bswapdi2:
@@ -3757,6 +3895,7 @@ __bswapdi2:
 	.cfi_endproc
 .LFE137:
 	.size	__bswapdi2, .-__bswapdi2
+	.p2align 4
 	.globl	__bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
@@ -3778,6 +3917,7 @@ __bswapsi2:
 	.cfi_endproc
 .LFE138:
 	.size	__bswapsi2, .-__bswapsi2
+	.p2align 4
 	.globl	__clzsi2
 	.type	__clzsi2, @function
 __clzsi2:
@@ -3824,6 +3964,7 @@ __clzsi2:
 	.cfi_endproc
 .LFE139:
 	.size	__clzsi2, .-__clzsi2
+	.p2align 4
 	.globl	__clzti2
 	.type	__clzti2, @function
 __clzti2:
@@ -3848,6 +3989,7 @@ __clzti2:
 	.cfi_endproc
 .LFE140:
 	.size	__clzti2, .-__clzti2
+	.p2align 4
 	.globl	__cmpdi2
 	.type	__cmpdi2, @function
 __cmpdi2:
@@ -3874,6 +4016,7 @@ __cmpdi2:
 	.cfi_endproc
 .LFE141:
 	.size	__cmpdi2, .-__cmpdi2
+	.p2align 4
 	.globl	__aeabi_lcmp
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
@@ -3885,6 +4028,7 @@ __aeabi_lcmp:
 	.cfi_endproc
 .LFE142:
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
+	.p2align 4
 	.globl	__cmpti2
 	.type	__cmpti2, @function
 __cmpti2:
@@ -3907,6 +4051,7 @@ __cmpti2:
 	.cfi_endproc
 .LFE143:
 	.size	__cmpti2, .-__cmpti2
+	.p2align 4
 	.globl	__ctzsi2
 	.type	__ctzsi2, @function
 __ctzsi2:
@@ -3950,6 +4095,7 @@ __ctzsi2:
 	.cfi_endproc
 .LFE144:
 	.size	__ctzsi2, .-__ctzsi2
+	.p2align 4
 	.globl	__ctzti2
 	.type	__ctzti2, @function
 __ctzti2:
@@ -3973,6 +4119,7 @@ __ctzti2:
 	.cfi_endproc
 .LFE145:
 	.size	__ctzti2, .-__ctzti2
+	.p2align 4
 	.globl	__ffsti2
 	.type	__ffsti2, @function
 __ffsti2:
@@ -3994,6 +4141,7 @@ __ffsti2:
 	.cfi_endproc
 .LFE146:
 	.size	__ffsti2, .-__ffsti2
+	.p2align 4
 	.globl	__lshrdi3
 	.type	__lshrdi3, @function
 __lshrdi3:
@@ -4029,6 +4177,7 @@ __lshrdi3:
 	.cfi_endproc
 .LFE147:
 	.size	__lshrdi3, .-__lshrdi3
+	.p2align 4
 	.globl	__lshrti3
 	.type	__lshrti3, @function
 __lshrti3:
@@ -4063,6 +4212,7 @@ __lshrti3:
 	.cfi_endproc
 .LFE148:
 	.size	__lshrti3, .-__lshrti3
+	.p2align 4
 	.globl	__muldsi3
 	.type	__muldsi3, @function
 __muldsi3:
@@ -4096,6 +4246,7 @@ __muldsi3:
 	.cfi_endproc
 .LFE149:
 	.size	__muldsi3, .-__muldsi3
+	.p2align 4
 	.globl	__muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
@@ -4130,6 +4281,7 @@ __muldi3_compiler_rt:
 	.cfi_endproc
 .LFE150:
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
+	.p2align 4
 	.globl	__mulddi3
 	.type	__mulddi3, @function
 __mulddi3:
@@ -4163,6 +4315,7 @@ __mulddi3:
 	.cfi_endproc
 .LFE151:
 	.size	__mulddi3, .-__mulddi3
+	.p2align 4
 	.globl	__multi3
 	.type	__multi3, @function
 __multi3:
@@ -4207,6 +4360,7 @@ __multi3:
 	.cfi_endproc
 .LFE152:
 	.size	__multi3, .-__multi3
+	.p2align 4
 	.globl	__negdi2
 	.type	__negdi2, @function
 __negdi2:
@@ -4218,6 +4372,7 @@ __negdi2:
 	.cfi_endproc
 .LFE153:
 	.size	__negdi2, .-__negdi2
+	.p2align 4
 	.globl	__negti2
 	.type	__negti2, @function
 __negti2:
@@ -4232,6 +4387,7 @@ __negti2:
 	.cfi_endproc
 .LFE154:
 	.size	__negti2, .-__negti2
+	.p2align 4
 	.globl	__paritydi2
 	.type	__paritydi2, @function
 __paritydi2:
@@ -4257,6 +4413,7 @@ __paritydi2:
 	.cfi_endproc
 .LFE155:
 	.size	__paritydi2, .-__paritydi2
+	.p2align 4
 	.globl	__parityti2
 	.type	__parityti2, @function
 __parityti2:
@@ -4284,6 +4441,7 @@ __parityti2:
 	.cfi_endproc
 .LFE156:
 	.size	__parityti2, .-__parityti2
+	.p2align 4
 	.globl	__paritysi2
 	.type	__paritysi2, @function
 __paritysi2:
@@ -4306,6 +4464,7 @@ __paritysi2:
 	.cfi_endproc
 .LFE157:
 	.size	__paritysi2, .-__paritysi2
+	.p2align 4
 	.globl	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
@@ -4341,6 +4500,7 @@ __popcountdi2:
 	.cfi_endproc
 .LFE158:
 	.size	__popcountdi2, .-__popcountdi2
+	.p2align 4
 	.globl	__popcountsi2
 	.type	__popcountsi2, @function
 __popcountsi2:
@@ -4370,6 +4530,7 @@ __popcountsi2:
 	.cfi_endproc
 .LFE159:
 	.size	__popcountsi2, .-__popcountsi2
+	.p2align 4
 	.globl	__popcountti2
 	.type	__popcountti2, @function
 __popcountti2:
@@ -4422,6 +4583,7 @@ __popcountti2:
 	.cfi_endproc
 .LFE160:
 	.size	__popcountti2, .-__popcountti2
+	.p2align 4
 	.globl	__powidf2
 	.type	__powidf2, @function
 __powidf2:
@@ -4458,6 +4620,7 @@ __powidf2:
 	.cfi_endproc
 .LFE161:
 	.size	__powidf2, .-__powidf2
+	.p2align 4
 	.globl	__powisf2
 	.type	__powisf2, @function
 __powisf2:
@@ -4494,6 +4657,7 @@ __powisf2:
 	.cfi_endproc
 .LFE162:
 	.size	__powisf2, .-__powisf2
+	.p2align 4
 	.globl	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
@@ -4521,6 +4685,7 @@ __ucmpdi2:
 	.cfi_endproc
 .LFE163:
 	.size	__ucmpdi2, .-__ucmpdi2
+	.p2align 4
 	.globl	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
@@ -4532,6 +4697,7 @@ __aeabi_ulcmp:
 	.cfi_endproc
 .LFE164:
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
+	.p2align 4
 	.globl	__ucmpti2
 	.type	__ucmpti2, @function
 __ucmpti2:

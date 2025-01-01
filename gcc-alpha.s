@@ -5,6 +5,7 @@
 	.arch ev4
 	.text
 	.align 2
+	.align 4
 	.globl make_ti
 	.ent make_ti
 $make_ti..ng:
@@ -21,6 +22,7 @@ $LFB0:
 $LFE0:
 	.end make_ti
 	.align 2
+	.align 4
 	.globl make_tu
 	.ent make_tu
 $make_tu..ng:
@@ -37,6 +39,7 @@ $LFB1:
 $LFE1:
 	.end make_tu
 	.align 2
+	.align 4
 	.globl memmove
 	.ent memmove
 $memmove..ng:
@@ -92,6 +95,7 @@ $L5:
 $LFE2:
 	.end memmove
 	.align 2
+	.align 4
 	.globl memccpy
 	.ent memccpy
 $memccpy..ng:
@@ -125,6 +129,7 @@ $L12:
 $LFE3:
 	.end memccpy
 	.align 2
+	.align 4
 	.globl memchr
 	.ent memchr
 $memchr..ng:
@@ -155,6 +160,7 @@ $L19:
 $LFE4:
 	.end memchr
 	.align 2
+	.align 4
 	.globl memcmp
 	.ent memcmp
 $memcmp..ng:
@@ -189,6 +195,7 @@ $L29:
 $LFE5:
 	.end memcmp
 	.align 2
+	.align 4
 	.globl memcpy
 	.ent memcpy
 memcpy:
@@ -225,6 +232,7 @@ $L33:
 $LFE6:
 	.end memcpy
 	.align 2
+	.align 4
 	.globl memrchr
 	.ent memrchr
 $memrchr..ng:
@@ -255,6 +263,7 @@ $L34:
 $LFE7:
 	.end memrchr
 	.align 2
+	.align 4
 	.globl memset
 	.ent memset
 $memset..ng:
@@ -282,6 +291,7 @@ $L40:
 $LFE8:
 	.end memset
 	.align 2
+	.align 4
 	.globl stpcpy
 	.ent stpcpy
 $stpcpy..ng:
@@ -320,6 +330,7 @@ $L44:
 $LFE9:
 	.end stpcpy
 	.align 2
+	.align 4
 	.globl strchrnul
 	.ent strchrnul
 $strchrnul..ng:
@@ -356,6 +367,7 @@ $L54:
 $LFE10:
 	.end strchrnul
 	.align 2
+	.align 4
 	.globl strchr
 	.ent strchr
 $strchr..ng:
@@ -381,6 +393,7 @@ $L56:
 $LFE11:
 	.end strchr
 	.align 2
+	.align 4
 	.globl strcmp
 	.ent strcmp
 $strcmp..ng:
@@ -425,6 +438,7 @@ $L60:
 $LFE12:
 	.end strcmp
 	.align 2
+	.align 4
 	.globl strlen
 	.ent strlen
 $strlen..ng:
@@ -453,6 +467,7 @@ $L64:
 $LFE13:
 	.end strlen
 	.align 2
+	.align 4
 	.globl strncmp
 	.ent strncmp
 $strncmp..ng:
@@ -497,6 +512,7 @@ $L74:
 $LFE14:
 	.end strncmp
 	.align 2
+	.align 4
 	.globl swab
 	.ent swab
 $swab..ng:
@@ -536,6 +552,7 @@ $L75:
 $LFE15:
 	.end swab
 	.align 2
+	.align 4
 	.globl isalpha
 	.ent isalpha
 $isalpha..ng:
@@ -553,6 +570,7 @@ $LFB16:
 $LFE16:
 	.end isalpha
 	.align 2
+	.align 4
 	.globl isascii
 	.ent isascii
 $isascii..ng:
@@ -568,6 +586,7 @@ $LFB17:
 $LFE17:
 	.end isascii
 	.align 2
+	.align 4
 	.globl isblank
 	.ent isblank
 $isblank..ng:
@@ -584,6 +603,7 @@ $LFB18:
 $LFE18:
 	.end isblank
 	.align 2
+	.align 4
 	.globl iscntrl
 	.ent iscntrl
 $iscntrl..ng:
@@ -601,6 +621,7 @@ $LFB19:
 $LFE19:
 	.end iscntrl
 	.align 2
+	.align 4
 	.globl isdigit
 	.ent isdigit
 $isdigit..ng:
@@ -617,6 +638,7 @@ $LFB20:
 $LFE20:
 	.end isdigit
 	.align 2
+	.align 4
 	.globl isgraph
 	.ent isgraph
 $isgraph..ng:
@@ -633,6 +655,7 @@ $LFB21:
 $LFE21:
 	.end isgraph
 	.align 2
+	.align 4
 	.globl islower
 	.ent islower
 $islower..ng:
@@ -649,6 +672,7 @@ $LFB22:
 $LFE22:
 	.end islower
 	.align 2
+	.align 4
 	.globl isprint
 	.ent isprint
 $isprint..ng:
@@ -665,6 +689,7 @@ $LFB23:
 $LFE23:
 	.end isprint
 	.align 2
+	.align 4
 	.globl isspace
 	.ent isspace
 $isspace..ng:
@@ -683,6 +708,7 @@ $LFB24:
 $LFE24:
 	.end isspace
 	.align 2
+	.align 4
 	.globl isupper
 	.ent isupper
 $isupper..ng:
@@ -699,6 +725,7 @@ $LFB25:
 $LFE25:
 	.end isupper
 	.align 2
+	.align 4
 	.globl iswcntrl
 	.ent iswcntrl
 $iswcntrl..ng:
@@ -729,6 +756,7 @@ $L90:
 $LFE26:
 	.end iswcntrl
 	.align 2
+	.align 4
 	.globl iswdigit
 	.ent iswdigit
 $iswdigit..ng:
@@ -745,6 +773,7 @@ $LFB27:
 $LFE27:
 	.end iswdigit
 	.align 2
+	.align 4
 	.globl iswprint
 	.ent iswprint
 $iswprint..ng:
@@ -799,6 +828,7 @@ $L100:
 $LFE28:
 	.end iswprint
 	.align 2
+	.align 4
 	.globl iswxdigit
 	.ent iswxdigit
 $iswxdigit..ng:
@@ -820,6 +850,7 @@ $LFB29:
 $LFE29:
 	.end iswxdigit
 	.align 2
+	.align 4
 	.globl toascii
 	.ent toascii
 $toascii..ng:
@@ -834,6 +865,7 @@ $LFB30:
 $LFE30:
 	.end toascii
 	.align 2
+	.align 4
 	.globl fdim
 	.ent fdim
 $fdim..ng:
@@ -863,6 +895,7 @@ $L112:
 $LFE31:
 	.end fdim
 	.align 2
+	.align 4
 	.globl fdimf
 	.ent fdimf
 $fdimf..ng:
@@ -894,6 +927,7 @@ $L120:
 $LFE32:
 	.end fdimf
 	.align 2
+	.align 4
 	.globl fmax
 	.ent fmax
 $fmax..ng:
@@ -940,6 +974,7 @@ $L125:
 $LFE33:
 	.end fmax
 	.align 2
+	.align 4
 	.globl fmaxf
 	.ent fmaxf
 $fmaxf..ng:
@@ -993,6 +1028,7 @@ $L131:
 $LFE34:
 	.end fmaxf
 	.align 2
+	.align 4
 	.globl fmaxl
 	.ent fmaxl
 fmaxl:
@@ -1105,6 +1141,7 @@ $L139:
 $LFE35:
 	.end fmaxl
 	.align 2
+	.align 4
 	.globl fmin
 	.ent fmin
 $fmin..ng:
@@ -1151,6 +1188,7 @@ $L144:
 $LFE36:
 	.end fmin
 	.align 2
+	.align 4
 	.globl fminf
 	.ent fminf
 $fminf..ng:
@@ -1204,6 +1242,7 @@ $L150:
 $LFE37:
 	.end fminf
 	.align 2
+	.align 4
 	.globl fminl
 	.ent fminl
 fminl:
@@ -1316,6 +1355,7 @@ $L158:
 $LFE38:
 	.end fminl
 	.align 2
+	.align 4
 	.globl l64a
 	.ent l64a
 l64a:
@@ -1361,6 +1401,7 @@ $L162:
 $LFE39:
 	.end l64a
 	.align 2
+	.align 4
 	.globl srand
 	.ent srand
 srand:
@@ -1380,6 +1421,7 @@ $srand..ng:
 $LFE40:
 	.end srand
 	.align 2
+	.align 4
 	.globl rand
 	.ent rand
 rand:
@@ -1403,6 +1445,7 @@ $rand..ng:
 $LFE41:
 	.end rand
 	.align 2
+	.align 4
 	.globl insque
 	.ent insque
 $insque..ng:
@@ -1429,6 +1472,7 @@ $L169:
 $LFE42:
 	.end insque
 	.align 2
+	.align 4
 	.globl remque
 	.ent remque
 $remque..ng:
@@ -1452,6 +1496,7 @@ $L170:
 $LFE43:
 	.end remque
 	.align 2
+	.align 4
 	.globl lsearch
 	.ent lsearch
 lsearch:
@@ -1542,6 +1587,7 @@ $L173:
 $LFE44:
 	.end lsearch
 	.align 2
+	.align 4
 	.globl lfind
 	.ent lfind
 lfind:
@@ -1618,6 +1664,7 @@ $L178:
 $LFE45:
 	.end lfind
 	.align 2
+	.align 4
 	.globl abs
 	.ent abs
 $abs..ng:
@@ -1634,6 +1681,7 @@ $LFB46:
 $LFE46:
 	.end abs
 	.align 2
+	.align 4
 	.globl atoi
 	.ent atoi
 atoi:
@@ -1718,6 +1766,7 @@ $L190:
 $LFE47:
 	.end atoi
 	.align 2
+	.align 4
 	.globl atol
 	.ent atol
 atol:
@@ -1802,6 +1851,7 @@ $L202:
 $LFE48:
 	.end atol
 	.align 2
+	.align 4
 	.globl atoll
 	.ent atoll
 atoll:
@@ -1886,6 +1936,7 @@ $L213:
 $LFE49:
 	.end atoll
 	.align 2
+	.align 4
 	.globl bsearch
 	.ent bsearch
 bsearch:
@@ -1970,6 +2021,7 @@ $L222:
 $LFE50:
 	.end bsearch
 	.align 2
+	.align 4
 	.globl bsearch_r
 	.ent bsearch_r
 bsearch_r:
@@ -2054,6 +2106,7 @@ $L229:
 $LFE51:
 	.end bsearch_r
 	.align 2
+	.align 4
 	.globl div
 	.ent div
 div:
@@ -2078,6 +2131,7 @@ $div..ng:
 $LFE52:
 	.end div
 	.align 2
+	.align 4
 	.globl imaxabs
 	.ent imaxabs
 $imaxabs..ng:
@@ -2093,6 +2147,7 @@ $LFB53:
 $LFE53:
 	.end imaxabs
 	.align 2
+	.align 4
 	.globl imaxdiv
 	.ent imaxdiv
 imaxdiv:
@@ -2117,6 +2172,7 @@ $imaxdiv..ng:
 $LFE54:
 	.end imaxdiv
 	.align 2
+	.align 4
 	.globl labs
 	.ent labs
 $labs..ng:
@@ -2132,6 +2188,7 @@ $LFB55:
 $LFE55:
 	.end labs
 	.align 2
+	.align 4
 	.globl ldiv
 	.ent ldiv
 ldiv:
@@ -2156,6 +2213,7 @@ $ldiv..ng:
 $LFE56:
 	.end ldiv
 	.align 2
+	.align 4
 	.globl llabs
 	.ent llabs
 $llabs..ng:
@@ -2171,6 +2229,7 @@ $LFB57:
 $LFE57:
 	.end llabs
 	.align 2
+	.align 4
 	.globl lldiv
 	.ent lldiv
 lldiv:
@@ -2195,6 +2254,7 @@ $lldiv..ng:
 $LFE58:
 	.end lldiv
 	.align 2
+	.align 4
 	.globl wcschr
 	.ent wcschr
 $wcschr..ng:
@@ -2225,6 +2285,7 @@ $L239:
 $LFE59:
 	.end wcschr
 	.align 2
+	.align 4
 	.globl wcscmp
 	.ent wcscmp
 $wcscmp..ng:
@@ -2262,6 +2323,7 @@ $L244:
 $LFE60:
 	.end wcscmp
 	.align 2
+	.align 4
 	.globl wcscpy
 	.ent wcscpy
 $wcscpy..ng:
@@ -2283,6 +2345,7 @@ $L250:
 $LFE61:
 	.end wcscpy
 	.align 2
+	.align 4
 	.globl wcslen
 	.ent wcslen
 $wcslen..ng:
@@ -2306,6 +2369,7 @@ $L253:
 $LFE62:
 	.end wcslen
 	.align 2
+	.align 4
 	.globl wcsncmp
 	.ent wcsncmp
 $wcsncmp..ng:
@@ -2343,6 +2407,7 @@ $L261:
 $LFE63:
 	.end wcsncmp
 	.align 2
+	.align 4
 	.globl wmemchr
 	.ent wmemchr
 $wmemchr..ng:
@@ -2371,6 +2436,7 @@ $L267:
 $LFE64:
 	.end wmemchr
 	.align 2
+	.align 4
 	.globl wmemcmp
 	.ent wmemcmp
 $wmemcmp..ng:
@@ -2404,6 +2470,7 @@ $L277:
 $LFE65:
 	.end wmemcmp
 	.align 2
+	.align 4
 	.globl wmemcpy
 	.ent wmemcpy
 wmemcpy:
@@ -2441,6 +2508,7 @@ $L282:
 $LFE66:
 	.end wmemcpy
 	.align 2
+	.align 4
 	.globl wmemmove
 	.ent wmemmove
 $wmemmove..ng:
@@ -2488,6 +2556,7 @@ $L287:
 $LFE67:
 	.end wmemmove
 	.align 2
+	.align 4
 	.globl wmemset
 	.ent wmemset
 $wmemset..ng:
@@ -2512,6 +2581,7 @@ $L294:
 $LFE68:
 	.end wmemset
 	.align 2
+	.align 4
 	.globl bcopy
 	.ent bcopy
 $bcopy..ng:
@@ -2565,6 +2635,7 @@ $L297:
 $LFE69:
 	.end bcopy
 	.align 2
+	.align 4
 	.globl rotl64
 	.ent rotl64
 $rotl64..ng:
@@ -2582,6 +2653,7 @@ $LFB70:
 $LFE70:
 	.end rotl64
 	.align 2
+	.align 4
 	.globl rotr64
 	.ent rotr64
 $rotr64..ng:
@@ -2599,6 +2671,7 @@ $LFB71:
 $LFE71:
 	.end rotr64
 	.align 2
+	.align 4
 	.globl rotl32
 	.ent rotl32
 $rotl32..ng:
@@ -2619,6 +2692,7 @@ $LFB72:
 $LFE72:
 	.end rotl32
 	.align 2
+	.align 4
 	.globl rotr32
 	.ent rotr32
 $rotr32..ng:
@@ -2639,6 +2713,7 @@ $LFB73:
 $LFE73:
 	.end rotr32
 	.align 2
+	.align 4
 	.globl rotl_sz
 	.ent rotl_sz
 $rotl_sz..ng:
@@ -2656,6 +2731,7 @@ $LFB74:
 $LFE74:
 	.end rotl_sz
 	.align 2
+	.align 4
 	.globl rotr_sz
 	.ent rotr_sz
 $rotr_sz..ng:
@@ -2673,6 +2749,7 @@ $LFB75:
 $LFE75:
 	.end rotr_sz
 	.align 2
+	.align 4
 	.globl rotl16
 	.ent rotl16
 $rotl16..ng:
@@ -2693,6 +2770,7 @@ $LFB76:
 $LFE76:
 	.end rotl16
 	.align 2
+	.align 4
 	.globl rotr16
 	.ent rotr16
 $rotr16..ng:
@@ -2713,6 +2791,7 @@ $LFB77:
 $LFE77:
 	.end rotr16
 	.align 2
+	.align 4
 	.globl rotl8
 	.ent rotl8
 $rotl8..ng:
@@ -2733,6 +2812,7 @@ $LFB78:
 $LFE78:
 	.end rotl8
 	.align 2
+	.align 4
 	.globl rotr8
 	.ent rotr8
 $rotr8..ng:
@@ -2753,6 +2833,7 @@ $LFB79:
 $LFE79:
 	.end rotr8
 	.align 2
+	.align 4
 	.globl bswap_16
 	.ent bswap_16
 $bswap_16..ng:
@@ -2769,6 +2850,7 @@ $LFB80:
 $LFE80:
 	.end bswap_16
 	.align 2
+	.align 4
 	.globl bswap_32
 	.ent bswap_32
 $bswap_32..ng:
@@ -2792,6 +2874,7 @@ $LFB81:
 $LFE81:
 	.end bswap_32
 	.align 2
+	.align 4
 	.globl bswap_64
 	.ent bswap_64
 $bswap_64..ng:
@@ -2826,6 +2909,7 @@ $LFB82:
 $LFE82:
 	.end bswap_64
 	.align 2
+	.align 4
 	.globl ffs
 	.ent ffs
 $ffs..ng:
@@ -2852,6 +2936,7 @@ $L322:
 $LFE83:
 	.end ffs
 	.align 2
+	.align 4
 	.globl libiberty_ffs
 	.ent libiberty_ffs
 $libiberty_ffs..ng:
@@ -2875,6 +2960,7 @@ $L324:
 $LFE84:
 	.end libiberty_ffs
 	.align 2
+	.align 4
 	.globl gl_isinff
 	.ent gl_isinff
 gl_isinff:
@@ -2903,6 +2989,7 @@ $L329:
 $LFE85:
 	.end gl_isinff
 	.align 2
+	.align 4
 	.globl gl_isinfd
 	.ent gl_isinfd
 gl_isinfd:
@@ -2931,6 +3018,7 @@ $L333:
 $LFE86:
 	.end gl_isinfd
 	.align 2
+	.align 4
 	.globl gl_isinfl
 	.ent gl_isinfl
 gl_isinfl:
@@ -2990,6 +3078,7 @@ $L337:
 $LFE87:
 	.end gl_isinfl
 	.align 2
+	.align 4
 	.globl _Qp_itoq
 	.ent _Qp_itoq
 _Qp_itoq:
@@ -3028,6 +3117,7 @@ $_Qp_itoq..ng:
 $LFE88:
 	.end _Qp_itoq
 	.align 2
+	.align 4
 	.globl ldexpf
 	.ent ldexpf
 ldexpf:
@@ -3068,6 +3158,7 @@ $L341:
 $LFE89:
 	.end ldexpf
 	.align 2
+	.align 4
 	.globl ldexp
 	.ent ldexp
 ldexp:
@@ -3109,6 +3200,7 @@ $L347:
 $LFE90:
 	.end ldexp
 	.align 2
+	.align 4
 	.globl ldexpl
 	.ent ldexpl
 ldexpl:
@@ -3260,6 +3352,7 @@ $L354:
 $LFE91:
 	.end ldexpl
 	.align 2
+	.align 4
 	.globl memxor
 	.ent memxor
 $memxor..ng:
@@ -3294,6 +3387,7 @@ $L361:
 $LFE92:
 	.end memxor
 	.align 2
+	.align 4
 	.globl strncat
 	.ent strncat
 strncat:
@@ -3361,6 +3455,7 @@ $L368:
 $LFE93:
 	.end strncat
 	.align 2
+	.align 4
 	.globl strnlen
 	.ent strnlen
 $strnlen..ng:
@@ -3393,6 +3488,7 @@ $L378:
 $LFE94:
 	.end strnlen
 	.align 2
+	.align 4
 	.globl strpbrk
 	.ent strpbrk
 $strpbrk..ng:
@@ -3436,6 +3532,7 @@ $L387:
 $LFE95:
 	.end strpbrk
 	.align 2
+	.align 4
 	.globl strrchr
 	.ent strrchr
 $strrchr..ng:
@@ -3459,6 +3556,7 @@ $L390:
 $LFE96:
 	.end strrchr
 	.align 2
+	.align 4
 	.globl strstr
 	.ent strstr
 strstr:
@@ -3538,6 +3636,7 @@ $L393:
 $LFE97:
 	.end strstr
 	.align 2
+	.align 4
 	.globl copysign
 	.ent copysign
 $copysign..ng:
@@ -3566,6 +3665,7 @@ $L401:
 $LFE98:
 	.end copysign
 	.align 2
+	.align 4
 	.globl memmem
 	.ent memmem
 memmem:
@@ -3656,6 +3756,7 @@ $L414:
 $LFE99:
 	.end memmem
 	.align 2
+	.align 4
 	.globl mempcpy
 	.ent mempcpy
 mempcpy:
@@ -3690,6 +3791,7 @@ $mempcpy..ng:
 $LFE100:
 	.end mempcpy
 	.align 2
+	.align 4
 	.globl frexp
 	.ent frexp
 frexp:
@@ -3755,6 +3857,7 @@ $L428:
 $LFE101:
 	.end frexp
 	.align 2
+	.align 4
 	.globl __muldi3
 	.ent __muldi3
 $__muldi3..ng:
@@ -3779,6 +3882,7 @@ $L440:
 $LFE102:
 	.end __muldi3
 	.align 2
+	.align 4
 	.globl udivmodsi4
 	.ent udivmodsi4
 $udivmodsi4..ng:
@@ -3830,6 +3934,7 @@ $L448:
 $LFE103:
 	.end udivmodsi4
 	.align 2
+	.align 4
 	.globl __clrsbqi2
 	.ent __clrsbqi2
 __clrsbqi2:
@@ -3869,6 +3974,7 @@ $L461:
 $LFE104:
 	.end __clrsbqi2
 	.align 2
+	.align 4
 	.globl __clrsbdi2
 	.ent __clrsbdi2
 __clrsbdi2:
@@ -3905,6 +4011,7 @@ $L464:
 $LFE105:
 	.end __clrsbdi2
 	.align 2
+	.align 4
 	.globl __mulsi3
 	.ent __mulsi3
 $__mulsi3..ng:
@@ -3931,6 +4038,7 @@ $L467:
 $LFE106:
 	.end __mulsi3
 	.align 2
+	.align 4
 	.globl __cmovd
 	.ent __cmovd
 $__cmovd..ng:
@@ -4014,6 +4122,7 @@ $L477:
 $LFE107:
 	.end __cmovd
 	.align 2
+	.align 4
 	.globl __cmovh
 	.ent __cmovh
 $__cmovh..ng:
@@ -4092,6 +4201,7 @@ $L488:
 $LFE108:
 	.end __cmovh
 	.align 2
+	.align 4
 	.globl __cmovw
 	.ent __cmovw
 $__cmovw..ng:
@@ -4175,6 +4285,7 @@ $L501:
 $LFE109:
 	.end __cmovw
 	.align 2
+	.align 4
 	.globl __modi
 	.ent __modi
 __modi:
@@ -4195,6 +4306,7 @@ $__modi..ng:
 $LFE110:
 	.end __modi
 	.align 2
+	.align 4
 	.globl __uitod
 	.ent __uitod
 $__uitod..ng:
@@ -4216,6 +4328,7 @@ $LFB111:
 $LFE111:
 	.end __uitod
 	.align 2
+	.align 4
 	.globl __uitof
 	.ent __uitof
 $__uitof..ng:
@@ -4237,6 +4350,7 @@ $LFB112:
 $LFE112:
 	.end __uitof
 	.align 2
+	.align 4
 	.globl __ulltod
 	.ent __ulltod
 $__ulltod..ng:
@@ -4270,6 +4384,7 @@ $L516:
 $LFE113:
 	.end __ulltod
 	.align 2
+	.align 4
 	.globl __ulltof
 	.ent __ulltof
 $__ulltof..ng:
@@ -4303,6 +4418,7 @@ $L519:
 $LFE114:
 	.end __ulltof
 	.align 2
+	.align 4
 	.globl __umodi
 	.ent __umodi
 __umodi:
@@ -4323,6 +4439,7 @@ $__umodi..ng:
 $LFE115:
 	.end __umodi
 	.align 2
+	.align 4
 	.globl __clzhi2
 	.ent __clzhi2
 $__clzhi2..ng:
@@ -4346,6 +4463,7 @@ $L523:
 $LFE116:
 	.end __clzhi2
 	.align 2
+	.align 4
 	.globl __ctzhi2
 	.ent __ctzhi2
 $__ctzhi2..ng:
@@ -4367,6 +4485,7 @@ $L527:
 $LFE117:
 	.end __ctzhi2
 	.align 2
+	.align 4
 	.globl __fixunssfsi
 	.ent __fixunssfsi
 __fixunssfsi:
@@ -4405,6 +4524,7 @@ $L536:
 $LFE118:
 	.end __fixunssfsi
 	.align 2
+	.align 4
 	.globl __parityhi2
 	.ent __parityhi2
 $__parityhi2..ng:
@@ -4428,6 +4548,7 @@ $L538:
 $LFE119:
 	.end __parityhi2
 	.align 2
+	.align 4
 	.globl __popcounthi2
 	.ent __popcounthi2
 $__popcounthi2..ng:
@@ -4450,6 +4571,7 @@ $L541:
 $LFE120:
 	.end __popcounthi2
 	.align 2
+	.align 4
 	.globl __mulsi3_iq2000
 	.ent __mulsi3_iq2000
 $__mulsi3_iq2000..ng:
@@ -4476,6 +4598,7 @@ $L544:
 $LFE121:
 	.end __mulsi3_iq2000
 	.align 2
+	.align 4
 	.globl __mulsi3_lm32
 	.ent __mulsi3_lm32
 $__mulsi3_lm32..ng:
@@ -4504,6 +4627,7 @@ $L549:
 $LFE122:
 	.end __mulsi3_lm32
 	.align 2
+	.align 4
 	.globl __udivmodsi4
 	.ent __udivmodsi4
 $__udivmodsi4..ng:
@@ -4555,6 +4679,7 @@ $L557:
 $LFE123:
 	.end __udivmodsi4
 	.align 2
+	.align 4
 	.globl __mspabi_cmpf
 	.ent __mspabi_cmpf
 $__mspabi_cmpf..ng:
@@ -4576,6 +4701,7 @@ $L570:
 $LFE124:
 	.end __mspabi_cmpf
 	.align 2
+	.align 4
 	.globl __mspabi_cmpd
 	.ent __mspabi_cmpd
 $__mspabi_cmpd..ng:
@@ -4597,6 +4723,7 @@ $L574:
 $LFE125:
 	.end __mspabi_cmpd
 	.align 2
+	.align 4
 	.globl __mspabi_mpysll
 	.ent __mspabi_mpysll
 $__mspabi_mpysll..ng:
@@ -4611,6 +4738,7 @@ $LFB126:
 $LFE126:
 	.end __mspabi_mpysll
 	.align 2
+	.align 4
 	.globl __mspabi_mpyull
 	.ent __mspabi_mpyull
 $__mspabi_mpyull..ng:
@@ -4625,6 +4753,7 @@ $LFB127:
 $LFE127:
 	.end __mspabi_mpyull
 	.align 2
+	.align 4
 	.globl __mulhi3
 	.ent __mulhi3
 $__mulhi3..ng:
@@ -4666,6 +4795,7 @@ $L587:
 $LFE128:
 	.end __mulhi3
 	.align 2
+	.align 4
 	.globl __divsi3
 	.ent __divsi3
 __divsi3:
@@ -4721,6 +4851,7 @@ $L594:
 $LFE129:
 	.end __divsi3
 	.align 2
+	.align 4
 	.globl __modsi3
 	.ent __modsi3
 __modsi3:
@@ -4771,6 +4902,7 @@ $L599:
 $LFE130:
 	.end __modsi3
 	.align 2
+	.align 4
 	.globl __udivmodhi4
 	.ent __udivmodhi4
 $__udivmodhi4..ng:
@@ -4816,6 +4948,7 @@ $L603:
 $LFE131:
 	.end __udivmodhi4
 	.align 2
+	.align 4
 	.globl __udivmodsi4_libgcc
 	.ent __udivmodsi4_libgcc
 $__udivmodsi4_libgcc..ng:
@@ -4857,6 +4990,7 @@ $L618:
 $LFE132:
 	.end __udivmodsi4_libgcc
 	.align 2
+	.align 4
 	.globl __ashldi3
 	.ent __ashldi3
 $__ashldi3..ng:
@@ -4897,6 +5031,7 @@ $L631:
 $LFE133:
 	.end __ashldi3
 	.align 2
+	.align 4
 	.globl __ashlti3
 	.ent __ashlti3
 $__ashlti3..ng:
@@ -4928,6 +5063,7 @@ $L636:
 $LFE134:
 	.end __ashlti3
 	.align 2
+	.align 4
 	.globl __ashrdi3
 	.ent __ashrdi3
 $__ashrdi3..ng:
@@ -4967,6 +5103,7 @@ $L640:
 $LFE135:
 	.end __ashrdi3
 	.align 2
+	.align 4
 	.globl __ashrti3
 	.ent __ashrti3
 $__ashrti3..ng:
@@ -4998,6 +5135,7 @@ $L645:
 $LFE136:
 	.end __ashrti3
 	.align 2
+	.align 4
 	.globl __bswapdi2
 	.ent __bswapdi2
 $__bswapdi2..ng:
@@ -5032,6 +5170,7 @@ $LFB137:
 $LFE137:
 	.end __bswapdi2
 	.align 2
+	.align 4
 	.globl __bswapsi2
 	.ent __bswapsi2
 $__bswapsi2..ng:
@@ -5055,6 +5194,7 @@ $LFB138:
 $LFE138:
 	.end __bswapsi2
 	.align 2
+	.align 4
 	.globl __clzsi2
 	.ent __clzsi2
 $__clzsi2..ng:
@@ -5108,6 +5248,7 @@ $LFB139:
 $LFE139:
 	.end __clzsi2
 	.align 2
+	.align 4
 	.globl __clzti2
 	.ent __clzti2
 __clzti2:
@@ -5147,6 +5288,7 @@ $__clzti2..ng:
 $LFE140:
 	.end __clzti2
 	.align 2
+	.align 4
 	.globl __cmpdi2
 	.ent __cmpdi2
 $__cmpdi2..ng:
@@ -5180,6 +5322,7 @@ $L653:
 $LFE141:
 	.end __cmpdi2
 	.align 2
+	.align 4
 	.globl __aeabi_lcmp
 	.ent __aeabi_lcmp
 __aeabi_lcmp:
@@ -5209,6 +5352,7 @@ $__aeabi_lcmp..ng:
 $LFE142:
 	.end __aeabi_lcmp
 	.align 2
+	.align 4
 	.globl __cmpti2
 	.ent __cmpti2
 $__cmpti2..ng:
@@ -5234,6 +5378,7 @@ $L660:
 $LFE143:
 	.end __cmpti2
 	.align 2
+	.align 4
 	.globl __ctzsi2
 	.ent __ctzsi2
 $__ctzsi2..ng:
@@ -5279,6 +5424,7 @@ $LFB144:
 $LFE144:
 	.end __ctzsi2
 	.align 2
+	.align 4
 	.globl __ctzti2
 	.ent __ctzti2
 __ctzti2:
@@ -5318,6 +5464,7 @@ $__ctzti2..ng:
 $LFE145:
 	.end __ctzti2
 	.align 2
+	.align 4
 	.globl __ffsti2
 	.ent __ffsti2
 __ffsti2:
@@ -5359,6 +5506,7 @@ $L669:
 $LFE146:
 	.end __ffsti2
 	.align 2
+	.align 4
 	.globl __lshrdi3
 	.ent __lshrdi3
 $__lshrdi3..ng:
@@ -5400,6 +5548,7 @@ $L672:
 $LFE147:
 	.end __lshrdi3
 	.align 2
+	.align 4
 	.globl __lshrti3
 	.ent __lshrti3
 $__lshrti3..ng:
@@ -5430,6 +5579,7 @@ $L677:
 $LFE148:
 	.end __lshrti3
 	.align 2
+	.align 4
 	.globl __muldsi3
 	.ent __muldsi3
 $__muldsi3..ng:
@@ -5473,6 +5623,7 @@ $LFB149:
 $LFE149:
 	.end __muldsi3
 	.align 2
+	.align 4
 	.globl __muldi3_compiler_rt
 	.ent __muldi3_compiler_rt
 __muldi3_compiler_rt:
@@ -5534,6 +5685,7 @@ $__muldi3_compiler_rt..ng:
 $LFE150:
 	.end __muldi3_compiler_rt
 	.align 2
+	.align 4
 	.globl __mulddi3
 	.ent __mulddi3
 $__mulddi3..ng:
@@ -5569,6 +5721,7 @@ $LFB151:
 $LFE151:
 	.end __mulddi3
 	.align 2
+	.align 4
 	.globl __multi3
 	.ent __multi3
 __multi3:
@@ -5633,6 +5786,7 @@ $__multi3..ng:
 $LFE152:
 	.end __multi3
 	.align 2
+	.align 4
 	.globl __negdi2
 	.ent __negdi2
 $__negdi2..ng:
@@ -5647,6 +5801,7 @@ $LFB153:
 $LFE153:
 	.end __negdi2
 	.align 2
+	.align 4
 	.globl __negti2
 	.ent __negti2
 $__negti2..ng:
@@ -5667,6 +5822,7 @@ $LFB154:
 $LFE154:
 	.end __negti2
 	.align 2
+	.align 4
 	.globl __paritydi2
 	.ent __paritydi2
 $__paritydi2..ng:
@@ -5695,6 +5851,7 @@ $LFB155:
 $LFE155:
 	.end __paritydi2
 	.align 2
+	.align 4
 	.globl __parityti2
 	.ent __parityti2
 $__parityti2..ng:
@@ -5724,6 +5881,7 @@ $LFB156:
 $LFE156:
 	.end __parityti2
 	.align 2
+	.align 4
 	.globl __paritysi2
 	.ent __paritysi2
 $__paritysi2..ng:
@@ -5749,6 +5907,7 @@ $LFB157:
 $LFE157:
 	.end __paritysi2
 	.align 2
+	.align 4
 	.globl __popcountdi2
 	.ent __popcountdi2
 __popcountdi2:
@@ -5789,6 +5948,7 @@ $__popcountdi2..ng:
 $LFE158:
 	.end __popcountdi2
 	.align 2
+	.align 4
 	.globl __popcountsi2
 	.ent __popcountsi2
 $__popcountsi2..ng:
@@ -5826,6 +5986,7 @@ $LFB159:
 $LFE159:
 	.end __popcountsi2
 	.align 2
+	.align 4
 	.globl __popcountti2
 	.ent __popcountti2
 __popcountti2:
@@ -5889,6 +6050,7 @@ $__popcountti2..ng:
 $LFE160:
 	.end __popcountti2
 	.align 2
+	.align 4
 	.globl __powidf2
 	.ent __powidf2
 __powidf2:
@@ -5927,6 +6089,7 @@ $L697:
 $LFE161:
 	.end __powidf2
 	.align 2
+	.align 4
 	.globl __powisf2
 	.ent __powisf2
 __powisf2:
@@ -5965,6 +6128,7 @@ $L703:
 $LFE162:
 	.end __powisf2
 	.align 2
+	.align 4
 	.globl __ucmpdi2
 	.ent __ucmpdi2
 $__ucmpdi2..ng:
@@ -6001,6 +6165,7 @@ $L705:
 $LFE163:
 	.end __ucmpdi2
 	.align 2
+	.align 4
 	.globl __aeabi_ulcmp
 	.ent __aeabi_ulcmp
 __aeabi_ulcmp:
@@ -6030,6 +6195,7 @@ $__aeabi_ulcmp..ng:
 $LFE164:
 	.end __aeabi_ulcmp
 	.align 2
+	.align 4
 	.globl __ucmpti2
 	.ent __ucmpti2
 $__ucmpti2..ng:

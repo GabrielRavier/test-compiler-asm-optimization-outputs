@@ -1,6 +1,7 @@
 	.file	"mini-libc.c"
 	.intel_syntax noprefix
 	.text
+	.p2align 4
 	.globl	_memmove
 	.def	_memmove;	.scl	2;	.type	32;	.endef
 _memmove:
@@ -54,6 +55,7 @@ L5:
 	jmp	L3
 	.cfi_endproc
 LFE2:
+	.p2align 4
 	.globl	_memccpy
 	.def	_memccpy;	.scl	2;	.type	32;	.endef
 _memccpy:
@@ -95,6 +97,7 @@ L11:
 	ret
 	.cfi_endproc
 LFE3:
+	.p2align 4
 	.globl	_memchr
 	.def	_memchr;	.scl	2;	.type	32;	.endef
 _memchr:
@@ -126,6 +129,7 @@ L19:
 	ret
 	.cfi_endproc
 LFE4:
+	.p2align 4
 	.globl	_memcmp
 	.def	_memcmp;	.scl	2;	.type	32;	.endef
 _memcmp:
@@ -163,6 +167,7 @@ L25:
 	ret
 	.cfi_endproc
 LFE5:
+	.p2align 4
 	.globl	_memcpy
 	.def	_memcpy;	.scl	2;	.type	32;	.endef
 _memcpy:
@@ -192,6 +197,7 @@ L34:
 	ret
 	.cfi_endproc
 LFE6:
+	.p2align 4
 	.globl	_memrchr
 	.def	_memrchr;	.scl	2;	.type	32;	.endef
 _memrchr:
@@ -231,6 +237,7 @@ L36:
 	ret
 	.cfi_endproc
 LFE7:
+	.p2align 4
 	.globl	_memset
 	.def	_memset;	.scl	2;	.type	32;	.endef
 _memset:
@@ -279,6 +286,7 @@ L49:
 	jmp	L43
 	.cfi_endproc
 LFE8:
+	.p2align 4
 	.globl	_stpcpy
 	.def	_stpcpy;	.scl	2;	.type	32;	.endef
 _stpcpy:
@@ -302,6 +310,7 @@ L52:
 	ret
 	.cfi_endproc
 LFE9:
+	.p2align 4
 	.globl	_strchrnul
 	.def	_strchrnul;	.scl	2;	.type	32;	.endef
 _strchrnul:
@@ -326,6 +335,7 @@ L61:
 	ret
 	.cfi_endproc
 LFE10:
+	.p2align 4
 	.globl	_strchr
 	.def	_strchr;	.scl	2;	.type	32;	.endef
 _strchr:
@@ -352,6 +362,7 @@ L63:
 	ret
 	.cfi_endproc
 LFE11:
+	.p2align 4
 	.globl	_strcmp
 	.def	_strcmp;	.scl	2;	.type	32;	.endef
 _strcmp:
@@ -392,6 +403,7 @@ L68:
 	ret
 	.cfi_endproc
 LFE12:
+	.p2align 4
 	.globl	_strlen
 	.def	_strlen;	.scl	2;	.type	32;	.endef
 _strlen:
@@ -414,6 +426,7 @@ L76:
 	jmp	L74
 	.cfi_endproc
 LFE13:
+	.p2align 4
 	.globl	_strncmp
 	.def	_strncmp;	.scl	2;	.type	32;	.endef
 _strncmp:
@@ -481,6 +494,7 @@ L85:
 	jmp	L80
 	.cfi_endproc
 LFE14:
+	.p2align 4
 	.globl	_swab
 	.def	_swab;	.scl	2;	.type	32;	.endef
 _swab:
@@ -513,6 +527,7 @@ L88:
 	ret
 	.cfi_endproc
 LFE15:
+	.p2align 4
 	.globl	_isalpha
 	.def	_isalpha;	.scl	2;	.type	32;	.endef
 _isalpha:
@@ -527,6 +542,7 @@ LFB16:
 	ret
 	.cfi_endproc
 LFE16:
+	.p2align 4
 	.globl	_isascii
 	.def	_isascii;	.scl	2;	.type	32;	.endef
 _isascii:
@@ -538,6 +554,7 @@ LFB17:
 	ret
 	.cfi_endproc
 LFE17:
+	.p2align 4
 	.globl	_isblank
 	.def	_isblank;	.scl	2;	.type	32;	.endef
 _isblank:
@@ -553,6 +570,7 @@ LFB18:
 	ret
 	.cfi_endproc
 LFE18:
+	.p2align 4
 	.globl	_iscntrl
 	.def	_iscntrl;	.scl	2;	.type	32;	.endef
 _iscntrl:
@@ -568,6 +586,7 @@ LFB19:
 	ret
 	.cfi_endproc
 LFE19:
+	.p2align 4
 	.globl	_isdigit
 	.def	_isdigit;	.scl	2;	.type	32;	.endef
 _isdigit:
@@ -581,6 +600,7 @@ LFB20:
 	ret
 	.cfi_endproc
 LFE20:
+	.p2align 4
 	.globl	_isgraph
 	.def	_isgraph;	.scl	2;	.type	32;	.endef
 _isgraph:
@@ -594,6 +614,7 @@ LFB21:
 	ret
 	.cfi_endproc
 LFE21:
+	.p2align 4
 	.globl	_islower
 	.def	_islower;	.scl	2;	.type	32;	.endef
 _islower:
@@ -607,6 +628,7 @@ LFB22:
 	ret
 	.cfi_endproc
 LFE22:
+	.p2align 4
 	.globl	_isprint
 	.def	_isprint;	.scl	2;	.type	32;	.endef
 _isprint:
@@ -620,6 +642,7 @@ LFB23:
 	ret
 	.cfi_endproc
 LFE23:
+	.p2align 4
 	.globl	_isspace
 	.def	_isspace;	.scl	2;	.type	32;	.endef
 _isspace:
@@ -636,6 +659,7 @@ LFB24:
 	ret
 	.cfi_endproc
 LFE24:
+	.p2align 4
 	.globl	_isupper
 	.def	_isupper;	.scl	2;	.type	32;	.endef
 _isupper:
@@ -649,6 +673,7 @@ LFB25:
 	ret
 	.cfi_endproc
 LFE25:
+	.p2align 4
 	.globl	_iswcntrl
 	.def	_iswcntrl;	.scl	2;	.type	32;	.endef
 _iswcntrl:
@@ -677,6 +702,7 @@ L103:
 	ret
 	.cfi_endproc
 LFE26:
+	.p2align 4
 	.globl	_iswdigit
 	.def	_iswdigit;	.scl	2;	.type	32;	.endef
 _iswdigit:
@@ -690,6 +716,7 @@ LFB27:
 	ret
 	.cfi_endproc
 LFE27:
+	.p2align 4
 	.globl	_iswprint
 	.def	_iswprint;	.scl	2;	.type	32;	.endef
 _iswprint:
@@ -739,6 +766,7 @@ L111:
 	jmp	L108
 	.cfi_endproc
 LFE28:
+	.p2align 4
 	.globl	_iswxdigit
 	.def	_iswxdigit;	.scl	2;	.type	32;	.endef
 _iswxdigit:
@@ -761,6 +789,7 @@ L116:
 	ret
 	.cfi_endproc
 LFE29:
+	.p2align 4
 	.globl	_toascii
 	.def	_toascii;	.scl	2;	.type	32;	.endef
 _toascii:
@@ -771,6 +800,7 @@ LFB30:
 	ret
 	.cfi_endproc
 LFE30:
+	.p2align 4
 	.globl	_fdim
 	.def	_fdim;	.scl	2;	.type	32;	.endef
 _fdim:
@@ -802,6 +832,7 @@ L120:
 	ret
 	.cfi_endproc
 LFE31:
+	.p2align 4
 	.globl	_fdimf
 	.def	_fdimf;	.scl	2;	.type	32;	.endef
 _fdimf:
@@ -833,6 +864,7 @@ L129:
 	ret
 	.cfi_endproc
 LFE32:
+	.p2align 4
 	.globl	_fmax
 	.def	_fmax;	.scl	2;	.type	32;	.endef
 _fmax:
@@ -874,6 +906,7 @@ L138:
 	ret
 	.cfi_endproc
 LFE33:
+	.p2align 4
 	.globl	_fmaxf
 	.def	_fmaxf;	.scl	2;	.type	32;	.endef
 _fmaxf:
@@ -915,6 +948,7 @@ L147:
 	ret
 	.cfi_endproc
 LFE34:
+	.p2align 4
 	.globl	_fmaxl
 	.def	_fmaxl;	.scl	2;	.type	32;	.endef
 _fmaxl:
@@ -965,6 +999,7 @@ L156:
 	ret
 	.cfi_endproc
 LFE35:
+	.p2align 4
 	.globl	_fmin
 	.def	_fmin;	.scl	2;	.type	32;	.endef
 _fmin:
@@ -1006,6 +1041,7 @@ L166:
 	ret
 	.cfi_endproc
 LFE36:
+	.p2align 4
 	.globl	_fminf
 	.def	_fminf;	.scl	2;	.type	32;	.endef
 _fminf:
@@ -1047,6 +1083,7 @@ L175:
 	ret
 	.cfi_endproc
 LFE37:
+	.p2align 4
 	.globl	_fminl
 	.def	_fminl;	.scl	2;	.type	32;	.endef
 _fminl:
@@ -1095,6 +1132,7 @@ L184:
 	ret
 	.cfi_endproc
 LFE38:
+	.p2align 4
 	.globl	_l64a
 	.def	_l64a;	.scl	2;	.type	32;	.endef
 _l64a:
@@ -1123,6 +1161,7 @@ L197:
 	jmp	L195
 	.cfi_endproc
 LFE39:
+	.p2align 4
 	.globl	_srand
 	.def	_srand;	.scl	2;	.type	32;	.endef
 _srand:
@@ -1135,6 +1174,7 @@ LFB40:
 	ret
 	.cfi_endproc
 LFE40:
+	.p2align 4
 	.globl	_rand
 	.def	_rand;	.scl	2;	.type	32;	.endef
 _rand:
@@ -1156,6 +1196,7 @@ LFB41:
 	ret
 	.cfi_endproc
 LFE41:
+	.p2align 4
 	.globl	_insque
 	.def	_insque;	.scl	2;	.type	32;	.endef
 _insque:
@@ -1181,6 +1222,7 @@ L204:
 	ret
 	.cfi_endproc
 LFE42:
+	.p2align 4
 	.globl	_remque
 	.def	_remque;	.scl	2;	.type	32;	.endef
 _remque:
@@ -1202,6 +1244,7 @@ L205:
 	ret
 	.cfi_endproc
 LFE43:
+	.p2align 4
 	.globl	_lsearch
 	.def	_lsearch;	.scl	2;	.type	32;	.endef
 _lsearch:
@@ -1278,6 +1321,7 @@ L213:
 	jmp	L208
 	.cfi_endproc
 LFE44:
+	.p2align 4
 	.globl	_lfind
 	.def	_lfind;	.scl	2;	.type	32;	.endef
 _lfind:
@@ -1340,6 +1384,7 @@ L215:
 	ret
 	.cfi_endproc
 LFE45:
+	.p2align 4
 	.globl	_abs
 	.def	_abs;	.scl	2;	.type	32;	.endef
 _abs:
@@ -1352,6 +1397,7 @@ LFB46:
 	ret
 	.cfi_endproc
 LFE46:
+	.p2align 4
 	.globl	_atoi
 	.def	_atoi;	.scl	2;	.type	32;	.endef
 _atoi:
@@ -1432,6 +1478,7 @@ L231:
 	jmp	L226
 	.cfi_endproc
 LFE47:
+	.p2align 4
 	.globl	_atol
 	.def	_atol;	.scl	2;	.type	32;	.endef
 _atol:
@@ -1512,6 +1559,7 @@ L244:
 	jmp	L239
 	.cfi_endproc
 LFE48:
+	.p2align 4
 	.globl	_atoll
 	.def	_atoll;	.scl	2;	.type	32;	.endef
 _atoll:
@@ -1606,6 +1654,7 @@ L249:
 	ret
 	.cfi_endproc
 LFE49:
+	.p2align 4
 	.globl	_bsearch
 	.def	_bsearch;	.scl	2;	.type	32;	.endef
 _bsearch:
@@ -1675,6 +1724,7 @@ L265:
 	jmp	L263
 	.cfi_endproc
 LFE50:
+	.p2align 4
 	.globl	_bsearch_r
 	.def	_bsearch_r;	.scl	2;	.type	32;	.endef
 _bsearch_r:
@@ -1742,6 +1792,7 @@ L270:
 	ret
 	.cfi_endproc
 LFE51:
+	.p2align 4
 	.globl	_div
 	.def	_div;	.scl	2;	.type	32;	.endef
 _div:
@@ -1753,6 +1804,7 @@ LFB52:
 	ret
 	.cfi_endproc
 LFE52:
+	.p2align 4
 	.globl	_imaxabs
 	.def	_imaxabs;	.scl	2;	.type	32;	.endef
 _imaxabs:
@@ -1776,6 +1828,7 @@ LFB53:
 	ret
 	.cfi_endproc
 LFE53:
+	.p2align 4
 	.globl	_imaxdiv
 	.def	_imaxdiv;	.scl	2;	.type	32;	.endef
 _imaxdiv:
@@ -1830,6 +1883,7 @@ LFB54:
 	ret
 	.cfi_endproc
 LFE54:
+	.p2align 4
 	.globl	_labs
 	.def	_labs;	.scl	2;	.type	32;	.endef
 _labs:
@@ -1842,6 +1896,7 @@ LFB55:
 	ret
 	.cfi_endproc
 LFE55:
+	.p2align 4
 	.globl	_ldiv
 	.def	_ldiv;	.scl	2;	.type	32;	.endef
 _ldiv:
@@ -1853,6 +1908,7 @@ LFB56:
 	ret
 	.cfi_endproc
 LFE56:
+	.p2align 4
 	.globl	_llabs
 	.def	_llabs;	.scl	2;	.type	32;	.endef
 _llabs:
@@ -1876,6 +1932,7 @@ LFB57:
 	ret
 	.cfi_endproc
 LFE57:
+	.p2align 4
 	.globl	_lldiv
 	.def	_lldiv;	.scl	2;	.type	32;	.endef
 _lldiv:
@@ -1930,6 +1987,7 @@ LFB58:
 	ret
 	.cfi_endproc
 LFE58:
+	.p2align 4
 	.globl	_wcschr
 	.def	_wcschr;	.scl	2;	.type	32;	.endef
 _wcschr:
@@ -1957,6 +2015,7 @@ L290:
 	ret
 	.cfi_endproc
 LFE59:
+	.p2align 4
 	.globl	_wcscmp
 	.def	_wcscmp;	.scl	2;	.type	32;	.endef
 _wcscmp:
@@ -2031,6 +2090,7 @@ L295:
 	ret
 	.cfi_endproc
 LFE60:
+	.p2align 4
 	.globl	_wcscpy
 	.def	_wcscpy;	.scl	2;	.type	32;	.endef
 _wcscpy:
@@ -2056,6 +2116,7 @@ L304:
 	ret
 	.cfi_endproc
 LFE61:
+	.p2align 4
 	.globl	_wcslen
 	.def	_wcslen;	.scl	2;	.type	32;	.endef
 _wcslen:
@@ -2079,6 +2140,7 @@ L310:
 	jmp	L308
 	.cfi_endproc
 LFE62:
+	.p2align 4
 	.globl	_wcsncmp
 	.def	_wcsncmp;	.scl	2;	.type	32;	.endef
 _wcsncmp:
@@ -2145,6 +2207,7 @@ L312:
 	ret
 	.cfi_endproc
 LFE63:
+	.p2align 4
 	.globl	_wmemchr
 	.def	_wmemchr;	.scl	2;	.type	32;	.endef
 _wmemchr:
@@ -2169,6 +2232,7 @@ L324:
 	ret
 	.cfi_endproc
 LFE64:
+	.p2align 4
 	.globl	_wmemcmp
 	.def	_wmemcmp;	.scl	2;	.type	32;	.endef
 _wmemcmp:
@@ -2211,6 +2275,7 @@ L329:
 	ret
 	.cfi_endproc
 LFE65:
+	.p2align 4
 	.globl	_wmemcpy
 	.def	_wmemcpy;	.scl	2;	.type	32;	.endef
 _wmemcpy:
@@ -2241,6 +2306,7 @@ L339:
 	ret
 	.cfi_endproc
 LFE66:
+	.p2align 4
 	.globl	_wmemmove
 	.def	_wmemmove;	.scl	2;	.type	32;	.endef
 _wmemmove:
@@ -2298,6 +2364,7 @@ L342:
 	ret
 	.cfi_endproc
 LFE67:
+	.p2align 4
 	.globl	_wmemset
 	.def	_wmemset;	.scl	2;	.type	32;	.endef
 _wmemset:
@@ -2328,6 +2395,7 @@ L352:
 	ret
 	.cfi_endproc
 LFE68:
+	.p2align 4
 	.globl	_bcopy
 	.def	_bcopy;	.scl	2;	.type	32;	.endef
 _bcopy:
@@ -2372,6 +2440,7 @@ L360:
 	jmp	L356
 	.cfi_endproc
 LFE69:
+	.p2align 4
 	.globl	_rotl64
 	.def	_rotl64;	.scl	2;	.type	32;	.endef
 _rotl64:
@@ -2414,6 +2483,7 @@ L367:
 	ret
 	.cfi_endproc
 LFE70:
+	.p2align 4
 	.globl	_rotr64
 	.def	_rotr64;	.scl	2;	.type	32;	.endef
 _rotr64:
@@ -2456,6 +2526,7 @@ L371:
 	ret
 	.cfi_endproc
 LFE71:
+	.p2align 4
 	.globl	_rotl32
 	.def	_rotl32;	.scl	2;	.type	32;	.endef
 _rotl32:
@@ -2467,6 +2538,7 @@ LFB72:
 	ret
 	.cfi_endproc
 LFE72:
+	.p2align 4
 	.globl	_rotr32
 	.def	_rotr32;	.scl	2;	.type	32;	.endef
 _rotr32:
@@ -2478,6 +2550,7 @@ LFB73:
 	ret
 	.cfi_endproc
 LFE73:
+	.p2align 4
 	.globl	_rotl_sz
 	.def	_rotl_sz;	.scl	2;	.type	32;	.endef
 _rotl_sz:
@@ -2489,6 +2562,7 @@ LFB74:
 	ret
 	.cfi_endproc
 LFE74:
+	.p2align 4
 	.globl	_rotr_sz
 	.def	_rotr_sz;	.scl	2;	.type	32;	.endef
 _rotr_sz:
@@ -2500,6 +2574,7 @@ LFB75:
 	ret
 	.cfi_endproc
 LFE75:
+	.p2align 4
 	.globl	_rotl16
 	.def	_rotl16;	.scl	2;	.type	32;	.endef
 _rotl16:
@@ -2511,6 +2586,7 @@ LFB76:
 	ret
 	.cfi_endproc
 LFE76:
+	.p2align 4
 	.globl	_rotr16
 	.def	_rotr16;	.scl	2;	.type	32;	.endef
 _rotr16:
@@ -2522,6 +2598,7 @@ LFB77:
 	ret
 	.cfi_endproc
 LFE77:
+	.p2align 4
 	.globl	_rotl8
 	.def	_rotl8;	.scl	2;	.type	32;	.endef
 _rotl8:
@@ -2533,6 +2610,7 @@ LFB78:
 	ret
 	.cfi_endproc
 LFE78:
+	.p2align 4
 	.globl	_rotr8
 	.def	_rotr8;	.scl	2;	.type	32;	.endef
 _rotr8:
@@ -2544,6 +2622,7 @@ LFB79:
 	ret
 	.cfi_endproc
 LFE79:
+	.p2align 4
 	.globl	_bswap_16
 	.def	_bswap_16;	.scl	2;	.type	32;	.endef
 _bswap_16:
@@ -2554,6 +2633,7 @@ LFB80:
 	ret
 	.cfi_endproc
 LFE80:
+	.p2align 4
 	.globl	_bswap_32
 	.def	_bswap_32;	.scl	2;	.type	32;	.endef
 _bswap_32:
@@ -2575,6 +2655,7 @@ LFB81:
 	ret
 	.cfi_endproc
 LFE81:
+	.p2align 4
 	.globl	_bswap_64
 	.def	_bswap_64;	.scl	2;	.type	32;	.endef
 _bswap_64:
@@ -2663,6 +2744,7 @@ LFB82:
 	ret
 	.cfi_endproc
 LFE82:
+	.p2align 4
 	.globl	_ffs
 	.def	_ffs;	.scl	2;	.type	32;	.endef
 _ffs:
@@ -2684,6 +2766,7 @@ L389:
 	ret
 	.cfi_endproc
 LFE83:
+	.p2align 4
 	.globl	_libiberty_ffs
 	.def	_libiberty_ffs;	.scl	2;	.type	32;	.endef
 _libiberty_ffs:
@@ -2707,6 +2790,7 @@ L390:
 	ret
 	.cfi_endproc
 LFE84:
+	.p2align 4
 	.globl	_gl_isinff
 	.def	_gl_isinff;	.scl	2;	.type	32;	.endef
 _gl_isinff:
@@ -2730,6 +2814,7 @@ L395:
 	ret
 	.cfi_endproc
 LFE85:
+	.p2align 4
 	.globl	_gl_isinfd
 	.def	_gl_isinfd;	.scl	2;	.type	32;	.endef
 _gl_isinfd:
@@ -2753,6 +2838,7 @@ L399:
 	ret
 	.cfi_endproc
 LFE86:
+	.p2align 4
 	.globl	_gl_isinfl
 	.def	_gl_isinfl;	.scl	2;	.type	32;	.endef
 _gl_isinfl:
@@ -2776,6 +2862,7 @@ L403:
 	ret
 	.cfi_endproc
 LFE87:
+	.p2align 4
 	.globl	__Qp_itoq
 	.def	__Qp_itoq;	.scl	2;	.type	32;	.endef
 __Qp_itoq:
@@ -2787,6 +2874,7 @@ LFB88:
 	ret
 	.cfi_endproc
 LFE88:
+	.p2align 4
 	.globl	_ldexpf
 	.def	_ldexpf;	.scl	2;	.type	32;	.endef
 _ldexpf:
@@ -2829,6 +2917,7 @@ L413:
 	jmp	L412
 	.cfi_endproc
 LFE89:
+	.p2align 4
 	.globl	_ldexp
 	.def	_ldexp;	.scl	2;	.type	32;	.endef
 _ldexp:
@@ -2872,6 +2961,7 @@ L422:
 	jmp	L421
 	.cfi_endproc
 LFE90:
+	.p2align 4
 	.globl	_ldexpl
 	.def	_ldexpl;	.scl	2;	.type	32;	.endef
 _ldexpl:
@@ -2915,6 +3005,7 @@ L432:
 	jmp	L431
 	.cfi_endproc
 LFE91:
+	.p2align 4
 	.globl	_memxor
 	.def	_memxor;	.scl	2;	.type	32;	.endef
 _memxor:
@@ -2952,6 +3043,7 @@ L438:
 	ret
 	.cfi_endproc
 LFE92:
+	.p2align 4
 	.globl	_strncat
 	.def	_strncat;	.scl	2;	.type	32;	.endef
 _strncat:
@@ -3006,6 +3098,7 @@ L446:
 	ret
 	.cfi_endproc
 LFE93:
+	.p2align 4
 	.globl	_strnlen
 	.def	_strnlen;	.scl	2;	.type	32;	.endef
 _strnlen:
@@ -3032,6 +3125,7 @@ L457:
 	ret
 	.cfi_endproc
 LFE94:
+	.p2align 4
 	.globl	_strpbrk
 	.def	_strpbrk;	.scl	2;	.type	32;	.endef
 _strpbrk:
@@ -3081,6 +3175,7 @@ L467:
 	jmp	L460
 	.cfi_endproc
 LFE95:
+	.p2align 4
 	.globl	_strrchr
 	.def	_strrchr;	.scl	2;	.type	32;	.endef
 _strrchr:
@@ -3113,6 +3208,7 @@ L470:
 	ret
 	.cfi_endproc
 LFE96:
+	.p2align 4
 	.globl	_strstr
 	.def	_strstr;	.scl	2;	.type	32;	.endef
 _strstr:
@@ -3177,6 +3273,7 @@ L474:
 	ret
 	.cfi_endproc
 LFE97:
+	.p2align 4
 	.globl	_copysign
 	.def	_copysign;	.scl	2;	.type	32;	.endef
 _copysign:
@@ -3214,6 +3311,7 @@ L483:
 	ret
 	.cfi_endproc
 LFE98:
+	.p2align 4
 	.globl	_memmem
 	.def	_memmem;	.scl	2;	.type	32;	.endef
 _memmem:
@@ -3297,6 +3395,7 @@ L497:
 	jmp	L491
 	.cfi_endproc
 LFE99:
+	.p2align 4
 	.globl	_mempcpy
 	.def	_mempcpy;	.scl	2;	.type	32;	.endef
 _mempcpy:
@@ -3323,6 +3422,7 @@ LFB100:
 	ret
 	.cfi_endproc
 LFE100:
+	.p2align 4
 	.globl	_frexp
 	.def	_frexp;	.scl	2;	.type	32;	.endef
 _frexp:
@@ -3387,6 +3487,7 @@ L511:
 	jmp	L510
 	.cfi_endproc
 LFE101:
+	.p2align 4
 	.globl	___muldi3
 	.def	___muldi3;	.scl	2;	.type	32;	.endef
 ___muldi3:
@@ -3455,6 +3556,7 @@ L527:
 	jmp	L524
 	.cfi_endproc
 LFE102:
+	.p2align 4
 	.globl	_udivmodsi4
 	.def	_udivmodsi4;	.scl	2;	.type	32;	.endef
 _udivmodsi4:
@@ -3505,6 +3607,7 @@ L534:
 	jmp	L537
 	.cfi_endproc
 LFE103:
+	.p2align 4
 	.globl	___clrsbqi2
 	.def	___clrsbqi2;	.scl	2;	.type	32;	.endef
 ___clrsbqi2:
@@ -3534,6 +3637,7 @@ L547:
 	ret
 	.cfi_endproc
 LFE104:
+	.p2align 4
 	.globl	___clrsbdi2
 	.def	___clrsbdi2;	.scl	2;	.type	32;	.endef
 ___clrsbdi2:
@@ -3605,6 +3709,7 @@ L554:
 	jmp	L555
 	.cfi_endproc
 LFE105:
+	.p2align 4
 	.globl	___mulsi3
 	.def	___mulsi3;	.scl	2;	.type	32;	.endef
 ___mulsi3:
@@ -3641,6 +3746,7 @@ L562:
 	jmp	L559
 	.cfi_endproc
 LFE106:
+	.p2align 4
 	.globl	___cmovd
 	.def	___cmovd;	.scl	2;	.type	32;	.endef
 ___cmovd:
@@ -3735,6 +3841,7 @@ L565:
 	ret
 	.cfi_endproc
 LFE107:
+	.p2align 4
 	.globl	___cmovh
 	.def	___cmovh;	.scl	2;	.type	32;	.endef
 ___cmovh:
@@ -3808,6 +3915,7 @@ L578:
 	ret
 	.cfi_endproc
 LFE108:
+	.p2align 4
 	.globl	___cmovw
 	.def	___cmovw;	.scl	2;	.type	32;	.endef
 ___cmovw:
@@ -3894,6 +4002,7 @@ L588:
 	ret
 	.cfi_endproc
 LFE109:
+	.p2align 4
 	.globl	___modi
 	.def	___modi;	.scl	2;	.type	32;	.endef
 ___modi:
@@ -3906,6 +4015,7 @@ LFB110:
 	ret
 	.cfi_endproc
 LFE110:
+	.p2align 4
 	.globl	___uitod
 	.def	___uitod;	.scl	2;	.type	32;	.endef
 ___uitod:
@@ -3923,6 +4033,7 @@ LFB111:
 	ret
 	.cfi_endproc
 LFE111:
+	.p2align 4
 	.globl	___uitof
 	.def	___uitof;	.scl	2;	.type	32;	.endef
 ___uitof:
@@ -3940,6 +4051,7 @@ LFB112:
 	ret
 	.cfi_endproc
 LFE112:
+	.p2align 4
 	.globl	___ulltod
 	.def	___ulltod;	.scl	2;	.type	32;	.endef
 ___ulltod:
@@ -3963,6 +4075,7 @@ L609:
 	jmp	L607
 	.cfi_endproc
 LFE113:
+	.p2align 4
 	.globl	___ulltof
 	.def	___ulltof;	.scl	2;	.type	32;	.endef
 ___ulltof:
@@ -3986,6 +4099,7 @@ L613:
 	jmp	L611
 	.cfi_endproc
 LFE114:
+	.p2align 4
 	.globl	___umodi
 	.def	___umodi;	.scl	2;	.type	32;	.endef
 ___umodi:
@@ -3998,6 +4112,7 @@ LFB115:
 	ret
 	.cfi_endproc
 LFE115:
+	.p2align 4
 	.globl	___clzhi2
 	.def	___clzhi2;	.scl	2;	.type	32;	.endef
 ___clzhi2:
@@ -4025,6 +4140,7 @@ L615:
 	ret
 	.cfi_endproc
 LFE116:
+	.p2align 4
 	.globl	___ctzhi2
 	.def	___ctzhi2;	.scl	2;	.type	32;	.endef
 ___ctzhi2:
@@ -4043,6 +4159,7 @@ L620:
 	ret
 	.cfi_endproc
 LFE117:
+	.p2align 4
 	.globl	___fixunssfsi
 	.def	___fixunssfsi;	.scl	2;	.type	32;	.endef
 ___fixunssfsi:
@@ -4083,6 +4200,7 @@ L632:
 	jmp	L630
 	.cfi_endproc
 LFE118:
+	.p2align 4
 	.globl	___parityhi2
 	.def	___parityhi2;	.scl	2;	.type	32;	.endef
 ___parityhi2:
@@ -4110,6 +4228,7 @@ L634:
 	ret
 	.cfi_endproc
 LFE119:
+	.p2align 4
 	.globl	___popcounthi2
 	.def	___popcounthi2;	.scl	2;	.type	32;	.endef
 ___popcounthi2:
@@ -4137,6 +4256,7 @@ L638:
 	ret
 	.cfi_endproc
 LFE120:
+	.p2align 4
 	.globl	___mulsi3_iq2000
 	.def	___mulsi3_iq2000;	.scl	2;	.type	32;	.endef
 ___mulsi3_iq2000:
@@ -4173,6 +4293,7 @@ L644:
 	jmp	L641
 	.cfi_endproc
 LFE121:
+	.p2align 4
 	.globl	___mulsi3_lm32
 	.def	___mulsi3_lm32;	.scl	2;	.type	32;	.endef
 ___mulsi3_lm32:
@@ -4212,6 +4333,7 @@ L651:
 	jmp	L647
 	.cfi_endproc
 LFE122:
+	.p2align 4
 	.globl	___udivmodsi4
 	.def	___udivmodsi4;	.scl	2;	.type	32;	.endef
 ___udivmodsi4:
@@ -4262,6 +4384,7 @@ L658:
 	jmp	L661
 	.cfi_endproc
 LFE123:
+	.p2align 4
 	.globl	___mspabi_cmpf
 	.def	___mspabi_cmpf;	.scl	2;	.type	32;	.endef
 ___mspabi_cmpf:
@@ -4285,6 +4408,7 @@ L671:
 	ret
 	.cfi_endproc
 LFE124:
+	.p2align 4
 	.globl	___mspabi_cmpd
 	.def	___mspabi_cmpd;	.scl	2;	.type	32;	.endef
 ___mspabi_cmpd:
@@ -4308,6 +4432,7 @@ L675:
 	ret
 	.cfi_endproc
 LFE125:
+	.p2align 4
 	.globl	___mspabi_mpysll
 	.def	___mspabi_mpysll;	.scl	2;	.type	32;	.endef
 ___mspabi_mpysll:
@@ -4353,6 +4478,7 @@ LFB126:
 	ret
 	.cfi_endproc
 LFE126:
+	.p2align 4
 	.globl	___mspabi_mpyull
 	.def	___mspabi_mpyull;	.scl	2;	.type	32;	.endef
 ___mspabi_mpyull:
@@ -4363,6 +4489,7 @@ LFB127:
 	ret
 	.cfi_endproc
 LFE127:
+	.p2align 4
 	.globl	___mulhi3
 	.def	___mulhi3;	.scl	2;	.type	32;	.endef
 ___mulhi3:
@@ -4436,6 +4563,7 @@ L688:
 	jmp	L684
 	.cfi_endproc
 LFE128:
+	.p2align 4
 	.globl	___divsi3
 	.def	___divsi3;	.scl	2;	.type	32;	.endef
 ___divsi3:
@@ -4481,6 +4609,7 @@ L701:
 	jmp	L695
 	.cfi_endproc
 LFE129:
+	.p2align 4
 	.globl	___modsi3
 	.def	___modsi3;	.scl	2;	.type	32;	.endef
 ___modsi3:
@@ -4522,6 +4651,7 @@ L708:
 	jmp	L703
 	.cfi_endproc
 LFE130:
+	.p2align 4
 	.globl	___udivmodhi4
 	.def	___udivmodhi4;	.scl	2;	.type	32;	.endef
 ___udivmodhi4:
@@ -4573,6 +4703,7 @@ L713:
 	jmp	L716
 	.cfi_endproc
 LFE131:
+	.p2align 4
 	.globl	___udivmodsi4_libgcc
 	.def	___udivmodsi4_libgcc;	.scl	2;	.type	32;	.endef
 ___udivmodsi4_libgcc:
@@ -4623,6 +4754,7 @@ L730:
 	jmp	L733
 	.cfi_endproc
 LFE132:
+	.p2align 4
 	.globl	___ashldi3
 	.def	___ashldi3;	.scl	2;	.type	32;	.endef
 ___ashldi3:
@@ -4671,6 +4803,7 @@ L747:
 	jmp	L746
 	.cfi_endproc
 LFE133:
+	.p2align 4
 	.globl	___ashrdi3
 	.def	___ashrdi3;	.scl	2;	.type	32;	.endef
 ___ashrdi3:
@@ -4728,6 +4861,7 @@ L753:
 	jmp	L752
 	.cfi_endproc
 LFE134:
+	.p2align 4
 	.globl	___bswapdi2
 	.def	___bswapdi2;	.scl	2;	.type	32;	.endef
 ___bswapdi2:
@@ -4816,6 +4950,7 @@ LFB135:
 	ret
 	.cfi_endproc
 LFE135:
+	.p2align 4
 	.globl	___bswapsi2
 	.def	___bswapsi2;	.scl	2;	.type	32;	.endef
 ___bswapsi2:
@@ -4837,6 +4972,7 @@ LFB136:
 	ret
 	.cfi_endproc
 LFE136:
+	.p2align 4
 	.globl	___clzsi2
 	.def	___clzsi2;	.scl	2;	.type	32;	.endef
 ___clzsi2:
@@ -4895,6 +5031,7 @@ LFB137:
 	ret
 	.cfi_endproc
 LFE137:
+	.p2align 4
 	.globl	___cmpdi2
 	.def	___cmpdi2;	.scl	2;	.type	32;	.endef
 ___cmpdi2:
@@ -4932,6 +5069,7 @@ L760:
 	ret
 	.cfi_endproc
 LFE138:
+	.p2align 4
 	.globl	___aeabi_lcmp
 	.def	___aeabi_lcmp;	.scl	2;	.type	32;	.endef
 ___aeabi_lcmp:
@@ -4954,6 +5092,7 @@ LFB139:
 	ret
 	.cfi_endproc
 LFE139:
+	.p2align 4
 	.globl	___ctzsi2
 	.def	___ctzsi2;	.scl	2;	.type	32;	.endef
 ___ctzsi2:
@@ -5010,6 +5149,7 @@ LFB140:
 	ret
 	.cfi_endproc
 LFE140:
+	.p2align 4
 	.globl	___lshrdi3
 	.def	___lshrdi3;	.scl	2;	.type	32;	.endef
 ___lshrdi3:
@@ -5066,6 +5206,7 @@ L775:
 	jmp	L774
 	.cfi_endproc
 LFE141:
+	.p2align 4
 	.globl	___muldsi3
 	.def	___muldsi3;	.scl	2;	.type	32;	.endef
 ___muldsi3:
@@ -5117,6 +5258,7 @@ LFB142:
 	ret
 	.cfi_endproc
 LFE142:
+	.p2align 4
 	.globl	___muldi3_compiler_rt
 	.def	___muldi3_compiler_rt;	.scl	2;	.type	32;	.endef
 ___muldi3_compiler_rt:
@@ -5151,6 +5293,7 @@ LFB143:
 	ret
 	.cfi_endproc
 LFE143:
+	.p2align 4
 	.globl	___negdi2
 	.def	___negdi2;	.scl	2;	.type	32;	.endef
 ___negdi2:
@@ -5164,6 +5307,7 @@ LFB144:
 	ret
 	.cfi_endproc
 LFE144:
+	.p2align 4
 	.globl	___paritydi2
 	.def	___paritydi2;	.scl	2;	.type	32;	.endef
 ___paritydi2:
@@ -5187,6 +5331,7 @@ LFB145:
 	ret
 	.cfi_endproc
 LFE145:
+	.p2align 4
 	.globl	___paritysi2
 	.def	___paritysi2;	.scl	2;	.type	32;	.endef
 ___paritysi2:
@@ -5209,6 +5354,7 @@ LFB146:
 	ret
 	.cfi_endproc
 LFE146:
+	.p2align 4
 	.globl	___popcountdi2
 	.def	___popcountdi2;	.scl	2;	.type	32;	.endef
 ___popcountdi2:
@@ -5259,6 +5405,7 @@ LFB147:
 	ret
 	.cfi_endproc
 LFE147:
+	.p2align 4
 	.globl	___popcountsi2
 	.def	___popcountsi2;	.scl	2;	.type	32;	.endef
 ___popcountsi2:
@@ -5288,6 +5435,7 @@ LFB148:
 	ret
 	.cfi_endproc
 LFE148:
+	.p2align 4
 	.globl	___powidf2
 	.def	___powidf2;	.scl	2;	.type	32;	.endef
 ___powidf2:
@@ -5325,6 +5473,7 @@ L792:
 	jmp	L787
 	.cfi_endproc
 LFE149:
+	.p2align 4
 	.globl	___powisf2
 	.def	___powisf2;	.scl	2;	.type	32;	.endef
 ___powisf2:
@@ -5362,6 +5511,7 @@ L798:
 	jmp	L793
 	.cfi_endproc
 LFE150:
+	.p2align 4
 	.globl	___ucmpdi2
 	.def	___ucmpdi2;	.scl	2;	.type	32;	.endef
 ___ucmpdi2:
@@ -5400,6 +5550,7 @@ L799:
 	ret
 	.cfi_endproc
 LFE151:
+	.p2align 4
 	.globl	___aeabi_ulcmp
 	.def	___aeabi_ulcmp;	.scl	2;	.type	32;	.endef
 ___aeabi_ulcmp:

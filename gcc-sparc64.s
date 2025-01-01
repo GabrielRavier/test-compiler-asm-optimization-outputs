@@ -1,6 +1,7 @@
 	.file	"mini-libc.c"
 	.section	".text"
 	.align 4
+	.align 32
 	.global make_ti
 	.type	make_ti, #function
 	.proc	05
@@ -9,6 +10,7 @@ make_ti:
 	 nop
 	.size	make_ti, .-make_ti
 	.align 4
+	.align 32
 	.global make_tu
 	.type	make_tu, #function
 	.proc	017
@@ -17,6 +19,7 @@ make_tu:
 	 nop
 	.size	make_tu, .-make_tu
 	.align 4
+	.align 32
 	.global memmove
 	.type	memmove, #function
 	.proc	0120
@@ -54,6 +57,7 @@ memmove:
 	 nop
 	.size	memmove, .-memmove
 	.align 4
+	.align 32
 	.global memccpy
 	.type	memccpy, #function
 	.proc	0120
@@ -79,6 +83,7 @@ memccpy:
 	 movrne	%o3, %g1, %o0
 	.size	memccpy, .-memccpy
 	.align 4
+	.align 32
 	.global memchr
 	.type	memchr, #function
 	.proc	0120
@@ -98,6 +103,7 @@ memchr:
 	 movre	%o2, %g0, %o0
 	.size	memchr, .-memchr
 	.align 4
+	.align 32
 	.global memcmp
 	.type	memcmp, #function
 	.proc	04
@@ -126,6 +132,7 @@ memcmp:
 	 sra	%g1, 0, %o0
 	.size	memcmp, .-memcmp
 	.align 4
+	.align 32
 	.global memcpy
 	.type	memcpy, #function
 	.proc	0120
@@ -141,6 +148,7 @@ memcpy:
 	 nop
 	.size	memcpy, .-memcpy
 	.align 4
+	.align 32
 	.global memrchr
 	.type	memrchr, #function
 	.proc	0120
@@ -166,6 +174,7 @@ memrchr:
 	 nop
 	.size	memrchr, .-memrchr
 	.align 4
+	.align 32
 	.global memset
 	.type	memset, #function
 	.proc	0120
@@ -184,6 +193,7 @@ memset:
 	 nop
 	.size	memset, .-memset
 	.align 4
+	.align 32
 	.global stpcpy
 	.type	stpcpy, #function
 	.proc	0102
@@ -207,6 +217,7 @@ stpcpy:
 	 nop
 	.size	stpcpy, .-stpcpy
 	.align 4
+	.align 32
 	.global strchrnul
 	.type	strchrnul, #function
 	.proc	0102
@@ -234,6 +245,7 @@ strchrnul:
 	 nop
 	.size	strchrnul, .-strchrnul
 	.align 4
+	.align 32
 	.global strchr
 	.type	strchr, #function
 	.proc	0102
@@ -253,6 +265,7 @@ strchr:
 	 nop
 	.size	strchr, .-strchr
 	.align 4
+	.align 32
 	.global strcmp
 	.type	strcmp, #function
 	.proc	04
@@ -292,6 +305,7 @@ strcmp:
 	 sra	%o0, 0, %o0
 	.size	strcmp, .-strcmp
 	.align 4
+	.align 32
 	.global strlen
 	.type	strlen, #function
 	.proc	017
@@ -312,6 +326,7 @@ strlen:
 	 sub	%g1, %o0, %o0
 	.size	strlen, .-strlen
 	.align 4
+	.align 32
 	.global strncmp
 	.type	strncmp, #function
 	.proc	04
@@ -357,6 +372,7 @@ strncmp:
 	 mov	%o1, %g2
 	.size	strncmp, .-strncmp
 	.align 4
+	.align 32
 	.global swab
 	.type	swab, #function
 	.proc	020
@@ -379,6 +395,7 @@ swab:
 	 nop
 	.size	swab, .-swab
 	.align 4
+	.align 32
 	.global isalpha
 	.type	isalpha, #function
 	.proc	04
@@ -391,6 +408,7 @@ isalpha:
 	 movleu	%icc, 1, %o0
 	.size	isalpha, .-isalpha
 	.align 4
+	.align 32
 	.global isascii
 	.type	isascii, #function
 	.proc	04
@@ -401,6 +419,7 @@ isascii:
 	 movleu	%icc, 1, %o0
 	.size	isascii, .-isascii
 	.align 4
+	.align 32
 	.global isblank
 	.type	isblank, #function
 	.proc	04
@@ -415,6 +434,7 @@ isblank:
 	 or	%g2, %o0, %o0
 	.size	isblank, .-isblank
 	.align 4
+	.align 32
 	.global iscntrl
 	.type	iscntrl, #function
 	.proc	04
@@ -429,6 +449,7 @@ iscntrl:
 	 or	%g1, %o0, %o0
 	.size	iscntrl, .-iscntrl
 	.align 4
+	.align 32
 	.global isdigit
 	.type	isdigit, #function
 	.proc	04
@@ -440,6 +461,7 @@ isdigit:
 	 movleu	%icc, 1, %o0
 	.size	isdigit, .-isdigit
 	.align 4
+	.align 32
 	.global isgraph
 	.type	isgraph, #function
 	.proc	04
@@ -451,6 +473,7 @@ isgraph:
 	 movleu	%icc, 1, %o0
 	.size	isgraph, .-isgraph
 	.align 4
+	.align 32
 	.global islower
 	.type	islower, #function
 	.proc	04
@@ -462,6 +485,7 @@ islower:
 	 movleu	%icc, 1, %o0
 	.size	islower, .-islower
 	.align 4
+	.align 32
 	.global isprint
 	.type	isprint, #function
 	.proc	04
@@ -473,6 +497,7 @@ isprint:
 	 movleu	%icc, 1, %o0
 	.size	isprint, .-isprint
 	.align 4
+	.align 32
 	.global isspace
 	.type	isspace, #function
 	.proc	04
@@ -488,6 +513,7 @@ isspace:
 	 or	%g1, %o0, %o0
 	.size	isspace, .-isspace
 	.align 4
+	.align 32
 	.global isupper
 	.type	isupper, #function
 	.proc	04
@@ -499,6 +525,7 @@ isupper:
 	 movleu	%icc, 1, %o0
 	.size	isupper, .-isupper
 	.align 4
+	.align 32
 	.global iswcntrl
 	.type	iswcntrl, #function
 	.proc	04
@@ -529,6 +556,7 @@ iswcntrl:
 	 sra	%g3, 0, %o0
 	.size	iswcntrl, .-iswcntrl
 	.align 4
+	.align 32
 	.global iswdigit
 	.type	iswdigit, #function
 	.proc	04
@@ -540,6 +568,7 @@ iswdigit:
 	 movleu	%icc, 1, %o0
 	.size	iswdigit, .-iswdigit
 	.align 4
+	.align 32
 	.global iswprint
 	.type	iswprint, #function
 	.proc	04
@@ -591,6 +620,7 @@ iswprint:
 	 sra	%g1, 0, %o0
 	.size	iswprint, .-iswprint
 	.align 4
+	.align 32
 	.global iswxdigit
 	.type	iswxdigit, #function
 	.proc	04
@@ -609,6 +639,7 @@ iswxdigit:
 	 sra	%g1, 0, %o0
 	.size	iswxdigit, .-iswxdigit
 	.align 4
+	.align 32
 	.global toascii
 	.type	toascii, #function
 	.proc	04
@@ -617,6 +648,7 @@ toascii:
 	 and	%o0, 127, %o0
 	.size	toascii, .-toascii
 	.align 4
+	.align 32
 	.global fdim
 	.type	fdim, #function
 	.proc	07
@@ -642,6 +674,7 @@ fdim:
 	 nop
 	.size	fdim, .-fdim
 	.align 4
+	.align 32
 	.global fdimf
 	.type	fdimf, #function
 	.proc	06
@@ -668,6 +701,7 @@ fdimf:
 	 fzeros	%f0
 	.size	fdimf, .-fdimf
 	.align 4
+	.align 32
 	.global fmax
 	.type	fmax, #function
 	.proc	07
@@ -699,6 +733,7 @@ fmax:
 	 fmovdl	%fcc0, %f2, %f0
 	.size	fmax, .-fmax
 	.align 4
+	.align 32
 	.global fmaxf
 	.type	fmaxf, #function
 	.proc	06
@@ -735,6 +770,7 @@ fmaxf:
 	 fmovs	%f1, %f0
 	.size	fmaxf, .-fmaxf
 	.align 4
+	.align 32
 	.global fmaxl
 	.type	fmaxl, #function
 	.proc	07
@@ -816,6 +852,7 @@ fmaxl:
 	 nop
 	.size	fmaxl, .-fmaxl
 	.align 4
+	.align 32
 	.global fmin
 	.type	fmin, #function
 	.proc	07
@@ -848,6 +885,7 @@ fmin:
 	 fmovdl	%fcc2, %f0, %f2
 	.size	fmin, .-fmin
 	.align 4
+	.align 32
 	.global fminf
 	.type	fminf, #function
 	.proc	06
@@ -884,6 +922,7 @@ fminf:
 	 fmovs	%f1, %f0
 	.size	fminf, .-fminf
 	.align 4
+	.align 32
 	.global fminl
 	.type	fminl, #function
 	.proc	07
@@ -965,6 +1004,7 @@ fminl:
 	 nop
 	.size	fminl, .-fminl
 	.align 4
+	.align 32
 	.global l64a
 	.type	l64a, #function
 	.proc	0102
@@ -995,6 +1035,7 @@ l64a:
 	 or	%g2, %lo(s.0), %g2
 	.size	l64a, .-l64a
 	.align 4
+	.align 32
 	.global srand
 	.type	srand, #function
 	.proc	020
@@ -1006,6 +1047,7 @@ srand:
 	 stx	%o0, [%g1+%lo(seed)]
 	.size	srand, .-srand
 	.align 4
+	.align 32
 	.global rand
 	.type	rand, #function
 	.proc	04
@@ -1025,6 +1067,7 @@ rand:
 	 srlx	%o0, 33, %o0
 	.size	rand, .-rand
 	.align 4
+	.align 32
 	.global insque
 	.type	insque, #function
 	.proc	020
@@ -1047,6 +1090,7 @@ insque:
 	 nop
 	.size	insque, .-insque
 	.align 4
+	.align 32
 	.global remque
 	.type	remque, #function
 	.proc	020
@@ -1067,6 +1111,7 @@ remque:
 	 nop
 	.size	remque, .-remque
 	.align 4
+	.align 32
 	.global lsearch
 	.type	lsearch, #function
 	.proc	0120
@@ -1103,6 +1148,7 @@ lsearch:
 	 nop
 	.size	lsearch, .-lsearch
 	.align 4
+	.align 32
 	.global lfind
 	.type	lfind, #function
 	.proc	0120
@@ -1131,6 +1177,7 @@ lfind:
 	 nop
 	.size	lfind, .-lfind
 	.align 4
+	.align 32
 	.global abs
 	.type	abs, #function
 	.proc	04
@@ -1142,6 +1189,7 @@ abs:
 	 sra	%o0, 0, %o0
 	.size	abs, .-abs
 	.align 4
+	.align 32
 	.global atoi
 	.type	atoi, #function
 	.proc	04
@@ -1196,6 +1244,7 @@ atoi:
 	 sra	%g3, 0, %o0
 	.size	atoi, .-atoi
 	.align 4
+	.align 32
 	.global atol
 	.type	atol, #function
 	.proc	05
@@ -1251,6 +1300,7 @@ atol:
 	 mov	%g3, %o0
 	.size	atol, .-atol
 	.align 4
+	.align 32
 	.global atoll
 	.type	atoll, #function
 	.proc	05
@@ -1306,6 +1356,7 @@ atoll:
 	 mov	%g3, %o0
 	.size	atoll, .-atoll
 	.align 4
+	.align 32
 	.global bsearch
 	.type	bsearch, #function
 	.proc	0120
@@ -1339,6 +1390,7 @@ bsearch:
 	 sub	%i2, %l0, %i2
 	.size	bsearch, .-bsearch
 	.align 4
+	.align 32
 	.global bsearch_r
 	.type	bsearch_r, #function
 	.proc	0120
@@ -1376,6 +1428,7 @@ bsearch_r:
 	 add	%l0, -1, %l0
 	.size	bsearch_r, .-bsearch_r
 	.align 4
+	.align 32
 	.global div
 	.type	div, #function
 	.proc	010
@@ -1396,6 +1449,7 @@ div:
 	 add	%sp, 160, %sp
 	.size	div, .-div
 	.align 4
+	.align 32
 	.global imaxabs
 	.type	imaxabs, #function
 	.proc	05
@@ -1406,6 +1460,7 @@ imaxabs:
 	 sub	%o0, %g1, %o0
 	.size	imaxabs, .-imaxabs
 	.align 4
+	.align 32
 	.global imaxdiv
 	.type	imaxdiv, #function
 	.proc	010
@@ -1419,6 +1474,7 @@ imaxdiv:
 	 add	%sp, 160, %sp
 	.size	imaxdiv, .-imaxdiv
 	.align 4
+	.align 32
 	.global labs
 	.type	labs, #function
 	.proc	05
@@ -1429,6 +1485,7 @@ labs:
 	 sub	%o0, %g1, %o0
 	.size	labs, .-labs
 	.align 4
+	.align 32
 	.global ldiv
 	.type	ldiv, #function
 	.proc	010
@@ -1442,6 +1499,7 @@ ldiv:
 	 add	%sp, 160, %sp
 	.size	ldiv, .-ldiv
 	.align 4
+	.align 32
 	.global llabs
 	.type	llabs, #function
 	.proc	05
@@ -1452,6 +1510,7 @@ llabs:
 	 sub	%o0, %g1, %o0
 	.size	llabs, .-llabs
 	.align 4
+	.align 32
 	.global lldiv
 	.type	lldiv, #function
 	.proc	010
@@ -1465,6 +1524,7 @@ lldiv:
 	 add	%sp, 160, %sp
 	.size	lldiv, .-lldiv
 	.align 4
+	.align 32
 	.global wcschr
 	.type	wcschr, #function
 	.proc	0104
@@ -1495,6 +1555,7 @@ wcschr:
 	 move	%icc, 0, %o0
 	.size	wcschr, .-wcschr
 	.align 4
+	.align 32
 	.global wcscmp
 	.type	wcscmp, #function
 	.proc	04
@@ -1538,6 +1599,7 @@ wcscmp:
 	 sra	%o0, 0, %o0
 	.size	wcscmp, .-wcscmp
 	.align 4
+	.align 32
 	.global wcscpy
 	.type	wcscpy, #function
 	.proc	0104
@@ -1553,6 +1615,7 @@ wcscpy:
 	 nop
 	.size	wcscpy, .-wcscpy
 	.align 4
+	.align 32
 	.global wcslen
 	.type	wcslen, #function
 	.proc	017
@@ -1573,6 +1636,7 @@ wcslen:
 	 srax	%o0, 2, %o0
 	.size	wcslen, .-wcslen
 	.align 4
+	.align 32
 	.global wcsncmp
 	.type	wcsncmp, #function
 	.proc	04
@@ -1613,6 +1677,7 @@ wcsncmp:
 	 sra	%g1, 0, %o0
 	.size	wcsncmp, .-wcsncmp
 	.align 4
+	.align 32
 	.global wmemchr
 	.type	wmemchr, #function
 	.proc	0104
@@ -1632,6 +1697,7 @@ wmemchr:
 	 movre	%o2, %g0, %o0
 	.size	wmemchr, .-wmemchr
 	.align 4
+	.align 32
 	.global wmemcmp
 	.type	wmemcmp, #function
 	.proc	04
@@ -1664,6 +1730,7 @@ wmemcmp:
 	 sra	%g1, 0, %o0
 	.size	wmemcmp, .-wmemcmp
 	.align 4
+	.align 32
 	.global wmemcpy
 	.type	wmemcpy, #function
 	.proc	0104
@@ -1680,6 +1747,7 @@ wmemcpy:
 	 nop
 	.size	wmemcpy, .-wmemcpy
 	.align 4
+	.align 32
 	.global wmemmove
 	.type	wmemmove, #function
 	.proc	0104
@@ -1720,6 +1788,7 @@ wmemmove:
 	 nop
 	.size	wmemmove, .-wmemmove
 	.align 4
+	.align 32
 	.global wmemset
 	.type	wmemset, #function
 	.proc	0104
@@ -1738,6 +1807,7 @@ wmemset:
 	 nop
 	.size	wmemset, .-wmemset
 	.align 4
+	.align 32
 	.global bcopy
 	.type	bcopy, #function
 	.proc	020
@@ -1775,6 +1845,7 @@ bcopy:
 	 nop
 	.size	bcopy, .-bcopy
 	.align 4
+	.align 32
 	.global rotl64
 	.type	rotl64, #function
 	.proc	017
@@ -1786,6 +1857,7 @@ rotl64:
 	 or	%o0, %g1, %o0
 	.size	rotl64, .-rotl64
 	.align 4
+	.align 32
 	.global rotr64
 	.type	rotr64, #function
 	.proc	017
@@ -1797,6 +1869,7 @@ rotr64:
 	 or	%o0, %g1, %o0
 	.size	rotr64, .-rotr64
 	.align 4
+	.align 32
 	.global rotl32
 	.type	rotl32, #function
 	.proc	016
@@ -1809,6 +1882,7 @@ rotl32:
 	 srl	%o0, 0, %o0
 	.size	rotl32, .-rotl32
 	.align 4
+	.align 32
 	.global rotr32
 	.type	rotr32, #function
 	.proc	016
@@ -1821,6 +1895,7 @@ rotr32:
 	 srl	%o0, 0, %o0
 	.size	rotr32, .-rotr32
 	.align 4
+	.align 32
 	.global rotl_sz
 	.type	rotl_sz, #function
 	.proc	017
@@ -1832,6 +1907,7 @@ rotl_sz:
 	 or	%o0, %g1, %o0
 	.size	rotl_sz, .-rotl_sz
 	.align 4
+	.align 32
 	.global rotr_sz
 	.type	rotr_sz, #function
 	.proc	017
@@ -1843,6 +1919,7 @@ rotr_sz:
 	 or	%o0, %g1, %o0
 	.size	rotr_sz, .-rotr_sz
 	.align 4
+	.align 32
 	.global rotl16
 	.type	rotl16, #function
 	.proc	015
@@ -1858,6 +1935,7 @@ rotl16:
 	 srlx	%o0, 48, %o0
 	.size	rotl16, .-rotl16
 	.align 4
+	.align 32
 	.global rotr16
 	.type	rotr16, #function
 	.proc	015
@@ -1873,6 +1951,7 @@ rotr16:
 	 srlx	%o0, 48, %o0
 	.size	rotr16, .-rotr16
 	.align 4
+	.align 32
 	.global rotl8
 	.type	rotl8, #function
 	.proc	014
@@ -1887,6 +1966,7 @@ rotl8:
 	 and	%o0, 0xff, %o0
 	.size	rotl8, .-rotl8
 	.align 4
+	.align 32
 	.global rotr8
 	.type	rotr8, #function
 	.proc	014
@@ -1901,6 +1981,7 @@ rotr8:
 	 and	%o0, 0xff, %o0
 	.size	rotr8, .-rotr8
 	.align 4
+	.align 32
 	.global bswap_16
 	.type	bswap_16, #function
 	.proc	015
@@ -1913,6 +1994,7 @@ bswap_16:
 	 srlx	%o0, 48, %o0
 	.size	bswap_16, .-bswap_16
 	.align 4
+	.align 32
 	.global bswap_32
 	.type	bswap_32, #function
 	.proc	016
@@ -1931,6 +2013,7 @@ bswap_32:
 	 srl	%o0, 0, %o0
 	.size	bswap_32, .-bswap_32
 	.align 4
+	.align 32
 	.global bswap_64
 	.type	bswap_64, #function
 	.proc	017
@@ -1966,6 +2049,7 @@ bswap_64:
 	 or	%g1, %o0, %o0
 	.size	bswap_64, .-bswap_64
 	.align 4
+	.align 32
 	.global ffs
 	.type	ffs, #function
 	.proc	04
@@ -1986,6 +2070,7 @@ ffs:
 	 sra	%o0, 0, %o0
 	.size	ffs, .-ffs
 	.align 4
+	.align 32
 	.global libiberty_ffs
 	.type	libiberty_ffs, #function
 	.proc	04
@@ -2015,6 +2100,7 @@ libiberty_ffs:
 	.long	2139095039
 	.section	".text"
 	.align 4
+	.align 32
 	.global gl_isinff
 	.type	gl_isinff, #function
 	.proc	04
@@ -2044,6 +2130,7 @@ gl_isinff:
 	.long	-1
 	.section	".text"
 	.align 4
+	.align 32
 	.global gl_isinfd
 	.type	gl_isinfd, #function
 	.proc	04
@@ -2077,6 +2164,7 @@ gl_isinfd:
 	.long	-1
 	.section	".text"
 	.align 4
+	.align 32
 	.global gl_isinfl
 	.type	gl_isinfl, #function
 	.proc	04
@@ -2117,6 +2205,7 @@ gl_isinfl:
 	 sra	%o0, 0, %o0
 	.size	gl_isinfl, .-gl_isinfl
 	.align 4
+	.align 32
 	.global _Qp_itoq
 	.type	_Qp_itoq, #function
 	.proc	020
@@ -2139,6 +2228,7 @@ _Qp_itoq:
 	.long	1056964608
 	.section	".text"
 	.align 4
+	.align 32
 	.global ldexpf
 	.type	ldexpf, #function
 	.proc	06
@@ -2186,6 +2276,7 @@ ldexpf:
 	.long	0
 	.section	".text"
 	.align 4
+	.align 32
 	.global ldexp
 	.type	ldexp, #function
 	.proc	07
@@ -2237,6 +2328,7 @@ ldexp:
 	.long	0
 	.section	".text"
 	.align 4
+	.align 32
 	.global ldexpl
 	.type	ldexpl, #function
 	.proc	07
@@ -2333,6 +2425,7 @@ ldexpl:
 	 nop
 	.size	ldexpl, .-ldexpl
 	.align 4
+	.align 32
 	.global memxor
 	.type	memxor, #function
 	.proc	0120
@@ -2354,6 +2447,7 @@ memxor:
 	 nop
 	.size	memxor, .-memxor
 	.align 4
+	.align 32
 	.global strncat
 	.type	strncat, #function
 	.proc	0102
@@ -2382,6 +2476,7 @@ strncat:
 	 nop
 	.size	strncat, .-strncat
 	.align 4
+	.align 32
 	.global strnlen
 	.type	strnlen, #function
 	.proc	017
@@ -2407,6 +2502,7 @@ strnlen:
 	 mov	%o1, %g1
 	.size	strnlen, .-strnlen
 	.align 4
+	.align 32
 	.global strpbrk
 	.type	strpbrk, #function
 	.proc	0102
@@ -2445,6 +2541,7 @@ strpbrk:
 	 mov	0, %o0
 	.size	strpbrk, .-strpbrk
 	.align 4
+	.align 32
 	.global strrchr
 	.type	strrchr, #function
 	.proc	0102
@@ -2464,6 +2561,7 @@ strrchr:
 	 nop
 	.size	strrchr, .-strrchr
 	.align 4
+	.align 32
 	.global strstr
 	.type	strstr, #function
 	.proc	0102
@@ -2495,6 +2593,7 @@ strstr:
 	 nop
 	.size	strstr, .-strstr
 	.align 4
+	.align 32
 	.global copysign
 	.type	copysign, #function
 	.proc	07
@@ -2522,6 +2621,7 @@ copysign:
 	 fnegd	%f0, %f0
 	.size	copysign, .-copysign
 	.align 4
+	.align 32
 	.global memmem
 	.type	memmem, #function
 	.proc	0120
@@ -2573,6 +2673,7 @@ memmem:
 	 mov	0, %o0
 	.size	memmem, .-memmem
 	.align 4
+	.align 32
 	.global mempcpy
 	.type	mempcpy, #function
 	.proc	0120
@@ -2596,6 +2697,7 @@ mempcpy:
 	.long	0
 	.section	".text"
 	.align 4
+	.align 32
 	.global frexp
 	.type	frexp, #function
 	.proc	07
@@ -2650,6 +2752,7 @@ frexp:
 	 st	%g1, [%o1]
 	.size	frexp, .-frexp
 	.align 4
+	.align 32
 	.global __muldi3
 	.type	__muldi3, #function
 	.proc	05
@@ -2672,6 +2775,7 @@ __muldi3:
 	 mov	0, %o0
 	.size	__muldi3, .-__muldi3
 	.align 4
+	.align 32
 	.global udivmodsi4
 	.type	udivmodsi4, #function
 	.proc	016
@@ -2720,6 +2824,7 @@ udivmodsi4:
 	 or	%g2, %g1, %g2
 	.size	udivmodsi4, .-udivmodsi4
 	.align 4
+	.align 32
 	.global __clrsbqi2
 	.type	__clrsbqi2, #function
 	.proc	04
@@ -2742,6 +2847,7 @@ __clrsbqi2:
 	 nop
 	.size	__clrsbqi2, .-__clrsbqi2
 	.align 4
+	.align 32
 	.global __clrsbdi2
 	.type	__clrsbdi2, #function
 	.proc	04
@@ -2760,6 +2866,7 @@ __clrsbdi2:
 	 sra	%g1, 0, %o0
 	.size	__clrsbdi2, .-__clrsbdi2
 	.align 4
+	.align 32
 	.global __mulsi3
 	.type	__mulsi3, #function
 	.proc	016
@@ -2781,6 +2888,7 @@ __mulsi3:
 	 srl	%g2, 0, %o0
 	.size	__mulsi3, .-__mulsi3
 	.align 4
+	.align 32
 	.global __cmovd
 	.type	__cmovd, #function
 	.proc	020
@@ -2837,6 +2945,7 @@ __cmovd:
 	 nop
 	.size	__cmovd, .-__cmovd
 	.align 4
+	.align 32
 	.global __cmovh
 	.type	__cmovh, #function
 	.proc	020
@@ -2889,6 +2998,7 @@ __cmovh:
 	 stb	%g1, [%o0+%o2]
 	.size	__cmovh, .-__cmovh
 	.align 4
+	.align 32
 	.global __cmovw
 	.type	__cmovw, #function
 	.proc	020
@@ -2945,6 +3055,7 @@ __cmovw:
 	 nop
 	.size	__cmovw, .-__cmovw
 	.align 4
+	.align 32
 	.global __modi
 	.type	__modi, #function
 	.proc	04
@@ -2958,6 +3069,7 @@ __modi:
 	 sra	%o0, 0, %o0
 	.size	__modi, .-__modi
 	.align 4
+	.align 32
 	.global __uitod
 	.type	__uitod, #function
 	.proc	07
@@ -2970,6 +3082,7 @@ __uitod:
 	 add	%sp, 144, %sp
 	.size	__uitod, .-__uitod
 	.align 4
+	.align 32
 	.global __uitof
 	.type	__uitof, #function
 	.proc	06
@@ -2982,6 +3095,7 @@ __uitof:
 	 add	%sp, 144, %sp
 	.size	__uitof, .-__uitof
 	.align 4
+	.align 32
 	.global __ulltod
 	.type	__ulltod, #function
 	.proc	07
@@ -3005,6 +3119,7 @@ __ulltod:
 	 faddd	%f0, %f0, %f0
 	.size	__ulltod, .-__ulltod
 	.align 4
+	.align 32
 	.global __ulltof
 	.type	__ulltof, #function
 	.proc	06
@@ -3028,6 +3143,7 @@ __ulltof:
 	 fadds	%f0, %f0, %f0
 	.size	__ulltof, .-__ulltof
 	.align 4
+	.align 32
 	.global __umodi
 	.type	__umodi, #function
 	.proc	016
@@ -3040,6 +3156,7 @@ __umodi:
 	 srl	%o0, 0, %o0
 	.size	__umodi, .-__umodi
 	.align 4
+	.align 32
 	.global __clzhi2
 	.type	__clzhi2, #function
 	.proc	04
@@ -3061,6 +3178,7 @@ __clzhi2:
 	 sra	%g1, 0, %o0
 	.size	__clzhi2, .-__clzhi2
 	.align 4
+	.align 32
 	.global __ctzhi2
 	.type	__ctzhi2, #function
 	.proc	04
@@ -3085,6 +3203,7 @@ __ctzhi2:
 	.long	1191182336
 	.section	".text"
 	.align 4
+	.align 32
 	.global __fixunssfsi
 	.type	__fixunssfsi, #function
 	.proc	05
@@ -3111,6 +3230,7 @@ __fixunssfsi:
 	 stx	%g1, [%sp+2183]
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align 4
+	.align 32
 	.global __parityhi2
 	.type	__parityhi2, #function
 	.proc	04
@@ -3128,6 +3248,7 @@ __parityhi2:
 	 and	%g3, 1, %o0
 	.size	__parityhi2, .-__parityhi2
 	.align 4
+	.align 32
 	.global __popcounthi2
 	.type	__popcounthi2, #function
 	.proc	04
@@ -3145,6 +3266,7 @@ __popcounthi2:
 	 sra	%g3, 0, %o0
 	.size	__popcounthi2, .-__popcounthi2
 	.align 4
+	.align 32
 	.global __mulsi3_iq2000
 	.type	__mulsi3_iq2000, #function
 	.proc	016
@@ -3166,6 +3288,7 @@ __mulsi3_iq2000:
 	 srl	%g2, 0, %o0
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 	.align 4
+	.align 32
 	.global __mulsi3_lm32
 	.type	__mulsi3_lm32, #function
 	.proc	016
@@ -3189,6 +3312,7 @@ __mulsi3_lm32:
 	 srl	%g2, 0, %o0
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 	.align 4
+	.align 32
 	.global __udivmodsi4
 	.type	__udivmodsi4, #function
 	.proc	016
@@ -3237,6 +3361,7 @@ __udivmodsi4:
 	 or	%g2, %g1, %g2
 	.size	__udivmodsi4, .-__udivmodsi4
 	.align 4
+	.align 32
 	.global __mspabi_cmpf
 	.type	__mspabi_cmpf, #function
 	.proc	04
@@ -3251,6 +3376,7 @@ __mspabi_cmpf:
 	 sra	%o0, 0, %o0
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
 	.align 4
+	.align 32
 	.global __mspabi_cmpd
 	.type	__mspabi_cmpd, #function
 	.proc	04
@@ -3265,6 +3391,7 @@ __mspabi_cmpd:
 	 sra	%o0, 0, %o0
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 	.align 4
+	.align 32
 	.global __mspabi_mpysll
 	.type	__mspabi_mpysll, #function
 	.proc	05
@@ -3273,6 +3400,7 @@ __mspabi_mpysll:
 	 mulx	%o0, %o1, %o0
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
 	.align 4
+	.align 32
 	.global __mspabi_mpyull
 	.type	__mspabi_mpyull, #function
 	.proc	017
@@ -3281,6 +3409,7 @@ __mspabi_mpyull:
 	 mulx	%o0, %o1, %o0
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
 	.align 4
+	.align 32
 	.global __mulhi3
 	.type	__mulhi3, #function
 	.proc	04
@@ -3322,6 +3451,7 @@ __mulhi3:
 	 mov	1, %g5
 	.size	__mulhi3, .-__mulhi3
 	.align 4
+	.align 32
 	.global __divsi3
 	.type	__divsi3, #function
 	.proc	05
@@ -3351,6 +3481,7 @@ __divsi3:
 	 xor	%i5, 1, %i5
 	.size	__divsi3, .-__divsi3
 	.align 4
+	.align 32
 	.global __modsi3
 	.type	__modsi3, #function
 	.proc	05
@@ -3377,6 +3508,7 @@ __modsi3:
 	 mov	1, %i5
 	.size	__modsi3, .-__modsi3
 	.align 4
+	.align 32
 	.global __udivmodhi4
 	.type	__udivmodhi4, #function
 	.proc	015
@@ -3433,6 +3565,7 @@ __udivmodhi4:
 	 or	%g1, %g3, %g3
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align 4
+	.align 32
 	.global __udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, #function
 	.proc	017
@@ -3475,6 +3608,7 @@ __udivmodsi4_libgcc:
 	 or	%g2, %g1, %g2
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align 4
+	.align 32
 	.global __ashldi3
 	.type	__ashldi3, #function
 	.proc	05
@@ -3503,6 +3637,7 @@ __ashldi3:
 	 or	%g2, %g1, %g1
 	.size	__ashldi3, .-__ashldi3
 	.align 4
+	.align 32
 	.global __ashlti3
 	.type	__ashlti3, #function
 	.proc	05
@@ -3527,6 +3662,7 @@ __ashlti3:
 	 or	%o1, %o0, %o0
 	.size	__ashlti3, .-__ashlti3
 	.align 4
+	.align 32
 	.global __ashrdi3
 	.type	__ashrdi3, #function
 	.proc	05
@@ -3556,6 +3692,7 @@ __ashrdi3:
 	 or	%g2, %g1, %g1
 	.size	__ashrdi3, .-__ashrdi3
 	.align 4
+	.align 32
 	.global __ashrti3
 	.type	__ashrti3, #function
 	.proc	05
@@ -3580,6 +3717,7 @@ __ashrti3:
 	 or	%o0, %o1, %o1
 	.size	__ashrti3, .-__ashrti3
 	.align 4
+	.align 32
 	.global __bswapdi2
 	.type	__bswapdi2, #function
 	.proc	017
@@ -3615,6 +3753,7 @@ __bswapdi2:
 	 or	%g1, %o0, %o0
 	.size	__bswapdi2, .-__bswapdi2
 	.align 4
+	.align 32
 	.global __bswapsi2
 	.type	__bswapsi2, #function
 	.proc	016
@@ -3635,6 +3774,7 @@ __bswapsi2:
 	 srl	%o0, 0, %o0
 	.size	__bswapsi2, .-__bswapsi2
 	.align 4
+	.align 32
 	.global __clzsi2
 	.type	__clzsi2, #function
 	.proc	04
@@ -3680,6 +3820,7 @@ __clzsi2:
 	 sra	%o0, 0, %o0
 	.size	__clzsi2, .-__clzsi2
 	.align 4
+	.align 32
 	.global __clzti2
 	.type	__clzti2, #function
 	.proc	04
@@ -3699,6 +3840,7 @@ __clzti2:
 	 sra	%o5, 0, %o0
 	.size	__clzti2, .-__clzti2
 	.align 4
+	.align 32
 	.global __cmpdi2
 	.type	__cmpdi2, #function
 	.proc	04
@@ -3720,6 +3862,7 @@ __cmpdi2:
 	 sra	%g1, 0, %o0
 	.size	__cmpdi2, .-__cmpdi2
 	.align 4
+	.align 32
 	.global __aeabi_lcmp
 	.type	__aeabi_lcmp, #function
 	.proc	04
@@ -3733,6 +3876,7 @@ __aeabi_lcmp:
 	 sra	%o0, 0, %o0
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
 	.align 4
+	.align 32
 	.global __cmpti2
 	.type	__cmpti2, #function
 	.proc	04
@@ -3753,6 +3897,7 @@ __cmpti2:
 	 sra	%g1, 0, %o0
 	.size	__cmpti2, .-__cmpti2
 	.align 4
+	.align 32
 	.global __ctzsi2
 	.type	__ctzsi2, #function
 	.proc	04
@@ -3795,6 +3940,7 @@ __ctzsi2:
 	 sra	%o0, 0, %o0
 	.size	__ctzsi2, .-__ctzsi2
 	.align 4
+	.align 32
 	.global __ctzti2
 	.type	__ctzti2, #function
 	.proc	04
@@ -3815,6 +3961,7 @@ __ctzti2:
 	 sra	%o0, 0, %o0
 	.size	__ctzti2, .-__ctzti2
 	.align 4
+	.align 32
 	.global __ffsti2
 	.type	__ffsti2, #function
 	.proc	04
@@ -3838,6 +3985,7 @@ __ffsti2:
 	 nop
 	.size	__ffsti2, .-__ffsti2
 	.align 4
+	.align 32
 	.global __lshrdi3
 	.type	__lshrdi3, #function
 	.proc	05
@@ -3867,6 +4015,7 @@ __lshrdi3:
 	 or	%g2, %g1, %g1
 	.size	__lshrdi3, .-__lshrdi3
 	.align 4
+	.align 32
 	.global __lshrti3
 	.type	__lshrti3, #function
 	.proc	05
@@ -3891,6 +4040,7 @@ __lshrti3:
 	 or	%o0, %o1, %o1
 	.size	__lshrti3, .-__lshrti3
 	.align 4
+	.align 32
 	.global __muldsi3
 	.type	__muldsi3, #function
 	.proc	05
@@ -3925,6 +4075,7 @@ __muldsi3:
 	 or	%o0, %g1, %o0
 	.size	__muldsi3, .-__muldsi3
 	.align 4
+	.align 32
 	.global __muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, #function
 	.proc	05
@@ -3947,6 +4098,7 @@ __muldi3_compiler_rt:
 	 nop
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align 4
+	.align 32
 	.global __mulddi3
 	.type	__mulddi3, #function
 	.proc	05
@@ -3978,6 +4130,7 @@ __mulddi3:
 	 add	%g3, %g4, %o1
 	.size	__mulddi3, .-__mulddi3
 	.align 4
+	.align 32
 	.global __multi3
 	.type	__multi3, #function
 	.proc	05
@@ -3995,6 +4148,7 @@ __multi3:
 	 restore %i3, %o0, %o0
 	.size	__multi3, .-__multi3
 	.align 4
+	.align 32
 	.global __negdi2
 	.type	__negdi2, #function
 	.proc	05
@@ -4003,6 +4157,7 @@ __negdi2:
 	 sub	%g0, %o0, %o0
 	.size	__negdi2, .-__negdi2
 	.align 4
+	.align 32
 	.global __negti2
 	.type	__negti2, #function
 	.proc	05
@@ -4015,6 +4170,7 @@ __negti2:
 	 sub	%g0, %o1, %o1
 	.size	__negti2, .-__negti2
 	.align 4
+	.align 32
 	.global __paritydi2
 	.type	__paritydi2, #function
 	.proc	04
@@ -4035,6 +4191,7 @@ __paritydi2:
 	 and	%o0, 1, %o0
 	.size	__paritydi2, .-__paritydi2
 	.align 4
+	.align 32
 	.global __parityti2
 	.type	__parityti2, #function
 	.proc	04
@@ -4056,6 +4213,7 @@ __parityti2:
 	 and	%o0, 1, %o0
 	.size	__parityti2, .-__parityti2
 	.align 4
+	.align 32
 	.global __paritysi2
 	.type	__paritysi2, #function
 	.proc	04
@@ -4074,6 +4232,7 @@ __paritysi2:
 	 and	%o0, 1, %o0
 	.size	__paritysi2, .-__paritysi2
 	.align 4
+	.align 32
 	.global __popcountdi2
 	.type	__popcountdi2, #function
 	.proc	04
@@ -4110,6 +4269,7 @@ __popcountdi2:
 	 and	%o0, 127, %o0
 	.size	__popcountdi2, .-__popcountdi2
 	.align 4
+	.align 32
 	.global __popcountsi2
 	.type	__popcountsi2, #function
 	.proc	04
@@ -4138,6 +4298,7 @@ __popcountsi2:
 	 and	%o0, 63, %o0
 	.size	__popcountsi2, .-__popcountsi2
 	.align 4
+	.align 32
 	.global __popcountti2
 	.type	__popcountti2, #function
 	.proc	04
@@ -4209,6 +4370,7 @@ __popcountti2:
 	.long	0
 	.section	".text"
 	.align 4
+	.align 32
 	.global __powidf2
 	.type	__powidf2, #function
 	.proc	07
@@ -4249,6 +4411,7 @@ __powidf2:
 	.long	1065353216
 	.section	".text"
 	.align 4
+	.align 32
 	.global __powisf2
 	.type	__powisf2, #function
 	.proc	06
@@ -4283,6 +4446,7 @@ __powisf2:
 	 fdivs	%f8, %f0, %f0
 	.size	__powisf2, .-__powisf2
 	.align 4
+	.align 32
 	.global __ucmpdi2
 	.type	__ucmpdi2, #function
 	.proc	04
@@ -4304,6 +4468,7 @@ __ucmpdi2:
 	 sra	%g1, 0, %o0
 	.size	__ucmpdi2, .-__ucmpdi2
 	.align 4
+	.align 32
 	.global __aeabi_ulcmp
 	.type	__aeabi_ulcmp, #function
 	.proc	04
@@ -4317,6 +4482,7 @@ __aeabi_ulcmp:
 	 sra	%o0, 0, %o0
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.align 4
+	.align 32
 	.global __ucmpti2
 	.type	__ucmpti2, #function
 	.proc	04

@@ -1,6 +1,7 @@
 	.file	"mini-libc.c"
 	.intel_syntax noprefix
 	.text
+	.p2align 4
 	.globl	make_ti
 	.def	make_ti;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_ti
@@ -18,6 +19,7 @@ make_ti:
 	add	rsp, 24
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	make_tu
 	.def	make_tu;	.scl	2;	.type	32;	.endef
 	.seh_proc	make_tu
@@ -35,6 +37,7 @@ make_tu:
 	add	rsp, 24
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memmove
 	.def	memmove;	.scl	2;	.type	32;	.endef
 	.seh_proc	memmove
@@ -68,6 +71,7 @@ memmove:
 	jne	.L7
 	jmp	.L5
 	.seh_endproc
+	.p2align 4
 	.globl	memccpy
 	.def	memccpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	memccpy
@@ -93,6 +97,7 @@ memccpy:
 	cmovne	rax, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memchr
 	.def	memchr;	.scl	2;	.type	32;	.endef
 	.seh_proc	memchr
@@ -116,6 +121,7 @@ memchr:
 	cmove	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memcmp
 	.def	memcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	memcmp
@@ -142,6 +148,7 @@ memcmp:
 .L24:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memcpy
 	.def	memcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	memcpy
@@ -161,6 +168,7 @@ memcpy:
 	pop	rbx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memrchr
 	.def	memrchr;	.scl	2;	.type	32;	.endef
 	.seh_proc	memrchr
@@ -185,6 +193,7 @@ memrchr:
 	mov	rax, r8
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	memset
 	.def	memset;	.scl	2;	.type	32;	.endef
 	.seh_proc	memset
@@ -215,6 +224,7 @@ memset:
 	jne	.L40
 	jmp	.L39
 	.seh_endproc
+	.p2align 4
 	.globl	stpcpy
 	.def	stpcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	stpcpy
@@ -236,6 +246,7 @@ stpcpy:
 .L47:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strchrnul
 	.def	strchrnul;	.scl	2;	.type	32;	.endef
 	.seh_proc	strchrnul
@@ -257,6 +268,7 @@ strchrnul:
 .L50:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strchr
 	.def	strchr;	.scl	2;	.type	32;	.endef
 	.seh_proc	strchr
@@ -275,6 +287,7 @@ strchr:
 .L57:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strcmp
 	.def	strcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	strcmp
@@ -300,6 +313,7 @@ strcmp:
 	sub	eax, r9d
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strlen
 	.def	strlen;	.scl	2;	.type	32;	.endef
 	.seh_proc	strlen
@@ -320,6 +334,7 @@ strlen:
 	mov	rax, rcx
 	jmp	.L66
 	.seh_endproc
+	.p2align 4
 	.globl	strncmp
 	.def	strncmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	strncmp
@@ -357,6 +372,7 @@ strncmp:
 	mov	r9, rdx
 	jmp	.L72
 	.seh_endproc
+	.p2align 4
 	.globl	swab
 	.def	swab;	.scl	2;	.type	32;	.endef
 	.seh_proc	swab
@@ -379,6 +395,7 @@ swab:
 .L78:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isalpha
 	.def	isalpha;	.scl	2;	.type	32;	.endef
 	.seh_proc	isalpha
@@ -391,6 +408,7 @@ isalpha:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isascii
 	.def	isascii;	.scl	2;	.type	32;	.endef
 	.seh_proc	isascii
@@ -401,6 +419,7 @@ isascii:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isblank
 	.def	isblank;	.scl	2;	.type	32;	.endef
 	.seh_proc	isblank
@@ -414,6 +433,7 @@ isblank:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	iscntrl
 	.def	iscntrl;	.scl	2;	.type	32;	.endef
 	.seh_proc	iscntrl
@@ -427,6 +447,7 @@ iscntrl:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isdigit
 	.def	isdigit;	.scl	2;	.type	32;	.endef
 	.seh_proc	isdigit
@@ -438,6 +459,7 @@ isdigit:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isgraph
 	.def	isgraph;	.scl	2;	.type	32;	.endef
 	.seh_proc	isgraph
@@ -449,6 +471,7 @@ isgraph:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	islower
 	.def	islower;	.scl	2;	.type	32;	.endef
 	.seh_proc	islower
@@ -460,6 +483,7 @@ islower:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isprint
 	.def	isprint;	.scl	2;	.type	32;	.endef
 	.seh_proc	isprint
@@ -471,6 +495,7 @@ isprint:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isspace
 	.def	isspace;	.scl	2;	.type	32;	.endef
 	.seh_proc	isspace
@@ -485,6 +510,7 @@ isspace:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	isupper
 	.def	isupper;	.scl	2;	.type	32;	.endef
 	.seh_proc	isupper
@@ -496,6 +522,7 @@ isupper:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	iswcntrl
 	.def	iswcntrl;	.scl	2;	.type	32;	.endef
 	.seh_proc	iswcntrl
@@ -522,6 +549,7 @@ iswcntrl:
 	mov	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	iswdigit
 	.def	iswdigit;	.scl	2;	.type	32;	.endef
 	.seh_proc	iswdigit
@@ -534,6 +562,7 @@ iswdigit:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	iswprint
 	.def	iswprint;	.scl	2;	.type	32;	.endef
 	.seh_proc	iswprint
@@ -573,6 +602,7 @@ iswprint:
 	mov	edx, 1
 	jmp	.L97
 	.seh_endproc
+	.p2align 4
 	.globl	iswxdigit
 	.def	iswxdigit;	.scl	2;	.type	32;	.endef
 	.seh_proc	iswxdigit
@@ -593,6 +623,7 @@ iswxdigit:
 	mov	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	toascii
 	.def	toascii;	.scl	2;	.type	32;	.endef
 	.seh_proc	toascii
@@ -602,6 +633,7 @@ toascii:
 	and	eax, 127
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	fdim
 	.def	fdim;	.scl	2;	.type	32;	.endef
 	.seh_proc	fdim
@@ -623,6 +655,7 @@ fdim:
 	pxor	xmm0, xmm0
 	jmp	.L108
 	.seh_endproc
+	.p2align 4
 	.globl	fdimf
 	.def	fdimf;	.scl	2;	.type	32;	.endef
 	.seh_proc	fdimf
@@ -644,6 +677,7 @@ fdimf:
 	pxor	xmm0, xmm0
 	jmp	.L116
 	.seh_endproc
+	.p2align 4
 	.globl	fmax
 	.def	fmax;	.scl	2;	.type	32;	.endef
 	.seh_proc	fmax
@@ -674,6 +708,7 @@ fmax:
 	movapd	xmm1, xmm0
 	jmp	.L124
 	.seh_endproc
+	.p2align 4
 	.globl	fmaxf
 	.def	fmaxf;	.scl	2;	.type	32;	.endef
 	.seh_proc	fmaxf
@@ -704,6 +739,7 @@ fmaxf:
 	movaps	xmm1, xmm0
 	jmp	.L132
 	.seh_endproc
+	.p2align 4
 	.globl	fmaxl
 	.def	fmaxl;	.scl	2;	.type	32;	.endef
 	.seh_proc	fmaxl
@@ -746,6 +782,7 @@ fmaxl:
 	fstp	st(0)
 	jmp	.L141
 	.seh_endproc
+	.p2align 4
 	.globl	fmin
 	.def	fmin;	.scl	2;	.type	32;	.endef
 	.seh_proc	fmin
@@ -775,6 +812,7 @@ fmin:
 	movapd	xmm0, xmm1
 	jmp	.L148
 	.seh_endproc
+	.p2align 4
 	.globl	fminf
 	.def	fminf;	.scl	2;	.type	32;	.endef
 	.seh_proc	fminf
@@ -804,6 +842,7 @@ fminf:
 	movaps	xmm0, xmm1
 	jmp	.L156
 	.seh_endproc
+	.p2align 4
 	.globl	fminl
 	.def	fminl;	.scl	2;	.type	32;	.endef
 	.seh_proc	fminl
@@ -846,6 +885,7 @@ fminl:
 	fstp	st(0)
 	jmp	.L165
 	.seh_endproc
+	.p2align 4
 	.globl	l64a
 	.def	l64a;	.scl	2;	.type	32;	.endef
 	.seh_proc	l64a
@@ -870,6 +910,7 @@ l64a:
 	lea	rax, s.0[rip]
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	srand
 	.def	srand;	.scl	2;	.type	32;	.endef
 	.seh_proc	srand
@@ -879,6 +920,7 @@ srand:
 	mov	QWORD PTR seed[rip], rax
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rand
 	.def	rand;	.scl	2;	.type	32;	.endef
 	.seh_proc	rand
@@ -891,6 +933,7 @@ rand:
 	shr	rax, 33
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	insque
 	.def	insque;	.scl	2;	.type	32;	.endef
 	.seh_proc	insque
@@ -913,6 +956,7 @@ insque:
 	mov	QWORD PTR [rcx], 0
 	jmp	.L179
 	.seh_endproc
+	.p2align 4
 	.globl	remque
 	.def	remque;	.scl	2;	.type	32;	.endef
 	.seh_proc	remque
@@ -932,6 +976,7 @@ remque:
 .L183:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	lsearch
 	.def	lsearch;	.scl	2;	.type	32;	.endef
 	.seh_proc	lsearch
@@ -999,6 +1044,7 @@ lsearch:
 	pop	r15
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	lfind
 	.def	lfind;	.scl	2;	.type	32;	.endef
 	.seh_proc	lfind
@@ -1053,6 +1099,7 @@ lfind:
 	pop	r14
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	abs
 	.def	abs;	.scl	2;	.type	32;	.endef
 	.seh_proc	abs
@@ -1063,6 +1110,7 @@ abs:
 	cmovs	eax, ecx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	atoi
 	.def	atoi;	.scl	2;	.type	32;	.endef
 	.seh_proc	atoi
@@ -1124,6 +1172,7 @@ atoi:
 	mov	r8d, eax
 	jmp	.L200
 	.seh_endproc
+	.p2align 4
 	.globl	atol
 	.def	atol;	.scl	2;	.type	32;	.endef
 	.seh_proc	atol
@@ -1185,6 +1234,7 @@ atol:
 	mov	r8d, eax
 	jmp	.L212
 	.seh_endproc
+	.p2align 4
 	.globl	atoll
 	.def	atoll;	.scl	2;	.type	32;	.endef
 	.seh_proc	atoll
@@ -1244,6 +1294,7 @@ atoll:
 	pop	rsi
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	bsearch
 	.def	bsearch;	.scl	2;	.type	32;	.endef
 	.seh_proc	bsearch
@@ -1307,6 +1358,7 @@ bsearch:
 	sub	rbx, rdi
 	jmp	.L234
 	.seh_endproc
+	.p2align 4
 	.globl	bsearch_r
 	.def	bsearch_r;	.scl	2;	.type	32;	.endef
 	.seh_proc	bsearch_r
@@ -1369,6 +1421,7 @@ bsearch_r:
 	sub	esi, 1
 	jmp	.L242
 	.seh_endproc
+	.p2align 4
 	.globl	div
 	.def	div;	.scl	2;	.type	32;	.endef
 	.seh_proc	div
@@ -1382,6 +1435,7 @@ div:
 	or	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	imaxabs
 	.def	imaxabs;	.scl	2;	.type	32;	.endef
 	.seh_proc	imaxabs
@@ -1392,6 +1446,7 @@ imaxabs:
 	cmovs	rax, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	imaxdiv
 	.def	imaxdiv;	.scl	2;	.type	32;	.endef
 	.seh_proc	imaxdiv
@@ -1405,6 +1460,7 @@ imaxdiv:
 	mov	rax, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	labs
 	.def	labs;	.scl	2;	.type	32;	.endef
 	.seh_proc	labs
@@ -1415,6 +1471,7 @@ labs:
 	cmovs	eax, ecx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	ldiv
 	.def	ldiv;	.scl	2;	.type	32;	.endef
 	.seh_proc	ldiv
@@ -1428,6 +1485,7 @@ ldiv:
 	or	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	llabs
 	.def	llabs;	.scl	2;	.type	32;	.endef
 	.seh_proc	llabs
@@ -1438,6 +1496,7 @@ llabs:
 	cmovs	rax, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	lldiv
 	.def	lldiv;	.scl	2;	.type	32;	.endef
 	.seh_proc	lldiv
@@ -1451,6 +1510,7 @@ lldiv:
 	mov	rax, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wcschr
 	.def	wcschr;	.scl	2;	.type	32;	.endef
 	.seh_proc	wcschr
@@ -1477,6 +1537,7 @@ wcschr:
 	cmove	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wcscmp
 	.def	wcscmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	wcscmp
@@ -1516,6 +1577,7 @@ wcscmp:
 .L258:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wcscpy
 	.def	wcscpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	wcscpy
@@ -1532,6 +1594,7 @@ wcscpy:
 	jne	.L266
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wcslen
 	.def	wcslen;	.scl	2;	.type	32;	.endef
 	.seh_proc	wcslen
@@ -1553,6 +1616,7 @@ wcslen:
 	mov	rax, rcx
 	jmp	.L269
 	.seh_endproc
+	.p2align 4
 	.globl	wcsncmp
 	.def	wcsncmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	wcsncmp
@@ -1590,6 +1654,7 @@ wcsncmp:
 .L273:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wmemchr
 	.def	wmemchr;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemchr
@@ -1611,6 +1676,7 @@ wmemchr:
 	cmove	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wmemcmp
 	.def	wmemcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemcmp
@@ -1642,6 +1708,7 @@ wmemcmp:
 .L289:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wmemcpy
 	.def	wmemcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemcpy
@@ -1662,6 +1729,7 @@ wmemcpy:
 	pop	rbx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wmemmove
 	.def	wmemmove;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemmove
@@ -1700,6 +1768,7 @@ wmemmove:
 .L300:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	wmemset
 	.def	wmemset;	.scl	2;	.type	32;	.endef
 	.seh_proc	wmemset
@@ -1728,6 +1797,7 @@ wmemset:
 	jne	.L310
 	jmp	.L309
 	.seh_endproc
+	.p2align 4
 	.globl	bcopy
 	.def	bcopy;	.scl	2;	.type	32;	.endef
 	.seh_proc	bcopy
@@ -1759,6 +1829,7 @@ bcopy:
 	jne	.L320
 	jmp	.L316
 	.seh_endproc
+	.p2align 4
 	.globl	rotl64
 	.def	rotl64;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotl64
@@ -1769,6 +1840,7 @@ rotl64:
 	rol	rax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotr64
 	.def	rotr64;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotr64
@@ -1779,6 +1851,7 @@ rotr64:
 	ror	rax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotl32
 	.def	rotl32;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotl32
@@ -1789,6 +1862,7 @@ rotl32:
 	rol	eax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotr32
 	.def	rotr32;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotr32
@@ -1799,6 +1873,7 @@ rotr32:
 	ror	eax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotl_sz
 	.def	rotl_sz;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotl_sz
@@ -1809,6 +1884,7 @@ rotl_sz:
 	rol	rax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotr_sz
 	.def	rotr_sz;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotr_sz
@@ -1819,6 +1895,7 @@ rotr_sz:
 	ror	rax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotl16
 	.def	rotl16;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotl16
@@ -1829,6 +1906,7 @@ rotl16:
 	rol	ax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotr16
 	.def	rotr16;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotr16
@@ -1839,6 +1917,7 @@ rotr16:
 	ror	ax, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotl8
 	.def	rotl8;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotl8
@@ -1849,6 +1928,7 @@ rotl8:
 	rol	al, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	rotr8
 	.def	rotr8;	.scl	2;	.type	32;	.endef
 	.seh_proc	rotr8
@@ -1859,6 +1939,7 @@ rotr8:
 	ror	al, cl
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	bswap_16
 	.def	bswap_16;	.scl	2;	.type	32;	.endef
 	.seh_proc	bswap_16
@@ -1868,6 +1949,7 @@ bswap_16:
 	rol	ax, 8
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	bswap_32
 	.def	bswap_32;	.scl	2;	.type	32;	.endef
 	.seh_proc	bswap_32
@@ -1887,6 +1969,7 @@ bswap_32:
 	or	eax, ecx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	bswap_64
 	.def	bswap_64;	.scl	2;	.type	32;	.endef
 	.seh_proc	bswap_64
@@ -1925,6 +2008,7 @@ bswap_64:
 	or	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	ffs
 	.def	ffs;	.scl	2;	.type	32;	.endef
 	.seh_proc	ffs
@@ -1945,6 +2029,7 @@ ffs:
 .L336:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	libiberty_ffs
 	.def	libiberty_ffs;	.scl	2;	.type	32;	.endef
 	.seh_proc	libiberty_ffs
@@ -1965,6 +2050,7 @@ libiberty_ffs:
 .L342:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	gl_isinff
 	.def	gl_isinff;	.scl	2;	.type	32;	.endef
 	.seh_proc	gl_isinff
@@ -1980,6 +2066,7 @@ gl_isinff:
 .L347:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	gl_isinfd
 	.def	gl_isinfd;	.scl	2;	.type	32;	.endef
 	.seh_proc	gl_isinfd
@@ -1995,6 +2082,7 @@ gl_isinfd:
 .L350:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	gl_isinfl
 	.def	gl_isinfl;	.scl	2;	.type	32;	.endef
 	.seh_proc	gl_isinfl
@@ -2017,6 +2105,7 @@ gl_isinfl:
 .L353:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	_Qp_itoq
 	.def	_Qp_itoq;	.scl	2;	.type	32;	.endef
 	.seh_proc	_Qp_itoq
@@ -2032,6 +2121,7 @@ _Qp_itoq:
 	add	rsp, 24
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	ldexpf
 	.def	ldexpf;	.scl	2;	.type	32;	.endef
 	.seh_proc	ldexpf
@@ -2067,6 +2157,7 @@ ldexpf:
 	mulss	xmm0, xmm1
 	jmp	.L362
 	.seh_endproc
+	.p2align 4
 	.globl	ldexp
 	.def	ldexp;	.scl	2;	.type	32;	.endef
 	.seh_proc	ldexp
@@ -2102,6 +2193,7 @@ ldexp:
 	mulsd	xmm0, xmm1
 	jmp	.L370
 	.seh_endproc
+	.p2align 4
 	.globl	ldexpl
 	.def	ldexpl;	.scl	2;	.type	32;	.endef
 	.seh_proc	ldexpl
@@ -2145,6 +2237,7 @@ ldexpl:
 	fmul	st(1), st
 	jmp	.L378
 	.seh_endproc
+	.p2align 4
 	.globl	memxor
 	.def	memxor;	.scl	2;	.type	32;	.endef
 	.seh_proc	memxor
@@ -2166,6 +2259,7 @@ memxor:
 .L385:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strncat
 	.def	strncat;	.scl	2;	.type	32;	.endef
 	.seh_proc	strncat
@@ -2208,6 +2302,7 @@ strncat:
 	pop	rdi
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strnlen
 	.def	strnlen;	.scl	2;	.type	32;	.endef
 	.seh_proc	strnlen
@@ -2231,6 +2326,7 @@ strnlen:
 	mov	rax, rdx
 	jmp	.L394
 	.seh_endproc
+	.p2align 4
 	.globl	strpbrk
 	.def	strpbrk;	.scl	2;	.type	32;	.endef
 	.seh_proc	strpbrk
@@ -2263,6 +2359,7 @@ strpbrk:
 	mov	eax, 0
 	jmp	.L405
 	.seh_endproc
+	.p2align 4
 	.globl	strrchr
 	.def	strrchr;	.scl	2;	.type	32;	.endef
 	.seh_proc	strrchr
@@ -2280,6 +2377,7 @@ strrchr:
 	mov	rax, r8
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	strstr
 	.def	strstr;	.scl	2;	.type	32;	.endef
 	.seh_proc	strstr
@@ -2331,6 +2429,7 @@ strstr:
 	pop	r12
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	copysign
 	.def	copysign;	.scl	2;	.type	32;	.endef
 	.seh_proc	copysign
@@ -2354,6 +2453,7 @@ copysign:
 	xorpd	xmm0, XMMWORD PTR .LC13[rip]
 	jmp	.L426
 	.seh_endproc
+	.p2align 4
 	.globl	memmem
 	.def	memmem;	.scl	2;	.type	32;	.endef
 	.seh_proc	memmem
@@ -2418,6 +2518,7 @@ memmem:
 	mov	eax, 0
 	jmp	.L432
 	.seh_endproc
+	.p2align 4
 	.globl	mempcpy
 	.def	mempcpy;	.scl	2;	.type	32;	.endef
 	.seh_proc	mempcpy
@@ -2434,6 +2535,7 @@ mempcpy:
 	pop	rbx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	frexp
 	.def	frexp;	.scl	2;	.type	32;	.endef
 	.seh_proc	frexp
@@ -2490,6 +2592,7 @@ frexp:
 	ja	.L450
 	jmp	.L449
 	.seh_endproc
+	.p2align 4
 	.globl	__muldi3
 	.def	__muldi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__muldi3
@@ -2516,6 +2619,7 @@ __muldi3:
 	mov	ecx, 0
 	jmp	.L463
 	.seh_endproc
+	.p2align 4
 	.globl	udivmodsi4
 	.def	udivmodsi4;	.scl	2;	.type	32;	.endef
 	.seh_proc	udivmodsi4
@@ -2555,6 +2659,7 @@ udivmodsi4:
 	or	r9d, eax
 	jmp	.L475
 	.seh_endproc
+	.p2align 4
 	.globl	__clrsbqi2
 	.def	__clrsbqi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clrsbqi2
@@ -2576,6 +2681,7 @@ __clrsbqi2:
 	mov	eax, r8d
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__clrsbdi2
 	.def	__clrsbdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clrsbdi2
@@ -2595,6 +2701,7 @@ __clrsbdi2:
 	mov	eax, r8d
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mulsi3
 	.def	__mulsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulsi3
@@ -2620,6 +2727,7 @@ __mulsi3:
 	mov	r8d, ecx
 	jmp	.L490
 	.seh_endproc
+	.p2align 4
 	.globl	__cmovd
 	.def	__cmovd;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovd
@@ -2672,6 +2780,7 @@ __cmovd:
 .L495:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__cmovh
 	.def	__cmovh;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovh
@@ -2717,6 +2826,7 @@ __cmovh:
 .L507:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__cmovw
 	.def	__cmovw;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmovw
@@ -2769,6 +2879,7 @@ __cmovw:
 .L517:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__modi
 	.def	__modi;	.scl	2;	.type	32;	.endef
 	.seh_proc	__modi
@@ -2781,6 +2892,7 @@ __modi:
 	mov	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__uitod
 	.def	__uitod;	.scl	2;	.type	32;	.endef
 	.seh_proc	__uitod
@@ -2791,6 +2903,7 @@ __uitod:
 	cvtsi2sd	xmm0, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__uitof
 	.def	__uitof;	.scl	2;	.type	32;	.endef
 	.seh_proc	__uitof
@@ -2801,6 +2914,7 @@ __uitof:
 	cvtsi2ss	xmm0, rcx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ulltod
 	.def	__ulltod;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ulltod
@@ -2822,6 +2936,7 @@ __ulltod:
 	addsd	xmm0, xmm0
 	jmp	.L538
 	.seh_endproc
+	.p2align 4
 	.globl	__ulltof
 	.def	__ulltof;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ulltof
@@ -2843,6 +2958,7 @@ __ulltof:
 	addss	xmm0, xmm0
 	jmp	.L541
 	.seh_endproc
+	.p2align 4
 	.globl	__umodi
 	.def	__umodi;	.scl	2;	.type	32;	.endef
 	.seh_proc	__umodi
@@ -2855,6 +2971,7 @@ __umodi:
 	mov	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__clzhi2
 	.def	__clzhi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clzhi2
@@ -2875,6 +2992,7 @@ __clzhi2:
 .L543:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ctzhi2
 	.def	__ctzhi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ctzhi2
@@ -2892,6 +3010,7 @@ __ctzhi2:
 .L547:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__fixunssfsi
 	.def	__fixunssfsi;	.scl	2;	.type	32;	.endef
 	.seh_proc	__fixunssfsi
@@ -2908,6 +3027,7 @@ __fixunssfsi:
 	add	eax, 32768
 	jmp	.L551
 	.seh_endproc
+	.p2align 4
 	.globl	__parityhi2
 	.def	__parityhi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__parityhi2
@@ -2929,6 +3049,7 @@ __parityhi2:
 	and	eax, 1
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__popcounthi2
 	.def	__popcounthi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcounthi2
@@ -2950,6 +3071,7 @@ __popcounthi2:
 	mov	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mulsi3_iq2000
 	.def	__mulsi3_iq2000;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulsi3_iq2000
@@ -2975,6 +3097,7 @@ __mulsi3_iq2000:
 	mov	r8d, ecx
 	jmp	.L564
 	.seh_endproc
+	.p2align 4
 	.globl	__mulsi3_lm32
 	.def	__mulsi3_lm32;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulsi3_lm32
@@ -3003,6 +3126,7 @@ __mulsi3_lm32:
 	mov	r8d, edx
 	jmp	.L569
 	.seh_endproc
+	.p2align 4
 	.globl	__udivmodsi4
 	.def	__udivmodsi4;	.scl	2;	.type	32;	.endef
 	.seh_proc	__udivmodsi4
@@ -3042,6 +3166,7 @@ __udivmodsi4:
 	or	r9d, eax
 	jmp	.L582
 	.seh_endproc
+	.p2align 4
 	.globl	__mspabi_cmpf
 	.def	__mspabi_cmpf;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mspabi_cmpf
@@ -3056,6 +3181,7 @@ __mspabi_cmpf:
 .L591:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mspabi_cmpd
 	.def	__mspabi_cmpd;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mspabi_cmpd
@@ -3070,6 +3196,7 @@ __mspabi_cmpd:
 .L594:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mspabi_mpysll
 	.def	__mspabi_mpysll;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mspabi_mpysll
@@ -3080,6 +3207,7 @@ __mspabi_mpysll:
 	imul	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mspabi_mpyull
 	.def	__mspabi_mpyull;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mspabi_mpyull
@@ -3090,6 +3218,7 @@ __mspabi_mpyull:
 	imul	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mulhi3
 	.def	__mulhi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulhi3
@@ -3133,6 +3262,7 @@ __mulhi3:
 	mov	r9d, edx
 	jmp	.L601
 	.seh_endproc
+	.p2align 4
 	.globl	__divsi3
 	.def	__divsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__divsi3
@@ -3167,6 +3297,7 @@ __divsi3:
 	xor	ebx, 1
 	jmp	.L610
 	.seh_endproc
+	.p2align 4
 	.globl	__modsi3
 	.def	__modsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__modsi3
@@ -3197,6 +3328,7 @@ __modsi3:
 	mov	ebx, 1
 	jmp	.L616
 	.seh_endproc
+	.p2align 4
 	.globl	__udivmodhi4
 	.def	__udivmodhi4;	.scl	2;	.type	32;	.endef
 	.seh_proc	__udivmodhi4
@@ -3238,6 +3370,7 @@ __udivmodhi4:
 	or	edx, r9d
 	jmp	.L627
 	.seh_endproc
+	.p2align 4
 	.globl	__udivmodsi4_libgcc
 	.def	__udivmodsi4_libgcc;	.scl	2;	.type	32;	.endef
 	.seh_proc	__udivmodsi4_libgcc
@@ -3277,6 +3410,7 @@ __udivmodsi4_libgcc:
 	or	r9d, eax
 	jmp	.L643
 	.seh_endproc
+	.p2align 4
 	.globl	__ashldi3
 	.def	__ashldi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashldi3
@@ -3309,6 +3443,7 @@ __ashldi3:
 	or	r8d, r9d
 	jmp	.L654
 	.seh_endproc
+	.p2align 4
 	.globl	__ashlti3
 	.def	__ashlti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashlti3
@@ -3354,6 +3489,7 @@ __ashlti3:
 	mov	rdx, r8
 	jmp	.L660
 	.seh_endproc
+	.p2align 4
 	.globl	__ashrdi3
 	.def	__ashrdi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashrdi3
@@ -3389,6 +3525,7 @@ __ashrdi3:
 	or	r8d, r9d
 	jmp	.L664
 	.seh_endproc
+	.p2align 4
 	.globl	__ashrti3
 	.def	__ashrti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ashrti3
@@ -3434,6 +3571,7 @@ __ashrti3:
 	mov	rdx, r8
 	jmp	.L670
 	.seh_endproc
+	.p2align 4
 	.globl	__bswapdi2
 	.def	__bswapdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__bswapdi2
@@ -3472,6 +3610,7 @@ __bswapdi2:
 	or	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__bswapsi2
 	.def	__bswapsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__bswapsi2
@@ -3491,6 +3630,7 @@ __bswapsi2:
 	or	eax, ecx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__clzsi2
 	.def	__clzsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clzsi2
@@ -3536,6 +3676,7 @@ __clzsi2:
 	add	eax, r8d
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__clzti2
 	.def	__clzti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__clzti2
@@ -3559,6 +3700,7 @@ __clzti2:
 	add	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__cmpdi2
 	.def	__cmpdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmpdi2
@@ -3583,6 +3725,7 @@ __cmpdi2:
 .L676:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__aeabi_lcmp
 	.def	__aeabi_lcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	__aeabi_lcmp
@@ -3595,6 +3738,7 @@ __aeabi_lcmp:
 	add	rsp, 40
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__cmpti2
 	.def	__cmpti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__cmpti2
@@ -3619,6 +3763,7 @@ __cmpti2:
 .L683:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ctzsi2
 	.def	__ctzsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ctzsi2
@@ -3662,6 +3807,7 @@ __ctzsi2:
 	add	eax, ecx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ctzti2
 	.def	__ctzti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ctzti2
@@ -3683,6 +3829,7 @@ __ctzti2:
 	add	eax, edx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ffsti2
 	.def	__ffsti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ffsti2
@@ -3705,6 +3852,7 @@ __ffsti2:
 	add	eax, 1
 	jmp	.L691
 	.seh_endproc
+	.p2align 4
 	.globl	__lshrdi3
 	.def	__lshrdi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__lshrdi3
@@ -3739,6 +3887,7 @@ __lshrdi3:
 	or	r8d, r9d
 	jmp	.L697
 	.seh_endproc
+	.p2align 4
 	.globl	__lshrti3
 	.def	__lshrti3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__lshrti3
@@ -3783,6 +3932,7 @@ __lshrti3:
 	mov	rdx, r8
 	jmp	.L703
 	.seh_endproc
+	.p2align 4
 	.globl	__muldsi3
 	.def	__muldsi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__muldsi3
@@ -3814,6 +3964,7 @@ __muldsi3:
 	or	rax, rdx
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__muldi3_compiler_rt
 	.def	__muldi3_compiler_rt;	.scl	2;	.type	32;	.endef
 	.seh_proc	__muldi3_compiler_rt
@@ -3845,6 +3996,7 @@ __muldi3_compiler_rt:
 	pop	rsi
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__mulddi3
 	.def	__mulddi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__mulddi3
@@ -3884,6 +4036,7 @@ __mulddi3:
 	add	rsp, 24
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__multi3
 	.def	__multi3;	.scl	2;	.type	32;	.endef
 	.seh_proc	__multi3
@@ -3926,6 +4079,7 @@ __multi3:
 	pop	rbp
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__negdi2
 	.def	__negdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__negdi2
@@ -3935,6 +4089,7 @@ __negdi2:
 	neg	rax
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__negti2
 	.def	__negti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__negti2
@@ -3953,6 +4108,7 @@ __negti2:
 	add	rsp, 24
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__paritydi2
 	.def	__paritydi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__paritydi2
@@ -3976,6 +4132,7 @@ __paritydi2:
 	and	eax, 1
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__parityti2
 	.def	__parityti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__parityti2
@@ -4001,6 +4158,7 @@ __parityti2:
 	and	eax, 1
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__paritysi2
 	.def	__paritysi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__paritysi2
@@ -4021,6 +4179,7 @@ __paritysi2:
 	and	eax, 1
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__popcountdi2
 	.def	__popcountdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcountdi2
@@ -4054,6 +4213,7 @@ __popcountdi2:
 	and	eax, 127
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__popcountsi2
 	.def	__popcountsi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcountsi2
@@ -4081,6 +4241,7 @@ __popcountsi2:
 	and	eax, 63
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__popcountti2
 	.def	__popcountti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__popcountti2
@@ -4130,6 +4291,7 @@ __popcountti2:
 	movzx	eax, al
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__powidf2
 	.def	__powidf2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__powidf2
@@ -4164,6 +4326,7 @@ __powidf2:
 	movapd	xmm1, xmm0
 	jmp	.L717
 	.seh_endproc
+	.p2align 4
 	.globl	__powisf2
 	.def	__powisf2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__powisf2
@@ -4198,6 +4361,7 @@ __powisf2:
 	movaps	xmm1, xmm0
 	jmp	.L723
 	.seh_endproc
+	.p2align 4
 	.globl	__ucmpdi2
 	.def	__ucmpdi2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ucmpdi2
@@ -4223,6 +4387,7 @@ __ucmpdi2:
 .L729:
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__aeabi_ulcmp
 	.def	__aeabi_ulcmp;	.scl	2;	.type	32;	.endef
 	.seh_proc	__aeabi_ulcmp
@@ -4235,6 +4400,7 @@ __aeabi_ulcmp:
 	add	rsp, 40
 	ret
 	.seh_endproc
+	.p2align 4
 	.globl	__ucmpti2
 	.def	__ucmpti2;	.scl	2;	.type	32;	.endef
 	.seh_proc	__ucmpti2

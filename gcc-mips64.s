@@ -8,6 +8,7 @@
 	.abicalls
 	.text
 	.align	2
+	.align	3
 	.globl	make_ti
 	.set	nomips16
 	.set	nomicromips
@@ -28,6 +29,7 @@ make_ti:
 	.end	make_ti
 	.size	make_ti, .-make_ti
 	.align	2
+	.align	3
 	.globl	make_tu
 	.set	nomips16
 	.set	nomicromips
@@ -48,6 +50,7 @@ make_tu:
 	.end	make_tu
 	.size	make_tu, .-make_tu
 	.align	2
+	.align	3
 	.globl	memmove
 	.set	nomips16
 	.set	nomicromips
@@ -102,6 +105,7 @@ memmove:
 	.end	memmove
 	.size	memmove, .-memmove
 	.align	2
+	.align	3
 	.globl	memccpy
 	.set	nomips16
 	.set	nomicromips
@@ -140,6 +144,7 @@ memccpy:
 	.end	memccpy
 	.size	memccpy, .-memccpy
 	.align	2
+	.align	3
 	.globl	memchr
 	.set	nomips16
 	.set	nomicromips
@@ -183,6 +188,7 @@ memchr:
 	.end	memchr
 	.size	memchr, .-memchr
 	.align	2
+	.align	3
 	.globl	memcmp
 	.set	nomips16
 	.set	nomicromips
@@ -224,6 +230,7 @@ memcmp:
 	.end	memcmp
 	.size	memcmp, .-memcmp
 	.align	2
+	.align	3
 	.globl	memcpy
 	.set	nomips16
 	.set	nomicromips
@@ -263,6 +270,7 @@ memcpy:
 	.end	memcpy
 	.size	memcpy, .-memcpy
 	.align	2
+	.align	3
 	.globl	memrchr
 	.set	nomips16
 	.set	nomicromips
@@ -300,6 +308,7 @@ memrchr:
 	.end	memrchr
 	.size	memrchr, .-memrchr
 	.align	2
+	.align	3
 	.globl	memset
 	.set	nomips16
 	.set	nomicromips
@@ -331,6 +340,7 @@ memset:
 	.end	memset
 	.size	memset, .-memset
 	.align	2
+	.align	3
 	.globl	stpcpy
 	.set	nomips16
 	.set	nomicromips
@@ -363,6 +373,7 @@ stpcpy:
 	.end	stpcpy
 	.size	stpcpy, .-stpcpy
 	.align	2
+	.align	3
 	.globl	strchrnul
 	.set	nomips16
 	.set	nomicromips
@@ -404,6 +415,7 @@ strchrnul:
 	.end	strchrnul
 	.size	strchrnul, .-strchrnul
 	.align	2
+	.align	3
 	.globl	strchr
 	.set	nomips16
 	.set	nomicromips
@@ -434,6 +446,7 @@ strchr:
 	.end	strchr
 	.size	strchr, .-strchr
 	.align	2
+	.align	3
 	.globl	strcmp
 	.set	nomips16
 	.set	nomicromips
@@ -472,6 +485,7 @@ strcmp:
 	.end	strcmp
 	.size	strcmp, .-strcmp
 	.align	2
+	.align	3
 	.globl	strlen
 	.set	nomips16
 	.set	nomicromips
@@ -503,6 +517,7 @@ strlen:
 	.end	strlen
 	.size	strlen, .-strlen
 	.align	2
+	.align	3
 	.globl	strncmp
 	.set	nomips16
 	.set	nomicromips
@@ -553,6 +568,7 @@ strncmp:
 	.end	strncmp
 	.size	strncmp, .-strncmp
 	.align	2
+	.align	3
 	.globl	swab
 	.set	nomips16
 	.set	nomicromips
@@ -588,6 +604,7 @@ swab:
 	.end	swab
 	.size	swab, .-swab
 	.align	2
+	.align	3
 	.globl	isalpha
 	.set	nomips16
 	.set	nomicromips
@@ -609,6 +626,7 @@ isalpha:
 	.end	isalpha
 	.size	isalpha, .-isalpha
 	.align	2
+	.align	3
 	.globl	isascii
 	.set	nomips16
 	.set	nomicromips
@@ -628,6 +646,7 @@ isascii:
 	.end	isascii
 	.size	isascii, .-isascii
 	.align	2
+	.align	3
 	.globl	isblank
 	.set	nomips16
 	.set	nomicromips
@@ -655,6 +674,7 @@ isblank:
 	.end	isblank
 	.size	isblank, .-isblank
 	.align	2
+	.align	3
 	.globl	iscntrl
 	.set	nomips16
 	.set	nomicromips
@@ -682,6 +702,7 @@ iscntrl:
 	.end	iscntrl
 	.size	iscntrl, .-iscntrl
 	.align	2
+	.align	3
 	.globl	isdigit
 	.set	nomips16
 	.set	nomicromips
@@ -702,6 +723,7 @@ isdigit:
 	.end	isdigit
 	.size	isdigit, .-isdigit
 	.align	2
+	.align	3
 	.globl	isgraph
 	.set	nomips16
 	.set	nomicromips
@@ -722,6 +744,7 @@ isgraph:
 	.end	isgraph
 	.size	isgraph, .-isgraph
 	.align	2
+	.align	3
 	.globl	islower
 	.set	nomips16
 	.set	nomicromips
@@ -742,6 +765,7 @@ islower:
 	.end	islower
 	.size	islower, .-islower
 	.align	2
+	.align	3
 	.globl	isprint
 	.set	nomips16
 	.set	nomicromips
@@ -762,6 +786,7 @@ isprint:
 	.end	isprint
 	.size	isprint, .-isprint
 	.align	2
+	.align	3
 	.globl	isspace
 	.set	nomips16
 	.set	nomicromips
@@ -789,6 +814,7 @@ isspace:
 	.end	isspace
 	.size	isspace, .-isspace
 	.align	2
+	.align	3
 	.globl	isupper
 	.set	nomips16
 	.set	nomicromips
@@ -809,6 +835,7 @@ isupper:
 	.end	isupper
 	.size	isupper, .-isupper
 	.align	2
+	.align	3
 	.globl	iswcntrl
 	.set	nomips16
 	.set	nomicromips
@@ -846,6 +873,7 @@ iswcntrl:
 	.end	iswcntrl
 	.size	iswcntrl, .-iswcntrl
 	.align	2
+	.align	3
 	.globl	iswdigit
 	.set	nomips16
 	.set	nomicromips
@@ -866,6 +894,7 @@ iswdigit:
 	.end	iswdigit
 	.size	iswdigit, .-iswdigit
 	.align	2
+	.align	3
 	.globl	iswprint
 	.set	nomips16
 	.set	nomicromips
@@ -937,6 +966,7 @@ iswprint:
 	.end	iswprint
 	.size	iswprint, .-iswprint
 	.align	2
+	.align	3
 	.globl	iswxdigit
 	.set	nomips16
 	.set	nomicromips
@@ -966,6 +996,7 @@ iswxdigit:
 	.end	iswxdigit
 	.size	iswxdigit, .-iswxdigit
 	.align	2
+	.align	3
 	.globl	toascii
 	.set	nomips16
 	.set	nomicromips
@@ -985,6 +1016,7 @@ toascii:
 	.end	toascii
 	.size	toascii, .-toascii
 	.align	2
+	.align	3
 	.globl	fdim
 	.set	nomips16
 	.set	nomicromips
@@ -1032,6 +1064,7 @@ fdim:
 	.end	fdim
 	.size	fdim, .-fdim
 	.align	2
+	.align	3
 	.globl	fdimf
 	.set	nomips16
 	.set	nomicromips
@@ -1079,6 +1112,7 @@ fdimf:
 	.end	fdimf
 	.size	fdimf, .-fdimf
 	.align	2
+	.align	3
 	.globl	fmax
 	.set	nomips16
 	.set	nomicromips
@@ -1145,6 +1179,7 @@ fmax:
 	.end	fmax
 	.size	fmax, .-fmax
 	.align	2
+	.align	3
 	.globl	fmaxf
 	.set	nomips16
 	.set	nomicromips
@@ -1212,6 +1247,7 @@ fmaxf:
 	.end	fmaxf
 	.size	fmaxf, .-fmaxf
 	.align	2
+	.align	3
 	.globl	fmaxl
 	.set	nomips16
 	.set	nomicromips
@@ -1327,6 +1363,7 @@ fmaxl:
 	.end	fmaxl
 	.size	fmaxl, .-fmaxl
 	.align	2
+	.align	3
 	.globl	fmin
 	.set	nomips16
 	.set	nomicromips
@@ -1393,6 +1430,7 @@ fmin:
 	.end	fmin
 	.size	fmin, .-fmin
 	.align	2
+	.align	3
 	.globl	fminf
 	.set	nomips16
 	.set	nomicromips
@@ -1460,6 +1498,7 @@ fminf:
 	.end	fminf
 	.size	fminf, .-fminf
 	.align	2
+	.align	3
 	.globl	fminl
 	.set	nomips16
 	.set	nomicromips
@@ -1575,6 +1614,7 @@ fminl:
 	.end	fminl
 	.size	fminl, .-fminl
 	.align	2
+	.align	3
 	.globl	l64a
 	.set	nomips16
 	.set	nomicromips
@@ -1623,6 +1663,7 @@ l64a:
 	.end	l64a
 	.size	l64a, .-l64a
 	.align	2
+	.align	3
 	.globl	srand
 	.set	nomips16
 	.set	nomicromips
@@ -1649,6 +1690,7 @@ srand:
 	.end	srand
 	.size	srand, .-srand
 	.align	2
+	.align	3
 	.globl	rand
 	.set	nomips16
 	.set	nomicromips
@@ -1683,6 +1725,7 @@ rand:
 	.end	rand
 	.size	rand, .-rand
 	.align	2
+	.align	3
 	.globl	insque
 	.set	nomips16
 	.set	nomicromips
@@ -1719,6 +1762,7 @@ insque:
 	.end	insque
 	.size	insque, .-insque
 	.align	2
+	.align	3
 	.globl	remque
 	.set	nomips16
 	.set	nomicromips
@@ -1752,6 +1796,7 @@ remque:
 	.end	remque
 	.size	remque, .-remque
 	.align	2
+	.align	3
 	.globl	lsearch
 	.set	nomips16
 	.set	nomicromips
@@ -1835,6 +1880,7 @@ lsearch:
 	.end	lsearch
 	.size	lsearch, .-lsearch
 	.align	2
+	.align	3
 	.globl	lfind
 	.set	nomips16
 	.set	nomicromips
@@ -1896,6 +1942,7 @@ lfind:
 	.end	lfind
 	.size	lfind, .-lfind
 	.align	2
+	.align	3
 	.globl	abs
 	.set	nomips16
 	.set	nomicromips
@@ -1917,6 +1964,7 @@ abs:
 	.end	abs
 	.size	abs, .-abs
 	.align	2
+	.align	3
 	.globl	atoi
 	.set	nomips16
 	.set	nomicromips
@@ -2002,6 +2050,7 @@ atoi:
 	.end	atoi
 	.size	atoi, .-atoi
 	.align	2
+	.align	3
 	.globl	atol
 	.set	nomips16
 	.set	nomicromips
@@ -2085,6 +2134,7 @@ atol:
 	.end	atol
 	.size	atol, .-atol
 	.align	2
+	.align	3
 	.globl	atoll
 	.set	nomips16
 	.set	nomicromips
@@ -2168,6 +2218,7 @@ atoll:
 	.end	atoll
 	.size	atoll, .-atoll
 	.align	2
+	.align	3
 	.globl	bsearch
 	.set	nomips16
 	.set	nomicromips
@@ -2242,6 +2293,7 @@ bsearch:
 	.end	bsearch
 	.size	bsearch, .-bsearch
 	.align	2
+	.align	3
 	.globl	bsearch_r
 	.set	nomips16
 	.set	nomicromips
@@ -2321,6 +2373,7 @@ bsearch_r:
 	.end	bsearch_r
 	.size	bsearch_r, .-bsearch_r
 	.align	2
+	.align	3
 	.globl	div
 	.set	nomips16
 	.set	nomicromips
@@ -2353,6 +2406,7 @@ div:
 	.end	div
 	.size	div, .-div
 	.align	2
+	.align	3
 	.globl	imaxabs
 	.set	nomips16
 	.set	nomicromips
@@ -2374,6 +2428,7 @@ imaxabs:
 	.end	imaxabs
 	.size	imaxabs, .-imaxabs
 	.align	2
+	.align	3
 	.globl	imaxdiv
 	.set	nomips16
 	.set	nomicromips
@@ -2399,6 +2454,7 @@ imaxdiv:
 	.end	imaxdiv
 	.size	imaxdiv, .-imaxdiv
 	.align	2
+	.align	3
 	.globl	labs
 	.set	nomips16
 	.set	nomicromips
@@ -2420,6 +2476,7 @@ labs:
 	.end	labs
 	.size	labs, .-labs
 	.align	2
+	.align	3
 	.globl	ldiv
 	.set	nomips16
 	.set	nomicromips
@@ -2445,6 +2502,7 @@ ldiv:
 	.end	ldiv
 	.size	ldiv, .-ldiv
 	.align	2
+	.align	3
 	.globl	llabs
 	.set	nomips16
 	.set	nomicromips
@@ -2466,6 +2524,7 @@ llabs:
 	.end	llabs
 	.size	llabs, .-llabs
 	.align	2
+	.align	3
 	.globl	lldiv
 	.set	nomips16
 	.set	nomicromips
@@ -2491,6 +2550,7 @@ lldiv:
 	.end	lldiv
 	.size	lldiv, .-lldiv
 	.align	2
+	.align	3
 	.globl	wcschr
 	.set	nomips16
 	.set	nomicromips
@@ -2534,6 +2594,7 @@ wcschr:
 	.end	wcschr
 	.size	wcschr, .-wcschr
 	.align	2
+	.align	3
 	.globl	wcscmp
 	.set	nomips16
 	.set	nomicromips
@@ -2579,6 +2640,7 @@ wcscmp:
 	.end	wcscmp
 	.size	wcscmp, .-wcscmp
 	.align	2
+	.align	3
 	.globl	wcscpy
 	.set	nomips16
 	.set	nomicromips
@@ -2607,6 +2669,7 @@ wcscpy:
 	.end	wcscpy
 	.size	wcscpy, .-wcscpy
 	.align	2
+	.align	3
 	.globl	wcslen
 	.set	nomips16
 	.set	nomicromips
@@ -2638,6 +2701,7 @@ wcslen:
 	.end	wcslen
 	.size	wcslen, .-wcslen
 	.align	2
+	.align	3
 	.globl	wcsncmp
 	.set	nomips16
 	.set	nomicromips
@@ -2686,6 +2750,7 @@ wcsncmp:
 	.end	wcsncmp
 	.size	wcsncmp, .-wcsncmp
 	.align	2
+	.align	3
 	.globl	wmemchr
 	.set	nomips16
 	.set	nomicromips
@@ -2728,6 +2793,7 @@ wmemchr:
 	.end	wmemchr
 	.size	wmemchr, .-wmemchr
 	.align	2
+	.align	3
 	.globl	wmemcmp
 	.set	nomips16
 	.set	nomicromips
@@ -2773,6 +2839,7 @@ wmemcmp:
 	.end	wmemcmp
 	.size	wmemcmp, .-wmemcmp
 	.align	2
+	.align	3
 	.globl	wmemcpy
 	.set	nomips16
 	.set	nomicromips
@@ -2812,6 +2879,7 @@ wmemcpy:
 	.end	wmemcpy
 	.size	wmemcpy, .-wmemcpy
 	.align	2
+	.align	3
 	.globl	wmemmove
 	.set	nomips16
 	.set	nomicromips
@@ -2870,6 +2938,7 @@ wmemmove:
 	.end	wmemmove
 	.size	wmemmove, .-wmemmove
 	.align	2
+	.align	3
 	.globl	wmemset
 	.set	nomips16
 	.set	nomicromips
@@ -2902,6 +2971,7 @@ wmemset:
 	.end	wmemset
 	.size	wmemset, .-wmemset
 	.align	2
+	.align	3
 	.globl	bcopy
 	.set	nomips16
 	.set	nomicromips
@@ -2954,6 +3024,7 @@ bcopy:
 	.end	bcopy
 	.size	bcopy, .-bcopy
 	.align	2
+	.align	3
 	.globl	rotl64
 	.set	nomips16
 	.set	nomicromips
@@ -2976,6 +3047,7 @@ rotl64:
 	.end	rotl64
 	.size	rotl64, .-rotl64
 	.align	2
+	.align	3
 	.globl	rotr64
 	.set	nomips16
 	.set	nomicromips
@@ -2998,6 +3070,7 @@ rotr64:
 	.end	rotr64
 	.size	rotr64, .-rotr64
 	.align	2
+	.align	3
 	.globl	rotl32
 	.set	nomips16
 	.set	nomicromips
@@ -3020,6 +3093,7 @@ rotl32:
 	.end	rotl32
 	.size	rotl32, .-rotl32
 	.align	2
+	.align	3
 	.globl	rotr32
 	.set	nomips16
 	.set	nomicromips
@@ -3042,6 +3116,7 @@ rotr32:
 	.end	rotr32
 	.size	rotr32, .-rotr32
 	.align	2
+	.align	3
 	.globl	rotl_sz
 	.set	nomips16
 	.set	nomicromips
@@ -3064,6 +3139,7 @@ rotl_sz:
 	.end	rotl_sz
 	.size	rotl_sz, .-rotl_sz
 	.align	2
+	.align	3
 	.globl	rotr_sz
 	.set	nomips16
 	.set	nomicromips
@@ -3086,6 +3162,7 @@ rotr_sz:
 	.end	rotr_sz
 	.size	rotr_sz, .-rotr_sz
 	.align	2
+	.align	3
 	.globl	rotl16
 	.set	nomips16
 	.set	nomicromips
@@ -3111,6 +3188,7 @@ rotl16:
 	.end	rotl16
 	.size	rotl16, .-rotl16
 	.align	2
+	.align	3
 	.globl	rotr16
 	.set	nomips16
 	.set	nomicromips
@@ -3136,6 +3214,7 @@ rotr16:
 	.end	rotr16
 	.size	rotr16, .-rotr16
 	.align	2
+	.align	3
 	.globl	rotl8
 	.set	nomips16
 	.set	nomicromips
@@ -3161,6 +3240,7 @@ rotl8:
 	.end	rotl8
 	.size	rotl8, .-rotl8
 	.align	2
+	.align	3
 	.globl	rotr8
 	.set	nomips16
 	.set	nomicromips
@@ -3186,6 +3266,7 @@ rotr8:
 	.end	rotr8
 	.size	rotr8, .-rotr8
 	.align	2
+	.align	3
 	.globl	bswap_16
 	.set	nomips16
 	.set	nomicromips
@@ -3208,6 +3289,7 @@ bswap_16:
 	.end	bswap_16
 	.size	bswap_16, .-bswap_16
 	.align	2
+	.align	3
 	.globl	bswap_32
 	.set	nomips16
 	.set	nomicromips
@@ -3236,6 +3318,7 @@ bswap_32:
 	.end	bswap_32
 	.size	bswap_32, .-bswap_32
 	.align	2
+	.align	3
 	.globl	bswap_64
 	.set	nomips16
 	.set	nomicromips
@@ -3281,6 +3364,7 @@ bswap_64:
 	.end	bswap_64
 	.size	bswap_64, .-bswap_64
 	.align	2
+	.align	3
 	.globl	ffs
 	.set	nomips16
 	.set	nomicromips
@@ -3316,6 +3400,7 @@ ffs:
 	.end	ffs
 	.size	ffs, .-ffs
 	.align	2
+	.align	3
 	.globl	libiberty_ffs
 	.set	nomips16
 	.set	nomicromips
@@ -3354,6 +3439,7 @@ libiberty_ffs:
 	.end	libiberty_ffs
 	.size	libiberty_ffs, .-libiberty_ffs
 	.align	2
+	.align	3
 	.globl	gl_isinff
 	.set	nomips16
 	.set	nomicromips
@@ -3392,6 +3478,7 @@ gl_isinff:
 	.end	gl_isinff
 	.size	gl_isinff, .-gl_isinff
 	.align	2
+	.align	3
 	.globl	gl_isinfd
 	.set	nomips16
 	.set	nomicromips
@@ -3430,6 +3517,7 @@ gl_isinfd:
 	.end	gl_isinfd
 	.size	gl_isinfd, .-gl_isinfd
 	.align	2
+	.align	3
 	.globl	gl_isinfl
 	.set	nomips16
 	.set	nomicromips
@@ -3493,6 +3581,7 @@ gl_isinfl:
 	.end	gl_isinfl
 	.size	gl_isinfl, .-gl_isinfl
 	.align	2
+	.align	3
 	.globl	_Qp_itoq
 	.set	nomips16
 	.set	nomicromips
@@ -3535,6 +3624,7 @@ _Qp_itoq:
 	.end	_Qp_itoq
 	.size	_Qp_itoq, .-_Qp_itoq
 	.align	2
+	.align	3
 	.globl	ldexpf
 	.set	nomips16
 	.set	nomicromips
@@ -3596,6 +3686,7 @@ ldexpf:
 	.end	ldexpf
 	.size	ldexpf, .-ldexpf
 	.align	2
+	.align	3
 	.globl	ldexp
 	.set	nomips16
 	.set	nomicromips
@@ -3657,6 +3748,7 @@ ldexp:
 	.end	ldexp
 	.size	ldexp, .-ldexp
 	.align	2
+	.align	3
 	.globl	ldexpl
 	.set	nomips16
 	.set	nomicromips
@@ -3802,6 +3894,7 @@ ldexpl:
 	.end	ldexpl
 	.size	ldexpl, .-ldexpl
 	.align	2
+	.align	3
 	.globl	memxor
 	.set	nomips16
 	.set	nomicromips
@@ -3836,6 +3929,7 @@ memxor:
 	.end	memxor
 	.size	memxor, .-memxor
 	.align	2
+	.align	3
 	.globl	strncat
 	.set	nomips16
 	.set	nomicromips
@@ -3895,6 +3989,7 @@ strncat:
 	.end	strncat
 	.size	strncat, .-strncat
 	.align	2
+	.align	3
 	.globl	strnlen
 	.set	nomips16
 	.set	nomicromips
@@ -3935,6 +4030,7 @@ strnlen:
 	.end	strnlen
 	.size	strnlen, .-strnlen
 	.align	2
+	.align	3
 	.globl	strpbrk
 	.set	nomips16
 	.set	nomicromips
@@ -3980,6 +4076,7 @@ strpbrk:
 	.end	strpbrk
 	.size	strpbrk, .-strpbrk
 	.align	2
+	.align	3
 	.globl	strrchr
 	.set	nomips16
 	.set	nomicromips
@@ -4015,6 +4112,7 @@ strrchr:
 	.end	strrchr
 	.size	strrchr, .-strrchr
 	.align	2
+	.align	3
 	.globl	strstr
 	.set	nomips16
 	.set	nomicromips
@@ -4093,6 +4191,7 @@ strstr:
 	.end	strstr
 	.size	strstr, .-strstr
 	.align	2
+	.align	3
 	.globl	copysign
 	.set	nomips16
 	.set	nomicromips
@@ -4147,6 +4246,7 @@ copysign:
 	.end	copysign
 	.size	copysign, .-copysign
 	.align	2
+	.align	3
 	.globl	memmem
 	.set	nomips16
 	.set	nomicromips
@@ -4239,6 +4339,7 @@ memmem:
 	.end	memmem
 	.size	memmem, .-memmem
 	.align	2
+	.align	3
 	.globl	mempcpy
 	.set	nomips16
 	.set	nomicromips
@@ -4274,6 +4375,7 @@ mempcpy:
 	.end	mempcpy
 	.size	mempcpy, .-mempcpy
 	.align	2
+	.align	3
 	.globl	frexp
 	.set	nomips16
 	.set	nomicromips
@@ -4372,6 +4474,7 @@ frexp:
 	.end	frexp
 	.size	frexp, .-frexp
 	.align	2
+	.align	3
 	.globl	__muldi3
 	.set	nomips16
 	.set	nomicromips
@@ -4408,6 +4511,7 @@ __muldi3:
 	.end	__muldi3
 	.size	__muldi3, .-__muldi3
 	.align	2
+	.align	3
 	.globl	udivmodsi4
 	.set	nomips16
 	.set	nomicromips
@@ -4478,6 +4582,7 @@ udivmodsi4:
 	.end	udivmodsi4
 	.size	udivmodsi4, .-udivmodsi4
 	.align	2
+	.align	3
 	.globl	__clrsbqi2
 	.set	nomips16
 	.set	nomicromips
@@ -4523,6 +4628,7 @@ __clrsbqi2:
 	.end	__clrsbqi2
 	.size	__clrsbqi2, .-__clrsbqi2
 	.align	2
+	.align	3
 	.globl	__clrsbdi2
 	.set	nomips16
 	.set	nomicromips
@@ -4565,6 +4671,7 @@ __clrsbdi2:
 	.end	__clrsbdi2
 	.size	__clrsbdi2, .-__clrsbdi2
 	.align	2
+	.align	3
 	.globl	__mulsi3
 	.set	nomips16
 	.set	nomicromips
@@ -4602,6 +4709,7 @@ __mulsi3:
 	.end	__mulsi3
 	.size	__mulsi3, .-__mulsi3
 	.align	2
+	.align	3
 	.globl	__cmovd
 	.set	nomips16
 	.set	nomicromips
@@ -4684,6 +4792,7 @@ __cmovd:
 	.end	__cmovd
 	.size	__cmovd, .-__cmovd
 	.align	2
+	.align	3
 	.globl	__cmovh
 	.set	nomips16
 	.set	nomicromips
@@ -4757,6 +4866,7 @@ __cmovh:
 	.end	__cmovh
 	.size	__cmovh, .-__cmovh
 	.align	2
+	.align	3
 	.globl	__cmovw
 	.set	nomips16
 	.set	nomicromips
@@ -4839,6 +4949,7 @@ __cmovw:
 	.end	__cmovw
 	.size	__cmovw, .-__cmovw
 	.align	2
+	.align	3
 	.globl	__modi
 	.set	nomips16
 	.set	nomicromips
@@ -4861,6 +4972,7 @@ __modi:
 	.end	__modi
 	.size	__modi, .-__modi
 	.align	2
+	.align	3
 	.globl	__uitod
 	.set	nomips16
 	.set	nomicromips
@@ -4883,6 +4995,7 @@ __uitod:
 	.end	__uitod
 	.size	__uitod, .-__uitod
 	.align	2
+	.align	3
 	.globl	__uitof
 	.set	nomips16
 	.set	nomicromips
@@ -4905,6 +5018,7 @@ __uitof:
 	.end	__uitof
 	.size	__uitof, .-__uitof
 	.align	2
+	.align	3
 	.globl	__ulltod
 	.set	nomips16
 	.set	nomicromips
@@ -4937,6 +5051,7 @@ __ulltod:
 	.end	__ulltod
 	.size	__ulltod, .-__ulltod
 	.align	2
+	.align	3
 	.globl	__ulltof
 	.set	nomips16
 	.set	nomicromips
@@ -4969,6 +5084,7 @@ __ulltof:
 	.end	__ulltof
 	.size	__ulltof, .-__ulltof
 	.align	2
+	.align	3
 	.globl	__umodi
 	.set	nomips16
 	.set	nomicromips
@@ -4991,6 +5107,7 @@ __umodi:
 	.end	__umodi
 	.size	__umodi, .-__umodi
 	.align	2
+	.align	3
 	.globl	__clzhi2
 	.set	nomips16
 	.set	nomicromips
@@ -5025,6 +5142,7 @@ __clzhi2:
 	.end	__clzhi2
 	.size	__clzhi2, .-__clzhi2
 	.align	2
+	.align	3
 	.globl	__ctzhi2
 	.set	nomips16
 	.set	nomicromips
@@ -5057,6 +5175,7 @@ __ctzhi2:
 	.end	__ctzhi2
 	.size	__ctzhi2, .-__ctzhi2
 	.align	2
+	.align	3
 	.globl	__fixunssfsi
 	.set	nomips16
 	.set	nomicromips
@@ -5095,6 +5214,7 @@ __fixunssfsi:
 	.end	__fixunssfsi
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align	2
+	.align	3
 	.globl	__parityhi2
 	.set	nomips16
 	.set	nomicromips
@@ -5124,6 +5244,7 @@ __parityhi2:
 	.end	__parityhi2
 	.size	__parityhi2, .-__parityhi2
 	.align	2
+	.align	3
 	.globl	__popcounthi2
 	.set	nomips16
 	.set	nomicromips
@@ -5153,6 +5274,7 @@ __popcounthi2:
 	.end	__popcounthi2
 	.size	__popcounthi2, .-__popcounthi2
 	.align	2
+	.align	3
 	.globl	__mulsi3_iq2000
 	.set	nomips16
 	.set	nomicromips
@@ -5190,6 +5312,7 @@ __mulsi3_iq2000:
 	.end	__mulsi3_iq2000
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 	.align	2
+	.align	3
 	.globl	__mulsi3_lm32
 	.set	nomips16
 	.set	nomicromips
@@ -5234,6 +5357,7 @@ __mulsi3_lm32:
 	.end	__mulsi3_lm32
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 	.align	2
+	.align	3
 	.globl	__udivmodsi4
 	.set	nomips16
 	.set	nomicromips
@@ -5304,6 +5428,7 @@ __udivmodsi4:
 	.end	__udivmodsi4
 	.size	__udivmodsi4, .-__udivmodsi4
 	.align	2
+	.align	3
 	.globl	__mspabi_cmpf
 	.set	nomips16
 	.set	nomicromips
@@ -5337,6 +5462,7 @@ __mspabi_cmpf:
 	.end	__mspabi_cmpf
 	.size	__mspabi_cmpf, .-__mspabi_cmpf
 	.align	2
+	.align	3
 	.globl	__mspabi_cmpd
 	.set	nomips16
 	.set	nomicromips
@@ -5370,6 +5496,7 @@ __mspabi_cmpd:
 	.end	__mspabi_cmpd
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 	.align	2
+	.align	3
 	.globl	__mspabi_mpysll
 	.set	nomips16
 	.set	nomicromips
@@ -5391,6 +5518,7 @@ __mspabi_mpysll:
 	.end	__mspabi_mpysll
 	.size	__mspabi_mpysll, .-__mspabi_mpysll
 	.align	2
+	.align	3
 	.globl	__mspabi_mpyull
 	.set	nomips16
 	.set	nomicromips
@@ -5412,6 +5540,7 @@ __mspabi_mpyull:
 	.end	__mspabi_mpyull
 	.size	__mspabi_mpyull, .-__mspabi_mpyull
 	.align	2
+	.align	3
 	.globl	__mulhi3
 	.set	nomips16
 	.set	nomicromips
@@ -5464,6 +5593,7 @@ __mulhi3:
 	.end	__mulhi3
 	.size	__mulhi3, .-__mulhi3
 	.align	2
+	.align	3
 	.globl	__divsi3
 	.set	nomips16
 	.set	nomicromips
@@ -5523,6 +5653,7 @@ __divsi3:
 	.end	__divsi3
 	.size	__divsi3, .-__divsi3
 	.align	2
+	.align	3
 	.globl	__modsi3
 	.set	nomips16
 	.set	nomicromips
@@ -5577,6 +5708,7 @@ __modsi3:
 	.end	__modsi3
 	.size	__modsi3, .-__modsi3
 	.align	2
+	.align	3
 	.globl	__udivmodhi4
 	.set	nomips16
 	.set	nomicromips
@@ -5654,6 +5786,7 @@ __udivmodhi4:
 	.end	__udivmodhi4
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align	2
+	.align	3
 	.globl	__udivmodsi4_libgcc
 	.set	nomips16
 	.set	nomicromips
@@ -5728,6 +5861,7 @@ __udivmodsi4_libgcc:
 	.end	__udivmodsi4_libgcc
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align	2
+	.align	3
 	.globl	__ashldi3
 	.set	nomips16
 	.set	nomicromips
@@ -5773,6 +5907,7 @@ __ashldi3:
 	.end	__ashldi3
 	.size	__ashldi3, .-__ashldi3
 	.align	2
+	.align	3
 	.globl	__ashlti3
 	.set	nomips16
 	.set	nomicromips
@@ -5811,6 +5946,7 @@ __ashlti3:
 	.end	__ashlti3
 	.size	__ashlti3, .-__ashlti3
 	.align	2
+	.align	3
 	.globl	__ashrdi3
 	.set	nomips16
 	.set	nomicromips
@@ -5857,6 +5993,7 @@ __ashrdi3:
 	.end	__ashrdi3
 	.size	__ashrdi3, .-__ashrdi3
 	.align	2
+	.align	3
 	.globl	__ashrti3
 	.set	nomips16
 	.set	nomicromips
@@ -5894,6 +6031,7 @@ __ashrti3:
 	.end	__ashrti3
 	.size	__ashrti3, .-__ashrti3
 	.align	2
+	.align	3
 	.globl	__bswapdi2
 	.set	nomips16
 	.set	nomicromips
@@ -5939,6 +6077,7 @@ __bswapdi2:
 	.end	__bswapdi2
 	.size	__bswapdi2, .-__bswapdi2
 	.align	2
+	.align	3
 	.globl	__bswapsi2
 	.set	nomips16
 	.set	nomicromips
@@ -5967,6 +6106,7 @@ __bswapsi2:
 	.end	__bswapsi2
 	.size	__bswapsi2, .-__bswapsi2
 	.align	2
+	.align	3
 	.globl	__clzsi2
 	.set	nomips16
 	.set	nomicromips
@@ -6021,6 +6161,7 @@ __clzsi2:
 	.end	__clzsi2
 	.size	__clzsi2, .-__clzsi2
 	.align	2
+	.align	3
 	.globl	__clzti2
 	.set	nomips16
 	.set	nomicromips
@@ -6065,6 +6206,7 @@ __clzti2:
 	.end	__clzti2
 	.size	__clzti2, .-__clzti2
 	.align	2
+	.align	3
 	.globl	__cmpdi2
 	.set	nomips16
 	.set	nomicromips
@@ -6113,6 +6255,7 @@ __cmpdi2:
 	.end	__cmpdi2
 	.size	__cmpdi2, .-__cmpdi2
 	.align	2
+	.align	3
 	.globl	__aeabi_lcmp
 	.set	nomips16
 	.set	nomicromips
@@ -6146,6 +6289,7 @@ __aeabi_lcmp:
 	.end	__aeabi_lcmp
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
 	.align	2
+	.align	3
 	.globl	__cmpti2
 	.set	nomips16
 	.set	nomicromips
@@ -6189,6 +6333,7 @@ __cmpti2:
 	.end	__cmpti2
 	.size	__cmpti2, .-__cmpti2
 	.align	2
+	.align	3
 	.globl	__ctzsi2
 	.set	nomips16
 	.set	nomicromips
@@ -6239,6 +6384,7 @@ __ctzsi2:
 	.end	__ctzsi2
 	.size	__ctzsi2, .-__ctzsi2
 	.align	2
+	.align	3
 	.globl	__ctzti2
 	.set	nomips16
 	.set	nomicromips
@@ -6283,6 +6429,7 @@ __ctzti2:
 	.end	__ctzti2
 	.size	__ctzti2, .-__ctzti2
 	.align	2
+	.align	3
 	.globl	__ffsti2
 	.set	nomips16
 	.set	nomicromips
@@ -6331,6 +6478,7 @@ __ffsti2:
 	.end	__ffsti2
 	.size	__ffsti2, .-__ffsti2
 	.align	2
+	.align	3
 	.globl	__lshrdi3
 	.set	nomips16
 	.set	nomicromips
@@ -6376,6 +6524,7 @@ __lshrdi3:
 	.end	__lshrdi3
 	.size	__lshrdi3, .-__lshrdi3
 	.align	2
+	.align	3
 	.globl	__lshrti3
 	.set	nomips16
 	.set	nomicromips
@@ -6413,6 +6562,7 @@ __lshrti3:
 	.end	__lshrti3
 	.size	__lshrti3, .-__lshrti3
 	.align	2
+	.align	3
 	.globl	__muldsi3
 	.set	nomips16
 	.set	nomicromips
@@ -6458,6 +6608,7 @@ __muldsi3:
 	.end	__muldsi3
 	.size	__muldsi3, .-__muldsi3
 	.align	2
+	.align	3
 	.globl	__muldi3_compiler_rt
 	.set	nomips16
 	.set	nomicromips
@@ -6519,6 +6670,7 @@ __muldi3_compiler_rt:
 	.end	__muldi3_compiler_rt
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align	2
+	.align	3
 	.globl	__mulddi3
 	.set	nomips16
 	.set	nomicromips
@@ -6565,6 +6717,7 @@ __mulddi3:
 	.end	__mulddi3
 	.size	__mulddi3, .-__mulddi3
 	.align	2
+	.align	3
 	.globl	__multi3
 	.set	nomips16
 	.set	nomicromips
@@ -6618,6 +6771,7 @@ __multi3:
 	.end	__multi3
 	.size	__multi3, .-__multi3
 	.align	2
+	.align	3
 	.globl	__negdi2
 	.set	nomips16
 	.set	nomicromips
@@ -6637,6 +6791,7 @@ __negdi2:
 	.end	__negdi2
 	.size	__negdi2, .-__negdi2
 	.align	2
+	.align	3
 	.globl	__negti2
 	.set	nomips16
 	.set	nomicromips
@@ -6659,6 +6814,7 @@ __negti2:
 	.end	__negti2
 	.size	__negti2, .-__negti2
 	.align	2
+	.align	3
 	.globl	__paritydi2
 	.set	nomips16
 	.set	nomicromips
@@ -6690,6 +6846,7 @@ __paritydi2:
 	.end	__paritydi2
 	.size	__paritydi2, .-__paritydi2
 	.align	2
+	.align	3
 	.globl	__parityti2
 	.set	nomips16
 	.set	nomicromips
@@ -6722,6 +6879,7 @@ __parityti2:
 	.end	__parityti2
 	.size	__parityti2, .-__parityti2
 	.align	2
+	.align	3
 	.globl	__paritysi2
 	.set	nomips16
 	.set	nomicromips
@@ -6750,6 +6908,7 @@ __paritysi2:
 	.end	__paritysi2
 	.size	__paritysi2, .-__paritysi2
 	.align	2
+	.align	3
 	.globl	__popcountdi2
 	.set	nomips16
 	.set	nomicromips
@@ -6804,6 +6963,7 @@ __popcountdi2:
 	.end	__popcountdi2
 	.size	__popcountdi2, .-__popcountdi2
 	.align	2
+	.align	3
 	.globl	__popcountsi2
 	.set	nomips16
 	.set	nomicromips
@@ -6843,6 +7003,7 @@ __popcountsi2:
 	.end	__popcountsi2
 	.size	__popcountsi2, .-__popcountsi2
 	.align	2
+	.align	3
 	.globl	__popcountti2
 	.set	nomips16
 	.set	nomicromips
@@ -6920,6 +7081,7 @@ __popcountti2:
 	.end	__popcountti2
 	.size	__popcountti2, .-__popcountti2
 	.align	2
+	.align	3
 	.globl	__powidf2
 	.set	nomips16
 	.set	nomicromips
@@ -6974,6 +7136,7 @@ __powidf2:
 	.end	__powidf2
 	.size	__powidf2, .-__powidf2
 	.align	2
+	.align	3
 	.globl	__powisf2
 	.set	nomips16
 	.set	nomicromips
@@ -7028,6 +7191,7 @@ __powisf2:
 	.end	__powisf2
 	.size	__powisf2, .-__powisf2
 	.align	2
+	.align	3
 	.globl	__ucmpdi2
 	.set	nomips16
 	.set	nomicromips
@@ -7076,6 +7240,7 @@ __ucmpdi2:
 	.end	__ucmpdi2
 	.size	__ucmpdi2, .-__ucmpdi2
 	.align	2
+	.align	3
 	.globl	__aeabi_ulcmp
 	.set	nomips16
 	.set	nomicromips
@@ -7109,6 +7274,7 @@ __aeabi_ulcmp:
 	.end	__aeabi_ulcmp
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
 	.align	2
+	.align	3
 	.globl	__ucmpti2
 	.set	nomips16
 	.set	nomicromips

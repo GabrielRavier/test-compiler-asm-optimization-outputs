@@ -2,6 +2,7 @@
 	.pred.safe_across_calls p1-p5,p16-p63
 	.text
 	.align 16
+	.align 64
 	.global make_ti#
 	.type	make_ti#, @function
 	.proc make_ti#
@@ -14,6 +15,7 @@ make_ti:
 	;;
 	.endp make_ti#
 	.align 16
+	.align 64
 	.global make_tu#
 	.type	make_tu#, @function
 	.proc make_tu#
@@ -26,6 +28,7 @@ make_tu:
 	;;
 	.endp make_tu#
 	.align 16
+	.align 64
 	.global memmove#
 	.type	memmove#, @function
 	.proc memmove#
@@ -80,6 +83,7 @@ memmove:
 	;;
 	.endp memmove#
 	.align 16
+	.align 64
 	.global memccpy#
 	.type	memccpy#, @function
 	.proc memccpy#
@@ -117,6 +121,7 @@ memccpy:
 	;;
 	.endp memccpy#
 	.align 16
+	.align 64
 	.global memchr#
 	.type	memchr#, @function
 	.proc memchr#
@@ -154,6 +159,7 @@ memchr:
 	;;
 	.endp memchr#
 	.align 16
+	.align 64
 	.global memcmp#
 	.type	memcmp#, @function
 	.proc memcmp#
@@ -199,6 +205,7 @@ memcmp:
 	;;
 	.endp memcmp#
 	.align 16
+	.align 64
 	.global memcpy#
 	.type	memcpy#, @function
 	.proc memcpy#
@@ -227,6 +234,7 @@ memcpy:
 	;;
 	.endp memcpy#
 	.align 16
+	.align 64
 	.global memrchr#
 	.type	memrchr#, @function
 	.proc memrchr#
@@ -265,6 +273,7 @@ memrchr:
 	;;
 	.endp memrchr#
 	.align 16
+	.align 64
 	.global memset#
 	.type	memset#, @function
 	.proc memset#
@@ -291,6 +300,7 @@ memset:
 	;;
 	.endp memset#
 	.align 16
+	.align 64
 	.global stpcpy#
 	.type	stpcpy#, @function
 	.proc stpcpy#
@@ -323,6 +333,7 @@ stpcpy:
 	;;
 	.endp stpcpy#
 	.align 16
+	.align 64
 	.global strchrnul#
 	.type	strchrnul#, @function
 	.proc strchrnul#
@@ -363,6 +374,7 @@ strchrnul:
 	;;
 	.endp strchrnul#
 	.align 16
+	.align 64
 	.global strchr#
 	.type	strchr#, @function
 	.proc strchr#
@@ -386,6 +398,7 @@ strchr:
 	;;
 	.endp strchr#
 	.align 16
+	.align 64
 	.global strcmp#
 	.type	strcmp#, @function
 	.proc strcmp#
@@ -444,6 +457,7 @@ strcmp:
 	;;
 	.endp strcmp#
 	.align 16
+	.align 64
 	.global strlen#
 	.type	strlen#, @function
 	.proc strlen#
@@ -476,6 +490,7 @@ strlen:
 	;;
 	.endp strlen#
 	.align 16
+	.align 64
 	.global strncmp#
 	.type	strncmp#, @function
 	.proc strncmp#
@@ -531,6 +546,7 @@ strncmp:
 	;;
 	.endp strncmp#
 	.align 16
+	.align 64
 	.global swab#
 	.type	swab#, @function
 	.proc swab#
@@ -567,6 +583,7 @@ swab:
 	;;
 	.endp swab#
 	.align 16
+	.align 64
 	.global isalpha#
 	.type	isalpha#, @function
 	.proc isalpha#
@@ -586,6 +603,7 @@ isalpha:
 	;;
 	.endp isalpha#
 	.align 16
+	.align 64
 	.global isascii#
 	.type	isascii#, @function
 	.proc isascii#
@@ -601,6 +619,7 @@ isascii:
 	;;
 	.endp isascii#
 	.align 16
+	.align 64
 	.global isblank#
 	.type	isblank#, @function
 	.proc isblank#
@@ -623,6 +642,7 @@ isblank:
 	;;
 	.endp isblank#
 	.align 16
+	.align 64
 	.global iscntrl#
 	.type	iscntrl#, @function
 	.proc iscntrl#
@@ -645,6 +665,7 @@ iscntrl:
 	;;
 	.endp iscntrl#
 	.align 16
+	.align 64
 	.global isdigit#
 	.type	isdigit#, @function
 	.proc isdigit#
@@ -662,6 +683,7 @@ isdigit:
 	;;
 	.endp isdigit#
 	.align 16
+	.align 64
 	.global isgraph#
 	.type	isgraph#, @function
 	.proc isgraph#
@@ -679,6 +701,7 @@ isgraph:
 	;;
 	.endp isgraph#
 	.align 16
+	.align 64
 	.global islower#
 	.type	islower#, @function
 	.proc islower#
@@ -696,6 +719,7 @@ islower:
 	;;
 	.endp islower#
 	.align 16
+	.align 64
 	.global isprint#
 	.type	isprint#, @function
 	.proc isprint#
@@ -713,6 +737,7 @@ isprint:
 	;;
 	.endp isprint#
 	.align 16
+	.align 64
 	.global isspace#
 	.type	isspace#, @function
 	.proc isspace#
@@ -737,6 +762,7 @@ isspace:
 	;;
 	.endp isspace#
 	.align 16
+	.align 64
 	.global isupper#
 	.type	isupper#, @function
 	.proc isupper#
@@ -754,6 +780,7 @@ isupper:
 	;;
 	.endp isupper#
 	.align 16
+	.align 64
 	.global iswcntrl#
 	.type	iswcntrl#, @function
 	.proc iswcntrl#
@@ -791,6 +818,7 @@ iswcntrl:
 	;;
 	.endp iswcntrl#
 	.align 16
+	.align 64
 	.global iswdigit#
 	.type	iswdigit#, @function
 	.proc iswdigit#
@@ -808,6 +836,7 @@ iswdigit:
 	;;
 	.endp iswdigit#
 	.align 16
+	.align 64
 	.global iswprint#
 	.type	iswprint#, @function
 	.proc iswprint#
@@ -871,6 +900,7 @@ iswprint:
 	;;
 	.endp iswprint#
 	.align 16
+	.align 64
 	.global iswxdigit#
 	.type	iswxdigit#, @function
 	.proc iswxdigit#
@@ -897,6 +927,7 @@ iswxdigit:
 	;;
 	.endp iswxdigit#
 	.align 16
+	.align 64
 	.global toascii#
 	.type	toascii#, @function
 	.proc toascii#
@@ -908,6 +939,7 @@ toascii:
 	;;
 	.endp toascii#
 	.align 16
+	.align 64
 	.global fdim#
 	.type	fdim#, @function
 	.proc fdim#
@@ -932,6 +964,7 @@ fdim:
 	;;
 	.endp fdim#
 	.align 16
+	.align 64
 	.global fdimf#
 	.type	fdimf#, @function
 	.proc fdimf#
@@ -956,6 +989,7 @@ fdimf:
 	;;
 	.endp fdimf#
 	.align 16
+	.align 64
 	.global fmax#
 	.type	fmax#, @function
 	.proc fmax#
@@ -996,6 +1030,7 @@ fmax:
 	;;
 	.endp fmax#
 	.align 16
+	.align 64
 	.global fmaxf#
 	.type	fmaxf#, @function
 	.proc fmaxf#
@@ -1041,6 +1076,7 @@ fmaxf:
 	;;
 	.endp fmaxf#
 	.align 16
+	.align 64
 	.global fmaxl#
 	.type	fmaxl#, @function
 	.proc fmaxl#
@@ -1113,6 +1149,7 @@ fmaxl:
 	;;
 	.endp fmaxl#
 	.align 16
+	.align 64
 	.global fmin#
 	.type	fmin#, @function
 	.proc fmin#
@@ -1156,6 +1193,7 @@ fmin:
 	;;
 	.endp fmin#
 	.align 16
+	.align 64
 	.global fminf#
 	.type	fminf#, @function
 	.proc fminf#
@@ -1204,6 +1242,7 @@ fminf:
 	;;
 	.endp fminf#
 	.align 16
+	.align 64
 	.global fminl#
 	.type	fminl#, @function
 	.proc fminl#
@@ -1278,6 +1317,7 @@ fminl:
 	;;
 	.endp fminl#
 	.align 16
+	.align 64
 	.global l64a#
 	.type	l64a#, @function
 	.proc l64a#
@@ -1314,6 +1354,7 @@ l64a:
 	;;
 	.endp l64a#
 	.align 16
+	.align 64
 	.global srand#
 	.type	srand#, @function
 	.proc srand#
@@ -1330,6 +1371,7 @@ srand:
 	;;
 	.endp srand#
 	.align 16
+	.align 64
 	.global rand#
 	.type	rand#, @function
 	.proc rand#
@@ -1354,6 +1396,7 @@ rand:
 	;;
 	.endp rand#
 	.align 16
+	.align 64
 	.global insque#
 	.type	insque#, @function
 	.proc insque#
@@ -1386,6 +1429,7 @@ insque:
 	;;
 	.endp insque#
 	.align 16
+	.align 64
 	.global remque#
 	.type	remque#, @function
 	.proc remque#
@@ -1415,6 +1459,7 @@ remque:
 	;;
 	.endp remque#
 	.align 16
+	.align 64
 	.global lsearch#
 	.type	lsearch#, @function
 	.proc lsearch#
@@ -1477,6 +1522,7 @@ lsearch:
 	;;
 	.endp lsearch#
 	.align 16
+	.align 64
 	.global lfind#
 	.type	lfind#, @function
 	.proc lfind#
@@ -1524,6 +1570,7 @@ lfind:
 	;;
 	.endp lfind#
 	.align 16
+	.align 64
 	.global abs#
 	.type	abs#, @function
 	.proc abs#
@@ -1539,6 +1586,7 @@ abs:
 	;;
 	.endp abs#
 	.align 16
+	.align 64
 	.global atoi#
 	.type	atoi#, @function
 	.proc atoi#
@@ -1621,6 +1669,7 @@ atoi:
 	;;
 	.endp atoi#
 	.align 16
+	.align 64
 	.global atol#
 	.type	atol#, @function
 	.proc atol#
@@ -1704,6 +1753,7 @@ atol:
 	;;
 	.endp atol#
 	.align 16
+	.align 64
 	.global atoll#
 	.type	atoll#, @function
 	.proc atoll#
@@ -1787,6 +1837,7 @@ atoll:
 	;;
 	.endp atoll#
 	.align 16
+	.align 64
 	.global bsearch#
 	.type	bsearch#, @function
 	.proc bsearch#
@@ -1873,6 +1924,7 @@ bsearch:
 	;;
 	.endp bsearch#
 	.align 16
+	.align 64
 	.global bsearch_r#
 	.type	bsearch_r#, @function
 	.proc bsearch_r#
@@ -1957,6 +2009,7 @@ bsearch_r:
 	;;
 	.endp bsearch_r#
 	.align 16
+	.align 64
 	.global div#
 	.type	div#, @function
 	.proc div#
@@ -2002,6 +2055,7 @@ div:
 	;;
 	.endp div#
 	.align 16
+	.align 64
 	.global imaxabs#
 	.type	imaxabs#, @function
 	.proc imaxabs#
@@ -2017,6 +2071,7 @@ imaxabs:
 	;;
 	.endp imaxabs#
 	.align 16
+	.align 64
 	.global imaxdiv#
 	.type	imaxdiv#, @function
 	.proc imaxdiv#
@@ -2052,6 +2107,7 @@ imaxdiv:
 	;;
 	.endp imaxdiv#
 	.align 16
+	.align 64
 	.global labs#
 	.type	labs#, @function
 	.proc labs#
@@ -2067,6 +2123,7 @@ labs:
 	;;
 	.endp labs#
 	.align 16
+	.align 64
 	.global ldiv#
 	.type	ldiv#, @function
 	.proc ldiv#
@@ -2102,6 +2159,7 @@ ldiv:
 	;;
 	.endp ldiv#
 	.align 16
+	.align 64
 	.global llabs#
 	.type	llabs#, @function
 	.proc llabs#
@@ -2117,6 +2175,7 @@ llabs:
 	;;
 	.endp llabs#
 	.align 16
+	.align 64
 	.global lldiv#
 	.type	lldiv#, @function
 	.proc lldiv#
@@ -2152,6 +2211,7 @@ lldiv:
 	;;
 	.endp lldiv#
 	.align 16
+	.align 64
 	.global wcschr#
 	.type	wcschr#, @function
 	.proc wcschr#
@@ -2196,6 +2256,7 @@ wcschr:
 	;;
 	.endp wcschr#
 	.align 16
+	.align 64
 	.global wcscmp#
 	.type	wcscmp#, @function
 	.proc wcscmp#
@@ -2266,6 +2327,7 @@ wcscmp:
 	;;
 	.endp wcscmp#
 	.align 16
+	.align 64
 	.global wcscpy#
 	.type	wcscpy#, @function
 	.proc wcscpy#
@@ -2285,6 +2347,7 @@ wcscpy:
 	;;
 	.endp wcscpy#
 	.align 16
+	.align 64
 	.global wcslen#
 	.type	wcslen#, @function
 	.proc wcslen#
@@ -2315,6 +2378,7 @@ wcslen:
 	;;
 	.endp wcslen#
 	.align 16
+	.align 64
 	.global wcsncmp#
 	.type	wcsncmp#, @function
 	.proc wcsncmp#
@@ -2380,6 +2444,7 @@ wcsncmp:
 	;;
 	.endp wcsncmp#
 	.align 16
+	.align 64
 	.global wmemchr#
 	.type	wmemchr#, @function
 	.proc wmemchr#
@@ -2416,6 +2481,7 @@ wmemchr:
 	;;
 	.endp wmemchr#
 	.align 16
+	.align 64
 	.global wmemcmp#
 	.type	wmemcmp#, @function
 	.proc wmemcmp#
@@ -2470,6 +2536,7 @@ wmemcmp:
 	;;
 	.endp wmemcmp#
 	.align 16
+	.align 64
 	.global wmemcpy#
 	.type	wmemcpy#, @function
 	.proc wmemcpy#
@@ -2498,6 +2565,7 @@ wmemcpy:
 	;;
 	.endp wmemcpy#
 	.align 16
+	.align 64
 	.global wmemmove#
 	.type	wmemmove#, @function
 	.proc wmemmove#
@@ -2557,6 +2625,7 @@ wmemmove:
 	;;
 	.endp wmemmove#
 	.align 16
+	.align 64
 	.global wmemset#
 	.type	wmemset#, @function
 	.proc wmemset#
@@ -2584,6 +2653,7 @@ wmemset:
 	;;
 	.endp wmemset#
 	.align 16
+	.align 64
 	.global bcopy#
 	.type	bcopy#, @function
 	.proc bcopy#
@@ -2636,6 +2706,7 @@ bcopy:
 	;;
 	.endp bcopy#
 	.align 16
+	.align 64
 	.global rotl64#
 	.type	rotl64#, @function
 	.proc rotl64#
@@ -2656,6 +2727,7 @@ rotl64:
 	;;
 	.endp rotl64#
 	.align 16
+	.align 64
 	.global rotr64#
 	.type	rotr64#, @function
 	.proc rotr64#
@@ -2676,6 +2748,7 @@ rotr64:
 	;;
 	.endp rotr64#
 	.align 16
+	.align 64
 	.global rotl32#
 	.type	rotl32#, @function
 	.proc rotl32#
@@ -2692,6 +2765,7 @@ rotl32:
 	;;
 	.endp rotl32#
 	.align 16
+	.align 64
 	.global rotr32#
 	.type	rotr32#, @function
 	.proc rotr32#
@@ -2706,6 +2780,7 @@ rotr32:
 	;;
 	.endp rotr32#
 	.align 16
+	.align 64
 	.global rotl_sz#
 	.type	rotl_sz#, @function
 	.proc rotl_sz#
@@ -2726,6 +2801,7 @@ rotl_sz:
 	;;
 	.endp rotl_sz#
 	.align 16
+	.align 64
 	.global rotr_sz#
 	.type	rotr_sz#, @function
 	.proc rotr_sz#
@@ -2746,6 +2822,7 @@ rotr_sz:
 	;;
 	.endp rotr_sz#
 	.align 16
+	.align 64
 	.global rotl16#
 	.type	rotl16#, @function
 	.proc rotl16#
@@ -2768,6 +2845,7 @@ rotl16:
 	;;
 	.endp rotl16#
 	.align 16
+	.align 64
 	.global rotr16#
 	.type	rotr16#, @function
 	.proc rotr16#
@@ -2789,6 +2867,7 @@ rotr16:
 	;;
 	.endp rotr16#
 	.align 16
+	.align 64
 	.global rotl8#
 	.type	rotl8#, @function
 	.proc rotl8#
@@ -2811,6 +2890,7 @@ rotl8:
 	;;
 	.endp rotl8#
 	.align 16
+	.align 64
 	.global rotr8#
 	.type	rotr8#, @function
 	.proc rotr8#
@@ -2832,6 +2912,7 @@ rotr8:
 	;;
 	.endp rotr8#
 	.align 16
+	.align 64
 	.global bswap_16#
 	.type	bswap_16#, @function
 	.proc bswap_16#
@@ -2848,6 +2929,7 @@ bswap_16:
 	;;
 	.endp bswap_16#
 	.align 16
+	.align 64
 	.global bswap_32#
 	.type	bswap_32#, @function
 	.proc bswap_32#
@@ -2873,6 +2955,7 @@ bswap_32:
 	;;
 	.endp bswap_32#
 	.align 16
+	.align 64
 	.global bswap_64#
 	.type	bswap_64#, @function
 	.proc bswap_64#
@@ -2923,6 +3006,7 @@ bswap_64:
 	;;
 	.endp bswap_64#
 	.align 16
+	.align 64
 	.global ffs#
 	.type	ffs#, @function
 	.proc ffs#
@@ -2956,6 +3040,7 @@ ffs:
 	;;
 	.endp ffs#
 	.align 16
+	.align 64
 	.global libiberty_ffs#
 	.type	libiberty_ffs#, @function
 	.proc libiberty_ffs#
@@ -2985,6 +3070,7 @@ libiberty_ffs:
 	;;
 	.endp libiberty_ffs#
 	.align 16
+	.align 64
 	.global gl_isinff#
 	.type	gl_isinff#, @function
 	.proc gl_isinff#
@@ -3013,6 +3099,7 @@ gl_isinff:
 	;;
 	.endp gl_isinff#
 	.align 16
+	.align 64
 	.global gl_isinfd#
 	.type	gl_isinfd#, @function
 	.proc gl_isinfd#
@@ -3055,6 +3142,7 @@ gl_isinfd:
 	data4	0
 	.text
 	.align 16
+	.align 64
 	.global gl_isinfl#
 	.type	gl_isinfl#, @function
 	.proc gl_isinfl#
@@ -3087,6 +3175,7 @@ gl_isinfl:
 	;;
 	.endp gl_isinfl#
 	.align 16
+	.align 64
 	.global _Qp_itoq#
 	.type	_Qp_itoq#, @function
 	.proc _Qp_itoq#
@@ -3104,6 +3193,7 @@ _Qp_itoq:
 	;;
 	.endp _Qp_itoq#
 	.align 16
+	.align 64
 	.global ldexpf#
 	.type	ldexpf#, @function
 	.proc ldexpf#
@@ -3146,6 +3236,7 @@ ldexpf:
 	;;
 	.endp ldexpf#
 	.align 16
+	.align 64
 	.global ldexp#
 	.type	ldexp#, @function
 	.proc ldexp#
@@ -3202,6 +3293,7 @@ ldexp:
 	data4	0
 	.text
 	.align 16
+	.align 64
 	.global ldexpl#
 	.type	ldexpl#, @function
 	.proc ldexpl#
@@ -3246,6 +3338,7 @@ ldexpl:
 	;;
 	.endp ldexpl#
 	.align 16
+	.align 64
 	.global memxor#
 	.type	memxor#, @function
 	.proc memxor#
@@ -3281,6 +3374,7 @@ memxor:
 	;;
 	.endp memxor#
 	.align 16
+	.align 64
 	.global strncat#
 	.type	strncat#, @function
 	.proc strncat#
@@ -3331,6 +3425,7 @@ strncat:
 	;;
 	.endp strncat#
 	.align 16
+	.align 64
 	.global strnlen#
 	.type	strnlen#, @function
 	.proc strnlen#
@@ -3368,6 +3463,7 @@ strnlen:
 	;;
 	.endp strnlen#
 	.align 16
+	.align 64
 	.global strpbrk#
 	.type	strpbrk#, @function
 	.proc strpbrk#
@@ -3415,6 +3511,7 @@ strpbrk:
 	;;
 	.endp strpbrk#
 	.align 16
+	.align 64
 	.global strrchr#
 	.type	strrchr#, @function
 	.proc strrchr#
@@ -3437,6 +3534,7 @@ strrchr:
 	;;
 	.endp strrchr#
 	.align 16
+	.align 64
 	.global strstr#
 	.type	strstr#, @function
 	.proc strstr#
@@ -3486,6 +3584,7 @@ strstr:
 	;;
 	.endp strstr#
 	.align 16
+	.align 64
 	.global copysign#
 	.type	copysign#, @function
 	.proc copysign#
@@ -3515,6 +3614,7 @@ copysign:
 	;;
 	.endp copysign#
 	.align 16
+	.align 64
 	.global memmem#
 	.type	memmem#, @function
 	.proc memmem#
@@ -3582,6 +3682,7 @@ memmem:
 	;;
 	.endp memmem#
 	.align 16
+	.align 64
 	.global mempcpy#
 	.type	mempcpy#, @function
 	.proc mempcpy#
@@ -3607,6 +3708,7 @@ mempcpy:
 	;;
 	.endp mempcpy#
 	.align 16
+	.align 64
 	.global frexp#
 	.type	frexp#, @function
 	.proc frexp#
@@ -3677,6 +3779,7 @@ frexp:
 	;;
 	.endp frexp#
 	.align 16
+	.align 64
 	.global __muldi3#
 	.type	__muldi3#, @function
 	.proc __muldi3#
@@ -3706,6 +3809,7 @@ __muldi3:
 	;;
 	.endp __muldi3#
 	.align 16
+	.align 64
 	.global udivmodsi4#
 	.type	udivmodsi4#, @function
 	.proc udivmodsi4#
@@ -3756,6 +3860,7 @@ udivmodsi4:
 	;;
 	.endp udivmodsi4#
 	.align 16
+	.align 64
 	.global __clrsbqi2#
 	.type	__clrsbqi2#, @function
 	.proc __clrsbqi2#
@@ -3786,6 +3891,7 @@ __clrsbqi2:
 	;;
 	.endp __clrsbqi2#
 	.align 16
+	.align 64
 	.global __clrsbdi2#
 	.type	__clrsbdi2#, @function
 	.proc __clrsbdi2#
@@ -3811,6 +3917,7 @@ __clrsbdi2:
 	;;
 	.endp __clrsbdi2#
 	.align 16
+	.align 64
 	.global __mulsi3#
 	.type	__mulsi3#, @function
 	.proc __mulsi3#
@@ -3840,6 +3947,7 @@ __mulsi3:
 	;;
 	.endp __mulsi3#
 	.align 16
+	.align 64
 	.global __cmovd#
 	.type	__cmovd#, @function
 	.proc __cmovd#
@@ -3925,6 +4033,7 @@ __cmovd:
 	;;
 	.endp __cmovd#
 	.align 16
+	.align 64
 	.global __cmovh#
 	.type	__cmovh#, @function
 	.proc __cmovh#
@@ -3998,6 +4107,7 @@ __cmovh:
 	;;
 	.endp __cmovh#
 	.align 16
+	.align 64
 	.global __cmovw#
 	.type	__cmovw#, @function
 	.proc __cmovw#
@@ -4083,6 +4193,7 @@ __cmovw:
 	;;
 	.endp __cmovw#
 	.align 16
+	.align 64
 	.global __modi#
 	.type	__modi#, @function
 	.proc __modi#
@@ -4106,6 +4217,7 @@ __modi:
 	;;
 	.endp __modi#
 	.align 16
+	.align 64
 	.global __uitod#
 	.type	__uitod#, @function
 	.proc __uitod#
@@ -4121,6 +4233,7 @@ __uitod:
 	;;
 	.endp __uitod#
 	.align 16
+	.align 64
 	.global __uitof#
 	.type	__uitof#, @function
 	.proc __uitof#
@@ -4136,6 +4249,7 @@ __uitof:
 	;;
 	.endp __uitof#
 	.align 16
+	.align 64
 	.global __ulltod#
 	.type	__ulltod#, @function
 	.proc __ulltod#
@@ -4149,6 +4263,7 @@ __ulltod:
 	;;
 	.endp __ulltod#
 	.align 16
+	.align 64
 	.global __ulltof#
 	.type	__ulltof#, @function
 	.proc __ulltof#
@@ -4162,6 +4277,7 @@ __ulltof:
 	;;
 	.endp __ulltof#
 	.align 16
+	.align 64
 	.global __umodi#
 	.type	__umodi#, @function
 	.proc __umodi#
@@ -4185,6 +4301,7 @@ __umodi:
 	;;
 	.endp __umodi#
 	.align 16
+	.align 64
 	.global __clzhi2#
 	.type	__clzhi2#, @function
 	.proc __clzhi2#
@@ -4216,6 +4333,7 @@ __clzhi2:
 	;;
 	.endp __clzhi2#
 	.align 16
+	.align 64
 	.global __ctzhi2#
 	.type	__ctzhi2#, @function
 	.proc __ctzhi2#
@@ -4245,6 +4363,7 @@ __ctzhi2:
 	;;
 	.endp __ctzhi2#
 	.align 16
+	.align 64
 	.global __fixunssfsi#
 	.type	__fixunssfsi#, @function
 	.proc __fixunssfsi#
@@ -4271,6 +4390,7 @@ __fixunssfsi:
 	;;
 	.endp __fixunssfsi#
 	.align 16
+	.align 64
 	.global __parityhi2#
 	.type	__parityhi2#, @function
 	.proc __parityhi2#
@@ -4302,6 +4422,7 @@ __parityhi2:
 	;;
 	.endp __parityhi2#
 	.align 16
+	.align 64
 	.global __popcounthi2#
 	.type	__popcounthi2#, @function
 	.proc __popcounthi2#
@@ -4332,6 +4453,7 @@ __popcounthi2:
 	;;
 	.endp __popcounthi2#
 	.align 16
+	.align 64
 	.global __mulsi3_iq2000#
 	.type	__mulsi3_iq2000#, @function
 	.proc __mulsi3_iq2000#
@@ -4361,6 +4483,7 @@ __mulsi3_iq2000:
 	;;
 	.endp __mulsi3_iq2000#
 	.align 16
+	.align 64
 	.global __mulsi3_lm32#
 	.type	__mulsi3_lm32#, @function
 	.proc __mulsi3_lm32#
@@ -4394,6 +4517,7 @@ __mulsi3_lm32:
 	;;
 	.endp __mulsi3_lm32#
 	.align 16
+	.align 64
 	.global __udivmodsi4#
 	.type	__udivmodsi4#, @function
 	.proc __udivmodsi4#
@@ -4444,6 +4568,7 @@ __udivmodsi4:
 	;;
 	.endp __udivmodsi4#
 	.align 16
+	.align 64
 	.global __mspabi_cmpf#
 	.type	__mspabi_cmpf#, @function
 	.proc __mspabi_cmpf#
@@ -4464,6 +4589,7 @@ __mspabi_cmpf:
 	;;
 	.endp __mspabi_cmpf#
 	.align 16
+	.align 64
 	.global __mspabi_cmpd#
 	.type	__mspabi_cmpd#, @function
 	.proc __mspabi_cmpd#
@@ -4484,6 +4610,7 @@ __mspabi_cmpd:
 	;;
 	.endp __mspabi_cmpd#
 	.align 16
+	.align 64
 	.global __mspabi_mpysll#
 	.type	__mspabi_mpysll#, @function
 	.proc __mspabi_mpysll#
@@ -4500,6 +4627,7 @@ __mspabi_mpysll:
 	;;
 	.endp __mspabi_mpysll#
 	.align 16
+	.align 64
 	.global __mspabi_mpyull#
 	.type	__mspabi_mpyull#, @function
 	.proc __mspabi_mpyull#
@@ -4516,6 +4644,7 @@ __mspabi_mpyull:
 	;;
 	.endp __mspabi_mpyull#
 	.align 16
+	.align 64
 	.global __mulhi3#
 	.type	__mulhi3#, @function
 	.proc __mulhi3#
@@ -4560,6 +4689,7 @@ __mulhi3:
 	;;
 	.endp __mulhi3#
 	.align 16
+	.align 64
 	.global __divsi3#
 	.type	__divsi3#, @function
 	.proc __divsi3#
@@ -4597,6 +4727,7 @@ __divsi3:
 	;;
 	.endp __divsi3#
 	.align 16
+	.align 64
 	.global __modsi3#
 	.type	__modsi3#, @function
 	.proc __modsi3#
@@ -4633,6 +4764,7 @@ __modsi3:
 	;;
 	.endp __modsi3#
 	.align 16
+	.align 64
 	.global __udivmodhi4#
 	.type	__udivmodhi4#, @function
 	.proc __udivmodhi4#
@@ -4700,6 +4832,7 @@ __udivmodhi4:
 	;;
 	.endp __udivmodhi4#
 	.align 16
+	.align 64
 	.global __udivmodsi4_libgcc#
 	.type	__udivmodsi4_libgcc#, @function
 	.proc __udivmodsi4_libgcc#
@@ -4749,6 +4882,7 @@ __udivmodsi4_libgcc:
 	;;
 	.endp __udivmodsi4_libgcc#
 	.align 16
+	.align 64
 	.global __ashldi3#
 	.type	__ashldi3#, @function
 	.proc __ashldi3#
@@ -4797,6 +4931,7 @@ __ashldi3:
 	;;
 	.endp __ashldi3#
 	.align 16
+	.align 64
 	.global __ashlti3#
 	.type	__ashlti3#, @function
 	.proc __ashlti3#
@@ -4835,6 +4970,7 @@ __ashlti3:
 	;;
 	.endp __ashlti3#
 	.align 16
+	.align 64
 	.global __ashrdi3#
 	.type	__ashrdi3#, @function
 	.proc __ashrdi3#
@@ -4884,6 +5020,7 @@ __ashrdi3:
 	;;
 	.endp __ashrdi3#
 	.align 16
+	.align 64
 	.global __ashrti3#
 	.type	__ashrti3#, @function
 	.proc __ashrti3#
@@ -4924,6 +5061,7 @@ __ashrti3:
 	;;
 	.endp __ashrti3#
 	.align 16
+	.align 64
 	.global __bswapdi2#
 	.type	__bswapdi2#, @function
 	.proc __bswapdi2#
@@ -4974,6 +5112,7 @@ __bswapdi2:
 	;;
 	.endp __bswapdi2#
 	.align 16
+	.align 64
 	.global __bswapsi2#
 	.type	__bswapsi2#, @function
 	.proc __bswapsi2#
@@ -5000,6 +5139,7 @@ __bswapsi2:
 	;;
 	.endp __bswapsi2#
 	.align 16
+	.align 64
 	.global __clzsi2#
 	.type	__clzsi2#, @function
 	.proc __clzsi2#
@@ -5095,6 +5235,7 @@ __clzsi2:
 	;;
 	.endp __clzsi2#
 	.align 16
+	.align 64
 	.global __clzti2#
 	.type	__clzti2#, @function
 	.proc __clzti2#
@@ -5133,6 +5274,7 @@ __clzti2:
 	;;
 	.endp __clzti2#
 	.align 16
+	.align 64
 	.global __cmpdi2#
 	.type	__cmpdi2#, @function
 	.proc __cmpdi2#
@@ -5164,6 +5306,7 @@ __cmpdi2:
 	;;
 	.endp __cmpdi2#
 	.align 16
+	.align 64
 	.global __aeabi_lcmp#
 	.type	__aeabi_lcmp#, @function
 	.proc __aeabi_lcmp#
@@ -5188,6 +5331,7 @@ __aeabi_lcmp:
 	;;
 	.endp __aeabi_lcmp#
 	.align 16
+	.align 64
 	.global __cmpti2#
 	.type	__cmpti2#, @function
 	.proc __cmpti2#
@@ -5216,6 +5360,7 @@ __cmpti2:
 	;;
 	.endp __cmpti2#
 	.align 16
+	.align 64
 	.global __ctzsi2#
 	.type	__ctzsi2#, @function
 	.proc __ctzsi2#
@@ -5294,6 +5439,7 @@ __ctzsi2:
 	;;
 	.endp __ctzsi2#
 	.align 16
+	.align 64
 	.global __ctzti2#
 	.type	__ctzti2#, @function
 	.proc __ctzti2#
@@ -5327,6 +5473,7 @@ __ctzti2:
 	;;
 	.endp __ctzti2#
 	.align 16
+	.align 64
 	.global __ffsti2#
 	.type	__ffsti2#, @function
 	.proc __ffsti2#
@@ -5362,6 +5509,7 @@ __ffsti2:
 	;;
 	.endp __ffsti2#
 	.align 16
+	.align 64
 	.global __lshrdi3#
 	.type	__lshrdi3#, @function
 	.proc __lshrdi3#
@@ -5411,6 +5559,7 @@ __lshrdi3:
 	;;
 	.endp __lshrdi3#
 	.align 16
+	.align 64
 	.global __lshrti3#
 	.type	__lshrti3#, @function
 	.proc __lshrti3#
@@ -5449,6 +5598,7 @@ __lshrti3:
 	;;
 	.endp __lshrti3#
 	.align 16
+	.align 64
 	.global __muldsi3#
 	.type	__muldsi3#, @function
 	.proc __muldsi3#
@@ -5518,6 +5668,7 @@ __muldsi3:
 	;;
 	.endp __muldsi3#
 	.align 16
+	.align 64
 	.global __muldi3_compiler_rt#
 	.type	__muldi3_compiler_rt#, @function
 	.proc __muldi3_compiler_rt#
@@ -5558,6 +5709,7 @@ __muldi3_compiler_rt:
 	;;
 	.endp __muldi3_compiler_rt#
 	.align 16
+	.align 64
 	.global __mulddi3#
 	.type	__mulddi3#, @function
 	.proc __mulddi3#
@@ -5618,6 +5770,7 @@ __mulddi3:
 	;;
 	.endp __mulddi3#
 	.align 16
+	.align 64
 	.global __multi3#
 	.type	__multi3#, @function
 	.proc __multi3#
@@ -5652,6 +5805,7 @@ __multi3:
 	;;
 	.endp __multi3#
 	.align 16
+	.align 64
 	.global __negdi2#
 	.type	__negdi2#, @function
 	.proc __negdi2#
@@ -5663,6 +5817,7 @@ __negdi2:
 	;;
 	.endp __negdi2#
 	.align 16
+	.align 64
 	.global __negti2#
 	.type	__negti2#, @function
 	.proc __negti2#
@@ -5679,6 +5834,7 @@ __negti2:
 	;;
 	.endp __negti2#
 	.align 16
+	.align 64
 	.global __paritydi2#
 	.type	__paritydi2#, @function
 	.proc __paritydi2#
@@ -5711,6 +5867,7 @@ __paritydi2:
 	;;
 	.endp __paritydi2#
 	.align 16
+	.align 64
 	.global __parityti2#
 	.type	__parityti2#, @function
 	.proc __parityti2#
@@ -5745,6 +5902,7 @@ __parityti2:
 	;;
 	.endp __parityti2#
 	.align 16
+	.align 64
 	.global __paritysi2#
 	.type	__paritysi2#, @function
 	.proc __paritysi2#
@@ -5773,6 +5931,7 @@ __paritysi2:
 	;;
 	.endp __paritysi2#
 	.align 16
+	.align 64
 	.global __popcountdi2#
 	.type	__popcountdi2#, @function
 	.proc __popcountdi2#
@@ -5818,6 +5977,7 @@ __popcountdi2:
 	;;
 	.endp __popcountdi2#
 	.align 16
+	.align 64
 	.global __popcountsi2#
 	.type	__popcountsi2#, @function
 	.proc __popcountsi2#
@@ -5859,6 +6019,7 @@ __popcountsi2:
 	;;
 	.endp __popcountsi2#
 	.align 16
+	.align 64
 	.global __popcountti2#
 	.type	__popcountti2#, @function
 	.proc __popcountti2#
@@ -5931,6 +6092,7 @@ __popcountti2:
 	;;
 	.endp __popcountti2#
 	.align 16
+	.align 64
 	.global __powidf2#
 	.type	__powidf2#, @function
 	.proc __powidf2#
@@ -5989,6 +6151,7 @@ __powidf2:
 	;;
 	.endp __powidf2#
 	.align 16
+	.align 64
 	.global __powisf2#
 	.type	__powisf2#, @function
 	.proc __powisf2#
@@ -6043,6 +6206,7 @@ __powisf2:
 	;;
 	.endp __powisf2#
 	.align 16
+	.align 64
 	.global __ucmpdi2#
 	.type	__ucmpdi2#, @function
 	.proc __ucmpdi2#
@@ -6074,6 +6238,7 @@ __ucmpdi2:
 	;;
 	.endp __ucmpdi2#
 	.align 16
+	.align 64
 	.global __aeabi_ulcmp#
 	.type	__aeabi_ulcmp#, @function
 	.proc __aeabi_ulcmp#
@@ -6098,6 +6263,7 @@ __aeabi_ulcmp:
 	;;
 	.endp __aeabi_ulcmp#
 	.align 16
+	.align 64
 	.global __ucmpti2#
 	.type	__ucmpti2#, @function
 	.proc __ucmpti2#
