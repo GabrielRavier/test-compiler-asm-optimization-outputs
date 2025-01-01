@@ -2471,16 +2471,16 @@ strstr:
 	.cfi_offset 30, -40
 	mov	x29, sp
 	stp	x19, x20, [sp, 16]
-	stp	x21, x22, [sp, 32]
 	.cfi_offset 19, -32
 	.cfi_offset 20, -24
-	.cfi_offset 21, -16
-	.cfi_offset 22, -8
 	mov	x19, x0
 	mov	x20, x1
 	mov	x0, x1
 	bl	strlen
 	cbz	x0, .L420
+	stp	x21, x22, [sp, 32]
+	.cfi_offset 22, -8
+	.cfi_offset 21, -16
 	mov	x21, x0
 	ldrb	w22, [x20]
 .L418:
@@ -2498,25 +2498,33 @@ strstr:
 	b	.L418
 .L423:
 	mov	x0, 0
+	ldp	x21, x22, [sp, 32]
+	.cfi_restore 22
+	.cfi_restore 21
 	b	.L417
 .L420:
 	mov	x0, x19
 .L417:
 	ldp	x19, x20, [sp, 16]
-	ldp	x21, x22, [sp, 32]
 	ldp	x29, x30, [sp], 48
-	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
-	.cfi_restore 21
-	.cfi_restore 22
 	.cfi_restore 19
 	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
 .L421:
-	.cfi_restore_state
+	.cfi_def_cfa_offset 48
+	.cfi_offset 19, -32
+	.cfi_offset 20, -24
+	.cfi_offset 21, -16
+	.cfi_offset 22, -8
+	.cfi_offset 29, -48
+	.cfi_offset 30, -40
 	mov	x0, x19
+	ldp	x21, x22, [sp, 32]
+	.cfi_restore 22
+	.cfi_restore 21
 	b	.L417
 	.cfi_endproc
 .LFE97:
@@ -2559,20 +2567,20 @@ memmem:
 	.cfi_offset 29, -64
 	.cfi_offset 30, -56
 	mov	x29, sp
-	stp	x19, x20, [sp, 16]
 	stp	x21, x22, [sp, 32]
-	str	x23, [sp, 48]
-	.cfi_offset 19, -48
-	.cfi_offset 20, -40
 	.cfi_offset 21, -32
 	.cfi_offset 22, -24
-	.cfi_offset 23, -16
 	sub	x21, x1, x3
 	add	x21, x0, x21
 	cbz	x3, .L438
+	stp	x19, x20, [sp, 16]
+	.cfi_offset 20, -40
+	.cfi_offset 19, -48
 	mov	x20, x2
 	cmp	x1, x3
 	bcc	.L443
+	str	x23, [sp, 48]
+	.cfi_offset 23, -16
 	mov	x19, x0
 	add	x23, x2, 1
 	sub	x22, x3, #1
@@ -2592,27 +2600,42 @@ memmem:
 	bl	memcmp
 	cbnz	w0, .L440
 	mov	x0, x19
+	ldp	x19, x20, [sp, 16]
+	.cfi_remember_state
+	.cfi_restore 20
+	.cfi_restore 19
+	ldr	x23, [sp, 48]
+	.cfi_restore 23
 	b	.L438
 .L446:
+	.cfi_restore_state
 	mov	x0, 0
-.L438:
 	ldp	x19, x20, [sp, 16]
-	ldp	x21, x22, [sp, 32]
+	.cfi_restore 20
+	.cfi_restore 19
 	ldr	x23, [sp, 48]
+	.cfi_restore 23
+.L438:
+	ldp	x21, x22, [sp, 32]
 	ldp	x29, x30, [sp], 64
-	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
-	.cfi_restore 23
 	.cfi_restore 21
 	.cfi_restore 22
-	.cfi_restore 19
-	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
 .L443:
-	.cfi_restore_state
+	.cfi_def_cfa_offset 64
+	.cfi_offset 19, -48
+	.cfi_offset 20, -40
+	.cfi_offset 21, -32
+	.cfi_offset 22, -24
+	.cfi_offset 29, -64
+	.cfi_offset 30, -56
 	mov	x0, 0
+	ldp	x19, x20, [sp, 16]
+	.cfi_restore 20
+	.cfi_restore 19
 	b	.L438
 	.cfi_endproc
 .LFE99:
