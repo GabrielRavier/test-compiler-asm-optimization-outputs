@@ -76,26 +76,27 @@ memmove:
 memccpy:
 .LFB3:
 	.cfi_startproc
-	mr 10,3
 	rlwinm 5,5,0,0xff
 	cmpdi 0,6,0
-	beq 0,.L13
+	beq 0,.L17
 	addi 4,4,-1
 	mtctr 6
 .L14:
 	lbzu 9,1(4)
-	stb 9,0(10)
+	stb 9,0(3)
 	rlwinm 9,9,0,0xff
 	cmpw 0,9,5
-	beq 0,.L13
+	beq 0,.L22
 	addi 6,6,-1
-	addi 10,10,1
+	addi 3,3,1
 	bdnz .L14
-.L13:
 	li 3,0
-	cmpdi 0,6,0
-	beqlr 0
-	addi 3,10,1
+	blr
+.L17:
+	li 3,0
+	blr
+.L22:
+	addi 3,3,1
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -110,19 +111,19 @@ memchr:
 	.cfi_startproc
 	rlwinm 4,4,0,0xff
 	cmpdi 0,5,0
-	beq 0,.L22
+	beq 0,.L30
 	mtctr 5
-.L21:
+.L24:
 	lbz 9,0(3)
 	cmpw 0,9,4
-	beq 0,.L22
+	beqlr 0
 	addi 3,3,1
 	addi 5,5,-1
-	bdnz .L21
-.L22:
-	subfic 5,5,0
-	subfe 9,9,9
-	and 3,3,9
+	bdnz .L24
+	li 3,0
+	blr
+.L30:
+	li 3,0
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -136,26 +137,28 @@ memcmp:
 .LFB5:
 	.cfi_startproc
 	cmpdi 0,5,0
-	beq 0,.L32
+	beq 0,.L41
 	mtctr 5
-.L31:
+.L34:
 	lbz 10,0(3)
 	lbz 9,0(4)
 	cmpw 0,10,9
-	bne 0,.L32
+	bne 0,.L45
 	addi 5,5,-1
 	addi 3,3,1
 	addi 4,4,1
-	bdnz .L31
-.L32:
-	li 9,0
-	cmpdi 0,5,0
-	beq 0,.L34
-	lbz 10,0(3)
-	lbz 9,0(4)
-	subf 9,9,10
-.L34:
-	extsw 3,9
+	bdnz .L34
+	li 3,0
+	b .L35
+.L41:
+	li 3,0
+	b .L35
+.L45:
+	lbz 9,0(3)
+	lbz 3,0(4)
+	subf 3,3,9
+.L35:
+	extsw 3,3
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -173,11 +176,11 @@ memcpy:
 	addi 4,4,-1
 	addi 9,3,-1
 	mtctr 5
-.L41:
+.L48:
 	lbzu 10,1(4)
 	stbu 10,1(9)
 	addi 5,5,-1
-	bdnz .L41
+	bdnz .L48
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -191,21 +194,19 @@ memrchr:
 .LFB7:
 	.cfi_startproc
 	rlwinm 4,4,0,0xff
-	addi 9,5,-1
-	addi 10,5,1
+	addi 5,5,-1
+	add 9,3,5
+	addi 10,5,2
 	mtctr 10
-.L45:
-	bdz .L49
-	lbzx 10,3,9
-	addi 8,9,-1
+.L52:
+	bdz .L55
+	mr 3,9
+	lbz 10,0(9)
+	addi 9,9,-1
 	cmpw 0,10,4
-	beq 0,.L50
-	mr 9,8
-	b .L45
-.L50:
-	add 3,3,9
+	bne 0,.L52
 	blr
-.L49:
+.L55:
 	li 3,0
 	blr
 	.long 0
@@ -223,10 +224,10 @@ memset:
 	beqlr 0
 	addi 9,3,-1
 	mtctr 5
-.L53:
+.L58:
 	stbu 4,1(9)
 	addi 5,5,-1
-	bdnz .L53
+	bdnz .L58
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -243,11 +244,11 @@ stpcpy:
 	stb 9,0(3)
 	andi. 9,9,0xff
 	beqlr 0
-.L58:
+.L63:
 	lbzu 9,1(4)
 	stbu 9,1(3)
 	andi. 9,9,0xff
-	bne 0,.L58
+	bne 0,.L63
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -264,13 +265,13 @@ strchrnul:
 	lbz 9,0(3)
 	cmpwi 0,9,0
 	beqlr 0
-.L62:
+.L67:
 	lbz 9,0(3)
 	cmpw 0,9,4
 	beqlr 0
 	lbzu 9,1(3)
 	cmpwi 0,9,0
-	bne 0,.L62
+	bne 0,.L67
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -283,14 +284,14 @@ strchrnul:
 strchr:
 .LFB11:
 	.cfi_startproc
-.L70:
+.L75:
 	lbz 9,0(3)
-	cmpw 0,9,4
+	rlwinm 10,9,0,0xff
+	cmpw 0,10,4
 	beqlr 0
 	addi 3,3,1
-	lbz 9,-1(3)
-	cmpwi 0,9,0
-	bne 0,.L70
+	andi. 9,9,0xff
+	bne 0,.L75
 	li 3,0
 	blr
 	.long 0
@@ -307,16 +308,16 @@ strcmp:
 	lbz 10,0(3)
 	lbz 9,0(4)
 	cmpw 0,10,9
-	bne 0,.L74
-.L73:
+	bne 0,.L79
+.L78:
 	lbz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L74
+	beq 0,.L79
 	lbzu 10,1(3)
 	lbzu 9,1(4)
 	cmpw 0,10,9
-	beq 0,.L73
-.L74:
+	beq 0,.L78
+.L79:
 	lbz 9,0(3)
 	lbz 3,0(4)
 	subf 3,3,9
@@ -335,18 +336,18 @@ strlen:
 	.cfi_startproc
 	lbz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L80
+	beq 0,.L85
 	mr 9,3
-.L79:
+.L84:
 	lbzu 10,1(9)
 	cmpwi 0,10,0
-	bne 0,.L79
-.L78:
+	bne 0,.L84
+.L83:
 	subf 3,3,9
 	blr
-.L80:
+.L85:
 	mr 9,3
-	b .L78
+	b .L83
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -358,34 +359,40 @@ strlen:
 strncmp:
 .LFB14:
 	.cfi_startproc
+	addi 9,5,-1
 	cmpdi 0,5,0
-	beq 0,.L87
-	lbz 9,0(3)
-	cmpwi 0,9,0
-	beq 0,.L84
-	mtctr 5
-.L85:
-	lbz 9,0(4)
-	cmpwi 0,9,0
-	beq 0,.L84
-	bdz .L84
+	beq 0,.L92
 	lbz 10,0(3)
-	cmpw 0,10,9
-	bne 0,.L84
+	cmpwi 0,10,0
+	beq 0,.L89
+	add 8,3,9
+	mtctr 5
+.L90:
+	lbz 9,0(4)
+	andi. 10,9,0xff
+	beq 0,.L89
+	bdz .L95
+	rlwinm 9,9,0,0xff
+	lbz 10,0(3)
+	cmpw 0,9,10
+	bne 0,.L89
 	addi 4,4,1
 	lbzu 9,1(3)
 	cmpwi 0,9,0
-	bne 0,.L85
-.L84:
+	bne 0,.L90
+	b .L89
+.L95:
+	mr 3,8
+.L89:
 	lbz 9,0(3)
 	lbz 3,0(4)
 	subf 3,3,9
-.L83:
+.L88:
 	extsw 3,3
 	blr
-.L87:
+.L92:
 	li 3,0
-	b .L83
+	b .L88
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -403,7 +410,7 @@ swab:
 	srdi 9,9,1
 	addi 9,9,1
 	mtctr 9
-.L92:
+.L98:
 	lbz 10,1(3)
 	stb 10,0(4)
 	lbz 10,0(3)
@@ -411,7 +418,7 @@ swab:
 	addi 4,4,2
 	addi 3,3,2
 	addi 9,9,-1
-	bdnz .L92
+	bdnz .L98
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -459,16 +466,16 @@ isblank:
 .LFB18:
 	.cfi_startproc
 	cmpwi 0,3,32
-	beq 0,.L99
+	beq 0,.L105
 	xori 3,3,0x9
 	cntlzw 3,3
 	srwi 3,3,5
-.L98:
+.L104:
 	extsw 3,3
 	blr
-.L99:
+.L105:
 	li 3,1
-	b .L98
+	b .L104
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -481,16 +488,16 @@ iscntrl:
 .LFB19:
 	.cfi_startproc
 	cmplwi 0,3,31
-	ble 0,.L102
+	ble 0,.L108
 	xori 3,3,0x7f
 	cntlzw 3,3
 	srwi 3,3,5
-.L101:
+.L107:
 	extsw 3,3
 	blr
-.L102:
+.L108:
 	li 3,1
-	b .L101
+	b .L107
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -571,19 +578,19 @@ isspace:
 .LFB24:
 	.cfi_startproc
 	cmpwi 0,3,32
-	beq 0,.L109
+	beq 0,.L115
 	addi 3,3,-9
 	rldicl 3,3,0,32
 	subfic 3,3,4
 	srdi 3,3,63
 	xori 3,3,0x1
 	rlwinm 3,3,0,0xff
-.L108:
+.L114:
 	extsw 3,3
 	blr
-.L109:
+.L115:
 	li 3,1
-	b .L108
+	b .L114
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -614,14 +621,14 @@ iswcntrl:
 	.cfi_startproc
 	li 9,1
 	cmplwi 0,3,31
-	ble 0,.L112
+	ble 0,.L118
 	addi 10,3,-127
 	li 9,1
 	cmplwi 0,10,32
-	ble 0,.L112
+	ble 0,.L118
 	addi 10,3,-8232
 	cmplwi 0,10,1
-	ble 0,.L112
+	ble 0,.L118
 	addis 9,3,0xffff
 	addi 9,9,7
 	rldicl 9,9,0,32
@@ -629,7 +636,7 @@ iswcntrl:
 	srdi 9,9,63
 	xori 9,9,0x1
 	rlwinm 9,9,0,0xff
-.L112:
+.L118:
 	extsw 3,9
 	blr
 	.long 0
@@ -661,36 +668,36 @@ iswprint:
 .LFB28:
 	.cfi_startproc
 	cmplwi 0,3,254
-	ble 0,.L124
+	ble 0,.L130
 	li 9,1
 	cmplwi 0,3,8231
-	ble 0,.L119
+	ble 0,.L125
 	addi 10,3,-8234
 	cmplwi 0,10,47061
-	ble 0,.L119
+	ble 0,.L125
 	addis 10,3,0xffff
 	addi 10,10,8192
 	cmplwi 0,10,8184
-	ble 0,.L119
+	ble 0,.L125
 	addis 10,3,0xffff
 	addi 10,10,4
 	li 9,0
 	lis 8,0x10
 	ori 8,8,0x3
 	cmplw 0,10,8
-	bgt 0,.L119
+	bgt 0,.L125
 	rlwinm 9,3,0,16,30
 	xori 9,9,0xfffe
 	cntlzw 9,9
 	srwi 9,9,5
 	xori 9,9,0x1
-	b .L119
-.L124:
+	b .L125
+.L130:
 	addi 3,3,1
 	rldicl 3,3,0,57
 	subfic 3,3,32
 	srdi 9,3,63
-.L119:
+.L125:
 	extsw 3,9
 	blr
 	.long 0
@@ -706,7 +713,7 @@ iswxdigit:
 	.cfi_startproc
 	addi 9,3,-48
 	cmplwi 0,9,9
-	ble 0,.L127
+	ble 0,.L133
 	ori 3,3,0x20
 	addi 3,3,-97
 	rldicl 3,3,0,32
@@ -714,12 +721,12 @@ iswxdigit:
 	srdi 3,3,63
 	xori 3,3,0x1
 	rlwinm 3,3,0,0xff
-.L126:
+.L132:
 	extsw 3,3
 	blr
-.L127:
+.L133:
 	li 3,1
-	b .L126
+	b .L132
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -751,15 +758,15 @@ fdim:
 	fcmpu 0,1,1
 	bunlr 0
 	fcmpu 0,2,2
-	bun 0,.L133
+	bun 0,.L139
 	fcmpu 0,1,2
-	bng 0,.L136
+	bng 0,.L142
 	fsub 1,1,2
 	blr
-.L133:
+.L139:
 	fmr 1,2
 	blr
-.L136:
+.L142:
 	addis 9,2,.LC0@toc@ha
 	lfd 1,.LC0@toc@l(9)
 	blr
@@ -781,15 +788,15 @@ fdimf:
 	fcmpu 0,1,1
 	bunlr 0
 	fcmpu 0,2,2
-	bun 0,.L141
+	bun 0,.L147
 	fcmpu 0,1,2
-	bng 0,.L144
+	bng 0,.L150
 	fsubs 1,1,2
 	blr
-.L141:
+.L147:
 	fmr 1,2
 	blr
-.L144:
+.L150:
 	addis 9,2,.LC1@toc@ha
 	lfs 1,.LC1@toc@l(9)
 	blr
@@ -805,32 +812,30 @@ fmax:
 .LFB33:
 	.cfi_startproc
 	fcmpu 0,1,1
-	bun 0,.L150
+	bun 0,.L156
 	fcmpu 0,2,2
 	bunlr 0
 	stfd 1,-16(1)
-	ld 10,-16(1)
-	srdi 10,10,63
-	stfd 2,-16(1)
 	ld 9,-16(1)
 	srdi 9,9,63
-	cmpw 0,10,9
-	beq 0,.L147
-	stfd 1,-16(1)
-	ld 9,-16(1)
-	cmpdi 0,9,0
-	bgelr 0
+	stfd 2,-16(1)
+	ld 10,-16(1)
+	srdi 10,10,63
+	cmpw 0,9,10
+	beq 0,.L153
+	cmpwi 0,9,0
+	beqlr 0
 	fmr 1,2
 	blr
-.L147:
+.L153:
 	fmr 0,1
 	fcmpu 0,1,2
-	bnl 0,.L149
+	bnl 0,.L155
 	fmr 0,2
-.L149:
+.L155:
 	fmr 1,0
 	blr
-.L150:
+.L156:
 	fmr 1,2
 	blr
 	.long 0
@@ -847,31 +852,30 @@ fmaxf:
 	stfs 1,-16(1)
 	stfs 2,-12(1)
 	fcmpu 0,1,1
-	bun 0,.L158
+	bun 0,.L164
 	fcmpu 0,2,2
-	bun 0,.L159
-	lwz 10,-16(1)
-	rlwinm 10,10,0,0,0
-	lwz 9,-12(1)
-	rlwinm 9,9,0,0,0
-	cmpw 0,10,9
-	beq 0,.L155
+	bun 0,.L165
 	lwz 9,-16(1)
+	rlwinm 9,9,0,0,0
+	lwz 10,-12(1)
+	rlwinm 10,10,0,0,0
+	cmpw 0,9,10
+	beq 0,.L161
 	cmpwi 0,9,0
-	bgelr 0
+	beqlr 0
 	fmr 1,2
 	blr
-.L155:
+.L161:
 	lfs 1,-16(1)
 	lfs 12,-12(1)
 	fcmpu 0,1,12
 	bnllr 0
 	fmr 1,12
 	blr
-.L158:
+.L164:
 	lfs 1,-12(1)
 	blr
-.L159:
+.L165:
 	lfs 1,-16(1)
 	blr
 	.long 0
@@ -885,51 +889,37 @@ fmaxf:
 fmaxl:
 .LFB35:
 	.cfi_startproc
-	fmr 0,1
-	fmr 1,2
-	fmr 11,0
+	fmr 11,1
 	fcmpu 0,11,11
-	bun 0,.L166
+	bun 0,.L172
 	fmr 11,3
 	fcmpu 0,11,11
-	bun 0,.L167
-	fmr 12,0
-	stfd 12,-16(1)
-	ld 10,-16(1)
-	srdi 10,10,63
-	stfd 11,-16(1)
+	bunlr 0
+	fmr 0,1
+	stfd 0,-16(1)
 	ld 9,-16(1)
 	srdi 9,9,63
-	cmpw 0,10,9
-	beq 0,.L163
-	fmr 11,0
 	stfd 11,-16(1)
-	ld 9,-16(1)
-	cmpdi 0,9,0
-	bge 0,.L168
+	ld 10,-16(1)
+	srdi 10,10,63
+	cmpw 0,9,10
+	beq 0,.L169
+	cmpwi 0,9,0
+	beqlr 0
 	fmr 1,3
 	fmr 2,4
 	blr
-.L163:
-	fcmpu 0,0,3
+.L169:
+	fcmpu 0,1,3
 	bne 0,$+8
-	fcmpu 0,1,4
-	bnl 0,.L164
+	fcmpu 0,2,4
+	bnllr 0
 	fmr 1,3
 	fmr 2,4
 	blr
-.L164:
-	fmr 1,0
-	blr
-.L166:
+.L172:
 	fmr 1,3
 	fmr 2,4
-	blr
-.L167:
-	fmr 1,0
-	blr
-.L168:
-	fmr 1,0
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -944,31 +934,29 @@ fmin:
 	.cfi_startproc
 	fmr 0,1
 	fcmpu 0,1,1
-	bun 0,.L174
+	bun 0,.L180
 	fcmpu 0,2,2
 	bunlr 0
 	stfd 1,-16(1)
-	ld 10,-16(1)
-	srdi 10,10,63
-	stfd 2,-16(1)
 	ld 9,-16(1)
 	srdi 9,9,63
-	cmpw 0,10,9
-	beq 0,.L171
-	stfd 1,-16(1)
-	ld 9,-16(1)
+	stfd 2,-16(1)
+	ld 10,-16(1)
+	srdi 10,10,63
+	cmpw 0,9,10
+	beq 0,.L177
 	fmr 1,2
-	cmpdi 0,9,0
-	bgelr 0
+	cmpwi 0,9,0
+	beqlr 0
 	fmr 1,0
 	blr
-.L171:
+.L177:
 	fmr 1,2
 	fcmpu 0,0,2
 	bnllr 0
 	fmr 1,0
 	blr
-.L174:
+.L180:
 	fmr 1,2
 	blr
 	.long 0
@@ -982,36 +970,35 @@ fmin:
 fminf:
 .LFB37:
 	.cfi_startproc
-	stfs 1,-16(1)
-	stfs 2,-12(1)
+	stfs 1,-12(1)
+	stfs 2,-16(1)
 	fcmpu 0,1,1
-	bun 0,.L182
+	bun 0,.L188
 	fcmpu 0,2,2
-	bun 0,.L183
-	lwz 10,-16(1)
-	rlwinm 10,10,0,0,0
+	bun 0,.L189
 	lwz 9,-12(1)
 	rlwinm 9,9,0,0,0
-	cmpw 0,10,9
-	beq 0,.L179
-	lwz 9,-16(1)
+	lwz 10,-16(1)
+	rlwinm 10,10,0,0,0
+	cmpw 0,9,10
+	beq 0,.L185
 	fmr 1,2
 	cmpwi 0,9,0
-	bgelr 0
-	lfs 1,-16(1)
-	blr
-.L179:
+	beqlr 0
 	lfs 1,-12(1)
-	lfs 0,-16(1)
+	blr
+.L185:
+	lfs 1,-16(1)
+	lfs 0,-12(1)
 	fcmpu 0,0,1
 	bnllr 0
 	fmr 1,0
 	blr
-.L182:
-	lfs 1,-12(1)
-	blr
-.L183:
+.L188:
 	lfs 1,-16(1)
+	blr
+.L189:
+	lfs 1,-12(1)
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -1030,46 +1017,43 @@ fminl:
 	fmr 1,4
 	fmr 11,12
 	fcmpu 0,11,11
-	bun 0,.L190
+	bun 0,.L196
 	fmr 11,0
 	fcmpu 0,11,11
-	bun 0,.L191
+	bun 0,.L197
 	fmr 11,12
-	stfd 11,-16(1)
-	ld 10,-16(1)
-	srdi 10,10,63
-	fmr 11,0
 	stfd 11,-16(1)
 	ld 9,-16(1)
 	srdi 9,9,63
-	cmpw 0,10,9
-	beq 0,.L187
-	fmr 11,12
+	fmr 11,0
 	stfd 11,-16(1)
-	ld 9,-16(1)
-	cmpdi 0,9,0
-	bge 0,.L192
+	ld 10,-16(1)
+	srdi 10,10,63
+	cmpw 0,9,10
+	beq 0,.L193
+	cmpwi 0,9,0
+	beq 0,.L198
 	fmr 1,12
 	blr
-.L187:
+.L193:
 	fcmpu 0,12,0
 	bne 0,$+8
 	fcmpu 0,13,1
-	bnl 0,.L188
+	bnl 0,.L194
 	fmr 1,12
 	blr
-.L188:
+.L194:
 	fmr 2,4
 	fmr 1,3
 	blr
-.L190:
+.L196:
 	fmr 2,4
 	fmr 1,3
 	blr
-.L191:
+.L197:
 	fmr 1,12
 	blr
-.L192:
+.L198:
 	fmr 2,4
 	fmr 1,3
 	blr
@@ -1097,29 +1081,29 @@ l64a:
 	.localentry	l64a,.-l64a
 	mr 9,3
 	cmpwi 0,3,0
-	beq 0,.L196
+	beq 0,.L202
 	addis 10,2,s.0@toc@ha
 	addi 10,10,s.0@toc@l
 	addis 7,2,digits@toc@ha
 	addi 7,7,digits@toc@l
-.L195:
+.L201:
 	rldicl 8,9,0,58
 	lbzx 8,7,8
 	stb 8,0(10)
 	addi 10,10,1
 	srwi 9,9,6
 	cmpwi 0,9,0
-	bne 0,.L195
-.L194:
+	bne 0,.L201
+.L200:
 	li 9,0
 	stb 9,0(10)
 	addis 3,2,s.0@toc@ha
 	addi 3,3,s.0@toc@l
 	blr
-.L196:
+.L202:
 	addis 10,2,s.0@toc@ha
 	addi 10,10,s.0@toc@l
-	b .L194
+	b .L200
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -1181,7 +1165,7 @@ insque:
 .LFB42:
 	.cfi_startproc
 	cmpdi 0,4,0
-	beq 0,.L203
+	beq 0,.L209
 	ld 9,0(4)
 	std 9,0(3)
 	std 4,8(3)
@@ -1191,7 +1175,7 @@ insque:
 	beqlr 0
 	std 3,8(9)
 	blr
-.L203:
+.L209:
 	li 9,0
 	std 9,8(3)
 	std 9,0(3)
@@ -1209,10 +1193,10 @@ remque:
 	.cfi_startproc
 	ld 9,0(3)
 	cmpdi 0,9,0
-	beq 0,.L205
+	beq 0,.L211
 	ld 10,8(3)
 	std 10,8(9)
-.L205:
+.L211:
 	ld 9,8(3)
 	cmpdi 0,9,0
 	beqlr 0
@@ -1236,14 +1220,16 @@ lsearch:
 	.localentry	lsearch,.-lsearch
 	mflr 0
 	std 0,16(1)
+	std 23,-72(1)
 	std 24,-64(1)
 	std 25,-56(1)
 	std 26,-48(1)
 	std 27,-40(1)
 	std 28,-32(1)
-	stdu 1,-96(1)
-	.cfi_def_cfa_offset 96
+	stdu 1,-112(1)
+	.cfi_def_cfa_offset 112
 	.cfi_offset 65, 16
+	.cfi_offset 23, -72
 	.cfi_offset 24, -64
 	.cfi_offset 25, -56
 	.cfi_offset 26, -48
@@ -1251,55 +1237,59 @@ lsearch:
 	.cfi_offset 28, -32
 	std 2,24(1)
 	mr 26,3
-	mr 25,4
+	mr 23,4
 	mr 24,5
-	mr 28,6
-	ld 27,0(5)
-	cmpdi 0,27,0
-	beq 0,.L208
-	std 29,72(1)
+	mr 27,6
+	ld 28,0(5)
+	cmpdi 0,28,0
+	beq 0,.L214
+	std 29,88(1)
 	.cfi_offset 29, -24
-	std 30,80(1)
+	std 30,96(1)
 	.cfi_offset 30, -16
-	std 31,88(1)
+	std 31,104(1)
 	.cfi_offset 31, -8
 	mr 29,7
-	mr 30,4
-	li 31,0
-.L211:
-	mr 4,30
+	mr 31,4
+	li 30,0
+.L216:
+	mr 25,31
+	mr 4,31
 	mr 3,26
 	mr 12,29
 	mtctr 29
 	bctrl
 	ld 2,24(1)
 	cmpwi 0,3,0
-	beq 0,.L214
-	addi 31,31,1
-	add 30,30,28
-	cmpld 0,31,27
-	bne 0,.L211
-	ld 29,72(1)
+	beq 0,.L219
+	addi 30,30,1
+	add 31,31,27
+	cmpld 0,30,28
+	bne 0,.L216
+	ld 29,88(1)
 	.cfi_restore 29
-	ld 30,80(1)
+	ld 30,96(1)
 	.cfi_restore 30
-	ld 31,88(1)
+	ld 31,104(1)
 	.cfi_restore 31
-.L208:
-	addi 9,27,1
+.L214:
+	addi 9,28,1
 	std 9,0(24)
-	mulld 27,28,27
-	mr 5,28
+	mulld 28,27,28
+	mr 5,27
 	mr 4,26
-	add 3,25,27
+	add 3,23,28
 	bl memcpy
 	nop
-.L207:
-	addi 1,1,96
+	mr 25,3
+.L213:
+	mr 3,25
+	addi 1,1,112
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
+	ld 23,-72(1)
 	ld 24,-64(1)
 	ld 25,-56(1)
 	ld 26,-48(1)
@@ -1310,9 +1300,11 @@ lsearch:
 	.cfi_restore 26
 	.cfi_restore 25
 	.cfi_restore 24
+	.cfi_restore 23
 	blr
-.L214:
-	.cfi_def_cfa_offset 96
+.L219:
+	.cfi_def_cfa_offset 112
+	.cfi_offset 23, -72
 	.cfi_offset 24, -64
 	.cfi_offset 25, -56
 	.cfi_offset 26, -48
@@ -1322,17 +1314,15 @@ lsearch:
 	.cfi_offset 30, -16
 	.cfi_offset 31, -8
 	.cfi_offset 65, 16
-	mulld 31,31,28
-	add 3,25,31
-	ld 29,72(1)
+	ld 29,88(1)
 	.cfi_restore 29
-	ld 30,80(1)
+	ld 30,96(1)
 	.cfi_restore 30
-	ld 31,88(1)
+	ld 31,104(1)
 	.cfi_restore 31
-	b .L207
+	b .L213
 	.long 0
-	.byte 0,0,0,1,128,8,0,0
+	.byte 0,0,0,1,128,9,0,0
 	.cfi_endproc
 .LFE44:
 	.size	lsearch,.-lsearch
@@ -1346,20 +1336,20 @@ lfind:
 0:	addis 2,12,.TOC.-.LCF45@ha
 	addi 2,2,.TOC.-.LCF45@l
 	.localentry	lfind,.-lfind
+	std 25,-56(1)
 	std 26,-48(1)
 	stdu 1,-96(1)
 	.cfi_def_cfa_offset 96
+	.cfi_offset 25, -56
 	.cfi_offset 26, -48
 	ld 26,0(5)
 	cmpdi 0,26,0
-	beq 0,.L219
+	beq 0,.L223
 	mflr 0
 	.cfi_register 65, 0
 	std 0,112(1)
 	.cfi_offset 65, 16
 	std 2,24(1)
-	std 25,40(1)
-	.cfi_offset 25, -56
 	std 27,56(1)
 	.cfi_offset 27, -40
 	std 28,64(1)
@@ -1370,29 +1360,26 @@ lfind:
 	.cfi_offset 30, -16
 	std 31,88(1)
 	.cfi_offset 31, -8
-	mr 27,3
-	mr 25,4
-	mr 28,6
+	mr 28,3
+	mr 27,6
 	mr 29,7
-	mr 30,4
-	li 31,0
-.L218:
-	mr 4,30
-	mr 3,27
+	mr 31,4
+	li 30,0
+.L222:
+	mr 25,31
+	mr 4,31
+	mr 3,28
 	mr 12,29
 	mtctr 29
 	bctrl
 	ld 2,24(1)
 	cmpwi 0,3,0
-	beq 0,.L222
-	addi 31,31,1
-	add 30,30,28
-	cmpld 0,31,26
-	bne 0,.L218
-	li 3,0
-	ld 25,40(1)
-	.cfi_remember_state
-	.cfi_restore 25
+	beq 0,.L226
+	addi 30,30,1
+	add 31,31,27
+	cmpld 0,30,26
+	bne 0,.L222
+	li 25,0
 	ld 27,56(1)
 	.cfi_restore 27
 	ld 28,64(1)
@@ -1406,13 +1393,17 @@ lfind:
 	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-	b .L215
-.L222:
-	.cfi_restore_state
-	mulld 31,31,28
-	add 3,25,31
-	ld 25,40(1)
-	.cfi_restore 25
+	b .L220
+.L223:
+	li 25,0
+	b .L220
+.L226:
+	.cfi_offset 27, -40
+	.cfi_offset 28, -32
+	.cfi_offset 29, -24
+	.cfi_offset 30, -16
+	.cfi_offset 31, -8
+	.cfi_offset 65, 16
 	ld 27,56(1)
 	.cfi_restore 27
 	ld 28,64(1)
@@ -1426,17 +1417,15 @@ lfind:
 	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-.L215:
+.L220:
+	mr 3,25
 	addi 1,1,96
-	.cfi_remember_state
 	.cfi_def_cfa_offset 0
+	ld 25,-56(1)
 	ld 26,-48(1)
 	.cfi_restore 26
+	.cfi_restore 25
 	blr
-.L219:
-	.cfi_restore_state
-	li 3,0
-	b .L215
 	.long 0
 	.byte 0,0,0,1,128,7,0,0
 	.cfi_endproc
@@ -1470,68 +1459,70 @@ atoi:
 	.localentry	atoi,.-atoi
 	mflr 0
 	std 0,16(1)
+	std 30,-16(1)
 	std 31,-8(1)
 	stdu 1,-48(1)
 	.cfi_def_cfa_offset 48
 	.cfi_offset 65, 16
+	.cfi_offset 30, -16
 	.cfi_offset 31, -8
 	mr 31,3
-	b .L225
-.L226:
-	addi 31,31,1
-.L225:
-	lbz 3,0(31)
-	bl isspace
-	cmpwi 0,3,0
-	bne 0,.L226
-	lbz 9,0(31)
-	cmpwi 0,9,43
-	beq 0,.L232
-	li 10,0
-	cmpwi 0,9,45
-	bne 0,.L228
-	li 10,1
-.L227:
-	addi 31,31,1
-.L228:
-	lbz 9,0(31)
-	addi 9,9,-48
-	cmplwi 0,9,9
-	bgt 0,.L234
-	li 3,0
+	b .L229
 .L230:
-	mulli 3,3,10
-	lbz 9,0(31)
-	addi 9,9,-48
-	subf 3,9,3
-	lbzu 9,1(31)
-	addi 9,9,-48
-	cmplwi 0,9,9
-	ble 0,.L230
+	addi 31,31,1
 .L229:
-	cmpwi 0,10,0
-	bne 0,.L231
-	neg 3,3
+	lbz 30,0(31)
+	extsw 3,30
+	bl isspace
+	mr 9,3
+	cmpwi 0,3,0
+	bne 0,.L230
+	cmpwi 0,30,43
+	beq 0,.L231
+	cmpwi 0,30,45
+	bne 0,.L232
+	li 3,1
 .L231:
-	extsw 3,3
+	lbzu 10,1(31)
+	addi 10,10,-48
+	cmplwi 0,10,9
+	bgt 0,.L233
+.L234:
+	mulli 9,9,10
+	lbz 10,0(31)
+	addi 10,10,-48
+	subf 9,10,9
+	lbzu 10,1(31)
+	addi 10,10,-48
+	cmplwi 0,10,9
+	ble 0,.L234
+.L233:
+	cmpwi 0,3,0
+	beq 0,.L237
+.L235:
+	extsw 3,9
 	addi 1,1,48
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
+	ld 30,-16(1)
 	ld 31,-8(1)
 	.cfi_restore 31
+	.cfi_restore 30
 	blr
 .L232:
 	.cfi_restore_state
-	li 10,0
-	b .L227
-.L234:
-	li 3,0
-	b .L229
+	lbz 10,0(31)
+	addi 10,10,-48
+	cmplwi 0,10,9
+	ble 0,.L234
+.L237:
+	neg 9,9
+	b .L235
 	.long 0
-	.byte 0,0,0,1,128,1,0,0
+	.byte 0,0,0,1,128,2,0,0
 	.cfi_endproc
 .LFE47:
 	.size	atoi,.-atoi
@@ -1547,36 +1538,37 @@ atol:
 	.localentry	atol,.-atol
 	mflr 0
 	std 0,16(1)
+	std 30,-16(1)
 	std 31,-8(1)
 	stdu 1,-48(1)
 	.cfi_def_cfa_offset 48
 	.cfi_offset 65, 16
+	.cfi_offset 30, -16
 	.cfi_offset 31, -8
 	mr 31,3
-	b .L238
-.L239:
+	b .L244
+.L245:
 	addi 31,31,1
-.L238:
-	lbz 3,0(31)
+.L244:
+	lbz 30,0(31)
+	extsw 3,30
 	bl isspace
+	mr 10,3
 	cmpwi 0,3,0
-	bne 0,.L239
-	lbz 9,0(31)
-	cmpwi 0,9,43
-	beq 0,.L245
-	li 10,0
-	cmpwi 0,9,45
-	bne 0,.L241
+	bne 0,.L245
+	cmpwi 0,30,43
+	beq 0,.L246
+	cmpwi 0,30,45
+	bne 0,.L247
 	li 10,1
-.L240:
-	addi 31,31,1
-.L241:
-	lbz 9,0(31)
+.L246:
+	lbzu 9,1(31)
 	addi 9,9,-48
 	cmplwi 0,9,9
-	bgt 0,.L247
+	bgt 0,.L253
+.L251:
 	li 3,0
-.L243:
+.L249:
 	mulli 3,3,10
 	lbz 9,0(31)
 	addi 9,9,-48
@@ -1585,30 +1577,37 @@ atol:
 	lbzu 9,1(31)
 	addi 9,9,-48
 	cmplwi 0,9,9
-	ble 0,.L243
-.L242:
+	ble 0,.L249
+.L248:
 	cmpwi 0,10,0
-	bne 0,.L237
-	neg 3,3
-.L237:
+	beq 0,.L252
+.L243:
 	addi 1,1,48
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
+	ld 30,-16(1)
 	ld 31,-8(1)
 	.cfi_restore 31
+	.cfi_restore 30
 	blr
-.L245:
+.L253:
 	.cfi_restore_state
-	li 10,0
-	b .L240
-.L247:
 	li 3,0
-	b .L242
+	b .L248
+.L247:
+	lbz 9,0(31)
+	addi 9,9,-48
+	li 3,0
+	cmplwi 0,9,9
+	ble 0,.L251
+.L252:
+	neg 3,3
+	b .L243
 	.long 0
-	.byte 0,0,0,1,128,1,0,0
+	.byte 0,0,0,1,128,2,0,0
 	.cfi_endproc
 .LFE48:
 	.size	atol,.-atol
@@ -1624,36 +1623,37 @@ atoll:
 	.localentry	atoll,.-atoll
 	mflr 0
 	std 0,16(1)
+	std 30,-16(1)
 	std 31,-8(1)
 	stdu 1,-48(1)
 	.cfi_def_cfa_offset 48
 	.cfi_offset 65, 16
+	.cfi_offset 30, -16
 	.cfi_offset 31, -8
 	mr 31,3
-	b .L251
-.L252:
+	b .L257
+.L258:
 	addi 31,31,1
-.L251:
-	lbz 3,0(31)
+.L257:
+	lbz 30,0(31)
+	extsw 3,30
 	bl isspace
+	mr 10,3
 	cmpwi 0,3,0
-	bne 0,.L252
-	lbz 9,0(31)
-	cmpwi 0,9,43
-	beq 0,.L258
-	li 10,0
-	cmpwi 0,9,45
-	bne 0,.L254
+	bne 0,.L258
+	cmpwi 0,30,43
+	beq 0,.L259
+	cmpwi 0,30,45
+	bne 0,.L260
 	li 10,1
-.L253:
-	addi 31,31,1
-.L254:
-	lbz 9,0(31)
+.L259:
+	lbzu 9,1(31)
 	addi 9,9,-48
 	cmplwi 0,9,9
-	bgt 0,.L260
+	bgt 0,.L266
+.L264:
 	li 3,0
-.L256:
+.L262:
 	mulli 3,3,10
 	lbz 9,0(31)
 	addi 9,9,-48
@@ -1662,30 +1662,37 @@ atoll:
 	lbzu 9,1(31)
 	addi 9,9,-48
 	cmplwi 0,9,9
-	ble 0,.L256
-.L255:
+	ble 0,.L262
+.L261:
 	cmpwi 0,10,0
-	bne 0,.L250
-	neg 3,3
-.L250:
+	beq 0,.L265
+.L256:
 	addi 1,1,48
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
+	ld 30,-16(1)
 	ld 31,-8(1)
 	.cfi_restore 31
+	.cfi_restore 30
 	blr
-.L258:
+.L266:
 	.cfi_restore_state
-	li 10,0
-	b .L253
-.L260:
 	li 3,0
-	b .L255
+	b .L261
+.L260:
+	lbz 9,0(31)
+	addi 9,9,-48
+	li 3,0
+	cmplwi 0,9,9
+	ble 0,.L264
+.L265:
+	neg 3,3
+	b .L256
 	.long 0
-	.byte 0,0,0,1,128,1,0,0
+	.byte 0,0,0,1,128,2,0,0
 	.cfi_endproc
 .LFE49:
 	.size	atoll,.-atoll
@@ -1699,91 +1706,96 @@ bsearch:
 0:	addis 2,12,.TOC.-.LCF50@ha
 	addi 2,2,.TOC.-.LCF50@l
 	.localentry	bsearch,.-bsearch
+	std 25,-56(1)
 	std 26,-48(1)
 	std 27,-40(1)
 	std 28,-32(1)
-	std 29,-24(1)
 	std 30,-16(1)
 	std 31,-8(1)
-	stdu 1,-80(1)
-	.cfi_def_cfa_offset 80
+	stdu 1,-96(1)
+	.cfi_def_cfa_offset 96
+	.cfi_offset 25, -56
 	.cfi_offset 26, -48
 	.cfi_offset 27, -40
 	.cfi_offset 28, -32
-	.cfi_offset 29, -24
 	.cfi_offset 30, -16
 	.cfi_offset 31, -8
-	mr 26,3
-	mr 27,4
-	mr 28,6
-	mr 29,7
-	mr. 30,5
-	beq 0,.L268
+	mr 25,3
+	mr 26,4
+	mr 27,6
+	mr 28,7
+	mr. 31,5
+	beq 0,.L273
 	mflr 0
 	.cfi_register 65, 0
-	std 0,96(1)
+	std 0,112(1)
 	.cfi_offset 65, 16
 	std 2,24(1)
-	b .L267
-.L273:
-	srdi 30,30,1
-.L266:
-	cmpdi 0,30,0
-	beq 0,.L272
-.L267:
-	srdi 31,30,1
-	mulld 31,31,28
-	add 31,27,31
-	mr 4,31
-	mr 3,26
-	mr 12,29
-	mtctr 29
+	std 29,72(1)
+	.cfi_offset 29, -24
+	b .L272
+.L274:
+	mr 31,29
+.L271:
+	cmpdi 0,31,0
+	beq 0,.L278
+.L272:
+	srdi 29,31,1
+	mulld 30,29,27
+	add 30,26,30
+	mr 4,30
+	mr 3,25
+	mr 12,28
+	mtctr 28
 	bctrl
 	ld 2,24(1)
 	cmpwi 0,3,0
-	blt 0,.L273
-	cmpwi 0,3,0
-	ble 0,.L271
-	add 27,31,28
-	srdi 9,30,1
-	addi 30,30,-1
-	subf 30,9,30
-	b .L266
-.L272:
-	li 31,0
-	ld 0,96(1)
+	blt 0,.L274
+	ble 0,.L277
+	add 26,30,27
+	addi 31,31,-1
+	subf 31,29,31
+	b .L271
+.L278:
+	li 30,0
+	ld 29,72(1)
+	.cfi_restore 29
+	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-.L263:
-	mr 3,31
-	addi 1,1,80
+.L269:
+	mr 3,30
+	addi 1,1,96
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
+	ld 25,-56(1)
 	ld 26,-48(1)
 	ld 27,-40(1)
 	ld 28,-32(1)
-	ld 29,-24(1)
 	ld 30,-16(1)
 	ld 31,-8(1)
 	.cfi_restore 31
 	.cfi_restore 30
-	.cfi_restore 29
 	.cfi_restore 28
 	.cfi_restore 27
 	.cfi_restore 26
+	.cfi_restore 25
 	blr
-.L268:
+.L273:
 	.cfi_restore_state
-	li 31,0
-	b .L263
-.L271:
+	li 30,0
+	b .L269
+.L277:
+	.cfi_offset 29, -24
 	.cfi_offset 65, 16
-	ld 0,96(1)
+	ld 29,72(1)
+	.cfi_restore 29
+	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-	b .L263
+	b .L269
 	.long 0
-	.byte 0,0,0,1,128,6,0,0
+	.byte 0,0,0,1,128,7,0,0
 	.cfi_endproc
 .LFE50:
 	.size	bsearch,.-bsearch
@@ -1820,18 +1832,18 @@ bsearch_r:
 	mr 26,8
 	mr 30,5
 	cmpwi 0,5,0
-	beq 0,.L278
+	beq 0,.L283
 	mflr 0
 	.cfi_register 65, 0
 	std 0,112(1)
 	.cfi_offset 65, 16
 	std 2,24(1)
-	b .L277
-.L276:
+	b .L282
+.L281:
 	srawi 30,30,1
 	cmpwi 0,30,0
-	beq 0,.L282
-.L277:
+	beq 0,.L287
+.L282:
 	srawi 31,30,1
 	mulld 31,31,28
 	add 31,27,31
@@ -1843,26 +1855,26 @@ bsearch_r:
 	bctrl
 	ld 2,24(1)
 	cmpwi 0,3,0
-	beq 0,.L281
-	ble 0,.L276
+	beq 0,.L286
+	ble 0,.L281
 	add 27,31,28
 	addi 30,30,-1
-	b .L276
-.L282:
+	b .L281
+.L287:
 	li 31,0
 	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-	b .L274
-.L278:
+	b .L279
+.L283:
 	li 31,0
-	b .L274
-.L281:
+	b .L279
+.L286:
 	.cfi_offset 65, 16
 	ld 0,112(1)
 	mtlr 0
 	.cfi_restore 65
-.L274:
+.L279:
 	mr 3,31
 	addi 1,1,96
 	.cfi_def_cfa_offset 0
@@ -2005,18 +2017,21 @@ wcschr:
 	.cfi_startproc
 	lwz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L292
-.L291:
+	beq 0,.L302
+.L296:
 	lwz 9,0(3)
 	cmpw 0,9,4
-	beq 0,.L292
+	beq 0,.L298
 	lwzu 9,4(3)
 	cmpwi 0,9,0
-	bne 0,.L291
-.L292:
+	bne 0,.L296
+.L298:
 	lwz 9,0(3)
 	cmpwi 0,9,0
 	bnelr 0
+	li 3,0
+	blr
+.L302:
 	li 3,0
 	blr
 	.long 0
@@ -2033,30 +2048,30 @@ wcscmp:
 	lwz 10,0(3)
 	lwz 9,0(4)
 	cmpw 0,10,9
-	bne 0,.L299
-.L298:
+	bne 0,.L305
+.L304:
 	lwz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L299
+	beq 0,.L305
 	lwz 9,0(4)
 	cmpwi 0,9,0
-	beq 0,.L299
+	beq 0,.L305
 	lwzu 10,4(3)
 	lwzu 9,4(4)
 	cmpw 0,10,9
-	beq 0,.L298
-.L299:
-	lwz 8,0(3)
+	beq 0,.L304
+.L305:
+	lwz 9,0(3)
 	lwz 10,0(4)
-	li 9,-1
-	cmpw 0,8,10
-	blt 0,.L301
-	lwa 9,0(3)
-	lwa 10,0(4)
+	li 3,-1
+	cmpw 0,9,10
+	blt 0,.L307
+	extsw 9,9
+	extsw 10,10
 	subf 9,9,10
-	srdi 9,9,63
-.L301:
-	extsw 3,9
+	srdi 3,9,63
+.L307:
+	extsw 3,3
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2071,11 +2086,11 @@ wcscpy:
 	.cfi_startproc
 	addi 4,4,-4
 	addi 10,3,-4
-.L305:
+.L311:
 	lwzu 9,4(4)
 	stwu 9,4(10)
 	cmpwi 0,9,0
-	bne 0,.L305
+	bne 0,.L311
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2090,19 +2105,19 @@ wcslen:
 	.cfi_startproc
 	lwz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L311
+	beq 0,.L317
 	mr 9,3
-.L310:
+.L316:
 	lwzu 10,4(9)
 	cmpwi 0,10,0
-	bne 0,.L310
-.L309:
+	bne 0,.L316
+.L315:
 	subf 3,3,9
 	sradi 3,3,2
 	blr
-.L311:
+.L317:
 	mr 9,3
-	b .L309
+	b .L315
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2115,39 +2130,39 @@ wcsncmp:
 .LFB63:
 	.cfi_startproc
 	cmpdi 0,5,0
-	beq 0,.L315
+	beq 0,.L328
 	mtctr 5
-.L314:
-	lwz 10,0(3)
-	lwz 9,0(4)
-	cmpw 0,10,9
-	bne 0,.L315
+.L320:
 	lwz 9,0(3)
+	lwz 10,0(4)
+	cmpw 0,9,10
+	bne 0,.L322
 	cmpwi 0,9,0
-	beq 0,.L315
-	lwz 9,0(4)
-	cmpwi 0,9,0
-	beq 0,.L315
+	beq 0,.L322
 	addi 5,5,-1
 	addi 3,3,4
 	addi 4,4,4
-	bdnz .L314
-.L315:
-	li 9,0
-	cmpdi 0,5,0
-	beq 0,.L317
-	lwz 8,0(3)
-	lwz 10,0(4)
-	li 9,-1
-	cmpw 0,8,10
-	blt 0,.L317
-	lwa 9,0(3)
-	lwa 10,0(4)
-	subf 9,9,10
-	srdi 9,9,63
-.L317:
+	bdnz .L320
+	li 3,0
+	b .L321
+.L328:
+	li 3,0
+	b .L321
+.L324:
 	extsw 3,9
+	extsw 10,10
+	subf 3,3,10
+	srdi 3,3,63
+.L321:
+	extsw 3,3
 	blr
+.L322:
+	lwz 9,0(3)
+	lwz 10,0(4)
+	cmpw 0,9,10
+	bge 0,.L324
+	li 3,-1
+	b .L321
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2160,19 +2175,19 @@ wmemchr:
 .LFB64:
 	.cfi_startproc
 	cmpdi 0,5,0
-	beq 0,.L325
+	beq 0,.L338
 	mtctr 5
-.L324:
+.L332:
 	lwz 9,0(3)
 	cmpw 0,9,4
-	beq 0,.L325
+	beqlr 0
 	addi 5,5,-1
 	addi 3,3,4
-	bdnz .L324
-.L325:
-	subfic 5,5,0
-	subfe 9,9,9
-	and 3,3,9
+	bdnz .L332
+	li 3,0
+	blr
+.L338:
+	li 3,0
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2186,33 +2201,37 @@ wmemcmp:
 .LFB65:
 	.cfi_startproc
 	cmpdi 0,5,0
-	beq 0,.L335
+	beq 0,.L350
 	mtctr 5
-.L334:
+.L342:
 	lwz 10,0(3)
 	lwz 9,0(4)
 	cmpw 0,10,9
-	bne 0,.L335
+	bne 0,.L354
 	addi 5,5,-1
 	addi 3,3,4
 	addi 4,4,4
-	bdnz .L334
-.L335:
-	li 9,0
-	cmpdi 0,5,0
-	beq 0,.L337
-	lwz 8,0(3)
-	lwz 10,0(4)
-	li 9,-1
-	cmpw 0,8,10
-	blt 0,.L337
-	lwa 9,0(3)
-	lwa 10,0(4)
-	subf 9,9,10
-	srdi 9,9,63
-.L337:
-	extsw 3,9
+	bdnz .L342
+	li 3,0
+.L343:
+	extsw 3,3
 	blr
+.L350:
+	li 3,0
+	b .L343
+.L346:
+	extsw 3,9
+	extsw 10,10
+	subf 3,3,10
+	srdi 3,3,63
+	b .L343
+.L354:
+	lwz 9,0(3)
+	lwz 10,0(4)
+	cmpw 0,9,10
+	bge 0,.L346
+	li 3,-1
+	b .L343
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2229,11 +2248,11 @@ wmemcpy:
 	addi 4,4,-4
 	addi 9,3,-4
 	mtctr 5
-.L345:
+.L357:
 	lwzu 10,4(4)
 	stwu 10,4(9)
 	addi 5,5,-1
-	bdnz .L345
+	bdnz .L357
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2248,33 +2267,32 @@ wmemmove:
 	.cfi_startproc
 	cmpld 0,3,4
 	beqlr 0
-	subf 9,4,3
-	sldi 10,5,2
-	cmpld 0,9,10
-	blt 0,.L350
+	subf 10,4,3
+	sldi 9,5,2
+	cmpld 0,10,9
+	blt 0,.L362
 	addi 4,4,-4
 	addi 9,3,-4
 	mtctr 5
 	cmpdi 0,5,0
 	beqlr 0
-.L353:
+.L365:
 	lwzu 10,4(4)
 	stwu 10,4(9)
 	addi 5,5,-1
-	bdnz .L353
+	bdnz .L365
 	blr
-.L350:
+.L362:
 	cmpdi 0,5,0
 	beqlr 0
-	sldi 9,5,2
 	add 4,4,9
 	add 9,3,9
 	mtctr 5
-.L352:
+.L364:
 	lwzu 10,-4(4)
 	stwu 10,-4(9)
 	addi 5,5,-1
-	bdnz .L352
+	bdnz .L364
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2291,10 +2309,10 @@ wmemset:
 	beqlr 0
 	addi 9,3,-4
 	mtctr 5
-.L362:
+.L374:
 	stwu 4,4(9)
 	addi 5,5,-1
-	bdnz .L362
+	bdnz .L374
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2308,19 +2326,19 @@ bcopy:
 .LFB69:
 	.cfi_startproc
 	cmpld 0,3,4
-	bge 0,.L366
+	bge 0,.L378
 	add 3,3,5
 	add 4,4,5
 	cmpdi 0,5,0
 	beqlr 0
 	mtctr 5
-.L368:
+.L380:
 	lbzu 9,-1(3)
 	stbu 9,-1(4)
 	addi 5,5,-1
-	bdnz .L368
+	bdnz .L380
 	blr
-.L366:
+.L378:
 	cmpld 0,3,4
 	beqlr 0
 	cmpdi 0,5,0
@@ -2328,11 +2346,11 @@ bcopy:
 	addi 3,3,-1
 	addi 4,4,-1
 	mtctr 5
-.L369:
+.L381:
 	lbzu 9,1(3)
 	stbu 9,1(4)
 	addi 5,5,-1
-	bdnz .L369
+	bdnz .L381
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2570,17 +2588,17 @@ ffs:
 	li 9,0
 	li 10,32
 	mtctr 10
-.L390:
+.L402:
 	srw 10,3,9
 	andi. 10,10,0x1
-	bne 0,.L393
+	bne 0,.L405
 	addi 9,9,1
-	bdnz .L390
+	bdnz .L402
 	li 3,0
-	b .L389
-.L393:
+	b .L401
+.L405:
 	addi 3,9,1
-.L389:
+.L401:
 	extsw 3,3
 	blr
 	.long 0
@@ -2595,25 +2613,22 @@ libiberty_ffs:
 .LFB84:
 	.cfi_startproc
 	mr. 10,3
-	beq 0,.L397
-	andi. 9,10,0x1
-	bne 0,.L398
+	beq 0,.L409
+	andi. 3,10,0x1
+	bne 0,.L407
 	li 3,1
-.L396:
+.L408:
 	srawi 9,10,1
 	extsw 10,9
 	addi 3,3,1
 	andi. 9,9,0x1
-	beq 0,.L396
-.L395:
+	beq 0,.L408
+.L407:
 	extsw 3,3
 	blr
-.L397:
+.L409:
 	li 3,0
-	b .L395
-.L398:
-	li 3,1
-	b .L395
+	b .L407
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2633,13 +2648,13 @@ gl_isinff:
 	addis 9,2,.LC6@toc@ha
 	lfs 0,.LC6@toc@l(9)
 	fcmpu 0,1,0
-	blt 0,.L401
+	blt 0,.L412
 	addis 9,2,.LC7@toc@ha
 	lfs 0,.LC7@toc@l(9)
 	fcmpu 0,1,0
 	mfcr 3
 	rlwinm 3,3,2,1
-.L401:
+.L412:
 	extsw 3,3
 	blr
 	.long 0
@@ -2661,13 +2676,13 @@ gl_isinfd:
 	addis 9,2,.LC10@toc@ha
 	lfd 0,.LC10@toc@l(9)
 	fcmpu 0,1,0
-	blt 0,.L404
+	blt 0,.L415
 	addis 9,2,.LC11@toc@ha
 	lfd 0,.LC11@toc@l(9)
 	fcmpu 0,1,0
 	mfcr 3
 	rlwinm 3,3,2,1
-.L404:
+.L415:
 	extsw 3,3
 	blr
 	.long 0
@@ -2693,7 +2708,7 @@ gl_isinfl:
 	fcmpu 0,1,12
 	bne 0,$+8
 	fcmpu 0,2,13
-	blt 0,.L407
+	blt 0,.L418
 	addis 9,2,.LC15@toc@ha
 	addi 9,9,.LC15@toc@l
 	lfd 12,0(9)
@@ -2703,7 +2718,7 @@ gl_isinfl:
 	fcmpu 0,2,13
 	mfcr 3
 	rlwinm 3,3,2,1
-.L407:
+.L418:
 	extsw 3,3
 	blr
 	.long 0
@@ -2750,25 +2765,25 @@ ldexpf:
 	fcmpu 0,1,0
 	beqlr 0
 	cmpwi 0,4,0
-	blt 0,.L416
+	blt 0,.L427
 	addis 9,2,.LC19@toc@ha
 	lfs 0,.LC19@toc@l(9)
-	b .L414
-.L416:
+	b .L425
+.L427:
 	addis 9,2,.LC20@toc@ha
 	lfs 0,.LC20@toc@l(9)
-	b .L414
-.L413:
+	b .L425
+.L424:
 	srawi 4,4,1
 	addze 4,4
 	extsw. 4,4
 	beqlr 0
 	fmuls 0,0,0
-.L414:
+.L425:
 	andi. 9,4,0x1
-	beq 0,.L413
+	beq 0,.L424
 	fmuls 1,1,0
-	b .L413
+	b .L424
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2790,25 +2805,25 @@ ldexp:
 	fcmpu 0,1,0
 	beqlr 0
 	cmpwi 0,4,0
-	blt 0,.L423
+	blt 0,.L434
 	addis 9,2,.LC23@toc@ha
 	lfd 0,.LC23@toc@l(9)
-	b .L421
-.L423:
+	b .L432
+.L434:
 	addis 9,2,.LC24@toc@ha
 	lfd 0,.LC24@toc@l(9)
-	b .L421
-.L420:
+	b .L432
+.L431:
 	srawi 4,4,1
 	addze 4,4
 	extsw. 4,4
 	beqlr 0
 	fmul 0,0,0
-.L421:
+.L432:
 	andi. 9,4,0x1
-	beq 0,.L420
+	beq 0,.L431
 	fmul 1,1,0
-	b .L420
+	b .L431
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -2834,7 +2849,7 @@ ldexpl:
 	fmr 28,1
 	fmr 0,28
 	fcmpu 0,0,0
-	bun 0,.L425
+	bun 0,.L436
 	mflr 0
 	.cfi_register 65, 0
 	std 0,96(1)
@@ -2849,29 +2864,29 @@ ldexpl:
 	fcmpu 0,28,1
 	bne 0,$+8
 	fcmpu 0,29,2
-	beq 0,.L431
+	beq 0,.L442
 	stfd 30,64(1)
 	.cfi_offset 62, -16
 	stfd 31,72(1)
 	.cfi_offset 63, -8
 	cmpwi 0,31,0
-	blt 0,.L433
+	blt 0,.L444
 	addis 9,2,.LC27@toc@ha
 	addi 9,9,.LC27@toc@l
 	lfd 30,0(9)
 	lfd 31,8(9)
-	b .L428
-.L433:
+	b .L439
+.L444:
 	addis 9,2,.LC28@toc@ha
 	addi 9,9,.LC28@toc@l
 	lfd 30,0(9)
 	lfd 31,8(9)
-	b .L428
-.L427:
+	b .L439
+.L438:
 	srawi 31,31,1
 	addze 31,31
 	extsw. 31,31
-	beq 0,.L432
+	beq 0,.L443
 	fmr 3,30
 	fmr 4,31
 	fmr 1,30
@@ -2880,9 +2895,9 @@ ldexpl:
 	nop
 	fmr 31,2
 	fmr 30,1
-.L428:
+.L439:
 	andi. 9,31,0x1
-	beq 0,.L427
+	beq 0,.L438
 	fmr 3,30
 	fmr 4,31
 	fmr 1,28
@@ -2891,8 +2906,8 @@ ldexpl:
 	nop
 	fmr 29,2
 	fmr 28,1
-	b .L427
-.L431:
+	b .L438
+.L442:
 	.cfi_restore 62
 	.cfi_restore 63
 	ld 31,40(1)
@@ -2900,7 +2915,7 @@ ldexpl:
 	ld 0,96(1)
 	mtlr 0
 	.cfi_restore 65
-.L425:
+.L436:
 	fmr 1,28
 	fmr 2,29
 	addi 1,1,80
@@ -2910,7 +2925,7 @@ ldexpl:
 	.cfi_restore 61
 	.cfi_restore 60
 	blr
-.L432:
+.L443:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 31, -40
 	.cfi_offset 60, -32
@@ -2927,7 +2942,7 @@ ldexpl:
 	ld 0,96(1)
 	mtlr 0
 	.cfi_restore 65
-	b .L425
+	b .L436
 	.long 0
 	.byte 0,0,2,1,132,1,0,0
 	.cfi_endproc
@@ -2944,13 +2959,13 @@ memxor:
 	addi 4,4,-1
 	addi 10,3,-1
 	mtctr 5
-.L436:
+.L447:
 	lbzu 8,1(4)
 	lbzu 9,1(10)
 	xor 9,9,8
 	stb 9,0(10)
 	addi 5,5,-1
-	bdnz .L436
+	bdnz .L447
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -2979,28 +2994,26 @@ strncat:
 	.cfi_offset 30, -16
 	.cfi_offset 31, -8
 	mr 29,3
-	mr 30,4
-	mr 31,5
+	mr 31,4
+	mr 30,5
 	bl strlen
 	add 3,29,3
-	cmpdi 0,31,0
-	beq 0,.L440
-	addi 30,30,-1
-	mtctr 31
-.L441:
-	lbzu 9,1(30)
+	cmpdi 0,30,0
+	beq 0,.L451
+	addi 31,31,-1
+	mtctr 30
+.L452:
+	lbzu 9,1(31)
 	stb 9,0(3)
 	andi. 9,9,0xff
-	beq 0,.L440
+	beq 0,.L454
 	addi 3,3,1
-	addi 31,31,-1
-	bdnz .L441
-.L440:
-	cmpdi 0,31,0
-	bne 0,.L443
+	addi 30,30,-1
+	bdnz .L452
+.L451:
 	li 9,0
 	stb 9,0(3)
-.L443:
+.L454:
 	mr 3,29
 	addi 1,1,64
 	.cfi_def_cfa_offset 0
@@ -3028,19 +3041,20 @@ strnlen:
 	mr 9,3
 	li 3,0
 	cmpdi 0,4,0
-	beq 0,.L454
-	subf 4,3,4
-.L448:
+	beq 0,.L466
+	subf 8,3,4
+.L459:
 	lbzx 10,9,3
 	cmpwi 0,10,0
 	beqlr 0
 	addi 3,3,1
-	cmpdi 0,4,1
-	addi 4,4,-1
-	bne 0,.L448
+	cmpdi 0,8,1
+	addi 8,8,-1
+	bne 0,.L459
+	mr 3,4
 	blr
-.L454:
-	li 3,0
+.L466:
+	mr 3,4
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -3055,25 +3069,25 @@ strpbrk:
 	.cfi_startproc
 	lbz 9,0(3)
 	cmpwi 0,9,0
-	beq 0,.L463
-.L457:
-	addi 9,4,-1
-.L460:
-	lbzu 10,1(9)
-	cmpwi 0,10,0
-	beq 0,.L464
-	lbz 8,0(9)
-	lbz 10,0(3)
-	cmpw 0,8,10
-	bne 0,.L460
+	beq 0,.L475
+.L469:
+	addi 10,4,-1
+.L472:
+	lbzu 9,1(10)
+	andi. 8,9,0xff
+	beq 0,.L476
+	lbz 8,0(3)
+	rlwinm 9,9,0,0xff
+	cmpw 0,8,9
+	bne 0,.L472
 	blr
-.L463:
+.L475:
 	li 3,0
 	blr
-.L464:
+.L476:
 	lbzu 9,1(3)
 	cmpwi 0,9,0
-	bne 0,.L457
+	bne 0,.L469
 	li 3,0
 	blr
 	.long 0
@@ -3087,20 +3101,20 @@ strpbrk:
 strrchr:
 .LFB96:
 	.cfi_startproc
-	mr 9,3
+	mr 10,3
 	li 3,0
-	b .L467
-.L466:
-	addi 9,9,1
-	lbz 10,-1(9)
-	cmpwi 0,10,0
+	b .L479
+.L478:
+	addi 10,10,1
+	andi. 9,9,0xff
 	beqlr 0
-.L467:
-	lbz 10,0(9)
-	cmpw 0,10,4
-	bne 0,.L466
-	mr 3,9
-	b .L466
+.L479:
+	lbz 9,0(10)
+	rlwinm 8,9,0,0xff
+	cmpw 0,8,4
+	bne 0,.L478
+	mr 3,10
+	b .L478
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -3132,29 +3146,28 @@ strstr:
 	mr 3,4
 	bl strlen
 	mr. 29,3
-	beq 0,.L471
+	beq 0,.L483
 	std 28,32(1)
 	.cfi_offset 28, -32
 	lbz 28,0(30)
-.L473:
+.L485:
 	mr 4,28
 	mr 3,31
 	bl strchr
 	mr. 31,3
-	beq 0,.L478
+	beq 0,.L490
 	mr 5,29
 	mr 4,30
 	mr 3,31
 	bl strncmp
 	cmpwi 0,3,0
-	beq 0,.L477
+	beq 0,.L489
 	addi 31,31,1
-	b .L473
-.L478:
-	li 31,0
+	b .L485
+.L490:
 	ld 28,32(1)
 	.cfi_restore 28
-.L471:
+.L483:
 	mr 3,31
 	addi 1,1,64
 	.cfi_def_cfa_offset 0
@@ -3168,7 +3181,7 @@ strstr:
 	.cfi_restore 30
 	.cfi_restore 29
 	blr
-.L477:
+.L489:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 28, -32
 	.cfi_offset 29, -24
@@ -3177,7 +3190,7 @@ strstr:
 	.cfi_offset 65, 16
 	ld 28,32(1)
 	.cfi_restore 28
-	b .L471
+	b .L483
 	.long 0
 	.byte 0,0,0,1,128,4,0,0
 	.cfi_endproc
@@ -3196,19 +3209,18 @@ copysign:
 	addis 9,2,.LC0@toc@ha
 	lfd 0,.LC0@toc@l(9)
 	fcmpu 0,1,0
-	blt 0,.L488
-.L480:
+	blt 0,.L501
 	addis 9,2,.LC0@toc@ha
 	lfd 0,.LC0@toc@l(9)
 	fcmpu 0,1,0
 	bnglr 0
 	fcmpu 0,2,0
 	bnllr 0
-	b .L482
-.L488:
+	b .L494
+.L501:
 	fcmpu 0,2,0
-	bng 0,.L480
-.L482:
+	bnglr 0
+.L494:
 	fneg 1,1
 	blr
 	.long 0
@@ -3236,14 +3248,14 @@ memmem:
 	subf 30,6,4
 	add 30,3,30
 	cmpdi 0,6,0
-	beq 0,.L489
+	beq 0,.L502
 	subfc 4,6,4
 	subfe 9,9,9
 	neg 9,9
 	andi. 9,9,0xff
-	bne 0,.L494
+	bne 0,.L507
 	cmpld 0,3,30
-	bgt 0,.L495
+	bgt 0,.L508
 	mflr 0
 	.cfi_register 65, 0
 	std 0,96(1)
@@ -3257,21 +3269,21 @@ memmem:
 	lbz 28,0(5)
 	addi 27,5,1
 	addi 29,6,-1
-	b .L492
-.L491:
+	b .L505
+.L504:
 	addi 31,31,1
 	cmpld 0,30,31
-	blt 0,.L499
-.L492:
+	blt 0,.L512
+.L505:
 	lbz 9,0(31)
 	cmpw 0,9,28
-	bne 0,.L491
+	bne 0,.L504
 	mr 5,29
 	mr 4,27
 	addi 3,31,1
 	bl memcmp
 	cmpwi 0,3,0
-	bne 0,.L491
+	bne 0,.L504
 	mr 3,31
 	ld 27,40(1)
 	.cfi_remember_state
@@ -3283,8 +3295,8 @@ memmem:
 	ld 0,96(1)
 	mtlr 0
 	.cfi_restore 65
-	b .L489
-.L499:
+	b .L502
+.L512:
 	.cfi_restore_state
 	li 3,0
 	ld 27,40(1)
@@ -3296,7 +3308,7 @@ memmem:
 	ld 0,96(1)
 	mtlr 0
 	.cfi_restore 65
-.L489:
+.L502:
 	addi 1,1,80
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
@@ -3305,13 +3317,13 @@ memmem:
 	.cfi_restore 31
 	.cfi_restore 30
 	blr
-.L494:
+.L507:
 	.cfi_restore_state
 	li 3,0
-	b .L489
-.L495:
+	b .L502
+.L508:
 	li 3,0
-	b .L489
+	b .L502
 	.long 0
 	.byte 0,0,0,1,128,5,0,0
 	.cfi_endproc
@@ -3365,50 +3377,50 @@ frexp:
 	lfd 0,.LC0@toc@l(9)
 	li 10,0
 	fcmpu 0,1,0
-	blt 0,.L524
-.L503:
+	blt 0,.L537
+.L516:
 	li 9,0
 	addis 8,2,.LC32@toc@ha
 	lfd 0,.LC32@toc@l(8)
 	fcmpu 0,1,0
 	cror 2,0,3
-	beq 0,.L522
+	beq 0,.L535
 	addis 7,2,.LC24@toc@ha
 	lfd 12,.LC24@toc@l(7)
-.L507:
+.L520:
 	addi 9,9,1
 	fmul 1,1,12
 	fcmpu 0,1,0
 	cror 2,1,2
-	beq 0,.L507
-.L508:
+	beq 0,.L520
+.L521:
 	stw 9,0(4)
 	cmpwi 0,10,0
 	beqlr 0
 	fneg 1,1
 	blr
-.L524:
+.L537:
 	fneg 1,1
 	li 10,1
-	b .L503
-.L522:
+	b .L516
+.L535:
 	addis 8,2,.LC24@toc@ha
 	lfd 0,.LC24@toc@l(8)
 	li 9,0
 	fcmpu 0,1,0
-	bnl 0,.L508
+	bnl 0,.L521
 	li 9,0
 	addis 7,2,.LC0@toc@ha
 	lfd 0,.LC0@toc@l(7)
 	fcmpu 0,1,0
-	beq 0,.L508
+	beq 0,.L521
 	lfd 0,.LC24@toc@l(8)
-.L510:
+.L523:
 	addi 9,9,-1
 	fadd 1,1,1
 	fcmpu 0,1,0
-	blt 0,.L510
-	b .L508
+	blt 0,.L523
+	b .L521
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -3422,18 +3434,18 @@ __muldi3:
 	.cfi_startproc
 	mr 10,3
 	cmpdi 0,3,0
-	beq 0,.L528
+	beq 0,.L541
 	li 3,0
-.L527:
+.L540:
 	rldicl 9,10,0,63
 	neg 9,9
 	and 9,4,9
 	add 3,3,9
 	sldi 4,4,1
 	srdi. 10,10,1
-	bne 0,.L527
+	bne 0,.L540
 	blr
-.L528:
+.L541:
 	li 3,0
 	blr
 	.long 0
@@ -3449,42 +3461,46 @@ udivmodsi4:
 	.cfi_startproc
 	li 9,1
 	cmplw 0,4,3
-	bge 0,.L533
-.L532:
+	bge 0,.L549
+.L545:
 	cmpwi 0,4,0
-	blt 0,.L533
+	blt 0,.L549
 	slwi 10,4,1
 	rldicl 4,10,0,32
 	slwi 9,9,1
 	cmplw 0,3,10
-	ble 0,.L533
+	ble 0,.L547
 	cmpwi 0,9,0
-	bne 0,.L532
-.L533:
-	li 10,0
-	cmpwi 0,9,0
-	bne 0,.L534
-.L535:
+	bne 0,.L545
+	mr 10,9
+.L548:
 	cmpdi 0,5,0
-	bne 0,.L546
-.L538:
+	bne 0,.L559
+.L553:
 	rldicl 3,10,0,32
 	blr
-.L537:
+.L547:
+	mr 10,9
+	cmpwi 0,9,0
+	beq 0,.L548
+.L549:
+	li 10,0
+	b .L552
+.L551:
 	srwi 9,9,1
 	srdi 4,4,1
 	cmpwi 0,9,0
-	beq 0,.L535
-.L534:
+	beq 0,.L548
+.L552:
 	cmplw 0,3,4
-	blt 0,.L537
+	blt 0,.L551
 	subf 3,4,3
 	rldicl 3,3,0,32
 	or 10,10,9
-	b .L537
-.L546:
+	b .L551
+.L559:
 	mr 10,3
-	b .L538
+	b .L553
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -3497,16 +3513,16 @@ __clrsbqi2:
 .LFB104:
 	.cfi_startproc
 	cmpdi 0,3,0
-	beq 0,.L549
+	beq 0,.L562
 	slwi 3,3,8
 	cntlzw 3,3
 	addi 3,3,-1
-.L548:
+.L561:
 	extsw 3,3
 	blr
-.L549:
+.L562:
 	li 3,7
-	b .L548
+	b .L561
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -3521,10 +3537,10 @@ __clrsbdi2:
 	sradi 9,3,63
 	xor. 9,9,3
 	li 3,63
-	beq 0,.L551
+	beq 0,.L564
 	cntlzd 9,9
 	addi 3,9,-1
-.L551:
+.L564:
 	extsw 3,3
 	blr
 	.long 0
@@ -3539,22 +3555,22 @@ __mulsi3:
 .LFB106:
 	.cfi_startproc
 	mr. 10,3
-	beq 0,.L556
+	beq 0,.L569
 	li 3,0
-.L555:
+.L568:
 	rlwinm 9,10,0,31,31
 	neg 9,9
 	and 9,9,4
 	add 3,3,9
 	rldic 4,4,1,32
 	srdi. 10,10,1
-	bne 0,.L555
-.L554:
+	bne 0,.L568
+.L567:
 	rldicl 3,3,0,32
 	blr
-.L556:
+.L569:
 	li 3,0
-	b .L554
+	b .L567
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -3566,56 +3582,56 @@ __mulsi3:
 __cmovd:
 .LFB107:
 	.cfi_startproc
-	srwi 6,5,3
-	rlwinm 10,5,0,0,28
+	srwi 7,5,3
+	rlwinm 6,5,0,0,28
 	cmpld 0,3,4
-	bge 0,.L559
-.L562:
-	rldicl 9,6,0,32
-	addi 7,4,-8
-	addi 8,3,-8
+	bge 0,.L572
+.L575:
+	rldicl 9,7,0,32
+	addi 8,4,-8
+	addi 10,3,-8
 	mtctr 9
-	cmpwi 0,6,0
-	beq 0,.L561
-.L565:
-	ldu 6,8(7)
-	stdu 6,8(8)
+	cmpwi 0,7,0
+	beq 0,.L574
+.L578:
+	ldu 7,8(8)
+	stdu 7,8(10)
 	addi 9,9,-1
-	bdnz .L565
-.L561:
-	cmplw 0,10,5
+	bdnz .L578
+.L574:
+	cmplw 0,6,5
 	bgelr 0
-	subf 5,10,5
+	subf 5,6,5
 	rldicl 5,5,0,32
-	rldicl 10,10,0,32
-	addi 10,10,-1
-	add 4,4,10
-	add 3,3,10
+	rldicl 6,6,0,32
+	addi 6,6,-1
+	add 4,4,6
+	add 3,3,6
 	mtctr 5
-.L566:
+.L579:
 	lbzu 10,1(4)
 	stbu 10,1(3)
 	addi 5,5,-1
-	bdnz .L566
+	bdnz .L579
 	blr
-.L559:
-	add 9,4,5
-	cmpld 0,9,3
-	blt 0,.L562
+.L572:
+	mr 9,5
+	add 10,4,5
+	cmpld 0,10,3
+	blt 0,.L575
+	addi 10,5,-1
+	rldicl 10,10,0,32
+	addi 10,10,1
+	add 4,4,10
+	add 3,3,10
+	mtctr 5
 	cmpdi 0,5,0
 	beqlr 0
-	mr 10,5
-	addi 9,5,-1
-	rldicl 9,9,0,32
-	addi 9,9,1
-	add 4,4,9
-	add 3,3,9
-	mtctr 5
-.L567:
-	lbzu 9,-1(4)
-	stbu 9,-1(3)
-	addi 10,10,-1
-	bdnz .L567
+.L580:
+	lbzu 10,-1(4)
+	stbu 10,-1(3)
+	addi 9,9,-1
+	bdnz .L580
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -3630,20 +3646,20 @@ __cmovh:
 	.cfi_startproc
 	srwi 7,5,1
 	cmpld 0,3,4
-	bge 0,.L577
-.L580:
+	bge 0,.L591
+.L594:
 	rldicl 9,7,0,32
 	addi 8,4,-2
 	addi 10,3,-2
 	mtctr 9
 	cmpwi 0,7,0
-	beq 0,.L579
-.L583:
+	beq 0,.L593
+.L597:
 	lhzu 7,2(8)
 	sthu 7,2(10)
 	addi 9,9,-1
-	bdnz .L583
-.L579:
+	bdnz .L597
+.L593:
 	andi. 9,5,0x1
 	beqlr 0
 	addi 5,5,-1
@@ -3651,24 +3667,24 @@ __cmovh:
 	lbzx 9,4,5
 	stbx 9,3,5
 	blr
-.L577:
+.L591:
+	mr 8,5
 	add 9,4,5
 	cmpld 0,9,3
-	blt 0,.L580
-	cmpdi 0,5,0
-	beqlr 0
-	mr 8,5
+	blt 0,.L594
 	addi 9,5,-1
 	rldicl 9,9,0,32
 	addi 9,9,1
 	add 4,4,9
 	add 9,3,9
 	mtctr 5
-.L584:
+	cmpdi 0,5,0
+	beqlr 0
+.L598:
 	lbzu 7,-1(4)
 	stbu 7,-1(9)
 	addi 8,8,-1
-	bdnz .L584
+	bdnz .L598
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -3681,56 +3697,56 @@ __cmovh:
 __cmovw:
 .LFB109:
 	.cfi_startproc
-	srwi 6,5,2
-	rlwinm 10,5,0,0,29
+	srwi 7,5,2
+	rlwinm 6,5,0,0,29
 	cmpld 0,3,4
-	bge 0,.L592
-.L595:
-	rldicl 9,6,0,32
-	addi 7,4,-4
-	addi 8,3,-4
+	bge 0,.L607
+.L610:
+	rldicl 9,7,0,32
+	addi 8,4,-4
+	addi 10,3,-4
 	mtctr 9
-	cmpwi 0,6,0
-	beq 0,.L594
-.L598:
-	lwzu 6,4(7)
-	stwu 6,4(8)
+	cmpwi 0,7,0
+	beq 0,.L609
+.L613:
+	lwzu 7,4(8)
+	stwu 7,4(10)
 	addi 9,9,-1
-	bdnz .L598
-.L594:
-	cmplw 0,10,5
+	bdnz .L613
+.L609:
+	cmplw 0,6,5
 	bgelr 0
-	subf 5,10,5
+	subf 5,6,5
 	rldicl 5,5,0,32
-	rldicl 10,10,0,32
-	addi 10,10,-1
-	add 4,4,10
-	add 3,3,10
+	rldicl 6,6,0,32
+	addi 6,6,-1
+	add 4,4,6
+	add 3,3,6
 	mtctr 5
-.L599:
+.L614:
 	lbzu 10,1(4)
 	stbu 10,1(3)
 	addi 5,5,-1
-	bdnz .L599
+	bdnz .L614
 	blr
-.L592:
-	add 9,4,5
-	cmpld 0,9,3
-	blt 0,.L595
+.L607:
+	mr 9,5
+	add 10,4,5
+	cmpld 0,10,3
+	blt 0,.L610
+	addi 10,5,-1
+	rldicl 10,10,0,32
+	addi 10,10,1
+	add 4,4,10
+	add 3,3,10
+	mtctr 5
 	cmpdi 0,5,0
 	beqlr 0
-	mr 10,5
-	addi 9,5,-1
-	rldicl 9,9,0,32
-	addi 9,9,1
-	add 4,4,9
-	add 3,3,9
-	mtctr 5
-.L600:
-	lbzu 9,-1(4)
-	stbu 9,-1(3)
-	addi 10,10,-1
-	bdnz .L600
+.L615:
+	lbzu 10,-1(4)
+	stbu 10,-1(3)
+	addi 9,9,-1
+	bdnz .L615
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -3791,12 +3807,12 @@ __ulltod:
 .LFB113:
 	.cfi_startproc
 	cmpdi 0,3,0
-	blt 0,.L615
+	blt 0,.L631
 	std 3,-16(1)
 	lfd 0,-16(1)
 	fcfid 1,0
 	blr
-.L615:
+.L631:
 	rldicl 9,3,0,63
 	srdi 3,3,1
 	or 9,9,3
@@ -3817,7 +3833,7 @@ __ulltof:
 .LFB114:
 	.cfi_startproc
 	cmpdi 0,3,0
-	blt 0,.L618
+	blt 0,.L634
 	sradi 10,3,53
 	rldicl 9,3,0,53
 	addi 10,10,1
@@ -3825,15 +3841,15 @@ __ulltof:
 	cmpldi 0,10,2
 	or 9,9,3
 	rldicr 9,9,0,52
-	bge 0,.L619
+	bge 0,.L635
 	mr 9,3
-.L619:
+.L635:
 	std 9,-16(1)
 	lfd 0,-16(1)
 	fcfid 0,0
 	frsp 1,0
 	blr
-.L618:
+.L634:
 	rldicl 10,3,0,63
 	srdi 3,3,1
 	or 10,10,3
@@ -3844,9 +3860,9 @@ __ulltof:
 	cmpldi 0,8,2
 	or 9,9,10
 	rldicr 9,9,0,52
-	bge 0,.L620
+	bge 0,.L636
 	mr 9,10
-.L620:
+.L636:
 	std 9,-16(1)
 	lfd 0,-16(1)
 	fcfid 0,0
@@ -3883,14 +3899,14 @@ __clzhi2:
 	li 10,0
 	li 9,16
 	mtctr 9
-.L624:
+.L640:
 	subfic 9,10,15
 	sraw 9,3,9
 	andi. 9,9,0x1
-	bne 0,.L623
+	bne 0,.L639
 	addi 10,10,1
-	bdnz .L624
-.L623:
+	bdnz .L640
+.L639:
 	extsw 3,10
 	blr
 	.long 0
@@ -3907,13 +3923,13 @@ __ctzhi2:
 	li 9,0
 	li 10,16
 	mtctr 10
-.L629:
+.L645:
 	sraw 10,3,9
 	andi. 10,10,0x1
-	bne 0,.L628
+	bne 0,.L644
 	addi 9,9,1
-	bdnz .L629
-.L628:
+	bdnz .L645
+.L644:
 	extsw 3,9
 	blr
 	.long 0
@@ -3935,12 +3951,12 @@ __fixunssfsi:
 	lfs 0,.LC37@toc@l(9)
 	fcmpu 0,1,0
 	cror 2,0,3
-	bne 0,.L638
+	bne 0,.L654
 	fctidz 0,1
 	stfd 0,-16(1)
 	ld 3,-16(1)
 	blr
-.L638:
+.L654:
 	fsubs 1,1,0
 	fctidz 0,1
 	stfd 0,-16(1)
@@ -3963,12 +3979,12 @@ __parityhi2:
 	li 10,0
 	li 9,16
 	mtctr 9
-.L640:
+.L656:
 	sraw 9,3,10
 	rlwinm 9,9,0,31,31
 	add 8,8,9
 	addi 10,10,1
-	bdnz .L640
+	bdnz .L656
 	rldicl 3,8,0,63
 	blr
 	.long 0
@@ -3986,12 +4002,12 @@ __popcounthi2:
 	li 10,0
 	li 9,16
 	mtctr 9
-.L644:
+.L660:
 	sraw 9,3,10
 	rlwinm 9,9,0,31,31
 	add 8,8,9
 	addi 10,10,1
-	bdnz .L644
+	bdnz .L660
 	extsw 3,8
 	blr
 	.long 0
@@ -4006,22 +4022,22 @@ __mulsi3_iq2000:
 .LFB121:
 	.cfi_startproc
 	mr. 10,3
-	beq 0,.L650
+	beq 0,.L666
 	li 3,0
-.L649:
+.L665:
 	rlwinm 9,10,0,31,31
 	neg 9,9
 	and 9,9,4
 	add 3,3,9
 	rldic 4,4,1,32
 	srdi. 10,10,1
-	bne 0,.L649
-.L648:
+	bne 0,.L665
+.L664:
 	rldicl 3,3,0,32
 	blr
-.L650:
+.L666:
 	li 3,0
-	b .L648
+	b .L664
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4034,27 +4050,27 @@ __mulsi3_lm32:
 .LFB122:
 	.cfi_startproc
 	mr. 10,3
-	beq 0,.L655
+	beq 0,.L671
 	cmpdi 0,4,0
-	beq 0,.L656
+	beq 0,.L672
 	li 3,0
-.L654:
+.L670:
 	rlwinm 9,4,0,31,31
 	neg 9,9
 	and 9,9,10
 	add 3,3,9
 	rldic 10,10,1,32
 	srdi. 4,4,1
-	bne 0,.L654
-.L653:
+	bne 0,.L670
+.L669:
 	rldicl 3,3,0,32
 	blr
-.L655:
+.L671:
 	li 3,0
-	b .L653
-.L656:
+	b .L669
+.L672:
 	li 3,0
-	b .L653
+	b .L669
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4068,42 +4084,46 @@ __udivmodsi4:
 	.cfi_startproc
 	li 9,1
 	cmplw 0,4,3
-	bge 0,.L660
-.L659:
+	bge 0,.L679
+.L675:
 	cmpwi 0,4,0
-	blt 0,.L660
+	blt 0,.L679
 	slwi 10,4,1
 	rldicl 4,10,0,32
 	slwi 9,9,1
 	cmplw 0,3,10
-	ble 0,.L660
+	ble 0,.L677
 	cmpwi 0,9,0
-	bne 0,.L659
-.L660:
-	li 10,0
-	cmpwi 0,9,0
-	bne 0,.L661
-.L662:
+	bne 0,.L675
+	mr 10,9
+.L678:
 	cmpdi 0,5,0
-	bne 0,.L673
-.L665:
+	bne 0,.L689
+.L683:
 	rldicl 3,10,0,32
 	blr
-.L664:
+.L677:
+	mr 10,9
+	cmpwi 0,9,0
+	beq 0,.L678
+.L679:
+	li 10,0
+	b .L682
+.L681:
 	srwi 9,9,1
 	srdi 4,4,1
 	cmpwi 0,9,0
-	beq 0,.L662
-.L661:
+	beq 0,.L678
+.L682:
 	cmplw 0,3,4
-	blt 0,.L664
+	blt 0,.L681
 	subf 3,4,3
 	rldicl 3,3,0,32
 	or 10,10,9
-	b .L664
-.L673:
+	b .L681
+.L689:
 	mr 10,3
-	b .L665
+	b .L683
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4117,10 +4137,10 @@ __mspabi_cmpf:
 	.cfi_startproc
 	li 3,-1
 	fcmpu 0,1,2
-	blt 0,.L675
+	blt 0,.L691
 	mfcr 3
 	rlwinm 3,3,2,1
-.L675:
+.L691:
 	extsw 3,3
 	blr
 	.long 0
@@ -4136,10 +4156,10 @@ __mspabi_cmpd:
 	.cfi_startproc
 	li 3,-1
 	fcmpu 0,1,2
-	blt 0,.L678
+	blt 0,.L694
 	mfcr 3
 	rlwinm 3,3,2,1
-.L678:
+.L694:
 	extsw 3,3
 	blr
 	.long 0
@@ -4179,15 +4199,15 @@ __mspabi_mpyull:
 __mulhi3:
 .LFB128:
 	.cfi_startproc
-	li 7,0
 	cmpwi 0,4,0
-	blt 0,.L690
-.L683:
+	blt 0,.L707
+	li 7,0
 	cmpdi 0,4,0
-	beq 0,.L688
+	beq 0,.L708
+.L703:
 	li 8,32
 	li 10,0
-.L685:
+.L701:
 	rlwinm 9,4,0,31,31
 	neg 9,9
 	and 9,9,3
@@ -4196,26 +4216,26 @@ __mulhi3:
 	extsw 3,3
 	srawi 4,4,1
 	cmpdi 0,4,0
-	beq 0,.L684
+	beq 0,.L700
 	addi 9,8,-1
 	mr 8,9
 	andi. 9,9,0xff
-	bne 0,.L685
-.L684:
+	bne 0,.L701
+.L700:
 	cmpwi 0,7,0
-	beq 0,.L686
+	beq 0,.L702
 	neg 10,10
-.L686:
+.L702:
 	extsw 3,10
 	blr
-.L690:
+.L707:
 	neg 4,4
 	extsw 4,4
 	li 7,1
-	b .L683
-.L688:
+	b .L703
+.L708:
 	li 10,0
-	b .L684
+	b .L702
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4233,46 +4253,53 @@ __divsi3:
 	.localentry	__divsi3,.-__divsi3
 	mflr 0
 	std 0,16(1)
-	std 31,-8(1)
-	stdu 1,-48(1)
-	.cfi_def_cfa_offset 48
+	stdu 1,-32(1)
+	.cfi_def_cfa_offset 32
 	.cfi_offset 65, 16
-	.cfi_offset 31, -8
-	li 31,0
 	cmpdi 0,3,0
-	blt 0,.L697
-.L692:
+	blt 0,.L718
 	cmpdi 0,4,0
-	blt 0,.L698
-.L693:
+	blt 0,.L719
 	li 5,0
 	rldicl 4,4,0,32
 	rldicl 3,3,0,32
 	bl __udivmodsi4
-	cmpwi 0,31,0
-	beq 0,.L691
+	b .L709
+.L718:
 	neg 3,3
-.L691:
-	addi 1,1,48
+	cmpdi 0,4,0
+	blt 0,.L720
+	li 5,0
+	rldicl 4,4,0,32
+	rldicl 3,3,0,32
+	bl __udivmodsi4
+.L713:
+	neg 3,3
+.L709:
+	addi 1,1,32
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
-	ld 31,-8(1)
-	.cfi_restore 31
 	blr
-.L697:
+.L719:
 	.cfi_restore_state
-	neg 3,3
-	li 31,1
-	b .L692
-.L698:
 	neg 4,4
-	xori 31,31,0x1
-	b .L693
+	li 5,0
+	rldicl 4,4,0,32
+	rldicl 3,3,0,32
+	bl __udivmodsi4
+	b .L713
+.L720:
+	neg 4,4
+	li 5,0
+	rldicl 4,4,0,32
+	rldicl 3,3,0,32
+	bl __udivmodsi4
+	b .L709
 	.long 0
-	.byte 0,0,0,1,128,1,0,0
+	.byte 0,0,0,1,128,0,0,0
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3,.-__divsi3
@@ -4288,15 +4315,11 @@ __modsi3:
 	.localentry	__modsi3,.-__modsi3
 	mflr 0
 	std 0,16(1)
-	std 31,-8(1)
-	stdu 1,-48(1)
-	.cfi_def_cfa_offset 48
+	stdu 1,-32(1)
+	.cfi_def_cfa_offset 32
 	.cfi_offset 65, 16
-	.cfi_offset 31, -8
-	li 31,0
 	cmpdi 0,3,0
-	blt 0,.L704
-.L700:
+	blt 0,.L725
 	sradi 9,4,63
 	xor 4,9,4
 	subf 4,9,4
@@ -4304,26 +4327,26 @@ __modsi3:
 	rldicl 4,4,0,32
 	rldicl 3,3,0,32
 	bl __udivmodsi4
-	cmpwi 0,31,0
-	beq 0,.L699
+	b .L721
+.L725:
 	neg 3,3
-.L699:
-	addi 1,1,48
-	.cfi_remember_state
+	sradi 9,4,63
+	xor 4,9,4
+	subf 4,9,4
+	li 5,1
+	rldicl 4,4,0,32
+	rldicl 3,3,0,32
+	bl __udivmodsi4
+	neg 3,3
+.L721:
+	addi 1,1,32
 	.cfi_def_cfa_offset 0
 	ld 0,16(1)
 	mtlr 0
 	.cfi_restore 65
-	ld 31,-8(1)
-	.cfi_restore 31
 	blr
-.L704:
-	.cfi_restore_state
-	neg 3,3
-	li 31,1
-	b .L700
 	.long 0
-	.byte 0,0,0,1,128,1,0,0
+	.byte 0,0,0,1,128,0,0,0
 	.cfi_endproc
 .LFE130:
 	.size	__modsi3,.-__modsi3
@@ -4337,41 +4360,45 @@ __udivmodhi4:
 	li 10,16
 	mtctr 10
 	cmplw 0,4,3
-	bge 0,.L707
-.L706:
+	bge 0,.L731
+.L727:
 	andi. 10,4,0x8000
-	bne 0,.L707
+	bne 0,.L731
 	rldic 4,4,1,48
-	slwi 9,9,1
-	cmplw 0,3,4
-	ble 0,.L707
-	bdnz .L706
-.L707:
-	li 8,0
-	andi. 10,9,0xffff
-	bne 0,.L708
-.L709:
-	cmpdi 0,5,0
-	bne 0,.L721
-.L712:
-	rlwinm 3,8,0,0xffff
-	blr
-.L711:
-	rldicl 10,9,63,49
+	slwi 10,9,1
 	mr 9,10
-	srdi 4,4,1
-	cmpwi 0,10,0
-	beq 0,.L709
-.L708:
 	cmplw 0,3,4
-	blt 0,.L711
+	ble 0,.L729
+	bdnz .L727
+	li 10,0
+.L730:
+	cmpdi 0,5,0
+	bne 0,.L742
+.L735:
+	rlwinm 3,10,0,0xffff
+	blr
+.L729:
+	andi. 8,10,0xffff
+	beq 0,.L730
+.L731:
+	li 10,0
+	b .L734
+.L733:
+	rldicl 8,9,63,49
+	mr 9,8
+	srdi 4,4,1
+	cmpwi 0,8,0
+	beq 0,.L730
+.L734:
+	cmplw 0,3,4
+	blt 0,.L733
 	subf 3,4,3
 	rlwinm 3,3,0,0xffff
-	or 8,8,9
-	b .L711
-.L721:
-	mr 8,3
-	b .L712
+	or 10,10,9
+	b .L733
+.L742:
+	mr 10,3
+	b .L735
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4386,35 +4413,39 @@ __udivmodsi4_libgcc:
 	mr 10,3
 	li 9,1
 	cmpld 0,4,3
-	bge 0,.L724
-.L723:
+	bge 0,.L748
+.L744:
 	andis. 8,4,0x8000
-	bne 0,.L724
+	bne 0,.L748
 	sldi 4,4,1
 	sldi 9,9,1
 	cmpld 0,10,4
-	ble 0,.L724
+	ble 0,.L746
 	cmpdi 0,9,0
-	bne 0,.L723
-.L724:
-	li 3,0
-	cmpdi 0,9,0
-	bne 0,.L725
-.L726:
+	bne 0,.L744
+	mr 3,9
+.L747:
 	cmpdi 0,5,0
 	beqlr 0
 	mr 3,10
 	blr
-.L728:
+.L746:
+	mr 3,9
+	cmpdi 0,9,0
+	beq 0,.L747
+.L748:
+	li 3,0
+	b .L751
+.L750:
 	srdi 4,4,1
 	srdi. 9,9,1
-	beq 0,.L726
-.L725:
+	beq 0,.L747
+.L751:
 	cmpld 0,10,4
-	blt 0,.L728
+	blt 0,.L750
 	subf 10,4,10
 	or 3,3,9
-	b .L728
+	b .L750
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4428,12 +4459,12 @@ __ashldi3:
 	.cfi_startproc
 	mr 9,3
 	andi. 10,4,0x20
-	beq 0,.L738
+	beq 0,.L759
 	addi 4,4,-32
 	slw 3,3,4
 	sldi 3,3,32
 	blr
-.L738:
+.L759:
 	cmpdi 0,4,0
 	beqlr 0
 	sradi 10,3,32
@@ -4457,14 +4488,14 @@ __ashlti3:
 .LFB134:
 	.cfi_startproc
 	andi. 9,5,0x40
-	beq 0,.L743
+	beq 0,.L764
 	li 10,0
 	addi 5,5,-64
 	sld 4,3,5
-.L744:
+.L765:
 	mr 3,10
 	blr
-.L743:
+.L764:
 	cmpdi 0,5,0
 	beqlr 0
 	sld 10,3,5
@@ -4472,7 +4503,7 @@ __ashlti3:
 	subfic 5,5,64
 	srd 9,3,5
 	or 4,9,4
-	b .L744
+	b .L765
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4486,7 +4517,7 @@ __ashrdi3:
 	.cfi_startproc
 	mr 9,3
 	andi. 10,4,0x20
-	beq 0,.L748
+	beq 0,.L769
 	sradi 9,3,32
 	srawi 3,9,31
 	addi 4,4,-32
@@ -4495,7 +4526,7 @@ __ashrdi3:
 	sldi 3,3,32
 	or 3,3,9
 	blr
-.L748:
+.L769:
 	cmpdi 0,4,0
 	beqlr 0
 	sradi 10,3,32
@@ -4520,14 +4551,14 @@ __ashrti3:
 .LFB136:
 	.cfi_startproc
 	andi. 9,5,0x40
-	beq 0,.L753
+	beq 0,.L774
 	sradi 10,4,63
 	addi 5,5,-64
 	srad 3,4,5
-.L754:
+.L775:
 	mr 4,10
 	blr
-.L753:
+.L774:
 	cmpdi 0,5,0
 	beqlr 0
 	srad 10,4,5
@@ -4535,7 +4566,7 @@ __ashrti3:
 	sld 9,4,9
 	srd 3,3,5
 	or 3,9,3
-	b .L754
+	b .L775
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4668,25 +4699,20 @@ __clzti2:
 __cmpdi2:
 .LFB141:
 	.cfi_startproc
-	sradi 10,3,32
-	sradi 9,4,32
-	cmpw 0,10,9
-	blt 0,.L763
-	mr 8,10
-	mr 10,9
-	li 9,2
+	sradi 8,3,32
+	sradi 10,4,32
+	li 9,0
 	cmpw 0,8,10
-	bgt 0,.L762
+	blt 0,.L783
+	li 9,2
+	bgt 0,.L783
 	li 9,0
 	cmplw 0,3,4
-	blt 0,.L762
+	blt 0,.L783
 	li 9,2
-	bgt 0,.L762
+	bgt 0,.L783
 	li 9,1
-	b .L762
-.L763:
-	li 9,0
-.L762:
+.L783:
 	extsw 3,9
 	blr
 	.long 0
@@ -4731,16 +4757,16 @@ __cmpti2:
 	.cfi_startproc
 	li 9,0
 	cmpd 0,4,6
-	blt 0,.L770
+	blt 0,.L791
 	li 9,2
-	bgt 0,.L770
+	bgt 0,.L791
 	li 9,0
 	cmpld 0,3,5
-	blt 0,.L770
+	blt 0,.L791
 	subfc 5,3,5
 	subfe 9,9,9
 	subfic 9,9,1
-.L770:
+.L791:
 	extsw 3,9
 	blr
 	.long 0
@@ -4824,20 +4850,20 @@ __ffsti2:
 .LFB146:
 	.cfi_startproc
 	mr. 9,3
-	bne 0,.L778
+	bne 0,.L799
 	cmpdi 0,4,0
-	beq 0,.L779
+	beq 0,.L800
 	neg 3,4
 	and 3,3,4
 	cntlzd 3,3
 	subfic 3,3,128
-	b .L779
-.L778:
+	b .L800
+.L799:
 	neg 3,9
 	and 3,3,9
 	cntlzd 3,3
 	subfic 3,3,64
-.L779:
+.L800:
 	extsw 3,3
 	blr
 	.long 0
@@ -4853,12 +4879,12 @@ __lshrdi3:
 	.cfi_startproc
 	mr 9,3
 	andi. 10,4,0x20
-	beq 0,.L782
+	beq 0,.L803
 	srdi 3,3,32
 	addi 4,4,-32
 	srw 3,3,4
 	blr
-.L782:
+.L803:
 	cmpdi 0,4,0
 	beqlr 0
 	srdi 10,3,32
@@ -4883,14 +4909,14 @@ __lshrti3:
 .LFB148:
 	.cfi_startproc
 	andi. 9,5,0x40
-	beq 0,.L787
+	beq 0,.L808
 	li 10,0
 	addi 5,5,-64
 	srd 3,4,5
-.L788:
+.L809:
 	mr 4,10
 	blr
-.L787:
+.L808:
 	cmpdi 0,5,0
 	beqlr 0
 	srd 10,4,5
@@ -4898,7 +4924,7 @@ __lshrti3:
 	sld 9,4,9
 	srd 3,3,5
 	or 3,9,3
-	b .L788
+	b .L809
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
 	.cfi_endproc
@@ -4910,32 +4936,26 @@ __lshrti3:
 __muldsi3:
 .LFB149:
 	.cfi_startproc
-	rlwinm 9,3,0,16,31
-	rlwinm 8,4,0,16,31
-	mullw 7,9,8
-	srwi 6,7,16
-	srwi 10,3,16
-	mullw 8,10,8
-	add 8,8,6
-	rldicl 3,8,48,48
-	rlwinm 8,8,0,0xffff
+	rlwinm 8,3,0,16,31
+	rlwinm 7,4,0,16,31
+	mullw 10,8,7
+	srwi 9,10,16
+	srwi 3,3,16
+	mullw 7,3,7
+	add 9,9,7
+	srwi 7,9,16
+	rlwinm 9,9,0,0xffff
 	srwi 4,4,16
-	mullw 9,9,4
+	mullw 8,8,4
 	add 9,9,8
-	rlwimi 7,9,16,0,31-16
-	rldicl 7,7,0,32
-	sldi 3,3,32
-	or 3,3,7
-	sradi 8,3,32
+	rlwimi 10,9,16,0,31-16
 	srwi 9,9,16
-	add 9,9,8
+	add 9,9,7
+	mullw 3,3,4
+	add 9,9,3
 	sldi 9,9,32
-	rldicl 3,3,0,32
+	rldicl 3,10,0,32
 	or 3,3,9
-	sradi 9,3,32
-	mullw 10,10,4
-	add 10,10,9
-	rldimi 3,10,32,0
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -4996,23 +5016,23 @@ __mulddi3:
 .LFB151:
 	.cfi_startproc
 	mr 9,3
-	rldicl 8,3,0,32
-	rldicl 10,4,0,32
-	mulld 3,8,10
-	srdi 7,3,32
+	rldicl 7,3,0,32
+	rldicl 8,4,0,32
+	mulld 3,7,8
+	srdi 10,3,32
 	srdi 9,9,32
-	mulld 10,9,10
-	add 10,10,7
+	mulld 8,9,8
+	add 10,10,8
 	srdi 6,10,32
 	rldicl 10,10,0,32
-	srdi 7,4,32
-	mulld 8,8,7
-	add 10,8,10
+	srdi 8,4,32
+	mulld 7,7,8
+	add 10,10,7
 	srdi 4,10,32
 	add 4,4,6
-	mulld 9,9,7
+	mulld 9,9,8
 	rldimi 3,10,32,0
-	add 4,9,4
+	add 4,4,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -5342,19 +5362,19 @@ __powidf2:
 	srwi 10,4,31
 	addis 9,2,.LC32@toc@ha
 	lfd 1,.LC32@toc@l(9)
-	b .L809
-.L807:
+	b .L830
+.L828:
 	srawi 4,4,1
 	addze 4,4
 	extsw. 4,4
-	beq 0,.L808
+	beq 0,.L829
 	fmul 0,0,0
-.L809:
+.L830:
 	andi. 9,4,0x1
-	beq 0,.L807
+	beq 0,.L828
 	fmul 1,1,0
-	b .L807
-.L808:
+	b .L828
+.L829:
 	cmpwi 0,10,0
 	beqlr 0
 	addis 9,2,.LC32@toc@ha
@@ -5380,19 +5400,19 @@ __powisf2:
 	srwi 10,4,31
 	addis 9,2,.LC33@toc@ha
 	lfs 1,.LC33@toc@l(9)
-	b .L814
-.L812:
+	b .L835
+.L833:
 	srawi 4,4,1
 	addze 4,4
 	extsw. 4,4
-	beq 0,.L813
+	beq 0,.L834
 	fmuls 0,0,0
-.L814:
+.L835:
 	andi. 9,4,0x1
-	beq 0,.L812
+	beq 0,.L833
 	fmuls 1,1,0
-	b .L812
-.L813:
+	b .L833
+.L834:
 	cmpwi 0,10,0
 	beqlr 0
 	addis 9,2,.LC33@toc@ha
@@ -5410,25 +5430,20 @@ __powisf2:
 __ucmpdi2:
 .LFB163:
 	.cfi_startproc
-	srdi 10,3,32
-	srdi 9,4,32
-	cmplw 0,10,9
-	blt 0,.L818
-	mr 8,10
-	mr 10,9
-	li 9,2
+	srdi 8,3,32
+	srdi 10,4,32
+	li 9,0
 	cmplw 0,8,10
-	bgt 0,.L817
+	blt 0,.L838
+	li 9,2
+	bgt 0,.L838
 	li 9,0
 	cmplw 0,3,4
-	blt 0,.L817
+	blt 0,.L838
 	li 9,2
-	bgt 0,.L817
+	bgt 0,.L838
 	li 9,1
-	b .L817
-.L818:
-	li 9,0
-.L817:
+.L838:
 	extsw 3,9
 	blr
 	.long 0
@@ -5473,16 +5488,16 @@ __ucmpti2:
 	.cfi_startproc
 	li 9,0
 	cmpld 0,4,6
-	blt 0,.L825
+	blt 0,.L846
 	li 9,2
-	bgt 0,.L825
+	bgt 0,.L846
 	li 9,0
 	cmpld 0,3,5
-	blt 0,.L825
+	blt 0,.L846
 	subfc 5,3,5
 	subfe 9,9,9
 	subfic 9,9,1
-.L825:
+.L846:
 	extsw 3,9
 	blr
 	.long 0
