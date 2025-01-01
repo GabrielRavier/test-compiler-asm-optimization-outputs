@@ -1664,7 +1664,7 @@ atoi:
 	test	eax, eax
 	jne	.L238
 	mov	ecx, esi
-	mov	edi, eax
+	mov	edi, 0
 	cmp	cl, 43
 	je	.L239
 	cmp	cl, 45
@@ -1739,7 +1739,7 @@ atol:
 	test	eax, eax
 	jne	.L251
 	mov	ecx, esi
-	mov	edi, eax
+	mov	edi, 0
 	cmp	cl, 43
 	je	.L252
 	cmp	cl, 45
@@ -2490,10 +2490,9 @@ wcsncmp:
 	mov	ebx, 0
 	test	ebp, ebp
 	je	.L327
-	mov	ecx, DWORD PTR [ecx]
-	mov	eax, DWORD PTR [edx]
 	mov	ebx, -1
-	cmp	ecx, eax
+	mov	eax, DWORD PTR [edx]
+	cmp	DWORD PTR [ecx], eax
 	jl	.L327
 	setg	bl
 	movzx	ebx, bl
@@ -2572,10 +2571,9 @@ wmemcmp:
 	mov	ebx, 0
 	test	eax, eax
 	je	.L344
-	mov	ecx, DWORD PTR [ecx]
-	mov	eax, DWORD PTR [edx]
 	mov	ebx, -1
-	cmp	ecx, eax
+	mov	eax, DWORD PTR [edx]
+	cmp	DWORD PTR [ecx], eax
 	jl	.L344
 	setg	bl
 	movzx	ebx, bl
@@ -3135,9 +3133,10 @@ libiberty_ffs:
 .LFB82:
 	.cfi_startproc
 	mov	eax, DWORD PTR [esp+4]
-	mov	edx, eax
+	mov	edx, 0
 	test	eax, eax
 	je	.L405
+	mov	edx, eax
 	and	edx, 1
 	jne	.L405
 	mov	edx, 1
@@ -3530,20 +3529,22 @@ strnlen:
 	mov	edx, DWORD PTR [esp+8]
 	mov	eax, 0
 	test	edx, edx
-	je	.L469
+	je	.L471
 .L465:
 	cmp	BYTE PTR [ecx+eax], 0
-	jne	.L471
+	jne	.L467
 .L464:
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L471:
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L467:
 	add	eax, 1
 	cmp	edx, eax
 	jne	.L465
-.L469:
-	mov	eax, edx
 	ret
 	.cfi_endproc
 .LFE92:
@@ -4073,7 +4074,6 @@ udivmodsi4:
 	mov	ebx, 0
 	test	edx, edx
 	jne	.L549
-	mov	ebx, edx
 	.p2align 4
 	.p2align 3
 .L550:
@@ -4225,9 +4225,9 @@ __mulsi3:
 	.cfi_offset 3, -8
 	mov	edx, DWORD PTR [esp+8]
 	mov	ecx, DWORD PTR [esp+12]
-	test	edx, edx
-	je	.L578
 	mov	ebx, 0
+	test	edx, edx
+	je	.L575
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -4243,16 +4243,9 @@ __mulsi3:
 .L575:
 	mov	eax, ebx
 	pop	ebx
-	.cfi_remember_state
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L578:
-	.cfi_restore_state
-	mov	ebx, edx
-	jmp	.L575
 	.cfi_endproc
 .LFE104:
 	.size	__mulsi3, .-__mulsi3
@@ -4827,9 +4820,9 @@ __mulsi3_iq2000:
 	.cfi_offset 3, -8
 	mov	edx, DWORD PTR [esp+8]
 	mov	ecx, DWORD PTR [esp+12]
-	test	edx, edx
-	je	.L660
 	mov	ebx, 0
+	test	edx, edx
+	je	.L657
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -4845,16 +4838,9 @@ __mulsi3_iq2000:
 .L657:
 	mov	eax, ebx
 	pop	ebx
-	.cfi_remember_state
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L660:
-	.cfi_restore_state
-	mov	ebx, edx
-	jmp	.L657
 	.cfi_endproc
 .LFE119:
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -4869,12 +4855,11 @@ __mulsi3_lm32:
 	.cfi_offset 3, -8
 	mov	ecx, DWORD PTR [esp+8]
 	mov	edx, DWORD PTR [esp+12]
-	mov	ebx, ecx
+	mov	ebx, 0
 	test	ecx, ecx
 	je	.L663
 	test	edx, edx
 	je	.L667
-	mov	ebx, 0
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -4898,7 +4883,7 @@ __mulsi3_lm32:
 	.p2align 3
 .L667:
 	.cfi_restore_state
-	mov	ebx, edx
+	mov	ebx, 0
 	jmp	.L663
 	.cfi_endproc
 .LFE120:
@@ -4932,7 +4917,6 @@ __udivmodsi4:
 	mov	ebx, 0
 	test	edx, edx
 	jne	.L674
-	mov	ebx, edx
 	.p2align 4
 	.p2align 3
 .L675:
@@ -5162,7 +5146,7 @@ __mulhi3:
 	.p2align 4,,10
 	.p2align 3
 .L705:
-	mov	esi, edx
+	mov	esi, 0
 	jmp	.L701
 	.cfi_endproc
 .LFE126:
@@ -5296,7 +5280,6 @@ __udivmodhi4:
 	mov	ebx, 0
 	test	dx, dx
 	jne	.L730
-	mov	ebx, edx
 	.p2align 4
 	.p2align 3
 .L731:
@@ -5360,7 +5343,6 @@ __udivmodsi4_libgcc:
 	mov	ebx, 0
 	test	edx, edx
 	jne	.L748
-	mov	ebx, edx
 	.p2align 4
 	.p2align 3
 .L749:
@@ -5691,34 +5673,27 @@ __clzsi2:
 __cmpdi2:
 .LFB136:
 	.cfi_startproc
-	push	esi
-	.cfi_def_cfa_offset 8
-	.cfi_offset 6, -8
 	push	ebx
-	.cfi_def_cfa_offset 12
-	.cfi_offset 3, -12
-	mov	ebx, DWORD PTR [esp+12]
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	mov	edx, DWORD PTR [esp+8]
 	mov	ecx, DWORD PTR [esp+16]
-	mov	esi, DWORD PTR [esp+20]
-	mov	edx, DWORD PTR [esp+24]
 	mov	eax, 0
-	cmp	ecx, edx
+	mov	ebx, DWORD PTR [esp+20]
+	cmp	DWORD PTR [esp+12], ebx
 	jl	.L779
 	mov	eax, 2
 	jg	.L779
 	mov	eax, 0
-	cmp	ebx, esi
+	cmp	edx, ecx
 	jb	.L779
-	cmp	esi, ebx
+	cmp	ecx, edx
 	setb	al
 	movzx	eax, al
 	add	eax, 1
 .L779:
 	pop	ebx
 	.cfi_restore 3
-	.cfi_def_cfa_offset 8
-	pop	esi
-	.cfi_restore 6
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc

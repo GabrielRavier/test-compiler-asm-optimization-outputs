@@ -989,9 +989,8 @@ _rand:
 _insque:
 	mov.l	er1,er1
 	bne	.L218
-	sub.l	er2,er2
-	mov.l	er2,@(4,er0)
-	mov.l	er2,@er0
+	mov.l	er1,@(4,er0)
+	mov.l	er1,@er0
 	rts
 .L218:
 	mov.l	@er1,er2
@@ -1143,7 +1142,7 @@ _atoi:
 	mov.w	#1,r5
 	bra	.L242
 .L247:
-	mov.w	r0,r5
+	sub.w	r5,r5
 .L242:
 	adds	#1,er4
 	bra	.L243
@@ -1161,7 +1160,7 @@ _atoi:
 	bls	.L244
 	bra	.L245
 .L248:
-	mov.w	r0,r5
+	sub.w	r5,r5
 .L243:
 	mov.b	@er4,r2l
 	extu.w	r2
@@ -1976,9 +1975,9 @@ _rotl64:
 	bne	.L394
 .L395:
 .L385:
+	neg.w	r2
+	and.w	#63,r2
 	mov.w	r2,r3
-	neg.w	r3
-	and.w	#63,r3
 	add.w	#-32,r3
 	bmi	.L386
 	sub.l	er0,er0
@@ -1994,8 +1993,6 @@ _rotl64:
 .L386:
 	mov.l	@er7,er3
 	shll.l	er3
-	neg.w	r2
-	and.w	#63,r2
 	mov.w	#31,r0
 	sub.w	r2,r0
 	mov.b	r0l,r0l
@@ -2088,9 +2085,9 @@ _rotr64:
 	bne	.L415
 .L416:
 .L406:
+	neg.w	r2
+	and.w	#63,r2
 	mov.w	r2,r3
-	neg.w	r3
-	and.w	#63,r3
 	add.w	#-32,r3
 	bmi	.L407
 	sub.l	er1,er1
@@ -2106,8 +2103,6 @@ _rotr64:
 .L407:
 	mov.l	@(4,er7),er3
 	shlr.l	er3
-	neg.w	r2
-	and.w	#63,r2
 	mov.w	#31,r0
 	sub.w	r2,r0
 	mov.b	r0l,r0l
@@ -2798,7 +2793,7 @@ _libiberty_ffs:
 	beq	.L509
 	rts
 .L510:
-	mov.w	r2,r0
+	sub.w	r0,r0
 .L512:
 	rts
 	.size	_libiberty_ffs, .-_libiberty_ffs
@@ -3101,8 +3096,7 @@ _strncat:
 .L560:
 	mov.l	er4,er4
 	bne	.L562
-	sub.b	r2l,r2l
-	mov.b	r2l,@er0
+	mov.b	r4l,@er0
 .L562:
 	mov.l	er5,er0
 	mov.l	@er7+,er6
@@ -3114,25 +3108,20 @@ _strncat:
 	.global _strnlen
 _strnlen:
 	mov.l	er0,er2
+	sub.l	er0,er0
 	mov.l	er1,er1
-	bne	.L568
-	bra	.L569
+	bne	.L565
+	rts
 .L567:
 	adds	#1,er0
 	cmp.l	er0,er1
 	bne	.L565
-	bra	.L569
-.L568:
-	sub.l	er0,er0
+	rts
 .L565:
 	mov.l	er2,er3
 	add.l	er0,er3
 	mov.b	@er3,r3l
-	beq	.L570
-	bra	.L567
-.L569:
-	mov.l	er1,er0
-.L570:
+	bne	.L567
 	rts
 	.size	_strnlen, .-_strnlen
 	.align 1
@@ -3140,24 +3129,24 @@ _strnlen:
 _strpbrk:
 	mov.l	er4,@-er7
 	mov.b	@er0,r4l
-	bne	.L572
-	bra	.L576
-.L574:
+	bne	.L571
+	bra	.L575
+.L573:
 	adds	#1,er2
 	cmp.b	r4l,r3l
-	beq	.L573
-.L575:
+	beq	.L572
+.L574:
 	mov.b	@er2,r3l
-	bne	.L574
+	bne	.L573
 	adds	#1,er0
 	mov.b	@er0,r4l
-	beq	.L576
-.L572:
+	beq	.L575
+.L571:
 	mov.l	er1,er2
-	bra	.L575
-.L576:
+	bra	.L574
+.L575:
 	sub.l	er0,er0
-.L573:
+.L572:
 	mov.l	@er7+,er4
 	rts
 	.size	_strpbrk, .-_strpbrk
@@ -3167,17 +3156,17 @@ _strrchr:
 	mov.l	er4,@-er7
 	mov.l	er0,er2
 	sub.l	er0,er0
-.L580:
+.L579:
 	mov.b	@er2,r3l
 	mov.b	r3l,r4l
 	extu.w	r4
 	cmp.w	r1,r4
-	bne	.L579
+	bne	.L578
 	mov.l	er2,er0
-.L579:
+.L578:
 	adds	#1,er2
 	mov.b	r3l,r3l
-	bne	.L580
+	bne	.L579
 	mov.l	@er7+,er4
 	rts
 	.size	_strrchr, .-_strrchr
@@ -3193,26 +3182,26 @@ _strstr:
 	mov.l	er1,er0
 	jsr	@_strlen
 	mov.l	er0,er5
-	beq	.L583
+	beq	.L582
 	mov.b	@er4,r2l
 	extu.w	r2
 	mov.w	r2,@(2,er7)
-	bra	.L585
-.L586:
+	bra	.L584
+.L585:
 	mov.l	er5,er2
 	mov.l	er4,er1
 	mov.l	er6,er0
 	jsr	@_strncmp
 	mov.w	r0,r0
-	beq	.L583
+	beq	.L582
 	adds	#1,er6
-.L585:
+.L584:
 	mov.w	@(2,er7),r1
 	mov.l	er6,er0
 	jsr	@_strchr
 	mov.l	er0,er6
-	bne	.L586
-.L583:
+	bne	.L585
+.L582:
 	mov.l	er6,er0
 	adds	#4,er7
 	mov.l	@er7+,er6
@@ -3225,32 +3214,36 @@ _strstr:
 _copysign:
 	mov.l	er4,@-er7
 	mov.l	er5,@-er7
+	mov.l	er6,@-er7
 	mov.l	er0,er4
 	mov.l	er1,er5
-	sub.l	er1,er1
+	sub.l	er6,er6
+	mov.l	er6,er1
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bpl	.L589
-	sub.l	er1,er1
+	bpl	.L588
+	mov.l	er6,er1
 	mov.l	er5,er0
 	jsr	@___gtsf2
 	mov.l	er0,er0
-	bgt	.L591
-.L589:
-	sub.l	er1,er1
+	bgt	.L590
+.L588:
+	sub.l	er6,er6
+	mov.l	er6,er1
 	mov.l	er4,er0
 	jsr	@___gtsf2
 	mov.l	er0,er0
-	ble	.L592
-	sub.l	er1,er1
+	ble	.L591
+	mov.l	er6,er1
 	mov.l	er5,er0
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bpl	.L592
-.L591:
+	bpl	.L591
+.L590:
 	xor.w	#32768,e4
-.L592:
+.L591:
 	mov.l	er4,er0
+	mov.l	@er7+,er6
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	rts
@@ -3265,43 +3258,43 @@ _memmem:
 	mov.l	er0,er4
 	mov.l	er1,er5
 	mov.l	@(28,er7),er3
-	beq	.L601
+	beq	.L600
 	cmp.l	er3,er1
-	blo	.L603
+	blo	.L602
 	sub.l	er3,er5
 	add.l	er0,er5
 	cmp.l	er5,er0
-	bhi	.L603
+	bhi	.L602
 	mov.l	er2,er1
 	mov.b	@er1+,r6l
 	subs	#1,er3
 	mov.l	er3,@(4,er7)
 	mov.l	er1,@(8,er7)
-.L600:
+.L599:
 	mov.b	@er4,r2l
 	mov.l	er4,@er7
 	adds	#1,er4
 	cmp.b	r6l,r2l
-	bne	.L599
+	bne	.L598
 	mov.l	@(4,er7),er2
 	mov.l	@(8,er7),er1
 	mov.l	er4,er0
 	jsr	@_memcmp
 	mov.w	r0,r0
-	beq	.L605
-.L599:
+	beq	.L604
+.L598:
 	cmp.l	er5,er4
-	bls	.L600
-	bra	.L603
-.L601:
+	bls	.L599
+	bra	.L602
+.L600:
 	mov.l	er0,er3
-	bra	.L597
-.L603:
+	bra	.L596
+.L602:
 	sub.l	er3,er3
-	bra	.L597
-.L605:
+	bra	.L596
+.L604:
 	mov.l	@er7,er3
-.L597:
+.L596:
 	mov.l	er3,er0
 	add.l	#12,er7
 	mov.l	@er7+,er6
@@ -3331,23 +3324,23 @@ _frexp:
 	sub.l	er1,er1
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bpl	.L627
+	bpl	.L626
 	xor.w	#32768,e4
 	mov.w	#1,r2
 	mov.w	r2,@(2,er7)
-	bra	.L608
-.L627:
+	bra	.L607
+.L626:
 	sub.w	r2,r2
 	mov.w	r2,@(2,er7)
-.L608:
+.L607:
 	mov.l	#1065353216,er1
 	mov.l	er4,er0
 	jsr	@___gesf2
 	mov.l	er0,er0
-	bmi	.L628
+	bmi	.L627
 	sub.w	r6,r6
 	mov.l	#1065353216,er5
-.L612:
+.L611:
 	inc #1,r6
 	mov.l	#1056964608,er1
 	mov.l	er4,er0
@@ -3356,22 +3349,22 @@ _frexp:
 	mov.l	er5,er1
 	jsr	@___gesf2
 	mov.l	er0,er0
-	bpl	.L612
-	bra	.L613
-.L628:
+	bpl	.L611
+	bra	.L612
+.L627:
 	mov.l	#1056964608,er1
 	mov.l	er4,er0
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bpl	.L629
+	bpl	.L628
 	sub.l	er1,er1
 	mov.l	er4,er0
 	jsr	@___nesf2
 	sub.w	r6,r6
 	mov.l	er0,er0
-	beq	.L613
+	beq	.L612
 	mov.l	#1056964608,er5
-.L616:
+.L615:
 	dec #1,r6
 	mov.l	er4,er1
 	mov.l	er4,er0
@@ -3380,17 +3373,17 @@ _frexp:
 	mov.l	er5,er1
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bmi	.L616
-	bra	.L613
-.L629:
+	bmi	.L615
+	bra	.L612
+.L628:
 	sub.w	r6,r6
-.L613:
+.L612:
 	mov.l	@(4,er7),er2
 	mov.w	r6,@er2
 	mov.w	@(2,er7),r2
-	beq	.L617
+	beq	.L616
 	xor.w	#32768,e4
-.L617:
+.L616:
 	mov.l	er4,er0
 	add.l	#8,er7
 	mov.l	@er7+,er6
@@ -3413,11 +3406,11 @@ ___muldi3:
 	mov.l	er2,er4
 	mov.l	er1,er5
 	or.l	er1,er2
-	beq	.L638:16
+	beq	.L637:16
 	sub.l	er2,er2
 	mov.l	er2,@(16,er7)
 	mov.l	er2,@(20,er7)
-.L637:
+.L636:
 	sub.l	er2,er2
 	mov.l	er2,@(24,er7)
 	mov.l	er5,er2
@@ -3430,9 +3423,9 @@ ___muldi3:
 	sub.l	er6,er6
 	add.b	#1,r6l
 	mov.l	er3,er3
-	bne	.L634
+	bne	.L633
 	sub.l	er6,er6
-.L634:
+.L633:
 	mov.l	@(24,er7),er1
 	sub.l	er1,er0
 	mov.l	er0,er2
@@ -3482,13 +3475,13 @@ ___muldi3:
 	mov.l	er2,er4
 	mov.l	@(12,er7),er5
 	or.l	er5,er2
-	bne	.L637:16
-	bra	.L631
-.L638:
+	bne	.L636:16
+	bra	.L630
+.L637:
 	sub.l	er2,er2
 	mov.l	er2,@(16,er7)
 	mov.l	er2,@(20,er7)
-.L631:
+.L630:
 	mov.l	@(16,er7),er0
 	mov.l	@(20,er7),er1
 	add.l	#40,er7
@@ -3503,48 +3496,46 @@ _udivmodsi4:
 	mov.l	er4,@-er7
 	mov.l	er0,er4
 	cmp.l	er0,er1
-	blo	.L648
+	blo	.L647
 	sub.l	er3,er3
 	add.b	#1,r3l
-	bra	.L642
-.L645:
+	bra	.L641
+.L644:
 	shll.l	er1
 	shll.l	er3
 	cmp.l	er1,er4
-	bls	.L642
+	bls	.L641
 	dec #1,r0
-	bne	.L641
+	bne	.L640
 	sub.l	er3,er3
-.L642:
+.L641:
+	sub.l	er0,er0
 	mov.l	er3,er3
-	bne	.L649
-	mov.l	er3,er0
-	bra	.L644
-.L648:
+	bne	.L642
+	bra	.L643
+.L647:
 	mov.w	#32,r0
 	sub.l	er3,er3
 	add.b	#1,r3l
-.L641:
+.L640:
 	mov.l	er1,er1
-	bpl	.L645
-	bra	.L642
-.L649:
-	sub.l	er0,er0
-.L643:
+	bpl	.L644
+	bra	.L641
+.L642:
 	cmp.l	er1,er4
-	blo	.L646
+	blo	.L645
 	sub.l	er1,er4
 	or.l	er3,er0
-.L646:
+.L645:
 	shlr.l	er3
 	shlr.l	er1
 	mov.l	er3,er3
-	bne	.L643
-.L644:
+	bne	.L642
+.L643:
 	mov.l	er2,er2
-	beq	.L640
+	beq	.L639
 	mov.l	er4,er0
-.L640:
+.L639:
 	mov.l	@er7+,er4
 	rts
 	.size	_udivmodsi4, .-_udivmodsi4
@@ -3552,14 +3543,14 @@ _udivmodsi4:
 	.global ___clrsbqi2
 ___clrsbqi2:
 	mov.b	r0l,r0l
-	beq	.L655
+	beq	.L654
 	mov.b	r0l,r0h
 	sub.b	r0l,r0l
 	extu.l	er0
 	jsr	@___clzsi2
 	add.w	#-17,r0
 	rts
-.L655:
+.L654:
 	mov.w	#7,r0
 	rts
 	.size	___clrsbqi2, .-___clrsbqi2
@@ -3582,18 +3573,18 @@ ___clrsbdi2:
 	xor.l	er3,er0
 	mov.l	er0,@(4,er7)
 	cmp.l	er3,er4
-	bne	.L660
+	bne	.L659
 	cmp.l	er3,er1
-	beq	.L661
-.L660:
+	beq	.L660
+.L659:
 	mov.l	@er7,er0
 	mov.l	@(4,er7),er1
 	jsr	@___clzdi2
 	dec #1,r0
-	bra	.L656
-.L661:
+	bra	.L655
+.L660:
 	mov.w	#63,r0
-.L656:
+.L655:
 	add.l	#8,er7
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
@@ -3603,9 +3594,9 @@ ___clrsbdi2:
 	.global ___mulsi3
 ___mulsi3:
 	mov.w	r0,r2
-	beq	.L665
+	beq	.L664
 	sub.w	r0,r0
-.L664:
+.L663:
 	mov.l	er2,er3
 	and.l	#1,er3
 	neg.l	er3
@@ -3614,10 +3605,10 @@ ___mulsi3:
 	shlr.w	r2
 	shll.w	r1
 	mov.w	r2,r2
-	bne	.L664
+	bne	.L663
 	rts
-.L665:
-	mov.w	r2,r0
+.L664:
+	sub.w	r0,r0
 	rts
 	.size	___mulsi3, .-___mulsi3
 	.align 1
@@ -3635,23 +3626,23 @@ ___cmovd:
 	mov.w	r2,r5
 	and	#248,r5l
 	cmp.l	er1,er0
-	bhs	.L668
-.L671:
+	bhs	.L667
+.L670:
 	mov.w	r6,r6
-	bne	.L669
-	bra	.L670
-.L668:
+	bne	.L668
+	bra	.L669
+.L667:
 	mov.w	r2,r3
 	extu.l	er3
 	add.l	er1,er3
 	cmp.l	er3,er0
-	bhi	.L671
+	bhi	.L670
 	mov.w	r2,r3
 	dec #1,r3
 	mov.w	r2,r2
-	bne	.L672
-	bra	.L667:16
-.L669:
+	bne	.L671
+	bra	.L666:16
+.L668:
 	mov.l	er1,er3
 	mov.l	er4,er0
 	extu.l	er6
@@ -3661,7 +3652,7 @@ ___cmovd:
 	add.l	er1,er6
 	mov.w	r5,@(2,er7)
 	mov.l	er4,@(4,er7)
-.L674:
+.L673:
 	mov.l	@er3,er4
 	mov.l	@(4,er3),er5
 	mov.l	er4,@er0
@@ -3671,12 +3662,12 @@ ___cmovd:
 	adds	#4,er0
 	adds	#4,er0
 	cmp.l	er6,er3
-	bne	.L674
+	bne	.L673
 	mov.w	@(2,er7),r5
 	mov.l	@(4,er7),er4
-.L670:
+.L669:
 	cmp.w	r5,r2
-	bls	.L667
+	bls	.L666
 	mov.w	r5,r6
 	extu.l	er6
 	mov.l	er1,er0
@@ -3689,17 +3680,17 @@ ___cmovd:
 	sub.w	r5,r2
 	extu.l	er2
 	add.l	er2,er1
-.L675:
+.L674:
 	mov.b	@er0+,r2l
 	mov.b	r2l,@er3
 	adds	#1,er3
 	cmp.l	er1,er0
-	bne	.L675
-	bra	.L667
-.L672:
+	bne	.L674
+	bra	.L666
+.L671:
 	mov.w	r3,r2
 	extu.l	er2
-.L676:
+.L675:
 	mov.l	er1,er3
 	add.l	er2,er3
 	mov.b	@er3,r0l
@@ -3708,8 +3699,8 @@ ___cmovd:
 	mov.b	r0l,@er3
 	subs	#1,er2
 	cmp.l	#-1,er2
-	bne	.L676
-.L667:
+	bne	.L675
+.L666:
 	add.l	#8,er7
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5
@@ -3725,48 +3716,48 @@ ___cmovh:
 	mov.w	r2,r6
 	shlr.w	r6
 	cmp.l	er1,er0
-	bhs	.L681
-.L684:
+	bhs	.L680
+.L683:
 	mov.w	r6,r6
-	bne	.L682
-	bra	.L683
-.L681:
+	bne	.L681
+	bra	.L682
+.L680:
 	mov.w	r2,r3
 	extu.l	er3
 	add.l	er1,er3
 	cmp.l	er3,er0
-	bhi	.L684
+	bhi	.L683
 	mov.w	r2,r3
 	dec #1,r3
 	mov.w	r2,r2
-	bne	.L685
-	bra	.L680
-.L682:
+	bne	.L684
+	bra	.L679
+.L681:
 	mov.l	er1,er4
 	mov.l	er0,er3
 	extu.l	er6
 	shll.l	er6
 	add.l	er1,er6
-.L687:
+.L686:
 	mov.w	@er4+,r5
 	mov.w	r5,@er3
 	adds	#2,er3
 	cmp.l	er6,er4
-	bne	.L687
-.L683:
+	bne	.L686
+.L682:
 	btst	#0,r2l
-	beq	.L680
+	beq	.L679
 	dec #1,r2
 	extu.l	er2
 	add.l	er2,er1
 	mov.b	@er1,r3l
 	add.l	er0,er2
 	mov.b	r3l,@er2
-	bra	.L680
-.L685:
+	bra	.L679
+.L684:
 	mov.w	r3,r2
 	extu.l	er2
-.L688:
+.L687:
 	mov.l	er1,er3
 	add.l	er2,er3
 	mov.b	@er3,r4l
@@ -3775,8 +3766,8 @@ ___cmovh:
 	mov.b	r4l,@er3
 	subs	#1,er2
 	cmp.l	#-1,er2
-	bne	.L688
-.L680:
+	bne	.L687
+.L679:
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
@@ -3795,39 +3786,39 @@ ___cmovw:
 	mov.w	r2,r5
 	and	#252,r5l
 	cmp.l	er1,er0
-	bhs	.L692
-.L695:
+	bhs	.L691
+.L694:
 	mov.w	r6,r6
-	bne	.L693
-	bra	.L694
-.L692:
+	bne	.L692
+	bra	.L693
+.L691:
 	mov.w	r2,r3
 	extu.l	er3
 	add.l	er1,er3
 	cmp.l	er3,er0
-	bhi	.L695
+	bhi	.L694
 	mov.w	r2,r3
 	dec #1,r3
 	mov.w	r2,r2
-	bne	.L696
-	bra	.L691
-.L693:
+	bne	.L695
+	bra	.L690
+.L692:
 	mov.l	er1,er4
 	mov.l	er0,er3
 	extu.l	er6
 	shll.l	er6
 	add.l	er1,er6
 	mov.w	r5,@(2,er7)
-.L698:
+.L697:
 	mov.w	@er4+,r5
 	mov.w	r5,@er3
 	adds	#2,er3
 	cmp.l	er6,er4
-	bne	.L698
+	bne	.L697
 	mov.w	@(2,er7),r5
-.L694:
+.L693:
 	cmp.w	r5,r2
-	bls	.L691
+	bls	.L690
 	mov.w	r5,r4
 	extu.l	er4
 	mov.l	er1,er3
@@ -3839,17 +3830,17 @@ ___cmovw:
 	sub.w	r5,r2
 	extu.l	er2
 	add.l	er2,er1
-.L699:
+.L698:
 	mov.b	@er3+,r2l
 	mov.b	r2l,@er0
 	adds	#1,er0
 	cmp.l	er1,er3
-	bne	.L699
-	bra	.L691
-.L696:
+	bne	.L698
+	bra	.L690
+.L695:
 	mov.w	r3,r2
 	extu.l	er2
-.L700:
+.L699:
 	mov.l	er1,er3
 	add.l	er2,er3
 	mov.b	@er3,r4l
@@ -3858,8 +3849,8 @@ ___cmovw:
 	mov.b	r4l,@er3
 	subs	#1,er2
 	cmp.l	#-1,er2
-	bne	.L700
-.L691:
+	bne	.L699
+.L690:
 	adds	#4,er7
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5
@@ -3915,29 +3906,29 @@ ___umodi:
 ___clzhi2:
 	mov.l	er4,@-er7
 	mov.w	r0,r3
-	bmi	.L714
+	bmi	.L713
 	sub.w	r0,r0
 	mov.w	#-32768,r1
-	bra	.L712
-.L713:
+	bra	.L711
+.L712:
 	mov.w	r1,r2
 	mov.b	r0l,r4l
-	ble	.L716
-.L715:
+	ble	.L715
+.L714:
 	shlr.w	r2
 	add.b	#-1,r4l
-	bne	.L715
-.L716:
+	bne	.L714
+.L715:
 	and.w	r3,r2
-	bne	.L710
-.L712:
+	bne	.L709
+.L711:
 	inc #1,r0
 	cmp.w	#16,r0
-	bne	.L713
-	bra	.L710
-.L714:
+	bne	.L712
+	bra	.L709
+.L713:
 	sub.w	r0,r0
-.L710:
+.L709:
 	mov.l	@er7+,er4
 	rts
 	.size	___clzhi2, .-___clzhi2
@@ -3946,42 +3937,45 @@ ___clzhi2:
 ___ctzhi2:
 	mov.w	r0,r3
 	sub.w	r0,r0
-.L719:
+.L718:
 	mov.w	r3,r2
 	mov.b	r0l,r1l
-	ble	.L723
-.L722:
+	ble	.L722
+.L721:
 	shlr.w	r2
 	add.b	#-1,r1l
-	bne	.L722
-.L723:
-	btst	#0,r2l
 	bne	.L721
+.L722:
+	btst	#0,r2l
+	bne	.L720
 	inc #1,r0
 	cmp.w	#16,r0
-	bne	.L719
-.L721:
+	bne	.L718
+.L720:
 	rts
 	.size	___ctzhi2, .-___ctzhi2
 	.align 1
 	.global ___fixunssfsi
 ___fixunssfsi:
 	mov.l	er4,@-er7
+	mov.l	er5,@-er7
 	mov.l	er0,er4
-	mov.l	#1191182336,er1
+	mov.l	#1191182336,er5
+	mov.l	er5,er1
 	jsr	@___gesf2
 	mov.l	er0,er0
-	bmi	.L729
-	mov.l	#1191182336,er1
+	bmi	.L728
+	mov.l	er5,er1
 	mov.l	er4,er0
 	jsr	@___subsf3
 	jsr	@___fixsfsi
 	add.l	#32768,er0
-	bra	.L724
-.L729:
+	bra	.L723
+.L728:
 	mov.l	er4,er0
 	jsr	@___fixsfsi
-.L724:
+.L723:
+	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	rts
 	.size	___fixunssfsi, .-___fixunssfsi
@@ -3992,20 +3986,20 @@ ___parityhi2:
 	mov.w	r0,r1
 	sub.w	r0,r0
 	sub.w	r2,r2
-.L731:
+.L730:
 	mov.w	r1,r3
 	mov.b	r2l,r4l
-	ble	.L734
-.L733:
+	ble	.L733
+.L732:
 	shlr.w	r3
 	add.b	#-1,r4l
-	bne	.L733
-.L734:
+	bne	.L732
+.L733:
 	and.w	#1,r3
 	add.w	r3,r0
 	inc #1,r2
 	cmp.w	#16,r2
-	bne	.L731
+	bne	.L730
 	and.w	#1,r0
 	mov.l	@er7+,er4
 	rts
@@ -4017,20 +4011,20 @@ ___popcounthi2:
 	mov.w	r0,r1
 	sub.w	r0,r0
 	sub.w	r2,r2
-.L736:
+.L735:
 	mov.w	r1,r3
 	mov.b	r2l,r4l
-	ble	.L739
-.L738:
+	ble	.L738
+.L737:
 	shlr.w	r3
 	add.b	#-1,r4l
-	bne	.L738
-.L739:
+	bne	.L737
+.L738:
 	and.w	#1,r3
 	add.w	r3,r0
 	inc #1,r2
 	cmp.w	#16,r2
-	bne	.L736
+	bne	.L735
 	mov.l	@er7+,er4
 	rts
 	.size	___popcounthi2, .-___popcounthi2
@@ -4038,9 +4032,9 @@ ___popcounthi2:
 	.global ___mulsi3_iq2000
 ___mulsi3_iq2000:
 	mov.l	er0,er2
-	beq	.L743
+	beq	.L742
 	sub.l	er0,er0
-.L742:
+.L741:
 	mov.l	er2,er3
 	and.l	#1,er3
 	neg.l	er3
@@ -4049,21 +4043,21 @@ ___mulsi3_iq2000:
 	shlr.l	er2
 	shll.l	er1
 	mov.l	er2,er2
-	bne	.L742
+	bne	.L741
 	rts
-.L743:
-	mov.l	er2,er0
+.L742:
+	sub.l	er0,er0
 	rts
 	.size	___mulsi3_iq2000, .-___mulsi3_iq2000
 	.align 1
 	.global ___mulsi3_lm32
 ___mulsi3_lm32:
 	mov.l	er0,er3
-	beq	.L748
-	mov.l	er1,er1
-	beq	.L749
+	beq	.L747
 	sub.l	er0,er0
-.L747:
+	mov.l	er1,er1
+	beq	.L750
+.L746:
 	mov.l	er1,er2
 	and.l	#1,er2
 	neg.l	er2
@@ -4071,13 +4065,12 @@ ___mulsi3_lm32:
 	add.l	er2,er0
 	shll.l	er3
 	shlr.l	er1
-	bne	.L747
+	bne	.L746
 	rts
-.L748:
-	mov.l	er3,er0
+.L747:
+	sub.l	er0,er0
 	rts
-.L749:
-	mov.l	er1,er0
+.L750:
 	rts
 	.size	___mulsi3_lm32, .-___mulsi3_lm32
 	.align 1
@@ -4086,48 +4079,46 @@ ___udivmodsi4:
 	mov.l	er4,@-er7
 	mov.l	er0,er4
 	cmp.l	er0,er1
-	blo	.L759
+	blo	.L760
 	sub.l	er3,er3
 	add.b	#1,r3l
-	bra	.L753
-.L756:
+	bra	.L754
+.L757:
 	shll.l	er1
 	shll.l	er3
 	cmp.l	er1,er4
-	bls	.L753
+	bls	.L754
 	dec #1,r0
-	bne	.L752
+	bne	.L753
 	sub.l	er3,er3
-.L753:
+.L754:
+	sub.l	er0,er0
 	mov.l	er3,er3
-	bne	.L760
-	mov.l	er3,er0
-	bra	.L755
-.L759:
+	bne	.L755
+	bra	.L756
+.L760:
 	mov.w	#32,r0
 	sub.l	er3,er3
 	add.b	#1,r3l
-.L752:
+.L753:
 	mov.l	er1,er1
-	bpl	.L756
-	bra	.L753
-.L760:
-	sub.l	er0,er0
-.L754:
+	bpl	.L757
+	bra	.L754
+.L755:
 	cmp.l	er1,er4
-	blo	.L757
+	blo	.L758
 	sub.l	er1,er4
 	or.l	er3,er0
-.L757:
+.L758:
 	shlr.l	er3
 	shlr.l	er1
 	mov.l	er3,er3
-	bne	.L754
-.L755:
+	bne	.L755
+.L756:
 	mov.w	r2,r2
-	beq	.L751
+	beq	.L752
 	mov.l	er4,er0
-.L751:
+.L752:
 	mov.l	@er7+,er4
 	rts
 	.size	___udivmodsi4, .-___udivmodsi4
@@ -4141,20 +4132,20 @@ ___mspabi_cmpf:
 	mov.l	er1,@er7
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bmi	.L767
+	bmi	.L768
 	mov.w	#1,r5
 	mov.l	@er7,er1
 	mov.l	er4,er0
 	jsr	@___gtsf2
 	mov.l	er0,er0
-	bgt	.L766
+	bgt	.L767
 	sub.w	r5,r5
-.L766:
-	mov.w	r5,r0
-	bra	.L764
 .L767:
+	mov.w	r5,r0
+	bra	.L765
+.L768:
 	mov.w	#-1,r0
-.L764:
+.L765:
 	adds	#4,er7
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
@@ -4170,20 +4161,20 @@ ___mspabi_cmpd:
 	mov.l	er1,@er7
 	jsr	@___ltsf2
 	mov.l	er0,er0
-	bmi	.L771
+	bmi	.L772
 	mov.w	#1,r5
 	mov.l	@er7,er1
 	mov.l	er4,er0
 	jsr	@___gtsf2
 	mov.l	er0,er0
-	bgt	.L770
+	bgt	.L771
 	sub.w	r5,r5
-.L770:
-	mov.w	r5,r0
-	bra	.L768
 .L771:
+	mov.w	r5,r0
+	bra	.L769
+.L772:
 	mov.w	#-1,r0
-.L768:
+.L769:
 	adds	#4,er7
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
@@ -4243,18 +4234,18 @@ ___mulhi3:
 	mov.l	er5,@-er7
 	mov.w	r0,r3
 	mov.w	r1,r1
-	bpl	.L779
+	bpl	.L780
 	neg.w	r1
 	mov.w	#1,r5
-	bra	.L775
-.L779:
+	bra	.L776
+.L780:
 	sub.w	r5,r5
-.L775:
+.L776:
 	mov.w	r1,r1
-	beq	.L780
+	beq	.L781
 	mov.b	#16,r4l
 	sub.w	r0,r0
-.L777:
+.L778:
 	mov.l	er1,er2
 	and.l	#1,er2
 	neg.l	er2
@@ -4262,17 +4253,17 @@ ___mulhi3:
 	add.w	r2,r0
 	shll.w	r3
 	shar.w	r1
-	beq	.L776
+	beq	.L777
 	add.b	#-1,r4l
-	bne	.L777
-	bra	.L776
-.L780:
-	mov.w	r1,r0
-.L776:
+	bne	.L778
+	bra	.L777
+.L781:
+	sub.w	r0,r0
+.L777:
 	mov.w	r5,r5
-	beq	.L774
+	beq	.L775
 	neg.w	r0
-.L774:
+.L775:
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	rts
@@ -4282,24 +4273,24 @@ ___mulhi3:
 ___divsi3:
 	mov.l	er4,@-er7
 	mov.l	er0,er0
-	bpl	.L786
+	bpl	.L787
 	neg.l	er0
 	mov.w	#1,r4
-	bra	.L783
-.L786:
+	bra	.L784
+.L787:
 	sub.w	r4,r4
-.L783:
+.L784:
 	mov.l	er1,er1
-	bpl	.L784
+	bpl	.L785
 	neg.l	er1
 	xor	#1,r4l
-.L784:
+.L785:
 	sub.w	r2,r2
 	jsr	@___udivmodsi4
 	mov.w	r4,r4
-	beq	.L782
+	beq	.L783
 	neg.l	er0
-.L782:
+.L783:
 	mov.l	@er7+,er4
 	rts
 	.size	___divsi3, .-___divsi3
@@ -4309,24 +4300,24 @@ ___modsi3:
 	mov.l	er4,@-er7
 	mov.l	er1,er2
 	mov.l	er0,er0
-	bpl	.L791
+	bpl	.L792
 	neg.l	er0
 	mov.w	#1,r4
-	bra	.L788
-.L791:
+	bra	.L789
+.L792:
 	sub.w	r4,r4
-.L788:
+.L789:
 	mov.l	er2,er1
-	bpl	.L789
+	bpl	.L790
 	neg.l	er2
 	mov.l	er2,er1
-.L789:
+.L790:
 	mov.w	#1,r2
 	jsr	@___udivmodsi4
 	mov.w	r4,r4
-	beq	.L787
+	beq	.L788
 	neg.l	er0
-.L787:
+.L788:
 	mov.l	@er7+,er4
 	rts
 	.size	___modsi3, .-___modsi3
@@ -4336,48 +4327,46 @@ ___udivmodhi4:
 	mov.l	er4,@-er7
 	mov.w	r0,r4
 	cmp.w	r0,r1
-	blo	.L800
+	blo	.L801
 	mov.w	#1,r3
-	bra	.L794
-.L797:
+	bra	.L795
+.L798:
 	shll.w	r1
 	shll.w	r0
 	cmp.w	r1,r4
-	bls	.L801
+	bls	.L802
 	dec #1,r3
-	bne	.L793
-	bra	.L794
-.L801:
+	bne	.L794
+	bra	.L795
+.L802:
 	mov.w	r0,r3
-.L794:
+.L795:
+	sub.w	r0,r0
 	mov.w	r3,r3
-	bne	.L802
-	mov.w	r3,r0
-	bra	.L796
-.L800:
+	bne	.L796
+	bra	.L797
+.L801:
 	mov.w	#16,r3
 	mov.w	#1,r0
-.L793:
+.L794:
 	mov.w	r1,r1
-	bpl	.L797
-	bra	.L801
-.L802:
-	sub.w	r0,r0
-.L795:
+	bpl	.L798
+	bra	.L802
+.L796:
 	cmp.w	r1,r4
-	blo	.L798
+	blo	.L799
 	sub.w	r1,r4
 	or.w	r3,r0
-.L798:
+.L799:
 	shlr.w	r3
 	shlr.w	r1
 	mov.w	r3,r3
-	bne	.L795
-.L796:
+	bne	.L796
+.L797:
 	mov.w	r2,r2
-	beq	.L792
+	beq	.L793
 	mov.w	r4,r0
-.L792:
+.L793:
 	mov.l	@er7+,er4
 	rts
 	.size	___udivmodhi4, .-___udivmodhi4
@@ -4387,48 +4376,46 @@ ___udivmodsi4_libgcc:
 	mov.l	er4,@-er7
 	mov.l	er0,er4
 	cmp.l	er0,er1
-	blo	.L814
+	blo	.L815
 	sub.l	er3,er3
 	add.b	#1,r3l
-	bra	.L808
-.L811:
+	bra	.L809
+.L812:
 	shll.l	er1
 	shll.l	er3
 	cmp.l	er1,er4
-	bls	.L808
+	bls	.L809
 	dec #1,r0
-	bne	.L807
+	bne	.L808
 	sub.l	er3,er3
-.L808:
+.L809:
+	sub.l	er0,er0
 	mov.l	er3,er3
-	bne	.L815
-	mov.l	er3,er0
-	bra	.L810
-.L814:
+	bne	.L810
+	bra	.L811
+.L815:
 	mov.w	#32,r0
 	sub.l	er3,er3
 	add.b	#1,r3l
-.L807:
+.L808:
 	mov.l	er1,er1
-	bpl	.L811
-	bra	.L808
-.L815:
-	sub.l	er0,er0
-.L809:
+	bpl	.L812
+	bra	.L809
+.L810:
 	cmp.l	er1,er4
-	blo	.L812
+	blo	.L813
 	sub.l	er1,er4
 	or.l	er3,er0
-.L812:
+.L813:
 	shlr.l	er3
 	shlr.l	er1
 	mov.l	er3,er3
-	bne	.L809
-.L810:
+	bne	.L810
+.L811:
 	mov.w	r2,r2
-	beq	.L806
+	beq	.L807
 	mov.l	er4,er0
-.L806:
+.L807:
 	mov.l	@er7+,er4
 	rts
 	.size	___udivmodsi4_libgcc, .-___udivmodsi4_libgcc
@@ -4442,55 +4429,55 @@ ___ashldi3:
 	mov.l	er0,er4
 	mov.l	er1,er5
 	btst	#5,r2l
-	beq	.L820
+	beq	.L821
 	add.w	#-32,r2
 	mov.l	er1,er4
 	mov.b	r2l,r2l
-	ble	.L825
-.L824:
+	ble	.L826
+.L825:
 	shll.l	er4
 	add.b	#-1,r2l
-	bne	.L824
-.L825:
+	bne	.L825
+.L826:
 	sub.l	er0,er0
-	bra	.L821
-.L820:
+	bra	.L822
+.L821:
 	mov.w	r2,r2
-	beq	.L823
+	beq	.L824
 	mov.l	er1,er0
 	mov.b	r2l,r3l
-	ble	.L827
-.L826:
+	ble	.L828
+.L827:
 	shll.l	er0
 	add.b	#-1,r3l
-	bne	.L826
-.L827:
+	bne	.L827
+.L828:
 	mov.w	#32,r1
 	sub.w	r2,r1
 	mov.l	er5,er3
 	mov.b	r1l,r1l
-	ble	.L829
-.L828:
+	ble	.L830
+.L829:
 	shlr.l	er3
 	add.b	#-1,r1l
-	bne	.L828
-.L829:
-	mov.b	r2l,r2l
-	ble	.L831
+	bne	.L829
 .L830:
+	mov.b	r2l,r2l
+	ble	.L832
+.L831:
 	shll.l	er4
 	add.b	#-1,r2l
-	bne	.L830
-.L831:
+	bne	.L831
+.L832:
 	or.l	er3,er4
-.L821:
+.L822:
 	mov.l	er4,er2
 	mov.l	er0,er3
-	bra	.L819
-.L823:
+	bra	.L820
+.L824:
 	mov.l	er0,er2
 	mov.l	er1,er3
-.L819:
+.L820:
 	mov.l	er2,er0
 	mov.l	er3,er1
 	add.l	#8,er7
@@ -4508,7 +4495,7 @@ ___ashrdi3:
 	sub.l	#8,er7
 	mov.l	er1,er5
 	btst	#5,r2l
-	beq	.L833
+	beq	.L834
 	mov.l	er0,er1
 	shll	e1
 	subx	r1l,r1l
@@ -4516,50 +4503,50 @@ ___ashrdi3:
 	exts.l	er1
 	add.w	#-32,r2
 	mov.b	r2l,r2l
-	ble	.L838
-.L837:
+	ble	.L839
+.L838:
 	shar.l	er0
 	add.b	#-1,r2l
-	bne	.L837
-.L838:
-	bra	.L834
-.L833:
+	bne	.L838
+.L839:
+	bra	.L835
+.L834:
 	mov.w	r2,r2
-	beq	.L836
+	beq	.L837
 	mov.l	er0,er1
 	mov.b	r2l,r3l
-	ble	.L840
-.L839:
+	ble	.L841
+.L840:
 	shar.l	er1
 	add.b	#-1,r3l
-	bne	.L839
-.L840:
+	bne	.L840
+.L841:
 	mov.w	#32,r3
 	sub.w	r2,r3
 	mov.b	r3l,r3l
-	ble	.L842
-.L841:
+	ble	.L843
+.L842:
 	shll.l	er0
 	add.b	#-1,r3l
-	bne	.L841
-.L842:
+	bne	.L842
+.L843:
 	mov.l	er5,er3
 	mov.b	r2l,r2l
-	ble	.L844
-.L843:
+	ble	.L845
+.L844:
 	shlr.l	er3
 	add.b	#-1,r2l
-	bne	.L843
-.L844:
+	bne	.L844
+.L845:
 	or.l	er3,er0
-.L834:
+.L835:
 	mov.l	er1,er2
 	mov.l	er0,er3
-	bra	.L832
-.L836:
+	bra	.L833
+.L837:
 	mov.l	er0,er2
 	mov.l	er1,er3
-.L832:
+.L833:
 	mov.l	er2,er0
 	mov.l	er3,er1
 	add.l	#8,er7
@@ -5071,9 +5058,9 @@ ___clzsi2:
 	sub.l	er0,er0
 	add.b	#1,r0l
 	cmp.l	#65535,er2
-	bls	.L880
+	bls	.L881
 	sub.l	er0,er0
-.L880:
+.L881:
 	shll.l	er0
 	shll.l	er0
 	shll.l	er0
@@ -5081,36 +5068,15 @@ ___clzsi2:
 	mov.w	#16,r3
 	sub.w	r0,r3
 	mov.b	r3l,r3l
-	ble	.L887
-.L886:
+	ble	.L888
+.L887:
 	shlr.l	er2
 	add.b	#-1,r3l
-	bne	.L886
-.L887:
+	bne	.L887
+.L888:
 	mov.l	er2,er1
 	and	#0,r1l
 	sub.w	e1,e1
-	sub.l	er3,er3
-	add.b	#1,r3l
-	mov.l	er1,er1
-	beq	.L881
-	sub.l	er3,er3
-.L881:
-	shll.l	er3
-	shll.l	er3
-	shll.l	er3
-	mov.w	#8,r1
-	sub.w	r3,r1
-	mov.b	r1l,r1l
-	ble	.L889
-.L888:
-	shlr.l	er2
-	add.b	#-1,r1l
-	bne	.L888
-.L889:
-	add.l	er3,er0
-	mov.l	er2,er1
-	and.l	#240,er1
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er1,er1
@@ -5119,15 +5085,36 @@ ___clzsi2:
 .L882:
 	shll.l	er3
 	shll.l	er3
+	shll.l	er3
+	mov.w	#8,r1
+	sub.w	r3,r1
+	mov.b	r1l,r1l
+	ble	.L890
+.L889:
+	shlr.l	er2
+	add.b	#-1,r1l
+	bne	.L889
+.L890:
+	add.l	er3,er0
+	mov.l	er2,er1
+	and.l	#240,er1
+	sub.l	er3,er3
+	add.b	#1,r3l
+	mov.l	er1,er1
+	beq	.L883
+	sub.l	er3,er3
+.L883:
+	shll.l	er3
+	shll.l	er3
 	mov.w	#4,r1
 	sub.w	r3,r1
 	mov.b	r1l,r1l
-	ble	.L891
-.L890:
+	ble	.L892
+.L891:
 	shlr.l	er2
 	add.b	#-1,r1l
-	bne	.L890
-.L891:
+	bne	.L891
+.L892:
 	add.l	er0,er3
 	mov.l	er3,er4
 	mov.l	er2,er0
@@ -5135,29 +5122,29 @@ ___clzsi2:
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er0,er0
-	beq	.L883
+	beq	.L884
 	sub.l	er3,er3
-.L883:
+.L884:
 	shll.l	er3
 	mov.l	er3,er1
 	mov.w	#2,r3
 	sub.w	r1,r3
 	mov.b	r3l,r3l
-	ble	.L893
-.L892:
+	ble	.L894
+.L893:
 	shlr.l	er2
 	add.b	#-1,r3l
-	bne	.L892
-.L893:
+	bne	.L893
+.L894:
 	btst	#1,r2l
-	bne	.L884
+	bne	.L885
 	sub.l	er0,er0
 	add.b	#2,r0l
 	sub.w	r2,r0
-	bra	.L885
-.L884:
-	sub.w	r0,r0
+	bra	.L886
 .L885:
+	sub.w	r0,r0
+.L886:
 	add.l	er4,er1
 	add.w	r1,r0
 	mov.l	@er7+,er4
@@ -5173,21 +5160,21 @@ ___cmpdi2:
 	mov.l	@(12,er7),er0
 	mov.l	@(16,er7),er1
 	cmp.l	er0,er2
-	blt	.L898
-	bgt	.L899
+	blt	.L899
+	bgt	.L900
 	cmp.l	er1,er3
-	blo	.L898
-	bhi	.L899
+	blo	.L899
+	bhi	.L900
 	sub.l	er0,er0
 	add.b	#1,r0l
-	bra	.L894
-.L898:
-	sub.l	er0,er0
-	bra	.L894
+	bra	.L895
 .L899:
 	sub.l	er0,er0
+	bra	.L895
+.L900:
+	sub.l	er0,er0
 	add.b	#2,r0l
-.L894:
+.L895:
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	rts
@@ -5217,71 +5204,71 @@ ___ctzsi2:
 	sub.l	er0,er0
 	add.b	#1,r0l
 	mov.w	r2,r2
-	beq	.L902
+	beq	.L903
 	sub.l	er0,er0
-.L902:
+.L903:
 	shll.l	er0
 	shll.l	er0
 	shll.l	er0
 	shll.l	er0
 	mov.b	r0l,r3l
-	ble	.L907
-.L906:
+	ble	.L908
+.L907:
 	shlr.l	er2
 	add.b	#-1,r3l
-	bne	.L906
-.L907:
+	bne	.L907
+.L908:
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.b	r2l,r2l
-	beq	.L903
+	beq	.L904
 	sub.l	er3,er3
-.L903:
+.L904:
 	shll.l	er3
 	shll.l	er3
 	shll.l	er3
 	mov.b	r3l,r1l
-	ble	.L909
-.L908:
+	ble	.L910
+.L909:
 	shlr.l	er2
 	add.b	#-1,r1l
-	bne	.L908
-.L909:
+	bne	.L909
+.L910:
 	add.l	er0,er3
 	mov.l	er2,er0
 	and.l	#15,er0
 	sub.l	er1,er1
 	add.b	#1,r1l
 	mov.l	er0,er0
-	beq	.L904
+	beq	.L905
 	sub.l	er1,er1
-.L904:
+.L905:
 	shll.l	er1
 	shll.l	er1
 	mov.b	r1l,r0l
-	ble	.L911
-.L910:
+	ble	.L912
+.L911:
 	shlr.l	er2
 	add.b	#-1,r0l
-	bne	.L910
-.L911:
+	bne	.L911
+.L912:
 	add.l	er3,er1
 	mov.l	er2,er0
 	and.l	#3,er0
 	sub.l	er3,er3
 	add.b	#1,r3l
 	mov.l	er0,er0
-	beq	.L905
+	beq	.L906
 	sub.l	er3,er3
-.L905:
+.L906:
 	shll.l	er3
 	mov.b	r3l,r0l
-	ble	.L913
-.L912:
+	ble	.L914
+.L913:
 	shlr.l	er2
 	add.b	#-1,r0l
-	bne	.L912
-.L913:
+	bne	.L913
+.L914:
 	and.l	#3,er2
 	mov.l	er2,er0
 	not.l	er0
@@ -5310,55 +5297,55 @@ ___lshrdi3:
 	mov.l	er0,@er7
 	mov.l	er1,@(4,er7)
 	btst	#5,r2l
-	beq	.L915
+	beq	.L916
 	add.w	#-32,r2
 	mov.b	r2l,r2l
-	ble	.L920
-.L919:
+	ble	.L921
+.L920:
 	shlr.l	er0
 	add.b	#-1,r2l
-	bne	.L919
-.L920:
+	bne	.L920
+.L921:
 	sub.l	er1,er1
-	bra	.L916
-.L915:
+	bra	.L917
+.L916:
 	mov.w	r2,r2
-	beq	.L918
+	beq	.L919
 	mov.l	@er7,er1
 	mov.l	er1,er3
 	mov.b	r2l,r0l
-	ble	.L922
-.L921:
+	ble	.L923
+.L922:
 	shlr.l	er1
 	add.b	#-1,r0l
-	bne	.L921
-.L922:
+	bne	.L922
+.L923:
 	mov.w	#32,r0
 	sub.w	r2,r0
 	mov.b	r0l,r0l
-	ble	.L924
-.L923:
+	ble	.L925
+.L924:
 	shll.l	er3
 	add.b	#-1,r0l
-	bne	.L923
-.L924:
+	bne	.L924
+.L925:
 	mov.l	er5,er0
 	mov.b	r2l,r2l
-	ble	.L926
-.L925:
+	ble	.L927
+.L926:
 	shlr.l	er0
 	add.b	#-1,r2l
-	bne	.L925
-.L926:
+	bne	.L926
+.L927:
 	or.l	er3,er0
-.L916:
+.L917:
 	mov.l	er1,er2
 	mov.l	er0,er3
-	bra	.L914
-.L918:
+	bra	.L915
+.L919:
 	mov.l	er0,er2
 	mov.l	er1,er3
-.L914:
+.L915:
 	mov.l	er2,er0
 	mov.l	er3,er1
 	add.l	#16,er7
@@ -5485,9 +5472,9 @@ ___negdi2:
 	sub.l	er6,er6
 	add.b	#1,r6l
 	mov.l	er3,er3
-	bne	.L930
+	bne	.L931
 	sub.l	er6,er6
-.L930:
+.L931:
 	sub.l	er4,er0
 	sub.l	er6,er0
 	mov.l	er0,er4
@@ -5521,12 +5508,12 @@ ___paritydi2:
 	and.w	#15,r2
 	mov.w	#27030,r0
 	mov.b	r2l,r2l
-	ble	.L933
-.L932:
+	ble	.L934
+.L933:
 	shar.w	r0
 	add.b	#-1,r2l
-	bne	.L932
-.L933:
+	bne	.L933
+.L934:
 	and.w	#1,r0
 	rts
 	.size	___paritydi2, .-___paritydi2
@@ -5551,12 +5538,12 @@ ___paritysi2:
 	and.w	#15,r2
 	mov.w	#27030,r0
 	mov.b	r2l,r2l
-	ble	.L936
-.L935:
+	ble	.L937
+.L936:
 	shar.w	r0
 	add.b	#-1,r2l
-	bne	.L935
-.L936:
+	bne	.L936
+.L937:
 	and.w	#1,r0
 	rts
 	.size	___paritysi2, .-___paritysi2
@@ -5588,9 +5575,9 @@ ___popcountdi2:
 	add.b	#1,r2l
 	mov.l	@(4,er7),er3
 	cmp.l	er1,er3
-	bhi	.L938
+	bhi	.L939
 	sub.l	er2,er2
-.L938:
+.L939:
 	mov.l	er0,er3
 	sub.l	er4,er3
 	sub.l	er2,er3
@@ -5738,34 +5725,34 @@ ___powidf2:
 	mov.w	r1,@(2,er7)
 	mov.w	r1,r6
 	mov.l	#1065353216,er5
-.L946:
+.L947:
 	btst	#0,r6l
-	beq	.L943
+	beq	.L944
 	mov.l	er4,er1
 	mov.l	er5,er0
 	jsr	@___mulsf3
 	mov.l	er0,er5
-.L943:
-	mov.w	r6,r3
-	bpl	.L944
-	inc #1,r3
 .L944:
+	mov.w	r6,r3
+	bpl	.L945
+	inc #1,r3
+.L945:
 	shar.w	r3
 	mov.w	r3,r6
-	beq	.L945
+	beq	.L946
 	mov.l	er4,er1
 	mov.l	er4,er0
 	jsr	@___mulsf3
 	mov.l	er0,er4
-	bra	.L946
-.L945:
+	bra	.L947
+.L946:
 	mov.w	@(2,er7),r2
-	bpl	.L942
+	bpl	.L943
 	mov.l	er5,er1
 	mov.l	#1065353216,er0
 	jsr	@___divsf3
 	mov.l	er0,er5
-.L942:
+.L943:
 	mov.l	er5,er0
 	adds	#4,er7
 	mov.l	@er7+,er6
@@ -5784,34 +5771,34 @@ ___powisf2:
 	mov.w	r1,@(2,er7)
 	mov.w	r1,r6
 	mov.l	#1065353216,er5
-.L952:
+.L953:
 	btst	#0,r6l
-	beq	.L949
+	beq	.L950
 	mov.l	er4,er1
 	mov.l	er5,er0
 	jsr	@___mulsf3
 	mov.l	er0,er5
-.L949:
-	mov.w	r6,r3
-	bpl	.L950
-	inc #1,r3
 .L950:
+	mov.w	r6,r3
+	bpl	.L951
+	inc #1,r3
+.L951:
 	shar.w	r3
 	mov.w	r3,r6
-	beq	.L951
+	beq	.L952
 	mov.l	er4,er1
 	mov.l	er4,er0
 	jsr	@___mulsf3
 	mov.l	er0,er4
-	bra	.L952
-.L951:
+	bra	.L953
+.L952:
 	mov.w	@(2,er7),r2
-	bpl	.L948
+	bpl	.L949
 	mov.l	er5,er1
 	mov.l	#1065353216,er0
 	jsr	@___divsf3
 	mov.l	er0,er5
-.L948:
+.L949:
 	mov.l	er5,er0
 	adds	#4,er7
 	mov.l	@er7+,er6
@@ -5829,21 +5816,21 @@ ___ucmpdi2:
 	mov.l	@(12,er7),er0
 	mov.l	@(16,er7),er1
 	cmp.l	er0,er2
-	blo	.L958
-	bhi	.L959
+	blo	.L959
+	bhi	.L960
 	cmp.l	er1,er3
-	blo	.L958
-	bhi	.L959
+	blo	.L959
+	bhi	.L960
 	sub.l	er0,er0
 	add.b	#1,r0l
-	bra	.L954
-.L958:
-	sub.l	er0,er0
-	bra	.L954
+	bra	.L955
 .L959:
 	sub.l	er0,er0
+	bra	.L955
+.L960:
+	sub.l	er0,er0
 	add.b	#2,r0l
-.L954:
+.L955:
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
 	rts

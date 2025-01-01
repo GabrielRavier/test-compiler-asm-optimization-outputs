@@ -1281,7 +1281,7 @@ atoi:
 	call	isspace
 	test	eax, eax
 	jne	.L208
-	mov	esi, eax
+	mov	esi, 0
 	cmp	bpl, 43
 	je	.L209
 	cmp	bpl, 45
@@ -1767,12 +1767,11 @@ wcscmp:
 	test	ecx, ecx
 	jne	.L274
 .L273:
-	mov	eax, -1
 	cmp	edx, ecx
-	jl	.L272
 	setg	al
 	movzx	eax, al
-.L272:
+	mov	edx, -1
+	cmovl	eax, edx
 	ret
 	.cfi_endproc
 .LFE60:
@@ -1852,11 +1851,11 @@ wcsncmp:
 	je	.L287
 	mov	ecx, DWORD PTR [rdi]
 	mov	edx, DWORD PTR [rsi]
-	mov	eax, -1
 	cmp	ecx, edx
-	jl	.L287
 	setg	al
 	movzx	eax, al
+	mov	edx, -1
+	cmovl	eax, edx
 .L287:
 	ret
 	.cfi_endproc
@@ -1913,11 +1912,11 @@ wmemcmp:
 	je	.L303
 	mov	ecx, DWORD PTR [rdi]
 	mov	edx, DWORD PTR [rsi]
-	mov	eax, -1
 	cmp	ecx, edx
-	jl	.L303
 	setg	al
 	movzx	eax, al
+	mov	edx, -1
+	cmovl	eax, edx
 .L303:
 	ret
 	.cfi_endproc
@@ -2313,9 +2312,10 @@ ffs:
 libiberty_ffs:
 .LFB84:
 	.cfi_startproc
-	mov	eax, edi
+	mov	eax, 0
 	test	edi, edi
 	je	.L361
+	mov	eax, edi
 	and	eax, 1
 	jne	.L361
 	mov	eax, 1
@@ -2630,20 +2630,22 @@ strnlen:
 	.cfi_startproc
 	mov	eax, 0
 	test	rsi, rsi
-	je	.L419
+	je	.L421
 .L415:
 	cmp	BYTE PTR [rdi+rax], 0
-	jne	.L421
+	jne	.L417
 .L414:
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L421:
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L417:
 	add	rax, 1
 	cmp	rsi, rax
 	jne	.L415
-.L419:
-	mov	rax, rsi
 	ret
 	.cfi_endproc
 .LFE94:
@@ -3012,7 +3014,6 @@ udivmodsi4:
 	mov	ecx, 0
 	test	eax, eax
 	jne	.L490
-	mov	ecx, eax
 .L491:
 	test	rdx, rdx
 	cmovne	ecx, edi
@@ -3086,9 +3087,9 @@ __clrsbdi2:
 __mulsi3:
 .LFB106:
 	.cfi_startproc
-	test	edi, edi
-	je	.L511
 	mov	edx, 0
+	test	edi, edi
+	je	.L508
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3104,11 +3105,6 @@ __mulsi3:
 .L508:
 	mov	eax, edx
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L511:
-	mov	edx, edi
-	jmp	.L508
 	.cfi_endproc
 .LFE106:
 	.size	__mulsi3, .-__mulsi3
@@ -3524,9 +3520,9 @@ __popcounthi2:
 __mulsi3_iq2000:
 .LFB121:
 	.cfi_startproc
-	test	edi, edi
-	je	.L588
 	mov	edx, 0
+	test	edi, edi
+	je	.L585
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3542,11 +3538,6 @@ __mulsi3_iq2000:
 .L585:
 	mov	eax, edx
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L588:
-	mov	edx, edi
-	jmp	.L585
 	.cfi_endproc
 .LFE121:
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -3556,12 +3547,11 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 .LFB122:
 	.cfi_startproc
-	mov	edx, edi
+	mov	edx, 0
 	test	edi, edi
 	je	.L590
 	test	esi, esi
 	je	.L594
-	mov	edx, 0
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3580,7 +3570,7 @@ __mulsi3_lm32:
 	.p2align 4,,10
 	.p2align 3
 .L594:
-	mov	edx, esi
+	mov	edx, 0
 	jmp	.L590
 	.cfi_endproc
 .LFE122:
@@ -3609,7 +3599,6 @@ __udivmodsi4:
 	mov	ecx, 0
 	test	eax, eax
 	jne	.L600
-	mov	ecx, eax
 .L601:
 	test	edx, edx
 	cmovne	ecx, edi
@@ -3736,7 +3725,7 @@ __mulhi3:
 	.p2align 4,,10
 	.p2align 3
 .L626:
-	mov	ecx, esi
+	mov	ecx, 0
 	jmp	.L622
 	.cfi_endproc
 .LFE128:
@@ -3847,7 +3836,6 @@ __udivmodhi4:
 	mov	esi, 0
 	test	cx, cx
 	jne	.L649
-	mov	esi, ecx
 .L650:
 	test	edx, edx
 	cmovne	esi, r8d
@@ -3893,7 +3881,6 @@ __udivmodsi4_libgcc:
 	mov	ecx, 0
 	test	rax, rax
 	jne	.L665
-	mov	rcx, rax
 .L666:
 	test	edx, edx
 	cmovne	rcx, rdi

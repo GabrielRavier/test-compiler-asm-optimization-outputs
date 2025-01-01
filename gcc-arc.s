@@ -12,7 +12,8 @@
 	.global	memmove
 	.type	memmove, @function
 memmove:
-	brls	r0,r1,.L2
+	cmp_s	r0,r1
+	bls_s	.L2
 	add_s	r12,r1,r2   ;a,b,c/u3
 	tst_s	r2,r2
 	jeq.d	[blink]
@@ -31,7 +32,6 @@ memmove:
 	j_s	[blink]
 	.align 4
 .L2:
-	cmp_s	r0,r1
 	jeq_s	[blink]
 	tst_s	r2,r2
 	jeq_s	[blink]
@@ -179,12 +179,15 @@ memcmp:
 	.global	memcpy
 	.type	memcpy, @function
 memcpy:
-	tst_s	r2,r2
-	jeq_s	[blink]
 	push_s	blink
-	bl	@memcpy;1
-	pop_s	blink
-	j_s	[blink]
+	push_s	r13
+	mov_s	r13,r0	;4
+	tst_s	r2,r2
+	jlne	@memcpy
+	mov_s	r0,r13	;4
+	ld	blink,[sp,4]	;23
+	j_s.d	[blink]
+	ld.ab	r13,[sp,8]	;23
 	.size	memcpy, .-memcpy
 	.align 4
 	.global	memrchr
@@ -195,15 +198,15 @@ memrchr:
 	add_s	r2,r2,r0   ;b,b,h
 	sub	r12,r0,1 ;a,b,u6
 	.align 2
-.L65:
-	breq	r2,r12,.L69
+.L62:
+	breq	r2,r12,.L66
 	mov_s	r0,r2	;4
 	ldb_s	r3,[r0]
-	brne.d	r3,r1,.L65
+	brne.d	r3,r1,.L62
 	add_s	r2,r2,-1   ;h,h,s3
 	j_s	[blink]
 	.align 4
-.L69:
+.L66:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.size	memrchr, .-memrchr
@@ -215,13 +218,13 @@ memset:
 	jeq_s	[blink]
 	mov_s	r3,r0	;4
 	mov	lp_count,r2	;5
-	lp	@.L77	; lp_count:@.L73->@.L77
+	lp	@.L74	; lp_count:@.L70->@.L74
 	.align 2
-.L73:
+.L70:
 	stb.ab	r1,[r3,1]
 	.align 2
-.L77:
-	; ZOL_END, begins @.L73
+.L74:
+	; ZOL_END, begins @.L70
 	j_s	[blink]
 	.size	memset, .-memset
 	.align 4
@@ -234,10 +237,10 @@ stpcpy:
 	stb_s	r2,[r0]
 	add_s	r2,r0,1   ;a,b,c/u3
 	.align 2
-.L80:
+.L77:
 	mov_s	r0,r2	;4
 	ldb.a	r3,[r1,1]
-	brne.d	r3,0,.L80
+	brne.d	r3,0,.L77
 	stb.ab	r3,[r2,1]
 	j_s	[blink]
 	.size	stpcpy, .-stpcpy
@@ -250,11 +253,11 @@ strchrnul:
 	jeq_s	[blink]
 	extb_s	r1,r1
 	.align 2
-.L86:
+.L83:
 	cmp_s	r2,r1
 	jeq_s	[blink]
 	ldb.a	r2,[r0,1]
-	brne_s	r2,0,.L86
+	brne_s	r2,0,.L83
 	j_s	[blink]
 	.size	strchrnul, .-strchrnul
 	.align 4
@@ -263,12 +266,12 @@ strchrnul:
 strchr:
 	mov_s	r2,r0	;4
 	.align 2
-.L97:
+.L94:
 	mov_s	r0,r2	;4
 	ldb.ab	r3,[r2,1]
 	cmp_s	r3,r1
 	jeq_s	[blink]
-	brne_s	r3,0,.L97
+	brne_s	r3,0,.L94
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.size	strchr, .-strchr
@@ -278,15 +281,15 @@ strchr:
 strcmp:
 	ldb_s	r2,[r0]
 	ldb_s	r3,[r1]
-	brne	r2,r3,.L101
+	brne	r2,r3,.L98
 	.align 2
-.L102:
-	breq_s	r2,0,.L101
+.L99:
+	breq_s	r2,0,.L98
 	ldb.a	r2,[r0,1]
 	ldb.a	r3,[r1,1]
-	breq	r2,r3,.L102
+	breq	r2,r3,.L99
 	.align 2
-.L101:
+.L98:
 	j_s.d	[blink]
 	sub_s	r0,r2,r3
 	.size	strcmp, .-strcmp
@@ -296,14 +299,14 @@ strcmp:
 strlen:
 	ldb_s	r2,[r0]
 	tst_s	r2,r2
-	beq.d	.L106
+	beq.d	.L103
 	mov_s	r2,r0	;4
 	.align 2
-.L107:
+.L104:
 	ldb.a	r3,[r2,1]
-	brne_s	r3,0,.L107
+	brne_s	r3,0,.L104
 	.align 2
-.L106:
+.L103:
 	j_s.d	[blink]
 	sub_s	r0,r2,r0
 	.size	strlen, .-strlen
@@ -311,34 +314,34 @@ strlen:
 	.global	strncmp
 	.type	strncmp, @function
 strncmp:
-	breq_s	r2,0,.L116
+	breq_s	r2,0,.L113
 	ldb_s	r12,[r0]
-	breq_s	r12,0,.L119
+	breq_s	r12,0,.L116
 	push_s	r13
 	mov_s	r3,r1	;4
 	add_s	r2,r2,r1   ;b,b,h
 	.align 2
-.L114:
+.L111:
 	mov_s	r1,r3	;4
 	ldb.ab	r13,[r3,1]
-	breq_s	r13,0,.L113
-	breq	r3,r2,.L113
-	brne	r13,r12,.L113
+	breq_s	r13,0,.L110
+	breq	r3,r2,.L110
+	brne	r13,r12,.L110
 	ldb.a	r12,[r0,1]
-	brne_s	r12,0,.L114
+	brne_s	r12,0,.L111
 	mov_s	r1,r3	;4
 	.align 2
-.L113:
+.L110:
 	ldb_s	r2,[r1]
 	sub_s	r0,r12,r2
 	j_s.d	[blink]
 	pop_s	r13
 	.align 4
-.L116:
+.L113:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.align 4
-.L119:
+.L116:
 	ldb_s	r2,[r1]
 	j_s.d	[blink]
 	sub_s	r0,r12,r2
@@ -354,17 +357,17 @@ swab:
 	lsr_s	r2,r2
 	add_s	r2,r2,1   ;b,b,h
 	mov	lp_count,r2	;5
-	lp	@.L129	; lp_count:@.L125->@.L129
+	lp	@.L126	; lp_count:@.L122->@.L126
 	.align 2
-.L125:
+.L122:
 	ldb_s	r3,[r0,1]
 	stb_s	r3,[r1]
 	ldb.ab	r3,[r0,2]
 	stb_s	r3,[r1,1]
 	add_s	r1,r1,2   ;b,b,h
 	.align 2
-.L129:
-	; ZOL_END, begins @.L125
+.L126:
+	; ZOL_END, begins @.L122
 	j_s	[blink]
 	.size	swab, .-swab
 	.align 4
@@ -455,16 +458,16 @@ isupper:
 	.global	iswcntrl
 	.type	iswcntrl, @function
 iswcntrl:
-	brls	r0,31,.L160
+	brls	r0,31,.L157
 	add	r2,r0,-127     ;a,b,limm
-	brls	r2,32,.L160
+	brls	r2,32,.L157
 	add	r2,r0,-8232     ;a,b,limm
-	brls	r2,1,.L160
+	brls	r2,1,.L157
 	add_s	r0,r0,-65529   ;b,b,limm
 	j_s.d	[blink]
 	setlo	r0,r0,3
 	.align 4
-.L160:
+.L157:
 	j_s.d	[blink]
 	mov_s	r0,1	;3
 	.size	iswcntrl, .-iswcntrl
@@ -480,29 +483,29 @@ iswdigit:
 	.global	iswprint
 	.type	iswprint, @function
 iswprint:
-	brls	r0,254,.L172
-	brls	r0,8231,.L169
+	brls	r0,254,.L169
+	brls	r0,8231,.L166
 	add	r2,r0,-8234     ;a,b,limm
-	brls	r2,47061,.L169
+	brls	r2,47061,.L166
 	add	r2,r0,-57344     ;a,b,limm
-	brls	r2,8184,.L169
+	brls	r2,8184,.L166
 	add	r2,r0,-65532     ;a,b,limm
-	brhi	r2,1048579,.L170
+	brhi	r2,1048579,.L167
 	and	r0,r0,65534
 	setne	r0,r0,65534
 	j_s	[blink]
 	.align 4
-.L172:
+.L169:
 	add_s	r0,r0,1   ;b,b,h
 	bmsk_s	r0,r0,6
 	j_s.d	[blink]
 	seths	r0,r0,33
 	.align 4
-.L169:
+.L166:
 	j_s.d	[blink]
 	mov_s	r0,1	;3
 	.align 4
-.L170:
+.L167:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.size	iswprint, .-iswprint
@@ -536,34 +539,34 @@ fdim:
 	vadd2	r16,r2,0
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne_s	r0,0,.L182
+	brne_s	r0,0,.L179
 	vadd2	r2,r16,0
 	vadd2	r0,r16,0
 	bl	@__unorddf2;1
-	brne_s	r0,0,.L183
+	brne_s	r0,0,.L180
 	vadd2	r2,r16,0
 	vadd2	r0,r14,0
 	bl	@__gtdf2;1
 	cmp_s	r0,0
 	mov.le	r0,0
-	ble.d	.L179
+	ble.d	.L176
 	mov.le	r1,0
 	vadd2	r2,r16,0
 	vadd2	r0,r14,0
 	bl	@__subdf3;1
-.L179:
+.L176:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L182:
+.L179:
 	vadd2	r0,r14,0
-	b_s	.L179
+	b_s	.L176
 	.align 4
-.L183:
+.L180:
 	vadd2	r0,r16,0
-	b_s	.L179
+	b_s	.L176
 	.size	fdim, .-fdim
 	.align 4
 	.global	fdimf
@@ -577,13 +580,13 @@ fdimf:
 	bl.d	@__unordsf2;1
 	mov_s	r1,r0
 	tst_s	r0,r0
-	bne.d	.L188
+	bne.d	.L185
 	mov.ne	r0,r13
 	mov_s	r1,r14
 	bl.d	@__unordsf2;1
 	mov_s	r0,r14
 	tst_s	r0,r0
-	bne.d	.L188
+	bne.d	.L185
 	mov.ne	r0,r14
 	mov_s	r1,r14
 	bl.d	@__gtsf2;1
@@ -593,7 +596,7 @@ fdimf:
 	mov.gt	r1,r14
 	mov.gt	r0,r13
 	jlgt	@__subsf3
-.L188:
+.L185:
 	ld	blink,[sp,8]	;23
 	pop_s	r13
 	j_s.d	[blink]
@@ -610,27 +613,27 @@ fmax:
 	vadd2	r14,r2,0
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L203
+	brne	r0,0,.L200
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L204
+	brne	r0,0,.L201
 	mov_s	r2,r17	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r15	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L199
+	breq	r2,r3,.L196
 	tst_s	r2,r2
 	vadd2	r0,r16,0
 	mov.ne	r0,r14
 	mov.ne	r1,r15
-.L197:
+.L194:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L199:
+.L196:
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl	@__ltdf2;1
@@ -638,15 +641,15 @@ fmax:
 	mov.p	r14,r16
 	mov.p	r15,r17
 	vadd2	r0,r14,0
-	b_s	.L197
+	b_s	.L194
 	.align 4
-.L203:
+.L200:
 	vadd2	r0,r14,0
-	b_s	.L197
+	b_s	.L194
 	.align 4
-.L204:
+.L201:
 	vadd2	r0,r16,0
-	b_s	.L197
+	b_s	.L194
 	.size	fmax, .-fmax
 	.align 4
 	.global	fmaxf
@@ -660,35 +663,35 @@ fmaxf:
 	bl.d	@__unordsf2;1
 	mov_s	r1,r0
 	tst_s	r0,r0
-	bne.d	.L207
+	bne.d	.L204
 	mov.ne	r0,r13
 	mov_s	r1,r13
 	bl.d	@__unordsf2;1
 	mov_s	r0,r13
 	tst_s	r0,r0
-	bne.d	.L207
+	bne.d	.L204
 	mov.ne	r0,r14
 	mov_s	r2,r14	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r13	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L209
+	breq	r2,r3,.L206
 	tst_s	r2,r2
 	mov.ne	r14,r13
 	mov_s	r0,r14
-.L207:
+.L204:
 	ld	blink,[sp,8]	;23
 	pop_s	r13
 	j_s.d	[blink]
 	ld.ab	r14,[sp,8]	;23
 	.align 4
-.L209:
+.L206:
 	mov_s	r1,r13
 	bl.d	@__ltsf2;1
 	mov_s	r0,r14
 	tst_s	r0,r0
 	mov.p	r13,r14
-	b.d	.L207
+	b.d	.L204
 	mov_s	r0,r13
 	.size	fmaxf, .-fmaxf
 	.align 4
@@ -702,27 +705,27 @@ fmaxl:
 	vadd2	r14,r2,0
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L223
+	brne	r0,0,.L220
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L224
+	brne	r0,0,.L221
 	mov_s	r2,r17	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r15	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L219
+	breq	r2,r3,.L216
 	tst_s	r2,r2
 	vadd2	r0,r16,0
 	mov.ne	r0,r14
 	mov.ne	r1,r15
-.L217:
+.L214:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L219:
+.L216:
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl	@__ltdf2;1
@@ -730,15 +733,15 @@ fmaxl:
 	mov.p	r14,r16
 	mov.p	r15,r17
 	vadd2	r0,r14,0
-	b_s	.L217
+	b_s	.L214
 	.align 4
-.L223:
+.L220:
 	vadd2	r0,r14,0
-	b_s	.L217
+	b_s	.L214
 	.align 4
-.L224:
+.L221:
 	vadd2	r0,r16,0
-	b_s	.L217
+	b_s	.L214
 	.size	fmaxl, .-fmaxl
 	.align 4
 	.global	fmin
@@ -751,27 +754,27 @@ fmin:
 	vadd2	r14,r2,0
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L233
+	brne	r0,0,.L230
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L234
+	brne	r0,0,.L231
 	mov_s	r2,r17	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r15	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L229
+	breq	r2,r3,.L226
 	tst_s	r2,r2
 	mov.ne	r14,r16
 	mov.ne	r15,r17
 	vadd2	r0,r14,0
-.L227:
+.L224:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L229:
+.L226:
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl	@__ltdf2;1
@@ -779,15 +782,15 @@ fmin:
 	vadd2	r0,r16,0
 	mov.p	r0,r14
 	mov.p	r1,r15
-	b_s	.L227
+	b_s	.L224
 	.align 4
-.L233:
+.L230:
 	vadd2	r0,r14,0
-	b_s	.L227
+	b_s	.L224
 	.align 4
-.L234:
+.L231:
 	vadd2	r0,r16,0
-	b_s	.L227
+	b_s	.L224
 	.size	fmin, .-fmin
 	.align 4
 	.global	fminf
@@ -801,35 +804,35 @@ fminf:
 	bl.d	@__unordsf2;1
 	mov_s	r1,r0
 	tst_s	r0,r0
-	bne.d	.L237
+	bne.d	.L234
 	mov.ne	r0,r13
 	mov_s	r1,r13
 	bl.d	@__unordsf2;1
 	mov_s	r0,r13
 	tst_s	r0,r0
-	bne.d	.L237
+	bne.d	.L234
 	mov.ne	r0,r14
 	mov_s	r2,r14	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r13	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L239
+	breq	r2,r3,.L236
 	tst_s	r2,r2
 	mov.ne	r13,r14
 	mov_s	r0,r13
-.L237:
+.L234:
 	ld	blink,[sp,8]	;23
 	pop_s	r13
 	j_s.d	[blink]
 	ld.ab	r14,[sp,8]	;23
 	.align 4
-.L239:
+.L236:
 	mov_s	r1,r13
 	bl.d	@__ltsf2;1
 	mov_s	r0,r14
 	tst_s	r0,r0
 	mov.p	r14,r13
-	b.d	.L237
+	b.d	.L234
 	mov_s	r0,r14
 	.size	fminf, .-fminf
 	.align 4
@@ -843,27 +846,27 @@ fminl:
 	vadd2	r14,r2,0
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L253
+	brne	r0,0,.L250
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L254
+	brne	r0,0,.L251
 	mov_s	r2,r17	;4
 	bmskn	r2,r2,30
 	mov_s	r3,r15	;4
 	bmskn	r3,r3,30
-	breq	r2,r3,.L249
+	breq	r2,r3,.L246
 	tst_s	r2,r2
 	mov.ne	r14,r16
 	mov.ne	r15,r17
 	vadd2	r0,r14,0
-.L247:
+.L244:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L249:
+.L246:
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl	@__ltdf2;1
@@ -871,31 +874,31 @@ fminl:
 	vadd2	r0,r16,0
 	mov.p	r0,r14
 	mov.p	r1,r15
-	b_s	.L247
+	b_s	.L244
 	.align 4
-.L253:
+.L250:
 	vadd2	r0,r14,0
-	b_s	.L247
+	b_s	.L244
 	.align 4
-.L254:
+.L251:
 	vadd2	r0,r16,0
-	b_s	.L247
+	b_s	.L244
 	.size	fminl, .-fminl
 	.align 4
 	.global	l64a
 	.type	l64a, @function
 l64a:
 	mov_s	r2,@s.0	;13
-	breq_s	r0,0,.L258
+	breq_s	r0,0,.L255
 	.align 2
-.L259:
+.L256:
 	and	r3,r0,63
 	ldb	r3,[r3,@digits]
 	lsr.f	r0,r0,6
-	bne.d	.L259
+	bne.d	.L256
 	stb.ab	r3,[r2,1]
 	.align 2
-.L258:
+.L255:
 	stb	0,[r2]
 	mov_s	r0,@s.0	;13
 	j_s	[blink]
@@ -931,7 +934,7 @@ rand:
 	.global	insque
 	.type	insque, @function
 insque:
-	breq_s	r1,0,.L271
+	breq_s	r1,0,.L268
 	ld_s	r2,[r1]		;15
 	st_s	r2,[r0]		;16
 	st_s	r1,[r0,4]		;16
@@ -942,7 +945,7 @@ insque:
 	j_s.d	[blink]
 	st_s	r0,[r2,4]		;16
 	.align 4
-.L271:
+.L268:
 	st	0,[r0,4]	;37
 	st	0,[r0]	;37
 	j_s	[blink]
@@ -952,11 +955,11 @@ insque:
 	.type	remque, @function
 remque:
 	ld_s	r2,[r0]		;15
-	breq_s	r2,0,.L273
+	breq_s	r2,0,.L270
 	ld_s	r3,[r0,4]		;15
 	st_s	r3,[r2,4]		;16
 	.align 2
-.L273:
+.L270:
 	ld_s	r2,[r0,4]		;15
 	tst_s	r2,r2
 	jeq_s	[blink]
@@ -978,23 +981,23 @@ lsearch:
 	mov_s	r21,r1	;4
 	mov_s	r20,r2	;4
 	ld_s	r15,[r2]		;15
-	breq.d	r15,0,.L277
+	breq.d	r15,0,.L274
 	mov_s	r16,r3	;4
 	mov_s	r18,r4	;4
 	mov_s	r13,r1	;4
 	mov_s	r14,0	;3
 	.align 2
-.L279:
+.L276:
 	mov_s	r19,r13	;4
 	mov_s	r1,r13	;4
 	jl.d	[r18]
 	mov_s	r0,r17	;4
-	breq_s	r0,0,.L276
+	breq_s	r0,0,.L273
 	add_s	r14,r14,1   ;b,b,h
-	brne.d	r15,r14,.L279
+	brne.d	r15,r14,.L276
 	add_s	r13,r13,r16   ;b,b,h
 	.align 2
-.L277:
+.L274:
 	add_s	r2,r15,1   ;a,b,c/u3
 	st	r2,[r20]	;26
 	mpy	r15,r15,r16
@@ -1004,7 +1007,7 @@ lsearch:
 	add	r0,r21,r15 ;a,b,c/u6
 	mov_s	r19,r0	;4
 	.align 2
-.L276:
+.L273:
 	mov_s	r0,r19	;4
 	ld	blink,[sp,36]	;23
 	pop_s	r13
@@ -1024,27 +1027,27 @@ lfind:
 	std.a	r14,[sp,-8]
 	push_s	r13
 	ld	r18,[r2]	;23
-	breq	r18,0,.L283
+	breq	r18,0,.L280
 	mov_s	r15,r0	;4
 	mov_s	r17,r3	;4
 	mov_s	r16,r4	;4
 	mov_s	r13,r1	;4
 	mov_s	r14,0	;3
 	.align 2
-.L285:
+.L282:
 	mov_s	r19,r13	;4
 	mov_s	r1,r13	;4
 	jl.d	[r16]
 	mov_s	r0,r15	;4
-	breq_s	r0,0,.L282
+	breq_s	r0,0,.L279
 	add_s	r14,r14,1   ;b,b,h
-	brne.d	r18,r14,.L285
+	brne.d	r18,r14,.L282
 	add_s	r13,r13,r17   ;b,b,h
 	.align 2
-.L283:
+.L280:
 	mov_s	r19,0	;4
 	.align 2
-.L282:
+.L279:
 	mov_s	r0,r19	;4
 	ld	blink,[sp,28]	;23
 	pop_s	r13
@@ -1069,39 +1072,39 @@ atoi:
 	push_s	r13
 	mov_s	r13,r0	;4
 	.align 2
-.L291:
+.L288:
 	mov_s	r14,r13	;4
 	ldb.ab	r15,[r13,1]
 	bl.d	@isspace;1
 	mov_s	r0,r15	;4
-	brne_s	r0,0,.L291
-	breq	r15,43,.L297
+	brne_s	r0,0,.L288
+	breq	r15,43,.L294
 	cmp_s	r15,45
-	beq.d	.L292
+	beq.d	.L289
 	mov.eq	r12,1
-	b.d	.L293
-	mov_s	r12,r0	;4
+	b.d	.L290
+	mov_s	r12,0	;3
 	.align 4
-.L297:
-	mov_s	r12,r0	;4
+.L294:
+	mov_s	r12,0	;3
 	.align 2
-.L292:
+.L289:
 	add_s	r14,r14,1   ;b,b,h
 	.align 2
-.L293:
+.L290:
 	ldb_s	r2,[r14]
 	sub3	r3,r2,6 ;a,b,u6
-	brhi	r3,9,.L295
+	brhi	r3,9,.L292
 	.align 2
-.L294:
+.L291:
 	mpy	r0,r0,10
 	sub3	r2,r2,6 ;a,b,u6
 	sub_s	r0,r0,r2
 	ldb.a	r2,[r14,1]
 	sub3	r3,r2,6 ;a,b,u6
-	brls	r3,9,.L294
+	brls	r3,9,.L291
 	.align 2
-.L295:
+.L292:
 	tst_s	r12,r12
 	neg.eq	r0,r0
 	ld	blink,[sp,12]	;23
@@ -1118,39 +1121,39 @@ atol:
 	push_s	r13
 	mov_s	r13,r0	;4
 	.align 2
-.L304:
+.L301:
 	mov_s	r14,r13	;4
 	ldb.ab	r15,[r13,1]
 	bl.d	@isspace;1
 	mov_s	r0,r15	;4
-	brne_s	r0,0,.L304
-	breq	r15,43,.L310
+	brne_s	r0,0,.L301
+	breq	r15,43,.L307
 	cmp_s	r15,45
-	beq.d	.L305
+	beq.d	.L302
 	mov.eq	r12,1
-	b.d	.L306
-	mov_s	r12,r0	;4
+	b.d	.L303
+	mov_s	r12,0	;3
 	.align 4
-.L310:
-	mov_s	r12,r0	;4
+.L307:
+	mov_s	r12,0	;3
 	.align 2
-.L305:
+.L302:
 	add_s	r14,r14,1   ;b,b,h
 	.align 2
-.L306:
+.L303:
 	ldb_s	r2,[r14]
 	sub3	r3,r2,6 ;a,b,u6
-	brhi	r3,9,.L308
+	brhi	r3,9,.L305
 	.align 2
-.L307:
+.L304:
 	mpy	r0,r0,10
 	sub3	r2,r2,6 ;a,b,u6
 	sub_s	r0,r0,r2
 	ldb.a	r2,[r14,1]
 	sub3	r3,r2,6 ;a,b,u6
-	brls	r3,9,.L307
+	brls	r3,9,.L304
 	.align 2
-.L308:
+.L305:
 	tst_s	r12,r12
 	neg.eq	r0,r0
 	ld	blink,[sp,12]	;23
@@ -1167,28 +1170,28 @@ atoll:
 	push_s	r13
 	mov_s	r13,r0	;4
 	.align 2
-.L317:
+.L314:
 	mov_s	r14,r13	;4
 	ldb.ab	r15,[r13,1]
 	bl.d	@isspace;1
 	mov_s	r0,r15	;4
 	mov.f	r3,r0
-	bne_s	.L317
-	breq	r15,43,.L318
-	brne	r15,45,.L319
+	bne_s	.L314
+	breq	r15,43,.L315
+	brne	r15,45,.L316
 	mov_s	r3,1	;3
 	.align 2
-.L318:
+.L315:
 	add_s	r14,r14,1   ;b,b,h
 	.align 2
-.L319:
+.L316:
 	ldb_s	r2,[r14]
 	sub3	r12,r2,6 ;a,b,u6
 	mov_s	r0,0	;3
-	brhi.d	r12,9,.L321
+	brhi.d	r12,9,.L318
 	mov_s	r1,0	;3
 	.align 2
-.L320:
+.L317:
 	mpy	r1,r1,10
 	mpydu	r12,r0,10
 	add_s	r13,r13,r1   ;b,b,h
@@ -1198,14 +1201,13 @@ atoll:
 	sbc	r1,r13,r1
 	ldb.a	r2,[r14,1]
 	sub3	r12,r2,6 ;a,b,u6
-	brls	r12,9,.L320
+	brls	r12,9,.L317
 	.align 2
-.L321:
-	brne_s	r3,0,.L316
-	mov_s	r2,0	;3
-	sub.f	r0,r2,r0
-	sbc	r1,r2,r1
-.L316:
+.L318:
+	brne_s	r3,0,.L313
+	sub.f	r0,r3,r0
+	sbc	r1,r3,r1
+.L313:
 	ld	blink,[sp,12]	;23
 	pop_s	r13
 	ldd.ab	r14,[sp,12]
@@ -1221,37 +1223,37 @@ bsearch:
 	std.a	r14,[sp,-8]
 	push_s	r13
 	mov.f	r13,r2
-	beq_s	.L328
+	beq_s	.L325
 	mov_s	r19,r0	;4
 	mov_s	r17,r1	;4
 	mov_s	r16,r3	;4
-	b.d	.L331
+	b.d	.L328
 	mov_s	r18,r4	;4
 	.align 4
-.L332:
+.L329:
 	mov_s	r13,r15	;4
 	.align 2
-.L329:
-	breq_s	r13,0,.L328
+.L326:
+	breq_s	r13,0,.L325
 	.align 2
-.L331:
+.L328:
 	lsr_s	r15,r13
 	mpy	r14,r15,r16
 	add_s	r14,r14,r17   ;b,b,h
 	mov_s	r1,r14	;4
 	jl.d	[r18]
 	mov_s	r0,r19	;4
-	brlt	r0,0,.L332
-	brle	r0,0,.L327
+	brlt	r0,0,.L329
+	brle	r0,0,.L324
 	add	r17,r14,r16 ;a,b,c/u6
 	add_s	r13,r13,-1   ;h,h,s3
-	b.d	.L329
+	b.d	.L326
 	sub_s	r13,r13,r15
 	.align 4
-.L328:
+.L325:
 	mov_s	r14,0	;3
 	.align 2
-.L327:
+.L324:
 	mov_s	r0,r14	;4
 	ld	blink,[sp,28]	;23
 	pop_s	r13
@@ -1269,20 +1271,20 @@ bsearch_r:
 	std.a	r16,[sp,-8]
 	std.a	r14,[sp,-8]
 	push_s	r13
-	breq_s	r2,0,.L336
+	breq_s	r2,0,.L333
 	mov_s	r19,r0	;4
 	mov_s	r16,r1	;4
 	mov_s	r15,r3	;4
 	mov_s	r18,r4	;4
 	mov_s	r17,r5	;4
-	b.d	.L339
+	b.d	.L336
 	mov_s	r14,r2	;4
 	.align 4
-.L338:
+.L335:
 	asr.f	r14,r14,1
-	beq_s	.L336
+	beq_s	.L333
 	.align 2
-.L339:
+.L336:
 	asr_s	r13,r14,1
 	mpy_s	r13,r13,r15
 	add_s	r13,r13,r16   ;b,b,h
@@ -1290,16 +1292,16 @@ bsearch_r:
 	mov_s	r1,r13	;4
 	jl.d	[r18]
 	mov_s	r0,r19	;4
-	breq_s	r0,0,.L335
-	brle	r0,0,.L338
+	breq_s	r0,0,.L332
+	brle	r0,0,.L335
 	add	r16,r13,r15 ;a,b,c/u6
-	b.d	.L338
+	b.d	.L335
 	add_s	r14,r14,-1   ;h,h,s3
 	.align 4
-.L336:
+.L333:
 	mov_s	r13,0	;3
 	.align 2
-.L335:
+.L332:
 	mov_s	r0,r13	;4
 	ld	blink,[sp,28]	;23
 	pop_s	r13
@@ -1418,14 +1420,14 @@ lldiv:
 	.type	wcschr, @function
 wcschr:
 	ld_s	r2,[r0]		;15
-	breq_s	r2,0,.L358
+	breq_s	r2,0,.L355
 	.align 2
-.L357:
-	breq	r1,r2,.L358
+.L354:
+	breq	r1,r2,.L355
 	ld.a	r2,[r0,4]	;23
-	brne_s	r2,0,.L357
+	brne_s	r2,0,.L354
 	.align 2
-.L358:
+.L355:
 	tst_s	r2,r2
 	mov_s	r2,0	;3
 	mov.ne	r2,r0
@@ -1438,21 +1440,21 @@ wcschr:
 wcscmp:
 	ld_s	r2,[r0]		;15
 	ld_s	r3,[r1]		;15
-	brne	r2,r3,.L365
+	brne	r2,r3,.L362
 	.align 2
-.L366:
-	breq_s	r2,0,.L365
-	breq_s	r3,0,.L365
+.L363:
+	breq_s	r2,0,.L362
+	breq_s	r3,0,.L362
 	ld.a	r2,[r0,4]	;23
 	ld.a	r3,[r1,4]	;23
-	breq	r2,r3,.L366
+	breq	r2,r3,.L363
 	.align 2
-.L365:
-	brlt	r2,r3,.L369
+.L362:
+	brlt	r2,r3,.L366
 	j_s.d	[blink]
 	setgt	r0,r2,r3
 	.align 4
-.L369:
+.L366:
 	j_s.d	[blink]
 	mov_s	r0,-1	;4
 	.size	wcscmp, .-wcscmp
@@ -1462,9 +1464,9 @@ wcscmp:
 wcscpy:
 	sub2	r3,r0,1 ;a,b,u6
 	.align 2
-.L372:
+.L369:
 	ld.ab	r2,[r1,4]	;23
-	brne.d	r2,0,.L372
+	brne.d	r2,0,.L369
 	st.a	r2,[r3,4]	;26
 	j_s	[blink]
 	.size	wcscpy, .-wcscpy
@@ -1474,14 +1476,14 @@ wcscpy:
 wcslen:
 	ld_s	r2,[r0]		;15
 	tst_s	r2,r2
-	beq.d	.L378
+	beq.d	.L375
 	mov_s	r2,r0	;4
 	.align 2
-.L379:
+.L376:
 	ld.a	r3,[r2,4]	;23
-	brne_s	r3,0,.L379
+	brne_s	r3,0,.L376
 	.align 2
-.L378:
+.L375:
 	sub_s	r0,r2,r0
 	j_s.d	[blink]
 	asr_s	r0,r0,2
@@ -1490,57 +1492,57 @@ wcslen:
 	.global	wcsncmp
 	.type	wcsncmp, @function
 wcsncmp:
-	breq_s	r2,0,.L393
+	breq_s	r2,0,.L390
 	std.a	r14,[sp,-8]
 	push_s	r13
 	mov_s	r12,r0	;4
 	mov_s	r3,r1	;4
 	mov_s	r14,r2	;4
 	mov	lp_count,r14	;5
-	lp	@.L401	; lp_count:@.L385->@.L401
+	lp	@.L398	; lp_count:@.L382->@.L398
 	.align 2
-.L385:
+.L382:
 	mov_s	r1,r3	;4
 	mov_s	r0,r12	;4
 	ld.ab	r13,[r12,4]	;23
 	ld_s	r15,[r1]		;15
-	brne.d	r13,r15,.L384
+	brne.d	r13,r15,.L381
 	add_s	r3,r3,4   ;b,b,h
-	breq_s	r13,0,.L384
+	breq_s	r13,0,.L381
 	add_s	r2,r2,-1   ;h,h,s3
 	.align 2
-.L401:
-	; ZOL_END, begins @.L385
+.L398:
+	; ZOL_END, begins @.L382
 	mov_s	r0,r12	;4
 	mov_s	r1,r3	;4
 	.align 2
-.L384:
+.L381:
 	tst_s	r2,r2
-	beq.d	.L383
+	beq.d	.L380
 	mov.eq	r0,0
 	ld_s	r0,[r0]		;15
 	ld_s	r2,[r1]		;15
 	cmp_s	r0,r2
 	setgt.ge	r0,r0,r2
 	mov.lt	r0,-1
-.L383:
+.L380:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
 	.align 4
-.L393:
-	breq_s	r2,0,.L395
+.L390:
+	breq_s	r2,0,.L392
 	ld_s	r0,[r0]		;15
 	ld_s	r2,[r1]		;15
-	brlt	r0,r2,.L397
+	brlt	r0,r2,.L394
 	j_s.d	[blink]
 	setgt	r0,r0,r2
 	.align 4
-.L395:
+.L392:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.align 4
-.L397:
+.L394:
 	j_s.d	[blink]
 	mov_s	r0,-1	;4
 	.size	wcsncmp, .-wcsncmp
@@ -1548,25 +1550,25 @@ wcsncmp:
 	.global	wmemchr
 	.type	wmemchr, @function
 wmemchr:
-	breq_s	r2,0,.L411
+	breq_s	r2,0,.L408
 	push_s	r13
 	mov_s	r3,r0	;4
 	mov_s	r12,r2	;4
 	mov	lp_count,r12	;5
-	lp	@.L414	; lp_count:@.L404->@.L414
+	lp	@.L411	; lp_count:@.L401->@.L411
 	.align 2
-.L404:
+.L401:
 	mov_s	r0,r3	;4
 	ld_s	r13,[r0]		;15
-	breq.d	r13,r1,.L403
+	breq.d	r13,r1,.L400
 	add_s	r3,r3,4   ;b,b,h
 	add_s	r2,r2,-1   ;h,h,s3
 	.align 2
-.L414:
-	; ZOL_END, begins @.L404
+.L411:
+	; ZOL_END, begins @.L401
 	mov_s	r0,r3	;4
 	.align 2
-.L403:
+.L400:
 	tst_s	r2,r2
 	mov_s	r2,0	;3
 	mov.ne	r2,r0
@@ -1574,7 +1576,7 @@ wmemchr:
 	j_s.d	[blink]
 	pop_s	r13
 	.align 4
-.L411:
+.L408:
 	tst_s	r2,r2
 	mov_s	r2,0	;3
 	mov.ne	r2,r0
@@ -1585,57 +1587,57 @@ wmemchr:
 	.global	wmemcmp
 	.type	wmemcmp, @function
 wmemcmp:
-	breq_s	r2,0,.L425
+	breq_s	r2,0,.L422
 	std.a	r14,[sp,-8]
 	push_s	r13
 	mov_s	r12,r0	;4
 	mov_s	r3,r1	;4
 	mov_s	r13,r2	;4
 	mov	lp_count,r13	;5
-	lp	@.L433	; lp_count:@.L417->@.L433
+	lp	@.L430	; lp_count:@.L414->@.L430
 	.align 2
-.L417:
+.L414:
 	mov_s	r1,r3	;4
 	mov_s	r0,r12	;4
 	add_s	r12,r12,4   ;b,b,h
 	ld_s	r15,[r0]		;15
 	ld_s	r14,[r1]		;15
-	brne.d	r15,r14,.L416
+	brne.d	r15,r14,.L413
 	add_s	r3,r3,4   ;b,b,h
 	add_s	r2,r2,-1   ;h,h,s3
 	.align 2
-.L433:
-	; ZOL_END, begins @.L417
+.L430:
+	; ZOL_END, begins @.L414
 	mov_s	r0,r12	;4
 	mov_s	r1,r3	;4
 	.align 2
-.L416:
+.L413:
 	tst_s	r2,r2
-	beq.d	.L415
+	beq.d	.L412
 	mov.eq	r0,0
 	ld_s	r0,[r0]		;15
 	ld_s	r2,[r1]		;15
 	cmp_s	r0,r2
 	setgt.ge	r0,r0,r2
 	mov.lt	r0,-1
-.L415:
+.L412:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
 	.align 4
-.L425:
-	breq_s	r2,0,.L427
+.L422:
+	breq_s	r2,0,.L424
 	ld_s	r0,[r0]		;15
 	ld_s	r2,[r1]		;15
-	brlt	r0,r2,.L429
+	brlt	r0,r2,.L426
 	j_s.d	[blink]
 	setgt	r0,r0,r2
 	.align 4
-.L427:
+.L424:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.align 4
-.L429:
+.L426:
 	j_s.d	[blink]
 	mov_s	r0,-1	;4
 	.size	wmemcmp, .-wmemcmp
@@ -1643,13 +1645,16 @@ wmemcmp:
 	.global	wmemcpy
 	.type	wmemcpy, @function
 wmemcpy:
-	tst_s	r2,r2
-	jeq_s	[blink]
 	push_s	blink
-	bl.d	@memcpy;1
-	asl_s	r2,r2,2
-	pop_s	blink
-	j_s	[blink]
+	push_s	r13
+	mov_s	r13,r0	;4
+	tst_s	r2,r2
+	asl.ne	r2,r2,2
+	jlne	@memcpy
+	mov_s	r0,r13	;4
+	ld	blink,[sp,4]	;23
+	j_s.d	[blink]
+	ld.ab	r13,[sp,8]	;23
 	.size	wmemcpy, .-wmemcpy
 	.align 4
 	.global	wmemmove
@@ -1658,43 +1663,42 @@ wmemmove:
 	cmp_s	r0,r1
 	jeq_s	[blink]
 	push_s	r13
-	asl_s	r12,r2,2
+	asl_s	r3,r2,2
 	sub_s	r13,r0,r1
-	brlo.d	r13,r12,.L442
-	mov_s	r3,r1	;4
-	breq.d	r2,0,.L441
+	brlo.d	r13,r3,.L436
+	mov_s	r12,r1	;4
+	breq.d	r2,0,.L435
 	sub2	r3,r0,1 ;a,b,u6
 	.align 2
-.L456:
+.L450:
 	mov	lp_count,r2	;5
-	lp	@.L455	; lp_count:@.L445->@.L455
+	lp	@.L449	; lp_count:@.L439->@.L449
 	.align 2
-.L445:
+.L439:
 	ld.ab	r12,[r1,4]	;23
 	st.a	r12,[r3,4]	;26
 	.align 2
-.L455:
-	; ZOL_END, begins @.L445
-	b_s	.L441
+.L449:
+	; ZOL_END, begins @.L439
+	b_s	.L435
 	.align 4
-.L442:
-	breq_s	r2,0,.L441
-	add_s	r1,r1,r12   ;b,b,h
-	add_s	r12,r12,r0   ;b,b,h
-	sub_s	r2,r1,r3
-	sub2	r2,r2,1 ;a,b,u6
+.L436:
+	breq_s	r2,0,.L435
+	add_s	r12,r12,r3   ;b,b,h
+	add_s	r13,r0,r3   ;a,b,c/u3
+	sub2	r2,r3,1 ;a,b,u6
 	lsr_s	r2,r2,2
 	add_s	r2,r2,1   ;b,b,h
 	mov	lp_count,r2	;5
-	lp	@.L454	; lp_count:@.L444->@.L454
+	lp	@.L448	; lp_count:@.L438->@.L448
 	.align 2
-.L444:
-	ld.a	r3,[r1,-4]	;23
-	st.a	r3,[r12,-4]	;26
+.L438:
+	ld.a	r3,[r12,-4]	;23
+	st.a	r3,[r13,-4]	;26
 	.align 2
-.L454:
-	; ZOL_END, begins @.L444
-.L441:
+.L448:
+	; ZOL_END, begins @.L438
+.L435:
 	j_s.d	[blink]
 	pop_s	r13
 	.size	wmemmove, .-wmemmove
@@ -1706,51 +1710,51 @@ wmemset:
 	jeq_s	[blink]
 	mov_s	r12,r0	;4
 	mov	lp_count,r2	;5
-	lp	@.L463	; lp_count:@.L459->@.L463
+	lp	@.L457	; lp_count:@.L453->@.L457
 	.align 2
-.L459:
+.L453:
 	st.ab	r1,[r12,4]	;26
 	.align 2
-.L463:
-	; ZOL_END, begins @.L459
+.L457:
+	; ZOL_END, begins @.L453
 	j_s	[blink]
 	.size	wmemset, .-wmemset
 	.align 4
 	.global	bcopy
 	.type	bcopy, @function
 bcopy:
-	brhs	r0,r1,.L465
+	cmp_s	r0,r1
+	bhs_s	.L459
 	add_s	r3,r0,r2   ;a,b,c/u3
 	tst_s	r2,r2
 	jeq.d	[blink]
 	add_s	r1,r1,r2   ;b,b,h
 	sub_s	r0,r3,r0
 	mov	lp_count,r0	;5
-	lp	@.L475	; lp_count:@.L467->@.L475
+	lp	@.L469	; lp_count:@.L461->@.L469
 	.align 2
-.L467:
+.L461:
 	ldb.a	r2,[r3,-1]
 	stb.a	r2,[r1,-1]
 	.align 2
-.L475:
-	; ZOL_END, begins @.L467
+.L469:
+	; ZOL_END, begins @.L461
 	j_s	[blink]
 	.align 4
-.L465:
-	cmp_s	r0,r1
+.L459:
 	jeq_s	[blink]
 	tst_s	r2,r2
 	jeq_s	[blink]
 	add_s	r1,r1,-1   ;h,h,s3
 	mov	lp_count,r2	;5
-	lp	@.L474	; lp_count:@.L468->@.L474
+	lp	@.L468	; lp_count:@.L462->@.L468
 	.align 2
-.L468:
+.L462:
 	ldb.ab	r3,[r0,1]
 	stb.a	r3,[r1,1]
 	.align 2
-.L474:
-	; ZOL_END, begins @.L468
+.L468:
+	; ZOL_END, begins @.L462
 	j_s	[blink]
 	.size	bcopy, .-bcopy
 	.align 4
@@ -1970,20 +1974,20 @@ ffs:
 	mov_s	r2,0	;3
 	mov_s	r3,32	;3
 	mov	lp_count,r3	;5
-	lp	@.L510	; lp_count:@.L505->@.L510
+	lp	@.L504	; lp_count:@.L499->@.L504
 	.align 2
-.L505:
+.L499:
 	lsr	r12,r0,r2
-	bbit1.d	r12,0,@.L509
+	bbit1.d	r12,0,@.L503
 	add_s	r2,r2,1   ;b,b,h
 	nop_s
 	.align 2
-.L510:
-	; ZOL_END, begins @.L505
+.L504:
+	; ZOL_END, begins @.L499
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.align 4
-.L509:
+.L503:
 	j_s.d	[blink]
 	mov_s	r0,r2	;4
 	.size	ffs, .-ffs
@@ -1992,21 +1996,21 @@ ffs:
 	.type	libiberty_ffs, @function
 libiberty_ffs:
 	mov.f	r2,r0
-	beq_s	.L514
-	bbit1.d	r2,0,@.L518
+	beq_s	.L508
+	bbit1.d	r2,0,@.L512
 	and	r0,r2,1
 	mov_s	r0,1	;3
 	.align 2
-.L513:
+.L507:
 	asr_s	r2,r2,1
-	bbit0.d	r2,0,@.L513
+	bbit0.d	r2,0,@.L507
 	add_s	r0,r0,1   ;b,b,h
 	.align 2
-.L518:
+.L512:
 	j_s	[blink]
 	.align 4
-.L514:
-	mov_s	r0,r2	;4
+.L508:
+	mov_s	r0,0	;3
 	j_s	[blink]
 	.size	libiberty_ffs, .-libiberty_ffs
 	.align 4
@@ -2019,13 +2023,13 @@ gl_isinff:
 	bl.d	@__ltsf2;1
 	mov_s	r13,r0
 	tst_s	r0,r0
-	bn.d	.L519
+	bn.d	.L513
 	mov.n	r0,1
 	mov_s	r1,0x7f7fffff ; 3.402823466385288598117e+38
 	bl.d	@__gtsf2;1
 	mov_s	r0,r13
 	setgt	r0,r0,0
-.L519:
+.L513:
 	ld	blink,[sp,4]	;23
 	j_s.d	[blink]
 	ld.ab	r13,[sp,8]	;23
@@ -2041,14 +2045,14 @@ gl_isinfd:
 	bl.d	@__ltdf2;1
 	mov_s	r2,-1	;4
 	tst_s	r0,r0
-	bn.d	.L524
+	bn.d	.L518
 	mov.n	r0,1
 	mov_s	r3,2146435071	;13
 	vadd2	r0,r14,0
 	bl.d	@__gtdf2;1
 	mov_s	r2,-1	;4
 	setgt	r0,r0,0
-.L524:
+.L518:
 	ld	blink,[sp,8]	;23
 	ldd.ab	r14,[sp,12]
 	j_s	[blink]
@@ -2064,14 +2068,14 @@ gl_isinfl:
 	bl.d	@__ltdf2;1
 	mov_s	r2,-1	;4
 	tst_s	r0,r0
-	bn.d	.L529
+	bn.d	.L523
 	mov.n	r0,1
 	mov_s	r3,2146435071	;13
 	vadd2	r0,r14,0
 	bl.d	@__gtdf2;1
 	mov_s	r2,-1	;4
 	setgt	r0,r0,0
-.L529:
+.L523:
 	ld	blink,[sp,8]	;23
 	ldd.ab	r14,[sp,12]
 	j_s	[blink]
@@ -2101,35 +2105,35 @@ ldexpf:
 	mov_s	r14,r1	;4
 	bl.d	@__unordsf2;1
 	mov_s	r1,r0
-	brne_s	r0,0,.L537
+	brne_s	r0,0,.L531
 	mov_s	r1,r15
 	bl.d	@__addsf3;1
 	mov_s	r0,r15
 	bl.d	@__nesf2;1
 	mov_s	r1,r15
-	breq_s	r0,0,.L537
+	breq_s	r0,0,.L531
 	tst_s	r14,r14
 	mov_s	r13,0x3f000000 ; 5.0e-1
 	mov.p	r13,0x40000000 ; 2.0e+0
-	b_s	.L541
+	b_s	.L535
 	.align 4
-.L540:
+.L534:
 	div	r14,r14,2
-	breq_s	r14,0,.L537
+	breq_s	r14,0,.L531
 	mov_s	r1,r13
 	bl.d	@__mulsf3;1
 	mov_s	r0,r13
 	mov_s	r13,r0
 	.align 2
-.L541:
-	bbit0	r14,0,@.L540
+.L535:
+	bbit0	r14,0,@.L534
 	mov_s	r1,r13
 	bl.d	@__mulsf3;1
 	mov_s	r0,r15
-	b.d	.L540
+	b.d	.L534
 	mov_s	r15,r0
 	.align 4
-.L537:
+.L531:
 	mov_s	r0,r15
 	ld	blink,[sp,12]	;23
 	pop_s	r13
@@ -2148,40 +2152,40 @@ ldexp:
 	mov_s	r13,r2	;4
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L546
+	brne	r0,0,.L540
 	vadd2	r2,r16,0
 	vadd2	r0,r16,0
 	bl	@__adddf3;1
 	vadd2	r2,r16,0
 	bl	@__nedf2;1
-	breq_s	r0,0,.L546
+	breq_s	r0,0,.L540
 	tst_s	r13,r13
 	mov_s	r14,0	;3
 	mov_s	r15,1071644672	;13
 	mov.p	r14,0x00000000
 	mov.p	r15,0x40000000; 2.0e+0
-	b_s	.L550
+	b_s	.L544
 	.align 4
-.L549:
+.L543:
 	div	r13,r13,2
 	.align 4
-.L554:
-	breq_s	r13,0,.L546
+.L548:
+	breq_s	r13,0,.L540
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__muldf3;1
 	vadd2	r14,r0,0
 	.align 2
-.L550:
-	bbit0	r13,0,@.L549
+.L544:
+	bbit0	r13,0,@.L543
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl.d	@__muldf3;1
 	div	r13,r13,2
 	vadd2	r16,r0,0
-	b_s	.L554
+	b_s	.L548
 	.align 4
-.L546:
+.L540:
 	vadd2	r0,r16,0
 	ld	blink,[sp,20]	;23
 	pop_s	r13
@@ -2201,40 +2205,40 @@ ldexpl:
 	mov_s	r13,r2	;4
 	vadd2	r2,r0,0
 	bl	@__unorddf2;1
-	brne	r0,0,.L556
+	brne	r0,0,.L550
 	vadd2	r2,r16,0
 	vadd2	r0,r16,0
 	bl	@__adddf3;1
 	vadd2	r2,r16,0
 	bl	@__nedf2;1
-	breq_s	r0,0,.L556
+	breq_s	r0,0,.L550
 	tst_s	r13,r13
 	mov_s	r14,0	;3
 	mov_s	r15,1071644672	;13
 	mov.p	r14,0x00000000
 	mov.p	r15,0x40000000; 2.0e+0
-	b_s	.L560
+	b_s	.L554
 	.align 4
-.L559:
+.L553:
 	div	r13,r13,2
 	.align 4
-.L564:
-	breq_s	r13,0,.L556
+.L558:
+	breq_s	r13,0,.L550
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__muldf3;1
 	vadd2	r14,r0,0
 	.align 2
-.L560:
-	bbit0	r13,0,@.L559
+.L554:
+	bbit0	r13,0,@.L553
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl.d	@__muldf3;1
 	div	r13,r13,2
 	vadd2	r16,r0,0
-	b_s	.L564
+	b_s	.L558
 	.align 4
-.L556:
+.L550:
 	vadd2	r0,r16,0
 	ld	blink,[sp,20]	;23
 	pop_s	r13
@@ -2251,16 +2255,16 @@ memxor:
 	push_s	r13
 	mov_s	r12,r0	;4
 	mov	lp_count,r2	;5
-	lp	@.L574	; lp_count:@.L567->@.L574
+	lp	@.L568	; lp_count:@.L561->@.L568
 	.align 2
-.L567:
+.L561:
 	ldb.ab	r3,[r12,1]
 	ldb.ab	r13,[r1,1]
 	xor_s	r3,r3,r13
 	stb	r3,[r12,-1]
 	.align 2
-.L574:
-	; ZOL_END, begins @.L567
+.L568:
+	; ZOL_END, begins @.L561
 	j_s.d	[blink]
 	pop_s	r13
 	.size	memxor, .-memxor
@@ -2275,30 +2279,30 @@ strncat:
 	mov_s	r13,r1	;4
 	bl.d	@strlen;1
 	mov_s	r14,r2	;4
-	breq.d	r14,0,.L576
+	breq.d	r14,0,.L570
 	add_s	r2,r15,r0   ;a,b,c/u3
 	sub	r1,r13,1 ;a,b,u6
 	mov_s	r3,r2	;4
 	mov_s	r13,r14	;4
 	mov	lp_count,r13	;5
-	lp	@.L583	; lp_count:@.L577->@.L583
+	lp	@.L577	; lp_count:@.L571->@.L577
 	.align 2
-.L577:
+.L571:
 	mov_s	r2,r3	;4
 	ldb.a	r12,[r1,1]
-	breq.d	r12,0,.L576
+	breq.d	r12,0,.L570
 	stb.ab	r12,[r3,1]
 	add_s	r14,r14,-1   ;h,h,s3
 	.align 2
-.L583:
-	; ZOL_END, begins @.L577
+.L577:
+	; ZOL_END, begins @.L571
 	mov_s	r2,r3	;4
 	.align 2
-.L576:
-	brne_s	r14,0,.L579
+.L570:
+	brne_s	r14,0,.L573
 	stb	0,[r2]
 	.align 2
-.L579:
+.L573:
 	mov_s	r0,r15	;4
 	ld	blink,[sp,12]	;23
 	pop_s	r13
@@ -2309,47 +2313,48 @@ strncat:
 	.global	strnlen
 	.type	strnlen, @function
 strnlen:
-	breq_s	r1,0,.L591
+	breq_s	r1,0,.L582
 	sub	r2,r0,1 ;a,b,u6
 	mov_s	r0,0	;3
-	sub_s	r12,r1,r0
-	mov	lp_count,r12	;5
-	lp	@.L594	; lp_count:@.L586->@.L594
+	sub_s	r1,r1,r0
+	mov	lp_count,r1	;5
+	lp	@.L587	; lp_count:@.L580->@.L587
 	.align 2
-.L586:
+.L580:
 	ldb.a	r3,[r2,1]
 	tst_s	r3,r3
 	jeq_s	[blink]
 	add_s	r0,r0,1   ;b,b,h
 	.align 2
-.L594:
-	; ZOL_END, begins @.L586
-	.align 2
-.L591:
+.L587:
+	; ZOL_END, begins @.L580
+	j_s	[blink]
+	.align 4
+.L582:
 	j_s.d	[blink]
-	mov_s	r0,r1	;4
+	mov_s	r0,0	;3
 	.size	strnlen, .-strnlen
 	.align 4
 	.global	strpbrk
 	.type	strpbrk, @function
 strpbrk:
 	ldb_s	r12,[r0]
-	breq_s	r12,0,.L600
+	breq_s	r12,0,.L593
 	.align 2
-.L596:
+.L589:
 	sub	r3,r1,1 ;a,b,u6
 	.align 2
-.L599:
+.L592:
 	ldb.a	r2,[r3,1]
-	breq_s	r2,0,.L603
-	brne	r2,r12,.L599
+	breq_s	r2,0,.L596
+	brne	r2,r12,.L592
 	j_s	[blink]
 	.align 4
-.L603:
+.L596:
 	ldb.a	r12,[r0,1]
-	brne_s	r12,0,.L596
+	brne_s	r12,0,.L589
 	.align 2
-.L600:
+.L593:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.size	strpbrk, .-strpbrk
@@ -2360,12 +2365,12 @@ strrchr:
 	mov_s	r2,r0	;4
 	mov_s	r0,0	;3
 	.align 2
-.L607:
+.L600:
 	mov_s	r12,r2	;4
 	ldb.ab	r3,[r2,1]
 	cmp_s	r3,r1
 	mov.ne	r12,r0
-	brne.d	r3,0,.L607
+	brne.d	r3,0,.L600
 	mov_s	r0,r12	;4
 	j_s	[blink]
 	.size	strrchr, .-strrchr
@@ -2382,24 +2387,23 @@ strstr:
 	bl.d	@strlen;1
 	mov_s	r0,r1	;4
 	mov.f	r15,r0
-	beq_s	.L613
+	beq_s	.L606
 	ldb	r16,[r14]
 	.align 2
-.L615:
+.L608:
 	mov_s	r1,r16	;4
 	bl.d	@strchr;1
 	mov_s	r0,r13	;4
 	mov.f	r13,r0
-	beq_s	.L613
+	beq_s	.L606
 	mov_s	r2,r15	;4
-	mov_s	r1,r14	;4
 	bl.d	@strncmp;1
-	mov_s	r0,r13	;4
-	breq_s	r0,0,.L613
-	b.d	.L615
+	mov_s	r1,r14	;4
+	breq_s	r0,0,.L606
+	b.d	.L608
 	add_s	r13,r13,1   ;b,b,h
 	.align 4
-.L613:
+.L606:
 	mov_s	r0,r13	;4
 	ld	blink,[sp,16]	;23
 	pop_s	r13
@@ -2419,39 +2423,39 @@ copysign:
 	mov_s	r2,0	;3
 	bl.d	@__ltdf2;1
 	mov_s	r3,0	;3
-	brlt	r0,0,.L629
+	brlt	r0,0,.L622
 	.align 2
-.L620:
+.L613:
 	mov_s	r2,0	;3
 	vadd2	r0,r14,0
 	bl.d	@__gtdf2;1
 	mov_s	r3,0	;3
-	brle	r0,0,.L623
+	brle	r0,0,.L616
 	mov_s	r2,0	;3
 	vadd2	r0,r16,0
 	bl.d	@__ltdf2;1
 	mov_s	r3,0	;3
-	brlt	r0,0,.L622
+	brlt	r0,0,.L615
 	.align 2
-.L623:
+.L616:
 	vadd2	r0,r14,0
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
 	j_s	[blink]
 	.align 4
-.L629:
+.L622:
 	mov_s	r2,0	;3
 	vadd2	r0,r16,0
 	bl.d	@__gtdf2;1
 	mov_s	r3,0	;3
-	brle	r0,0,.L620
+	brle	r0,0,.L613
 	.align 2
-.L622:
+.L615:
 	mov_s	r2,r14	;4
 	bxor	r3,r15,31
 	vadd2	r14,r2,0
-	b_s	.L623
+	b_s	.L616
 	.size	copysign, .-copysign
 	.align 4
 	.global	memmem
@@ -2464,40 +2468,40 @@ memmem:
 	push_s	r13
 	mov_s	r13,r0	;4
 	tst_s	r3,r3
-	beq.d	.L630
+	beq.d	.L623
 	mov.eq	r15,r0
-	brlo	r1,r3,.L636
+	brlo	r1,r3,.L629
 	sub_s	r14,r1,r3
 	add.f	r14,r0,r14
-	blo_s	.L636
+	blo_s	.L629
 	mov_s	r18,r2	;4
 	ldb.ab	r17,[r18,1]
-	b.d	.L633
+	b.d	.L626
 	sub	r16,r3,1 ;a,b,u6
 	.align 4
-.L632:
-	brhi	r13,r14,.L636
+.L625:
+	brhi	r13,r14,.L629
 	.align 2
-.L633:
+.L626:
 	ldb_s	r3,[r13]
 	mov_s	r15,r13	;4
-	brne.d	r3,r17,.L632
+	brne.d	r3,r17,.L625
 	add_s	r13,r13,1   ;b,b,h
 	mov_s	r2,r16	;4
 	mov_s	r1,r18	;4
 	bl.d	@memcmp;1
 	mov_s	r0,r13	;4
-	brne_s	r0,0,.L632
-	b.d	.L639
+	brne_s	r0,0,.L625
+	b.d	.L632
 	mov_s	r0,r15	;4
 	.align 4
-.L636:
+.L629:
 	mov_s	r15,0	;3
 	.align 2
-.L630:
+.L623:
 	mov_s	r0,r15	;4
 	.align 2
-.L639:
+.L632:
 	ld	blink,[sp,24]	;23
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
@@ -2534,22 +2538,22 @@ frexp:
 	bl.d	@__ltdf2;1
 	mov_s	r3,0	;3
 	tst_s	r0,r0
-	bn.d	.L667
+	bn.d	.L660
 	mov.p	r21,0
 	.align 2
-.L643:
+.L636:
 	mov_s	r3,1072693248	;13
 	vadd2	r0,r14,0
 	bl.d	@__gedf2;1
 	mov_s	r2,0	;3
-	brlt	r0,0,.L663
+	brlt	r0,0,.L656
 	mov_s	r13,0	;3
 	mov_s	r18,0	;4
 	mov_s	r19,1071644672	;13
 	mov_s	r16,0	;4
 	mov_s	r17,1072693248	;13
 	.align 2
-.L647:
+.L640:
 	vadd2	r2,r18,0
 	vadd2	r0,r14,0
 	bl.d	@__muldf3;1
@@ -2557,16 +2561,16 @@ frexp:
 	vadd2	r14,r0,0
 	vadd2	r2,r16,0
 	bl	@__gedf2;1
-	brge	r0,0,.L647
+	brge	r0,0,.L640
 	.align 2
-.L648:
-	breq.d	r21,0,.L652
+.L641:
+	breq.d	r21,0,.L645
 	st	r13,[r20]	;26
 	mov_s	r2,r14	;4
 	bxor	r3,r15,31
 	vadd2	r14,r2,0
 	.align 2
-.L652:
+.L645:
 	vadd2	r0,r14,0
 	ld	blink,[sp,36]	;23
 	pop_s	r13
@@ -2576,31 +2580,31 @@ frexp:
 	ldd.ab	r20,[sp,12]
 	j_s	[blink]
 	.align 4
-.L667:
+.L660:
 	mov_s	r2,r14	;4
 	bxor	r3,r15,31
 	vadd2	r14,r2,0
-	b.d	.L643
+	b.d	.L636
 	mov_s	r21,1	;4
 	.align 4
-.L663:
+.L656:
 	mov_s	r3,1071644672	;13
 	vadd2	r0,r14,0
 	bl.d	@__ltdf2;1
 	mov_s	r2,0	;3
 	tst_s	r0,r0
-	bp.d	.L648
+	bp.d	.L641
 	mov.p	r13,0
 	mov_s	r2,0	;3
 	vadd2	r0,r14,0
 	bl.d	@__nedf2;1
 	mov_s	r3,0	;3
-	breq.d	r0,0,.L648
+	breq.d	r0,0,.L641
 	mov_s	r13,0	;3
 	mov_s	r16,0	;4
 	mov_s	r17,1071644672	;13
 	.align 2
-.L651:
+.L644:
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl.d	@__adddf3;1
@@ -2608,8 +2612,8 @@ frexp:
 	vadd2	r14,r0,0
 	vadd2	r2,r16,0
 	bl	@__ltdf2;1
-	brlt	r0,0,.L651
-	b_s	.L648
+	brlt	r0,0,.L644
+	b_s	.L641
 	.size	frexp, .-frexp
 	.align 4
 	.global	__muldi3
@@ -2619,7 +2623,7 @@ __muldi3:
 	push_s	r13
 	mov_s	r4,r0	;4
 	or.f	0,r0,r1
-	beq.d	.L672
+	beq.d	.L665
 	mov_s	r14,r1	;4
 	mov_s	r12,r2	;4
 	mov_s	r15,r3	;4
@@ -2627,7 +2631,7 @@ __muldi3:
 	mov_s	r0,0	;3
 	mov_s	r1,0	;3
 	.align 2
-.L671:
+.L664:
 	mov_s	r2,r13	;4
 	bmsk_s	r2,r2,0
 	mpy	r4,r15,r2
@@ -2640,46 +2644,44 @@ __muldi3:
 	lsr.f	r14,r14
 	rrc	r13,r13
 	or.f	0,r13,r14
-	bne_s	.L671
-.L668:
+	bne_s	.L664
+.L661:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
 	.align 4
-.L672:
+.L665:
 	mov_s	r0,0	;3
-	b.d	.L668
+	b.d	.L661
 	mov_s	r1,0	;3
 	.size	__muldi3, .-__muldi3
 	.align 4
 	.global	udivmodsi4
 	.type	udivmodsi4, @function
 udivmodsi4:
-	brhs.d	r1,r0,.L677
+	brhs.d	r1,r0,.L670
 	mov_s	r3,1	;3
 	.align 2
-.L676:
-	brlt	r1,0,.L677
+.L669:
+	brlt	r1,0,.L670
 	asl_s	r1,r1,1
-	brls.d	r0,r1,.L677
+	brls.d	r0,r1,.L670
 	asl_s	r3,r3,1
-	brne_s	r3,0,.L676
+	brne_s	r3,0,.L669
 	.align 2
-.L677:
-	tst_s	r3,r3
-	beq.d	.L679
-	mov.eq	r12,r3
+.L670:
+	breq.d	r3,0,.L672
 	mov_s	r12,0	;3
 	.align 2
-.L681:
+.L674:
 	cmp_s	r0,r1
 	sub.hs	r0,r0,r1
 	or.hs r12,r12,r3
 	lsr.f	r3,r3,1
-	bne.d	.L681
+	bne.d	.L674
 	lsr_s	r1,r1
 	.align 2
-.L679:
+.L672:
 	tst_s	r2,r2
 	j_s.d	[blink]
 	mov.eq	r0,r12
@@ -2689,13 +2691,13 @@ udivmodsi4:
 	.type	__clrsbqi2, @function
 __clrsbqi2:
 	extb.f	r0,r0
-	beq_s	.L690
+	beq_s	.L683
 	asl_s	r0,r0,8
 	fls	r0,r0
 	j_s.d	[blink]
 	rsub	r0,r0,30
 	.align 4
-.L690:
+.L683:
 	j_s.d	[blink]
 	mov_s	r0,7	;3
 	.size	__clrsbqi2, .-__clrsbqi2
@@ -2705,22 +2707,22 @@ __clrsbqi2:
 __clrsbdi2:
 	asr	r3,r1,31
 	xor	r2,r0,r3
-	breq.d	r0,r3,.L701
+	breq.d	r0,r3,.L694
 	xor	r12,r1,r3
 	.align 2
-.L698:
+.L691:
 	fls	r0,r2
-	breq.d	r12,0,.L696
+	breq.d	r12,0,.L689
 	rsub	r0,r0,63
 	fls	r12,r12
 	rsub	r0,r12,31
 	.align 2
-.L696:
+.L689:
 	j_s.d	[blink]
 	add_s	r0,r0,-1   ;h,h,s3
 	.align 4
-.L701:
-	brne	r1,r3,.L698
+.L694:
+	brne	r1,r0,.L691
 	j_s.d	[blink]
 	mov_s	r0,63	;3
 	.size	__clrsbdi2, .-__clrsbdi2
@@ -2729,49 +2731,45 @@ __clrsbdi2:
 	.type	__mulsi3, @function
 __mulsi3:
 	mov.f	r2,r0
-	beq_s	.L705
+	jeq.d	[blink]
 	mov_s	r0,0	;3
 	.align 2
-.L704:
+.L697:
 	and	r3,r2,1
 	mpy_s	r3,r3,r1
 	add_s	r0,r0,r3   ;b,b,h
 	lsr.f	r2,r2,1
-	bne.d	.L704
+	bne.d	.L697
 	asl_s	r1,r1,1
 	j_s	[blink]
-	.align 4
-.L705:
-	j_s.d	[blink]
-	mov_s	r0,r2	;4
 	.size	__mulsi3, .-__mulsi3
 	.align 4
 	.global	__cmovd
 	.type	__cmovd, @function
 __cmovd:
 	lsr	r3,r2,3
-	brlo.d	r0,r1,.L711
+	brlo.d	r0,r1,.L704
 	bmskn	r4,r2,2
 	add_s	r12,r1,r2   ;a,b,c/u3
-	brlo	r12,r0,.L711
+	brlo	r12,r0,.L704
 	tst_s	r2,r2
 	jeq_s	[blink]
 	mov_s	r3,r12	;4
 	add_s	r0,r0,r2   ;b,b,h
 	sub_s	r2,r12,r1
 	mov	lp_count,r2	;5
-	lp	@.L736	; lp_count:@.L717->@.L736
+	lp	@.L729	; lp_count:@.L710->@.L729
 	.align 2
-.L717:
+.L710:
 	ldb.a	r12,[r3,-1]
 	stb.a	r12,[r0,-1]
 	.align 2
-.L736:
-	; ZOL_END, begins @.L717
+.L729:
+	; ZOL_END, begins @.L710
 	j_s	[blink]
 	.align 4
-.L711:
-	breq	r3,0,.L726
+.L704:
+	breq	r3,0,.L719
 	std.a	r14,[sp,-8]
 	push_s	r13
 	sub3	r13,r1,1 ;a,b,u6
@@ -2780,15 +2778,15 @@ __cmovd:
 	lsr_s	r3,r3,3
 	add_s	r3,r3,1   ;b,b,h
 	mov	lp_count,r3	;5
-	lp	@.L735	; lp_count:@.L715->@.L735
+	lp	@.L728	; lp_count:@.L708->@.L728
 	.align 2
-.L715:
+.L708:
 	ldd.a	r14,[r13,8]
 	std.a	r14,[r12,8]
 	.align 2
-.L735:
-	; ZOL_END, begins @.L715
-	brls	r2,r4,.L710
+.L728:
+	; ZOL_END, begins @.L708
+	brls	r2,r4,.L703
 	add_s	r4,r4,-1   ;h,h,s3
 	add	r3,r1,r4 ;a,b,c/u6
 	add_s	r0,r0,r4   ;b,b,h
@@ -2796,21 +2794,21 @@ __cmovd:
 	add_s	r2,r2,r1   ;b,b,h
 	sub_s	r2,r2,r3
 	mov	lp_count,r2	;5
-	lp	@.L734	; lp_count:@.L716->@.L734
+	lp	@.L727	; lp_count:@.L709->@.L727
 	.align 2
-.L716:
+.L709:
 	ldb.a	r12,[r3,1]
 	stb.a	r12,[r0,1]
 	.align 2
-.L734:
-	; ZOL_END, begins @.L716
+.L727:
+	; ZOL_END, begins @.L709
 	.align 2
-.L710:
+.L703:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
 	.align 4
-.L726:
+.L719:
 	cmp_s	r2,r4
 	jls	[blink]
 	add_s	r4,r4,-1   ;h,h,s3
@@ -2820,14 +2818,14 @@ __cmovd:
 	add_s	r2,r2,r1   ;b,b,h
 	sub_s	r2,r2,r3
 	mov	lp_count,r2	;5
-	lp	@.L733	; lp_count:@.L728->@.L733
+	lp	@.L726	; lp_count:@.L721->@.L726
 	.align 2
-.L728:
+.L721:
 	ldb.a	r12,[r3,1]
 	stb.a	r12,[r0,1]
 	.align 2
-.L733:
-	; ZOL_END, begins @.L728
+.L726:
+	; ZOL_END, begins @.L721
 	j_s	[blink]
 	.size	__cmovd, .-__cmovd
 	.align 4
@@ -2836,50 +2834,50 @@ __cmovd:
 __cmovh:
 	push_s	r14
 	push_s	r13
-	brlo.d	r0,r1,.L738
+	brlo.d	r0,r1,.L731
 	lsr_s	r3,r2
 	add_s	r12,r1,r2   ;a,b,c/u3
-	brlo	r12,r0,.L738
-	breq_s	r2,0,.L737
+	brlo	r12,r0,.L731
+	breq_s	r2,0,.L730
 	add_s	r3,r0,r2   ;a,b,c/u3
 	sub_s	r2,r12,r1
 	mov	lp_count,r2	;5
-	lp	@.L750	; lp_count:@.L743->@.L750
+	lp	@.L743	; lp_count:@.L736->@.L743
 	.align 2
-.L743:
+.L736:
 	ldb.a	r13,[r12,-1]
 	stb.a	r13,[r3,-1]
 	.align 2
-.L750:
-	; ZOL_END, begins @.L743
-	b_s	.L737
+.L743:
+	; ZOL_END, begins @.L736
+	b_s	.L730
 	.align 4
-.L738:
-	breq_s	r3,0,.L741
+.L731:
+	breq_s	r3,0,.L734
 	sub1	r13,r1,1 ;a,b,u6
 	sub1	r12,r0,1 ;a,b,u6
 	add1	r3,-2,r3
 	lsr_s	r3,r3
 	add_s	r3,r3,1   ;b,b,h
 	mov	lp_count,r3	;5
-	lp	@.L749	; lp_count:@.L742->@.L749
+	lp	@.L742	; lp_count:@.L735->@.L742
 	.align 2
-.L742:
+.L735:
 	ldh.x.a	r14,[r13,2]
 	sth.a	r14,[r12,2]
 	.align 2
-.L749:
-	; ZOL_END, begins @.L742
+.L742:
+	; ZOL_END, begins @.L735
 	.align 2
-.L741:
-	bbit0	r2,0,@.L737
+.L734:
+	bbit0	r2,0,@.L730
 	mov_s	r3,r2	;4
 	add_s	r2,r1,r2   ;a,b,c/u3
 	ldb	r2,[r2,-1]
 	add_s	r3,r3,r0   ;b,b,h
 	stb	r2,[r3,-1]
 	.align 2
-.L737:
+.L730:
 	pop_s	r13
 	j_s.d	[blink]
 	pop_s	r14
@@ -2891,44 +2889,44 @@ __cmovw:
 	std.a	r14,[sp,-8]
 	push_s	r13
 	lsr	r3,r2,2
-	brlo.d	r0,r1,.L752
+	brlo.d	r0,r1,.L745
 	bmskn	r15,r2,1
 	add_s	r12,r1,r2   ;a,b,c/u3
-	brlo	r12,r0,.L752
-	breq_s	r2,0,.L751
+	brlo	r12,r0,.L745
+	breq_s	r2,0,.L744
 	mov_s	r3,r12	;4
 	add_s	r0,r0,r2   ;b,b,h
 	sub_s	r2,r12,r1
 	mov	lp_count,r2	;5
-	lp	@.L768	; lp_count:@.L758->@.L768
+	lp	@.L761	; lp_count:@.L751->@.L761
 	.align 2
-.L758:
+.L751:
 	ldb.a	r12,[r3,-1]
 	stb.a	r12,[r0,-1]
 	.align 2
-.L768:
-	; ZOL_END, begins @.L758
-	b_s	.L751
+.L761:
+	; ZOL_END, begins @.L751
+	b_s	.L744
 	.align 4
-.L752:
-	breq_s	r3,0,.L755
+.L745:
+	breq_s	r3,0,.L748
 	sub2	r13,r1,1 ;a,b,u6
 	sub2	r12,r0,1 ;a,b,u6
 	add2	r3,-4,r3
 	lsr_s	r3,r3,2
 	add_s	r3,r3,1   ;b,b,h
 	mov	lp_count,r3	;5
-	lp	@.L767	; lp_count:@.L756->@.L767
+	lp	@.L760	; lp_count:@.L749->@.L760
 	.align 2
-.L756:
+.L749:
 	ld.a	r14,[r13,4]	;23
 	st.a	r14,[r12,4]	;26
 	.align 2
-.L767:
-	; ZOL_END, begins @.L756
+.L760:
+	; ZOL_END, begins @.L749
 	.align 2
-.L755:
-	brls	r2,r15,.L751
+.L748:
+	brls	r2,r15,.L744
 	add_s	r15,r15,-1   ;h,h,s3
 	add_s	r3,r1,r15   ;a,b,c/u3
 	add_s	r0,r0,r15   ;b,b,h
@@ -2936,16 +2934,16 @@ __cmovw:
 	add_s	r2,r2,r1   ;b,b,h
 	sub_s	r2,r2,r3
 	mov	lp_count,r2	;5
-	lp	@.L766	; lp_count:@.L757->@.L766
+	lp	@.L759	; lp_count:@.L750->@.L759
 	.align 2
-.L757:
+.L750:
 	ldb.a	r12,[r3,1]
 	stb.a	r12,[r0,1]
 	.align 2
-.L766:
-	; ZOL_END, begins @.L757
+.L759:
+	; ZOL_END, begins @.L750
 	.align 2
-.L751:
+.L744:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
@@ -3008,17 +3006,17 @@ __clzhi2:
 	mov_s	r0,0	;3
 	mov_s	r2,16	;3
 	mov	lp_count,r2	;5
-	lp	@.L787	; lp_count:@.L783->@.L787
+	lp	@.L780	; lp_count:@.L776->@.L780
 	.align 2
-.L783:
+.L776:
 	rsub	r3,r0,15
-	bbit1	r12,r3,@.L788
+	bbit1	r12,r3,@.L781
 	add_s	r0,r0,1   ;b,b,h
 	.align 2
-.L787:
-	; ZOL_END, begins @.L783
+.L780:
+	; ZOL_END, begins @.L776
 	.align 2
-.L788:
+.L781:
 	j_s	[blink]
 	.size	__clzhi2, .-__clzhi2
 	.align 4
@@ -3029,16 +3027,16 @@ __ctzhi2:
 	mov_s	r0,0	;3
 	mov_s	r2,16	;3
 	mov	lp_count,r2	;5
-	lp	@.L795	; lp_count:@.L791->@.L795
+	lp	@.L788	; lp_count:@.L784->@.L788
 	.align 2
-.L791:
-	bbit1	r3,r0,@.L796
+.L784:
+	bbit1	r3,r0,@.L789
 	add_s	r0,r0,1   ;b,b,h
 	.align 2
-.L795:
-	; ZOL_END, begins @.L791
+.L788:
+	; ZOL_END, begins @.L784
 	.align 2
-.L796:
+.L789:
 	j_s	[blink]
 	.size	__ctzhi2, .-__ctzhi2
 	.align 4
@@ -3050,21 +3048,21 @@ __fixunssfsi:
 	mov_s	r1,0x47000000 ; 3.2768e+4
 	bl.d	@__gesf2;1
 	mov_s	r13,r0
-	brge	r0,0,.L804
+	brge	r0,0,.L797
 	bl.d	@__fixsfsi;1
 	mov_s	r0,r13
-.L797:
+.L790:
 	ld	blink,[sp,4]	;23
 	j_s.d	[blink]
 	ld.ab	r13,[sp,8]	;23
 	.align 4
-.L804:
+.L797:
 	mov_s	r1,0x47000000 ; 3.2768e+4
 	bl.d	@__subsf3;1
 	mov_s	r0,r13
 	bl	@__fixsfsi;1
 	add_s	r0,r0,32768   ;b,b,limm
-	b_s	.L797
+	b_s	.L790
 	.size	__fixunssfsi, .-__fixunssfsi
 	.align 4
 	.global	__parityhi2
@@ -3076,16 +3074,16 @@ __parityhi2:
 	mov_s	r12,0	;3
 	mov_s	r3,16	;3
 	mov	lp_count,r3	;5
-	lp	@.L810	; lp_count:@.L806->@.L810
+	lp	@.L803	; lp_count:@.L799->@.L803
 	.align 2
-.L806:
+.L799:
 	asr	r2,r13,r12
 	bmsk_s	r2,r2,0
 	add_s	r0,r0,r2   ;b,b,h
 	add_s	r12,r12,1   ;b,b,h
 	.align 2
-.L810:
-	; ZOL_END, begins @.L806
+.L803:
+	; ZOL_END, begins @.L799
 	bmsk_s	r0,r0,0
 	j_s.d	[blink]
 	pop_s	r13
@@ -3100,16 +3098,16 @@ __popcounthi2:
 	mov_s	r12,0	;3
 	mov_s	r3,16	;3
 	mov	lp_count,r3	;5
-	lp	@.L816	; lp_count:@.L812->@.L816
+	lp	@.L809	; lp_count:@.L805->@.L809
 	.align 2
-.L812:
+.L805:
 	asr	r2,r13,r12
 	bmsk_s	r2,r2,0
 	add_s	r0,r0,r2   ;b,b,h
 	add_s	r12,r12,1   ;b,b,h
 	.align 2
-.L816:
-	; ZOL_END, begins @.L812
+.L809:
+	; ZOL_END, begins @.L805
 	j_s.d	[blink]
 	pop_s	r13
 	.size	__popcounthi2, .-__popcounthi2
@@ -3118,77 +3116,64 @@ __popcounthi2:
 	.type	__mulsi3_iq2000, @function
 __mulsi3_iq2000:
 	mov.f	r2,r0
-	beq_s	.L820
+	jeq.d	[blink]
 	mov_s	r0,0	;3
 	.align 2
-.L819:
+.L812:
 	and	r3,r2,1
 	mpy_s	r3,r3,r1
 	add_s	r0,r0,r3   ;b,b,h
 	lsr.f	r2,r2,1
-	bne.d	.L819
+	bne.d	.L812
 	asl_s	r1,r1,1
 	j_s	[blink]
-	.align 4
-.L820:
-	j_s.d	[blink]
-	mov_s	r0,r2	;4
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
 	.align 4
 	.global	__mulsi3_lm32
 	.type	__mulsi3_lm32, @function
 __mulsi3_lm32:
 	mov.f	r3,r0
-	beq_s	.L828
-	breq_s	r1,0,.L829
+	jeq.d	[blink]
 	mov_s	r0,0	;3
+	tst_s	r1,r1
+	jeq_s	[blink]
 	.align 2
-.L827:
+.L820:
 	and	r2,r1,1
 	mpy_s	r2,r2,r3
 	add_s	r0,r0,r2   ;b,b,h
 	lsr.f	r1,r1,1
-	bne.d	.L827
+	bne.d	.L820
 	asl_s	r3,r3,1
 	j_s	[blink]
-	.align 4
-.L828:
-	j_s.d	[blink]
-	mov_s	r0,r3	;4
-	.align 4
-.L829:
-	j_s.d	[blink]
-	mov_s	r0,r1	;4
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
 	.align 4
 	.global	__udivmodsi4
 	.type	__udivmodsi4, @function
 __udivmodsi4:
-	brhs.d	r1,r0,.L836
+	brhs.d	r1,r0,.L829
 	mov_s	r3,1	;3
 	.align 2
-.L835:
-	brlt	r1,0,.L836
+.L828:
+	brlt	r1,0,.L829
 	asl_s	r1,r1,1
-	brls.d	r0,r1,.L836
+	brls.d	r0,r1,.L829
 	asl_s	r3,r3,1
-	brne_s	r3,0,.L835
+	brne_s	r3,0,.L828
 	.align 2
-.L836:
-	tst_s	r3,r3
-	beq.d	.L838
-	mov.eq	r12,r3
+.L829:
+	breq.d	r3,0,.L831
 	mov_s	r12,0	;3
 	.align 2
-.L840:
+.L833:
 	cmp_s	r0,r1
 	sub.hs	r0,r0,r1
 	or.hs r12,r12,r3
 	lsr.f	r3,r3,1
-	bne.d	.L840
+	bne.d	.L833
 	lsr_s	r1,r1
 	.align 2
-.L838:
+.L831:
 	tst_s	r2,r2
 	j_s.d	[blink]
 	mov.eq	r0,r12
@@ -3205,12 +3190,12 @@ __mspabi_cmpf:
 	mov_s	r14,r1
 	tst_s	r0,r0
 	mov.n	r0,-1
-	bn	.L847
+	bn	.L840
 	mov_s	r1,r14
 	bl.d	@__gtsf2;1
 	mov_s	r0,r13
 	setgt	r0,r0,0
-.L847:
+.L840:
 	ld	blink,[sp,8]	;23
 	pop_s	r13
 	j_s.d	[blink]
@@ -3228,12 +3213,12 @@ __mspabi_cmpd:
 	bl	@__ltdf2;1
 	tst_s	r0,r0
 	mov.n	r0,-1
-	bn	.L852
+	bn	.L845
 	vadd2	r2,r16,0
 	vadd2	r0,r14,0
 	bl	@__gtdf2;1
 	setgt	r0,r0,0
-.L852:
+.L845:
 	ld	blink,[sp,16]	;23
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,12]
@@ -3269,27 +3254,25 @@ __mulhi3:
 	neg.n	r1,r1
 	mov.n	r13,1
 	mov.p	r13,0
-	tst_s	r1,r1
-	beq.d	.L863
-	mov.eq	r0,r1
+	breq.d	r1,0,.L856
 	mov_s	r0,0	;3
 	mov_s	r12,32	;3
 	mov	lp_count,r12	;5
-	lp	@.L871	; lp_count:@.L864->@.L871
+	lp	@.L864	; lp_count:@.L857->@.L864
 	.align 2
-.L864:
+.L857:
 	and	r2,r1,1
 	mpy_s	r2,r2,r3
 	add_s	r0,r0,r2   ;b,b,h
 	asr.f	r1,r1,1
-	beq.d	.L863
+	beq.d	.L856
 	asl_s	r3,r3,1
 	nop_s
 	.align 2
-.L871:
-	; ZOL_END, begins @.L864
+.L864:
+	; ZOL_END, begins @.L857
 	.align 2
-.L863:
+.L856:
 	tst_s	r13,r13
 	neg.ne	r0,r0
 	j_s.d	[blink]
@@ -3343,39 +3326,42 @@ __udivmodhi4:
 	exth_s	r1,r1
 	mov_s	r3,1	;3
 	cmp_s	r1,r0
-	bhs.d	.L885
+	bhs.d	.L878
 	mov.lo	r12,16
 	.align 2
-.L884:
+.L894:
+	mov	lp_count,r12	;5
+	lp	@.L893	; lp_count:@.L877->@.L893
+	.align 2
+.L877:
 	btst_s	r1,15
-	bne_s	.L885
+	bne_s	.L878
 	asl_s	r1,r1,1
 	exth_s	r1,r1
 	asl_s	r3,r3,1
-	brls.d	r0,r1,.L885
+	brls.d	r0,r1,.L878
 	exth_s	r3,r3
-	add_s	r12,r12,-1   ;h,h,s3
-	tst_s	r12,r12
-	bne_s	.L884
+	nop_s
+	.align 2
+.L893:
+	; ZOL_END, begins @.L877
 	mov_s	r3,0	;3
 	.align 2
-.L885:
-	tst_s	r3,r3
-	beq.d	.L887
-	mov.eq	r12,r3
+.L878:
+	breq.d	r3,0,.L880
 	mov_s	r12,0	;3
 	.align 2
-.L889:
+.L882:
 	cmp_s	r0,r1
 	sub.hs	r0,r0,r1
 	bmsk.hs	r0,r0,15
 	or.hs r12,r12,r3
 	bmsk.hs	r12,r12,15
 	lsr.f	r3,r3,1
-	bne.d	.L889
+	bne.d	.L882
 	lsr_s	r1,r1
 	.align 2
-.L887:
+.L880:
 	tst_s	r2,r2
 	j_s.d	[blink]
 	mov.eq	r0,r12
@@ -3384,31 +3370,29 @@ __udivmodhi4:
 	.global	__udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
-	brhs.d	r1,r0,.L902
+	brhs.d	r1,r0,.L897
 	mov_s	r3,1	;3
 	.align 2
-.L901:
-	brlt	r1,0,.L902
+.L896:
+	brlt	r1,0,.L897
 	asl_s	r1,r1,1
-	brls.d	r0,r1,.L902
+	brls.d	r0,r1,.L897
 	asl_s	r3,r3,1
-	brne_s	r3,0,.L901
+	brne_s	r3,0,.L896
 	.align 2
-.L902:
-	tst_s	r3,r3
-	beq.d	.L904
-	mov.eq	r12,r3
+.L897:
+	breq.d	r3,0,.L899
 	mov_s	r12,0	;3
 	.align 2
-.L906:
+.L901:
 	cmp_s	r0,r1
 	sub.hs	r0,r0,r1
 	or.hs r12,r12,r3
 	lsr.f	r3,r3,1
-	bne.d	.L906
+	bne.d	.L901
 	lsr_s	r1,r1
 	.align 2
-.L904:
+.L899:
 	tst_s	r2,r2
 	j_s.d	[blink]
 	mov.eq	r0,r12
@@ -3417,44 +3401,44 @@ __udivmodsi4_libgcc:
 	.global	__ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
-	bbit0	r2,5,@.L914
+	bbit0	r2,5,@.L909
 	asl	r1,r0,r2
 	mov_s	r12,0	;3
 	.align 2
-.L915:
+.L910:
 	j_s.d	[blink]
 	mov_s	r0,r12	;4
 	.align 4
-.L914:
+.L909:
 	tst_s	r2,r2
 	jeq_s	[blink]
 	asl	r12,r0,r2
 	rsub	r3,r2,32
 	lsr	r3,r0,r3
 	asl_s	r1,r1,r2
-	b.d	.L915
+	b.d	.L910
 	or_s	r1,r1,r3
 	.size	__ashldi3, .-__ashldi3
 	.align 4
 	.global	__ashrdi3
 	.type	__ashrdi3, @function
 __ashrdi3:
-	bbit0	r2,5,@.L920
+	bbit0	r2,5,@.L915
 	asr	r12,r1,31
 	asr	r0,r1,r2
 	.align 2
-.L921:
+.L916:
 	j_s.d	[blink]
 	mov_s	r1,r12	;4
 	.align 4
-.L920:
+.L915:
 	tst_s	r2,r2
 	jeq_s	[blink]
 	asr	r12,r1,r2
 	rsub	r3,r2,32
 	asl	r3,r1,r3
 	lsr_s	r0,r0,r2
-	b.d	.L921
+	b.d	.L916
 	or_s	r0,r0,r3
 	.size	__ashrdi3, .-__ashrdi3
 	.align 4
@@ -3535,21 +3519,22 @@ __clzsi2:
 	.global	__cmpdi2
 	.type	__cmpdi2, @function
 __cmpdi2:
-	brlt	r1,r3,.L935
-	brgt	r1,r3,.L934
-	brlo	r0,r2,.L935
+	cmp_s	r1,r3
+	blt_s	.L930
+	bgt_s	.L931
 	cmp_s	r0,r2
+	blo_s	.L930
+	bhi_s	.L931
+	j_s.d	[blink]
 	mov_s	r0,1	;3
-	j_s.d	[blink]
-	mov.hi	r0,2
 	.align 4
-.L934:
-	j_s.d	[blink]
-	mov_s	r0,2	;3
-	.align 4
-.L935:
+.L930:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
+	.align 4
+.L931:
+	j_s.d	[blink]
+	mov_s	r0,2	;3
 	.size	__cmpdi2, .-__cmpdi2
 	.align 4
 	.global	__aeabi_lcmp
@@ -3595,22 +3580,22 @@ __ctzsi2:
 	.global	__lshrdi3
 	.type	__lshrdi3, @function
 __lshrdi3:
-	bbit0	r2,5,@.L943
+	bbit0	r2,5,@.L938
 	lsr	r0,r1,r2
 	mov_s	r12,0	;3
 	.align 2
-.L944:
+.L939:
 	j_s.d	[blink]
 	mov_s	r1,r12	;4
 	.align 4
-.L943:
+.L938:
 	tst_s	r2,r2
 	jeq_s	[blink]
 	lsr	r12,r1,r2
 	rsub	r3,r2,32
 	asl	r3,r1,r3
 	lsr_s	r0,r0,r2
-	b.d	.L944
+	b.d	.L939
 	or_s	r0,r0,r3
 	.size	__lshrdi3, .-__lshrdi3
 	.align 4
@@ -3778,32 +3763,32 @@ __powidf2:
 	mov_s	r18,r2	;4
 	mov_s	r13,r2	;4
 	mov_s	r17,1072693248	;13
-	b.d	.L965
+	b.d	.L960
 	mov_s	r16,0	;4
 	.align 4
-.L963:
+.L958:
 	div	r13,r13,2
 	.align 4
-.L969:
-	breq_s	r13,0,.L964
+.L964:
+	breq_s	r13,0,.L959
 	vadd2	r2,r14,0
 	vadd2	r0,r14,0
 	bl	@__muldf3;1
 	vadd2	r14,r0,0
 	.align 2
-.L965:
-	bbit0	r13,0,@.L963
+.L960:
+	bbit0	r13,0,@.L958
 	vadd2	r2,r14,0
 	vadd2	r0,r16,0
 	bl.d	@__muldf3;1
 	div	r13,r13,2
 	vadd2	r16,r0,0
-	b_s	.L969
+	b_s	.L964
 	.align 4
-.L964:
-	brlt	r18,0,.L968
+.L959:
+	brlt	r18,0,.L963
 	.align 2
-.L962:
+.L957:
 	vadd2	r0,r16,0
 	ld	blink,[sp,24]	;23
 	pop_s	r13
@@ -3812,13 +3797,13 @@ __powidf2:
 	j_s.d	[blink]
 	ld.ab	r18,[sp,8]	;23
 	.align 4
-.L968:
+.L963:
 	vadd2	r2,r16,0
 	mov_s	r1,1072693248	;13
 	bl.d	@__divdf3;1
 	mov_s	r0,0	;3
 	vadd2	r16,r0,0
-	b_s	.L962
+	b_s	.L957
 	.size	__powidf2, .-__powidf2
 	.align 4
 	.global	__powisf2
@@ -3831,29 +3816,29 @@ __powisf2:
 	mov_s	r13,r0
 	mov_s	r16,r1	;4
 	mov_s	r15,0x3f800000 ; 1.0e+0
-	b.d	.L973
+	b.d	.L968
 	mov_s	r14,r1	;4
 	.align 4
-.L971:
+.L966:
 	div	r14,r14,2
-	breq_s	r14,0,.L972
+	breq_s	r14,0,.L967
 	mov_s	r1,r13
 	bl.d	@__mulsf3;1
 	mov_s	r0,r13
 	mov_s	r13,r0
 	.align 2
-.L973:
-	bbit0	r14,0,@.L971
+.L968:
+	bbit0	r14,0,@.L966
 	mov_s	r1,r13
 	bl.d	@__mulsf3;1
 	mov_s	r0,r15
-	b.d	.L971
+	b.d	.L966
 	mov_s	r15,r0
 	.align 4
-.L972:
-	brlt	r16,0,.L976
+.L967:
+	brlt	r16,0,.L971
 	.align 2
-.L970:
+.L965:
 	mov_s	r0,r15
 	ld	blink,[sp,16]	;23
 	pop_s	r13
@@ -3861,32 +3846,33 @@ __powisf2:
 	j_s.d	[blink]
 	ld.ab	r16,[sp,8]	;23
 	.align 4
-.L976:
+.L971:
 	mov_s	r0,0x3f800000 ; 1.0e+0
 	bl.d	@__divsf3;1
 	mov_s	r1,r15
-	b.d	.L970
+	b.d	.L965
 	mov_s	r15,r0
 	.size	__powisf2, .-__powisf2
 	.align 4
 	.global	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
-	brlo	r1,r3,.L981
-	brhi	r1,r3,.L980
-	brlo	r0,r2,.L981
+	cmp_s	r1,r3
+	blo_s	.L976
+	bhi_s	.L977
 	cmp_s	r0,r2
+	blo_s	.L976
+	bhi_s	.L977
+	j_s.d	[blink]
 	mov_s	r0,1	;3
-	j_s.d	[blink]
-	mov.hi	r0,2
 	.align 4
-.L980:
-	j_s.d	[blink]
-	mov_s	r0,2	;3
-	.align 4
-.L981:
+.L976:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
+	.align 4
+.L977:
+	j_s.d	[blink]
+	mov_s	r0,2	;3
 	.size	__ucmpdi2, .-__ucmpdi2
 	.align 4
 	.global	__aeabi_ulcmp
