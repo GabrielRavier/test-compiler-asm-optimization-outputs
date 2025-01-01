@@ -304,14 +304,15 @@ strlen:
 strncmp:
 .LFB12:
 	.cfi_startproc
-	addi 9,5,-1
 	cmpwi 0,5,0
 	beq- 0,.L88
 	lbz 10,0(3)
-	andi. 8,10,0xff
+	andi. 9,10,0xff
 	beq- 0,.L85
-	add 7,4,9
-	mtctr 5
+	addi 5,5,-1
+	add 7,4,5
+	addi 9,5,1
+	mtctr 9
 .L86:
 	lbz 9,0(4)
 	andi. 8,9,0xff
@@ -3748,17 +3749,17 @@ memmem:
 	.cfi_startproc
 	stwu 1,-32(1)
 	.cfi_def_cfa_offset 32
-	stw 30,24(1)
 	stw 31,28(1)
-	.cfi_offset 30, -8
 	.cfi_offset 31, -4
 	mr 31,3
-	subf 30,6,4
-	add 30,3,30
 	cmpwi 0,6,0
 	beq- 0,.L532
 	cmplw 0,4,6
 	blt- 0,.L537
+	stw 30,24(1)
+	.cfi_offset 30, -8
+	subf 30,6,4
+	add 30,3,30
 	cmplw 0,3,30
 	bgt- 0,.L538
 	mflr 0
@@ -3797,6 +3798,8 @@ memmem:
 	.cfi_restore 28
 	lwz 29,20(1)
 	.cfi_restore 29
+	lwz 30,24(1)
+	.cfi_restore 30
 	lwz 0,36(1)
 	mtlr 0
 	.cfi_restore 65
@@ -3810,16 +3813,16 @@ memmem:
 	.cfi_restore 28
 	lwz 29,20(1)
 	.cfi_restore 29
+	lwz 30,24(1)
+	.cfi_restore 30
 	lwz 0,36(1)
 	mtlr 0
 	.cfi_restore 65
 .L532:
-	lwz 30,24(1)
 	lwz 31,28(1)
 	addi 1,1,32
 	.cfi_remember_state
 	.cfi_restore 31
-	.cfi_restore 30
 	.cfi_def_cfa_offset 0
 	blr
 .L537:
@@ -3827,7 +3830,10 @@ memmem:
 	li 3,0
 	b .L532
 .L538:
+	.cfi_offset 30, -8
 	li 3,0
+	lwz 30,24(1)
+	.cfi_restore 30
 	b .L532
 	.cfi_endproc
 .LFE97:
@@ -5015,9 +5021,9 @@ __ashldi3:
 	.cfi_startproc
 	andi. 9,5,0x20
 	beq- 0,.L803
-	li 10,0
 	addi 5,5,-32
 	slw 3,4,5
+	li 10,0
 .L804:
 	mr 4,10
 	blr
@@ -5236,9 +5242,9 @@ __lshrdi3:
 	.cfi_startproc
 	andi. 9,5,0x20
 	beq- 0,.L827
-	li 10,0
 	addi 5,5,-32
 	srw 4,3,5
+	li 10,0
 .L828:
 	mr 3,10
 	blr

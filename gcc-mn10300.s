@@ -271,21 +271,21 @@ strlen:
 	.global strncmp
 	.type	strncmp, @function
 strncmp:
-	mov (12,sp),a0
-	mov -1,r1
-	add_cmp a0, r1, 0, a0
+	mov (12,sp),r1
+	cmp 0,r1
 	beq .L78
 	movbu (d0),a1
 	extbu a1,a0
 	cmp 0,a0
 	beq .L75
+	add -1,r1
 	add d0,r1
 .L76:
 	movbu (d1),a0
 	extbu a0,r0
 	cmp 0,r0
 	beq .L75
-	cmp d0,r1
+	cmp r1,d0
 	beq .L75
 	mov r0,a0
 	extbu a1,r0
@@ -2576,11 +2576,12 @@ memmem:
 	mov d0,d2
 	mov (60,sp),r4
 	mov (64,sp),d0
-	sub d0,d1,d3
-	add_cmp d2, d3, 0, d0
+	cmp 0,d0
 	beq .L499
 	cmp d0,d1
 	bcs .L500
+	sub d0,d1,d3
+	add d2,d3
 	cmp d3,d2
 	bhi .L501
 	movbu (r4),a2
@@ -3561,60 +3562,59 @@ __udivmodsi4_libgcc:
 	.global __ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
-	mov_mov d0, r2, d1, r3
+	mov_mov d0, a0, d1, a1
 	mov (12,sp),d0
 	mov d0,d1
 	and 32,d1
 	beq .L728
-	mov 0,a0
-	asl d0,r2,a1
+	mov_asl 0, r0, d0, a0
 .L729:
-	mov_mov a0, r0, a1, r1
+	mov a0,r1
 .L730:
 	mov_mov r0, d0, r1, d1
 	retf [],0
 .L728:
 	cmp 0,d0
 	beq .L731
-	asl d0,r2,a0
-	asl d0,r3,d1
+	asl d0,a0,r0
+	asl d0,a1,d1
 	not d0
 	inc d0
-	lsr d0,r2
-	or r2,d1,a1
+	lsr d0,a0
+	or d1,a0
 	jmp .L729
 .L731:
-	mov_mov r2, r0, r3, r1
+	mov_mov a0, r0, a1, r1
 	jmp .L730
 	.size	__ashldi3, .-__ashldi3
 	.global __ashrdi3
 	.type	__ashrdi3, @function
 __ashrdi3:
-	mov_mov d0, r2, d1, r3
-	mov (12,sp),d0
-	mov d0,d1
-	and 32,d1
+	mov_mov d0, a0, d1, a1
+	mov (12,sp),d1
+	mov d1,d0
+	and 32,d0
 	beq .L733
-	mov r3,a1
-	asr 31,a1
-	asr d0,r3,a0
+	mov a1,d0
+	asr 31,d0
+	asr d1,a1,d1
 .L734:
-	mov_mov a0, r0, a1, r1
+	mov_mov d1, r0, d0, r1
 .L735:
 	mov_mov r0, d0, r1, d1
 	retf [],0
 .L733:
-	cmp 0,d0
+	cmp 0,d1
 	beq .L736
-	asr d0,r3,a1
-	mov 0,d1
-	sub d0,d1
-	asl d1,r3,d1
-	lsr d0,r2,d0
-	or d0,d1,a0
+	asr d1,a1,d0
+	mov 0,r0
+	sub d1,r0
+	asl r0,a1,r0
+	lsr d1,a0,d1
+	or r0,d1
 	jmp .L734
 .L736:
-	mov_mov r2, r0, r3, r1
+	mov_mov a0, r0, a1, r1
 	jmp .L735
 	.size	__ashrdi3, .-__ashrdi3
 	.global __bswapdi2
@@ -3840,31 +3840,30 @@ __ctzsi2:
 	.global __lshrdi3
 	.type	__lshrdi3, @function
 __lshrdi3:
-	mov_mov d0, r0, d1, r1
-	mov (12,sp),d0
-	mov_mov d1, r3, d0, d1
-	and 32,d1
+	mov_mov d0, a0, d1, a1
+	mov (12,sp),d1
+	mov_mov a1, r1, d1, d0
+	and 32,d0
 	beq .L759
-	mov 0,a0
-	mov a0,a1
-	lsr d0,r1,a0
+	lsr d1,a1,d1
+	mov 0,d0
 .L760:
-	mov_mov a0, r2, a1, r3
+	mov_mov d1, r0, d0, r1
 .L761:
-	mov_mov r2, d0, r3, d1
+	mov_mov r0, d0, r1, d1
 	retf [],0
 .L759:
-	cmp 0,d0
+	cmp 0,d1
 	beq .L762
-	lsr d0,r1,a1
-	mov 0,d1
-	sub d0,d1
-	asl d1,r1,d1
-	lsr d0,r0,d0
-	or d0,d1,a0
+	lsr d1,a1,d0
+	mov 0,a1
+	sub d1,a1
+	asl a1,r1,a1
+	lsr d1,a0,d1
+	or a1,d1
 	jmp .L760
 .L762:
-	mov r0,r2
+	mov a0,r0
 	jmp .L761
 	.size	__lshrdi3, .-__lshrdi3
 	.global __muldsi3

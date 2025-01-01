@@ -260,18 +260,18 @@ strlen:
 	.globl strncmp
 	.type	strncmp, @function
 strncmp:
-	addi gr10,#-1,gr6
 	cmpi gr10, #0, icc0
 	beq icc0,0,.L77
 	ldub @(gr8,gr0),gr4
 	cmpi gr4, #0, icc0
 	beq icc0,0,.L74
+	addi gr10,#-1,gr6
 	add gr8,gr6,gr6
 .L75:
 	ldub @(gr9,gr0),gr5
 	cmpi gr5, #0, icc0
 	beq icc0,0,.L74
-	cmp gr6,gr8,icc0
+	cmp gr8,gr6,icc0
 	beq icc0,0,.L74
 	cmp gr5,gr4,icc0
 	bne icc0,0,.L74
@@ -3147,18 +3147,18 @@ memmem:
 	sti gr21, @(sp,12)
 	sti gr22, @(sp,16)
 	sti gr23, @(sp,20)
-	mov gr15, gr23
+	mov gr15, gr21
 	mov gr8, gr18
-	sub gr9,gr11,gr19
-	add gr8,gr19,gr19
 	cmpi gr11, #0, icc0
 	beq icc0,0,.L451
 	cmp gr9,gr11,icc0
 	bc icc0,0,.L456
+	sub gr9,gr11,gr9
+	add gr8,gr9,gr19
 	cmp gr8,gr19,icc0
 	bhi icc0,0,.L457
-	ldsb @(gr10,gr0),gr21
-	addi gr10,#1,gr22
+	ldsb @(gr10,gr0),gr22
+	addi gr10,#1,gr23
 	addi gr11,#-1,gr20
 	bra .L454
 .L453:
@@ -3167,12 +3167,12 @@ memmem:
 	bc icc0,0,.L460
 .L454:
 	ldsb @(gr18,gr0),gr4
-	cmp gr4,gr21,icc0
+	cmp gr4,gr22,icc0
 	bne icc0,2,.L453
 	addi gr18,#1,gr8
 	mov gr20, gr10
-	mov gr22, gr9
-	mov gr23, gr15
+	mov gr23, gr9
+	mov gr21, gr15
 	call memcmp
 	cmpi gr8, #0, icc0
 	bne icc0,2,.L453
@@ -4275,9 +4275,9 @@ __ashldi3:
 	andi gr10, #32, gr4
 	cmpi gr4, #0, icc0
 	beq icc0,2,.L674
-	setlos #0, gr5
 	addi gr10,#-32,gr10
 	sll gr9,gr10,gr8
+	setlos #0, gr5
 .L675:
 	mov gr5, gr9
 .L676:
@@ -4518,9 +4518,9 @@ __lshrdi3:
 	andi gr10, #32, gr4
 	cmpi gr4, #0, icc0
 	beq icc0,2,.L695
-	setlos #0, gr5
 	addi gr10,#-32,gr10
 	srl gr8, gr10, gr9
+	setlos #0, gr5
 .L696:
 	mov gr5, gr8
 .L697:

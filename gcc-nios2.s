@@ -276,20 +276,20 @@ strlen:
 	.global	strncmp
 	.type	strncmp, @function
 strncmp:
-	addi	r7, r6, -1
 	beq	r6, zero, .L80
 	ldbu	r2, 0(r4)
 	andi	r3, r2, 0xff
 	beq	r3, zero, .L77
-	add	r7, r4, r7
+	addi	r6, r6, -1
+	add	r6, r4, r6
 .L78:
 	ldbu	r3, 0(r5)
-	andi	r6, r3, 0xff
-	beq	r6, zero, .L77
-	beq	r7, r4, .L77
-	mov	r3, r6
-	andi	r6, r2, 0xff
-	bne	r3, r6, .L77
+	andi	r7, r3, 0xff
+	beq	r7, zero, .L77
+	beq	r4, r6, .L77
+	mov	r3, r7
+	andi	r7, r2, 0xff
+	bne	r3, r7, .L77
 	addi	r4, r4, 1
 	addi	r5, r5, 1
 	ldbu	r2, 0(r4)
@@ -2754,10 +2754,10 @@ memmem:
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
 	mov	r16, r4
-	sub	r17, r5, r7
-	add	r17, r4, r17
 	beq	r7, zero, .L507
 	bltu	r5, r7, .L508
+	sub	r5, r5, r7
+	add	r17, r4, r5
 	bltu	r17, r4, .L509
 	ldb	r19, 0(r6)
 	addi	r20, r6, 1
@@ -3755,9 +3755,9 @@ __udivmodsi4_libgcc:
 __ashldi3:
 	andi	r2, r6, 32
 	beq	r2, zero, .L755
-	mov	r2, zero
 	addi	r6, r6, -32
 	sll	r3, r4, r6
+	mov	r2, zero
 	ret
 .L755:
 	beq	r6, zero, .L758
@@ -3949,9 +3949,9 @@ __ctzsi2:
 __lshrdi3:
 	andi	r2, r6, 32
 	beq	r2, zero, .L779
-	mov	r3, zero
 	addi	r6, r6, -32
 	srl	r2, r5, r6
+	mov	r3, zero
 	ret
 .L779:
 	beq	r6, zero, .L782
