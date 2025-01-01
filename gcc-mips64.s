@@ -2975,24 +2975,24 @@ wmemmove:
 	beq	$4,$5,.L445
 	move	$2,$4
 
-	dsubu	$3,$4,$5
-	dsll	$4,$6,2
-	sltu	$3,$3,$4
-	bne	$3,$0,.L435
-	daddiu	$7,$6,-1
+	dsubu	$4,$4,$5
+	dsll	$7,$6,2
+	sltu	$4,$4,$7
+	bne	$4,$0,.L435
+	daddiu	$3,$6,-1
 
-	move	$3,$2
+	move	$7,$2
 	beq	$6,$0,.L445
 	li	$8,-1			# 0xffffffffffffffff
 
 	.align	3
 .L436:
 	daddiu	$5,$5,4
-	daddiu	$3,$3,4
+	daddiu	$7,$7,4
 	lw	$4,-4($5)
-	daddiu	$7,$7,-1
-	bne	$7,$8,.L436
-	sw	$4,-4($3)
+	daddiu	$3,$3,-1
+	bne	$3,$8,.L436
+	sw	$4,-4($7)
 
 .L445:
 	jr	$31
@@ -3001,9 +3001,8 @@ wmemmove:
 	.align	3
 .L435:
 	beq	$6,$0,.L445
-	daddiu	$3,$6,-1
-
 	dsll	$3,$3,2
+
 	li	$7,-4			# 0xfffffffffffffffc
 	.align	3
 .L437:
@@ -3468,22 +3467,18 @@ ffs:
 	li	$5,32			# 0x20
 	srl	$3,$4,$2
 	.align	3
-.L495:
+.L494:
 	andi	$3,$3,0x1
-	bne	$3,$0,.L494
-	nop
-
+	bne	$3,$0,.L495
 	addiu	$2,$2,1
-	bne	$2,$5,.L495
+
+	bne	$2,$5,.L494
 	srl	$3,$4,$2
 
-	jr	$31
 	move	$2,$0
-
-	.align	3
-.L494:
+.L495:
 	jr	$31
-	addiu	$2,$2,1
+	nop
 
 	.set	macro
 	.set	reorder
@@ -4365,20 +4360,21 @@ copysign:
 	.ent	memmem
 	.type	memmem, @function
 memmem:
-	.frame	$sp,64,$31		# vars= 0, regs= 8/0, args= 0, gp= 0
-	.mask	0x903f0000,-8
+	.frame	$sp,80,$31		# vars= 0, regs= 9/0, args= 0, gp= 0
+	.mask	0x907f0000,-8
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	daddiu	$sp,$sp,-64
-	sd	$31,56($sp)
-	sd	$28,48($sp)
-	sd	$21,40($sp)
-	sd	$20,32($sp)
-	sd	$19,24($sp)
-	sd	$18,16($sp)
-	sd	$17,8($sp)
-	sd	$16,0($sp)
+	daddiu	$sp,$sp,-80
+	sd	$31,72($sp)
+	sd	$28,64($sp)
+	sd	$22,56($sp)
+	sd	$21,48($sp)
+	sd	$20,40($sp)
+	sd	$19,32($sp)
+	sd	$18,24($sp)
+	sd	$17,16($sp)
+	sd	$16,8($sp)
 	lui	$28,%hi(%neg(%gp_rel(memmem)))
 	daddu	$28,$28,$25
 	daddiu	$28,$28,%lo(%neg(%gp_rel(memmem)))
@@ -4392,63 +4388,69 @@ memmem:
 	daddu	$17,$4,$5
 	sltu	$2,$17,$4
 	bne	$2,$0,.L630
-	daddiu	$19,$7,-1
+	daddiu	$20,$7,-1
 
-	lb	$20,0($6)
-	daddiu	$18,$6,1
+	lb	$21,0($6)
+	daddiu	$19,$6,1
 	b	.L627
-	ld	$21,%got_disp(memcmp)($28)
+	ld	$22,%got_disp(memcmp)($28)
 
 	.align	3
 .L626:
+	sltu	$2,$17,$16
 	.align	3
 .L635:
-	sltu	$2,$17,$16
-	bne	$2,$0,.L634
-	move	$2,$0
+	bne	$2,$0,.L633
+	move	$18,$0
 
 .L627:
 	lb	$2,0($16)
-	bnel	$2,$20,.L635
+	move	$18,$16
+	bne	$2,$21,.L626
 	daddiu	$16,$16,1
 
-	move	$6,$19
-	move	$5,$18
-	move	$25,$21
+	move	$6,$20
+	move	$5,$19
+	move	$25,$22
 	.reloc	1f,R_MIPS_JALR,memcmp
 1:	jalr	$25
-	daddiu	$4,$16,1
+	move	$4,$16
 
-	bnel	$2,$0,.L626
-	daddiu	$16,$16,1
+	bnel	$2,$0,.L635
+	sltu	$2,$17,$16
 
-	move	$2,$16
+	b	.L634
+	move	$2,$18
+
 	.align	3
-.L634:
+.L633:
 .L624:
-	ld	$31,56($sp)
-	ld	$28,48($sp)
-	ld	$21,40($sp)
-	ld	$20,32($sp)
-	ld	$19,24($sp)
-	ld	$18,16($sp)
-	ld	$17,8($sp)
-	ld	$16,0($sp)
+	move	$2,$18
+.L634:
+	ld	$31,72($sp)
+	ld	$28,64($sp)
+	ld	$22,56($sp)
+	ld	$21,48($sp)
+	ld	$20,40($sp)
+	ld	$19,32($sp)
+	ld	$18,24($sp)
+	ld	$17,16($sp)
+	ld	$16,8($sp)
 	jr	$31
-	daddiu	$sp,$sp,64
+	daddiu	$sp,$sp,80
 
 	.align	3
 .L628:
 	b	.L624
-	move	$2,$4
+	move	$18,$4
 
 .L629:
 	b	.L624
-	move	$2,$0
+	move	$18,$0
 
 .L630:
 	b	.L624
-	move	$2,$0
+	move	$18,$0
 
 	.set	macro
 	.set	reorder

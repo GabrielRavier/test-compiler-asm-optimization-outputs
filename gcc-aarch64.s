@@ -1974,14 +1974,14 @@ wmemmove:
 	b	.L307
 	.p2align 2,,3
 .L308:
-	sub	x3, x2, #1
 	cbz	x2, .L307
+	sub	x2, x2, #1
 	.p2align 3,,7
 .L310:
-	ldr	w2, [x1, x3, lsl 2]
-	str	w2, [x0, x3, lsl 2]
-	sub	x3, x3, #1
-	cmn	x3, #1
+	ldr	w3, [x1, x2, lsl 2]
+	str	w3, [x0, x2, lsl 2]
+	sub	x2, x2, #1
+	cmn	x2, #1
 	bne	.L310
 .L307:
 	ret
@@ -2263,15 +2263,15 @@ ffs:
 	.p2align 3,,7
 .L342:
 	lsr	w2, w0, w1
-	tbnz	x2, 0, .L344
 	add	w1, w1, 1
+	tbnz	x2, 0, .L344
 	cmp	w1, 32
 	bne	.L342
 	mov	w0, 0
 	b	.L339
 	.p2align 2,,3
 .L344:
-	add	w0, w1, 1
+	mov	w0, w1
 .L339:
 	ret
 	.cfi_endproc
@@ -2802,71 +2802,73 @@ memmem:
 	.cfi_offset 30, -56
 	mov	x29, sp
 	stp	x19, x20, [sp, 16]
+	stp	x21, x22, [sp, 32]
 	.cfi_offset 19, -48
 	.cfi_offset 20, -40
+	.cfi_offset 21, -32
+	.cfi_offset 22, -24
 	mov	x19, x0
+	mov	x21, x0
 	cbz	x3, .L436
 	cmp	x1, x3
 	bcc	.L441
 	sub	x20, x1, x3
 	adds	x20, x0, x20
 	bcs	.L442
-	stp	x21, x22, [sp, 32]
-	.cfi_offset 22, -24
-	.cfi_offset 21, -32
-	str	x23, [sp, 48]
+	stp	x23, x24, [sp, 48]
+	.cfi_offset 24, -8
 	.cfi_offset 23, -16
-	mov	x23, x2
-	ldrb	w22, [x23], 1
-	sub	x21, x3, #1
+	mov	x24, x2
+	ldrb	w23, [x24], 1
+	sub	x22, x3, #1
 	b	.L439
 	.p2align 2,,3
 .L438:
-	add	x19, x19, 1
-	cmp	x20, x19
-	bcc	.L446
+	cmp	x19, x20
+	bhi	.L446
 .L439:
 	ldrb	w0, [x19]
-	cmp	w0, w22
+	mov	x21, x19
+	add	x19, x19, 1
+	cmp	w0, w23
 	bne	.L438
-	mov	x2, x21
-	mov	x1, x23
-	add	x0, x19, 1
+	mov	x2, x22
+	mov	x1, x24
+	mov	x0, x19
 	bl	memcmp
 	cbnz	w0, .L438
-	mov	x0, x19
-	ldp	x21, x22, [sp, 32]
+	ldp	x23, x24, [sp, 48]
 	.cfi_remember_state
-	.cfi_restore 22
-	.cfi_restore 21
-	ldr	x23, [sp, 48]
+	.cfi_restore 24
 	.cfi_restore 23
 	b	.L436
 	.p2align 2,,3
 .L446:
 	.cfi_restore_state
-	mov	x0, 0
-	ldp	x21, x22, [sp, 32]
-	.cfi_restore 22
-	.cfi_restore 21
-	ldr	x23, [sp, 48]
+	mov	x21, 0
+	ldp	x23, x24, [sp, 48]
+	.cfi_restore 24
 	.cfi_restore 23
 .L436:
+	mov	x0, x21
 	ldp	x19, x20, [sp, 16]
+	ldp	x21, x22, [sp, 32]
 	ldp	x29, x30, [sp], 64
 	.cfi_remember_state
 	.cfi_restore 30
 	.cfi_restore 29
+	.cfi_restore 21
+	.cfi_restore 22
 	.cfi_restore 19
 	.cfi_restore 20
 	.cfi_def_cfa_offset 0
 	ret
 .L441:
 	.cfi_restore_state
-	mov	x0, 0
+	mov	x21, 0
 	b	.L436
 .L442:
-	mov	x0, 0
+	mov	x21, 0
 	b	.L436
 	.cfi_endproc
 .LFE99:
@@ -3159,7 +3161,7 @@ __cmovh:
 	ldrsh	w4, [x1, x3]
 	strh	w4, [x0, x3]
 	add	x3, x3, 2
-	cmp	x3, x5
+	cmp	x5, x3
 	bne	.L516
 .L515:
 	tbz	x2, 0, .L511

@@ -2308,26 +2308,25 @@ wmemmove:
 .LFB65:
 	.cfi_startproc
 	beq	a0,a1,.L339
-	sub	a5,a0,a1
-	slli	a4,a2,2
-	bltu	a5,a4,.L340
-	addi	a4,a2,-1
-	mv	a5,a0
+	addi	a5,a2,-1
+	sub	a4,a0,a1
+	slli	a3,a2,2
+	bltu	a4,a3,.L340
+	mv	a4,a0
 	li	t1,-1
 	beq	a2,zero,.L347
 .L341:
 	addi	a1,a1,4
-	addi	a5,a5,4
+	addi	a4,a4,4
 	lw	a3,-4(a1)
-	sw	a3,-4(a5)
-	addi	a4,a4,-1
-	bne	a4,t1,.L341
+	sw	a3,-4(a4)
+	addi	a5,a5,-1
+	bne	a5,t1,.L341
 .L339:
 	ret
 .L347:
 	ret
 .L340:
-	addi	a5,a2,-1
 	beq	a2,zero,.L339
 	slli	a5,a5,2
 	li	a2,-4
@@ -2695,13 +2694,13 @@ ffs:
 .L383:
 	srl	a4,a0,a5
 	andi	a4,a4,1
-	bne	a4,zero,.L385
 	addi	a5,a5,1
+	bne	a4,zero,.L385
 	bne	a5,a3,.L383
 	li	a0,0
 	ret
 .L385:
-	addi	a0,a5,1
+	mv	a0,a5
 	ret
 	.cfi_endproc
 .LFE81:
@@ -3520,64 +3519,68 @@ copysign:
 memmem:
 .LFB97:
 	.cfi_startproc
-	addi	sp,sp,-24
-	.cfi_def_cfa_offset 24
-	sw	ra,20(sp)
-	sw	s0,16(sp)
+	addi	sp,sp,-28
+	.cfi_def_cfa_offset 28
+	sw	ra,24(sp)
+	sw	s1,16(sp)
 	.cfi_offset 1, -4
-	.cfi_offset 8, -8
-	mv	s0,a0
-	beq	a3,zero,.L490
+	.cfi_offset 9, -12
+	mv	s1,a0
+	beq	a3,zero,.L494
 	bltu	a1,a3,.L495
 	sub	a1,a1,a3
 	add	t1,a0,a1
 	bgtu	a0,t1,.L496
-	sw	s1,12(sp)
-	.cfi_offset 9, -12
-	lbu	s1,0(a2)
+	sw	s0,20(sp)
+	.cfi_offset 8, -8
+	lbu	s0,0(a2)
 	addi	a5,a3,-1
-	sw	a5,4(sp)
-	addi	a5,a2,1
 	sw	a5,8(sp)
+	addi	a5,a2,1
+	sw	a5,12(sp)
 	j	.L493
 .L492:
-	addi	s0,s0,1
-	bltu	t1,s0,.L500
+	bgtu	s1,t1,.L500
 .L493:
-	lbu	a4,0(s0)
-	bne	a4,s1,.L492
-	sw	t1,0(sp)
-	lw	a2,4(sp)
-	lw	a1,8(sp)
-	addi	a0,s0,1
+	lbu	a4,0(s1)
+	sw	s1,0(sp)
+	addi	s1,s1,1
+	bne	a4,s0,.L492
+	sw	t1,4(sp)
+	lw	a2,8(sp)
+	lw	a1,12(sp)
+	mv	a0,s1
 	call	memcmp
-	lw	t1,0(sp)
+	lw	t1,4(sp)
 	bne	a0,zero,.L492
-	mv	a0,s0
-	lw	s1,12(sp)
+	lw	s0,20(sp)
 	.cfi_remember_state
-	.cfi_restore 9
+	.cfi_restore 8
 	j	.L490
 .L500:
 	.cfi_restore_state
-	li	a0,0
-	lw	s1,12(sp)
-	.cfi_restore 9
+	sw	zero,0(sp)
+	lw	s0,20(sp)
+	.cfi_restore 8
 .L490:
-	lw	ra,20(sp)
+	lw	a0,0(sp)
+	lw	ra,24(sp)
 	.cfi_remember_state
 	.cfi_restore 1
-	lw	s0,16(sp)
-	.cfi_restore 8
-	addi	sp,sp,24
+	lw	s1,16(sp)
+	.cfi_restore 9
+	addi	sp,sp,28
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L495:
+.L494:
 	.cfi_restore_state
-	li	a0,0
+	sw	a0,0(sp)
+	j	.L490
+.L495:
+	sw	zero,0(sp)
 	j	.L490
 .L496:
-	li	a0,0
+	sw	zero,0(sp)
 	j	.L490
 	.cfi_endproc
 .LFE97:

@@ -1840,15 +1840,15 @@ wmemmove:
 	sub	lr, r0, r1
 	cmp	lr, r2, lsl #2
 	bcc	.L350
-	sub	r3, r2, #1
 	cmp	r2, #0
 	ldreq	pc, [sp], #4
-	sub	r2, r0, #4
+	sub	r2, r2, #1
+	sub	r3, r0, #4
 .L353:
 	ldr	ip, [r1], #4
-	str	ip, [r2, #4]!
-	sub	r3, r3, #1
-	cmn	r3, #1
+	str	ip, [r3, #4]!
+	sub	r2, r2, #1
+	cmn	r2, #1
 	bne	.L353
 	ldr	pc, [sp], #4
 .L350:
@@ -2163,14 +2163,14 @@ ffs:
 .L392:
 	lsr	r2, r0, r3
 	tst	r2, #1
-	bne	.L394
 	add	r3, r3, #1
+	bne	.L394
 	cmp	r3, #32
 	bne	.L392
 	mov	r0, #0
 	mov	pc, lr
 .L394:
-	add	r0, r3, #1
+	mov	r0, r3
 	mov	pc, lr
 	.size	ffs, .-ffs
 	.align	2
@@ -2591,43 +2591,43 @@ memmem:
 	push	{r4, r5, r6, r7, r8, r9, r10, lr}
 	mov	r4, r0
 	cmp	r3, #0
-	moveq	r5, r0
+	moveq	r6, r0
 	beq	.L488
 	cmp	r1, r3
 	bcc	.L493
-	sub	r1, r1, r3
-	adds	r6, r0, r1
+	sub	r5, r1, r3
+	adds	r5, r0, r5
 	bcs	.L494
-	mov	r8, r2
-	ldrb	r9, [r8], #1	@ zero_extendqisi2
+	mov	r9, r2
+	ldrb	r8, [r9], #1	@ zero_extendqisi2
 	sub	r7, r3, #1
 	b	.L491
 .L490:
-	cmp	r6, r4
-	bcc	.L497
+	cmp	r4, r5
+	bhi	.L497
 .L491:
-	mov	r5, r4
+	ldrb	r3, [r4]	@ zero_extendqisi2
+	mov	r6, r4
 	add	r4, r4, #1
-	ldrb	r3, [r5]	@ zero_extendqisi2
-	cmp	r3, r9
+	cmp	r3, r8
 	bne	.L490
 	mov	r2, r7
-	mov	r1, r8
+	mov	r1, r9
 	mov	r0, r4
 	bl	memcmp
 	cmp	r0, #0
 	bne	.L490
 	b	.L488
 .L497:
-	mov	r5, #0
+	mov	r6, #0
 .L488:
-	mov	r0, r5
+	mov	r0, r6
 	pop	{r4, r5, r6, r7, r8, r9, r10, pc}
 .L493:
-	mov	r5, #0
+	mov	r6, #0
 	b	.L488
 .L494:
-	mov	r5, #0
+	mov	r6, #0
 	b	.L488
 	.size	memmem, .-memmem
 	.align	2

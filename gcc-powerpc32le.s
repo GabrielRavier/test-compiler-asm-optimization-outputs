@@ -3149,19 +3149,19 @@ ffs:
 	mtctr 10
 .L497:
 	srw 10,3,9
-	andi. 10,10,0x1
-	bne- 0,.L501
 	addi 8,9,1
 	mr 9,8
-	srw 10,3,8
 	andi. 10,10,0x1
 	bne- 0,.L501
+	srw 10,3,8
 	addi 9,8,1
+	andi. 10,10,0x1
+	bne- 0,.L501
 	bdnz .L497
 	li 3,0
 	blr
 .L501:
-	addi 3,9,1
+	mr 3,9
 	blr
 	.cfi_endproc
 .LFE81:
@@ -4079,10 +4079,13 @@ memmem:
 	.cfi_startproc
 	stwu 1,-32(1)
 	.cfi_def_cfa_offset 32
+	stw 29,20(1)
 	stw 31,28(1)
+	.cfi_offset 29, -12
 	.cfi_offset 31, -4
 	mr 31,3
 	cmpwi 0,6,0
+	mr 29,3
 	beq- 0,.L642
 	cmplw 0,4,6
 	blt- 0,.L647
@@ -4096,38 +4099,39 @@ memmem:
 	.cfi_register 65, 0
 	stw 0,36(1)
 	.cfi_offset 65, 4
+	stw 26,8(1)
+	.cfi_offset 26, -24
 	stw 27,12(1)
 	.cfi_offset 27, -20
 	stw 28,16(1)
 	.cfi_offset 28, -16
-	stw 29,20(1)
-	.cfi_offset 29, -12
-	lbz 28,0(5)
-	addi 29,6,-1
-	addi 27,5,1
+	lbz 27,0(5)
+	addi 28,6,-1
+	addi 26,5,1
 	b .L645
 .L644:
-	addi 31,31,1
-	cmplw 0,30,31
-	blt- 0,.L652
+	cmplw 0,31,30
+	bgt- 0,.L652
 .L645:
 	lbz 9,0(31)
-	cmpw 0,9,28
+	mr 29,31
+	addi 31,31,1
+	rlwinm 9,9,0,0xff
+	cmpw 0,9,27
 	bne+ 0,.L644
-	mr 5,29
-	mr 4,27
-	addi 3,31,1
+	mr 5,28
+	mr 4,26
+	mr 3,31
 	bl memcmp
 	cmpwi 0,3,0
 	bne+ 0,.L644
-	mr 3,31
-	lwz 27,12(1)
+	lwz 26,8(1)
 	.cfi_remember_state
+	.cfi_restore 26
+	lwz 27,12(1)
 	.cfi_restore 27
 	lwz 28,16(1)
 	.cfi_restore 28
-	lwz 29,20(1)
-	.cfi_restore 29
 	lwz 30,24(1)
 	.cfi_restore 30
 	lwz 0,36(1)
@@ -4136,32 +4140,35 @@ memmem:
 	b .L642
 .L652:
 	.cfi_restore_state
-	li 3,0
+	li 29,0
+	lwz 26,8(1)
+	.cfi_restore 26
 	lwz 27,12(1)
 	.cfi_restore 27
 	lwz 28,16(1)
 	.cfi_restore 28
-	lwz 29,20(1)
-	.cfi_restore 29
 	lwz 30,24(1)
 	.cfi_restore 30
 	lwz 0,36(1)
 	mtlr 0
 	.cfi_restore 65
 .L642:
+	mr 3,29
+	lwz 29,20(1)
 	lwz 31,28(1)
 	addi 1,1,32
 	.cfi_remember_state
 	.cfi_restore 31
+	.cfi_restore 29
 	.cfi_def_cfa_offset 0
 	blr
 .L647:
 	.cfi_restore_state
-	li 3,0
+	li 29,0
 	b .L642
 .L648:
 	.cfi_offset 30, -8
-	li 3,0
+	li 29,0
 	lwz 30,24(1)
 	.cfi_restore 30
 	b .L642

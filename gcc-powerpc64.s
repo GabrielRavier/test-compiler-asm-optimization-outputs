@@ -3238,21 +3238,18 @@ ffs:
 	mtctr 10
 .L474:
 	srw 10,3,9
-	andi. 10,10,0x1
-	bne- 0,.L478
 	addi 8,9,1
 	mr 9,8
-	srw 10,3,8
 	andi. 10,10,0x1
-	bne- 0,.L478
+	bne- 0,.L473
+	srw 10,3,8
 	addi 9,8,1
+	andi. 10,10,0x1
+	bne- 0,.L473
 	bdnz .L474
-	li 3,0
-	b .L473
-.L478:
-	addi 3,9,1
+	li 9,0
 .L473:
-	extsw 3,3
+	extsw 3,9
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -4008,12 +4005,15 @@ memmem:
 .L.memmem:
 .LFB99:
 	.cfi_startproc
+	std 29,-24(1)
 	std 31,-8(1)
 	stdu 1,-160(1)
 	.cfi_def_cfa_offset 160
+	.cfi_offset 29, -24
 	.cfi_offset 31, -8
 	mr 31,3
 	cmpdi 0,6,0
+	mr 29,3
 	beq- 0,.L603
 	cmpld 0,4,6
 	blt- 0,.L608
@@ -4027,38 +4027,39 @@ memmem:
 	.cfi_register 65, 0
 	std 0,176(1)
 	.cfi_offset 65, 16
+	std 26,112(1)
+	.cfi_offset 26, -48
 	std 27,120(1)
 	.cfi_offset 27, -40
 	std 28,128(1)
 	.cfi_offset 28, -32
-	std 29,136(1)
-	.cfi_offset 29, -24
-	lbz 28,0(5)
-	addi 29,6,-1
-	addi 27,5,1
+	lbz 27,0(5)
+	addi 28,6,-1
+	addi 26,5,1
 	b .L606
 .L605:
-	addi 31,31,1
-	cmpld 0,30,31
-	blt- 0,.L613
+	cmpld 0,31,30
+	bgt- 0,.L613
 .L606:
 	lbz 9,0(31)
-	cmpw 0,9,28
+	mr 29,31
+	addi 31,31,1
+	rlwinm 9,9,0,0xff
+	cmpw 0,9,27
 	bne+ 0,.L605
-	mr 5,29
-	mr 4,27
-	addi 3,31,1
+	mr 5,28
+	mr 4,26
+	mr 3,31
 	bl memcmp
 	cmpwi 0,3,0
 	bne+ 0,.L605
-	mr 3,31
-	ld 27,120(1)
+	ld 26,112(1)
 	.cfi_remember_state
+	.cfi_restore 26
+	ld 27,120(1)
 	.cfi_restore 27
 	ld 28,128(1)
 	.cfi_restore 28
-	ld 29,136(1)
-	.cfi_restore 29
 	ld 30,144(1)
 	.cfi_restore 30
 	ld 0,176(1)
@@ -4067,37 +4068,40 @@ memmem:
 	b .L603
 .L613:
 	.cfi_restore_state
-	li 3,0
+	li 29,0
+	ld 26,112(1)
+	.cfi_restore 26
 	ld 27,120(1)
 	.cfi_restore 27
 	ld 28,128(1)
 	.cfi_restore 28
-	ld 29,136(1)
-	.cfi_restore 29
 	ld 30,144(1)
 	.cfi_restore 30
 	ld 0,176(1)
 	mtlr 0
 	.cfi_restore 65
 .L603:
+	mr 3,29
 	addi 1,1,160
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
+	ld 29,-24(1)
 	ld 31,-8(1)
 	.cfi_restore 31
+	.cfi_restore 29
 	blr
 .L608:
 	.cfi_restore_state
-	li 3,0
+	li 29,0
 	b .L603
 .L609:
 	.cfi_offset 30, -16
-	li 3,0
+	li 29,0
 	ld 30,144(1)
 	.cfi_restore 30
 	b .L603
 	.long 0
-	.byte 0,0,0,1,128,5,0,0
+	.byte 0,0,0,1,128,6,0,0
 	.cfi_endproc
 .LFE99:
 	.size	memmem,.-.L.memmem

@@ -4410,7 +4410,7 @@ wmemmove:
 	sbiw r24,1
 	or r30,r31
 	breq .L336
-.L338:
+.L340:
 	mov r30,r18
 	mov r31,r19
 	ld r22,Z
@@ -4420,7 +4420,7 @@ wmemmove:
 	st X+,r22
 	st X+,r23
 	sbiw r24,1
-	brcc .L338
+	brcc .L340
 	rjmp .L336
 .L337:
 	or r30,r31
@@ -5145,31 +5145,33 @@ ffs:
 .L__stack_usage = 0
 	mov r20,r24
 	mov r21,r25
-	ldi r24,0
-	ldi r25,0
+	ldi r18,0
+	ldi r19,0
 .L370:
-	mov r18,r20
-	mov r19,r21
-	mov r0,r24
+	mov r24,r20
+	mov r25,r21
+	mov r0,r18
 	rjmp 2f
 	1:
-	lsr r19
-	ror r18
+	lsr r25
+	ror r24
 	2:
 	dec r0
 	brpl 1b
-	sbrc r18,0
+	subi r18,-1
+	sbci r19,-1
+	sbrc r24,0
 	rjmp .L372
-	adiw r24,1
-	cpi r24,16
-	cpc r25,__zero_reg__
+	cpi r18,16
+	cpc r19,__zero_reg__
 	brne .L370
 	ldi r24,0
 	ldi r25,0
 /* epilogue start */
 	ret
 .L372:
-	adiw r24,1
+	mov r24,r18
+	mov r25,r19
 	ret
 	.size	ffs, .-ffs
 .global	libiberty_ffs
@@ -6578,24 +6580,22 @@ memmem:
 .L__stack_usage = 11
 	mov r28,r24
 	mov r29,r25
-	mov r14,r22
-	mov r15,r23
+	mov r16,r22
+	mov r17,r23
 	mov r12,r18
 	mov r13,r19
-	mov r16,r28
-	mov r17,r29
 	cp r12,__zero_reg__
 	cpc r13,__zero_reg__
-	breq .L475
-	cp r14,r12
-	cpc r15,r13
+	breq .L479
+	cp r16,r12
+	cpc r17,r13
 	brlo .L480
-	sub r14,r12
-	sbc r15,r13
-	add r14,r28
-	adc r15,r29
-	cp r14,r28
-	cpc r15,r29
+	sub r16,r12
+	sbc r17,r13
+	add r16,r28
+	adc r17,r29
+	cp r16,r28
+	cpc r17,r29
 	brlo .L481
 	mov r10,r20
 	mov r11,r21
@@ -6609,16 +6609,14 @@ memmem:
 	sbc r13,__zero_reg__
 	rjmp .L478
 .L477:
-	cp r14,r28
-	cpc r15,r29
+	cp r16,r28
+	cpc r17,r29
 	brlo .L483
 .L478:
-	mov r16,r28
-	mov r17,r29
+	ld r24,Y
+	mov r14,r28
+	mov r15,r29
 	adiw r28,1
-	mov r30,r16
-	mov r31,r17
-	ld r24,Z
 	cpse r24,r9
 	rjmp .L477
 	mov r20,r12
@@ -6632,11 +6630,11 @@ memmem:
 	brne .L477
 	rjmp .L475
 .L483:
-	ldi r16,0
-	ldi r17,0
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
 .L475:
-	mov r24,r16
-	mov r25,r17
+	mov r24,r14
+	mov r25,r15
 /* epilogue start */
 	pop r29
 	pop r28
@@ -6650,13 +6648,17 @@ memmem:
 	pop r10
 	pop r9
 	ret
+.L479:
+	mov r14,r24
+	mov r15,r25
+	rjmp .L475
 .L480:
-	ldi r16,0
-	ldi r17,0
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
 	rjmp .L475
 .L481:
-	ldi r16,0
-	ldi r17,0
+	mov r14,__zero_reg__
+	mov r15,__zero_reg__
 	rjmp .L475
 	.size	memmem, .-memmem
 .global	mempcpy
