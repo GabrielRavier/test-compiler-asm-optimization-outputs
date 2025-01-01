@@ -4266,37 +4266,25 @@ __lshrti3:
 __muldsi3:
 .LFB149 = .
 	.cfi_startproc
-	or	$r12,$r4,$r0
-	bstrpick.w	$r16,$r4,15,0
-	bstrpick.w	$r17,$r5,15,0
-	mul.w	$r13,$r16,$r17
-	slli.w	$r14,$r13,0
-	or	$r4,$r0,$r0
-	bstrins.d	$r4,$r14,31,0
-	srli.w	$r14,$r13,16
-	bstrpick.w	$r15,$r13,15,0
-	bstrins.d	$r4,$r15,31,0
-	srli.w	$r13,$r12,16
-	mul.w	$r17,$r13,$r17
-	add.w	$r12,$r14,$r17
-	slli.w	$r14,$r12,16
-	add.w	$r14,$r14,$r15
-	bstrins.d	$r4,$r14,31,0
-	srli.w	$r17,$r12,16
-	bstrpick.d	$r12,$r12,31,16
-	bstrins.d	$r4,$r12,63,32
+	bstrpick.w	$r15,$r4,15,0
+	bstrpick.w	$r16,$r5,15,0
+	mul.w	$r14,$r15,$r16
 	srli.w	$r12,$r14,16
-	bstrpick.w	$r14,$r14,15,0
-	bstrins.d	$r4,$r14,31,0
-	srli.w	$r5,$r5,16
-	mul.w	$r16,$r16,$r5
+	srli.w	$r13,$r4,16
+	mul.w	$r16,$r13,$r16
 	add.w	$r12,$r12,$r16
+	srli.w	$r16,$r12,16
+	bstrpick.w	$r12,$r12,15,0
+	bstrpick.w	$r14,$r14,15,0
+	srli.w	$r5,$r5,16
+	mul.w	$r15,$r15,$r5
+	add.w	$r12,$r12,$r15
 	slli.w	$r15,$r12,16
 	add.w	$r14,$r15,$r14
+	or	$r4,$r0,$r0
 	bstrins.d	$r4,$r14,31,0
 	srli.w	$r12,$r12,16
-	add.w	$r12,$r12,$r17
-	bstrins.d	$r4,$r12,63,32
+	add.w	$r12,$r12,$r16
 	mul.w	$r13,$r13,$r5
 	add.w	$r12,$r12,$r13
 	bstrins.d	$r4,$r12,63,32

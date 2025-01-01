@@ -5585,18 +5585,18 @@ $LFB149:
 	.prologue 0
 	zapnot $16,3,$4
 	zapnot $17,3,$3
-	mull $4,$3,$1
-	zapnot $1,15,$2
-	srl $2,16,$2
-	zapnot $1,3,$1
+	mull $4,$3,$2
+	zapnot $2,15,$1
+	srl $1,16,$1
+	zapnot $2,3,$2
 	extwl $16,2,$16
 	mull $16,$3,$3
-	addl $2,$3,$2
-	sll $2,16,$3
-	addl $3,$1,$3
+	addl $1,$3,$1
+	sll $1,16,$3
+	addl $3,$2,$3
+	zapnot $1,15,$1
+	srl $1,16,$2
 	zapnot $3,15,$1
-	zapnot $2,15,$2
-	srl $2,16,$2
 	srl $1,16,$1
 	zapnot $3,3,$3
 	extwl $17,2,$17

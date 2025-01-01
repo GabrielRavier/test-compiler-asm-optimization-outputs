@@ -3947,50 +3947,34 @@ __lshrti3:
 	.type	__muldsi3, #function
 	.proc	05
 __muldsi3:
-	sethi	%hi(64512), %g5
-	or	%g5, 1023, %g5
-	and	%o0, %g5, %o5
-	and	%o1, %g5, %g3
-	smul	%o5, %g3, %g2
-	mov	-1, %g4
-	sllx	%g4, 32, %o4
-	srl	%g2, 16, %g1
-	and	%g2, %g5, %g2
+	sethi	%hi(64512), %g4
+	or	%g4, 1023, %g4
+	and	%o0, %g4, %g5
+	and	%o1, %g4, %o5
+	smul	%g5, %o5, %g1
+	srl	%g1, 16, %g3
+	and	%g1, %g4, %g2
 	srl	%o0, 16, %o0
-	smul	%o0, %g3, %g3
-	add	%g1, %g3, %g1
-	sll	%g1, 16, %g3
-	add	%g3, %g2, %g3
-	srl	%g1, 16, %o3
+	smul	%o0, %o5, %o5
+	add	%g3, %o5, %g3
+	sll	%g3, 16, %g1
+	add	%g1, %g2, %g2
+	srl	%g3, 16, %g3
 	srl	%g1, 16, %g1
-	sllx	%g1, 32, %g2
-	srlx	%g4, 32, %g4
-	and	%g4, %g3, %g1
-	or	%g1, %g2, %g1
-	srl	%g3, 16, %g2
-	and	%g3, %g5, %g3
-	srl	%g3, 0, %g5
-	and	%g1, %o4, %g1
-	or	%g1, %g5, %g1
+	and	%g2, %g4, %g2
 	srl	%o1, 16, %o1
-	smul	%o5, %o1, %o5
-	add	%g2, %o5, %g2
-	sll	%g2, 16, %g5
-	add	%g5, %g3, %g3
-	srl	%g3, 0, %g3
-	and	%g1, %o4, %g1
-	or	%g1, %g3, %g1
-	srl	%g2, 16, %g2
-	add	%g2, %o3, %g2
-	sllx	%g2, 32, %g3
-	and	%g1, %g4, %g1
-	or	%g1, %g3, %g1
+	smul	%g5, %o1, %g5
+	add	%g1, %g5, %g1
+	sll	%g1, 16, %g4
+	add	%g4, %g2, %g2
+	srl	%g1, 16, %g1
+	add	%g1, %g3, %g1
 	smul	%o0, %o1, %o0
-	add	%g2, %o0, %o0
-	sllx	%o0, 32, %o0
-	and	%g1, %g4, %g1
+	add	%g1, %o0, %g1
+	sllx	%g1, 32, %g1
+	srl	%g2, 0, %o0
 	jmp	%o7+8
-	 or	%g1, %o0, %o0
+	 or	%o0, %g1, %o0
 	.size	__muldsi3, .-__muldsi3
 	.align 4
 	.global __muldi3_compiler_rt

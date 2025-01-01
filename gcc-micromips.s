@@ -6118,34 +6118,25 @@ __muldsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	andi	$3,$4,0xffff
-	andi	$6,$5,0xffff
-	mul	$7,$3,$6
-	move	$2,$0
-	dins	$2,$7,0,32
-	dext	$9,$7,16,16
-	andi	$8,$7,0xffff
-	dins	$2,$8,0,32
+	andi	$2,$4,0xffff
+	andi	$3,$5,0xffff
+	mul	$6,$2,$3
+	dext	$7,$6,16,16
 	dext	$4,$4,16,16
-	mul	$7,$4,$6
-	addu	$6,$7,$9
-	sll	$7,$6,16
-	addu	$7,$7,$8
-	dins	$2,$7,0,32
-	dext	$6,$6,16,16
-	dins	$2,$6,32,32
-	dext	$8,$7,16,16
-	andi	$7,$7,0xffff
-	dins	$2,$7,0,32
+	mul	$8,$4,$3
+	addu	$3,$8,$7
+	dext	$7,$3,16,16
+	andi	$3,$3,0xffff
+	andi	$6,$6,0xffff
 	dext	$5,$5,16,16
-	mul	$9,$3,$5
-	addu	$3,$9,$8
-	sll	$8,$3,16
-	addu	$7,$8,$7
-	dins	$2,$7,0,32
+	mul	$8,$2,$5
+	addu	$3,$8,$3
+	sll	$2,$3,16
+	addu	$6,$2,$6
+	move	$2,$0
+	dins	$2,$6,0,32
 	dext	$3,$3,16,16
-	daddu	$3,$3,$6
-	dins	$2,$3,32,32
+	daddu	$3,$3,$7
 	mul	$6,$4,$5
 	addu	$4,$6,$3
 	jr	$31

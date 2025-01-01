@@ -5177,45 +5177,31 @@ __muldsi3:
 	xmpyu %fr23R,%fr24R,%fr22
 	fstd %fr22,-56(%r30)
 	ldd -56(%r30),%r31
-	ldi 0,%r28
-	depd %r31,32+32-1,32,%r28
-	extrw,u %r31,15,16,%r20
-	extrw,u %r31,31,16,%r21
-	extrd,u %r31,63,16,%r31
-	depd %r31,32+32-1,32,%r28
+	extrw,u %r31,15,16,%r28
 	extrw,u %r26,15,16,%r26
 	std %r26,-56(%r30)
 	fldd -56(%r30),%fr22
 	xmpyu %fr22R,%fr24R,%fr24
 	fstd %fr24,-56(%r30)
 	ldd -56(%r30),%r19
-	add,l %r20,%r19,%r20
-	depw,z %r20,15,16,%r19
-	add,l %r19,%r21,%r19
-	extrd,u %r19,63,32,%r31
-	depd %r31,32+32-1,32,%r28
-	extrw,u %r20,15,16,%r20
-	extrd,s %r20,63,32,%r31
-	depd %r31,0+32-1,32,%r28
-	extrw,u %r19,15,16,%r31
-	extrw,u %r19,31,16,%r21
-	extrd,u %r19,63,16,%r19
-	depd %r19,32+32-1,32,%r28
+	add,l %r28,%r19,%r28
+	extrw,u %r28,15,16,%r21
+	extrw,u %r28,31,16,%r28
+	extrw,u %r31,31,16,%r20
 	extrw,u %r25,15,16,%r25
 	std %r25,-56(%r30)
 	fldd -56(%r30),%fr24
 	xmpyu %fr23R,%fr24R,%fr23
 	fstd %fr23,-56(%r30)
 	ldd -56(%r30),%r19
-	add,l %r31,%r19,%r31
+	add,l %r28,%r19,%r31
 	depw,z %r31,15,16,%r19
-	add,l %r19,%r21,%r19
+	add,l %r19,%r20,%r19
 	extrd,u %r19,63,32,%r19
+	ldi 0,%r28
 	depd %r19,32+32-1,32,%r28
 	extrw,u %r31,15,16,%r31
-	add,l %r31,%r20,%r31
-	extrd,s %r31,63,32,%r19
-	depd %r19,0+32-1,32,%r28
+	add,l %r31,%r21,%r31
 	xmpyu %fr22R,%fr24R,%fr22
 	fstd %fr22,-56(%r30)
 	ldd -56(%r30),%r19

@@ -3899,13 +3899,15 @@ __mulddi3:
 	add	r8, r9
 	shr	rax, 32
 	add	rax, r10
-	mov	QWORD PTR [rsp], r8
 	imul	rcx, rdx
 	add	rax, rcx
-	mov	rdx, QWORD PTR [rsp]
-	mov	QWORD PTR [rsp], rdx
-	mov	QWORD PTR 8[rsp], rax
+	movaps	XMMWORD PTR [rsp], xmm0
+	mov	rcx, QWORD PTR 8[rsp]
+	mov	QWORD PTR [rsp], r8
+	mov	QWORD PTR 8[rsp], rcx
 	movdqa	xmm0, XMMWORD PTR [rsp]
+	movq	xmm1, rax
+	punpcklqdq	xmm0, xmm1
 	add	rsp, 24
 	ret
 	.seh_endproc

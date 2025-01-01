@@ -4155,28 +4155,28 @@ __mulddi3:
 	.cfi_startproc
 	mov	ecx, edi
 	mov	r8d, esi
-	mov	rax, rcx
-	imul	rax, r8
-	mov	rdx, rax
-	shr	rdx, 32
+	mov	rdx, rcx
+	imul	rdx, r8
+	mov	rax, rdx
+	shr	rax, 32
 	shr	rdi, 32
 	imul	r8, rdi
-	add	rdx, r8
-	mov	r9, rdx
-	shr	r9, 32
-	mov	edx, edx
+	add	rax, r8
+	mov	r8, rax
+	shr	r8, 32
 	mov	eax, eax
+	mov	edx, edx
 	shr	rsi, 32
 	imul	rcx, rsi
+	add	rax, rcx
+	mov	rcx, rax
+	sal	rcx, 32
 	add	rdx, rcx
-	mov	r8, rdx
-	sal	r8, 32
-	add	r8, rax
-	shr	rdx, 32
-	add	rdx, r9
+	shr	rax, 32
+	add	rax, r8
 	imul	rdi, rsi
-	add	rdx, rdi
-	mov	rax, r8
+	add	rax, rdi
+	xchg	rdx, rax
 	ret
 	.cfi_endproc
 .LFE151:

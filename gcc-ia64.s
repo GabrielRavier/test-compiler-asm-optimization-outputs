@@ -5506,62 +5506,46 @@ __muldsi3:
 	;;
 	and r14 = r17, r32
 	;;
-	setf.sig f6 = r14
+	setf.sig f7 = r14
 	and r14 = r17, r33
 	;;
 	setf.sig f8 = r14
 	;;
-	xmpy.l f7 = f8, f6
+	xmpy.l f6 = f8, f7
 	;;
-	getf.sig r16 = f7
-	mov r8 = r0
+	getf.sig r15 = f6
 	;;
-	shl r15 = r16, 32
-	;;
-	mix4.l r8 = r8, r15
-	extr.u r15 = r16, 16, 16
-	and r16 = r17, r16
-	;;
-	shl r14 = r16, 32
-	;;
-	mix4.l r8 = r8, r14
+	extr.u r16 = r15, 16, 16
+	and r15 = r17, r15
 	extr.u r32 = r32, 16, 16
 	;;
-	setf.sig f7 = r32
-	setf.sig f9 = r15
+	setf.sig f6 = r32
+	setf.sig f9 = r16
 	;;
-	xma.l f9 = f7, f8, f9
+	xma.l f9 = f6, f8, f9
 	;;
-	getf.sig r15 = f9
+	getf.sig r14 = f9
 	;;
-	dep.z r14 = r15, 16, 16
+	dep.z r16 = r14, 16, 16
 	;;
-	add r14 = r14, r16
+	add r16 = r16, r15
+	extr.u r15 = r14, 16, 16
 	;;
-	shl r16 = r14, 32
-	;;
-	mix4.l r8 = r8, r16
-	extr.u r15 = r15, 16, 16
-	;;
-	mix4.r r8 = r15, r8
-	extr.u r18 = r14, 16, 16
-	and r16 = r17, r14
-	;;
-	shl r14 = r16, 32
-	;;
-	mix4.l r8 = r8, r14
+	extr.u r14 = r16, 16, 16
+	and r16 = r17, r16
 	extr.u r33 = r33, 16, 16
 	;;
 	setf.sig f8 = r33
-	setf.sig f9 = r18
+	setf.sig f9 = r14
 	;;
-	xma.l f9 = f8, f6, f9
+	xma.l f9 = f8, f7, f9
 	;;
 	getf.sig r14 = f9
 	;;
 	dep.z r17 = r14, 16, 16
 	;;
 	add r16 = r17, r16
+	mov r8 = r0
 	;;
 	shl r16 = r16, 32
 	;;
@@ -5570,12 +5554,11 @@ __muldsi3:
 	;;
 	add r14 = r14, r15
 	;;
-	mix4.r r8 = r14, r8
-	setf.sig f6 = r14
+	setf.sig f7 = r14
 	;;
-	xma.l f6 = f7, f8, f6
+	xma.l f7 = f6, f8, f7
 	;;
-	getf.sig r32 = f6
+	getf.sig r32 = f7
 	;;
 	mix4.r r8 = r32, r8
 	br.ret.sptk.many b0

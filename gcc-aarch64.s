@@ -3956,32 +3956,23 @@ __lshrti3:
 __muldsi3:
 .LFB149:
 	.cfi_startproc
-	mov	w3, w0
-	and	w6, w0, 65535
-	and	w5, w1, 65535
-	mul	w4, w6, w5
-	mov	x0, 0
-	bfi	x0, x4, 0, 32
-	and	w2, w4, 65535
-	bfi	x0, x2, 0, 32
-	lsr	w3, w3, 16
-	mul	w5, w3, w5
-	add	w4, w5, w4, lsr 16
-	add	w2, w2, w4, lsl 16
-	bfi	x0, x2, 0, 32
-	lsr	w4, w4, 16
-	bfi	x0, x4, 32, 32
-	and	w5, w2, 65535
-	bfi	x0, x5, 0, 32
+	and	w4, w0, 65535
+	and	w3, w1, 65535
+	mul	w5, w4, w3
+	lsr	w2, w0, 16
+	mul	w3, w2, w3
+	add	w3, w3, w5, lsr 16
 	lsr	w1, w1, 16
-	mul	w6, w6, w1
-	add	w2, w6, w2, lsr 16
-	add	w5, w5, w2, lsl 16
+	mul	w4, w4, w1
+	add	w4, w4, w3, uxth
+	lsl	w0, w4, 16
+	add	w5, w0, w5, uxth
+	mov	x0, 0
 	bfi	x0, x5, 0, 32
-	add	w2, w4, w2, lsr 16
+	lsr	w4, w4, 16
+	add	w3, w4, w3, lsr 16
+	madd	w2, w2, w1, w3
 	bfi	x0, x2, 32, 32
-	madd	w3, w3, w1, w2
-	bfi	x0, x3, 32, 32
 	ret
 	.cfi_endproc
 .LFE149:

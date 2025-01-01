@@ -3842,34 +3842,31 @@ __lshrdi3:
 	.global __muldsi3
 	.type	__muldsi3, @function
 __muldsi3:
-	mov d1,r1
-	exthu d0,r3
+	movm [d2],(sp)
+	exthu d0,r1
 	exthu d1,r0
-	mul r3,r0,a0,d1
-	mov d1,r2
-	lsr 16,r2
-	exthu d1
+	mul r1,r0,a0,a1
+	mov a1,a0
+	lsr 16,a0
 	lsr 16,d0
 	mul d0,r0
-	add r0,r2
-	mov r2,r0
-	asl 16,r0
-	add d1,r0
-	lsr 16,r2
-	mov r0,d1
-	lsr 16,d1
-	exthu r0
-	lsr 16,r1
-	mul r1,r3
-	add r3,d1
-	mov d1,r3
-	asl 16,r3
-	add r0,r3,a0
-	lsr 16,d1
-	add r2,d1
-	mul r1,d0
-	add_mov d0, d1, a0, d0
-	rets
+	add r0,a0
+	mov a0,d2
+	lsr 16,d2
+	exthu a0
+	exthu a1,r0
+	mov d1,a1
+	lsr 16,a1
+	mul a1,r1
+	add r1,a0
+	mov a0,d1
+	asl 16,d1
+	add r0,d1,r2
+	lsr 16,a0
+	add d2,a0,d1
+	mul a1,d0
+	add_mov d0, d1, r2, d0
+	ret [d2],4
 	.size	__muldsi3, .-__muldsi3
 	.global __muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function

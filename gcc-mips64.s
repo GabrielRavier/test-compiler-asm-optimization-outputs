@@ -6467,25 +6467,25 @@ __muldsi3:
 	.set	noreorder
 	.set	nomacro
 	andi	$8,$4,0xffff
-	andi	$6,$5,0xffff
-	mult	$8,$6
+	andi	$3,$5,0xffff
+	mult	$8,$3
 	mflo	$7
-	srl	$3,$7,16
+	srl	$2,$7,16
 	srl	$4,$4,16
-	mult	$4,$6
-	mflo	$2
-	addu	$3,$3,$2
-	srl	$6,$3,16
-	andi	$3,$3,0xffff
+	mult	$4,$3
+	mflo	$3
+	addu	$2,$2,$3
+	srl	$3,$2,16
+	andi	$2,$2,0xffff
 	andi	$7,$7,0xffff
 	srl	$5,$5,16
 	mult	$5,$8
-	mflo	$2
-	addu	$3,$3,$2
-	sll	$2,$3,16
+	mflo	$6
+	addu	$6,$6,$2
+	sll	$2,$6,16
 	addu	$2,$2,$7
-	srl	$3,$3,16
-	addu	$3,$6,$3
+	srl	$6,$6,16
+	addu	$3,$3,$6
 	mult	$5,$4
 	mflo	$4
 	addu	$3,$3,$4

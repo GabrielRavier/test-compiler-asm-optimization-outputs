@@ -5534,7 +5534,7 @@ ___muldsi3:
 	mov.l	er6,@-er7
 	sub.l	#24,er7
 	mov.l	er0,er4
-	mov.l	er1,er5
+	mov.l	er1,er6
 	mov.l	er0,er2
 	sub.w	e2,e2
 	mov.l	er1,er3
@@ -5544,28 +5544,30 @@ ___muldsi3:
 	mov.l	er2,@er7
 	mov.l	er2,er0
 	jsr	@___mulsi3
-	mov.l	er0,er6
-	mov.w	e6,r6
-	extu.l	er6
-	mov.l	er0,er2
-	sub.w	e2,e2
-	mov.l	er2,@(8,er7)
+	mov.l	er0,er5
+	mov.l	er0,@(8,er7)
+	mov.w	e5,r5
+	extu.l	er5
 	mov.w	e4,r4
 	extu.l	er4
 	mov.l	@(4,er7),er1
 	mov.l	er4,er0
 	jsr	@___mulsi3
-	add.l	er6,er0
-	mov.l	er0,er6
-	mov.w	e6,r6
-	extu.l	er6
-	mov.w	r0,r3
+	add.l	er0,er5
+	mov.l	er5,er3
+	mov.w	r3,e3
+	sub.w	r3,r3
+	mov.l	@(8,er7),er2
+	sub.w	e2,e2
+	add.l	er3,er2
+	mov.l	er2,@(8,er7)
+	mov.w	e3,r3
 	extu.l	er3
 	mov.l	er3,@(12,er7)
-	mov.w	e5,r5
-	extu.l	er5
-	mov.l	er5,@(4,er7)
-	mov.l	er5,er1
+	mov.w	e6,r6
+	extu.l	er6
+	mov.l	er6,@(4,er7)
+	mov.l	er6,er1
 	mov.l	@er7,er0
 	jsr	@___mulsi3
 	mov.l	@(12,er7),er2
@@ -5573,17 +5575,21 @@ ___muldsi3:
 	mov.l	er0,er3
 	mov.w	r3,e3
 	sub.w	r3,r3
-	mov.l	er3,er5
+	mov.l	er3,er6
 	mov.l	@(8,er7),er2
-	add.l	er2,er5
+	sub.w	e2,e2
+	add.l	er2,er6
 	mov.w	e0,r0
 	extu.l	er0
-	add.l	er0,er6
+	mov.w	e5,r5
+	extu.l	er5
+	add.l	er0,er5
 	mov.l	@(4,er7),er1
 	mov.l	er4,er0
 	jsr	@___mulsi3
-	add.l	er6,er0
-	mov.l	er5,er1
+	add.l	er0,er5
+	mov.l	er5,er0
+	mov.l	er6,er1
 	add.l	#24,er7
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5

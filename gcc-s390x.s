@@ -4258,36 +4258,26 @@ __muldsi3:
 	.cfi_startproc
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-	lgr	%r4,%r2
-	risbg	%r12,%r2,48,128+63,0
-	risbg	%r5,%r3,48,128+63,0
-	lr	%r1,%r12
-	msr	%r1,%r5
-	lghi	%r2,0
-	lr	%r2,%r1
-	srlk	%r0,%r1,16
-	nilh	%r1,0
-	lr	%r2,%r1
-	srl	%r4,16
-	msr	%r5,%r4
-	ar	%r0,%r5
-	sllk	%r5,%r0,16
-	ar	%r5,%r1
-	lr	%r2,%r5
-	srl	%r0,16
-	risbgn	%r2,%r0,0,0+32-1,64-0-32
+	risbg	%r0,%r2,48,128+63,0
+	risbg	%r12,%r3,48,128+63,0
+	lr	%r5,%r0
+	msr	%r5,%r12
 	srlk	%r1,%r5,16
-	nilh	%r5,0
-	lr	%r2,%r5
-	srl	%r3,16
-	msr	%r12,%r3
+	srlk	%r4,%r2,16
+	msr	%r12,%r4
 	ar	%r1,%r12
-	sllk	%r12,%r1,16
-	ar	%r5,%r12
+	srlk	%r12,%r1,16
+	llhr	%r1,%r1
+	llhr	%r5,%r5
+	srl	%r3,16
+	msr	%r0,%r3
+	ar	%r1,%r0
+	sllk	%r2,%r1,16
+	ar	%r5,%r2
+	lghi	%r2,0
 	lr	%r2,%r5
 	srl	%r1,16
-	ar	%r1,%r0
-	risbgn	%r2,%r1,0,0+32-1,64-0-32
+	ar	%r1,%r12
 	msr	%r4,%r3
 	ar	%r1,%r4
 	risbgn	%r2,%r1,0,0+32-1,64-0-32
