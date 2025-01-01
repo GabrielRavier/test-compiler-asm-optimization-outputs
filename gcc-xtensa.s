@@ -2413,34 +2413,34 @@ strstr:
 	.type	copysign, @function
 copysign:
 	entry	sp, 32
+	l32r	a7, .LC102
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
-	l32r	a8, .LC102
-	callx8	a8
-	bgez	a10, .L632
+	callx8	a7
+	l32r	a6, .LC103
+	bltz	a10, .L638
+	j	.L632
+.L638:
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a4
 	mov.n	a11, a5
-	l32r	a8, .LC103
-	callx8	a8
+	callx8	a6
 	bgei	a10, 1, .L634
 .L632:
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
-	l32r	a8, .LC103
-	callx8	a8
+	callx8	a6
 	blti	a10, 1, .L635
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a4
 	mov.n	a11, a5
-	l32r	a8, .LC102
-	callx8	a8
+	callx8	a7
 	bgez	a10, .L635
 .L634:
 	l32r	a10, .LC104
@@ -2513,11 +2513,12 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	entry	sp, 48
+	l32r	a8, .LC108
+	s32i	a8, sp, 4
 	movi.n	a12, 0
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
-	l32r	a8, .LC108
 	callx8	a8
 	movi.n	a8, 0
 	bgez	a10, .L680
@@ -2530,16 +2531,15 @@ frexp:
 .L680:
 	s32i	a8, sp, 0
 .L654:
+	l32r	a7, .LC111
 	l32r	a12, .LC117
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
-	l32r	a8, .LC111
-	callx8	a8
+	callx8	a7
 	movi.n	a5, 0
-	bltz	a10, .L681
 	l32r	a6, .LC113
-	l32r	a7, .LC111
+	bltz	a10, .L681
 .L658:
 	addi.n	a5, a5, 1
 	l32r	a12, .LC116
@@ -2568,24 +2568,23 @@ frexp:
 	movi.n	a13, 0
 	mov.n	a10, a2
 	mov.n	a11, a3
-	l32r	a8, .LC108
-	callx8	a8
+	l32i	a6, sp, 4
+	callx8	a6
 	bgez	a10, .L659
-	l32r	a6, .LC115
-	l32r	a7, .LC108
+	l32r	a7, .LC115
 .L662:
 	addi.n	a5, a5, -1
 	mov.n	a12, a2
 	mov.n	a13, a3
 	mov.n	a10, a2
 	mov.n	a11, a3
-	callx8	a6
+	callx8	a7
 	mov.n	a2, a10
 	mov.n	a3, a11
 	l32r	a12, .LC116
 	movi.n	a13, 0
 	mov.n	a10, a2
-	callx8	a7
+	callx8	a6
 	bltz	a10, .L662
 .L659:
 	s32i	a5, a4, 0

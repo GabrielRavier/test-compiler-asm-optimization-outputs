@@ -1159,28 +1159,26 @@ l64a:
 		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 		nop	4
 		mv	.d1	A4, A0
-		ldw	.d2t1	*+B14($GOT(s.0)), A3
-		nop	4
-	[!A0]	b	.s2	.L284
-		nop	5
-		ldw	.d2t1	*+B14($GOT(digits)), A6
-		nop	4
-		mvk	.s1	63, A5
-.L285:
-		and	.d1	A5, A4, A7
-		add	.d1	A6, A7, A8
-		ldb	.d1t1	*A8, A9
-		nop	4
-		stb	.d1t1	A9, *A3++[1]
-		shru	.s1	A4, 6, A4
-		mv	.d1	A4, A1
-	[A1]	b	.s2	.L285
-		nop	5
-.L284:
-		mvk	.d1	0, A4
-		stb	.d1t1	A4, *A3
 		ldw	.d2t1	*+B14($GOT(s.0)), A4
 		nop	4
+		mv	.d1	A4, A5
+	[!A0]	b	.s2	.L284
+		nop	5
+		ldw	.d2t1	*+B14($GOT(digits)), A7
+		nop	4
+		mvk	.s1	63, A6
+.L285:
+		and	.d1	A6, A0, A3
+		add	.d1	A7, A3, A8
+		ldb	.d1t1	*A8, A9
+		nop	4
+		stb	.d1t1	A9, *A5++[1]
+		shru	.s1	A0, 6, A0
+	[A0]	b	.s2	.L285
+		nop	5
+.L284:
+		mvk	.d1	0, A16
+		stb	.d1t1	A16, *A5
 		ldw	.d2t2	*+B15(8), B14
 		nop	4
 		add	.d2	B15, 8, B15

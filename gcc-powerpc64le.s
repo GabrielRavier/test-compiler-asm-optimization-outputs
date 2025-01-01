@@ -3644,8 +3644,6 @@ copysign:
 	fcmpu 0,1,0
 	blt 0,.L737
 .L729:
-	addis 9,2,.LC0@toc@ha
-	lfd 0,.LC0@toc@l(9)
 	fcmpu 0,1,0
 	bnglr 0
 	fcmpu 0,2,0
@@ -3817,13 +3815,14 @@ frexp:
 	blt 0,.L775
 .L752:
 	addis 8,2,.LC32@toc@ha
-	lfd 0,.LC32@toc@l(8)
-	fcmpu 0,1,0
+	lfd 12,.LC32@toc@l(8)
+	fcmpu 0,1,12
 	cror 2,0,3
 	beq 0,.L773
 	li 9,0
 	addis 7,2,.LC24@toc@ha
 	lfd 12,.LC24@toc@l(7)
+	lfd 0,.LC32@toc@l(8)
 	.p2align 5
 .L756:
 	addi 9,9,1
@@ -3845,15 +3844,13 @@ frexp:
 	.p2align 4,,15
 .L773:
 	addis 8,2,.LC24@toc@ha
-	lfd 0,.LC24@toc@l(8)
+	lfd 12,.LC24@toc@l(8)
 	li 9,0
-	fcmpu 0,1,0
+	fcmpu 0,1,12
 	bnl 0,.L757
-	addis 7,2,.LC0@toc@ha
-	lfd 0,.LC0@toc@l(7)
 	fcmpu 0,1,0
 	beq 0,.L757
-	lfd 0,.LC24@toc@l(8)
+	fmr 0,12
 	.p2align 4,,15
 .L759:
 	addi 9,9,-1
@@ -6054,7 +6051,8 @@ __powidf2:
 	fmr 0,1
 	mr 9,4
 	addis 10,2,.LC32@toc@ha
-	lfd 1,.LC32@toc@l(10)
+	lfd 12,.LC32@toc@l(10)
+	fmr 1,12
 	b .L1158
 	.p2align 4,,15
 .L1156:
@@ -6072,9 +6070,7 @@ __powidf2:
 .L1157:
 	cmpwi 0,4,0
 	bgelr 0
-	addis 9,2,.LC32@toc@ha
-	lfd 0,.LC32@toc@l(9)
-	fdiv 1,0,1
+	fdiv 1,12,1
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -6095,7 +6091,8 @@ __powisf2:
 	fmr 0,1
 	mr 9,4
 	addis 10,2,.LC33@toc@ha
-	lfs 1,.LC33@toc@l(10)
+	lfs 12,.LC33@toc@l(10)
+	fmr 1,12
 	b .L1166
 	.p2align 4,,15
 .L1164:
@@ -6113,9 +6110,7 @@ __powisf2:
 .L1165:
 	cmpwi 0,4,0
 	bgelr 0
-	addis 9,2,.LC33@toc@ha
-	lfs 0,.LC33@toc@l(9)
-	fdivs 1,0,1
+	fdivs 1,12,1
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0

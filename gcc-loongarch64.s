@@ -3105,18 +3105,18 @@ frexp:
 	bcnez	$fcc0,.L634
 	or	$r13,$r0,$r0
 .L610:
+	pcalau12i	$r12,%pc_hi20(.LC16)
+	fld.d	$f2,$r12,%pc_lo12(.LC16)
 	or	$r12,$r0,$r0
-	pcalau12i	$r14,%pc_hi20(.LC16)
-	fld.d	$f1,$r14,%pc_lo12(.LC16)
-	fcmp.sge.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L632
 	pcalau12i	$r14,%pc_hi20(.LC13)
-	fld.d	$f2,$r14,%pc_lo12(.LC13)
+	fld.d	$f1,$r14,%pc_lo12(.LC13)
+	fcmp.sge.d	$fcc0,$f0,$f2
+	bceqz	$fcc0,.L632
 	.align	3
 .L614:
 	addi.w	$r12,$r12,1
-	fmul.d	$f0,$f0,$f2
-	fcmp.sge.d	$fcc0,$f0,$f1
+	fmul.d	$f0,$f0,$f1
+	fcmp.sge.d	$fcc0,$f0,$f2
 	bcnez	$fcc0,.L614
 .L615:
 	stptr.w	$r12,$r4,0
@@ -3136,11 +3136,9 @@ frexp:
 	fcmp.slt.d	$fcc0,$f0,$f1
 	or	$r12,$r0,$r0
 	bceqz	$fcc0,.L615
-	movgr2fr.d	$f1,$r0
-	fcmp.ceq.d	$fcc0,$f0,$f1
+	movgr2fr.d	$f2,$r0
+	fcmp.ceq.d	$fcc0,$f0,$f2
 	bcnez	$fcc0,.L615
-	pcalau12i	$r14,%pc_hi20(.LC13)
-	fld.d	$f1,$r14,%pc_lo12(.LC13)
 	.align	3
 .L617:
 	addi.w	$r12,$r12,-1
@@ -3601,8 +3599,8 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118 = .
 	.cfi_startproc
-	pcalau12i	$r12,%pc_hi20(.LC19)
-	fld.s	$f1,$r12,%pc_lo12(.LC19)
+	pcalau12i	$r12,%pc_hi20(.LC17)
+	fld.s	$f1,$r12,%pc_lo12(.LC17)
 	fcmp.sge.s	$fcc0,$f0,$f1
 	bcnez	$fcc0,.L742
 	ftintrz.l.s $f0,$f0
@@ -4902,8 +4900,8 @@ __powisf2:
 	.cfi_startproc
 	fmov.s	$f1,$f0
 	or	$r12,$r4,$r0
-	pcalau12i	$r13,%pc_hi20(.LC20)
-	fld.s	$f0,$r13,%pc_lo12(.LC20)
+	pcalau12i	$r13,%pc_hi20(.LC18)
+	fld.s	$f0,$r13,%pc_lo12(.LC18)
 	b	.L944
 	.align	5
 .L942:
@@ -5062,10 +5060,10 @@ __ucmpti2:
 	.word	1072693248
 	.section	.rodata.cst4
 	.align	2
-.LC19:
+.LC17:
 	.word	1191182336
 	.align	2
-.LC20:
+.LC18:
 	.word	1065353216
 	.section	.rodata
 	.align	3
