@@ -142,16 +142,12 @@ memccpy:
 .L22:
 	.mmi
 	ld1 r14 = [r33], 1
-	nop 0
-	mov r8 = r32
 	;;
-	.mmi
-	cmp4.ne p6, p7 = r34, r14
 	st1 [r32] = r14, 1
-	nop 0
+	cmp4.ne p6, p7 = r34, r14
 	.bbb
 	nop 0
-	(p7) br.cond.dpnt .L35
+	(p7) br.cond.dpnt .L34
 	br.cloop.sptk.few .L22
 	;;
 .L21:
@@ -160,9 +156,9 @@ memccpy:
 	mov ar.lc = r2
 	br.ret.sptk.many b0
 	;;
-.L35:
+.L34:
 	.mib
-	adds r8 = 1, r8
+	mov r8 = r32
 	mov ar.lc = r2
 	br.ret.sptk.many b0
 	.endp memccpy#
@@ -182,14 +178,14 @@ memchr:
 	.mib
 	nop 0
 	zxt1 r33 = r33
-	(p6) br.cond.dpnt .L43
+	(p6) br.cond.dpnt .L42
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r14
 	nop 0
 	.align 32
-.L38:
+.L37:
 	.mmi
 	mov r8 = r32
 	ld1 r14 = [r32], 1
@@ -197,15 +193,15 @@ memchr:
 	;;
 	.mbb
 	cmp4.ne p6, p7 = r33, r14
-	(p7) br.cond.dpnt .L36
-	br.cloop.sptk.few .L38
-.L43:
+	(p7) br.cond.dpnt .L35
+	br.cloop.sptk.few .L37
+.L42:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	;;
-.L36:
+.L35:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -227,14 +223,14 @@ memcmp:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L54
+	(p6) br.cond.dpnt .L53
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r14
 	nop 0
 	.align 32
-.L48:
+.L47:
 	.mmi
 	ld1 r8 = [r32]
 	nop 0
@@ -246,16 +242,16 @@ memcmp:
 	;;
 	.mbb
 	cmp4.eq p6, p7 = r14, r8
-	(p7) br.cond.dpnt .L58
-	br.cloop.sptk.few .L48
+	(p7) br.cond.dpnt .L57
+	br.cloop.sptk.few .L47
 	;;
-.L54:
+.L53:
 	.mib
 	mov r8 = r0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
 	;;
-.L58:
+.L57:
 	.mib
 	sub r8 = r8, r14
 	mov ar.lc = r2
@@ -278,7 +274,7 @@ memcpy:
 	mov r37 = r1
 	.body
 	mov r40 = r34
-	(p6) br.cond.dpnt .L60
+	(p6) br.cond.dpnt .L59
 	;;
 	.mmi
 	nop 0
@@ -293,7 +289,7 @@ memcpy:
 	mov r1 = r37
 	nop 0
 	nop 0
-.L60:
+.L59:
 	.mmi
 	mov r8 = r32
 	nop 0
@@ -330,21 +326,21 @@ memrchr:
 	.mib
 	nop 0
 	mov r8 = r32
-	br.cloop.sptk.few .L69
+	br.cloop.sptk.few .L68
 	;;
 	.align 32
-.L72:
+.L71:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
-.L66:
+.L65:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
 	;;
-.L69:
+.L68:
 	.mmi
 	ld1 r14 = [r8]
 	nop 0
@@ -353,16 +349,16 @@ memrchr:
 	.mib
 	cmp4.eq p6, p7 = r33, r14
 	nop 0
-	(p6) br.cond.dpnt .L66
+	(p6) br.cond.dpnt .L65
 	;;
 	.mib
 	nop 0
 	mov r8 = r32
-	br.cloop.sptk.few .L69
+	br.cloop.sptk.few .L68
 	.mib
 	nop 0
 	nop 0
-	br .L72
+	br .L71
 	.endp memrchr#
 	.align 16
 	.align 64
@@ -374,14 +370,14 @@ memset:
 	.mmi
 	.save ar.pfs, r36
 	alloc r36 = ar.pfs, 3, 3, 3, 0
-	cmp.eq p6, p7 = 0, r34
+	cmp.ne p6, p7 = 0, r34
 	.save rp, r35
 	mov r35 = b0
 	.mmb
 	mov r37 = r1
 	.body
 	mov r40 = r34
-	(p6) br.cond.dpnt .L74
+	(p7) br.cond.dpnt .L75
 	;;
 	.mii
 	nop 0
@@ -396,7 +392,7 @@ memset:
 	mov r1 = r37
 	nop 0
 	nop 0
-.L74:
+.L75:
 	.mmi
 	mov r8 = r32
 	nop 0
@@ -433,10 +429,10 @@ stpcpy:
 	.mib
 	nop 0
 	(p6) mov r8 = r32
-	(p6) br.cond.dpnt .L80
+	(p6) br.cond.dpnt .L78
 	;;
 	.align 32
-.L82:
+.L80:
 	.mii
 	ld1 r15 = [r33], 1
 	mov r8 = r14
@@ -450,8 +446,8 @@ stpcpy:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r16
-	(p6) br.cond.dptk .L82
-.L80:
+	(p6) br.cond.dptk .L80
+.L78:
 	.mib
 	nop 0
 	nop 0
@@ -478,10 +474,10 @@ strchrnul:
 	.mib
 	mov r15 = r14
 	cmp4.ne p6, p7 = 0, r14
-	(p7) br.cond.dpnt .L87
+	(p7) br.cond.dpnt .L85
 	;;
 	.align 32
-.L88:
+.L86:
 	.mii
 	nop 0
 	zxt1 r15 = r15
@@ -490,7 +486,7 @@ strchrnul:
 	.mib
 	cmp4.ne p6, p7 = r33, r15
 	nop 0
-	(p7) br.cond.dpnt .L87
+	(p7) br.cond.dpnt .L85
 	;;
 	.mmi
 	adds r8 = 1, r8
@@ -506,8 +502,8 @@ strchrnul:
 	.mib
 	mov r15 = r14
 	cmp4.eq p6, p7 = 0, r14
-	(p7) br.cond.dptk .L88
-.L87:
+	(p7) br.cond.dptk .L86
+.L85:
 	.mib
 	nop 0
 	nop 0
@@ -522,7 +518,7 @@ strchr:
 	.prologue
 	.body
 	.align 32
-.L97:
+.L95:
 	.mmi
 	ld1 r14 = [r32]
 	mov r8 = r32
@@ -536,17 +532,17 @@ strchr:
 	.mib
 	cmp4.eq p6, p7 = r33, r14
 	nop 0
-	(p6) br.cond.dpnt .L95
+	(p6) br.cond.dpnt .L93
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L97
+	(p6) br.cond.dptk .L95
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
-.L95:
+.L93:
 	.mib
 	nop 0
 	nop 0
@@ -589,9 +585,9 @@ strcmp:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r14
-	(p6) br.cond.dpnt .L102
+	(p6) br.cond.dpnt .L100
 	.align 32
-.L103:
+.L101:
 	.mmi
 	ld1 r14 = [r32], 1
 	ld1 r8 = [r33], 1
@@ -610,8 +606,8 @@ strcmp:
 	.mib
 	nop 0
 	cmp4.ne.and.orcm p6, p7 = 0, r14
-	(p6) br.cond.dptk .L103
-.L102:
+	(p6) br.cond.dptk .L101
+.L100:
 	.mii
 	nop 0
 	zxt1 r15 = r15
@@ -644,10 +640,10 @@ strlen:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L107
+	(p6) br.cond.dpnt .L105
 	;;
 	.align 32
-.L109:
+.L107:
 	.mmi
 	mov r8 = r15
 	nop 0
@@ -662,12 +658,12 @@ strlen:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L109
+	(p6) br.cond.dptk .L107
 	.mmi
 	sub r8 = r8, r32
 	nop 0
 	nop 0
-.L107:
+.L105:
 	.mib
 	nop 0
 	nop 0
@@ -693,7 +689,7 @@ strncmp:
 	.mib
 	(p6) mov r8 = r0
 	nop 0
-	(p6) br.cond.dpnt .L114
+	(p6) br.cond.dpnt .L112
 	;;
 	.mmi
 	ld1 r14 = [r32]
@@ -704,10 +700,10 @@ strncmp:
 	.mib
 	(p7) ld1 r14 = [r33]
 	(p7) mov r8 = r0
-	(p7) br.cond.dpnt .L117
+	(p7) br.cond.dpnt .L115
 	;;
 	.align 32
-.L118:
+.L116:
 	.mmi
 	mov r19 = r15
 	ld1 r14 = [r15], 1
@@ -732,7 +728,7 @@ strncmp:
 	.mib
 	nop 0
 	tbit.nz.and.orcm p6, p7 = r16, 0
-	(p7) br.cond.dpnt .L117
+	(p7) br.cond.dpnt .L115
 	;;
 	.mmi
 	nop 0
@@ -742,7 +738,7 @@ strncmp:
 	.mib
 	mov r8 = r14
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L118
+	(p6) br.cond.dptk .L116
 	;;
 	.mmi
 	adds r19 = 1, r19
@@ -754,12 +750,12 @@ strncmp:
 	nop 0
 	nop 0
 	;;
-.L117:
+.L115:
 	.mmi
 	sub r8 = r8, r14
 	nop 0
 	nop 0
-.L114:
+.L112:
 	.mib
 	nop 0
 	nop 0
@@ -781,7 +777,7 @@ swab:
 	.mmb
 	cmp.ge p6, p7 = 1, r34
 	nop 0
-	(p6) br.cond.dpnt .L124
+	(p6) br.cond.dpnt .L122
 	;;
 	.mii
 	adds r14 = -2, r14
@@ -794,7 +790,7 @@ swab:
 	mov ar.lc = r14
 	nop 0
 	.align 32
-.L126:
+.L124:
 	.mmi
 	adds r16 = 1, r32
 	nop 0
@@ -813,9 +809,9 @@ swab:
 	.mib
 	st1 [r14] = r15
 	nop 0
-	br.cloop.sptk.few .L126
+	br.cloop.sptk.few .L124
 	;;
-.L124:
+.L122:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -1084,11 +1080,11 @@ iswcntrl:
 	.mib
 	cmp4.geu p10, p11 = 1, r14
 	(p8) cmp4.eq.or.andcm p6, p7 = 0, r0
-	(p6) br.cond.dptk .L150
+	(p6) br.cond.dptk .L148
 	.mib
 	addl r2 = -65529, r2
 	nop 0
-	(p10) br.cond.dpnt .L150
+	(p10) br.cond.dpnt .L148
 	;;
 	.mmi
 	nop 0
@@ -1100,7 +1096,7 @@ iswcntrl:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L150:
+.L148:
 	.mib
 	nop 0
 	nop 0
@@ -1151,7 +1147,7 @@ iswprint:
 	.mib
 	cmp4.ltu p6, p7 = r14, r32
 	addl r14 = 47061, r0
-	(p7) br.cond.dpnt .L166
+	(p7) br.cond.dpnt .L164
 	;;
 	.mmi
 	cmp4.geu p6, p7 = r14, r16
@@ -1165,17 +1161,17 @@ iswprint:
 	.mmb
 	addl r14 = 65534, r0
 	addl r15 = 1048579, r0
-	(p6) br.cond.dpnt .L162
+	(p6) br.cond.dpnt .L160
 	;;
 	.mib
 	and r2 = r14, r2
 	cmp4.ltu p6, p7 = r15, r16
-	(p10) br.cond.dpnt .L162
+	(p10) br.cond.dpnt .L160
 	;;
 	.mib
 	(p6) mov r8 = r0
 	nop 0
-	(p6) br.cond.dpnt .L158
+	(p6) br.cond.dpnt .L156
 	;;
 	.mmi
 	nop 0
@@ -1187,18 +1183,18 @@ iswprint:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L158:
+.L156:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L162:
+.L160:
 	.mib
 	nop 0
 	addl r8 = 1, r0
 	br.ret.sptk.many b0
-.L166:
+.L164:
 	.mmi
 	adds r2 = 1, r32
 	;;
@@ -1232,7 +1228,7 @@ iswxdigit:
 	.mib
 	adds r14 = -97, r14
 	cmp4.geu p6, p7 = 9, r32
-	(p6) br.cond.dptk .L167
+	(p6) br.cond.dptk .L165
 	;;
 	.mmi
 	nop 0
@@ -1244,7 +1240,7 @@ iswxdigit:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L167:
+.L165:
 	.mib
 	nop 0
 	nop 0
@@ -1293,12 +1289,12 @@ fdim:
 	.mfb
 	nop 0
 	(p6) mov f8 = f6
-	(p6) br.cond.dpnt .L174
+	(p6) br.cond.dpnt .L172
 	;;
 	.mfb
 	nop 0
 	(p8) mov f8 = f9
-	(p8) br.cond.dpnt .L174
+	(p8) br.cond.dpnt .L172
 	;;
 	.mmf
 	nop 0
@@ -1309,7 +1305,7 @@ fdim:
 	nop 0
 	(p6) fsub.d f8 = f6, f9
 	nop 0
-.L174:
+.L172:
 	.mib
 	nop 0
 	nop 0
@@ -1345,12 +1341,12 @@ fdimf:
 	.mfb
 	nop 0
 	(p6) mov f8 = f6
-	(p6) br.cond.dpnt .L184
+	(p6) br.cond.dpnt .L182
 	;;
 	.mfb
 	nop 0
 	(p8) mov f8 = f9
-	(p8) br.cond.dpnt .L184
+	(p8) br.cond.dpnt .L182
 	;;
 	.mmf
 	nop 0
@@ -1361,7 +1357,7 @@ fdimf:
 	nop 0
 	(p6) fsub.s f8 = f6, f9
 	nop 0
-.L184:
+.L182:
 	.mib
 	nop 0
 	nop 0
@@ -1383,7 +1379,7 @@ fmax:
 	.mib
 	getf.d r14 = f9
 	nop 0
-	(p6) br.cond.dpnt .L201
+	(p6) br.cond.dpnt .L199
 	;;
 	.mmf
 	nop 0
@@ -1393,7 +1389,7 @@ fmax:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L200
+	(p6) br.cond.dpnt .L198
 	;;
 	.mii
 	nop 0
@@ -1404,24 +1400,24 @@ fmax:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r17, r16
-	(p6) br.cond.dptk .L196
+	(p6) br.cond.dptk .L194
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r16
-	(p7) br.cond.dptk .L194
-.L201:
+	(p7) br.cond.dptk .L192
+.L199:
 	.mmi
 	setf.d f8 = r14
 	nop 0
 	nop 0
-.L194:
+.L192:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L196:
+.L194:
 	.mmf
 	nop 0
 	nop 0
@@ -1430,8 +1426,8 @@ fmax:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L201
-.L200:
+	(p6) br.cond.dptk .L199
+.L198:
 	.mib
 	setf.d f8 = r15
 	nop 0
@@ -1456,7 +1452,7 @@ fmaxf:
 	.mib
 	getf.s r14 = f9
 	nop 0
-	(p6) br.cond.dpnt .L211
+	(p6) br.cond.dpnt .L209
 	;;
 	.mmf
 	nop 0
@@ -1466,7 +1462,7 @@ fmaxf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L210
+	(p6) br.cond.dpnt .L208
 	;;
 	.mmi
 	mov r16 = r15
@@ -1482,24 +1478,24 @@ fmaxf:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r17, r16
-	(p6) br.cond.dptk .L206
+	(p6) br.cond.dptk .L204
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r16
-	(p7) br.cond.dptk .L204
-.L211:
+	(p7) br.cond.dptk .L202
+.L209:
 	.mmi
 	setf.s f8 = r14
 	nop 0
 	nop 0
-.L204:
+.L202:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L206:
+.L204:
 	.mmf
 	nop 0
 	nop 0
@@ -1508,8 +1504,8 @@ fmaxf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L211
-.L210:
+	(p6) br.cond.dptk .L209
+.L208:
 	.mib
 	setf.s f8 = r15
 	nop 0
@@ -1541,7 +1537,7 @@ fmaxl:
 	.mib
 	stfe [r14] = f9
 	nop 0
-	(p6) br.cond.dpnt .L219
+	(p6) br.cond.dpnt .L217
 	;;
 	.mmf
 	nop 0
@@ -1551,7 +1547,7 @@ fmaxl:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L220
+	(p6) br.cond.dpnt .L218
 	;;
 	.mmi
 	ld8 r14 = [r15]
@@ -1566,12 +1562,12 @@ fmaxl:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r15, r14
-	(p6) br.cond.dptk .L216
+	(p6) br.cond.dptk .L214
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p7) br.cond.dptk .L214
+	(p7) br.cond.dptk .L212
 	.mmi
 	nop 0
 	adds r15 = 16, r12
@@ -1581,7 +1577,7 @@ fmaxl:
 	ldfe f8 = [r15]
 	nop 0
 	nop 0
-.L214:
+.L212:
 	.mib
 	nop 0
 	.label_state 1
@@ -1589,7 +1585,7 @@ fmaxl:
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
 	;;
-.L216:
+.L214:
 	.body
 	.copy_state 1
 	.mmi
@@ -1610,9 +1606,9 @@ fmaxl:
 	.mfb
 	nop 0
 	(p6) mov f8 = f7
-	(p6) br.cond.dptk .L214
+	(p6) br.cond.dptk .L212
 	;;
-.L220:
+.L218:
 	.mib
 	ldfe f8 = [r12]
 	.label_state 2
@@ -1620,7 +1616,7 @@ fmaxl:
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
 	;;
-.L219:
+.L217:
 	.body
 	.copy_state 2
 	.mmi
@@ -1650,7 +1646,7 @@ fmin:
 	.mib
 	getf.d r15 = f9
 	nop 0
-	(p6) br.cond.dpnt .L229
+	(p6) br.cond.dpnt .L227
 	;;
 	.mmf
 	nop 0
@@ -1660,7 +1656,7 @@ fmin:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L231
+	(p6) br.cond.dpnt .L229
 	;;
 	.mii
 	nop 0
@@ -1671,19 +1667,19 @@ fmin:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r17, r16
-	(p6) br.cond.dptk .L226
+	(p6) br.cond.dptk .L224
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r16
-	(p7) br.cond.dptk .L229
-.L231:
+	(p7) br.cond.dptk .L227
+.L229:
 	.mib
 	setf.d f8 = r14
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L226:
+.L224:
 	.mmf
 	nop 0
 	nop 0
@@ -1692,8 +1688,8 @@ fmin:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L231
-.L229:
+	(p6) br.cond.dptk .L229
+.L227:
 	.mib
 	setf.d f8 = r15
 	nop 0
@@ -1718,7 +1714,7 @@ fminf:
 	.mib
 	getf.s r15 = f9
 	nop 0
-	(p6) br.cond.dpnt .L239
+	(p6) br.cond.dpnt .L237
 	;;
 	.mmf
 	nop 0
@@ -1728,7 +1724,7 @@ fminf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L241
+	(p6) br.cond.dpnt .L239
 	;;
 	.mmi
 	mov r16 = r14
@@ -1744,19 +1740,19 @@ fminf:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r17, r16
-	(p6) br.cond.dptk .L236
+	(p6) br.cond.dptk .L234
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r16
-	(p7) br.cond.dptk .L239
-.L241:
+	(p7) br.cond.dptk .L237
+.L239:
 	.mib
 	setf.s f8 = r14
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L236:
+.L234:
 	.mmf
 	nop 0
 	nop 0
@@ -1765,8 +1761,8 @@ fminf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L241
-.L239:
+	(p6) br.cond.dptk .L239
+.L237:
 	.mib
 	setf.s f8 = r15
 	nop 0
@@ -1798,7 +1794,7 @@ fminl:
 	.mib
 	stfe [r14] = f9
 	nop 0
-	(p6) br.cond.dpnt .L249
+	(p6) br.cond.dpnt .L247
 	;;
 	.mmf
 	nop 0
@@ -1808,7 +1804,7 @@ fminl:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L251
+	(p6) br.cond.dpnt .L249
 	;;
 	.mmi
 	ld8 r14 = [r15]
@@ -1823,12 +1819,12 @@ fminl:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r15, r14
-	(p6) br.cond.dptk .L246
+	(p6) br.cond.dptk .L244
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L251
+	(p6) br.cond.dptk .L249
 	;;
 	.mfi
 	nop 0
@@ -1841,7 +1837,7 @@ fminl:
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
 	;;
-.L246:
+.L244:
 	.body
 	.copy_state 1
 	.mmi
@@ -1871,7 +1867,7 @@ fminl:
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
 	;;
-.L251:
+.L249:
 	.body
 	.copy_state 2
 	.mib
@@ -1881,7 +1877,7 @@ fminl:
 	adds r12 = 16, r12
 	br.ret.sptk.many b0
 	;;
-.L249:
+.L247:
 	.body
 	.copy_state 3
 	.mmi
@@ -1914,9 +1910,9 @@ l64a:
 	.mib
 	add r17 = r1, r17
 	(p6) addl r16 = @gprel(s.0#), gp
-	(p6) br.cond.dpnt .L255
+	(p6) br.cond.dpnt .L253
 	.align 32
-.L256:
+.L254:
 	.mii
 	and r15 = 63, r14
 	extr.u r14 = r14, 6, 26
@@ -1931,9 +1927,9 @@ l64a:
 	.mib
 	st1 [r16] = r15, 1
 	nop 0
-	(p6) br.cond.dptk .L256
+	(p6) br.cond.dptk .L254
 	;;
-.L255:
+.L253:
 	.mmi
 	nop 0
 	addl r8 = @gprel(s.0#), gp
@@ -2016,7 +2012,7 @@ insque:
 	.mmb
 	(p7) st8 [r32] = r0
 	nop 0
-	(p7) br.cond.dpnt .L265
+	(p7) br.cond.dpnt .L263
 	;;
 	.mmi
 	ld8 r15 = [r33]
@@ -2038,18 +2034,18 @@ insque:
 	adds r15 = 8, r14
 	cmp.eq p6, p7 = 0, r14
 	.mmi
-	chk.a.clr r14, .L273
-.L274:
+	chk.a.clr r14, .L271
+.L272:
 	.pred.rel.mutex p6, p7
 	;;
 	(p7) st8 [r15] = r32
 	nop 0
-.L265:
+.L263:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
-.L273:
+.L271:
 	.mmi
 	nop 0
 	ld8 r14 = [r32]
@@ -2058,7 +2054,7 @@ insque:
 	.mib
 	adds r15 = 8, r14
 	cmp.eq p6, p7 = 0, r14
-	br .L274
+	br .L272
 	.endp insque#
 	.align 16
 	.align 64
@@ -2122,14 +2118,14 @@ lsearch:
 	.mmb
 	cmp.eq p6, p7 = 0, r39
 	nop 0
-	(p6) br.cond.dpnt .L286
+	(p6) br.cond.dpnt .L284
 	;;
 	.mii
 	nop 0
 	mov ar.lc = r14
 	nop 0
 	.align 32
-.L288:
+.L286:
 	.mmi
 	nop 0
 	ld8 r14 = [r36], 8
@@ -2150,10 +2146,10 @@ lsearch:
 	cmp4.eq p6, p7 = 0, r8
 	.bbb
 	nop 0
-	(p6) br.cond.dpnt .L285
-	br.cloop.sptk.few .L288
+	(p6) br.cond.dpnt .L283
+	br.cloop.sptk.few .L286
 	;;
-.L286:
+.L284:
 	.mmi
 	setf.sig f7 = r39
 	setf.sig f8 = r33
@@ -2176,7 +2172,7 @@ lsearch:
 	.mib
 	getf.sig r38 = f6
 	nop 0
-	(p6) br.cond.dpnt .L285
+	(p6) br.cond.dpnt .L283
 	;;
 	.mbb
 	getf.sig r44 = f6
@@ -2187,7 +2183,7 @@ lsearch:
 	mov r1 = r42
 	nop 0
 	nop 0
-.L285:
+.L283:
 	.mii
 	mov r8 = r38
 	mov b0 = r40
@@ -2226,14 +2222,14 @@ lfind:
 	.mmb
 	cmp.eq p6, p7 = 0, r14
 	nop 0
-	(p6) br.cond.dpnt .L303
+	(p6) br.cond.dpnt .L301
 	;;
 	.mii
 	nop 0
 	mov ar.lc = r15
 	nop 0
 	.align 32
-.L305:
+.L303:
 	.mmi
 	nop 0
 	ld8 r14 = [r36], 8
@@ -2254,15 +2250,15 @@ lfind:
 	cmp4.eq p6, p7 = 0, r8
 	.bbb
 	nop 0
-	(p6) br.cond.dpnt .L302
-	br.cloop.sptk.few .L305
-.L303:
+	(p6) br.cond.dpnt .L300
+	br.cloop.sptk.few .L303
+.L301:
 	.mmi
 	mov r37 = r0
 	nop 0
 	nop 0
 	;;
-.L302:
+.L300:
 	.mii
 	mov r8 = r37
 	mov b0 = r38
@@ -2316,9 +2312,9 @@ atoi:
 	.mib
 	nop 0
 	cmp4.eq.or.andcm p6, p7 = 32, r14
-	(p7) br.cond.dpnt .L318
+	(p7) br.cond.dpnt .L316
 	.align 32
-.L338:
+.L336:
 	.mmi
 	mov r32 = r15
 	ld1 r14 = [r15], 1
@@ -2338,18 +2334,18 @@ atoi:
 	.mib
 	nop 0
 	cmp4.eq.or.andcm p6, p7 = 32, r14
-	(p6) br.cond.dptk .L338
+	(p6) br.cond.dptk .L336
 	;;
-.L318:
+.L316:
 	.mib
 	cmp4.eq p6, p7 = 43, r14
 	nop 0
-	(p6) br.cond.dpnt .L320
+	(p6) br.cond.dpnt .L318
 	;;
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 45, r14
-	(p6) br.cond.dptk .L321
+	(p6) br.cond.dptk .L319
 	.mmi
 	nop 0
 	ld1 r15 = [r32]
@@ -2364,20 +2360,20 @@ atoi:
 	.mib
 	nop 0
 	cmp4.geu p6, p7 = 9, r14
-	(p7) br.cond.dpnt .L329
+	(p7) br.cond.dpnt .L327
 	;;
 	.mmi
 	(p6) mov r19 = r0
 	nop 0
 	nop 0
-.L323:
+.L321:
 	.mmi
 	nop 0
 	adds r32 = 1, r32
 	mov r8 = r0
 	;;
 	.align 32
-.L326:
+.L324:
 	.mmi
 	ld1 r18 = [r32], 1
 	shladd r14 = r8, 2, r0
@@ -2396,7 +2392,7 @@ atoi:
 	.mib
 	sub r8 = r14, r17
 	cmp4.geu p6, p7 = 9, r18
-	(p6) br.cond.dptk .L326
+	(p6) br.cond.dptk .L324
 	;;
 	.mmi
 	nop 0
@@ -2407,7 +2403,7 @@ atoi:
 	nop 0
 	(p7) sub r8 = r17, r14
 	br.ret.sptk.many b0
-.L321:
+.L319:
 	.mmi
 	adds r32 = 1, r32
 	;;
@@ -2428,13 +2424,13 @@ atoi:
 	.mib
 	nop 0
 	(p7) addl r19 = 1, r0
-	(p7) br.cond.dptk .L323
-.L329:
+	(p7) br.cond.dptk .L321
+.L327:
 	.mib
 	nop 0
 	mov r8 = r0
 	br.ret.sptk.many b0
-.L320:
+.L318:
 	.mmi
 	adds r32 = 1, r32
 	;;
@@ -2455,11 +2451,11 @@ atoi:
 	.mib
 	nop 0
 	(p6) mov r19 = r0
-	(p6) br.cond.dptk .L323
+	(p6) br.cond.dptk .L321
 	.mib
 	nop 0
 	nop 0
-	br .L329
+	br .L327
 	.endp atoi#
 	.align 16
 	.align 64
@@ -2484,9 +2480,9 @@ atol:
 	.mib
 	nop 0
 	cmp4.eq.or.andcm p6, p7 = 32, r14
-	(p7) br.cond.dpnt .L340
+	(p7) br.cond.dpnt .L338
 	.align 32
-.L360:
+.L358:
 	.mmi
 	mov r32 = r15
 	ld1 r14 = [r15], 1
@@ -2506,18 +2502,18 @@ atol:
 	.mib
 	nop 0
 	cmp4.eq.or.andcm p6, p7 = 32, r14
-	(p6) br.cond.dptk .L360
+	(p6) br.cond.dptk .L358
 	;;
-.L340:
+.L338:
 	.mib
 	cmp4.eq p6, p7 = 43, r14
 	nop 0
-	(p6) br.cond.dpnt .L342
+	(p6) br.cond.dpnt .L340
 	;;
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 45, r14
-	(p6) br.cond.dptk .L343
+	(p6) br.cond.dptk .L341
 	.mmi
 	nop 0
 	ld1 r15 = [r32]
@@ -2532,20 +2528,20 @@ atol:
 	.mib
 	nop 0
 	cmp4.geu p6, p7 = 9, r14
-	(p7) br.cond.dpnt .L351
+	(p7) br.cond.dpnt .L349
 	;;
 	.mmi
 	(p6) mov r19 = r0
 	nop 0
 	nop 0
-.L345:
+.L343:
 	.mmi
 	nop 0
 	adds r32 = 1, r32
 	mov r8 = r0
 	;;
 	.align 32
-.L348:
+.L346:
 	.mmi
 	ld1 r18 = [r32], 1
 	shladd r14 = r8, 2, r0
@@ -2564,7 +2560,7 @@ atol:
 	.mib
 	sub r8 = r14, r17
 	cmp4.geu p6, p7 = 9, r18
-	(p6) br.cond.dptk .L348
+	(p6) br.cond.dptk .L346
 	;;
 	.mmi
 	nop 0
@@ -2575,7 +2571,7 @@ atol:
 	nop 0
 	(p7) sub r8 = r17, r14
 	br.ret.sptk.many b0
-.L343:
+.L341:
 	.mmi
 	adds r32 = 1, r32
 	;;
@@ -2596,13 +2592,13 @@ atol:
 	.mib
 	nop 0
 	(p7) addl r19 = 1, r0
-	(p7) br.cond.dptk .L345
-.L351:
+	(p7) br.cond.dptk .L343
+.L349:
 	.mib
 	nop 0
 	mov r8 = r0
 	br.ret.sptk.many b0
-.L342:
+.L340:
 	.mmi
 	adds r32 = 1, r32
 	;;
@@ -2623,11 +2619,11 @@ atol:
 	.mib
 	nop 0
 	(p6) mov r19 = r0
-	(p6) br.cond.dptk .L345
+	(p6) br.cond.dptk .L343
 	.mib
 	nop 0
 	nop 0
-	br .L351
+	br .L349
 	.endp atol#
 	.align 16
 	.align 64
@@ -2682,14 +2678,14 @@ bsearch:
 	.mmb
 	setf.sig f3 = r35
 	nop 0
-	(p6) br.cond.dpnt .L364
+	(p6) br.cond.dpnt .L362
 	;;
 	.mmi
 	setf.sig f4 = r33
 	nop 0
 	nop 0
 	.align 32
-.L367:
+.L365:
 	.mib
 	nop 0
 	shr.u r37 = r34, 1
@@ -2725,12 +2721,12 @@ bsearch:
 	.mmb
 	mov r1 = r40
 	nop 0
-	(p6) br.cond.dpnt .L368
+	(p6) br.cond.dpnt .L366
 	;;
 	.mib
 	getf.sig r14 = f3
 	cmp4.ge p6, p7 = 0, r8
-	(p6) br.cond.dpnt .L363
+	(p6) br.cond.dpnt .L361
 	;;
 	.mmi
 	cmp.ne p6, p7 = 0, r34
@@ -2741,14 +2737,14 @@ bsearch:
 	.mib
 	setf.sig f4 = r15
 	nop 0
-	(p6) br.cond.dptk .L367
-.L364:
+	(p6) br.cond.dptk .L365
+.L362:
 	.mmi
 	setf.sig f2 = r0
 	nop 0
 	nop 0
 	;;
-.L363:
+.L361:
 	.mmb
 	getf.sig r8 = f2
 	adds r18 = 16, r12
@@ -2773,7 +2769,7 @@ bsearch:
 	.restore sp
 	adds r12 = 48, r12
 	br.ret.sptk.many b0
-.L368:
+.L366:
 	.body
 	.copy_state 1
 	.mmi
@@ -2784,11 +2780,11 @@ bsearch:
 	.mib
 	nop 0
 	cmp.ne p6, p7 = 0, r34
-	(p6) br.cond.dptk .L367
+	(p6) br.cond.dptk .L365
 	.mib
 	nop 0
 	nop 0
-	br .L364
+	br .L362
 	.endp bsearch#
 	.align 16
 	.align 64
@@ -2816,7 +2812,7 @@ bsearch_r:
 	.save rp, r40
 	mov r40 = b0
 	.mii
-	cmp4.eq p6, p7 = 0, r34
+	cmp4.ne p6, p7 = 0, r34
 	nop 0
 	;;
 	nop 0
@@ -2825,14 +2821,14 @@ bsearch_r:
 	stf.spill [r16] = f4
 	.body
 	setf.sig f3 = r35
-	(p6) br.cond.dpnt .L376
+	(p7) br.cond.dpnt .L377
 	;;
 	.mmi
 	setf.sig f4 = r33
 	nop 0
 	nop 0
 	.align 32
-.L379:
+.L374:
 	.mib
 	nop 0
 	extr r14 = r38, 1, 31
@@ -2869,7 +2865,7 @@ bsearch_r:
 	.mib
 	cmp4.eq p6, p7 = 0, r8
 	mov r1 = r42
-	(p6) br.cond.dpnt .L375
+	(p6) br.cond.dpnt .L373
 	;;
 	.mmi
 	cmp4.ge p6, p7 = 0, r8
@@ -2886,14 +2882,14 @@ bsearch_r:
 	.mib
 	(p7) setf.sig f4 = r15
 	cmp4.ne p6, p7 = 0, r38
-	(p6) br.cond.dptk .L379
-.L376:
+	(p6) br.cond.dptk .L374
+.L377:
 	.mmi
 	setf.sig f2 = r0
 	nop 0
 	nop 0
 	;;
-.L375:
+.L373:
 	.mmb
 	getf.sig r8 = f2
 	adds r18 = 16, r12
@@ -3227,10 +3223,10 @@ wcschr:
 	.mib
 	nop 0
 	(p8) mov r8 = r32
-	(p8) br.cond.dpnt .L402
+	(p8) br.cond.dpnt .L401
 	;;
 	.align 32
-.L403:
+.L402:
 	.mmi
 	mov r8 = r15
 	ld4 r14 = [r15], 4
@@ -3246,8 +3242,8 @@ wcschr:
 	.mib
 	nop 0
 	cmp4.ne.and.orcm p8, p9 = r33, r14
-	(p8) br.cond.dptk .L403
-.L402:
+	(p8) br.cond.dptk .L402
+.L401:
 	.pred.rel.mutex p6, p7
 	.mib
 	nop 0
@@ -3295,9 +3291,9 @@ wcscmp:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r14
-	(p6) br.cond.dpnt .L410
+	(p6) br.cond.dpnt .L409
 	.align 32
-.L411:
+.L410:
 	.mmi
 	ld4 r16 = [r32], 4
 	ld4 r15 = [r33], 4
@@ -3322,9 +3318,9 @@ wcscmp:
 	.mib
 	nop 0
 	tbit.nz.and.orcm p6, p7 = r14, 0
-	(p6) br.cond.dptk .L411
+	(p6) br.cond.dptk .L410
 	;;
-.L410:
+.L409:
 	.mmi
 	nop 0
 	cmp4.lt p8, p9 = r15, r16
@@ -3332,14 +3328,14 @@ wcscmp:
 	.mmb
 	nop 0
 	cmp4.gt p6, p7 = r15, r16
-	(p6) br.cond.dptk .L409
+	(p6) br.cond.dptk .L408
 	;;
 	.mii
 	(p8) addl r8 = 1, r0
 	nop 0
 	;;
 	(p9) mov r8 = r0
-.L409:
+.L408:
 	.mib
 	nop 0
 	nop 0
@@ -3358,7 +3354,7 @@ wcscpy:
 	mov r8 = r32
 	mov r15 = r32
 	.align 32
-.L418:
+.L417:
 	.mmi
 	ld4 r14 = [r33]
 	nop 0
@@ -3367,7 +3363,7 @@ wcscpy:
 	.mib
 	st4 [r15] = r14, 4
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L418
+	(p6) br.cond.dptk .L417
 	.mib
 	nop 0
 	nop 0
@@ -3390,10 +3386,10 @@ wcslen:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L422
+	(p6) br.cond.dpnt .L421
 	;;
 	.align 32
-.L424:
+.L423:
 	.mmi
 	mov r8 = r14
 	nop 0
@@ -3407,13 +3403,13 @@ wcslen:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r15
-	(p6) br.cond.dptk .L424
+	(p6) br.cond.dptk .L423
 	.mii
 	sub r8 = r8, r32
 	nop 0
 	;;
 	shr r8 = r8, 2
-.L422:
+.L421:
 	.mib
 	nop 0
 	nop 0
@@ -3435,14 +3431,14 @@ wcsncmp:
 	.mmb
 	cmp.eq p6, p7 = 0, r34
 	nop 0
-	(p6) br.cond.dpnt .L438
+	(p6) br.cond.dpnt .L437
 	;;
 	.mii
 	nop 0
 	mov ar.lc = r14
 	nop 0
 	.align 32
-.L431:
+.L430:
 	.mmi
 	mov r16 = r33
 	nop 0
@@ -3474,20 +3470,20 @@ wcsncmp:
 	tbit.nz.and.orcm p6, p7 = r14, 0
 	.bbb
 	nop 0
-	(p7) br.cond.dpnt .L442
-	br.cloop.sptk.few .L431
-.L438:
+	(p7) br.cond.dpnt .L441
+	br.cloop.sptk.few .L430
+.L437:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	;;
-.L429:
+.L428:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L442:
+.L441:
 	.mmi
 	nop 0
 	ld4 r15 = [r17]
@@ -3500,7 +3496,7 @@ wcsncmp:
 	.mib
 	cmp4.lt p8, p9 = r14, r15
 	cmp4.le p6, p7 = r14, r15
-	(p7) br.cond.dptk .L429
+	(p7) br.cond.dptk .L428
 	;;
 	.mmi
 	(p8) addl r8 = 1, r0
@@ -3528,14 +3524,14 @@ wmemchr:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L450
+	(p6) br.cond.dpnt .L449
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r14
 	nop 0
 	.align 32
-.L445:
+.L444:
 	.mmi
 	mov r8 = r32
 	ld4 r14 = [r32], 4
@@ -3543,15 +3539,15 @@ wmemchr:
 	;;
 	.mbb
 	cmp4.ne p6, p7 = r33, r14
-	(p7) br.cond.dpnt .L443
-	br.cloop.sptk.few .L445
-.L450:
+	(p7) br.cond.dpnt .L442
+	br.cloop.sptk.few .L444
+.L449:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	;;
-.L443:
+.L442:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -3573,14 +3569,14 @@ wmemcmp:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L462
+	(p6) br.cond.dpnt .L461
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r14
 	nop 0
 	.align 32
-.L455:
+.L454:
 	.mmi
 	ld4 r15 = [r32]
 	nop 0
@@ -3592,20 +3588,20 @@ wmemcmp:
 	;;
 	.mbb
 	cmp4.eq p6, p7 = r14, r15
-	(p7) br.cond.dpnt .L466
-	br.cloop.sptk.few .L455
-.L462:
+	(p7) br.cond.dpnt .L465
+	br.cloop.sptk.few .L454
+.L461:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	;;
-.L453:
+.L452:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L466:
+.L465:
 	.mmi
 	nop 0
 	cmp4.lt p8, p9 = r14, r15
@@ -3613,7 +3609,7 @@ wmemcmp:
 	.mmb
 	nop 0
 	cmp4.le p6, p7 = r14, r15
-	(p7) br.cond.dptk .L453
+	(p7) br.cond.dptk .L452
 	;;
 	.mmi
 	(p8) addl r8 = 1, r0
@@ -3642,7 +3638,7 @@ wmemcpy:
 	mov r37 = r1
 	.body
 	mov r39 = r33
-	(p6) br.cond.dpnt .L468
+	(p6) br.cond.dpnt .L467
 	;;
 	.mmi
 	nop 0
@@ -3657,7 +3653,7 @@ wmemcpy:
 	mov r1 = r37
 	nop 0
 	nop 0
-.L468:
+.L467:
 	.mmi
 	mov r8 = r32
 	nop 0
@@ -3676,7 +3672,7 @@ wmemcpy:
 wmemmove:
 	.prologue
 	.mmb
-	cmp.eq p6, p7 = r33, r32
+	cmp.ne p6, p7 = r33, r32
 	sub r17 = r32, r33
 	nop 0
 	.mii
@@ -3689,17 +3685,17 @@ wmemmove:
 	.mib
 	adds r14 = -1, r34
 	mov r15 = r32
-	(p6) br.cond.dpnt .L475
+	(p7) br.cond.dpnt .L480
 	;;
 	.mib
 	nop 0
 	cmp.gtu p6, p7 = r16, r17
-	(p7) br.cond.dptk .L487
+	(p7) br.cond.dptk .L488
 	;;
 	.mib
 	shladd r14 = r14, 2, r0
 	cmp.eq p6, p7 = 0, r34
-	(p6) br.cond.dpnt .L475
+	(p6) br.cond.dpnt .L480
 	;;
 	.mii
 	nop 0
@@ -3722,23 +3718,23 @@ wmemmove:
 	nop 0
 	br.cloop.sptk.few .L478
 	;;
-.L475:
+.L480:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L487:
+.L488:
 	.mib
 	nop 0
 	cmp.ne p6, p7 = 0, r34
-	(p7) br.cond.dpnt .L475
+	(p7) br.cond.dpnt .L480
 	;;
 	.mii
 	nop 0
 	(p6) mov ar.lc = r14
 	nop 0
 	.align 32
-.L477:
+.L476:
 	.mmi
 	ld4 r14 = [r33]
 	nop 0
@@ -3747,7 +3743,7 @@ wmemmove:
 	.mib
 	st4 [r15] = r14, 4
 	nop 0
-	br.cloop.sptk.few .L477
+	br.cloop.sptk.few .L476
 	;;
 	.mib
 	nop 0
@@ -3770,7 +3766,7 @@ wmemset:
 	.mmb
 	mov r8 = r32
 	cmp.eq p6, p7 = 0, r34
-	(p6) br.cond.dpnt .L489
+	(p6) br.cond.dpnt .L490
 	;;
 	.mii
 	nop 0
@@ -3778,13 +3774,13 @@ wmemset:
 	nop 0
 	;;
 	.align 32
-.L490:
+.L491:
 	.mib
 	st4 [r15] = r33
 	adds r15 = 4, r15
-	br.cloop.sptk.few .L490
+	br.cloop.sptk.few .L491
 	;;
-.L489:
+.L490:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -3806,7 +3802,7 @@ bcopy:
 	.mmb
 	nop 0
 	cmp.leu p6, p7 = r33, r32
-	(p6) br.cond.dptk .L498
+	(p6) br.cond.dptk .L499
 	;;
 	.mmi
 	add r33 = r33, r14
@@ -3815,7 +3811,7 @@ bcopy:
 	.mmb
 	cmp.eq p6, p7 = 0, r34
 	nop 0
-	(p6) br.cond.dpnt .L497
+	(p6) br.cond.dpnt .L498
 	;;
 	.mii
 	sub r32 = r14, r32, 1
@@ -3823,7 +3819,7 @@ bcopy:
 	;;
 	mov ar.lc = r32
 	.align 32
-.L500:
+.L501:
 	.mmi
 	nop 0
 	ld1 r15 = [r14], -1
@@ -3832,14 +3828,14 @@ bcopy:
 	.mib
 	st1 [r33] = r15, -1
 	nop 0
-	br.cloop.sptk.few .L500
+	br.cloop.sptk.few .L501
 	;;
-.L497:
+.L498:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L498:
+.L499:
 	.mmi
 	add r14 = r32, r34
 	nop 0
@@ -3847,7 +3843,7 @@ bcopy:
 	.mmb
 	mov r15 = r33
 	nop 0
-	(p6) br.cond.dpnt .L497
+	(p6) br.cond.dpnt .L498
 	;;
 	.mmi
 	nop 0
@@ -3856,14 +3852,14 @@ bcopy:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L497
+	(p6) br.cond.dpnt .L498
 	;;
 	.mii
 	nop 0
 	mov ar.lc = r14
 	nop 0
 	.align 32
-.L501:
+.L502:
 	.mmi
 	ld1 r14 = [r32]
 	nop 0
@@ -3872,7 +3868,7 @@ bcopy:
 	.mib
 	st1 [r15] = r14, 1
 	nop 0
-	br.cloop.sptk.few .L501
+	br.cloop.sptk.few .L502
 	;;
 	.mib
 	nop 0
@@ -4223,7 +4219,7 @@ ffs:
 	nop 0
 	mov ar.lc = 31
 	.align 32
-.L541:
+.L542:
 	.mii
 	addp4 r14 = r8, r0
 	adds r8 = 1, r8
@@ -4236,14 +4232,14 @@ ffs:
 	nop 0
 	.bbb
 	nop 0
-	(p7) br.cond.dpnt .L538
-	br.cloop.sptk.few .L541
+	(p7) br.cond.dpnt .L539
+	br.cloop.sptk.few .L542
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	;;
-.L538:
+.L539:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -4265,7 +4261,7 @@ libiberty_ffs:
 	.mib
 	(p6) mov r8 = r0
 	nop 0
-	(p6) br.cond.dpnt .L545
+	(p6) br.cond.dpnt .L546
 	;;
 	.mmi
 	nop 0
@@ -4274,7 +4270,7 @@ libiberty_ffs:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L545
+	(p6) br.cond.dpnt .L546
 	;;
 	.mmi
 	addl r8 = 1, r0
@@ -4282,7 +4278,7 @@ libiberty_ffs:
 	nop 0
 	;;
 	.align 32
-.L547:
+.L548:
 	.mii
 	nop 0
 	extr r14 = r32, 1, 31
@@ -4291,8 +4287,8 @@ libiberty_ffs:
 	.mib
 	mov r32 = r14
 	tbit.z p6, p7 = r14, 0
-	(p6) br.cond.dptk .L547
-.L545:
+	(p6) br.cond.dptk .L548
+.L546:
 	.mib
 	nop 0
 	nop 0
@@ -4323,7 +4319,7 @@ gl_isinff:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L552
+	(p6) br.cond.dptk .L553
 	.mlx
 	nop 0
 	movl r14 = 0x7f7fffff
@@ -4343,7 +4339,7 @@ gl_isinff:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L552:
+.L553:
 	.mib
 	nop 0
 	nop 0
@@ -4374,7 +4370,7 @@ gl_isinfd:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L557
+	(p6) br.cond.dptk .L558
 	.mlx
 	nop 0
 	movl r14 = 0x7fefffffffffffff
@@ -4394,7 +4390,7 @@ gl_isinfd:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L557:
+.L558:
 	.mib
 	nop 0
 	nop 0
@@ -4444,7 +4440,7 @@ gl_isinfl:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L562
+	(p6) br.cond.dptk .L563
 	.mlx
 	nop 0
 	movl r14 = @gprel(.LC1)
@@ -4465,7 +4461,7 @@ gl_isinfl:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L562:
+.L563:
 	.mib
 	nop 0
 	nop 0
@@ -4515,7 +4511,7 @@ ldexpf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L570
+	(p6) br.cond.dpnt .L571
 	;;
 	.mmf
 	nop 0
@@ -4530,7 +4526,7 @@ ldexpf:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L570
+	(p6) br.cond.dptk .L571
 	.mib
 	nop 0
 	tbit.z p6, p7 = r33, 0
@@ -4546,15 +4542,15 @@ ldexpf:
 	.mib
 	(p9) setf.s f6 = r14
 	nop 0
-	(p6) br.cond.dptk .L572
+	(p6) br.cond.dptk .L573
 	;;
 	.align 32
-.L573:
+.L574:
 	.mfi
 	nop 0
 	fmpy.s f8 = f8, f6
 	nop 0
-.L572:
+.L573:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
@@ -4569,8 +4565,8 @@ ldexpf:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r33
-	(p6) br.cond.dpnt .L570
-.L574:
+	(p6) br.cond.dpnt .L571
+.L575:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
@@ -4583,13 +4579,13 @@ ldexpf:
 	.mib
 	add r14 = r14, r33
 	tbit.nz p6, p7 = r33, 0
-	(p6) br.cond.dptk .L573
+	(p6) br.cond.dptk .L574
 	;;
 	.mib
 	nop 0
 	extr r33 = r14, 1, 31
-	br .L574
-.L570:
+	br .L575
+.L571:
 	.mib
 	nop 0
 	nop 0
@@ -4611,7 +4607,7 @@ ldexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L582
+	(p6) br.cond.dpnt .L583
 	;;
 	.mmf
 	nop 0
@@ -4626,7 +4622,7 @@ ldexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L582
+	(p6) br.cond.dptk .L583
 	.mib
 	nop 0
 	tbit.z p6, p7 = r33, 0
@@ -4642,15 +4638,15 @@ ldexp:
 	.mib
 	(p9) setf.d f6 = r14
 	nop 0
-	(p6) br.cond.dptk .L584
+	(p6) br.cond.dptk .L585
 	;;
 	.align 32
-.L585:
+.L586:
 	.mfi
 	nop 0
 	fmpy.d f8 = f8, f6
 	nop 0
-.L584:
+.L585:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
@@ -4665,8 +4661,8 @@ ldexp:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r33
-	(p6) br.cond.dpnt .L582
-.L586:
+	(p6) br.cond.dpnt .L583
+.L587:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
@@ -4679,13 +4675,13 @@ ldexp:
 	.mib
 	add r14 = r14, r33
 	tbit.nz p6, p7 = r33, 0
-	(p6) br.cond.dptk .L585
+	(p6) br.cond.dptk .L586
 	;;
 	.mib
 	nop 0
 	extr r33 = r14, 1, 31
-	br .L586
-.L582:
+	br .L587
+.L583:
 	.mib
 	nop 0
 	nop 0
@@ -4721,7 +4717,7 @@ ldexpl:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L594
+	(p6) br.cond.dpnt .L595
 	;;
 	.mmf
 	nop 0
@@ -4736,7 +4732,7 @@ ldexpl:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L594
+	(p6) br.cond.dptk .L595
 	.mlx
 	nop 0
 	(p9) movl r14 = @gprel(.LC5)
@@ -4757,15 +4753,15 @@ ldexpl:
 	.mib
 	ldfe f6 = [r14]
 	nop 0
-	(p6) br.cond.dptk .L596
+	(p6) br.cond.dptk .L597
 	;;
 	.align 32
-.L597:
+.L598:
 	.mfi
 	nop 0
 	fmpy f8 = f8, f6
 	nop 0
-.L596:
+.L597:
 	.mii
 	nop 0
 	extr.u r14 = r34, 31, 1
@@ -4780,8 +4776,8 @@ ldexpl:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r34
-	(p6) br.cond.dpnt .L594
-.L598:
+	(p6) br.cond.dpnt .L595
+.L599:
 	.mii
 	nop 0
 	extr.u r14 = r34, 31, 1
@@ -4794,13 +4790,13 @@ ldexpl:
 	.mib
 	add r14 = r14, r34
 	tbit.nz p6, p7 = r34, 0
-	(p6) br.cond.dptk .L597
+	(p6) br.cond.dptk .L598
 	;;
 	.mib
 	nop 0
 	extr r34 = r14, 1, 31
-	br .L598
-.L594:
+	br .L599
+.L595:
 	.mib
 	nop 0
 	nop 0
@@ -4814,7 +4810,7 @@ ldexpl:
 memxor:
 	.prologue
 	.mmi
-	add r14 = r33, r34
+	adds r14 = -1, r34
 	mov r17 = r32
 	.save ar.lc, r2
 	mov r2 = ar.lc
@@ -4822,15 +4818,14 @@ memxor:
 	.mmb
 	mov r8 = r32
 	cmp.eq p6, p7 = 0, r34
-	(p6) br.cond.dpnt .L606
+	(p6) br.cond.dpnt .L607
 	;;
 	.mii
-	sub r14 = r14, r33, 1
 	nop 0
-	;;
 	mov ar.lc = r14
+	nop 0
 	.align 32
-.L607:
+.L608:
 	.mmi
 	ld1 r15 = [r17]
 	mov r14 = r17
@@ -4844,9 +4839,9 @@ memxor:
 	.mib
 	st1 [r14] = r15
 	nop 0
-	br.cloop.sptk.few .L607
+	br.cloop.sptk.few .L608
 	;;
-.L606:
+.L607:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -4879,10 +4874,10 @@ strncat:
 	.mib
 	nop 0
 	(p6) mov r14 = r32
-	(p6) br.cond.dpnt .L615
+	(p6) br.cond.dpnt .L616
 	;;
 	.align 32
-.L616:
+.L617:
 	.mmi
 	mov r14 = r16
 	nop 0
@@ -4897,9 +4892,9 @@ strncat:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r15
-	(p6) br.cond.dptk .L616
+	(p6) br.cond.dptk .L617
 	;;
-.L615:
+.L616:
 	.mmi
 	nop 0
 	cmp.eq p6, p7 = 0, r34
@@ -4907,14 +4902,14 @@ strncat:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L617
+	(p6) br.cond.dpnt .L618
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r15
 	nop 0
 	.align 32
-.L618:
+.L619:
 	.mii
 	ld1 r15 = [r33], 1
 	nop 0
@@ -4927,15 +4922,15 @@ strncat:
 	;;
 	.mbb
 	cmp4.ne p6, p7 = 0, r16
-	(p7) br.cond.dpnt .L620
-	br.cloop.sptk.few .L618
-.L617:
+	(p7) br.cond.dpnt .L621
+	br.cloop.sptk.few .L619
+.L618:
 	.mmi
 	st1 [r14] = r0
 	nop 0
 	nop 0
 	;;
-.L620:
+.L621:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -4957,13 +4952,13 @@ strnlen:
 	.save ar.lc, r2
 	mov r2 = ar.lc
 	.body
-	(p6) br.cond.dpnt .L638
+	(p6) br.cond.dpnt .L639
 	;;
 	.mii
 	nop 0
 	(p7) mov ar.lc = r14
 	nop 0
-.L631:
+.L632:
 	.mmi
 	ld1 r14 = [r32], 1
 	;;
@@ -4973,7 +4968,18 @@ strnlen:
 	.mib
 	cmp4.ne p6, p7 = 0, r14
 	nop 0
-	(p6) br.cond.dpnt .L639
+	(p6) br.cond.dpnt .L640
+	;;
+	.mib
+	nop 0
+	mov ar.lc = r2
+	br.ret.sptk.many b0
+	;;
+.L640:
+	.mib
+	nop 0
+	adds r8 = 1, r8
+	br.cloop.sptk.few .L632
 	;;
 	.mib
 	nop 0
@@ -4981,17 +4987,6 @@ strnlen:
 	br.ret.sptk.many b0
 	;;
 .L639:
-	.mib
-	nop 0
-	adds r8 = 1, r8
-	br.cloop.sptk.few .L631
-	;;
-	.mib
-	nop 0
-	mov ar.lc = r2
-	br.ret.sptk.many b0
-	;;
-.L638:
 	.mib
 	mov r8 = r0
 	mov ar.lc = r2
@@ -5014,15 +5009,15 @@ strpbrk:
 	.mib
 	mov r16 = r14
 	cmp4.ne p6, p7 = 0, r14
-	(p7) br.cond.dpnt .L645
-.L641:
+	(p7) br.cond.dpnt .L646
+.L642:
 	.mmi
 	mov r15 = r33
 	nop 0
 	nop 0
 	;;
 	.align 32
-.L644:
+.L645:
 	.mmi
 	ld1 r14 = [r15], 1
 	;;
@@ -5032,17 +5027,17 @@ strpbrk:
 	.mib
 	cmp4.ne p6, p7 = 0, r14
 	nop 0
-	(p7) br.cond.dpnt .L649
+	(p7) br.cond.dpnt .L650
 	;;
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r16, r14
-	(p7) br.cond.dptk .L644
+	(p7) br.cond.dptk .L645
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
-.L649:
+.L650:
 	.mmi
 	adds r8 = 1, r8
 	;;
@@ -5057,8 +5052,8 @@ strpbrk:
 	.mib
 	mov r16 = r14
 	cmp4.eq p6, p7 = 0, r14
-	(p7) br.cond.dptk .L641
-.L645:
+	(p7) br.cond.dptk .L642
+.L646:
 	.mib
 	nop 0
 	mov r8 = r0
@@ -5077,7 +5072,7 @@ strrchr:
 	nop 0
 	nop 0
 	.align 32
-.L652:
+.L653:
 	.mmi
 	mov r15 = r32
 	ld1 r14 = [r32], 1
@@ -5096,7 +5091,7 @@ strrchr:
 	.mib
 	nop 0
 	(p9) mov r8 = r15
-	(p6) br.cond.dptk .L652
+	(p6) br.cond.dptk .L653
 	.mib
 	nop 0
 	nop 0
@@ -5119,9 +5114,9 @@ strstr:
 	.mib
 	mov r19 = r14
 	cmp4.eq p6, p7 = 0, r14
-	(p6) br.cond.dpnt .L666
+	(p6) br.cond.dpnt .L667
 	.align 32
-.L658:
+.L659:
 	.mmi
 	mov r16 = r15
 	nop 0
@@ -5136,7 +5131,7 @@ strstr:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L658
+	(p6) br.cond.dptk .L659
 	;;
 	.mmi
 	cmp.eq p6, p7 = r33, r16
@@ -5145,14 +5140,14 @@ strstr:
 	.mib
 	nop 0
 	zxt1 r21 = r19
-	(p6) br.cond.dpnt .L666
+	(p6) br.cond.dpnt .L667
 	;;
 	.mmi
 	(p7) add r20 = r33, r20
 	nop 0
 	nop 0
 	.align 32
-.L664:
+.L665:
 	.mmi
 	ld1 r14 = [r32]
 	mov r8 = r32
@@ -5166,24 +5161,24 @@ strstr:
 	.mib
 	cmp4.eq p6, p7 = r19, r14
 	nop 0
-	(p6) br.cond.dpnt .L663
+	(p6) br.cond.dpnt .L664
 	;;
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L664
+	(p6) br.cond.dptk .L665
 	.mib
 	nop 0
 	mov r8 = r0
 	br.ret.sptk.many b0
-.L663:
+.L664:
 	.mmi
 	nop 0
 	mov r16 = r21
 	mov r14 = r33
 	;;
 	.align 32
-.L660:
+.L661:
 	.mmi
 	ld1 r15 = [r14]
 	mov r17 = r14
@@ -5208,7 +5203,7 @@ strstr:
 	.mib
 	nop 0
 	tbit.nz.and.orcm p6, p7 = r15, 0
-	(p7) br.cond.dpnt .L661
+	(p7) br.cond.dpnt .L662
 	;;
 	.mmi
 	nop 0
@@ -5218,13 +5213,13 @@ strstr:
 	.mib
 	mov r16 = r15
 	cmp4.ne p6, p7 = 0, r15
-	(p6) br.cond.dptk .L660
+	(p6) br.cond.dptk .L661
 	.mmi
 	mov r17 = r14
 	nop 0
 	nop 0
 	;;
-.L661:
+.L662:
 	.mmi
 	ld1 r14 = [r17]
 	nop 0
@@ -5233,13 +5228,13 @@ strstr:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = r16, r14
-	(p7) br.cond.dptk .L664
+	(p7) br.cond.dptk .L665
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L666:
+.L667:
 	.mib
 	nop 0
 	mov r8 = r32
@@ -5261,7 +5256,7 @@ copysign:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L685
+	(p6) br.cond.dpnt .L686
 	;;
 	.mmf
 	nop 0
@@ -5271,7 +5266,7 @@ copysign:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dpnt .L677
+	(p7) br.cond.dpnt .L678
 	;;
 	.mmf
 	nop 0
@@ -5281,13 +5276,13 @@ copysign:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L676
-.L677:
+	(p6) br.cond.dpnt .L677
+.L678:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
-.L685:
+.L686:
 	.mmf
 	nop 0
 	nop 0
@@ -5296,8 +5291,8 @@ copysign:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dptk .L677
-.L676:
+	(p7) br.cond.dptk .L678
+.L677:
 	.mfb
 	nop 0
 	fneg f8 = f8
@@ -5324,17 +5319,17 @@ memmem:
 	.mib
 	(p6) mov r8 = r32
 	add r20 = r32, r20
-	(p6) br.cond.dpnt .L686
+	(p6) br.cond.dpnt .L687
 	;;
 	.mib
 	cmp.gtu p6, p7 = r35, r33
 	nop 0
-	(p6) br.cond.dpnt .L694
+	(p6) br.cond.dpnt .L695
 	;;
 	.mib
 	cmp.ltu p6, p7 = r20, r32
 	nop 0
-	(p6) br.cond.dpnt .L694
+	(p6) br.cond.dpnt .L695
 	;;
 	.mii
 	ld1 r19 = [r34], 1
@@ -5342,7 +5337,7 @@ memmem:
 	;;
 	sxt1 r19 = r19
 	.align 32
-.L691:
+.L692:
 	.pred.rel.mutex p8, p9
 	.mmi
 	ld1 r14 = [r32]
@@ -5357,26 +5352,26 @@ memmem:
 	.mib
 	nop 0
 	cmp4.ne p6, p7 = r19, r14
-	(p7) br.cond.dpnt .L701
+	(p7) br.cond.dpnt .L702
 	;;
-.L688:
+.L689:
 	.pred.rel.mutex p8, p9
 	.mib
 	adds r18 = 1, r18
 	cmp.leu p6, p7 = r32, r20
-	(p6) br.cond.dptk .L691
-.L694:
+	(p6) br.cond.dptk .L692
+.L695:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
-.L686:
+.L687:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
 	;;
-.L701:
+.L702:
 	.pred.rel.mutex p8, p9
 	.mmi
 	sub r16 = r18, r32, 1
@@ -5385,14 +5380,14 @@ memmem:
 	.mmb
 	mov r14 = r34
 	nop 0
-	(p8) br.cond.dpnt .L686
+	(p8) br.cond.dpnt .L687
 	;;
 	.mii
 	nop 0
 	mov ar.lc = r16
 	nop 0
 	.align 32
-.L689:
+.L690:
 	.pred.rel.mutex p8, p9
 	.mmi
 	ld1 r17 = [r15], 1
@@ -5401,8 +5396,8 @@ memmem:
 	;;
 	.mbb
 	cmp4.eq p6, p7 = r16, r17
-	(p7) br.cond.dpnt .L688
-	br.cloop.sptk.few .L689
+	(p7) br.cond.dpnt .L689
+	br.cloop.sptk.few .L690
 	;;
 	.mib
 	nop 0
@@ -5426,7 +5421,7 @@ mempcpy:
 	mov r37 = r1
 	.body
 	mov r39 = r33
-	(p6) br.cond.dpnt .L703
+	(p6) br.cond.dpnt .L704
 	;;
 	.mmi
 	nop 0
@@ -5441,7 +5436,7 @@ mempcpy:
 	mov r1 = r37
 	nop 0
 	nop 0
-.L703:
+.L704:
 	.mmi
 	add r8 = r32, r34
 	nop 0
@@ -5468,7 +5463,7 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L734
+	(p6) br.cond.dpnt .L735
 	;;
 	.mmf
 	nop 0
@@ -5478,13 +5473,13 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dpnt .L735
+	(p7) br.cond.dpnt .L736
 	;;
 	.mmi
 	(p6) mov r15 = r0
 	nop 0
 	nop 0
-.L712:
+.L713:
 	.mlx
 	nop 0
 	movl r16 = 0x3fe0000000000000
@@ -5495,7 +5490,7 @@ frexp:
 	nop 0
 	;;
 	.align 32
-.L718:
+.L719:
 	.mfi
 	nop 0
 	fmpy.d f8 = f8, f6
@@ -5509,8 +5504,8 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L718
-.L719:
+	(p6) br.cond.dptk .L719
+.L720:
 	.mmi
 	cmp4.eq p6, p7 = 0, r15
 	st4 [r33] = r14
@@ -5520,7 +5515,7 @@ frexp:
 	nop 0
 	(p7) fneg f8 = f8
 	br.ret.sptk.many b0
-.L735:
+.L736:
 	.mlx
 	nop 0
 	movl r14 = 0x3fe0000000000000
@@ -5538,7 +5533,7 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dptk .L715
+	(p7) br.cond.dptk .L716
 	.mmf
 	nop 0
 	nop 0
@@ -5547,13 +5542,13 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L724
-.L715:
+	(p6) br.cond.dpnt .L725
+.L716:
 	.mib
 	st4 [r33] = r0
 	nop 0
 	br.ret.sptk.many b0
-.L734:
+.L735:
 	.mlx
 	nop 0
 	movl r14 = 0xbff0000000000000
@@ -5579,7 +5574,7 @@ frexp:
 	.mmb
 	(p6) addl r15 = 1, r0
 	nop 0
-	(p6) br.cond.dptk .L712
+	(p6) br.cond.dptk .L713
 	.mlx
 	nop 0
 	movl r16 = 0xbfe0000000000000
@@ -5597,7 +5592,7 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dptk .L715
+	(p7) br.cond.dptk .L716
 	.mlx
 	nop 0
 	movl r16 = 0x3fe0000000000000
@@ -5611,7 +5606,7 @@ frexp:
 	nop 0
 	nop 0
 	.align 32
-.L720:
+.L721:
 	.mfi
 	nop 0
 	fadd.d f8 = f8, f8
@@ -5625,7 +5620,7 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p7) br.cond.dpnt .L719
+	(p7) br.cond.dpnt .L720
 	;;
 	.mfi
 	nop 0
@@ -5640,12 +5635,12 @@ frexp:
 	.mib
 	nop 0
 	nop 0
-	(p6) br.cond.dptk .L720
+	(p6) br.cond.dptk .L721
 	.mib
 	nop 0
 	nop 0
-	br .L719
-.L724:
+	br .L720
+.L725:
 	.mfi
 	nop 0
 	mov f7 = f8
@@ -5662,7 +5657,7 @@ frexp:
 	.mfb
 	nop 0
 	mov f8 = f7
-	br .L720
+	br .L721
 	.endp frexp#
 	.align 16
 	.align 64
@@ -5680,9 +5675,9 @@ __muldi3:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L736
+	(p6) br.cond.dpnt .L737
 	.align 32
-.L738:
+.L739:
 	.mii
 	nop 0
 	extr r14 = r32, 0, 1
@@ -5696,8 +5691,8 @@ __muldi3:
 	.mib
 	nop 0
 	add r8 = r8, r14
-	(p6) br.cond.dptk .L738
-.L736:
+	(p6) br.cond.dptk .L739
+.L737:
 	.mib
 	nop 0
 	nop 0
@@ -5714,14 +5709,14 @@ udivmodsi4:
 	.mib
 	addl r14 = 1, r0
 	cmp4.gtu p6, p7 = r32, r33
-	(p7) br.cond.dpnt .L745
+	(p7) br.cond.dpnt .L746
 	;;
 	.align 32
-.L744:
+.L745:
 	.mib
 	cmp4.le p6, p7 = r0, r33
 	nop 0
-	(p7) br.cond.dpnt .L745
+	(p7) br.cond.dpnt .L746
 	;;
 	.mii
 	shladd r33 = r33, 1, r0
@@ -5743,7 +5738,7 @@ udivmodsi4:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r15
-	(p7) br.cond.dptk .L744
+	(p7) br.cond.dptk .L745
 	;;
 	.mmi
 	nop 0
@@ -5753,15 +5748,15 @@ udivmodsi4:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L748
+	(p6) br.cond.dpnt .L749
 	;;
-.L745:
+.L746:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	.align 32
-.L750:
+.L751:
 	.mmi
 	cmp4.ltu p6, p7 = r32, r33
 	;;
@@ -5775,9 +5770,9 @@ udivmodsi4:
 	.mmb
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L750
+	(p6) br.cond.dptk .L751
 	;;
-.L748:
+.L749:
 	.mmi
 	nop 0
 	cmp.ne p6, p7 = 0, r34
@@ -5887,9 +5882,9 @@ __mulsi3:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L766
+	(p6) br.cond.dpnt .L767
 	.align 32
-.L768:
+.L769:
 	.mii
 	nop 0
 	extr r14 = r32, 0, 1
@@ -5903,8 +5898,8 @@ __mulsi3:
 	.mib
 	add r8 = r8, r14
 	cmp4.ne p6, p7 = 0, r32
-	(p6) br.cond.dptk .L768
-.L766:
+	(p6) br.cond.dptk .L769
+.L767:
 	.mib
 	nop 0
 	nop 0
@@ -5935,18 +5930,18 @@ __cmovd:
 	.mmb
 	nop 0
 	addp4 r16 = r19, r0
-	(p6) br.cond.dptk .L774
+	(p6) br.cond.dptk .L775
 	;;
 	.mib
 	nop 0
 	cmp.ltu p6, p7 = r17, r32
-	(p7) br.cond.dptk .L789
+	(p7) br.cond.dptk .L790
 	;;
-.L774:
+.L775:
 	.mib
 	shladd r16 = r16, 3, r0
 	cmp4.eq p6, p7 = 0, r19
-	(p6) br.cond.dpnt .L777
+	(p6) br.cond.dpnt .L778
 	;;
 	.mii
 	adds r16 = -8, r16
@@ -5959,7 +5954,7 @@ __cmovd:
 	mov ar.lc = r16
 	nop 0
 	.align 32
-.L778:
+.L779:
 	.mmi
 	nop 0
 	ld8 r16 = [r14], 8
@@ -5968,9 +5963,9 @@ __cmovd:
 	.mib
 	st8 [r15] = r16, 8
 	nop 0
-	br.cloop.sptk.few .L778
+	br.cloop.sptk.few .L779
 	;;
-.L777:
+.L778:
 	.mmi
 	addp4 r16 = r18, r0
 	nop 0
@@ -5978,7 +5973,7 @@ __cmovd:
 	.mmb
 	cmp4.geu p6, p7 = r18, r34
 	nop 0
-	(p6) br.cond.dpnt .L773
+	(p6) br.cond.dpnt .L774
 	;;
 	.mmi
 	add r14 = r33, r16, 1
@@ -5996,7 +5991,7 @@ __cmovd:
 	;;
 	mov ar.lc = r14
 	.align 32
-.L779:
+.L780:
 	.mmi
 	nop 0
 	ld1 r14 = [r33], 1
@@ -6005,18 +6000,18 @@ __cmovd:
 	.mib
 	st1 [r32] = r14, 1
 	nop 0
-	br.cloop.sptk.few .L779
+	br.cloop.sptk.few .L780
 	;;
-.L773:
+.L774:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L789:
+.L790:
 	.mib
 	cmp4.ne p6, p7 = 0, r34
 	adds r14 = -1, r34
-	(p7) br.cond.dpnt .L773
+	(p7) br.cond.dpnt .L774
 	;;
 	.mmi
 	nop 0
@@ -6029,7 +6024,7 @@ __cmovd:
 	(p6) mov ar.lc = r14
 	;;
 	.align 32
-.L780:
+.L781:
 	.mmi
 	nop 0
 	ld1 r14 = [r33], -1
@@ -6038,7 +6033,7 @@ __cmovd:
 	.mib
 	st1 [r32] = r14, -1
 	nop 0
-	br.cloop.sptk.few .L780
+	br.cloop.sptk.few .L781
 	;;
 	.mib
 	nop 0
@@ -6070,18 +6065,18 @@ __cmovh:
 	.mmb
 	nop 0
 	addp4 r16 = r18, r0
-	(p6) br.cond.dptk .L791
+	(p6) br.cond.dptk .L792
 	;;
 	.mib
 	nop 0
 	cmp.ltu p6, p7 = r17, r32
-	(p7) br.cond.dptk .L804
+	(p7) br.cond.dptk .L806
 	;;
-.L791:
+.L792:
 	.mib
 	shladd r16 = r16, 1, r0
 	cmp4.eq p6, p7 = 0, r18
-	(p6) br.cond.dpnt .L794
+	(p6) br.cond.dpnt .L795
 	;;
 	.mii
 	adds r16 = -2, r16
@@ -6094,7 +6089,7 @@ __cmovh:
 	mov ar.lc = r16
 	nop 0
 	.align 32
-.L795:
+.L796:
 	.mmi
 	nop 0
 	ld2 r16 = [r15], 2
@@ -6103,13 +6098,13 @@ __cmovh:
 	.mib
 	st2 [r14] = r16, 2
 	nop 0
-	br.cloop.sptk.few .L795
+	br.cloop.sptk.few .L796
 	;;
-.L794:
+.L795:
 	.mib
 	adds r14 = -1, r34
 	tbit.z p6, p7 = r34, 0
-	(p6) br.cond.dptk .L790
+	(p6) br.cond.dptk .L791
 	;;
 	.mmi
 	addp4 r14 = r14, r0
@@ -6126,16 +6121,16 @@ __cmovh:
 	st1 [r14] = r15
 	nop 0
 	nop 0
-.L790:
+.L791:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L804:
+.L806:
 	.mib
 	cmp4.ne p6, p7 = 0, r34
 	adds r15 = -1, r34
-	(p7) br.cond.dpnt .L790
+	(p7) br.cond.dpnt .L791
 	;;
 	.mmi
 	nop 0
@@ -6148,7 +6143,7 @@ __cmovh:
 	(p6) mov ar.lc = r15
 	;;
 	.align 32
-.L796:
+.L798:
 	.mmi
 	nop 0
 	ld1 r15 = [r33], -1
@@ -6157,7 +6152,7 @@ __cmovh:
 	.mib
 	st1 [r32] = r15, -1
 	nop 0
-	br.cloop.sptk.few .L796
+	br.cloop.sptk.few .L798
 	;;
 	.mib
 	nop 0
@@ -6189,18 +6184,18 @@ __cmovw:
 	.mmb
 	nop 0
 	addp4 r16 = r19, r0
-	(p6) br.cond.dptk .L806
+	(p6) br.cond.dptk .L808
 	;;
 	.mib
 	nop 0
 	cmp.ltu p6, p7 = r17, r32
-	(p7) br.cond.dptk .L821
+	(p7) br.cond.dptk .L823
 	;;
-.L806:
+.L808:
 	.mib
 	shladd r16 = r16, 2, r0
 	cmp4.eq p6, p7 = 0, r19
-	(p6) br.cond.dpnt .L809
+	(p6) br.cond.dpnt .L811
 	;;
 	.mii
 	adds r16 = -4, r16
@@ -6213,7 +6208,7 @@ __cmovw:
 	mov ar.lc = r16
 	nop 0
 	.align 32
-.L810:
+.L812:
 	.mmi
 	nop 0
 	ld4 r16 = [r14], 4
@@ -6222,9 +6217,9 @@ __cmovw:
 	.mib
 	st4 [r15] = r16, 4
 	nop 0
-	br.cloop.sptk.few .L810
+	br.cloop.sptk.few .L812
 	;;
-.L809:
+.L811:
 	.mmi
 	addp4 r16 = r18, r0
 	nop 0
@@ -6232,7 +6227,7 @@ __cmovw:
 	.mmb
 	cmp4.geu p6, p7 = r18, r34
 	nop 0
-	(p6) br.cond.dpnt .L805
+	(p6) br.cond.dpnt .L807
 	;;
 	.mmi
 	add r14 = r33, r16, 1
@@ -6250,7 +6245,7 @@ __cmovw:
 	;;
 	mov ar.lc = r14
 	.align 32
-.L811:
+.L813:
 	.mmi
 	nop 0
 	ld1 r14 = [r33], 1
@@ -6259,18 +6254,18 @@ __cmovw:
 	.mib
 	st1 [r32] = r14, 1
 	nop 0
-	br.cloop.sptk.few .L811
+	br.cloop.sptk.few .L813
 	;;
-.L805:
+.L807:
 	.mib
 	nop 0
 	mov ar.lc = r2
 	br.ret.sptk.many b0
-.L821:
+.L823:
 	.mib
 	cmp4.ne p6, p7 = 0, r34
 	adds r14 = -1, r34
-	(p7) br.cond.dpnt .L805
+	(p7) br.cond.dpnt .L807
 	;;
 	.mmi
 	nop 0
@@ -6283,7 +6278,7 @@ __cmovw:
 	(p6) mov ar.lc = r14
 	;;
 	.align 32
-.L812:
+.L814:
 	.mmi
 	nop 0
 	ld1 r14 = [r33], -1
@@ -6292,7 +6287,7 @@ __cmovw:
 	.mib
 	st1 [r32] = r14, -1
 	nop 0
-	br.cloop.sptk.few .L812
+	br.cloop.sptk.few .L814
 	;;
 	.mib
 	nop 0
@@ -6460,7 +6455,7 @@ __clzhi2:
 	nop 0
 	mov ar.lc = 15
 	.align 32
-.L836:
+.L838:
 	.mmi
 	sub r14 = 15, r8
 	;;
@@ -6475,14 +6470,14 @@ __clzhi2:
 	.mib
 	nop 0
 	tbit.nz p6, p7 = r14, 0
-	(p6) br.cond.dpnt .L834
+	(p6) br.cond.dpnt .L836
 	;;
 	.mib
 	nop 0
 	adds r8 = 1, r8
-	br.cloop.sptk.few .L836
+	br.cloop.sptk.few .L838
 	;;
-.L834:
+.L836:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -6507,7 +6502,7 @@ __ctzhi2:
 	nop 0
 	mov ar.lc = 15
 	.align 32
-.L842:
+.L844:
 	.mmi
 	addp4 r14 = r8, r0
 	;;
@@ -6517,14 +6512,14 @@ __ctzhi2:
 	.mib
 	nop 0
 	tbit.nz p6, p7 = r14, 0
-	(p6) br.cond.dpnt .L840
+	(p6) br.cond.dpnt .L842
 	;;
 	.mib
 	nop 0
 	adds r8 = 1, r8
-	br.cloop.sptk.few .L842
+	br.cloop.sptk.few .L844
 	;;
-.L840:
+.L842:
 	.mib
 	nop 0
 	mov ar.lc = r2
@@ -6597,7 +6592,7 @@ __parityhi2:
 	;;
 	mov ar.lc = 15
 	.align 32
-.L854:
+.L856:
 	.mmi
 	addp4 r14 = r15, r0
 	nop 0
@@ -6612,7 +6607,7 @@ __parityhi2:
 	.mib
 	nop 0
 	add r8 = r8, r14
-	br.cloop.sptk.few .L854
+	br.cloop.sptk.few .L856
 	;;
 	.mib
 	and r8 = 1, r8
@@ -6638,7 +6633,7 @@ __popcounthi2:
 	;;
 	mov ar.lc = 15
 	.align 32
-.L859:
+.L861:
 	.mmi
 	addp4 r14 = r15, r0
 	nop 0
@@ -6653,7 +6648,7 @@ __popcounthi2:
 	.mib
 	nop 0
 	add r8 = r8, r14
-	br.cloop.sptk.few .L859
+	br.cloop.sptk.few .L861
 	;;
 	.mib
 	nop 0
@@ -6676,9 +6671,9 @@ __mulsi3_iq2000:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L863
+	(p6) br.cond.dpnt .L865
 	.align 32
-.L865:
+.L867:
 	.mii
 	nop 0
 	extr r14 = r32, 0, 1
@@ -6692,8 +6687,8 @@ __mulsi3_iq2000:
 	.mib
 	add r8 = r8, r14
 	cmp4.ne p6, p7 = 0, r32
-	(p6) br.cond.dptk .L865
-.L863:
+	(p6) br.cond.dptk .L867
+.L865:
 	.mib
 	nop 0
 	nop 0
@@ -6710,14 +6705,14 @@ __mulsi3_lm32:
 	.mib
 	cmp4.eq p6, p7 = 0, r32
 	mov r8 = r0
-	(p6) br.cond.dpnt .L874
+	(p6) br.cond.dpnt .L876
 	;;
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r33
-	(p6) br.cond.dpnt .L874
+	(p6) br.cond.dpnt .L876
 	.align 32
-.L872:
+.L874:
 	.mii
 	nop 0
 	extr r14 = r33, 0, 1
@@ -6731,13 +6726,13 @@ __mulsi3_lm32:
 	.mib
 	add r8 = r8, r14
 	cmp4.ne p6, p7 = 0, r33
-	(p6) br.cond.dptk .L872
+	(p6) br.cond.dptk .L874
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L874:
+.L876:
 	.mib
 	nop 0
 	mov r8 = r0
@@ -6754,14 +6749,14 @@ __udivmodsi4:
 	.mib
 	addl r14 = 1, r0
 	cmp4.gtu p6, p7 = r32, r33
-	(p7) br.cond.dpnt .L880
+	(p7) br.cond.dpnt .L882
 	;;
 	.align 32
-.L879:
+.L881:
 	.mib
 	cmp4.le p6, p7 = r0, r33
 	nop 0
-	(p7) br.cond.dpnt .L880
+	(p7) br.cond.dpnt .L882
 	;;
 	.mii
 	shladd r33 = r33, 1, r0
@@ -6783,7 +6778,7 @@ __udivmodsi4:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r15
-	(p7) br.cond.dptk .L879
+	(p7) br.cond.dptk .L881
 	;;
 	.mmi
 	nop 0
@@ -6793,15 +6788,15 @@ __udivmodsi4:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L883
+	(p6) br.cond.dpnt .L885
 	;;
-.L880:
+.L882:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	.align 32
-.L885:
+.L887:
 	.mmi
 	cmp4.ltu p6, p7 = r32, r33
 	;;
@@ -6815,9 +6810,9 @@ __udivmodsi4:
 	.mmb
 	nop 0
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L885
+	(p6) br.cond.dptk .L887
 	;;
-.L883:
+.L885:
 	.mmi
 	nop 0
 	cmp4.ne p6, p7 = 0, r34
@@ -6844,7 +6839,7 @@ __mspabi_cmpf:
 	.mib
 	(p6) addl r8 = -1, r0
 	nop 0
-	(p6) br.cond.dpnt .L893
+	(p6) br.cond.dpnt .L895
 	;;
 	.mmf
 	nop 0
@@ -6856,7 +6851,7 @@ __mspabi_cmpf:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L893:
+.L895:
 	.mib
 	nop 0
 	nop 0
@@ -6878,7 +6873,7 @@ __mspabi_cmpd:
 	.mib
 	(p6) addl r8 = -1, r0
 	nop 0
-	(p6) br.cond.dpnt .L898
+	(p6) br.cond.dpnt .L900
 	;;
 	.mmf
 	nop 0
@@ -6890,7 +6885,7 @@ __mspabi_cmpd:
 	nop 0
 	;;
 	(p7) mov r8 = r0
-.L898:
+.L900:
 	.mib
 	nop 0
 	nop 0
@@ -6958,7 +6953,7 @@ __mulhi3:
 	.mib
 	(p7) sub r33 = r0, r33
 	(p7) addl r17 = 1, r0
-	(p7) br.cond.dpnt .L909
+	(p7) br.cond.dpnt .L911
 	;;
 	.mmi
 	nop 0
@@ -6968,16 +6963,16 @@ __mulhi3:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L907
+	(p6) br.cond.dpnt .L909
 	;;
-.L909:
+.L911:
 	.mmi
 	nop 0
 	addl r14 = 1, r0
 	mov r8 = r0
 	;;
 	.align 32
-.L911:
+.L913:
 	.mii
 	nop 0
 	extr r15 = r33, 0, 1
@@ -6999,14 +6994,14 @@ __mulhi3:
 	.mib
 	add r8 = r8, r15
 	cmp4.ne.and.orcm p6, p7 = 0, r33
-	(p6) br.cond.dptk .L911
+	(p6) br.cond.dptk .L913
 	;;
 	.mii
 	cmp4.eq p6, p7 = 0, r17
 	nop 0
 	;;
 	(p7) sub r8 = r0, r8
-.L907:
+.L909:
 	.mib
 	nop 0
 	nop 0
@@ -7043,13 +7038,13 @@ __divsi3:
 	.mib
 	nop 0
 	(p7) addl r15 = 1, r0
-	(p7) br.cond.dpnt .L923
+	(p7) br.cond.dpnt .L925
 	.align 32
-.L922:
+.L924:
 	.mib
 	cmp4.le p6, p7 = r0, r14
 	nop 0
-	(p7) br.cond.dpnt .L923
+	(p7) br.cond.dpnt .L925
 	;;
 	.mii
 	shladd r14 = r14, 1, r0
@@ -7071,7 +7066,7 @@ __divsi3:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r16
-	(p7) br.cond.dptk .L922
+	(p7) br.cond.dptk .L924
 	;;
 	.mmi
 	nop 0
@@ -7081,15 +7076,15 @@ __divsi3:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L926
+	(p6) br.cond.dpnt .L928
 	;;
-.L923:
+.L925:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	.align 32
-.L928:
+.L930:
 	.mmi
 	cmp4.ltu p6, p7 = r17, r14
 	;;
@@ -7103,13 +7098,13 @@ __divsi3:
 	.mmb
 	nop 0
 	cmp4.ne p6, p7 = 0, r15
-	(p6) br.cond.dptk .L928
+	(p6) br.cond.dptk .L930
 	.mmi
 	addp4 r8 = r8, r0
 	nop 0
 	nop 0
 	;;
-.L926:
+.L928:
 	.mmi
 	nop 0
 	cmp4.eq p6, p7 = 0, r19
@@ -7146,14 +7141,14 @@ __modsi3:
 	.mib
 	mov r14 = r33
 	cmp4.ltu p6, p7 = r33, r32
-	(p7) br.cond.dpnt .L946
+	(p7) br.cond.dpnt .L948
 	;;
 	.align 32
-.L941:
+.L943:
 	.mib
 	cmp4.le p6, p7 = r0, r14
 	nop 0
-	(p7) br.cond.dpnt .L946
+	(p7) br.cond.dpnt .L948
 	;;
 	.mmi
 	shladd r14 = r14, 1, r0
@@ -7168,14 +7163,14 @@ __modsi3:
 	.mib
 	nop 0
 	(p9) cmp4.ne.and.orcm p6, p7 = 0, r0
-	(p6) br.cond.dptk .L941
+	(p6) br.cond.dptk .L943
 	.mib
 	nop 0
 	nop 0
-	(p9) br.cond.dpnt .L943
+	(p9) br.cond.dpnt .L945
 	;;
 	.align 32
-.L946:
+.L948:
 	.mmi
 	cmp4.ltu p6, p7 = r8, r14
 	nop 0
@@ -7188,9 +7183,9 @@ __modsi3:
 	.mmb
 	nop 0
 	cmp4.ne p6, p7 = 0, r15
-	(p6) br.cond.dptk .L946
+	(p6) br.cond.dptk .L948
 	;;
-.L943:
+.L945:
 	.mmi
 	addp4 r8 = r8, r0
 	nop 0
@@ -7221,10 +7216,10 @@ __udivmodhi4:
 	.mmb
 	nop 0
 	cmp4.gtu p6, p7 = r32, r33
-	(p7) br.cond.dpnt .L959
+	(p7) br.cond.dpnt .L961
 	;;
 	.align 32
-.L958:
+.L960:
 	.mii
 	nop 0
 	sxt2 r18 = r16
@@ -7237,7 +7232,7 @@ __udivmodhi4:
 	.mib
 	cmp4.le p6, p7 = r0, r18
 	zxt2 r14 = r14
-	(p7) br.cond.dpnt .L959
+	(p7) br.cond.dpnt .L961
 	;;
 	.mmi
 	cmp4.ltu p8, p9 = r15, r8
@@ -7258,7 +7253,7 @@ __udivmodhi4:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r15
-	(p7) br.cond.dptk .L958
+	(p7) br.cond.dptk .L960
 	;;
 	.mmi
 	nop 0
@@ -7268,15 +7263,15 @@ __udivmodhi4:
 	.mib
 	nop 0
 	(p6) mov r18 = r0
-	(p6) br.cond.dpnt .L962
+	(p6) br.cond.dpnt .L964
 	;;
-.L959:
+.L961:
 	.mmi
 	mov r18 = r0
 	nop 0
 	nop 0
 	.align 32
-.L964:
+.L966:
 	.mmi
 	cmp4.ltu p6, p7 = r8, r16
 	sub r15 = r8, r16
@@ -7289,9 +7284,9 @@ __udivmodhi4:
 	.mmb
 	mov r17 = r14
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L964
+	(p6) br.cond.dptk .L966
 	;;
-.L962:
+.L964:
 	.mmi
 	nop 0
 	cmp4.ne p6, p7 = 0, r34
@@ -7313,14 +7308,14 @@ __udivmodsi4_libgcc:
 	.mib
 	addl r14 = 1, r0
 	cmp.gtu p6, p7 = r32, r33
-	(p7) br.cond.dpnt .L973
+	(p7) br.cond.dpnt .L975
 	;;
 	.align 32
-.L972:
+.L974:
 	.mib
 	nop 0
 	tbit.z p6, p7 = r33, 31
-	(p7) br.cond.dpnt .L973
+	(p7) br.cond.dpnt .L975
 	;;
 	.mii
 	shladd r33 = r33, 1, r0
@@ -7342,7 +7337,7 @@ __udivmodsi4_libgcc:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r15
-	(p7) br.cond.dptk .L972
+	(p7) br.cond.dptk .L974
 	;;
 	.mmi
 	nop 0
@@ -7352,15 +7347,15 @@ __udivmodsi4_libgcc:
 	.mib
 	nop 0
 	(p6) mov r8 = r0
-	(p6) br.cond.dpnt .L976
+	(p6) br.cond.dpnt .L978
 	;;
-.L973:
+.L975:
 	.mmi
 	mov r8 = r0
 	nop 0
 	nop 0
 	.align 32
-.L978:
+.L980:
 	.mmi
 	cmp.ltu p6, p7 = r32, r33
 	;;
@@ -7374,9 +7369,9 @@ __udivmodsi4_libgcc:
 	.mib
 	nop 0
 	cmp.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L978
+	(p6) br.cond.dptk .L980
 	;;
-.L976:
+.L978:
 	.mmi
 	nop 0
 	cmp4.ne p6, p7 = 0, r34
@@ -7408,7 +7403,7 @@ __ashldi3:
 	.mib
 	nop 0
 	(p7) shl r14 = r32, r14
-	(p7) br.cond.dptk .L988
+	(p7) br.cond.dptk .L990
 	;;
 	.mmb
 	sub r16 = 32, r33
@@ -7422,7 +7417,7 @@ __ashldi3:
 	.mib
 	addp4 r16 = r16, r0
 	(p6) mov r8 = r32
-	(p6) br.cond.dpnt .L986
+	(p6) br.cond.dpnt .L988
 	;;
 	.mii
 	nop 0
@@ -7434,7 +7429,7 @@ __ashldi3:
 	shr.u r14 = r14, r16
 	;;
 	or r14 = r17, r14
-.L988:
+.L990:
 	.mmi
 	mov r8 = r0
 	nop 0
@@ -7445,7 +7440,7 @@ __ashldi3:
 	mix4.l r8 = r8, r15
 	;;
 	mix4.r r8 = r14, r8
-.L986:
+.L988:
 	.mib
 	nop 0
 	nop 0
@@ -7472,7 +7467,7 @@ __ashlti3:
 	.mib
 	nop 0
 	(p7) shl r9 = r32, r14
-	(p7) br.cond.dptk .L996
+	(p7) br.cond.dptk .L998
 	.mmi
 	cmp4.eq p6, p7 = 0, r34
 	sub r14 = 64, r34
@@ -7493,7 +7488,7 @@ __ashlti3:
 	(p7) shr.u r32 = r32, r14
 	;;
 	(p7) or r9 = r9, r32
-.L996:
+.L998:
 	.mib
 	nop 0
 	nop 0
@@ -7524,7 +7519,7 @@ __ashrdi3:
 	.mib
 	nop 0
 	(p7) shr r14 = r14, r15
-	(p7) br.cond.dptk .L1002
+	(p7) br.cond.dptk .L1004
 	;;
 	.mmi
 	sub r17 = 32, r33
@@ -7538,7 +7533,7 @@ __ashrdi3:
 	.mib
 	addp4 r17 = r17, r0
 	nop 0
-	(p8) br.cond.dpnt .L1000
+	(p8) br.cond.dpnt .L1002
 	;;
 	.mii
 	nop 0
@@ -7551,7 +7546,7 @@ __ashrdi3:
 	;;
 	or r14 = r15, r14
 	;;
-.L1002:
+.L1004:
 	.mmi
 	mov r8 = r0
 	nop 0
@@ -7562,7 +7557,7 @@ __ashrdi3:
 	mix4.r r8 = r16, r8
 	;;
 	mix4.l r8 = r8, r14
-.L1000:
+.L1002:
 	.mib
 	nop 0
 	nop 0
@@ -7589,7 +7584,7 @@ __ashrti3:
 	.mib
 	nop 0
 	(p7) shr r8 = r33, r14
-	(p7) br.cond.dptk .L1010
+	(p7) br.cond.dptk .L1012
 	;;
 	.mmi
 	cmp4.eq p6, p7 = 0, r34
@@ -7616,7 +7611,7 @@ __ashrti3:
 	(p7) shl r33 = r33, r14
 	;;
 	(p7) or r8 = r8, r33
-.L1010:
+.L1012:
 	.mib
 	nop 0
 	nop 0
@@ -7874,7 +7869,7 @@ __cmpdi2:
 	.mib
 	cmp4.gt p6, p7 = r14, r15
 	nop 0
-	(p6) br.cond.dpnt .L1030
+	(p6) br.cond.dpnt .L1032
 	;;
 	.mmi
 	nop 0
@@ -7883,21 +7878,21 @@ __cmpdi2:
 	;;
 	.mbb
 	(p6) addl r8 = 2, r0
-	(p6) br.cond.dpnt .L1026
-	(p8) br.cond.dpnt .L1030
+	(p6) br.cond.dpnt .L1028
+	(p8) br.cond.dpnt .L1032
 	;;
 	.mii
 	(p10) addl r8 = 2, r0
 	nop 0
 	;;
 	(p11) addl r8 = 1, r0
-.L1026:
+.L1028:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1030:
+.L1032:
 	.mib
 	nop 0
 	mov r8 = r0
@@ -7924,7 +7919,7 @@ __aeabi_lcmp:
 	.mib
 	cmp4.gt p6, p7 = r14, r15
 	nop 0
-	(p6) br.cond.dpnt .L1038
+	(p6) br.cond.dpnt .L1040
 	;;
 	.mmi
 	nop 0
@@ -7933,21 +7928,21 @@ __aeabi_lcmp:
 	;;
 	.mbb
 	(p6) addl r8 = 1, r0
-	(p6) br.cond.dpnt .L1034
-	(p8) br.cond.dpnt .L1038
+	(p6) br.cond.dpnt .L1036
+	(p8) br.cond.dpnt .L1040
 	;;
 	.mii
 	(p10) addl r8 = 1, r0
 	nop 0
 	;;
 	(p11) mov r8 = r0
-.L1034:
+.L1036:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1038:
+.L1040:
 	.mib
 	nop 0
 	addl r8 = -1, r0
@@ -7964,7 +7959,7 @@ __cmpti2:
 	.mib
 	cmp.gt p6, p7 = r35, r33
 	cmp.ltu p8, p9 = r34, r32
-	(p6) br.cond.dpnt .L1045
+	(p6) br.cond.dpnt .L1047
 	;;
 	.mmi
 	nop 0
@@ -7974,7 +7969,7 @@ __cmpti2:
 	.mib
 	(p6) addl r8 = 2, r0
 	nop 0
-	(p6) br.cond.dpnt .L1041
+	(p6) br.cond.dpnt .L1043
 	;;
 	.mmi
 	nop 0
@@ -7983,19 +7978,19 @@ __cmpti2:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L1045
+	(p6) br.cond.dpnt .L1047
 	;;
 	.mmi
 	(p9) addl r8 = 1, r0
 	nop 0
 	nop 0
-.L1041:
+.L1043:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1045:
+.L1047:
 	.mib
 	nop 0
 	mov r8 = r0
@@ -8165,7 +8160,7 @@ __ffsti2:
 	.mib
 	adds r8 = -1, r32
 	cmp.ne p6, p7 = 0, r32
-	(p6) br.cond.dptk .L1056
+	(p6) br.cond.dptk .L1058
 	;;
 	.mmi
 	nop 0
@@ -8174,13 +8169,13 @@ __ffsti2:
 	.mmb
 	nop 0
 	cmp.eq p6, p7 = 0, r33
-	(p7) br.cond.dptk .L1061
+	(p7) br.cond.dptk .L1063
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1056:
+.L1058:
 	.mmi
 	andcm r8 = r8, r32
 	;;
@@ -8191,7 +8186,7 @@ __ffsti2:
 	nop 0
 	adds r8 = 1, r8
 	br.ret.sptk.many b0
-.L1061:
+.L1063:
 	.mmi
 	andcm r33 = r14, r33
 	;;
@@ -8228,7 +8223,7 @@ __lshrdi3:
 	.mib
 	nop 0
 	(p7) shr.u r16 = r16, r15
-	(p7) br.cond.dptk .L1064
+	(p7) br.cond.dptk .L1066
 	;;
 	.mmi
 	addp4 r8 = r33, r0
@@ -8242,7 +8237,7 @@ __lshrdi3:
 	.mib
 	(p6) mov r8 = r32
 	addp4 r15 = r15, r0
-	(p6) br.cond.dpnt .L1062
+	(p6) br.cond.dpnt .L1064
 	;;
 	.mii
 	nop 0
@@ -8255,12 +8250,12 @@ __lshrdi3:
 	;;
 	or r16 = r16, r17
 	;;
-.L1064:
+.L1066:
 	.mii
 	nop 0
 	unpack4.l r8 = r8, r16
 	nop 0
-.L1062:
+.L1064:
 	.mib
 	nop 0
 	nop 0
@@ -8287,7 +8282,7 @@ __lshrti3:
 	.mib
 	nop 0
 	(p7) shr.u r8 = r33, r14
-	(p7) br.cond.dptk .L1072
+	(p7) br.cond.dptk .L1074
 	.mmi
 	cmp4.eq p6, p7 = 0, r34
 	sub r14 = 64, r34
@@ -8308,7 +8303,7 @@ __lshrti3:
 	(p7) shl r33 = r33, r14
 	;;
 	(p7) or r8 = r8, r33
-.L1072:
+.L1074:
 	.mib
 	nop 0
 	nop 0
@@ -9244,15 +9239,15 @@ __powidf2:
 	.mfb
 	nop 0
 	(p6) mov f8 = f1
-	(p6) br.cond.dptk .L1101
+	(p6) br.cond.dptk .L1103
 	;;
 	.align 32
-.L1103:
+.L1105:
 	.mfi
 	nop 0
 	fmpy.d f8 = f8, f6
 	nop 0
-.L1101:
+.L1103:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
@@ -9267,8 +9262,8 @@ __powidf2:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r14
-	(p6) br.cond.dpnt .L1102
-.L1104:
+	(p6) br.cond.dpnt .L1104
+.L1106:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
@@ -9281,19 +9276,19 @@ __powidf2:
 	.mib
 	add r15 = r15, r14
 	tbit.nz p6, p7 = r14, 0
-	(p6) br.cond.dptk .L1103
+	(p6) br.cond.dptk .L1105
 	;;
 	.mib
 	nop 0
 	extr r14 = r15, 1, 31
-	br .L1104
-.L1102:
+	br .L1106
+.L1104:
 	.mbb
 	cmp4.le p6, p7 = r0, r33
-	(p7) br.cond.dpnt .L1109
+	(p7) br.cond.dpnt .L1111
 	br.ret.sptk.many b0
 	;;
-.L1109:
+.L1111:
 	.mmf
 	nop 0
 	nop 0
@@ -9372,15 +9367,15 @@ __powisf2:
 	.mfb
 	nop 0
 	(p6) mov f8 = f1
-	(p6) br.cond.dptk .L1111
+	(p6) br.cond.dptk .L1113
 	;;
 	.align 32
-.L1113:
+.L1115:
 	.mfi
 	nop 0
 	fmpy.s f8 = f8, f6
 	nop 0
-.L1111:
+.L1113:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
@@ -9395,8 +9390,8 @@ __powisf2:
 	.mib
 	nop 0
 	cmp4.eq p6, p7 = 0, r14
-	(p6) br.cond.dpnt .L1112
-.L1114:
+	(p6) br.cond.dpnt .L1114
+.L1116:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
@@ -9409,19 +9404,19 @@ __powisf2:
 	.mib
 	add r15 = r15, r14
 	tbit.nz p6, p7 = r14, 0
-	(p6) br.cond.dptk .L1113
+	(p6) br.cond.dptk .L1115
 	;;
 	.mib
 	nop 0
 	extr r14 = r15, 1, 31
-	br .L1114
-.L1112:
+	br .L1116
+.L1114:
 	.mbb
 	cmp4.le p6, p7 = r0, r33
-	(p7) br.cond.dpnt .L1119
+	(p7) br.cond.dpnt .L1121
 	br.ret.sptk.many b0
 	;;
-.L1119:
+.L1121:
 	.mmf
 	nop 0
 	nop 0
@@ -9483,7 +9478,7 @@ __ucmpdi2:
 	.mib
 	cmp4.gtu p6, p7 = r14, r15
 	nop 0
-	(p6) br.cond.dpnt .L1124
+	(p6) br.cond.dpnt .L1126
 	;;
 	.mmi
 	nop 0
@@ -9492,21 +9487,21 @@ __ucmpdi2:
 	;;
 	.mbb
 	(p6) addl r8 = 2, r0
-	(p6) br.cond.dpnt .L1120
-	(p8) br.cond.dpnt .L1124
+	(p6) br.cond.dpnt .L1122
+	(p8) br.cond.dpnt .L1126
 	;;
 	.mii
 	(p10) addl r8 = 2, r0
 	nop 0
 	;;
 	(p11) addl r8 = 1, r0
-.L1120:
+.L1122:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1124:
+.L1126:
 	.mib
 	nop 0
 	mov r8 = r0
@@ -9533,7 +9528,7 @@ __aeabi_ulcmp:
 	.mib
 	cmp4.gtu p6, p7 = r14, r15
 	nop 0
-	(p6) br.cond.dpnt .L1132
+	(p6) br.cond.dpnt .L1134
 	;;
 	.mmi
 	nop 0
@@ -9542,21 +9537,21 @@ __aeabi_ulcmp:
 	;;
 	.mbb
 	(p6) addl r8 = 1, r0
-	(p6) br.cond.dpnt .L1128
-	(p8) br.cond.dpnt .L1132
+	(p6) br.cond.dpnt .L1130
+	(p8) br.cond.dpnt .L1134
 	;;
 	.mii
 	(p10) addl r8 = 1, r0
 	nop 0
 	;;
 	(p11) mov r8 = r0
-.L1128:
+.L1130:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1132:
+.L1134:
 	.mib
 	nop 0
 	addl r8 = -1, r0
@@ -9573,7 +9568,7 @@ __ucmpti2:
 	.mib
 	cmp.gtu p6, p7 = r35, r33
 	cmp.ltu p8, p9 = r34, r32
-	(p6) br.cond.dpnt .L1139
+	(p6) br.cond.dpnt .L1141
 	;;
 	.mmi
 	nop 0
@@ -9583,7 +9578,7 @@ __ucmpti2:
 	.mib
 	(p6) addl r8 = 2, r0
 	nop 0
-	(p6) br.cond.dpnt .L1135
+	(p6) br.cond.dpnt .L1137
 	;;
 	.mmi
 	nop 0
@@ -9592,19 +9587,19 @@ __ucmpti2:
 	.mmb
 	nop 0
 	nop 0
-	(p6) br.cond.dpnt .L1139
+	(p6) br.cond.dpnt .L1141
 	;;
 	.mmi
 	(p9) addl r8 = 1, r0
 	nop 0
 	nop 0
-.L1135:
+.L1137:
 	.mib
 	nop 0
 	nop 0
 	br.ret.sptk.many b0
 	;;
-.L1139:
+.L1141:
 	.mib
 	nop 0
 	mov r8 = r0
