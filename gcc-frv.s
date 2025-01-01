@@ -2846,7 +2846,7 @@ strrchr:
 	setlos #0, gr5
 .L559:
 	ldsb @(gr8,gr0),gr4
-	cmp gr4,gr9,icc1
+	cmp gr9,gr4,icc1
 	ckeq icc1, cc5
 	cmpi gr4, #0, icc0
 	cmov gr8, gr5, cc5, 1
@@ -2861,54 +2861,54 @@ strrchr:
 strstr:
 	ldsb @(gr9,gr0),gr10
 	cmpi gr10, #0, icc0
-	beq icc0,0,.L562
+	beq icc0,0,.L561
 	mov gr9, gr4
-.L564:
+.L563:
 	ldsbi @(gr4,1),gr5
 	addi gr4,#1,gr4
 	cmpi gr5, #0, icc0
-	bne icc0,2,.L564
+	bne icc0,2,.L563
 	subcc gr4, gr9, gr4, icc0
-	beq icc0,0,.L562
+	beq icc0,0,.L561
 	andi gr10,#0xff,gr13
 	addi gr4,#-1,gr12
-	bra .L570
-.L583:
+	bra .L569
+.L582:
 	cmpi gr4, #0, icc0
 	addi gr8,#1,gr8
-	beq icc0,0,.L582
-.L570:
+	beq icc0,0,.L581
+.L569:
 	ldsb @(gr8,gr0),gr4
 	cmp gr4,gr10,icc0
-	bne icc0,2,.L583
+	bne icc0,2,.L582
 	mov gr13, gr5
 	add gr8,gr12,gr11
 	mov gr9, gr6
 	mov gr8, gr4
-	bra .L566
-.L584:
-	beq icc1,0,.L567
-	bne icc2,0,.L567
+	bra .L565
+.L583:
+	beq icc1,0,.L566
+	bne icc2,0,.L566
 	ldub @(gr4,gr0),gr5
 	addi gr6,#1,gr6
 	cmpi gr5, #0, icc0
-	beq icc0,0,.L567
-.L566:
+	beq icc0,0,.L566
+.L565:
 	ldub @(gr6,gr0),gr7
 	cmp gr11,gr4,icc1
 	cmpi gr7, #0, icc0
 	addi gr4,#1,gr4
 	cmp gr7,gr5,icc2
-	bne icc0,2,.L584
-.L567:
+	bne icc0,2,.L583
+.L566:
 	ldub @(gr6,gr0),gr4
 	cmp gr4,gr5,icc0
-	beq icc0,0,.L562
+	beq icc0,0,.L561
 	addi gr8,#1,gr8
-	bra .L570
-.L582:
+	bra .L569
+.L581:
 	setlos #0, gr8
-.L562:
+.L561:
 	ret
 	.size	strstr, .-strstr
 	.p2align 4
@@ -2936,13 +2936,13 @@ copysign:
 	cmpi gr8, #0, icc0
 	setlos #0, gr10
 	setlos #0, gr11
-	bn icc0,0,.L595
+	bn icc0,0,.L594
 	mov gr18, gr8
 	mov gr19, gr9
 	mov gr20, gr15
 	call __gtdf2
 	cmpi gr8,#0,icc0
-	ble icc0,0,.L589
+	ble icc0,0,.L588
 	setlos #0, gr10
 	setlos #0, gr11
 	mov gr22, gr8
@@ -2950,8 +2950,8 @@ copysign:
 	mov gr20, gr15
 	call __ltdf2
 	cmpi gr8, #0, icc0
-	bn icc0,0,.L588
-.L589:
+	bn icc0,0,.L587
+.L588:
 	mov gr18, gr8
 	mov gr19, gr9
 	ldi @(sp,0), gr18
@@ -2963,62 +2963,62 @@ copysign:
 	ld @(fp,gr0), fp
 	addi sp,#40,sp
 	jmpl @(gr5,gr0)
-.L595:
+.L594:
 	mov gr22, gr8
 	mov gr23, gr9
 	mov gr20, gr15
 	call __gtdf2
 	cmpi gr8,#0,icc0
-	ble icc0,2,.L589
-.L588:
+	ble icc0,2,.L588
+.L587:
 	sethi #hi(#-2147483648), gr6
 	setlo #lo(#-2147483648), gr6
 	xor gr18, gr6, gr4
 	mov gr4, gr18
-	bra .L589
+	bra .L588
 	.size	copysign, .-copysign
 	.p2align 4
 	.globl memmem
 	.type	memmem, @function
 memmem:
 	cmpi gr11, #0, icc0
-	beq icc0,0,.L602
+	beq icc0,0,.L601
 	cmp gr9,gr11,icc0
-	bc icc0,0,.L604
+	bc icc0,0,.L603
 	sub gr9,gr11,gr9
 	add gr8,gr9,gr9
 	cmp gr8,gr9,icc0
-	bhi icc0,0,.L604
+	bhi icc0,0,.L603
 	ldsb @(gr10,gr0),gr12
-	bra .L601
-.L598:
+	bra .L600
+.L597:
 	cmp gr9,gr8,icc0
-	bc icc0,0,.L604
-.L601:
+	bc icc0,0,.L603
+.L600:
 	ldsb @(gr8,gr0),gr4
 	mov gr8, gr7
 	cmp gr4,gr12,icc0
 	addi gr8,#1,gr8
-	bne icc0,2,.L598
+	bne icc0,2,.L597
 	cmpi gr11,#1,icc0
-	beq icc0,0,.L596
+	beq icc0,0,.L595
 	setlos #1, gr4
-.L599:
+.L598:
 	ldub @(gr7,gr4),gr6
 	ldub @(gr10,gr4),gr5
 	addi gr4,#1,gr4
 	cmp gr6,gr5,icc0
 	cmp gr11,gr4,icc1
-	bne icc0,0,.L598
-	bne icc1,2,.L599
-.L596:
+	bne icc0,0,.L597
+	bne icc1,2,.L598
+.L595:
 	mov gr7, gr8
 	ret
-.L604:
+.L603:
 	setlos #0, gr7
 	mov gr7, gr8
 	ret
-.L602:
+.L601:
 	mov gr8, gr7
 	mov gr7, gr8
 	ret
@@ -3036,10 +3036,10 @@ mempcpy:
 	cmpi gr10, #0, icc0
 	mov gr10, gr18
 	mov gr8, gr4
-	beq icc0,0,.L608
+	beq icc0,0,.L607
 	call memmove
 	mov gr8, gr4
-.L608:
+.L607:
 	add gr4,gr18,gr8
 	ldi @(fp,8), gr5
 	ldi @(sp,0), gr18
@@ -3074,7 +3074,7 @@ frexp:
 	mov gr15, gr20
 	call __ltdf2
 	cmpi gr8, #0, icc0
-	bn icc0,0,.L634
+	bn icc0,0,.L633
 	sethi #hi(#1072693248), gr10
 	setlo #lo(#1072693248), gr10
 	setlos #0, gr11
@@ -3083,9 +3083,9 @@ frexp:
 	mov gr20, gr15
 	call __gedf2
 	cmpi gr8, #0, icc0
-	bn icc0,0,.L635
+	bn icc0,0,.L634
 	setlos #0, gr27
-.L615:
+.L614:
 	sethi #hi(#1071644672), gr24
 	sethi #hi(#1072693248), gr22
 	setlos #0, gr21
@@ -3093,7 +3093,7 @@ frexp:
 	setlos #0, gr25
 	setlo #lo(#1072693248), gr22
 	setlos #0, gr23
-.L621:
+.L620:
 	mov gr24, gr10
 	mov gr25, gr11
 	mov gr18, gr8
@@ -3109,17 +3109,17 @@ frexp:
 	call __gedf2
 	cmpi gr8, #0, icc0
 	addi gr21,#1,gr21
-	bp icc0,2,.L621
-.L622:
+	bp icc0,2,.L620
+.L621:
 	st gr21, @(gr26,gr0)
 	cmpi gr27, #0, icc0
-	beq icc0,0,.L628
-.L617:
+	beq icc0,0,.L627
+.L616:
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
 	xor gr18, gr4, gr8
 	mov gr19, gr9
-.L612:
+.L611:
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
 	ldi @(sp,8), gr20
@@ -3134,7 +3134,7 @@ frexp:
 	ld @(fp,gr0), fp
 	addi sp,#56,sp
 	jmpl @(gr5,gr0)
-.L635:
+.L634:
 	sethi #hi(#1071644672), gr10
 	setlo #lo(#1071644672), gr10
 	setlos #0, gr11
@@ -3143,7 +3143,7 @@ frexp:
 	mov gr20, gr15
 	call __ltdf2
 	cmpi gr8, #0, icc0
-	bp icc0,2,.L618
+	bp icc0,2,.L617
 	setlos #0, gr10
 	setlos #0, gr11
 	mov gr18, gr8
@@ -3151,13 +3151,13 @@ frexp:
 	mov gr20, gr15
 	call __nedf2
 	cmpi gr8, #0, icc0
-	bne icc0,0,.L627
-.L618:
+	bne icc0,0,.L626
+.L617:
 	st gr0, @(gr26,gr0)
 	mov gr18, gr8
 	mov gr19, gr9
-	bra .L612
-.L634:
+	bra .L611
+.L633:
 	sethi #hi(#-2147483648), gr4
 	sethi #hi(#3220176896), gr10
 	setlo #lo(#-2147483648), gr4
@@ -3170,15 +3170,15 @@ frexp:
 	call __ledf2
 	cmpi gr8,#0,icc0
 	mov gr19, gr23
-	bgt icc0,0,.L636
+	bgt icc0,0,.L635
 	mov gr22, gr18
 	setlos #1, gr27
-	bra .L615
-.L628:
+	bra .L614
+.L627:
 	mov gr18, gr8
 	mov gr19, gr9
-	bra .L612
-.L636:
+	bra .L611
+.L635:
 	sethi #hi(#3219128320), gr10
 	setlo #lo(#3219128320), gr10
 	setlos #0, gr11
@@ -3187,20 +3187,20 @@ frexp:
 	mov gr20, gr15
 	call __gtdf2
 	cmpi gr8,#0,icc0
-	bgt icc0,2,.L625
+	bgt icc0,2,.L624
 	st gr0, @(gr26,gr0)
 	mov gr22, gr18
-	bra .L617
-.L625:
+	bra .L616
+.L624:
 	setlos #1, gr27
-.L616:
+.L615:
 	mov gr22, gr18
 	sethi #hi(#1071644672), gr22
 	mov gr23, gr19
 	setlos #0, gr21
 	setlo #lo(#1071644672), gr22
 	setlos #0, gr23
-.L623:
+.L622:
 	mov gr18, gr10
 	mov gr19, gr11
 	mov gr18, gr8
@@ -3216,13 +3216,13 @@ frexp:
 	call __ltdf2
 	cmpi gr8, #0, icc0
 	addi gr21,#-1,gr21
-	bn icc0,2,.L623
-	bra .L622
-.L627:
+	bn icc0,2,.L622
+	bra .L621
+.L626:
 	mov gr18, gr22
 	mov gr19, gr23
 	setlos #0, gr27
-	bra .L616
+	bra .L615
 	.size	frexp, .-frexp
 	.p2align 4
 	.globl __muldi3
@@ -3237,8 +3237,8 @@ __muldi3:
 	orcc gr4, gr5, gr0, icc0
 	setlos #0, gr8
 	setlos #0, gr9
-	beq icc0,0,.L637
-.L640:
+	beq icc0,0,.L636
+.L639:
 	andi gr4, #1, gr7
 	subcc gr0,gr7,gr15,icc0
 	slli gr5,#31,gr18
@@ -3256,8 +3256,8 @@ __muldi3:
 	addx gr8,gr12,gr8,icc1
 	or gr14, gr10, gr10
 	slli gr11,#1,gr11
-	bne icc0,2,.L640
-.L637:
+	bne icc0,2,.L639
+.L636:
 	ldi @(sp,0), gr18
 	ldi @(sp,16), gr5
 	addi sp,#24,sp
@@ -3270,40 +3270,40 @@ udivmodsi4:
 	cmp gr9,gr8,icc0
 	mov gr8, gr5
 	setlos #1, gr4
-	bnc icc0,0,.L645
+	bnc icc0,0,.L644
 	setlos #32, gr8
 	setlos #1, gr4
-	bra .L644
-.L648:
+	bra .L643
+.L647:
 	slli gr9,#1,gr9
 	cmp gr5,gr9,icc0
 	slli gr4,#1,gr4
-	bls icc0,0,.L658
-	beq icc1,0,.L647
-.L644:
+	bls icc0,0,.L657
+	beq icc1,0,.L646
+.L643:
 	cmpi gr9, #0, icc0
 	addicc gr8, #-1, gr8, icc1
-	bp icc0,2,.L648
-.L645:
+	bp icc0,2,.L647
+.L644:
 	setlos #0, gr8
-.L650:
+.L649:
 	cmp gr5,gr9,icc0
 	cknc icc0, cc4
 	cor gr8, gr4, gr8, cc4, 1
 	srlicc gr4, #1, gr4, icc0
 	csub gr5, gr9, gr5, cc4, 1
 	srli gr9, #1, gr9
-	bne icc0,2,.L650
-.L647:
+	bne icc0,2,.L649
+.L646:
 	cmpi gr10, #0, icc0
 	ckne icc0, cc4
 	cmov gr5, gr8, cc4, 1
 	ret
-.L658:
+.L657:
 	cmpi gr4, #0, icc0
 	setlos #0, gr8
-	bne icc0,2,.L645
-	bra .L647
+	bne icc0,2,.L644
+	bra .L646
 	.size	udivmodsi4, .-udivmodsi4
 	.p2align 4
 	.globl __clrsbqi2
@@ -3319,7 +3319,7 @@ __clrsbqi2:
 	cmp gr8,gr4,icc0
 	sti gr5, @(fp,8)
 	xor gr8, gr4, gr8
-	beq icc0,0,.L661
+	beq icc0,0,.L660
 	slli gr8,#8,gr8
 	call __clzsi2
 	ldi @(fp,8), gr5
@@ -3327,7 +3327,7 @@ __clrsbqi2:
 	addi gr8,#-1,gr8
 	addi sp,#16,sp
 	jmpl @(gr5,gr0)
-.L661:
+.L660:
 	ldi @(fp,8), gr5
 	ld @(fp,gr0), fp
 	setlos #7, gr8
@@ -3348,8 +3348,8 @@ __clrsbdi2:
 	mov gr9, gr5
 	xor gr8, gr4, gr6
 	xor gr9, gr4, gr9
-	beq icc0,0,.L668
-.L666:
+	beq icc0,0,.L667
+.L665:
 	mov gr6, gr8
 	call __clzdi2
 	ldi @(fp,8), gr5
@@ -3357,9 +3357,9 @@ __clrsbdi2:
 	addi gr8,#-1,gr8
 	addi sp,#16,sp
 	jmpl @(gr5,gr0)
-.L668:
+.L667:
 	cmp gr5,gr8,icc0
-	bne icc0,2,.L666
+	bne icc0,2,.L665
 	ldi @(fp,8), gr5
 	ld @(fp,gr0), fp
 	setlos #63, gr8
@@ -3372,15 +3372,15 @@ __clrsbdi2:
 __mulsi3:
 	cmpi gr8, #0, icc0
 	setlos #0, gr6
-	beq icc0,0,.L669
-.L671:
+	beq icc0,0,.L668
+.L670:
 	andi gr8, #1, gr4
 	umul gr4,gr9,gr4
 	srlicc gr8, #1, gr8, icc0
 	add gr6,gr5,gr6
 	slli gr9,#1,gr9
-	bne icc0,2,.L671
-.L669:
+	bne icc0,2,.L670
+.L668:
 	mov gr6, gr8
 	ret
 	.size	__mulsi3, .-__mulsi3
@@ -3391,18 +3391,18 @@ __cmovd:
 	cmp gr8,gr9,icc0
 	srli gr10, #3, gr7
 	andi gr10, #-8, gr4
-	bc icc0,2,.L675
+	bc icc0,2,.L674
 	add gr9,gr10,gr5
 	cmp gr8,gr5,icc0
-	bls icc0,2,.L688
-.L675:
+	bls icc0,2,.L687
+.L674:
 	cmpi gr7, #0, icc0
-	beq icc0,0,.L678
+	beq icc0,0,.L677
 	slli gr7,#3,gr7
 	mov gr9, gr5
 	mov gr8, gr6
 	add gr7,gr9,gr7
-.L679:
+.L678:
 	ld @(gr5,gr0), gr12
 	ldi @(gr5,4), gr13
 	addi gr5,#8,gr5
@@ -3410,28 +3410,28 @@ __cmovd:
 	sti gr13, @(gr6,4)
 	cmp gr5,gr7,icc0
 	addi gr6,#8,gr6
-	bne icc0,2,.L679
-.L678:
+	bne icc0,2,.L678
+.L677:
 	cmp gr10,gr4,icc0
-	bls icc0,0,.L674
-.L680:
+	bls icc0,0,.L673
+.L679:
 	ldsb @(gr9,gr4),gr5
 	stb gr5, @(gr8,gr4)
 	addi gr4,#1,gr4
 	cmp gr10,gr4,icc0
-	bne icc0,2,.L680
-.L674:
+	bne icc0,2,.L679
+.L673:
 	ret
-.L688:
+.L687:
 	cmpi gr10, #0, icc0
 	addi gr10,#-1,gr10
-	beq icc0,0,.L674
-.L676:
+	beq icc0,0,.L673
+.L675:
 	ldsb @(gr9,gr10),gr4
 	stb gr4, @(gr8,gr10)
 	addi gr10,#-1,gr10
 	cmpi gr10,#-1,icc0
-	bne icc0,2,.L676
+	bne icc0,2,.L675
 	ret
 	.size	__cmovd, .-__cmovd
 	.p2align 4
@@ -3440,39 +3440,39 @@ __cmovd:
 __cmovh:
 	cmp gr8,gr9,icc0
 	srli gr10, #1, gr6
-	bc icc0,2,.L690
+	bc icc0,2,.L689
 	add gr9,gr10,gr4
 	cmp gr8,gr4,icc0
-	bls icc0,2,.L704
-.L690:
+	bls icc0,2,.L703
+.L689:
 	cmpi gr6, #0, icc0
-	beq icc0,0,.L693
+	beq icc0,0,.L692
 	slli gr6,#1,gr6
 	setlos #0, gr4
-.L694:
+.L693:
 	ldsh @(gr9,gr4),gr5
 	sth gr5, @(gr8,gr4)
 	addi gr4,#2,gr4
 	cmp gr6,gr4,icc0
-	bne icc0,2,.L694
-.L693:
+	bne icc0,2,.L693
+.L692:
 	andicc gr10, #1, gr0, icc0
-	beq icc0,2,.L689
+	beq icc0,2,.L688
 	addi gr10,#-1,gr4
 	ldsb @(gr9,gr4),gr5
 	stb gr5, @(gr8,gr4)
-.L689:
+.L688:
 	ret
-.L704:
+.L703:
 	cmpi gr10, #0, icc0
 	addi gr10,#-1,gr4
-	beq icc0,0,.L689
-.L691:
+	beq icc0,0,.L688
+.L690:
 	ldsb @(gr9,gr4),gr5
 	stb gr5, @(gr8,gr4)
 	addi gr4,#-1,gr4
 	cmpi gr4,#-1,icc0
-	bne icc0,2,.L691
+	bne icc0,2,.L690
 	ret
 	.size	__cmovh, .-__cmovh
 	.p2align 4
@@ -3482,42 +3482,42 @@ __cmovw:
 	cmp gr8,gr9,icc0
 	srli gr10, #2, gr7
 	andi gr10, #-4, gr4
-	bc icc0,2,.L706
+	bc icc0,2,.L705
 	add gr9,gr10,gr5
 	cmp gr8,gr5,icc0
-	bls icc0,2,.L719
-.L706:
+	bls icc0,2,.L718
+.L705:
 	cmpi gr7, #0, icc0
-	beq icc0,0,.L709
+	beq icc0,0,.L708
 	slli gr7,#2,gr7
 	setlos #0, gr5
-.L710:
+.L709:
 	ld @(gr9,gr5), gr6
 	st gr6, @(gr8,gr5)
 	addi gr5,#4,gr5
 	cmp gr7,gr5,icc0
-	bne icc0,2,.L710
-.L709:
+	bne icc0,2,.L709
+.L708:
 	cmp gr10,gr4,icc0
-	bls icc0,0,.L705
-.L711:
+	bls icc0,0,.L704
+.L710:
 	ldsb @(gr9,gr4),gr5
 	stb gr5, @(gr8,gr4)
 	addi gr4,#1,gr4
 	cmp gr10,gr4,icc0
-	bne icc0,2,.L711
-.L705:
+	bne icc0,2,.L710
+.L704:
 	ret
-.L719:
+.L718:
 	cmpi gr10, #0, icc0
 	addi gr10,#-1,gr10
-	beq icc0,0,.L705
-.L707:
+	beq icc0,0,.L704
+.L706:
 	ldsb @(gr9,gr10),gr4
 	stb gr4, @(gr8,gr10)
 	addi gr10,#-1,gr10
 	cmpi gr10,#-1,icc0
-	bne icc0,2,.L707
+	bne icc0,2,.L706
 	ret
 	.size	__cmovw, .-__cmovw
 	.p2align 4
@@ -3606,15 +3606,15 @@ __clzhi2:
 	sethi #hi(#0),gr5
 	setlos #0, gr8
 	setlos #15, gr6
-.L728:
+.L727:
 	sub gr6,gr8,gr4
 	sra gr5, gr4, gr4
 	andicc gr4, #1, gr0, icc0
-	bne icc0,0,.L726
+	bne icc0,0,.L725
 	addi gr8,#1,gr8
 	cmpi gr8,#16,icc0
-	bne icc0,2,.L728
-.L726:
+	bne icc0,2,.L727
+.L725:
 	ret
 	.size	__clzhi2, .-__clzhi2
 	.p2align 4
@@ -3624,14 +3624,14 @@ __ctzhi2:
 	mov gr8, gr5
 	sethi #hi(#0),gr5
 	setlos #0, gr8
-.L732:
+.L731:
 	sra gr5, gr8, gr4
 	andicc gr4, #1, gr0, icc0
-	bne icc0,0,.L730
+	bne icc0,0,.L729
 	addi gr8,#1,gr8
 	cmpi gr8,#16,icc0
-	bne icc0,2,.L732
-.L730:
+	bne icc0,2,.L731
+.L729:
 	ret
 	.size	__ctzhi2, .-__ctzhi2
 	.p2align 4
@@ -3651,7 +3651,7 @@ __fixunssfsi:
 	mov gr15, gr18
 	call __gesf2
 	cmpi gr8, #0, icc0
-	bp icc0,0,.L740
+	bp icc0,0,.L739
 	mov gr18, gr15
 	mov gr19, gr8
 	call __ftoi
@@ -3661,7 +3661,7 @@ __fixunssfsi:
 	ld @(fp,gr0), fp
 	addi sp,#24,sp
 	jmpl @(gr5,gr0)
-.L740:
+.L739:
 	sethi #hi(#1191182336), gr9
 	setlo #lo(#1191182336), gr9
 	mov gr18, gr15
@@ -3686,13 +3686,13 @@ __parityhi2:
 	sethi #hi(#0),gr8
 	setlos #0, gr6
 	setlos #0, gr4
-.L742:
+.L741:
 	sra gr8, gr4, gr5
 	addi gr4,#1,gr4
 	andi gr5, #1, gr5
 	cmpi gr4,#16,icc0
 	add gr6,gr5,gr6
-	bne icc0,2,.L742
+	bne icc0,2,.L741
 	andi gr6, #1, gr8
 	ret
 	.size	__parityhi2, .-__parityhi2
@@ -3704,13 +3704,13 @@ __popcounthi2:
 	sethi #hi(#0),gr6
 	setlos #0, gr8
 	setlos #0, gr4
-.L745:
+.L744:
 	sra gr6, gr4, gr5
 	addi gr4,#1,gr4
 	andi gr5, #1, gr5
 	cmpi gr4,#16,icc0
 	add gr8,gr5,gr8
-	bne icc0,2,.L745
+	bne icc0,2,.L744
 	ret
 	.size	__popcounthi2, .-__popcounthi2
 	.p2align 4
@@ -3719,15 +3719,15 @@ __popcounthi2:
 __mulsi3_iq2000:
 	cmpi gr8, #0, icc0
 	setlos #0, gr6
-	beq icc0,0,.L747
-.L749:
+	beq icc0,0,.L746
+.L748:
 	andi gr8, #1, gr4
 	umul gr4,gr9,gr4
 	srlicc gr8, #1, gr8, icc0
 	add gr6,gr5,gr6
 	slli gr9,#1,gr9
-	bne icc0,2,.L749
-.L747:
+	bne icc0,2,.L748
+.L746:
 	mov gr6, gr8
 	ret
 	.size	__mulsi3_iq2000, .-__mulsi3_iq2000
@@ -3737,17 +3737,17 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 	cmpi gr8, #0, icc0
 	setlos #0, gr6
-	beq icc0,0,.L752
+	beq icc0,0,.L751
 	cmpi gr9, #0, icc0
-	beq icc0,0,.L752
-.L754:
+	beq icc0,0,.L751
+.L753:
 	andi gr9, #1, gr4
 	umul gr4,gr8,gr4
 	srlicc gr9, #1, gr9, icc0
 	add gr6,gr5,gr6
 	slli gr8,#1,gr8
-	bne icc0,2,.L754
-.L752:
+	bne icc0,2,.L753
+.L751:
 	mov gr6, gr8
 	ret
 	.size	__mulsi3_lm32, .-__mulsi3_lm32
@@ -3758,40 +3758,40 @@ __udivmodsi4:
 	cmp gr8,gr9,icc0
 	mov gr8, gr5
 	setlos #1, gr4
-	bls icc0,0,.L760
+	bls icc0,0,.L759
 	setlos #32, gr8
 	setlos #1, gr4
-	bra .L759
-.L763:
+	bra .L758
+.L762:
 	slli gr9,#1,gr9
 	cmp gr5,gr9,icc0
 	slli gr4,#1,gr4
-	bls icc0,0,.L761
-	beq icc1,0,.L762
-.L759:
+	bls icc0,0,.L760
+	beq icc1,0,.L761
+.L758:
 	cmpi gr9, #0, icc0
 	addicc gr8, #-1, gr8, icc1
-	bp icc0,2,.L763
-.L760:
+	bp icc0,2,.L762
+.L759:
 	setlos #0, gr8
-.L765:
+.L764:
 	cmp gr5,gr9,icc0
 	cknc icc0, cc4
 	cor gr8, gr4, gr8, cc4, 1
 	srlicc gr4, #1, gr4, icc0
 	csub gr5, gr9, gr5, cc4, 1
 	srli gr9, #1, gr9
-	bne icc0,2,.L765
-.L762:
+	bne icc0,2,.L764
+.L761:
 	cmpi gr10, #0, icc0
 	ckne icc0, cc4
 	cmov gr5, gr8, cc4, 1
 	ret
-.L761:
+.L760:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L760
+	bne icc0,2,.L759
 	setlos #0, gr8
-	bra .L762
+	bra .L761
 	.size	__udivmodsi4, .-__udivmodsi4
 	.p2align 4
 	.globl __mspabi_cmpf
@@ -3810,7 +3810,7 @@ __mspabi_cmpf:
 	mov gr15, gr18
 	call __ltsf2
 	cmpi gr8, #0, icc0
-	bn icc0,0,.L777
+	bn icc0,0,.L776
 	mov gr20, gr9
 	mov gr18, gr15
 	mov gr19, gr8
@@ -3826,7 +3826,7 @@ __mspabi_cmpf:
 	cmov gr0, gr8, cc4, 0
 	addi sp,#32,sp
 	jmpl @(gr5,gr0)
-.L777:
+.L776:
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
 	ldi @(sp,8), gr20
@@ -3857,7 +3857,7 @@ __mspabi_cmpd:
 	mov gr15, gr18
 	call __ltdf2
 	cmpi gr8, #0, icc0
-	bn icc0,0,.L781
+	bn icc0,0,.L780
 	mov gr22, gr10
 	mov gr23, gr11
 	mov gr20, gr8
@@ -3868,7 +3868,7 @@ __mspabi_cmpd:
 	ckgt icc0, cc4
 	setlos #1, gr8
 	cmov gr0, gr8, cc4, 0
-.L778:
+.L777:
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr20
 	ldi @(sp,8), gr21
@@ -3878,9 +3878,9 @@ __mspabi_cmpd:
 	ld @(fp,gr0), fp
 	addi sp,#40,sp
 	jmpl @(gr5,gr0)
-.L781:
+.L780:
 	setlos #-1, gr8
-	bra .L778
+	bra .L777
 	.size	__mspabi_cmpd, .-__mspabi_cmpd
 	.p2align 4
 	.globl __mspabi_mpysll
@@ -3901,16 +3901,16 @@ __mspabi_mpyull:
 	.type	__mulhi3, @function
 __mulhi3:
 	cmpi gr9, #0, icc0
-	bn icc0,0,.L798
-	beq icc0,0,.L790
+	bn icc0,0,.L797
+	beq icc0,0,.L789
 	setlos #0, gr10
-.L786:
+.L785:
 	setlos #0, gr6
 	setlos #0, gr7
-	bra .L789
-.L799:
-	beq icc1,0,.L788
-.L789:
+	bra .L788
+.L798:
+	beq icc1,0,.L787
+.L788:
 	andi gr9, #1, gr4
 	smul gr4,gr8,gr4
 	addi gr6,#1,gr6
@@ -3918,21 +3918,21 @@ __mulhi3:
 	cmpi gr6,#32,icc1
 	add gr7,gr5,gr7
 	slli gr8,#1,gr8
-	bne icc0,2,.L799
-.L788:
+	bne icc0,2,.L798
+.L787:
 	cmpi gr10, #0, icc0
-	beq icc0,0,.L784
+	beq icc0,0,.L783
 	sub gr0,gr7,gr7
-.L784:
+.L783:
 	mov gr7, gr8
 	ret
-.L798:
+.L797:
 	sub gr0,gr9,gr9
 	setlos #1, gr10
-	bra .L786
-.L790:
+	bra .L785
+.L789:
 	setlos #0, gr7
-	bra .L784
+	bra .L783
 	.size	__mulhi3, .-__mulhi3
 	.p2align 4
 	.globl __divsi3
@@ -3952,33 +3952,33 @@ __divsi3:
 	cxor gr7, gr5, gr7, cc4, 1
 	mov gr8, gr6
 	setlos #1, gr4
-	bls icc0,0,.L804
+	bls icc0,0,.L803
 	setlos #32, gr5
 	setlos #1, gr4
-	bra .L803
-.L807:
-	beq icc1,0,.L806
-.L803:
+	bra .L802
+.L806:
+	beq icc1,0,.L805
+.L802:
 	slli gr9,#1,gr9
 	cmp gr8,gr9,icc0
 	addicc gr5, #-1, gr5, icc1
 	slli gr4,#1,gr4
-	bhi icc0,2,.L807
-.L806:
+	bhi icc0,2,.L806
+.L805:
 	cmpi gr4, #0, icc0
 	setlos #0, gr8
-	beq icc0,0,.L805
-.L804:
+	beq icc0,0,.L804
+.L803:
 	setlos #0, gr8
-.L809:
-	cmp gr6,gr9,icc0
-	cknc icc0, cc4
+.L808:
+	cmp gr9,gr6,icc0
+	ckls icc0, cc4
 	cor gr8, gr4, gr8, cc4, 1
 	srlicc gr4, #1, gr4, icc0
 	csub gr6, gr9, gr6, cc4, 1
 	srli gr9, #1, gr9
-	bne icc0,2,.L809
-.L805:
+	bne icc0,2,.L808
+.L804:
 	cmpi gr7, #0, icc0
 	ckne icc0, cc4
 	csub gr0, gr8, gr8, cc4, 1
@@ -4001,29 +4001,29 @@ __modsi3:
 	cmp gr8,gr4,icc0
 	mov gr8, gr7
 	setlos #1, gr5
-	bls icc0,0,.L828
+	bls icc0,0,.L827
 	setlos #32, gr6
 	setlos #1, gr5
-	bra .L822
-.L826:
-	beq icc1,0,.L825
-.L822:
+	bra .L821
+.L825:
+	beq icc1,0,.L824
+.L821:
 	slli gr4,#1,gr4
 	cmp gr8,gr4,icc0
 	addicc gr6, #-1, gr6, icc1
 	slli gr5,#1,gr5
-	bhi icc0,2,.L826
-.L825:
+	bhi icc0,2,.L825
+.L824:
 	cmpi gr5, #0, icc0
-	beq icc0,0,.L824
-.L828:
+	beq icc0,0,.L823
+.L827:
 	cmp gr7,gr4,icc1
 	cknc icc1, cc5
 	srlicc gr5, #1, gr5, icc0
 	csub gr7, gr4, gr7, cc5, 1
 	srli gr4, #1, gr4
-	bne icc0,2,.L828
-.L824:
+	bne icc0,2,.L827
+.L823:
 	cmpi gr10, #0, icc0
 	mov gr7, gr8
 	ckne icc0, cc4
@@ -4038,46 +4038,46 @@ __udivmodhi4:
 	sethi #hi(#0),gr9
 	cmp gr9,gr8,icc0
 	setlos #1, gr4
-	bnc icc0,0,.L841
+	bnc icc0,0,.L840
 	setlos #16, gr6
 	setlos #1, gr4
-.L840:
+.L839:
 	slli gr9,#16,gr5
 	srai gr5, #16, gr5
 	cmpi gr5, #0, icc0
 	slli gr9,#1,gr7
 	slli gr4,#1,gr5
 	addicc gr6, #-1, gr6, icc1
-	bn icc0,0,.L841
+	bn icc0,0,.L840
 	mov gr7, gr9
 	sethi #hi(#0),gr9
 	mov gr5, gr4
 	cmp gr8,gr9,icc0
 	sethi #hi(#0),gr4
-	bls icc0,0,.L851
-	bne icc1,2,.L840
-.L849:
+	bls icc0,0,.L850
+	bne icc1,2,.L839
+.L848:
 	cmpi gr10, #0, icc0
 	setlos #0, gr6
 	ckeq icc0, cc4
 	cmov gr6, gr8, cc4, 1
 	ret
-.L851:
+.L850:
 	cmpi gr4, #0, icc0
-	beq icc0,0,.L849
-.L841:
+	beq icc0,0,.L848
+.L840:
 	setlos #0, gr6
-.L846:
+.L845:
 	cmp gr8,gr9,icc0
 	sub gr8,gr9,gr5
-	bc icc0,2,.L845
+	bc icc0,2,.L844
 	mov gr5, gr8
 	or gr4, gr6, gr6
 	sethi #hi(#0),gr8
-.L845:
+.L844:
 	srlicc gr4, #1, gr4, icc0
 	srli gr9, #1, gr9
-	bne icc0,2,.L846
+	bne icc0,2,.L845
 	cmpi gr10, #0, icc0
 	ckeq icc0, cc4
 	cmov gr6, gr8, cc4, 1
@@ -4090,40 +4090,40 @@ __udivmodsi4_libgcc:
 	cmp gr8,gr9,icc0
 	mov gr8, gr5
 	setlos #1, gr4
-	bls icc0,0,.L854
+	bls icc0,0,.L853
 	setlos #32, gr8
 	setlos #1, gr4
-	bra .L853
-.L857:
+	bra .L852
+.L856:
 	slli gr9,#1,gr9
 	cmp gr5,gr9,icc0
 	slli gr4,#1,gr4
-	bls icc0,0,.L855
-	beq icc1,0,.L856
-.L853:
+	bls icc0,0,.L854
+	beq icc1,0,.L855
+.L852:
 	cmpi gr9, #0, icc0
 	addicc gr8, #-1, gr8, icc1
-	bp icc0,2,.L857
-.L854:
+	bp icc0,2,.L856
+.L853:
 	setlos #0, gr8
-.L859:
+.L858:
 	cmp gr5,gr9,icc0
 	cknc icc0, cc4
 	cor gr8, gr4, gr8, cc4, 1
 	srlicc gr4, #1, gr4, icc0
 	csub gr5, gr9, gr5, cc4, 1
 	srli gr9, #1, gr9
-	bne icc0,2,.L859
-.L856:
+	bne icc0,2,.L858
+.L855:
 	cmpi gr10, #0, icc0
 	ckne icc0, cc4
 	cmov gr5, gr8, cc4, 1
 	ret
-.L855:
+.L854:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L854
+	bne icc0,2,.L853
 	setlos #0, gr8
-	bra .L856
+	bra .L855
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.p2align 4
 	.globl __ashldi3
@@ -4154,16 +4154,16 @@ __ashldi3:
 __ashrdi3:
 	andi gr10, #32, gr4
 	cmpi gr4, #0, icc0
-	beq icc0,2,.L874
+	beq icc0,2,.L873
 	addi gr10,#-32,gr10
 	srai gr8, #31, gr4
 	sra gr8, gr10, gr9
 	mov gr4, gr8
-.L876:
+.L875:
 	ret
-.L874:
+.L873:
 	cmpi gr10, #0, icc0
-	beq icc0,0,.L876
+	beq icc0,0,.L875
 	setlos #32, gr5
 	sub gr5,gr10,gr5
 	sll gr8,gr5,gr5
@@ -4171,7 +4171,7 @@ __ashrdi3:
 	sra gr8, gr10, gr4
 	or gr5, gr9, gr9
 	mov gr4, gr8
-	bra .L876
+	bra .L875
 	.size	__ashrdi3, .-__ashrdi3
 	.p2align 4
 	.globl __bswapdi2
@@ -4280,17 +4280,17 @@ __clzsi2:
 	.type	__cmpdi2, @function
 __cmpdi2:
 	cmp gr8,gr10,icc0
-	blt icc0,0,.L885
-	bgt icc0,0,.L886
+	blt icc0,0,.L884
+	bgt icc0,0,.L885
 	cmp gr9,gr11,icc0
-	bc icc0,0,.L885
-	bhi icc0,0,.L886
+	bc icc0,0,.L884
+	bhi icc0,0,.L885
 	setlos #1, gr8
 	ret
-.L885:
+.L884:
 	setlos #0, gr8
 	ret
-.L886:
+.L885:
 	setlos #2, gr8
 	ret
 	.size	__cmpdi2, .-__cmpdi2
@@ -4299,19 +4299,19 @@ __cmpdi2:
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
 	cmp gr8,gr10,icc0
-	blt icc0,0,.L891
-	bgt icc0,0,.L892
+	blt icc0,0,.L890
+	bgt icc0,0,.L891
 	cmp gr9,gr11,icc0
-	bc icc0,0,.L891
-	bhi icc0,0,.L892
+	bc icc0,0,.L890
+	bhi icc0,0,.L891
 	setlos #1, gr8
 	addi gr8,#-1,gr8
 	ret
-.L891:
+.L890:
 	setlos #0, gr8
 	addi gr8,#-1,gr8
 	ret
-.L892:
+.L891:
 	setlos #2, gr8
 	addi gr8,#-1,gr8
 	ret
@@ -4602,8 +4602,8 @@ __powidf2:
 	mov gr15, gr19
 	mov gr8, gr22
 	mov gr9, gr23
-	beq icc0,2,.L907
-.L909:
+	beq icc0,2,.L906
+.L908:
 	mov gr20, gr8
 	mov gr21, gr9
 	mov gr22, gr10
@@ -4612,12 +4612,12 @@ __powidf2:
 	call __muld
 	mov gr8, gr20
 	mov gr9, gr21
-.L907:
+.L906:
 	srli gr18, #31, gr4
 	add gr4,gr18,gr18
 	sraicc gr18, #1, gr18, icc0
-	beq icc0,0,.L908
-.L910:
+	beq icc0,0,.L907
+.L909:
 	mov gr22, gr10
 	mov gr23, gr11
 	mov gr22, gr8
@@ -4629,12 +4629,12 @@ __powidf2:
 	add gr4,gr18,gr4
 	mov gr8, gr22
 	mov gr9, gr23
-	bne icc0,2,.L909
+	bne icc0,2,.L908
 	srai gr4, #1, gr18
-	bra .L910
-.L908:
+	bra .L909
+.L907:
 	cmpi gr24, #0, icc0
-	bp icc0,2,.L906
+	bp icc0,2,.L905
 	sethi #hi(#1072693248), gr8
 	mov gr20, gr10
 	mov gr21, gr11
@@ -4644,7 +4644,7 @@ __powidf2:
 	call __divd
 	mov gr8, gr20
 	mov gr9, gr21
-.L906:
+.L905:
 	mov gr20, gr8
 	mov gr21, gr9
 	ldi @(sp,0), gr18
@@ -4680,19 +4680,19 @@ __powisf2:
 	setlo #lo(#1065353216), gr20
 	mov gr15, gr21
 	mov gr8, gr19
-	beq icc0,2,.L914
-.L916:
+	beq icc0,2,.L913
+.L915:
 	mov gr20, gr8
 	mov gr19, gr9
 	mov gr21, gr15
 	call __mulf
 	mov gr8, gr20
-.L914:
+.L913:
 	srli gr18, #31, gr4
 	add gr4,gr18,gr18
 	sraicc gr18, #1, gr18, icc0
-	beq icc0,0,.L915
-.L917:
+	beq icc0,0,.L914
+.L916:
 	mov gr19, gr9
 	mov gr19, gr8
 	mov gr21, gr15
@@ -4701,19 +4701,19 @@ __powisf2:
 	andicc gr18, #1, gr0, icc0
 	add gr4,gr18,gr4
 	mov gr8, gr19
-	bne icc0,2,.L916
+	bne icc0,2,.L915
 	srai gr4, #1, gr18
-	bra .L917
-.L915:
+	bra .L916
+.L914:
 	cmpi gr22, #0, icc0
-	bp icc0,2,.L913
+	bp icc0,2,.L912
 	sethi #hi(#1065353216), gr8
 	mov gr20, gr9
 	setlo #lo(#1065353216), gr8
 	mov gr21, gr15
 	call __divf
 	mov gr8, gr20
-.L913:
+.L912:
 	mov gr20, gr8
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
@@ -4730,17 +4730,17 @@ __powisf2:
 	.type	__ucmpdi2, @function
 __ucmpdi2:
 	cmp gr8,gr10,icc0
-	bc icc0,0,.L924
-	bhi icc0,0,.L925
+	bc icc0,0,.L923
+	bhi icc0,0,.L924
 	cmp gr9,gr11,icc0
-	bc icc0,0,.L924
-	bhi icc0,0,.L925
+	bc icc0,0,.L923
+	bhi icc0,0,.L924
 	setlos #1, gr8
 	ret
-.L924:
+.L923:
 	setlos #0, gr8
 	ret
-.L925:
+.L924:
 	setlos #2, gr8
 	ret
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4749,19 +4749,19 @@ __ucmpdi2:
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
 	cmp gr8,gr10,icc0
-	bc icc0,0,.L930
-	bhi icc0,0,.L931
+	bc icc0,0,.L929
+	bhi icc0,0,.L930
 	cmp gr9,gr11,icc0
-	bc icc0,0,.L930
-	bhi icc0,0,.L931
+	bc icc0,0,.L929
+	bhi icc0,0,.L930
 	setlos #1, gr8
 	addi gr8,#-1,gr8
 	ret
-.L930:
+.L929:
 	setlos #0, gr8
 	addi gr8,#-1,gr8
 	ret
-.L931:
+.L930:
 	setlos #2, gr8
 	addi gr8,#-1,gr8
 	ret
