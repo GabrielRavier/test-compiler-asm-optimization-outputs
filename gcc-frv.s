@@ -3944,34 +3944,34 @@ udivmodsi4:
 	setlos #33, gr5
 	setlos #1, gr4
 	bra .L460
-.L462:
+.L464:
 	slli gr9,#1,gr9
 	slli gr4,#1,gr4
 .L460:
 	cmp gr9,gr8,icc0
-	bnc icc0,0,.L467
+	bc icc0,2,.L461
+	setlos #0, gr5
+	bra .L462
+.L468:
+	setlos #0, gr5
+	bra .L462
+.L461:
 	addicc gr5, #-1, gr5, icc0
 	beq icc0,0,.L468
 	cmpi gr9, #0, icc0
-	bp icc0,2,.L462
+	bp icc0,2,.L464
 	setlos #0, gr5
-	bra .L464
-.L465:
+	bra .L462
+.L466:
 	cmp gr8,gr9,icc0
 	cknc icc0, cc4
 	csub gr8, gr9, gr8, cc4, 1
 	cor gr5, gr4, gr5, cc4, 1
 	srli gr4, #1, gr4
 	srli gr9, #1, gr9
-	bra .L464
-.L467:
-	setlos #0, gr5
-	bra .L464
-.L468:
-	setlos #0, gr5
-.L464:
+.L462:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L465
+	bne icc0,2,.L466
 	cmpi gr10, #0, icc0
 	ckeq icc0, cc4
 	cmov gr5, gr8, cc4, 1
@@ -4534,34 +4534,34 @@ __udivmodsi4:
 	setlos #33, gr5
 	setlos #1, gr4
 	bra .L548
-.L550:
+.L552:
 	slli gr9,#1,gr9
 	slli gr4,#1,gr4
 .L548:
 	cmp gr9,gr8,icc0
-	bnc icc0,0,.L555
+	bc icc0,2,.L549
+	setlos #0, gr5
+	bra .L550
+.L556:
+	setlos #0, gr5
+	bra .L550
+.L549:
 	addicc gr5, #-1, gr5, icc0
 	beq icc0,0,.L556
 	cmpi gr9, #0, icc0
-	bp icc0,2,.L550
+	bp icc0,2,.L552
 	setlos #0, gr5
-	bra .L552
-.L553:
+	bra .L550
+.L554:
 	cmp gr8,gr9,icc0
 	cknc icc0, cc4
 	csub gr8, gr9, gr8, cc4, 1
 	cor gr5, gr4, gr5, cc4, 1
 	srli gr4, #1, gr4
 	srli gr9, #1, gr9
-	bra .L552
-.L555:
-	setlos #0, gr5
-	bra .L552
-.L556:
-	setlos #0, gr5
-.L552:
+.L550:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L553
+	bne icc0,2,.L554
 	cmpi gr10, #0, icc0
 	ckeq icc0, cc4
 	cmov gr5, gr8, cc4, 1
@@ -4813,40 +4813,40 @@ __udivmodhi4:
 	setlos #17, gr7
 	setlos #1, gr4
 	bra .L588
-.L590:
+.L592:
 	slli gr9,#1,gr9
 	sethi #hi(#0),gr9
 	slli gr4,#1,gr4
 	sethi #hi(#0),gr4
 .L588:
 	cmp gr9,gr5,icc0
-	bnc icc0,0,.L595
+	bc icc0,2,.L589
+	setlos #0, gr8
+	bra .L590
+.L596:
+	setlos #0, gr8
+	bra .L590
+.L589:
 	addicc gr7, #-1, gr7, icc0
 	beq icc0,0,.L596
 	slli gr9,#16,gr6
 	srai gr6, #16, gr6
 	cmpi gr6, #0, icc0
-	bp icc0,2,.L590
+	bp icc0,2,.L592
 	setlos #0, gr8
-	bra .L592
-.L593:
+	bra .L590
+.L594:
 	cmp gr5,gr9,icc0
-	bc icc0,2,.L591
+	bc icc0,2,.L593
 	sub gr5,gr9,gr5
 	sethi #hi(#0),gr5
 	or gr8, gr4, gr8
-.L591:
+.L593:
 	srli gr4, #1, gr4
 	srli gr9, #1, gr9
-	bra .L592
-.L595:
-	setlos #0, gr8
-	bra .L592
-.L596:
-	setlos #0, gr8
-.L592:
+.L590:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L593
+	bne icc0,2,.L594
 	cmpi gr10, #0, icc0
 	ckne icc0, cc4
 	cmov gr5, gr8, cc4, 1
@@ -4867,34 +4867,34 @@ __udivmodsi4_libgcc:
 	setlos #33, gr5
 	setlos #1, gr4
 	bra .L599
-.L601:
+.L603:
 	slli gr9,#1,gr9
 	slli gr4,#1,gr4
 .L599:
 	cmp gr9,gr8,icc0
-	bnc icc0,0,.L606
+	bc icc0,2,.L600
+	setlos #0, gr5
+	bra .L601
+.L607:
+	setlos #0, gr5
+	bra .L601
+.L600:
 	addicc gr5, #-1, gr5, icc0
 	beq icc0,0,.L607
 	cmpi gr9, #0, icc0
-	bp icc0,2,.L601
+	bp icc0,2,.L603
 	setlos #0, gr5
-	bra .L603
-.L604:
+	bra .L601
+.L605:
 	cmp gr8,gr9,icc0
 	cknc icc0, cc4
 	csub gr8, gr9, gr8, cc4, 1
 	cor gr5, gr4, gr5, cc4, 1
 	srli gr4, #1, gr4
 	srli gr9, #1, gr9
-	bra .L603
-.L606:
-	setlos #0, gr5
-	bra .L603
-.L607:
-	setlos #0, gr5
-.L603:
+.L601:
 	cmpi gr4, #0, icc0
-	bne icc0,2,.L604
+	bne icc0,2,.L605
 	cmpi gr10, #0, icc0
 	ckeq icc0, cc4
 	cmov gr5, gr8, cc4, 1

@@ -4360,34 +4360,34 @@ udivmodsi4:
 	li	a4,33
 	li	a5,1
 	j	.L462
-.L464:
+.L466:
 	slliw	a1,a1,1
 	slliw	a5,a5,1
 .L462:
-	bgeu	a1,a0,.L469
-	addiw	a4,a4,-1
-	beq	a4,zero,.L470
-	bge	a1,zero,.L464
+	bltu	a1,a0,.L463
 	li	a4,0
-	j	.L466
-.L467:
-	bltu	a0,a1,.L465
-	subw	a0,a0,a1
-	or	a4,a4,a5
-.L465:
-	srliw	a5,a5,1
-	srliw	a1,a1,1
-	j	.L466
-.L469:
-	li	a4,0
-	j	.L466
+	j	.L464
 .L470:
 	li	a4,0
-.L466:
-	bne	a5,zero,.L467
-	bne	a2,zero,.L468
-	mv	a0,a4
+	j	.L464
+.L463:
+	addiw	a4,a4,-1
+	beq	a4,zero,.L470
+	bge	a1,zero,.L466
+	li	a4,0
+	j	.L464
 .L468:
+	bltu	a0,a1,.L467
+	subw	a0,a0,a1
+	or	a4,a4,a5
+.L467:
+	srliw	a5,a5,1
+	srliw	a1,a1,1
+.L464:
+	bne	a5,zero,.L468
+	bne	a2,zero,.L469
+	mv	a0,a4
+.L469:
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -5153,34 +5153,34 @@ __udivmodsi4:
 	li	a4,33
 	li	a5,1
 	j	.L547
-.L549:
+.L551:
 	slliw	a1,a1,1
 	slliw	a5,a5,1
 .L547:
-	bgeu	a1,a0,.L554
-	addiw	a4,a4,-1
-	beq	a4,zero,.L555
-	bge	a1,zero,.L549
+	bltu	a1,a0,.L548
 	li	a4,0
-	j	.L551
-.L552:
-	bltu	a0,a1,.L550
-	subw	a0,a0,a1
-	or	a4,a4,a5
-.L550:
-	srliw	a5,a5,1
-	srliw	a1,a1,1
-	j	.L551
-.L554:
-	li	a4,0
-	j	.L551
+	j	.L549
 .L555:
 	li	a4,0
-.L551:
-	bne	a5,zero,.L552
-	bne	a2,zero,.L553
-	mv	a0,a4
+	j	.L549
+.L548:
+	addiw	a4,a4,-1
+	beq	a4,zero,.L555
+	bge	a1,zero,.L551
+	li	a4,0
+	j	.L549
 .L553:
+	bltu	a0,a1,.L552
+	subw	a0,a0,a1
+	or	a4,a4,a5
+.L552:
+	srliw	a5,a5,1
+	srliw	a1,a1,1
+.L549:
+	bne	a5,zero,.L553
+	bne	a2,zero,.L554
+	mv	a0,a4
+.L554:
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -5463,7 +5463,7 @@ __udivmodhi4:
 	li	a4,17
 	li	a5,1
 	j	.L589
-.L591:
+.L593:
 	slliw	a1,a1,1
 	slli	a1,a1,48
 	srli	a1,a1,48
@@ -5472,35 +5472,35 @@ __udivmodhi4:
 	srli	a5,a5,48
 .L589:
 	sext.w	a3,a1
-	bgeu	a3,a0,.L596
+	bltu	a3,a0,.L590
+	li	a3,0
+	j	.L591
+.L597:
+	li	a3,0
+	j	.L591
+.L590:
 	addiw	a4,a4,-1
 	beq	a4,zero,.L597
 	slliw	a3,a1,16
 	sraiw	a3,a3,16
-	bge	a3,zero,.L591
+	bge	a3,zero,.L593
 	li	a3,0
-	j	.L593
-.L594:
+	j	.L591
+.L595:
 	sext.w	a4,a0
-	bltu	a4,a1,.L592
+	bltu	a4,a1,.L594
 	subw	a0,a0,a1
 	slli	a0,a0,48
 	srli	a0,a0,48
 	or	a3,a3,a5
-.L592:
+.L594:
 	srli	a5,a5,1
 	srli	a1,a1,1
-	j	.L593
-.L596:
-	li	a3,0
-	j	.L593
-.L597:
-	li	a3,0
-.L593:
-	bne	a5,zero,.L594
-	bne	a2,zero,.L595
+.L591:
+	bne	a5,zero,.L595
+	bne	a2,zero,.L596
 	mv	a0,a3
-.L595:
+.L596:
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)
@@ -5529,35 +5529,35 @@ __udivmodsi4_libgcc:
 	li	a4,65
 	li	a5,1
 	j	.L600
-.L602:
+.L604:
 	slli	a1,a1,1
 	slli	a5,a5,1
 .L600:
-	bgeu	a1,a0,.L607
+	bltu	a1,a0,.L601
+	li	a4,0
+	j	.L602
+.L608:
+	li	a4,0
+	j	.L602
+.L601:
 	addiw	a4,a4,-1
 	beq	a4,zero,.L608
 	slli	a3,a1,32
-	bge	a3,zero,.L602
+	bge	a3,zero,.L604
 	li	a4,0
-	j	.L604
-.L605:
-	bltu	a0,a1,.L603
+	j	.L602
+.L606:
+	bltu	a0,a1,.L605
 	sub	a0,a0,a1
 	or	a4,a4,a5
-.L603:
+.L605:
 	srli	a5,a5,1
 	srli	a1,a1,1
-	j	.L604
-.L607:
-	li	a4,0
-	j	.L604
-.L608:
-	li	a4,0
-.L604:
-	bne	a5,zero,.L605
-	bne	a2,zero,.L606
+.L602:
+	bne	a5,zero,.L606
+	bne	a2,zero,.L607
 	mv	a0,a4
-.L606:
+.L607:
 	ld	ra,8(sp)
 	.cfi_restore 1
 	ld	s0,0(sp)

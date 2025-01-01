@@ -3932,22 +3932,22 @@ _udivmodsi4:
 	mov.l	er1,er1
 	bpl	.L585
 	sub.l	er4,er4
-	bra	.L587
-.L588:
-	cmp.l	er1,er0
-	blo	.L586
-	sub.l	er1,er0
-	or.l	er3,er4
-.L586:
-	shlr.l	er3
-	shlr.l	er1
-	bra	.L587
+	bra	.L586
 .L590:
 	sub.l	er4,er4
-	bra	.L587
+	bra	.L586
 .L591:
 	sub.l	er4,er4
+	bra	.L586
+.L588:
+	cmp.l	er1,er0
+	blo	.L587
+	sub.l	er1,er0
+	or.l	er3,er4
 .L587:
+	shlr.l	er3
+	shlr.l	er1
+.L586:
 	mov.l	er3,er3
 	bne	.L588
 	mov.l	er2,er2
@@ -4527,22 +4527,22 @@ ___udivmodsi4:
 	mov.l	er1,er1
 	bpl	.L683
 	sub.l	er4,er4
-	bra	.L685
-.L686:
-	cmp.l	er1,er0
-	blo	.L684
-	sub.l	er1,er0
-	or.l	er3,er4
-.L684:
-	shlr.l	er3
-	shlr.l	er1
-	bra	.L685
+	bra	.L684
 .L688:
 	sub.l	er4,er4
-	bra	.L685
+	bra	.L684
 .L689:
 	sub.l	er4,er4
+	bra	.L684
+.L686:
+	cmp.l	er1,er0
+	blo	.L685
+	sub.l	er1,er0
+	or.l	er3,er4
 .L685:
+	shlr.l	er3
+	shlr.l	er1
+.L684:
 	mov.l	er3,er3
 	bne	.L686
 	mov.w	r2,r2
@@ -4788,22 +4788,22 @@ ___udivmodhi4:
 	mov.w	r1,r1
 	bpl	.L724
 	sub.w	r4,r4
-	bra	.L726
-.L727:
-	cmp.w	r1,r0
-	blo	.L725
-	sub.w	r1,r0
-	or.w	r3,r4
-.L725:
-	shlr.w	r3
-	shlr.w	r1
-	bra	.L726
+	bra	.L725
 .L729:
 	sub.w	r4,r4
-	bra	.L726
+	bra	.L725
 .L730:
 	sub.w	r4,r4
+	bra	.L725
+.L727:
+	cmp.w	r1,r0
+	blo	.L726
+	sub.w	r1,r0
+	or.w	r3,r4
 .L726:
+	shlr.w	r3
+	shlr.w	r1
+.L725:
 	mov.w	r3,r3
 	bne	.L727
 	mov.w	r2,r2
@@ -4835,22 +4835,22 @@ ___udivmodsi4_libgcc:
 	mov.l	er1,er1
 	bpl	.L735
 	sub.l	er4,er4
-	bra	.L737
-.L738:
-	cmp.l	er1,er0
-	blo	.L736
-	sub.l	er1,er0
-	or.l	er3,er4
-.L736:
-	shlr.l	er3
-	shlr.l	er1
-	bra	.L737
+	bra	.L736
 .L740:
 	sub.l	er4,er4
-	bra	.L737
+	bra	.L736
 .L741:
 	sub.l	er4,er4
+	bra	.L736
+.L738:
+	cmp.l	er1,er0
+	blo	.L737
+	sub.l	er1,er0
+	or.l	er3,er4
 .L737:
+	shlr.l	er3
+	shlr.l	er1
+.L736:
 	mov.l	er3,er3
 	bne	.L738
 	mov.w	r2,r2

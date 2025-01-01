@@ -4020,8 +4020,7 @@ LFB103:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	L456
-	.p2align 5
-L458:
+L459:
 	add	edx, edx
 	add	ecx, ecx
 L456:
@@ -4032,25 +4031,26 @@ L456:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	L463
-	test	edx, edx
-	jns	L458
+	jne	L457
 	mov	ebx, 0
-	jmp	L460
-L461:
+	jmp	L458
+L457:
+	test	edx, edx
+	jns	L459
+	mov	ebx, 0
+	jmp	L458
+	.p2align 4
+L462:
 	cmp	edi, edx
-	jb	L459
+	jb	L461
 	sub	edi, edx
 	or	ebx, ecx
-L459:
+L461:
 	shr	ecx
 	shr	edx
-	jmp	L460
-L463:
-	mov	ebx, 0
-L460:
+L458:
 	test	ecx, ecx
-	jne	L461
+	jne	L462
 	cmp	DWORD PTR [ebp+16], 0
 	mov	eax, ebx
 	cmovne	eax, edi
@@ -4808,8 +4808,7 @@ LFB123:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	L549
-	.p2align 5
-L551:
+L552:
 	add	edx, edx
 	add	ecx, ecx
 L549:
@@ -4820,25 +4819,26 @@ L549:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	L556
-	test	edx, edx
-	jns	L551
+	jne	L550
 	mov	ebx, 0
-	jmp	L553
-L554:
+	jmp	L551
+L550:
+	test	edx, edx
+	jns	L552
+	mov	ebx, 0
+	jmp	L551
+	.p2align 4
+L555:
 	cmp	edi, edx
-	jb	L552
+	jb	L554
 	sub	edi, edx
 	or	ebx, ecx
-L552:
+L554:
 	shr	ecx
 	shr	edx
-	jmp	L553
-L556:
-	mov	ebx, 0
-L553:
+L551:
 	test	ecx, ecx
-	jne	L554
+	jne	L555
 	cmp	DWORD PTR [ebp+16], 0
 	mov	eax, ebx
 	cmovne	eax, edi
@@ -5151,8 +5151,7 @@ LFB131:
 	movzx	edx, WORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	L589
-	.p2align 5
-L591:
+L592:
 	add	edx, edx
 	add	ecx, ecx
 L589:
@@ -5163,25 +5162,26 @@ L589:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	L596
-	test	dx, dx
-	jns	L591
+	jne	L590
 	mov	ebx, 0
-	jmp	L593
-L594:
+	jmp	L591
+L590:
+	test	dx, dx
+	jns	L592
+	mov	ebx, 0
+	jmp	L591
+	.p2align 5
+L595:
 	cmp	di, dx
-	jb	L592
+	jb	L594
 	sub	edi, edx
 	or	ebx, ecx
-L592:
+L594:
 	shr	cx
 	shr	dx
-	jmp	L593
-L596:
-	mov	ebx, 0
-L593:
+L591:
 	test	cx, cx
-	jne	L594
+	jne	L595
 	cmp	DWORD PTR [ebp+16], 0
 	mov	eax, ebx
 	cmovne	eax, edi
@@ -5217,8 +5217,7 @@ LFB132:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	L599
-	.p2align 5
-L601:
+L602:
 	add	edx, edx
 	add	ecx, ecx
 L599:
@@ -5229,25 +5228,26 @@ L599:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	L606
-	test	edx, edx
-	jns	L601
+	jne	L600
 	mov	ebx, 0
-	jmp	L603
-L604:
+	jmp	L601
+L600:
+	test	edx, edx
+	jns	L602
+	mov	ebx, 0
+	jmp	L601
+	.p2align 4
+L605:
 	cmp	edi, edx
-	jb	L602
+	jb	L604
 	sub	edi, edx
 	or	ebx, ecx
-L602:
+L604:
 	shr	ecx
 	shr	edx
-	jmp	L603
-L606:
-	mov	ebx, 0
-L603:
+L601:
 	test	ecx, ecx
-	jne	L604
+	jne	L605
 	cmp	DWORD PTR [ebp+16], 0
 	mov	eax, ebx
 	cmovne	eax, edi

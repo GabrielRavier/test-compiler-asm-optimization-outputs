@@ -4211,8 +4211,7 @@ udivmodsi4:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	.L466
-	.p2align 5
-.L468:
+.L469:
 	add	edx, edx
 	add	ecx, ecx
 .L466:
@@ -4223,30 +4222,31 @@ udivmodsi4:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	.L473
-	test	edx, edx
-	jns	.L468
+	jne	.L467
 	mov	ebx, 0
-	jmp	.L470
-.L471:
+	jmp	.L468
+.L467:
+	test	edx, edx
+	jns	.L469
+	mov	ebx, 0
+	jmp	.L468
+	.p2align 4
+.L472:
 	cmp	edi, edx
-	jb	.L469
+	jb	.L471
 	sub	edi, edx
 	or	ebx, ecx
-.L469:
+.L471:
 	shr	ecx
 	shr	edx
-	jmp	.L470
-.L473:
-	mov	ebx, 0
-.L470:
+.L468:
 	test	ecx, ecx
-	jne	.L471
+	jne	.L472
 	mov	eax, edi
 	cmp	DWORD PTR [ebp+16], 0
-	jne	.L472
+	jne	.L473
 	mov	eax, ebx
-.L472:
+.L473:
 	pop	ebx
 	.cfi_restore 3
 	pop	esi
@@ -5010,8 +5010,7 @@ __udivmodsi4:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	.L559
-	.p2align 5
-.L561:
+.L562:
 	add	edx, edx
 	add	ecx, ecx
 .L559:
@@ -5022,30 +5021,31 @@ __udivmodsi4:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	.L566
-	test	edx, edx
-	jns	.L561
+	jne	.L560
 	mov	ebx, 0
-	jmp	.L563
-.L564:
+	jmp	.L561
+.L560:
+	test	edx, edx
+	jns	.L562
+	mov	ebx, 0
+	jmp	.L561
+	.p2align 4
+.L565:
 	cmp	edi, edx
-	jb	.L562
+	jb	.L564
 	sub	edi, edx
 	or	ebx, ecx
-.L562:
+.L564:
 	shr	ecx
 	shr	edx
-	jmp	.L563
-.L566:
-	mov	ebx, 0
-.L563:
+.L561:
 	test	ecx, ecx
-	jne	.L564
+	jne	.L565
 	mov	eax, edi
 	cmp	DWORD PTR [ebp+16], 0
-	jne	.L565
+	jne	.L566
 	mov	eax, ebx
-.L565:
+.L566:
 	pop	ebx
 	.cfi_restore 3
 	pop	esi
@@ -5369,8 +5369,7 @@ __udivmodhi4:
 	movzx	edx, WORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	.L599
-	.p2align 5
-.L601:
+.L602:
 	add	edx, edx
 	add	ecx, ecx
 .L599:
@@ -5381,30 +5380,31 @@ __udivmodhi4:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	.L606
-	test	dx, dx
-	jns	.L601
+	jne	.L600
 	mov	ebx, 0
-	jmp	.L603
-.L604:
+	jmp	.L601
+.L600:
+	test	dx, dx
+	jns	.L602
+	mov	ebx, 0
+	jmp	.L601
+	.p2align 5
+.L605:
 	cmp	di, dx
-	jb	.L602
+	jb	.L604
 	sub	edi, edx
 	or	ebx, ecx
-.L602:
+.L604:
 	shr	cx
 	shr	dx
-	jmp	.L603
-.L606:
-	mov	ebx, 0
-.L603:
+.L601:
 	test	cx, cx
-	jne	.L604
+	jne	.L605
 	mov	eax, edi
 	cmp	DWORD PTR [ebp+16], 0
-	jne	.L605
+	jne	.L606
 	mov	eax, ebx
-.L605:
+.L606:
 	pop	ebx
 	.cfi_restore 3
 	pop	esi
@@ -5438,8 +5438,7 @@ __udivmodsi4_libgcc:
 	mov	edx, DWORD PTR [ebp+12]
 	mov	ecx, 1
 	jmp	.L609
-	.p2align 5
-.L611:
+.L612:
 	add	edx, edx
 	add	ecx, ecx
 .L609:
@@ -5450,30 +5449,31 @@ __udivmodsi4_libgcc:
 	setne	bl
 	mov	eax, esi
 	test	al, bl
-	je	.L616
-	test	edx, edx
-	jns	.L611
+	jne	.L610
 	mov	ebx, 0
-	jmp	.L613
-.L614:
+	jmp	.L611
+.L610:
+	test	edx, edx
+	jns	.L612
+	mov	ebx, 0
+	jmp	.L611
+	.p2align 4
+.L615:
 	cmp	edi, edx
-	jb	.L612
+	jb	.L614
 	sub	edi, edx
 	or	ebx, ecx
-.L612:
+.L614:
 	shr	ecx
 	shr	edx
-	jmp	.L613
-.L616:
-	mov	ebx, 0
-.L613:
+.L611:
 	test	ecx, ecx
-	jne	.L614
+	jne	.L615
 	mov	eax, edi
 	cmp	DWORD PTR [ebp+16], 0
-	jne	.L615
+	jne	.L616
 	mov	eax, ebx
-.L615:
+.L616:
 	pop	ebx
 	.cfi_restore 3
 	pop	esi

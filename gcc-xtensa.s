@@ -2894,7 +2894,7 @@ udivmodsi4:
 	mov.n	a7, sp
 	movi.n	a8, 1
 	j	.L470
-.L473:
+.L474:
 	add.n	a3, a3, a3
 	add.n	a8, a8, a8
 .L470:
@@ -2904,22 +2904,22 @@ udivmodsi4:
 .L471:
 	movi.n	a10, 1
 	moveqz	a10, a8, a8
-	bnone	a10, a9, .L478
-	bgez	a3, .L473
+	bany	a10, a9, .L472
 	movi.n	a9, 0
-	j	.L475
-.L476:
-	bltu	a2, a3, .L474
+	j	.L473
+.L472:
+	bgez	a3, .L474
+	movi.n	a9, 0
+	j	.L473
+.L477:
+	bltu	a2, a3, .L476
 	sub	a2, a2, a3
 	or	a9, a9, a8
-.L474:
+.L476:
 	srli	a8, a8, 1
 	srli	a3, a3, 1
-	j	.L475
-.L478:
-	movi.n	a9, 0
-.L475:
-	bnez.n	a8, .L476
+.L473:
+	bnez.n	a8, .L477
 	moveqz	a2, a9, a4
 	retw.n
 	.size	udivmodsi4, .-udivmodsi4
@@ -3353,7 +3353,7 @@ __udivmodsi4:
 	mov.n	a7, sp
 	movi.n	a8, 1
 	j	.L562
-.L565:
+.L566:
 	add.n	a3, a3, a3
 	add.n	a8, a8, a8
 .L562:
@@ -3363,22 +3363,22 @@ __udivmodsi4:
 .L563:
 	movi.n	a10, 1
 	moveqz	a10, a8, a8
-	bnone	a10, a9, .L570
-	bgez	a3, .L565
+	bany	a10, a9, .L564
 	movi.n	a9, 0
-	j	.L567
-.L568:
-	bltu	a2, a3, .L566
+	j	.L565
+.L564:
+	bgez	a3, .L566
+	movi.n	a9, 0
+	j	.L565
+.L569:
+	bltu	a2, a3, .L568
 	sub	a2, a2, a3
 	or	a9, a9, a8
-.L566:
+.L568:
 	srli	a8, a8, 1
 	srli	a3, a3, 1
-	j	.L567
-.L570:
-	movi.n	a9, 0
-.L567:
-	bnez.n	a8, .L568
+.L565:
+	bnez.n	a8, .L569
 	moveqz	a2, a9, a4
 	retw.n
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -3572,7 +3572,7 @@ __udivmodhi4:
 	extui	a3, a3, 0, 16
 	movi.n	a8, 1
 	j	.L602
-.L605:
+.L606:
 	add.n	a3, a3, a3
 	extui	a3, a3, 0, 16
 	add.n	a8, a8, a8
@@ -3584,24 +3584,24 @@ __udivmodhi4:
 .L603:
 	movi.n	a11, 1
 	moveqz	a11, a8, a8
-	bnone	a11, a10, .L610
-	sext	a10, a3, 15
-	bgez	a10, .L605
+	bany	a11, a10, .L604
 	movi.n	a2, 0
-	j	.L607
-.L608:
-	bltu	a9, a3, .L606
+	j	.L605
+.L604:
+	sext	a10, a3, 15
+	bgez	a10, .L606
+	movi.n	a2, 0
+	j	.L605
+.L609:
+	bltu	a9, a3, .L608
 	sub	a9, a9, a3
 	extui	a9, a9, 0, 16
 	or	a2, a2, a8
-.L606:
+.L608:
 	srli	a8, a8, 1
 	srli	a3, a3, 1
-	j	.L607
-.L610:
-	movi.n	a2, 0
-.L607:
-	bnez.n	a8, .L608
+.L605:
+	bnez.n	a8, .L609
 	movnez	a2, a9, a4
 	retw.n
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -3613,7 +3613,7 @@ __udivmodsi4_libgcc:
 	mov.n	a7, sp
 	movi.n	a8, 1
 	j	.L613
-.L616:
+.L617:
 	add.n	a3, a3, a3
 	add.n	a8, a8, a8
 .L613:
@@ -3623,22 +3623,22 @@ __udivmodsi4_libgcc:
 .L614:
 	movi.n	a10, 1
 	moveqz	a10, a8, a8
-	bnone	a10, a9, .L621
-	bgez	a3, .L616
+	bany	a10, a9, .L615
 	movi.n	a9, 0
-	j	.L618
-.L619:
-	bltu	a2, a3, .L617
+	j	.L616
+.L615:
+	bgez	a3, .L617
+	movi.n	a9, 0
+	j	.L616
+.L620:
+	bltu	a2, a3, .L619
 	sub	a2, a2, a3
 	or	a9, a9, a8
-.L617:
+.L619:
 	srli	a8, a8, 1
 	srli	a3, a3, 1
-	j	.L618
-.L621:
-	movi.n	a9, 0
-.L618:
-	bnez.n	a8, .L619
+.L616:
+	bnez.n	a8, .L620
 	moveqz	a2, a9, a4
 	retw.n
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc

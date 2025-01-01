@@ -4138,40 +4138,40 @@ udivmodsi4:
 	.cfi_def_cfa_register 31
 	li 9,1
 	b .L472
-.L474:
+.L476:
 	rldic 4,4,1,32
 	slwi 9,9,1
 .L472:
 	cmplw 0,4,3
-	bge 0,.L479
+	blt 0,.L473
+	li 10,0
+	b .L474
+.L480:
+	li 10,0
+	b .L474
+.L473:
 	cmpwi 0,9,0
 	beq 0,.L480
 	cmpwi 0,4,0
-	bge 0,.L474
+	bge 0,.L476
 	li 10,0
-	b .L476
-.L477:
+	b .L474
+.L478:
 	cmplw 0,3,4
-	blt 0,.L475
+	blt 0,.L477
 	subf 3,4,3
 	rldicl 3,3,0,32
 	or 10,10,9
-.L475:
+.L477:
 	srwi 9,9,1
 	srdi 4,4,1
-	b .L476
-.L479:
-	li 10,0
-	b .L476
-.L480:
-	li 10,0
-.L476:
+.L474:
 	cmpwi 0,9,0
-	bne 0,.L477
-	cmpdi 0,5,0
 	bne 0,.L478
+	cmpdi 0,5,0
+	bne 0,.L479
 	mr 3,10
-.L478:
+.L479:
 	rldicl 3,3,0,32
 	addi 1,31,48
 	.cfi_def_cfa 1, 0
@@ -4932,40 +4932,40 @@ __udivmodsi4:
 	.cfi_def_cfa_register 31
 	li 9,1
 	b .L569
-.L571:
+.L573:
 	rldic 4,4,1,32
 	slwi 9,9,1
 .L569:
 	cmplw 0,4,3
-	bge 0,.L576
+	blt 0,.L570
+	li 10,0
+	b .L571
+.L577:
+	li 10,0
+	b .L571
+.L570:
 	cmpwi 0,9,0
 	beq 0,.L577
 	cmpwi 0,4,0
-	bge 0,.L571
+	bge 0,.L573
 	li 10,0
-	b .L573
-.L574:
+	b .L571
+.L575:
 	cmplw 0,3,4
-	blt 0,.L572
+	blt 0,.L574
 	subf 3,4,3
 	rldicl 3,3,0,32
 	or 10,10,9
-.L572:
+.L574:
 	srwi 9,9,1
 	srdi 4,4,1
-	b .L573
-.L576:
-	li 10,0
-	b .L573
-.L577:
-	li 10,0
-.L573:
+.L571:
 	cmpwi 0,9,0
-	bne 0,.L574
-	cmpdi 0,5,0
 	bne 0,.L575
+	cmpdi 0,5,0
+	bne 0,.L576
 	mr 3,10
-.L575:
+.L576:
 	rldicl 3,3,0,32
 	addi 1,31,48
 	.cfi_def_cfa 1, 0
@@ -5247,39 +5247,39 @@ __udivmodhi4:
 	li 10,17
 	mtctr 10
 	b .L609
-.L611:
+.L613:
 	rldic 4,4,1,48
 	slwi 9,9,1
 .L609:
 	cmplw 0,4,3
-	bge 0,.L616
+	blt 0,.L610
+	li 10,0
+	b .L611
+.L620:
+	li 10,0
+	b .L611
+.L610:
 	bdz .L620
 	andi. 10,4,0x8000
-	beq 0,.L611
+	beq 0,.L613
 	li 10,0
-	b .L613
-.L614:
+	b .L611
+.L615:
 	cmplw 0,3,4
-	blt 0,.L612
+	blt 0,.L614
 	subf 3,4,3
 	rlwinm 3,3,0,0xffff
 	or 10,10,9
-.L612:
+.L614:
 	rldicl 9,9,63,49
 	srdi 4,4,1
-	b .L613
-.L616:
-	li 10,0
-	b .L613
-.L620:
-	li 10,0
-.L613:
+.L611:
 	andi. 8,9,0xffff
-	bne 0,.L614
-	cmpdi 0,5,0
 	bne 0,.L615
+	cmpdi 0,5,0
+	bne 0,.L616
 	mr 3,10
-.L615:
+.L616:
 	rlwinm 3,3,0,0xffff
 	addi 1,31,48
 	.cfi_def_cfa 1, 0
@@ -5304,39 +5304,39 @@ __udivmodsi4_libgcc:
 	.cfi_def_cfa_register 31
 	li 9,1
 	b .L622
-.L624:
+.L626:
 	sldi 4,4,1
 	sldi 9,9,1
 .L622:
 	cmpld 0,4,3
-	bge 0,.L629
+	blt 0,.L623
+	li 10,0
+	b .L624
+.L630:
+	li 10,0
+	b .L624
+.L623:
 	cmpdi 0,9,0
 	beq 0,.L630
 	andis. 10,4,0x8000
-	beq 0,.L624
+	beq 0,.L626
 	li 10,0
-	b .L626
-.L627:
+	b .L624
+.L628:
 	cmpld 0,3,4
-	blt 0,.L625
+	blt 0,.L627
 	subf 3,4,3
 	or 10,10,9
-.L625:
+.L627:
 	srdi 9,9,1
 	srdi 4,4,1
-	b .L626
-.L629:
-	li 10,0
-	b .L626
-.L630:
-	li 10,0
-.L626:
+.L624:
 	cmpdi 0,9,0
-	bne 0,.L627
-	cmpdi 0,5,0
 	bne 0,.L628
+	cmpdi 0,5,0
+	bne 0,.L629
 	mr 3,10
-.L628:
+.L629:
 	addi 1,31,48
 	.cfi_def_cfa 1, 0
 	ld 31,-8(1)

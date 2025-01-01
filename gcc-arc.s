@@ -2700,28 +2700,28 @@ memmem:
 	breq.d	r3,0,.L426
 	add	r16,r16,r0   ;(p)b,b,c/u6
 	cmp_s	r1,r3
-	bhs.d	.L432
+	bhs.d	.L427
 	mov.hs	r13,r0
 	b.d	.L426
 	mov_s	r0,0	;3
 	.align 4
-.L428:
+.L429:
 	ldb.ab	r14,[r13,1]
 	ldb_s	r12,[r15]
-	brne	r14,r12,.L432
+	brne	r14,r12,.L427
 	sub	r2,r18,1 ;a,b,u6
 	add_s	r1,r15,1   ;R0/R1,b,u6
 	bl.d	@memcmp;1
 	mov_s	r0,r13	;4
-	breq_s	r0,0,.L431
+	breq_s	r0,0,.L432
 	.align 2
-.L432:
-	brls.d	r13,r16,.L428
+.L427:
+	brls.d	r13,r16,.L429
 	mov_s	r17,r13	;4
 	b.d	.L426
 	mov_s	r0,0	;3
 	.align 4
-.L431:
+.L432:
 	mov_s	r0,r17	;4
 .L426:
 	ld.ab	fp,[sp,4]	;23
@@ -2891,34 +2891,34 @@ udivmodsi4:
 	b.d	.L464
 	mov_s	r3,1	;3
 	.align 4
-.L466:
+.L468:
 	asl_s	r1,r1,1
 	asl_s	r3,r3,1
 	.align 2
 .L464:
-	brhs	r1,r12,.L471
-	breq_s	r3,0,.L472
-	brge	r1,0,.L466
-	b.d	.L468
+	brlo	r1,r12,.L465
+	b.d	.L466
 	mov_s	r0,0	;3
 	.align 4
-.L469:
+.L472:
+	b.d	.L466
+	mov_s	r0,0	;3
+	.align 4
+.L465:
+	breq_s	r3,0,.L472
+	brge	r1,0,.L468
+	b.d	.L466
+	mov_s	r0,0	;3
+	.align 4
+.L470:
 	cmp_s	r12,r1
 	sub.hs	r12,r12,r1
 	or.hs r0,r0,r3
 	lsr_s	r3,r3
-	b.d	.L468
 	lsr_s	r1,r1
-	.align 4
-.L471:
-	b.d	.L468
-	mov_s	r0,0	;3
-	.align 4
-.L472:
-	mov_s	r0,0	;3
 	.align 2
-.L468:
-	brne_s	r3,0,.L469
+.L466:
+	brne_s	r3,0,.L470
 	tst_s	r2,r2
 	mov.ne	r0,r12
 	j_s.d	[blink]
@@ -3405,34 +3405,34 @@ __udivmodsi4:
 	b.d	.L557
 	mov_s	r3,1	;3
 	.align 4
-.L559:
+.L561:
 	asl_s	r1,r1,1
 	asl_s	r3,r3,1
 	.align 2
 .L557:
-	brhs	r1,r12,.L564
-	breq_s	r3,0,.L565
-	brge	r1,0,.L559
-	b.d	.L561
+	brlo	r1,r12,.L558
+	b.d	.L559
 	mov_s	r0,0	;3
 	.align 4
-.L562:
+.L565:
+	b.d	.L559
+	mov_s	r0,0	;3
+	.align 4
+.L558:
+	breq_s	r3,0,.L565
+	brge	r1,0,.L561
+	b.d	.L559
+	mov_s	r0,0	;3
+	.align 4
+.L563:
 	cmp_s	r12,r1
 	sub.hs	r12,r12,r1
 	or.hs r0,r0,r3
 	lsr_s	r3,r3
-	b.d	.L561
 	lsr_s	r1,r1
-	.align 4
-.L564:
-	b.d	.L561
-	mov_s	r0,0	;3
-	.align 4
-.L565:
-	mov_s	r0,0	;3
 	.align 2
-.L561:
-	brne_s	r3,0,.L562
+.L559:
+	brne_s	r3,0,.L563
 	tst_s	r2,r2
 	mov.ne	r0,r12
 	j_s.d	[blink]
@@ -3616,39 +3616,39 @@ __udivmodhi4:
 	b.d	.L597
 	mov_s	r3,1	;3
 	.align 4
-.L599:
+.L601:
 	asl_s	r1,r1,1
 	exth_s	r1,r1
 	asl_s	r3,r3,1
 	exth_s	r3,r3
 	.align 2
 .L597:
-	brhs	r1,r12,.L604
+	brlo	r1,r12,.L598
+	b.d	.L599
+	mov_s	r0,0	;3
+	.align 4
+.L605:
+	b.d	.L599
+	mov_s	r0,0	;3
+	.align 4
+.L598:
 	add.f	r13,r13,-1
 	beq_s	.L605
 	btst_s	r1,15
-	beq_s	.L599
-	b.d	.L601
+	beq_s	.L601
+	b.d	.L599
 	mov_s	r0,0	;3
 	.align 4
-.L602:
+.L603:
 	cmp_s	r12,r1
 	sub.hs	r12,r12,r1
 	bmsk.hs	r12,r12,15
 	or.hs r0,r0,r3
 	lsr_s	r3,r3
-	b.d	.L601
 	lsr_s	r1,r1
-	.align 4
-.L604:
-	b.d	.L601
-	mov_s	r0,0	;3
-	.align 4
-.L605:
-	mov_s	r0,0	;3
 	.align 2
-.L601:
-	brne_s	r3,0,.L602
+.L599:
+	brne_s	r3,0,.L603
 	tst_s	r2,r2
 	mov.ne	r0,r12
 	ld.ab	fp,[sp,4]	;23
@@ -3665,34 +3665,34 @@ __udivmodsi4_libgcc:
 	b.d	.L608
 	mov_s	r3,1	;3
 	.align 4
-.L610:
+.L612:
 	asl_s	r1,r1,1
 	asl_s	r3,r3,1
 	.align 2
 .L608:
-	brhs	r1,r12,.L615
-	breq_s	r3,0,.L616
-	brge	r1,0,.L610
-	b.d	.L612
+	brlo	r1,r12,.L609
+	b.d	.L610
 	mov_s	r0,0	;3
 	.align 4
-.L613:
+.L616:
+	b.d	.L610
+	mov_s	r0,0	;3
+	.align 4
+.L609:
+	breq_s	r3,0,.L616
+	brge	r1,0,.L612
+	b.d	.L610
+	mov_s	r0,0	;3
+	.align 4
+.L614:
 	cmp_s	r12,r1
 	sub.hs	r12,r12,r1
 	or.hs r0,r0,r3
 	lsr_s	r3,r3
-	b.d	.L612
 	lsr_s	r1,r1
-	.align 4
-.L615:
-	b.d	.L612
-	mov_s	r0,0	;3
-	.align 4
-.L616:
-	mov_s	r0,0	;3
 	.align 2
-.L612:
-	brne_s	r3,0,.L613
+.L610:
+	brne_s	r3,0,.L614
 	tst_s	r2,r2
 	mov.ne	r0,r12
 	j_s.d	[blink]

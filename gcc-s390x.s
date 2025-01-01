@@ -3527,33 +3527,33 @@ udivmodsi4:
 	lhi	%r1,1
 	lhi	%r5,33
 	j	.L588
-.L590:
+.L592:
 	risbgn	%r3,%r3,32,128+62,1
 	sll	%r1,1
 .L588:
-	clrjhe	%r3,%r2,.L595
+	clrjl	%r3,%r2,.L589
+	lhi	%r5,0
+	j	.L590
+.L599:
+	lhi	%r5,0
+	j	.L590
+.L589:
 	brct	%r5,.L598
 	j	.L599
 .L598:
-	cijhe	%r3,0,.L590
+	cijhe	%r3,0,.L592
 	lhi	%r5,0
-	j	.L592
-.L593:
-	clrjl	%r2,%r3,.L591
+	j	.L590
+.L594:
+	clrjl	%r2,%r3,.L593
 	sr	%r2,%r3
 	llgfr	%r2,%r2
 	or	%r5,%r1
-.L591:
+.L593:
 	srl	%r1,1
 	srlg	%r3,%r3,1
-	j	.L592
-.L595:
-	lhi	%r5,0
-	j	.L592
-.L599:
-	lhi	%r5,0
-.L592:
-	cijlh	%r1,0,.L593
+.L590:
+	cijlh	%r1,0,.L594
 	ltgr	%r4,%r4
 	locre	%r2,%r5
 	llgfr	%r2,%r2
@@ -4159,33 +4159,33 @@ __udivmodsi4:
 	lhi	%r1,1
 	lhi	%r5,33
 	j	.L701
-.L703:
+.L705:
 	risbgn	%r3,%r3,32,128+62,1
 	sll	%r1,1
 .L701:
-	clrjhe	%r3,%r2,.L708
+	clrjl	%r3,%r2,.L702
+	lhi	%r5,0
+	j	.L703
+.L712:
+	lhi	%r5,0
+	j	.L703
+.L702:
 	brct	%r5,.L711
 	j	.L712
 .L711:
-	cijhe	%r3,0,.L703
+	cijhe	%r3,0,.L705
 	lhi	%r5,0
-	j	.L705
-.L706:
-	clrjl	%r2,%r3,.L704
+	j	.L703
+.L707:
+	clrjl	%r2,%r3,.L706
 	sr	%r2,%r3
 	llgfr	%r2,%r2
 	or	%r5,%r1
-.L704:
+.L706:
 	srl	%r1,1
 	srlg	%r3,%r3,1
-	j	.L705
-.L708:
-	lhi	%r5,0
-	j	.L705
-.L712:
-	lhi	%r5,0
-.L705:
-	cijlh	%r1,0,.L706
+.L703:
+	cijlh	%r1,0,.L707
 	ltgr	%r4,%r4
 	locre	%r2,%r5
 	llgfr	%r2,%r2
@@ -4435,35 +4435,35 @@ __udivmodhi4:
 	lhi	%r1,1
 	lhi	%r5,17
 	j	.L751
-.L753:
+.L755:
 	risbgn	%r3,%r3,48,128+62,1
 	sll	%r1,1
 .L751:
-	clrjhe	%r3,%r2,.L758
+	clrjl	%r3,%r2,.L752
+	lhi	%r0,0
+	j	.L753
+.L762:
+	lhi	%r0,0
+	j	.L753
+.L752:
 	brct	%r5,.L761
 	j	.L762
 .L761:
 	tmll	%r3,32768
-	je	.L753
+	je	.L755
 	lhi	%r0,0
-	j	.L755
-.L756:
-	clrjl	%r2,%r3,.L754
+	j	.L753
+.L757:
+	clrjl	%r2,%r3,.L756
 	sr	%r2,%r3
 	llghr	%r2,%r2
 	or	%r0,%r1
-.L754:
+.L756:
 	risbgn	%r1,%r1,64-15,128+63,48+15
 	srlg	%r3,%r3,1
-	j	.L755
-.L758:
-	lhi	%r0,0
-	j	.L755
-.L762:
-	lhi	%r0,0
-.L755:
+.L753:
 	llhr	%r5,%r1
-	cijlh	%r5,0,.L756
+	cijlh	%r5,0,.L757
 	ltgr	%r4,%r4
 	locre	%r2,%r0
 	llghr	%r2,%r2
@@ -4487,33 +4487,33 @@ __udivmodsi4_libgcc:
 	lghi	%r1,1
 	lhi	%r5,65
 	j	.L765
-.L767:
+.L769:
 	sllg	%r3,%r3,1
 	sllg	%r1,%r1,1
 .L765:
-	clgrjhe	%r3,%r2,.L772
+	clgrjl	%r3,%r2,.L766
+	lghi	%r5,0
+	j	.L767
+.L776:
+	lghi	%r5,0
+	j	.L767
+.L766:
 	brct	%r5,.L775
 	j	.L776
 .L775:
 	tmlh	%r3,32768
-	je	.L767
+	je	.L769
 	lghi	%r5,0
-	j	.L769
-.L770:
-	clgrjl	%r2,%r3,.L768
+	j	.L767
+.L771:
+	clgrjl	%r2,%r3,.L770
 	sgr	%r2,%r3
 	ogr	%r5,%r1
-.L768:
+.L770:
 	srlg	%r1,%r1,1
 	srlg	%r3,%r3,1
-	j	.L769
-.L772:
-	lghi	%r5,0
-	j	.L769
-.L776:
-	lghi	%r5,0
-.L769:
-	cgijlh	%r1,0,.L770
+.L767:
+	cgijlh	%r1,0,.L771
 	ltgr	%r4,%r4
 	locgre	%r2,%r5
 	lgdr	%r11,%f0

@@ -4778,23 +4778,27 @@ udivmodsi4:
 	b	.L478
 	li	$3,1			# 0x1
 
-.L480:
+.L482:
 	sll	$3,$3,1
 .L478:
 	sltu	$2,$5,$4
-	beq	$2,$0,.L485
+	bnel	$2,$0,.L479
 	addiu	$7,$7,-1
 
-	beql	$7,$0,.L486
+	b	.L480
 	move	$2,$0
 
-	bgezl	$5,.L480
+.L479:
+	beq	$7,$0,.L480
+	move	$2,$0
+
+	bgezl	$5,.L482
 	sll	$5,$5,1
 
-	b	.L482
-	move	$2,$0
+	b	.L480
+	nop
 
-.L483:
+.L484:
 	bnel	$7,$0,.L488
 	srl	$3,$3,1
 
@@ -4802,20 +4806,15 @@ udivmodsi4:
 	or	$2,$2,$3
 	srl	$3,$3,1
 .L488:
-	b	.L482
 	srl	$5,$5,1
-
-.L485:
-	move	$2,$0
-.L486:
-.L482:
-	bne	$3,$0,.L483
+.L480:
+	bne	$3,$0,.L484
 	sltu	$7,$4,$5
 
-	bnel	$6,$0,.L484
+	bnel	$6,$0,.L485
 	move	$2,$4
 
-.L484:
+.L485:
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jr	$31
@@ -5701,23 +5700,27 @@ __udivmodsi4:
 	b	.L572
 	li	$3,1			# 0x1
 
-.L574:
+.L576:
 	sll	$3,$3,1
 .L572:
 	sltu	$2,$5,$4
-	beq	$2,$0,.L579
+	bnel	$2,$0,.L573
 	addiu	$7,$7,-1
 
-	beql	$7,$0,.L580
+	b	.L574
 	move	$2,$0
 
-	bgezl	$5,.L574
+.L573:
+	beq	$7,$0,.L574
+	move	$2,$0
+
+	bgezl	$5,.L576
 	sll	$5,$5,1
 
-	b	.L576
-	move	$2,$0
+	b	.L574
+	nop
 
-.L577:
+.L578:
 	bnel	$7,$0,.L582
 	srl	$3,$3,1
 
@@ -5725,20 +5728,15 @@ __udivmodsi4:
 	or	$2,$2,$3
 	srl	$3,$3,1
 .L582:
-	b	.L576
 	srl	$5,$5,1
-
-.L579:
-	move	$2,$0
-.L580:
-.L576:
-	bne	$3,$0,.L577
+.L574:
+	bne	$3,$0,.L578
 	sltu	$7,$4,$5
 
-	bnel	$6,$0,.L578
+	bnel	$6,$0,.L579
 	move	$2,$4
 
-.L578:
+.L579:
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jr	$31
@@ -6073,28 +6071,34 @@ __udivmodhi4:
 	b	.L614
 	li	$3,1			# 0x1
 
-.L616:
+.L618:
 	andi	$5,$5,0xffff
 	sll	$3,$3,1
 	andi	$3,$3,0xffff
 .L614:
 	sltu	$7,$5,$4
-	beql	$7,$0,.L618
-	move	$2,$0
-
+	bnel	$7,$0,.L615
 	addiu	$2,$2,-1
-	beql	$2,$0,.L622
+
+	b	.L616
 	move	$2,$0
 
+.L622:
+	b	.L616
+	move	$2,$0
+
+.L615:
+	beq	$2,$0,.L622
 	dsll	$7,$5,48
+
 	dsra	$7,$7,48
-	bgezl	$7,.L616
+	bgezl	$7,.L618
 	sll	$5,$5,1
 
-	b	.L618
+	b	.L616
 	move	$2,$0
 
-.L619:
+.L620:
 	bnel	$7,$0,.L624
 	dsrl	$3,$3,1
 
@@ -6104,15 +6108,14 @@ __udivmodhi4:
 	dsrl	$3,$3,1
 .L624:
 	dsrl	$5,$5,1
-.L622:
-.L618:
-	bnel	$3,$0,.L619
+.L616:
+	bne	$3,$0,.L620
 	sltu	$7,$4,$5
 
-	bnel	$6,$0,.L620
+	bnel	$6,$0,.L621
 	move	$2,$4
 
-.L620:
+.L621:
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jr	$31
@@ -6141,24 +6144,32 @@ __udivmodsi4_libgcc:
 	b	.L626
 	li	$3,1			# 0x1
 
-.L628:
+.L630:
 	dsll	$3,$3,1
 .L626:
 	sltu	$2,$5,$4
-	beq	$2,$0,.L633
+	bnel	$2,$0,.L627
 	addiu	$8,$8,-1
 
+	b	.L628
+	move	$2,$0
+
+.L634:
+	b	.L628
+	move	$2,$0
+
+.L627:
 	beq	$8,$0,.L634
 	dsrl	$7,$5,31
 
 	andi	$7,$7,0x1
-	beql	$7,$0,.L628
+	beql	$7,$0,.L630
 	dsll	$5,$5,1
 
-	b	.L630
+	b	.L628
 	move	$2,$0
 
-.L631:
+.L632:
 	bnel	$7,$0,.L636
 	dsrl	$3,$3,1
 
@@ -6166,23 +6177,15 @@ __udivmodsi4_libgcc:
 	or	$2,$2,$3
 	dsrl	$3,$3,1
 .L636:
-	b	.L630
 	dsrl	$5,$5,1
-
-.L633:
-	b	.L630
-	move	$2,$0
-
-.L634:
-	move	$2,$0
-.L630:
-	bne	$3,$0,.L631
+.L628:
+	bne	$3,$0,.L632
 	sltu	$7,$4,$5
 
-	bnel	$6,$0,.L632
+	bnel	$6,$0,.L633
 	move	$2,$4
 
-.L632:
+.L633:
 	move	$sp,$fp
 	ld	$fp,8($sp)
 	jr	$31

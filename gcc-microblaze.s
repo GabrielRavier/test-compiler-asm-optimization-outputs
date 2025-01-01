@@ -5333,20 +5333,20 @@ $L514:
 	and	r8,r8,r3
 	beqi	r8,$L521
 	bgei	r6,$L516
-	brid	$L518
+	brid	$L517
+	addk	r3,r0,r0
+$L521:
+	brid	$L517
 	addk	r3,r0,r0
 $L519:
 	cmpu	r18,r6,r5
-	blti	r18,$L517
+	blti	r18,$L518
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L517:
-	srl	r4,r4
-	brid	$L518
-	srl	r6,r6
-$L521:
-	addk	r3,r0,r0
 $L518:
+	srl	r4,r4
+	srl	r6,r6
+$L517:
 	bnei	r4,$L519
 	beqi	r7,$L520
 	addk	r3,r5,r0
@@ -6124,20 +6124,20 @@ $L613:
 	and	r8,r8,r3
 	beqi	r8,$L620
 	bgei	r6,$L615
-	brid	$L617
+	brid	$L616
+	addk	r3,r0,r0
+$L620:
+	brid	$L616
 	addk	r3,r0,r0
 $L618:
 	cmpu	r18,r6,r5
-	blti	r18,$L616
+	blti	r18,$L617
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L616:
-	srl	r4,r4
-	brid	$L617
-	srl	r6,r6
-$L620:
-	addk	r3,r0,r0
 $L617:
+	srl	r4,r4
+	srl	r6,r6
+$L616:
 	bnei	r4,$L618
 	beqi	r7,$L619
 	addk	r3,r5,r0
@@ -6549,24 +6549,22 @@ $L657:
 	srl	r8,r8
 	srl	r8,r8
 	and	r8,r8,r3
-	beqid	r8,$L664
+	beqid	r8,$L660
+	addk	r3,r0,r0
 	sext16	r3,r6
 	bgei	r3,$L659
-	brid	$L661
+	brid	$L660
 	addk	r3,r0,r0
 $L662:
 	cmpu	r18,r6,r5
-	blti	r18,$L660
+	blti	r18,$L661
 	rsubk	r5,r6,r5
 	andi	r5,r5,0xffff
 	or	r3,r3,r4
-$L660:
-	srl	r4,r4
-	brid	$L661
-	srl	r6,r6
-$L664:
-	addk	r3,r0,r0
 $L661:
+	srl	r4,r4
+	srl	r6,r6
+$L660:
 	bnei	r4,$L662
 	beqi	r7,$L663
 	addk	r3,r5,r0
@@ -6637,20 +6635,20 @@ $L668:
 	and	r8,r8,r3
 	beqi	r8,$L675
 	bgei	r6,$L670
-	brid	$L672
+	brid	$L671
+	addk	r3,r0,r0
+$L675:
+	brid	$L671
 	addk	r3,r0,r0
 $L673:
 	cmpu	r18,r6,r5
-	blti	r18,$L671
+	blti	r18,$L672
 	rsubk	r5,r6,r5
 	or	r3,r3,r4
-$L671:
-	srl	r4,r4
-	brid	$L672
-	srl	r6,r6
-$L675:
-	addk	r3,r0,r0
 $L672:
+	srl	r4,r4
+	srl	r6,r6
+$L671:
 	bnei	r4,$L673
 	beqi	r7,$L674
 	addk	r3,r5,r0

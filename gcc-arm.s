@@ -2973,30 +2973,30 @@ memmem:
 	cmp	r3, #0
 	popeq	{r4, r5, r6, r7, r8, r9, fp, pc}
 	cmp	r1, r3
-	bcc	.L432
+	bcc	.L433
 	mov	r4, r0
-	b	.L434
-.L430:
+	b	.L429
+.L431:
 	ldrb	r0, [r4], #1	@ zero_extendqisi2
 	ldrb	r1, [r5]	@ zero_extendqisi2
 	cmp	r0, r1
-	bne	.L434
+	bne	.L429
 	sub	r2, r7, #1
 	add	r1, r5, #1
 	mov	r0, r4
 	bl	memcmp
 	cmp	r0, #0
-	beq	.L433
-.L434:
+	beq	.L434
+.L429:
 	mov	r8, r4
 	cmp	r4, r6
-	bls	.L430
-	mov	r0, #0
-	pop	{r4, r5, r6, r7, r8, r9, fp, pc}
-.L432:
+	bls	.L431
 	mov	r0, #0
 	pop	{r4, r5, r6, r7, r8, r9, fp, pc}
 .L433:
+	mov	r0, #0
+	pop	{r4, r5, r6, r7, r8, r9, fp, pc}
+.L434:
 	mov	r0, r8
 	pop	{r4, r5, r6, r7, r8, r9, fp, pc}
 	.size	memmem, .-memmem
@@ -3146,29 +3146,28 @@ udivmodsi4:
 	add	fp, sp, #0
 	mov	r3, #1
 	b	.L457
-.L459:
+.L460:
 	lsl	r1, r1, #1
 	lsl	r3, r3, #1
 .L457:
 	cmp	r3, #0
 	cmpne	r1, r0
-	bcs	.L464
+	movcs	ip, #0
+	bcs	.L459
+.L458:
 	cmp	r1, #0
-	bge	.L459
+	bge	.L460
 	mov	ip, #0
-	b	.L461
-.L462:
+	b	.L459
+.L463:
 	cmp	r0, r1
 	subcs	r0, r0, r1
 	orrcs	ip, ip, r3
 	lsr	r3, r3, #1
 	lsr	r1, r1, #1
-	b	.L461
-.L464:
-	mov	ip, #0
-.L461:
+.L459:
 	cmp	r3, #0
-	bne	.L462
+	bne	.L463
 	cmp	r2, #0
 	moveq	r0, ip
 	add	sp, fp, #0
@@ -3704,29 +3703,28 @@ __udivmodsi4:
 	add	fp, sp, #0
 	mov	r3, #1
 	b	.L548
-.L550:
+.L551:
 	lsl	r1, r1, #1
 	lsl	r3, r3, #1
 .L548:
 	cmp	r3, #0
 	cmpne	r1, r0
-	bcs	.L555
+	movcs	ip, #0
+	bcs	.L550
+.L549:
 	cmp	r1, #0
-	bge	.L550
+	bge	.L551
 	mov	ip, #0
-	b	.L552
-.L553:
+	b	.L550
+.L554:
 	cmp	r0, r1
 	subcs	r0, r0, r1
 	orrcs	ip, ip, r3
 	lsr	r3, r3, #1
 	lsr	r1, r1, #1
-	b	.L552
-.L555:
-	mov	ip, #0
-.L552:
+.L550:
 	cmp	r3, #0
-	bne	.L553
+	bne	.L554
 	cmp	r2, #0
 	moveq	r0, ip
 	add	sp, fp, #0
@@ -3918,7 +3916,7 @@ __udivmodhi4:
 	add	fp, sp, #0
 	mov	r3, #1
 	b	.L586
-.L588:
+.L589:
 	lsl	r1, r1, #17
 	lsr	r1, r1, #16
 	lsl	r3, r3, #17
@@ -3926,12 +3924,14 @@ __udivmodhi4:
 .L586:
 	cmp	r3, #0
 	cmpne	r1, r0
-	bcs	.L593
+	movcs	ip, #0
+	bcs	.L588
+.L587:
 	tst	r1, #32768
-	beq	.L588
+	beq	.L589
 	mov	ip, #0
-	b	.L590
-.L591:
+	b	.L588
+.L592:
 	cmp	r0, r1
 	subcs	r0, r0, r1
 	lslcs	r0, r0, #16
@@ -3939,12 +3939,9 @@ __udivmodhi4:
 	orrcs	ip, ip, r3
 	lsr	r3, r3, #1
 	lsr	r1, r1, #1
-	b	.L590
-.L593:
-	mov	ip, #0
-.L590:
+.L588:
 	cmp	r3, #0
-	bne	.L591
+	bne	.L592
 	cmp	r2, #0
 	moveq	r0, ip
 	add	sp, fp, #0
@@ -3965,29 +3962,28 @@ __udivmodsi4_libgcc:
 	add	fp, sp, #0
 	mov	r3, #1
 	b	.L596
-.L598:
+.L599:
 	lsl	r1, r1, #1
 	lsl	r3, r3, #1
 .L596:
 	cmp	r3, #0
 	cmpne	r1, r0
-	bcs	.L603
+	movcs	ip, #0
+	bcs	.L598
+.L597:
 	cmp	r1, #0
-	bge	.L598
+	bge	.L599
 	mov	ip, #0
-	b	.L600
-.L601:
+	b	.L598
+.L602:
 	cmp	r0, r1
 	subcs	r0, r0, r1
 	orrcs	ip, ip, r3
 	lsr	r3, r3, #1
 	lsr	r1, r1, #1
-	b	.L600
-.L603:
-	mov	ip, #0
-.L600:
+.L598:
 	cmp	r3, #0
-	bne	.L601
+	bne	.L602
 	cmp	r2, #0
 	moveq	r0, ip
 	add	sp, fp, #0

@@ -4108,40 +4108,40 @@ udivmodsi4:
 	lhi	%r1,1
 	lhi	%r5,33
 	j	.L613
-.L615:
+.L617:
 	sll	%r3,1
 	sll	%r1,1
 .L613:
 	clr	%r3,%r2
-	jhe	.L620
+	jl	.L614
+	lhi	%r5,0
+	j	.L615
+.L624:
+	lhi	%r5,0
+	j	.L615
+.L614:
 	brct	%r5,.L623
 	j	.L624
 .L623:
 	ltr	%r3,%r3
-	jhe	.L615
+	jhe	.L617
 	lhi	%r5,0
-	j	.L617
-.L618:
+	j	.L615
+.L619:
 	clr	%r2,%r3
-	jl	.L616
+	jl	.L618
 	sr	%r2,%r3
 	or	%r5,%r1
-.L616:
+.L618:
 	srl	%r1,1
 	srl	%r3,1
-	j	.L617
-.L620:
-	lhi	%r5,0
-	j	.L617
-.L624:
-	lhi	%r5,0
-.L617:
+.L615:
 	ltr	%r1,%r1
-	jne	.L618
-	ltr	%r4,%r4
 	jne	.L619
+	ltr	%r4,%r4
+	jne	.L620
 	lr	%r2,%r5
-.L619:
+.L620:
 	l	%r11,44(%r11)
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
@@ -4852,40 +4852,40 @@ __udivmodsi4:
 	lhi	%r1,1
 	lhi	%r5,33
 	j	.L733
-.L735:
+.L737:
 	sll	%r3,1
 	sll	%r1,1
 .L733:
 	clr	%r3,%r2
-	jhe	.L740
+	jl	.L734
+	lhi	%r5,0
+	j	.L735
+.L744:
+	lhi	%r5,0
+	j	.L735
+.L734:
 	brct	%r5,.L743
 	j	.L744
 .L743:
 	ltr	%r3,%r3
-	jhe	.L735
+	jhe	.L737
 	lhi	%r5,0
-	j	.L737
-.L738:
+	j	.L735
+.L739:
 	clr	%r2,%r3
-	jl	.L736
+	jl	.L738
 	sr	%r2,%r3
 	or	%r5,%r1
-.L736:
+.L738:
 	srl	%r1,1
 	srl	%r3,1
-	j	.L737
-.L740:
-	lhi	%r5,0
-	j	.L737
-.L744:
-	lhi	%r5,0
-.L737:
+.L735:
 	ltr	%r1,%r1
-	jne	.L738
-	ltr	%r4,%r4
 	jne	.L739
+	ltr	%r4,%r4
+	jne	.L740
 	lr	%r2,%r5
-.L739:
+.L740:
 	l	%r11,44(%r11)
 	.cfi_restore 11
 	.cfi_def_cfa_register 15
@@ -5161,43 +5161,43 @@ __udivmodhi4:
 	lhi	%r1,1
 	lhi	%r5,17
 	j	.L783
-.L785:
+.L787:
 	sll	%r3,1
 	n	%r3,.L796-.L795(%r13)
 	sll	%r1,1
 .L783:
 	clr	%r3,%r2
-	jhe	.L790
+	jl	.L784
+	lhi	%r5,0
+	j	.L785
+.L794:
+	lhi	%r5,0
+	j	.L785
+.L784:
 	brct	%r5,.L793
 	j	.L794
 .L793:
 	tml	%r3,32768
-	je	.L785
+	je	.L787
 	lhi	%r5,0
-	j	.L787
-.L788:
+	j	.L785
+.L789:
 	clr	%r2,%r3
-	jl	.L786
+	jl	.L788
 	sr	%r2,%r3
 	n	%r2,.L796-.L795(%r13)
 	or	%r5,%r1
-.L786:
+.L788:
 	sll	%r1,16
 	srl	%r1,17
 	srl	%r3,1
-	j	.L787
-.L790:
-	lhi	%r5,0
-	j	.L787
-.L794:
-	lhi	%r5,0
-.L787:
+.L785:
 	tml	%r1,65535
-	jne	.L788
-	ltr	%r4,%r4
 	jne	.L789
+	ltr	%r4,%r4
+	jne	.L790
 	lr	%r2,%r5
-.L789:
+.L790:
 	n	%r2,.L796-.L795(%r13)
 	lm	%r11,%r13,44(%r11)
 	.cfi_restore 13
@@ -5228,40 +5228,40 @@ __udivmodsi4_libgcc:
 	lhi	%r1,1
 	lhi	%r5,33
 	j	.L798
-.L800:
+.L802:
 	sll	%r3,1
 	sll	%r1,1
 .L798:
 	clr	%r3,%r2
-	jhe	.L805
+	jl	.L799
+	lhi	%r5,0
+	j	.L800
+.L809:
+	lhi	%r5,0
+	j	.L800
+.L799:
 	brct	%r5,.L808
 	j	.L809
 .L808:
 	ltr	%r3,%r3
-	jhe	.L800
+	jhe	.L802
 	lhi	%r5,0
-	j	.L802
-.L803:
+	j	.L800
+.L804:
 	clr	%r2,%r3
-	jl	.L801
+	jl	.L803
 	sr	%r2,%r3
 	or	%r5,%r1
-.L801:
+.L803:
 	srl	%r1,1
 	srl	%r3,1
-	j	.L802
-.L805:
-	lhi	%r5,0
-	j	.L802
-.L809:
-	lhi	%r5,0
-.L802:
+.L800:
 	ltr	%r1,%r1
-	jne	.L803
-	ltr	%r4,%r4
 	jne	.L804
+	ltr	%r4,%r4
+	jne	.L805
 	lr	%r2,%r5
-.L804:
+.L805:
 	l	%r11,44(%r11)
 	.cfi_restore 11
 	.cfi_def_cfa_register 15

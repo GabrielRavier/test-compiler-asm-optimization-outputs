@@ -5482,55 +5482,50 @@ udivmodsi4:
 	.option	pic2
 	li	$3,1			# 0x1
 
-$L493:
+$L495:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L491:
 	sltu	$2,$5,$4
-	beq	$2,$0,$L498
+	bne	$2,$0,$L492
 	addiu	$7,$7,-1
 
-	beq	$7,$0,$L499
-	nop
-
-	bgez	$5,$L493
+	addiu	$7,$7,1
+	.option	pic0
+	b	$L493
+	.option	pic2
 	move	$2,$0
 
+$L492:
+	beq	$7,$0,$L493
+	move	$2,$0
+
+	bgez	$5,$L495
+	nop
+
 	.option	pic0
-	b	$L495
+	b	$L493
 	nop
 
 	.option	pic2
-$L496:
-	bne	$7,$0,$L494
+$L497:
+	bne	$7,$0,$L496
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L494:
+$L496:
 	srl	$3,$3,1
-	.option	pic0
-	b	$L495
-	.option	pic2
 	srl	$5,$5,1
-
-$L498:
-	.option	pic0
-	b	$L495
-	.option	pic2
-	move	$2,$0
-
-$L499:
-	move	$2,$0
-$L495:
-	bne	$3,$0,$L496
+$L493:
+	bne	$3,$0,$L497
 	sltu	$7,$4,$5
 
-	beq	$6,$0,$L497
+	beq	$6,$0,$L498
 	nop
 
 	move	$2,$4
-$L497:
+$L498:
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31
@@ -6469,55 +6464,50 @@ __udivmodsi4:
 	.option	pic2
 	li	$3,1			# 0x1
 
-$L585:
+$L587:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L583:
 	sltu	$2,$5,$4
-	beq	$2,$0,$L590
+	bne	$2,$0,$L584
 	addiu	$7,$7,-1
 
-	beq	$7,$0,$L591
-	nop
-
-	bgez	$5,$L585
+	addiu	$7,$7,1
+	.option	pic0
+	b	$L585
+	.option	pic2
 	move	$2,$0
 
+$L584:
+	beq	$7,$0,$L585
+	move	$2,$0
+
+	bgez	$5,$L587
+	nop
+
 	.option	pic0
-	b	$L587
+	b	$L585
 	nop
 
 	.option	pic2
-$L588:
-	bne	$7,$0,$L586
+$L589:
+	bne	$7,$0,$L588
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L586:
+$L588:
 	srl	$3,$3,1
-	.option	pic0
-	b	$L587
-	.option	pic2
 	srl	$5,$5,1
-
-$L590:
-	.option	pic0
-	b	$L587
-	.option	pic2
-	move	$2,$0
-
-$L591:
-	move	$2,$0
-$L587:
-	bne	$3,$0,$L588
+$L585:
+	bne	$3,$0,$L589
 	sltu	$7,$4,$5
 
-	beq	$6,$0,$L589
+	beq	$6,$0,$L590
 	nop
 
 	move	$2,$4
-$L589:
+$L590:
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31
@@ -6882,60 +6872,60 @@ __udivmodhi4:
 	.option	pic2
 	li	$3,1			# 0x1
 
-$L627:
+$L629:
 	sll	$5,$5,1
 	andi	$5,$5,0xffff
 	sll	$3,$3,1
 	andi	$3,$3,0xffff
 $L625:
 	sltu	$7,$5,$4
-	beq	$7,$0,$L632
-	nop
-
+	bne	$7,$0,$L626
 	addiu	$2,$2,-1
+
+	addiu	$2,$2,1
+	.option	pic0
+	b	$L627
+	.option	pic2
+	move	$2,$0
+
+$L633:
+	.option	pic0
+	b	$L627
+	.option	pic2
+	move	$2,$0
+
+$L626:
 	beq	$2,$0,$L633
 	sll	$7,$5,16
 
 	sra	$7,$7,16
-	bgez	$7,$L627
+	bgez	$7,$L629
 	nop
 
 	.option	pic0
-	b	$L629
+	b	$L627
 	.option	pic2
 	move	$2,$0
 
-$L630:
-	bne	$7,$0,$L628
+$L631:
+	bne	$7,$0,$L630
 	nop
 
 	subu	$4,$4,$5
 	andi	$4,$4,0xffff
 	or	$2,$2,$3
-$L628:
+$L630:
 	srl	$3,$3,1
-	.option	pic0
-	b	$L629
-	.option	pic2
 	srl	$5,$5,1
-
-$L632:
-	.option	pic0
-	b	$L629
-	.option	pic2
-	move	$2,$0
-
-$L633:
-	move	$2,$0
-$L629:
-	bne	$3,$0,$L630
+$L627:
+	bne	$3,$0,$L631
 	sltu	$7,$4,$5
 
-	beq	$6,$0,$L631
+	beq	$6,$0,$L632
 	nop
 
 	move	$2,$4
-$L631:
+$L632:
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31
@@ -6966,55 +6956,50 @@ __udivmodsi4_libgcc:
 	.option	pic2
 	li	$3,1			# 0x1
 
-$L638:
+$L640:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L636:
 	sltu	$2,$5,$4
-	beq	$2,$0,$L643
+	bne	$2,$0,$L637
 	addiu	$7,$7,-1
 
-	beq	$7,$0,$L644
-	nop
-
-	bgez	$5,$L638
+	addiu	$7,$7,1
+	.option	pic0
+	b	$L638
+	.option	pic2
 	move	$2,$0
 
+$L637:
+	beq	$7,$0,$L638
+	move	$2,$0
+
+	bgez	$5,$L640
+	nop
+
 	.option	pic0
-	b	$L640
+	b	$L638
 	nop
 
 	.option	pic2
-$L641:
-	bne	$7,$0,$L639
+$L642:
+	bne	$7,$0,$L641
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L639:
+$L641:
 	srl	$3,$3,1
-	.option	pic0
-	b	$L640
-	.option	pic2
 	srl	$5,$5,1
-
-$L643:
-	.option	pic0
-	b	$L640
-	.option	pic2
-	move	$2,$0
-
-$L644:
-	move	$2,$0
-$L640:
-	bne	$3,$0,$L641
+$L638:
+	bne	$3,$0,$L642
 	sltu	$7,$4,$5
 
-	beq	$6,$0,$L642
+	beq	$6,$0,$L643
 	nop
 
 	move	$2,$4
-$L642:
+$L643:
 	move	$sp,$fp
 	lw	$fp,4($sp)
 	jr	$31

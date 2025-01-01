@@ -3982,7 +3982,7 @@ udivmodsi4:
 	extrd,u %r25,63,32,%r25
 	b .L475
 	ldi 1,%r31
-.L478:
+.L479:
 	extrd,u %r25,63,32,%r25
 	add,l %r31,%r31,%r31
 	extrd,u %r31,63,32,%r31
@@ -3996,25 +3996,21 @@ udivmodsi4:
 	sub %r0,%r19,%r19
 	extrw,u %r19,0,1,%r19
 	and %r19,%r20,%r19
-	cmpiclr,<> 0,%r19,%r0
-	b,n .L483
-	cmpib,<=,n 0,%r25,.L478
-	add,l %r25,%r25,%r25
-	b .L480
+	cmpib,= 0,%r19,.L478
 	ldi 0,%r19
-.L481:
-	cmpb,>>,n %r25,%r28,.L479
+	cmpib,<=,n 0,%r25,.L479
+	add,l %r25,%r25,%r25
+	b,n .L478
+.L482:
+	cmpb,>>,n %r25,%r28,.L481
 	sub %r28,%r25,%r28
 	extrd,u %r28,63,32,%r28
 	or %r19,%r31,%r19
-.L479:
+.L481:
 	extrd,u %r31,62,63,%r31
-	b .L480
 	extrd,u %r25,62,63,%r25
-.L483:
-	ldi 0,%r19
-.L480:
-	cmpb,*<> %r0,%r31,.L481
+.L478:
+	cmpb,*<> %r0,%r31,.L482
 	nop
 	cmpiclr,*<> 0,%r24,%r0
 	copy %r19,%r28
@@ -4651,7 +4647,7 @@ __udivmodsi4:
 	extrd,s %r24,63,32,%r24
 	b .L561
 	ldi 1,%r31
-.L564:
+.L565:
 	extrd,u %r25,63,32,%r25
 	add,l %r31,%r31,%r31
 	extrd,u %r31,63,32,%r31
@@ -4665,25 +4661,21 @@ __udivmodsi4:
 	sub %r0,%r19,%r19
 	extrw,u %r19,0,1,%r19
 	and %r19,%r20,%r19
-	cmpiclr,<> 0,%r19,%r0
-	b,n .L569
-	cmpib,<=,n 0,%r25,.L564
-	add,l %r25,%r25,%r25
-	b .L566
+	cmpib,= 0,%r19,.L564
 	ldi 0,%r19
-.L567:
-	cmpb,>>,n %r25,%r28,.L565
+	cmpib,<=,n 0,%r25,.L565
+	add,l %r25,%r25,%r25
+	b,n .L564
+.L568:
+	cmpb,>>,n %r25,%r28,.L567
 	sub %r28,%r25,%r28
 	extrd,u %r28,63,32,%r28
 	or %r19,%r31,%r19
-.L565:
+.L567:
 	extrd,u %r31,62,63,%r31
-	b .L566
 	extrd,u %r25,62,63,%r25
-.L569:
-	ldi 0,%r19
-.L566:
-	cmpb,*<> %r0,%r31,.L567
+.L564:
+	cmpb,*<> %r0,%r31,.L568
 	nop
 	cmpiclr,*<> 0,%r24,%r0
 	copy %r19,%r28
@@ -4980,7 +4972,7 @@ __udivmodhi4:
 	extrd,u %r25,63,16,%r25
 	b .L604
 	ldi 1,%r31
-.L607:
+.L608:
 	extrd,u %r25,63,16,%r25
 	add,l %r31,%r31,%r31
 	extrd,u %r31,63,16,%r31
@@ -4994,25 +4986,22 @@ __udivmodhi4:
 	sub %r0,%r19,%r19
 	extrd,u %r19,48+1-1,1,%r19
 	and %r19,%r20,%r19
-	cmpb,*= %r0,%r19,.L612
+	cmpb,*=,n %r0,%r19,.L607
 	extrd,s %r25,63,16,%r19
-	cmpib,<=,n 0,%r19,.L607
+	cmpib,<=,n 0,%r19,.L608
 	add,l %r25,%r25,%r25
-	b .L609
+	b .L607
 	ldi 0,%r19
-.L610:
-	cmpb,>>,n %r25,%r28,.L608
+.L611:
+	cmpb,>>,n %r25,%r28,.L610
 	sub %r28,%r25,%r28
 	extrd,u %r28,63,16,%r28
 	or %r19,%r31,%r19
-.L608:
+.L610:
 	extrd,u %r31,62,63,%r31
-	b .L609
 	extrd,u %r25,62,63,%r25
-.L612:
-	ldi 0,%r19
-.L609:
-	cmpb,*<> %r0,%r31,.L610
+.L607:
+	cmpb,*<> %r0,%r31,.L611
 	nop
 	cmpiclr,*<> 0,%r24,%r0
 	copy %r19,%r28
@@ -5036,7 +5025,7 @@ __udivmodsi4_libgcc:
 	extrd,s %r24,63,32,%r24
 	b .L615
 	ldi 1,%r19
-.L618:
+.L619:
 	depd,z %r19,62,63,%r19
 .L615:
 	cmpb,*>> %r28,%r25,.L616
@@ -5049,23 +5038,20 @@ __udivmodsi4_libgcc:
 	extrd,u %r31,0,1,%r31
 	and %r31,%r20,%r31
 	cmpclr,*<> %r0,%r31,%r0
-	b,n .L623
-	bb,*>=,n %r25,32,.L618
+	b,n .L618
+	bb,*>=,n %r25,32,.L619
 	depd,z %r25,62,63,%r25
-	b .L620
+	b .L618
 	ldi 0,%r31
-.L621:
-	cmpb,*>>,n %r25,%r28,.L619
+.L622:
+	cmpb,*>>,n %r25,%r28,.L621
 	sub %r28,%r25,%r28
 	or %r31,%r19,%r31
-.L619:
+.L621:
 	extrd,u %r19,62,63,%r19
-	b .L620
 	extrd,u %r25,62,63,%r25
-.L623:
-	ldi 0,%r31
-.L620:
-	cmpb,*<> %r0,%r19,.L621
+.L618:
+	cmpb,*<> %r0,%r19,.L622
 	nop
 	cmpiclr,*<> 0,%r24,%r0
 	copy %r31,%r28

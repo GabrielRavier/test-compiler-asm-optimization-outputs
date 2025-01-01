@@ -3663,7 +3663,7 @@ udivmodsi4:
 	copy %r26,%r28
 	b .L466
 	ldi 1,%r19
-.L468:
+.L469:
 	zdep %r19,30,31,%r19
 .L466:
 	comclr,<<= %r28,%r25,%r20
@@ -3672,23 +3672,20 @@ udivmodsi4:
 	ldi 1,%r21
 	and %r20,%r21,%r20
 	comiclr,<> 0,%r20,%r0
-	b,n .L473
-	comib,<=,n 0,%r25,.L468
+	b,n .L468
+	comib,<=,n 0,%r25,.L469
 	zdep %r25,30,31,%r25
-	b .L470
+	b .L468
 	ldi 0,%r20
-.L471:
-	comb,>>,n %r25,%r28,.L469
+.L472:
+	comb,>>,n %r25,%r28,.L471
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L469:
+.L471:
 	extru %r19,30,31,%r19
-	b .L470
 	extru %r25,30,31,%r25
-.L473:
-	ldi 0,%r20
-.L470:
-	comib,<> 0,%r19,.L471
+.L468:
+	comib,<> 0,%r19,.L472
 	nop
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
@@ -4367,7 +4364,7 @@ __udivmodsi4:
 	copy %r26,%r28
 	b .L559
 	ldi 1,%r19
-.L561:
+.L562:
 	zdep %r19,30,31,%r19
 .L559:
 	comclr,<<= %r28,%r25,%r20
@@ -4376,23 +4373,20 @@ __udivmodsi4:
 	ldi 1,%r21
 	and %r20,%r21,%r20
 	comiclr,<> 0,%r20,%r0
-	b,n .L566
-	comib,<=,n 0,%r25,.L561
+	b,n .L561
+	comib,<=,n 0,%r25,.L562
 	zdep %r25,30,31,%r25
-	b .L563
+	b .L561
 	ldi 0,%r20
-.L564:
-	comb,>>,n %r25,%r28,.L562
+.L565:
+	comb,>>,n %r25,%r28,.L564
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L562:
+.L564:
 	extru %r19,30,31,%r19
-	b .L563
 	extru %r25,30,31,%r25
-.L566:
-	ldi 0,%r20
-.L563:
-	comib,<> 0,%r19,.L564
+.L561:
+	comib,<> 0,%r19,.L565
 	nop
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
@@ -4659,7 +4653,7 @@ __udivmodhi4:
 	extru %r25,31,16,%r25
 	b .L599
 	ldi 1,%r19
-.L601:
+.L602:
 	extru %r25,31,16,%r25
 	zdep %r19,30,31,%r19
 	extru %r19,31,16,%r19
@@ -4669,25 +4663,22 @@ __udivmodhi4:
 	comiclr,= 0,%r19,%r21
 	ldi 1,%r21
 	and %r20,%r21,%r20
-	comib,= 0,%r20,.L606
+	comib,=,n 0,%r20,.L601
 	extrs %r25,31,16,%r20
-	comib,<=,n 0,%r20,.L601
+	comib,<=,n 0,%r20,.L602
 	zdep %r25,30,31,%r25
-	b .L603
+	b .L601
 	ldi 0,%r20
-.L604:
-	comb,>>,n %r25,%r28,.L602
+.L605:
+	comb,>>,n %r25,%r28,.L604
 	sub %r28,%r25,%r28
 	extru %r28,31,16,%r28
 	or %r20,%r19,%r20
-.L602:
+.L604:
 	extru %r19,30,31,%r19
-	b .L603
 	extru %r25,30,31,%r25
-.L606:
-	ldi 0,%r20
-.L603:
-	comib,<> 0,%r19,.L604
+.L601:
+	comib,<> 0,%r19,.L605
 	nop
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28
@@ -4710,7 +4701,7 @@ __udivmodsi4_libgcc:
 	copy %r26,%r28
 	b .L609
 	ldi 1,%r19
-.L611:
+.L612:
 	zdep %r19,30,31,%r19
 .L609:
 	comclr,<<= %r28,%r25,%r20
@@ -4719,23 +4710,20 @@ __udivmodsi4_libgcc:
 	ldi 1,%r21
 	and %r20,%r21,%r20
 	comiclr,<> 0,%r20,%r0
-	b,n .L616
-	comib,<=,n 0,%r25,.L611
+	b,n .L611
+	comib,<=,n 0,%r25,.L612
 	zdep %r25,30,31,%r25
-	b .L613
+	b .L611
 	ldi 0,%r20
-.L614:
-	comb,>>,n %r25,%r28,.L612
+.L615:
+	comb,>>,n %r25,%r28,.L614
 	sub %r28,%r25,%r28
 	or %r20,%r19,%r20
-.L612:
+.L614:
 	extru %r19,30,31,%r19
-	b .L613
 	extru %r25,30,31,%r25
-.L616:
-	ldi 0,%r20
-.L613:
-	comib,<> 0,%r19,.L614
+.L611:
+	comib,<> 0,%r19,.L615
 	nop
 	comiclr,<> 0,%r24,%r0
 	copy %r20,%r28

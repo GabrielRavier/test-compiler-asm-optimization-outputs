@@ -3492,21 +3492,21 @@ udivmodsi4:
 	beq	r7, zero, .L470
 	bge	r5, zero, .L464
 	mov	r2, zero
-	br	.L466
-.L467:
-	bltu	r4, r5, .L465
-	sub	r4, r4, r5
-	or	r2, r2, r3
-.L465:
-	srli	r3, r3, 1
-	srli	r5, r5, 1
-	br	.L466
+	br	.L465
 .L469:
 	mov	r2, zero
-	br	.L466
+	br	.L465
 .L470:
 	mov	r2, zero
+	br	.L465
+.L467:
+	bltu	r4, r5, .L466
+	sub	r4, r4, r5
+	or	r2, r2, r3
 .L466:
+	srli	r3, r3, 1
+	srli	r5, r5, 1
+.L465:
 	bne	r3, zero, .L467
 	beq	r6, zero, .L468
 	mov	r2, r4
@@ -4055,21 +4055,21 @@ __udivmodsi4:
 	beq	r7, zero, .L561
 	bge	r5, zero, .L555
 	mov	r2, zero
-	br	.L557
-.L558:
-	bltu	r4, r5, .L556
-	sub	r4, r4, r5
-	or	r2, r2, r3
-.L556:
-	srli	r3, r3, 1
-	srli	r5, r5, 1
-	br	.L557
+	br	.L556
 .L560:
 	mov	r2, zero
-	br	.L557
+	br	.L556
 .L561:
 	mov	r2, zero
+	br	.L556
+.L558:
+	bltu	r4, r5, .L557
+	sub	r4, r4, r5
+	or	r2, r2, r3
 .L557:
+	srli	r3, r3, 1
+	srli	r5, r5, 1
+.L556:
 	bne	r3, zero, .L558
 	beq	r6, zero, .L559
 	mov	r2, r4
@@ -4311,25 +4311,25 @@ __udivmodhi4:
 	addi	r7, r7, -32768
 	bge	r7, zero, .L595
 	mov	r2, zero
-	br	.L597
+	br	.L596
+.L600:
+	mov	r2, zero
+	br	.L596
+.L601:
+	mov	r2, zero
+	br	.L596
 .L598:
 	andi	r7, r4, 0xffff
 	andi	r8, r5, 0xffff
-	bltu	r7, r8, .L596
+	bltu	r7, r8, .L597
 	sub	r4, r4, r5
 	or	r2, r2, r3
-.L596:
+.L597:
 	slli	r3, r3, 16
 	srli	r3, r3, 17
 	slli	r5, r5, 16
 	srli	r5, r5, 17
-	br	.L597
-.L600:
-	mov	r2, zero
-	br	.L597
-.L601:
-	mov	r2, zero
-.L597:
+.L596:
 	andi	r7, r3, 0xffff
 	bne	r7, zero, .L598
 	beq	r6, zero, .L599
@@ -4359,21 +4359,21 @@ __udivmodsi4_libgcc:
 	beq	r7, zero, .L612
 	bge	r5, zero, .L606
 	mov	r2, zero
-	br	.L608
-.L609:
-	bltu	r4, r5, .L607
-	sub	r4, r4, r5
-	or	r2, r2, r3
-.L607:
-	srli	r3, r3, 1
-	srli	r5, r5, 1
-	br	.L608
+	br	.L607
 .L611:
 	mov	r2, zero
-	br	.L608
+	br	.L607
 .L612:
 	mov	r2, zero
+	br	.L607
+.L609:
+	bltu	r4, r5, .L608
+	sub	r4, r4, r5
+	or	r2, r2, r3
 .L608:
+	srli	r3, r3, 1
+	srli	r5, r5, 1
+.L607:
 	bne	r3, zero, .L609
 	beq	r6, zero, .L610
 	mov	r2, r4

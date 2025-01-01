@@ -5778,37 +5778,37 @@ udivmodsi4:
 	li	$7,33
 	li	$3,1
 	b	$L512
-$L514:
+$L516:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L512:
 	sltu	$5,$4
-	bteqz	$L519
+	btnez	$L513
+	li	$2,0
+	b	$L514
+$L520:
+	li	$2,0
+	b	$L514
+$L513:
 	addiu	$7,-1
 	beqz	$7,$L520
 	slt	$5,0
-	bteqz	$L514
+	bteqz	$L516
 	li	$2,0
-	b	$L516
-$L517:
+	b	$L514
+$L518:
 	sltu	$4,$5
-	btnez	$L515
+	btnez	$L517
 	subu	$4,$4,$5
 	or	$2,$3
-$L515:
+$L517:
 	srl	$3,$3,1
 	srl	$5,$5,1
-	b	$L516
-$L519:
-	li	$2,0
-	b	$L516
-$L520:
-	li	$2,0
-$L516:
-	bnez	$3,$L517
-	beqz	$6,$L518
+$L514:
+	bnez	$3,$L518
+	beqz	$6,$L519
 	move	$2,$4
-$L518:
+$L519:
 	move	$sp,$17
 	ld	$17,0($sp)
 	.set	noreorder
@@ -6789,37 +6789,37 @@ __udivmodsi4:
 	li	$7,33
 	li	$3,1
 	b	$L606
-$L608:
+$L610:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L606:
 	sltu	$5,$4
-	bteqz	$L613
+	btnez	$L607
+	li	$2,0
+	b	$L608
+$L614:
+	li	$2,0
+	b	$L608
+$L607:
 	addiu	$7,-1
 	beqz	$7,$L614
 	slt	$5,0
-	bteqz	$L608
+	bteqz	$L610
 	li	$2,0
-	b	$L610
-$L611:
+	b	$L608
+$L612:
 	sltu	$4,$5
-	btnez	$L609
+	btnez	$L611
 	subu	$4,$4,$5
 	or	$2,$3
-$L609:
+$L611:
 	srl	$3,$3,1
 	srl	$5,$5,1
-	b	$L610
-$L613:
-	li	$2,0
-	b	$L610
-$L614:
-	li	$2,0
-$L610:
-	bnez	$3,$L611
-	beqz	$6,$L612
+$L608:
+	bnez	$3,$L612
+	beqz	$6,$L613
 	move	$2,$4
-$L612:
+$L613:
 	move	$sp,$17
 	ld	$17,0($sp)
 	.set	noreorder
@@ -7239,42 +7239,42 @@ __udivmodhi4:
 	li	$2,17
 	li	$3,1
 	b	$L648
-$L650:
+$L652:
 	sll	$5,$5,1
 	zeh	$5
 	sll	$3,$3,1
 	zeh	$3
 $L648:
 	sltu	$5,$4
-	bteqz	$L655
+	btnez	$L649
+	li	$2,0
+	b	$L650
+$L656:
+	li	$2,0
+	b	$L650
+$L649:
 	addiu	$2,-1
 	beqz	$2,$L656
 	move	$7,$5
 	seh	$7
 	slt	$7,0
-	bteqz	$L650
+	bteqz	$L652
 	li	$2,0
-	b	$L652
-$L653:
+	b	$L650
+$L654:
 	sltu	$4,$5
-	btnez	$L651
+	btnez	$L653
 	subu	$4,$4,$5
 	zeh	$4
 	or	$2,$3
-$L651:
+$L653:
 	srl	$3,$3,1
 	srl	$5,$5,1
-	b	$L652
-$L655:
-	li	$2,0
-	b	$L652
-$L656:
-	li	$2,0
-$L652:
-	bnez	$3,$L653
-	beqz	$6,$L654
+$L650:
+	bnez	$3,$L654
+	beqz	$6,$L655
 	move	$2,$4
-$L654:
+$L655:
 	move	$sp,$17
 	ld	$17,0($sp)
 	.set	noreorder
@@ -7302,37 +7302,37 @@ __udivmodsi4_libgcc:
 	li	$7,33
 	li	$3,1
 	b	$L659
-$L661:
+$L663:
 	sll	$5,$5,1
 	sll	$3,$3,1
 $L659:
 	sltu	$5,$4
-	bteqz	$L666
+	btnez	$L660
+	li	$2,0
+	b	$L661
+$L667:
+	li	$2,0
+	b	$L661
+$L660:
 	addiu	$7,-1
 	beqz	$7,$L667
 	slt	$5,0
-	bteqz	$L661
+	bteqz	$L663
 	li	$2,0
-	b	$L663
-$L664:
+	b	$L661
+$L665:
 	sltu	$4,$5
-	btnez	$L662
+	btnez	$L664
 	subu	$4,$4,$5
 	or	$2,$3
-$L662:
+$L664:
 	srl	$3,$3,1
 	srl	$5,$5,1
-	b	$L663
-$L666:
-	li	$2,0
-	b	$L663
-$L667:
-	li	$2,0
-$L663:
-	bnez	$3,$L664
-	beqz	$6,$L665
+$L661:
+	bnez	$3,$L665
+	beqz	$6,$L666
 	move	$2,$4
-$L665:
+$L666:
 	move	$sp,$17
 	ld	$17,0($sp)
 	.set	noreorder

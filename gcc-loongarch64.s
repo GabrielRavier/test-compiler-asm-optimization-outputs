@@ -3874,30 +3874,30 @@ udivmodsi4:
 	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
 	b	.L449
-.L451:
+.L453:
 	slli.w	$r5,$r5,1
 	slli.w	$r12,$r12,1
 .L449:
-	bgeu	$r5,$r4,.L456
-	beqz	$r12,.L457
-	bge	$r5,$r0,.L451
+	bltu	$r5,$r4,.L450
 	or	$r13,$r0,$r0
-	b	.L453
-.L454:
-	bltu	$r4,$r5,.L452
-	sub.w	$r4,$r4,$r5
-	or	$r13,$r13,$r12
-.L452:
-	bstrpick.d	$r12,$r12,31,1
-	bstrpick.d	$r5,$r5,31,1
-	b	.L453
-.L456:
-	or	$r13,$r0,$r0
-	b	.L453
+	b	.L451
 .L457:
 	or	$r13,$r0,$r0
-.L453:
-	bnez	$r12,.L454
+	b	.L451
+.L450:
+	beqz	$r12,.L457
+	bge	$r5,$r0,.L453
+	or	$r13,$r0,$r0
+	b	.L451
+.L455:
+	bltu	$r4,$r5,.L454
+	sub.w	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L454:
+	bstrpick.d	$r12,$r12,31,1
+	bstrpick.d	$r5,$r5,31,1
+.L451:
+	bnez	$r12,.L455
 	maskeqz	$r4,$r4,$r6
 	masknez	$r6,$r13,$r6
 	or	$r4,$r4,$r6
@@ -4577,30 +4577,30 @@ __udivmodsi4:
 	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
 	b	.L539
-.L541:
+.L543:
 	slli.w	$r5,$r5,1
 	slli.w	$r12,$r12,1
 .L539:
-	bgeu	$r5,$r4,.L546
-	beqz	$r12,.L547
-	bge	$r5,$r0,.L541
+	bltu	$r5,$r4,.L540
 	or	$r13,$r0,$r0
-	b	.L543
-.L544:
-	bltu	$r4,$r5,.L542
-	sub.w	$r4,$r4,$r5
-	or	$r13,$r13,$r12
-.L542:
-	bstrpick.d	$r12,$r12,31,1
-	bstrpick.d	$r5,$r5,31,1
-	b	.L543
-.L546:
-	or	$r13,$r0,$r0
-	b	.L543
+	b	.L541
 .L547:
 	or	$r13,$r0,$r0
-.L543:
-	bnez	$r12,.L544
+	b	.L541
+.L540:
+	beqz	$r12,.L547
+	bge	$r5,$r0,.L543
+	or	$r13,$r0,$r0
+	b	.L541
+.L545:
+	bltu	$r4,$r5,.L544
+	sub.w	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L544:
+	bstrpick.d	$r12,$r12,31,1
+	bstrpick.d	$r5,$r5,31,1
+.L541:
+	bnez	$r12,.L545
 	maskeqz	$r4,$r4,$r6
 	masknez	$r6,$r13,$r6
 	or	$r4,$r4,$r6
@@ -4861,37 +4861,37 @@ __udivmodhi4:
 	addi.w	$r13,$r0,17			# 0x11
 	addi.w	$r12,$r0,1			# 0x1
 	b	.L579
-.L581:
+.L583:
 	slli.w	$r5,$r5,1
 	bstrpick.w	$r5,$r5,15,0
 	slli.w	$r12,$r12,1
 	bstrpick.w	$r12,$r12,15,0
 .L579:
 	slli.w	$r14,$r5,0
-	bgeu	$r14,$r4,.L586
+	bltu	$r14,$r4,.L580
+	or	$r14,$r0,$r0
+	b	.L581
+.L587:
+	or	$r14,$r0,$r0
+	b	.L581
+.L580:
 	addi.w	$r13,$r13,-1
 	beqz	$r13,.L587
 	ext.w.h	$r14,$r5
-	bge	$r14,$r0,.L581
+	bge	$r14,$r0,.L583
 	or	$r14,$r0,$r0
-	b	.L583
-.L584:
+	b	.L581
+.L585:
 	slli.w	$r13,$r4,0
-	bltu	$r13,$r5,.L582
+	bltu	$r13,$r5,.L584
 	sub.w	$r4,$r4,$r5
 	bstrpick.w	$r4,$r4,15,0
 	or	$r14,$r14,$r12
-.L582:
+.L584:
 	srli.d	$r12,$r12,1
 	srli.d	$r5,$r5,1
-	b	.L583
-.L586:
-	or	$r14,$r0,$r0
-	b	.L583
-.L587:
-	or	$r14,$r0,$r0
-.L583:
-	bnez	$r12,.L584
+.L581:
+	bnez	$r12,.L585
 	maskeqz	$r4,$r4,$r6
 	masknez	$r6,$r14,$r6
 	or	$r4,$r4,$r6
@@ -4917,31 +4917,31 @@ __udivmodsi4_libgcc:
 	.cfi_def_cfa 22, 0
 	addi.w	$r12,$r0,1			# 0x1
 	b	.L590
-.L592:
+.L594:
 	slli.d	$r5,$r5,1
 	slli.d	$r12,$r12,1
 .L590:
-	bgeu	$r5,$r4,.L597
-	beqz	$r12,.L598
-	bstrpick.d	$r13,$r5,31,31
-	beqz	$r13,.L592
+	bltu	$r5,$r4,.L591
 	or	$r13,$r0,$r0
-	b	.L594
-.L595:
-	bltu	$r4,$r5,.L593
-	sub.d	$r4,$r4,$r5
-	or	$r13,$r13,$r12
-.L593:
-	srli.d	$r12,$r12,1
-	srli.d	$r5,$r5,1
-	b	.L594
-.L597:
-	or	$r13,$r0,$r0
-	b	.L594
+	b	.L592
 .L598:
 	or	$r13,$r0,$r0
-.L594:
-	bnez	$r12,.L595
+	b	.L592
+.L591:
+	beqz	$r12,.L598
+	bstrpick.d	$r13,$r5,31,31
+	beqz	$r13,.L594
+	or	$r13,$r0,$r0
+	b	.L592
+.L596:
+	bltu	$r4,$r5,.L595
+	sub.d	$r4,$r4,$r5
+	or	$r13,$r13,$r12
+.L595:
+	srli.d	$r12,$r12,1
+	srli.d	$r5,$r5,1
+.L592:
+	bnez	$r12,.L596
 	maskeqz	$r4,$r4,$r6
 	masknez	$r6,$r13,$r6
 	or	$r4,$r4,$r6

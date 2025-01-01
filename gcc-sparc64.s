@@ -2689,7 +2689,7 @@ udivmodsi4:
 	save	%sp, -176, %sp
 	ba,pt	%xcc, .L469
 	 mov	1, %g1
-.L471:
+.L472:
 	srl	%i1, 0, %i1
 	add	%g1, %g1, %g1
 .L469:
@@ -2698,13 +2698,16 @@ udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be,pn	%icc, .L476
+	bne,pt	%icc, .L470
 	 cmp	%i1, 0
-	bge,a,pt %icc, .L471
-	 add	%i1, %i1, %i1
-	ba,pt	%xcc, .L473
+	ba,pt	%xcc, .L471
 	 mov	0, %g2
-.L474:
+.L470:
+	bge,a,pt %icc, .L472
+	 add	%i1, %i1, %i1
+	ba,pt	%xcc, .L471
+	 mov	0, %g2
+.L475:
 	blu,a,pt %icc, .L478
 	 srl	%g1, 1, %g1
 	sub	%i0, %i1, %i0
@@ -2712,13 +2715,10 @@ udivmodsi4:
 	or	%g2, %g1, %g2
 	srl	%g1, 1, %g1
 .L478:
-	ba,pt	%xcc, .L473
-	 srlx	%i1, 1, %i1
-.L476:
-	mov	0, %g2
-.L473:
+	srlx	%i1, 1, %i1
+.L471:
 	cmp	%g1, 0
-	bne,a,pt %icc, .L474
+	bne,a,pt %icc, .L475
 	 cmp	%i0, %i1
 	movrne	%i2, %i0, %g2
 	return	%i7+8
@@ -3184,7 +3184,7 @@ __udivmodsi4:
 	save	%sp, -176, %sp
 	ba,pt	%xcc, .L568
 	 mov	1, %g1
-.L570:
+.L571:
 	srl	%i1, 0, %i1
 	add	%g1, %g1, %g1
 .L568:
@@ -3193,13 +3193,16 @@ __udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be,pn	%icc, .L575
+	bne,pt	%icc, .L569
 	 cmp	%i1, 0
-	bge,a,pt %icc, .L570
-	 add	%i1, %i1, %i1
-	ba,pt	%xcc, .L572
+	ba,pt	%xcc, .L570
 	 mov	0, %g2
-.L573:
+.L569:
+	bge,a,pt %icc, .L571
+	 add	%i1, %i1, %i1
+	ba,pt	%xcc, .L570
+	 mov	0, %g2
+.L574:
 	blu,a,pt %icc, .L577
 	 srl	%g1, 1, %g1
 	sub	%i0, %i1, %i0
@@ -3207,13 +3210,10 @@ __udivmodsi4:
 	or	%g2, %g1, %g2
 	srl	%g1, 1, %g1
 .L577:
-	ba,pt	%xcc, .L572
-	 srlx	%i1, 1, %i1
-.L575:
-	mov	0, %g2
-.L572:
+	srlx	%i1, 1, %i1
+.L570:
 	cmp	%g1, 0
-	bne,a,pt %icc, .L573
+	bne,a,pt %icc, .L574
 	 cmp	%i0, %i1
 	movrne	%i2, %i0, %g2
 	return	%i7+8
@@ -3363,7 +3363,7 @@ __udivmodhi4:
 	save	%sp, -176, %sp
 	ba,pt	%xcc, .L608
 	 mov	1, %g1
-.L610:
+.L611:
 	sllx	%i1, 48, %i1
 	srlx	%i1, 48, %i1
 	add	%g1, %g1, %g1
@@ -3374,14 +3374,17 @@ __udivmodhi4:
 	cmp	%g0, %g2
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be,pn	%icc, .L615
+	bne,pt	%icc, .L609
 	 sll	%i1, 16, %g2
-	cmp	%g2, 0
-	bge,a,pt %icc, .L610
-	 add	%i1, %i1, %i1
-	ba,pt	%xcc, .L612
+	ba,pt	%xcc, .L610
 	 mov	0, %g3
-.L613:
+.L609:
+	cmp	%g2, 0
+	bge,a,pt %icc, .L611
+	 add	%i1, %i1, %i1
+	ba,pt	%xcc, .L610
+	 mov	0, %g3
+.L614:
 	blu,a,pt %icc, .L617
 	 sll	%g1, 16, %g1
 	sub	%i0, %i1, %i0
@@ -3391,14 +3394,11 @@ __udivmodhi4:
 	sll	%g1, 16, %g1
 .L617:
 	srl	%g1, 17, %g1
-	ba,pt	%xcc, .L612
-	 srlx	%i1, 1, %i1
-.L615:
-	mov	0, %g3
-.L612:
+	srlx	%i1, 1, %i1
+.L610:
 	sll	%g1, 16, %g2
 	cmp	%g2, 0
-	bne,a,pt %icc, .L613
+	bne,a,pt %icc, .L614
 	 cmp	%i0, %i1
 	movrne	%i2, %i0, %g3
 	sllx	%g3, 48, %g3
@@ -3413,7 +3413,7 @@ __udivmodsi4_libgcc:
 	save	%sp, -176, %sp
 	ba,pt	%xcc, .L619
 	 mov	1, %g1
-.L621:
+.L622:
 	add	%g1, %g1, %g1
 .L619:
 	cmp	%i1, %i0
@@ -3422,26 +3422,26 @@ __udivmodsi4_libgcc:
 	mov	0, %g2
 	movrne	%g1, 1, %g2
 	andcc	%g3, %g2, %g0
-	be,pn	%icc, .L626
+	bne,a,pt %icc, .L620
 	 sethi	%hi(2147483648), %g2
-	and	%i1, %g2, %g2
-	brz,a,pt %g2, .L621
-	 add	%i1, %i1, %i1
-	ba,pt	%xcc, .L623
+	ba,pt	%xcc, .L621
 	 mov	0, %g2
-.L624:
+.L620:
+	and	%i1, %g2, %g2
+	brz,a,pt %g2, .L622
+	 add	%i1, %i1, %i1
+	ba,pt	%xcc, .L621
+	 mov	0, %g2
+.L625:
 	blu,a,pt %xcc, .L628
 	 srlx	%g1, 1, %g1
 	sub	%i0, %i1, %i0
 	or	%g2, %g1, %g2
 	srlx	%g1, 1, %g1
 .L628:
-	ba,pt	%xcc, .L623
-	 srlx	%i1, 1, %i1
-.L626:
-	mov	0, %g2
-.L623:
-	brnz,pt	%g1, .L624
+	srlx	%i1, 1, %i1
+.L621:
+	brnz,pt	%g1, .L625
 	 cmp	%i0, %i1
 	movrne	%i2, %i0, %g2
 	return	%i7+8

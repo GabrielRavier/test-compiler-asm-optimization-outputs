@@ -2561,8 +2561,7 @@ udivmodsi4:
 	.seh_endprologue
 	mov	r9d, 1
 	jmp	.L441
-	.p2align 5
-.L443:
+.L444:
 	add	edx, edx
 	add	r9d, r9d
 .L441:
@@ -2571,25 +2570,26 @@ udivmodsi4:
 	test	r9d, r9d
 	setne	al
 	test	r10b, al
-	je	.L448
-	test	edx, edx
-	jns	.L443
+	jne	.L442
 	mov	eax, 0
-	jmp	.L445
-.L446:
+	jmp	.L443
+.L442:
+	test	edx, edx
+	jns	.L444
+	mov	eax, 0
+	jmp	.L443
+	.p2align 5
+.L447:
 	cmp	ecx, edx
-	jb	.L444
+	jb	.L446
 	sub	ecx, edx
 	or	eax, r9d
-.L444:
+.L446:
 	shr	r9d
 	shr	edx
-	jmp	.L445
-.L448:
-	mov	eax, 0
-.L445:
+.L443:
 	test	r9d, r9d
-	jne	.L446
+	jne	.L447
 	test	r8, r8
 	cmovne	eax, ecx
 	ret
@@ -3034,8 +3034,7 @@ __udivmodsi4:
 	.seh_endprologue
 	mov	r9d, 1
 	jmp	.L534
-	.p2align 5
-.L536:
+.L537:
 	add	edx, edx
 	add	r9d, r9d
 .L534:
@@ -3044,25 +3043,26 @@ __udivmodsi4:
 	test	r9d, r9d
 	setne	al
 	test	r10b, al
-	je	.L541
-	test	edx, edx
-	jns	.L536
+	jne	.L535
 	mov	eax, 0
-	jmp	.L538
-.L539:
+	jmp	.L536
+.L535:
+	test	edx, edx
+	jns	.L537
+	mov	eax, 0
+	jmp	.L536
+	.p2align 5
+.L540:
 	cmp	ecx, edx
-	jb	.L537
+	jb	.L539
 	sub	ecx, edx
 	or	eax, r9d
-.L537:
+.L539:
 	shr	r9d
 	shr	edx
-	jmp	.L538
-.L541:
-	mov	eax, 0
-.L538:
+.L536:
 	test	r9d, r9d
-	jne	.L539
+	jne	.L540
 	test	r8d, r8d
 	cmovne	eax, ecx
 	ret
@@ -3225,8 +3225,7 @@ __udivmodhi4:
 	.seh_endprologue
 	mov	r9d, 1
 	jmp	.L572
-	.p2align 5
-.L574:
+.L575:
 	add	edx, edx
 	add	r9d, r9d
 .L572:
@@ -3235,25 +3234,26 @@ __udivmodhi4:
 	test	r9w, r9w
 	setne	al
 	test	r10b, al
-	je	.L579
-	test	dx, dx
-	jns	.L574
+	jne	.L573
 	mov	eax, 0
-	jmp	.L576
-.L577:
+	jmp	.L574
+.L573:
+	test	dx, dx
+	jns	.L575
+	mov	eax, 0
+	jmp	.L574
+	.p2align 5
+.L578:
 	cmp	cx, dx
-	jb	.L575
+	jb	.L577
 	sub	ecx, edx
 	or	eax, r9d
-.L575:
+.L577:
 	shr	r9w
 	shr	dx
-	jmp	.L576
-.L579:
-	mov	eax, 0
-.L576:
+.L574:
 	test	r9w, r9w
-	jne	.L577
+	jne	.L578
 	test	r8d, r8d
 	cmovne	eax, ecx
 	ret
@@ -3265,8 +3265,7 @@ __udivmodsi4_libgcc:
 	.seh_endprologue
 	mov	r9d, 1
 	jmp	.L582
-	.p2align 5
-.L584:
+.L585:
 	add	edx, edx
 	add	r9d, r9d
 .L582:
@@ -3275,25 +3274,26 @@ __udivmodsi4_libgcc:
 	test	r9d, r9d
 	setne	al
 	test	r10b, al
-	je	.L589
-	test	edx, edx
-	jns	.L584
+	jne	.L583
 	mov	eax, 0
-	jmp	.L586
-.L587:
+	jmp	.L584
+.L583:
+	test	edx, edx
+	jns	.L585
+	mov	eax, 0
+	jmp	.L584
+	.p2align 5
+.L588:
 	cmp	ecx, edx
-	jb	.L585
+	jb	.L587
 	sub	ecx, edx
 	or	eax, r9d
-.L585:
+.L587:
 	shr	r9d
 	shr	edx
-	jmp	.L586
-.L589:
-	mov	eax, 0
-.L586:
+.L584:
 	test	r9d, r9d
-	jne	.L587
+	jne	.L588
 	test	r8d, r8d
 	cmovne	eax, ecx
 	ret

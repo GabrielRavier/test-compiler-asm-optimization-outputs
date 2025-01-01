@@ -3745,29 +3745,29 @@ memmem:
 		nop	5
 		cmpgtu	.l1x	A12, B4, A1
 	[!A1]	mv	.d1	A4, A10
-	[!A1]	b	.s2	.L516
+	[!A1]	b	.s2	.L511
 		nop	5
 		b	.s2	.L517
 		nop	5
-.L512:
+.L513:
 		ldb	.d1t1	*A10++[1], A4
 		nop	4
 		ldb	.d2t1	*B10, A3
 		nop	4
 		cmpeq	.l1	A3, A4, A0
-	[!A0]	b	.s2	.L516
+	[!A0]	b	.s2	.L511
 		nop	5
 		sub	.d1	A12, 1, A6
 		add	.d2	B10, 1, B4
 		mv	.d1	A10, A4
 		callp	.s2	(memcmp), B3
 		mv	.d1	A4, A1
-	[!A1]	b	.s2	.L515
+	[!A1]	b	.s2	.L516
 		nop	5
-.L516:
+.L511:
 		mv	.d1	A10, A13
 		cmpltu	.l1	A11, A10, A2
-	[!A2]	b	.s2	.L512
+	[!A2]	b	.s2	.L513
 		nop	5
 		mvk	.d1	0, A4
 		b	.s2	.L510
@@ -3776,7 +3776,7 @@ memmem:
 		mvk	.d1	0, A4
 		b	.s2	.L510
 		nop	5
-.L515:
+.L516:
 		mv	.d1	A13, A4
 .L510:
 		ldw	.d2t1	*+B15(12), A10
@@ -4022,7 +4022,11 @@ udivmodsi4:
 	[!B0]	b	.s2	.L556
 		nop	5
 		mvk	.d1	0, A7
-		b	.s2	.L558
+		b	.s2	.L557
+		nop	5
+.L561:
+		mvk	.d1	0, A7
+		b	.s2	.L557
 		nop	5
 .L559:
 		mv	.l1x	B4, A8
@@ -4031,11 +4035,7 @@ udivmodsi4:
 	[!A1]	or	.d1	A0, A7, A7
 		shru	.s1	A0, 1, A0
 		shru	.s2	B4, 1, B4
-		b	.s2	.L558
-		nop	5
-.L561:
-		mvk	.d1	0, A7
-.L558:
+.L557:
 	[A0]	b	.s2	.L559
 		nop	5
 	[!A2]	mv	.d1	A7, A4
@@ -4703,7 +4703,11 @@ __udivmodsi4:
 	[!B0]	b	.s2	.L659
 		nop	5
 		mvk	.d1	0, A7
-		b	.s2	.L661
+		b	.s2	.L660
+		nop	5
+.L664:
+		mvk	.d1	0, A7
+		b	.s2	.L660
 		nop	5
 .L662:
 		mv	.l1x	B4, A8
@@ -4712,11 +4716,7 @@ __udivmodsi4:
 	[!A1]	or	.d1	A0, A7, A7
 		shru	.s1	A0, 1, A0
 		shru	.s2	B4, 1, B4
-		b	.s2	.L661
-		nop	5
-.L664:
-		mvk	.d1	0, A7
-.L661:
+.L660:
 	[A0]	b	.s2	.L662
 		nop	5
 	[!A2]	mv	.d1	A7, A4
@@ -4976,35 +4976,35 @@ __udivmodhi4:
 		and	.d1	A17, A8, A0
 	[!A0]	b	.s2	.L708
 		nop	5
-		ext	.s1	A5, 16, 16, A20
-		cmpgt	.l1	0, A20, A2
+		ext	.s1	A5, 16, 16, A19
+		cmpgt	.l1	0, A19, A2
 	[!A2]	b	.s2	.L703
 		nop	5
-		mvk	.d1	0, A18
-		b	.s2	.L705
-		nop	5
-.L706:
-		extu	.s1	A4, 16, 16, A21
-		mv	.l1x	B4, A22
-		extu	.s1	A22, 16, 16, A23
-		cmpgtu	.l1	A23, A21, A2
-	[A2]	b	.s2	.L704
-		nop	5
-		mv	.l1x	B4, A24
-		sub	.d1	A4, A24, A4
-		or	.d1	A3, A18, A18
-.L704:
-		extu	.s1	A3, 16, 17, A3
-		extu	.s2	B4, 16, 17, B4
-		b	.s2	.L705
+		mvk	.d1	0, A24
+		b	.s2	.L704
 		nop	5
 .L708:
-		mvk	.d1	0, A18
+		mvk	.d1	0, A24
+		b	.s2	.L704
+		nop	5
+.L706:
+		extu	.s1	A4, 16, 16, A20
+		mv	.l1x	B4, A21
+		extu	.s1	A21, 16, 16, A22
+		cmpgtu	.l1	A22, A20, A2
+	[A2]	b	.s2	.L705
+		nop	5
+		mv	.l1x	B4, A23
+		sub	.d1	A4, A23, A4
+		or	.d1	A3, A24, A24
 .L705:
+		extu	.s1	A3, 16, 17, A3
+		extu	.s2	B4, 16, 17, B4
+.L704:
 		extu	.s1	A3, 16, 16, A0
 	[A0]	b	.s2	.L706
 		nop	5
-	[!A1]	mv	.d1	A18, A4
+	[!A1]	mv	.d1	A24, A4
 		add	.l2x	-8, A15, B15
 		ldw	.d2t1	*++B15(8), A15
 		nop	4
@@ -5035,7 +5035,11 @@ __udivmodsi4_libgcc:
 	[!B0]	b	.s2	.L713
 		nop	5
 		mvk	.d1	0, A7
-		b	.s2	.L715
+		b	.s2	.L714
+		nop	5
+.L718:
+		mvk	.d1	0, A7
+		b	.s2	.L714
 		nop	5
 .L716:
 		mv	.l1x	B4, A8
@@ -5044,11 +5048,7 @@ __udivmodsi4_libgcc:
 	[!A1]	or	.d1	A0, A7, A7
 		shru	.s1	A0, 1, A0
 		shru	.s2	B4, 1, B4
-		b	.s2	.L715
-		nop	5
-.L718:
-		mvk	.d1	0, A7
-.L715:
+.L714:
 	[A0]	b	.s2	.L716
 		nop	5
 	[!A2]	mv	.d1	A7, A4

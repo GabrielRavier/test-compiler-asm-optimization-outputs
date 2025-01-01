@@ -3005,21 +3005,21 @@ udivmodsi4:
 	cmp 0,d1
 	bge .L488
 	mov 0,a1
-	jmp .L490
-.L491:
-	cmp d1,d0
-	bcs .L489
-	or_sub a0, a1, d1, d0
-.L489:
-	lsr 1,a0
-	lsr 1,d1
-	jmp .L490
+	jmp .L489
 .L493:
 	mov 0,a1
-	jmp .L490
+	jmp .L489
 .L494:
 	mov 0,a1
+	jmp .L489
+.L491:
+	cmp d1,d0
+	bcs .L490
+	or_sub a0, a1, d1, d0
 .L490:
+	lsr 1,a0
+	lsr 1,d1
+.L489:
 	cmp 0,a0
 	bne .L491
 	cmp 0,r0
@@ -3488,21 +3488,21 @@ __udivmodsi4:
 	cmp 0,d1
 	bge .L580
 	mov 0,a1
-	jmp .L582
-.L583:
-	cmp d1,d0
-	bcs .L581
-	or_sub a0, a1, d1, d0
-.L581:
-	lsr 1,a0
-	lsr 1,d1
-	jmp .L582
+	jmp .L581
 .L585:
 	mov 0,a1
-	jmp .L582
+	jmp .L581
 .L586:
 	mov 0,a1
+	jmp .L581
+.L583:
+	cmp d1,d0
+	bcs .L582
+	or_sub a0, a1, d1, d0
 .L582:
+	lsr 1,a0
+	lsr 1,d1
+.L581:
 	cmp 0,a0
 	bne .L583
 	cmp 0,r0
@@ -3726,25 +3726,25 @@ __udivmodhi4:
 	cmp 0,a1
 	bge .L621
 	mov 0,r1
-	jmp .L623
+	jmp .L622
+.L626:
+	mov 0,r1
+	jmp .L622
+.L627:
+	mov 0,r1
+	jmp .L622
 .L624:
 	exthu d0,a1
 	exthu d1,r0
 	cmp r0,a1
-	bcs .L622
+	bcs .L623
 	or_sub a0, r1, d1, d0
-.L622:
+.L623:
 	asl 16,a0
 	lsr 17,a0
 	asl 16,d1
 	lsr 17,d1
-	jmp .L623
-.L626:
-	mov 0,r1
-	jmp .L623
-.L627:
-	mov 0,r1
-.L623:
+.L622:
 	exthu a0,a1
 	cmp 0,a1
 	bne .L624
@@ -3775,21 +3775,21 @@ __udivmodsi4_libgcc:
 	cmp 0,d1
 	bge .L632
 	mov 0,a1
-	jmp .L634
-.L635:
-	cmp d1,d0
-	bcs .L633
-	or_sub a0, a1, d1, d0
-.L633:
-	lsr 1,a0
-	lsr 1,d1
-	jmp .L634
+	jmp .L633
 .L637:
 	mov 0,a1
-	jmp .L634
+	jmp .L633
 .L638:
 	mov 0,a1
+	jmp .L633
+.L635:
+	cmp d1,d0
+	bcs .L634
+	or_sub a0, a1, d1, d0
 .L634:
+	lsr 1,a0
+	lsr 1,d1
+.L633:
 	cmp 0,a0
 	bne .L635
 	cmp 0,r0

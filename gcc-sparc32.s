@@ -2861,7 +2861,7 @@ udivmodsi4:
 	save	%sp, -96, %sp
 	b	.L530
 	 mov	1, %g1
-.L532:
+.L533:
 	sll	%g1, 1, %g1
 .L530:
 	cmp	%i1, %i0
@@ -2869,26 +2869,26 @@ udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be	.L537
+	bne	.L531
 	 cmp	%i1, 0
-	bge,a	.L532
-	 sll	%i1, 1, %i1
-	b	.L534
+	b	.L532
 	 mov	0, %g2
-.L535:
+.L531:
+	bge,a	.L533
+	 sll	%i1, 1, %i1
+	b	.L532
+	 mov	0, %g2
+.L536:
 	blu,a	.L540
 	 srl	%g1, 1, %g1
 	sub	%i0, %i1, %i0
 	or	%g2, %g1, %g2
 	srl	%g1, 1, %g1
 .L540:
-	b	.L534
-	 srl	%i1, 1, %i1
-.L537:
-	mov	0, %g2
-.L534:
+	srl	%i1, 1, %i1
+.L532:
 	cmp	%g1, 0
-	bne	.L535
+	bne	.L536
 	 cmp	%i0, %i1
 	cmp	%i2, 0
 	be,a	.L539
@@ -3369,7 +3369,7 @@ __udivmodsi4:
 	save	%sp, -96, %sp
 	b	.L633
 	 mov	1, %g1
-.L635:
+.L636:
 	sll	%g1, 1, %g1
 .L633:
 	cmp	%i1, %i0
@@ -3377,26 +3377,26 @@ __udivmodsi4:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be	.L640
+	bne	.L634
 	 cmp	%i1, 0
-	bge,a	.L635
-	 sll	%i1, 1, %i1
-	b	.L637
+	b	.L635
 	 mov	0, %g2
-.L638:
+.L634:
+	bge,a	.L636
+	 sll	%i1, 1, %i1
+	b	.L635
+	 mov	0, %g2
+.L639:
 	blu,a	.L643
 	 srl	%g1, 1, %g1
 	sub	%i0, %i1, %i0
 	or	%g2, %g1, %g2
 	srl	%g1, 1, %g1
 .L643:
-	b	.L637
-	 srl	%i1, 1, %i1
-.L640:
-	mov	0, %g2
-.L637:
+	srl	%i1, 1, %i1
+.L635:
 	cmp	%g1, 0
-	bne	.L638
+	bne	.L639
 	 cmp	%i0, %i1
 	cmp	%i2, 0
 	be,a	.L642
@@ -3581,7 +3581,7 @@ __udivmodhi4:
 	save	%sp, -96, %sp
 	b	.L680
 	 mov	1, %g1
-.L682:
+.L683:
 	srl	%i1, 16, %i1
 	sll	%g1, 1, %g1
 .L680:
@@ -3591,14 +3591,17 @@ __udivmodhi4:
 	cmp	%g0, %g2
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be	.L687
+	bne	.L681
 	 sll	%i1, 16, %g2
-	cmp	%g2, 0
-	bge,a	.L682
-	 sll	%i1, 17, %i1
-	b	.L684
+	b	.L682
 	 mov	0, %g3
-.L685:
+.L681:
+	cmp	%g2, 0
+	bge,a	.L683
+	 sll	%i1, 17, %i1
+	b	.L682
+	 mov	0, %g3
+.L686:
 	blu,a	.L689
 	 sll	%g1, 16, %g1
 	sub	%i0, %i1, %i0
@@ -3608,19 +3611,16 @@ __udivmodhi4:
 	sll	%g1, 16, %g1
 .L689:
 	srl	%g1, 17, %g1
-	b	.L684
-	 srl	%i1, 1, %i1
-.L687:
-	mov	0, %g3
-.L684:
+	srl	%i1, 1, %i1
+.L682:
 	sll	%g1, 16, %g2
 	cmp	%g2, 0
-	bne	.L685
+	bne	.L686
 	 cmp	%i0, %i1
 	cmp	%i2, 0
-	be,a	.L686
+	be,a	.L687
 	 mov	%g3, %i0
-.L686:
+.L687:
 	sll	%i0, 16, %i0
 	srl	%i0, 16, %i0
 	jmp	%i7+8
@@ -3634,7 +3634,7 @@ __udivmodsi4_libgcc:
 	save	%sp, -96, %sp
 	b	.L691
 	 mov	1, %g1
-.L693:
+.L694:
 	sll	%g1, 1, %g1
 .L691:
 	cmp	%i1, %i0
@@ -3642,26 +3642,26 @@ __udivmodsi4_libgcc:
 	cmp	%g0, %g1
 	addx	%g0, 0, %g2
 	andcc	%g3, %g2, %g0
-	be	.L698
+	bne	.L692
 	 cmp	%i1, 0
-	bge,a	.L693
-	 sll	%i1, 1, %i1
-	b	.L695
+	b	.L693
 	 mov	0, %g2
-.L696:
+.L692:
+	bge,a	.L694
+	 sll	%i1, 1, %i1
+	b	.L693
+	 mov	0, %g2
+.L697:
 	blu,a	.L701
 	 srl	%g1, 1, %g1
 	sub	%i0, %i1, %i0
 	or	%g2, %g1, %g2
 	srl	%g1, 1, %g1
 .L701:
-	b	.L695
-	 srl	%i1, 1, %i1
-.L698:
-	mov	0, %g2
-.L695:
+	srl	%i1, 1, %i1
+.L693:
 	cmp	%g1, 0
-	bne	.L696
+	bne	.L697
 	 cmp	%i0, %i1
 	cmp	%i2, 0
 	be,a	.L700

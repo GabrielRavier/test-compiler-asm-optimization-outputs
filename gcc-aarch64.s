@@ -2728,7 +2728,7 @@ udivmodsi4:
 	.cfi_startproc
 	mov	w3, 1
 	b	.L433
-.L435:
+.L436:
 	lsl	w1, w1, 1
 	lsl	w3, w3, 1
 .L433:
@@ -2738,23 +2738,23 @@ udivmodsi4:
 	cset	w4, ne
 	cmp	w5, 0
 	ccmp	w4, 0, 4, ne
-	beq	.L440
-	tbz	w1, #31, .L435
+	bne	.L434
 	mov	w4, 0
-	b	.L437
-.L438:
+	b	.L435
+.L434:
+	tbz	w1, #31, .L436
+	mov	w4, 0
+	b	.L435
+.L439:
 	cmp	w0, w1
-	bcc	.L436
+	bcc	.L438
 	sub	w0, w0, w1
 	orr	w4, w4, w3
-.L436:
+.L438:
 	lsr	w3, w3, 1
 	lsr	w1, w1, 1
-	b	.L437
-.L440:
-	mov	w4, 0
-.L437:
-	cbnz	w3, .L438
+.L435:
+	cbnz	w3, .L439
 	cmp	x2, 0
 	csel	w0, w0, w4, ne
 	ret
@@ -3178,7 +3178,7 @@ __udivmodsi4:
 	.cfi_startproc
 	mov	w3, 1
 	b	.L517
-.L519:
+.L520:
 	lsl	w1, w1, 1
 	lsl	w3, w3, 1
 .L517:
@@ -3188,23 +3188,23 @@ __udivmodsi4:
 	cset	w4, ne
 	cmp	w5, 0
 	ccmp	w4, 0, 4, ne
-	beq	.L524
-	tbz	w1, #31, .L519
+	bne	.L518
 	mov	w4, 0
-	b	.L521
-.L522:
+	b	.L519
+.L518:
+	tbz	w1, #31, .L520
+	mov	w4, 0
+	b	.L519
+.L523:
 	cmp	w0, w1
-	bcc	.L520
+	bcc	.L522
 	sub	w0, w0, w1
 	orr	w4, w4, w3
-.L520:
+.L522:
 	lsr	w3, w3, 1
 	lsr	w1, w1, 1
-	b	.L521
-.L524:
-	mov	w4, 0
-.L521:
-	cbnz	w3, .L522
+.L519:
+	cbnz	w3, .L523
 	cmp	w2, 0
 	csel	w0, w0, w4, ne
 	ret
@@ -3379,7 +3379,7 @@ __udivmodhi4:
 	and	w1, w1, 65535
 	mov	w3, 1
 	b	.L555
-.L557:
+.L558:
 	ubfiz	w1, w1, 1, 15
 	ubfiz	w3, w3, 1, 15
 .L555:
@@ -3389,24 +3389,24 @@ __udivmodhi4:
 	cset	w4, ne
 	cmp	w5, 0
 	ccmp	w4, 0, 4, ne
-	beq	.L562
-	tbz	x1, 15, .L557
+	bne	.L556
 	mov	w4, 0
-	b	.L559
-.L560:
+	b	.L557
+.L556:
+	tbz	x1, 15, .L558
+	mov	w4, 0
+	b	.L557
+.L561:
 	cmp	w0, w1
-	bcc	.L558
+	bcc	.L560
 	sub	w0, w0, w1
 	and	w0, w0, 65535
 	orr	w4, w4, w3
-.L558:
+.L560:
 	lsr	w3, w3, 1
 	lsr	w1, w1, 1
-	b	.L559
-.L562:
-	mov	w4, 0
-.L559:
-	cbnz	w3, .L560
+.L557:
+	cbnz	w3, .L561
 	cmp	w2, 0
 	csel	w0, w0, w4, ne
 	ret
@@ -3421,7 +3421,7 @@ __udivmodsi4_libgcc:
 	.cfi_startproc
 	mov	x3, 1
 	b	.L565
-.L567:
+.L568:
 	lsl	x1, x1, 1
 	lsl	x3, x3, 1
 .L565:
@@ -3431,23 +3431,23 @@ __udivmodsi4_libgcc:
 	cset	w4, ne
 	cmp	w5, 0
 	ccmp	w4, 0, 4, ne
-	beq	.L572
-	tbz	x1, 31, .L567
+	bne	.L566
 	mov	x4, 0
-	b	.L569
-.L570:
+	b	.L567
+.L566:
+	tbz	x1, 31, .L568
+	mov	x4, 0
+	b	.L567
+.L571:
 	cmp	x0, x1
-	bcc	.L568
+	bcc	.L570
 	sub	x0, x0, x1
 	orr	x4, x4, x3
-.L568:
+.L570:
 	lsr	x3, x3, 1
 	lsr	x1, x1, 1
-	b	.L569
-.L572:
-	mov	x4, 0
-.L569:
-	cbnz	x3, .L570
+.L567:
+	cbnz	x3, .L571
 	cmp	w2, 0
 	csel	x0, x0, x4, ne
 	ret

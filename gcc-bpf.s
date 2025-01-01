@@ -5004,22 +5004,22 @@ udivmodsi4:
 	if r0 s>= 0 goto .L1215
 .L1238:
 	r0 = 0
-	goto .L1217
+	goto .L1216
+.L1220:
+	r0 = 0
+	goto .L1216
+.L1221:
+	r0 = 0
+	goto .L1216
 .L1218:
-	if r2 >= r1 goto .L1216
+	if r2 >= r1 goto .L1217
 	r1 -= r2
 	r1 = r1;r1 &= 0xffffffff
 	r0 |= r4
-.L1216:
+.L1217:
 	r4 >>= 1
 	r2 >>= 1
-	goto .L1217
-.L1220:
-	r0 = 0
-	goto .L1217
-.L1221:
-	r0 = 0
-.L1217:
+.L1216:
 	if r4 != 0 goto .L1218
 	if r3 == 0 goto .L1219
 	r0 = r1
@@ -6733,22 +6733,22 @@ __udivmodsi4:
 	if r0 s>= 0 goto .L1549
 .L1572:
 	r0 = 0
-	goto .L1551
+	goto .L1550
+.L1554:
+	r0 = 0
+	goto .L1550
+.L1555:
+	r0 = 0
+	goto .L1550
 .L1552:
-	if r2 >= r1 goto .L1550
+	if r2 >= r1 goto .L1551
 	r1 -= r2
 	r1 = r1;r1 &= 0xffffffff
 	r0 |= r4
-.L1550:
+.L1551:
 	r4 >>= 1
 	r2 >>= 1
-	goto .L1551
-.L1554:
-	r0 = 0
-	goto .L1551
-.L1555:
-	r0 = 0
-.L1551:
+.L1550:
 	if r4 != 0 goto .L1552
 	if r3 == 0 goto .L1553
 	r0 = r1
@@ -7375,21 +7375,21 @@ __udivmodsi4_libgcc:
 	if r5 == 0 goto .L1647
 .L1670:
 	r0 = 0
-	goto .L1649
-.L1650:
-	if r2 >= r1 goto .L1648
-	r1 -= r2
-	r0 |= r4
-.L1648:
-	r4 >>= 1
-	r2 >>= 1
-	goto .L1649
+	goto .L1648
 .L1652:
 	r0 = 0
-	goto .L1649
+	goto .L1648
 .L1653:
 	r0 = 0
+	goto .L1648
+.L1650:
+	if r2 >= r1 goto .L1649
+	r1 -= r2
+	r0 |= r4
 .L1649:
+	r4 >>= 1
+	r2 >>= 1
+.L1648:
 	if r4 != 0 goto .L1650
 	if r3 == 0 goto .L1651
 	r0 = r1

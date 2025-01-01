@@ -3898,9 +3898,9 @@ memmem:
 	;;
 	(p6) mov r8 = r0
 	(p6) br.cond.dpnt .L417
-	br .L423
+	br .L418
 	;;
-.L419:
+.L420:
 	ld1 r15 = [r32], 1
 	;;
 	sxt1 r15 = r15
@@ -3909,7 +3909,7 @@ memmem:
 	sxt1 r14 = r14
 	;;
 	cmp4.ne p6, p7 = r14, r15
-	(p6) br.cond.dptk .L423
+	(p6) br.cond.dptk .L418
 	adds r44 = -1, r35
 	adds r43 = 1, r34
 	mov r42 = r32
@@ -3917,16 +3917,16 @@ memmem:
 	mov r1 = r41
 	;;
 	cmp4.eq p6, p7 = 0, r8
-	(p6) br.cond.dpnt .L422
-.L423:
+	(p6) br.cond.dpnt .L423
+.L418:
 	mov r37 = r32
 	;;
 	cmp.geu p6, p7 = r36, r32
-	(p6) br.cond.dptk .L419
+	(p6) br.cond.dptk .L420
 	mov r8 = r0
 	br .L417
 	;;
-.L422:
+.L423:
 	mov r8 = r37
 .L417:
 	mov ar.pfs = r39
@@ -4079,46 +4079,35 @@ udivmodsi4:
 	addl r14 = 1, r0
 	br .L446
 	;;
-.L448:
+.L449:
 	shladd r33 = r33, 1, r0
 	shladd r14 = r14, 1, r0
 .L446:
 	;;
 	cmp4.gtu p6, p7 = r32, r33
 	;;
-	(p6) addl r15 = 1, r0
-	;;
-	(p7) mov r15 = r0
-	cmp4.ne p6, p7 = 0, r14
-	;;
-	(p6) addl r16 = 1, r0
-	;;
-	(p7) mov r16 = r0
-	;;
-	and r15 = r16, r15
-	;;
-	cmp4.eq p6, p7 = 0, r15
-	(p6) br.cond.dpnt .L453
-	;;
-	cmp4.le p6, p7 = r0, r33
-	(p6) br.cond.dptk .L448
+	cmp4.ne.and.orcm p6, p7 = 0, r14
+	(p6) br.cond.dptk .L447
 	mov r8 = r0
-	br .L450
+	br .L448
 	;;
-.L451:
+.L447:
+	cmp4.le p6, p7 = r0, r33
+	(p6) br.cond.dptk .L449
+	mov r8 = r0
+	br .L448
+	;;
+.L452:
 	cmp4.gtu p6, p7 = r33, r32
 	;;
 	(p7) sub r32 = r32, r33
 	(p7) or r8 = r14, r8
 	extr.u r14 = r14, 1, 31
 	extr.u r33 = r33, 1, 31
-	br .L450
+.L448:
 	;;
-.L453:
-	mov r8 = r0
-.L450:
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L451
+	(p6) br.cond.dptk .L452
 	;;
 	cmp.ne p6, p7 = 0, r34
 	;;
@@ -4848,46 +4837,35 @@ __udivmodsi4:
 	addl r14 = 1, r0
 	br .L536
 	;;
-.L538:
+.L539:
 	shladd r33 = r33, 1, r0
 	shladd r14 = r14, 1, r0
 .L536:
 	;;
 	cmp4.gtu p6, p7 = r32, r33
 	;;
-	(p6) addl r15 = 1, r0
-	;;
-	(p7) mov r15 = r0
-	cmp4.ne p6, p7 = 0, r14
-	;;
-	(p6) addl r16 = 1, r0
-	;;
-	(p7) mov r16 = r0
-	;;
-	and r15 = r16, r15
-	;;
-	cmp4.eq p6, p7 = 0, r15
-	(p6) br.cond.dpnt .L543
-	;;
-	cmp4.le p6, p7 = r0, r33
-	(p6) br.cond.dptk .L538
+	cmp4.ne.and.orcm p6, p7 = 0, r14
+	(p6) br.cond.dptk .L537
 	mov r8 = r0
-	br .L540
+	br .L538
 	;;
-.L541:
+.L537:
+	cmp4.le p6, p7 = r0, r33
+	(p6) br.cond.dptk .L539
+	mov r8 = r0
+	br .L538
+	;;
+.L542:
 	cmp4.gtu p6, p7 = r33, r32
 	;;
 	(p7) sub r32 = r32, r33
 	(p7) or r8 = r14, r8
 	extr.u r14 = r14, 1, 31
 	extr.u r33 = r33, 1, 31
-	br .L540
+.L538:
 	;;
-.L543:
-	mov r8 = r0
-.L540:
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L541
+	(p6) br.cond.dptk .L542
 	;;
 	cmp4.ne p6, p7 = 0, r34
 	;;
@@ -5134,7 +5112,7 @@ __udivmodhi4:
 	addl r14 = 1, r0
 	br .L574
 	;;
-.L576:
+.L577:
 	shladd r33 = r33, 1, r0
 	;;
 	zxt2 r33 = r33
@@ -5144,26 +5122,18 @@ __udivmodhi4:
 .L574:
 	cmp4.gtu p6, p7 = r32, r33
 	;;
-	(p6) addl r15 = 1, r0
-	;;
-	(p7) mov r15 = r0
-	cmp4.ne p6, p7 = 0, r14
-	;;
-	(p6) addl r16 = 1, r0
-	;;
-	(p7) mov r16 = r0
-	;;
-	and r15 = r16, r15
-	;;
-	cmp4.eq p6, p7 = 0, r15
-	(p6) br.cond.dpnt .L581
-	;;
-	tbit.z p6, p7 = r33, 15
-	(p6) br.cond.dptk .L576
+	cmp4.ne.and.orcm p6, p7 = 0, r14
+	(p6) br.cond.dptk .L575
 	mov r8 = r0
-	br .L578
+	br .L576
 	;;
-.L579:
+.L575:
+	tbit.z p6, p7 = r33, 15
+	(p6) br.cond.dptk .L577
+	mov r8 = r0
+	br .L576
+	;;
+.L580:
 	cmp4.gtu p6, p7 = r33, r32
 	;;
 	(p7) sub r32 = r32, r33
@@ -5174,13 +5144,10 @@ __udivmodhi4:
 	(p7) zxt2 r8 = r8
 	extr.u r14 = r14, 1, 15
 	extr.u r33 = r33, 1, 15
-	br .L578
+.L576:
 	;;
-.L581:
-	mov r8 = r0
-.L578:
 	cmp4.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L579
+	(p6) br.cond.dptk .L580
 	;;
 	cmp4.ne p6, p7 = 0, r34
 	;;
@@ -5202,46 +5169,35 @@ __udivmodsi4_libgcc:
 	addl r14 = 1, r0
 	br .L584
 	;;
-.L586:
+.L587:
 	shladd r33 = r33, 1, r0
 	shladd r14 = r14, 1, r0
 .L584:
 	;;
 	cmp.gtu p6, p7 = r32, r33
 	;;
-	(p6) addl r15 = 1, r0
-	;;
-	(p7) mov r15 = r0
-	cmp.ne p6, p7 = 0, r14
-	;;
-	(p6) addl r16 = 1, r0
-	;;
-	(p7) mov r16 = r0
-	;;
-	and r15 = r16, r15
-	;;
-	cmp4.eq p6, p7 = 0, r15
-	(p6) br.cond.dpnt .L591
-	;;
-	tbit.z p6, p7 = r33, 31
-	(p6) br.cond.dptk .L586
+	cmp.ne.and.orcm p6, p7 = 0, r14
+	(p6) br.cond.dptk .L585
 	mov r8 = r0
-	br .L588
+	br .L586
 	;;
-.L589:
+.L585:
+	tbit.z p6, p7 = r33, 31
+	(p6) br.cond.dptk .L587
+	mov r8 = r0
+	br .L586
+	;;
+.L590:
 	cmp.gtu p6, p7 = r33, r32
 	;;
 	(p7) sub r32 = r32, r33
 	(p7) or r8 = r14, r8
 	shr.u r14 = r14, 1
 	shr.u r33 = r33, 1
-	br .L588
+.L586:
 	;;
-.L591:
-	mov r8 = r0
-.L588:
 	cmp.ne p6, p7 = 0, r14
-	(p6) br.cond.dptk .L589
+	(p6) br.cond.dptk .L590
 	;;
 	cmp4.ne p6, p7 = 0, r34
 	;;

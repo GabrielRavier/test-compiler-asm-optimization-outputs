@@ -4563,38 +4563,31 @@ udivmodsi4:
 	b	.L484
 	li	$3,1			# 0x1
 
-.L486:
+.L488:
 	sll	$5,$5,1
 	sll	$3,$3,1
 .L484:
 	sltu	$7,$5,$2
-	beqz	$7,.L491
-	addiu	$4,$4,-1
-
-	beqzc	$4,.L492
-	bgez	$5,.L486
+	beqz	$7,.L486
 	move	$7,$0
 
-	b	.L488
+	addiu	$4,$4,-1
+	beqzc	$4,.L486
+	bgez	$5,.L488
 	nop
 
-.L489:
-	bnezc	$4,.L487
+	b	.L486
+	nop
+
+.L490:
+	bnezc	$4,.L489
 	subu	$2,$2,$5
 	or	$7,$7,$3
-.L487:
+.L489:
 	dext	$3,$3,1,31
-	b	.L488
 	dext	$5,$5,1,31
-
-.L491:
-	b	.L488
-	move	$7,$0
-
-.L492:
-	move	$7,$0
-.L488:
-	bnez	$3,.L489
+.L486:
+	bnez	$3,.L490
 	sltu	$4,$2,$5
 
 	movz	$2,$7,$6
@@ -5394,38 +5387,31 @@ __udivmodsi4:
 	b	.L574
 	li	$3,1			# 0x1
 
-.L576:
+.L578:
 	sll	$5,$5,1
 	sll	$3,$3,1
 .L574:
 	sltu	$7,$5,$2
-	beqz	$7,.L581
-	addiu	$4,$4,-1
-
-	beqzc	$4,.L582
-	bgez	$5,.L576
+	beqz	$7,.L576
 	move	$7,$0
 
-	b	.L578
+	addiu	$4,$4,-1
+	beqzc	$4,.L576
+	bgez	$5,.L578
 	nop
 
-.L579:
-	bnezc	$4,.L577
+	b	.L576
+	nop
+
+.L580:
+	bnezc	$4,.L579
 	subu	$2,$2,$5
 	or	$7,$7,$3
-.L577:
+.L579:
 	dext	$3,$3,1,31
-	b	.L578
 	dext	$5,$5,1,31
-
-.L581:
-	b	.L578
-	move	$7,$0
-
-.L582:
-	move	$7,$0
-.L578:
-	bnez	$3,.L579
+.L576:
+	bnez	$3,.L580
 	sltu	$4,$2,$5
 
 	movz	$2,$7,$6
@@ -5749,43 +5735,35 @@ __udivmodhi4:
 	b	.L614
 	li	$3,1			# 0x1
 
-.L616:
+.L618:
 	sll	$5,$5,1
 	andi	$5,$5,0xffff
 	sll	$3,$3,1
 	andi	$3,$3,0xffff
 .L614:
 	sltu	$7,$5,$2
-	beqz	$7,.L621
-	addiu	$4,$4,-1
-
-	beqz	$4,.L622
-	seh	$7,$5
-
-	bgez	$7,.L616
+	beqz	$7,.L616
 	move	$7,$0
 
-	b	.L618
+	addiu	$4,$4,-1
+	beqzc	$4,.L616
+	seh	$7,$5
+	bgez	$7,.L618
+	move	$7,$0
+
+	b	.L616
 	nop
 
-.L619:
-	bnezc	$4,.L617
+.L620:
+	bnezc	$4,.L619
 	subu	$2,$2,$5
 	andi	$2,$2,0xffff
 	or	$7,$7,$3
-.L617:
+.L619:
 	dsrl	$3,$3,1
-	b	.L618
 	dsrl	$5,$5,1
-
-.L621:
-	b	.L618
-	move	$7,$0
-
-.L622:
-	move	$7,$0
-.L618:
-	bnez	$3,.L619
+.L616:
+	bnez	$3,.L620
 	sltu	$4,$2,$5
 
 	movz	$2,$7,$6
@@ -5816,37 +5794,37 @@ __udivmodsi4_libgcc:
 	b	.L625
 	li	$3,1			# 0x1
 
-.L627:
+.L629:
 	dsll	$5,$5,1
 	dsll	$3,$3,1
 .L625:
 	sltu	$4,$5,$2
-	beqzc	$4,.L632
+	bnezc	$4,.L626
+	b	.L627
+	move	$7,$0
+
+.L633:
+	b	.L627
+	move	$7,$0
+
+.L626:
 	addiu	$7,$7,-1
 	beqz	$7,.L633
 	dext	$4,$5,31,1
 
-	beqzc	$4,.L627
-	b	.L629
+	beqzc	$4,.L629
+	b	.L627
 	move	$7,$0
 
-.L630:
-	bnezc	$4,.L628
+.L631:
+	bnezc	$4,.L630
 	dsubu	$2,$2,$5
 	or	$7,$7,$3
-.L628:
+.L630:
 	dsrl	$3,$3,1
-	b	.L629
 	dsrl	$5,$5,1
-
-.L632:
-	b	.L629
-	move	$7,$0
-
-.L633:
-	move	$7,$0
-.L629:
-	bnez	$3,.L630
+.L627:
+	bnez	$3,.L631
 	sltu	$4,$2,$5
 
 	movz	$2,$7,$6
