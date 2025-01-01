@@ -224,6 +224,8 @@ void *memrchr(const void *m, int c, size_t n)
     return 0;
 }
 
+#ifndef __BPF__
+
 void *memset(void *dest, int c, size_t n)
 {
     unsigned char *s = dest;
@@ -234,6 +236,8 @@ void *memset(void *dest, int c, size_t n)
 
     return dest;
 }
+
+#endif
 
 char *stpcpy(char *restrict d, const char *restrict s)
 {
