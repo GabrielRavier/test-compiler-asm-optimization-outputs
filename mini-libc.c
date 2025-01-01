@@ -203,6 +203,8 @@ int memcmp(const void *vl, const void *vr, size_t n)
     return n ? *l-*r : 0;
 }
 
+#ifndef __BPF__
+
 void *memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
     unsigned char *d = dest;
@@ -211,6 +213,8 @@ void *memcpy(void *restrict dest, const void *restrict src, size_t n)
     for (; n; n--) *d++ = *s++;
     return dest;
 }
+
+#endif
 
 void *memrchr(const void *m, int c, size_t n)
 {
@@ -752,12 +756,16 @@ int wmemcmp(const wchar_t *l, const wchar_t *r, size_t n)
     return n ? (*l < *r ? -1 : *l > *r) : 0;
 }
 
+#ifndef __BPF__
+
 wchar_t *wmemcpy(wchar_t *restrict d, const wchar_t *restrict s, size_t n)
 {
     wchar_t *a = d;
     while (n--) *d++ = *s++;
     return a;
 }
+
+#endif
 
 wchar_t *wmemmove(wchar_t *d, const wchar_t *s, size_t n)
 {
