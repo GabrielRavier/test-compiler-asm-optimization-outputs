@@ -963,10 +963,23 @@ toascii:
 fdim:
 .LFB31 = .
 	.cfi_startproc
-	fsub.d	$f2,$f0,$f1
-	fcmp.sgt.d	$fcc0,$f0,$f1
+	fcmp.cun.d	$fcc0,$f0,$f0
+	fmov.d	$f2,$f0
+	bcnez	$fcc0,.L183
+	fcmp.cun.d	$fcc0,$f1,$f1
+	fmov.d	$f0,$f1
+	bcnez	$fcc0,.L180
+	fcmp.sgt.d	$fcc0,$f2,$f1
+	bceqz	$fcc0,.L187
+	fsub.d	$f0,$f2,$f1
+	jr	$r1
+	.align	5
+.L187:
 	movgr2fr.d	$f0,$r0
-	fsel	$f0,$f0,$f2,$fcc0
+.L180:
+	jr	$r1
+	.align	5
+.L183:
 	jr	$r1
 	.cfi_endproc
 .LFE31:
@@ -978,10 +991,23 @@ fdim:
 fdimf:
 .LFB32 = .
 	.cfi_startproc
-	fsub.s	$f2,$f0,$f1
-	fcmp.sgt.s	$fcc0,$f0,$f1
+	fcmp.cun.s	$fcc0,$f0,$f0
+	fmov.s	$f2,$f0
+	bcnez	$fcc0,.L191
+	fcmp.cun.s	$fcc0,$f1,$f1
+	fmov.s	$f0,$f1
+	bcnez	$fcc0,.L188
+	fcmp.sgt.s	$fcc0,$f2,$f1
+	bceqz	$fcc0,.L195
+	fsub.s	$f0,$f2,$f1
+	jr	$r1
+	.align	5
+.L195:
 	movgr2fr.w	$f0,$r0
-	fsel	$f0,$f0,$f2,$fcc0
+.L188:
+	jr	$r1
+	.align	5
+.L191:
 	jr	$r1
 	.cfi_endproc
 .LFE32:
@@ -993,24 +1019,50 @@ fdimf:
 fmax:
 .LFB33 = .
 	.cfi_startproc
-	movgr2fr.d	$f2,$r0
-	fcmp.slt.d	$fcc0,$f0,$f2
-	movcf2fr	$f3,$fcc0
-	fcmp.slt.d	$fcc0,$f1,$f2
-	movfr2gr.s	$r13,$f3
-	movcf2fr	$f2,$fcc0
-	movfr2gr.s	$r12,$f2
-	beq	$r13,$r12,.L191
-	movfr2cf	$fcc0,$f3
-	bcnez	$fcc0,.L197
+	fcmp.cun.d	$fcc0,$f0,$f0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	fst.d	$f1,$r3,8
+	bcnez	$fcc0,.L199
+	fcmp.cun.d	$fcc0,$f1,$f1
+	fst.d	$f0,$r3,0
+	bcnez	$fcc0,.L196
+	ldptr.d	$r12,$r3,0
+	ld.d	$r13,$r3,8
+	srli.d	$r12,$r12,63
+	srli.d	$r13,$r13,63
+	beq	$r12,$r13,.L198
+	fst.d	$f1,$r3,0
+	beqz	$r12,.L203
+.L196:
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L191:
-	fmax.d	$f0,$f0,$f1
-	jr	$r1
-	.align	5
-.L197:
+.L198:
+	.cfi_restore_state
+	fld.d	$f1,$r3,8
+	fcmp.slt.d	$fcc0,$f0,$f1
 	fmov.d	$f0,$f1
+	fld.d	$f1,$r3,0
+	fsel	$f0,$f1,$f0,$fcc0
+	fst.d	$f0,$r3,0
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L199:
+	.cfi_restore_state
+	fmov.d	$f0,$f1
+.L203:
+	fst.d	$f0,$r3,0
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.cfi_endproc
 .LFE33:
@@ -1022,24 +1074,53 @@ fmax:
 fmaxf:
 .LFB34 = .
 	.cfi_startproc
-	movgr2fr.w	$f2,$r0
-	fcmp.slt.s	$fcc0,$f0,$f2
-	movcf2fr	$f3,$fcc0
-	fcmp.slt.s	$fcc0,$f1,$f2
-	movfr2gr.s	$r13,$f3
-	movcf2fr	$f2,$fcc0
-	movfr2gr.s	$r12,$f2
-	beq	$r13,$r12,.L199
-	movfr2cf	$fcc0,$f3
-	bcnez	$fcc0,.L205
+	fcmp.cun.s	$fcc0,$f0,$f0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	fst.s	$f1,$r3,12
+	bcnez	$fcc0,.L207
+	fcmp.cun.s	$fcc0,$f1,$f1
+	fst.s	$f0,$r3,8
+	bcnez	$fcc0,.L204
+	ldptr.w	$r12,$r3,8
+	ldptr.w	$r13,$r3,12
+	lu12i.w	$r14,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r14
+	and	$r13,$r13,$r14
+	slli.w	$r12,$r12,0
+	slli.w	$r13,$r13,0
+	beq	$r12,$r13,.L206
+	fst.s	$f1,$r3,8
+	beqz	$r12,.L211
+.L204:
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L199:
-	fmax.s	$f0,$f0,$f1
-	jr	$r1
-	.align	5
-.L205:
+.L206:
+	.cfi_restore_state
+	fld.s	$f1,$r3,12
+	fcmp.slt.s	$fcc0,$f0,$f1
 	fmov.s	$f0,$f1
+	fld.s	$f1,$r3,8
+	fsel	$f0,$f1,$f0,$fcc0
+	fst.s	$f0,$r3,8
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L207:
+	.cfi_restore_state
+	fmov.s	$f0,$f1
+.L211:
+	fst.s	$f0,$r3,8
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.cfi_endproc
 .LFE34:
@@ -1051,80 +1132,90 @@ fmaxf:
 fmaxl:
 .LFB35 = .
 	.cfi_startproc
-	addi.d	$r3,$r3,-64
-	.cfi_def_cfa_offset 64
-	st.d	$r24,$r3,40
-	st.d	$r25,$r3,32
-	.cfi_offset 24, -24
-	.cfi_offset 25, -32
-	or	$r24,$r7,$r0
-	or	$r25,$r6,$r0
-	or	$r7,$r0,$r0
-	or	$r6,$r0,$r0
-	st.d	$r1,$r3,56
-	st.d	$r23,$r3,48
-	st.d	$r26,$r3,24
-	st.d	$r27,$r3,16
-	.cfi_offset 1, -8
+	addi.d	$r3,$r3,-48
+	.cfi_def_cfa_offset 48
+	st.d	$r23,$r3,32
+	st.d	$r24,$r3,24
 	.cfi_offset 23, -16
+	.cfi_offset 24, -24
+	or	$r23,$r7,$r0
+	or	$r24,$r6,$r0
+	or	$r7,$r5,$r0
+	or	$r6,$r4,$r0
+	st.d	$r25,$r3,16
+	st.d	$r26,$r3,8
+	st.d	$r1,$r3,40
+	.cfi_offset 25, -32
 	.cfi_offset 26, -40
-	.cfi_offset 27, -48
-	or	$r26,$r5,$r0
-	or	$r27,$r4,$r0
+	.cfi_offset 1, -8
+	or	$r26,$r4,$r0
+	or	$r25,$r5,$r0
+	bl	%plt(__unordtf2)
+	bnez	$r4,.L218
+	or	$r6,$r24,$r0
+	or	$r7,$r23,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r23,$r0
+	bl	%plt(__unordtf2)
+	bnez	$r4,.L219
+	srli.d	$r12,$r25,63
+	srli.d	$r13,$r23,63
+	bne	$r12,$r13,.L224
+	or	$r6,$r24,$r0
+	or	$r7,$r23,$r0
+	or	$r4,$r26,$r0
+	or	$r5,$r25,$r0
 	bl	%plt(__lttf2)
-	or	$r23,$r4,$r0
-	or	$r6,$r0,$r0
-	or	$r7,$r0,$r0
-	or	$r4,$r25,$r0
-	or	$r5,$r24,$r0
-	bstrpick.d	$r23,$r23,63,63
-	bl	%plt(__lttf2)
-	bstrpick.w	$r23,$r23,7,0
-	srli.d	$r4,$r4,63
-	beq	$r23,$r4,.L207
-	or	$r5,$r26,$r0
-	or	$r6,$r0,$r0
-	or	$r7,$r0,$r0
-	or	$r4,$r27,$r0
-	bl	%plt(__lttf2)
+	blt	$r4,$r0,.L218
+	or	$r24,$r26,$r0
 	or	$r23,$r25,$r0
-	or	$r5,$r24,$r0
-	blt	$r4,$r0,.L206
-	or	$r23,$r27,$r0
-	or	$r5,$r26,$r0
-.L206:
-	ld.d	$r1,$r3,56
+.L218:
+	or	$r4,$r24,$r0
+	or	$r5,$r23,$r0
+.L212:
+	ld.d	$r1,$r3,40
 	.cfi_remember_state
 	.cfi_restore 1
-	ld.d	$r24,$r3,40
-	.cfi_restore 24
-	ld.d	$r25,$r3,32
-	.cfi_restore 25
-	ld.d	$r26,$r3,24
-	.cfi_restore 26
-	ld.d	$r27,$r3,16
-	.cfi_restore 27
-	or	$r4,$r23,$r0
-	ld.d	$r23,$r3,48
+	ld.d	$r23,$r3,32
 	.cfi_restore 23
-	addi.d	$r3,$r3,64
+	ld.d	$r24,$r3,24
+	.cfi_restore 24
+	ld.d	$r25,$r3,16
+	.cfi_restore 25
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
+	addi.d	$r3,$r3,48
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L207:
+.L224:
 	.cfi_restore_state
-	or	$r5,$r26,$r0
-	or	$r6,$r25,$r0
-	or	$r7,$r24,$r0
-	or	$r4,$r27,$r0
-	st.d	$r26,$r3,8
-	bl	%plt(__getf2)
-	or	$r23,$r27,$r0
-	or	$r5,$r26,$r0
-	bge	$r4,$r0,.L206
-	or	$r23,$r25,$r0
-	or	$r5,$r24,$r0
-	b	.L206
+	ld.d	$r1,$r3,40
+	.cfi_remember_state
+	.cfi_restore 1
+	maskeqz	$r24,$r24,$r12
+	masknez	$r26,$r26,$r12
+	maskeqz	$r23,$r23,$r12
+	masknez	$r12,$r25,$r12
+	or	$r4,$r24,$r26
+	ld.d	$r25,$r3,16
+	.cfi_restore 25
+	ld.d	$r24,$r3,24
+	.cfi_restore 24
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
+	or	$r5,$r23,$r12
+	ld.d	$r23,$r3,32
+	.cfi_restore 23
+	addi.d	$r3,$r3,48
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L219:
+	.cfi_restore_state
+	or	$r4,$r26,$r0
+	or	$r5,$r25,$r0
+	b	.L212
 	.cfi_endproc
 .LFE35:
 	.size	fmaxl, .-fmaxl
@@ -1135,24 +1226,45 @@ fmaxl:
 fmin:
 .LFB36 = .
 	.cfi_startproc
-	movgr2fr.d	$f2,$r0
-	fcmp.slt.d	$fcc0,$f0,$f2
-	movcf2fr	$f3,$fcc0
-	fcmp.slt.d	$fcc0,$f1,$f2
-	movfr2gr.s	$r13,$f3
-	movcf2fr	$f2,$fcc0
-	movfr2gr.s	$r12,$f2
-	beq	$r13,$r12,.L218
-	movfr2cf	$fcc0,$f3
-	bcnez	$fcc0,.L224
-	fmov.d	$f0,$f1
+	fcmp.cun.d	$fcc0,$f0,$f0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	fst.d	$f1,$r3,8
+	bcnez	$fcc0,.L228
+	fcmp.cun.d	$fcc0,$f1,$f1
+	fst.d	$f0,$r3,0
+	bcnez	$fcc0,.L225
+	ldptr.d	$r12,$r3,0
+	ld.d	$r13,$r3,8
+	srli.d	$r12,$r12,63
+	srli.d	$r13,$r13,63
+	beq	$r12,$r13,.L227
+	beqz	$r12,.L228
+.L225:
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L218:
-	fmin.d	$f0,$f0,$f1
+.L227:
+	.cfi_restore_state
+	fld.d	$f1,$r3,8
+	fcmp.slt.d	$fcc0,$f0,$f1
+	fsel	$f0,$f1,$f0,$fcc0
+	fst.d	$f0,$r3,0
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L224:
+.L228:
+	.cfi_restore_state
+	fst.d	$f1,$r3,0
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.cfi_endproc
 .LFE36:
@@ -1164,24 +1276,48 @@ fmin:
 fminf:
 .LFB37 = .
 	.cfi_startproc
-	movgr2fr.w	$f2,$r0
-	fcmp.slt.s	$fcc0,$f0,$f2
-	movcf2fr	$f3,$fcc0
-	fcmp.slt.s	$fcc0,$f1,$f2
-	movfr2gr.s	$r13,$f3
-	movcf2fr	$f2,$fcc0
-	movfr2gr.s	$r12,$f2
-	beq	$r13,$r12,.L226
-	movfr2cf	$fcc0,$f3
+	fcmp.cun.s	$fcc0,$f0,$f0
+	addi.d	$r3,$r3,-16
+	.cfi_def_cfa_offset 16
+	fst.s	$f1,$r3,12
+	bcnez	$fcc0,.L235
+	fcmp.cun.s	$fcc0,$f1,$f1
+	fst.s	$f0,$r3,8
 	bcnez	$fcc0,.L232
-	fmov.s	$f0,$f1
-	jr	$r1
-	.align	5
-.L226:
-	fmin.s	$f0,$f0,$f1
-	jr	$r1
-	.align	5
+	ldptr.w	$r12,$r3,8
+	ldptr.w	$r13,$r3,12
+	lu12i.w	$r14,-2147483648>>12			# 0xffffffff80000000
+	and	$r12,$r12,$r14
+	and	$r13,$r13,$r14
+	slli.w	$r12,$r12,0
+	slli.w	$r13,$r13,0
+	beq	$r12,$r13,.L234
+	beqz	$r12,.L235
 .L232:
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L234:
+	.cfi_restore_state
+	fld.s	$f1,$r3,12
+	fcmp.slt.s	$fcc0,$f0,$f1
+	fsel	$f0,$f1,$f0,$fcc0
+	fst.s	$f0,$r3,8
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L235:
+	.cfi_restore_state
+	fst.s	$f1,$r3,8
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.cfi_endproc
 .LFE37:
@@ -1195,73 +1331,88 @@ fminl:
 	.cfi_startproc
 	addi.d	$r3,$r3,-48
 	.cfi_def_cfa_offset 48
+	st.d	$r25,$r3,16
 	st.d	$r26,$r3,8
-	stptr.d	$r27,$r3,0
+	.cfi_offset 25, -32
 	.cfi_offset 26, -40
-	.cfi_offset 27, -48
-	or	$r26,$r7,$r0
-	or	$r27,$r6,$r0
-	or	$r7,$r0,$r0
-	or	$r6,$r0,$r0
-	st.d	$r1,$r3,40
+	or	$r25,$r7,$r0
+	or	$r26,$r6,$r0
+	or	$r7,$r5,$r0
+	or	$r6,$r4,$r0
 	st.d	$r23,$r3,32
 	st.d	$r24,$r3,24
-	st.d	$r25,$r3,16
-	.cfi_offset 1, -8
+	st.d	$r1,$r3,40
 	.cfi_offset 23, -16
 	.cfi_offset 24, -24
-	.cfi_offset 25, -32
-	or	$r24,$r5,$r0
-	or	$r25,$r4,$r0
+	.cfi_offset 1, -8
+	or	$r24,$r4,$r0
+	or	$r23,$r5,$r0
+	bl	%plt(__unordtf2)
+	bnez	$r4,.L245
+	or	$r6,$r26,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r26,$r0
+	or	$r5,$r25,$r0
+	bl	%plt(__unordtf2)
+	bnez	$r4,.L246
+	srli.d	$r12,$r23,63
+	srli.d	$r13,$r25,63
+	bne	$r12,$r13,.L251
+	or	$r6,$r26,$r0
+	or	$r7,$r25,$r0
+	or	$r4,$r24,$r0
+	or	$r5,$r23,$r0
 	bl	%plt(__lttf2)
-	or	$r23,$r4,$r0
-	or	$r6,$r0,$r0
-	or	$r7,$r0,$r0
-	or	$r4,$r27,$r0
-	or	$r5,$r26,$r0
-	bstrpick.d	$r23,$r23,63,63
-	bl	%plt(__lttf2)
-	bstrpick.w	$r23,$r23,7,0
-	srli.d	$r4,$r4,63
-	beq	$r23,$r4,.L234
-	or	$r6,$r0,$r0
-	or	$r7,$r0,$r0
-	or	$r4,$r25,$r0
-	or	$r5,$r24,$r0
-	bl	%plt(__lttf2)
-	blt	$r4,$r0,.L233
-.L242:
-	or	$r25,$r27,$r0
+	blt	$r4,$r0,.L246
 	or	$r24,$r26,$r0
-.L233:
+	or	$r23,$r25,$r0
+.L246:
+	or	$r4,$r24,$r0
+	or	$r5,$r23,$r0
+.L239:
 	ld.d	$r1,$r3,40
 	.cfi_remember_state
 	.cfi_restore 1
 	ld.d	$r23,$r3,32
 	.cfi_restore 23
-	ld.d	$r26,$r3,8
-	.cfi_restore 26
-	ldptr.d	$r27,$r3,0
-	.cfi_restore 27
-	or	$r4,$r25,$r0
-	or	$r5,$r24,$r0
 	ld.d	$r24,$r3,24
 	.cfi_restore 24
 	ld.d	$r25,$r3,16
 	.cfi_restore 25
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
 	addi.d	$r3,$r3,48
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L234:
+.L251:
 	.cfi_restore_state
-	or	$r6,$r27,$r0
-	or	$r7,$r26,$r0
-	or	$r4,$r25,$r0
-	or	$r5,$r24,$r0
-	bl	%plt(__letf2)
-	bgt	$r4,$r0,.L242
-	b	.L233
+	ld.d	$r1,$r3,40
+	.cfi_remember_state
+	.cfi_restore 1
+	maskeqz	$r24,$r24,$r12
+	masknez	$r6,$r26,$r12
+	maskeqz	$r23,$r23,$r12
+	masknez	$r7,$r25,$r12
+	ld.d	$r26,$r3,8
+	.cfi_restore 26
+	ld.d	$r25,$r3,16
+	.cfi_restore 25
+	or	$r4,$r24,$r6
+	or	$r5,$r23,$r7
+	ld.d	$r23,$r3,32
+	.cfi_restore 23
+	ld.d	$r24,$r3,24
+	.cfi_restore 24
+	addi.d	$r3,$r3,48
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L245:
+	.cfi_restore_state
+	or	$r4,$r26,$r0
+	or	$r5,$r25,$r0
+	b	.L239
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
@@ -1274,17 +1425,17 @@ l64a:
 	.cfi_startproc
 	slli.w	$r4,$r4,0
 	la.local	$r12,.LANCHOR0
-	beqz	$r4,.L245
+	beqz	$r4,.L253
 	la.local	$r14,.LANCHOR1
 	.align	3
-.L246:
+.L254:
 	andi	$r13,$r4,63
 	ldx.bu	$r13,$r14,$r13
 	bstrpick.d	$r4,$r4,31,6
 	addi.d	$r12,$r12,1
 	st.b	$r13,$r12,-1
-	bnez	$r4,.L246
-.L245:
+	bnez	$r4,.L254
+.L253:
 	st.b	$r0,$r12,0
 	la.local	$r4,.LANCHOR0
 	jr	$r1
@@ -1334,18 +1485,18 @@ rand:
 insque:
 .LFB42 = .
 	.cfi_startproc
-	beqz	$r5,.L258
+	beqz	$r5,.L266
 	ldptr.d	$r12,$r5,0
 	st.d	$r5,$r4,8
 	stptr.d	$r12,$r4,0
 	stptr.d	$r4,$r5,0
 	ldptr.d	$r12,$r4,0
-	beqz	$r12,.L252
+	beqz	$r12,.L260
 	st.d	$r4,$r12,8
-.L252:
+.L260:
 	jr	$r1
 	.align	5
-.L258:
+.L266:
 	st.d	$r0,$r4,8
 	stptr.d	$r0,$r4,0
 	jr	$r1
@@ -1360,14 +1511,14 @@ remque:
 .LFB43 = .
 	.cfi_startproc
 	ldptr.d	$r12,$r4,0
-	beqz	$r12,.L260
+	beqz	$r12,.L268
 	ld.d	$r13,$r4,8
 	st.d	$r13,$r12,8
-.L260:
+.L268:
 	ld.d	$r13,$r4,8
-	beqz	$r13,.L259
+	beqz	$r13,.L267
 	stptr.d	$r12,$r13,0
-.L259:
+.L267:
 	jr	$r1
 	.cfi_endproc
 .LFE43:
@@ -1400,7 +1551,7 @@ lsearch:
 	or	$r27,$r4,$r0
 	or	$r30,$r5,$r0
 	or	$r25,$r7,$r0
-	beqz	$r26,.L269
+	beqz	$r26,.L277
 	st.d	$r23,$r3,64
 	st.d	$r24,$r3,56
 	stptr.d	$r31,$r3,0
@@ -1410,25 +1561,25 @@ lsearch:
 	or	$r23,$r5,$r0
 	or	$r31,$r8,$r0
 	or	$r24,$r0,$r0
-	b	.L271
+	b	.L279
 	.align	5
-.L286:
+.L294:
 	add.d	$r23,$r23,$r25
-	beq	$r26,$r24,.L285
-.L271:
+	beq	$r26,$r24,.L293
+.L279:
 	or	$r5,$r23,$r0
 	or	$r4,$r27,$r0
 	jirl	$r1,$r31,0
 	or	$r28,$r23,$r0
 	addi.d	$r24,$r24,1
-	bnez	$r4,.L286
+	bnez	$r4,.L294
 	ld.d	$r23,$r3,64
 	.cfi_restore 23
 	ld.d	$r24,$r3,56
 	.cfi_restore 24
 	ldptr.d	$r31,$r3,0
 	.cfi_restore 31
-.L268:
+.L276:
 	ld.d	$r1,$r3,72
 	.cfi_restore 1
 	ld.d	$r25,$r3,48
@@ -1448,7 +1599,7 @@ lsearch:
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L285:
+.L293:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 1, -8
 	.cfi_offset 23, -16
@@ -1466,17 +1617,17 @@ lsearch:
 	.cfi_restore 24
 	ldptr.d	$r31,$r3,0
 	.cfi_restore 31
-.L269:
+.L277:
 	mul.d	$r28,$r25,$r26
 	addi.d	$r26,$r26,1
 	stptr.d	$r26,$r29,0
 	add.d	$r28,$r30,$r28
-	beqz	$r25,.L268
+	beqz	$r25,.L276
 	or	$r6,$r25,$r0
 	or	$r5,$r27,$r0
 	or	$r4,$r28,$r0
 	bl	%plt(memmove)
-	b	.L268
+	b	.L276
 	.cfi_endproc
 .LFE44:
 	.size	lsearch, .-lsearch
@@ -1496,7 +1647,7 @@ lfind:
 	stptr.d	$r29,$r3,0
 	.cfi_offset 1, -8
 	.cfi_offset 29, -64
-	beqz	$r28,.L288
+	beqz	$r28,.L296
 	st.d	$r23,$r3,48
 	st.d	$r24,$r3,40
 	st.d	$r25,$r3,32
@@ -1512,18 +1663,18 @@ lfind:
 	or	$r26,$r8,$r0
 	or	$r23,$r5,$r0
 	or	$r24,$r0,$r0
-	b	.L290
+	b	.L298
 	.align	5
-.L301:
+.L309:
 	add.d	$r23,$r23,$r27
-	beq	$r28,$r24,.L300
-.L290:
+	beq	$r28,$r24,.L308
+.L298:
 	or	$r5,$r23,$r0
 	or	$r4,$r25,$r0
 	jirl	$r1,$r26,0
 	or	$r29,$r23,$r0
 	addi.d	$r24,$r24,1
-	bnez	$r4,.L301
+	bnez	$r4,.L309
 	ld.d	$r1,$r3,56
 	.cfi_remember_state
 	.cfi_restore 1
@@ -1546,7 +1697,7 @@ lfind:
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L300:
+.L308:
 	.cfi_restore_state
 	ld.d	$r23,$r3,48
 	.cfi_restore 23
@@ -1558,7 +1709,7 @@ lfind:
 	.cfi_restore 26
 	ld.d	$r27,$r3,16
 	.cfi_restore 27
-.L288:
+.L296:
 	ld.d	$r1,$r3,56
 	.cfi_restore 1
 	or	$r29,$r0,$r0
@@ -1596,27 +1747,27 @@ atoi:
 	.cfi_startproc
 	addi.w	$r14,$r0,32			# 0x20
 	addi.w	$r15,$r0,4			# 0x4
-.L310:
+.L318:
 	ld.b	$r13,$r4,0
 	addi.w	$r12,$r13,-9
-	beq	$r13,$r14,.L304
-	bleu	$r12,$r15,.L304
+	beq	$r13,$r14,.L312
+	bleu	$r12,$r15,.L312
 	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r13,$r12,.L305
+	beq	$r13,$r12,.L313
 	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L321
+	bne	$r13,$r12,.L329
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	or	$r4,$r0,$r0
-	bgtu	$r14,$r15,.L311
+	bgtu	$r14,$r15,.L319
 	addi.w	$r18,$r0,1			# 0x1
-.L308:
+.L316:
 	or	$r4,$r0,$r0
 	addi.w	$r17,$r0,9			# 0x9
 	.align	3
-.L312:
+.L320:
 	ld.b	$r13,$r12,1
 	alsl.w	$r4,$r4,$r4,2
 	slli.w	$r16,$r4,1
@@ -1624,36 +1775,36 @@ atoi:
 	sub.w	$r4,$r16,$r14
 	addi.w	$r14,$r13,-48
 	addi.d	$r12,$r12,1
-	bleu	$r14,$r17,.L312
+	bleu	$r14,$r17,.L320
 	sub.w	$r15,$r15,$r16
 	maskeqz	$r4,$r4,$r18
 	masknez	$r18,$r15,$r18
 	or	$r4,$r18,$r4
-.L311:
+.L319:
 	jr	$r1
 	.align	5
-.L304:
+.L312:
 	addi.d	$r4,$r4,1
-	b	.L310
+	b	.L318
 	.align	5
-.L321:
+.L329:
 	addi.w	$r14,$r13,-48
 	addi.w	$r13,$r0,9			# 0x9
 	or	$r12,$r4,$r0
 	or	$r18,$r0,$r0
-	bleu	$r14,$r13,.L308
-.L320:
+	bleu	$r14,$r13,.L316
+.L328:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L305:
+.L313:
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	or	$r18,$r0,$r0
-	bleu	$r14,$r15,.L308
-	b	.L320
+	bleu	$r14,$r15,.L316
+	b	.L328
 	.cfi_endproc
 .LFE47:
 	.size	atoi, .-atoi
@@ -1666,27 +1817,27 @@ atol:
 	.cfi_startproc
 	addi.w	$r14,$r0,32			# 0x20
 	addi.w	$r15,$r0,4			# 0x4
-.L329:
+.L337:
 	ld.b	$r13,$r4,0
 	addi.w	$r12,$r13,-9
-	beq	$r13,$r14,.L323
-	bleu	$r12,$r15,.L323
+	beq	$r13,$r14,.L331
+	bleu	$r12,$r15,.L331
 	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r13,$r12,.L324
+	beq	$r13,$r12,.L332
 	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L340
+	bne	$r13,$r12,.L348
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	or	$r4,$r0,$r0
-	bgtu	$r14,$r15,.L322
+	bgtu	$r14,$r15,.L330
 	addi.w	$r18,$r0,1			# 0x1
-.L327:
+.L335:
 	or	$r4,$r0,$r0
 	addi.w	$r17,$r0,9			# 0x9
 	.align	3
-.L331:
+.L339:
 	ld.b	$r13,$r12,1
 	alsl.d	$r4,$r4,$r4,2
 	slli.d	$r16,$r4,1
@@ -1694,36 +1845,36 @@ atol:
 	sub.d	$r4,$r16,$r14
 	addi.w	$r14,$r13,-48
 	addi.d	$r12,$r12,1
-	bleu	$r14,$r17,.L331
+	bleu	$r14,$r17,.L339
 	sub.d	$r15,$r15,$r16
 	maskeqz	$r4,$r4,$r18
 	masknez	$r18,$r15,$r18
 	or	$r4,$r18,$r4
-.L322:
+.L330:
 	jr	$r1
 	.align	5
-.L323:
+.L331:
 	addi.d	$r4,$r4,1
-	b	.L329
+	b	.L337
 	.align	5
-.L340:
+.L348:
 	addi.w	$r14,$r13,-48
 	addi.w	$r13,$r0,9			# 0x9
 	or	$r12,$r4,$r0
 	or	$r18,$r0,$r0
-	bleu	$r14,$r13,.L327
-.L339:
+	bleu	$r14,$r13,.L335
+.L347:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L324:
+.L332:
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	or	$r18,$r0,$r0
-	bleu	$r14,$r15,.L327
-	b	.L339
+	bleu	$r14,$r15,.L335
+	b	.L347
 	.cfi_endproc
 .LFE48:
 	.size	atol, .-atol
@@ -1736,26 +1887,26 @@ atoll:
 	.cfi_startproc
 	addi.w	$r14,$r0,32			# 0x20
 	addi.w	$r15,$r0,4			# 0x4
-.L346:
+.L354:
 	ld.b	$r13,$r4,0
 	addi.w	$r12,$r13,-9
-	beq	$r13,$r14,.L342
-	bleu	$r12,$r15,.L342
+	beq	$r13,$r14,.L350
+	bleu	$r12,$r15,.L350
 	addi.w	$r12,$r0,43			# 0x2b
-	beq	$r13,$r12,.L343
+	beq	$r13,$r12,.L351
 	addi.w	$r12,$r0,45			# 0x2d
-	bne	$r13,$r12,.L359
+	bne	$r13,$r12,.L367
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	addi.w	$r18,$r0,1			# 0x1
-	bgtu	$r14,$r15,.L358
-.L347:
+	bgtu	$r14,$r15,.L366
+.L355:
 	or	$r4,$r0,$r0
 	addi.w	$r17,$r0,9			# 0x9
 	.align	3
-.L350:
+.L358:
 	ld.b	$r13,$r12,1
 	alsl.d	$r4,$r4,$r4,2
 	slli.d	$r16,$r4,1
@@ -1763,37 +1914,37 @@ atoll:
 	sub.d	$r4,$r16,$r14
 	addi.w	$r14,$r13,-48
 	addi.d	$r12,$r12,1
-	bleu	$r14,$r17,.L350
+	bleu	$r14,$r17,.L358
 	sub.d	$r15,$r15,$r16
 	maskeqz	$r4,$r4,$r18
 	masknez	$r18,$r15,$r18
 	or	$r4,$r18,$r4
-.L341:
+.L349:
 	jr	$r1
 	.align	5
-.L342:
+.L350:
 	addi.d	$r4,$r4,1
-	b	.L346
+	b	.L354
 	.align	5
-.L359:
+.L367:
 	addi.w	$r14,$r13,-48
 	addi.w	$r13,$r0,9			# 0x9
 	or	$r12,$r4,$r0
 	or	$r18,$r0,$r0
-	bleu	$r14,$r13,.L347
-.L358:
+	bleu	$r14,$r13,.L355
+.L366:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L343:
+.L351:
 	ld.b	$r13,$r4,1
 	addi.w	$r15,$r0,9			# 0x9
 	addi.d	$r12,$r4,1
 	addi.w	$r14,$r13,-48
 	or	$r4,$r0,$r0
-	bgtu	$r14,$r15,.L341
+	bgtu	$r14,$r15,.L349
 	or	$r18,$r0,$r0
-	b	.L347
+	b	.L355
 	.cfi_endproc
 .LFE171:
 	.size	atoll, .-atoll
@@ -1810,7 +1961,7 @@ bsearch:
 	st.d	$r24,$r3,40
 	.cfi_offset 1, -8
 	.cfi_offset 24, -24
-	beqz	$r6,.L361
+	beqz	$r6,.L369
 	st.d	$r23,$r3,48
 	st.d	$r25,$r3,32
 	st.d	$r26,$r3,24
@@ -1829,7 +1980,7 @@ bsearch:
 	or	$r25,$r7,$r0
 	or	$r27,$r8,$r0
 	.align	3
-.L364:
+.L372:
 	srli.d	$r29,$r23,1
 	mul.d	$r24,$r29,$r25
 	or	$r4,$r28,$r0
@@ -1837,12 +1988,12 @@ bsearch:
 	add.d	$r24,$r26,$r24
 	or	$r5,$r24,$r0
 	jirl	$r1,$r27,0
-	blt	$r4,$r0,.L365
-	beqz	$r4,.L374
+	blt	$r4,$r0,.L373
+	beqz	$r4,.L382
 	sub.d	$r23,$r23,$r29
 	add.d	$r26,$r24,$r25
-	bnez	$r23,.L364
-.L375:
+	bnez	$r23,.L372
+.L383:
 	ld.d	$r23,$r3,48
 	.cfi_restore 23
 	ld.d	$r25,$r3,32
@@ -1855,7 +2006,7 @@ bsearch:
 	.cfi_restore 28
 	ldptr.d	$r29,$r3,0
 	.cfi_restore 29
-.L361:
+.L369:
 	ld.d	$r1,$r3,56
 	.cfi_restore 1
 	or	$r24,$r0,$r0
@@ -1866,7 +2017,7 @@ bsearch:
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L365:
+.L373:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 1, -8
 	.cfi_offset 23, -16
@@ -1877,10 +2028,10 @@ bsearch:
 	.cfi_offset 28, -56
 	.cfi_offset 29, -64
 	or	$r23,$r29,$r0
-	bnez	$r23,.L364
-	b	.L375
+	bnez	$r23,.L372
+	b	.L383
 	.align	5
-.L374:
+.L382:
 	ld.d	$r1,$r3,56
 	.cfi_restore 1
 	ld.d	$r23,$r3,48
@@ -1935,11 +2086,11 @@ bsearch_r:
 	or	$r25,$r7,$r0
 	or	$r28,$r8,$r0
 	or	$r27,$r9,$r0
-	beqz	$r23,.L381
+	beqz	$r23,.L389
 	st.d	$r30,$r3,8
 	.cfi_offset 30, -72
 	.align	3
-.L377:
+.L385:
 	srai.d	$r30,$r23,1
 	mul.d	$r24,$r30,$r25
 	or	$r6,$r27,$r0
@@ -1949,16 +2100,16 @@ bsearch_r:
 	add.d	$r24,$r26,$r24
 	or	$r5,$r24,$r0
 	jirl	$r1,$r28,0
-	beqz	$r4,.L391
-	ble	$r4,$r0,.L379
+	beqz	$r4,.L399
+	ble	$r4,$r0,.L387
 	add.d	$r26,$r24,$r25
-	bnez	$r23,.L377
-.L392:
+	bnez	$r23,.L385
+.L400:
 	ld.d	$r30,$r3,8
 	.cfi_restore 30
-.L381:
+.L389:
 	or	$r24,$r0,$r0
-.L376:
+.L384:
 	ld.d	$r1,$r3,72
 	.cfi_restore 1
 	ld.d	$r23,$r3,64
@@ -1980,7 +2131,7 @@ bsearch_r:
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L379:
+.L387:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 1, -8
 	.cfi_offset 23, -16
@@ -1991,14 +2142,14 @@ bsearch_r:
 	.cfi_offset 28, -56
 	.cfi_offset 29, -64
 	.cfi_offset 30, -72
-	beqz	$r30,.L392
+	beqz	$r30,.L400
 	or	$r23,$r30,$r0
-	b	.L377
+	b	.L385
 	.align	5
-.L391:
+.L399:
 	ld.d	$r30,$r3,8
 	.cfi_restore 30
-	b	.L376
+	b	.L384
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r
@@ -2111,18 +2262,18 @@ wcschr:
 .LFB59 = .
 	.cfi_startproc
 	ldptr.w	$r12,$r4,0
-	beqz	$r12,.L404
+	beqz	$r12,.L412
 	.align	3
-.L401:
-	beq	$r5,$r12,.L406
+.L409:
+	beq	$r5,$r12,.L414
 	ldptr.w	$r12,$r4,4
 	addi.d	$r4,$r4,4
-	bnez	$r12,.L401
-.L404:
+	bnez	$r12,.L409
+.L412:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L406:
+.L414:
 	jr	$r1
 	.cfi_endproc
 .LFE59:
@@ -2138,15 +2289,15 @@ wcscmp:
 	ldptr.w	$r13,$r4,0
 	addi.w	$r12,$r0,4			# 0x4
 	addi.d	$r5,$r5,-4
-	bne	$r13,$r14,.L409
+	bne	$r13,$r14,.L417
 	.align	3
-.L408:
-	beqz	$r13,.L409
+.L416:
+	beqz	$r13,.L417
 	ldx.w	$r13,$r4,$r12
 	addi.d	$r12,$r12,4
 	ldx.w	$r14,$r5,$r12
-	beq	$r13,$r14,.L408
-.L409:
+	beq	$r13,$r14,.L416
+.L417:
 	slt	$r4,$r13,$r14
 	addi.w	$r12,$r0,-1			# 0xffffffffffffffff
 	slt	$r13,$r14,$r13
@@ -2166,11 +2317,11 @@ wcscpy:
 	.cfi_startproc
 	or	$r12,$r0,$r0
 	.align	3
-.L416:
+.L424:
 	ldx.w	$r13,$r5,$r12
 	stx.w	$r13,$r4,$r12
 	addi.d	$r12,$r12,4
-	bnez	$r13,.L416
+	bnez	$r13,.L424
 	jr	$r1
 	.cfi_endproc
 .LFE61:
@@ -2183,18 +2334,18 @@ wcslen:
 .LFB62 = .
 	.cfi_startproc
 	ldptr.w	$r12,$r4,0
-	beqz	$r12,.L421
+	beqz	$r12,.L429
 	or	$r12,$r4,$r0
 	.align	3
-.L420:
+.L428:
 	ldptr.w	$r13,$r12,4
 	addi.d	$r12,$r12,4
-	bnez	$r13,.L420
+	bnez	$r13,.L428
 	sub.d	$r4,$r12,$r4
 	srai.d	$r4,$r4,2
 	jr	$r1
 	.align	5
-.L421:
+.L429:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.cfi_endproc
@@ -2207,22 +2358,22 @@ wcslen:
 wcsncmp:
 .LFB63 = .
 	.cfi_startproc
-	beqz	$r6,.L429
+	beqz	$r6,.L437
 	.align	3
-.L434:
+.L442:
 	ldptr.w	$r12,$r5,0
 	ldptr.w	$r13,$r4,0
 	addi.d	$r6,$r6,-1
-	bne	$r12,$r13,.L426
-	beqz	$r12,.L426
+	bne	$r12,$r13,.L434
+	beqz	$r12,.L434
 	addi.d	$r4,$r4,4
 	addi.d	$r5,$r5,4
-	bnez	$r6,.L434
-.L429:
+	bnez	$r6,.L442
+.L437:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L426:
+.L434:
 	ldptr.w	$r12,$r4,0
 	ldptr.w	$r14,$r5,0
 	addi.w	$r15,$r0,-1			# 0xffffffffffffffff
@@ -2242,19 +2393,19 @@ wcsncmp:
 wmemchr:
 .LFB64 = .
 	.cfi_startproc
-	beqz	$r6,.L439
+	beqz	$r6,.L447
 	.align	3
-.L444:
+.L452:
 	ldptr.w	$r12,$r4,0
 	addi.d	$r6,$r6,-1
-	beq	$r12,$r5,.L443
+	beq	$r12,$r5,.L451
 	addi.d	$r4,$r4,4
-	bnez	$r6,.L444
-.L439:
+	bnez	$r6,.L452
+.L447:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L443:
+.L451:
 	jr	$r1
 	.cfi_endproc
 .LFE64:
@@ -2266,21 +2417,21 @@ wmemchr:
 wmemcmp:
 .LFB65 = .
 	.cfi_startproc
-	beqz	$r6,.L451
+	beqz	$r6,.L459
 	.align	3
-.L458:
+.L466:
 	ldptr.w	$r13,$r4,0
 	ldptr.w	$r12,$r5,0
 	addi.d	$r6,$r6,-1
-	bne	$r13,$r12,.L457
+	bne	$r13,$r12,.L465
 	addi.d	$r4,$r4,4
 	addi.d	$r5,$r5,4
-	bnez	$r6,.L458
-.L451:
+	bnez	$r6,.L466
+.L459:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L457:
+.L465:
 	ldptr.w	$r12,$r4,0
 	ldptr.w	$r14,$r5,0
 	addi.w	$r15,$r0,-1			# 0xffffffffffffffff
@@ -2307,10 +2458,10 @@ wmemcpy:
 	.cfi_offset 23, -16
 	.cfi_offset 1, -8
 	or	$r23,$r4,$r0
-	beqz	$r6,.L460
+	beqz	$r6,.L468
 	slli.d	$r6,$r6,2
 	bl	%plt(memcpy)
-.L460:
+.L468:
 	ld.d	$r1,$r3,8
 	.cfi_restore 1
 	or	$r4,$r23,$r0
@@ -2329,14 +2480,14 @@ wmemcpy:
 wmemmove:
 .LFB67 = .
 	.cfi_startproc
-	beq	$r4,$r5,.L498
+	beq	$r4,$r5,.L506
 	slli.d	$r12,$r6,2
 	sub.d	$r13,$r4,$r5
 	addi.d	$r14,$r6,-1
-	bgeu	$r13,$r12,.L519
-	beqz	$r6,.L498
+	bgeu	$r13,$r12,.L527
+	beqz	$r6,.L506
 	addi.w	$r13,$r0,15			# 0xf
-	bleu	$r14,$r13,.L470
+	bleu	$r14,$r13,.L478
 	addi.d	$r13,$r12,-4
 	addi.d	$r15,$r12,-8
 	add.d	$r13,$r4,$r13
@@ -2344,21 +2495,21 @@ wmemmove:
 	sub.d	$r13,$r13,$r15
 	addi.w	$r16,$r0,8			# 0x8
 	addi.d	$r13,$r13,8
-	bleu	$r13,$r16,.L471
+	bleu	$r13,$r16,.L479
 	addi.d	$r12,$r12,-16
 	srli.d	$r19,$r6,2
 	addi.w	$r15,$r0,4			# 0x4
 	add.d	$r13,$r5,$r12
 	or	$r17,$r0,$r0
 	add.d	$r12,$r4,$r12
-	bleu	$r19,$r15,.L472
+	bleu	$r19,$r15,.L480
 	addi.d	$r18,$r19,-5
 	addi.w	$r16,$r0,-4			# 0xfffffffffffffffc
 	and	$r18,$r18,$r16
 	or	$r15,$r0,$r0
 	addi.d	$r17,$r18,4
 	.align	3
-.L473:
+.L481:
 	vld	$vr0,$r13,0
 	preld	0,$r13,-464
 	vst	$vr0,$r12,0
@@ -2372,44 +2523,44 @@ wmemmove:
 	vst	$vr0,$r12,-48
 	addi.d	$r13,$r13,-64
 	addi.d	$r12,$r12,-64
-	bne	$r16,$r18,.L473
-.L472:
+	bne	$r16,$r18,.L481
+.L480:
 	or	$r15,$r0,$r0
-.L474:
+.L482:
 	vldx	$vr0,$r13,$r15
 	addi.d	$r17,$r17,1
 	vstx	$vr0,$r12,$r15
 	addi.d	$r15,$r15,-16
-	bgtu	$r19,$r17,.L474
+	bgtu	$r19,$r17,.L482
 	addi.w	$r12,$r0,-4			# 0xfffffffffffffffc
 	and	$r12,$r6,$r12
 	andi	$r13,$r6,3
 	sub.d	$r12,$r14,$r12
-	beqz	$r13,.L498
+	beqz	$r13,.L506
 	slli.d	$r13,$r12,2
 	ldx.w	$r14,$r5,$r13
 	stx.w	$r14,$r4,$r13
-	beqz	$r12,.L498
+	beqz	$r12,.L506
 	addi.d	$r12,$r12,-1
 	slli.d	$r13,$r12,2
 	ldx.w	$r14,$r5,$r13
 	stx.w	$r14,$r4,$r13
-	beqz	$r12,.L498
+	beqz	$r12,.L506
 	addi.d	$r13,$r13,-4
 	ldx.w	$r12,$r5,$r13
 	stx.w	$r12,$r4,$r13
 	jr	$r1
 	.align	5
-.L519:
-	beqz	$r6,.L520
+.L527:
+	beqz	$r6,.L528
 	addi.w	$r13,$r0,8			# 0x8
-	bleu	$r14,$r13,.L491
+	bleu	$r14,$r13,.L499
 	addi.d	$r12,$r5,4
 	sub.d	$r12,$r4,$r12
-	bleu	$r12,$r13,.L480
+	bleu	$r12,$r13,.L488
 	srli.d	$r19,$r6,2
 	addi.w	$r12,$r0,4			# 0x4
-	bleu	$r19,$r12,.L490
+	bleu	$r19,$r12,.L498
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	addi.d	$r18,$r19,-5
 	and	$r18,$r18,$r15
@@ -2418,7 +2569,7 @@ wmemmove:
 	or	$r15,$r0,$r0
 	addi.d	$r17,$r18,4
 	.align	3
-.L482:
+.L490:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -2432,15 +2583,15 @@ wmemmove:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r16,$r18,.L482
-.L481:
+	bne	$r16,$r18,.L490
+.L489:
 	or	$r15,$r0,$r0
-.L483:
+.L491:
 	vldx	$vr0,$r12,$r15
 	addi.d	$r17,$r17,1
 	vstx	$vr0,$r13,$r15
 	addi.d	$r15,$r15,16
-	bgtu	$r19,$r17,.L483
+	bgtu	$r19,$r17,.L491
 	addi.w	$r12,$r0,-4			# 0xfffffffffffffffc
 	andi	$r13,$r6,3
 	and	$r6,$r6,$r12
@@ -2448,28 +2599,28 @@ wmemmove:
 	add.d	$r15,$r5,$r12
 	sub.d	$r6,$r14,$r6
 	add.d	$r14,$r4,$r12
-	beqz	$r13,.L498
+	beqz	$r13,.L506
 	ldx.w	$r13,$r5,$r12
 	stx.w	$r13,$r4,$r12
-	bnez	$r6,.L521
-.L498:
+	bnez	$r6,.L529
+.L506:
 	jr	$r1
 	.align	5
-.L521:
+.L529:
 	ldptr.w	$r13,$r15,4
 	addi.w	$r12,$r0,1			# 0x1
 	st.w	$r13,$r14,4
-	beq	$r6,$r12,.L498
+	beq	$r6,$r12,.L506
 	ldptr.w	$r12,$r15,8
 	st.w	$r12,$r14,8
 	jr	$r1
-.L471:
+.L479:
 	addi.d	$r12,$r12,-104
 	add.d	$r13,$r5,$r12
 	addi.w	$r16,$r0,15			# 0xf
 	add.d	$r12,$r4,$r12
 	.align	3
-.L476:
+.L484:
 	ldptr.w	$r15,$r13,100
 	preld	8,$r12,0
 	addi.d	$r12,$r12,-64
@@ -2507,43 +2658,43 @@ wmemmove:
 	st.w	$r15,$r12,108
 	ldptr.w	$r15,$r13,104
 	st.w	$r15,$r12,104
-	bgtu	$r14,$r16,.L476
-.L470:
+	bgtu	$r14,$r16,.L484
+.L478:
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,2
 	addi.w	$r13,$r0,-4			# 0xfffffffffffffffc
 	.align	3
-.L477:
+.L485:
 	ldx.w	$r12,$r5,$r14
 	stx.w	$r12,$r4,$r14
 	addi.d	$r14,$r14,-4
-	bne	$r14,$r13,.L477
+	bne	$r14,$r13,.L485
 	jr	$r1
 	.align	5
-.L520:
+.L528:
 	jr	$r1
 	.align	5
-.L491:
+.L499:
 	or	$r12,$r4,$r0
-.L479:
+.L487:
 	addi.d	$r14,$r14,1
 	or	$r13,$r0,$r0
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,2
 	.align	3
-.L486:
+.L494:
 	ldx.w	$r15,$r5,$r13
 	stx.w	$r15,$r12,$r13
 	addi.d	$r13,$r13,4
-	bne	$r14,$r13,.L486
+	bne	$r14,$r13,.L494
 	jr	$r1
-.L480:
+.L488:
 	addi.w	$r12,$r0,15			# 0xf
-	bleu	$r14,$r12,.L491
+	bleu	$r14,$r12,.L499
 	or	$r12,$r4,$r0
 	addi.w	$r15,$r0,15			# 0xf
 	.align	3
-.L485:
+.L493:
 	ldptr.w	$r13,$r5,0
 	preld	8,$r12,116
 	addi.d	$r12,$r12,64
@@ -2581,13 +2732,13 @@ wmemmove:
 	st.w	$r13,$r12,-8
 	ldptr.w	$r13,$r5,-4
 	st.w	$r13,$r12,-4
-	bgtu	$r14,$r15,.L485
-	b	.L479
-.L490:
+	bgtu	$r14,$r15,.L493
+	b	.L487
+.L498:
 	or	$r13,$r4,$r0
 	or	$r12,$r5,$r0
 	or	$r17,$r0,$r0
-	b	.L481
+	b	.L489
 	.cfi_endproc
 .LFE67:
 	.size	wmemmove, .-wmemmove
@@ -2599,36 +2750,36 @@ wmemset:
 .LFB68 = .
 	.cfi_startproc
 	addi.d	$r15,$r6,-1
-	beqz	$r6,.L523
+	beqz	$r6,.L531
 	addi.w	$r12,$r0,2			# 0x2
-	bleu	$r15,$r12,.L527
+	bleu	$r15,$r12,.L535
 	srli.d	$r14,$r6,2
 	vreplgr2vr.w	$vr0,$r5
 	or	$r12,$r0,$r0
 	.align	3
-.L525:
+.L533:
 	slli.d	$r13,$r12,4
 	vstx	$vr0,$r4,$r13
 	addi.d	$r12,$r12,1
-	bne	$r14,$r12,.L525
+	bne	$r14,$r12,.L533
 	andi	$r12,$r6,3
-	beqz	$r12,.L523
+	beqz	$r12,.L531
 	addi.w	$r12,$r0,-4			# 0xfffffffffffffffc
 	and	$r6,$r6,$r12
 	sub.d	$r15,$r15,$r6
 	alsl.d	$r6,$r6,$r4,2
-.L524:
+.L532:
 	stptr.w	$r5,$r6,0
-	beqz	$r15,.L523
+	beqz	$r15,.L531
 	st.w	$r5,$r6,4
 	addi.w	$r12,$r0,1			# 0x1
-	beq	$r15,$r12,.L523
+	beq	$r15,$r12,.L531
 	st.w	$r5,$r6,8
-.L523:
+.L531:
 	jr	$r1
-.L527:
+.L535:
 	or	$r6,$r4,$r0
-	b	.L524
+	b	.L532
 	.cfi_endproc
 .LFE68:
 	.size	wmemset, .-wmemset
@@ -2639,31 +2790,31 @@ wmemset:
 bcopy:
 .LFB69 = .
 	.cfi_startproc
-	bgeu	$r4,$r5,.L539
-	beqz	$r6,.L538
+	bgeu	$r4,$r5,.L547
+	beqz	$r6,.L546
 	addi.d	$r12,$r6,-1
 	addi.w	$r15,$r0,14			# 0xe
-	bleu	$r12,$r15,.L541
+	bleu	$r12,$r15,.L549
 	addi.d	$r14,$r6,-2
 	add.d	$r13,$r5,$r12
 	add.d	$r14,$r4,$r14
 	sub.d	$r13,$r13,$r14
 	addi.d	$r13,$r13,14
-	bleu	$r13,$r15,.L541
+	bleu	$r13,$r15,.L549
 	addi.d	$r13,$r6,-16
 	srli.d	$r18,$r6,4
 	addi.w	$r14,$r0,4			# 0x4
 	add.d	$r12,$r4,$r13
 	or	$r16,$r0,$r0
 	add.d	$r13,$r5,$r13
-	bleu	$r18,$r14,.L542
+	bleu	$r18,$r14,.L550
 	addi.d	$r17,$r18,-5
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.d	$r16,$r17,4
 	.align	3
-.L543:
+.L551:
 	vld	$vr0,$r12,0
 	preld	0,$r12,-464
 	vst	$vr0,$r13,0
@@ -2677,95 +2828,95 @@ bcopy:
 	vst	$vr0,$r13,-48
 	addi.d	$r12,$r12,-64
 	addi.d	$r13,$r13,-64
-	bne	$r15,$r17,.L543
-.L542:
+	bne	$r15,$r17,.L551
+.L550:
 	or	$r14,$r0,$r0
-.L544:
+.L552:
 	vldx	$vr0,$r12,$r14
 	addi.d	$r16,$r16,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,-16
-	bgtu	$r18,$r16,.L544
+	bgtu	$r18,$r16,.L552
 	andi	$r12,$r6,15
 	add.d	$r5,$r5,$r12
 	add.d	$r4,$r4,$r12
-	beqz	$r12,.L538
+	beqz	$r12,.L546
 	ld.b	$r14,$r4,-1
 	addi.w	$r13,$r0,1			# 0x1
 	st.b	$r14,$r5,-1
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-2
 	addi.w	$r13,$r0,2			# 0x2
 	st.b	$r14,$r5,-2
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-3
 	addi.w	$r13,$r0,3			# 0x3
 	st.b	$r14,$r5,-3
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-4
 	addi.w	$r13,$r0,4			# 0x4
 	st.b	$r14,$r5,-4
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-5
 	addi.w	$r13,$r0,5			# 0x5
 	st.b	$r14,$r5,-5
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-6
 	addi.w	$r13,$r0,6			# 0x6
 	st.b	$r14,$r5,-6
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-7
 	addi.w	$r13,$r0,7			# 0x7
 	st.b	$r14,$r5,-7
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-8
 	addi.w	$r13,$r0,8			# 0x8
 	st.b	$r14,$r5,-8
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-9
 	addi.w	$r13,$r0,9			# 0x9
 	st.b	$r14,$r5,-9
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-10
 	addi.w	$r13,$r0,10			# 0xa
 	st.b	$r14,$r5,-10
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-11
 	addi.w	$r13,$r0,11			# 0xb
 	st.b	$r14,$r5,-11
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-12
 	addi.w	$r13,$r0,12			# 0xc
 	st.b	$r14,$r5,-12
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-13
 	addi.w	$r13,$r0,13			# 0xd
 	st.b	$r14,$r5,-13
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r14,$r4,-14
 	addi.w	$r13,$r0,14			# 0xe
 	st.b	$r14,$r5,-14
-	beq	$r12,$r13,.L538
+	beq	$r12,$r13,.L546
 	ld.b	$r12,$r4,-15
 	st.b	$r12,$r5,-15
 	jr	$r1
 	.align	5
-.L539:
-	bne	$r4,$r5,.L578
-.L538:
+.L547:
+	bne	$r4,$r5,.L586
+.L546:
 	jr	$r1
 	.align	5
-.L578:
-	beqz	$r6,.L538
+.L586:
+	beqz	$r6,.L546
 	addi.d	$r12,$r6,-1
 	addi.w	$r13,$r0,14			# 0xe
-	bleu	$r12,$r13,.L557
+	bleu	$r12,$r13,.L565
 	addi.d	$r12,$r4,1
 	sub.d	$r12,$r5,$r12
-	bleu	$r12,$r13,.L557
+	bleu	$r12,$r13,.L565
 	srli.d	$r18,$r6,4
 	addi.w	$r12,$r0,4			# 0x4
-	bleu	$r18,$r12,.L558
+	bleu	$r18,$r12,.L566
 	addi.w	$r14,$r0,-4			# 0xfffffffffffffffc
 	addi.d	$r17,$r18,-5
 	and	$r17,$r17,$r14
@@ -2774,7 +2925,7 @@ bcopy:
 	or	$r14,$r0,$r0
 	addi.d	$r16,$r17,4
 	.align	3
-.L550:
+.L558:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -2788,110 +2939,110 @@ bcopy:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r15,$r17,.L550
-.L549:
+	bne	$r15,$r17,.L558
+.L557:
 	or	$r14,$r0,$r0
-.L551:
+.L559:
 	vldx	$vr0,$r12,$r14
 	addi.d	$r16,$r16,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,16
-	bltu	$r16,$r18,.L551
+	bltu	$r16,$r18,.L559
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	and	$r12,$r6,$r12
 	andi	$r15,$r6,15
 	add.d	$r13,$r5,$r12
 	add.d	$r14,$r4,$r12
 	sub.d	$r6,$r6,$r12
-	beqz	$r15,.L538
+	beqz	$r15,.L546
 	ldx.b	$r16,$r4,$r12
 	addi.w	$r15,$r0,1			# 0x1
 	stx.b	$r16,$r5,$r12
-	beq	$r6,$r15,.L538
+	beq	$r6,$r15,.L546
 	ld.b	$r15,$r14,1
 	addi.w	$r12,$r0,2			# 0x2
 	st.b	$r15,$r13,1
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,2
 	addi.w	$r12,$r0,3			# 0x3
 	st.b	$r15,$r13,2
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,3
 	addi.w	$r12,$r0,4			# 0x4
 	st.b	$r15,$r13,3
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,4
 	addi.w	$r12,$r0,5			# 0x5
 	st.b	$r15,$r13,4
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,5
 	addi.w	$r12,$r0,6			# 0x6
 	st.b	$r15,$r13,5
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,6
 	addi.w	$r12,$r0,7			# 0x7
 	st.b	$r15,$r13,6
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,7
 	addi.w	$r12,$r0,8			# 0x8
 	st.b	$r15,$r13,7
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,8
 	addi.w	$r12,$r0,9			# 0x9
 	st.b	$r15,$r13,8
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,9
 	addi.w	$r12,$r0,10			# 0xa
 	st.b	$r15,$r13,9
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,10
 	addi.w	$r12,$r0,11			# 0xb
 	st.b	$r15,$r13,10
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,11
 	addi.w	$r12,$r0,12			# 0xc
 	st.b	$r15,$r13,11
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,12
 	addi.w	$r12,$r0,13			# 0xd
 	st.b	$r15,$r13,12
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r15,$r14,13
 	addi.w	$r12,$r0,14			# 0xe
 	st.b	$r15,$r13,13
-	beq	$r6,$r12,.L538
+	beq	$r6,$r12,.L546
 	ld.b	$r12,$r14,14
 	st.b	$r12,$r13,14
 	jr	$r1
 	.align	5
-.L541:
+.L549:
 	addi.d	$r4,$r4,-1
 	addi.d	$r5,$r5,-1
-	b	.L546
+	b	.L554
 	.align	5
-.L579:
+.L587:
 	addi.d	$r12,$r12,-1
-.L546:
+.L554:
 	ldx.b	$r13,$r4,$r6
 	stx.b	$r13,$r5,$r6
 	or	$r6,$r12,$r0
-	bnez	$r12,.L579
+	bnez	$r12,.L587
 	jr	$r1
 	.align	5
-.L557:
+.L565:
 	or	$r12,$r0,$r0
 	.align	3
-.L553:
+.L561:
 	ldx.b	$r13,$r4,$r12
 	stx.b	$r13,$r5,$r12
 	addi.d	$r12,$r12,1
-	bne	$r6,$r12,.L553
+	bne	$r6,$r12,.L561
 	jr	$r1
-.L558:
+.L566:
 	or	$r13,$r5,$r0
 	or	$r12,$r4,$r0
 	or	$r16,$r0,$r0
-	b	.L549
+	b	.L557
 	.cfi_endproc
 .LFE69:
 	.size	bcopy, .-bcopy
@@ -3090,19 +3241,19 @@ ffs:
 	.cfi_startproc
 	or	$r13,$r0,$r0
 	addi.w	$r14,$r0,32			# 0x20
-	b	.L596
+	b	.L604
 	.align	5
-.L594:
-	beq	$r13,$r14,.L598
-.L596:
+.L602:
+	beq	$r13,$r14,.L606
+.L604:
 	srl.w	$r12,$r4,$r13
 	andi	$r12,$r12,1
 	addi.w	$r13,$r13,1
-	beqz	$r12,.L594
+	beqz	$r12,.L602
 	or	$r4,$r13,$r0
 	jr	$r1
 	.align	5
-.L598:
+.L606:
 	or	$r4,$r0,$r0
 	jr	$r1
 	.cfi_endproc
@@ -3116,21 +3267,21 @@ libiberty_ffs:
 .LFB84 = .
 	.cfi_startproc
 	or	$r12,$r4,$r0
-	beqz	$r4,.L602
+	beqz	$r4,.L610
 	andi	$r4,$r4,1
-	bnez	$r4,.L600
+	bnez	$r4,.L608
 	addi.w	$r4,$r0,1			# 0x1
 	.align	3
-.L601:
+.L609:
 	srai.d	$r12,$r12,1
 	andi	$r13,$r12,1
 	addi.w	$r4,$r4,1
-	beqz	$r13,.L601
+	beqz	$r13,.L609
 	jr	$r1
 	.align	5
-.L602:
+.L610:
 	or	$r4,$r0,$r0
-.L600:
+.L608:
 	jr	$r1
 	.cfi_endproc
 .LFE84:
@@ -3142,7 +3293,18 @@ libiberty_ffs:
 gl_isinff:
 .LFB85 = .
 	.cfi_startproc
-	or	$r4,$r0,$r0
+	pcalau12i	$r12,%pc_hi20(.LC0)
+	fld.s	$f1,$r12,%pc_lo12(.LC0)
+	addi.w	$r4,$r0,1			# 0x1
+	fcmp.slt.s	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L614
+	pcalau12i	$r12,%pc_hi20(.LC1)
+	fld.s	$f1,$r12,%pc_lo12(.LC1)
+	fcmp.sgt.s	$fcc0,$f0,$f1
+	movcf2fr	$f0,$fcc0
+	movfr2gr.s	$r4,$f0
+	slli.w	$r4,$r4,0
+.L614:
 	jr	$r1
 	.cfi_endproc
 .LFE85:
@@ -3154,7 +3316,18 @@ gl_isinff:
 gl_isinfd:
 .LFB86 = .
 	.cfi_startproc
-	or	$r4,$r0,$r0
+	pcalau12i	$r12,%pc_hi20(.LC4)
+	fld.d	$f1,$r12,%pc_lo12(.LC4)
+	addi.w	$r4,$r0,1			# 0x1
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L617
+	pcalau12i	$r12,%pc_hi20(.LC5)
+	fld.d	$f1,$r12,%pc_lo12(.LC5)
+	fcmp.sgt.d	$fcc0,$f0,$f1
+	movcf2fr	$f0,$fcc0
+	movfr2gr.s	$r4,$f0
+	slli.w	$r4,$r4,0
+.L617:
 	jr	$r1
 	.cfi_endproc
 .LFE86:
@@ -3166,7 +3339,50 @@ gl_isinfd:
 gl_isinfl:
 .LFB87 = .
 	.cfi_startproc
-	or	$r4,$r0,$r0
+	la.local	$r12,.LC8
+	ldptr.d	$r6,$r12,0
+	ld.d	$r7,$r12,8
+	addi.d	$r3,$r3,-32
+	.cfi_def_cfa_offset 32
+	st.d	$r23,$r3,16
+	st.d	$r24,$r3,8
+	st.d	$r1,$r3,24
+	.cfi_offset 23, -16
+	.cfi_offset 24, -24
+	.cfi_offset 1, -8
+	or	$r24,$r4,$r0
+	or	$r23,$r5,$r0
+	bl	%plt(__lttf2)
+	blt	$r4,$r0,.L622
+	la.local	$r12,.LC9
+	ldptr.d	$r6,$r12,0
+	ld.d	$r7,$r12,8
+	or	$r4,$r24,$r0
+	or	$r5,$r23,$r0
+	bl	%plt(__gttf2)
+	ld.d	$r1,$r3,24
+	.cfi_remember_state
+	.cfi_restore 1
+	ld.d	$r23,$r3,16
+	.cfi_restore 23
+	ld.d	$r24,$r3,8
+	.cfi_restore 24
+	slt	$r4,$r0,$r4
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_offset 0
+	jr	$r1
+	.align	5
+.L622:
+	.cfi_restore_state
+	ld.d	$r1,$r3,24
+	.cfi_restore 1
+	ld.d	$r23,$r3,16
+	.cfi_restore 23
+	ld.d	$r24,$r3,8
+	.cfi_restore 24
+	addi.w	$r4,$r0,1			# 0x1
+	addi.d	$r3,$r3,32
+	.cfi_def_cfa_offset 0
 	jr	$r1
 	.cfi_endproc
 .LFE87:
@@ -3207,45 +3423,43 @@ _Qp_itoq:
 ldexpf:
 .LFB89 = .
 	.cfi_startproc
+	fcmp.cun.s	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L627
 	fadd.s	$f1,$f0,$f0
 	fcmp.ceq.s	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L611
-	pcalau12i	$r12,%pc_hi20(.LC0)
-	fld.s	$f1,$r12,%pc_lo12(.LC0)
-	blt	$r4,$r0,.L623
+	bcnez	$fcc0,.L627
+	pcalau12i	$r12,%pc_hi20(.LC10)
+	fld.s	$f1,$r12,%pc_lo12(.LC10)
+	bge	$r4,$r0,.L628
+	pcalau12i	$r12,%pc_hi20(.LC11)
+	fld.s	$f1,$r12,%pc_lo12(.LC11)
+.L628:
 	andi	$r12,$r4,1
-	beqz	$r12,.L613
+	beqz	$r12,.L629
 	.align	3
-.L614:
+.L630:
 	fmul.s	$f0,$f0,$f1
-.L613:
+.L629:
 	srli.w	$r12,$r4,31
 	add.w	$r4,$r12,$r4
 	srai.d	$r4,$r4,1
-	beqz	$r4,.L611
+	beqz	$r4,.L627
 	srli.w	$r12,$r4,31
 	andi	$r13,$r4,1
 	fmul.s	$f1,$f1,$f1
 	add.w	$r12,$r12,$r4
-	bnez	$r13,.L614
-.L624:
+	bnez	$r13,.L630
+.L639:
 	srai.d	$r4,$r12,1
 	srli.w	$r12,$r4,31
 	andi	$r13,$r4,1
 	fmul.s	$f1,$f1,$f1
 	add.w	$r12,$r12,$r4
-	bnez	$r13,.L614
-	b	.L624
+	bnez	$r13,.L630
+	b	.L639
 	.align	5
-.L611:
+.L627:
 	jr	$r1
-	.align	5
-.L623:
-	pcalau12i	$r12,%pc_hi20(.LC1)
-	fld.s	$f1,$r12,%pc_lo12(.LC1)
-	andi	$r12,$r4,1
-	beqz	$r12,.L613
-	b	.L614
 	.cfi_endproc
 .LFE89:
 	.size	ldexpf, .-ldexpf
@@ -3256,45 +3470,43 @@ ldexpf:
 ldexp:
 .LFB90 = .
 	.cfi_startproc
+	fcmp.cun.d	$fcc0,$f0,$f0
+	bcnez	$fcc0,.L641
 	fadd.d	$f1,$f0,$f0
 	fcmp.ceq.d	$fcc0,$f1,$f0
-	bcnez	$fcc0,.L626
-	pcalau12i	$r12,%pc_hi20(.LC2)
-	fld.d	$f1,$r12,%pc_lo12(.LC2)
-	blt	$r4,$r0,.L638
+	bcnez	$fcc0,.L641
+	pcalau12i	$r12,%pc_hi20(.LC12)
+	fld.d	$f1,$r12,%pc_lo12(.LC12)
+	bge	$r4,$r0,.L642
+	pcalau12i	$r12,%pc_hi20(.LC13)
+	fld.d	$f1,$r12,%pc_lo12(.LC13)
+.L642:
 	andi	$r12,$r4,1
-	beqz	$r12,.L628
+	beqz	$r12,.L643
 	.align	3
-.L629:
+.L644:
 	fmul.d	$f0,$f0,$f1
-.L628:
+.L643:
 	srli.w	$r12,$r4,31
 	add.w	$r4,$r12,$r4
 	srai.d	$r4,$r4,1
-	beqz	$r4,.L626
+	beqz	$r4,.L641
 	srli.w	$r12,$r4,31
 	andi	$r13,$r4,1
 	fmul.d	$f1,$f1,$f1
 	add.w	$r12,$r12,$r4
-	bnez	$r13,.L629
-.L639:
+	bnez	$r13,.L644
+.L653:
 	srai.d	$r4,$r12,1
 	srli.w	$r12,$r4,31
 	andi	$r13,$r4,1
 	fmul.d	$f1,$f1,$f1
 	add.w	$r12,$r12,$r4
-	bnez	$r13,.L629
-	b	.L639
+	bnez	$r13,.L644
+	b	.L653
 	.align	5
-.L626:
+.L641:
 	jr	$r1
-	.align	5
-.L638:
-	pcalau12i	$r12,%pc_hi20(.LC3)
-	fld.d	$f1,$r12,%pc_lo12(.LC3)
-	andi	$r12,$r4,1
-	beqz	$r12,.L628
-	b	.L629
 	.cfi_endproc
 .LFE90:
 	.size	ldexp, .-ldexp
@@ -3320,20 +3532,26 @@ ldexpl:
 	.cfi_offset 1, -8
 	or	$r25,$r4,$r0
 	or	$r24,$r5,$r0
+	bl	%plt(__unordtf2)
+	bnez	$r4,.L655
+	or	$r6,$r25,$r0
+	or	$r7,$r24,$r0
+	or	$r4,$r25,$r0
+	or	$r5,$r24,$r0
 	bl	%plt(__addtf3)
 	or	$r6,$r25,$r0
 	or	$r7,$r24,$r0
 	bl	%plt(__netf2)
-	beqz	$r4,.L641
-	blt	$r23,$r0,.L656
-	la.local	$r12,.LC4
+	beqz	$r4,.L655
+	blt	$r23,$r0,.L670
+	la.local	$r12,.LC14
 	ldptr.d	$r6,$r12,0
 	ld.d	$r7,$r12,8
-.L643:
+.L657:
 	andi	$r12,$r23,1
-	beqz	$r12,.L644
+	beqz	$r12,.L658
 	.align	3
-.L645:
+.L659:
 	or	$r4,$r25,$r0
 	or	$r5,$r24,$r0
 	st.d	$r6,$r3,8
@@ -3343,12 +3561,12 @@ ldexpl:
 	ldptr.d	$r7,$r3,0
 	or	$r25,$r4,$r0
 	or	$r24,$r5,$r0
-.L644:
+.L658:
 	srli.w	$r12,$r23,31
 	add.w	$r23,$r12,$r23
 	srai.d	$r23,$r23,1
-	beqz	$r23,.L641
-.L646:
+	beqz	$r23,.L655
+.L660:
 	or	$r4,$r6,$r0
 	or	$r5,$r7,$r0
 	bl	%plt(__multf3)
@@ -3357,11 +3575,11 @@ ldexpl:
 	or	$r6,$r4,$r0
 	or	$r7,$r5,$r0
 	add.w	$r12,$r12,$r23
-	bnez	$r13,.L645
+	bnez	$r13,.L659
 	srai.d	$r23,$r12,1
-	b	.L646
+	b	.L660
 	.align	5
-.L641:
+.L655:
 	ld.d	$r1,$r3,40
 	.cfi_remember_state
 	.cfi_restore 1
@@ -3377,12 +3595,12 @@ ldexpl:
 	.cfi_def_cfa_offset 0
 	jr	$r1
 	.align	5
-.L656:
+.L670:
 	.cfi_restore_state
-	la.local	$r12,.LC5
+	la.local	$r12,.LC15
 	ldptr.d	$r6,$r12,0
 	ld.d	$r7,$r12,8
-	b	.L643
+	b	.L657
 	.cfi_endproc
 .LFE91:
 	.size	ldexpl, .-ldexpl
@@ -3393,17 +3611,17 @@ ldexpl:
 memxor:
 .LFB92 = .
 	.cfi_startproc
-	beqz	$r6,.L658
+	beqz	$r6,.L672
 	addi.d	$r12,$r6,-1
 	addi.w	$r13,$r0,62			# 0x3e
-	bleu	$r12,$r13,.L663
+	bleu	$r12,$r13,.L677
 	srli.d	$r15,$r6,6
 	slli.d	$r15,$r15,6
 	or	$r13,$r5,$r0
 	or	$r12,$r4,$r0
 	add.d	$r5,$r5,$r15
 	.align	3
-.L660:
+.L674:
 	vld	$vr7,$r12,16
 	vld	$vr6,$r12,32
 	vld	$vr5,$r12,48
@@ -3422,27 +3640,27 @@ memxor:
 	vst	$vr0,$r12,48
 	addi.d	$r13,$r13,64
 	addi.d	$r12,$r12,64
-	bne	$r5,$r13,.L660
+	bne	$r5,$r13,.L674
 	add.d	$r14,$r4,$r15
 	sub.d	$r16,$r6,$r15
-	beq	$r6,$r15,.L669
-.L659:
+	beq	$r6,$r15,.L683
+.L673:
 	or	$r12,$r0,$r0
 	.align	3
-.L662:
+.L676:
 	ldx.bu	$r15,$r14,$r12
 	ldx.bu	$r13,$r5,$r12
 	xor	$r13,$r13,$r15
 	stx.b	$r13,$r14,$r12
 	addi.d	$r12,$r12,1
-	bne	$r12,$r16,.L662
-.L658:
+	bne	$r12,$r16,.L676
+.L672:
 	jr	$r1
-.L663:
+.L677:
 	or	$r14,$r4,$r0
 	or	$r16,$r6,$r0
-	b	.L659
-.L669:
+	b	.L673
+.L683:
 	jr	$r1
 	.cfi_endproc
 .LFE92:
@@ -3456,24 +3674,24 @@ strncat:
 	.cfi_startproc
 	ld.bu	$r13,$r4,0
 	or	$r12,$r4,$r0
-	beqz	$r13,.L675
+	beqz	$r13,.L689
 	.align	3
-.L672:
+.L686:
 	ld.bu	$r13,$r12,1
 	addi.d	$r12,$r12,1
-	bnez	$r13,.L672
+	bnez	$r13,.L686
 	.align	3
-.L675:
-	beqz	$r6,.L674
+.L689:
+	beqz	$r6,.L688
 	ld.b	$r13,$r5,0
 	addi.d	$r12,$r12,1
 	addi.d	$r6,$r6,-1
 	st.b	$r13,$r12,-1
 	addi.d	$r5,$r5,1
-	bnez	$r13,.L675
+	bnez	$r13,.L689
 	jr	$r1
 	.align	5
-.L674:
+.L688:
 	st.b	$r0,$r12,0
 	jr	$r1
 	.cfi_endproc
@@ -3487,18 +3705,18 @@ strnlen:
 .LFB94 = .
 	.cfi_startproc
 	or	$r12,$r0,$r0
-	beqz	$r5,.L684
-.L685:
+	beqz	$r5,.L698
+.L699:
 	ldx.bu	$r13,$r4,$r12
-	bnez	$r13,.L687
-.L684:
+	bnez	$r13,.L701
+.L698:
 	or	$r4,$r12,$r0
 	jr	$r1
 	.align	5
-.L687:
+.L701:
 	addi.d	$r12,$r12,1
-	bne	$r5,$r12,.L685
-	b	.L684
+	bne	$r5,$r12,.L699
+	b	.L698
 	.cfi_endproc
 .LFE94:
 	.size	strnlen, .-strnlen
@@ -3510,23 +3728,23 @@ strpbrk:
 .LFB95 = .
 	.cfi_startproc
 	ld.b	$r14,$r4,0
-	beqz	$r14,.L696
-.L692:
+	beqz	$r14,.L710
+.L706:
 	or	$r12,$r5,$r0
-	b	.L695
+	b	.L709
 	.align	5
-.L694:
-	beq	$r13,$r14,.L693
-.L695:
+.L708:
+	beq	$r13,$r14,.L707
+.L709:
 	ld.b	$r13,$r12,0
 	addi.d	$r12,$r12,1
-	bnez	$r13,.L694
+	bnez	$r13,.L708
 	ld.b	$r14,$r4,1
 	addi.d	$r4,$r4,1
-	bnez	$r14,.L692
-.L696:
+	bnez	$r14,.L706
+.L710:
 	or	$r4,$r0,$r0
-.L693:
+.L707:
 	jr	$r1
 	.cfi_endproc
 .LFE95:
@@ -3541,14 +3759,14 @@ strrchr:
 	or	$r12,$r4,$r0
 	or	$r4,$r0,$r0
 	.align	3
-.L700:
+.L714:
 	ld.b	$r13,$r12,0
 	xor	$r14,$r5,$r13
 	masknez	$r15,$r12,$r14
 	maskeqz	$r4,$r4,$r14
 	or	$r4,$r4,$r15
 	addi.d	$r12,$r12,1
-	bnez	$r13,.L700
+	bnez	$r13,.L714
 	jr	$r1
 	.cfi_endproc
 .LFE96:
@@ -3562,54 +3780,54 @@ strstr:
 	.cfi_startproc
 	ld.b	$r17,$r5,0
 	or	$r13,$r4,$r0
-	beqz	$r17,.L713
+	beqz	$r17,.L727
 	or	$r12,$r5,$r0
 	.align	3
-.L704:
+.L718:
 	ld.bu	$r14,$r12,1
 	addi.d	$r12,$r12,1
-	bnez	$r14,.L704
+	bnez	$r14,.L718
 	sub.d	$r19,$r12,$r5
 	or	$r4,$r13,$r0
 	bstrpick.w	$r20,$r17,7,0
 	addi.d	$r19,$r19,-1
-	bne	$r12,$r5,.L710
+	bne	$r12,$r5,.L724
 	jr	$r1
 	.align	5
-.L724:
+.L738:
 	addi.d	$r13,$r13,1
-	beqz	$r12,.L723
-.L710:
+	beqz	$r12,.L737
+.L724:
 	ld.b	$r12,$r13,0
-	bne	$r12,$r17,.L724
+	bne	$r12,$r17,.L738
 	or	$r15,$r20,$r0
 	add.d	$r18,$r13,$r19
 	or	$r14,$r5,$r0
 	or	$r12,$r13,$r0
-	b	.L706
+	b	.L720
 	.align	5
-.L725:
-	beq	$r12,$r18,.L707
+.L739:
+	beq	$r12,$r18,.L721
 	addi.d	$r12,$r12,1
-	bne	$r16,$r15,.L707
+	bne	$r16,$r15,.L721
 	ld.bu	$r15,$r12,0
 	addi.d	$r14,$r14,1
-	beqz	$r15,.L707
-.L706:
+	beqz	$r15,.L721
+.L720:
 	ld.bu	$r16,$r14,0
-	bnez	$r16,.L725
-.L707:
+	bnez	$r16,.L739
+.L721:
 	ld.bu	$r12,$r14,0
-	beq	$r12,$r15,.L713
+	beq	$r12,$r15,.L727
 	addi.d	$r13,$r13,1
-	b	.L710
+	b	.L724
 	.align	5
-.L723:
+.L737:
 	or	$r4,$r0,$r0
 	jr	$r1
-.L713:
+.L727:
 	or	$r4,$r13,$r0
-.L702:
+.L716:
 	jr	$r1
 	.cfi_endproc
 .LFE97:
@@ -3623,18 +3841,18 @@ copysign:
 	.cfi_startproc
 	movgr2fr.d	$f2,$r0
 	fcmp.slt.d	$fcc0,$f0,$f2
-	bcnez	$fcc0,.L736
+	bcnez	$fcc0,.L750
 	fcmp.sgt.d	$fcc0,$f0,$f2
-	bceqz	$fcc0,.L730
+	bceqz	$fcc0,.L744
 	fcmp.slt.d	$fcc0,$f1,$f2
-	bcnez	$fcc0,.L729
-.L730:
+	bcnez	$fcc0,.L743
+.L744:
 	jr	$r1
 	.align	5
-.L736:
+.L750:
 	fcmp.sgt.d	$fcc0,$f1,$f2
-	bceqz	$fcc0,.L730
-.L729:
+	bceqz	$fcc0,.L744
+.L743:
 	fneg.d	$f0,$f0
 	jr	$r1
 	.cfi_endproc
@@ -3648,54 +3866,54 @@ memmem:
 .LFB99 = .
 	.cfi_startproc
 	or	$r12,$r4,$r0
-	beqz	$r7,.L744
+	beqz	$r7,.L758
 	or	$r4,$r0,$r0
-	bltu	$r5,$r7,.L737
+	bltu	$r5,$r7,.L751
 	sub.d	$r5,$r5,$r7
 	add.d	$r15,$r12,$r5
-	bgtu	$r12,$r15,.L737
+	bgtu	$r12,$r15,.L751
 	ld.b	$r18,$r6,0
 	or	$r4,$r12,$r0
 	addi.w	$r19,$r0,1			# 0x1
 	bstrpick.w	$r17,$r18,7,0
 	.align	3
-.L743:
+.L757:
 	ld.bu	$r12,$r4,0
 	addi.d	$r16,$r4,1
-	beq	$r12,$r17,.L751
+	beq	$r12,$r17,.L765
 	or	$r4,$r16,$r0
-.L739:
-	bgeu	$r15,$r4,.L743
-.L748:
+.L753:
+	bgeu	$r15,$r4,.L757
+.L762:
 	or	$r4,$r0,$r0
-.L737:
+.L751:
 	jr	$r1
 	.align	5
-.L751:
-	beq	$r7,$r19,.L752
-.L742:
+.L765:
+	beq	$r7,$r19,.L766
+.L756:
 	addi.w	$r12,$r0,1			# 0x1
-	b	.L740
+	b	.L754
 	.align	5
-.L741:
-	beq	$r12,$r7,.L737
-.L740:
+.L755:
+	beq	$r12,$r7,.L751
+.L754:
 	ldx.bu	$r14,$r4,$r12
 	ldx.bu	$r13,$r6,$r12
 	addi.d	$r12,$r12,1
-	beq	$r14,$r13,.L741
-	bltu	$r15,$r16,.L748
+	beq	$r14,$r13,.L755
+	bltu	$r15,$r16,.L762
 	ld.b	$r12,$r16,0
 	addi.d	$r4,$r16,1
-	bne	$r18,$r12,.L739
+	bne	$r18,$r12,.L753
 	or	$r12,$r16,$r0
 	or	$r16,$r4,$r0
 	or	$r4,$r12,$r0
-	b	.L742
+	b	.L756
 	.align	5
-.L744:
+.L758:
 	jr	$r1
-.L752:
+.L766:
 	jr	$r1
 	.cfi_endproc
 .LFE99:
@@ -3717,9 +3935,9 @@ mempcpy:
 	.cfi_offset 1, -8
 	or	$r23,$r6,$r0
 	or	$r24,$r4,$r0
-	beqz	$r6,.L754
+	beqz	$r6,.L768
 	bl	%plt(memmove)
-.L754:
+.L768:
 	ld.d	$r1,$r3,24
 	.cfi_restore 1
 	add.d	$r4,$r24,$r23
@@ -3740,79 +3958,77 @@ mempcpy:
 frexp:
 .LFB101 = .
 	.cfi_startproc
-	movgr2fr.d	$f1,$r0
-	fcmp.slt.d	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L784
-	pcalau12i	$r12,%pc_hi20(.LC8)
-	fld.d	$f2,$r12,%pc_lo12(.LC8)
-	or	$r15,$r0,$r0
+	movgr2fr.d	$f3,$r0
+	fcmp.slt.d	$fcc0,$f0,$f3
+	bcnez	$fcc0,.L796
+	pcalau12i	$r12,%pc_hi20(.LC18)
+	fld.d	$f2,$r12,%pc_lo12(.LC18)
+	or	$r14,$r0,$r0
 	fcmp.sge.d	$fcc0,$f0,$f2
-	bceqz	$fcc0,.L785
-.L762:
-	pcalau12i	$r14,%pc_hi20(.LC3)
-	pcalau12i	$r13,%pc_hi20(.LC2)
-	fld.d	$f3,$r14,%pc_lo12(.LC3)
-	fld.d	$f2,$r13,%pc_lo12(.LC2)
+	bceqz	$fcc0,.L797
+.L776:
+	pcalau12i	$r13,%pc_hi20(.LC13)
+	fld.d	$f1,$r13,%pc_lo12(.LC13)
 	or	$r12,$r0,$r0
 	.align	3
-.L768:
-	fmov.d	$f1,$f0
+.L782:
+	fmul.d	$f0,$f0,$f1
 	addi.w	$r12,$r12,1
-	fcmp.sge.d	$fcc0,$f1,$f2
-	fmul.d	$f0,$f0,$f3
-	bcnez	$fcc0,.L768
+	fcmp.sge.d	$fcc0,$f0,$f2
+	bcnez	$fcc0,.L782
 	stptr.w	$r12,$r4,0
-	beqz	$r15,.L759
-.L787:
+	beqz	$r14,.L773
+.L799:
 	fneg.d	$f0,$f0
-.L759:
+.L773:
 	jr	$r1
 	.align	5
-.L785:
-	pcalau12i	$r12,%pc_hi20(.LC3)
-	fld.d	$f2,$r12,%pc_lo12(.LC3)
-	fcmp.slt.d	$fcc0,$f0,$f2
-	bceqz	$fcc0,.L782
-	fcmp.cune.d	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L774
-.L782:
+.L797:
+	pcalau12i	$r12,%pc_hi20(.LC13)
+	fld.d	$f1,$r12,%pc_lo12(.LC13)
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bceqz	$fcc0,.L779
+	fcmp.cune.d	$fcc0,$f0,$f3
+	bcnez	$fcc0,.L788
+.L779:
 	stptr.w	$r0,$r4,0
 	jr	$r1
 	.align	5
-.L784:
-	pcalau12i	$r12,%pc_hi20(.LC6)
-	fld.d	$f1,$r12,%pc_lo12(.LC6)
+.L796:
+	pcalau12i	$r12,%pc_hi20(.LC16)
+	fld.d	$f1,$r12,%pc_lo12(.LC16)
 	fneg.d	$f2,$f0
 	fcmp.sle.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L786
+	bceqz	$fcc0,.L798
+	pcalau12i	$r12,%pc_hi20(.LC18)
 	fmov.d	$f0,$f2
-	addi.w	$r15,$r0,1			# 0x1
-	b	.L762
+	addi.w	$r14,$r0,1			# 0x1
+	fld.d	$f2,$r12,%pc_lo12(.LC18)
+	b	.L776
 	.align	5
-.L786:
-	pcalau12i	$r12,%pc_hi20(.LC7)
-	fld.d	$f1,$r12,%pc_lo12(.LC7)
+.L798:
+	pcalau12i	$r12,%pc_hi20(.LC17)
+	fld.d	$f1,$r12,%pc_lo12(.LC17)
 	fcmp.sgt.d	$fcc0,$f0,$f1
-	bceqz	$fcc0,.L782
-	addi.w	$r15,$r0,1			# 0x1
-.L763:
-	pcalau12i	$r13,%pc_hi20(.LC9)
+	bceqz	$fcc0,.L779
+	pcalau12i	$r12,%pc_hi20(.LC13)
+	fld.d	$f1,$r12,%pc_lo12(.LC13)
+	addi.w	$r14,$r0,1			# 0x1
+.L777:
 	fmov.d	$f0,$f2
-	fld.d	$f2,$r13,%pc_lo12(.LC9)
 	or	$r12,$r0,$r0
 	.align	3
-.L770:
-	fmov.d	$f1,$f0
-	addi.w	$r12,$r12,-1
-	fcmp.slt.d	$fcc0,$f1,$f2
+.L784:
 	fadd.d	$f0,$f0,$f0
-	bcnez	$fcc0,.L770
+	addi.w	$r12,$r12,-1
+	fcmp.slt.d	$fcc0,$f0,$f1
+	bcnez	$fcc0,.L784
 	stptr.w	$r12,$r4,0
-	bnez	$r15,.L787
+	bnez	$r14,.L799
 	jr	$r1
-.L774:
+.L788:
 	fmov.d	$f2,$f0
-	b	.L763
+	b	.L777
 	.cfi_endproc
 .LFE101:
 	.size	frexp, .-frexp
@@ -3825,19 +4041,19 @@ __muldi3:
 	.cfi_startproc
 	or	$r13,$r4,$r0
 	or	$r4,$r0,$r0
-	beqz	$r13,.L791
+	beqz	$r13,.L803
 	.align	3
-.L790:
+.L802:
 	andi	$r12,$r13,1
 	sub.d	$r12,$r0,$r12
 	and	$r12,$r12,$r5
 	srli.d	$r13,$r13,1
 	add.d	$r4,$r4,$r12
 	slli.d	$r5,$r5,1
-	bnez	$r13,.L790
+	bnez	$r13,.L802
 	jr	$r1
 	.align	5
-.L791:
+.L803:
 	jr	$r1
 	.cfi_endproc
 .LFE102:
@@ -3851,41 +4067,41 @@ udivmodsi4:
 	.cfi_startproc
 	addi.w	$r13,$r0,32			# 0x20
 	addi.w	$r12,$r0,1			# 0x1
-	bltu	$r5,$r4,.L794
-	b	.L795
+	bltu	$r5,$r4,.L806
+	b	.L807
 	.align	5
-.L798:
+.L810:
 	slli.w	$r5,$r15,0
 	slli.w	$r12,$r14,0
-	bleu	$r4,$r5,.L796
-	beqz	$r13,.L797
-.L794:
+	bleu	$r4,$r5,.L808
+	beqz	$r13,.L809
+.L806:
 	slli.w	$r15,$r5,1
 	slli.w	$r14,$r12,1
 	addi.w	$r13,$r13,-1
-	bge	$r5,$r0,.L798
-.L795:
+	bge	$r5,$r0,.L810
+.L807:
 	or	$r13,$r0,$r0
 	.align	3
-.L800:
+.L812:
 	or	$r14,$r12,$r13
 	bstrpick.d	$r12,$r12,31,1
-	bltu	$r4,$r5,.L799
+	bltu	$r4,$r5,.L811
 	sub.w	$r4,$r4,$r5
 	slli.w	$r13,$r14,0
-.L799:
+.L811:
 	bstrpick.d	$r5,$r5,31,1
-	bnez	$r12,.L800
-.L797:
+	bnez	$r12,.L812
+.L809:
 	masknez	$r13,$r13,$r6
 	maskeqz	$r4,$r4,$r6
 	or	$r4,$r13,$r4
 	jr	$r1
 	.align	5
-.L796:
-	bnez	$r12,.L795
+.L808:
+	bnez	$r12,.L807
 	or	$r13,$r0,$r0
-	b	.L797
+	b	.L809
 	.cfi_endproc
 .LFE103:
 	.size	udivmodsi4, .-udivmodsi4
@@ -3939,9 +4155,9 @@ __mulsi3:
 	.cfi_startproc
 	or	$r13,$r4,$r0
 	or	$r4,$r0,$r0
-	beqz	$r13,.L819
+	beqz	$r13,.L831
 	.align	3
-.L818:
+.L830:
 	andi	$r12,$r13,1
 	sub.w	$r12,$r0,$r12
 	and	$r12,$r5,$r12
@@ -3949,10 +4165,10 @@ __mulsi3:
 	bstrpick.d	$r13,$r13,31,1
 	slli.w	$r5,$r14,0
 	add.w	$r4,$r12,$r4
-	bnez	$r13,.L818
+	bnez	$r13,.L830
 	jr	$r1
 	.align	5
-.L819:
+.L831:
 	jr	$r1
 	.cfi_endproc
 .LFE106:
@@ -3968,15 +4184,15 @@ __cmovd:
 	srli.w	$r18,$r6,3
 	bstrpick.d	$r20,$r6,31,3
 	and	$r19,$r6,$r19
-	bltu	$r4,$r5,.L825
+	bltu	$r4,$r5,.L837
 	bstrpick.d	$r12,$r6,31,0
 	add.d	$r12,$r5,$r12
-	bleu	$r4,$r12,.L913
-.L825:
-	beqz	$r20,.L914
+	bleu	$r4,$r12,.L925
+.L837:
+	beqz	$r20,.L926
 	addi.w	$r12,$r0,8			# 0x8
 	or	$r14,$r0,$r0
-	bleu	$r20,$r12,.L828
+	bleu	$r20,$r12,.L840
 	addi.w	$r14,$r0,-8			# 0xfffffffffffffff8
 	addi.w	$r18,$r18,-9
 	and	$r18,$r18,$r14
@@ -3985,7 +4201,7 @@ __cmovd:
 	or	$r15,$r0,$r0
 	addi.w	$r14,$r18,8
 	.align	3
-.L829:
+.L841:
 	ld.d	$r17,$r12,-200
 	addi.d	$r13,$r13,64
 	preld	0,$r12,0
@@ -4007,41 +4223,41 @@ __cmovd:
 	st.d	$r17,$r13,-16
 	ld.d	$r17,$r12,-208
 	st.d	$r17,$r13,-8
-	bne	$r16,$r18,.L829
-.L828:
+	bne	$r16,$r18,.L841
+.L840:
 	bstrpick.d	$r12,$r14,31,0
 	alsl.d	$r12,$r12,$r0,3
 	.align	3
-.L830:
+.L842:
 	ldx.d	$r13,$r5,$r12
 	addi.w	$r14,$r14,1
 	stx.d	$r13,$r4,$r12
 	addi.d	$r12,$r12,8
-	bgtu	$r20,$r14,.L830
-	bleu	$r6,$r19,.L821
+	bgtu	$r20,$r14,.L842
+	bleu	$r6,$r19,.L833
 	sub.w	$r18,$r6,$r19
 	addi.w	$r15,$r0,14			# 0xe
 	addi.w	$r12,$r18,-1
-	bleu	$r12,$r15,.L915
+	bleu	$r12,$r15,.L927
 	bstrpick.d	$r12,$r19,31,0
 	addi.d	$r14,$r12,1
 	add.d	$r13,$r4,$r12
 	add.d	$r14,$r5,$r14
 	sub.d	$r14,$r13,$r14
-	bleu	$r14,$r15,.L837
+	bleu	$r14,$r15,.L849
 	bstrpick.d	$r20,$r18,31,4
 	addi.w	$r14,$r0,4			# 0x4
 	srli.w	$r17,$r18,4
 	add.d	$r12,$r5,$r12
 	or	$r16,$r0,$r0
-	bleu	$r20,$r14,.L833
+	bleu	$r20,$r14,.L845
 	addi.w	$r17,$r17,-5
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.w	$r16,$r17,4
 	.align	3
-.L834:
+.L846:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -4055,132 +4271,132 @@ __cmovd:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r15,$r17,.L834
-.L833:
+	bne	$r15,$r17,.L846
+.L845:
 	or	$r14,$r0,$r0
-.L835:
+.L847:
 	vldx	$vr0,$r12,$r14
 	addi.w	$r16,$r16,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,16
-	bgtu	$r20,$r16,.L835
+	bgtu	$r20,$r16,.L847
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	and	$r12,$r12,$r18
 	andi	$r13,$r18,15
 	add.w	$r12,$r12,$r19
-	beqz	$r13,.L821
+	beqz	$r13,.L833
 	bstrpick.d	$r14,$r12,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,1
 	stx.b	$r15,$r4,$r14
-	bgeu	$r13,$r6,.L821
+	bgeu	$r13,$r6,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,2
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,3
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,4
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,5
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,6
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,7
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,8
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,9
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,10
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,11
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,12
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L821
+	bleu	$r6,$r14,.L833
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,13
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L821
+	bleu	$r6,$r13,.L833
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r14,$r5,$r13
 	addi.w	$r12,$r12,14
 	stx.b	$r14,$r4,$r13
-	bleu	$r6,$r12,.L821
-.L912:
+	bleu	$r6,$r12,.L833
+.L924:
 	bstrpick.d	$r12,$r12,31,0
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	jr	$r1
 	.align	5
-.L914:
+.L926:
 	bstrpick.d	$r12,$r19,31,0
-	beqz	$r6,.L916
+	beqz	$r6,.L928
 	.align	3
-.L837:
+.L849:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
 	slli.w	$r13,$r12,0
-	bgtu	$r6,$r13,.L837
+	bgtu	$r6,$r13,.L849
 	jr	$r1
 	.align	5
-.L913:
+.L925:
 	addi.w	$r19,$r6,-1
-	beqz	$r6,.L917
+	beqz	$r6,.L929
 	addi.w	$r15,$r0,14			# 0xe
 	bstrpick.d	$r12,$r19,31,0
-	bgtu	$r19,$r15,.L911
-.L839:
+	bgtu	$r19,$r15,.L923
+.L851:
 	addi.w	$r14,$r0,-1			# 0xffffffffffffffff
 	.align	3
-.L844:
+.L856:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,-1
-	bne	$r12,$r14,.L844
-.L821:
+	bne	$r12,$r14,.L856
+.L833:
 	jr	$r1
 	.align	5
-.L911:
+.L923:
 	addi.d	$r14,$r12,-1
 	add.d	$r13,$r4,$r12
 	add.d	$r14,$r5,$r14
 	sub.d	$r13,$r13,$r14
 	addi.d	$r13,$r13,14
-	bleu	$r13,$r15,.L839
+	bleu	$r13,$r15,.L851
 	addi.d	$r12,$r12,-15
 	bstrpick.d	$r18,$r6,31,4
 	addi.w	$r14,$r0,4			# 0x4
@@ -4188,14 +4404,14 @@ __cmovd:
 	srli.w	$r17,$r6,4
 	add.d	$r12,$r4,$r12
 	or	$r16,$r0,$r0
-	bleu	$r18,$r14,.L840
+	bleu	$r18,$r14,.L852
 	addi.w	$r17,$r17,-5
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.w	$r16,$r17,4
 	.align	3
-.L841:
+.L853:
 	vld	$vr0,$r13,0
 	preld	0,$r13,-464
 	vst	$vr0,$r12,0
@@ -4209,99 +4425,99 @@ __cmovd:
 	vst	$vr0,$r12,-48
 	addi.d	$r13,$r13,-64
 	addi.d	$r12,$r12,-64
-	bne	$r15,$r17,.L841
-.L840:
+	bne	$r15,$r17,.L853
+.L852:
 	or	$r14,$r0,$r0
-.L842:
+.L854:
 	vldx	$vr0,$r13,$r14
 	addi.w	$r16,$r16,1
 	vstx	$vr0,$r12,$r14
 	addi.d	$r14,$r14,-16
-	bgtu	$r18,$r16,.L842
+	bgtu	$r18,$r16,.L854
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	andi	$r13,$r6,15
 	and	$r6,$r6,$r12
 	sub.w	$r15,$r19,$r6
 	or	$r12,$r15,$r0
-	beqz	$r13,.L821
+	beqz	$r13,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r15,-1
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r15,-2
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-3
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-4
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-5
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-6
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-7
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-8
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-9
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-10
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-11
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L821
+	beqz	$r15,.L833
 	bstrpick.d	$r15,$r14,31,0
 	ldx.b	$r16,$r5,$r15
 	addi.w	$r13,$r12,-12
 	stx.b	$r16,$r4,$r15
-	beqz	$r14,.L821
+	beqz	$r14,.L833
 	bstrpick.d	$r14,$r13,31,0
 	ldx.b	$r16,$r5,$r14
 	addi.w	$r15,$r12,-13
 	stx.b	$r16,$r4,$r14
-	beqz	$r13,.L821
+	beqz	$r13,.L833
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r14,$r5,$r13
 	addi.w	$r12,$r12,-14
 	stx.b	$r14,$r4,$r13
-	bnez	$r15,.L912
+	bnez	$r15,.L924
 	jr	$r1
-.L916:
+.L928:
 	jr	$r1
-.L917:
+.L929:
 	jr	$r1
-.L915:
+.L927:
 	bstrpick.d	$r12,$r19,31,0
-	b	.L837
+	b	.L849
 	.cfi_endproc
 .LFE107:
 	.size	__cmovd, .-__cmovd
@@ -4314,23 +4530,23 @@ __cmovh:
 	.cfi_startproc
 	srli.w	$r13,$r6,1
 	bstrpick.d	$r19,$r6,31,1
-	bltu	$r4,$r5,.L922
+	bltu	$r4,$r5,.L934
 	bstrpick.d	$r12,$r6,31,0
 	add.d	$r12,$r5,$r12
-	bleu	$r4,$r12,.L998
-.L922:
-	beqz	$r19,.L921
+	bleu	$r4,$r12,.L1010
+.L934:
+	beqz	$r19,.L933
 	addi.w	$r12,$r13,-1
 	addi.w	$r14,$r0,7			# 0x7
-	bleu	$r12,$r14,.L925
+	bleu	$r12,$r14,.L937
 	addi.d	$r12,$r5,2
 	addi.w	$r14,$r0,12			# 0xc
 	sub.d	$r12,$r4,$r12
-	bleu	$r12,$r14,.L925
+	bleu	$r12,$r14,.L937
 	bstrpick.d	$r20,$r6,31,4
 	addi.w	$r12,$r0,4			# 0x4
 	srli.w	$r18,$r6,4
-	bleu	$r20,$r12,.L940
+	bleu	$r20,$r12,.L952
 	addi.w	$r14,$r0,-4			# 0xfffffffffffffffc
 	addi.w	$r16,$r18,-5
 	and	$r16,$r16,$r14
@@ -4339,7 +4555,7 @@ __cmovh:
 	or	$r14,$r0,$r0
 	addi.w	$r17,$r16,4
 	.align	3
-.L927:
+.L939:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -4353,92 +4569,92 @@ __cmovh:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r16,$r15,.L927
-.L926:
+	bne	$r16,$r15,.L939
+.L938:
 	or	$r14,$r0,$r0
-.L928:
+.L940:
 	vldx	$vr0,$r12,$r14
 	addi.w	$r17,$r17,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,16
-	bgtu	$r20,$r17,.L928
+	bgtu	$r20,$r17,.L940
 	slli.w	$r13,$r18,3
 	or	$r12,$r13,$r0
-	beq	$r19,$r13,.L921
+	beq	$r19,$r13,.L933
 	bstrpick.d	$r13,$r13,31,0
 	slli.d	$r13,$r13,1
 	ldx.h	$r15,$r5,$r13
 	addi.w	$r14,$r12,1
 	stx.h	$r15,$r4,$r13
-	bleu	$r19,$r14,.L921
+	bleu	$r19,$r14,.L933
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,1
 	ldx.h	$r15,$r5,$r14
 	addi.w	$r13,$r12,2
 	stx.h	$r15,$r4,$r14
-	bleu	$r19,$r13,.L921
+	bleu	$r19,$r13,.L933
 	bstrpick.d	$r13,$r13,31,0
 	slli.d	$r13,$r13,1
 	ldx.h	$r15,$r5,$r13
 	addi.w	$r14,$r12,3
 	stx.h	$r15,$r4,$r13
-	bleu	$r19,$r14,.L921
+	bleu	$r19,$r14,.L933
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,1
 	ldx.h	$r15,$r5,$r14
 	addi.w	$r13,$r12,4
 	stx.h	$r15,$r4,$r14
-	bleu	$r19,$r13,.L921
+	bleu	$r19,$r13,.L933
 	bstrpick.d	$r13,$r13,31,0
 	slli.d	$r13,$r13,1
 	ldx.h	$r15,$r5,$r13
 	addi.w	$r14,$r12,5
 	stx.h	$r15,$r4,$r13
-	bleu	$r19,$r14,.L921
+	bleu	$r19,$r14,.L933
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,1
 	ldx.h	$r13,$r5,$r14
 	addi.w	$r12,$r12,6
 	stx.h	$r13,$r4,$r14
-	bleu	$r19,$r12,.L921
+	bleu	$r19,$r12,.L933
 	bstrpick.d	$r12,$r12,31,0
 	slli.d	$r12,$r12,1
 	ldx.h	$r13,$r5,$r12
 	stx.h	$r13,$r4,$r12
-.L921:
+.L933:
 	andi	$r12,$r6,1
-	beqz	$r12,.L918
-.L1000:
+	beqz	$r12,.L930
+.L1012:
 	addi.w	$r6,$r6,-1
 	bstrpick.d	$r6,$r6,31,0
 	ldx.b	$r12,$r5,$r6
 	stx.b	$r12,$r4,$r6
 	jr	$r1
 	.align	5
-.L998:
+.L1010:
 	addi.w	$r19,$r6,-1
-	beqz	$r6,.L999
+	beqz	$r6,.L1011
 	addi.w	$r15,$r0,14			# 0xe
 	bstrpick.d	$r12,$r19,31,0
-	bgtu	$r19,$r15,.L997
-.L933:
+	bgtu	$r19,$r15,.L1009
+.L945:
 	addi.w	$r14,$r0,-1			# 0xffffffffffffffff
 	.align	3
-.L938:
+.L950:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,-1
-	bne	$r12,$r14,.L938
-.L918:
+	bne	$r12,$r14,.L950
+.L930:
 	jr	$r1
 	.align	5
-.L997:
+.L1009:
 	addi.d	$r14,$r12,-1
 	add.d	$r13,$r4,$r12
 	add.d	$r14,$r5,$r14
 	sub.d	$r13,$r13,$r14
 	addi.d	$r13,$r13,14
-	bleu	$r13,$r15,.L933
+	bleu	$r13,$r15,.L945
 	addi.d	$r12,$r12,-15
 	bstrpick.d	$r18,$r6,31,4
 	addi.w	$r14,$r0,4			# 0x4
@@ -4446,14 +4662,14 @@ __cmovh:
 	srli.w	$r17,$r6,4
 	add.d	$r12,$r4,$r12
 	or	$r16,$r0,$r0
-	bleu	$r18,$r14,.L934
+	bleu	$r18,$r14,.L946
 	addi.w	$r17,$r17,-5
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.w	$r16,$r17,4
 	.align	3
-.L935:
+.L947:
 	vld	$vr0,$r13,0
 	preld	0,$r13,-464
 	vst	$vr0,$r12,0
@@ -4467,115 +4683,115 @@ __cmovh:
 	vst	$vr0,$r12,-48
 	addi.d	$r13,$r13,-64
 	addi.d	$r12,$r12,-64
-	bne	$r15,$r17,.L935
-.L934:
+	bne	$r15,$r17,.L947
+.L946:
 	or	$r14,$r0,$r0
-.L936:
+.L948:
 	vldx	$vr0,$r13,$r14
 	addi.w	$r16,$r16,1
 	vstx	$vr0,$r12,$r14
 	addi.d	$r14,$r14,-16
-	bgtu	$r18,$r16,.L936
+	bgtu	$r18,$r16,.L948
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	andi	$r13,$r6,15
 	and	$r6,$r6,$r12
 	sub.w	$r15,$r19,$r6
 	or	$r12,$r15,$r0
-	beqz	$r13,.L918
+	beqz	$r13,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r15,-1
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r15,-2
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-3
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-4
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-5
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-6
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-7
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-8
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-9
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-10
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-11
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r15,$r14,31,0
 	ldx.b	$r16,$r5,$r15
 	addi.w	$r13,$r12,-12
 	stx.b	$r16,$r4,$r15
-	beqz	$r14,.L918
+	beqz	$r14,.L930
 	bstrpick.d	$r14,$r13,31,0
 	ldx.b	$r16,$r5,$r14
 	addi.w	$r15,$r12,-13
 	stx.b	$r16,$r4,$r14
-	beqz	$r13,.L918
+	beqz	$r13,.L930
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r14,$r5,$r13
 	addi.w	$r12,$r12,-14
 	stx.b	$r14,$r4,$r13
-	beqz	$r15,.L918
+	beqz	$r15,.L930
 	bstrpick.d	$r12,$r12,31,0
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	jr	$r1
-.L940:
+.L952:
 	or	$r13,$r4,$r0
 	or	$r12,$r5,$r0
 	or	$r17,$r0,$r0
-	b	.L926
+	b	.L938
 	.align	5
-.L925:
+.L937:
 	bstrpick.d	$r13,$r13,31,0
 	or	$r12,$r0,$r0
 	slli.d	$r13,$r13,1
 	.align	3
-.L930:
+.L942:
 	ldx.h	$r14,$r5,$r12
 	stx.h	$r14,$r4,$r12
 	addi.d	$r12,$r12,2
-	bne	$r13,$r12,.L930
+	bne	$r13,$r12,.L942
 	andi	$r12,$r6,1
-	beqz	$r12,.L918
-	b	.L1000
-.L999:
+	beqz	$r12,.L930
+	b	.L1012
+.L1011:
 	jr	$r1
 	.cfi_endproc
 .LFE108:
@@ -4591,22 +4807,22 @@ __cmovw:
 	srli.w	$r12,$r6,2
 	bstrpick.d	$r20,$r6,31,2
 	and	$r19,$r6,$r15
-	bltu	$r4,$r5,.L1006
+	bltu	$r4,$r5,.L1018
 	bstrpick.d	$r13,$r6,31,0
 	add.d	$r13,$r5,$r13
-	bleu	$r4,$r13,.L1099
-.L1006:
-	beqz	$r20,.L1100
+	bleu	$r4,$r13,.L1111
+.L1018:
+	beqz	$r20,.L1112
 	addi.w	$r13,$r12,-1
 	addi.w	$r14,$r0,8			# 0x8
-	bleu	$r13,$r14,.L1032
+	bleu	$r13,$r14,.L1044
 	addi.d	$r13,$r5,4
 	sub.d	$r13,$r4,$r13
-	bleu	$r13,$r14,.L1009
+	bleu	$r13,$r14,.L1021
 	bstrpick.d	$r7,$r6,31,4
 	addi.w	$r12,$r0,4			# 0x4
 	srli.w	$r18,$r6,4
-	bleu	$r7,$r12,.L1031
+	bleu	$r7,$r12,.L1043
 	addi.w	$r14,$r0,-4			# 0xfffffffffffffffc
 	addi.w	$r16,$r18,-5
 	and	$r16,$r16,$r14
@@ -4615,7 +4831,7 @@ __cmovw:
 	or	$r14,$r0,$r0
 	addi.w	$r17,$r16,4
 	.align	3
-.L1011:
+.L1023:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -4629,59 +4845,59 @@ __cmovw:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r15,$r16,.L1011
-.L1010:
+	bne	$r15,$r16,.L1023
+.L1022:
 	or	$r14,$r0,$r0
-.L1012:
+.L1024:
 	vldx	$vr0,$r12,$r14
 	addi.w	$r17,$r17,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,16
-	bgtu	$r7,$r17,.L1012
+	bgtu	$r7,$r17,.L1024
 	slli.w	$r13,$r18,2
 	or	$r12,$r13,$r0
-	beq	$r20,$r13,.L1016
+	beq	$r20,$r13,.L1028
 	bstrpick.d	$r13,$r13,31,0
 	slli.d	$r13,$r13,2
 	ldx.w	$r15,$r5,$r13
 	addi.w	$r14,$r12,1
 	stx.w	$r15,$r4,$r13
-	bleu	$r20,$r14,.L1016
+	bleu	$r20,$r14,.L1028
 	bstrpick.d	$r14,$r14,31,0
 	alsl.d	$r14,$r14,$r0,2
 	ldx.w	$r13,$r5,$r14
 	addi.w	$r12,$r12,2
 	stx.w	$r13,$r4,$r14
-	bleu	$r20,$r12,.L1016
+	bleu	$r20,$r12,.L1028
 	bstrpick.d	$r12,$r12,31,0
 	slli.d	$r12,$r12,2
 	ldx.w	$r13,$r5,$r12
 	stx.w	$r13,$r4,$r12
-.L1016:
-	bleu	$r6,$r19,.L1001
+.L1028:
+	bleu	$r6,$r19,.L1013
 	sub.w	$r18,$r6,$r19
 	addi.w	$r15,$r0,14			# 0xe
 	addi.w	$r12,$r18,-1
-	bleu	$r12,$r15,.L1101
+	bleu	$r12,$r15,.L1113
 	bstrpick.d	$r12,$r19,31,0
 	addi.d	$r14,$r12,1
 	add.d	$r13,$r4,$r12
 	add.d	$r14,$r5,$r14
 	sub.d	$r14,$r13,$r14
-	bleu	$r14,$r15,.L1021
+	bleu	$r14,$r15,.L1033
 	bstrpick.d	$r20,$r18,31,4
 	addi.w	$r14,$r0,4			# 0x4
 	srli.w	$r17,$r18,4
 	add.d	$r12,$r5,$r12
 	or	$r16,$r0,$r0
-	bleu	$r20,$r14,.L1017
+	bleu	$r20,$r14,.L1029
 	addi.w	$r17,$r17,-5
 	addi.w	$r15,$r0,-4			# 0xfffffffffffffffc
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.w	$r16,$r17,4
 	.align	3
-.L1018:
+.L1030:
 	vld	$vr0,$r12,0
 	preld	0,$r12,464
 	vst	$vr0,$r13,0
@@ -4695,108 +4911,108 @@ __cmovw:
 	vst	$vr0,$r13,48
 	addi.d	$r12,$r12,64
 	addi.d	$r13,$r13,64
-	bne	$r15,$r17,.L1018
-.L1017:
+	bne	$r15,$r17,.L1030
+.L1029:
 	or	$r14,$r0,$r0
-.L1019:
+.L1031:
 	vldx	$vr0,$r12,$r14
 	addi.w	$r16,$r16,1
 	vstx	$vr0,$r13,$r14
 	addi.d	$r14,$r14,16
-	bgtu	$r20,$r16,.L1019
+	bgtu	$r20,$r16,.L1031
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	and	$r12,$r12,$r18
 	andi	$r13,$r18,15
 	add.w	$r12,$r12,$r19
-	beqz	$r13,.L1001
+	beqz	$r13,.L1013
 	bstrpick.d	$r14,$r12,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,1
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,2
 	stx.b	$r15,$r4,$r13
-	bgeu	$r14,$r6,.L1001
+	bgeu	$r14,$r6,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,3
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,4
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L1001
+	bleu	$r6,$r14,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,5
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,6
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L1001
+	bleu	$r6,$r14,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,7
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,8
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L1001
+	bleu	$r6,$r14,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,9
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,10
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L1001
+	bleu	$r6,$r14,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,11
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r15,$r5,$r13
 	addi.w	$r14,$r12,12
 	stx.b	$r15,$r4,$r13
-	bleu	$r6,$r14,.L1001
+	bleu	$r6,$r14,.L1013
 	bstrpick.d	$r14,$r14,31,0
 	ldx.b	$r15,$r5,$r14
 	addi.w	$r13,$r12,13
 	stx.b	$r15,$r4,$r14
-	bleu	$r6,$r13,.L1001
+	bleu	$r6,$r13,.L1013
 	bstrpick.d	$r13,$r13,31,0
 	ldx.b	$r14,$r5,$r13
 	addi.w	$r12,$r12,14
 	stx.b	$r14,$r4,$r13
-	bleu	$r6,$r12,.L1001
-.L1098:
+	bleu	$r6,$r12,.L1013
+.L1110:
 	bstrpick.d	$r12,$r12,31,0
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	jr	$r1
 	.align	5
-.L1099:
+.L1111:
 	addi.w	$r19,$r6,-1
-	beqz	$r6,.L1102
+	beqz	$r6,.L1114
 	addi.w	$r16,$r0,14			# 0xe
 	bstrpick.d	$r12,$r19,31,0
-	bleu	$r19,$r16,.L1023
+	bleu	$r19,$r16,.L1035
 	addi.d	$r14,$r12,-1
 	add.d	$r13,$r4,$r12
 	add.d	$r14,$r5,$r14
 	sub.d	$r13,$r13,$r14
 	addi.d	$r13,$r13,14
-	bleu	$r13,$r16,.L1023
+	bleu	$r13,$r16,.L1035
 	addi.d	$r12,$r12,-15
 	bstrpick.d	$r18,$r6,31,4
 	addi.w	$r14,$r0,4			# 0x4
@@ -4804,13 +5020,13 @@ __cmovw:
 	srli.w	$r17,$r6,4
 	add.d	$r12,$r4,$r12
 	or	$r16,$r0,$r0
-	bleu	$r18,$r14,.L1024
+	bleu	$r18,$r14,.L1036
 	addi.w	$r17,$r17,-5
 	and	$r17,$r17,$r15
 	or	$r14,$r0,$r0
 	addi.w	$r16,$r17,4
 	.align	3
-.L1025:
+.L1037:
 	vld	$vr0,$r13,0
 	preld	0,$r13,-464
 	vst	$vr0,$r12,0
@@ -4824,127 +5040,127 @@ __cmovw:
 	vst	$vr0,$r12,-48
 	addi.d	$r13,$r13,-64
 	addi.d	$r12,$r12,-64
-	bne	$r15,$r17,.L1025
-.L1024:
+	bne	$r15,$r17,.L1037
+.L1036:
 	or	$r14,$r0,$r0
-.L1026:
+.L1038:
 	vldx	$vr0,$r13,$r14
 	addi.w	$r16,$r16,1
 	vstx	$vr0,$r12,$r14
 	addi.d	$r14,$r14,-16
-	bgtu	$r18,$r16,.L1026
+	bgtu	$r18,$r16,.L1038
 	addi.w	$r12,$r0,-16			# 0xfffffffffffffff0
 	andi	$r13,$r6,15
 	and	$r6,$r6,$r12
 	sub.w	$r15,$r19,$r6
 	or	$r12,$r15,$r0
-	beqz	$r13,.L1001
+	beqz	$r13,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r15,-1
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r15,-2
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-3
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-4
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-5
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-6
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-7
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-8
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-9
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r13,$r14,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r15,$r12,-10
 	stx.b	$r16,$r4,$r13
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r16,$r5,$r13
 	addi.w	$r14,$r12,-11
 	stx.b	$r16,$r4,$r13
-	beqz	$r15,.L1001
+	beqz	$r15,.L1013
 	bstrpick.d	$r15,$r14,31,0
 	ldx.b	$r16,$r5,$r15
 	addi.w	$r13,$r12,-12
 	stx.b	$r16,$r4,$r15
-	beqz	$r14,.L1001
+	beqz	$r14,.L1013
 	bstrpick.d	$r14,$r13,31,0
 	ldx.b	$r16,$r5,$r14
 	addi.w	$r15,$r12,-13
 	stx.b	$r16,$r4,$r14
-	beqz	$r13,.L1001
+	beqz	$r13,.L1013
 	bstrpick.d	$r13,$r15,31,0
 	ldx.b	$r14,$r5,$r13
 	addi.w	$r12,$r12,-14
 	stx.b	$r14,$r4,$r13
-	bnez	$r15,.L1098
-.L1001:
+	bnez	$r15,.L1110
+.L1013:
 	jr	$r1
 	.align	5
-.L1100:
+.L1112:
 	bstrpick.d	$r12,$r19,31,0
-	beqz	$r6,.L1103
+	beqz	$r6,.L1115
 	.align	3
-.L1021:
+.L1033:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
 	slli.w	$r13,$r12,0
-	bgtu	$r6,$r13,.L1021
+	bgtu	$r6,$r13,.L1033
 	jr	$r1
-.L1031:
+.L1043:
 	or	$r13,$r4,$r0
 	or	$r12,$r5,$r0
 	or	$r17,$r0,$r0
-	b	.L1010
+	b	.L1022
 	.align	5
-.L1032:
+.L1044:
 	or	$r14,$r0,$r0
-.L1008:
+.L1020:
 	bstrpick.d	$r12,$r14,31,0
 	alsl.d	$r12,$r12,$r0,2
 	.align	3
-.L1015:
+.L1027:
 	ldx.w	$r13,$r5,$r12
 	addi.w	$r14,$r14,1
 	stx.w	$r13,$r4,$r12
 	addi.d	$r12,$r12,4
-	bgtu	$r20,$r14,.L1015
-	b	.L1016
-.L1009:
+	bgtu	$r20,$r14,.L1027
+	b	.L1028
+.L1021:
 	addi.w	$r13,$r0,16			# 0x10
-	bleu	$r20,$r13,.L1032
+	bleu	$r20,$r13,.L1044
 	addi.w	$r16,$r12,-17
 	addi.w	$r14,$r0,-16			# 0xfffffffffffffff0
 	and	$r16,$r16,$r14
@@ -4953,7 +5169,7 @@ __cmovw:
 	or	$r15,$r0,$r0
 	addi.w	$r14,$r16,16
 	.align	3
-.L1014:
+.L1026:
 	ldptr.w	$r18,$r13,-100
 	preld	8,$r12,0
 	addi.d	$r12,$r12,64
@@ -4992,24 +5208,24 @@ __cmovw:
 	st.w	$r18,$r12,-108
 	ldptr.w	$r18,$r13,-104
 	st.w	$r18,$r12,-104
-	bne	$r17,$r16,.L1014
-	b	.L1008
-.L1023:
+	bne	$r17,$r16,.L1026
+	b	.L1020
+.L1035:
 	addi.w	$r14,$r0,-1			# 0xffffffffffffffff
 	.align	3
-.L1028:
+.L1040:
 	ldx.b	$r13,$r5,$r12
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,-1
-	bne	$r12,$r14,.L1028
+	bne	$r12,$r14,.L1040
 	jr	$r1
-.L1103:
+.L1115:
 	jr	$r1
-.L1102:
+.L1114:
 	jr	$r1
-.L1101:
+.L1113:
 	bstrpick.d	$r12,$r19,31,0
-	b	.L1021
+	b	.L1033
 	.cfi_endproc
 .LFE109:
 	.size	__cmovw, .-__cmovw
@@ -5060,12 +5276,12 @@ __uitof:
 __ulltod:
 .LFB113 = .
 	.cfi_startproc
-	blt	$r4,$r0,.L1109
+	blt	$r4,$r0,.L1121
 	movgr2fr.d	$f0,$r4
 	ffint.d.l	$f0,$f0
 	jr	$r1
 	.align	5
-.L1109:
+.L1121:
 	andi	$r12,$r4,1
 	srli.d	$r4,$r4,1
 	or	$r12,$r12,$r4
@@ -5083,12 +5299,12 @@ __ulltod:
 __ulltof:
 .LFB114 = .
 	.cfi_startproc
-	blt	$r4,$r0,.L1112
+	blt	$r4,$r0,.L1124
 	movgr2fr.d	$f0,$r4
 	ffint.s.l	$f0,$f0
 	jr	$r1
 	.align	5
-.L1112:
+.L1124:
 	andi	$r12,$r4,1
 	srli.d	$r4,$r4,1
 	or	$r12,$r12,$r4
@@ -5121,54 +5337,54 @@ __clzhi2:
 	srli.d	$r14,$r4,15
 	or	$r13,$r4,$r0
 	slli.w	$r12,$r4,0
-	bnez	$r14,.L1117
+	bnez	$r14,.L1129
 	srli.d	$r4,$r12,14
-	bnez	$r4,.L1116
+	bnez	$r4,.L1128
 	srli.d	$r14,$r12,13
 	addi.w	$r4,$r0,2			# 0x2
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,12
 	addi.w	$r4,$r0,3			# 0x3
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,11
 	addi.w	$r4,$r0,4			# 0x4
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,10
 	addi.w	$r4,$r0,5			# 0x5
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,9
 	addi.w	$r4,$r0,6			# 0x6
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,8
 	addi.w	$r4,$r0,7			# 0x7
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,7
 	addi.w	$r4,$r0,8			# 0x8
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,6
 	addi.w	$r4,$r0,9			# 0x9
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,5
 	addi.w	$r4,$r0,10			# 0xa
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,4
 	addi.w	$r4,$r0,11			# 0xb
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,3
 	addi.w	$r4,$r0,12			# 0xc
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r14,$r12,2
 	addi.w	$r4,$r0,13			# 0xd
-	bnez	$r14,.L1116
+	bnez	$r14,.L1128
 	srli.d	$r12,$r12,1
 	addi.w	$r4,$r0,14			# 0xe
-	bnez	$r12,.L1116
+	bnez	$r12,.L1128
 	sltui	$r4,$r13,1
 	addi.d	$r4,$r4,15
 	jr	$r1
-.L1117:
+.L1129:
 	or	$r4,$r0,$r0
-.L1116:
+.L1128:
 	jr	$r1
 	.cfi_endproc
 .LFE116:
@@ -5182,56 +5398,56 @@ __ctzhi2:
 	.cfi_startproc
 	andi	$r13,$r4,1
 	or	$r12,$r4,$r0
-	bnez	$r13,.L1135
+	bnez	$r13,.L1147
 	andi	$r13,$r4,2
 	addi.w	$r4,$r0,1			# 0x1
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,4
 	addi.w	$r4,$r0,2			# 0x2
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,8
 	addi.w	$r4,$r0,3			# 0x3
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,16
 	addi.w	$r4,$r0,4			# 0x4
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,32
 	addi.w	$r4,$r0,5			# 0x5
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,64
 	addi.w	$r4,$r0,6			# 0x6
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,128
 	addi.w	$r4,$r0,7			# 0x7
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,256
 	addi.w	$r4,$r0,8			# 0x8
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,512
 	addi.w	$r4,$r0,9			# 0x9
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,1024
 	addi.w	$r4,$r0,10			# 0xa
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	andi	$r13,$r12,2048
 	addi.w	$r4,$r0,11			# 0xb
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	bstrpick.d	$r13,$r12,12,12
 	addi.w	$r4,$r0,12			# 0xc
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	bstrpick.d	$r13,$r12,13,13
 	addi.w	$r4,$r0,13			# 0xd
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	bstrpick.d	$r13,$r12,14,14
 	addi.w	$r4,$r0,14			# 0xe
-	bnez	$r13,.L1134
+	bnez	$r13,.L1146
 	srli.d	$r12,$r12,15
 	sltui	$r4,$r12,1
 	addi.d	$r4,$r4,15
 	jr	$r1
-.L1135:
+.L1147:
 	or	$r4,$r0,$r0
-.L1134:
+.L1146:
 	jr	$r1
 	.cfi_endproc
 .LFE117:
@@ -5243,15 +5459,15 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118 = .
 	.cfi_startproc
-	pcalau12i	$r12,%pc_hi20(.LC14)
-	fld.s	$f1,$r12,%pc_lo12(.LC14)
+	pcalau12i	$r12,%pc_hi20(.LC21)
+	fld.s	$f1,$r12,%pc_lo12(.LC21)
 	fcmp.sge.s	$fcc0,$f0,$f1
-	bcnez	$fcc0,.L1157
+	bcnez	$fcc0,.L1169
 	ftintrz.l.s $f0,$f0
 	movfr2gr.d	$r4,$f0
 	jr	$r1
 	.align	5
-.L1157:
+.L1169:
 	fsub.s	$f0,$f0,$f1
 	lu12i.w	$r12,32768>>12			# 0x8000
 	ftintrz.l.s $f0,$f0
@@ -5268,19 +5484,19 @@ __fixunssfsi:
 __parityhi2:
 .LFB119 = .
 	.cfi_startproc
-	la.local	$r14,.LC16
+	la.local	$r14,.LC23
 	vreplgr2vr.w	$vr0,$r4
 	vrepli.w	$vr1,1
 	vrepli.w	$vr4,1
-	la.local	$r15,.LC15
+	la.local	$r15,.LC22
 	vld	$vr3,$r14,0
 	vsra.w	$vr3,$vr0,$vr3
 	vand.v	$vr3,$vr3,$vr1
-	la.local	$r13,.LC17
+	la.local	$r13,.LC24
 	vld	$vr2,$r15,0
 	vsra.w	$vr2,$vr0,$vr2
 	vand.v	$vr2,$vr2,$vr1
-	la.local	$r12,.LC18
+	la.local	$r12,.LC25
 	vadd.w	$vr2,$vr2,$vr3
 	vld	$vr1,$r13,0
 	vsra.w	$vr1,$vr0,$vr1
@@ -5305,19 +5521,19 @@ __parityhi2:
 __popcounthi2:
 .LFB120 = .
 	.cfi_startproc
-	la.local	$r14,.LC16
+	la.local	$r14,.LC23
 	vreplgr2vr.w	$vr0,$r4
 	vrepli.w	$vr1,1
 	vrepli.w	$vr4,1
-	la.local	$r15,.LC15
+	la.local	$r15,.LC22
 	vld	$vr3,$r14,0
 	vsra.w	$vr3,$vr0,$vr3
 	vand.v	$vr3,$vr3,$vr1
-	la.local	$r13,.LC17
+	la.local	$r13,.LC24
 	vld	$vr2,$r15,0
 	vsra.w	$vr2,$vr0,$vr2
 	vand.v	$vr2,$vr2,$vr1
-	la.local	$r12,.LC18
+	la.local	$r12,.LC25
 	vadd.w	$vr2,$vr2,$vr3
 	vld	$vr1,$r13,0
 	vsra.w	$vr1,$vr0,$vr1
@@ -5344,9 +5560,9 @@ __mulsi3_iq2000:
 	.cfi_startproc
 	or	$r13,$r4,$r0
 	or	$r4,$r0,$r0
-	beqz	$r13,.L1163
+	beqz	$r13,.L1175
 	.align	3
-.L1162:
+.L1174:
 	andi	$r12,$r13,1
 	sub.w	$r12,$r0,$r12
 	and	$r12,$r5,$r12
@@ -5354,10 +5570,10 @@ __mulsi3_iq2000:
 	bstrpick.d	$r13,$r13,31,1
 	slli.w	$r5,$r14,0
 	add.w	$r4,$r12,$r4
-	bnez	$r13,.L1162
+	bnez	$r13,.L1174
 	jr	$r1
 	.align	5
-.L1163:
+.L1175:
 	jr	$r1
 	.cfi_endproc
 .LFE177:
@@ -5371,10 +5587,10 @@ __mulsi3_lm32:
 	.cfi_startproc
 	or	$r13,$r4,$r0
 	or	$r4,$r0,$r0
-	beqz	$r13,.L1166
-	beqz	$r5,.L1166
+	beqz	$r13,.L1178
+	beqz	$r5,.L1178
 	.align	3
-.L1167:
+.L1179:
 	andi	$r12,$r5,1
 	sub.w	$r12,$r0,$r12
 	and	$r12,$r13,$r12
@@ -5382,10 +5598,10 @@ __mulsi3_lm32:
 	bstrpick.d	$r5,$r5,31,1
 	slli.w	$r13,$r14,0
 	add.w	$r4,$r12,$r4
-	bnez	$r5,.L1167
+	bnez	$r5,.L1179
 	jr	$r1
 	.align	5
-.L1166:
+.L1178:
 	jr	$r1
 	.cfi_endproc
 .LFE122:
@@ -5399,41 +5615,41 @@ __udivmodsi4:
 	.cfi_startproc
 	addi.w	$r13,$r0,32			# 0x20
 	addi.w	$r12,$r0,1			# 0x1
-	bltu	$r5,$r4,.L1173
-	b	.L1174
+	bltu	$r5,$r4,.L1185
+	b	.L1186
 	.align	5
-.L1177:
+.L1189:
 	slli.w	$r5,$r15,0
 	slli.w	$r12,$r14,0
-	bleu	$r4,$r5,.L1175
-	beqz	$r13,.L1176
-.L1173:
+	bleu	$r4,$r5,.L1187
+	beqz	$r13,.L1188
+.L1185:
 	slli.w	$r15,$r5,1
 	slli.w	$r14,$r12,1
 	addi.w	$r13,$r13,-1
-	bge	$r5,$r0,.L1177
-.L1174:
+	bge	$r5,$r0,.L1189
+.L1186:
 	or	$r13,$r0,$r0
 	.align	3
-.L1179:
+.L1191:
 	or	$r14,$r12,$r13
 	bstrpick.d	$r12,$r12,31,1
-	bltu	$r4,$r5,.L1178
+	bltu	$r4,$r5,.L1190
 	sub.w	$r4,$r4,$r5
 	slli.w	$r13,$r14,0
-.L1178:
+.L1190:
 	bstrpick.d	$r5,$r5,31,1
-	bnez	$r12,.L1179
-.L1176:
+	bnez	$r12,.L1191
+.L1188:
 	masknez	$r13,$r13,$r6
 	maskeqz	$r4,$r4,$r6
 	or	$r4,$r13,$r4
 	jr	$r1
 	.align	5
-.L1175:
-	bnez	$r12,.L1174
+.L1187:
+	bnez	$r12,.L1186
 	or	$r13,$r0,$r0
-	b	.L1176
+	b	.L1188
 	.cfi_endproc
 .LFE123:
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -5446,12 +5662,12 @@ __mspabi_cmpf:
 	.cfi_startproc
 	fcmp.slt.s	$fcc0,$f0,$f1
 	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
-	bcnez	$fcc0,.L1190
+	bcnez	$fcc0,.L1202
 	fcmp.sgt.s	$fcc0,$f0,$f1
 	movcf2fr	$f0,$fcc0
 	movfr2gr.s	$r4,$f0
 	slli.w	$r4,$r4,0
-.L1190:
+.L1202:
 	jr	$r1
 	.cfi_endproc
 .LFE124:
@@ -5465,12 +5681,12 @@ __mspabi_cmpd:
 	.cfi_startproc
 	fcmp.slt.d	$fcc0,$f0,$f1
 	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
-	bcnez	$fcc0,.L1193
+	bcnez	$fcc0,.L1205
 	fcmp.sgt.d	$fcc0,$f0,$f1
 	movcf2fr	$f0,$fcc0
 	movfr2gr.s	$r4,$f0
 	slli.w	$r4,$r4,0
-.L1193:
+.L1205:
 	jr	$r1
 	.cfi_endproc
 .LFE125:
@@ -5507,18 +5723,18 @@ __mulhi3:
 .LFB128 = .
 	.cfi_startproc
 	or	$r14,$r4,$r0
-	blt	$r5,$r0,.L1211
+	blt	$r5,$r0,.L1223
 	or	$r4,$r0,$r0
-	beqz	$r5,.L1200
+	beqz	$r5,.L1212
 	or	$r16,$r0,$r0
-.L1199:
+.L1211:
 	addi.w	$r13,$r0,32			# 0x20
 	or	$r4,$r0,$r0
-	b	.L1202
+	b	.L1214
 	.align	5
-.L1212:
-	beqz	$r13,.L1201
-.L1202:
+.L1224:
+	beqz	$r13,.L1213
+.L1214:
 	andi	$r12,$r5,1
 	sub.w	$r12,$r0,$r12
 	and	$r12,$r14,$r12
@@ -5528,19 +5744,19 @@ __mulhi3:
 	bstrpick.w	$r13,$r13,7,0
 	slli.w	$r14,$r15,0
 	add.w	$r4,$r12,$r4
-	bnez	$r5,.L1212
-.L1201:
+	bnez	$r5,.L1224
+.L1213:
 	sub.w	$r12,$r0,$r4
 	masknez	$r4,$r4,$r16
 	maskeqz	$r16,$r12,$r16
 	or	$r4,$r16,$r4
-.L1200:
+.L1212:
 	jr	$r1
 	.align	5
-.L1211:
+.L1223:
 	sub.w	$r5,$r0,$r5
 	addi.w	$r16,$r0,1			# 0x1
-	b	.L1199
+	b	.L1211
 	.cfi_endproc
 .LFE128:
 	.size	__mulhi3, .-__mulhi3
@@ -5553,40 +5769,40 @@ __divsi3:
 	.cfi_startproc
 	addi.w	$r12,$r0,1			# 0x1
 	or	$r17,$r0,$r0
-	blt	$r4,$r0,.L1232
-.L1214:
-	bge	$r5,$r0,.L1215
+	blt	$r4,$r0,.L1244
+.L1226:
+	bge	$r5,$r0,.L1227
 	sub.d	$r5,$r0,$r5
 	or	$r17,$r12,$r0
-.L1215:
+.L1227:
 	slli.w	$r13,$r4,0
 	slli.w	$r5,$r5,0
 	addi.w	$r14,$r0,32			# 0x20
 	addi.w	$r12,$r0,1			# 0x1
-	bgtu	$r13,$r5,.L1216
-	b	.L1217
+	bgtu	$r13,$r5,.L1228
+	b	.L1229
 	.align	5
-.L1220:
+.L1232:
 	slli.w	$r5,$r16,0
 	slli.w	$r12,$r15,0
-	bleu	$r13,$r5,.L1218
-	beqz	$r14,.L1227
-.L1216:
+	bleu	$r13,$r5,.L1230
+	beqz	$r14,.L1239
+.L1228:
 	slli.w	$r16,$r5,1
 	slli.w	$r15,$r12,1
 	addi.w	$r14,$r14,-1
-	bge	$r5,$r0,.L1220
-.L1217:
+	bge	$r5,$r0,.L1232
+.L1229:
 	or	$r14,$r0,$r0
 	.align	3
-.L1222:
-	bltu	$r13,$r5,.L1221
+.L1234:
+	bltu	$r13,$r5,.L1233
 	sub.w	$r13,$r13,$r5
 	or	$r14,$r12,$r14
-.L1221:
+.L1233:
 	bstrpick.d	$r12,$r12,31,1
 	bstrpick.d	$r5,$r5,31,1
-	bnez	$r12,.L1222
+	bnez	$r12,.L1234
 	bstrpick.d	$r14,$r14,31,0
 	sub.d	$r12,$r0,$r14
 	maskeqz	$r4,$r12,$r17
@@ -5594,9 +5810,9 @@ __divsi3:
 	or	$r4,$r4,$r14
 	jr	$r1
 	.align	5
-.L1218:
-	bnez	$r12,.L1217
-.L1227:
+.L1230:
+	bnez	$r12,.L1229
+.L1239:
 	or	$r14,$r0,$r0
 	sub.d	$r12,$r0,$r14
 	maskeqz	$r4,$r12,$r17
@@ -5604,11 +5820,11 @@ __divsi3:
 	or	$r4,$r4,$r14
 	jr	$r1
 	.align	5
-.L1232:
+.L1244:
 	sub.d	$r4,$r0,$r4
 	or	$r12,$r0,$r0
 	addi.w	$r17,$r0,1			# 0x1
-	b	.L1214
+	b	.L1226
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3, .-__divsi3
@@ -5620,35 +5836,35 @@ __modsi3:
 .LFB130 = .
 	.cfi_startproc
 	or	$r18,$r0,$r0
-	bge	$r4,$r0,.L1234
+	bge	$r4,$r0,.L1246
 	sub.d	$r4,$r0,$r4
 	addi.w	$r18,$r0,1			# 0x1
-.L1234:
+.L1246:
 	srai.d	$r12,$r5,63
 	xor	$r5,$r12,$r5
 	slli.w	$r13,$r4,0
 	sub.w	$r12,$r5,$r12
 	addi.w	$r15,$r0,32			# 0x20
 	addi.w	$r14,$r0,1			# 0x1
-	bgtu	$r13,$r12,.L1235
-	b	.L1241
+	bgtu	$r13,$r12,.L1247
+	b	.L1253
 	.align	5
-.L1239:
+.L1251:
 	slli.w	$r12,$r17,0
 	slli.w	$r14,$r16,0
-	bleu	$r13,$r12,.L1255
-	beqz	$r15,.L1238
-.L1235:
+	bleu	$r13,$r12,.L1267
+	beqz	$r15,.L1250
+.L1247:
 	slli.w	$r17,$r12,1
 	slli.w	$r16,$r14,1
 	addi.w	$r15,$r15,-1
-	bge	$r12,$r0,.L1239
-	b	.L1241
+	bge	$r12,$r0,.L1251
+	b	.L1253
 	.align	5
-.L1255:
-	beqz	$r14,.L1238
+.L1267:
+	beqz	$r14,.L1250
 	.align	3
-.L1241:
+.L1253:
 	sltu	$r16,$r13,$r12
 	sub.w	$r15,$r13,$r12
 	masknez	$r15,$r15,$r16
@@ -5656,8 +5872,8 @@ __modsi3:
 	bstrpick.d	$r14,$r14,31,1
 	bstrpick.d	$r12,$r12,31,1
 	or	$r13,$r15,$r13
-	bnez	$r14,.L1241
-.L1238:
+	bnez	$r14,.L1253
+.L1250:
 	bstrpick.d	$r13,$r13,31,0
 	sub.d	$r12,$r0,$r13
 	maskeqz	$r4,$r12,$r18
@@ -5676,257 +5892,257 @@ __udivmodhi4:
 	.cfi_startproc
 	slli.w	$r12,$r5,0
 	slli.w	$r13,$r4,0
-	bgeu	$r5,$r4,.L1371
+	bgeu	$r5,$r4,.L1383
 	srli.d	$r12,$r5,15
-	bnez	$r12,.L1259
+	bnez	$r12,.L1271
 	slli.w	$r12,$r5,1
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1260
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1261
-	slli.w	$r12,$r5,2
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1262
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1263
-	slli.w	$r12,$r5,3
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1264
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1265
-	slli.w	$r12,$r5,4
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1266
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1267
-	slli.w	$r12,$r5,5
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1268
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1269
-	slli.w	$r12,$r5,6
-	bstrpick.w	$r12,$r12,15,0
-	slli.w	$r14,$r12,0
-	bleu	$r13,$r12,.L1270
-	srli.d	$r14,$r12,15
-	bnez	$r14,.L1271
-	slli.w	$r12,$r5,7
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1272
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1273
-	slli.w	$r12,$r5,8
+	slli.w	$r12,$r5,2
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1274
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1275
-	slli.w	$r12,$r5,9
+	slli.w	$r12,$r5,3
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1276
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1277
-	slli.w	$r12,$r5,10
+	slli.w	$r12,$r5,4
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1278
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1279
-	slli.w	$r12,$r5,11
+	slli.w	$r12,$r5,5
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1280
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1281
-	slli.w	$r12,$r5,12
+	slli.w	$r12,$r5,6
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1282
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1283
-	slli.w	$r12,$r5,13
+	slli.w	$r12,$r5,7
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1284
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1285
-	slli.w	$r12,$r5,14
+	slli.w	$r12,$r5,8
 	bstrpick.w	$r12,$r12,15,0
 	slli.w	$r14,$r12,0
 	bleu	$r13,$r12,.L1286
 	srli.d	$r14,$r12,15
 	bnez	$r14,.L1287
+	slli.w	$r12,$r5,9
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1288
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1289
+	slli.w	$r12,$r5,10
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1290
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1291
+	slli.w	$r12,$r5,11
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1292
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1293
+	slli.w	$r12,$r5,12
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1294
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1295
+	slli.w	$r12,$r5,13
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1296
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1297
+	slli.w	$r12,$r5,14
+	bstrpick.w	$r12,$r12,15,0
+	slli.w	$r14,$r12,0
+	bleu	$r13,$r12,.L1298
+	srli.d	$r14,$r12,15
+	bnez	$r14,.L1299
 	slli.w	$r5,$r5,15
 	bstrpick.w	$r14,$r5,15,0
-	bleu	$r13,$r14,.L1288
-	bnez	$r14,.L1372
-.L1289:
+	bleu	$r13,$r14,.L1300
+	bnez	$r14,.L1384
+.L1301:
 	maskeqz	$r4,$r4,$r6
 	masknez	$r6,$r14,$r6
 	or	$r4,$r4,$r6
 	jr	$r1
-.L1276:
-	bltu	$r13,$r14,.L1322
+.L1288:
+	bltu	$r13,$r14,.L1334
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,512			# 0x200
 	addi.w	$r14,$r0,512			# 0x200
 	bstrpick.w	$r4,$r4,15,0
 	.align	3
-.L1291:
+.L1303:
 	srli.d	$r16,$r15,2
 	srli.d	$r13,$r12,2
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1292
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1292:
-	srli.d	$r16,$r15,3
-	srli.d	$r13,$r12,3
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1293
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1293:
-	srli.d	$r16,$r15,4
-	srli.d	$r13,$r12,4
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1294
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1294:
-	srli.d	$r16,$r15,5
-	srli.d	$r13,$r12,5
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1295
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1295:
-	srli.d	$r16,$r15,6
-	srli.d	$r13,$r12,6
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1296
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1296:
-	srli.d	$r16,$r15,7
-	srli.d	$r13,$r12,7
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1297
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1297:
-	srli.d	$r16,$r15,8
-	srli.d	$r13,$r12,8
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1298
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1298:
-	srli.d	$r16,$r15,9
-	srli.d	$r13,$r12,9
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1299
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1299:
-	srli.d	$r16,$r15,10
-	srli.d	$r13,$r12,10
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1300
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1300:
-	srli.d	$r16,$r15,11
-	srli.d	$r13,$r12,11
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1301
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1301:
-	srli.d	$r16,$r15,12
-	srli.d	$r13,$r12,12
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1302
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1302:
-	srli.d	$r16,$r15,13
-	srli.d	$r13,$r12,13
-	beqz	$r16,.L1289
-	slli.w	$r17,$r4,0
-	bltu	$r17,$r13,.L1303
-	sub.w	$r13,$r4,$r13
-	or	$r14,$r14,$r16
-	bstrpick.w	$r4,$r13,15,0
-.L1303:
-	srli.d	$r16,$r15,14
-	srli.d	$r13,$r12,14
-	beqz	$r16,.L1289
+	beqz	$r16,.L1301
 	slli.w	$r17,$r4,0
 	bltu	$r17,$r13,.L1304
 	sub.w	$r13,$r4,$r13
 	or	$r14,$r14,$r16
 	bstrpick.w	$r4,$r13,15,0
 .L1304:
+	srli.d	$r16,$r15,3
+	srli.d	$r13,$r12,3
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1305
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1305:
+	srli.d	$r16,$r15,4
+	srli.d	$r13,$r12,4
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1306
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1306:
+	srli.d	$r16,$r15,5
+	srli.d	$r13,$r12,5
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1307
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1307:
+	srli.d	$r16,$r15,6
+	srli.d	$r13,$r12,6
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1308
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1308:
+	srli.d	$r16,$r15,7
+	srli.d	$r13,$r12,7
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1309
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1309:
+	srli.d	$r16,$r15,8
+	srli.d	$r13,$r12,8
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1310
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1310:
+	srli.d	$r16,$r15,9
+	srli.d	$r13,$r12,9
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1311
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1311:
+	srli.d	$r16,$r15,10
+	srli.d	$r13,$r12,10
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1312
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1312:
+	srli.d	$r16,$r15,11
+	srli.d	$r13,$r12,11
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1313
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1313:
+	srli.d	$r16,$r15,12
+	srli.d	$r13,$r12,12
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1314
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1314:
+	srli.d	$r16,$r15,13
+	srli.d	$r13,$r12,13
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1315
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1315:
+	srli.d	$r16,$r15,14
+	srli.d	$r13,$r12,14
+	beqz	$r16,.L1301
+	slli.w	$r17,$r4,0
+	bltu	$r17,$r13,.L1316
+	sub.w	$r13,$r4,$r13
+	or	$r14,$r14,$r16
+	bstrpick.w	$r4,$r13,15,0
+.L1316:
 	lu12i.w	$r13,16384>>12			# 0x4000
 	srli.d	$r12,$r12,15
-	beq	$r15,$r13,.L1289
+	beq	$r15,$r13,.L1301
 	slli.w	$r13,$r4,0
-	bltu	$r13,$r12,.L1312
+	bltu	$r13,$r12,.L1324
 	sub.w	$r12,$r4,$r12
 	ori	$r14,$r14,1
 	bstrpick.w	$r4,$r12,15,0
-	b	.L1289
-.L1312:
+	b	.L1301
+.L1324:
 	or	$r4,$r0,$r0
-	b	.L1289
-.L1371:
+	b	.L1301
+.L1383:
 	xor	$r12,$r12,$r13
 	maskeqz	$r4,$r4,$r12
 	sltui	$r14,$r12,1
-	b	.L1289
-.L1259:
+	b	.L1301
+.L1271:
 	sub.w	$r5,$r4,$r5
 	addi.w	$r14,$r0,1			# 0x1
 	bstrpick.w	$r4,$r5,15,0
-	b	.L1289
-.L1260:
-	bltu	$r13,$r14,.L1314
+	b	.L1301
+.L1272:
+	bltu	$r13,$r14,.L1326
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,2			# 0x2
 	addi.w	$r14,$r0,2			# 0x2
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1261:
+	b	.L1303
+.L1273:
 	sub.w	$r4,$r4,$r12
 	bstrpick.d	$r5,$r5,14,0
 	addi.w	$r16,$r0,1			# 0x1
@@ -5934,189 +6150,189 @@ __udivmodhi4:
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,2			# 0x2
 	.align	3
-.L1309:
+.L1321:
 	slli.w	$r13,$r4,0
-	bltu	$r13,$r5,.L1291
+	bltu	$r13,$r5,.L1303
 	sub.w	$r5,$r4,$r5
 	or	$r14,$r14,$r16
 	bstrpick.w	$r4,$r5,15,0
-	b	.L1291
-.L1262:
-	bltu	$r13,$r14,.L1315
+	b	.L1303
+.L1274:
+	bltu	$r13,$r14,.L1327
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,4			# 0x4
 	addi.w	$r14,$r0,4			# 0x4
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1263:
+	b	.L1303
+.L1275:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,2			# 0x2
 	addi.w	$r15,$r0,4			# 0x4
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,4			# 0x4
-	b	.L1309
-.L1264:
-	bltu	$r13,$r14,.L1316
+	b	.L1321
+.L1276:
+	bltu	$r13,$r14,.L1328
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,8			# 0x8
 	addi.w	$r14,$r0,8			# 0x8
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1265:
+	b	.L1303
+.L1277:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,4			# 0x4
 	addi.w	$r15,$r0,8			# 0x8
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,8			# 0x8
-	b	.L1309
-.L1266:
-	bltu	$r13,$r14,.L1317
+	b	.L1321
+.L1278:
+	bltu	$r13,$r14,.L1329
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,16			# 0x10
 	addi.w	$r14,$r0,16			# 0x10
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1267:
+	b	.L1303
+.L1279:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,8			# 0x8
 	addi.w	$r15,$r0,16			# 0x10
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,16			# 0x10
-	b	.L1309
-.L1268:
-	bltu	$r13,$r14,.L1318
+	b	.L1321
+.L1280:
+	bltu	$r13,$r14,.L1330
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,32			# 0x20
 	addi.w	$r14,$r0,32			# 0x20
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1269:
+	b	.L1303
+.L1281:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,16			# 0x10
 	addi.w	$r15,$r0,32			# 0x20
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,32			# 0x20
-	b	.L1309
-.L1270:
-	bltu	$r13,$r14,.L1319
+	b	.L1321
+.L1282:
+	bltu	$r13,$r14,.L1331
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,64			# 0x40
 	addi.w	$r14,$r0,64			# 0x40
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1271:
+	b	.L1303
+.L1283:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,32			# 0x20
 	addi.w	$r15,$r0,64			# 0x40
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,64			# 0x40
-	b	.L1309
-.L1272:
-	bltu	$r13,$r14,.L1320
+	b	.L1321
+.L1284:
+	bltu	$r13,$r14,.L1332
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,128			# 0x80
 	addi.w	$r14,$r0,128			# 0x80
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1273:
+	b	.L1303
+.L1285:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,64			# 0x40
 	addi.w	$r15,$r0,128			# 0x80
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,128			# 0x80
-	b	.L1309
-.L1275:
+	b	.L1321
+.L1287:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,128			# 0x80
 	addi.w	$r15,$r0,256			# 0x100
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,256			# 0x100
-	b	.L1309
-.L1277:
+	b	.L1321
+.L1289:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,256			# 0x100
 	addi.w	$r15,$r0,512			# 0x200
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,512			# 0x200
-	b	.L1309
-.L1314:
+	b	.L1321
+.L1326:
 	addi.w	$r15,$r0,2			# 0x2
 	.align	3
-.L1308:
+.L1320:
 	srli.d	$r16,$r15,1
 	srli.d	$r5,$r12,1
 	or	$r14,$r0,$r0
-	b	.L1309
-.L1279:
+	b	.L1321
+.L1291:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,512			# 0x200
 	addi.w	$r15,$r0,1024			# 0x400
 	bstrpick.w	$r4,$r4,15,0
 	addi.w	$r14,$r0,1024			# 0x400
-	b	.L1309
-.L1281:
+	b	.L1321
+.L1293:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	addi.w	$r16,$r0,1024			# 0x400
 	ori	$r15,$r0,2048			# 0x800
 	bstrpick.w	$r4,$r4,15,0
 	ori	$r14,$r0,2048			# 0x800
-	b	.L1309
-.L1315:
+	b	.L1321
+.L1327:
 	addi.w	$r15,$r0,4			# 0x4
-	b	.L1308
-.L1316:
+	b	.L1320
+.L1328:
 	addi.w	$r15,$r0,8			# 0x8
-	b	.L1308
-.L1283:
+	b	.L1320
+.L1295:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	ori	$r16,$r0,2048			# 0x800
 	lu12i.w	$r15,4096>>12			# 0x1000
 	bstrpick.w	$r4,$r4,15,0
 	lu12i.w	$r14,4096>>12			# 0x1000
-	b	.L1309
-.L1285:
+	b	.L1321
+.L1297:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	lu12i.w	$r16,4096>>12			# 0x1000
 	lu12i.w	$r15,8192>>12			# 0x2000
 	bstrpick.w	$r4,$r4,15,0
 	lu12i.w	$r14,8192>>12			# 0x2000
-	b	.L1309
-.L1317:
+	b	.L1321
+.L1329:
 	addi.w	$r15,$r0,16			# 0x10
-	b	.L1308
-.L1287:
+	b	.L1320
+.L1299:
 	sub.w	$r4,$r4,$r12
 	srli.d	$r5,$r12,1
 	lu12i.w	$r16,8192>>12			# 0x2000
 	lu12i.w	$r15,16384>>12			# 0x4000
 	bstrpick.w	$r4,$r4,15,0
 	lu12i.w	$r14,16384>>12			# 0x4000
-	b	.L1309
-.L1318:
+	b	.L1321
+.L1330:
 	addi.w	$r15,$r0,32			# 0x20
-	b	.L1308
-.L1319:
+	b	.L1320
+.L1331:
 	addi.w	$r15,$r0,64			# 0x40
-	b	.L1308
-.L1288:
+	b	.L1320
+.L1300:
 	srli.d	$r12,$r4,15
-	bnez	$r12,.L1313
+	bnez	$r12,.L1325
 	lu12i.w	$r12,32768>>12			# 0x8000
 	lu12i.w	$r15,32768>>12			# 0x8000
-	b	.L1308
-.L1372:
+	b	.L1320
+.L1384:
 	lu12i.w	$r13,-32768>>12			# 0xffffffffffff8000
 	add.w	$r13,$r4,$r13
 	lu12i.w	$r5,16384>>12			# 0x4000
@@ -6125,79 +6341,79 @@ __udivmodhi4:
 	lu12i.w	$r15,32768>>12			# 0x8000
 	lu12i.w	$r14,32768>>12			# 0x8000
 	bstrpick.w	$r4,$r13,15,0
-	b	.L1309
-.L1320:
+	b	.L1321
+.L1332:
 	addi.w	$r15,$r0,128			# 0x80
-	b	.L1308
-.L1274:
-	bltu	$r13,$r14,.L1321
+	b	.L1320
+.L1286:
+	bltu	$r13,$r14,.L1333
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,256			# 0x100
 	addi.w	$r14,$r0,256			# 0x100
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1313:
+	b	.L1303
+.L1325:
 	lu12i.w	$r12,32768>>12			# 0x8000
 	lu12i.w	$r15,32768>>12			# 0x8000
 	lu12i.w	$r14,32768>>12			# 0x8000
 	or	$r4,$r0,$r0
-	b	.L1291
-.L1321:
+	b	.L1303
+.L1333:
 	addi.w	$r15,$r0,256			# 0x100
-	b	.L1308
-.L1278:
-	bltu	$r13,$r14,.L1323
+	b	.L1320
+.L1290:
+	bltu	$r13,$r14,.L1335
 	sub.w	$r4,$r4,$r12
 	addi.w	$r15,$r0,1024			# 0x400
 	addi.w	$r14,$r0,1024			# 0x400
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1286:
-	bltu	$r13,$r14,.L1327
+	b	.L1303
+.L1298:
+	bltu	$r13,$r14,.L1339
 	sub.w	$r4,$r4,$r12
 	lu12i.w	$r15,16384>>12			# 0x4000
 	lu12i.w	$r14,16384>>12			# 0x4000
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1323:
+	b	.L1303
+.L1335:
 	addi.w	$r15,$r0,1024			# 0x400
-	b	.L1308
-.L1327:
+	b	.L1320
+.L1339:
 	lu12i.w	$r15,16384>>12			# 0x4000
-	b	.L1308
-.L1322:
+	b	.L1320
+.L1334:
 	addi.w	$r15,$r0,512			# 0x200
-	b	.L1308
-.L1284:
-	bltu	$r13,$r14,.L1326
+	b	.L1320
+.L1296:
+	bltu	$r13,$r14,.L1338
 	sub.w	$r4,$r4,$r12
 	lu12i.w	$r15,8192>>12			# 0x2000
 	lu12i.w	$r14,8192>>12			# 0x2000
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1282:
-	bltu	$r13,$r14,.L1325
+	b	.L1303
+.L1294:
+	bltu	$r13,$r14,.L1337
 	sub.w	$r4,$r4,$r12
 	lu12i.w	$r15,4096>>12			# 0x1000
 	lu12i.w	$r14,4096>>12			# 0x1000
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1280:
-	bltu	$r13,$r14,.L1324
+	b	.L1303
+.L1292:
+	bltu	$r13,$r14,.L1336
 	sub.w	$r4,$r4,$r12
 	ori	$r15,$r0,2048			# 0x800
 	ori	$r14,$r0,2048			# 0x800
 	bstrpick.w	$r4,$r4,15,0
-	b	.L1291
-.L1326:
+	b	.L1303
+.L1338:
 	lu12i.w	$r15,8192>>12			# 0x2000
-	b	.L1308
-.L1325:
+	b	.L1320
+.L1337:
 	lu12i.w	$r15,4096>>12			# 0x1000
-	b	.L1308
-.L1324:
+	b	.L1320
+.L1336:
 	ori	$r15,$r0,2048			# 0x800
-	b	.L1308
+	b	.L1320
 	.cfi_endproc
 .LFE131:
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -6212,39 +6428,39 @@ __udivmodsi4_libgcc:
 	addi.w	$r14,$r0,64			# 0x40
 	addi.w	$r12,$r0,1			# 0x1
 	lu32i.d	$r15,0>>32
-	bltu	$r5,$r4,.L1374
-	b	.L1375
+	bltu	$r5,$r4,.L1386
+	b	.L1387
 	.align	5
-.L1378:
+.L1390:
 	slli.d	$r5,$r5,1
 	slli.d	$r12,$r12,1
-	bleu	$r4,$r5,.L1376
-	beqz	$r14,.L1377
-.L1374:
+	bleu	$r4,$r5,.L1388
+	beqz	$r14,.L1389
+.L1386:
 	and	$r13,$r5,$r15
 	addi.w	$r14,$r14,-1
-	beqz	$r13,.L1378
-.L1375:
+	beqz	$r13,.L1390
+.L1387:
 	or	$r13,$r0,$r0
 	.align	3
-.L1380:
-	bltu	$r4,$r5,.L1379
+.L1392:
+	bltu	$r4,$r5,.L1391
 	sub.d	$r4,$r4,$r5
 	or	$r13,$r13,$r12
-.L1379:
+.L1391:
 	srli.d	$r12,$r12,1
 	srli.d	$r5,$r5,1
-	bnez	$r12,.L1380
-.L1377:
+	bnez	$r12,.L1392
+.L1389:
 	masknez	$r13,$r13,$r6
 	maskeqz	$r4,$r4,$r6
 	or	$r4,$r13,$r4
 	jr	$r1
 	.align	5
-.L1376:
-	beqz	$r12,.L1377
+.L1388:
+	beqz	$r12,.L1389
 	or	$r13,$r0,$r0
-	b	.L1380
+	b	.L1392
 	.cfi_endproc
 .LFE132:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -6256,18 +6472,18 @@ __ashldi3:
 .LFB133 = .
 	.cfi_startproc
 	andi	$r13,$r5,32
-	beqz	$r13,.L1394
+	beqz	$r13,.L1406
 	sll.w	$r5,$r4,$r5
 	or	$r13,$r0,$r0
-.L1395:
+.L1407:
 	or	$r4,$r0,$r0
 	bstrins.d	$r4,$r13,31,0
 	bstrins.d	$r4,$r5,63,32
-.L1393:
+.L1405:
 	jr	$r1
 	.align	5
-.L1394:
-	beqz	$r5,.L1393
+.L1406:
+	beqz	$r5,.L1405
 	sub.w	$r15,$r0,$r5
 	srai.d	$r14,$r4,32
 	sll.w	$r14,$r14,$r5
@@ -6275,7 +6491,7 @@ __ashldi3:
 	or	$r12,$r12,$r14
 	sll.w	$r13,$r4,$r5
 	slli.w	$r5,$r12,0
-	b	.L1395
+	b	.L1407
 	.cfi_endproc
 .LFE133:
 	.size	__ashldi3, .-__ashldi3
@@ -6288,19 +6504,19 @@ __ashlti3:
 	.cfi_startproc
 	andi	$r14,$r6,64
 	or	$r12,$r4,$r0
-	beqz	$r14,.L1400
+	beqz	$r14,.L1412
 	sll.d	$r5,$r4,$r6
 	or	$r4,$r0,$r0
 	jr	$r1
 	.align	5
-.L1400:
-	beqz	$r6,.L1402
+.L1412:
+	beqz	$r6,.L1414
 	sub.w	$r14,$r0,$r6
 	sll.d	$r5,$r5,$r6
 	srl.d	$r12,$r12,$r14
 	sll.d	$r4,$r4,$r6
 	or	$r5,$r12,$r5
-.L1402:
+.L1414:
 	jr	$r1
 	.cfi_endproc
 .LFE134:
@@ -6313,19 +6529,19 @@ __ashrdi3:
 .LFB135 = .
 	.cfi_startproc
 	andi	$r13,$r5,32
-	beqz	$r13,.L1406
+	beqz	$r13,.L1418
 	srai.d	$r12,$r4,32
 	srai.w	$r13,$r12,31
 	sra.w	$r12,$r12,$r5
-.L1407:
+.L1419:
 	or	$r4,$r0,$r0
 	bstrins.d	$r4,$r13,63,32
 	bstrins.d	$r4,$r12,31,0
-.L1405:
+.L1417:
 	jr	$r1
 	.align	5
-.L1406:
-	beqz	$r5,.L1405
+.L1418:
+	beqz	$r5,.L1417
 	srai.d	$r13,$r4,32
 	sub.w	$r14,$r0,$r5
 	sll.w	$r14,$r13,$r14
@@ -6333,7 +6549,7 @@ __ashrdi3:
 	or	$r12,$r14,$r12
 	sra.w	$r13,$r13,$r5
 	slli.w	$r12,$r12,0
-	b	.L1407
+	b	.L1419
 	.cfi_endproc
 .LFE135:
 	.size	__ashrdi3, .-__ashrdi3
@@ -6346,19 +6562,19 @@ __ashrti3:
 	.cfi_startproc
 	andi	$r14,$r6,64
 	or	$r12,$r5,$r0
-	beqz	$r14,.L1412
+	beqz	$r14,.L1424
 	srai.d	$r5,$r5,63
 	sra.d	$r4,$r12,$r6
 	jr	$r1
 	.align	5
-.L1412:
-	beqz	$r6,.L1414
+.L1424:
+	beqz	$r6,.L1426
 	sub.w	$r14,$r0,$r6
 	srl.d	$r4,$r4,$r6
 	sll.d	$r12,$r12,$r14
 	sra.d	$r5,$r5,$r6
 	or	$r4,$r12,$r4
-.L1414:
+.L1426:
 	jr	$r1
 	.cfi_endproc
 .LFE136:
@@ -6464,20 +6680,20 @@ __cmpdi2:
 	srai.d	$r14,$r4,32
 	srai.d	$r13,$r5,32
 	or	$r12,$r4,$r0
-	blt	$r14,$r13,.L1423
+	blt	$r14,$r13,.L1435
 	addi.w	$r4,$r0,2			# 0x2
-	bgt	$r14,$r13,.L1422
+	bgt	$r14,$r13,.L1434
 	slli.w	$r12,$r12,0
 	slli.w	$r5,$r5,0
 	or	$r4,$r0,$r0
-	bltu	$r12,$r5,.L1422
+	bltu	$r12,$r5,.L1434
 	sltu	$r4,$r5,$r12
 	addi.d	$r4,$r4,1
 	jr	$r1
 	.align	5
-.L1423:
+.L1435:
 	or	$r4,$r0,$r0
-.L1422:
+.L1434:
 	jr	$r1
 	.cfi_endproc
 .LFE141:
@@ -6492,9 +6708,9 @@ __aeabi_lcmp:
 	srai.d	$r14,$r4,32
 	srai.d	$r13,$r5,32
 	or	$r12,$r4,$r0
-	blt	$r14,$r13,.L1429
+	blt	$r14,$r13,.L1441
 	addi.w	$r4,$r0,1			# 0x1
-	bgt	$r14,$r13,.L1428
+	bgt	$r14,$r13,.L1440
 	slli.w	$r5,$r5,0
 	slli.w	$r12,$r12,0
 	sltu	$r4,$r12,$r5
@@ -6505,9 +6721,9 @@ __aeabi_lcmp:
 	or	$r4,$r12,$r4
 	jr	$r1
 	.align	5
-.L1429:
+.L1441:
 	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
-.L1428:
+.L1440:
 	jr	$r1
 	.cfi_endproc
 .LFE142:
@@ -6520,18 +6736,18 @@ __cmpti2:
 .LFB143 = .
 	.cfi_startproc
 	or	$r12,$r4,$r0
-	blt	$r5,$r7,.L1434
+	blt	$r5,$r7,.L1446
 	addi.w	$r4,$r0,2			# 0x2
-	bgt	$r5,$r7,.L1433
+	bgt	$r5,$r7,.L1445
 	or	$r4,$r0,$r0
-	bltu	$r12,$r6,.L1433
+	bltu	$r12,$r6,.L1445
 	sltu	$r4,$r6,$r12
 	addi.d	$r4,$r4,1
 	jr	$r1
 	.align	5
-.L1434:
+.L1446:
 	or	$r4,$r0,$r0
-.L1433:
+.L1445:
 	jr	$r1
 	.cfi_endproc
 .LFE143:
@@ -6601,13 +6817,13 @@ __ctzti2:
 __ffsti2:
 .LFB146 = .
 	.cfi_startproc
-	bnez	$r4,.L1441
+	bnez	$r4,.L1453
 	ctz.d	$r4,$r5
 	addi.w	$r4,$r4,65
 	maskeqz	$r4,$r4,$r5
 	jr	$r1
 	.align	5
-.L1441:
+.L1453:
 	ctz.d	$r4,$r4
 	addi.w	$r4,$r4,1
 	jr	$r1
@@ -6622,19 +6838,19 @@ __lshrdi3:
 .LFB147 = .
 	.cfi_startproc
 	andi	$r13,$r5,32
-	beqz	$r13,.L1445
+	beqz	$r13,.L1457
 	bstrpick.d	$r12,$r4,63,32
 	or	$r13,$r0,$r0
 	srl.w	$r5,$r12,$r5
-.L1446:
+.L1458:
 	or	$r4,$r0,$r0
 	bstrins.d	$r4,$r13,63,32
 	bstrins.d	$r4,$r5,31,0
-.L1444:
+.L1456:
 	jr	$r1
 	.align	5
-.L1445:
-	beqz	$r5,.L1444
+.L1457:
+	beqz	$r5,.L1456
 	bstrpick.d	$r13,$r4,63,32
 	sub.w	$r14,$r0,$r5
 	srl.w	$r12,$r4,$r5
@@ -6642,7 +6858,7 @@ __lshrdi3:
 	or	$r12,$r14,$r12
 	srl.w	$r13,$r13,$r5
 	slli.w	$r5,$r12,0
-	b	.L1446
+	b	.L1458
 	.cfi_endproc
 .LFE147:
 	.size	__lshrdi3, .-__lshrdi3
@@ -6655,19 +6871,19 @@ __lshrti3:
 	.cfi_startproc
 	andi	$r14,$r6,64
 	or	$r12,$r5,$r0
-	beqz	$r14,.L1451
+	beqz	$r14,.L1463
 	srl.d	$r4,$r5,$r6
 	or	$r5,$r0,$r0
 	jr	$r1
 	.align	5
-.L1451:
-	beqz	$r6,.L1453
+.L1463:
+	beqz	$r6,.L1465
 	sub.w	$r14,$r0,$r6
 	srl.d	$r4,$r4,$r6
 	sll.d	$r12,$r12,$r14
 	srl.d	$r5,$r5,$r6
 	or	$r4,$r12,$r4
-.L1453:
+.L1465:
 	jr	$r1
 	.cfi_endproc
 .LFE148:
@@ -7050,42 +7266,42 @@ __powidf2:
 	.cfi_startproc
 	andi	$r12,$r4,1
 	fmov.d	$f1,$f0
-	pcalau12i	$r13,%pc_hi20(.LC8)
-	beqz	$r12,.L1474
-	fld.d	$f0,$r13,%pc_lo12(.LC8)
+	pcalau12i	$r13,%pc_hi20(.LC18)
+	beqz	$r12,.L1486
+	fld.d	$f0,$r13,%pc_lo12(.LC18)
 	or	$r12,$r4,$r0
 	.align	3
-.L1471:
+.L1483:
 	fmul.d	$f0,$f0,$f1
-.L1469:
+.L1481:
 	srli.w	$r13,$r12,31
 	add.w	$r12,$r13,$r12
 	srai.d	$r12,$r12,1
-	beqz	$r12,.L1470
+	beqz	$r12,.L1482
 	srli.w	$r13,$r12,31
 	andi	$r14,$r12,1
 	fmul.d	$f1,$f1,$f1
 	add.w	$r13,$r13,$r12
-	bnez	$r14,.L1471
-.L1475:
+	bnez	$r14,.L1483
+.L1487:
 	srai.d	$r12,$r13,1
 	srli.w	$r13,$r12,31
 	andi	$r14,$r12,1
 	fmul.d	$f1,$f1,$f1
 	add.w	$r13,$r13,$r12
-	bnez	$r14,.L1471
-	b	.L1475
+	bnez	$r14,.L1483
+	b	.L1487
 	.align	5
-.L1470:
-	blt	$r4,$r0,.L1476
+.L1482:
+	blt	$r4,$r0,.L1488
 	jr	$r1
 	.align	5
-.L1474:
-	fld.d	$f0,$r13,%pc_lo12(.LC8)
+.L1486:
+	fld.d	$f0,$r13,%pc_lo12(.LC18)
 	or	$r12,$r4,$r0
-	b	.L1469
+	b	.L1481
 	.align	5
-.L1476:
+.L1488:
 	frecip.d	$f0,$f0
 	jr	$r1
 	.cfi_endproc
@@ -7100,42 +7316,42 @@ __powisf2:
 	.cfi_startproc
 	andi	$r12,$r4,1
 	fmov.s	$f1,$f0
-	pcalau12i	$r13,%pc_hi20(.LC19)
-	beqz	$r12,.L1483
-	fld.s	$f0,$r13,%pc_lo12(.LC19)
+	pcalau12i	$r13,%pc_hi20(.LC26)
+	beqz	$r12,.L1495
+	fld.s	$f0,$r13,%pc_lo12(.LC26)
 	or	$r12,$r4,$r0
 	.align	3
-.L1480:
+.L1492:
 	fmul.s	$f0,$f0,$f1
-.L1478:
+.L1490:
 	srli.w	$r13,$r12,31
 	add.w	$r12,$r13,$r12
 	srai.d	$r12,$r12,1
-	beqz	$r12,.L1479
+	beqz	$r12,.L1491
 	srli.w	$r13,$r12,31
 	andi	$r14,$r12,1
 	fmul.s	$f1,$f1,$f1
 	add.w	$r13,$r13,$r12
-	bnez	$r14,.L1480
-.L1484:
+	bnez	$r14,.L1492
+.L1496:
 	srai.d	$r12,$r13,1
 	srli.w	$r13,$r12,31
 	andi	$r14,$r12,1
 	fmul.s	$f1,$f1,$f1
 	add.w	$r13,$r13,$r12
-	bnez	$r14,.L1480
-	b	.L1484
+	bnez	$r14,.L1492
+	b	.L1496
 	.align	5
-.L1479:
-	blt	$r4,$r0,.L1485
+.L1491:
+	blt	$r4,$r0,.L1497
 	jr	$r1
 	.align	5
-.L1483:
-	fld.s	$f0,$r13,%pc_lo12(.LC19)
+.L1495:
+	fld.s	$f0,$r13,%pc_lo12(.LC26)
 	or	$r12,$r4,$r0
-	b	.L1478
+	b	.L1490
 	.align	5
-.L1485:
+.L1497:
 	frecip.s	$f0,$f0
 	jr	$r1
 	.cfi_endproc
@@ -7151,20 +7367,20 @@ __ucmpdi2:
 	srai.d	$r14,$r4,32
 	srai.d	$r13,$r5,32
 	or	$r12,$r4,$r0
-	bltu	$r14,$r13,.L1488
+	bltu	$r14,$r13,.L1500
 	addi.w	$r4,$r0,2			# 0x2
-	bgtu	$r14,$r13,.L1487
+	bgtu	$r14,$r13,.L1499
 	slli.w	$r12,$r12,0
 	slli.w	$r5,$r5,0
 	or	$r4,$r0,$r0
-	bltu	$r12,$r5,.L1487
+	bltu	$r12,$r5,.L1499
 	sltu	$r4,$r5,$r12
 	addi.d	$r4,$r4,1
 	jr	$r1
 	.align	5
-.L1488:
+.L1500:
 	or	$r4,$r0,$r0
-.L1487:
+.L1499:
 	jr	$r1
 	.cfi_endproc
 .LFE163:
@@ -7179,9 +7395,9 @@ __aeabi_ulcmp:
 	srai.d	$r14,$r4,32
 	srai.d	$r13,$r5,32
 	or	$r12,$r4,$r0
-	bltu	$r14,$r13,.L1494
+	bltu	$r14,$r13,.L1506
 	addi.w	$r4,$r0,1			# 0x1
-	bgtu	$r14,$r13,.L1493
+	bgtu	$r14,$r13,.L1505
 	slli.w	$r5,$r5,0
 	slli.w	$r12,$r12,0
 	sltu	$r4,$r12,$r5
@@ -7192,9 +7408,9 @@ __aeabi_ulcmp:
 	or	$r4,$r12,$r4
 	jr	$r1
 	.align	5
-.L1494:
+.L1506:
 	addi.w	$r4,$r0,-1			# 0xffffffffffffffff
-.L1493:
+.L1505:
 	jr	$r1
 	.cfi_endproc
 .LFE164:
@@ -7207,95 +7423,120 @@ __ucmpti2:
 .LFB165 = .
 	.cfi_startproc
 	or	$r12,$r4,$r0
-	bltu	$r5,$r7,.L1499
+	bltu	$r5,$r7,.L1511
 	addi.w	$r4,$r0,2			# 0x2
-	bgtu	$r5,$r7,.L1498
+	bgtu	$r5,$r7,.L1510
 	or	$r4,$r0,$r0
-	bltu	$r12,$r6,.L1498
+	bltu	$r12,$r6,.L1510
 	sltu	$r4,$r6,$r12
 	addi.d	$r4,$r4,1
 	jr	$r1
 	.align	5
-.L1499:
+.L1511:
 	or	$r4,$r0,$r0
-.L1498:
+.L1510:
 	jr	$r1
 	.cfi_endproc
 .LFE165:
 	.size	__ucmpti2, .-__ucmpti2
-	.set	.LC0,.LC4+12
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align	2
+.LC0:
+	.word	-8388609
+	.align	2
 .LC1:
-	.word	1056964608
-	.set	.LC2,.LC4+8
+	.word	2139095039
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align	3
-.LC3:
-	.word	0
-	.word	1071644672
+.LC4:
+	.word	-1
+	.word	-1048577
+	.align	3
+.LC5:
+	.word	-1
+	.word	2146435071
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align	4
-.LC4:
+.LC8:
+	.word	-1
+	.word	-1
+	.word	-1
+	.word	-65537
+	.align	4
+.LC9:
+	.word	-1
+	.word	-1
+	.word	-1
+	.word	2147418111
+	.set	.LC10,.LC14+12
+	.section	.rodata.cst4
+	.align	2
+.LC11:
+	.word	1056964608
+	.set	.LC12,.LC14+8
+	.section	.rodata.cst8
+	.align	3
+.LC13:
+	.word	0
+	.word	1071644672
+	.section	.rodata.cst16
+	.align	4
+.LC14:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073741824
 	.align	4
-.LC5:
+.LC15:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073610752
 	.section	.rodata.cst8
 	.align	3
-.LC6:
+.LC16:
 	.word	0
 	.word	-1074790400
 	.align	3
-.LC7:
+.LC17:
 	.word	0
 	.word	-1075838976
 	.align	3
-.LC8:
+.LC18:
 	.word	0
 	.word	1072693248
-	.align	3
-.LC9:
-	.word	0
-	.word	1070596096
 	.section	.rodata.cst4
 	.align	2
-.LC14:
+.LC21:
 	.word	1191182336
 	.section	.rodata.cst16
 	.align	4
-.LC15:
+.LC22:
 	.word	0
 	.word	1
 	.word	2
 	.word	3
 	.align	4
-.LC16:
+.LC23:
 	.word	4
 	.word	5
 	.word	6
 	.word	7
 	.align	4
-.LC17:
+.LC24:
 	.word	8
 	.word	9
 	.word	10
 	.word	11
 	.align	4
-.LC18:
+.LC25:
 	.word	12
 	.word	13
 	.word	14
 	.word	15
 	.section	.rodata.cst4
 	.align	2
-.LC19:
+.LC26:
 	.word	1065353216
 	.section	.rodata
 	.align	4
@@ -7323,8 +7564,8 @@ seed:
 	.globl	__netf2
 	.globl	__addtf3
 	.globl	__extenddftf2
-	.globl	__letf2
-	.globl	__getf2
+	.globl	__gttf2
 	.globl	__lttf2
+	.globl	__unordtf2
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
 	.section	.note.GNU-stack,"",@progbits
