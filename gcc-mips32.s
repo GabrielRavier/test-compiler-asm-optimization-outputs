@@ -1046,38 +1046,20 @@ fdim:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	nop
-	bc1t	$L174
-	nop
-
-	c.un.d	$f14,$f14
-	nop
-	bc1t	$L175
-	nop
-
 	c.lt.d	$f14,$f12
 	nop
-	bc1f	$L178
+	bc1f	$L176
 	nop
 
 	jr	$31
 	sub.d	$f0,$f12,$f14
 
-$L178:
+$L176:
 	mtc1	$0,$f0
 	nop
 	mtc1	$0,$f1
 	jr	$31
 	nop
-
-$L174:
-	jr	$31
-	mov.d	$f0,$f12
-
-$L175:
-	jr	$31
-	mov.d	$f0,$f14
 
 	.set	macro
 	.set	reorder
@@ -1095,36 +1077,18 @@ fdimf:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.s	$f12,$f12
-	nop
-	bc1t	$L182
-	nop
-
-	c.un.s	$f14,$f14
-	nop
-	bc1t	$L183
-	nop
-
 	c.lt.s	$f14,$f12
 	nop
-	bc1f	$L186
+	bc1f	$L182
 	nop
 
 	jr	$31
 	sub.s	$f0,$f12,$f14
 
-$L186:
+$L182:
 	mtc1	$0,$f0
 	jr	$31
 	nop
-
-$L182:
-	jr	$31
-	mov.s	$f0,$f12
-
-$L183:
-	jr	$31
-	mov.s	$f0,$f14
 
 	.set	macro
 	.set	reorder
@@ -1142,43 +1106,35 @@ fmax:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	swc1	$f12,4($sp)
 	swc1	$f13,0($sp)
-	swc1	$f14,12($sp)
 	swc1	$f15,8($sp)
-	bc1t	$L198
-	mov.d	$f0,$f14
-
-	c.un.d	$f14,$f14
-	nop
-	bc1t	$L194
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,8($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L189
+	swc1	$f12,4($sp)
+	beq	$2,$3,$L184
+	swc1	$f14,12($sp)
+
+	beq	$2,$0,$L189
 	nop
 
-	bne	$2,$0,$L198
-	nop
-
-$L194:
 	jr	$31
-	mov.d	$f0,$f12
+	mov.d	$f0,$f14
 
-$L189:
+$L184:
 	c.lt.d	$f12,$f14
 	nop
-	bc1f	$L198
+	bc1f	$L192
 	mov.d	$f0,$f12
 
 	jr	$31
 	mov.d	$f0,$f14
 
-$L198:
+$L189:
+	mov.d	$f0,$f12
+$L192:
 	jr	$31
 	nop
 
@@ -1198,41 +1154,34 @@ fmaxf:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.s	$f12,$f12
 	swc1	$f12,0($sp)
 	swc1	$f14,4($sp)
-	bc1t	$L210
-	mov.s	$f0,$f14
-
-	c.un.s	$f14,$f14
-	nop
-	bc1t	$L206
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,4($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L201
+	beq	$2,$3,$L194
 	nop
 
-	bne	$2,$0,$L210
+	beq	$2,$0,$L199
 	nop
 
-$L206:
 	jr	$31
-	mov.s	$f0,$f12
+	mov.s	$f0,$f14
 
-$L201:
+$L194:
 	c.lt.s	$f12,$f14
 	nop
-	bc1f	$L210
+	bc1f	$L202
 	mov.s	$f0,$f12
 
 	jr	$31
 	mov.s	$f0,$f14
 
-$L210:
+$L199:
+	mov.s	$f0,$f12
+$L202:
 	jr	$31
 	nop
 
@@ -1252,43 +1201,35 @@ fmaxl:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	swc1	$f12,4($sp)
 	swc1	$f13,0($sp)
-	swc1	$f14,12($sp)
 	swc1	$f15,8($sp)
-	bc1t	$L222
-	mov.d	$f0,$f14
-
-	c.un.d	$f14,$f14
-	nop
-	bc1t	$L218
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,8($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L213
+	swc1	$f12,4($sp)
+	beq	$2,$3,$L204
+	swc1	$f14,12($sp)
+
+	beq	$2,$0,$L209
 	nop
 
-	bne	$2,$0,$L222
-	nop
-
-$L218:
 	jr	$31
-	mov.d	$f0,$f12
+	mov.d	$f0,$f14
 
-$L213:
+$L204:
 	c.lt.d	$f12,$f14
 	nop
-	bc1f	$L222
+	bc1f	$L212
 	mov.d	$f0,$f12
 
 	jr	$31
 	mov.d	$f0,$f14
 
-$L222:
+$L209:
+	mov.d	$f0,$f12
+$L212:
 	jr	$31
 	nop
 
@@ -1308,49 +1249,39 @@ fmin:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	swc1	$f12,4($sp)
 	swc1	$f13,0($sp)
-	swc1	$f14,12($sp)
 	swc1	$f15,8($sp)
-	bc1t	$L235
-	mov.d	$f0,$f14
-
-	c.un.d	$f14,$f14
-	nop
-	bc1t	$L230
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,8($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L225
+	swc1	$f12,4($sp)
+	beq	$2,$3,$L214
+	swc1	$f14,12($sp)
+
+	beq	$2,$0,$L219
 	nop
 
-	bne	$2,$0,$L231
-	nop
+	jr	$31
+	mov.d	$f0,$f12
 
-$L235:
+$L214:
+	c.lt.d	$f12,$f14
+	nop
+	bc1f	$L222
+	mov.d	$f0,$f12
+
 	jr	$31
 	nop
 
-$L225:
-	c.lt.d	$f12,$f14
-	nop
-	bc1t	$L235
-	mov.d	$f0,$f12
-
+$L222:
 	jr	$31
 	mov.d	$f0,$f14
 
-$L231:
+$L219:
 	jr	$31
-	mov.d	$f0,$f12
-
-$L230:
-	jr	$31
-	mov.d	$f0,$f12
+	mov.d	$f0,$f14
 
 	.set	macro
 	.set	reorder
@@ -1368,47 +1299,38 @@ fminf:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.s	$f12,$f12
 	swc1	$f12,0($sp)
 	swc1	$f14,4($sp)
-	bc1t	$L248
-	mov.s	$f0,$f14
-
-	c.un.s	$f14,$f14
-	nop
-	bc1t	$L243
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,4($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L238
+	beq	$2,$3,$L226
 	nop
 
-	bne	$2,$0,$L244
+	beq	$2,$0,$L231
 	nop
 
-$L248:
+	jr	$31
+	mov.s	$f0,$f12
+
+$L226:
+	c.lt.s	$f12,$f14
+	nop
+	bc1f	$L234
+	mov.s	$f0,$f12
+
 	jr	$31
 	nop
 
-$L238:
-	c.lt.s	$f12,$f14
-	nop
-	bc1t	$L248
-	mov.s	$f0,$f12
-
+$L234:
 	jr	$31
 	mov.s	$f0,$f14
 
-$L244:
+$L231:
 	jr	$31
-	mov.s	$f0,$f12
-
-$L243:
-	jr	$31
-	mov.s	$f0,$f12
+	mov.s	$f0,$f14
 
 	.set	macro
 	.set	reorder
@@ -1426,49 +1348,39 @@ fminl:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	swc1	$f12,4($sp)
 	swc1	$f13,0($sp)
-	swc1	$f14,12($sp)
 	swc1	$f15,8($sp)
-	bc1t	$L261
-	mov.d	$f0,$f14
-
-	c.un.d	$f14,$f14
-	nop
-	bc1t	$L256
-	li	$4,-2147483648			# 0xffffffff80000000
-
 	lw	$2,0($sp)
 	lw	$3,8($sp)
+	li	$4,-2147483648			# 0xffffffff80000000
 	and	$2,$2,$4
 	and	$3,$3,$4
-	beq	$2,$3,$L251
+	swc1	$f12,4($sp)
+	beq	$2,$3,$L238
+	swc1	$f14,12($sp)
+
+	beq	$2,$0,$L243
 	nop
 
-	bne	$2,$0,$L257
-	nop
+	jr	$31
+	mov.d	$f0,$f12
 
-$L261:
+$L238:
+	c.lt.d	$f12,$f14
+	nop
+	bc1f	$L246
+	mov.d	$f0,$f12
+
 	jr	$31
 	nop
 
-$L251:
-	c.lt.d	$f12,$f14
-	nop
-	bc1t	$L261
-	mov.d	$f0,$f12
-
+$L246:
 	jr	$31
 	mov.d	$f0,$f14
 
-$L257:
+$L243:
 	jr	$31
-	mov.d	$f0,$f12
-
-$L256:
-	jr	$31
-	mov.d	$f0,$f12
+	mov.d	$f0,$f14
 
 	.set	macro
 	.set	reorder
@@ -1488,21 +1400,21 @@ l64a:
 	.set	nomacro
 	lui	$2,%hi(s.0)
 	addiu	$2,$2,%lo(s.0)
-	beq	$4,$0,$L263
+	beq	$4,$0,$L250
 	move	$5,$2
 
 	lui	$6,%hi(digits)
 	addiu	$6,$6,%lo(digits)
-$L264:
+$L251:
 	andi	$3,$4,0x3f
 	addu	$3,$6,$3
 	lbu	$3,0($3)
 	srl	$4,$4,6
 	sb	$3,0($5)
-	bne	$4,$0,$L264
+	bne	$4,$0,$L251
 	addiu	$5,$5,1
 
-$L263:
+$L250:
 	jr	$31
 	sb	$0,0($5)
 
@@ -1588,7 +1500,7 @@ insque:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$5,$0,$L275
+	beq	$5,$0,$L262
 	nop
 
 	lw	$2,0($5)
@@ -1597,15 +1509,15 @@ insque:
 	sw	$4,0($5)
 	lw	$2,0($4)
 	nop
-	beq	$2,$0,$L276
+	beq	$2,$0,$L263
 	nop
 
 	sw	$4,4($2)
-$L276:
+$L263:
 	jr	$31
 	nop
 
-$L275:
+$L262:
 	sw	$0,4($4)
 	jr	$31
 	sw	$0,0($4)
@@ -1628,20 +1540,20 @@ remque:
 	.set	nomacro
 	lw	$2,0($4)
 	nop
-	beq	$2,$0,$L278
+	beq	$2,$0,$L265
 	nop
 
 	lw	$3,4($4)
 	nop
 	sw	$3,4($2)
-$L278:
+$L265:
 	lw	$3,4($4)
 	nop
-	beq	$3,$0,$L286
+	beq	$3,$0,$L273
 	nop
 
 	sw	$2,0($3)
-$L286:
+$L273:
 	jr	$31
 	nop
 
@@ -1680,20 +1592,20 @@ lsearch:
 	move	$23,$6
 	move	$20,$4
 	move	$fp,$5
-	beq	$19,$0,$L288
+	beq	$19,$0,$L275
 	move	$18,$7
 
 	move	$16,$5
 	.option	pic0
-	b	$L290
+	b	$L277
 	.option	pic2
 	move	$17,$0
 
-$L303:
-	beq	$19,$17,$L288
+$L290:
+	beq	$19,$17,$L275
 	addu	$16,$16,$18
 
-$L290:
+$L277:
 	move	$5,$16
 	move	$25,$22
 	jalr	$25
@@ -1701,10 +1613,10 @@ $L290:
 
 	move	$21,$16
 	lw	$28,16($sp)
-	bne	$2,$0,$L303
+	bne	$2,$0,$L290
 	addiu	$17,$17,1
 
-$L287:
+$L274:
 	lw	$31,60($sp)
 	lw	$fp,56($sp)
 	lw	$23,52($sp)
@@ -1719,12 +1631,12 @@ $L287:
 	jr	$31
 	addiu	$sp,$sp,64
 
-$L288:
+$L275:
 	mult	$18,$19
 	addiu	$19,$19,1
 	sw	$19,0($23)
 	mflo	$21
-	beq	$18,$0,$L287
+	beq	$18,$0,$L274
 	addu	$21,$fp,$21
 
 	lw	$25,%call16(memmove)($28)
@@ -1735,7 +1647,7 @@ $L288:
 	move	$4,$21
 
 	.option	pic0
-	b	$L287
+	b	$L274
 	nop
 
 	.option	pic2
@@ -1765,32 +1677,32 @@ lfind:
 	sw	$19,36($sp)
 	sw	$18,32($sp)
 	sw	$17,28($sp)
-	beq	$20,$0,$L305
+	beq	$20,$0,$L292
 	sw	$16,24($sp)
 
 	move	$18,$4
 	move	$19,$7
 	move	$16,$5
 	.option	pic0
-	b	$L307
+	b	$L294
 	.option	pic2
 	move	$17,$0
 
-$L316:
-	beq	$20,$17,$L305
+$L303:
+	beq	$20,$17,$L292
 	addu	$16,$16,$19
 
-$L307:
+$L294:
 	move	$5,$16
 	move	$25,$21
 	jalr	$25
 	move	$4,$18
 
 	move	$22,$16
-	bne	$2,$0,$L316
+	bne	$2,$0,$L303
 	addiu	$17,$17,1
 
-$L304:
+$L291:
 	lw	$31,52($sp)
 	lw	$21,44($sp)
 	lw	$20,40($sp)
@@ -1803,9 +1715,9 @@ $L304:
 	jr	$31
 	addiu	$sp,$sp,56
 
-$L305:
+$L292:
 	.option	pic0
-	b	$L304
+	b	$L291
 	.option	pic2
 	move	$22,$0
 
@@ -1825,13 +1737,13 @@ abs:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bltz	$4,$L319
+	bltz	$4,$L306
 	move	$2,$4
 
 	jr	$31
 	nop
 
-$L319:
+$L306:
 	jr	$31
 	subu	$2,$0,$4
 
@@ -1852,34 +1764,34 @@ atoi:
 	.set	noreorder
 	.set	nomacro
 	li	$3,32			# 0x20
-$L329:
+$L316:
 	lb	$5,0($4)
 	nop
 	addiu	$2,$5,-9
-	beq	$5,$3,$L323
+	beq	$5,$3,$L310
 	sltu	$2,$2,5
 
-	bne	$2,$0,$L323
+	bne	$2,$0,$L310
 	nop
 
 	li	$2,43			# 0x2b
-	beq	$5,$2,$L324
+	beq	$5,$2,$L311
 	li	$2,45			# 0x2d
 
-	bne	$5,$2,$L340
+	bne	$5,$2,$L327
 	addiu	$6,$5,-48
 
 	lb	$5,1($4)
 	nop
 	addiu	$6,$5,-48
 	sltu	$2,$6,10
-	beq	$2,$0,$L334
+	beq	$2,$0,$L321
 	addiu	$4,$4,1
 
 	li	$8,1			# 0x1
-$L327:
+$L314:
 	move	$2,$0
-$L331:
+$L318:
 	sll	$3,$2,2
 	lb	$5,1($4)
 	addu	$3,$3,$2
@@ -1888,46 +1800,46 @@ $L331:
 	subu	$2,$3,$6
 	addiu	$6,$5,-48
 	sltu	$5,$6,10
-	bne	$5,$0,$L331
+	bne	$5,$0,$L318
 	addiu	$4,$4,1
 
-	bne	$8,$0,$L341
+	bne	$8,$0,$L328
 	nop
 
 	jr	$31
 	subu	$2,$7,$3
 
-$L323:
+$L310:
 	.option	pic0
-	b	$L329
+	b	$L316
 	.option	pic2
 	addiu	$4,$4,1
 
-$L340:
+$L327:
 	sltu	$2,$6,10
-	bne	$2,$0,$L327
+	bne	$2,$0,$L314
 	move	$8,$0
 
-$L339:
+$L326:
 	jr	$31
 	move	$2,$0
 
-$L334:
+$L321:
 	move	$2,$0
-$L341:
+$L328:
 	jr	$31
 	nop
 
-$L324:
+$L311:
 	lb	$5,1($4)
 	move	$8,$0
 	addiu	$6,$5,-48
 	sltu	$2,$6,10
-	bne	$2,$0,$L327
+	bne	$2,$0,$L314
 	addiu	$4,$4,1
 
 	.option	pic0
-	b	$L339
+	b	$L326
 	nop
 
 	.option	pic2
@@ -1948,33 +1860,33 @@ atol:
 	.set	noreorder
 	.set	nomacro
 	li	$3,32			# 0x20
-$L347:
+$L334:
 	lb	$5,0($4)
 	nop
 	addiu	$2,$5,-9
-	beq	$5,$3,$L343
+	beq	$5,$3,$L330
 	sltu	$2,$2,5
 
-	bne	$2,$0,$L343
+	bne	$2,$0,$L330
 	nop
 
 	li	$2,43			# 0x2b
-	beq	$5,$2,$L344
+	beq	$5,$2,$L331
 	li	$2,45			# 0x2d
 
-	beq	$5,$2,$L345
+	beq	$5,$2,$L332
 	li	$8,1			# 0x1
 
 	addiu	$6,$5,-48
 	sltu	$2,$6,10
-	beq	$2,$0,$L359
+	beq	$2,$0,$L346
 	nop
 
-$L355:
+$L342:
 	move	$8,$0
-$L348:
+$L335:
 	move	$2,$0
-$L351:
+$L338:
 	sll	$3,$2,2
 	lb	$5,1($4)
 	addu	$3,$3,$2
@@ -1983,43 +1895,43 @@ $L351:
 	subu	$2,$3,$6
 	addiu	$6,$5,-48
 	sltu	$5,$6,10
-	bne	$5,$0,$L351
+	bne	$5,$0,$L338
 	addiu	$4,$4,1
 
-	bne	$8,$0,$L360
+	bne	$8,$0,$L347
 	nop
 
 	jr	$31
 	subu	$2,$7,$3
 
-$L343:
+$L330:
 	.option	pic0
-	b	$L347
+	b	$L334
 	.option	pic2
 	addiu	$4,$4,1
 
-$L345:
+$L332:
 	lb	$5,1($4)
 	nop
 	addiu	$6,$5,-48
 	sltu	$2,$6,10
-	bne	$2,$0,$L348
+	bne	$2,$0,$L335
 	addiu	$4,$4,1
 
-$L359:
+$L346:
 	jr	$31
 	move	$2,$0
 
-$L344:
+$L331:
 	lb	$5,1($4)
 	nop
 	addiu	$6,$5,-48
 	sltu	$2,$6,10
-	bne	$2,$0,$L355
+	bne	$2,$0,$L342
 	addiu	$4,$4,1
 
 	move	$2,$0
-$L360:
+$L347:
 	jr	$31
 	nop
 
@@ -2040,35 +1952,35 @@ atoll:
 	.set	noreorder
 	.set	nomacro
 	li	$5,32			# 0x20
-$L368:
+$L355:
 	lb	$2,0($4)
 	nop
 	addiu	$3,$2,-9
-	beq	$2,$5,$L362
+	beq	$2,$5,$L349
 	sltu	$3,$3,5
 
-	bne	$3,$0,$L362
+	bne	$3,$0,$L349
 	nop
 
 	li	$3,43			# 0x2b
-	beq	$2,$3,$L363
+	beq	$2,$3,$L350
 	li	$3,45			# 0x2d
 
-	bne	$2,$3,$L379
+	bne	$2,$3,$L366
 	addiu	$7,$2,-48
 
 	lb	$2,1($4)
 	nop
 	addiu	$7,$2,-48
 	sltu	$2,$7,10
-	beq	$2,$0,$L373
+	beq	$2,$0,$L360
 	addiu	$4,$4,1
 
 	li	$12,1			# 0x1
-$L366:
+$L353:
 	move	$2,$0
 	move	$3,$0
-$L370:
+$L357:
 	srl	$8,$3,30
 	sll	$5,$3,2
 	sll	$6,$2,2
@@ -2090,10 +2002,10 @@ $L370:
 	subu	$2,$5,$8
 	sltu	$9,$7,10
 	addiu	$4,$4,1
-	bne	$9,$0,$L370
+	bne	$9,$0,$L357
 	subu	$2,$2,$10
 
-	bne	$12,$0,$L381
+	bne	$12,$0,$L368
 	subu	$8,$8,$5
 
 	subu	$3,$11,$6
@@ -2101,39 +2013,39 @@ $L370:
 	jr	$31
 	subu	$2,$8,$11
 
-$L362:
+$L349:
 	.option	pic0
-	b	$L368
+	b	$L355
 	.option	pic2
 	addiu	$4,$4,1
 
-$L379:
+$L366:
 	sltu	$2,$7,10
-	bne	$2,$0,$L366
+	bne	$2,$0,$L353
 	move	$12,$0
 
 	move	$2,$0
-$L380:
+$L367:
 	jr	$31
 	move	$3,$0
 
-$L373:
+$L360:
 	move	$2,$0
 	move	$3,$0
-$L381:
+$L368:
 	jr	$31
 	nop
 
-$L363:
+$L350:
 	lb	$2,1($4)
 	move	$12,$0
 	addiu	$7,$2,-48
 	sltu	$2,$7,10
-	bne	$2,$0,$L366
+	bne	$2,$0,$L353
 	addiu	$4,$4,1
 
 	.option	pic0
-	b	$L380
+	b	$L367
 	.option	pic2
 	move	$2,$0
 
@@ -2162,27 +2074,27 @@ bsearch:
 	sw	$19,36($sp)
 	sw	$18,32($sp)
 	sw	$17,28($sp)
-	beq	$6,$0,$L383
+	beq	$6,$0,$L370
 	sw	$16,24($sp)
 
 	move	$16,$6
 	move	$20,$4
 	move	$19,$5
 	.option	pic0
-	b	$L386
+	b	$L373
 	.option	pic2
 	move	$18,$7
 
-$L396:
-	beq	$2,$0,$L382
+$L383:
+	beq	$2,$0,$L369
 	subu	$16,$16,$22
 
-	beq	$16,$0,$L383
+	beq	$16,$0,$L370
 	addu	$19,$17,$18
 
-$L386:
+$L373:
 	srl	$22,$16,1
-$L397:
+$L384:
 	mult	$22,$18
 	move	$4,$20
 	move	$25,$21
@@ -2192,16 +2104,16 @@ $L397:
 	jalr	$25
 	move	$5,$17
 
-	bgez	$2,$L396
+	bgez	$2,$L383
 	nop
 
 	move	$16,$22
-	bne	$16,$0,$L397
+	bne	$16,$0,$L384
 	srl	$22,$16,1
 
-$L383:
+$L370:
 	move	$17,$0
-$L382:
+$L369:
 	lw	$31,52($sp)
 	lw	$22,48($sp)
 	lw	$21,44($sp)
@@ -2245,12 +2157,12 @@ bsearch_r:
 	move	$16,$6
 	move	$19,$4
 	move	$18,$5
-	beq	$6,$0,$L403
+	beq	$6,$0,$L390
 	move	$17,$7
 
-$L399:
+$L386:
 	sra	$23,$16,1
-$L412:
+$L399:
 	mult	$23,$17
 	move	$6,$20
 	move	$4,$19
@@ -2262,18 +2174,18 @@ $L412:
 	jalr	$25
 	move	$5,$22
 
-	beq	$2,$0,$L398
+	beq	$2,$0,$L385
 	nop
 
-	blez	$2,$L401
+	blez	$2,$L388
 	nop
 
-	bne	$16,$0,$L399
+	bne	$16,$0,$L386
 	addu	$18,$22,$17
 
-$L403:
+$L390:
 	move	$22,$0
-$L398:
+$L385:
 	lw	$31,60($sp)
 	lw	$23,56($sp)
 	lw	$21,48($sp)
@@ -2287,12 +2199,12 @@ $L398:
 	jr	$31
 	addiu	$sp,$sp,64
 
-$L401:
-	beq	$23,$0,$L403
+$L388:
+	beq	$23,$0,$L390
 	move	$16,$23
 
 	.option	pic0
-	b	$L412
+	b	$L399
 	.option	pic2
 	sra	$23,$16,1
 
@@ -2340,13 +2252,13 @@ imaxabs:
 	.set	noreorder
 	.set	nomacro
 	move	$2,$4
-	bltz	$4,$L417
+	bltz	$4,$L404
 	move	$3,$5
 
 	jr	$31
 	nop
 
-$L417:
+$L404:
 	sltu	$2,$0,$5
 	subu	$4,$0,$4
 	subu	$2,$4,$2
@@ -2425,13 +2337,13 @@ labs:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bltz	$4,$L424
+	bltz	$4,$L411
 	move	$2,$4
 
 	jr	$31
 	nop
 
-$L424:
+$L411:
 	jr	$31
 	subu	$2,$0,$4
 
@@ -2479,13 +2391,13 @@ llabs:
 	.set	noreorder
 	.set	nomacro
 	move	$2,$4
-	bltz	$4,$L431
+	bltz	$4,$L418
 	move	$3,$5
 
 	jr	$31
 	nop
 
-$L431:
+$L418:
 	sltu	$2,$0,$5
 	subu	$4,$0,$4
 	subu	$2,$4,$2
@@ -2566,26 +2478,26 @@ wcschr:
 	.set	nomacro
 	lw	$2,0($4)
 	nop
-	bne	$2,$0,$L437
+	bne	$2,$0,$L424
 	nop
 
 	jr	$31
 	nop
 
-$L439:
+$L426:
 	lw	$2,4($4)
 	nop
-	beq	$2,$0,$L440
+	beq	$2,$0,$L427
 	addiu	$4,$4,4
 
-$L437:
-	bne	$5,$2,$L439
+$L424:
+	bne	$5,$2,$L426
 	move	$2,$4
 
 	jr	$31
 	nop
 
-$L440:
+$L427:
 	jr	$31
 	move	$2,$0
 
@@ -2605,25 +2517,25 @@ wcscmp:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-$L445:
+$L432:
 	lw	$2,0($4)
 	lw	$3,0($5)
 	nop
-	bne	$2,$3,$L444
+	bne	$2,$3,$L431
 	addiu	$4,$4,4
 
-	bne	$2,$0,$L445
+	bne	$2,$0,$L432
 	addiu	$5,$5,4
 
-$L444:
+$L431:
 	slt	$4,$2,$3
-	bne	$4,$0,$L447
+	bne	$4,$0,$L434
 	nop
 
 	jr	$31
 	slt	$2,$3,$2
 
-$L447:
+$L434:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
@@ -2645,11 +2557,11 @@ wcscpy:
 	.set	nomacro
 	move	$2,$4
 	move	$3,$4
-$L450:
+$L437:
 	lw	$6,0($5)
 	addiu	$3,$3,4
 	addiu	$5,$5,4
-	bne	$6,$0,$L450
+	bne	$6,$0,$L437
 	sw	$6,-4($3)
 
 	jr	$31
@@ -2673,21 +2585,21 @@ wcslen:
 	.set	nomacro
 	lw	$2,0($4)
 	nop
-	beq	$2,$0,$L455
+	beq	$2,$0,$L442
 	nop
 
 	move	$2,$4
-$L454:
+$L441:
 	lw	$3,4($2)
 	nop
-	bne	$3,$0,$L454
+	bne	$3,$0,$L441
 	addiu	$2,$2,4
 
 	subu	$2,$2,$4
 	jr	$31
 	sra	$2,$2,2
 
-$L455:
+$L442:
 	jr	$31
 	move	$2,$0
 
@@ -2708,40 +2620,40 @@ wcsncmp:
 	.set	noreorder
 	.set	nomacro
 	.option	pic0
-	b	$L466
+	b	$L453
 	nop
 
 	.option	pic2
-$L467:
+$L454:
 	lw	$2,0($4)
 	lw	$3,0($5)
 	nop
-	bne	$2,$3,$L470
+	bne	$2,$3,$L457
 	addiu	$6,$6,-1
 
-	beq	$2,$0,$L469
+	beq	$2,$0,$L456
 	addiu	$4,$4,4
 
 	addiu	$5,$5,4
-$L466:
-	bne	$6,$0,$L467
+$L453:
+	bne	$6,$0,$L454
 	move	$2,$0
 
 	jr	$31
 	nop
 
-$L470:
+$L457:
 	lw	$3,0($5)
 	nop
-$L469:
+$L456:
 	slt	$4,$2,$3
-	bne	$4,$0,$L468
+	bne	$4,$0,$L455
 	nop
 
 	jr	$31
 	slt	$2,$3,$2
 
-$L468:
+$L455:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
@@ -2761,32 +2673,32 @@ wmemchr:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bne	$6,$0,$L472
+	bne	$6,$0,$L459
 	move	$2,$0
 
 	.option	pic0
-	b	$L478
+	b	$L465
 	nop
 
 	.option	pic2
-$L474:
-	beq	$6,$0,$L475
+$L461:
+	beq	$6,$0,$L462
 	addiu	$4,$4,4
 
-$L472:
+$L459:
 	lw	$2,0($4)
 	nop
-	bne	$2,$5,$L474
+	bne	$2,$5,$L461
 	addiu	$6,$6,-1
 
 	jr	$31
 	move	$2,$4
 
-$L475:
+$L462:
 	jr	$31
 	move	$2,$0
 
-$L478:
+$L465:
 	jr	$31
 	nop
 
@@ -2807,35 +2719,35 @@ wmemcmp:
 	.set	noreorder
 	.set	nomacro
 	.option	pic0
-	b	$L489
+	b	$L476
 	nop
 
 	.option	pic2
-$L491:
+$L478:
 	lw	$2,0($4)
 	lw	$3,0($5)
 	nop
-	bne	$2,$3,$L490
+	bne	$2,$3,$L477
 	addiu	$6,$6,-1
 
 	addiu	$4,$4,4
 	addiu	$5,$5,4
-$L489:
-	bne	$6,$0,$L491
+$L476:
+	bne	$6,$0,$L478
 	move	$2,$0
 
 	jr	$31
 	nop
 
-$L490:
+$L477:
 	slt	$4,$2,$3
-	bne	$4,$0,$L492
+	bne	$4,$0,$L479
 	nop
 
 	jr	$31
 	slt	$2,$3,$2
 
-$L492:
+$L479:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
@@ -2861,7 +2773,7 @@ wmemcpy:
 	sw	$16,24($sp)
 	sw	$31,28($sp)
 	.cprestore	16
-	beq	$6,$0,$L494
+	beq	$6,$0,$L481
 	move	$16,$4
 
 	lw	$25,%call16(memcpy)($28)
@@ -2870,7 +2782,7 @@ wmemcpy:
 1:	jalr	$25
 	sll	$6,$6,2
 
-$L494:
+$L481:
 	lw	$31,28($sp)
 	move	$2,$16
 	lw	$16,24($sp)
@@ -2893,42 +2805,42 @@ wmemmove:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$4,$5,$L516
+	beq	$4,$5,$L503
 	move	$2,$4
 
 	sll	$3,$6,2
 	subu	$4,$4,$5
 	sltu	$4,$4,$3
-	beq	$4,$0,$L513
+	beq	$4,$0,$L500
 	addiu	$3,$6,-1
 
-	beq	$6,$0,$L516
+	beq	$6,$0,$L503
 	sll	$3,$3,2
 
 	li	$7,-4			# 0xfffffffffffffffc
-$L504:
+$L491:
 	addu	$4,$5,$3
 	lw	$6,0($4)
 	addu	$4,$2,$3
 	addiu	$3,$3,-4
-	bne	$3,$7,$L504
+	bne	$3,$7,$L491
 	sw	$6,0($4)
 
-$L516:
+$L503:
 	jr	$31
 	nop
 
-$L513:
+$L500:
 	move	$7,$2
-	beq	$6,$0,$L516
+	beq	$6,$0,$L503
 	li	$8,-1			# 0xffffffffffffffff
 
-$L502:
+$L489:
 	lw	$4,0($5)
 	addiu	$3,$3,-1
 	addiu	$7,$7,4
 	addiu	$5,$5,4
-	bne	$3,$8,$L502
+	bne	$3,$8,$L489
 	sw	$4,-4($7)
 
 	jr	$31
@@ -2951,18 +2863,18 @@ wmemset:
 	.set	noreorder
 	.set	nomacro
 	move	$2,$4
-	beq	$6,$0,$L524
+	beq	$6,$0,$L511
 	addiu	$3,$6,-1
 
 	move	$6,$4
 	li	$7,-1			# 0xffffffffffffffff
-$L519:
+$L506:
 	addiu	$3,$3,-1
 	addiu	$6,$6,4
-	bne	$3,$7,$L519
+	bne	$3,$7,$L506
 	sw	$5,-4($6)
 
-$L524:
+$L511:
 	jr	$31
 	nop
 
@@ -2983,90 +2895,90 @@ bcopy:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$4,$5
-	beq	$2,$0,$L526
+	beq	$2,$0,$L513
 	addu	$2,$4,$6
 
-	beq	$6,$0,$L558
+	beq	$6,$0,$L545
 	addu	$5,$5,$6
 
-$L528:
+$L515:
 	lb	$3,-1($2)
 	addiu	$2,$2,-1
 	addiu	$5,$5,-1
-	bne	$4,$2,$L528
+	bne	$4,$2,$L515
 	sb	$3,0($5)
 
-$L558:
+$L545:
 	jr	$31
 	nop
 
-$L526:
-	bne	$4,$5,$L554
+$L513:
+	bne	$4,$5,$L541
 	nop
 
 	jr	$31
 	nop
 
-$L554:
-	beq	$6,$0,$L558
+$L541:
+	beq	$6,$0,$L545
 	addiu	$2,$6,-1
 
 	sltu	$2,$2,7
-	bne	$2,$0,$L556
+	bne	$2,$0,$L543
 	addiu	$2,$4,1
 
 	or	$2,$5,$4
 	andi	$2,$2,0x3
-	bne	$2,$0,$L552
+	bne	$2,$0,$L539
 	addiu	$2,$4,1
 
 	subu	$3,$5,$2
 	sltu	$3,$3,3
-	bne	$3,$0,$L529
+	bne	$3,$0,$L516
 	srl	$8,$6,2
 
 	sll	$8,$8,2
 	move	$2,$5
 	addu	$7,$4,$8
-$L530:
+$L517:
 	lw	$3,0($4)
 	addiu	$4,$4,4
 	sw	$3,0($2)
-	bne	$7,$4,$L530
+	bne	$7,$4,$L517
 	addiu	$2,$2,4
 
 	addu	$5,$5,$8
-	beq	$6,$8,$L558
+	beq	$6,$8,$L545
 	subu	$2,$6,$8
 
 	lb	$4,0($7)
 	li	$3,1			# 0x1
-	beq	$2,$3,$L558
+	beq	$2,$3,$L545
 	sb	$4,0($5)
 
 	lb	$4,1($7)
 	li	$3,2			# 0x2
-	beq	$2,$3,$L558
+	beq	$2,$3,$L545
 	sb	$4,1($5)
 
 	lb	$2,2($7)
 	jr	$31
 	sb	$2,2($5)
 
-$L552:
-$L529:
-$L556:
+$L539:
+$L516:
+$L543:
 	.option	pic0
-	b	$L533
+	b	$L520
 	.option	pic2
 	addu	$4,$4,$6
 
-$L555:
+$L542:
 	addiu	$2,$2,1
-$L533:
+$L520:
 	lb	$3,-1($2)
 	addiu	$5,$5,1
-	bne	$2,$4,$L555
+	bne	$2,$4,$L542
 	sb	$3,-1($5)
 
 	jr	$31
@@ -3089,17 +3001,17 @@ rotl64:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$6,0x20
-	beq	$2,$0,$L560
+	beq	$2,$0,$L547
 	nor	$2,$0,$6
 
 	sll	$2,$5,$6
 	subu	$6,$0,$6
 	andi	$7,$6,0x20
 	move	$3,$0
-	beq	$7,$0,$L562
+	beq	$7,$0,$L549
 	andi	$6,$6,0x3f
 
-$L564:
+$L551:
 	srl	$5,$4,$6
 	or	$5,$5,$3
 	move	$4,$0
@@ -3107,7 +3019,7 @@ $L564:
 	jr	$31
 	move	$3,$5
 
-$L560:
+$L547:
 	srl	$3,$5,1
 	srl	$3,$3,$2
 	sll	$2,$4,$6
@@ -3115,10 +3027,10 @@ $L560:
 	sll	$3,$5,$6
 	subu	$6,$0,$6
 	andi	$7,$6,0x20
-	bne	$7,$0,$L564
+	bne	$7,$0,$L551
 	andi	$6,$6,0x3f
 
-$L562:
+$L549:
 	sll	$7,$4,1
 	nor	$8,$0,$6
 	sll	$7,$7,$8
@@ -3147,17 +3059,17 @@ rotr64:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$6,0x20
-	beq	$2,$0,$L566
+	beq	$2,$0,$L553
 	nor	$3,$0,$6
 
 	srl	$3,$4,$6
 	subu	$6,$0,$6
 	andi	$7,$6,0x20
 	move	$2,$0
-	beq	$7,$0,$L568
+	beq	$7,$0,$L555
 	andi	$6,$6,0x3f
 
-$L570:
+$L557:
 	sll	$4,$5,$6
 	move	$5,$0
 	or	$5,$5,$3
@@ -3165,7 +3077,7 @@ $L570:
 	jr	$31
 	move	$3,$5
 
-$L566:
+$L553:
 	sll	$2,$4,1
 	sll	$2,$2,$3
 	srl	$3,$5,$6
@@ -3173,10 +3085,10 @@ $L566:
 	srl	$2,$4,$6
 	subu	$6,$0,$6
 	andi	$7,$6,0x20
-	bne	$7,$0,$L570
+	bne	$7,$0,$L557
 	andi	$6,$6,0x3f
 
-$L568:
+$L555:
 	srl	$7,$5,1
 	nor	$8,$0,$6
 	srl	$7,$7,$8
@@ -3483,24 +3395,24 @@ ffs:
 	.set	nomacro
 	move	$2,$0
 	.option	pic0
-	b	$L585
+	b	$L572
 	.option	pic2
 	li	$5,32			# 0x20
 
-$L588:
-	beq	$2,$5,$L587
+$L575:
+	beq	$2,$5,$L574
 	nop
 
-$L585:
+$L572:
 	srl	$3,$4,$2
 	andi	$3,$3,0x1
-	beq	$3,$0,$L588
+	beq	$3,$0,$L575
 	addiu	$2,$2,1
 
 	jr	$31
 	nop
 
-$L587:
+$L574:
 	jr	$31
 	move	$2,$0
 
@@ -3520,25 +3432,25 @@ libiberty_ffs:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$4,$0,$L596
+	beq	$4,$0,$L583
 	move	$2,$0
 
 	andi	$2,$4,0x1
-	bne	$2,$0,$L595
+	bne	$2,$0,$L582
 	nop
 
 	li	$2,1			# 0x1
-$L591:
+$L578:
 	sra	$4,$4,1
 	andi	$3,$4,0x1
-	beq	$3,$0,$L591
+	beq	$3,$0,$L578
 	addiu	$2,$2,1
 
-$L596:
+$L583:
 	jr	$31
 	nop
 
-$L595:
+$L582:
 	jr	$31
 	nop
 
@@ -3558,27 +3470,6 @@ gl_isinff:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi($LC0)
-	lwc1	$f0,%lo($LC0)($2)
-	nop
-	c.lt.s	$f12,$f0
-	nop
-	bc1t	$L603
-	li	$2,1			# 0x1
-
-	lui	$3,%hi($LC1)
-	lwc1	$f0,%lo($LC1)($3)
-	nop
-	c.lt.s	$f0,$f12
-	nop
-	bc1f	$L602
-	nop
-
-$L603:
-	jr	$31
-	nop
-
-$L602:
 	jr	$31
 	move	$2,$0
 
@@ -3598,31 +3489,6 @@ gl_isinfd:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi($LC2)
-	lwc1	$f0,%lo($LC2+4)($2)
-	nop
-	lwc1	$f1,%lo($LC2)($2)
-	nop
-	c.lt.d	$f12,$f0
-	nop
-	bc1t	$L610
-	li	$2,1			# 0x1
-
-	lui	$3,%hi($LC3)
-	lwc1	$f0,%lo($LC3+4)($3)
-	nop
-	lwc1	$f1,%lo($LC3)($3)
-	nop
-	c.lt.d	$f0,$f12
-	nop
-	bc1f	$L609
-	nop
-
-$L610:
-	jr	$31
-	nop
-
-$L609:
 	jr	$31
 	move	$2,$0
 
@@ -3642,31 +3508,6 @@ gl_isinfl:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi($LC2)
-	lwc1	$f0,%lo($LC2+4)($2)
-	nop
-	lwc1	$f1,%lo($LC2)($2)
-	nop
-	c.lt.d	$f12,$f0
-	nop
-	bc1t	$L617
-	li	$2,1			# 0x1
-
-	lui	$3,%hi($LC3)
-	lwc1	$f0,%lo($LC3+4)($3)
-	nop
-	lwc1	$f1,%lo($LC3)($3)
-	nop
-	c.lt.d	$f0,$f12
-	nop
-	bc1f	$L616
-	nop
-
-$L617:
-	jr	$31
-	nop
-
-$L616:
 	jr	$31
 	move	$2,$0
 
@@ -3709,62 +3550,57 @@ ldexpf:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.s	$f12,$f12
-	nop
-	bc1t	$L640
-	mov.s	$f0,$f12
-
 	add.s	$f2,$f12,$f12
 	c.eq.s	$f2,$f12
 	nop
-	bc1t	$L640
-	nop
+	bc1t	$L607
+	mov.s	$f0,$f12
 
-	bltz	$5,$L635
-	lui	$2,%hi($LC5)
+	bltz	$5,$L602
+	lui	$2,%hi($LC1)
 
-	lui	$2,%hi($LC4)
-	lwc1	$f2,%lo($LC4)($2)
+	lui	$2,%hi($LC0)
+	lwc1	$f2,%lo($LC0)($2)
 	andi	$2,$5,0x1
-$L638:
-	beq	$2,$0,$L639
+$L605:
+	beq	$2,$0,$L606
 	srl	$2,$5,31
 
-$L624:
+$L592:
 	mul.s	$f0,$f0,$f2
 	srl	$2,$5,31
-$L639:
+$L606:
 	addu	$5,$2,$5
 	sra	$5,$5,1
-	beq	$5,$0,$L640
+	beq	$5,$0,$L607
 	srl	$2,$5,31
 
 	andi	$3,$5,0x1
 	mul.s	$f2,$f2,$f2
-	bne	$3,$0,$L624
+	bne	$3,$0,$L592
 	addu	$2,$2,$5
 
 	sra	$5,$2,1
-$L637:
+$L604:
 	srl	$2,$5,31
 	andi	$3,$5,0x1
 	mul.s	$f2,$f2,$f2
-	bne	$3,$0,$L624
+	bne	$3,$0,$L592
 	addu	$2,$2,$5
 
 	.option	pic0
-	b	$L637
+	b	$L604
 	.option	pic2
 	sra	$5,$2,1
 
-$L640:
+$L607:
 	jr	$31
 	nop
 
-$L635:
-	lwc1	$f2,%lo($LC5)($2)
+$L602:
+	lwc1	$f2,%lo($LC1)($2)
 	.option	pic0
-	b	$L638
+	b	$L605
 	.option	pic2
 	andi	$2,$5,0x1
 
@@ -3784,66 +3620,61 @@ ldexp:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	nop
-	bc1t	$L662
-	mov.d	$f0,$f12
-
 	add.d	$f2,$f12,$f12
 	c.eq.d	$f2,$f12
 	nop
-	bc1t	$L662
-	nop
+	bc1t	$L627
+	mov.d	$f0,$f12
 
-	bltz	$6,$L657
-	lui	$2,%hi($LC7)
+	bltz	$6,$L622
+	lui	$2,%hi($LC3)
 
-	lui	$2,%hi($LC6)
-	lwc1	$f2,%lo($LC6+4)($2)
+	lui	$2,%hi($LC2)
+	lwc1	$f2,%lo($LC2+4)($2)
 	nop
-	lwc1	$f3,%lo($LC6)($2)
+	lwc1	$f3,%lo($LC2)($2)
 	andi	$2,$6,0x1
-$L660:
-	beq	$2,$0,$L661
+$L625:
+	beq	$2,$0,$L626
 	srl	$2,$6,31
 
-$L646:
+$L612:
 	mul.d	$f0,$f0,$f2
 	srl	$2,$6,31
-$L661:
+$L626:
 	addu	$6,$2,$6
 	sra	$6,$6,1
-	beq	$6,$0,$L662
+	beq	$6,$0,$L627
 	srl	$2,$6,31
 
 	andi	$3,$6,0x1
 	mul.d	$f2,$f2,$f2
-	bne	$3,$0,$L646
+	bne	$3,$0,$L612
 	addu	$2,$2,$6
 
 	sra	$6,$2,1
-$L659:
+$L624:
 	srl	$2,$6,31
 	andi	$3,$6,0x1
 	mul.d	$f2,$f2,$f2
-	bne	$3,$0,$L646
+	bne	$3,$0,$L612
 	addu	$2,$2,$6
 
 	.option	pic0
-	b	$L659
+	b	$L624
 	.option	pic2
 	sra	$6,$2,1
 
-$L662:
+$L627:
 	jr	$31
 	nop
 
-$L657:
-	lwc1	$f2,%lo($LC7+4)($2)
+$L622:
+	lwc1	$f2,%lo($LC3+4)($2)
 	nop
-	lwc1	$f3,%lo($LC7)($2)
+	lwc1	$f3,%lo($LC3)($2)
 	.option	pic0
-	b	$L660
+	b	$L625
 	.option	pic2
 	andi	$2,$6,0x1
 
@@ -3863,66 +3694,61 @@ ldexpl:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	c.un.d	$f12,$f12
-	nop
-	bc1t	$L684
-	mov.d	$f0,$f12
-
 	add.d	$f2,$f12,$f12
 	c.eq.d	$f12,$f2
 	nop
-	bc1t	$L684
-	nop
+	bc1t	$L647
+	mov.d	$f0,$f12
 
-	bltz	$6,$L679
-	lui	$2,%hi($LC7)
+	bltz	$6,$L642
+	lui	$2,%hi($LC3)
 
-	lui	$2,%hi($LC6)
-	lwc1	$f2,%lo($LC6+4)($2)
+	lui	$2,%hi($LC2)
+	lwc1	$f2,%lo($LC2+4)($2)
 	nop
-	lwc1	$f3,%lo($LC6)($2)
+	lwc1	$f3,%lo($LC2)($2)
 	andi	$2,$6,0x1
-$L682:
-	beq	$2,$0,$L683
+$L645:
+	beq	$2,$0,$L646
 	srl	$2,$6,31
 
-$L668:
+$L632:
 	mul.d	$f0,$f0,$f2
 	srl	$2,$6,31
-$L683:
+$L646:
 	addu	$6,$2,$6
 	sra	$6,$6,1
-	beq	$6,$0,$L684
+	beq	$6,$0,$L647
 	srl	$2,$6,31
 
 	andi	$3,$6,0x1
 	mul.d	$f2,$f2,$f2
-	bne	$3,$0,$L668
+	bne	$3,$0,$L632
 	addu	$2,$2,$6
 
 	sra	$6,$2,1
-$L681:
+$L644:
 	srl	$2,$6,31
 	andi	$3,$6,0x1
 	mul.d	$f2,$f2,$f2
-	bne	$3,$0,$L668
+	bne	$3,$0,$L632
 	addu	$2,$2,$6
 
 	.option	pic0
-	b	$L681
+	b	$L644
 	.option	pic2
 	sra	$6,$2,1
 
-$L684:
+$L647:
 	jr	$31
 	nop
 
-$L679:
-	lwc1	$f2,%lo($LC7+4)($2)
+$L642:
+	lwc1	$f2,%lo($LC3+4)($2)
 	nop
-	lwc1	$f3,%lo($LC7)($2)
+	lwc1	$f3,%lo($LC3)($2)
 	.option	pic0
-	b	$L682
+	b	$L645
 	.option	pic2
 	andi	$2,$6,0x1
 
@@ -3942,46 +3768,46 @@ memxor:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$6,$0,$L697
+	beq	$6,$0,$L660
 	move	$2,$4
 
 	addiu	$3,$6,-1
 	sltu	$3,$3,4
-	bne	$3,$0,$L687
+	bne	$3,$0,$L650
 	or	$3,$4,$5
 
 	andi	$3,$3,0x3
-	bne	$3,$0,$L687
+	bne	$3,$0,$L650
 	srl	$4,$6,2
 
 	sll	$4,$4,2
 	move	$3,$2
 	addu	$9,$5,$4
-$L688:
+$L651:
 	lw	$8,0($3)
 	lw	$7,0($5)
 	addiu	$5,$5,4
 	xor	$7,$7,$8
 	sw	$7,0($3)
-	bne	$9,$5,$L688
+	bne	$9,$5,$L651
 	addiu	$3,$3,4
 
 	addu	$3,$2,$4
-	beq	$6,$4,$L697
+	beq	$6,$4,$L660
 	subu	$5,$6,$4
 
 	lbu	$4,0($3)
 	lbu	$7,0($9)
 	li	$6,1			# 0x1
 	xor	$4,$4,$7
-	beq	$5,$6,$L697
+	beq	$5,$6,$L660
 	sb	$4,0($3)
 
 	lbu	$7,1($3)
 	lbu	$4,1($9)
 	li	$6,2			# 0x2
 	xor	$4,$4,$7
-	beq	$5,$6,$L697
+	beq	$5,$6,$L660
 	sb	$4,1($3)
 
 	lbu	$5,2($3)
@@ -3991,19 +3817,19 @@ $L688:
 	jr	$31
 	sb	$4,2($3)
 
-$L687:
+$L650:
 	addu	$6,$5,$6
 	move	$3,$2
-$L690:
+$L653:
 	lbu	$4,0($3)
 	lbu	$7,0($5)
 	addiu	$3,$3,1
 	xor	$7,$7,$4
 	addiu	$5,$5,1
-	bne	$6,$5,$L690
+	bne	$6,$5,$L653
 	sb	$7,-1($3)
 
-$L697:
+$L660:
 	jr	$31
 	nop
 
@@ -4025,42 +3851,42 @@ strncat:
 	.set	nomacro
 	lb	$3,0($4)
 	nop
-	beq	$3,$0,$L705
+	beq	$3,$0,$L668
 	move	$2,$4
 
 	move	$3,$4
-$L700:
+$L663:
 	lb	$7,1($3)
 	nop
-	bne	$7,$0,$L700
+	bne	$7,$0,$L663
 	addiu	$3,$3,1
 
-	beq	$6,$0,$L702
+	beq	$6,$0,$L665
 	nop
 
-$L713:
+$L676:
 	lb	$7,0($5)
 	addiu	$6,$6,-1
-	beq	$7,$0,$L714
+	beq	$7,$0,$L677
 	sb	$7,0($3)
 
 	addiu	$5,$5,1
 	addiu	$3,$3,1
-$L711:
-	bne	$6,$0,$L713
+$L674:
+	bne	$6,$0,$L676
 	nop
 
-$L702:
+$L665:
 	jr	$31
 	sb	$0,0($3)
 
-$L714:
+$L677:
 	jr	$31
 	nop
 
-$L705:
+$L668:
 	.option	pic0
-	b	$L711
+	b	$L674
 	.option	pic2
 	move	$3,$4
 
@@ -4080,23 +3906,23 @@ strnlen:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$5,$0,$L726
+	beq	$5,$0,$L689
 	move	$2,$0
 
 	addu	$3,$4,$2
-$L724:
+$L687:
 	lb	$3,0($3)
 	nop
-	bne	$3,$0,$L718
+	bne	$3,$0,$L681
 	nop
 
-$L726:
+$L689:
 	jr	$31
 	nop
 
-$L718:
+$L681:
 	addiu	$2,$2,1
-	bne	$5,$2,$L724
+	bne	$5,$2,$L687
 	addu	$3,$4,$2
 
 	jr	$31
@@ -4120,36 +3946,36 @@ strpbrk:
 	.set	nomacro
 	lb	$7,0($4)
 	nop
-	beq	$7,$0,$L734
+	beq	$7,$0,$L697
 	move	$2,$4
 
-$L728:
+$L691:
 	.option	pic0
-	b	$L731
+	b	$L694
 	.option	pic2
 	move	$3,$5
 
-$L730:
-	beq	$6,$7,$L735
+$L693:
+	beq	$6,$7,$L698
 	nop
 
-$L731:
+$L694:
 	lb	$6,0($3)
 	nop
-	bne	$6,$0,$L730
+	bne	$6,$0,$L693
 	addiu	$3,$3,1
 
 	lb	$7,1($2)
 	nop
-	bne	$7,$0,$L728
+	bne	$7,$0,$L691
 	addiu	$2,$2,1
 
 	move	$2,$0
-$L735:
+$L698:
 	jr	$31
 	nop
 
-$L734:
+$L697:
 	jr	$31
 	move	$2,$0
 
@@ -4170,15 +3996,15 @@ strrchr:
 	.set	noreorder
 	.set	nomacro
 	move	$2,$0
-$L738:
+$L701:
 	lb	$3,0($4)
 	nop
-	bne	$5,$3,$L737
+	bne	$5,$3,$L700
 	nop
 
 	move	$2,$4
-$L737:
-	bne	$3,$0,$L738
+$L700:
+	bne	$3,$0,$L701
 	addiu	$4,$4,1
 
 	jr	$31
@@ -4202,80 +4028,80 @@ strstr:
 	.set	nomacro
 	lb	$8,0($5)
 	nop
-	beq	$8,$0,$L750
+	beq	$8,$0,$L713
 	nop
 
 	move	$2,$5
-$L742:
+$L705:
 	lb	$3,1($2)
 	nop
-	bne	$3,$0,$L742
+	bne	$3,$0,$L705
 	addiu	$2,$2,1
 
-	beq	$2,$5,$L750
+	beq	$2,$5,$L713
 	subu	$10,$2,$5
 
 	andi	$11,$8,0x00ff
 	.option	pic0
-	b	$L748
+	b	$L711
 	.option	pic2
 	addiu	$10,$10,-1
 
-$L761:
-	beq	$2,$0,$L763
+$L724:
+	beq	$2,$0,$L726
 	addiu	$4,$4,1
 
-$L748:
+$L711:
 	lb	$2,0($4)
 	nop
-	bne	$2,$8,$L761
+	bne	$2,$8,$L724
 	move	$6,$11
 
 	addu	$9,$4,$10
 	move	$2,$5
 	.option	pic0
-	b	$L744
+	b	$L707
 	.option	pic2
 	move	$3,$4
 
-$L762:
-	beq	$3,$9,$L745
+$L725:
+	beq	$3,$9,$L708
 	nop
 
-	bne	$7,$6,$L745
+	bne	$7,$6,$L708
 	addiu	$3,$3,1
 
 	lbu	$6,0($3)
 	nop
-	beq	$6,$0,$L745
+	beq	$6,$0,$L708
 	addiu	$2,$2,1
 
-$L744:
+$L707:
 	lbu	$7,0($2)
 	nop
-	bne	$7,$0,$L762
+	bne	$7,$0,$L725
 	nop
 
-$L745:
+$L708:
 	lbu	$2,0($2)
 	nop
-	beq	$2,$6,$L751
+	beq	$2,$6,$L714
 	nop
 
 	.option	pic0
-	b	$L748
+	b	$L711
 	.option	pic2
 	addiu	$4,$4,1
 
-$L763:
+$L726:
 	jr	$31
 	nop
 
-$L750:
+$L713:
 	jr	$31
 	move	$2,$4
 
-$L751:
+$L714:
 	jr	$31
 	move	$2,$4
 
@@ -4290,62 +4116,43 @@ $L751:
 	.ent	copysign
 	.type	copysign, @function
 copysign:
-	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	mtc1	$0,$f0
-	addiu	$sp,$sp,-16
-	mtc1	$0,$f1
-	swc1	$f12,20($sp)
-	c.lt.d	$f12,$f0
+	mtc1	$0,$f2
 	nop
-	bc1t	$L775
-	swc1	$f13,16($sp)
+	mtc1	$0,$f3
+	nop
+	c.lt.d	$f12,$f2
+	nop
+	bc1t	$L737
+	mov.d	$f0,$f12
 
-	c.lt.d	$f0,$f12
+	c.lt.d	$f2,$f12
 	nop
-	bc1f	$L768
-	nop
-
-	c.lt.d	$f14,$f0
-	nop
-	bc1t	$L767
+	bc1f	$L738
 	nop
 
-$L768:
-	lwc1	$f0,20($sp)
+	c.lt.d	$f14,$f2
 	nop
-	lwc1	$f1,16($sp)
+	bc1t	$L730
+	nop
+
+$L738:
 	jr	$31
-	addiu	$sp,$sp,16
-
-$L775:
-	c.lt.d	$f0,$f14
-	nop
-	bc1f	$L768
 	nop
 
-$L767:
-	lw	$3,16($sp)
-	li	$2,-2147483648			# 0xffffffff80000000
-	xor	$2,$3,$2
-	sw	$2,8($sp)
-	lw	$2,20($sp)
+$L737:
+	c.lt.d	$f2,$f14
 	nop
-	sw	$2,12($sp)
-	lwc1	$f0,12($sp)
+	bc1f	$L738
 	nop
-	lwc1	$f1,8($sp)
-	nop
-	swc1	$f0,20($sp)
-	swc1	$f1,16($sp)
-	lwc1	$f0,20($sp)
-	nop
-	lwc1	$f1,16($sp)
+
+$L730:
 	jr	$31
-	addiu	$sp,$sp,16
+	neg.d	$f0,$f0
 
 	.set	macro
 	.set	reorder
@@ -4363,82 +4170,82 @@ memmem:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$7,$0,$L792
+	beq	$7,$0,$L755
 	move	$2,$4
 
 	sltu	$3,$5,$7
-	bne	$3,$0,$L785
+	bne	$3,$0,$L748
 	subu	$5,$5,$7
 
 	addu	$9,$4,$5
 	sltu	$3,$9,$4
-	bne	$3,$0,$L785
+	bne	$3,$0,$L748
 	addiu	$7,$7,-1
 
 	lb	$12,0($6)
 	.option	pic0
-	b	$L782
+	b	$L745
 	.option	pic2
 	addiu	$6,$6,1
 
-$L786:
+$L749:
 	move	$2,$10
-$L778:
+$L741:
 	sltu	$3,$9,$2
-	bne	$3,$0,$L785
+	bne	$3,$0,$L748
 	nop
 
-$L782:
+$L745:
 	lb	$3,0($2)
 	nop
-	bne	$3,$12,$L786
+	bne	$3,$12,$L749
 	addiu	$10,$2,1
 
-	beq	$7,$0,$L792
+	beq	$7,$0,$L755
 	move	$4,$6
 
-$L781:
+$L744:
 	move	$3,$10
 	.option	pic0
-	b	$L779
+	b	$L742
 	.option	pic2
 	addu	$11,$10,$7
 
-$L780:
-	beq	$3,$11,$L792
+$L743:
+	beq	$3,$11,$L755
 	addiu	$4,$4,1
 
-$L779:
+$L742:
 	lbu	$8,0($3)
 	lbu	$5,0($4)
 	nop
-	beq	$8,$5,$L780
+	beq	$8,$5,$L743
 	addiu	$3,$3,1
 
 	sltu	$2,$9,$10
-	bne	$2,$0,$L787
+	bne	$2,$0,$L750
 	nop
 
 	lb	$3,0($10)
 	nop
-	bne	$3,$12,$L778
+	bne	$3,$12,$L741
 	addiu	$2,$10,1
 
 	move	$3,$10
 	move	$4,$6
 	move	$10,$2
 	.option	pic0
-	b	$L781
+	b	$L744
 	.option	pic2
 	move	$2,$3
 
-$L787:
+$L750:
 	move	$2,$0
-$L792:
+$L755:
 	jr	$31
 	nop
 
-$L785:
+$L748:
 	jr	$31
 	move	$2,$0
 
@@ -4466,7 +4273,7 @@ mempcpy:
 	sw	$31,36($sp)
 	.cprestore	16
 	move	$16,$6
-	beq	$6,$0,$L794
+	beq	$6,$0,$L757
 	move	$17,$4
 
 	lw	$25,%call16(memmove)($28)
@@ -4475,7 +4282,7 @@ mempcpy:
 1:	jalr	$25
 	nop
 
-$L794:
+$L757:
 	lw	$31,36($sp)
 	addu	$2,$17,$16
 	lw	$17,32($sp)
@@ -4494,182 +4301,123 @@ $L794:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	$sp,16,$31		# vars= 8, regs= 0/0, args= 0, gp= 8
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	mtc1	$0,$f0
-	addiu	$sp,$sp,-16
-	mtc1	$0,$f1
-	swc1	$f12,20($sp)
-	c.lt.d	$f12,$f0
-	swc1	$f13,16($sp)
-	bc1t	$L822
-	lui	$2,%hi($LC10)
-
-	lwc1	$f2,%lo($LC10+4)($2)
+	mtc1	$0,$f2
 	nop
-	lwc1	$f3,%lo($LC10)($2)
-	nop
-	c.le.d	$f2,$f12
-	nop
-	bc1f	$L823
-	move	$3,$0
-
-$L802:
-	lui	$2,%hi($LC7)
-	lwc1	$f4,%lo($LC7+4)($2)
-	nop
-	lwc1	$f5,%lo($LC7)($2)
-	lui	$2,%hi($LC6)
-	lwc1	$f2,%lo($LC6+4)($2)
-	nop
-	lwc1	$f3,%lo($LC6)($2)
-	move	$2,$0
-$L808:
-	lwc1	$f0,20($sp)
-	addiu	$2,$2,1
-	lwc1	$f1,16($sp)
-	nop
-	c.le.d	$f2,$f0
-	mul.d	$f0,$f0,$f4
-	swc1	$f0,20($sp)
-	bc1t	$L808
-	swc1	$f1,16($sp)
-
-$L809:
-	beq	$3,$0,$L815
-	sw	$2,0($6)
-
-	lw	$3,16($sp)
-	li	$2,-2147483648			# 0xffffffff80000000
-	xor	$2,$3,$2
-	sw	$2,8($sp)
-	lw	$2,20($sp)
-	nop
-	sw	$2,12($sp)
-$L799:
-	lwc1	$f0,12($sp)
-	nop
-	lwc1	$f1,8($sp)
-	jr	$31
-	addiu	$sp,$sp,16
-
-$L823:
-	lui	$2,%hi($LC7)
-	lwc1	$f2,%lo($LC7+4)($2)
-	nop
-	lwc1	$f3,%lo($LC7)($2)
+	mtc1	$0,$f3
 	nop
 	c.lt.d	$f12,$f2
 	nop
-	bc1f	$L805
-	nop
+	bc1t	$L785
+	mov.d	$f0,$f12
 
-	c.eq.d	$f12,$f0
+	lui	$2,%hi($LC6)
+	lwc1	$f4,%lo($LC6+4)($2)
 	nop
-	bc1f	$L814
+	lwc1	$f5,%lo($LC6)($2)
 	nop
+	c.le.d	$f4,$f12
+	nop
+	bc1f	$L786
+	move	$3,$0
 
-$L805:
-	lwc1	$f0,20($sp)
-	sw	$0,0($6)
-	lwc1	$f1,16($sp)
+$L765:
+	lui	$2,%hi($LC3)
+	lwc1	$f6,%lo($LC3+4)($2)
 	nop
-	swc1	$f0,12($sp)
-	swc1	$f1,8($sp)
-	lwc1	$f0,12($sp)
+	lwc1	$f7,%lo($LC3)($2)
+	lui	$2,%hi($LC2)
+	lwc1	$f4,%lo($LC2+4)($2)
 	nop
-	lwc1	$f1,8($sp)
-	jr	$31
-	addiu	$sp,$sp,16
-
-$L822:
-	lui	$2,%hi($LC8)
-	lwc1	$f0,%lo($LC8+4)($2)
-	lw	$3,16($sp)
-	lwc1	$f1,%lo($LC8)($2)
-	li	$2,-2147483648			# 0xffffffff80000000
-	xor	$2,$3,$2
-	sw	$2,8($sp)
-	c.le.d	$f12,$f0
-	lw	$2,20($sp)
-	bc1f	$L824
-	sw	$2,12($sp)
-
-	lwc1	$f0,12($sp)
-	li	$3,1			# 0x1
-	lwc1	$f1,8($sp)
-	nop
-	swc1	$f0,20($sp)
-	.option	pic0
-	b	$L802
-	.option	pic2
-	swc1	$f1,16($sp)
-
-$L815:
-	lwc1	$f0,20($sp)
-	nop
-	lwc1	$f1,16($sp)
-	nop
-	swc1	$f0,12($sp)
-	swc1	$f1,8($sp)
-	lwc1	$f0,12($sp)
-	nop
-	lwc1	$f1,8($sp)
-	jr	$31
-	addiu	$sp,$sp,16
-
-$L824:
-	lui	$2,%hi($LC9)
-	lwc1	$f0,%lo($LC9+4)($2)
-	nop
-	lwc1	$f1,%lo($LC9)($2)
-	nop
-	c.lt.d	$f0,$f12
-	nop
-	bc1t	$L812
-	li	$3,1			# 0x1
-
-	sw	$0,0($6)
-	swc1	$f12,12($sp)
-	.option	pic0
-	b	$L799
-	.option	pic2
-	swc1	$f13,8($sp)
-
-$L812:
-$L803:
-	lwc1	$f0,12($sp)
-	lui	$2,%hi($LC11)
-	lwc1	$f2,%lo($LC11+4)($2)
-	lwc1	$f1,8($sp)
-	lwc1	$f3,%lo($LC11)($2)
-	swc1	$f0,20($sp)
-	swc1	$f1,16($sp)
+	lwc1	$f5,%lo($LC2)($2)
 	move	$2,$0
-$L810:
-	lwc1	$f0,20($sp)
-	addiu	$2,$2,-1
-	lwc1	$f1,16($sp)
+$L771:
+	c.le.d	$f4,$f0
+	addiu	$2,$2,1
+	bc1t	$L771
+	mul.d	$f0,$f0,$f6
+
+$L772:
+	beq	$3,$0,$L788
+	sw	$2,0($6)
+
+	neg.d	$f0,$f0
+$L788:
+	jr	$31
 	nop
-	c.lt.d	$f0,$f2
+
+$L786:
+	lui	$2,%hi($LC3)
+	lwc1	$f4,%lo($LC3+4)($2)
+	nop
+	lwc1	$f5,%lo($LC3)($2)
+	nop
+	c.lt.d	$f12,$f4
+	nop
+	bc1f	$L768
+	nop
+
+	c.eq.d	$f12,$f2
+	nop
+	bc1f	$L777
+	mov.d	$f6,$f12
+
+$L768:
+	jr	$31
+	sw	$0,0($6)
+
+$L785:
+	lui	$2,%hi($LC4)
+	lwc1	$f2,%lo($LC4+4)($2)
+	nop
+	lwc1	$f3,%lo($LC4)($2)
+	nop
+	c.le.d	$f12,$f2
+	nop
+	bc1f	$L787
+	neg.d	$f6,$f12
+
+	mov.d	$f0,$f6
+	.option	pic0
+	b	$L765
+	.option	pic2
+	li	$3,1			# 0x1
+
+$L787:
+	lui	$2,%hi($LC5)
+	lwc1	$f2,%lo($LC5+4)($2)
+	nop
+	lwc1	$f3,%lo($LC5)($2)
+	nop
+	c.lt.d	$f2,$f12
+	nop
+	bc1f	$L768
+	li	$3,1			# 0x1
+
+$L766:
+	lui	$2,%hi($LC7)
+	lwc1	$f4,%lo($LC7+4)($2)
+	mov.d	$f0,$f6
+	lwc1	$f5,%lo($LC7)($2)
+	move	$2,$0
+$L773:
+	c.lt.d	$f0,$f4
+	addiu	$2,$2,-1
+	bc1t	$L773
 	add.d	$f0,$f0,$f0
-	swc1	$f0,20($sp)
-	bc1t	$L810
-	swc1	$f1,16($sp)
 
 	.option	pic0
-	b	$L809
+	b	$L772
 	nop
 
 	.option	pic2
-$L814:
-	swc1	$f12,12($sp)
-	swc1	$f13,8($sp)
+$L777:
 	.option	pic0
-	b	$L803
+	b	$L766
 	.option	pic2
 	move	$3,$0
 
@@ -4690,11 +4438,11 @@ __muldi3:
 	.set	noreorder
 	.set	nomacro
 	or	$2,$5,$4
-	beq	$2,$0,$L829
+	beq	$2,$0,$L793
 	move	$9,$0
 
 	move	$2,$0
-$L828:
+$L792:
 	andi	$8,$5,0x1
 	subu	$3,$0,$8
 	sll	$10,$4,31
@@ -4713,13 +4461,13 @@ $L828:
 	addu	$2,$9,$2
 	or	$6,$10,$6
 	move	$9,$3
-	bne	$8,$0,$L828
+	bne	$8,$0,$L792
 	sll	$7,$7,1
 
 	jr	$31
 	move	$3,$9
 
-$L829:
+$L793:
 	move	$2,$0
 	jr	$31
 	move	$3,$9
@@ -4741,58 +4489,58 @@ udivmodsi4:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$5,$4
-	beq	$2,$0,$L833
+	beq	$2,$0,$L797
 	li	$3,1			# 0x1
 
 	.option	pic0
-	b	$L832
+	b	$L796
 	.option	pic2
 	li	$2,32			# 0x20
 
-$L836:
+$L800:
 	sll	$5,$5,1
 	sltu	$7,$5,$4
-	beq	$7,$0,$L834
+	beq	$7,$0,$L798
 	sll	$3,$3,1
 
-	beq	$2,$0,$L835
+	beq	$2,$0,$L799
 	nop
 
-$L832:
-	bgez	$5,$L836
+$L796:
+	bgez	$5,$L800
 	addiu	$2,$2,-1
 
-$L833:
+$L797:
 	move	$2,$0
-$L838:
+$L802:
 	sltu	$7,$4,$5
-	bne	$7,$0,$L837
+	bne	$7,$0,$L801
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L837:
+$L801:
 	srl	$3,$3,1
-	bne	$3,$0,$L838
+	bne	$3,$0,$L802
 	srl	$5,$5,1
 
-$L835:
-	bne	$6,$0,$L847
+$L799:
+	bne	$6,$0,$L811
 	nop
 
 	jr	$31
 	nop
 
-$L834:
-	bne	$3,$0,$L833
+$L798:
+	bne	$3,$0,$L797
 	move	$2,$0
 
 	.option	pic0
-	b	$L835
+	b	$L799
 	nop
 
 	.option	pic2
-$L847:
+$L811:
 	jr	$31
 	move	$2,$4
 
@@ -4813,7 +4561,7 @@ __clrsbqi2:
 	.set	noreorder
 	.set	nomacro
 	sra	$2,$4,7
-	beq	$4,$2,$L850
+	beq	$4,$2,$L814
 	xor	$3,$4,$2
 
 	lui	$28,%hi(__gnu_local_gp)
@@ -4831,7 +4579,7 @@ __clrsbqi2:
 	jr	$31
 	addiu	$sp,$sp,32
 
-$L850:
+$L814:
 	jr	$31
 	li	$2,7			# 0x7
 
@@ -4855,11 +4603,11 @@ __clrsbdi2:
 	move	$2,$4
 	move	$3,$5
 	xor	$4,$4,$6
-	beq	$2,$6,$L864
+	beq	$2,$6,$L828
 	xor	$5,$5,$6
 
 	lui	$28,%hi(__gnu_local_gp)
-$L865:
+$L829:
 	addiu	$28,$28,%lo(__gnu_local_gp)
 	addiu	$sp,$sp,-32
 	lw	$25,%call16(__clzdi2)($28)
@@ -4874,8 +4622,8 @@ $L865:
 	jr	$31
 	addiu	$sp,$sp,32
 
-$L864:
-	bne	$3,$2,$L865
+$L828:
+	bne	$3,$2,$L829
 	lui	$28,%hi(__gnu_local_gp)
 
 	jr	$31
@@ -4897,19 +4645,19 @@ __mulsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$4,$0,$L872
+	beq	$4,$0,$L836
 	move	$2,$0
 
-$L868:
+$L832:
 	andi	$3,$4,0x1
 	subu	$3,$0,$3
 	and	$3,$3,$5
 	srl	$4,$4,1
 	addu	$2,$2,$3
-	bne	$4,$0,$L868
+	bne	$4,$0,$L832
 	sll	$5,$5,1
 
-$L872:
+$L836:
 	jr	$31
 	nop
 
@@ -4932,61 +4680,61 @@ __cmovd:
 	li	$10,-8			# 0xfffffffffffffff8
 	sltu	$2,$4,$5
 	srl	$7,$6,3
-	bne	$2,$0,$L877
+	bne	$2,$0,$L841
 	and	$10,$6,$10
 
 	addu	$2,$5,$6
 	sltu	$2,$2,$4
-	beq	$2,$0,$L904
+	beq	$2,$0,$L868
 	addiu	$2,$6,-1
 
-$L877:
-	beq	$7,$0,$L905
+$L841:
+	beq	$7,$0,$L869
 	sll	$7,$7,3
 
 	move	$2,$5
 	move	$3,$4
 	addu	$7,$7,$5
-$L880:
+$L844:
 	lw	$9,4($2)
 	lw	$8,0($2)
 	addiu	$2,$2,8
 	sw	$9,4($3)
 	sw	$8,0($3)
-	bne	$2,$7,$L880
+	bne	$2,$7,$L844
 	addiu	$3,$3,8
 
 	sltu	$2,$10,$6
-	beq	$2,$0,$L908
+	beq	$2,$0,$L872
 	subu	$11,$6,$10
 
 	addiu	$2,$11,-1
 	sltu	$2,$2,7
-	bne	$2,$0,$L903
+	bne	$2,$0,$L867
 	addiu	$7,$10,1
 
 	addu	$3,$4,$10
 	addu	$7,$5,$7
 	subu	$7,$3,$7
 	sltu	$7,$7,3
-	bne	$7,$0,$L882
+	bne	$7,$0,$L846
 	addu	$2,$5,$10
 
 	or	$7,$2,$3
 	andi	$7,$7,0x3
-	bne	$7,$0,$L882
+	bne	$7,$0,$L846
 	srl	$9,$11,2
 
 	sll	$9,$9,2
 	addu	$8,$2,$9
-$L883:
+$L847:
 	lw	$7,0($2)
 	addiu	$2,$2,4
 	sw	$7,0($3)
-	bne	$2,$8,$L883
+	bne	$2,$8,$L847
 	addiu	$3,$3,4
 
-	beq	$11,$9,$L908
+	beq	$11,$9,$L872
 	addu	$10,$10,$9
 
 	addu	$2,$5,$10
@@ -4994,7 +4742,7 @@ $L883:
 	addiu	$2,$10,1
 	addu	$7,$4,$10
 	sltu	$3,$2,$6
-	beq	$3,$0,$L908
+	beq	$3,$0,$L872
 	sb	$8,0($7)
 
 	addu	$3,$5,$2
@@ -5002,7 +4750,7 @@ $L883:
 	addiu	$10,$10,2
 	addu	$2,$4,$2
 	sltu	$6,$10,$6
-	beq	$6,$0,$L908
+	beq	$6,$0,$L872
 	sb	$3,0($2)
 
 	addu	$5,$5,$10
@@ -5011,42 +4759,42 @@ $L883:
 	jr	$31
 	sb	$2,0($4)
 
-$L904:
-	beq	$6,$0,$L908
+$L868:
+	beq	$6,$0,$L872
 	li	$7,-1			# 0xffffffffffffffff
 
-$L878:
+$L842:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
 	addiu	$2,$2,-1
-	bne	$2,$7,$L878
+	bne	$2,$7,$L842
 	sb	$6,0($3)
 
-$L908:
+$L872:
 	jr	$31
 	nop
 
-$L905:
-	beq	$6,$0,$L907
+$L869:
+	beq	$6,$0,$L871
 	nop
 
-$L903:
+$L867:
 	addu	$3,$4,$10
 	addu	$2,$5,$10
-$L882:
+$L846:
 	addu	$6,$5,$6
-$L885:
+$L849:
 	lb	$4,0($2)
 	addiu	$2,$2,1
 	sb	$4,0($3)
-	bne	$2,$6,$L885
+	bne	$2,$6,$L849
 	addiu	$3,$3,1
 
 	jr	$31
 	nop
 
-$L907:
+$L871:
 	jr	$31
 	nop
 
@@ -5067,88 +4815,88 @@ __cmovh:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$4,$5
-	bne	$2,$0,$L913
+	bne	$2,$0,$L877
 	srl	$9,$6,1
 
 	addu	$2,$5,$6
 	sltu	$2,$2,$4
-	beq	$2,$0,$L935
+	beq	$2,$0,$L899
 	addiu	$2,$6,-1
 
-$L913:
-	beq	$9,$0,$L912
+$L877:
+	beq	$9,$0,$L876
 	addiu	$2,$9,-1
 
 	sltu	$2,$2,9
-	bne	$2,$0,$L916
+	bne	$2,$0,$L880
 	or	$2,$5,$4
 
 	andi	$2,$2,0x3
-	bne	$2,$0,$L916
+	bne	$2,$0,$L880
 	addiu	$2,$5,2
 
-	beq	$4,$2,$L916
+	beq	$4,$2,$L880
 	srl	$10,$6,2
 
 	sll	$11,$10,2
 	move	$2,$5
 	move	$3,$4
 	addu	$8,$5,$11
-$L917:
+$L881:
 	lw	$7,0($2)
 	addiu	$2,$2,4
 	sw	$7,0($3)
-	bne	$2,$8,$L917
+	bne	$2,$8,$L881
 	addiu	$3,$3,4
 
 	sll	$10,$10,1
-	beq	$9,$10,$L912
+	beq	$9,$10,$L876
 	addu	$2,$5,$11
 
 	lh	$2,0($2)
 	addu	$11,$4,$11
 	sh	$2,0($11)
-$L912:
+$L876:
 	andi	$2,$6,0x1
-	beq	$2,$0,$L940
+	beq	$2,$0,$L904
 	addu	$5,$5,$6
 
-$L938:
+$L902:
 	lb	$2,-1($5)
 	addu	$4,$4,$6
 	jr	$31
 	sb	$2,-1($4)
 
-$L935:
-	beq	$6,$0,$L940
+$L899:
+	beq	$6,$0,$L904
 	li	$7,-1			# 0xffffffffffffffff
 
-$L914:
+$L878:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
 	addiu	$2,$2,-1
-	bne	$2,$7,$L914
+	bne	$2,$7,$L878
 	sb	$6,0($3)
 
-$L940:
+$L904:
 	jr	$31
 	nop
 
-$L916:
+$L880:
 	sll	$9,$9,1
 	move	$2,$5
 	move	$3,$4
 	addu	$9,$9,$5
-$L919:
+$L883:
 	lh	$7,0($2)
 	addiu	$2,$2,2
 	sh	$7,0($3)
-	bne	$9,$2,$L919
+	bne	$9,$2,$L883
 	addiu	$3,$3,2
 
 	andi	$2,$6,0x1
-	bne	$2,$0,$L938
+	bne	$2,$0,$L902
 	addu	$5,$5,$6
 
 	jr	$31
@@ -5173,59 +4921,59 @@ __cmovw:
 	li	$9,-4			# 0xfffffffffffffffc
 	sltu	$2,$4,$5
 	srl	$8,$6,2
-	bne	$2,$0,$L945
+	bne	$2,$0,$L909
 	and	$9,$6,$9
 
 	addu	$2,$5,$6
 	sltu	$2,$2,$4
-	beq	$2,$0,$L972
+	beq	$2,$0,$L936
 	addiu	$2,$6,-1
 
-$L945:
-	beq	$8,$0,$L973
+$L909:
+	beq	$8,$0,$L937
 	sll	$8,$8,2
 
 	move	$2,$5
 	move	$3,$4
 	addu	$8,$8,$5
-$L948:
+$L912:
 	lw	$7,0($2)
 	addiu	$2,$2,4
 	sw	$7,0($3)
-	bne	$2,$8,$L948
+	bne	$2,$8,$L912
 	addiu	$3,$3,4
 
 	sltu	$2,$9,$6
-	beq	$2,$0,$L976
+	beq	$2,$0,$L940
 	subu	$11,$6,$9
 
 	addiu	$2,$11,-1
 	sltu	$2,$2,7
-	bne	$2,$0,$L971
+	bne	$2,$0,$L935
 	addiu	$7,$9,1
 
 	addu	$3,$4,$9
 	addu	$7,$5,$7
 	subu	$7,$3,$7
 	sltu	$7,$7,3
-	bne	$7,$0,$L950
+	bne	$7,$0,$L914
 	addu	$2,$5,$9
 
 	or	$7,$2,$3
 	andi	$7,$7,0x3
-	bne	$7,$0,$L950
+	bne	$7,$0,$L914
 	srl	$10,$11,2
 
 	sll	$10,$10,2
 	addu	$8,$2,$10
-$L951:
+$L915:
 	lw	$7,0($2)
 	addiu	$2,$2,4
 	sw	$7,0($3)
-	bne	$2,$8,$L951
+	bne	$2,$8,$L915
 	addiu	$3,$3,4
 
-	beq	$11,$10,$L976
+	beq	$11,$10,$L940
 	addu	$9,$9,$10
 
 	addu	$2,$5,$9
@@ -5233,7 +4981,7 @@ $L951:
 	addiu	$2,$9,1
 	addu	$7,$4,$9
 	sltu	$3,$2,$6
-	beq	$3,$0,$L976
+	beq	$3,$0,$L940
 	sb	$8,0($7)
 
 	addu	$3,$5,$2
@@ -5241,7 +4989,7 @@ $L951:
 	addiu	$9,$9,2
 	addu	$2,$4,$2
 	sltu	$6,$9,$6
-	beq	$6,$0,$L976
+	beq	$6,$0,$L940
 	sb	$3,0($2)
 
 	addu	$5,$5,$9
@@ -5250,42 +4998,42 @@ $L951:
 	jr	$31
 	sb	$2,0($4)
 
-$L972:
-	beq	$6,$0,$L976
+$L936:
+	beq	$6,$0,$L940
 	li	$7,-1			# 0xffffffffffffffff
 
-$L946:
+$L910:
 	addu	$3,$5,$2
 	lb	$6,0($3)
 	addu	$3,$4,$2
 	addiu	$2,$2,-1
-	bne	$2,$7,$L946
+	bne	$2,$7,$L910
 	sb	$6,0($3)
 
-$L976:
+$L940:
 	jr	$31
 	nop
 
-$L973:
-	beq	$6,$0,$L975
+$L937:
+	beq	$6,$0,$L939
 	nop
 
-$L971:
+$L935:
 	addu	$3,$4,$9
 	addu	$2,$5,$9
-$L950:
+$L914:
 	addu	$6,$5,$6
-$L953:
+$L917:
 	lb	$4,0($2)
 	addiu	$2,$2,1
 	sb	$4,0($3)
-	bne	$2,$6,$L953
+	bne	$2,$6,$L917
 	addiu	$3,$3,1
 
 	jr	$31
 	nop
 
-$L975:
+$L939:
 	jr	$31
 	nop
 
@@ -5330,17 +5078,17 @@ __uitod:
 	.set	noreorder
 	.set	nomacro
 	mtc1	$4,$f0
-	bltz	$4,$L981
+	bltz	$4,$L945
 	cvt.d.w	$f0,$f0
 
 	jr	$31
 	nop
 
-$L981:
-	lui	$2,%hi($LC12)
-	lwc1	$f2,%lo($LC12+4)($2)
+$L945:
+	lui	$2,%hi($LC8)
+	lwc1	$f2,%lo($LC8+4)($2)
 	nop
-	lwc1	$f3,%lo($LC12)($2)
+	lwc1	$f3,%lo($LC8)($2)
 	jr	$31
 	add.d	$f0,$f0,$f2
 
@@ -5361,16 +5109,16 @@ __uitof:
 	.set	noreorder
 	.set	nomacro
 	mtc1	$4,$f0
-	bgez	$4,$L985
+	bgez	$4,$L949
 	cvt.d.w	$f0,$f0
 
-	lui	$2,%hi($LC12)
-	lwc1	$f2,%lo($LC12+4)($2)
+	lui	$2,%hi($LC8)
+	lwc1	$f2,%lo($LC8+4)($2)
 	nop
-	lwc1	$f3,%lo($LC12)($2)
+	lwc1	$f3,%lo($LC8)($2)
 	nop
 	add.d	$f0,$f0,$f2
-$L985:
+$L949:
 	jr	$31
 	cvt.s.d	$f0,$f0
 
@@ -5477,129 +5225,129 @@ __clzhi2:
 	.set	noreorder
 	.set	nomacro
 	sra	$2,$4,15
-	bne	$2,$0,$L995
+	bne	$2,$0,$L959
 	nop
 
 	sra	$2,$4,14
-	bne	$2,$0,$L1012
+	bne	$2,$0,$L976
 	nop
 
 	sra	$2,$4,13
-	bne	$2,$0,$L996
+	bne	$2,$0,$L960
 	nop
 
 	sra	$2,$4,12
-	bne	$2,$0,$L997
+	bne	$2,$0,$L961
 	nop
 
 	sra	$2,$4,11
-	bne	$2,$0,$L998
+	bne	$2,$0,$L962
 	nop
 
 	sra	$2,$4,10
-	bne	$2,$0,$L999
+	bne	$2,$0,$L963
 	nop
 
 	sra	$2,$4,9
-	bne	$2,$0,$L1000
+	bne	$2,$0,$L964
 	nop
 
 	sra	$2,$4,8
-	bne	$2,$0,$L1001
+	bne	$2,$0,$L965
 	nop
 
 	sra	$2,$4,7
-	bne	$2,$0,$L1002
+	bne	$2,$0,$L966
 	nop
 
 	sra	$2,$4,6
-	bne	$2,$0,$L1003
+	bne	$2,$0,$L967
 	nop
 
 	sra	$2,$4,5
-	bne	$2,$0,$L1004
+	bne	$2,$0,$L968
 	nop
 
 	sra	$2,$4,4
-	bne	$2,$0,$L1005
+	bne	$2,$0,$L969
 	nop
 
 	sra	$2,$4,3
-	bne	$2,$0,$L1006
+	bne	$2,$0,$L970
 	nop
 
 	sra	$2,$4,2
-	bne	$2,$0,$L1007
+	bne	$2,$0,$L971
 	nop
 
 	sra	$2,$4,1
-	bne	$2,$0,$L1008
+	bne	$2,$0,$L972
 	nop
 
-	bne	$4,$0,$L1011
+	bne	$4,$0,$L975
 	li	$2,16			# 0x10
 
-$L1012:
+$L976:
 	jr	$31
 	nop
 
-$L995:
+$L959:
 	jr	$31
 	move	$2,$0
 
-$L1006:
+$L970:
 	jr	$31
 	li	$2,12			# 0xc
 
-$L1011:
+$L975:
 	jr	$31
 	li	$2,15			# 0xf
 
-$L996:
+$L960:
 	jr	$31
 	li	$2,2			# 0x2
 
-$L997:
+$L961:
 	jr	$31
 	li	$2,3			# 0x3
 
-$L998:
+$L962:
 	jr	$31
 	li	$2,4			# 0x4
 
-$L999:
+$L963:
 	jr	$31
 	li	$2,5			# 0x5
 
-$L1000:
+$L964:
 	jr	$31
 	li	$2,6			# 0x6
 
-$L1001:
+$L965:
 	jr	$31
 	li	$2,7			# 0x7
 
-$L1002:
+$L966:
 	jr	$31
 	li	$2,8			# 0x8
 
-$L1003:
+$L967:
 	jr	$31
 	li	$2,9			# 0x9
 
-$L1004:
+$L968:
 	jr	$31
 	li	$2,10			# 0xa
 
-$L1005:
+$L969:
 	jr	$31
 	li	$2,11			# 0xb
 
-$L1007:
+$L971:
 	jr	$31
 	li	$2,13			# 0xd
 
-$L1008:
+$L972:
 	jr	$31
 	li	$2,14			# 0xe
 
@@ -5620,132 +5368,132 @@ __ctzhi2:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$4,0x1
-	bne	$2,$0,$L1016
+	bne	$2,$0,$L980
 	nop
 
 	andi	$2,$4,0x2
-	bne	$2,$0,$L1017
+	bne	$2,$0,$L981
 	nop
 
 	andi	$2,$4,0x4
-	bne	$2,$0,$L1018
+	bne	$2,$0,$L982
 	nop
 
 	andi	$2,$4,0x8
-	bne	$2,$0,$L1019
+	bne	$2,$0,$L983
 	nop
 
 	andi	$2,$4,0x10
-	bne	$2,$0,$L1020
+	bne	$2,$0,$L984
 	nop
 
 	andi	$2,$4,0x20
-	bne	$2,$0,$L1021
+	bne	$2,$0,$L985
 	nop
 
 	andi	$2,$4,0x40
-	bne	$2,$0,$L1022
+	bne	$2,$0,$L986
 	nop
 
 	andi	$2,$4,0x80
-	bne	$2,$0,$L1023
+	bne	$2,$0,$L987
 	nop
 
 	andi	$2,$4,0x100
-	bne	$2,$0,$L1024
+	bne	$2,$0,$L988
 	nop
 
 	andi	$2,$4,0x200
-	bne	$2,$0,$L1025
+	bne	$2,$0,$L989
 	nop
 
 	andi	$2,$4,0x400
-	bne	$2,$0,$L1026
+	bne	$2,$0,$L990
 	nop
 
 	andi	$2,$4,0x800
-	bne	$2,$0,$L1027
+	bne	$2,$0,$L991
 	nop
 
 	andi	$2,$4,0x1000
-	bne	$2,$0,$L1028
+	bne	$2,$0,$L992
 	nop
 
 	andi	$2,$4,0x2000
-	bne	$2,$0,$L1029
+	bne	$2,$0,$L993
 	nop
 
 	andi	$2,$4,0x4000
-	bne	$2,$0,$L1030
+	bne	$2,$0,$L994
 	sra	$4,$4,15
 
-	bne	$4,$0,$L1033
+	bne	$4,$0,$L997
 	li	$2,16			# 0x10
 
 	jr	$31
 	nop
 
-$L1016:
+$L980:
 	jr	$31
 	move	$2,$0
 
-$L1017:
+$L981:
 	jr	$31
 	li	$2,1			# 0x1
 
-$L1028:
+$L992:
 	jr	$31
 	li	$2,12			# 0xc
 
-$L1033:
+$L997:
 	jr	$31
 	li	$2,15			# 0xf
 
-$L1018:
+$L982:
 	jr	$31
 	li	$2,2			# 0x2
 
-$L1019:
+$L983:
 	jr	$31
 	li	$2,3			# 0x3
 
-$L1020:
+$L984:
 	jr	$31
 	li	$2,4			# 0x4
 
-$L1021:
+$L985:
 	jr	$31
 	li	$2,5			# 0x5
 
-$L1022:
+$L986:
 	jr	$31
 	li	$2,6			# 0x6
 
-$L1023:
+$L987:
 	jr	$31
 	li	$2,7			# 0x7
 
-$L1024:
+$L988:
 	jr	$31
 	li	$2,8			# 0x8
 
-$L1025:
+$L989:
 	jr	$31
 	li	$2,9			# 0x9
 
-$L1026:
+$L990:
 	jr	$31
 	li	$2,10			# 0xa
 
-$L1027:
+$L991:
 	jr	$31
 	li	$2,11			# 0xb
 
-$L1029:
+$L993:
 	jr	$31
 	li	$2,13			# 0xd
 
-$L1030:
+$L994:
 	jr	$31
 	li	$2,14			# 0xe
 
@@ -5765,12 +5513,12 @@ __fixunssfsi:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi($LC13)
-	lwc1	$f0,%lo($LC13)($2)
+	lui	$2,%hi($LC9)
+	lwc1	$f0,%lo($LC9)($2)
 	nop
 	c.le.s	$f0,$f12
 	nop
-	bc1t	$L1041
+	bc1t	$L1005
 	nop
 
 	.set	macro
@@ -5780,7 +5528,7 @@ __fixunssfsi:
 	jr	$31
 	nop
 
-$L1041:
+$L1005:
 	sub.s	$f12,$f12,$f0
 	.set	macro
 	trunc.w.s $f0,$f12,$3
@@ -5933,19 +5681,19 @@ __mulsi3_iq2000:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$4,$0,$L1050
+	beq	$4,$0,$L1014
 	move	$2,$0
 
-$L1046:
+$L1010:
 	andi	$3,$4,0x1
 	subu	$3,$0,$3
 	and	$3,$3,$5
 	srl	$4,$4,1
 	addu	$2,$2,$3
-	bne	$4,$0,$L1046
+	bne	$4,$0,$L1010
 	sll	$5,$5,1
 
-$L1050:
+$L1014:
 	jr	$31
 	nop
 
@@ -5965,26 +5713,26 @@ __mulsi3_lm32:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beq	$4,$0,$L1058
+	beq	$4,$0,$L1022
 	move	$2,$0
 
-	beq	$5,$0,$L1057
+	beq	$5,$0,$L1021
 	nop
 
-$L1053:
+$L1017:
 	andi	$3,$5,0x1
 	subu	$3,$0,$3
 	and	$3,$3,$4
 	srl	$5,$5,1
 	addu	$2,$2,$3
-	bne	$5,$0,$L1053
+	bne	$5,$0,$L1017
 	sll	$4,$4,1
 
-$L1058:
+$L1022:
 	jr	$31
 	nop
 
-$L1057:
+$L1021:
 	jr	$31
 	nop
 
@@ -6005,58 +5753,58 @@ __udivmodsi4:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$5,$4
-	beq	$2,$0,$L1061
+	beq	$2,$0,$L1025
 	li	$3,1			# 0x1
 
 	.option	pic0
-	b	$L1060
+	b	$L1024
 	.option	pic2
 	li	$2,32			# 0x20
 
-$L1064:
+$L1028:
 	sll	$5,$5,1
 	sltu	$7,$5,$4
-	beq	$7,$0,$L1062
+	beq	$7,$0,$L1026
 	sll	$3,$3,1
 
-	beq	$2,$0,$L1063
+	beq	$2,$0,$L1027
 	nop
 
-$L1060:
-	bgez	$5,$L1064
+$L1024:
+	bgez	$5,$L1028
 	addiu	$2,$2,-1
 
-$L1061:
+$L1025:
 	move	$2,$0
-$L1066:
+$L1030:
 	sltu	$7,$4,$5
-	bne	$7,$0,$L1065
+	bne	$7,$0,$L1029
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L1065:
+$L1029:
 	srl	$3,$3,1
-	bne	$3,$0,$L1066
+	bne	$3,$0,$L1030
 	srl	$5,$5,1
 
-$L1063:
-	bne	$6,$0,$L1075
+$L1027:
+	bne	$6,$0,$L1039
 	nop
 
 	jr	$31
 	nop
 
-$L1062:
-	bne	$3,$0,$L1061
+$L1026:
+	bne	$3,$0,$L1025
 	move	$2,$0
 
 	.option	pic0
-	b	$L1063
+	b	$L1027
 	nop
 
 	.option	pic2
-$L1075:
+$L1039:
 	jr	$31
 	move	$2,$4
 
@@ -6078,22 +5826,22 @@ __mspabi_cmpf:
 	.set	nomacro
 	c.lt.s	$f12,$f14
 	nop
-	bc1t	$L1079
+	bc1t	$L1043
 	nop
 
 	c.lt.s	$f14,$f12
 	nop
-	bc1f	$L1080
+	bc1f	$L1044
 	li	$2,1			# 0x1
 
 	jr	$31
 	nop
 
-$L1080:
+$L1044:
 	jr	$31
 	move	$2,$0
 
-$L1079:
+$L1043:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
@@ -6115,22 +5863,22 @@ __mspabi_cmpd:
 	.set	nomacro
 	c.lt.d	$f12,$f14
 	nop
-	bc1t	$L1086
+	bc1t	$L1050
 	nop
 
 	c.lt.d	$f14,$f12
 	nop
-	bc1f	$L1087
+	bc1f	$L1051
 	li	$2,1			# 0x1
 
 	jr	$31
 	nop
 
-$L1087:
+$L1051:
 	jr	$31
 	move	$2,$0
 
-$L1086:
+$L1050:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
@@ -6194,24 +5942,24 @@ __mulhi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bltz	$5,$L1106
+	bltz	$5,$L1070
 	nop
 
-	beq	$5,$0,$L1098
+	beq	$5,$0,$L1062
 	move	$7,$0
 
-$L1094:
+$L1058:
 	li	$6,32			# 0x20
 	.option	pic0
-	b	$L1097
+	b	$L1061
 	.option	pic2
 	move	$2,$0
 
-$L1107:
-	beq	$6,$0,$L1096
+$L1071:
+	beq	$6,$0,$L1060
 	nop
 
-$L1097:
+$L1061:
 	andi	$3,$5,0x1
 	subu	$3,$0,$3
 	and	$3,$3,$4
@@ -6219,26 +5967,26 @@ $L1097:
 	sra	$5,$5,1
 	andi	$6,$6,0x00ff
 	addu	$2,$2,$3
-	bne	$5,$0,$L1107
+	bne	$5,$0,$L1071
 	sll	$4,$4,1
 
-$L1096:
-	beq	$7,$0,$L1108
+$L1060:
+	beq	$7,$0,$L1072
 	nop
 
 	jr	$31
 	subu	$2,$0,$2
 
-$L1098:
+$L1062:
 	move	$2,$0
-$L1108:
+$L1072:
 	jr	$31
 	nop
 
-$L1106:
+$L1070:
 	subu	$5,$0,$5
 	.option	pic0
-	b	$L1094
+	b	$L1058
 	.option	pic2
 	li	$7,1			# 0x1
 
@@ -6258,70 +6006,70 @@ __divsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bltz	$4,$L1127
+	bltz	$4,$L1091
 	move	$2,$0
 
 	li	$2,1			# 0x1
 	move	$8,$0
-$L1110:
-	bgez	$5,$L1111
+$L1074:
+	bgez	$5,$L1075
 	nop
 
 	subu	$5,$0,$5
 	move	$8,$2
-$L1111:
+$L1075:
 	sltu	$2,$5,$4
 	move	$7,$4
-	beq	$2,$0,$L1113
+	beq	$2,$0,$L1077
 	li	$3,1			# 0x1
 
 	.option	pic0
-	b	$L1112
+	b	$L1076
 	.option	pic2
 	li	$2,32			# 0x20
 
-$L1115:
-	beq	$2,$0,$L1116
+$L1079:
+	beq	$2,$0,$L1080
 	nop
 
-$L1112:
+$L1076:
 	sll	$5,$5,1
 	sltu	$6,$5,$4
 	addiu	$2,$2,-1
-	bne	$6,$0,$L1115
+	bne	$6,$0,$L1079
 	sll	$3,$3,1
 
-$L1116:
-	beq	$3,$0,$L1114
+$L1080:
+	beq	$3,$0,$L1078
 	move	$2,$0
 
-$L1113:
+$L1077:
 	move	$2,$0
-$L1118:
+$L1082:
 	sltu	$4,$7,$5
-	bne	$4,$0,$L1117
+	bne	$4,$0,$L1081
 	nop
 
 	subu	$7,$7,$5
 	or	$2,$2,$3
-$L1117:
+$L1081:
 	srl	$3,$3,1
-	bne	$3,$0,$L1118
+	bne	$3,$0,$L1082
 	srl	$5,$5,1
 
-$L1114:
-	beq	$8,$0,$L1128
+$L1078:
+	beq	$8,$0,$L1092
 	nop
 
 	subu	$2,$0,$2
-$L1128:
+$L1092:
 	jr	$31
 	nop
 
-$L1127:
+$L1091:
 	subu	$4,$0,$4
 	.option	pic0
-	b	$L1110
+	b	$L1074
 	.option	pic2
 	li	$8,1			# 0x1
 
@@ -6341,76 +6089,76 @@ __modsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bltz	$4,$L1147
+	bltz	$4,$L1111
 	nop
 
 	move	$8,$0
-$L1130:
-	bgez	$5,$L1131
+$L1094:
+	bgez	$5,$L1095
 	move	$2,$4
 
 	subu	$5,$0,$5
-$L1131:
+$L1095:
 	sltu	$3,$5,$4
-	beq	$3,$0,$L1148
+	beq	$3,$0,$L1112
 	nop
 
 	li	$6,32			# 0x20
 	.option	pic0
-	b	$L1132
+	b	$L1096
 	.option	pic2
 	li	$3,1			# 0x1
 
-$L1135:
-	beq	$6,$0,$L1136
+$L1099:
+	beq	$6,$0,$L1100
 	nop
 
-$L1132:
+$L1096:
 	sll	$5,$5,1
 	sltu	$7,$5,$4
 	addiu	$6,$6,-1
-	bne	$7,$0,$L1135
+	bne	$7,$0,$L1099
 	sll	$3,$3,1
 
-$L1136:
-	beq	$3,$0,$L1149
+$L1100:
+	beq	$3,$0,$L1113
 	nop
 
-$L1138:
+$L1102:
 	sltu	$4,$2,$5
-	bne	$4,$0,$L1137
+	bne	$4,$0,$L1101
 	srl	$3,$3,1
 
 	subu	$2,$2,$5
-$L1137:
-	bne	$3,$0,$L1138
+$L1101:
+	bne	$3,$0,$L1102
 	srl	$5,$5,1
 
-$L1134:
-	beq	$8,$0,$L1150
+$L1098:
+	beq	$8,$0,$L1114
 	nop
 
 	subu	$2,$0,$2
-$L1150:
+$L1114:
 	jr	$31
 	nop
 
-$L1147:
+$L1111:
 	subu	$4,$0,$4
 	.option	pic0
-	b	$L1130
+	b	$L1094
 	.option	pic2
 	li	$8,1			# 0x1
 
-$L1149:
+$L1113:
 	.option	pic0
-	b	$L1134
+	b	$L1098
 	.option	pic2
 	move	$2,$4
 
-$L1148:
+$L1112:
 	.option	pic0
-	b	$L1138
+	b	$L1102
 	.option	pic2
 	li	$3,1			# 0x1
 
@@ -6431,808 +6179,808 @@ __udivmodhi4:
 	.set	noreorder
 	.set	nomacro
 	sltu	$3,$5,$4
-	beq	$3,$0,$L1265
+	beq	$3,$0,$L1229
 	move	$2,$4
 
 	sll	$3,$5,16
 	sra	$3,$3,16
-	bltz	$3,$L1154
+	bltz	$3,$L1118
 	sll	$3,$5,1
 
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$4
-	beq	$4,$0,$L1155
+	beq	$4,$0,$L1119
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1156
+	bltz	$4,$L1120
 	li	$9,1			# 0x1
 
 	sll	$3,$5,2
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1157
+	beq	$4,$0,$L1121
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1158
+	bltz	$4,$L1122
 	li	$9,2			# 0x2
 
 	sll	$3,$5,3
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1159
+	beq	$4,$0,$L1123
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1160
+	bltz	$4,$L1124
 	li	$9,4			# 0x4
 
 	sll	$3,$5,4
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1161
+	beq	$4,$0,$L1125
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1162
+	bltz	$4,$L1126
 	li	$9,8			# 0x8
 
 	sll	$3,$5,5
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1163
+	beq	$4,$0,$L1127
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1164
+	bltz	$4,$L1128
 	li	$9,16			# 0x10
 
 	sll	$3,$5,6
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1165
+	beq	$4,$0,$L1129
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1166
+	bltz	$4,$L1130
 	li	$9,32			# 0x20
 
 	sll	$3,$5,7
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1167
+	beq	$4,$0,$L1131
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1168
+	bltz	$4,$L1132
 	li	$9,64			# 0x40
 
 	sll	$3,$5,8
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1169
+	beq	$4,$0,$L1133
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1170
+	bltz	$4,$L1134
 	li	$9,128			# 0x80
 
 	sll	$3,$5,9
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1171
+	beq	$4,$0,$L1135
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1172
+	bltz	$4,$L1136
 	li	$9,256			# 0x100
 
 	sll	$3,$5,10
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1173
+	beq	$4,$0,$L1137
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1174
+	bltz	$4,$L1138
 	li	$9,512			# 0x200
 
 	sll	$3,$5,11
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1175
+	beq	$4,$0,$L1139
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1176
+	bltz	$4,$L1140
 	li	$9,1024			# 0x400
 
 	sll	$3,$5,12
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1177
+	beq	$4,$0,$L1141
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1178
+	bltz	$4,$L1142
 	li	$9,2048			# 0x800
 
 	sll	$3,$5,13
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1179
+	beq	$4,$0,$L1143
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1180
+	bltz	$4,$L1144
 	li	$9,4096			# 0x1000
 
 	sll	$3,$5,14
 	andi	$3,$3,0xffff
 	sltu	$4,$3,$2
-	beq	$4,$0,$L1181
+	beq	$4,$0,$L1145
 	sll	$4,$3,16
 
 	sra	$4,$4,16
-	bltz	$4,$L1182
+	bltz	$4,$L1146
 	li	$9,8192			# 0x2000
 
 	sll	$5,$5,15
 	andi	$7,$5,0xffff
 	sltu	$3,$7,$2
-	beq	$3,$0,$L1183
+	beq	$3,$0,$L1147
 	nop
 
-	bne	$7,$0,$L1266
+	bne	$7,$0,$L1230
 	li	$5,16384			# 0x4000
 
-$L1184:
-	bne	$6,$0,$L1267
+$L1148:
+	bne	$6,$0,$L1231
 	nop
 
 	jr	$31
 	move	$2,$7
 
-$L1267:
+$L1231:
 	jr	$31
 	nop
 
-$L1171:
+$L1135:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1203
+	bne	$4,$0,$L1167
 	li	$8,512			# 0x200
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$7,512			# 0x200
-$L1186:
+$L1150:
 	srl	$5,$8,2
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,2
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1187
+	bne	$9,$0,$L1151
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1187:
+$L1151:
 	srl	$5,$8,3
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,3
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1188
+	bne	$9,$0,$L1152
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1188:
+$L1152:
 	srl	$5,$8,4
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,4
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1189
+	bne	$9,$0,$L1153
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1189:
+$L1153:
 	srl	$5,$8,5
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,5
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1190
+	bne	$9,$0,$L1154
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1190:
+$L1154:
 	srl	$5,$8,6
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,6
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1191
+	bne	$9,$0,$L1155
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1191:
+$L1155:
 	srl	$5,$8,7
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,7
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1192
+	bne	$9,$0,$L1156
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1192:
+$L1156:
 	srl	$5,$8,8
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,8
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1193
+	bne	$9,$0,$L1157
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1193:
+$L1157:
 	srl	$5,$8,9
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,9
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1194
+	bne	$9,$0,$L1158
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1194:
+$L1158:
 	srl	$5,$8,10
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,10
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1195
+	bne	$9,$0,$L1159
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1195:
+$L1159:
 	srl	$5,$8,11
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,11
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1196
+	bne	$9,$0,$L1160
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1196:
+$L1160:
 	srl	$5,$8,12
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,12
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1197
+	bne	$9,$0,$L1161
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1197:
+$L1161:
 	srl	$5,$8,13
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,13
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1198
+	bne	$9,$0,$L1162
 	nop
 
 	subu	$4,$2,$4
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1198:
+$L1162:
 	srl	$5,$8,14
-	beq	$5,$0,$L1184
+	beq	$5,$0,$L1148
 	srl	$4,$3,14
 
 	sltu	$9,$2,$4
-	bne	$9,$0,$L1199
+	bne	$9,$0,$L1163
 	subu	$4,$2,$4
 
 	andi	$2,$4,0xffff
 	or	$7,$7,$5
-$L1199:
+$L1163:
 	li	$4,16384			# 0x4000
-	beq	$8,$4,$L1184
+	beq	$8,$4,$L1148
 	srl	$3,$3,15
 
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1207
+	bne	$4,$0,$L1171
 	subu	$3,$2,$3
 
 	andi	$2,$3,0xffff
 	.option	pic0
-	b	$L1184
+	b	$L1148
 	.option	pic2
 	ori	$7,$7,0x1
 
-$L1207:
+$L1171:
 	.option	pic0
-	b	$L1184
+	b	$L1148
 	.option	pic2
 	move	$2,$0
 
-$L1265:
-	beq	$5,$4,$L1205
+$L1229:
+	beq	$5,$4,$L1169
 	nop
 
 	.option	pic0
-	b	$L1184
+	b	$L1148
 	.option	pic2
 	move	$7,$0
 
-$L1154:
+$L1118:
 	subu	$2,$4,$5
 	andi	$2,$2,0xffff
 	.option	pic0
-	b	$L1184
+	b	$L1148
 	.option	pic2
 	li	$7,1			# 0x1
 
-$L1155:
+$L1119:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1209
+	bne	$4,$0,$L1173
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,2			# 0x2
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,2			# 0x2
 
-$L1156:
+$L1120:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	andi	$5,$5,0x7fff
 	li	$8,2			# 0x2
 	li	$7,2			# 0x2
-$L1204:
+$L1168:
 	sltu	$4,$2,$5
-	bne	$4,$0,$L1186
+	bne	$4,$0,$L1150
 	subu	$5,$2,$5
 
 	andi	$2,$5,0xffff
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	or	$7,$7,$9
 
-$L1157:
+$L1121:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1210
+	bne	$4,$0,$L1174
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,4			# 0x4
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,4			# 0x4
 
-$L1158:
+$L1122:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,4			# 0x4
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,4			# 0x4
 
-$L1159:
+$L1123:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1211
+	bne	$4,$0,$L1175
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,8			# 0x8
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,8			# 0x8
 
-$L1160:
+$L1124:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,8			# 0x8
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,8			# 0x8
 
-$L1161:
+$L1125:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1212
+	bne	$4,$0,$L1176
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,16			# 0x10
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,16			# 0x10
 
-$L1162:
+$L1126:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,16			# 0x10
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,16			# 0x10
 
-$L1163:
+$L1127:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1213
+	bne	$4,$0,$L1177
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,32			# 0x20
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,32			# 0x20
 
-$L1164:
+$L1128:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,32			# 0x20
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,32			# 0x20
 
-$L1165:
+$L1129:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1214
+	bne	$4,$0,$L1178
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,64			# 0x40
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,64			# 0x40
 
-$L1166:
+$L1130:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,64			# 0x40
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,64			# 0x40
 
-$L1167:
+$L1131:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1215
+	bne	$4,$0,$L1179
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,128			# 0x80
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,128			# 0x80
 
-$L1168:
+$L1132:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,128			# 0x80
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,128			# 0x80
 
-$L1170:
+$L1134:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,256			# 0x100
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,256			# 0x100
 
-$L1172:
+$L1136:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,512			# 0x200
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,512			# 0x200
 
-$L1205:
+$L1169:
 	li	$7,1			# 0x1
 	.option	pic0
-	b	$L1184
+	b	$L1148
 	.option	pic2
 	move	$2,$0
 
-$L1209:
+$L1173:
 	li	$8,2			# 0x2
-$L1203:
+$L1167:
 	srl	$9,$8,1
 	srl	$5,$3,1
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	move	$7,$0
 
-$L1174:
+$L1138:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,1024			# 0x400
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,1024			# 0x400
 
-$L1176:
+$L1140:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,2048			# 0x800
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,2048			# 0x800
 
-$L1210:
+$L1174:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,4			# 0x4
 
-$L1211:
+$L1175:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,8			# 0x8
 
-$L1178:
+$L1142:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,4096			# 0x1000
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,4096			# 0x1000
 
-$L1180:
+$L1144:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,8192			# 0x2000
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,8192			# 0x2000
 
-$L1212:
+$L1176:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,16			# 0x10
 
-$L1213:
+$L1177:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,32			# 0x20
 
-$L1182:
+$L1146:
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	srl	$5,$3,1
 	li	$8,16384			# 0x4000
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,16384			# 0x4000
 
-$L1183:
+$L1147:
 	sll	$3,$2,16
 	sra	$3,$3,16
-	bltz	$3,$L1208
+	bltz	$3,$L1172
 	nop
 
 	li	$3,32768			# 0x8000
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,32768			# 0x8000
 
-$L1214:
+$L1178:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,64			# 0x40
 
-$L1266:
+$L1230:
 	addiu	$2,$2,-32768
 	andi	$2,$2,0xffff
 	li	$9,16384			# 0x4000
 	li	$3,32768			# 0x8000
 	li	$8,32768			# 0x8000
 	.option	pic0
-	b	$L1204
+	b	$L1168
 	.option	pic2
 	li	$7,32768			# 0x8000
 
-$L1215:
+$L1179:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,128			# 0x80
 
-$L1169:
+$L1133:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1216
+	bne	$4,$0,$L1180
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,256			# 0x100
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,256			# 0x100
 
-$L1208:
+$L1172:
 	li	$3,32768			# 0x8000
 	li	$8,32768			# 0x8000
 	li	$7,32768			# 0x8000
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	move	$2,$0
 
-$L1216:
+$L1180:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,256			# 0x100
 
-$L1173:
+$L1137:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1218
+	bne	$4,$0,$L1182
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,1024			# 0x400
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,1024			# 0x400
 
-$L1181:
+$L1145:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1222
+	bne	$4,$0,$L1186
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,16384			# 0x4000
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,16384			# 0x4000
 
-$L1218:
+$L1182:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,1024			# 0x400
 
-$L1222:
+$L1186:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,16384			# 0x4000
 
-$L1179:
+$L1143:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1221
+	bne	$4,$0,$L1185
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,8192			# 0x2000
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,8192			# 0x2000
 
-$L1177:
+$L1141:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1220
+	bne	$4,$0,$L1184
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,4096			# 0x1000
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,4096			# 0x1000
 
-$L1175:
+$L1139:
 	sltu	$4,$2,$3
-	bne	$4,$0,$L1219
+	bne	$4,$0,$L1183
 	nop
 
 	subu	$2,$2,$3
 	andi	$2,$2,0xffff
 	li	$8,2048			# 0x800
 	.option	pic0
-	b	$L1186
+	b	$L1150
 	.option	pic2
 	li	$7,2048			# 0x800
 
-$L1221:
+$L1185:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,8192			# 0x2000
 
-$L1220:
+$L1184:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,4096			# 0x1000
 
-$L1219:
+$L1183:
 	.option	pic0
-	b	$L1203
+	b	$L1167
 	.option	pic2
 	li	$8,2048			# 0x800
 
@@ -7253,58 +7001,58 @@ __udivmodsi4_libgcc:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$5,$4
-	beq	$2,$0,$L1270
+	beq	$2,$0,$L1234
 	li	$3,1			# 0x1
 
 	.option	pic0
-	b	$L1269
+	b	$L1233
 	.option	pic2
 	li	$2,32			# 0x20
 
-$L1273:
+$L1237:
 	sll	$5,$5,1
 	sltu	$7,$5,$4
-	beq	$7,$0,$L1271
+	beq	$7,$0,$L1235
 	sll	$3,$3,1
 
-	beq	$2,$0,$L1272
+	beq	$2,$0,$L1236
 	nop
 
-$L1269:
-	bgez	$5,$L1273
+$L1233:
+	bgez	$5,$L1237
 	addiu	$2,$2,-1
 
-$L1270:
+$L1234:
 	move	$2,$0
-$L1275:
+$L1239:
 	sltu	$7,$4,$5
-	bne	$7,$0,$L1274
+	bne	$7,$0,$L1238
 	nop
 
 	subu	$4,$4,$5
 	or	$2,$2,$3
-$L1274:
+$L1238:
 	srl	$3,$3,1
-	bne	$3,$0,$L1275
+	bne	$3,$0,$L1239
 	srl	$5,$5,1
 
-$L1272:
-	bne	$6,$0,$L1284
+$L1236:
+	bne	$6,$0,$L1248
 	nop
 
 	jr	$31
 	nop
 
-$L1271:
-	bne	$3,$0,$L1270
+$L1235:
+	bne	$3,$0,$L1234
 	move	$2,$0
 
 	.option	pic0
-	b	$L1272
+	b	$L1236
 	nop
 
 	.option	pic2
-$L1284:
+$L1248:
 	jr	$31
 	move	$2,$4
 
@@ -7325,15 +7073,15 @@ __ashldi3:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$6,0x20
-	beq	$2,$0,$L1286
+	beq	$2,$0,$L1250
 	sll	$2,$5,$6
 
 	move	$5,$0
 	jr	$31
 	move	$3,$5
 
-$L1286:
-	beq	$6,$0,$L1289
+$L1250:
+	beq	$6,$0,$L1253
 	nop
 
 	subu	$3,$0,$6
@@ -7344,7 +7092,7 @@ $L1286:
 	jr	$31
 	move	$3,$5
 
-$L1289:
+$L1253:
 	move	$2,$4
 	jr	$31
 	move	$3,$5
@@ -7366,15 +7114,15 @@ __ashrdi3:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$6,0x20
-	beq	$2,$0,$L1291
+	beq	$2,$0,$L1255
 	sra	$2,$4,31
 
 	sra	$5,$4,$6
 	jr	$31
 	move	$3,$5
 
-$L1291:
-	beq	$6,$0,$L1294
+$L1255:
+	beq	$6,$0,$L1258
 	nop
 
 	subu	$3,$0,$6
@@ -7385,7 +7133,7 @@ $L1291:
 	jr	$31
 	move	$3,$5
 
-$L1294:
+$L1258:
 	move	$2,$4
 	jr	$31
 	move	$3,$5
@@ -7500,7 +7248,7 @@ __clzsi2:
 	srl	$8,$3,1
 	addu	$6,$6,$7
 	andi	$7,$8,0x1
-	bne	$7,$0,$L1298
+	bne	$7,$0,$L1262
 	addu	$5,$5,$6
 
 	subu	$2,$2,$3
@@ -7508,7 +7256,7 @@ __clzsi2:
 	jr	$31
 	addu	$2,$2,$4
 
-$L1298:
+$L1262:
 	addu	$4,$4,$5
 	move	$2,$0
 	jr	$31
@@ -7531,31 +7279,31 @@ __cmpdi2:
 	.set	noreorder
 	.set	nomacro
 	slt	$2,$4,$6
-	bne	$2,$0,$L1304
+	bne	$2,$0,$L1268
 	slt	$4,$6,$4
 
-	bne	$4,$0,$L1303
+	bne	$4,$0,$L1267
 	nop
 
 	sltu	$2,$5,$7
-	bne	$2,$0,$L1304
+	bne	$2,$0,$L1268
 	sltu	$5,$7,$5
 
-	bne	$5,$0,$L1305
+	bne	$5,$0,$L1269
 	nop
 
 	jr	$31
 	li	$2,1			# 0x1
 
-$L1304:
+$L1268:
 	jr	$31
 	move	$2,$0
 
-$L1303:
+$L1267:
 	jr	$31
 	li	$2,2			# 0x2
 
-$L1305:
+$L1269:
 	jr	$31
 	li	$2,2			# 0x2
 
@@ -7576,28 +7324,28 @@ __aeabi_lcmp:
 	.set	noreorder
 	.set	nomacro
 	slt	$2,$4,$6
-	bne	$2,$0,$L1308
+	bne	$2,$0,$L1272
 	slt	$4,$6,$4
 
-	bne	$4,$0,$L1309
+	bne	$4,$0,$L1273
 	nop
 
 	sltu	$2,$5,$7
-	bne	$2,$0,$L1310
+	bne	$2,$0,$L1274
 	nop
 
 	jr	$31
 	sltu	$2,$7,$5
 
-$L1308:
+$L1272:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
-$L1310:
+$L1274:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
-$L1309:
+$L1273:
 	jr	$31
 	li	$2,1			# 0x1
 
@@ -7664,18 +7412,18 @@ __lshrdi3:
 	.set	noreorder
 	.set	nomacro
 	andi	$2,$6,0x20
-	beq	$2,$0,$L1313
+	beq	$2,$0,$L1277
 	nop
 
 	srl	$5,$4,$6
 	move	$4,$0
-$L1316:
+$L1280:
 	move	$2,$4
 	jr	$31
 	move	$3,$5
 
-$L1313:
-	beq	$6,$0,$L1316
+$L1277:
+	beq	$6,$0,$L1280
 	nop
 
 	subu	$2,$0,$6
@@ -7977,51 +7725,51 @@ __powidf2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$5,%hi($LC10)
-	lwc1	$f0,%lo($LC10+4)($5)
+	lui	$5,%hi($LC6)
+	lwc1	$f0,%lo($LC6+4)($5)
 	andi	$2,$6,0x1
-	lwc1	$f1,%lo($LC10)($5)
-	beq	$2,$0,$L1325
+	lwc1	$f1,%lo($LC6)($5)
+	beq	$2,$0,$L1289
 	move	$2,$6
 
-$L1327:
+$L1291:
 	mul.d	$f0,$f0,$f12
-$L1325:
+$L1289:
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	beq	$2,$0,$L1326
+	beq	$2,$0,$L1290
 	srl	$3,$2,31
 
 	andi	$4,$2,0x1
 	mul.d	$f12,$f12,$f12
-	bne	$4,$0,$L1327
+	bne	$4,$0,$L1291
 	addu	$3,$3,$2
 
 	sra	$2,$3,1
-$L1334:
+$L1298:
 	srl	$3,$2,31
 	andi	$4,$2,0x1
 	mul.d	$f12,$f12,$f12
-	bne	$4,$0,$L1327
+	bne	$4,$0,$L1291
 	addu	$3,$3,$2
 
 	.option	pic0
-	b	$L1334
+	b	$L1298
 	.option	pic2
 	sra	$2,$3,1
 
-$L1326:
-	bltz	$6,$L1333
+$L1290:
+	bltz	$6,$L1297
 	nop
 
 	jr	$31
 	nop
 
-$L1333:
-	lwc1	$f2,%lo($LC10+4)($5)
+$L1297:
+	lwc1	$f2,%lo($LC6+4)($5)
 	nop
-	lwc1	$f3,%lo($LC10)($5)
+	lwc1	$f3,%lo($LC6)($5)
 	jr	$31
 	div.d	$f0,$f2,$f0
 
@@ -8041,48 +7789,48 @@ __powisf2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$6,%hi($LC14)
+	lui	$6,%hi($LC10)
 	andi	$2,$5,0x1
-	lwc1	$f0,%lo($LC14)($6)
-	beq	$2,$0,$L1336
+	lwc1	$f0,%lo($LC10)($6)
+	beq	$2,$0,$L1300
 	move	$2,$5
 
-$L1338:
+$L1302:
 	mul.s	$f0,$f0,$f12
-$L1336:
+$L1300:
 	srl	$3,$2,31
 	addu	$2,$3,$2
 	sra	$2,$2,1
-	beq	$2,$0,$L1337
+	beq	$2,$0,$L1301
 	srl	$3,$2,31
 
 	andi	$4,$2,0x1
 	mul.s	$f12,$f12,$f12
-	bne	$4,$0,$L1338
+	bne	$4,$0,$L1302
 	addu	$3,$3,$2
 
 	sra	$2,$3,1
-$L1345:
+$L1309:
 	srl	$3,$2,31
 	andi	$4,$2,0x1
 	mul.s	$f12,$f12,$f12
-	bne	$4,$0,$L1338
+	bne	$4,$0,$L1302
 	addu	$3,$3,$2
 
 	.option	pic0
-	b	$L1345
+	b	$L1309
 	.option	pic2
 	sra	$2,$3,1
 
-$L1337:
-	bltz	$5,$L1344
+$L1301:
+	bltz	$5,$L1308
 	nop
 
 	jr	$31
 	nop
 
-$L1344:
-	lwc1	$f2,%lo($LC14)($6)
+$L1308:
+	lwc1	$f2,%lo($LC10)($6)
 	jr	$31
 	div.s	$f0,$f2,$f0
 
@@ -8103,31 +7851,31 @@ __ucmpdi2:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$4,$6
-	bne	$2,$0,$L1350
+	bne	$2,$0,$L1314
 	sltu	$4,$6,$4
 
-	bne	$4,$0,$L1349
+	bne	$4,$0,$L1313
 	nop
 
 	sltu	$2,$5,$7
-	bne	$2,$0,$L1350
+	bne	$2,$0,$L1314
 	sltu	$5,$7,$5
 
-	bne	$5,$0,$L1351
+	bne	$5,$0,$L1315
 	nop
 
 	jr	$31
 	li	$2,1			# 0x1
 
-$L1350:
+$L1314:
 	jr	$31
 	move	$2,$0
 
-$L1349:
+$L1313:
 	jr	$31
 	li	$2,2			# 0x2
 
-$L1351:
+$L1315:
 	jr	$31
 	li	$2,2			# 0x2
 
@@ -8148,28 +7896,28 @@ __aeabi_ulcmp:
 	.set	noreorder
 	.set	nomacro
 	sltu	$2,$4,$6
-	bne	$2,$0,$L1354
+	bne	$2,$0,$L1318
 	sltu	$4,$6,$4
 
-	bne	$4,$0,$L1355
+	bne	$4,$0,$L1319
 	nop
 
 	sltu	$2,$5,$7
-	bne	$2,$0,$L1356
+	bne	$2,$0,$L1320
 	nop
 
 	jr	$31
 	sltu	$2,$7,$5
 
-$L1354:
+$L1318:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
-$L1356:
+$L1320:
 	jr	$31
 	li	$2,-1			# 0xffffffffffffffff
 
-$L1355:
+$L1319:
 	jr	$31
 	li	$2,1			# 0x1
 
@@ -8188,62 +7936,46 @@ $L1355:
 digits:
 	.ascii	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr"
 	.ascii	"stuvwxyz\000"
+	$LC0 = $LC2
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align	2
-$LC0:
-	.word	-8388609
-	.align	2
 $LC1:
-	.word	2139095039
+	.word	1056964608
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align	3
 $LC2:
-	.word	-1048577
-	.word	-1
-	.align	3
-$LC3:
-	.word	2146435071
-	.word	-1
-	$LC4 = $LC6
-	.section	.rodata.cst4
-	.align	2
-$LC5:
-	.word	1056964608
-	.section	.rodata.cst8
-	.align	3
-$LC6:
 	.word	1073741824
 	.word	0
 	.align	3
-$LC7:
+$LC3:
 	.word	1071644672
 	.word	0
 	.align	3
-$LC8:
+$LC4:
 	.word	-1074790400
 	.word	0
 	.align	3
-$LC9:
+$LC5:
 	.word	-1075838976
 	.word	0
 	.align	3
-$LC10:
+$LC6:
 	.word	1072693248
 	.word	0
 	.align	3
-$LC11:
+$LC7:
 	.word	1070596096
 	.word	0
 	.align	3
-$LC12:
+$LC8:
 	.word	1106247680
 	.word	0
 	.section	.rodata.cst4
 	.align	2
-$LC13:
+$LC9:
 	.word	1191182336
 	.align	2
-$LC14:
+$LC10:
 	.word	1065353216
 	.globl	__floatundisf
 	.globl	__floatundidf
