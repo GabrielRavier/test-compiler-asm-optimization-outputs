@@ -5368,8 +5368,8 @@ __powidf2:
 	add	%g2, %g1, %g1
 	sra	%g1, 1, %g1
 	brz,pn	%g1, .L1279
-	 andcc	%g1, 1, %g0
-	fmuld	%f8, %f8, %f8
+	 fmuld	%f8, %f8, %f8
+	andcc	%g1, 1, %g0
 	bne,pt	%xcc, .L1280
 	 srl	%g1, 31, %g2
 	add	%g2, %g1, %g1
@@ -5415,8 +5415,8 @@ __powisf2:
 	add	%g2, %g1, %g1
 	sra	%g1, 1, %g1
 	brz,pn	%g1, .L1289
-	 andcc	%g1, 1, %g0
-	fmuls	%f1, %f1, %f1
+	 fmuls	%f1, %f1, %f1
+	andcc	%g1, 1, %g0
 	bne,pt	%xcc, .L1290
 	 srl	%g1, 31, %g2
 	add	%g2, %g1, %g1

@@ -1037,19 +1037,18 @@ fdimf:
 fmax:
 .LFB33:
 	.cfi_startproc
-	lzdr	%f4
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	lhi	%r1,0
 	lhi	%r2,1
 	locrl	%r1,%r2
-	cdbr	%f2,%f4
+	ltdbr	%f2,%f2
 	lhi	%r4,0
 	lhi	%r3,1
 	locrl	%r4,%r3
 	llcr	%r0,%r1
 	llcr	%r5,%r4
 	crje	%r0,%r5,.L391
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	bher	%r14
 	ldr	%f0,%f2
 	br	%r14
@@ -1068,19 +1067,18 @@ fmax:
 fmaxf:
 .LFB34:
 	.cfi_startproc
-	lzer	%f4
-	cebr	%f0,%f4
+	ltebr	%f0,%f0
 	lhi	%r1,0
 	lhi	%r2,1
 	locrl	%r1,%r2
-	cebr	%f2,%f4
+	ltebr	%f2,%f2
 	lhi	%r4,0
 	lhi	%r3,1
 	locrl	%r4,%r3
 	llcr	%r0,%r1
 	llcr	%r5,%r4
 	crje	%r0,%r5,.L403
-	cebr	%f0,%f4
+	ltebr	%f0,%f0
 	bher	%r14
 	ler	%f0,%f2
 	br	%r14
@@ -1099,24 +1097,22 @@ fmaxf:
 fmaxl:
 .LFB35:
 	.cfi_startproc
-	lzxr	%f4
-	lzxr	%f1
 	ld	%f0,0(%r3)
 	ld	%f2,8(%r3)
-	lhi	%r1,0
-	cxbr	%f0,%f4
 	ld	%f4,0(%r4)
+	ltxbr	%f0,%f0
 	ld	%f6,8(%r4)
 	lhi	%r3,1
+	lhi	%r1,0
 	lhi	%r5,0
 	lhi	%r4,1
 	locrl	%r1,%r3
-	cxbr	%f4,%f1
+	ltxbr	%f4,%f4
 	llcr	%r0,%r1
 	locrl	%r5,%r4
 	llcr	%r3,%r5
 	crje	%r0,%r3,.L415
-	cxbr	%f0,%f1
+	ltxbr	%f0,%f0
 	jl	.L423
 .L420:
 	std	%f0,0(%r2)
@@ -1140,19 +1136,18 @@ fmaxl:
 fmin:
 .LFB36:
 	.cfi_startproc
-	lzdr	%f4
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	lhi	%r1,0
 	lhi	%r2,1
 	locrl	%r1,%r2
-	cdbr	%f2,%f4
+	ltdbr	%f2,%f2
 	lhi	%r4,0
 	lhi	%r3,1
 	locrl	%r4,%r3
 	llcr	%r0,%r1
 	llcr	%r5,%r4
 	crje	%r0,%r5,.L426
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	blr	%r14
 	ldr	%f0,%f2
 	br	%r14
@@ -1171,19 +1166,18 @@ fmin:
 fminf:
 .LFB37:
 	.cfi_startproc
-	lzer	%f4
-	cebr	%f0,%f4
+	ltebr	%f0,%f0
 	lhi	%r1,0
 	lhi	%r2,1
 	locrl	%r1,%r2
-	cebr	%f2,%f4
+	ltebr	%f2,%f2
 	lhi	%r4,0
 	lhi	%r3,1
 	locrl	%r4,%r3
 	llcr	%r0,%r1
 	llcr	%r5,%r4
 	crje	%r0,%r5,.L438
-	cebr	%f0,%f4
+	ltebr	%f0,%f0
 	blr	%r14
 	ler	%f0,%f2
 	br	%r14
@@ -1202,24 +1196,22 @@ fminf:
 fminl:
 .LFB38:
 	.cfi_startproc
-	lzxr	%f0
-	lzxr	%f1
 	ld	%f4,0(%r3)
 	ld	%f6,8(%r3)
-	lhi	%r1,0
-	cxbr	%f4,%f0
 	ld	%f0,0(%r4)
+	ltxbr	%f4,%f4
 	ld	%f2,8(%r4)
 	lhi	%r3,1
+	lhi	%r1,0
 	lhi	%r5,0
 	lhi	%r4,1
 	locrl	%r1,%r3
-	cxbr	%f0,%f1
+	ltxbr	%f0,%f0
 	llcr	%r0,%r1
 	locrl	%r5,%r4
 	llcr	%r3,%r5
 	crje	%r0,%r3,.L450
-	cxbr	%f4,%f1
+	ltxbr	%f4,%f4
 	jl	.L458
 .L455:
 	std	%f0,0(%r2)
@@ -3630,18 +3622,16 @@ strstr:
 copysign:
 .LFB98:
 	.cfi_startproc
-	lzdr	%f4
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	jl	.L1326
 	jnh	.L1320
-	lzdr	%f6
-	cdbr	%f2,%f6
+	ltdbr	%f2,%f2
 	bher	%r14
 	lcdbr	%f0,%f0
 .L1320:
 	br	%r14
 .L1326:
-	cdbr	%f2,%f4
+	ltdbr	%f2,%f2
 	bler	%r14
 	lcdbr	%f0,%f0
 	br	%r14
@@ -3804,8 +3794,7 @@ frexp:
 .LFB101:
 	.cfi_startproc
 	larl	%r5,.L1408
-	lzdr	%f2
-	cdbr	%f0,%f2
+	ltdbr	%f0,%f0
 	jl	.L1405
 	cdb	%f0,.L1409-.L1408(%r5)
 	jl	.L1406
@@ -3826,20 +3815,19 @@ frexp:
 .L1406:
 	cdb	%f0,.L1411-.L1408(%r5)
 	jhe	.L1403
-	lzdr	%f4
-	cdbr	%f0,%f4
+	ltdbr	%f0,%f0
 	jne	.L1396
 	mvhi	0(%r2),0
-	ldr	%f0,%f4
+	lzdr	%f0
 	br	%r14
 .L1403:
 	mvhi	0(%r2),0
 	br	%r14
 .L1405:
-	lcdbr	%f6,%f0
+	lcdbr	%f2,%f0
 	cdb	%f0,.L1412-.L1408(%r5)
 	jh	.L1407
-	ldr	%f0,%f6
+	ldr	%f0,%f2
 	lhi	%r3,1
 	j	.L1384
 .L1407:
@@ -3847,17 +3835,17 @@ frexp:
 	jle	.L1403
 	lhi	%r3,1
 .L1385:
-	ldr	%f0,%f6
+	ldr	%f0,%f2
 	lhi	%r1,0
 .L1392:
-	ldr	%f1,%f0
+	ldr	%f4,%f0
 	adbr	%f0,%f0
 	ahi	%r1,-1
-	cdb	%f1,.L1414-.L1408(%r5)
+	cdb	%f4,.L1414-.L1408(%r5)
 	jl	.L1392
 	j	.L1391
 .L1396:
-	ldr	%f6,%f0
+	ldr	%f2,%f0
 	lhi	%r3,0
 	j	.L1385
 	.section	.rodata

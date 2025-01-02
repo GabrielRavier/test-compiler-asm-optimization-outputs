@@ -3738,11 +3738,10 @@ $ldexp..ng:
 	cpys $f16,$f16,$f0
 	cmpteq $f11,$f16,$f10
 	fbne $f10,$L609
+	ldah $2,$LC1($29)		!gprelhigh
 	cmplt $17,0,$1
+	lds $f10,$LC1($2)		!gprellow
 	bne $1,$L621
-	ldah $1,$LC1($29)		!gprelhigh
-	cpys $f31,$f31,$f31
-	lds $f10,$LC1($1)		!gprellow
 	blbc $17,$L611
 	.align 4
 $L612:

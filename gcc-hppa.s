@@ -2511,8 +2511,8 @@ ldexpf:
 	addl %r28,%r25,%r25
 	extrs %r25,30,31,%r25
 	comib,= 0,%r25,.L547
-	extru %r25,31,1,%r28
 	fmpy,sgl %fr22L,%fr22L,%fr22L
+	extru %r25,31,1,%r28
 	comib,<> 0,%r28,.L550
 	extru %r25,0,1,%r19
 	addl %r19,%r25,%r25
@@ -2571,8 +2571,8 @@ ldexp:
 	addl %r28,%r24,%r24
 	extrs %r24,30,31,%r24
 	comib,= 0,%r24,.L564
-	extru %r24,31,1,%r28
 	fmpy,dbl %fr22,%fr22,%fr22
+	extru %r24,31,1,%r28
 	comib,<> 0,%r28,.L567
 	extru %r24,0,1,%r19
 	addl %r19,%r24,%r24
@@ -2630,8 +2630,8 @@ ldexpl:
 	addl %r28,%r24,%r24
 	extrs %r24,30,31,%r24
 	comib,= 0,%r24,.L580
-	extru %r24,31,1,%r28
 	fmpy,dbl %fr22,%fr22,%fr22
+	extru %r24,31,1,%r28
 	comib,<> 0,%r28,.L584
 	extru %r24,0,1,%r19
 	addl %r19,%r24,%r24
@@ -5134,8 +5134,8 @@ __powidf2:
 	addl %r19,%r28,%r28
 	extrs %r28,30,31,%r28
 	comib,= 0,%r28,.L1174
-	extru %r28,31,1,%r19
 	fmpy,dbl %fr5,%fr5,%fr5
+	extru %r28,31,1,%r19
 	comib,<> 0,%r19,.L1175
 	extru %r28,0,1,%r20
 	addl %r20,%r28,%r28
@@ -5189,8 +5189,8 @@ __powisf2:
 	addl %r19,%r28,%r28
 	extrs %r28,30,31,%r28
 	comib,= 0,%r28,.L1184
-	extru %r28,31,1,%r19
 	fmpy,sgl %fr22L,%fr22L,%fr22L
+	extru %r28,31,1,%r19
 	comib,<> 0,%r19,.L1185
 	extru %r28,0,1,%r20
 	addl %r20,%r28,%r28

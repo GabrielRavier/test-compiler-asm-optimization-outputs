@@ -2839,10 +2839,9 @@ ldexpl:
 	fadd	st, st(1)
 	fcomip	st, st(1)
 	je	.L639
+	fld	DWORD PTR .LC7[rip]
 	test	edi, edi
 	js	.L653
-	fld	DWORD PTR .LC7[rip]
-.L641:
 	test	dil, 1
 	je	.L642
 	.p2align 4
@@ -2876,8 +2875,11 @@ ldexpl:
 	.p2align 4,,10
 	.p2align 3
 .L653:
+	fstp	st(0)
 	fld	DWORD PTR .LC8[rip]
-	jmp	.L641
+	test	dil, 1
+	je	.L642
+	jmp	.L643
 	.cfi_endproc
 .LFE91:
 	.size	ldexpl, .-ldexpl

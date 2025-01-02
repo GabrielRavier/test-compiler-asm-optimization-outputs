@@ -3234,10 +3234,9 @@ LFB90:
 	fadd	st, st(1)
 	fcomip	st, st(1)
 	je	L611
+	fld	DWORD PTR LC2
 	test	eax, eax
 	js	L625
-	fld	DWORD PTR LC2
-L613:
 	test	al, 1
 	je	L614
 	.p2align 4
@@ -3271,8 +3270,11 @@ L611:
 	.p2align 4,,10
 	.p2align 3
 L625:
+	fstp	st(0)
 	fld	DWORD PTR LC3
-	jmp	L613
+	test	al, 1
+	je	L614
+	jmp	L615
 	.cfi_endproc
 LFE90:
 	.p2align 4
@@ -3287,10 +3289,9 @@ LFB91:
 	fadd	st, st(1)
 	fcomip	st, st(1)
 	je	L629
+	fld	DWORD PTR LC2
 	test	eax, eax
 	js	L643
-	fld	DWORD PTR LC2
-L631:
 	test	al, 1
 	je	L632
 	.p2align 4
@@ -3324,8 +3325,11 @@ L629:
 	.p2align 4,,10
 	.p2align 3
 L643:
+	fstp	st(0)
 	fld	DWORD PTR LC3
-	jmp	L631
+	test	al, 1
+	je	L632
+	jmp	L633
 	.cfi_endproc
 LFE91:
 	.p2align 4

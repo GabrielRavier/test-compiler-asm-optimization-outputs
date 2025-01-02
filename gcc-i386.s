@@ -3354,10 +3354,9 @@ ldexp:
 	fnstsw	ax
 	sahf
 	je	.L592
+	fld	DWORD PTR .LC2
 	test	edx, edx
 	js	.L606
-	fld	DWORD PTR .LC2
-.L594:
 	test	dl, 1
 	je	.L595
 	.p2align 4
@@ -3391,8 +3390,11 @@ ldexp:
 	.p2align 4,,10
 	.p2align 3
 .L606:
+	fstp	st(0)
 	fld	DWORD PTR .LC3
-	jmp	.L594
+	test	dl, 1
+	je	.L595
+	jmp	.L596
 	.cfi_endproc
 .LFE88:
 	.size	ldexp, .-ldexp
@@ -3410,10 +3412,9 @@ ldexpl:
 	fnstsw	ax
 	sahf
 	je	.L610
+	fld	DWORD PTR .LC2
 	test	edx, edx
 	js	.L624
-	fld	DWORD PTR .LC2
-.L612:
 	test	dl, 1
 	je	.L613
 	.p2align 4
@@ -3447,8 +3448,11 @@ ldexpl:
 	.p2align 4,,10
 	.p2align 3
 .L624:
+	fstp	st(0)
 	fld	DWORD PTR .LC3
-	jmp	.L612
+	test	dl, 1
+	je	.L613
+	jmp	.L614
 	.cfi_endproc
 .LFE89:
 	.size	ldexpl, .-ldexpl

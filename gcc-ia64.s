@@ -5679,10 +5679,15 @@ ldexpf:
 	nop 0
 	fmpy.s f6 = f6, f6
 	nop 0
+	;;
 .L777:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	fmpy.s f7 = f6, f6
 	nop 0
 	;;
 	.mib
@@ -5690,13 +5695,14 @@ ldexpf:
 	tbit.nz p6, p7 = r33, 0
 	(p6) br.cond.dptk .L776
 	;;
-	.mfi
+	.mii
 	nop 0
-	fmpy.s f6 = f6, f6
 	extr r33 = r14, 1, 31
-	.mmb
 	nop 0
+	;;
+	.mfb
 	nop 0
+	mov f6 = f7
 	br .L777
 .L773:
 	.mib
@@ -5764,10 +5770,15 @@ ldexp:
 	nop 0
 	fmpy.d f6 = f6, f6
 	nop 0
+	;;
 .L789:
 	.mii
 	nop 0
 	extr.u r14 = r33, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	fmpy.d f7 = f6, f6
 	nop 0
 	;;
 	.mib
@@ -5775,13 +5786,14 @@ ldexp:
 	tbit.nz p6, p7 = r33, 0
 	(p6) br.cond.dptk .L788
 	;;
-	.mfi
+	.mii
 	nop 0
-	fmpy.d f6 = f6, f6
 	extr r33 = r14, 1, 31
-	.mmb
 	nop 0
+	;;
+	.mfb
 	nop 0
+	mov f6 = f7
 	br .L789
 .L785:
 	.mib
@@ -5894,10 +5906,15 @@ ldexpl:
 	nop 0
 	fmpy f6 = f6, f6
 	nop 0
+	;;
 .L801:
 	.mii
 	nop 0
 	extr.u r14 = r34, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	fmpy f7 = f6, f6
 	nop 0
 	;;
 	.mib
@@ -5905,13 +5922,14 @@ ldexpl:
 	tbit.nz p6, p7 = r34, 0
 	(p6) br.cond.dptk .L800
 	;;
-	.mfi
+	.mii
 	nop 0
-	fmpy f6 = f6, f6
 	extr r34 = r14, 1, 31
-	.mmb
 	nop 0
+	;;
+	.mfb
 	nop 0
+	mov f6 = f7
 	br .L801
 .L797:
 	.mib
@@ -7073,6 +7091,11 @@ frexp:
 	setf.d f9 = r17
 	nop 0
 	(p7) br.cond.dpnt .L986
+	.mfi
+	nop 0
+	fmpy.d f32 = f8, f7
+	nop 0
+	;;
 	.align 32
 .L972:
 	.mmf
@@ -7081,13 +7104,17 @@ frexp:
 	mov f6 = f8
 	.mfi
 	nop 0
-	fmpy.d f8 = f8, f7
+	mov f8 = f32
 	adds r14 = 1, r14
 	;;
-	.mmf
+	.mfi
 	nop 0
+	fmpy.d f32 = f8, f7
+	nop 0
+	.mfi
 	nop 0
 	fcmp.ge p6, p7 = f6, f9
+	nop 0
 	;;
 	.mib
 	nop 0
@@ -7127,22 +7154,27 @@ frexp:
 	;;
 	.mfi
 	nop 0
+	fadd.d f9 = f8, f8
+	nop 0
+	.mfi
+	nop 0
 	fcmp.lt p6, p7 = f6, f7
 	nop 0
-	.mfi
+	;;
+	.mfb
 	nop 0
 	mov f6 = f8
-	nop 0
-	;;
-	.mib
-	nop 0
-	nop 0
 	(p7) br.cond.dpnt .L973
 	;;
-	.mfi
+	.mmi
 	nop 0
-	fadd.d f8 = f8, f8
 	adds r14 = -1, r14
+	nop 0
+	;;
+	.mmf
+	nop 0
+	nop 0
+	mov f8 = f9
 	;;
 	.mmf
 	nop 0
@@ -12699,17 +12731,22 @@ __powidf2:
 	nop 0
 	fmpy.d f8 = f8, f6
 	nop 0
+	;;
 .L1518:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	mov f7 = f8
+	nop 0
 	;;
+	.mmi
 	add r14 = r15, r14
 	;;
-	.mii
 	nop 0
 	extr r14 = r14, 1, 31
-	nop 0
 	;;
 	.mib
 	nop 0
@@ -12719,10 +12756,15 @@ __powidf2:
 	nop 0
 	fmpy.d f6 = f6, f6
 	nop 0
+	;;
 .L1521:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	fmpy.d f7 = f6, f6
 	nop 0
 	;;
 	.mib
@@ -12730,13 +12772,14 @@ __powidf2:
 	tbit.nz p6, p7 = r14, 0
 	(p6) br.cond.dptk .L1520
 	;;
-	.mfi
+	.mii
 	nop 0
-	fmpy.d f6 = f6, f6
 	extr r14 = r15, 1, 31
-	.mmb
 	nop 0
+	;;
+	.mfb
 	nop 0
+	mov f6 = f7
 	br .L1521
 .L1519:
 	.mbb
@@ -12748,12 +12791,12 @@ __powidf2:
 	.mmf
 	nop 0
 	nop 0
-	frcpa.s0 f7, p6 = f1, f8
+	frcpa.s0 f8, p6 = f1, f8
 	;;
 	.mmf
 	nop 0
 	nop 0
-	(p6) fnma.s1 f6 = f8, f7, f1
+	(p6) fnma.s1 f6 = f7, f8, f1
 	;;
 	.mfi
 	nop 0
@@ -12761,7 +12804,7 @@ __powidf2:
 	nop 0
 	.mfi
 	nop 0
-	(p6) fma.s1 f6 = f7, f6, f7
+	(p6) fma.s1 f6 = f8, f6, f8
 	nop 0
 	;;
 	.mfi
@@ -12786,16 +12829,11 @@ __powidf2:
 	.mmf
 	nop 0
 	nop 0
-	(p6) fnma.s1 f8 = f8, f9, f1
-	;;
-	.mmf
-	nop 0
-	nop 0
-	(p6) fma.d.s0 f7 = f8, f6, f9
+	(p6) fnma.s1 f7 = f7, f9, f1
 	;;
 	.mfb
 	nop 0
-	mov f8 = f7
+	(p6) fma.d.s0 f8 = f7, f6, f9
 	br.ret.sptk.many b0
 	.endp __powidf2#
 	.align 16
@@ -12851,10 +12889,15 @@ __powisf2:
 	nop 0
 	fmpy.s f6 = f6, f6
 	nop 0
+	;;
 .L1531:
 	.mii
 	nop 0
 	extr.u r15 = r14, 31, 1
+	nop 0
+	.mfi
+	nop 0
+	fmpy.s f7 = f6, f6
 	nop 0
 	;;
 	.mib
@@ -12862,17 +12905,23 @@ __powisf2:
 	tbit.nz p6, p7 = r14, 0
 	(p6) br.cond.dptk .L1530
 	;;
+	.mii
+	nop 0
+	extr r14 = r15, 1, 31
+	nop 0
+	;;
+	.mfb
+	nop 0
+	mov f6 = f7
+	br .L1531
+	;;
+.L1529:
 	.mfi
 	nop 0
-	fmpy.s f6 = f6, f6
-	extr r14 = r15, 1, 31
-	.mmb
-	nop 0
-	nop 0
-	br .L1531
-.L1529:
-	.mbb
+	mov f6 = f8
 	cmp4.le p6, p7 = r0, r33
+	.bbb
+	nop 0
 	(p7) br.cond.dpnt .L1536
 	br.ret.sptk.many b0
 	;;
@@ -12880,22 +12929,22 @@ __powisf2:
 	.mmf
 	nop 0
 	nop 0
-	frcpa.s0 f6, p6 = f1, f8
+	frcpa.s0 f8, p6 = f1, f8
 	;;
 	.mmf
 	nop 0
 	nop 0
-	(p6) fnma.s1 f9 = f8, f6, f1
+	(p6) fnma.s1 f9 = f6, f8, f1
 	;;
 	.mmf
 	nop 0
 	nop 0
-	(p6) fma.s1 f7 = f6, f9, f6
+	(p6) fma.s1 f7 = f8, f9, f8
 	;;
 	.mmf
 	nop 0
 	nop 0
-	(p6) fma.s1 f7 = f7, f9, f6
+	(p6) fma.s1 f7 = f7, f9, f8
 	;;
 	.mmf
 	nop 0
@@ -12905,16 +12954,11 @@ __powisf2:
 	.mmf
 	nop 0
 	nop 0
-	(p6) fnma.s1 f8 = f9, f8, f1
-	;;
-	.mmf
-	nop 0
-	nop 0
-	(p6) fma.s.s0 f6 = f8, f7, f9
+	(p6) fnma.s1 f6 = f9, f6, f1
 	;;
 	.mfb
 	nop 0
-	mov f8 = f6
+	(p6) fma.s.s0 f8 = f6, f7, f9
 	br.ret.sptk.many b0
 	.endp __powisf2#
 	.align 16

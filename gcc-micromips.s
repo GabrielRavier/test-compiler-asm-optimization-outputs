@@ -1320,7 +1320,7 @@ fmaxl:
 	andi	$23,$23,0x00ff
 	slt	$2,$2,0
 	beq	$23,$2,.L243
-	ld	$25,%call16(__getf2)($28)
+	dmtc1	$18,$f15
 
 	bltz	$22,.L254
 	ld	$31,88($sp)
@@ -1343,7 +1343,7 @@ fmaxl:
 	sd	$17,8($sp)
 	ldc1	$f13,8($sp)
 	sd	$16,0($sp)
-	dmtc1	$18,$f15
+	ld	$25,%call16(__getf2)($28)
 	ldc1	$f12,0($sp)
 	.reloc	1f,R_MICROMIPS_JALR,__getf2
 1:	jalr	$25
@@ -1537,7 +1537,7 @@ fminl:
 	andi	$23,$23,0x00ff
 	slt	$2,$2,0
 	beq	$23,$2,.L283
-	ld	$25,%call16(__letf2)($28)
+	dmtc1	$18,$f15
 
 	bltz	$22,.L294
 	ld	$31,88($sp)
@@ -1564,7 +1564,7 @@ fminl:
 	sd	$17,8($sp)
 	ldc1	$f13,8($sp)
 	sd	$16,0($sp)
-	dmtc1	$18,$f15
+	ld	$25,%call16(__letf2)($28)
 	ldc1	$f12,0($sp)
 	.reloc	1f,R_MICROMIPS_JALR,__letf2
 1:	jalr	$25
