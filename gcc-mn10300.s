@@ -3610,56 +3610,56 @@ __fixunssfsi:
 	.type	__parityhi2, @function
 __parityhi2:
 	exthu d0,d1
-	mov_mov d0, a0, d1, d0
-	mov_asr d1, a1, 1, d0
+	mov_mov d0, a0, d1, a1
+	mov_asr d1, d0, 2, a1
+	asr 1,d0
 	and 1,a0
 	and 1,d0
-	mov_asr d1, r0, 2, a1
-	and 1,a1
-	mov_asr d1, r1, 3, r0
+	mov_mov a1, r0, d1, r1
 	and 1,r0
-	add_asr a0, d0, 4, r1
-	mov d1,r2
+	mov_asr d1, r2, 3, r1
 	and 1,r1
-	add_asr a1, d0, 5, r2
+	add_asr a0, d0, 4, r2
 	mov d1,r3
 	and 1,r2
-	add_asr r0, d0, 6, r3
+	add_asr r0, d0, 5, r3
 	mov d1,a0
 	and 1,r3
-	add_asr r1, d0, 7, a0
+	add_asr r1, d0, 6, a0
 	mov d1,a1
 	and 1,a0
-	add r2,d0
-	asr 8,a1
+	add_asr r2, d0, 7, a1
 	mov d1,r0
 	and 1,a1
 	add r3,d0
-	asr 9,r0
+	asr 8,r0
 	mov d1,r1
 	and 1,r0
 	add a0,d0
-	asr 10,r1
-	mov d1,r2
+	asr 9,r1
+	mov_add d1, r2, a1, d0
 	and 1,r1
-	add a1,d0
-	asr 11,r2
-	mov d1,r3
+	asr 10,r2
+	mov_add d1, r3, r0, d0
 	and 1,r2
-	add r0,d0
-	asr 12,r3
+	asr 11,r3
 	mov d1,a0
 	and 1,r3
 	add r1,d0
-	asr 13,a0
-	add r2,d0
+	asr 12,a0
+	mov d1,a1
 	and 1,a0
-	add r3,d0
-	add_mov a0, d0, d1, a1
-	asr 14,a1
+	add r2,d0
+	asr 13,a1
+	mov d1,r0
 	and 1,a1
-	asr 15,d1
+	add r3,d0
+	asr 14,r0
+	and 1,r0
+	add a0,d0
 	add a1,d0
+	asr 15,d1
+	add r0,d0
 	add d1,d0
 	and 1,d0
 	retf [],0
@@ -3694,13 +3694,11 @@ __popcounthi2:
 	and 1,a1
 	add r3,d0
 	asr 9,r0
-	mov a0,r1
+	mov_add a0, r1, d1, d0
 	and 1,r0
-	add d1,d0
 	asr 10,r1
-	mov a0,r2
+	mov_add a0, r2, a1, d0
 	and 1,r1
-	add a1,d0
 	asr 11,r2
 	mov a0,r3
 	and 1,r2
@@ -3710,11 +3708,11 @@ __popcounthi2:
 	and 1,r3
 	add r1,d0
 	asr 13,d1
-	add r2,d0
 	and 1,d1
+	add_mov r2, d0, a0, a1
 	add r3,d0
-	add_mov d0, d1, a0, d0
-	asr 14,d0
+	asr 14,a1
+	add_mov d0, d1, a1, d0
 	and 1,d0
 	asr 15,a0
 	add d1,d0
