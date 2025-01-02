@@ -340,7 +340,7 @@ strncmp:
 	l.j	.L95
 	l.add	r19, r3, r5
 .L103:
-	l.sfne	r19, r3
+	l.sfne	r3, r19
 	l.bnf	.L94
 	l.addi	r3, r3, 1
 	l.sfeq	r17, r11
@@ -3223,7 +3223,7 @@ memxor:
 	l.lbz	r21, 0(r4)
 	l.addi	r4, r4, 1
 	l.xor	r19, r19, r21
-	l.sfne	r5, r4
+	l.sfne	r4, r5
 	l.sb	0(r17), r19
 	l.bf	.L642
 	l.addi	r17, r17, 1
@@ -4905,14 +4905,15 @@ __divsi3:
 	l.bnf	.L1009
 	 l.nop
 
+	l.ori	r17, r0, 1
 	l.movhi	r23, hi(0)
 .L991:
-	l.movhi	r17, hi(0)
-	l.sfges	r4, r17
+	l.movhi	r19, hi(0)
+	l.sfges	r4, r19
 	l.bf	.L1010
 	l.sfgtu	r3, r4
 	l.sub	r4, r0, r4
-	l.xori	r23, r23, 1
+	l.or	r23, r17, r17
 	l.sfgtu	r3, r4
 .L1010:
 	l.or	r21, r3, r3

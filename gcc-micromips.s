@@ -551,7 +551,7 @@ strncmp:
 
 	.align	3
 .L128:
-	beq	$6,$4,.L118
+	beq	$4,$6,.L118
 	nop
 
 	bne	$3,$2,.L118
@@ -3885,7 +3885,7 @@ memxor:
 	daddiu	$3,$3,1
 	xor	$7,$7,$8
 	daddiu	$5,$5,1
-	bne	$6,$5,.L674
+	bne	$5,$6,.L674
 	sb	$7,-1($3)
 
 .L680:
@@ -5675,15 +5675,16 @@ __divsi3:
 	.set	noreorder
 	.set	nomacro
 	bltz	$4,.L1073
-	nop
+	move	$2,$0
 
+	li	$2,1			# 0x1
 	move	$7,$0
 .L1054:
 	bgez	$5,.L1055
 	nop
 
 	dsubu	$5,$0,$5
-	xori	$7,$7,0x1
+	move	$7,$2
 .L1055:
 	sll	$4,$4,0
 	sll	$5,$5,0

@@ -20,7 +20,7 @@ SHELL := bash
 # --warn-undefined-variables: Is nice tbh
 MAKEFLAGS += --no-builtin-rules --warn-undefined-variables
 
-OPT_FLAGS = -O3 -fno-tree-loop-distribution -fno-tree-partial-pre -fno-unswitch-loops -fvect-cost-model=very-cheap -fno-version-loops-for-strides
+OPT_FLAGS = -O3 -fno-unswitch-loops -fvect-cost-model=very-cheap -fno-version-loops-for-strides
 
 all: gcc-x86_64.s gcc-aarch64.s gcc-alpha.s gcc-arc.s gcc-arm.s gcc-avr.s gcc-bfin.s gcc-bpf.s gcc-c6x.s gcc-frv.s gcc-h8300.s gcc-hppa64.s gcc-hppa.s gcc-i386.s gcc-i686-mingw.s gcc-ia64.s gcc-loongarch64.s gcc-m68k.s gcc-microblaze.s gcc-mips64.s gcc-mn10300.s gcc-nios2.s gcc-openrisc.s gcc-powerpc64le.s gcc-powerpc64.s gcc-riscv64.s gcc-s390x.s gcc-sparc64.s gcc-xtensa.s gcc-x86_64-mingw.s gcc-mips32.s gcc-mips16.s gcc-micromips.s gcc-powerpc32le.s gcc-powerpc32.s gcc-riscv32.s gcc-s390.s gcc-sparc32.s
 

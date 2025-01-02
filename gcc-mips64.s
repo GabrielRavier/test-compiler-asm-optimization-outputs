@@ -576,7 +576,7 @@ strncmp:
 
 	.align	3
 .L130:
-	beq	$6,$4,.L119
+	beq	$4,$6,.L119
 	nop
 
 	bne	$3,$2,.L119
@@ -4045,7 +4045,7 @@ memxor:
 	daddiu	$3,$3,1
 	daddiu	$5,$5,1
 	xor	$7,$7,$8
-	bne	$6,$5,.L696
+	bne	$5,$6,.L696
 	sb	$7,-1($3)
 
 .L702:
@@ -6050,17 +6050,17 @@ __divsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	bgez	$4,.L1088
-	move	$9,$0
-
+	bltzl	$4,.L1108
 	dsubu	$4,$0,$4
-	li	$9,1			# 0x1
+
+	li	$2,1			# 0x1
+	move	$9,$0
 .L1088:
 	bgez	$5,.L1110
 	sll	$4,$4,0
 
 	dsubu	$5,$0,$5
-	xori	$9,$9,0x1
+	move	$9,$2
 .L1110:
 	sll	$5,$5,0
 	sltu	$6,$5,$4
@@ -6117,6 +6117,12 @@ __divsi3:
 
 	b	.L1093
 	nop
+
+	.align	3
+.L1108:
+	move	$2,$0
+	b	.L1088
+	li	$9,1			# 0x1
 
 	.set	macro
 	.set	reorder

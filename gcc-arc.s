@@ -3554,11 +3554,13 @@ __divsi3:
 	push_s	r13
 	tst_s	r0,r0
 	neg.n	r0,r0
+	mov.n	r2,0
 	mov.n	r13,1
+	mov.p	r2,1
 	mov.p	r13,0
 	tst_s	r1,r1
 	neg.n	r1,r1
-	bxor.n r13,r13,0
+	mov.n	r13,r2
 	cmp_s	r0,r1
 	mov_s	r12,r0	;4
 	mov_s	r2,1	;3

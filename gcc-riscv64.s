@@ -328,7 +328,7 @@ strncmp:
 	bne	a5,zero,.L100
 	j	.L108
 .L101:
-	beq	a3,a0,.L107
+	beq	a0,a3,.L107
 	addi	a0,a0,1
 	bne	a4,a5,.L107
 	lbu	a5,0(a0)
@@ -2706,7 +2706,7 @@ memxor:
 	addi	a5,a5,1
 	xor	a4,a4,a3
 	sb	a4,-1(a5)
-	bne	a2,a1,.L582
+	bne	a1,a2,.L582
 .L581:
 	ret
 	.cfi_endproc
@@ -3228,7 +3228,7 @@ __cmovd:
 	addi	a5,a5,1
 	sb	a3,0(a4)
 	sext.w	a4,a5
-	bltu	a4,a2,.L761
+	bgtu	a2,a4,.L761
 	ret
 .L766:
 	addiw	a5,a2,-1
@@ -3343,7 +3343,7 @@ __cmovw:
 	addi	a5,a5,1
 	sb	a3,0(a4)
 	sext.w	a4,a5
-	bltu	a4,a2,.L793
+	bgtu	a2,a4,.L793
 	ret
 .L798:
 	addiw	a5,a2,-1
@@ -3932,12 +3932,13 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
+	li	a5,1
 	li	a2,0
 	blt	a0,zero,.L927
 .L908:
 	bge	a1,zero,.L909
 	neg	a1,a1
-	xori	a2,a2,1
+	mv	a2,a5
 .L909:
 	sext.w	a4,a0
 	sext.w	a1,a1
@@ -3977,6 +3978,7 @@ __divsi3:
 	j	.L913
 .L927:
 	neg	a0,a0
+	li	a5,0
 	li	a2,1
 	j	.L908
 	.cfi_endproc

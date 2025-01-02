@@ -263,7 +263,7 @@ strncmp:
 	cmp 0,a1
 	beq .L113
 .L124:
-	cmp d0,r0
+	cmp r0,d0
 	beq .L113
 	add_cmp 1, d0, a0, a1
 	bne .L113
@@ -2380,7 +2380,7 @@ memxor:
 	movbu (a1),r0
 	movbu (d1),r1
 	add_add 1, a1, 1, d1
-	xor_cmp r1, r0, d1, r2
+	xor_cmp r1, r0, r2, d1
 	movbu r0,(-1,a1)
 	Lne # loop back to: .L764
 .L763:
@@ -2615,7 +2615,7 @@ memmem:
 	movbu (a1,r3),r0
 	add_cmp 1, a1, r0, r1
 	bne .L851
-	cmp a1,r2
+	cmp r2,a1
 	bne .L852
 	mov a0,d0
 	retf [d2],4
@@ -3008,7 +3008,7 @@ __cmovh:
 	movhu (a0,d1),a1
 	movhu a1,(a0,d0)
 	add 2,a0
-	cmp r0,a0
+	cmp a0,r0
 	Lne # loop back to: .L972
 .L971:
 	btst 1,r1
@@ -3683,7 +3683,7 @@ __divsi3:
 	cmp 0,d0
 	blt .L1164
 	clr r1
-	cmp 0,d1
+	cmp_mov 0, d1, 1, a0
 	blt .L1165
 .L1146:
 	cmp_mov d1, d0, 1, a0
@@ -3719,13 +3719,12 @@ __divsi3:
 	retf [],0
 .L1165:
 	not d1
-	xor 1,r1
-	inc d1
+	add_mov 1, d1, a0, r1
 	jmp .L1146
 .L1164:
 	not d0
 	add_cmp 1, d0, 0, d1
-	mov 1,r1
+	mov_mov 0, a0, 1, r1
 	bge .L1146
 	jmp .L1165
 	.size	__divsi3, .-__divsi3

@@ -267,7 +267,7 @@ strncmp:
 	add	r6, r4, r6
 	br	.L96
 .L104:
-	beq	r6, r4, .L95
+	beq	r4, r6, .L95
 	addi	r4, r4, 1
 	bne	r3, r2, .L95
 	ldbu	r2, 0(r4)
@@ -2425,7 +2425,7 @@ memxor:
 	addi	r5, r5, 1
 	xor	r7, r7, r8
 	stb	r7, -1(r3)
-	bne	r6, r5, .L624
+	bne	r5, r6, .L624
 .L623:
 	ret
 	.size	memxor, .-memxor
@@ -3706,11 +3706,12 @@ __mulhi3:
 	.type	__divsi3, @function
 __divsi3:
 	blt	r4, zero, .L980
+	movi	r2, 1
 	mov	r7, zero
 .L963:
 	bge	r5, zero, .L964
 	sub	r5, zero, r5
-	xori	r7, r7, 1
+	mov	r7, r2
 .L964:
 	mov	r6, r4
 	movi	r3, 1
@@ -3745,6 +3746,7 @@ __divsi3:
 	ret
 .L980:
 	sub	r4, zero, r4
+	mov	r2, zero
 	movi	r7, 1
 	br	.L963
 	.size	__divsi3, .-__divsi3

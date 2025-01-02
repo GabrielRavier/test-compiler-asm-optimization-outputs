@@ -3202,7 +3202,7 @@ memxor:
 	xr	%r5,%r12
 	stcy	%r5,-1(%r1)
 	la	%r3,1(%r3)
-	cgrje	%r0,%r3,.L1004
+	cgrje	%r3,%r0,.L1004
 .L1014:
 	srlg	%r4,%r4,2
 .L1005:
@@ -3513,8 +3513,8 @@ memmem:
 	la	%r1,1(%r1)
 	crjlh	%r9,%r11,.L1143
 	cgije	%r5,1,.L1141
+	aghik	%r12,%r5,-1
 	lghi	%r3,1
-	sgrk	%r12,%r5,%r3
 	risbg	%r10,%r12,62,128+63,0
 	je	.L1157
 	cgije	%r10,1,.L1167
@@ -3531,7 +3531,7 @@ memmem:
 	clm	%r9,1,0(%r10)
 	jne	.L1143
 	aghi	%r3,1
-	cgrje	%r5,%r3,.L1141
+	cgrje	%r3,%r5,.L1141
 .L1157:
 	srlg	%r12,%r12,2
 .L1144:
@@ -5831,34 +5831,35 @@ __divsi3:
 .LFB129:
 	.cfi_startproc
 	cgijl	%r2,0,.L1990
+	lhi	%r1,1
 	lhi	%r5,0
 .L1964:
 	cgijhe	%r3,0,.L1965
 	lcgr	%r3,%r3
-	xilf	%r5,1
+	lr	%r5,%r1
 .L1965:
 	lr	%r4,%r2
-	lr	%r1,%r3
+	lr	%r0,%r3
 	clrjle	%r2,%r3,.L1991
 	lhi	%r3,1
 	lhi	%r2,8
 .L1966:
-	cijl	%r1,0,.L1967
-	sll	%r1,1
+	cijl	%r0,0,.L1967
+	sll	%r0,1
 	sll	%r3,1
-	clrjle	%r4,%r1,.L1968
-	cijl	%r1,0,.L1967
-	sll	%r1,1
+	clrjle	%r4,%r0,.L1968
+	cijl	%r0,0,.L1967
+	sll	%r0,1
 	sll	%r3,1
-	clrjle	%r4,%r1,.L1968
-	cijl	%r1,0,.L1967
-	sll	%r1,1
+	clrjle	%r4,%r0,.L1968
+	cijl	%r0,0,.L1967
+	sll	%r0,1
 	sll	%r3,1
-	clrjle	%r4,%r1,.L1968
-	cijl	%r1,0,.L1967
-	sll	%r1,1
+	clrjle	%r4,%r0,.L1968
+	cijl	%r0,0,.L1967
+	sll	%r0,1
 	sll	%r3,1
-	clrjle	%r4,%r1,.L1968
+	clrjle	%r4,%r0,.L1968
 	brct	%r2,.L1966
 .L1977:
 	lghi	%r2,0
@@ -5869,22 +5870,23 @@ __divsi3:
 .L1968:
 	cije	%r3,0,.L1977
 .L1967:
-	lhi	%r0,0
+	lhi	%r1,0
 .L1972:
-	clrjl	%r4,%r1,.L1971
-	sr	%r4,%r1
-	or	%r0,%r3
+	clrjl	%r4,%r0,.L1971
+	sr	%r4,%r0
+	or	%r1,%r3
 .L1971:
 	srl	%r3,1
-	srl	%r1,1
+	srl	%r0,1
 	cijlh	%r3,0,.L1972
-	llgfr	%r2,%r0
+	llgfr	%r2,%r1
 	lcgr	%r3,%r2
 	ltr	%r5,%r5
 	locgrne	%r2,%r3
 	br	%r14
 .L1990:
 	lcgr	%r2,%r2
+	lhi	%r1,0
 	lhi	%r5,1
 	j	.L1964
 .L1991:

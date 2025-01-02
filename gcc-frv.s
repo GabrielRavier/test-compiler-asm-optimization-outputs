@@ -295,7 +295,7 @@ strncmp:
 	mov gr5, gr9
 .L86:
 	ldub @(gr9,gr0),gr5
-	cmp gr6,gr8,icc1
+	cmp gr8,gr6,icc1
 	cmpi gr5, #0, icc0
 	addi gr8,#1,gr8
 	cmp gr5,gr4,icc2
@@ -2982,7 +2982,7 @@ memxor:
 	xor gr5, gr6, gr5
 	stb gr5, @(gr8,gr4)
 	addi gr4,#1,gr4
-	cmp gr4,gr10,icc0
+	cmp gr10,gr4,icc0
 	bne icc0,2,.L536
 .L535:
 	ret
@@ -3243,7 +3243,7 @@ memmem:
 	ldub @(gr10,gr4),gr5
 	addi gr4,#1,gr4
 	cmp gr6,gr5,icc0
-	cmp gr11,gr4,icc1
+	cmp gr4,gr11,icc1
 	bne icc0,0,.L607
 	bne icc1,2,.L608
 .L605:
@@ -3718,7 +3718,7 @@ __cmovh:
 	ldsh @(gr9,gr4),gr5
 	sth gr5, @(gr8,gr4)
 	addi gr4,#2,gr4
-	cmp gr4,gr6,icc0
+	cmp gr6,gr4,icc0
 	bne icc0,2,.L704
 .L700:
 	andicc gr10, #1, gr0, icc0
@@ -4480,16 +4480,17 @@ __mulhi3:
 __divsi3:
 	cmpi gr8, #0, icc0
 	ckn icc0, cc4
-	setlos #1, gr4
+	setlos #1, gr5
 	cmpi gr9, #0, icc0
 	csub gr0, gr8, gr8, cc4, 1
-	cmov gr4, gr7, cc4, 1
+	cmov gr0, gr4, cc4, 1
+	cmov gr5, gr7, cc4, 1
+	cmov gr5, gr4, cc4, 0
 	cmov gr0, gr7, cc4, 0
 	ckn icc0, cc4
 	csub gr0, gr9, gr9, cc4, 1
-	setlos #1, gr5
 	cmp gr8,gr9,icc0
-	cxor gr7, gr5, gr7, cc4, 1
+	cmov gr4, gr7, cc4, 1
 	mov gr8, gr6
 	setlos #1, gr4
 	bls icc0,0,.L836

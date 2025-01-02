@@ -4622,16 +4622,15 @@ ___mulhi3:
 ___divsi3:
 	R2 = R0;
 	cc =R2<0;
-	[--sp] = ( r7:7 );
-
 	R0 = R1;
 	if cc jump .L908;
-	R7 = 0 (X);
+	R1 = 1 (X);
+	P1 = 0 (X);
 .L891:
 	cc =R0<0;
 	if !cc jump .L892 (bp);
 	R0 = -R0;
-	BITTGL (R7, 0);
+	P1 = R1;
 .L892:
 	cc =R2<=R0 (iu);
 	R3 = R2;
@@ -4663,17 +4662,16 @@ ___divsi3:
 	R0 >>= 1;
 	if !cc jump .L899 (bp);
 .L895:
-	cc =R7==0;
+	cc =P1==0;
 	if cc jump .L890 (bp);
 	R2 = -R2;
 .L890:
 	R0 = R2;
-	( r7:7 ) = [sp++];
-
 	rts;
 .L908:
 	R2 = -R2;
-	R7 = 1 (X);
+	R1 = 0 (X);
+	P1 = 1 (X);
 	jump.s .L891;
 	.size	___divsi3, .-___divsi3
 	.align 4

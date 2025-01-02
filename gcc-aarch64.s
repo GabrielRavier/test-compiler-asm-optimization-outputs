@@ -1332,10 +1332,10 @@ atoi:
 	beq	.L248
 	cmp	w1, 45
 	bne	.L266
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
-	sub	w2, w4, #48
-	cmp	w2, 9
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bhi	.L257
 	mov	w6, 1
 .L251:
@@ -1343,24 +1343,23 @@ atoi:
 	.p2align 3,,7
 .L254:
 	add	w0, w0, w0, lsl 2
-	ldrb	w4, [x1, 1]!
-	mov	w3, w2
+	ldrb	w1, [x2, 1]!
+	mov	w4, w3
 	lsl	w5, w0, 1
-	sub	w0, w5, w2
-	sub	w2, w4, #48
-	cmp	w2, 9
+	sub	w0, w5, w3
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bls	.L254
-	sub	w3, w3, w5
+	sub	w4, w4, w5
 	cmp	w6, 0
-	csel	w0, w3, w0, eq
+	csel	w0, w4, w0, eq
 	ret
 	.p2align 2,,3
 .L266:
-	ldrb	w4, [x0]
-	mov	x1, x0
+	sub	w3, w1, #48
+	mov	x2, x0
 	mov	w6, 0
-	sub	w2, w4, #48
-	cmp	w2, 9
+	cmp	w3, 9
 	bls	.L251
 .L257:
 	mov	w0, 0
@@ -1368,11 +1367,11 @@ atoi:
 	ret
 	.p2align 2,,3
 .L248:
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
 	mov	w6, 0
-	sub	w2, w4, #48
-	cmp	w2, 9
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bls	.L251
 	mov	w0, 0
 	b	.L267
@@ -1403,10 +1402,10 @@ atol:
 	beq	.L271
 	cmp	w1, 45
 	bne	.L289
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
-	sub	w2, w4, #48
-	cmp	w2, 9
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bhi	.L280
 	mov	w6, 1
 .L274:
@@ -1414,24 +1413,23 @@ atol:
 	.p2align 3,,7
 .L277:
 	add	x0, x0, x0, lsl 2
-	ldrb	w4, [x1, 1]!
-	sxtw	x3, w2
+	ldrb	w1, [x2, 1]!
+	sxtw	x4, w3
 	lsl	x5, x0, 1
-	sub	w2, w4, #48
-	sub	x0, x5, x3
-	cmp	w2, 9
+	sub	w3, w1, #48
+	sub	x0, x5, x4
+	cmp	w3, 9
 	bls	.L277
-	sub	x3, x3, x5
+	sub	x4, x4, x5
 	cmp	w6, 0
-	csel	x0, x3, x0, eq
+	csel	x0, x4, x0, eq
 	ret
 	.p2align 2,,3
 .L289:
-	ldrb	w4, [x0]
-	mov	x1, x0
+	sub	w3, w1, #48
+	mov	x2, x0
 	mov	w6, 0
-	sub	w2, w4, #48
-	cmp	w2, 9
+	cmp	w3, 9
 	bls	.L274
 .L280:
 	mov	x0, 0
@@ -1439,11 +1437,11 @@ atol:
 	ret
 	.p2align 2,,3
 .L271:
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
 	mov	w6, 0
-	sub	w2, w4, #48
-	cmp	w2, 9
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bls	.L274
 	mov	x0, 0
 	b	.L290
@@ -1474,45 +1472,44 @@ atoll:
 	beq	.L294
 	cmp	w1, 45
 	beq	.L310
-	ldrb	w4, [x0]
-	mov	x1, x0
+	sub	w3, w1, #48
+	mov	x2, x0
 	mov	w6, 0
-	sub	w2, w4, #48
-	cmp	w2, 9
+	cmp	w3, 9
 	bhi	.L302
 .L296:
 	mov	x0, 0
 	.p2align 3,,7
 .L299:
 	add	x0, x0, x0, lsl 2
-	ldrb	w4, [x1, 1]!
-	sxtw	x3, w2
+	ldrb	w1, [x2, 1]!
+	sxtw	x4, w3
 	lsl	x5, x0, 1
-	sub	w2, w4, #48
-	sub	x0, x5, x3
-	cmp	w2, 9
+	sub	w3, w1, #48
+	sub	x0, x5, x4
+	cmp	w3, 9
 	bls	.L299
-	sub	x3, x3, x5
+	sub	x4, x4, x5
 	cmp	w6, 0
-	csel	x0, x3, x0, eq
+	csel	x0, x4, x0, eq
 	ret
 	.p2align 2,,3
 .L310:
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
 	mov	w6, 1
-	sub	w2, w4, #48
-	cmp	w2, 9
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bls	.L296
 .L302:
 	mov	x0, 0
 	ret
 	.p2align 2,,3
 .L294:
-	ldrb	w4, [x0, 1]
-	add	x1, x0, 1
-	sub	w2, w4, #48
-	cmp	w2, 9
+	ldrb	w1, [x0, 1]
+	add	x2, x0, 1
+	sub	w3, w1, #48
+	cmp	w3, 9
 	bhi	.L302
 	mov	w6, 0
 	b	.L296
@@ -2610,7 +2607,7 @@ memxor:
 	eor	w4, w4, w5
 	strb	w4, [x0, x3]
 	add	x3, x3, 1
-	cmp	x3, x2
+	cmp	x2, x3
 	bne	.L519
 .L518:
 	ret
@@ -3772,12 +3769,13 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
+	mov	w2, 1
 	mov	w5, 0
 	tbnz	x0, #63, .L817
 .L801:
 	tbz	x1, #63, .L802
 	neg	x1, x1
-	eor	w5, w5, 1
+	mov	w5, w2
 .L802:
 	mov	w4, w0
 	mov	w2, w1
@@ -3798,8 +3796,8 @@ __divsi3:
 	mov	x0, 0
 	.p2align 3,,7
 .L808:
-	cmp	w4, w2
-	bcc	.L807
+	cmp	w2, w4
+	bhi	.L807
 	sub	w4, w4, w2
 	orr	w0, w0, w3
 .L807:
@@ -3813,6 +3811,7 @@ __divsi3:
 	.p2align 2,,3
 .L817:
 	neg	x0, x0
+	mov	w2, 0
 	mov	w5, 1
 	b	.L801
 	.cfi_endproc
@@ -3848,10 +3847,9 @@ __modsi3:
 	cbz	w3, .L835
 	.p2align 3,,7
 .L825:
-	cmp	w2, w4
-	sub	w0, w4, w2
+	subs	w0, w4, w2
 	lsr	w3, w3, 1
-	csel	w4, w0, w4, ls
+	csel	w4, w0, w4, cs
 	lsr	w2, w2, 1
 	cbnz	w3, .L825
 .L835:

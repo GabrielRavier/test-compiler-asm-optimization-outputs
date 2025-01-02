@@ -357,7 +357,7 @@ strncmp:
 	b	.L106
 	.align	5
 .L99:
-	beq	$r14,$r4,.L105
+	beq	$r4,$r14,.L105
 	addi.d	$r4,$r4,1
 	bne	$r13,$r12,.L105
 	ld.bu	$r12,$r4,0
@@ -3002,7 +3002,7 @@ memxor:
 	xor	$r13,$r13,$r14
 	stx.b	$r13,$r4,$r12
 	addi.d	$r12,$r12,1
-	bne	$r12,$r6,.L571
+	bne	$r6,$r12,.L571
 .L570:
 	jr	$r1
 	.cfi_endproc
@@ -3234,7 +3234,7 @@ memmem:
 	b	.L646
 	.align	5
 .L647:
-	beq	$r7,$r12,.L656
+	beq	$r12,$r7,.L656
 .L646:
 	ldx.bu	$r15,$r4,$r12
 	ldx.bu	$r14,$r6,$r12
@@ -3567,7 +3567,7 @@ __cmovd:
 	addi.w	$r15,$r15,1
 	stx.d	$r13,$r4,$r12
 	addi.d	$r12,$r12,8
-	bltu	$r15,$r20,.L732
+	bgtu	$r20,$r15,.L732
 .L726:
 	bleu	$r6,$r14,.L723
 	bstrpick.d	$r12,$r14,31,0
@@ -3726,7 +3726,7 @@ __cmovw:
 	addi.w	$r15,$r15,1
 	stx.w	$r13,$r4,$r12
 	addi.d	$r12,$r12,4
-	bltu	$r15,$r19,.L771
+	bgtu	$r19,$r15,.L771
 .L765:
 	bleu	$r6,$r14,.L762
 	bstrpick.d	$r12,$r14,31,0
@@ -4295,12 +4295,13 @@ __mulhi3:
 __divsi3:
 .LFB129 = .
 	.cfi_startproc
+	addi.w	$r12,$r0,1			# 0x1
 	or	$r17,$r0,$r0
 	blt	$r4,$r0,.L910
 .L892:
 	bge	$r5,$r0,.L893
 	sub.d	$r5,$r0,$r5
-	xori	$r17,$r17,1
+	or	$r17,$r12,$r0
 .L893:
 	slli.w	$r13,$r4,0
 	slli.w	$r5,$r5,0
@@ -4349,6 +4350,7 @@ __divsi3:
 	.align	5
 .L910:
 	sub.d	$r4,$r0,$r4
+	or	$r12,$r0,$r0
 	addi.w	$r17,$r0,1			# 0x1
 	b	.L892
 	.cfi_endproc

@@ -5720,15 +5720,17 @@ __divsi3:
 .LFB127:
 	.cfi_startproc
 	cmpwi 0,3,0
+	li 9,1
 	li 8,0
 	bge+ 0,.L1174
 	neg 3,3
+	li 9,0
 	li 8,1
 .L1174:
 	cmpwi 0,4,0
 	bge+ 0,.L1175
 	neg 4,4
-	xori 8,8,0x1
+	mr 8,9
 .L1175:
 	cmplw 0,3,4
 	li 7,16

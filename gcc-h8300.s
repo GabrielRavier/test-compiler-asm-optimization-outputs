@@ -293,7 +293,7 @@ _strncmp:
 	extu.w	r4
 	mov.b	r4l,r4l
 	beq	.L98
-	cmp.l	er0,er2
+	cmp.l	er2,er0
 	beq	.L98
 	cmp.b	r3l,r4l
 	beq	.L95
@@ -5169,15 +5169,17 @@ ___divsi3:
 	mov.l	er0,er0
 	bpl	.L1097
 	neg.l	er0
+	sub.w	r2,r2
 	mov.w	#1,r5
 	bra	.L1087
 .L1097:
+	mov.w	#1,r2
 	sub.w	r5,r5
 .L1087:
 	mov.l	er1,er1
 	bpl	.L1088
 	neg.l	er1
-	xor	#1,r5l
+	mov.w	r2,r5
 .L1088:
 	mov.l	er0,er4
 	cmp.l	er0,er1

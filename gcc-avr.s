@@ -9912,6 +9912,7 @@ __divsi3:
 	mov r13,r19
 	mov r14,r20
 	mov r15,r21
+	ldi r24,lo8(1)
 	ldi r18,0
 	ldi r19,0
 	sbrs r11,7
@@ -9924,6 +9925,7 @@ __divsi3:
 	adc r9,__zero_reg__
 	adc r10,__zero_reg__
 	adc r11,__zero_reg__
+	ldi r24,0
 	ldi r18,lo8(1)
 	ldi r19,0
 .L985:
@@ -9937,8 +9939,8 @@ __divsi3:
 	adc r13,__zero_reg__
 	adc r14,__zero_reg__
 	adc r15,__zero_reg__
-	ldi r24,1
-	eor r18,r24
+	mov r18,r24
+	ldi r19,0
 .L986:
 	mov r27,r15
 	mov r26,r14

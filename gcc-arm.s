@@ -1169,40 +1169,39 @@ atoi:
 	beq	.L261
 	cmp	r3, #45
 	bne	.L281
-	ldrb	ip, [r0, #1]	@ zero_extendqisi2
-	add	r3, r0, #1
-	sub	r1, ip, #48
-	cmp	r1, #9
+	ldrb	r3, [r0, #1]	@ zero_extendqisi2
+	add	r2, r0, #1
+	sub	ip, r3, #48
+	cmp	ip, #9
 	bhi	.L270
 	mov	r4, #1
 .L264:
 	mov	r0, #0
 .L267:
-	ldrb	ip, [r3, #1]!	@ zero_extendqisi2
-	add	r2, r0, r0, lsl #2
-	rsb	r0, r1, r2, lsl #1
-	mov	lr, r1
-	sub	r1, ip, #48
-	cmp	r1, #9
-	lsl	r2, r2, #1
+	ldrb	r3, [r2, #1]!	@ zero_extendqisi2
+	add	r1, r0, r0, lsl #2
+	rsb	r0, ip, r1, lsl #1
+	mov	lr, ip
+	sub	ip, r3, #48
+	cmp	ip, #9
+	lsl	r1, r1, #1
 	bls	.L267
 	cmp	r4, #0
-	subeq	r0, lr, r2
+	subeq	r0, lr, r1
 	pop	{r4, pc}
 .L281:
-	ldrb	ip, [r0]	@ zero_extendqisi2
-	sub	r1, ip, #48
-	cmp	r1, #9
-	movls	r3, r0
+	sub	ip, r3, #48
+	cmp	ip, #9
+	movls	r2, r0
 	bhi	.L270
 .L280:
 	mov	r4, #0
 	b	.L264
 .L261:
-	ldrb	ip, [r0, #1]	@ zero_extendqisi2
-	add	r3, r0, #1
-	sub	r1, ip, #48
-	cmp	r1, #9
+	ldrb	r3, [r0, #1]	@ zero_extendqisi2
+	add	r2, r0, #1
+	sub	ip, r3, #48
+	cmp	ip, #9
 	bls	.L280
 .L270:
 	mov	r0, #0
@@ -1233,40 +1232,39 @@ atol:
 	beq	.L285
 	cmp	r3, #45
 	bne	.L286
-	ldrb	ip, [r0, #1]	@ zero_extendqisi2
-	add	r3, r0, #1
-	sub	r1, ip, #48
-	cmp	r1, #9
+	ldrb	r3, [r0, #1]	@ zero_extendqisi2
+	add	r2, r0, #1
+	sub	ip, r3, #48
+	cmp	ip, #9
 	movls	r4, #1
 	bhi	.L293
 .L287:
 	mov	r0, #0
 .L290:
-	ldrb	ip, [r3, #1]!	@ zero_extendqisi2
-	add	r2, r0, r0, lsl #2
-	rsb	r0, r1, r2, lsl #1
-	mov	lr, r1
-	sub	r1, ip, #48
-	cmp	r1, #9
-	lsl	r2, r2, #1
+	ldrb	r3, [r2, #1]!	@ zero_extendqisi2
+	add	r1, r0, r0, lsl #2
+	rsb	r0, ip, r1, lsl #1
+	mov	lr, ip
+	sub	ip, r3, #48
+	cmp	ip, #9
+	lsl	r1, r1, #1
 	bls	.L290
 	cmp	r4, #0
-	subeq	r0, lr, r2
+	subeq	r0, lr, r1
 	pop	{r4, pc}
 .L286:
-	ldrb	ip, [r0]	@ zero_extendqisi2
-	sub	r1, ip, #48
-	cmp	r1, #9
-	movls	r3, r0
+	sub	ip, r3, #48
+	cmp	ip, #9
+	movls	r2, r0
 	bhi	.L293
 .L302:
 	mov	r4, #0
 	b	.L287
 .L285:
-	ldrb	ip, [r0, #1]	@ zero_extendqisi2
-	add	r3, r0, #1
-	sub	r1, ip, #48
-	cmp	r1, #9
+	ldrb	r3, [r0, #1]	@ zero_extendqisi2
+	add	r2, r0, #1
+	sub	ip, r3, #48
+	cmp	ip, #9
 	bls	.L302
 .L293:
 	mov	r0, #0
@@ -1281,26 +1279,26 @@ atoll:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}
-	ldrb	r3, [r0]	@ zero_extendqisi2
-	sub	r2, r3, #9
-	cmp	r3, #32
-	cmpne	r2, #4
+	ldrb	ip, [r0]	@ zero_extendqisi2
+	sub	r3, ip, #9
+	cmp	ip, #32
+	cmpne	r3, #4
 	bhi	.L304
 .L305:
-	ldrb	r3, [r0, #1]!	@ zero_extendqisi2
-	sub	r2, r3, #9
-	cmp	r3, #32
-	cmpne	r2, #4
+	ldrb	ip, [r0, #1]!	@ zero_extendqisi2
+	sub	r3, ip, #9
+	cmp	ip, #32
+	cmpne	r3, #4
 	bls	.L305
 .L304:
-	cmp	r3, #43
+	cmp	ip, #43
 	beq	.L306
-	cmp	r3, #45
+	cmp	ip, #45
 	bne	.L326
-	ldrb	r5, [r0, #1]	@ zero_extendqisi2
-	add	ip, r0, #1
-	sub	lr, r5, #48
-	cmp	lr, #9
+	ldrb	ip, [r0, #1]	@ zero_extendqisi2
+	add	lr, r0, #1
+	sub	r4, ip, #48
+	cmp	r4, #9
 	bhi	.L315
 	mov	r7, #1
 .L309:
@@ -1312,35 +1310,34 @@ atoll:
 	adds	r3, r3, r0
 	orr	r2, r2, r0, lsr #30
 	adc	r2, r1, r2
-	ldrb	r5, [ip, #1]!	@ zero_extendqisi2
+	ldrb	ip, [lr, #1]!	@ zero_extendqisi2
 	adds	r3, r3, r3
 	adc	r2, r2, r2
-	subs	r0, r3, lr
-	sbc	r1, r2, lr, asr #31
-	mov	r4, lr
-	asr	r6, lr, #31
-	sub	lr, r5, #48
-	cmp	lr, #9
+	subs	r0, r3, r4
+	sbc	r1, r2, r4, asr #31
+	mov	r5, r4
+	asr	r6, r4, #31
+	sub	r4, ip, #48
+	cmp	r4, #9
 	bls	.L312
 	cmp	r7, #0
 	popne	{r4, r5, r6, r7, pc}
-	subs	r0, r4, r3
+	subs	r0, r5, r3
 	sbc	r1, r6, r2
 	pop	{r4, r5, r6, r7, pc}
 .L326:
-	ldrb	r5, [r0]	@ zero_extendqisi2
-	sub	lr, r5, #48
-	cmp	lr, #9
-	movls	ip, r0
+	sub	r4, ip, #48
+	cmp	r4, #9
+	movls	lr, r0
 	bhi	.L315
 .L325:
 	mov	r7, #0
 	b	.L309
 .L306:
-	ldrb	r5, [r0, #1]	@ zero_extendqisi2
-	add	ip, r0, #1
-	sub	lr, r5, #48
-	cmp	lr, #9
+	ldrb	ip, [r0, #1]	@ zero_extendqisi2
+	add	lr, r0, #1
+	sub	r4, ip, #48
+	cmp	r4, #9
 	bls	.L325
 .L315:
 	mov	r0, #0
@@ -2373,7 +2370,7 @@ memxor:
 	ldrb	r3, [ip], #1	@ zero_extendqisi2
 	ldrb	lr, [r1], #1	@ zero_extendqisi2
 	eor	r3, r3, lr
-	cmp	r2, r1
+	cmp	r1, r2
 	strb	r3, [ip, #-1]
 	bne	.L553
 	ldr	pc, [sp], #4
@@ -3589,13 +3586,15 @@ __divsi3:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	cmp	r0, #0
+	movlt	r3, #0
 	str	lr, [sp, #-4]!
-	movlt	lr, #1
 	rsblt	r0, r0, #0
+	movlt	lr, #1
+	movge	r3, #1
 	movge	lr, #0
 	cmp	r1, #0
 	rsblt	r1, r1, #0
-	eorlt	lr, lr, #1
+	movlt	lr, r3
 	cmp	r0, r1
 	mov	ip, r0
 	mov	r3, #1

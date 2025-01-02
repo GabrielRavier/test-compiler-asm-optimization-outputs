@@ -4263,8 +4263,8 @@ __cmovh:
 	ble 0,.L961
 .L934:
 	cmpwi 0,9,0
-	addi 10,4,-2
-	addi 8,3,-2
+	addi 8,4,-2
+	addi 10,3,-2
 	beq 0,.L933
 	andi. 7,9,0x1
 	addi 7,9,-1
@@ -4273,12 +4273,12 @@ __cmovh:
 	srdi 9,9,1
 	mtctr 9
 .L937:
-	lhz 6,2(10)
-	mr 7,10
-	addi 9,8,2
-	addi 10,10,4
+	lhz 6,2(8)
+	mr 7,8
+	addi 9,10,2
 	addi 8,8,4
-	sth 6,-2(8)
+	addi 10,10,4
+	sth 6,-2(10)
 	lhz 7,4(7)
 	sth 7,2(9)
 	bdnz .L937
@@ -4294,8 +4294,8 @@ __cmovh:
 .L962:
 	cmpdi 0,7,0
 	lhz 7,0(4)
-	mr 10,4
-	mr 8,3
+	mr 8,4
+	mr 10,3
 	sth 7,0(3)
 	bne 0,.L947
 	b .L933
@@ -5173,15 +5173,17 @@ __divsi3:
 .LFB129:
 	.cfi_startproc
 	cmpdi 0,3,0
+	li 9,1
 	li 8,0
 	bge 0,.L1119
 	neg 3,3
+	li 9,0
 	li 8,1
 .L1119:
 	cmpdi 0,4,0
 	bge 0,.L1120
 	neg 4,4
-	xori 8,8,0x1
+	mr 8,9
 .L1120:
 	cmplw 0,3,4
 	li 10,16

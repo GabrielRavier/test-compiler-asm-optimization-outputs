@@ -521,7 +521,7 @@ strncmp:
 	addu	$6,$4,$6
 	beqz	$3,$L103
 $L112:
-	cmp	$6,$4
+	cmp	$4,$6
 	bteqz	$L103
 	cmp	$3,$2
 	btnez	$L103
@@ -7076,13 +7076,13 @@ __divsi3:
 	.fmask	0x00000000,0
 	slt	$4,0
 	btnez	$L1018
+	li	$2,1
 	li	$7,0
 $L1003:
 	slt	$5,0
 	bteqz	$L1004
-	li	$2,1
 	neg	$5,$5
-	xor	$7,$2
+	move	$7,$2
 $L1004:
 	sltu	$5,$4
 	move	$6,$4
@@ -7120,6 +7120,7 @@ $L1019:
 	jr	$31
 $L1018:
 	neg	$4,$4
+	li	$2,0
 	li	$7,1
 	b	$L1003
 	.end	__divsi3

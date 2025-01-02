@@ -843,7 +843,7 @@ strncmp:
 .L379:
 	r5 = *(u8 *) (r2+0)
 	if r5 == 0 goto .L378
-	if r9 == r1 goto .L378
+	if r1 == r9 goto .L378
 	if r5 != r4 goto .L378
 	r3 = r1
 	r0 = r2
@@ -7119,11 +7119,12 @@ __mulhi3:
 	.type	__divsi3, @function
 __divsi3:
 	if r1 s< 0 goto .L2426
+	r0 = 1
 	r4 = 0
 .L2394:
 	if r2 s>= 0 goto .L2395
 	r2 = -r2
-	r4 ^= 1
+	r4 = r0
 .L2395:
 	r3 = r1;r3 &= 0xffffffff
 	r2 = r2;r2 &= 0xffffffff
@@ -7133,26 +7134,6 @@ __divsi3:
 	r1 = 1
 .L2396:
 	r5 = r2
-	r5 <<= 32
-	if r5 s< 0 goto .L2397
-	r2 += r2
-	r1 += r1
-	r2 = r2;r2 &= 0xffffffff
-	r1 = r1;r1 &= 0xffffffff
-	if r2 > r3 goto .L2398
-	r0 += -1
-	r9 = r2
-	r0 = r0;r0 &= 0xffffffff
-	r9 <<= 32
-	if r9 s< 0 goto .L2397
-	r2 += r2
-	r1 += r1
-	r2 = r2;r2 &= 0xffffffff
-	r1 = r1;r1 &= 0xffffffff
-	if r2 > r3 goto .L2398
-	r0 += -1
-	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
 	r5 <<= 32
 	if r5 s< 0 goto .L2397
 	r2 += r2
@@ -7211,7 +7192,27 @@ __divsi3:
 	r1 = r1;r1 &= 0xffffffff
 	if r2 > r3 goto .L2398
 	r9 += -1
+	r5 = r2
+	r9 = r9;r9 &= 0xffffffff
+	r5 <<= 32
+	if r5 s< 0 goto .L2397
+	r2 += r2
+	r1 += r1
+	r2 = r2;r2 &= 0xffffffff
+	r1 = r1;r1 &= 0xffffffff
+	if r2 > r3 goto .L2398
+	r9 += -1
 	r0 = r9;r0 &= 0xffffffff
+	r9 = r2
+	r9 <<= 32
+	if r9 s< 0 goto .L2397
+	r2 += r2
+	r1 += r1
+	r2 = r2;r2 &= 0xffffffff
+	r1 = r1;r1 &= 0xffffffff
+	if r2 > r3 goto .L2398
+	r0 += -1
+	r0 = r0;r0 &= 0xffffffff
 	if r0 != 0 goto .L2396
 .L2399:
 	if r4 == 0 goto .L2393
@@ -7236,6 +7237,7 @@ __divsi3:
 	goto .L2399
 .L2426:
 	r1 = -r1
+	r0 = 0
 	r4 = 1
 	goto .L2394
 .L2407:

@@ -2895,7 +2895,7 @@ memxor:
 	addq.l #1,%a1
 	move.b (%a2)+,%d1
 	eor.b %d1,-1(%a1)
-	cmp.l %d0,%a2
+	cmp.l %a2,%d0
 	jne .L730
 .L729:
 	move.l %a0,%d0
@@ -4541,12 +4541,14 @@ __mulhi3:
 	.globl	__divsi3
 	.type	__divsi3, @function
 __divsi3:
-	movem.l #14336,-(%sp)
-	move.l 16(%sp),%d3
-	move.l 20(%sp),%d1
+	move.l %d3,-(%sp)
+	move.l %d2,-(%sp)
+	move.l 12(%sp),%d3
+	move.l 16(%sp),%d1
 	tst.l %d3
 	jlt .L1122
-	moveq #0,%d4
+	moveq #1,%d0
+	sub.l %a1,%a1
 	tst.l %d1
 	jlt .L1123
 .L1104:
@@ -4580,19 +4582,21 @@ __divsi3:
 	tst.l %d2
 	jne .L1111
 .L1107:
-	tst.l %d4
+	cmp.w #0,%a1
 	jeq .L1102
 	neg.l %d0
 .L1102:
-	movem.l (%sp)+,#28
+	move.l (%sp)+,%d2
+	move.l (%sp)+,%d3
 	rts
 .L1123:
 	neg.l %d1
-	eor.w #1,%d4
+	move.l %d0,%a1
 	jra .L1104
 .L1122:
 	neg.l %d3
-	moveq #1,%d4
+	moveq #0,%d0
+	move.w #1,%a1
 	tst.l %d1
 	jge .L1104
 	jra .L1123

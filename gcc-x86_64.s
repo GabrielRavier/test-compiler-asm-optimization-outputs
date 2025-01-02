@@ -1314,73 +1314,71 @@ atoi:
 .L285:
 	add	rdi, 1
 .L290:
-	movsx	eax, BYTE PTR [rdi]
-	mov	edx, eax
-	sub	eax, 9
-	cmp	eax, 4
+	movsx	edx, BYTE PTR [rdi]
+	lea	ecx, [rdx-9]
+	mov	eax, edx
+	cmp	ecx, 4
 	jbe	.L285
-	cmp	dl, 32
+	cmp	al, 32
 	je	.L285
-	cmp	dl, 43
+	cmp	al, 43
 	je	.L271
-	cmp	dl, 45
+	cmp	al, 45
 	jne	.L291
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	ja	.L280
-	mov	edi, 1
+	mov	r9d, 1
 .L274:
-	xor	esi, esi
+	xor	edi, edi
 	.p2align 6
 	.p2align 4
 	.p2align 3
 .L277:
-	lea	edx, [rsi+rsi*4]
-	movsx	ecx, BYTE PTR [r9+1]
-	lea	eax, [r8-48]
-	add	r9, 1
-	add	edx, edx
-	movsx	eax, al
-	mov	esi, edx
-	mov	r8d, ecx
-	sub	ecx, 48
-	sub	esi, eax
-	cmp	ecx, 9
-	jbe	.L277
-	sub	eax, edx
-	test	edi, edi
-	cmove	esi, eax
+	lea	ecx, [rdi+rdi*4]
+	movsx	esi, BYTE PTR [r8+1]
+	lea	edx, [rax-48]
+	add	r8, 1
+	add	ecx, ecx
+	movsx	edx, dl
+	mov	edi, ecx
 	mov	eax, esi
+	sub	esi, 48
+	sub	edi, edx
+	cmp	esi, 9
+	jbe	.L277
+	sub	edx, ecx
+	test	r9d, r9d
+	cmove	edi, edx
+	mov	eax, edi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L291:
-	movsx	eax, BYTE PTR [rdi]
-	mov	r9, rdi
-	xor	edi, edi
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	sub	edx, 48
+	mov	r8, rdi
+	xor	r9d, r9d
+	cmp	edx, 9
 	jbe	.L274
 .L280:
-	xor	esi, esi
+	xor	edi, edi
 .L292:
-	mov	eax, esi
+	mov	eax, edi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L271:
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	xor	edi, edi
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	xor	r9d, r9d
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	jbe	.L274
-	xor	esi, esi
+	xor	edi, edi
 	jmp	.L292
 	.cfi_endproc
 .LFE47:
@@ -1398,73 +1396,71 @@ atol:
 .L311:
 	add	rdi, 1
 .L316:
-	movsx	eax, BYTE PTR [rdi]
-	mov	edx, eax
-	sub	eax, 9
-	cmp	eax, 4
+	movsx	edx, BYTE PTR [rdi]
+	lea	ecx, [rdx-9]
+	mov	eax, edx
+	cmp	ecx, 4
 	jbe	.L311
-	cmp	dl, 32
+	cmp	al, 32
 	je	.L311
-	cmp	dl, 43
+	cmp	al, 43
 	je	.L297
-	cmp	dl, 45
+	cmp	al, 45
 	jne	.L317
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	ja	.L306
-	mov	edi, 1
+	mov	r9d, 1
 .L300:
-	xor	esi, esi
+	xor	edi, edi
 	.p2align 6
 	.p2align 4
 	.p2align 3
 .L303:
-	lea	rdx, [rsi+rsi*4]
-	movsx	ecx, BYTE PTR [r9+1]
-	lea	eax, [r8-48]
-	add	r9, 1
-	add	rdx, rdx
-	movsx	rax, al
-	mov	rsi, rdx
-	mov	r8d, ecx
-	sub	ecx, 48
-	sub	rsi, rax
-	cmp	ecx, 9
+	lea	rcx, [rdi+rdi*4]
+	movsx	esi, BYTE PTR [r8+1]
+	lea	edx, [rax-48]
+	add	r8, 1
+	add	rcx, rcx
+	movsx	rdx, dl
+	mov	rdi, rcx
+	mov	eax, esi
+	sub	esi, 48
+	sub	rdi, rdx
+	cmp	esi, 9
 	jbe	.L303
-	sub	rax, rdx
-	test	edi, edi
-	cmove	rsi, rax
-	mov	rax, rsi
+	sub	rdx, rcx
+	test	r9d, r9d
+	cmove	rdi, rdx
+	mov	rax, rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L317:
-	movsx	eax, BYTE PTR [rdi]
-	mov	r9, rdi
-	xor	edi, edi
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	sub	edx, 48
+	mov	r8, rdi
+	xor	r9d, r9d
+	cmp	edx, 9
 	jbe	.L300
 .L306:
-	xor	esi, esi
+	xor	edi, edi
 .L318:
-	mov	rax, rsi
+	mov	rax, rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L297:
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	xor	edi, edi
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	xor	r9d, r9d
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	jbe	.L300
-	xor	esi, esi
+	xor	edi, edi
 	jmp	.L318
 	.cfi_endproc
 .LFE48:
@@ -1482,71 +1478,69 @@ atoll:
 .L336:
 	add	rdi, 1
 .L340:
-	movsx	eax, BYTE PTR [rdi]
-	mov	edx, eax
-	sub	eax, 9
-	cmp	eax, 4
+	movsx	edx, BYTE PTR [rdi]
+	lea	ecx, [rdx-9]
+	mov	eax, edx
+	cmp	ecx, 4
 	jbe	.L336
-	cmp	dl, 32
+	cmp	al, 32
 	je	.L336
-	cmp	dl, 43
+	cmp	al, 43
 	je	.L323
-	cmp	dl, 45
+	cmp	al, 45
 	je	.L341
-	movsx	eax, BYTE PTR [rdi]
-	mov	r9, rdi
-	xor	edi, edi
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	sub	edx, 48
+	mov	r8, rdi
+	xor	r9d, r9d
+	cmp	edx, 9
 	ja	.L331
 .L325:
-	xor	esi, esi
+	xor	edi, edi
 	.p2align 6
 	.p2align 4
 	.p2align 3
 .L328:
-	lea	rdx, [rsi+rsi*4]
-	movsx	ecx, BYTE PTR [r9+1]
-	lea	eax, [r8-48]
-	add	r9, 1
-	add	rdx, rdx
-	movsx	rax, al
-	mov	rsi, rdx
-	mov	r8d, ecx
-	sub	ecx, 48
-	sub	rsi, rax
-	cmp	ecx, 9
+	lea	rcx, [rdi+rdi*4]
+	movsx	esi, BYTE PTR [r8+1]
+	lea	edx, [rax-48]
+	add	r8, 1
+	add	rcx, rcx
+	movsx	rdx, dl
+	mov	rdi, rcx
+	mov	eax, esi
+	sub	esi, 48
+	sub	rdi, rdx
+	cmp	esi, 9
 	jbe	.L328
-	sub	rax, rdx
-	test	edi, edi
-	cmove	rsi, rax
-	mov	rax, rsi
+	sub	rdx, rcx
+	test	r9d, r9d
+	cmove	rdi, rdx
+	mov	rax, rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L341:
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	mov	edi, 1
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	mov	r9d, 1
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	jbe	.L325
 .L331:
-	xor	esi, esi
-	mov	rax, rsi
+	xor	edi, edi
+	mov	rax, rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L323:
-	movsx	eax, BYTE PTR [rdi+1]
-	lea	r9, [rdi+1]
-	mov	r8d, eax
-	sub	eax, 48
-	cmp	eax, 9
+	movsx	edx, BYTE PTR [rdi+1]
+	lea	r8, [rdi+1]
+	mov	eax, edx
+	sub	edx, 48
+	cmp	edx, 9
 	ja	.L331
-	xor	edi, edi
+	xor	r9d, r9d
 	jmp	.L325
 	.cfi_endproc
 .LFE171:
@@ -2083,7 +2077,7 @@ wmemmove:
 	mov	edi, DWORD PTR [rsi+rcx*4]
 	mov	DWORD PTR [rax+rcx*4], edi
 	add	rcx, 1
-	cmp	rcx, rdx
+	cmp	rdx, rcx
 	jne	.L444
 .L449:
 	ret
@@ -2645,7 +2639,7 @@ memxor:
 	add	rcx, 1
 	movzx	r8d, BYTE PTR [rsi-1]
 	xor	BYTE PTR [rcx-1], r8b
-	cmp	rdx, rsi
+	cmp	rsi, rdx
 	jne	.L572
 .L571:
 	ret
@@ -4056,16 +4050,18 @@ __mulhi3:
 __divsi3:
 .LFB129:
 	.cfi_startproc
+	mov	eax, 1
 	xor	r9d, r9d
 	test	rdi, rdi
 	jns	.L896
 	neg	rdi
+	xor	eax, eax
 	mov	r9d, 1
 .L896:
 	test	rsi, rsi
 	jns	.L897
 	neg	rsi
-	xor	r9d, 1
+	mov	r9d, eax
 .L897:
 	mov	edx, esi
 	mov	r8d, edi
