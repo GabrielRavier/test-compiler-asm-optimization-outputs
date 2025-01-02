@@ -30,10 +30,10 @@ memmove:
 	jeq .L3
 	tst.l %d1
 	jeq .L3
-	move.l %d1,%a1
-	subq.l #1,%a1
-	moveq #6,%d2
-	cmp.l %a1,%d2
+	move.l %d1,%d2
+	subq.l #1,%d2
+	moveq #6,%d3
+	cmp.l %d2,%d3
 	jcc .L36
 	move.l %a0,%d2
 	or.l %d0,%d2
@@ -42,10 +42,10 @@ memmove:
 	move.l %d0,%a1
 	addq.l #1,%a1
 	jne .L5
-	move.l %a0,%d2
-	sub.l %a1,%d2
-	moveq #2,%d3
-	cmp.l %d2,%d3
+	move.l %a0,%a2
+	sub.l %a1,%a2
+	moveq #2,%d2
+	cmp.l %a2,%d2
 	jcc .L5
 	move.l %d0,%a2
 	moveq #-4,%d3

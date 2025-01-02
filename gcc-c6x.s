@@ -1411,19 +1411,19 @@ l64a:
 		stw	.d2t2	B14, *+B15(8)
 		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 	||	mv	.d1	A4, A0
-	||	mvk	.s1	63, A7
+	||	mvk	.s1	63, A6
 		nop	4
 		ldw	.d2t1	*+B14($GOT(s.0)), A4
 	||[!A0]	b	.s1	.L318
-	[A0]	ldw	.d2t1	*+B14($GOT(digits)), A6
+	[A0]	ldw	.d2t1	*+B14($GOT(digits)), A7
 		nop	3
 	[!A0]	mv	.d1	A4, A5
 	;; condjump to .L318 occurs
 		mv	.d1	A4, A5
 .L319:
-		and	.d1	A7, A0, A3
+		and	.d1	A6, A0, A3
 	||	shru	.s1	A0, 6, A0
-		add	.d1	A6, A3, A8
+		add	.d1	A7, A3, A8
 		ldb	.d1t1	*A8, A9
 	||[A0]	b	.s1	.L319
 		nop	4

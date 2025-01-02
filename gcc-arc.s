@@ -408,8 +408,8 @@ swab:
 	stb_s	r3,[r1,1]
 	.align 4
 .L170:
-	add_s	r1,r1,2   ;b,b,h
 	ldb_s	r12,[r0,1]
+	add_s	r1,r1,2   ;b,b,h
 	ldb.ab	r3,[r0,2]
 	stb	r12,[r1,-2]
 	stb	r3,[r1,-1]
@@ -972,21 +972,19 @@ srand:
 	.global	rand
 	.type	rand, @function
 rand:
-	push_s	r13
 	ld	r2,[@seed]	;23
 	ld	r12,[@seed+4]	;23
-	mpy	r13,r2,1481765933
+	mpy	r3,r2,1481765933
 	mpydu	r0,r2,1284865837
 	mpy	r12,r12,1284865837
-	add_s	r12,r12,r13   ;b,b,h
+	add_s	r12,r12,r3   ;b,b,h
 	add.f	r2,r0,1
 	add_s	r1,r1,r12   ;b,b,h
 	st	r2,[@seed]	;26
 	adc	r0,r1,0
 	st	r0,[@seed+4]	;26
-	lsr_s	r0,r0
 	j_s.d	[blink]
-	pop_s	r13
+	lsr_s	r0,r0
 	.size	rand, .-rand
 	.align 4
 	.global	insque

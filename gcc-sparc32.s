@@ -4936,26 +4936,26 @@ __muldi3_compiler_rt:
 	mov	%i1, %l0
 	sethi	%hi(64512), %i1
 	or	%i1, 1023, %i1
+	and	%l0, %i1, %l1
 	and	%i3, %i1, %i4
-	and	%l0, %i1, %l4
-	mov	%i4, %o1
+	mov	%l1, %o0
 	call	.umul, 0
-	 mov	%l4, %o0
+	 mov	%i4, %o1
 	srl	%l0, 16, %l2
 	mov	%o0, %i5
 	mov	%l2, %o1
-	srl	%o0, 16, %l1
+	srl	%o0, 16, %l3
 	call	.umul, 0
 	 mov	%i4, %o0
 	and	%i5, %i1, %i4
-	add	%o0, %l1, %i5
+	add	%o0, %l3, %i5
 	sll	%i5, 16, %g1
 	srl	%i3, 16, %l3
 	add	%i4, %g1, %i4
 	mov	%l3, %o1
-	srl	%g1, 16, %l1
+	mov	%l1, %o0
 	call	.umul, 0
-	 mov	%l4, %o0
+	 srl	%g1, 16, %l1
 	add	%o0, %l1, %l1
 	sll	%l1, 16, %g1
 	mov	%l3, %o1

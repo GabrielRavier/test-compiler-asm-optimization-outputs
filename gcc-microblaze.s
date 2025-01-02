@@ -8677,45 +8677,45 @@ __muldi3_compiler_rt:
 	.mask	0x7fc88000
 	addik	r1,r1,-68
 	swi	r26,r1,48
-	swi	r27,r1,52
-	andi	r26,r6,65535 #and2
-	andi	r27,r8,65535 #and2
+	swi	r28,r1,56
+	andi	r26,r8,65535 #and2
+	andi	r28,r6,65535 #and2
 	swi	r22,r1,32
 	swi	r23,r1,36
 	addk	r22,r6,r0
 	addk	r23,r5,r0
-	addk	r6,r27,r0
-	addk	r5,r26,r0
+	addk	r6,r26,r0
+	addk	r5,r28,r0
 	swi	r15,r1,0
 	swi	r19,r1,28
 	swi	r24,r1,40
 	swi	r25,r1,44
-	swi	r28,r1,56
+	swi	r27,r1,52
 	swi	r29,r1,60
 	swi	r30,r1,64
 	addk	r19,r8,r0
 	brlid	r15,__mulsi3
 	
 	addk	r24,r7,r0
-	addk	r28,r0,r22
-	srl	r28,r22
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	addk	r5,r27,r0
-	addk	r6,r28,r0
+	addk	r25,r0,r22
+	srl	r25,r22
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	addk	r5,r26,r0
+	addk	r6,r25,r0
 	addk	r27,r0,r3
 	srl	r27,r3
 	srl	r27,r27
@@ -8735,21 +8735,25 @@ __muldi3_compiler_rt:
 	srl	r27,r27
 	brlid	r15,__mulsi3
 	
-	addk	r25,r3,r0
+	addk	r26,r3,r0
 	addk	r27,r3,r27
-	addk	r4,r27,r27
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
+	addk	r6,r27,r27
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	addk	r6,r6,r6
+	andi	r4,r26,65535 #and2
+	addk	r6,r6,r6
 	addk	r29,r0,r19
 	srl	r29,r19
 	srl	r29,r29
@@ -8767,32 +8771,28 @@ __muldi3_compiler_rt:
 	srl	r29,r29
 	srl	r29,r29
 	srl	r29,r29
-	addk	r5,r26,r0
-	addk	r6,r29,r0
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	addk	r4,r4,r4
-	andi	r25,r25,65535 #and2
+	addk	r5,r28,r0
+	addk	r28,r4,r6
+	addk	r30,r0,r28
+	srl	r30,r28
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
+	srl	r30,r30
 	brlid	r15,__mulsi3
 	
-	addk	r25,r25,r4
-	addk	r30,r0,r25
-	srl	r30,r25
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
-	srl	r30,r30
+	addk	r6,r29,r0
 	addk	r30,r3,r30
 	addk	r9,r30,r30
 	addk	r9,r9,r9
@@ -8808,34 +8808,34 @@ __muldi3_compiler_rt:
 	addk	r9,r9,r9
 	addk	r9,r9,r9
 	addk	r6,r29,r0
-	addk	r5,r28,r0
+	addk	r5,r25,r0
 	addk	r9,r9,r9
 	addk	r9,r9,r9
+	andi	r4,r28,65535 #and2
 	addk	r9,r9,r9
-	andi	r25,r25,65535 #and2
+	addk	r25,r0,r27
+	srl	r25,r27
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
+	srl	r25,r25
 	brlid	r15,__mulsi3
 	
-	addk	r25,r25,r9
+	addk	r27,r4,r9
 	addk	r6,r24,r0
 	addk	r5,r22,r0
-	addk	r28,r0,r27
-	srl	r28,r27
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	srl	r28,r28
-	addk	r22,r28,r3
+	addk	r25,r25,r3
 	addk	r3,r0,r30
 	srl	r3,r30
 	srl	r3,r3
@@ -8855,14 +8855,14 @@ __muldi3_compiler_rt:
 	srl	r3,r3
 	brlid	r15,__mulsi3
 	
-	addk	r22,r22,r3
+	addk	r25,r25,r3
 	addk	r6,r23,r0
 	addk	r5,r19,r0
 	brlid	r15,__mulsi3
 	
-	addk	r22,r3,r22
-	addk	r4,r25,r0
-	addk	r3,r22,r3
+	addk	r25,r3,r25
+	addk	r4,r27,r0
+	addk	r3,r25,r3
 	lwi	r15,r1,0
 	lwi	r19,r1,28
 	lwi	r22,r1,32
@@ -9016,52 +9016,50 @@ $Lfe145:
 	.ent	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	.frame	r1,20,r15		# vars= 0, regs= 4, args= 0
-	.mask	0x03c00000
-	addk	r11,r6,r0
-	addk	r10,r5,r0
-	addik	r1,r1,-20
+	.frame	r1,12,r15		# vars= 0, regs= 2, args= 0
+	.mask	0x00c00000
+	addk	r8,r5,r0
+	addk	r9,r6,r0
+	addik	r1,r1,-12
+	srl	r3,r6
 	srl	r6,r5
-	srl	r3,r11
-	swi	r24,r1,12
-	swi	r25,r1,16
-	andi	r24,r6,1431655765 #and2
-	andi	r25,r3,1431655765 #and2
-	rsub	r7,r25,r11
-	rsubc	r6,r24,r10
+	swi	r22,r1,4
+	swi	r23,r1,8
+	andi	r22,r6,1431655765 #and2
+	andi	r23,r3,1431655765 #and2
+	rsub	r7,r23,r9
+	rsubc	r6,r22,r8
 	addk	r3,r0,r6
 	srl	r3,r6
 	srl	r3,r3
-	swi	r22,r1,4
-	swi	r23,r1,8
-	andi	r22,r6,858993459 #and2
-	andi	r23,r7,858993459 #and2
-	andi	r8,r3,858993459 #and2
+	andi	r10,r6,858993459 #and2
+	andi	r4,r3,858993459 #and2
+	andi	r11,r7,858993459 #and2
 	addk	r3,r0,r7
 	srl	r3,r7
 	srl	r3,r3
-	andi	r9,r3,858993459 #and2
-	add	r9,r9,r23
-	addc	r8,r8,r22
-	src	r3,r8
+	andi	r5,r3,858993459 #and2
+	add	r11,r5,r11
+	addc	r10,r4,r10
+	src	r3,r10
 	src	r3,r3
 	src	r3,r3
 	src	r3,r3
 	src	r3,r3
 	andi	r3,r3,-268435456
-	addk	r5,r0,r9
-	srl	r5,r9
+	addk	r5,r0,r11
+	srl	r5,r11
 	srl	r5,r5
 	srl	r5,r5
 	srl	r5,r5
 	or	r5,r3,r5
-	addk	r4,r0,r8
-	srl	r4,r8
+	addk	r4,r0,r10
+	srl	r4,r10
 	srl	r4,r4
 	srl	r4,r4
 	srl	r4,r4
-	add	r5,r5,r9
-	addc	r4,r4,r8
+	add	r5,r5,r11
+	addc	r4,r4,r10
 	andi	r3,r4,252645135 #and2
 	andi	r4,r5,252645135 #and2
 	addk	r3,r3,r4
@@ -9085,8 +9083,6 @@ __popcountdi2:
 	lwi	r22,r1,4
 	addk	r4,r4,r3
 	lwi	r23,r1,8
-	lwi	r24,r1,12
-	lwi	r25,r1,16
 	addk	r3,r0,r4
 	srl	r3,r4
 	srl	r3,r3
@@ -9100,7 +9096,7 @@ __popcountdi2:
 	andi	r3,r3,127 #and1
 	rtsd	r15,8 
 	
-	addik	r1,r1,20
+	addik	r1,r1,12
 	.end	__popcountdi2
 $Lfe146:
 	.size	__popcountdi2,$Lfe146-__popcountdi2

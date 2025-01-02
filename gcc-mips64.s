@@ -8376,40 +8376,41 @@ __muldsi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	andi	$6,$4,0xffff
-	andi	$3,$5,0xffff
-	mult	$6,$3
+	andi	$3,$4,0xffff
+	andi	$6,$5,0xffff
+	mult	$3,$6
 	srl	$4,$4,16
 	srl	$5,$5,16
 	mflo	$2
 	nop
 	nop
-	mult	$4,$3
-	srl	$3,$2,16
-	andi	$2,$2,0xffff
-	mflo	$8
-	addu	$3,$3,$8
-	nop
-	mult	$5,$6
-	sll	$6,$3,16
-	addu	$2,$2,$6
-	srl	$6,$2,16
-	andi	$2,$2,0xffff
-	srl	$3,$3,16
+	mult	$4,$6
 	mflo	$7
 	nop
 	nop
+	mult	$5,$3
+	srl	$3,$2,16
+	addu	$3,$3,$7
+	andi	$2,$2,0xffff
+	mflo	$6
+	nop
+	nop
 	mult	$4,$5
-	addu	$4,$6,$7
+	sll	$4,$3,16
+	addu	$2,$2,$4
+	srl	$4,$2,16
+	addu	$4,$4,$6
 	sll	$5,$4,16
-	addu	$2,$2,$5
+	srl	$3,$3,16
+	andi	$2,$2,0xffff
 	srl	$4,$4,16
-	dsll	$2,$2,32
-	dsrl	$2,$2,32
-	mflo	$5
-	addu	$3,$3,$5
+	addu	$2,$2,$5
+	mflo	$6
+	addu	$3,$3,$6
 	addu	$3,$3,$4
+	dsll	$2,$2,32
 	dsll	$3,$3,32
+	dsrl	$2,$2,32
 	jr	$31
 	or	$2,$2,$3
 
@@ -8430,50 +8431,54 @@ __muldi3_compiler_rt:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	andi	$6,$4,0xffff
-	andi	$3,$5,0xffff
-	mult	$6,$3
-	sll	$9,$4,0
-	srl	$11,$9,16
-	sll	$8,$5,0
-	srl	$10,$8,16
-	dsra	$5,$5,32
+	andi	$9,$4,0xffff
+	andi	$6,$5,0xffff
+	mult	$9,$6
+	sll	$2,$4,0
+	srl	$8,$2,16
 	dsra	$4,$4,32
-	mflo	$2
+	mflo	$3
 	nop
 	nop
-	mult	$11,$3
-	srl	$3,$2,16
-	andi	$2,$2,0xffff
-	mflo	$7
-	addu	$3,$3,$7
-	nop
-	mult	$10,$6
-	sll	$6,$3,16
-	addu	$2,$2,$6
-	srl	$7,$2,16
-	srl	$6,$3,16
-	andi	$2,$2,0xffff
-	mflo	$12
-	addu	$3,$7,$12
-	srl	$7,$3,16
-	mult	$11,$10
-	sll	$3,$3,16
-	addu	$3,$2,$3
-	dsll	$3,$3,32
-	dsrl	$3,$3,32
+	mult	$8,$6
+	sll	$6,$5,0
+	srl	$7,$6,16
+	dsra	$5,$5,32
 	mflo	$10
 	nop
 	nop
-	mult	$9,$5
-	addu	$5,$6,$10
-	addu	$5,$5,$7
-	mflo	$2
-	addu	$2,$2,$5
+	mult	$7,$9
+	mflo	$9
 	nop
-	mult	$8,$4
+	nop
+	mult	$8,$7
+	mflo	$7
+	nop
+	nop
+	mult	$2,$5
+	mflo	$2
+	nop
+	nop
+	mult	$6,$4
+	srl	$4,$3,16
+	addu	$4,$4,$10
+	sll	$5,$4,16
+	andi	$3,$3,0xffff
+	addu	$3,$3,$5
+	srl	$5,$3,16
+	addu	$5,$5,$9
+	srl	$4,$4,16
+	srl	$6,$5,16
+	addu	$4,$4,$7
+	addu	$4,$4,$6
+	sll	$5,$5,16
+	andi	$3,$3,0xffff
+	addu	$2,$2,$4
+	addu	$3,$3,$5
 	mflo	$4
 	addu	$2,$2,$4
+	dsll	$3,$3,32
+	dsrl	$3,$3,32
 	dsll	$2,$2,32
 	jr	$31
 	or	$2,$3,$2
@@ -8514,28 +8519,28 @@ __mulddi3:
 	dsll	$7,$7,32
 	or	$3,$3,$7
 	multu	$2,$5
-	dsrl	$7,$6,32
-	daddu	$3,$3,$7
-	dsll	$7,$3,32
-	dsrl	$7,$7,32
-	dsll	$6,$6,32
-	dsrl	$6,$6,32
-	dsrl	$3,$3,32
 	mflo	$2
 	dsll	$2,$2,32
 	dsrl	$2,$2,32
-	mfhi	$8
-	dsll	$8,$8,32
-	or	$2,$2,$8
+	mfhi	$7
+	dsll	$7,$7,32
+	or	$2,$2,$7
 	multu	$4,$5
-	daddu	$2,$2,$7
 	mflo	$4
 	dsll	$4,$4,32
 	dsrl	$4,$4,32
 	mfhi	$5
 	dsll	$5,$5,32
 	or	$4,$4,$5
+	dsrl	$5,$6,32
+	daddu	$3,$3,$5
+	dsll	$5,$3,32
+	dsrl	$5,$5,32
+	daddu	$2,$2,$5
+	dsll	$6,$6,32
 	dsll	$5,$2,32
+	dsrl	$6,$6,32
+	dsrl	$3,$3,32
 	daddu	$3,$3,$4
 	daddu	$6,$6,$5
 	dsrl	$2,$2,32
@@ -8560,60 +8565,61 @@ __multi3:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	sll	$3,$5,0
-	sll	$2,$7,0
-	multu	$3,$2
-	dsra	$10,$7,32
-	mflo	$8
-	dsll	$8,$8,32
-	dsrl	$8,$8,32
-	mfhi	$9
-	dsll	$9,$9,32
-	or	$8,$8,$9
-	dsra	$9,$5,32
-	multu	$2,$9
-	mflo	$2
-	dsll	$2,$2,32
-	dsrl	$2,$2,32
-	mfhi	$11
-	dsll	$11,$11,32
-	or	$2,$2,$11
-	multu	$3,$10
-	dsrl	$11,$8,32
-	daddu	$2,$2,$11
-	dsll	$11,$2,32
-	dsrl	$11,$11,32
-	dsrl	$2,$2,32
-	dsll	$8,$8,32
-	dsrl	$8,$8,32
-	mflo	$3
-	dsll	$3,$3,32
-	dsrl	$3,$3,32
-	mfhi	$12
-	dsll	$12,$12,32
-	or	$3,$3,$12
-	multu	$9,$10
-	daddu	$3,$3,$11
-	mfhi	$10
-	dsll	$10,$10,32
+	sll	$2,$5,0
+	sll	$3,$7,0
+	multu	$2,$3
+	dsra	$10,$5,32
+	dsra	$11,$7,32
 	mflo	$9
 	dsll	$9,$9,32
 	dsrl	$9,$9,32
-	dmult	$5,$6
-	or	$9,$9,$10
-	daddu	$2,$2,$9
-	dsrl	$10,$3,32
-	daddu	$10,$2,$10
+	mfhi	$8
+	dsll	$8,$8,32
+	or	$9,$9,$8
+	multu	$3,$10
+	mflo	$3
 	dsll	$3,$3,32
-	daddu	$8,$8,$3
-	move	$3,$8
+	dsrl	$3,$3,32
+	mfhi	$8
+	dsll	$8,$8,32
+	or	$3,$3,$8
+	multu	$2,$11
+	mflo	$8
+	dsll	$8,$8,32
+	dsrl	$8,$8,32
+	mfhi	$2
+	dsll	$2,$2,32
+	or	$8,$8,$2
+	multu	$10,$11
+	mfhi	$11
+	dsll	$11,$11,32
+	mflo	$10
+	dsll	$10,$10,32
+	dsrl	$10,$10,32
+	dmult	$5,$6
+	or	$10,$10,$11
 	mflo	$5
-	daddu	$5,$5,$10
+	nop
 	nop
 	dmult	$7,$4
+	dsrl	$4,$9,32
+	daddu	$3,$3,$4
+	dsll	$4,$3,32
+	dsrl	$4,$4,32
+	daddu	$4,$8,$4
+	dsrl	$3,$3,32
+	dsrl	$6,$4,32
+	daddu	$3,$3,$10
+	dsll	$9,$9,32
+	daddu	$3,$3,$6
+	dsll	$4,$4,32
+	dsrl	$9,$9,32
+	daddu	$5,$5,$3
 	mflo	$2
-	jr	$31
+	daddu	$9,$9,$4
 	daddu	$2,$5,$2
+	jr	$31
+	move	$3,$9
 
 	.set	macro
 	.set	reorder

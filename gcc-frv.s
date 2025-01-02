@@ -5776,52 +5776,49 @@ __muldsi3:
 	.globl __muldi3_compiler_rt
 	.type	__muldi3_compiler_rt, @function
 __muldi3_compiler_rt:
-	addi sp,#-40,sp
+	addi sp,#-32,sp
 	sethi #hi(#65535), gr12
 	setlo #lo(#65535), gr12
+	movsg lr, gr5
 	sti gr18, @(sp,0)
 	sti gr20, @(sp,8)
 	and gr9, gr12, gr18
 	and gr11, gr12, gr20
-	sti gr22, @(sp,16)
-	sti gr23, @(sp,20)
+	sti gr5, @(sp,24)
 	srli gr9, #16, gr14
-	umul gr18,gr20,gr22
+	umul gr18,gr20,gr4
 	sti gr21, @(sp,12)
-	srli gr23, #16, gr4
+	srli gr5, #16, gr4
 	umul gr20,gr14,gr20
 	add gr4,gr21,gr4
-	movsg lr, gr5
-	slli gr4,#16,gr6
-	mov gr9, gr7
-	srli gr11, #16, gr9
-	sti gr5, @(sp,32)
+	slli gr4,#16,gr15
+	srli gr11, #16, gr6
 	sti gr19, @(sp,4)
-	srli gr6, #16, gr5
-	umul gr18,gr9,gr18
+	mov gr9, gr7
+	umul gr18,gr6,gr18
+	and gr12, gr5, gr9
+	srli gr15, #16, gr5
 	add gr5,gr19,gr5
-	umul gr14,gr9,gr14
+	add gr9,gr15,gr9
 	srli gr4, #16, gr4
-	and gr12, gr23, gr9
-	srli gr5, #16, gr13
+	umul gr14,gr6,gr14
 	add gr4,gr15,gr4
-	add gr9,gr6,gr9
-	add gr4,gr13,gr4
-	umul gr7,gr10,gr6
+	srli gr5, #16, gr6
+	mov gr8, gr13
 	and gr9, gr12, gr9
+	add gr4,gr6,gr8
 	slli gr5,#16,gr5
-	add gr7,gr4,gr4
+	umul gr7,gr10,gr6
 	add gr9,gr5,gr9
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
 	ldi @(sp,8), gr20
 	ldi @(sp,12), gr21
-	ldi @(sp,16), gr22
-	ldi @(sp,20), gr23
-	umul gr11,gr8,gr6
-	ldi @(sp,32), gr5
-	add gr4,gr7,gr8
-	addi sp,#40,sp
+	add gr7,gr8,gr8
+	ldi @(sp,24), gr5
+	umul gr11,gr13,gr6
+	add gr8,gr7,gr8
+	addi sp,#32,sp
 	jmpl @(gr5,gr0)
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.p2align 4
