@@ -4547,18 +4547,22 @@ frexp:
 	li 29,0
 	lis 24,0x3fe0
 	li 25,0
-	lis 26,0x3ff0
+	lis 26,0x4000
 	li 27,0
 .L960:
-	mr 3,30
-	mr 4,31
 	mr 5,24
 	mr 6,25
+	mr 3,30
+	mr 4,31
 	bl __muldf3
 	mr 5,26
 	mr 6,27
-	mr 31,4
-	mr 30,3
+	mr 11,4
+	mr 10,3
+	mr 4,31
+	mr 3,30
+	mr 31,11
+	mr 30,10
 	bl __gedf2
 	cmpwi 0,3,0
 	addi 29,29,1
@@ -4694,7 +4698,7 @@ frexp:
 	mr 31,27
 	mr 30,26
 	li 29,0
-	lis 26,0x3fe0
+	lis 26,0x3fd0
 	li 27,0
 .L962:
 	mr 5,30
@@ -4704,8 +4708,12 @@ frexp:
 	bl __adddf3
 	mr 5,26
 	mr 6,27
-	mr 31,4
-	mr 30,3
+	mr 11,4
+	mr 10,3
+	mr 4,31
+	mr 3,30
+	mr 31,11
+	mr 30,10
 	bl __ltdf2
 	cmpwi 0,3,0
 	addi 29,29,-1

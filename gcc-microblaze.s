@@ -4945,20 +4945,22 @@ $Lfe99:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	r1,64,r15		# vars= 0, regs= 9, args= 24
-	.mask	0x3fc88000
-	addik	r1,r1,-64
+	.frame	r1,72,r15		# vars= 0, regs= 11, args= 24
+	.mask	0xffc88000
+	addik	r1,r1,-72
+	swi	r19,r1,28
 	swi	r22,r1,32
 	swi	r23,r1,36
-	swi	r28,r1,56
+	addk	r19,r7,r0
 	swi	r15,r1,0
-	addk	r28,r7,r0
-	swi	r19,r1,28
 	swi	r24,r1,40
 	swi	r25,r1,44
 	swi	r26,r1,48
 	swi	r27,r1,52
+	swi	r28,r1,56
 	swi	r29,r1,60
+	swi	r30,r1,64
+	swi	r31,r1,68
 	addk	r22,r5,r0
 	addk	r7,r0,r0
 	addk	r8,r0,r0
@@ -4972,35 +4974,37 @@ frexp:
 	addk	r6,r23,r0
 	brlid	r15,__gedf2
 	
-	addk	r29,r0,r0
+	addk	r30,r0,r0
 	bltid	r3,$L853
 	addk	r5,r22,r0
 $L831:
-	addik	r26,r0,0x3fe00000 
+	addik	r28,r0,0x3fe00000 
+	addik	r29,r0,0x00000000 #Xfer Lo
+	addik	r26,r0,0x40000000 
 	addik	r27,r0,0x00000000 #Xfer Lo
-	addik	r24,r0,0x3ff00000 
-	addik	r25,r0,0x00000000 #Xfer Lo
-	addk	r19,r0,r0
+	addk	r31,r0,r0
 $L837:
 	addk	r5,r22,r0
 	addk	r6,r23,r0
-	addk	r7,r26,r0
-	addk	r8,r27,r0
+	addk	r7,r28,r0
+	addk	r8,r29,r0
+	addk	r24,r22,r0
 	brlid	r15,__muldf3
 	
-	addik	r19,r19,1
+	addk	r25,r23,r0
+	addk	r7,r26,r0
+	addk	r8,r27,r0
+	addk	r5,r24,r0
+	addk	r6,r25,r0
 	addk	r22,r3,r0
-	addk	r7,r24,r0
-	addk	r8,r25,r0
-	addk	r5,r22,r0
-	addk	r6,r4,r0
+	addk	r23,r4,r0
 	brlid	r15,__gedf2
 	
-	addk	r23,r4,r0
+	addik	r31,r31,1
 	bgeid	r3,$L837
 	addk	r4,r22,r0
-	swi	r19,r28,0
-	beqid	r29,$L828
+	swi	r31,r19,0
+	beqid	r30,$L828
 	addk	r5,r23,r0
 $L855:
 	addik	r4,r22,-2147483648
@@ -5018,9 +5022,11 @@ $L856:
 	lwi	r27,r1,52
 	lwi	r28,r1,56
 	lwi	r29,r1,60
+	lwi	r30,r1,64
+	lwi	r31,r1,68
 	rtsd	r15,8 
 	
-	addik	r1,r1,64
+	addik	r1,r1,72
 $L853:
 	addik	r7,r0,0x3fe00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
@@ -5041,7 +5047,7 @@ $L853:
 $L857:
 	addk	r5,r23,r0
 	brid	$L828
-	swi	r0,r28,0
+	swi	r0,r19,0
 $L852:
 	addik	r7,r0,0xbff00000 
 	addik	r8,r0,0x00000000 #Xfer Lo
@@ -5051,7 +5057,7 @@ $L852:
 	
 	addk	r27,r23,r0
 	bgtid	r3,$L854
-	addik	r29,r0,1	# 0x1
+	addik	r30,r0,1	# 0x1
 	brid	$L831
 	addk	r22,r26,r0
 $L854:
@@ -5063,34 +5069,36 @@ $L854:
 	addk	r6,r23,r0
 	bleid	r3,$L857
 	addk	r4,r22,r0
-	addik	r29,r0,1	# 0x1
+	addik	r30,r0,1	# 0x1
 $L832:
-	addik	r24,r0,0x3fe00000 
+	addik	r24,r0,0x3fd00000 
 	addik	r25,r0,0x00000000 #Xfer Lo
 	addk	r22,r26,r0
 	addk	r23,r27,r0
-	addk	r19,r0,r0
+	addk	r31,r0,r0
 	addk	r7,r22,r0
 $L858:
 	addk	r8,r23,r0
 	addk	r5,r22,r0
 	addk	r6,r23,r0
+	addk	r26,r22,r0
 	brlid	r15,__adddf3
 	
-	addik	r19,r19,-1
-	addk	r22,r3,r0
+	addk	r27,r23,r0
 	addk	r7,r24,r0
 	addk	r8,r25,r0
-	addk	r5,r22,r0
-	addk	r6,r4,r0
+	addk	r5,r26,r0
+	addk	r6,r27,r0
+	addk	r22,r3,r0
+	addk	r23,r4,r0
 	brlid	r15,__ltdf2
 	
-	addk	r23,r4,r0
+	addik	r31,r31,-1
 	bltid	r3,$L858
 	addk	r7,r22,r0
-	swi	r19,r28,0
+	swi	r31,r19,0
 	addk	r4,r22,r0
-	bneid	r29,$L855
+	bneid	r30,$L855
 	addk	r5,r23,r0
 	brid	$L856
 	addk	r3,r4,r0

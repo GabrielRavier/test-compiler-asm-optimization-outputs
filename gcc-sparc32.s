@@ -2995,6 +2995,14 @@ mempcpy:
 .LC34:
 	.long	1071644672
 	.long	0
+	.align 8
+.LC35:
+	.long	1073741824
+	.long	0
+	.align 8
+.LC36:
+	.long	1070596096
+	.long	0
 	.section	".text"
 	.align 4
 	.global frexp
@@ -3018,16 +3026,18 @@ frexp:
 	 mov	0, %g2
 .L831:
 	sethi	%hi(.LC34), %g3
-	ldd	[%g3+%lo(.LC34)], %f10
-	sethi	%hi(.LC33), %g3
-	ldd	[%g3+%lo(.LC33)], %f8
+	ldd	[%g3+%lo(.LC34)], %f12
+	sethi	%hi(.LC35), %g3
+	ldd	[%g3+%lo(.LC35)], %f10
 	mov	0, %g1
 .L837:
-	fmuld	%f0, %f10, %f0
-	fcmped	%f0, %f8
+	fmovs	%f0, %f8
+	fmovs	%f1, %f9
+	add	%g1, 1, %g1
+	fcmped	%f8, %f10
 	nop
 	fbge	.L837
-	 add	%g1, 1, %g1
+	 fmuld	%f0, %f12, %f0
 	cmp	%g2, 0
 	be	.L828
 	 st	%g1, [%o2]
@@ -3073,15 +3083,17 @@ frexp:
 .L832:
 	fmovs	%f10, %f0
 	fmovs	%f11, %f1
-	sethi	%hi(.LC34), %g3
-	ldd	[%g3+%lo(.LC34)], %f8
+	sethi	%hi(.LC36), %g3
+	ldd	[%g3+%lo(.LC36)], %f10
 	mov	0, %g1
 .L839:
-	faddd	%f0, %f0, %f0
-	fcmped	%f0, %f8
+	fmovs	%f0, %f8
+	fmovs	%f1, %f9
+	add	%g1, -1, %g1
+	fcmped	%f8, %f10
 	nop
 	fbl	.L839
-	 add	%g1, -1, %g1
+	 faddd	%f0, %f0, %f0
 	cmp	%g2, 0
 	bne	.L854
 	 st	%g1, [%o2]
@@ -3560,7 +3572,7 @@ __modi:
 	.size	__modi, .-__modi
 	.section	.rodata.cst8
 	.align 8
-.LC40:
+.LC44:
 	.long	1106247680
 	.long	0
 	.section	".text"
@@ -3575,8 +3587,8 @@ __uitod:
 	cmp	%o0, 0
 	bge	.L1028
 	 fitod	%f8, %f0
-	sethi	%hi(.LC40), %g1
-	ldd	[%g1+%lo(.LC40)], %f8
+	sethi	%hi(.LC44), %g1
+	ldd	[%g1+%lo(.LC44)], %f8
 	faddd	%f0, %f8, %f0
 .L1028:
 	jmp	%o7+8
@@ -3584,7 +3596,7 @@ __uitod:
 	.size	__uitod, .-__uitod
 	.section	.rodata.cst8
 	.align 8
-.LC42:
+.LC46:
 	.long	1106247680
 	.long	0
 	.section	".text"
@@ -3599,8 +3611,8 @@ __uitof:
 	cmp	%o0, 0
 	bge	.L1030
 	 fitod	%f8, %f0
-	sethi	%hi(.LC42), %g1
-	ldd	[%g1+%lo(.LC42)], %f8
+	sethi	%hi(.LC46), %g1
+	ldd	[%g1+%lo(.LC46)], %f8
 	faddd	%f0, %f8, %f0
 .L1030:
 	fdtos	%f0, %f0
@@ -3862,7 +3874,7 @@ __ctzhi2:
 	.size	__ctzhi2, .-__ctzhi2
 	.section	.rodata.cst4
 	.align 4
-.LC44:
+.LC48:
 	.long	1191182336
 	.section	".text"
 	.align 4
@@ -3872,9 +3884,9 @@ __ctzhi2:
 __fixunssfsi:
 	add	%sp, -80, %sp
 	st	%o0, [%sp+76]
-	sethi	%hi(.LC44), %g1
+	sethi	%hi(.LC48), %g1
 	ld	[%sp+76], %f8
-	ld	[%g1+%lo(.LC44)], %f9
+	ld	[%g1+%lo(.LC48)], %f9
 	fcmpes	%f8, %f9
 	nop
 	fbge,a	.L1078
@@ -5106,7 +5118,7 @@ __popcountsi2:
 	.size	__popcountsi2, .-__popcountsi2
 	.section	.rodata.cst8
 	.align 8
-.LC46:
+.LC50:
 	.long	1072693248
 	.long	0
 	.section	".text"
@@ -5117,9 +5129,9 @@ __popcountsi2:
 __powidf2:
 	add	%sp, -80, %sp
 	std	%o0, [%sp+72]
-	sethi	%hi(.LC46), %g2
+	sethi	%hi(.LC50), %g2
 	ldd	[%sp+72], %f8
-	ldd	[%g2+%lo(.LC46)], %f0
+	ldd	[%g2+%lo(.LC50)], %f0
 	andcc	%o2, 1, %g0
 	be	.L1373
 	 mov	%o2, %g1
@@ -5146,8 +5158,8 @@ __powidf2:
 .L1374:
 	cmp	%o2, 0
 	bge	.L1372
-	 sethi	%hi(.LC46), %g1
-	ldd	[%g1+%lo(.LC46)], %f8
+	 sethi	%hi(.LC50), %g1
+	ldd	[%g1+%lo(.LC50)], %f8
 	fdivd	%f8, %f0, %f0
 .L1372:
 	jmp	%o7+8
@@ -5155,7 +5167,7 @@ __powidf2:
 	.size	__powidf2, .-__powidf2
 	.section	.rodata.cst4
 	.align 4
-.LC48:
+.LC52:
 	.long	1065353216
 	.section	".text"
 	.align 4
@@ -5165,9 +5177,9 @@ __powidf2:
 __powisf2:
 	add	%sp, -80, %sp
 	st	%o0, [%sp+76]
-	sethi	%hi(.LC48), %g2
+	sethi	%hi(.LC52), %g2
 	ld	[%sp+76], %f8
-	ld	[%g2+%lo(.LC48)], %f0
+	ld	[%g2+%lo(.LC52)], %f0
 	andcc	%o1, 1, %g0
 	be	.L1382
 	 mov	%o1, %g1
@@ -5194,8 +5206,8 @@ __powisf2:
 .L1383:
 	cmp	%o1, 0
 	bge	.L1381
-	 sethi	%hi(.LC48), %g1
-	ld	[%g1+%lo(.LC48)], %f8
+	 sethi	%hi(.LC52), %g1
+	ld	[%g1+%lo(.LC52)], %f8
 	fdivs	%f8, %f0, %f0
 .L1381:
 	jmp	%o7+8

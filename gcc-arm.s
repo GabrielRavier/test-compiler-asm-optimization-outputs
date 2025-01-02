@@ -2,8 +2,6 @@
 	.fpu vfpv3-d16
 	.eabi_attribute 28, 1
 	.eabi_attribute 19, 1
-	.eabi_attribute 20, 1
-	.eabi_attribute 21, 1
 	.eabi_attribute 22, 1
 	.eabi_attribute 23, 3
 	.eabi_attribute 24, 1
@@ -2859,12 +2857,13 @@ frexp:
 	blt	.L781
 .L761:
 	mov	r3, #0
-	vmov.f64	d6, #5.0e-1
-	vmov.f64	d7, #1.0e+0
+	vmov.f64	d5, #5.0e-1
+	vmov.f64	d6, #2.0e+0
 .L767:
-	vmul.f64	d0, d0, d6
-	vcmpe.f64	d0, d7
+	vmov.f64	d7, d0
+	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
+	vmul.f64	d0, d0, d5
 	add	r3, r3, #1
 	bge	.L767
 .L768:
@@ -2900,11 +2899,12 @@ frexp:
 .L762:
 	vmov.f64	d0, d6
 	mov	r3, #0
-	vmov.f64	d7, #5.0e-1
+	vmov.f64	d6, #2.5e-1
 .L769:
-	vadd.f64	d0, d0, d0
-	vcmpe.f64	d0, d7
+	vmov.f64	d7, d0
+	vcmpe.f64	d7, d6
 	vmrs	APSR_nzcv, FPSCR
+	vadd.f64	d0, d0, d0
 	sub	r3, r3, #1
 	bmi	.L769
 	b	.L768

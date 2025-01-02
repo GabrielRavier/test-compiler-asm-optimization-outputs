@@ -3142,6 +3142,14 @@ mempcpy:
 .LC27:
 	.word	1071644672
 	.word	0
+	.align 8
+.LC28:
+	.word	1073741824
+	.word	0
+	.align 8
+.LC29:
+	.word	1070596096
+	.word	0
 	.text
 	.align 4
 .globl frexp
@@ -3153,16 +3161,16 @@ frexp:
 	fcmp,dbl,!< %fr5,%fr0
 	ftest
 	b .L759
-	ldil LR'.LC26,%r19
-	ldo RR'.LC26(%r19),%r19
-	fldds 0(%r19),%fr22
+	ldil LR'.LC26,%r28
+	ldo RR'.LC26(%r28),%r28
+	fldds 0(%r28),%fr22
 	fcmp,dbl,!>= %fr5,%fr22
 	ftest
 	b .L745
 	ldi 0,%r20
-	ldil LR'.LC27,%r19
-	ldo RR'.LC27(%r19),%r19
-	fldds 0(%r19),%fr22
+	ldil LR'.LC27,%r28
+	ldo RR'.LC27(%r28),%r28
+	fldds 0(%r28),%fr22
 	fcmp,dbl,!< %fr5,%fr22
 	ftest
 	b .L760
@@ -3176,19 +3184,20 @@ frexp:
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr5
 	ldi 1,%r20
-	ldo RR'.LC26(%r19),%r19
 .L745:
-	fldds 0(%r19),%fr23
+	ldil LR'.LC27,%r28
+	ldo RR'.LC27(%r28),%r28
+	fldds 0(%r28),%fr24
+	ldil LR'.LC28,%r19
 	ldi 0,%r28
-	ldil LR'.LC27,%r19
-	ldo RR'.LC27(%r19),%r19
-	fldds 0(%r19),%fr22
+	ldo RR'.LC28(%r19),%r19
+	fldds 0(%r19),%fr23
 .L751:
-	fmpy,dbl %fr5,%fr22,%fr5
 	fcmp,dbl,!>= %fr5,%fr23
+	ldo 1(%r28),%r28
 	ftest
 	b .L751
-	ldo 1(%r28),%r28
+	fmpy,dbl %fr5,%fr24,%fr5
 	stw %r28,0(%r24)
 	comib,= 0,%r20,.L742
 	fcpy,dbl %fr5,%fr4
@@ -3217,7 +3226,6 @@ frexp:
 	copy %r20,%r29
 	ftest
 	b .L754
-	ldil LR'.LC26,%r19
 	ldil LR'.LC25,%r19
 	ldo RR'.LC25(%r19),%r19
 	fldds 0(%r19),%fr22
@@ -3234,21 +3242,21 @@ frexp:
 	stw %r0,0(%r24)
 	b,n .L742
 .L755:
-	ldil LR'.LC27,%r19
 	ldi 1,%r20
-	ldo RR'.LC27(%r19),%r19
 .L746:
 	stws %r28,-16(%sp)
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr5
-	fldds 0(%r19),%fr22
+	ldil LR'.LC29,%r19
 	ldi 0,%r28
+	ldo RR'.LC29(%r19),%r19
+	fldds 0(%r19),%fr23
 .L753:
-	fadd,dbl %fr5,%fr5,%fr5
-	fcmp,dbl,!< %fr5,%fr22
+	fcmp,dbl,!< %fr5,%fr23
+	ldo -1(%r28),%r28
 	ftest
 	b .L753
-	ldo -1(%r28),%r28
+	fadd,dbl %fr5,%fr5,%fr5
 	stw %r28,0(%r24)
 	comib,<> 0,%r20,.L765
 	fcpy,dbl %fr5,%fr4
@@ -4015,7 +4023,7 @@ __ctzhi2:
 	.size	__ctzhi2, .-__ctzhi2
 	.section	.rodata.cst4
 	.align 4
-.LC32:
+.LC36:
 	.word	1191182336
 	.text
 	.align 4
@@ -4025,8 +4033,8 @@ __fixunssfsi:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldil LR'.LC32,%r28
-	ldo RR'.LC32(%r28),%r28
+	ldil LR'.LC36,%r28
+	ldo RR'.LC36(%r28),%r28
 	fldws 0(%r28),%fr22L
 	fcmp,sgl,!>= %fr4L,%fr22L
 	ftest
@@ -5261,7 +5269,7 @@ __popcountsi2:
 	.size	__popcountsi2, .-__popcountsi2
 	.section	.rodata.cst8
 	.align 8
-.LC34:
+.LC38:
 	.word	1072693248
 	.word	0
 	.text
@@ -5274,8 +5282,8 @@ __powidf2:
 	.ENTRY
 	extru %r24,31,1,%r28
 	comib,= 0,%r28,.L1200
-	ldil LR'.LC34,%r21
-	ldo RR'.LC34(%r21),%r21
+	ldil LR'.LC38,%r21
+	ldo RR'.LC38(%r21),%r21
 	copy %r24,%r28
 	fldds 0(%r21),%fr4
 .L1197:
@@ -5303,7 +5311,7 @@ __powidf2:
 	b,n .L1202
 	bv,n %r0(%r2)
 .L1200:
-	ldo RR'.LC34(%r21),%r21
+	ldo RR'.LC38(%r21),%r21
 	copy %r24,%r28
 	b .L1195
 	fldds 0(%r21),%fr4
@@ -5316,7 +5324,7 @@ __powidf2:
 	.size	__powidf2, .-__powidf2
 	.section	.rodata.cst4
 	.align 4
-.LC36:
+.LC40:
 	.word	1065353216
 	.text
 	.align 4
@@ -5329,8 +5337,8 @@ __powisf2:
 	fcpy,sgl %fr4L,%fr22L
 	extru %r25,31,1,%r28
 	comib,= 0,%r28,.L1210
-	ldil LR'.LC36,%r21
-	ldo RR'.LC36(%r21),%r21
+	ldil LR'.LC40,%r21
+	ldo RR'.LC40(%r21),%r21
 	copy %r25,%r28
 	fldws 0(%r21),%fr4L
 .L1207:
@@ -5358,7 +5366,7 @@ __powisf2:
 	b,n .L1212
 	bv,n %r0(%r2)
 .L1210:
-	ldo RR'.LC36(%r21),%r21
+	ldo RR'.LC40(%r21),%r21
 	copy %r25,%r28
 	b .L1205
 	fldws 0(%r21),%fr4L

@@ -3084,6 +3084,14 @@ mempcpy:
 .LC27:
 	.long	1071644672
 	.long	0
+	.align 8
+.LC28:
+	.long	1073741824
+	.long	0
+	.align 8
+.LC29:
+	.long	1070596096
+	.long	0
 	.section	".text"
 	.align 4
 	.align 32
@@ -3102,14 +3110,15 @@ frexp:
 .L787:
 	sethi	%hi(.LC27), %g3
 	mov	0, %g1
-	ldd	[%g3+%lo(.LC27)], %f10
-	sethi	%hi(.LC26), %g3
-	ldd	[%g3+%lo(.LC26)], %f8
+	ldd	[%g3+%lo(.LC27)], %f12
+	sethi	%hi(.LC28), %g3
+	ldd	[%g3+%lo(.LC28)], %f10
 .L793:
-	fmuld	%f0, %f10, %f0
-	fcmped	%fcc0, %f0, %f8
+	fmovd	%f0, %f8
+	add	%g1, 1, %g1
+	fcmped	%fcc0, %f8, %f10
 	fbge,pt	%fcc0, .L793
-	 add	%g1, 1, %g1
+	 fmuld	%f0, %f12, %f0
 	fnegd	%f0, %f8
 	cmp	%g2, 0
 	st	%g1, [%o1]
@@ -3144,15 +3153,15 @@ frexp:
 	 nop
 	mov	1, %g2
 .L788:
-	sethi	%hi(.LC27), %g3
+	sethi	%hi(.LC29), %g3
 	fmovd	%f10, %f0
 	mov	0, %g1
-	ldd	[%g3+%lo(.LC27)], %f8
+	ldd	[%g3+%lo(.LC29)], %f10
 .L795:
-	faddd	%f0, %f0, %f0
-	fcmped	%fcc1, %f0, %f8
+	fcmped	%fcc1, %f0, %f10
+	add	%g1, -1, %g1
 	fbl,pt	%fcc1, .L795
-	 add	%g1, -1, %g1
+	 faddd	%f0, %f0, %f0
 	fnegd	%f0, %f8
 	cmp	%g2, 0
 	st	%g1, [%o1]
@@ -3978,7 +3987,7 @@ __ctzhi2:
 	.size	__ctzhi2, .-__ctzhi2
 	.section	.rodata.cst4
 	.align 4
-.LC32:
+.LC36:
 	.long	1191182336
 	.section	".text"
 	.align 4
@@ -3988,8 +3997,8 @@ __ctzhi2:
 	.proc	05
 __fixunssfsi:
 	add	%sp, -144, %sp
-	sethi	%hi(.LC32), %g1
-	ld	[%g1+%lo(.LC32)], %f8
+	sethi	%hi(.LC36), %g1
+	ld	[%g1+%lo(.LC36)], %f8
 	fcmpes	%fcc2, %f1, %f8
 	fbge,a,pn %fcc2, .L1024
 	 fsubs	%f1, %f8, %f1
@@ -5535,7 +5544,7 @@ __popcountti2:
 	.size	__popcountti2, .-__popcountti2
 	.section	.rodata.cst8
 	.align 8
-.LC34:
+.LC38:
 	.long	1072693248
 	.long	0
 	.section	".text"
@@ -5545,12 +5554,12 @@ __popcountti2:
 	.type	__powidf2, #function
 	.proc	07
 __powidf2:
-	sethi	%hi(.LC34), %g2
+	sethi	%hi(.LC38), %g2
 	fmovd	%f0, %f8
 	mov	%o1, %g1
 	andcc	%o1, 1, %g0
 	be,pt	%xcc, .L1309
-	 ldd	[%g2+%lo(.LC34)], %f0
+	 ldd	[%g2+%lo(.LC38)], %f0
 .L1311:
 	fmuld	%f0, %f8, %f0
 .L1309:
@@ -5574,17 +5583,17 @@ __powidf2:
 .L1310:
 	cmp	%o1, 0
 	bl,a,pn	%icc, .L1316
-	 sethi	%hi(.LC34), %g1
+	 sethi	%hi(.LC38), %g1
 	jmp	%o7+8
 	 nop
 .L1316:
-	ldd	[%g1+%lo(.LC34)], %f8
+	ldd	[%g1+%lo(.LC38)], %f8
 	jmp	%o7+8
 	 fdivd	%f8, %f0, %f0
 	.size	__powidf2, .-__powidf2
 	.section	.rodata.cst4
 	.align 4
-.LC36:
+.LC40:
 	.long	1065353216
 	.section	".text"
 	.align 4
@@ -5593,11 +5602,11 @@ __powidf2:
 	.type	__powisf2, #function
 	.proc	06
 __powisf2:
-	sethi	%hi(.LC36), %g2
+	sethi	%hi(.LC40), %g2
 	mov	%o1, %g1
 	andcc	%o1, 1, %g0
 	be,pt	%xcc, .L1319
-	 ld	[%g2+%lo(.LC36)], %f0
+	 ld	[%g2+%lo(.LC40)], %f0
 .L1321:
 	fmuls	%f0, %f1, %f0
 .L1319:
@@ -5621,11 +5630,11 @@ __powisf2:
 .L1320:
 	cmp	%o1, 0
 	bl,a,pn	%icc, .L1326
-	 sethi	%hi(.LC36), %g1
+	 sethi	%hi(.LC40), %g1
 	jmp	%o7+8
 	 nop
 .L1326:
-	ld	[%g1+%lo(.LC36)], %f8
+	ld	[%g1+%lo(.LC40)], %f8
 	jmp	%o7+8
 	 fdivs	%f8, %f0, %f0
 	.size	__powisf2, .-__powisf2

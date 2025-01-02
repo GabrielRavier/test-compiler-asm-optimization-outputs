@@ -3275,23 +3275,24 @@ mempcpy:
 	.seh_proc	frexp
 frexp:
 	.seh_endprologue
-	pxor	xmm3, xmm3
-	comisd	xmm3, xmm0
+	pxor	xmm1, xmm1
+	comisd	xmm1, xmm0
 	ja	.L822
-	movsd	xmm2, QWORD PTR .LC19[rip]
 	xor	ecx, ecx
-	comisd	xmm0, xmm2
+	comisd	xmm0, QWORD PTR .LC19[rip]
 	jb	.L823
 .L801:
-	movsd	xmm1, QWORD PTR .LC15[rip]
+	movsd	xmm3, QWORD PTR .LC15[rip]
+	movsd	xmm2, QWORD PTR .LC14[rip]
 	xor	eax, eax
-	.p2align 4
+	.p2align 5
 	.p2align 4
 	.p2align 3
 .L808:
-	mulsd	xmm0, xmm1
+	movapd	xmm1, xmm0
 	add	eax, 1
-	comisd	xmm0, xmm2
+	mulsd	xmm0, xmm3
+	comisd	xmm1, xmm2
 	jnb	.L808
 	mov	DWORD PTR [rdx], eax
 	test	ecx, ecx
@@ -3303,10 +3304,10 @@ frexp:
 	.p2align 4,,10
 	.p2align 3
 .L823:
-	movsd	xmm1, QWORD PTR .LC15[rip]
-	comisd	xmm1, xmm0
+	movsd	xmm2, QWORD PTR .LC15[rip]
+	comisd	xmm2, xmm0
 	jbe	.L804
-	ucomisd	xmm0, xmm3
+	ucomisd	xmm0, xmm1
 	jp	.L814
 	jne	.L814
 .L804:
@@ -3322,25 +3323,25 @@ frexp:
 	jb	.L824
 	movapd	xmm0, xmm2
 	mov	ecx, 1
-	movsd	xmm2, QWORD PTR .LC19[rip]
 	jmp	.L801
 	.p2align 4,,10
 	.p2align 3
 .L824:
 	comisd	xmm0, QWORD PTR .LC18[rip]
 	jbe	.L804
-	movsd	xmm1, QWORD PTR .LC15[rip]
 	mov	ecx, 1
 .L802:
 	movapd	xmm0, xmm2
+	movsd	xmm2, QWORD PTR .LC20[rip]
 	xor	eax, eax
-	.p2align 4
+	.p2align 5
 	.p2align 4
 	.p2align 3
 .L810:
-	addsd	xmm0, xmm0
+	movapd	xmm1, xmm0
 	sub	eax, 1
-	comisd	xmm1, xmm0
+	addsd	xmm0, xmm0
+	comisd	xmm2, xmm1
 	ja	.L810
 	mov	DWORD PTR [rdx], eax
 	test	ecx, ecx
@@ -4302,14 +4303,14 @@ __ctzhi2:
 	.seh_proc	__fixunssfsi
 __fixunssfsi:
 	.seh_endprologue
-	comiss	xmm0, DWORD PTR .LC20[rip]
+	comiss	xmm0, DWORD PTR .LC21[rip]
 	jnb	.L1027
 	cvttss2si	eax, xmm0
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L1027:
-	subss	xmm0, DWORD PTR .LC20[rip]
+	subss	xmm0, DWORD PTR .LC21[rip]
 	cvttss2si	eax, xmm0
 	add	eax, 32768
 	ret
@@ -6038,7 +6039,7 @@ __powidf2:
 	.seh_proc	__powisf2
 __powisf2:
 	.seh_endprologue
-	movss	xmm2, DWORD PTR .LC21[rip]
+	movss	xmm2, DWORD PTR .LC22[rip]
 	movaps	xmm1, xmm2
 	mov	eax, edx
 	test	dl, 1
@@ -6221,11 +6222,15 @@ digits:
 .LC19:
 	.long	0
 	.long	1072693248
-	.align 4
+	.align 8
 .LC20:
-	.long	1191182336
+	.long	0
+	.long	1070596096
 	.align 4
 .LC21:
+	.long	1191182336
+	.align 4
+.LC22:
 	.long	1065353216
 	.ident	"GCC: (GNU) 14.2.1 20240801 (Fedora MinGW 14.2.1-3.fc41)"
 	.def	memcpy;	.scl	2;	.type	32;	.endef

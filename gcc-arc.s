@@ -2767,13 +2767,14 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	push_s	blink
+	std.a	r22,[sp,-8]
 	std.a	r20,[sp,-8]
 	std.a	r18,[sp,-8]
 	std.a	r16,[sp,-8]
 	std.a	r14,[sp,-8]
 	push_s	r13
 	vadd2	r14,r0,0
-	mov_s	r20,r2	;4
+	mov_s	r22,r2	;4
 	mov_s	r3,0	;3
 	bl.d	@__ltdf2;1
 	mov_s	r2,0	;3
@@ -2785,35 +2786,38 @@ frexp:
 	mov_s	r2,0	;3
 	tst_s	r0,r0
 	bn.d	.L916
-	mov.p	r21,0
+	mov.p	r23,0
 	.align 2
 .L895:
 	mov_s	r13,0	;3
+	mov_s	r20,0	;4
+	mov_s	r21,1071644672	;13
 	mov_s	r18,0	;4
-	mov_s	r19,1071644672	;13
-	mov_s	r16,0	;4
-	mov_s	r17,1072693248	;13
+	mov_s	r19,1073741824	;13
 	.align 2
 .L901:
-	vadd2	r2,r18,0
+	vadd2	r16,r14,0
+	vadd2	r2,r20,0
 	vadd2	r0,r14,0
 	bl.d	@__muldf3;1
 	add_s	r13,r13,1   ;b,b,h
-	vadd2	r2,r16,0
+	vadd2	r2,r18,0
 	vadd2	r14,r0,0
+	vadd2	r0,r16,0
 	bl	@__gedf2;1
 	brge	r0,0,.L901
-	st	r13,[r20]	;26
+	st	r13,[r22]	;26
 	mov_s	r0,r14	;4
-	breq.d	r21,0,.L917
+	breq.d	r23,0,.L917
 	bxor	r1,r15,31
 .L892:
-	ld	blink,[sp,36]	;23
+	ld	blink,[sp,44]	;23
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	ldd.ab	r16,[sp,8]
 	ldd.ab	r18,[sp,8]
-	ldd.ab	r20,[sp,12]
+	ldd.ab	r20,[sp,8]
+	ldd.ab	r22,[sp,12]
 	j_s	[blink]
 	.align 4
 .L917:
@@ -2834,7 +2838,7 @@ frexp:
 	.align 2
 .L898:
 	vadd2	r0,r14,0
-	st	0,[r20]	;37
+	st	0,[r22]	;37
 	b_s	.L892
 	.align 4
 .L915:
@@ -2847,7 +2851,7 @@ frexp:
 	bxor	r17,r15,31
 	vadd2	r14,r16,0
 	b.d	.L895
-	mov_s	r21,1	;4
+	mov_s	r23,1	;4
 	.align 4
 .L918:
 	vadd2	r0,r14,0
@@ -2855,26 +2859,28 @@ frexp:
 	bl.d	@__gtdf2;1
 	mov_s	r2,0	;3
 	brle	r0,0,.L898
-	mov_s	r21,1	;4
+	mov_s	r23,1	;4
 	.align 2
 .L896:
 	vadd2	r14,r16,0
 	mov_s	r13,0	;3
 	mov_s	r16,0	;4
-	mov_s	r17,1071644672	;13
+	mov_s	r17,1070596096	;13
 	.align 2
 .L903:
 	vadd2	r2,r14,0
+	vadd2	r18,r14,0
 	vadd2	r0,r14,0
 	bl.d	@__adddf3;1
 	add_s	r13,r13,-1   ;h,h,s3
 	vadd2	r2,r16,0
 	vadd2	r14,r0,0
+	vadd2	r0,r18,0
 	bl	@__ltdf2;1
 	brlt	r0,0,.L903
-	st	r13,[r20]	;26
+	st	r13,[r22]	;26
 	mov_s	r0,r14	;4
-	tst	r21,r21
+	tst	r23,r23
 	bne.d	.L892
 	bxor	r1,r15,31
 	b_s	.L917
@@ -2882,7 +2888,7 @@ frexp:
 .L907:
 	vadd2	r16,r14,0
 	b.d	.L896
-	mov_s	r21,0	;4
+	mov_s	r23,0	;4
 	.size	frexp, .-frexp
 	.align 4
 	.global	__muldi3

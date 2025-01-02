@@ -2777,14 +2777,14 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	movm [d2,d3,a2,a3,exreg1],(sp)
-	mov 0,a3
-	add -20,sp
-	mov a3,(12,sp)
-	mov a3,(16,sp)
+	mov 0,a2
+	add -24,sp
+	mov a2,(12,sp)
+	mov a2,(16,sp)
 	mov_mov d0, d2, d1, d3
 	call +__ltdf2,[],0
-	cmp a3,d0
-	mov a3,(12,sp)
+	cmp a2,d0
+	mov a2,(12,sp)
 	blt .L960
 	mov 1072693248,d0
 	mov d0,(16,sp)
@@ -2792,118 +2792,132 @@ frexp:
 	call +__gedf2,[],0
 	cmp 0,d0
 	blt .L961
-	clr r6
-	mov 1071644672,r5
-	mov 1072693248,r4
-	mov r6,a2
+	clr r5
+	mov 1071644672,r4
+	mov 1073741824,a3
+	mov a2,(20,sp)
+	mov r5,a2
 .L944:
 	mov a2,(12,sp)
-	mov r5,(16,sp)
+	mov r4,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__muldf3,[],0
 	mov a2,(12,sp)
-	mov r4,(16,sp)
-	mov_mov d0, d2, d1, d3
+	mov a3,(16,sp)
+	mov_mov d0, a0, d1, a1
+	mov_mov d2, d0, d3, d1
+	mov_mov d2, r6, d3, r7
+	mov_mov a0, d2, a1, d3
 	call +__gedf2,[],0
-	add_cmp 1, r6, 0, d0
+	add_cmp 1, r5, 0, d0
 	bge .L944
 .L945:
-	mov (64,sp),d0
-	cmp 0,a3
-	mov r6,(d0)
+	mov (20,sp),d1
+	mov (68,sp),d0
+	cmp 0,d1
+	mov r5,(d0)
 	mov d2,a0
 	beq .L951
 	mov -2147483648,a1
 	add_mov d3, a1, a0, d0
 	mov a1,d1
-	ret [d2,d3,a2,a3,exreg1],52
-.L951:
-	mov_mov d3, a1, a0, d0
-	mov a1,d1
-	ret [d2,d3,a2,a3,exreg1],52
+	ret [d2,d3,a2,a3,exreg1],56
 .L961:
 	mov 1071644672,d0
-	mov a3,(12,sp)
+	mov a2,(12,sp)
 	mov d0,(16,sp)
 	mov_mov d3, d1, d2, d0
 	call +__ltdf2,[],0
 	cmp 0,d0
 	bge .L941
-	mov a3,(12,sp)
-	mov a3,(16,sp)
+	mov a2,(12,sp)
+	mov a2,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__nedf2,[],0
 	cmp 0,d0
 	bne .L950
 .L941:
-	mov (64,sp),d1
+	mov (68,sp),d1
 	clr d0
 	mov_mov d2, a0, d3, a1
 	mov d0,(d1)
 	mov_mov a0, d0, a1, d1
-	ret [d2,d3,a2,a3,exreg1],52
+	ret [d2,d3,a2,a3,exreg1],56
 .L960:
 	mov -1074790400,d0
 	mov d0,(16,sp)
 	mov_mov d3, d1, d2, d0
 	call +__ledf2,[],0
-	mov -2147483648,r5
-	add_cmp d3, r5, a3, d0
-	mov d2,r4
+	mov -2147483648,r7
+	add_cmp d3, r7, a2, d0
+	mov d2,r6
 	bgt .L962
-	clr r6
-	mov_mov r5, d3, 1, a3
-	mov 1071644672,r5
-	mov 1072693248,r4
-	mov r6,a2
+	mov 1,d0
+	clr r5
+	mov d0,(20,sp)
+	mov 1071644672,r4
+	mov 1073741824,a3
+	mov_mov r7, d3, r5, a2
 	jmp .L944
+.L951:
+	mov_mov d3, a1, a0, d0
+	mov a1,d1
+	ret [d2,d3,a2,a3,exreg1],56
 .L962:
 	mov -1075838976,d0
-	mov a3,(12,sp)
+	mov a2,(12,sp)
 	mov d0,(16,sp)
 	mov_mov d3, d1, d2, d0
 	call +__gtdf2,[],0
-	cmp a3,d0
+	cmp a2,d0
 	bgt .L948
-	mov (64,sp),d0
+	mov (68,sp),d0
 	mov_mov d2, a0, d3, a1
-	mov a3,(d0)
+	mov a2,(d0)
 	mov_mov a1, d1, a0, d0
-	ret [d2,d3,a2,a3,exreg1],52
+	ret [d2,d3,a2,a3,exreg1],56
 .L948:
-	clr r6
-	mov 1,a3
-	mov 1071644672,a2
-	mov_mov r4, d2, r5, d3
-	mov r6,r4
+	mov 1,d1
+	clr r5
+	mov d1,(20,sp)
+	mov 1070596096,a2
+	mov_mov r6, d2, r7, d3
+	mov r5,a3
 .L946:
 	mov d2,(12,sp)
 	mov d3,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__adddf3,[],0
-	mov r4,(12,sp)
+	mov a3,(12,sp)
 	mov a2,(16,sp)
-	mov_mov d0, d2, d1, d3
+	mov_mov d0, a0, d1, a1
+	mov_mov d2, d0, d3, d1
+	mov_mov d2, r6, d3, r7
+	mov_mov a0, d2, a1, d3
 	call +__ltdf2,[],0
-	add_cmp -1, r6, 0, d0
+	add_cmp -1, r5, 0, d0
 	bge .L945
 	mov d2,(12,sp)
 	mov d3,(16,sp)
 	mov_mov d2, d0, d3, d1
 	call +__adddf3,[],0
-	mov r4,(12,sp)
+	mov a3,(12,sp)
 	mov a2,(16,sp)
-	mov_mov d0, d2, d1, d3
+	mov_mov d0, a0, d1, a1
+	mov_mov d2, d0, d3, d1
+	mov_mov d2, r6, d3, r7
+	mov_mov a0, d2, a1, d3
 	call +__ltdf2,[],0
-	add_cmp -1, r6, 0, d0
+	add_cmp -1, r5, 0, d0
 	blt .L946
 	jmp .L945
 .L950:
-	mov_mov d2, r4, d3, r5
-	clr r6
-	mov r4,d2
-	mov 1071644672,a2
-	mov_mov r5, d3, r6, r4
+	mov_mov d2, r6, d3, r7
+	clr r5
+	mov a2,(20,sp)
+	mov r6,d2
+	mov 1070596096,a2
+	mov_mov r7, d3, r5, a3
 	jmp .L946
 	.size	frexp, .-frexp
 	.global __muldi3

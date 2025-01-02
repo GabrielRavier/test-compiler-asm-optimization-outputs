@@ -4634,36 +4634,37 @@ frexp:
 	.set	noreorder
 	.set	nomacro
 	dmtc1	$0,$f0
-	lui	$6,%hi(%neg(%gp_rel(frexp)))
+	lui	$4,%hi(%neg(%gp_rel(frexp)))
 	c.lt.d	$fcc0,$f12,$f0
 	daddiu	$sp,$sp,-16
-	daddu	$6,$6,$25
-	daddiu	$6,$6,%lo(%neg(%gp_rel(frexp)))
+	daddu	$4,$4,$25
+	daddiu	$4,$4,%lo(%neg(%gp_rel(frexp)))
 	bc1t	$fcc0,.L885
 	sdc1	$f12,0($sp)
 
-	ld	$2,%got_page(.LC14)($6)
+	ld	$2,%got_page(.LC14)($4)
 	ldc1	$f1,%got_ofst(.LC14)($2)
 	c.le.d	$fcc3,$f1,$f12
 	bc1f	$fcc3,.L886
-	move	$4,$0
+	move	$3,$0
 
 .L865:
-	ld	$3,%got_page(.LC9)($6)
-	ldc1	$f1,%got_ofst(.LC14)($2)
-	ldc1	$f0,%got_ofst(.LC9)($3)
+	ld	$2,%got_page(.LC9)($4)
+	ldc1	$f2,%got_ofst(.LC9)($2)
+	ld	$2,%got_page(.LC8)($4)
+	ldc1	$f1,%got_ofst(.LC8)($2)
 	move	$2,$0
 	.align	3
 .L871:
-	ldc1	$f2,0($sp)
+	ldc1	$f0,0($sp)
 	addiu	$2,$2,1
-	mul.d	$f2,$f2,$f0
-	c.le.d	$fcc6,$f1,$f2
+	c.le.d	$fcc6,$f1,$f0
+	mul.d	$f0,$f0,$f2
 	bc1t	$fcc6,.L871
-	sdc1	$f2,0($sp)
+	sdc1	$f0,0($sp)
 
 .L872:
-	beqz	$4,.L862
+	beqz	$3,.L862
 	sw	$2,0($5)
 
 	ld	$3,0($sp)
@@ -4678,8 +4679,8 @@ frexp:
 
 	.align	3
 .L886:
-	ld	$3,%got_page(.LC9)($6)
-	ldc1	$f1,%got_ofst(.LC9)($3)
+	ld	$2,%got_page(.LC9)($4)
+	ldc1	$f1,%got_ofst(.LC9)($2)
 	c.lt.d	$fcc4,$f12,$f1
 	bc1f	$fcc4,.L868
 	nop
@@ -4700,49 +4701,48 @@ frexp:
 	li	$2,-1			# 0xffffffffffffffff
 	dsll	$2,$2,63
 	xor	$2,$3,$2
-	ld	$3,%got_page(.LC12)($6)
+	ld	$3,%got_page(.LC12)($4)
 	ldc1	$f0,%got_ofst(.LC12)($3)
 	c.le.d	$fcc1,$f12,$f0
 	bc1f	$fcc1,.L887
-	li	$4,1			# 0x1
+	li	$3,1			# 0x1
 
-	sd	$2,0($sp)
 	b	.L865
-	ld	$2,%got_page(.LC14)($6)
+	sd	$2,0($sp)
 
 	.align	3
 .L887:
-	ld	$3,%got_page(.LC13)($6)
+	ld	$3,%got_page(.LC13)($4)
 	ldc1	$f0,%got_ofst(.LC13)($3)
 	c.lt.d	$fcc2,$f0,$f12
 	bc1t	$fcc2,.L875
-	ld	$3,%got_page(.LC9)($6)
+	li	$3,1			# 0x1
 
 	b	.L862
 	sw	$0,0($5)
 
 	.align	3
 .L875:
-	li	$4,1			# 0x1
 .L866:
-	ldc1	$f0,%got_ofst(.LC9)($3)
 	sd	$2,0($sp)
+	ld	$2,%got_page(.LC15)($4)
+	ldc1	$f1,%got_ofst(.LC15)($2)
 	move	$2,$0
 	.align	3
 .L873:
-	ldc1	$f1,0($sp)
+	ldc1	$f0,0($sp)
 	addiu	$2,$2,-1
-	add.d	$f1,$f1,$f1
-	c.lt.d	$fcc7,$f1,$f0
+	c.lt.d	$fcc7,$f0,$f1
+	add.d	$f0,$f0,$f0
 	bc1t	$fcc7,.L873
-	sdc1	$f1,0($sp)
+	sdc1	$f0,0($sp)
 
 	b	.L872
 	nop
 
 .L877:
 	b	.L866
-	move	$4,$0
+	move	$3,$0
 
 	.set	macro
 	.set	reorder
@@ -5872,8 +5872,8 @@ __fixunssfsi:
 	lui	$4,%hi(%neg(%gp_rel(__fixunssfsi)))
 	daddu	$4,$4,$25
 	daddiu	$4,$4,%lo(%neg(%gp_rel(__fixunssfsi)))
-	ld	$2,%got_page(.LC15)($4)
-	lwc1	$f0,%got_ofst(.LC15)($2)
+	ld	$2,%got_page(.LC16)($4)
+	lwc1	$f0,%got_ofst(.LC16)($2)
 	c.le.s	$fcc0,$f0,$f12
 	bc1t	$fcc0,.L1115
 	li	$3,32768			# 0x8000
@@ -8338,15 +8338,15 @@ __powidf2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$7,%hi(%neg(%gp_rel(__powidf2)))
-	daddu	$7,$7,$25
-	daddiu	$7,$7,%lo(%neg(%gp_rel(__powidf2)))
+	lui	$6,%hi(%neg(%gp_rel(__powidf2)))
+	daddu	$6,$6,$25
 	andi	$2,$5,0x1
 	beqz	$2,.L1484
-	ld	$6,%got_page(.LC14)($7)
+	daddiu	$6,$6,%lo(%neg(%gp_rel(__powidf2)))
 
-	ldc1	$f0,%got_ofst(.LC14)($6)
+	ld	$3,%got_page(.LC14)($6)
 	move	$2,$5
+	ldc1	$f0,%got_ofst(.LC14)($3)
 	.align	3
 .L1481:
 	mul.d	$f0,$f0,$f12
@@ -8376,19 +8376,20 @@ __powidf2:
 	.align	3
 .L1480:
 	bltz	$5,.L1487
-	ldc1	$f1,%got_ofst(.LC14)($6)
+	nop
 
 	jrc	$31
 	.align	3
 .L1484:
-	ldc1	$f0,%got_ofst(.LC14)($6)
-	b	.L1479
+	ld	$3,%got_page(.LC14)($6)
 	move	$2,$5
+	b	.L1479
+	ldc1	$f0,%got_ofst(.LC14)($3)
 
 	.align	3
 .L1487:
 	jr	$31
-	div.d	$f0,$f1,$f0
+	recip.d	$f0,$f0
 
 	.set	macro
 	.set	reorder
@@ -8407,15 +8408,15 @@ __powisf2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$7,%hi(%neg(%gp_rel(__powisf2)))
-	daddu	$7,$7,$25
-	daddiu	$7,$7,%lo(%neg(%gp_rel(__powisf2)))
+	lui	$6,%hi(%neg(%gp_rel(__powisf2)))
+	daddu	$6,$6,$25
 	andi	$2,$5,0x1
 	beqz	$2,.L1495
-	ld	$6,%got_page(.LC16)($7)
+	daddiu	$6,$6,%lo(%neg(%gp_rel(__powisf2)))
 
-	lwc1	$f0,%got_ofst(.LC16)($6)
+	ld	$3,%got_page(.LC17)($6)
 	move	$2,$5
+	lwc1	$f0,%got_ofst(.LC17)($3)
 	.align	3
 .L1492:
 	mul.s	$f0,$f0,$f12
@@ -8445,19 +8446,20 @@ __powisf2:
 	.align	3
 .L1491:
 	bltz	$5,.L1498
-	lwc1	$f1,%got_ofst(.LC16)($6)
+	nop
 
 	jrc	$31
 	.align	3
 .L1495:
-	lwc1	$f0,%got_ofst(.LC16)($6)
-	b	.L1490
+	ld	$3,%got_page(.LC17)($6)
 	move	$2,$5
+	b	.L1490
+	lwc1	$f0,%got_ofst(.LC17)($3)
 
 	.align	3
 .L1498:
 	jr	$31
-	div.s	$f0,$f1,$f0
+	recip.s	$f0,$f0
 
 	.set	macro
 	.set	reorder
@@ -8665,12 +8667,16 @@ digits:
 .LC14:
 	.word	1072693248
 	.word	0
+	.align	3
+.LC15:
+	.word	1070596096
+	.word	0
 	.section	.rodata.cst4
 	.align	2
-.LC15:
+.LC16:
 	.word	1191182336
 	.align	2
-.LC16:
+.LC17:
 	.word	1065353216
 	.globl	__multf3
 	.globl	__netf2

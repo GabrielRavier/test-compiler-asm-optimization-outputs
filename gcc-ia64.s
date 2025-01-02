@@ -7500,7 +7500,7 @@ frexp:
 	;;
 	.mlx
 	nop 0
-	movl r16 = 0x3fe0000000000000
+	movl r16 = 0x3fd0000000000000
 	;;
 	.mib
 	nop 0
@@ -7511,22 +7511,33 @@ frexp:
 	nop 0
 	movl r16 = 0x3fe0000000000000
 	.mmi
+	nop 0
 	mov r14 = r0
-	;;
-	setf.d f6 = r16
 	nop 0
 	;;
+	.mlx
+	setf.d f9 = r16
+	movl r16 = 0x4000000000000000
+	.mmi
+	nop 0
+	;;
+	setf.d f7 = r16
+	nop 0
 	.align 32
 .L1018:
+	.mmf
+	nop 0
+	nop 0
+	mov f6 = f8
 	.mfi
 	nop 0
-	fmpy.d f8 = f8, f6
+	fmpy.d f8 = f8, f9
 	adds r14 = 1, r14
 	;;
 	.mmf
 	nop 0
 	nop 0
-	fcmp.ge p6, p7 = f8, f1
+	fcmp.ge p6, p7 = f6, f7
 	;;
 	.mib
 	nop 0
@@ -7544,14 +7555,10 @@ frexp:
 	br.ret.sptk.many b0
 	;;
 .L1035:
-	.mmf
-	nop 0
+	.mfi
 	nop 0
 	fcmp.lt p6, p7 = f8, f6
-	.mmi
 	mov r15 = r0
-	setf.d f6 = r16
-	nop 0
 	;;
 	.mib
 	nop 0
@@ -7579,7 +7586,7 @@ frexp:
 	nop 0
 	.mlx
 	setf.d f6 = r16
-	movl r16 = 0x3fe0000000000000
+	movl r16 = 0x3fd0000000000000
 	;;
 	.mmi
 	nop 0
@@ -7600,14 +7607,10 @@ frexp:
 	addl r15 = 1, r0
 	nop 0
 	;;
-	.mfi
+	.mmf
+	nop 0
 	nop 0
 	fcmp.gt p6, p7 = f8, f6
-	nop 0
-	.mmi
-	setf.d f6 = r16
-	nop 0
-	nop 0
 	;;
 	.mib
 	nop 0
@@ -7618,18 +7621,30 @@ frexp:
 	nop 0
 	nop 0
 	mov f8 = f7
+	.mmi
+	setf.d f7 = r16
+	nop 0
+	nop 0
 	;;
 	.align 32
 .L1036:
+	.mmf
+	nop 0
+	nop 0
+	mov f6 = f8
 	.mfi
 	nop 0
 	fadd.d f8 = f8, f8
 	adds r14 = -1, r14
 	;;
-	.mmf
+	.mfi
 	nop 0
+	fcmp.lt p6, p7 = f6, f7
 	nop 0
-	fcmp.lt p6, p7 = f8, f6
+	.mfi
+	nop 0
+	mov f6 = f8
+	nop 0
 	;;
 	.mib
 	nop 0
@@ -7644,7 +7659,7 @@ frexp:
 	.mmf
 	nop 0
 	nop 0
-	fcmp.lt p6, p7 = f8, f6
+	fcmp.lt p6, p7 = f6, f7
 	;;
 	.mib
 	nop 0
@@ -7655,9 +7670,13 @@ frexp:
 	nop 0
 	br .L1019
 .L1024:
-	.mfb
+	.mfi
 	nop 0
 	mov f8 = f7
+	nop 0
+	.mmb
+	setf.d f7 = r16
+	nop 0
 	br .L1036
 	.endp frexp#
 	.align 16

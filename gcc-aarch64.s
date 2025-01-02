@@ -3613,13 +3613,14 @@ frexp:
 	mov	w2, 1
 .L851:
 	mov	w1, 0
-	fmov	d5, 5.0e-1
-	fmov	d4, 1.0e+0
+	fmov	d6, 5.0e-1
+	fmov	d5, 2.0e+0
 	.p2align 3,,7
 .L857:
-	fmul	d0, d0, d5
+	fmov	d4, d0
 	add	w1, w1, 1
-	fcmpe	d0, d4
+	fmul	d0, d0, d6
+	fcmpe	d4, d5
 	bge	.L857
 .L858:
 	fneg	d31, d0
@@ -3630,9 +3631,9 @@ frexp:
 	ret
 	.p2align 2,,3
 .L865:
-	fmov	d6, -1.0e+0
+	fmov	d7, -1.0e+0
 	fneg	d30, d0
-	fcmpe	d0, d6
+	fcmpe	d0, d7
 	bls	.L860
 	fmov	d3, -5.0e-1
 	fcmpe	d0, d3
@@ -3650,12 +3651,13 @@ frexp:
 .L852:
 	fmov	d0, d30
 	mov	w1, 0
-	fmov	d29, 5.0e-1
+	fmov	d29, 2.5e-1
 	.p2align 3,,7
 .L859:
-	fadd	d0, d0, d0
+	fmov	d28, d0
 	sub	w1, w1, #1
-	fcmpe	d0, d29
+	fadd	d0, d0, d0
+	fcmpe	d28, d29
 	bmi	.L859
 	b	.L858
 	.cfi_endproc

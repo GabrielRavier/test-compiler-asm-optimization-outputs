@@ -4828,36 +4828,37 @@ frexp:
 	.set	noreorder
 	.set	nomacro
 	dmtc1	$0,$f0
-	lui	$8,%hi(%neg(%gp_rel(frexp)))
+	lui	$7,%hi(%neg(%gp_rel(frexp)))
 	c.lt.d	$f12,$f0
-	daddu	$8,$8,$25
+	daddu	$7,$7,$25
 	dmfc1	$2,$f12
 	bc1t	.L907
-	daddiu	$8,$8,%lo(%neg(%gp_rel(frexp)))
+	daddiu	$7,$7,%lo(%neg(%gp_rel(frexp)))
 
-	ld	$4,%got_page(.LC14)($8)
-	ldc1	$f1,%got_ofst(.LC14)($4)
+	ld	$3,%got_page(.LC14)($7)
+	ldc1	$f1,%got_ofst(.LC14)($3)
 	c.le.d	$f1,$f12
 	nop
 	bc1f	.L908
-	move	$7,$0
+	move	$4,$0
 
 .L886:
-	ld	$6,%got_page(.LC9)($8)
-	ldc1	$f1,%got_ofst(.LC14)($4)
+	ld	$6,%got_page(.LC9)($7)
 	move	$3,$0
-	ldc1	$f0,%got_ofst(.LC9)($6)
+	ldc1	$f2,%got_ofst(.LC9)($6)
+	ld	$6,%got_page(.LC8)($7)
+	ldc1	$f1,%got_ofst(.LC8)($6)
 	.align	3
 .L892:
-	dmtc1	$2,$f2
+	dmtc1	$2,$f0
 	nop
-	mul.d	$f2,$f2,$f0
-	c.le.d	$f1,$f2
-	dmfc1	$2,$f2
+	c.le.d	$f1,$f0
+	mul.d	$f0,$f0,$f2
+	dmfc1	$2,$f0
 	bc1t	.L892
 	addiu	$3,$3,1
 
-	beq	$7,$0,.L883
+	beq	$4,$0,.L883
 	sw	$3,0($5)
 
 .L910:
@@ -4871,8 +4872,8 @@ frexp:
 
 	.align	3
 .L908:
-	ld	$6,%got_page(.LC9)($8)
-	ldc1	$f1,%got_ofst(.LC9)($6)
+	ld	$3,%got_page(.LC9)($7)
+	ldc1	$f1,%got_ofst(.LC9)($3)
 	c.lt.d	$f12,$f1
 	nop
 	bc1f	.L889
@@ -4890,7 +4891,7 @@ frexp:
 
 	.align	3
 .L907:
-	ld	$4,%got_page(.LC12)($8)
+	ld	$4,%got_page(.LC12)($7)
 	li	$3,-1			# 0xffffffffffffffff
 	dsll	$3,$3,63
 	ldc1	$f0,%got_ofst(.LC12)($4)
@@ -4899,37 +4900,36 @@ frexp:
 	bc1f	.L909
 	xor	$3,$2,$3
 
-	ld	$4,%got_page(.LC14)($8)
 	move	$2,$3
 	b	.L886
-	li	$7,1			# 0x1
+	li	$4,1			# 0x1
 
 	.align	3
 .L909:
-	ld	$4,%got_page(.LC13)($8)
+	ld	$4,%got_page(.LC13)($7)
 	ldc1	$f0,%got_ofst(.LC13)($4)
 	c.lt.d	$f0,$f12
 	nop
 	bc1f	.L889
 	nop
 
-	ld	$6,%got_page(.LC9)($8)
-	li	$7,1			# 0x1
+	li	$4,1			# 0x1
 .L887:
-	ldc1	$f0,%got_ofst(.LC9)($6)
+	ld	$6,%got_page(.LC15)($7)
 	move	$2,$3
 	move	$3,$0
+	ldc1	$f1,%got_ofst(.LC15)($6)
 	.align	3
 .L894:
-	dmtc1	$2,$f1
+	dmtc1	$2,$f0
 	nop
-	add.d	$f1,$f1,$f1
-	c.lt.d	$f1,$f0
-	dmfc1	$2,$f1
+	c.lt.d	$f0,$f1
+	add.d	$f0,$f0,$f0
+	dmfc1	$2,$f0
 	bc1t	.L894
 	addiu	$3,$3,-1
 
-	bne	$7,$0,.L910
+	bne	$4,$0,.L910
 	sw	$3,0($5)
 
 	b	.L883
@@ -6207,8 +6207,8 @@ __fixunssfsi:
 	lui	$4,%hi(%neg(%gp_rel(__fixunssfsi)))
 	daddu	$4,$4,$25
 	daddiu	$4,$4,%lo(%neg(%gp_rel(__fixunssfsi)))
-	ld	$2,%got_page(.LC15)($4)
-	lwc1	$f0,%got_ofst(.LC15)($2)
+	ld	$2,%got_page(.LC16)($4)
+	lwc1	$f0,%got_ofst(.LC16)($2)
 	c.le.s	$f0,$f12
 	nop
 	bc1tl	.L1146
@@ -9020,9 +9020,9 @@ __powisf2:
 	daddiu	$7,$7,%lo(%neg(%gp_rel(__powisf2)))
 	andi	$2,$5,0x1
 	beq	$2,$0,.L1564
-	ld	$6,%got_page(.LC16)($7)
+	ld	$6,%got_page(.LC17)($7)
 
-	lwc1	$f0,%got_ofst(.LC16)($6)
+	lwc1	$f0,%got_ofst(.LC17)($6)
 	move	$2,$5
 	.align	3
 .L1561:
@@ -9053,14 +9053,14 @@ __powisf2:
 	.align	3
 .L1560:
 	bltz	$5,.L1567
-	lwc1	$f1,%got_ofst(.LC16)($6)
+	lwc1	$f1,%got_ofst(.LC17)($6)
 
 	jr	$31
 	nop
 
 	.align	3
 .L1564:
-	lwc1	$f0,%got_ofst(.LC16)($6)
+	lwc1	$f0,%got_ofst(.LC17)($6)
 	b	.L1559
 	move	$2,$5
 
@@ -9283,12 +9283,16 @@ digits:
 .LC14:
 	.word	1072693248
 	.word	0
+	.align	3
+.LC15:
+	.word	1070596096
+	.word	0
 	.section	.rodata.cst4
 	.align	2
-.LC15:
+.LC16:
 	.word	1191182336
 	.align	2
-.LC16:
+.LC17:
 	.word	1065353216
 	.globl	__ctzdi2
 	.globl	__clzdi2

@@ -3240,17 +3240,19 @@ frexp:
 	lui	a5,%hi(.LC15)
 	fld	fa4,%lo(.LC15)(a5)
 	li	a3,0
-	fge.d	a4,fa0,fa4
-	beq	a4,zero,.L783
+	fge.d	a5,fa0,fa4
+	beq	a5,zero,.L783
 .L759:
 	lui	a4,%hi(.LC10)
-	fld	fa4,%lo(.LC10)(a4)
-	fld	fa5,%lo(.LC15)(a5)
+	fld	fa3,%lo(.LC10)(a4)
+	lui	a5,%hi(.LC9)
+	fld	fa4,%lo(.LC9)(a5)
 	li	a5,0
 .L765:
-	fmul.d	fa0,fa0,fa4
+	fmv.d	fa5,fa0
 	addiw	a5,a5,1
-	fge.d	a4,fa0,fa5
+	fmul.d	fa0,fa0,fa3
+	fge.d	a4,fa5,fa4
 	bne	a4,zero,.L765
 	sw	a5,0(a0)
 	beq	a3,zero,.L756
@@ -3259,8 +3261,8 @@ frexp:
 .L756:
 	ret
 .L783:
-	lui	a4,%hi(.LC10)
-	fld	fa4,%lo(.LC10)(a4)
+	lui	a5,%hi(.LC10)
+	fld	fa4,%lo(.LC10)(a5)
 	flt.d	a5,fa0,fa4
 	beq	a5,zero,.L762
 	feq.d	a5,fa0,fa5
@@ -3276,7 +3278,6 @@ frexp:
 	beq	a5,zero,.L784
 	fmv.d	fa0,fa4
 	li	a3,1
-	lui	a5,%hi(.LC15)
 	j	.L759
 .L784:
 	lui	a5,%hi(.LC14)
@@ -3284,15 +3285,16 @@ frexp:
 	fgt.d	a5,fa0,fa5
 	beq	a5,zero,.L762
 	li	a3,1
-	lui	a4,%hi(.LC10)
 .L760:
+	lui	a5,%hi(.LC16)
 	fmv.d	fa0,fa4
-	fld	fa5,%lo(.LC10)(a4)
+	fld	fa4,%lo(.LC16)(a5)
 	li	a5,0
 .L767:
-	fadd.d	fa0,fa0,fa0
+	fmv.d	fa5,fa0
 	addiw	a5,a5,-1
-	flt.d	a4,fa0,fa5
+	fadd.d	fa0,fa0,fa0
+	flt.d	a4,fa5,fa4
 	bne	a4,zero,.L767
 	sw	a5,0(a0)
 	bne	a3,zero,.L785
@@ -4124,8 +4126,8 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118:
 	.cfi_startproc
-	lui	a5,%hi(.LC16)
-	flw	fa5,%lo(.LC16)(a5)
+	lui	a5,%hi(.LC17)
+	flw	fa5,%lo(.LC17)(a5)
 	fge.s	a5,fa0,fa5
 	bne	a5,zero,.L987
 	fcvt.l.s a0,fa0,rtz
@@ -6152,10 +6154,10 @@ __powidf2:
 __powisf2:
 .LFB162:
 	.cfi_startproc
-	lui	a2,%hi(.LC20)
+	lui	a2,%hi(.LC21)
 	andi	a5,a0,1
 	fmv.s	fa5,fa0
-	flw	fa0,%lo(.LC20)(a2)
+	flw	fa0,%lo(.LC21)(a2)
 	beq	a5,zero,.L1325
 	mv	a5,a0
 .L1322:
@@ -6185,7 +6187,7 @@ __powisf2:
 	mv	a5,a0
 	j	.L1320
 .L1327:
-	flw	fa5,%lo(.LC20)(a2)
+	flw	fa5,%lo(.LC21)(a2)
 	fdiv.s	fa0,fa5,fa0
 	ret
 	.cfi_endproc
@@ -6306,12 +6308,16 @@ __ucmpti2:
 .LC15:
 	.word	0
 	.word	1072693248
+	.align	3
+.LC16:
+	.word	0
+	.word	1070596096
 	.section	.srodata.cst4
 	.align	2
-.LC16:
+.LC17:
 	.word	1191182336
 	.align	2
-.LC20:
+.LC21:
 	.word	1065353216
 	.section	.rodata
 	.align	3

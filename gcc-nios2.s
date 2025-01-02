@@ -2811,49 +2811,49 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	addi	sp, sp, -24
-	stw	r19, 12(sp)
-	mov	r7, zero
-	mov	r19, r6
-	mov	r6, zero
 	stw	r18, 8(sp)
+	mov	r7, zero
+	mov	r18, r6
+	mov	r6, zero
+	stw	r20, 16(sp)
 	stw	r16, 0(sp)
 	stw	ra, 20(sp)
-	stw	r20, 16(sp)
+	stw	r19, 12(sp)
 	stw	r17, 4(sp)
-	mov	r18, r4
+	mov	r20, r4
 	mov	r16, r5
 	call	__ltdf2
 	mov	r6, zero
 	blt	r2, zero, .L797
 	movhi	r7, 16368
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	call	__gedf2
 	blt	r2, zero, .L798
-	mov	r20, zero
+	mov	r19, zero
 .L777:
 	mov	r17, zero
 .L783:
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	mov	r6, zero
 	movhi	r7, 16352
 	call	__muldf3
+	mov	r4, r20
+	mov	r5, r16
 	mov	r6, zero
-	movhi	r7, 16368
-	mov	r4, r2
-	mov	r5, r3
+	movhi	r7, 16384
 	addi	r17, r17, 1
-	mov	r18, r2
+	mov	r20, r2
 	mov	r16, r3
 	call	__gedf2
 	bge	r2, zero, .L783
 .L784:
-	stw	r17, 0(r19)
-	beq	r20, zero, .L790
+	stw	r17, 0(r18)
+	beq	r19, zero, .L790
 	xorhi	r3, r16, 32768
 .L774:
-	mov	r2, r18
+	mov	r2, r20
 	ldw	ra, 20(sp)
 	ldw	r20, 16(sp)
 	ldw	r19, 12(sp)
@@ -2865,29 +2865,29 @@ frexp:
 .L798:
 	mov	r6, zero
 	movhi	r7, 16352
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	call	__ltdf2
 	bge	r2, zero, .L780
 	mov	r6, zero
 	mov	r7, zero
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	call	__nedf2
 	bne	r2, zero, .L789
 .L780:
-	stw	zero, 0(r19)
+	stw	zero, 0(r18)
 	mov	r3, r16
 	br	.L774
 .L797:
 	movhi	r7, 49136
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	xorhi	r17, r16, 32768
 	call	__ledf2
 	bgt	r2, zero, .L799
 	mov	r16, r17
-	movi	r20, 1
+	movi	r19, 1
 	br	.L777
 .L790:
 	mov	r3, r16
@@ -2895,33 +2895,33 @@ frexp:
 .L799:
 	mov	r6, zero
 	movhi	r7, 49120
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	call	__gtdf2
 	ble	r2, zero, .L780
-	movi	r20, 1
+	movi	r19, 1
 .L778:
 	mov	r16, r17
 	mov	r17, zero
 .L785:
-	mov	r6, r18
+	mov	r6, r20
 	mov	r7, r16
-	mov	r4, r18
+	mov	r4, r20
 	mov	r5, r16
 	call	__adddf3
+	mov	r4, r20
+	mov	r5, r16
 	mov	r6, zero
-	movhi	r7, 16352
-	mov	r4, r2
-	mov	r5, r3
+	movhi	r7, 16336
 	addi	r17, r17, -1
-	mov	r18, r2
+	mov	r20, r2
 	mov	r16, r3
 	call	__ltdf2
 	blt	r2, zero, .L785
 	br	.L784
 .L789:
 	mov	r17, r16
-	mov	r20, zero
+	mov	r19, zero
 	br	.L778
 	.size	frexp, .-frexp
 	.align	2

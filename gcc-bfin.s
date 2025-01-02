@@ -3549,183 +3549,187 @@ _mempcpy:
 .global _frexp;
 .type _frexp, STT_FUNC;
 _frexp:
-	[--sp] = ( r7:4, p5:5 );
+	[--sp] = ( r7:4, p5:3 );
 
 	[--SP] = RETS;
-	SP += -32;
-	[SP+56] = R0;
-	[SP+60] = R1;
-	R7 = R7 -|- R7 ||
-	R0 = [SP+56] ||
-	nop;
-	P5 = R2;
-	[SP+12] = R7;
-	R2 = R2 -|- R2 ||
-	R1 = [SP+60] ||
-	nop;
+	SP += -40;
+	R5 = 0 (X);
+	P4 = R2;
+	[SP+12] = R5;
+	R2 = 0 (X);
+	R6 = R0;
+	R7 = R1;
 	call ___ltdf2;
 	cc =R0<0;
 	if cc jump .L743;
 	R0 = 1023 (X);
 	R0 <<= 20;
 	[SP+12] = R0;
-	R2 = R2 -|- R2 ||
-	R0 = [SP+56] ||
-	nop;
-	R1 = [SP+60];
+	R2 = 0 (X);
+	R0 = R6;
+	R1 = R7;
 	call ___gedf2;
 	cc =R0<0;
 	if cc jump .L744;
-	R4 = 0 (X);
+	P3 = 0 (X);
 .L724:
-	R5 = 511 (X);
-	R6 = 1023 (X);
-	R7 = 0 (X);
-	R5 <<= 21;
-	R6 <<= 20;
+	P5.H = 16352;
+	R4 = 1 (X);
+	R5 = 0 (X);
+	P5.L = 0;
+	R4 <<= 30;
 .L730:
-	R0 = [SP+56];
-	R2 = R2 -|- R2 ||
-	R1 = [SP+60] ||
+	R0 = ROT R6 BY 0 ||
+	[SP+24] = R6 ||
 	nop;
-	[SP+12] = R5;
+	R2 = R2 -|- R2 ||
+	[SP+12] = P5 ||
+	nop;
+	R1 = ROT R7 BY 0 ||
+	[SP+28] = R7 ||
+	nop;
 	call ___muldf3;
-	[SP+12] = R6;
-	R2 = R2 -|- R2 ||
-	[SP+56] = R0 ||
+	R6 = ROT R0 BY 0 ||
+	[SP+12] = R4 ||
 	nop;
-	[SP+60] = R1;
+	R7 = ROT R1 BY 0 ||
+	R0 = [SP+24] ||
+	nop;
+	R2 = R2 -|- R2 ||
+	R1 = [SP+28] ||
+	nop;
 	call ___gedf2;
 	cc =R0<0;
-	R7 += 1;
+	R5 += 1;
 	if !cc jump .L730 (bp);
 .L731:
-	cc =R4==0;
-	[P5] = R7;
+	cc =P3==0;
+	[P4] = R5;
 	if cc jump .L737;
-	R2 = [SP+60];
-	R1 = [SP+56];
-	BITTGL (R2, 31);
-	[SP+24] = R1;
-	[SP+28] = R2;
+	R1 = ROT R7 BY 0 ||
+	[SP+24] = R6 ||
+	nop;
+	BITTGL (R1, 31);
+	[SP+28] = R1;
 .L721:
 	R0 = [SP+24];
 	R1 = [SP+28];
-	SP += 32;
+	SP += 40;
 	RETS = [SP++];
-	( r7:4, p5:5 ) = [sp++];
+	( r7:4, p5:3 ) = [sp++];
 
 	rts;
 .L744:
 	R0 = 511 (X);
 	R0 <<= 21;
 	[SP+12] = R0;
-	R2 = R2 -|- R2 ||
-	R0 = [SP+56] ||
-	nop;
-	R1 = [SP+60];
+	R2 = 0 (X);
+	R0 = R6;
+	R1 = R7;
 	call ___ltdf2;
 	cc =R0<0;
 	if !cc jump .L727 (bp);
-	[SP+12] = R7;
-	R2 = R2 -|- R2 ||
-	R0 = [SP+56] ||
-	nop;
-	R1 = [SP+60];
+	[SP+12] = R5;
+	R2 = 0 (X);
+	R0 = R6;
+	R1 = R7;
 	call ___nedf2;
 	cc =R0==0;
 	if !cc jump .L736;
 .L727:
-	R1 = [SP+56];
-	R2 = [SP+60];
-	[SP+24] = R1;
+	[SP+24] = R6;
+	[SP+28] = R7;
 	R0 = R0 -|- R0 ||
-	[SP+28] = R2 ||
+	R1 = [SP+28] ||
 	nop;
-	[P5] = R0;
-	R1 = [SP+28];
+	[P4] = R0;
 	R0 = [SP+24];
-	SP += 32;
+	SP += 40;
 	RETS = [SP++];
-	( r7:4, p5:5 ) = [sp++];
+	( r7:4, p5:3 ) = [sp++];
 
 	rts;
 .L743:
+	R0 = ROT R7 BY 0 ||
+	[SP+20] = R6 ||
+	nop;
+	BITTGL (R0, 31);
+	P1 = R0;
 	R0 = -1025 (X);
 	R0 <<= 20;
 	[SP+12] = R0;
-	R2 = R2 -|- R2 ||
-	R0 = [SP+56] ||
-	nop;
-	R1 = [SP+60];
+	R2 = 0 (X);
+	R0 = R6;
+	R1 = R7;
+	[SP+16] = P1;
 	call ___ledf2;
-	R6 = [SP+60];
 	cc =R0<=0;
-	R5 = [SP+56];
-	BITTGL (R6, 31);
+	P1 = [SP+16];
 	if !cc jump .L745;
-	[SP+56] = R5;
-	[SP+60] = R6;
-	R4 = 1 (X);
+	R7 = P1;
+	P3 = 1 (X);
 	jump.s .L724;
 .L737:
-	R0 = [SP+56];
-	R1 = [SP+60];
-	[SP+24] = R0;
-	[SP+28] = R1;
+	[SP+24] = R6;
+	[SP+28] = R7;
 	R0 = [SP+24];
 	R1 = [SP+28];
-	SP += 32;
+	SP += 40;
 	RETS = [SP++];
-	( r7:4, p5:5 ) = [sp++];
+	( r7:4, p5:3 ) = [sp++];
 
 	rts;
 .L745:
 	R0 = -513 (X);
 	R0 <<= 21;
 	[SP+12] = R0;
-	R2 = R2 -|- R2 ||
-	R0 = [SP+56] ||
-	nop;
-	R1 = [SP+60];
+	R2 = 0 (X);
+	R0 = R6;
+	R1 = R7;
 	call ___gtdf2;
 	cc =R0<=0;
+	P0 = R6;
+	P1 = [SP+16];
 	if !cc jump .L734 (bp);
-	R0 = [SP+56];
-	R1 = [SP+60];
-	[P5] = R7;
-	[SP+24] = R0;
-	[SP+28] = R1;
+	[P4] = R5;
+	[SP+24] = R6;
+	[SP+28] = R7;
 	jump.s .L721;
 .L734:
-	R4 = 1 (X);
+	P3 = 1 (X);
 .L725:
-	[SP+60] = R6;
-	R6 = 511 (X);
-	[SP+56] = R5;
-	R7 = 0 (X);
-	R6 <<= 21;
+	R4 = 1021 (X);
+	R6 = P0;
+	R7 = P1;
+	R5 = 0 (X);
+	R4 <<= 20;
 .L732:
-	R0 = [SP+60];
-	R2 = [SP+56];
+	[SP+28] = R7;
+	[SP+24] = R6;
+	R0 = [SP+28];
 	[SP+12] = R0;
-	R1 = [SP+60];
-	R0 = [SP+56];
+	R2 = [SP+24];
+	R0 = R6;
+	R1 = R7;
 	call ___adddf3;
-	[SP+12] = R6;
-	R2 = R2 -|- R2 ||
-	[SP+56] = R0 ||
+	R6 = ROT R0 BY 0 ||
+	[SP+12] = R4 ||
 	nop;
-	[SP+60] = R1;
+	R7 = ROT R1 BY 0 ||
+	R0 = [SP+24] ||
+	nop;
+	R2 = R2 -|- R2 ||
+	R1 = [SP+28] ||
+	nop;
 	call ___ltdf2;
 	cc =R0<0;
-	R7 += -1;
+	R5 += -1;
 	if cc jump .L732 (bp);
 	jump.s .L731;
 .L736:
-	R5 = [SP+56];
-	R6 = [SP+60];
-	R4 = 0 (X);
+	P0 = R6;
+	P1 = R7;
+	P3 = 0 (X);
 	jump.s .L725;
 	.size	_frexp, .-_frexp
 	.align 4

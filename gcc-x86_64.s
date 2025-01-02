@@ -3405,23 +3405,24 @@ mempcpy:
 frexp:
 .LFB101:
 	.cfi_startproc
-	pxor	xmm3, xmm3
-	comisd	xmm3, xmm0
+	pxor	xmm1, xmm1
+	comisd	xmm1, xmm0
 	ja	.L834
-	movsd	xmm2, QWORD PTR .LC19[rip]
 	xor	edx, edx
-	comisd	xmm0, xmm2
+	comisd	xmm0, QWORD PTR .LC19[rip]
 	jb	.L835
 .L813:
-	movsd	xmm1, QWORD PTR .LC15[rip]
+	movsd	xmm3, QWORD PTR .LC15[rip]
+	movsd	xmm2, QWORD PTR .LC14[rip]
 	xor	eax, eax
-	.p2align 4
+	.p2align 5
 	.p2align 4
 	.p2align 3
 .L820:
-	mulsd	xmm0, xmm1
+	movapd	xmm1, xmm0
 	add	eax, 1
-	comisd	xmm0, xmm2
+	mulsd	xmm0, xmm3
+	comisd	xmm1, xmm2
 	jnb	.L820
 	mov	DWORD PTR [rdi], eax
 	test	edx, edx
@@ -3433,10 +3434,10 @@ frexp:
 	.p2align 4,,10
 	.p2align 3
 .L835:
-	movsd	xmm1, QWORD PTR .LC15[rip]
-	comisd	xmm1, xmm0
+	movsd	xmm2, QWORD PTR .LC15[rip]
+	comisd	xmm2, xmm0
 	jbe	.L816
-	ucomisd	xmm0, xmm3
+	ucomisd	xmm0, xmm1
 	jp	.L826
 	jne	.L826
 .L816:
@@ -3452,25 +3453,25 @@ frexp:
 	jb	.L836
 	movapd	xmm0, xmm2
 	mov	edx, 1
-	movsd	xmm2, QWORD PTR .LC19[rip]
 	jmp	.L813
 	.p2align 4,,10
 	.p2align 3
 .L836:
 	comisd	xmm0, QWORD PTR .LC18[rip]
 	jbe	.L816
-	movsd	xmm1, QWORD PTR .LC15[rip]
 	mov	edx, 1
 .L814:
 	movapd	xmm0, xmm2
+	movsd	xmm2, QWORD PTR .LC20[rip]
 	xor	eax, eax
-	.p2align 4
+	.p2align 5
 	.p2align 4
 	.p2align 3
 .L822:
-	addsd	xmm0, xmm0
+	movapd	xmm1, xmm0
 	sub	eax, 1
-	comisd	xmm1, xmm0
+	addsd	xmm0, xmm0
+	comisd	xmm2, xmm1
 	ja	.L822
 	mov	DWORD PTR [rdi], eax
 	test	edx, edx
@@ -4500,14 +4501,14 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118:
 	.cfi_startproc
-	comiss	xmm0, DWORD PTR .LC20[rip]
+	comiss	xmm0, DWORD PTR .LC21[rip]
 	jnb	.L1056
 	cvttss2si	rax, xmm0
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L1056:
-	subss	xmm0, DWORD PTR .LC20[rip]
+	subss	xmm0, DWORD PTR .LC21[rip]
 	cvttss2si	rax, xmm0
 	add	rax, 32768
 	ret
@@ -6250,7 +6251,7 @@ __powidf2:
 __powisf2:
 .LFB162:
 	.cfi_startproc
-	movss	xmm2, DWORD PTR .LC21[rip]
+	movss	xmm2, DWORD PTR .LC22[rip]
 	mov	eax, edi
 	movaps	xmm1, xmm2
 	test	dil, 1
@@ -6449,12 +6450,16 @@ digits:
 .LC19:
 	.long	0
 	.long	1072693248
+	.align 8
+.LC20:
+	.long	0
+	.long	1070596096
 	.section	.rodata.cst4
 	.align 4
-.LC20:
+.LC21:
 	.long	1191182336
 	.align 4
-.LC21:
+.LC22:
 	.long	1065353216
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
 	.section	.note.GNU-stack,"",@progbits

@@ -3845,7 +3845,7 @@ _frexp:
 	mov.l	@er7,er3
 	mov.w	r2,@er3
 	mov.l	er4,er0
-	bra	.L899
+	bra	.L899:16
 .L911:
 	mov.l	er5,er4
 	mov.w	#1,r2
@@ -3856,14 +3856,15 @@ _frexp:
 	mov.w	r2,@(6,er7)
 .L902:
 	sub.w	r6,r6
-	mov.l	#1056964608,er5
 .L908:
 	inc #1,r6
-	mov.l	er5,er1
+	mov.l	er4,er5
+	mov.l	#1056964608,er1
 	mov.l	er4,er0
 	jsr	@___mulsf3
 	mov.l	er0,er4
-	mov.l	#1065353216,er1
+	mov.l	#1073741824,er1
+	mov.l	er5,er0
 	jsr	@___gesf2
 	mov.l	er0,er0
 	bpl	.L908
@@ -3879,14 +3880,15 @@ _frexp:
 .L903:
 	mov.l	er5,er4
 	sub.w	r6,r6
-	mov.l	#1056964608,er5
 .L910:
 	dec #1,r6
+	mov.l	er4,er5
 	mov.l	er4,er1
 	mov.l	er4,er0
 	jsr	@___addsf3
 	mov.l	er0,er4
-	mov.l	er5,er1
+	mov.l	#1048576000,er1
+	mov.l	er5,er0
 	jsr	@___ltsf2
 	mov.l	er0,er0
 	bmi	.L910

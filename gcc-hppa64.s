@@ -3596,6 +3596,14 @@ mempcpy:
 .LC31:
 	.word	1071644672
 	.word	0
+	.align 8
+.LC32:
+	.word	1073741824
+	.word	0
+	.align 8
+.LC33:
+	.word	1070596096
+	.word	0
 	.text
 	.align 8
 .globl frexp
@@ -3608,15 +3616,15 @@ frexp:
 	ftest
 	b .L884
 	addil LT'.LC30,%r27
-	ldd RT'.LC30(%r1),%r31
-	fldd 0(%r31),%fr22
+	ldd RT'.LC30(%r1),%r28
+	fldd 0(%r28),%fr22
 	fcmp,dbl,!>= %fr4,%fr22
 	ftest
 	b .L870
-	ldi 0,%r19
+	ldi 0,%r31
 	addil LT'.LC31,%r27
-	ldd RT'.LC31(%r1),%r31
-	fldd 0(%r31),%fr22
+	ldd RT'.LC31(%r1),%r28
+	fldd 0(%r28),%fr22
 	fcmp,dbl,!< %fr4,%fr22
 	ftest
 	b,n .L885
@@ -3625,23 +3633,24 @@ frexp:
 	bve,n (%r2)
 .L879:
 	fcpy,dbl %fr22,%fr4
-	addil LT'.LC30,%r27
-	ldd RT'.LC30(%r1),%r31
-	ldi 1,%r19
+	ldi 1,%r31
 .L870:
 	addil LT'.LC31,%r27
+	copy %r1,%r28
+	addil LT'.LC32,%r27
+	ldd RT'.LC31(%r28),%r20
+	ldd RT'.LC32(%r1),%r19
 	ldi 0,%r28
-	ldd RT'.LC31(%r1),%r20
-	fldd 0(%r31),%fr23
-	fldd 0(%r20),%fr22
+	fldd 0(%r20),%fr24
+	fldd 0(%r19),%fr23
 .L876:
-	fmpy,dbl %fr4,%fr22,%fr4
-	ldo 1(%r28),%r28
 	fcmp,dbl,!>= %fr4,%fr23
+	ldo 1(%r28),%r28
+	fmpy,dbl %fr4,%fr24,%fr4
 	ftest
 	b .L876
 	extrd,s %r28,63,32,%r28
-	cmpb,*= %r0,%r19,.L867
+	cmpb,*= %r0,%r31,.L867
 	stw %r28,0(%r25)
 .L890:
 	bve (%r2)
@@ -3659,10 +3668,9 @@ frexp:
 	fldd 0(%r28),%fr23
 	fcmp,dbl,!> %fr4,%fr23
 	ftest
-	b .L880
-	addil LT'.LC31,%r27
-	b .L867
+	b,n .L880
 	stw %r0,0(%r25)
+	b,n .L867
 .L885:
 	fcmp,dbl,= %fr4,%fr0
 	ftest
@@ -3670,20 +3678,21 @@ frexp:
 	stw %r0,0(%r25)
 	b,n .L867
 .L880:
-	ldi 1,%r19
-	ldd RT'.LC31(%r1),%r31
+	ldi 1,%r31
 .L871:
+	addil LT'.LC33,%r27
 	fcpy,dbl %fr22,%fr4
+	ldd RT'.LC33(%r1),%r28
+	fldd 0(%r28),%fr23
 	ldi 0,%r28
-	fldd 0(%r31),%fr22
 .L878:
-	fadd,dbl %fr4,%fr4,%fr4
+	fcmp,dbl,!< %fr4,%fr23
 	ldo -1(%r28),%r28
-	fcmp,dbl,!< %fr4,%fr22
+	fadd,dbl %fr4,%fr4,%fr4
 	ftest
 	b .L878
 	extrd,s %r28,63,32,%r28
-	cmpb,*<> %r0,%r19,.L890
+	cmpb,*<> %r0,%r31,.L890
 	stw %r28,0(%r25)
 	b,n .L867
 .L882:
@@ -4538,7 +4547,7 @@ __ctzhi2:
 	.size	__ctzhi2, .-__ctzhi2
 	.section	.rodata.cst4
 	.align 4
-.LC36:
+.LC40:
 	.word	1191182336
 	.text
 	.align 8
@@ -4548,8 +4557,8 @@ __fixunssfsi:
 	.PROC
 	.CALLINFO FRAME=64,NO_CALLS
 	.ENTRY
-	addil LT'.LC36,%r27
-	ldd RT'.LC36(%r1),%r28
+	addil LT'.LC40,%r27
+	ldd RT'.LC40(%r1),%r28
 	fldw 0(%r28),%fr22R
 	fcmp,sgl,!>= %fr4R,%fr22R
 	ldo 64(%r30),%r30
@@ -6196,13 +6205,13 @@ __paritysi2:
 	.size	__paritysi2, .-__paritysi2
 	.section	.rodata.cst8
 	.align 8
-.LC38:
+.LC42:
 	.dword	6148914691236517205
 	.align 8
-.LC39:
+.LC43:
 	.dword	3689348814741910323
 	.align 8
-.LC40:
+.LC44:
 	.dword	1085102592571150095
 	.text
 	.align 8
@@ -6212,11 +6221,11 @@ __popcountdi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	addil LT'.LC38,%r27
-	ldd RT'.LC38(%r1),%r28
+	addil LT'.LC42,%r27
+	ldd RT'.LC42(%r1),%r28
 	ldd 0(%r28),%r31
-	addil LT'.LC39,%r27
-	ldd RT'.LC39(%r1),%r28
+	addil LT'.LC43,%r27
+	ldd RT'.LC43(%r1),%r28
 	ldd 0(%r28),%r19
 	extrd,u %r26,62,63,%r28
 	and %r28,%r31,%r28
@@ -6225,8 +6234,8 @@ __popcountdi2:
 	and %r26,%r19,%r26
 	and %r31,%r19,%r31
 	add,l %r31,%r26,%r31
-	addil LT'.LC40,%r27
-	ldd RT'.LC40(%r1),%r20
+	addil LT'.LC44,%r27
+	ldd RT'.LC44(%r1),%r20
 	ldd 0(%r20),%r20
 	extrd,u %r31,59,60,%r28
 	add,l %r28,%r31,%r28
@@ -6276,13 +6285,13 @@ __popcountsi2:
 	.size	__popcountsi2, .-__popcountsi2
 	.section	.rodata.cst8
 	.align 8
-.LC44:
+.LC48:
 	.dword	6148914691236517205
 	.align 8
-.LC45:
+.LC49:
 	.dword	3689348814741910323
 	.align 8
-.LC46:
+.LC50:
 	.dword	1085102592571150095
 	.text
 	.align 8
@@ -6292,17 +6301,17 @@ __popcountti2:
 	.PROC
 	.CALLINFO FRAME=80,NO_CALLS,SAVE_RP,ENTRY_GR=5
 	.ENTRY
-	addil LT'.LC44,%r27
-	ldd RT'.LC44(%r1),%r28
+	addil LT'.LC48,%r27
+	ldd RT'.LC48(%r1),%r28
 	std %r2,-16(%r30)
 	copy %r25,%r29
 	std,ma %r5,80(%r30)
-	addil LT'.LC45,%r27
+	addil LT'.LC49,%r27
 	ldd 0(%r28),%r5
-	ldd RT'.LC45(%r1),%r28
-	addil LT'.LC46,%r27
+	ldd RT'.LC49(%r1),%r28
+	addil LT'.LC50,%r27
 	ldd 0(%r28),%r31
-	ldd RT'.LC46(%r1),%r28
+	ldd RT'.LC50(%r1),%r28
 	std %r4,-72(%r30)
 	std %r3,-64(%r30)
 	ldd 0(%r28),%r2
@@ -6349,7 +6358,7 @@ __popcountti2:
 	.size	__popcountti2, .-__popcountti2
 	.section	.rodata.cst8
 	.align 8
-.LC50:
+.LC54:
 	.word	1072693248
 	.word	0
 	.text
@@ -6362,8 +6371,8 @@ __powidf2:
 	.ENTRY
 	extrd,s %r25,63,32,%r20
 	fcpy,dbl %fr4,%fr22
-	addil LT'.LC50,%r27
-	ldd RT'.LC50(%r1),%r21
+	addil LT'.LC54,%r27
+	ldd RT'.LC54(%r1),%r21
 	fldd 0(%r21),%fr4
 	extrw,u %r25,31,1,%r25
 	cmpib,= 0,%r25,.L1369
@@ -6402,7 +6411,7 @@ __powidf2:
 	.size	__powidf2, .-__powidf2
 	.section	.rodata.cst4
 	.align 4
-.LC52:
+.LC56:
 	.word	1065353216
 	.text
 	.align 8
@@ -6414,8 +6423,8 @@ __powisf2:
 	.ENTRY
 	extrd,s %r25,63,32,%r20
 	fcpy,sgl %fr4R,%fr22R
-	addil LT'.LC52,%r27
-	ldd RT'.LC52(%r1),%r21
+	addil LT'.LC56,%r27
+	ldd RT'.LC56(%r1),%r21
 	fldw 0(%r21),%fr4R
 	extrw,u %r25,31,1,%r25
 	cmpib,= 0,%r25,.L1379

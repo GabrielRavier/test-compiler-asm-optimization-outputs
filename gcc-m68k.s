@@ -3356,18 +3356,17 @@ mempcpy:
 	.globl	frexp
 	.type	frexp, @function
 frexp:
-	lea (-20,%sp),%sp
+	lea (-16,%sp),%sp
 	movem.l #16190,-(%sp)
-	move.l 68(%sp),%d2
-	move.l 72(%sp),%d3
-	clr.l %d6
-	clr.l %d7
-	lea __ltdf2,%a2
-	move.l %d7,-(%sp)
-	move.l %d6,-(%sp)
+	move.l 64(%sp),%d2
+	move.l 68(%sp),%d3
+	clr.l %d4
+	clr.l %d5
+	move.l %d5,-(%sp)
+	move.l %d4,-(%sp)
 	move.l %d3,-(%sp)
 	move.l %d2,-(%sp)
-	jsr (%a2)
+	jsr __ltdf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jlt .L915
@@ -3383,30 +3382,30 @@ frexp:
 	moveq #0,%d7
 	moveq #0,%d6
 	lea __muldf3,%a5
-	move.l #1072693248,%a2
-	sub.l %a3,%a3
 .L899:
 	addq.l #1,%d6
+	move.l %d2,%d4
+	move.l %d3,%d5
 	clr.l -(%sp)
 	move.l #1071644672,-(%sp)
-	move.l %d3,-(%sp)
+	move.l %d5,-(%sp)
 	move.l %d2,-(%sp)
 	jsr (%a5)
 	lea (16,%sp),%sp
-	move.l %d0,%d4
-	move.l %d1,%d5
-	move.l %d4,%d2
-	move.l %d5,%d3
-	move.l %a3,-(%sp)
-	move.l %a2,-(%sp)
-	move.l %d3,-(%sp)
-	move.l %d2,-(%sp)
+	move.l %d0,%a2
+	move.l %d1,%a3
+	move.l %a2,%d2
+	move.l %a3,%d3
+	clr.l -(%sp)
+	move.l #1073741824,-(%sp)
+	move.l %d5,-(%sp)
+	move.l %d4,-(%sp)
 	jsr (%a4)
 	lea (16,%sp),%sp
 	tst.l %d0
 	jge .L899
 .L900:
-	move.l 76(%sp),%a0
+	move.l 72(%sp),%a0
 	move.l %d6,(%a0)
 	move.l %d2,%a1
 	tst.l %d7
@@ -3418,19 +3417,19 @@ frexp:
 	move.l 44(%sp),%d0
 	move.l 48(%sp),%d1
 	movem.l (%sp)+,#31996
-	lea (20,%sp),%sp
+	lea (16,%sp),%sp
 	rts
 .L916:
 	clr.l -(%sp)
 	move.l #1071644672,-(%sp)
 	move.l %d3,-(%sp)
 	move.l %d2,-(%sp)
-	jsr (%a2)
+	jsr __ltdf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jge .L896
-	move.l %d7,-(%sp)
-	move.l %d6,-(%sp)
+	move.l %d5,-(%sp)
+	move.l %d4,-(%sp)
 	move.l %d3,-(%sp)
 	move.l %d2,-(%sp)
 	jsr __nedf2
@@ -3438,7 +3437,7 @@ frexp:
 	tst.l %d0
 	jne .L905
 .L896:
-	move.l 76(%sp),%a0
+	move.l 72(%sp),%a0
 	clr.l (%a0)
 	move.l %d2,%a1
 	move.l %d3,%a0
@@ -3447,12 +3446,12 @@ frexp:
 	move.l 44(%sp),%d0
 	move.l 48(%sp),%d1
 	movem.l (%sp)+,#31996
-	lea (20,%sp),%sp
+	lea (16,%sp),%sp
 	rts
 .L915:
-	move.l %d2,%d6
-	add.l #-2147483648,%d6
-	move.l %d3,52(%sp)
+	move.l %d2,%d4
+	add.l #-2147483648,%d4
+	move.l %d3,%d5
 	clr.l -(%sp)
 	move.l #-1074790400,-(%sp)
 	move.l %d3,-(%sp)
@@ -3461,16 +3460,14 @@ frexp:
 	lea (16,%sp),%sp
 	tst.l %d0
 	jgt .L917
-	move.l %d6,%a3
-	move.l %d3,%a4
-	move.l %a3,%d2
-	move.l %a4,%d3
+	move.l %d4,%d6
+	move.l %d3,%d7
+	move.l %d6,%d2
+	move.l %d7,%d3
 	moveq #1,%d7
 	lea __gedf2,%a4
 	moveq #0,%d6
 	lea __muldf3,%a5
-	move.l #1072693248,%a2
-	sub.l %a3,%a3
 	jra .L899
 .L906:
 	move.l %d3,%a0
@@ -3479,7 +3476,7 @@ frexp:
 	move.l 44(%sp),%d0
 	move.l 48(%sp),%d1
 	movem.l (%sp)+,#31996
-	lea (20,%sp),%sp
+	lea (16,%sp),%sp
 	rts
 .L917:
 	clr.l -(%sp)
@@ -3491,20 +3488,19 @@ frexp:
 	tst.l %d0
 	jle .L896
 	moveq #1,%d7
-	move.l 52(%sp),%d0
-	move.l %d6,56(%sp)
-	move.l %d0,60(%sp)
-	move.l 56(%sp),%d2
-	move.l 60(%sp),%d3
+	move.l %d4,52(%sp)
+	move.l %d5,56(%sp)
+	move.l 52(%sp),%d2
+	move.l 56(%sp),%d3
 	moveq #0,%d6
 	lea __adddf3,%a3
-	move.l #1071644672,%d4
-	clr.l %d5
 .L901:
 	subq.l #1,%d6
-	move.l %d3,-(%sp)
+	move.l %d2,%d4
+	move.l %d3,%d5
+	move.l %d5,-(%sp)
 	move.l %d2,-(%sp)
-	move.l %d3,-(%sp)
+	move.l %d5,-(%sp)
 	move.l %d2,-(%sp)
 	jsr (%a3)
 	lea (16,%sp),%sp
@@ -3512,18 +3508,20 @@ frexp:
 	move.l %d1,%a6
 	move.l %a5,%d2
 	move.l %a6,%d3
+	clr.l -(%sp)
+	move.l #1070596096,-(%sp)
 	move.l %d5,-(%sp)
 	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	move.l %d2,-(%sp)
-	jsr (%a2)
+	jsr __ltdf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jge .L900
 	subq.l #1,%d6
-	move.l %d3,-(%sp)
+	move.l %d2,%d4
+	move.l %d3,%d5
+	move.l %d5,-(%sp)
 	move.l %d2,-(%sp)
-	move.l %d3,-(%sp)
+	move.l %d5,-(%sp)
 	move.l %d2,-(%sp)
 	jsr (%a3)
 	lea (16,%sp),%sp
@@ -3531,28 +3529,25 @@ frexp:
 	move.l %d1,%a6
 	move.l %a5,%d2
 	move.l %a6,%d3
+	clr.l -(%sp)
+	move.l #1070596096,-(%sp)
 	move.l %d5,-(%sp)
 	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	move.l %d2,-(%sp)
-	jsr (%a2)
+	jsr __ltdf2
 	lea (16,%sp),%sp
 	tst.l %d0
 	jlt .L901
 	jra .L900
 .L905:
-	move.l %d2,%d6
-	move.l %d3,52(%sp)
+	move.l %d2,%d4
+	move.l %d3,%d5
 	moveq #0,%d7
-	move.l 52(%sp),%d0
-	move.l %d6,56(%sp)
-	move.l %d0,60(%sp)
-	move.l 56(%sp),%d2
-	move.l 60(%sp),%d3
+	move.l %d4,52(%sp)
+	move.l %d5,56(%sp)
+	move.l 52(%sp),%d2
+	move.l 56(%sp),%d3
 	moveq #0,%d6
 	lea __adddf3,%a3
-	move.l #1071644672,%d4
-	clr.l %d5
 	jra .L901
 	.size	frexp, .-frexp
 	.align	2

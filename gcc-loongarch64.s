@@ -3958,26 +3958,29 @@ mempcpy:
 frexp:
 .LFB101 = .
 	.cfi_startproc
-	movgr2fr.d	$f3,$r0
-	fcmp.slt.d	$fcc0,$f0,$f3
+	movgr2fr.d	$f1,$r0
+	fcmp.slt.d	$fcc0,$f0,$f1
 	bcnez	$fcc0,.L800
 	pcalau12i	$r12,%pc_hi20(.LC18)
 	fld.d	$f2,$r12,%pc_lo12(.LC18)
-	or	$r14,$r0,$r0
+	or	$r15,$r0,$r0
 	fcmp.sge.d	$fcc0,$f0,$f2
 	bceqz	$fcc0,.L801
 .L780:
-	pcalau12i	$r13,%pc_hi20(.LC13)
-	fld.d	$f1,$r13,%pc_lo12(.LC13)
+	pcalau12i	$r14,%pc_hi20(.LC13)
+	pcalau12i	$r13,%pc_hi20(.LC12)
+	fld.d	$f3,$r14,%pc_lo12(.LC13)
+	fld.d	$f2,$r13,%pc_lo12(.LC12)
 	or	$r12,$r0,$r0
 	.align	3
 .L786:
-	fmul.d	$f0,$f0,$f1
+	fmov.d	$f1,$f0
 	addi.w	$r12,$r12,1
-	fcmp.sge.d	$fcc0,$f0,$f2
+	fcmp.sge.d	$fcc0,$f1,$f2
+	fmul.d	$f0,$f0,$f3
 	bcnez	$fcc0,.L786
 	stptr.w	$r12,$r4,0
-	beqz	$r14,.L777
+	beqz	$r15,.L777
 .L803:
 	fneg.d	$f0,$f0
 .L777:
@@ -3985,10 +3988,10 @@ frexp:
 	.align	5
 .L801:
 	pcalau12i	$r12,%pc_hi20(.LC13)
-	fld.d	$f1,$r12,%pc_lo12(.LC13)
-	fcmp.slt.d	$fcc0,$f0,$f1
+	fld.d	$f2,$r12,%pc_lo12(.LC13)
+	fcmp.slt.d	$fcc0,$f0,$f2
 	bceqz	$fcc0,.L783
-	fcmp.cune.d	$fcc0,$f0,$f3
+	fcmp.cune.d	$fcc0,$f0,$f1
 	bcnez	$fcc0,.L792
 .L783:
 	stptr.w	$r0,$r4,0
@@ -4000,10 +4003,8 @@ frexp:
 	fneg.d	$f2,$f0
 	fcmp.sle.d	$fcc0,$f0,$f1
 	bceqz	$fcc0,.L802
-	pcalau12i	$r12,%pc_hi20(.LC18)
 	fmov.d	$f0,$f2
-	addi.w	$r14,$r0,1			# 0x1
-	fld.d	$f2,$r12,%pc_lo12(.LC18)
+	addi.w	$r15,$r0,1			# 0x1
 	b	.L780
 	.align	5
 .L802:
@@ -4011,20 +4012,21 @@ frexp:
 	fld.d	$f1,$r12,%pc_lo12(.LC17)
 	fcmp.sgt.d	$fcc0,$f0,$f1
 	bceqz	$fcc0,.L783
-	pcalau12i	$r12,%pc_hi20(.LC13)
-	fld.d	$f1,$r12,%pc_lo12(.LC13)
-	addi.w	$r14,$r0,1			# 0x1
+	addi.w	$r15,$r0,1			# 0x1
 .L781:
+	pcalau12i	$r13,%pc_hi20(.LC19)
 	fmov.d	$f0,$f2
+	fld.d	$f2,$r13,%pc_lo12(.LC19)
 	or	$r12,$r0,$r0
 	.align	3
 .L788:
-	fadd.d	$f0,$f0,$f0
+	fmov.d	$f1,$f0
 	addi.w	$r12,$r12,-1
-	fcmp.slt.d	$fcc0,$f0,$f1
+	fcmp.slt.d	$fcc0,$f1,$f2
+	fadd.d	$f0,$f0,$f0
 	bcnez	$fcc0,.L788
 	stptr.w	$r12,$r4,0
-	bnez	$r14,.L803
+	bnez	$r15,.L803
 	jr	$r1
 .L792:
 	fmov.d	$f2,$f0
@@ -5459,8 +5461,8 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118 = .
 	.cfi_startproc
-	pcalau12i	$r12,%pc_hi20(.LC21)
-	fld.s	$f1,$r12,%pc_lo12(.LC21)
+	pcalau12i	$r12,%pc_hi20(.LC24)
+	fld.s	$f1,$r12,%pc_lo12(.LC24)
 	fcmp.sge.s	$fcc0,$f0,$f1
 	bcnez	$fcc0,.L1173
 	ftintrz.l.s $f0,$f0
@@ -5484,19 +5486,19 @@ __fixunssfsi:
 __parityhi2:
 .LFB119 = .
 	.cfi_startproc
-	la.local	$r14,.LC23
+	la.local	$r14,.LC26
 	vreplgr2vr.w	$vr0,$r4
 	vrepli.w	$vr1,1
 	vrepli.w	$vr4,1
-	la.local	$r15,.LC22
+	la.local	$r15,.LC25
 	vld	$vr3,$r14,0
 	vsra.w	$vr3,$vr0,$vr3
 	vand.v	$vr3,$vr3,$vr1
-	la.local	$r13,.LC24
+	la.local	$r13,.LC27
 	vld	$vr2,$r15,0
 	vsra.w	$vr2,$vr0,$vr2
 	vand.v	$vr2,$vr2,$vr1
-	la.local	$r12,.LC25
+	la.local	$r12,.LC28
 	vadd.w	$vr2,$vr2,$vr3
 	vld	$vr1,$r13,0
 	vsra.w	$vr1,$vr0,$vr1
@@ -5521,19 +5523,19 @@ __parityhi2:
 __popcounthi2:
 .LFB120 = .
 	.cfi_startproc
-	la.local	$r14,.LC23
+	la.local	$r14,.LC26
 	vreplgr2vr.w	$vr0,$r4
 	vrepli.w	$vr1,1
 	vrepli.w	$vr4,1
-	la.local	$r15,.LC22
+	la.local	$r15,.LC25
 	vld	$vr3,$r14,0
 	vsra.w	$vr3,$vr0,$vr3
 	vand.v	$vr3,$vr3,$vr1
-	la.local	$r13,.LC24
+	la.local	$r13,.LC27
 	vld	$vr2,$r15,0
 	vsra.w	$vr2,$vr0,$vr2
 	vand.v	$vr2,$vr2,$vr1
-	la.local	$r12,.LC25
+	la.local	$r12,.LC28
 	vadd.w	$vr2,$vr2,$vr3
 	vld	$vr1,$r13,0
 	vsra.w	$vr1,$vr0,$vr1
@@ -7316,9 +7318,9 @@ __powisf2:
 	.cfi_startproc
 	andi	$r12,$r4,1
 	fmov.s	$f1,$f0
-	pcalau12i	$r13,%pc_hi20(.LC26)
+	pcalau12i	$r13,%pc_hi20(.LC29)
 	beqz	$r12,.L1499
-	fld.s	$f0,$r13,%pc_lo12(.LC26)
+	fld.s	$f0,$r13,%pc_lo12(.LC29)
 	or	$r12,$r4,$r0
 	.align	3
 .L1496:
@@ -7347,7 +7349,7 @@ __powisf2:
 	jr	$r1
 	.align	5
 .L1499:
-	fld.s	$f0,$r13,%pc_lo12(.LC26)
+	fld.s	$f0,$r13,%pc_lo12(.LC29)
 	or	$r12,$r4,$r0
 	b	.L1494
 	.align	5
@@ -7505,38 +7507,42 @@ __ucmpti2:
 .LC18:
 	.word	0
 	.word	1072693248
+	.align	3
+.LC19:
+	.word	0
+	.word	1070596096
 	.section	.rodata.cst4
 	.align	2
-.LC21:
+.LC24:
 	.word	1191182336
 	.section	.rodata.cst16
 	.align	4
-.LC22:
+.LC25:
 	.word	0
 	.word	1
 	.word	2
 	.word	3
 	.align	4
-.LC23:
+.LC26:
 	.word	4
 	.word	5
 	.word	6
 	.word	7
 	.align	4
-.LC24:
+.LC27:
 	.word	8
 	.word	9
 	.word	10
 	.word	11
 	.align	4
-.LC25:
+.LC28:
 	.word	12
 	.word	13
 	.word	14
 	.word	15
 	.section	.rodata.cst4
 	.align	2
-.LC26:
+.LC29:
 	.word	1065353216
 	.section	.rodata
 	.align	4

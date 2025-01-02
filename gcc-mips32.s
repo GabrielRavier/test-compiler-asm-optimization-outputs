@@ -4515,28 +4515,31 @@ frexp:
 	c.le.d	$f2,$f12
 	nop
 	bc1f	$L823
-	move	$4,$0
+	move	$3,$0
 
 $L802:
-	lui	$3,%hi($LC7)
-	lwc1	$f2,%lo($LC7+4)($3)
-	lwc1	$f0,%lo($LC10+4)($2)
-	lwc1	$f3,%lo($LC7)($3)
-	lwc1	$f1,%lo($LC10)($2)
+	lui	$2,%hi($LC7)
+	lwc1	$f4,%lo($LC7+4)($2)
+	nop
+	lwc1	$f5,%lo($LC7)($2)
+	lui	$2,%hi($LC6)
+	lwc1	$f2,%lo($LC6+4)($2)
+	nop
+	lwc1	$f3,%lo($LC6)($2)
 	move	$2,$0
 $L808:
-	lwc1	$f4,20($sp)
+	lwc1	$f0,20($sp)
 	addiu	$2,$2,1
-	lwc1	$f5,16($sp)
+	lwc1	$f1,16($sp)
 	nop
-	mul.d	$f4,$f4,$f2
-	c.le.d	$f0,$f4
-	swc1	$f4,20($sp)
+	c.le.d	$f2,$f0
+	mul.d	$f0,$f0,$f4
+	swc1	$f0,20($sp)
 	bc1t	$L808
-	swc1	$f5,16($sp)
+	swc1	$f1,16($sp)
 
 $L809:
-	beq	$4,$0,$L815
+	beq	$3,$0,$L815
 	sw	$2,0($6)
 
 	lw	$3,16($sp)
@@ -4554,10 +4557,10 @@ $L799:
 	addiu	$sp,$sp,16
 
 $L823:
-	lui	$3,%hi($LC7)
-	lwc1	$f2,%lo($LC7+4)($3)
+	lui	$2,%hi($LC7)
+	lwc1	$f2,%lo($LC7+4)($2)
 	nop
-	lwc1	$f3,%lo($LC7)($3)
+	lwc1	$f3,%lo($LC7)($2)
 	nop
 	c.lt.d	$f12,$f2
 	nop
@@ -4596,9 +4599,9 @@ $L822:
 	sw	$2,12($sp)
 
 	lwc1	$f0,12($sp)
-	li	$4,1			# 0x1
+	li	$3,1			# 0x1
 	lwc1	$f1,8($sp)
-	lui	$2,%hi($LC10)
+	nop
 	swc1	$f0,20($sp)
 	.option	pic0
 	b	$L802
@@ -4627,7 +4630,7 @@ $L824:
 	c.lt.d	$f0,$f12
 	nop
 	bc1t	$L812
-	li	$4,1			# 0x1
+	li	$3,1			# 0x1
 
 	sw	$0,0($6)
 	swc1	$f12,12($sp)
@@ -4637,25 +4640,25 @@ $L824:
 	swc1	$f13,8($sp)
 
 $L812:
-	lui	$3,%hi($LC7)
 $L803:
-	lwc1	$f2,12($sp)
-	lwc1	$f0,%lo($LC7+4)($3)
-	lwc1	$f3,8($sp)
-	lwc1	$f1,%lo($LC7)($3)
-	swc1	$f2,20($sp)
-	swc1	$f3,16($sp)
+	lwc1	$f0,12($sp)
+	lui	$2,%hi($LC11)
+	lwc1	$f2,%lo($LC11+4)($2)
+	lwc1	$f1,8($sp)
+	lwc1	$f3,%lo($LC11)($2)
+	swc1	$f0,20($sp)
+	swc1	$f1,16($sp)
 	move	$2,$0
 $L810:
-	lwc1	$f2,20($sp)
+	lwc1	$f0,20($sp)
 	addiu	$2,$2,-1
-	lwc1	$f3,16($sp)
+	lwc1	$f1,16($sp)
 	nop
-	add.d	$f2,$f2,$f2
-	c.lt.d	$f2,$f0
-	swc1	$f2,20($sp)
+	c.lt.d	$f0,$f2
+	add.d	$f0,$f0,$f0
+	swc1	$f0,20($sp)
 	bc1t	$L810
-	swc1	$f3,16($sp)
+	swc1	$f1,16($sp)
 
 	.option	pic0
 	b	$L809
@@ -4668,7 +4671,7 @@ $L814:
 	.option	pic0
 	b	$L803
 	.option	pic2
-	move	$4,$0
+	move	$3,$0
 
 	.set	macro
 	.set	reorder
@@ -5334,10 +5337,10 @@ __uitod:
 	nop
 
 $L981:
-	lui	$2,%hi($LC11)
-	lwc1	$f2,%lo($LC11+4)($2)
+	lui	$2,%hi($LC12)
+	lwc1	$f2,%lo($LC12+4)($2)
 	nop
-	lwc1	$f3,%lo($LC11)($2)
+	lwc1	$f3,%lo($LC12)($2)
 	jr	$31
 	add.d	$f0,$f0,$f2
 
@@ -5361,10 +5364,10 @@ __uitof:
 	bgez	$4,$L985
 	cvt.d.w	$f0,$f0
 
-	lui	$2,%hi($LC11)
-	lwc1	$f2,%lo($LC11+4)($2)
+	lui	$2,%hi($LC12)
+	lwc1	$f2,%lo($LC12+4)($2)
 	nop
-	lwc1	$f3,%lo($LC11)($2)
+	lwc1	$f3,%lo($LC12)($2)
 	nop
 	add.d	$f0,$f0,$f2
 $L985:
@@ -5762,8 +5765,8 @@ __fixunssfsi:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$2,%hi($LC12)
-	lwc1	$f0,%lo($LC12)($2)
+	lui	$2,%hi($LC13)
+	lwc1	$f0,%lo($LC13)($2)
 	nop
 	c.le.s	$f0,$f12
 	nop
@@ -8038,9 +8041,9 @@ __powisf2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$6,%hi($LC13)
+	lui	$6,%hi($LC14)
 	andi	$2,$5,0x1
-	lwc1	$f0,%lo($LC13)($6)
+	lwc1	$f0,%lo($LC14)($6)
 	beq	$2,$0,$L1336
 	move	$2,$5
 
@@ -8079,7 +8082,7 @@ $L1337:
 	nop
 
 $L1344:
-	lwc1	$f2,%lo($LC13)($6)
+	lwc1	$f2,%lo($LC14)($6)
 	jr	$31
 	div.s	$f0,$f2,$f0
 
@@ -8229,14 +8232,18 @@ $LC10:
 	.word	0
 	.align	3
 $LC11:
+	.word	1070596096
+	.word	0
+	.align	3
+$LC12:
 	.word	1106247680
 	.word	0
 	.section	.rodata.cst4
 	.align	2
-$LC12:
+$LC13:
 	.word	1191182336
 	.align	2
-$LC13:
+$LC14:
 	.word	1065353216
 	.globl	__floatundisf
 	.globl	__floatundidf
