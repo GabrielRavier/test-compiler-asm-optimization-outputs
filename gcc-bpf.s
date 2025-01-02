@@ -959,14 +959,14 @@ strncmp:
 	r4 = *(u8 *) (r1+1)
 	r0 += 1
 	if r4 == 0 goto .L547
-	r2 = r0
 	r5 = *(u8 *) (r0+0)
+	r2 = r0
 	if r5 == 0 goto .L462
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+2)
 	if r4 == 0 goto .L547
+	r5 = *(u8 *) (r0+1)
 	r2 += 1
-	r5 = *(u8 *) (r2+0)
 	if r5 == 0 goto .L462
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+3)
@@ -978,20 +978,20 @@ strncmp:
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+4)
 	if r4 == 0 goto .L547
-	r2 += 1
 	r5 = *(u8 *) (r0+3)
+	r2 += 1
 	if r5 == 0 goto .L462
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+5)
 	if r4 == 0 goto .L547
-	r2 += 1
 	r5 = *(u8 *) (r0+4)
+	r2 += 1
 	if r5 == 0 goto .L462
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+6)
 	if r4 == 0 goto .L547
-	r2 += 1
 	r5 = *(u8 *) (r0+5)
+	r2 += 1
 	if r5 == 0 goto .L462
 	if r5 != r4 goto .L462
 	r4 = *(u8 *) (r1+7)
@@ -5059,8 +5059,8 @@ strstr:
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
 	if r9 != r0 goto .L1871
-	r3 += 1
 	r0 = *(u8 *) (r4+2)
+	r3 += 1
 	if r0 == 0 goto .L1871
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
@@ -5072,26 +5072,26 @@ strstr:
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
 	if r9 != r0 goto .L1871
-	r3 += 1
 	r0 = *(u8 *) (r4+4)
+	r3 += 1
 	if r0 == 0 goto .L1871
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
 	if r9 != r0 goto .L1871
-	r3 += 1
 	r0 = *(u8 *) (r4+5)
+	r3 += 1
 	if r0 == 0 goto .L1871
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
 	if r9 != r0 goto .L1871
-	r3 += 1
 	r0 = *(u8 *) (r4+6)
+	r3 += 1
 	if r0 == 0 goto .L1871
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
 	if r9 != r0 goto .L1871
-	r3 += 1
 	r0 = *(u8 *) (r4+7)
+	r3 += 1
 	if r0 == 0 goto .L1871
 	r9 = *(u8 *) (r3+0)
 	if r9 == 0 goto .L1871
