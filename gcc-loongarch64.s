@@ -2618,10 +2618,10 @@ wmemmove:
 	preld	8,$r12,0
 	addi.d	$r12,$r12,-64
 	preld	0,$r13,0
-	st.w	$r20,$r12,164
-	ldptr.w	$r7,$r13,96
-	addi.d	$r14,$r14,-16
 	addi.d	$r13,$r13,-64
+	st.w	$r20,$r12,164
+	ldptr.w	$r7,$r13,160
+	addi.d	$r14,$r14,-16
 	st.w	$r7,$r12,160
 	ldptr.w	$r8,$r13,156
 	st.w	$r8,$r12,156
@@ -2692,10 +2692,10 @@ wmemmove:
 	preld	8,$r12,116
 	addi.d	$r12,$r12,64
 	preld	0,$r5,116
-	st.w	$r13,$r12,-64
-	ldptr.w	$r7,$r5,4
-	addi.d	$r14,$r14,-16
 	addi.d	$r5,$r5,64
+	st.w	$r13,$r12,-64
+	ldptr.w	$r7,$r5,-60
+	addi.d	$r14,$r14,-16
 	st.w	$r7,$r12,-60
 	ldptr.w	$r8,$r5,-56
 	st.w	$r8,$r12,-56
@@ -5162,13 +5162,13 @@ __cmovw:
 	preld	8,$r7,0
 	addi.d	$r7,$r7,64
 	preld	0,$r13,0
-	st.w	$r18,$r7,-164
-	ldptr.w	$r9,$r13,-96
-	or	$r17,$r8,$r0
 	addi.d	$r13,$r13,64
+	st.w	$r18,$r7,-164
+	ldptr.w	$r9,$r13,-160
+	or	$r17,$r8,$r0
+	addi.w	$r8,$r8,16
 	st.w	$r9,$r7,-160
 	ldptr.w	$r12,$r13,-156
-	addi.w	$r8,$r8,16
 	st.w	$r12,$r7,-156
 	ldptr.w	$r15,$r13,-152
 	st.w	$r15,$r7,-152
