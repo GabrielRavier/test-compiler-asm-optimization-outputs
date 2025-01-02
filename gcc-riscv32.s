@@ -6276,21 +6276,21 @@ __powidf2:
 	.cfi_startproc
 	addi	sp,sp,-76
 	.cfi_def_cfa_offset 76
-	sw	ra,72(sp)
 	sw	s0,68(sp)
+	sw	ra,72(sp)
 	sw	s1,64(sp)
-	.cfi_offset 1, -4
 	.cfi_offset 8, -8
+	.cfi_offset 1, -4
 	.cfi_offset 9, -12
 	sw	a2,48(sp)
 	andi	a5,a2,1
 	mv	a4,a0
 	mv	t1,a1
+	mv	s0,a2
 	beq	a5,zero,.L1181
 	lui	a5,%hi(.LC15)
 	lw	s1,%lo(.LC15)(a5)
 	lw	a1,%lo(.LC15+4)(a5)
-	mv	s0,a2
 	sw	a5,52(sp)
 .L1178:
 	sw	a4,16(sp)
@@ -6366,7 +6366,6 @@ __powidf2:
 	lui	a5,%hi(.LC15)
 	lw	s1,%lo(.LC15)(a5)
 	lw	a1,%lo(.LC15+4)(a5)
-	lw	s0,48(sp)
 	sw	a5,52(sp)
 	j	.L1176
 	.cfi_endproc
@@ -6446,7 +6445,6 @@ __powisf2:
 	.cfi_restore_state
 	lui	a5,%hi(.LC17)
 	lw	s0,%lo(.LC17)(a5)
-	lw	s1,4(sp)
 	sw	a5,8(sp)
 	j	.L1185
 	.cfi_endproc

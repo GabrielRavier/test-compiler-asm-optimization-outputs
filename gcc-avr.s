@@ -1664,7 +1664,7 @@ fmaxl:
 	mov r17,r25
 	rcall __unorddf2
 	cpse r24,__zero_reg__
-	rjmp .L214
+	rjmp .L212
 	mov r10,r4
 	mov r11,r5
 	mov r12,r6
@@ -1693,8 +1693,6 @@ fmaxl:
 	cp r18,r24
 	cpc __zero_reg__,r25
 	brne .L217
-	ldd r16,Y+8
-	ldd r17,Y+7
 	mov r18,r2
 	ldd r19,Y+1
 	ldd r20,Y+2
@@ -1707,6 +1705,7 @@ fmaxl:
 	cp r24, __zero_reg__
 	breq .L216
 	std Y+6,r16
+	mov r25,r17
 .L210:
 	mov r18,r4
 	mov r19,r5
@@ -1715,7 +1714,6 @@ fmaxl:
 	mov r22,r8
 	mov r23,r9
 	ldd r24,Y+6
-	ldd r25,Y+7
 .L206:
 /* epilogue start */
 	adiw r28,8
@@ -1746,15 +1744,14 @@ fmaxl:
 .L217:
 	or r24,r25
 	breq .L213
-.L214:
+	mov r24,r16
+	mov r25,r17
 	mov r18,r4
 	mov r19,r5
 	mov r20,r6
 	mov r21,r7
 	mov r22,r8
 	mov r23,r9
-	ldd r24,Y+8
-	ldd r25,Y+7
 	rjmp .L206
 .L213:
 	mov r18,r2
@@ -1774,7 +1771,18 @@ fmaxl:
 	ldd r8,Y+4
 	ldd r9,Y+5
 	std Y+7,r3
+	mov r25,r3
 	rjmp .L210
+.L212:
+	mov r18,r4
+	mov r19,r5
+	mov r20,r6
+	mov r21,r7
+	mov r22,r8
+	mov r23,r9
+	ldd r24,Y+8
+	ldd r25,Y+7
+	rjmp .L206
 	.size	fmaxl, .-fmaxl
 .global	fmin
 	.type	fmin, @function
@@ -5908,8 +5916,6 @@ ldexpl:
 	ldi r20,lo8(64)
 	mov r2,r20
 .L595:
-	ldd r24,Y+9
-	ldd r25,Y+10
 	sbrs r24,0
 	rjmp .L596
 .L598:
@@ -13688,16 +13694,16 @@ __powidf2:
 	std Y+10,r21
 	ldd r24,Y+9
 	ldd r25,Y+10
-	sbrs r24,0
-	rjmp .L1229
 	std Y+20,r25
 	std Y+19,r24
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
-	ldi r22,lo8(-128)
-	mov r12,r22
-	ldi r23,lo8(63)
-	mov r13,r23
+	ldi r20,lo8(-128)
+	mov r12,r20
+	ldi r21,lo8(63)
+	mov r13,r21
+	sbrs r24,0
+	rjmp .L1222
 .L1225:
 	std Y+1,r17
 	std Y+2,r16
@@ -13833,18 +13839,6 @@ __powidf2:
 	pop r3
 	pop r2
 	ret
-.L1229:
-	ldd r24,Y+9
-	ldd r25,Y+10
-	std Y+20,r25
-	std Y+19,r24
-	mov r2,__zero_reg__
-	mov r3,__zero_reg__
-	ldi r20,lo8(-128)
-	mov r12,r20
-	ldi r21,lo8(63)
-	mov r13,r21
-	rjmp .L1222
 	.size	__powidf2, .-__powidf2
 .global	__powisf2
 	.type	__powisf2, @function
@@ -13887,16 +13881,16 @@ __powisf2:
 	std Y+10,r21
 	ldd r24,Y+9
 	ldd r25,Y+10
-	sbrs r24,0
-	rjmp .L1239
 	std Y+20,r25
 	std Y+19,r24
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
-	ldi r22,lo8(-128)
-	mov r12,r22
-	ldi r23,lo8(63)
-	mov r13,r23
+	ldi r20,lo8(-128)
+	mov r12,r20
+	ldi r21,lo8(63)
+	mov r13,r21
+	sbrs r24,0
+	rjmp .L1232
 .L1235:
 	std Y+1,r17
 	std Y+2,r16
@@ -14032,18 +14026,6 @@ __powisf2:
 	pop r3
 	pop r2
 	ret
-.L1239:
-	ldd r24,Y+9
-	ldd r25,Y+10
-	std Y+20,r25
-	std Y+19,r24
-	mov r2,__zero_reg__
-	mov r3,__zero_reg__
-	ldi r20,lo8(-128)
-	mov r12,r20
-	ldi r21,lo8(63)
-	mov r13,r21
-	rjmp .L1232
 	.size	__powisf2, .-__powisf2
 .global	__ucmpdi2
 	.type	__ucmpdi2, @function

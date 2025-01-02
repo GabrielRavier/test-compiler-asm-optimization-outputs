@@ -1306,12 +1306,11 @@ fmaxl:
 	srl	%r3,28
 	cr	%r1,%r3
 	jne	.L395
+	lxr	%f5,%f0
 	ld	%f0,96(%r15)
 	ld	%f2,104(%r15)
-	ld	%f1,112(%r15)
-	ld	%f3,120(%r15)
 	lhi	%r0,1
-	kxbr	%f0,%f1
+	kxbr	%f0,%f5
 	jl	.L389
 	lhi	%r0,0
 .L389:
@@ -1326,15 +1325,15 @@ fmaxl:
 	st	%r4,132(%r15)
 	st	%r3,136(%r15)
 	st	%r1,140(%r15)
-	ld	%f5,128(%r15)
-	ld	%f7,136(%r15)
-	std	%f5,96(%r15)
-	std	%f7,104(%r15)
+	ld	%f7,128(%r15)
+	ld	%f8,136(%r15)
+	std	%f7,96(%r15)
+	std	%f8,104(%r15)
 .L384:
-	ld	%f8,96(%r15)
-	ld	%f10,104(%r15)
-	std	%f8,0(%r2)
-	std	%f10,8(%r2)
+	ld	%f10,96(%r15)
+	ld	%f12,104(%r15)
+	std	%f10,0(%r2)
+	std	%f12,8(%r2)
 	l	%r15,204(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
@@ -1347,10 +1346,10 @@ fmaxl:
 .L390:
 	std	%f0,96(%r15)
 	std	%f2,104(%r15)
-	ld	%f8,96(%r15)
-	ld	%f10,104(%r15)
-	std	%f8,0(%r2)
-	std	%f10,8(%r2)
+	ld	%f10,96(%r15)
+	ld	%f12,104(%r15)
+	std	%f10,0(%r2)
+	std	%f12,8(%r2)
 	l	%r15,204(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
@@ -1479,12 +1478,11 @@ fminl:
 	srl	%r3,28
 	cr	%r1,%r3
 	jne	.L431
+	lxr	%f5,%f0
 	ld	%f0,112(%r15)
 	ld	%f2,120(%r15)
-	ld	%f1,96(%r15)
-	ld	%f3,104(%r15)
 	lhi	%r0,1
-	kxbr	%f0,%f1
+	kxbr	%f0,%f5
 	jl	.L425
 	lhi	%r0,0
 .L425:
@@ -1499,15 +1497,15 @@ fminl:
 	st	%r4,132(%r15)
 	st	%r3,136(%r15)
 	st	%r1,140(%r15)
-	ld	%f5,128(%r15)
-	ld	%f7,136(%r15)
-	std	%f5,96(%r15)
-	std	%f7,104(%r15)
+	ld	%f7,128(%r15)
+	ld	%f8,136(%r15)
+	std	%f7,96(%r15)
+	std	%f8,104(%r15)
 .L420:
-	ld	%f12,96(%r15)
-	ld	%f14,104(%r15)
-	std	%f12,0(%r2)
-	std	%f14,8(%r2)
+	ld	%f14,96(%r15)
+	ld	%f9,104(%r15)
+	std	%f14,0(%r2)
+	std	%f9,8(%r2)
 	l	%r15,204(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
@@ -1517,14 +1515,14 @@ fminl:
 	.cfi_restore_state
 	ltr	%r1,%r1
 	je	.L420
-	ld	%f8,112(%r15)
-	ld	%f10,120(%r15)
-	std	%f8,96(%r15)
-	std	%f10,104(%r15)
-	ld	%f12,96(%r15)
-	ld	%f14,104(%r15)
-	std	%f12,0(%r2)
-	std	%f14,8(%r2)
+	ld	%f10,112(%r15)
+	ld	%f12,120(%r15)
+	std	%f10,96(%r15)
+	std	%f12,104(%r15)
+	ld	%f14,96(%r15)
+	ld	%f9,104(%r15)
+	std	%f14,0(%r2)
+	std	%f9,8(%r2)
 	l	%r15,204(%r15)
 	.cfi_remember_state
 	.cfi_restore 15

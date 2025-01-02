@@ -779,7 +779,6 @@ fmax:
 	.align	5
 .L165:
 	.cfi_restore_state
-	fld.d	$f0,$r3,0
 	fld.d	$f1,$r3,8
 	fcmp.slt.d	$fcc0,$f0,$f1
 	fmov.d	$f0,$f1
@@ -794,7 +793,7 @@ fmax:
 	.align	5
 .L166:
 	.cfi_restore_state
-	fld.d	$f0,$r3,8
+	fmov.d	$f0,$f1
 .L170:
 	fst.d	$f0,$r3,0
 	fld.d	$f0,$r3,0
@@ -838,7 +837,6 @@ fmaxf:
 	.align	5
 .L173:
 	.cfi_restore_state
-	fld.s	$f0,$r3,8
 	fld.s	$f1,$r3,12
 	fcmp.slt.s	$fcc0,$f0,$f1
 	fmov.s	$f0,$f1
@@ -853,7 +851,7 @@ fmaxf:
 	.align	5
 .L174:
 	.cfi_restore_state
-	fld.s	$f0,$r3,12
+	fmov.s	$f0,$f1
 .L178:
 	fst.s	$f0,$r3,8
 	fld.s	$f0,$r3,8
@@ -977,8 +975,7 @@ fmin:
 	srli.d	$r12,$r12,63
 	srli.d	$r13,$r13,63
 	beq	$r12,$r13,.L194
-	bnez	$r12,.L192
-	fst.d	$f1,$r3,0
+	beqz	$r12,.L195
 .L192:
 	fld.d	$f0,$r3,0
 	addi.d	$r3,$r3,16
@@ -988,7 +985,6 @@ fmin:
 	.align	5
 .L194:
 	.cfi_restore_state
-	fld.d	$f0,$r3,0
 	fld.d	$f1,$r3,8
 	fcmp.slt.d	$fcc0,$f0,$f1
 	fsel	$f0,$f1,$f0,$fcc0
@@ -1001,9 +997,11 @@ fmin:
 	.align	5
 .L195:
 	.cfi_restore_state
-	fld.d	$f0,$r3,8
-	fst.d	$f0,$r3,0
-	b	.L192
+	fst.d	$f1,$r3,0
+	fld.d	$f0,$r3,0
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
+	jr	$r1
 	.cfi_endproc
 .LFE36:
 	.size	fmin, .-fmin
@@ -1030,8 +1028,7 @@ fminf:
 	slli.w	$r12,$r12,0
 	slli.w	$r13,$r13,0
 	beq	$r12,$r13,.L201
-	bnez	$r12,.L199
-	fst.s	$f1,$r3,8
+	beqz	$r12,.L202
 .L199:
 	fld.s	$f0,$r3,8
 	addi.d	$r3,$r3,16
@@ -1041,7 +1038,6 @@ fminf:
 	.align	5
 .L201:
 	.cfi_restore_state
-	fld.s	$f0,$r3,8
 	fld.s	$f1,$r3,12
 	fcmp.slt.s	$fcc0,$f0,$f1
 	fsel	$f0,$f1,$f0,$fcc0
@@ -1054,9 +1050,11 @@ fminf:
 	.align	5
 .L202:
 	.cfi_restore_state
-	fld.s	$f0,$r3,12
-	fst.s	$f0,$r3,8
-	b	.L199
+	fst.s	$f1,$r3,8
+	fld.s	$f0,$r3,8
+	addi.d	$r3,$r3,16
+	.cfi_def_cfa_offset 0
+	jr	$r1
 	.cfi_endproc
 .LFE37:
 	.size	fminf, .-fminf

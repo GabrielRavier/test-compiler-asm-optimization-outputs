@@ -1189,8 +1189,8 @@ fmax:
 	ld	$4,0($sp)
 	dsrl	$3,$2,63
 	dsrl	$4,$4,63
-	beql	$3,$4,.L210
-	ldc1	$f0,0($sp)
+	beq	$3,$4,.L210
+	nop
 
 	beq	$3,$0,.L215
 	nop
@@ -1201,7 +1201,7 @@ fmax:
 
 	.align	3
 .L210:
-	c.lt.d	$f12,$f0
+	c.lt.d	$f12,$f13
 	nop
 	bc1t	.L208
 	nop
@@ -1214,7 +1214,7 @@ fmax:
 	.align	3
 .L214:
 	b	.L208
-	ldc1	$f0,0($sp)
+	mov.d	$f0,$f13
 
 	.set	macro
 	.set	reorder
@@ -1259,8 +1259,7 @@ fmaxf:
 
 	.align	3
 .L222:
-	lwc1	$f0,0($sp)
-	c.lt.s	$f12,$f0
+	c.lt.s	$f12,$f13
 	nop
 	bc1t	.L220
 	nop
@@ -1273,7 +1272,7 @@ fmaxf:
 	.align	3
 .L226:
 	b	.L220
-	lwc1	$f0,0($sp)
+	mov.s	$f0,$f13
 
 	.set	macro
 	.set	reorder
@@ -1413,11 +1412,11 @@ fmin:
 
 	dsrl	$4,$2,63
 	dsrl	$3,$3,63
-	beql	$3,$4,.L248
-	ldc1	$f0,0($sp)
+	beq	$3,$4,.L248
+	mov.d	$f0,$f12
 
 	beq	$3,$0,.L258
-	mov.d	$f0,$f12
+	nop
 
 .L246:
 	jr	$31
@@ -1425,7 +1424,7 @@ fmin:
 
 	.align	3
 .L248:
-	c.lt.d	$f0,$f13
+	c.lt.d	$f12,$f13
 	nop
 	bc1t	.L246
 	nop
@@ -1438,7 +1437,7 @@ fmin:
 	.align	3
 .L253:
 	b	.L246
-	ldc1	$f0,0($sp)
+	mov.d	$f0,$f12
 
 	.set	macro
 	.set	reorder
@@ -1472,11 +1471,12 @@ fminf:
 	li	$5,-2147483648			# 0xffffffff80000000
 	and	$3,$2,$5
 	and	$4,$4,$5
+	mov.s	$f0,$f12
 	beq	$4,$3,.L261
 	move	$5,$4
 
 	beq	$5,$0,.L271
-	mov.s	$f0,$f12
+	nop
 
 .L259:
 	jr	$31
@@ -1484,8 +1484,7 @@ fminf:
 
 	.align	3
 .L261:
-	lwc1	$f0,0($sp)
-	c.lt.s	$f0,$f13
+	c.lt.s	$f12,$f13
 	nop
 	bc1t	.L259
 	nop
@@ -1498,7 +1497,7 @@ fminf:
 	.align	3
 .L266:
 	b	.L259
-	lwc1	$f0,0($sp)
+	mov.s	$f0,$f12
 
 	.set	macro
 	.set	reorder

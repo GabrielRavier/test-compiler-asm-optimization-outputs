@@ -4910,7 +4910,8 @@ __muldi3_compiler_rt:
 	mul r2,r1,a0,d1
 	mul r3,r0
 	add d0,d1
-	add_mov r0, d1, d2, d0
+	add r0,d1
+	mov_mov d1, d3, d2, d0
 	ret [d2,d3,a2,a3],16
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.global __negdi2

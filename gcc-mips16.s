@@ -2142,7 +2142,7 @@ lsearch:
 	sw	$7,96($sp)
 	sw	$2,44($sp)
 	beqz	$2,$L296
-	lw	$17,80($sp)
+	move	$17,$5
 	li	$16,0
 	b	$L298
 $L310:
@@ -9461,7 +9461,7 @@ __powidf2:
 	move	$8,$4
 	beqz	$2,$L1302
 	ld	$2,$L1305
-	lw	$16,80($sp)
+	move	$16,$3
 	sd	$2,40($sp)
 $L1299:
 	lw	$2,%call16(__mips16_muldf3)($17)
@@ -9599,7 +9599,7 @@ __powisf2:
 	move	$8,$4
 	beqz	$2,$L1312
 	lw	$2,$L1315
-	lw	$16,80($sp)
+	move	$16,$3
 	sw	$2,40($sp)
 $L1309:
 	lw	$2,%call16(__mips16_mulsf3)($17)

@@ -8872,9 +8872,9 @@ __powidf2:
 	r0 = r2
 	r6 = r1
 	r0 &= 1
-	if r0 == 0 goto .L2719
 	r8 = r2
 	r7 = 0x3ff0000000000000 ll
+	if r0 == 0 goto .L2714
 .L2716:
 	r1 = r7
 	r2 = r6
@@ -8999,10 +8999,6 @@ __powidf2:
 .L2713:
 	r0 = r7
 	exit
-.L2719:
-	r8 = *(u64 *) (r10+-8)
-	r7 = 0x3ff0000000000000 ll
-	goto .L2714
 	.size	__powidf2, .-__powidf2
 	.align	3
 	.global	__powisf2
@@ -9014,9 +9010,9 @@ __powisf2:
 	r0 = r2
 	r6 = r1
 	r0 &= 1
-	if r0 == 0 goto .L2728
 	r8 = r2
 	r7 = 0x3f800000 ll
+	if r0 == 0 goto .L2723
 .L2725:
 	r1 = r7
 	r2 = r6
@@ -9141,10 +9137,6 @@ __powisf2:
 .L2722:
 	r0 = r7
 	exit
-.L2728:
-	r8 = *(u64 *) (r10+-8)
-	r7 = 0x3f800000 ll
-	goto .L2723
 	.size	__powisf2, .-__powisf2
 	.align	3
 	.global	__ucmpdi2

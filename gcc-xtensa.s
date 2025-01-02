@@ -4255,7 +4255,6 @@ __powidf2:
 	mov.n	a3, a11
 	j	.L986
 .L991:
-	l32i	a7, sp, 0
 	l32r	a2, .LC163
 	movi.n	a3, 0
 .L986:

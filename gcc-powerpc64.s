@@ -1162,7 +1162,7 @@ fmaxf:
 	stfs 2,56(1)
 	bun- 0,.L238
 	fcmpu 0,2,2
-	bun- 0,.L239
+	bunlr- 0
 	lwz 9,48(1)
 	lwz 10,56(1)
 	rlwinm 9,9,0,0,0
@@ -1172,19 +1172,15 @@ fmaxf:
 	cmpwi 0,9,0
 	fmr 1,2
 	bnelr- 0
-.L239:
 	lfs 1,48(1)
 	blr
 .L235:
-	lfs 0,48(1)
-	lfs 12,56(1)
-	fmr 1,0
-	fcmpu 0,0,12
+	fcmpu 0,1,2
 	bnllr- 0
-	fmr 1,12
+	fmr 1,2
 	blr
 .L238:
-	lfs 1,56(1)
+	fmr 1,2
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
@@ -1293,17 +1289,16 @@ fminf:
 	bun- 0,.L266
 	fcmpu 0,2,2
 	fmr 0,2
-	bun- 0,.L267
+	bunlr- 0
 	lwz 9,48(1)
 	lwz 10,56(1)
 	rlwinm 9,9,0,0,0
 	rlwinm 10,10,0,0,0
 	cmpw 0,9,10
 	bne- 0,.L271
-	lfs 12,56(1)
-	lfs 0,48(1)
-	fmr 1,12
-	fcmpu 0,0,12
+	fcmpu 0,1,2
+	fmr 0,1
+	fmr 1,2
 	bnllr- 0
 	fmr 1,0
 	blr
@@ -1313,10 +1308,7 @@ fminf:
 	fmr 1,0
 	blr
 .L266:
-	lfs 1,56(1)
-	blr
-.L267:
-	lfs 1,48(1)
+	fmr 1,2
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0
