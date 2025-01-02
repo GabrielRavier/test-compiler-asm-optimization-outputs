@@ -926,26 +926,21 @@ fdimf:
 	.seh_proc	fmax
 fmax:
 	.seh_endprologue
-	movmskpd	eax, xmm0
-	movmskpd	edx, xmm1
+	pxor	xmm3, xmm3
+	comisd	xmm3, xmm0
 	movapd	xmm2, xmm0
-	and	eax, 1
-	and	edx, 1
-	cmp	eax, edx
-	je	.L189
-	test	eax, eax
+	maxsd	xmm0, xmm1
+	seta	dl
+	comisd	xmm3, xmm1
+	seta	al
+	cmp	dl, al
 	je	.L188
-	movapd	xmm0, xmm1
+	movapd	xmm0, xmm2
+	cmpltsd	xmm0, xmm3
+	andpd	xmm1, xmm0
+	andnpd	xmm0, xmm2
+	orpd	xmm0, xmm1
 .L188:
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L189:
-	movapd	xmm0, xmm1
-	cmplesd	xmm0, xmm2
-	andpd	xmm2, xmm0
-	andnpd	xmm0, xmm1
-	orpd	xmm0, xmm2
 	ret
 	.seh_endproc
 	.p2align 4
@@ -954,25 +949,21 @@ fmax:
 	.seh_proc	fmaxf
 fmaxf:
 	.seh_endprologue
-	movd	eax, xmm0
-	movd	edx, xmm1
-	and	eax, -2147483648
-	and	edx, -2147483648
-	cmp	eax, edx
+	pxor	xmm3, xmm3
+	comiss	xmm3, xmm0
+	movaps	xmm2, xmm0
+	maxss	xmm0, xmm1
+	seta	dl
+	comiss	xmm3, xmm1
+	seta	al
+	cmp	dl, al
 	je	.L194
-	test	eax, eax
-	je	.L193
-	movaps	xmm0, xmm1
-.L193:
-	ret
-	.p2align 4,,10
-	.p2align 3
+	movaps	xmm0, xmm2
+	cmpltss	xmm0, xmm3
+	andps	xmm1, xmm0
+	andnps	xmm0, xmm2
+	orps	xmm0, xmm1
 .L194:
-	movaps	xmm2, xmm1
-	cmpless	xmm2, xmm0
-	andps	xmm0, xmm2
-	andnps	xmm2, xmm1
-	orps	xmm0, xmm2
 	ret
 	.seh_endproc
 	.p2align 4
@@ -981,33 +972,30 @@ fmaxf:
 	.seh_proc	fmaxl
 fmaxl:
 	.seh_endprologue
-	fld	TBYTE PTR [r8]
 	fld	TBYTE PTR [rdx]
-	fxam
-	fnstsw	ax
-	fxch	st(1)
-	mov	edx, eax
-	fxam
-	fnstsw	ax
-	and	edx, 512
-	and	eax, 512
-	cmp	edx, eax
-	je	.L199
-	test	edx, edx
+	fld	TBYTE PTR [r8]
 	mov	rax, rcx
-	fcmove	st, st(1)
+	fldz
+	fcomi	st, st(2)
+	seta	cl
+	fcomi	st, st(1)
+	seta	dl
+	cmp	cl, dl
+	je	.L201
+	fcomip	st, st(2)
+	fcmovbe	st, st(1)
 	fstp	st(1)
-	fstp	TBYTE PTR [rcx]
+	fstp	TBYTE PTR [rax]
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L199:
+.L201:
+	fstp	st(0)
 	fxch	st(1)
 	fcomi	st, st(1)
-	mov	rax, rcx
 	fcmovb	st, st(1)
 	fstp	st(1)
-	fstp	TBYTE PTR [rcx]
+	fstp	TBYTE PTR [rax]
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1016,26 +1004,21 @@ fmaxl:
 	.seh_proc	fmin
 fmin:
 	.seh_endprologue
-	movmskpd	eax, xmm0
-	movmskpd	edx, xmm1
+	pxor	xmm3, xmm3
+	comisd	xmm3, xmm0
 	movapd	xmm2, xmm0
-	and	eax, 1
-	and	edx, 1
-	movapd	xmm0, xmm1
-	cmp	eax, edx
-	je	.L205
-	test	eax, eax
-	je	.L204
+	minsd	xmm0, xmm1
+	seta	dl
+	comisd	xmm3, xmm1
+	seta	al
+	cmp	dl, al
+	je	.L206
 	movapd	xmm0, xmm2
-.L204:
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L205:
-	cmplesd	xmm0, xmm2
-	andpd	xmm1, xmm0
-	andnpd	xmm0, xmm2
-	orpd	xmm0, xmm1
+	cmpltsd	xmm0, xmm3
+	andpd	xmm2, xmm0
+	andnpd	xmm0, xmm1
+	orpd	xmm0, xmm2
+.L206:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1044,27 +1027,21 @@ fmin:
 	.seh_proc	fminf
 fminf:
 	.seh_endprologue
-	movd	eax, xmm0
-	movd	edx, xmm1
-	and	eax, -2147483648
-	and	edx, -2147483648
-	cmp	eax, edx
-	je	.L210
-	test	eax, eax
-	je	.L209
-	movaps	xmm1, xmm0
-.L209:
-	movaps	xmm0, xmm1
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L210:
-	movaps	xmm2, xmm1
-	cmpless	xmm2, xmm0
-	andps	xmm1, xmm2
-	andnps	xmm2, xmm0
-	orps	xmm1, xmm2
-	movaps	xmm0, xmm1
+	pxor	xmm3, xmm3
+	comiss	xmm3, xmm0
+	movaps	xmm2, xmm0
+	minss	xmm0, xmm1
+	seta	dl
+	comiss	xmm3, xmm1
+	seta	al
+	cmp	dl, al
+	je	.L212
+	movaps	xmm0, xmm2
+	cmpltss	xmm0, xmm3
+	andps	xmm2, xmm0
+	andnps	xmm0, xmm1
+	orps	xmm0, xmm2
+.L212:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1073,33 +1050,29 @@ fminf:
 	.seh_proc	fminl
 fminl:
 	.seh_endprologue
-	fld	TBYTE PTR [r8]
 	fld	TBYTE PTR [rdx]
-	fxam
-	fnstsw	ax
-	fxch	st(1)
-	mov	edx, eax
-	fxam
-	fnstsw	ax
-	and	edx, 512
-	and	eax, 512
-	cmp	edx, eax
-	je	.L215
-	test	edx, edx
+	fld	TBYTE PTR [r8]
 	mov	rax, rcx
-	fcmovne	st, st(1)
+	fldz
+	fcomi	st, st(2)
+	seta	cl
+	fcomi	st, st(1)
+	seta	dl
+	cmp	cl, dl
+	je	.L219
+	fcomip	st, st(2)
+	fcmovnbe	st, st(1)
 	fstp	st(1)
-	fstp	TBYTE PTR [rcx]
+	fstp	TBYTE PTR [rax]
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L215:
-	fxch	st(1)
+.L219:
+	fstp	st(0)
 	fcomi	st, st(1)
-	mov	rax, rcx
-	fcmovnb	st, st(1)
+	fcmovnbe	st, st(1)
 	fstp	st(1)
-	fstp	TBYTE PTR [rcx]
+	fstp	TBYTE PTR [rax]
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1111,20 +1084,20 @@ l64a:
 	lea	r9, s.0[rip]
 	mov	rax, r9
 	test	ecx, ecx
-	je	.L221
+	je	.L225
 	lea	r8, digits[rip]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L222:
+.L226:
 	mov	edx, ecx
 	add	rax, 1
 	and	edx, 63
 	movzx	edx, BYTE PTR [r8+rdx]
 	mov	BYTE PTR -1[rax], dl
 	shr	ecx, 6
-	jne	.L222
-.L221:
+	jne	.L226
+.L225:
 	mov	BYTE PTR [rax], 0
 	mov	rax, r9
 	ret
@@ -1159,7 +1132,7 @@ rand:
 insque:
 	.seh_endprologue
 	test	rdx, rdx
-	je	.L233
+	je	.L237
 	movq	xmm0, QWORD PTR [rdx]
 	movq	xmm1, rdx
 	punpcklqdq	xmm0, xmm1
@@ -1167,13 +1140,13 @@ insque:
 	mov	QWORD PTR [rdx], rcx
 	mov	rax, QWORD PTR [rcx]
 	test	rax, rax
-	je	.L227
+	je	.L231
 	mov	QWORD PTR 8[rax], rcx
-.L227:
+.L231:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L233:
+.L237:
 	pxor	xmm0, xmm0
 	movups	XMMWORD PTR [rcx], xmm0
 	ret
@@ -1186,15 +1159,15 @@ remque:
 	.seh_endprologue
 	mov	rax, QWORD PTR [rcx]
 	test	rax, rax
-	je	.L235
+	je	.L239
 	mov	rdx, QWORD PTR 8[rcx]
 	mov	QWORD PTR 8[rax], rdx
-.L235:
+.L239:
 	mov	rdx, QWORD PTR 8[rcx]
 	test	rdx, rdx
-	je	.L234
+	je	.L238
 	mov	QWORD PTR [rdx], rax
-.L234:
+.L238:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1228,25 +1201,25 @@ lsearch:
 	mov	r14, r8
 	mov	rsi, r9
 	test	rdi, rdi
-	je	.L244
+	je	.L248
 	mov	rbx, rdx
 	xor	r15d, r15d
-	jmp	.L246
+	jmp	.L250
 	.p2align 4,,10
 	.p2align 3
-.L258:
+.L262:
 	add	r15, 1
 	add	rbx, rsi
 	cmp	rdi, r15
-	je	.L244
-.L246:
+	je	.L248
+.L250:
 	mov	r12, rbx
 	mov	rdx, rbx
 	mov	rcx, rbp
 	call	r13
 	test	eax, eax
-	jne	.L258
-.L243:
+	jne	.L262
+.L247:
 	mov	rax, r12
 	add	rsp, 40
 	pop	rbx
@@ -1260,19 +1233,19 @@ lsearch:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L244:
+.L248:
 	lea	rax, 1[rdi]
 	imul	rdi, rsi
 	add	rdi, QWORD PTR 120[rsp]
 	mov	QWORD PTR [r14], rax
 	mov	r12, rdi
 	test	rsi, rsi
-	je	.L243
+	je	.L247
 	mov	r8, rsi
 	mov	rdx, rbp
 	mov	rcx, rdi
 	call	memmove
-	jmp	.L243
+	jmp	.L247
 	.seh_endproc
 	.p2align 4
 	.globl	lfind
@@ -1301,25 +1274,25 @@ lfind:
 	mov	rdi, rcx
 	mov	rbp, r9
 	test	r12, r12
-	je	.L260
+	je	.L264
 	mov	rbx, rdx
 	xor	esi, esi
-	jmp	.L262
+	jmp	.L266
 	.p2align 4,,10
 	.p2align 3
-.L270:
+.L274:
 	add	rsi, 1
 	add	rbx, rbp
 	cmp	r12, rsi
-	je	.L260
-.L262:
+	je	.L264
+.L266:
 	mov	r14, rbx
 	mov	rdx, rbx
 	mov	rcx, rdi
 	call	r13
 	test	eax, eax
-	jne	.L270
-.L259:
+	jne	.L274
+.L263:
 	mov	rax, r14
 	add	rsp, 32
 	pop	rbx
@@ -1332,9 +1305,9 @@ lfind:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L260:
+.L264:
 	xor	r14d, r14d
-	jmp	.L259
+	jmp	.L263
 	.seh_endproc
 	.p2align 4
 	.globl	abs
@@ -1353,37 +1326,37 @@ abs:
 	.seh_proc	atoi
 atoi:
 	.seh_endprologue
-	jmp	.L295
+	jmp	.L299
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L290:
+.L294:
 	add	rcx, 1
-.L295:
+.L299:
 	movsx	edx, BYTE PTR [rcx]
 	lea	r8d, -9[rdx]
 	mov	eax, edx
 	cmp	r8d, 4
-	jbe	.L290
+	jbe	.L294
 	cmp	al, 32
-	je	.L290
+	je	.L294
 	cmp	al, 43
-	je	.L276
+	je	.L280
 	cmp	al, 45
-	jne	.L296
+	jne	.L300
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	ja	.L285
+	ja	.L289
 	mov	r11d, 1
-.L279:
+.L283:
 	xor	r9d, r9d
 	.p2align 6
 	.p2align 4
 	.p2align 3
-.L282:
+.L286:
 	lea	ecx, [r9+r9*4]
 	movsx	r8d, BYTE PTR 1[r10]
 	lea	edx, -48[rax]
@@ -1395,7 +1368,7 @@ atoi:
 	sub	r8d, 48
 	sub	r9d, edx
 	cmp	r8d, 9
-	jbe	.L282
+	jbe	.L286
 	sub	edx, ecx
 	test	r11d, r11d
 	cmove	r9d, edx
@@ -1403,27 +1376,27 @@ atoi:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L296:
+.L300:
 	sub	edx, 48
 	mov	r10, rcx
 	xor	r11d, r11d
 	cmp	edx, 9
-	jbe	.L279
-.L285:
+	jbe	.L283
+.L289:
 	xor	r9d, r9d
 	mov	eax, r9d
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L276:
+.L280:
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	xor	r11d, r11d
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	jbe	.L279
-	jmp	.L285
+	jbe	.L283
+	jmp	.L289
 	.seh_endproc
 	.p2align 4
 	.globl	atol
@@ -1431,37 +1404,37 @@ atoi:
 	.seh_proc	atol
 atol:
 	.seh_endprologue
-	jmp	.L318
+	jmp	.L322
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L314:
-	add	rcx, 1
 .L318:
+	add	rcx, 1
+.L322:
 	movsx	edx, BYTE PTR [rcx]
 	lea	r8d, -9[rdx]
 	mov	eax, edx
 	cmp	r8d, 4
-	jbe	.L314
+	jbe	.L318
 	cmp	al, 32
-	je	.L314
+	je	.L318
 	cmp	al, 43
-	je	.L301
+	je	.L305
 	cmp	al, 45
-	jne	.L302
+	jne	.L306
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	mov	r11d, 1
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	ja	.L309
-.L303:
+	ja	.L313
+.L307:
 	xor	r9d, r9d
 	.p2align 6
 	.p2align 4
 	.p2align 3
-.L306:
+.L310:
 	lea	ecx, [r9+r9*4]
 	movsx	r8d, BYTE PTR 1[r10]
 	lea	edx, -48[rax]
@@ -1473,7 +1446,7 @@ atol:
 	sub	r8d, 48
 	sub	r9d, edx
 	cmp	r8d, 9
-	jbe	.L306
+	jbe	.L310
 	sub	edx, ecx
 	test	r11d, r11d
 	cmove	r9d, edx
@@ -1481,27 +1454,27 @@ atol:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L302:
+.L306:
 	sub	edx, 48
 	mov	r10, rcx
 	xor	r11d, r11d
 	cmp	edx, 9
-	jbe	.L303
-.L309:
+	jbe	.L307
+.L313:
 	xor	r9d, r9d
 	mov	eax, r9d
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L301:
+.L305:
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	ja	.L309
+	ja	.L313
 	xor	r11d, r11d
-	jmp	.L303
+	jmp	.L307
 	.seh_endproc
 	.p2align 4
 	.globl	atoll
@@ -1509,37 +1482,37 @@ atol:
 	.seh_proc	atoll
 atoll:
 	.seh_endprologue
-	jmp	.L342
+	jmp	.L346
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L337:
+.L341:
 	add	rcx, 1
-.L342:
+.L346:
 	movsx	edx, BYTE PTR [rcx]
 	lea	r8d, -9[rdx]
 	mov	eax, edx
 	cmp	r8d, 4
-	jbe	.L337
+	jbe	.L341
 	cmp	al, 32
-	je	.L337
+	je	.L341
 	cmp	al, 43
-	je	.L323
+	je	.L327
 	cmp	al, 45
-	jne	.L343
+	jne	.L347
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	ja	.L332
+	ja	.L336
 	mov	r11d, 1
-.L326:
+.L330:
 	xor	r9d, r9d
 	.p2align 6
 	.p2align 4
 	.p2align 3
-.L329:
+.L333:
 	lea	rcx, [r9+r9*4]
 	movsx	r8d, BYTE PTR 1[r10]
 	lea	edx, -48[rax]
@@ -1551,7 +1524,7 @@ atoll:
 	sub	r8d, 48
 	sub	r9, rdx
 	cmp	r8d, 9
-	jbe	.L329
+	jbe	.L333
 	sub	rdx, rcx
 	test	r11d, r11d
 	cmove	r9, rdx
@@ -1559,27 +1532,27 @@ atoll:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L343:
+.L347:
 	sub	edx, 48
 	mov	r10, rcx
 	xor	r11d, r11d
 	cmp	edx, 9
-	jbe	.L326
-.L332:
+	jbe	.L330
+.L336:
 	xor	r9d, r9d
 	mov	rax, r9
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L323:
+.L327:
 	movsx	edx, BYTE PTR 1[rcx]
 	lea	r10, 1[rcx]
 	xor	r11d, r11d
 	mov	eax, edx
 	sub	edx, 48
 	cmp	edx, 9
-	jbe	.L326
-	jmp	.L332
+	jbe	.L330
+	jmp	.L336
 	.seh_endproc
 	.p2align 4
 	.globl	bsearch
@@ -1610,10 +1583,10 @@ bsearch:
 	mov	rdi, r9
 	.p2align 4
 	.p2align 3
-.L357:
+.L361:
 	test	rbx, rbx
-	je	.L345
-.L358:
+	je	.L349
+.L362:
 	mov	r14, rbx
 	mov	rcx, r12
 	shr	r14
@@ -1623,16 +1596,16 @@ bsearch:
 	mov	rdx, rsi
 	call	r13
 	test	eax, eax
-	js	.L349
-	je	.L344
+	js	.L353
+	je	.L348
 	sub	rbx, 1
 	lea	rbp, [rsi+rdi]
 	sub	rbx, r14
 	test	rbx, rbx
-	jne	.L358
-.L345:
+	jne	.L362
+.L349:
 	xor	esi, esi
-.L344:
+.L348:
 	mov	rax, rsi
 	add	rsp, 32
 	pop	rbx
@@ -1645,9 +1618,9 @@ bsearch:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L349:
+.L353:
 	mov	rbx, r14
-	jmp	.L357
+	jmp	.L361
 	.seh_endproc
 	.p2align 4
 	.globl	bsearch_r
@@ -1680,10 +1653,10 @@ bsearch_r:
 	mov	rsi, r9
 	mov	r14d, r8d
 	test	r8d, r8d
-	je	.L364
+	je	.L368
 	.p2align 4
 	.p2align 3
-.L360:
+.L364:
 	mov	r15d, r14d
 	mov	r8, r12
 	mov	rcx, rbp
@@ -1694,15 +1667,15 @@ bsearch_r:
 	mov	rdx, rbx
 	call	r13
 	test	eax, eax
-	je	.L359
-	jle	.L362
+	je	.L363
+	jle	.L366
 	sub	r14d, 1
 	lea	rdi, [rbx+rsi]
 	sar	r14d
-	jne	.L360
-.L364:
+	jne	.L364
+.L368:
 	xor	ebx, ebx
-.L359:
+.L363:
 	mov	rax, rbx
 	add	rsp, 40
 	pop	rbx
@@ -1716,11 +1689,11 @@ bsearch_r:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L362:
+.L366:
 	test	r15d, r15d
-	je	.L364
+	je	.L368
 	mov	r14d, r15d
-	jmp	.L360
+	jmp	.L364
 	.seh_endproc
 	.p2align 4
 	.globl	div
@@ -1819,24 +1792,24 @@ wcschr:
 	.seh_endprologue
 	movzx	eax, WORD PTR [rcx]
 	test	ax, ax
-	jne	.L380
-	jmp	.L383
+	jne	.L384
+	jmp	.L387
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L382:
+.L386:
 	movzx	eax, WORD PTR 2[rcx]
 	add	rcx, 2
 	test	ax, ax
-	je	.L383
-.L380:
+	je	.L387
+.L384:
 	cmp	dx, ax
-	jne	.L382
+	jne	.L386
 	mov	rax, rcx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L383:
+.L387:
 	xor	eax, eax
 	ret
 	.seh_endproc
@@ -1850,28 +1823,28 @@ wcscmp:
 	movzx	r8d, WORD PTR [rcx]
 	movzx	r9d, WORD PTR [rdx]
 	cmp	r8w, r9w
-	je	.L386
-	jmp	.L387
+	je	.L390
+	jmp	.L391
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L388:
+.L392:
 	movzx	r8d, WORD PTR [rcx+rax]
 	add	rax, 2
 	movzx	r9d, WORD PTR -2[rdx+rax]
 	cmp	r8w, r9w
-	jne	.L387
-.L386:
+	jne	.L391
+.L390:
 	test	r8w, r8w
-	jne	.L388
-.L387:
+	jne	.L392
+.L391:
 	mov	eax, -1
 	cmp	r8w, r9w
-	jb	.L385
+	jb	.L389
 	xor	eax, eax
 	cmp	r9w, r8w
 	setb	al
-.L385:
+.L389:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1885,12 +1858,12 @@ wcscpy:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L394:
+.L398:
 	movzx	r9d, WORD PTR [rdx+r8]
 	mov	WORD PTR [rax+r8], r9w
 	add	r8, 2
 	test	r9w, r9w
-	jne	.L394
+	jne	.L398
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1900,21 +1873,21 @@ wcscpy:
 wcslen:
 	.seh_endprologue
 	cmp	WORD PTR [rcx], 0
-	je	.L399
+	je	.L403
 	mov	rax, rcx
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L398:
+.L402:
 	add	rax, 2
 	cmp	WORD PTR [rax], 0
-	jne	.L398
+	jne	.L402
 	sub	rax, rcx
 	sar	rax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L399:
+.L403:
 	xor	eax, eax
 	ret
 	.seh_endproc
@@ -1925,38 +1898,38 @@ wcslen:
 wcsncmp:
 	.seh_endprologue
 	test	r8, r8
-	jne	.L402
-	jmp	.L408
+	jne	.L406
+	jmp	.L412
 	.p2align 4,,10
 	.p2align 3
-.L413:
+.L417:
 	test	ax, ax
-	je	.L406
+	je	.L410
 	add	rcx, 2
 	add	rdx, 2
 	sub	r8, 1
-	je	.L408
-.L402:
+	je	.L412
+.L406:
 	movzx	eax, WORD PTR [rcx]
 	cmp	WORD PTR [rdx], ax
-	je	.L413
-.L406:
+	je	.L417
+.L410:
 	movzx	ecx, WORD PTR [rcx]
 	movzx	eax, WORD PTR [rdx]
 	cmp	cx, ax
-	jb	.L414
+	jb	.L418
 	cmp	ax, cx
 	setb	al
 	movzx	eax, al
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L414:
+.L418:
 	mov	eax, -1
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L408:
+.L412:
 	xor	eax, eax
 	ret
 	.seh_endproc
@@ -1967,23 +1940,23 @@ wcsncmp:
 wmemchr:
 	.seh_endprologue
 	test	r8, r8
-	jne	.L416
-	jmp	.L419
+	jne	.L420
+	jmp	.L423
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-.L418:
+.L422:
 	add	rcx, 2
 	sub	r8, 1
-	je	.L419
-.L416:
+	je	.L423
+.L420:
 	cmp	WORD PTR [rcx], dx
-	jne	.L418
+	jne	.L422
 	mov	rax, rcx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L419:
+.L423:
 	xor	eax, eax
 	ret
 	.seh_endproc
@@ -1994,35 +1967,35 @@ wmemchr:
 wmemcmp:
 	.seh_endprologue
 	test	r8, r8
-	jne	.L422
-	jmp	.L427
+	jne	.L426
+	jmp	.L431
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L424:
+.L428:
 	add	rcx, 2
 	add	rdx, 2
 	sub	r8, 1
-	je	.L427
-.L422:
+	je	.L431
+.L426:
 	movzx	eax, WORD PTR [rcx]
 	cmp	ax, WORD PTR [rdx]
-	je	.L424
+	je	.L428
 	movzx	edx, WORD PTR [rdx]
 	cmp	ax, dx
-	jb	.L430
+	jb	.L434
 	cmp	dx, ax
 	setb	al
 	movzx	eax, al
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L427:
+.L431:
 	xor	eax, eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L430:
+.L434:
 	mov	eax, -1
 	ret
 	.seh_endproc
@@ -2035,11 +2008,11 @@ wmemcpy:
 	.seh_stackalloc	40
 	.seh_endprologue
 	test	r8, r8
-	je	.L432
+	je	.L436
 	add	r8, r8
 	call	memcpy
 	mov	rcx, rax
-.L432:
+.L436:
 	mov	rax, rcx
 	add	rsp, 40
 	ret
@@ -2055,24 +2028,24 @@ wmemmove:
 	.seh_pushreg	rbx
 	.seh_endprologue
 	cmp	rcx, rdx
-	je	.L467
+	je	.L471
 	mov	rax, rcx
 	lea	r10, [r8+r8]
 	lea	r9, -1[r8]
 	sub	rax, rdx
 	cmp	rax, r10
-	jb	.L438
+	jb	.L442
 	test	r8, r8
-	je	.L467
+	je	.L471
 	cmp	r9, 2
-	jbe	.L457
+	jbe	.L461
 	lea	r10, 2[rdx]
 	mov	rax, rcx
 	sub	rax, r10
 	cmp	rax, 12
-	jbe	.L457
+	jbe	.L461
 	cmp	r9, 6
-	jbe	.L458
+	jbe	.L462
 	mov	r11, r8
 	xor	eax, eax
 	xor	r10d, r10d
@@ -2080,13 +2053,13 @@ wmemmove:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L449:
+.L453:
 	movdqu	xmm0, XMMWORD PTR [rdx+rax]
 	add	r10, 1
 	movups	XMMWORD PTR [rcx+rax], xmm0
 	add	rax, 16
 	cmp	r11, r10
-	jne	.L449
+	jne	.L453
 	mov	r10, r8
 	and	r10, -8
 	lea	rax, [r10+r10]
@@ -2094,12 +2067,12 @@ wmemmove:
 	lea	r11, [rdx+rax]
 	add	rax, rcx
 	test	r8b, 7
-	je	.L467
+	je	.L471
 	sub	r8, r10
 	lea	rbx, -1[r8]
 	cmp	rbx, 2
-	jbe	.L452
-.L448:
+	jbe	.L456
+.L452:
 	mov	rdx, QWORD PTR [rdx+r10*2]
 	mov	QWORD PTR [rcx+r10*2], rdx
 	mov	rdx, r8
@@ -2109,35 +2082,35 @@ wmemmove:
 	add	r11, rdx
 	add	rax, rdx
 	and	r8d, 3
-	je	.L467
-.L452:
+	je	.L471
+.L456:
 	movzx	edx, WORD PTR [r11]
 	mov	WORD PTR [rax], dx
 	test	r9, r9
-	je	.L467
+	je	.L471
 	movzx	edx, WORD PTR 2[r11]
 	mov	WORD PTR 2[rax], dx
 	cmp	r9, 1
-	je	.L467
+	je	.L471
 	movzx	edx, WORD PTR 4[r11]
 	mov	WORD PTR 4[rax], dx
-.L467:
+.L471:
 	mov	rax, rcx
 	pop	rbx
 	pop	rsi
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L438:
+.L442:
 	test	r8, r8
-	je	.L467
+	je	.L471
 	cmp	r9, 2
-	jbe	.L445
+	jbe	.L449
 	mov	rax, rcx
 	sub	rax, rdx
 	add	rax, 6
 	cmp	rax, 4
-	jbe	.L445
+	jbe	.L449
 	mov	rbx, r8
 	sub	r10, 8
 	xor	eax, eax
@@ -2149,61 +2122,61 @@ wmemmove:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L442:
+.L446:
 	mov	r11, QWORD PTR [rsi+rax]
 	mov	QWORD PTR [r10+rax], r11
 	sub	rax, 8
 	cmp	rax, rbx
-	jne	.L442
+	jne	.L446
 	mov	rax, r8
 	and	rax, -4
 	sub	r9, rax
 	and	r8d, 3
-	je	.L467
+	je	.L471
 	movzx	eax, WORD PTR [rdx+r9*2]
 	mov	WORD PTR [rcx+r9*2], ax
 	test	r9, r9
-	je	.L467
+	je	.L471
 	sub	r9, 1
 	movzx	r8d, WORD PTR [rdx+r9*2]
 	lea	rax, [r9+r9]
 	mov	WORD PTR [rcx+r9*2], r8w
-	je	.L467
+	je	.L471
 	movzx	edx, WORD PTR -2[rdx+rax]
 	mov	WORD PTR -2[rcx+rax], dx
-	jmp	.L467
+	jmp	.L471
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L445:
+.L449:
 	movzx	eax, WORD PTR [rdx+r9*2]
 	mov	WORD PTR [rcx+r9*2], ax
 	sub	r9, 1
-	jb	.L467
+	jb	.L471
 	movzx	eax, WORD PTR [rdx+r9*2]
 	mov	WORD PTR [rcx+r9*2], ax
 	sub	r9, 1
-	jnb	.L445
-	jmp	.L467
+	jnb	.L449
+	jmp	.L471
 	.p2align 4,,10
 	.p2align 3
-.L457:
+.L461:
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L454:
+.L458:
 	movzx	r9d, WORD PTR [rdx+rax*2]
 	mov	WORD PTR [rcx+rax*2], r9w
 	add	rax, 1
 	cmp	r8, rax
-	jne	.L454
-	jmp	.L467
-.L458:
+	jne	.L458
+	jmp	.L471
+.L462:
 	mov	r11, rdx
 	mov	rax, rcx
 	xor	r10d, r10d
-	jmp	.L448
+	jmp	.L452
 	.seh_endproc
 	.p2align 4
 	.globl	wmemset
@@ -2214,9 +2187,9 @@ wmemset:
 	mov	r9, rcx
 	lea	r11, -1[r8]
 	test	r8, r8
-	je	.L490
+	je	.L494
 	cmp	r11, 6
-	jbe	.L496
+	jbe	.L500
 	movd	xmm0, edx
 	mov	r10, r8
 	xor	eax, eax
@@ -2226,24 +2199,24 @@ wmemset:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L492:
+.L496:
 	mov	rcx, rax
 	add	rax, 1
 	sal	rcx, 4
 	movups	XMMWORD PTR [r9+rcx], xmm0
 	cmp	r10, rax
-	jne	.L492
+	jne	.L496
 	mov	rax, r8
 	and	rax, -8
 	sub	r11, rax
 	lea	rcx, [r9+rax*2]
 	test	r8b, 7
-	je	.L490
-.L491:
+	je	.L494
+.L495:
 	sub	r8, rax
 	lea	r10, -1[r8]
 	cmp	r10, 2
-	jbe	.L494
+	jbe	.L498
 	movd	xmm1, edx
 	pshuflw	xmm0, xmm1, 0
 	movq	QWORD PTR [r9+rax*2], xmm0
@@ -2252,21 +2225,21 @@ wmemset:
 	sub	r11, rax
 	and	r8d, 3
 	lea	rcx, [rcx+rax*2]
-	je	.L490
-.L494:
+	je	.L494
+.L498:
 	mov	WORD PTR [rcx], dx
 	test	r11, r11
-	je	.L490
+	je	.L494
 	mov	WORD PTR 2[rcx], dx
 	cmp	r11, 1
-	je	.L490
+	je	.L494
 	mov	WORD PTR 4[rcx], dx
-.L490:
+.L494:
 	mov	rax, r9
 	ret
-.L496:
+.L500:
 	xor	eax, eax
-	jmp	.L491
+	jmp	.L495
 	.seh_endproc
 	.p2align 4
 	.globl	bcopy
@@ -2278,58 +2251,58 @@ bcopy:
 	.seh_endprologue
 	mov	r9, rdx
 	cmp	rcx, rdx
-	jnb	.L514
+	jnb	.L518
 	test	r8, r8
-	je	.L513
+	je	.L517
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L516:
+.L520:
 	movzx	eax, BYTE PTR -1[rcx+r8]
 	mov	BYTE PTR -1[r9+r8], al
 	sub	r8, 1
-	jne	.L516
-.L513:
+	jne	.L520
+.L517:
 	pop	rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L514:
-	je	.L513
+.L518:
+	je	.L517
 	test	r8, r8
-	je	.L513
+	je	.L517
 	lea	rax, -1[r8]
 	cmp	rax, 6
-	jbe	.L527
+	jbe	.L531
 	lea	r10, 1[rcx]
 	sub	rdx, r10
 	cmp	rdx, 14
-	jbe	.L527
+	jbe	.L531
 	cmp	rax, 14
-	jbe	.L528
+	jbe	.L532
 	mov	rdx, r8
 	xor	eax, eax
 	and	rdx, -16
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L519:
+.L523:
 	movdqu	xmm0, XMMWORD PTR [rcx+rax]
 	movups	XMMWORD PTR [r9+rax], xmm0
 	add	rax, 16
 	cmp	rdx, rax
-	jne	.L519
+	jne	.L523
 	mov	rax, r8
 	lea	r10, [r9+rdx]
 	lea	r11, [rcx+rdx]
 	sub	rax, rdx
 	cmp	rdx, r8
-	je	.L513
+	je	.L517
 	lea	rbx, -1[rax]
 	mov	r8, rax
 	cmp	rbx, 6
-	jbe	.L522
-.L518:
+	jbe	.L526
+.L522:
 	mov	rcx, QWORD PTR [rcx+rdx]
 	mov	QWORD PTR [r9+rdx], rcx
 	mov	rdx, r8
@@ -2338,57 +2311,57 @@ bcopy:
 	add	r11, rdx
 	sub	rax, rdx
 	and	r8d, 7
-	je	.L513
-.L522:
+	je	.L517
+.L526:
 	movzx	edx, BYTE PTR [r11]
 	mov	BYTE PTR [r10], dl
 	cmp	rax, 1
-	je	.L513
+	je	.L517
 	movzx	edx, BYTE PTR 1[r11]
 	mov	BYTE PTR 1[r10], dl
 	cmp	rax, 2
-	je	.L513
+	je	.L517
 	movzx	edx, BYTE PTR 2[r11]
 	mov	BYTE PTR 2[r10], dl
 	cmp	rax, 3
-	je	.L513
+	je	.L517
 	movzx	edx, BYTE PTR 3[r11]
 	mov	BYTE PTR 3[r10], dl
 	cmp	rax, 4
-	je	.L513
+	je	.L517
 	movzx	edx, BYTE PTR 4[r11]
 	mov	BYTE PTR 4[r10], dl
 	cmp	rax, 5
-	je	.L513
+	je	.L517
 	movzx	edx, BYTE PTR 5[r11]
 	mov	BYTE PTR 5[r10], dl
 	cmp	rax, 6
-	je	.L513
+	je	.L517
 	movzx	eax, BYTE PTR 6[r11]
 	mov	BYTE PTR 6[r10], al
 	pop	rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L527:
+.L531:
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L524:
+.L528:
 	movzx	edx, BYTE PTR [rcx+rax]
 	mov	BYTE PTR [r9+rax], dl
 	add	rax, 1
 	cmp	r8, rax
-	jne	.L524
+	jne	.L528
 	pop	rbx
 	ret
-.L528:
+.L532:
 	mov	r10, r9
 	mov	r11, rcx
 	mov	rax, r8
 	xor	edx, edx
-	jmp	.L518
+	jmp	.L522
 	.seh_endproc
 	.p2align 4
 	.globl	rotl64
@@ -2538,24 +2511,24 @@ ffs:
 	.seh_endprologue
 	mov	edx, ecx
 	xor	ecx, ecx
-	jmp	.L575
+	jmp	.L579
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-.L573:
+.L577:
 	cmp	ecx, 32
-	je	.L577
-.L575:
+	je	.L581
+.L579:
 	mov	eax, edx
 	shr	eax, cl
 	add	ecx, 1
 	test	al, 1
-	je	.L573
+	je	.L577
 	mov	eax, ecx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L577:
+.L581:
 	xor	eax, eax
 	ret
 	.seh_endproc
@@ -2567,20 +2540,20 @@ libiberty_ffs:
 	.seh_endprologue
 	xor	eax, eax
 	test	ecx, ecx
-	je	.L578
+	je	.L582
 	mov	eax, ecx
 	and	eax, 1
-	jne	.L578
+	jne	.L582
 	mov	eax, 1
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L580:
+.L584:
 	sar	ecx
 	add	eax, 1
 	test	cl, 1
-	je	.L580
-.L578:
+	je	.L584
+.L582:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -2635,45 +2608,45 @@ ldexpf:
 	movaps	xmm1, xmm0
 	addss	xmm1, xmm0
 	comiss	xmm1, xmm0
-	je	.L590
-	movss	xmm1, DWORD PTR .LC6[rip]
+	je	.L594
+	movss	xmm1, DWORD PTR .LC7[rip]
 	test	edx, edx
-	js	.L604
+	js	.L608
 	test	dl, 1
-	je	.L593
+	je	.L597
 	.p2align 4
 	.p2align 3
-.L594:
+.L598:
 	mulss	xmm0, xmm1
-.L593:
+.L597:
 	mov	eax, edx
 	shr	eax, 31
 	add	edx, eax
 	sar	edx
-	je	.L590
+	je	.L594
 	mulss	xmm1, xmm1
 	test	dl, 1
-	jne	.L594
-.L605:
+	jne	.L598
+.L609:
 	mulss	xmm1, xmm1
 	mov	eax, edx
 	shr	eax, 31
 	add	edx, eax
 	sar	edx
 	test	dl, 1
-	jne	.L594
-	jmp	.L605
+	jne	.L598
+	jmp	.L609
 	.p2align 4,,10
 	.p2align 3
-.L590:
+.L594:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L604:
-	movss	xmm1, DWORD PTR .LC7[rip]
+.L608:
+	movss	xmm1, DWORD PTR .LC8[rip]
 	test	dl, 1
-	je	.L593
-	jmp	.L594
+	je	.L597
+	jmp	.L598
 	.seh_endproc
 	.p2align 4
 	.globl	ldexp
@@ -2684,45 +2657,45 @@ ldexp:
 	movapd	xmm1, xmm0
 	addsd	xmm1, xmm0
 	comisd	xmm1, xmm0
-	je	.L607
-	movsd	xmm1, QWORD PTR .LC8[rip]
+	je	.L611
+	movsd	xmm1, QWORD PTR .LC9[rip]
 	test	edx, edx
-	js	.L621
+	js	.L625
 	test	dl, 1
-	je	.L610
+	je	.L614
 	.p2align 4
 	.p2align 3
-.L611:
+.L615:
 	mulsd	xmm0, xmm1
-.L610:
+.L614:
 	mov	eax, edx
 	shr	eax, 31
 	add	edx, eax
 	sar	edx
-	je	.L607
+	je	.L611
 	mulsd	xmm1, xmm1
 	test	dl, 1
-	jne	.L611
-.L622:
+	jne	.L615
+.L626:
 	mulsd	xmm1, xmm1
 	mov	eax, edx
 	shr	eax, 31
 	add	edx, eax
 	sar	edx
 	test	dl, 1
-	jne	.L611
-	jmp	.L622
+	jne	.L615
+	jmp	.L626
 	.p2align 4,,10
 	.p2align 3
-.L607:
+.L611:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L621:
-	movsd	xmm1, QWORD PTR .LC9[rip]
+.L625:
+	movsd	xmm1, QWORD PTR .LC10[rip]
 	test	dl, 1
-	je	.L610
-	jmp	.L611
+	je	.L614
+	jmp	.L615
 	.seh_endproc
 	.p2align 4
 	.globl	ldexpl
@@ -2735,47 +2708,47 @@ ldexpl:
 	fadd	st, st(1)
 	mov	rax, rcx
 	fcomip	st, st(1)
-	je	.L624
+	je	.L628
 	test	r8d, r8d
-	js	.L638
-	fld	DWORD PTR .LC6[rip]
-.L626:
+	js	.L642
+	fld	DWORD PTR .LC7[rip]
+.L630:
 	test	r8b, 1
-	je	.L627
+	je	.L631
 	.p2align 4
 	.p2align 3
-.L628:
+.L632:
 	fmul	st(1), st
-.L627:
+.L631:
 	mov	edx, r8d
 	shr	edx, 31
 	add	r8d, edx
 	sar	r8d
-	je	.L640
+	je	.L644
 	fmul	st, st(0)
 	test	r8b, 1
-	jne	.L628
-.L639:
+	jne	.L632
+.L643:
 	mov	edx, r8d
 	fmul	st, st(0)
 	shr	edx, 31
 	add	r8d, edx
 	sar	r8d
 	test	r8b, 1
-	jne	.L628
-	jmp	.L639
+	jne	.L632
+	jmp	.L643
 	.p2align 4,,10
 	.p2align 3
-.L640:
+.L644:
 	fstp	st(0)
-.L624:
+.L628:
 	fstp	TBYTE PTR [rax]
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L638:
-	fld	DWORD PTR .LC7[rip]
-	jmp	.L626
+.L642:
+	fld	DWORD PTR .LC8[rip]
+	jmp	.L630
 	.seh_endproc
 	.p2align 4
 	.globl	memxor
@@ -2786,35 +2759,35 @@ memxor:
 	.seh_pushreg	rbx
 	.seh_endprologue
 	test	r8, r8
-	je	.L642
+	je	.L646
 	lea	rax, -1[r8]
 	cmp	rax, 14
-	jbe	.L648
+	jbe	.L652
 	mov	r9, r8
 	xor	eax, eax
 	and	r9, -16
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L644:
+.L648:
 	movdqu	xmm2, XMMWORD PTR [rcx+rax]
 	movdqu	xmm0, XMMWORD PTR [rdx+rax]
 	pxor	xmm0, xmm2
 	movups	XMMWORD PTR [rcx+rax], xmm0
 	add	rax, 16
 	cmp	rax, r9
-	jne	.L644
+	jne	.L648
 	mov	r11, r8
 	lea	rax, [rcx+r9]
 	lea	r10, [rdx+r9]
 	sub	r11, r9
 	cmp	r8, r9
-	je	.L642
-.L643:
+	je	.L646
+.L647:
 	sub	r8, r9
 	lea	rbx, -1[r8]
 	cmp	rbx, 6
-	jbe	.L646
+	jbe	.L650
 	lea	rbx, [rcx+r9]
 	movq	xmm0, QWORD PTR [rdx+r9]
 	mov	rdx, r8
@@ -2826,44 +2799,44 @@ memxor:
 	and	r8d, 7
 	pxor	xmm0, xmm1
 	movq	QWORD PTR [rbx], xmm0
-	je	.L642
-.L646:
+	je	.L646
+.L650:
 	movzx	edx, BYTE PTR [r10]
 	xor	BYTE PTR [rax], dl
 	cmp	r11, 1
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 1[r10]
 	xor	BYTE PTR 1[rax], dl
 	cmp	r11, 2
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 2[r10]
 	xor	BYTE PTR 2[rax], dl
 	cmp	r11, 3
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 3[r10]
 	xor	BYTE PTR 3[rax], dl
 	cmp	r11, 4
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 4[r10]
 	xor	BYTE PTR 4[rax], dl
 	cmp	r11, 5
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 5[r10]
 	xor	BYTE PTR 5[rax], dl
 	cmp	r11, 6
-	je	.L642
+	je	.L646
 	movzx	edx, BYTE PTR 6[r10]
 	xor	BYTE PTR 6[rax], dl
-.L642:
+.L646:
 	mov	rax, rcx
 	pop	rbx
 	ret
-.L648:
+.L652:
 	mov	rax, rcx
 	mov	r10, rdx
 	mov	r11, r8
 	xor	r9d, r9d
-	jmp	.L643
+	jmp	.L647
 	.seh_endproc
 	.p2align 4
 	.globl	strncat
@@ -2874,35 +2847,35 @@ strncat:
 	cmp	BYTE PTR [rcx], 0
 	mov	rax, rcx
 	mov	r9, rcx
-	je	.L675
+	je	.L679
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L676:
+.L680:
 	add	r9, 1
 	cmp	BYTE PTR [r9], 0
-	jne	.L676
-.L675:
+	jne	.L680
+.L679:
 	test	r8, r8
-	jne	.L677
-	jmp	.L678
+	jne	.L681
+	jmp	.L682
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L679:
+.L683:
 	add	rdx, 1
 	add	r9, 1
 	sub	r8, 1
-	je	.L678
-.L677:
+	je	.L682
+.L681:
 	movzx	r10d, BYTE PTR [rdx]
 	mov	BYTE PTR [r9], r10b
 	test	r10b, r10b
-	jne	.L679
+	jne	.L683
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L678:
+.L682:
 	mov	BYTE PTR [r9], 0
 	ret
 	.seh_endproc
@@ -2914,18 +2887,18 @@ strnlen:
 	.seh_endprologue
 	xor	eax, eax
 	test	rdx, rdx
-	je	.L687
-.L688:
+	je	.L691
+.L692:
 	cmp	BYTE PTR [rcx+rax], 0
-	jne	.L690
-.L687:
+	jne	.L694
+.L691:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L690:
+.L694:
 	add	rax, 1
 	cmp	rdx, rax
-	jne	.L688
+	jne	.L692
 	ret
 	.seh_endproc
 	.p2align 4
@@ -2937,28 +2910,28 @@ strpbrk:
 	movzx	r10d, BYTE PTR [rcx]
 	mov	rax, rcx
 	test	r10b, r10b
-	je	.L700
-.L696:
+	je	.L704
+.L700:
 	mov	r8, rdx
-	jmp	.L699
+	jmp	.L703
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L698:
+.L702:
 	add	r8, 1
 	cmp	r9b, r10b
-	je	.L697
-.L699:
+	je	.L701
+.L703:
 	movzx	r9d, BYTE PTR [r8]
 	test	r9b, r9b
-	jne	.L698
+	jne	.L702
 	movzx	r10d, BYTE PTR 1[rax]
 	add	rax, 1
 	test	r10b, r10b
-	jne	.L696
-.L700:
+	jne	.L700
+.L704:
 	xor	eax, eax
-.L697:
+.L701:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -2971,13 +2944,13 @@ strrchr:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L704:
+.L708:
 	movsx	r9d, BYTE PTR [rcx]
 	cmp	edx, r9d
 	cmove	r8, rcx
 	add	rcx, 1
 	test	r9b, r9b
-	jne	.L704
+	jne	.L708
 	mov	rax, r8
 	ret
 	.seh_endproc
@@ -2994,68 +2967,68 @@ strstr:
 	mov	rsi, rdx
 	movzx	edx, BYTE PTR [rdx]
 	test	dl, dl
-	je	.L718
+	je	.L722
 	mov	rax, rsi
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L708:
+.L712:
 	add	rax, 1
 	cmp	BYTE PTR [rax], 0
-	jne	.L708
+	jne	.L712
 	mov	r8, rcx
 	sub	rax, rsi
-	je	.L706
+	je	.L710
 	lea	rbx, -1[rsi+rax]
-	jmp	.L715
+	jmp	.L719
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-.L729:
+.L733:
 	add	rcx, 1
 	test	al, al
-	je	.L728
-.L715:
+	je	.L732
+.L719:
 	movzx	eax, BYTE PTR [rcx]
 	cmp	al, dl
-	jne	.L729
+	jne	.L733
 	mov	r8d, edx
 	mov	rax, rsi
 	mov	r10, rcx
-	jmp	.L710
+	jmp	.L714
 	.p2align 4,,10
 	.p2align 3
-.L730:
+.L734:
 	test	r9b, r9b
 	setne	r11b
 	cmp	r9b, r8b
 	sete	r9b
 	test	r11b, r9b
-	je	.L711
+	je	.L715
 	movzx	r8d, BYTE PTR 1[r10]
 	add	r10, 1
 	add	rax, 1
 	test	r8b, r8b
-	je	.L711
-.L710:
+	je	.L715
+.L714:
 	movzx	r9d, BYTE PTR [rax]
 	cmp	rax, rbx
-	jne	.L730
-.L711:
+	jne	.L734
+.L715:
 	cmp	r8b, BYTE PTR [rax]
-	je	.L718
+	je	.L722
 	add	rcx, 1
-	jmp	.L715
+	jmp	.L719
 	.p2align 4,,10
 	.p2align 3
-.L728:
+.L732:
 	xor	r8d, r8d
-.L706:
+.L710:
 	mov	rax, r8
 	pop	rbx
 	pop	rsi
 	ret
-.L718:
+.L722:
 	mov	r8, rcx
 	mov	rax, r8
 	pop	rbx
@@ -3070,22 +3043,22 @@ copysign:
 	.seh_endprologue
 	pxor	xmm2, xmm2
 	comisd	xmm2, xmm0
-	jbe	.L736
+	jbe	.L740
 	comisd	xmm1, xmm2
-	jbe	.L736
-	xorpd	xmm0, XMMWORD PTR .LC10[rip]
-.L731:
+	jbe	.L740
+	xorpd	xmm0, XMMWORD PTR .LC11[rip]
+.L735:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L736:
+.L740:
 	pxor	xmm2, xmm2
 	comisd	xmm0, xmm2
-	jbe	.L731
+	jbe	.L735
 	comisd	xmm2, xmm1
-	jbe	.L731
-	xorpd	xmm0, XMMWORD PTR .LC10[rip]
-	jmp	.L731
+	jbe	.L735
+	xorpd	xmm0, XMMWORD PTR .LC11[rip]
+	jmp	.L735
 	.seh_endproc
 	.p2align 4
 	.globl	memmem
@@ -3097,56 +3070,56 @@ memmem:
 	.seh_endprologue
 	mov	rax, rcx
 	test	r9, r9
-	je	.L746
+	je	.L750
 	cmp	rdx, r9
-	jb	.L757
+	jb	.L761
 	sub	rdx, r9
 	add	rdx, rcx
-	jc	.L757
+	jc	.L761
 	movzx	r11d, BYTE PTR [r8]
-	jmp	.L752
+	jmp	.L756
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L756:
+.L760:
 	mov	rax, rcx
-.L748:
-	cmp	rdx, rax
-	jb	.L757
 .L752:
+	cmp	rdx, rax
+	jb	.L761
+.L756:
 	lea	rcx, 1[rax]
 	cmp	BYTE PTR [rax], r11b
-	jne	.L756
+	jne	.L760
 	cmp	r9, 1
-	je	.L746
-.L751:
+	je	.L750
+.L755:
 	mov	r10d, 1
-	jmp	.L749
+	jmp	.L753
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-.L750:
+.L754:
 	add	r10, 1
 	cmp	r9, r10
-	je	.L746
-.L749:
+	je	.L750
+.L753:
 	movzx	ebx, BYTE PTR [r8+r10]
 	cmp	BYTE PTR [rax+r10], bl
-	je	.L750
+	je	.L754
 	cmp	rdx, rcx
-	jb	.L757
+	jb	.L761
 	lea	rax, 1[rcx]
 	cmp	r11b, BYTE PTR [rcx]
-	jne	.L748
+	jne	.L752
 	mov	r10, rcx
 	mov	rcx, rax
 	mov	rax, r10
-	jmp	.L751
+	jmp	.L755
 	.p2align 4,,10
 	.p2align 3
-.L757:
+.L761:
 	xor	eax, eax
-.L746:
+.L750:
 	pop	rbx
 	ret
 	.seh_endproc
@@ -3162,10 +3135,10 @@ mempcpy:
 	.seh_endprologue
 	mov	rbx, r8
 	test	r8, r8
-	je	.L765
+	je	.L769
 	call	memmove
 	mov	rcx, rax
-.L765:
+.L769:
 	lea	rax, [rcx+rbx]
 	add	rsp, 32
 	pop	rbx
@@ -3180,50 +3153,50 @@ frexp:
 	pxor	xmm1, xmm1
 	xor	ecx, ecx
 	comisd	xmm1, xmm0
-	jbe	.L770
-	xorpd	xmm0, XMMWORD PTR .LC10[rip]
+	jbe	.L774
+	xorpd	xmm0, XMMWORD PTR .LC11[rip]
 	mov	ecx, 1
-.L770:
+.L774:
 	xor	eax, eax
-	comisd	xmm0, QWORD PTR .LC11[rip]
-	jb	.L794
-	movsd	xmm3, QWORD PTR .LC9[rip]
-	movsd	xmm2, QWORD PTR .LC8[rip]
+	comisd	xmm0, QWORD PTR .LC12[rip]
+	jb	.L798
+	movsd	xmm3, QWORD PTR .LC10[rip]
+	movsd	xmm2, QWORD PTR .LC9[rip]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L774:
+.L778:
 	movapd	xmm1, xmm0
 	add	eax, 1
 	mulsd	xmm0, xmm3
 	comisd	xmm1, xmm2
-	jnb	.L774
-.L775:
+	jnb	.L778
+.L779:
 	mov	DWORD PTR [rdx], eax
 	test	ecx, ecx
-	je	.L777
-	xorpd	xmm0, XMMWORD PTR .LC10[rip]
-.L777:
+	je	.L781
+	xorpd	xmm0, XMMWORD PTR .LC11[rip]
+.L781:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L794:
-	comisd	xmm0, QWORD PTR .LC9[rip]
-	jnb	.L775
+.L798:
+	comisd	xmm0, QWORD PTR .LC10[rip]
+	jnb	.L779
 	pxor	xmm1, xmm1
 	comisd	xmm0, xmm1
-	je	.L775
-	movsd	xmm2, QWORD PTR .LC12[rip]
+	je	.L779
+	movsd	xmm2, QWORD PTR .LC13[rip]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L776:
+.L780:
 	movapd	xmm1, xmm0
 	sub	eax, 1
 	addsd	xmm0, xmm0
 	comisd	xmm2, xmm1
-	ja	.L776
-	jmp	.L775
+	ja	.L780
+	jmp	.L779
 	.seh_endproc
 	.p2align 4
 	.globl	__muldi3
@@ -3233,11 +3206,11 @@ __muldi3:
 	.seh_endprologue
 	xor	r8d, r8d
 	test	rcx, rcx
-	je	.L795
+	je	.L799
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L797:
+.L801:
 	mov	rax, rcx
 	and	eax, 1
 	neg	rax
@@ -3245,8 +3218,8 @@ __muldi3:
 	add	rdx, rdx
 	add	r8, rax
 	shr	rcx
-	jne	.L797
-.L795:
+	jne	.L801
+.L799:
 	mov	rax, r8
 	ret
 	.seh_endproc
@@ -3258,44 +3231,44 @@ udivmodsi4:
 	.seh_endprologue
 	mov	eax, 1
 	cmp	edx, ecx
-	jb	.L801
-	jmp	.L802
+	jb	.L805
+	jmp	.L806
 	.p2align 4,,10
 	.p2align 3
-.L804:
+.L808:
 	add	edx, edx
 	add	eax, eax
 	cmp	edx, ecx
-	jnb	.L803
+	jnb	.L807
 	test	eax, eax
-	je	.L803
-.L801:
+	je	.L807
+.L805:
 	test	edx, edx
-	jns	.L804
-.L802:
+	jns	.L808
+.L806:
 	xor	r9d, r9d
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L807:
+.L811:
 	cmp	ecx, edx
-	jb	.L806
+	jb	.L810
 	sub	ecx, edx
 	or	r9d, eax
-.L806:
+.L810:
 	shr	edx
 	shr	eax
-	jne	.L807
+	jne	.L811
 	test	r8, r8
 	cmovne	r9d, ecx
 	mov	eax, r9d
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L803:
+.L807:
 	xor	r9d, r9d
 	test	eax, eax
-	jne	.L802
+	jne	.L806
 	test	r8, r8
 	cmovne	r9d, ecx
 	mov	eax, r9d
@@ -3313,13 +3286,13 @@ __clrsbqi2:
 	mov	eax, edx
 	xor	eax, ecx
 	cmp	cl, dl
-	je	.L822
+	je	.L826
 	movsx	eax, al
 	sal	eax, 8
 	bsr	eax, eax
 	xor	eax, 31
 	lea	r8d, -1[rax]
-.L822:
+.L826:
 	mov	eax, r8d
 	ret
 	.seh_endproc
@@ -3335,11 +3308,11 @@ __clrsbdi2:
 	sar	rdx, 63
 	xor	rax, rdx
 	cmp	rcx, rdx
-	je	.L825
+	je	.L829
 	bsr	rax, rax
 	xor	rax, 63
 	lea	r8d, -1[rax]
-.L825:
+.L829:
 	mov	eax, r8d
 	ret
 	.seh_endproc
@@ -3351,11 +3324,11 @@ __mulsi3:
 	.seh_endprologue
 	xor	r8d, r8d
 	test	ecx, ecx
-	je	.L828
+	je	.L832
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L830:
+.L834:
 	mov	eax, ecx
 	and	eax, 1
 	neg	eax
@@ -3363,8 +3336,8 @@ __mulsi3:
 	add	edx, edx
 	add	r8d, eax
 	shr	ecx
-	jne	.L830
-.L828:
+	jne	.L834
+.L832:
 	mov	eax, r8d
 	ret
 	.seh_endproc
@@ -3385,20 +3358,20 @@ __cmovd:
 	shr	ebx, 3
 	and	r10d, -8
 	cmp	rcx, rdx
-	jb	.L838
+	jb	.L842
 	mov	eax, r8d
 	add	rax, rdx
 	cmp	rax, rcx
-	jnb	.L869
-.L838:
+	jnb	.L873
+.L842:
 	test	ebx, ebx
-	je	.L870
+	je	.L874
 	lea	eax, -1[rbx]
 	cmp	eax, 2
-	jbe	.L840
+	jbe	.L844
 	lea	rax, 8[rdx]
 	cmp	rcx, rax
-	je	.L840
+	je	.L844
 	mov	r11d, r8d
 	xor	eax, eax
 	shr	r11d, 4
@@ -3407,34 +3380,34 @@ __cmovd:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L841:
+.L845:
 	movdqu	xmm0, XMMWORD PTR [rdx+rax]
 	movups	XMMWORD PTR [rcx+rax], xmm0
 	add	rax, 16
 	cmp	rax, r9
-	jne	.L841
+	jne	.L845
 	add	r11d, r11d
 	cmp	ebx, r11d
-	je	.L844
+	je	.L848
 	mov	rax, QWORD PTR [rdx+r11*8]
 	mov	QWORD PTR [rcx+r11*8], rax
-.L844:
+.L848:
 	cmp	r10d, r8d
-	jnb	.L833
+	jnb	.L837
 	mov	esi, r8d
 	mov	r9d, r10d
 	sub	esi, r10d
 	lea	eax, -1[rsi]
 	cmp	eax, 6
-	jbe	.L836
+	jbe	.L840
 	lea	rbx, [rcx+r9]
 	lea	rdi, 1[rdx+r9]
 	mov	r11, rbx
 	sub	r11, rdi
 	cmp	r11, 14
-	jbe	.L836
+	jbe	.L840
 	cmp	eax, 14
-	jbe	.L853
+	jbe	.L857
 	mov	r11d, esi
 	lea	rdi, [rdx+r9]
 	xor	eax, eax
@@ -3443,22 +3416,22 @@ __cmovd:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L846:
+.L850:
 	movdqu	xmm0, XMMWORD PTR [rdi+rax]
 	movups	XMMWORD PTR [rbx+rax], xmm0
 	add	rax, 16
 	cmp	r11, rax
-	jne	.L846
+	jne	.L850
 	mov	eax, esi
 	and	eax, -16
 	add	r10d, eax
 	test	sil, 15
-	je	.L833
+	je	.L837
 	sub	esi, eax
 	lea	r11d, -1[rsi]
 	cmp	r11d, 6
-	jbe	.L848
-.L845:
+	jbe	.L852
+.L849:
 	add	rax, r9
 	mov	r9, QWORD PTR [rdx+rax]
 	mov	QWORD PTR [rcx+rax], r9
@@ -3466,103 +3439,103 @@ __cmovd:
 	and	eax, -8
 	add	r10d, eax
 	and	esi, 7
-	je	.L833
-.L848:
+	je	.L837
+.L852:
 	mov	eax, r10d
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 1[r10]
 	cmp	eax, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 2[r10]
 	cmp	eax, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 3[r10]
 	cmp	eax, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 4[r10]
 	cmp	eax, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 5[r10]
 	cmp	eax, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	r9d, BYTE PTR [rdx+rax]
 	add	r10d, 6
 	mov	BYTE PTR [rcx+rax], r9b
 	cmp	r10d, r8d
-	jnb	.L833
+	jnb	.L837
 	movzx	eax, BYTE PTR [rdx+r10]
 	mov	BYTE PTR [rcx+r10], al
-.L833:
+.L837:
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L869:
+.L873:
 	lea	eax, -1[r8]
 	test	r8d, r8d
-	je	.L833
+	je	.L837
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L852:
+.L856:
 	movzx	r8d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r8b
 	sub	rax, 1
-	jnb	.L852
+	jnb	.L856
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
-.L853:
+.L857:
 	xor	eax, eax
-	jmp	.L845
+	jmp	.L849
 	.p2align 4,,10
 	.p2align 3
-.L870:
+.L874:
 	mov	r9d, r10d
 	test	r8d, r8d
-	je	.L833
-.L836:
+	je	.L837
+.L840:
 	mov	rax, r9
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L850:
+.L854:
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	add	rax, 1
 	cmp	eax, r8d
-	jb	.L850
+	jb	.L854
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L840:
+.L844:
 	lea	r11d, 0[0+rbx*8]
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L843:
+.L847:
 	mov	r9, QWORD PTR [rdx+rax]
 	mov	QWORD PTR [rcx+rax], r9
 	add	rax, 8
 	cmp	r11, rax
-	jne	.L843
-	jmp	.L844
+	jne	.L847
+	jmp	.L848
 	.seh_endproc
 	.p2align 4
 	.globl	__cmovh
@@ -3573,24 +3546,24 @@ __cmovh:
 	mov	r11d, r8d
 	shr	r11d
 	cmp	rcx, rdx
-	jb	.L875
+	jb	.L879
 	mov	eax, r8d
 	add	rax, rdx
 	cmp	rax, rcx
-	jnb	.L899
-.L875:
+	jnb	.L903
+.L879:
 	test	r11d, r11d
-	je	.L874
+	je	.L878
 	lea	eax, -1[r11]
 	cmp	eax, 2
-	jbe	.L878
+	jbe	.L882
 	lea	r10, 2[rdx]
 	mov	r9, rcx
 	sub	r9, r10
 	cmp	r9, 12
-	jbe	.L878
+	jbe	.L882
 	cmp	eax, 6
-	jbe	.L888
+	jbe	.L892
 	mov	r9d, r8d
 	xor	eax, eax
 	shr	r9d, 4
@@ -3599,21 +3572,21 @@ __cmovh:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L880:
+.L884:
 	movdqu	xmm0, XMMWORD PTR [rdx+rax]
 	movups	XMMWORD PTR [rcx+rax], xmm0
 	add	rax, 16
 	cmp	rax, r10
-	jne	.L880
+	jne	.L884
 	lea	eax, 0[0+r9*8]
 	cmp	r11d, eax
-	je	.L874
+	je	.L878
 	mov	r9d, r11d
 	sub	r9d, eax
 	lea	r10d, -1[r9]
 	cmp	r10d, 2
-	jbe	.L882
-.L879:
+	jbe	.L886
+.L883:
 	mov	r10d, eax
 	movq	xmm0, QWORD PTR [rdx+r10*2]
 	movq	QWORD PTR [rcx+r10*2], xmm0
@@ -3621,66 +3594,66 @@ __cmovh:
 	and	r10d, -4
 	add	eax, r10d
 	and	r9d, 3
-	je	.L874
-.L882:
+	je	.L878
+.L886:
 	mov	r9d, eax
 	movzx	r10d, WORD PTR [rdx+r9*2]
 	mov	WORD PTR [rcx+r9*2], r10w
 	lea	r9d, 1[rax]
 	cmp	r9d, r11d
-	jnb	.L874
+	jnb	.L878
 	movzx	r10d, WORD PTR [rdx+r9*2]
 	add	eax, 2
 	mov	WORD PTR [rcx+r9*2], r10w
 	cmp	eax, r11d
-	jnb	.L874
+	jnb	.L878
 	movzx	r9d, WORD PTR [rdx+rax*2]
 	mov	WORD PTR [rcx+rax*2], r9w
-.L874:
+.L878:
 	test	r8b, 1
-	je	.L871
-.L900:
+	je	.L875
+.L904:
 	lea	eax, -1[r8]
 	movzx	edx, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], dl
-.L871:
+.L875:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L899:
+.L903:
 	lea	eax, -1[r8]
 	test	r8d, r8d
-	je	.L871
+	je	.L875
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L887:
+.L891:
 	movzx	r8d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r8b
 	sub	rax, 1
-	jnb	.L887
+	jnb	.L891
 	ret
-.L888:
+.L892:
 	mov	r9d, r11d
 	xor	eax, eax
-	jmp	.L879
+	jmp	.L883
 	.p2align 4,,10
 	.p2align 3
-.L878:
+.L882:
 	lea	r10d, [r11+r11]
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L884:
+.L888:
 	movzx	r9d, WORD PTR [rdx+rax]
 	mov	WORD PTR [rcx+rax], r9w
 	add	rax, 2
 	cmp	rax, r10
-	jne	.L884
+	jne	.L888
 	test	r8b, 1
-	je	.L871
-	jmp	.L900
+	je	.L875
+	jmp	.L904
 	.seh_endproc
 	.p2align 4
 	.globl	__cmovw
@@ -3699,22 +3672,22 @@ __cmovw:
 	shr	ebx, 2
 	and	r10d, -4
 	cmp	rcx, rdx
-	jb	.L906
+	jb	.L910
 	mov	eax, r8d
 	add	rax, rdx
 	cmp	rax, rcx
-	jnb	.L937
-.L906:
+	jnb	.L941
+.L910:
 	test	ebx, ebx
-	je	.L938
+	je	.L942
 	lea	eax, -1[rbx]
 	cmp	eax, 2
-	jbe	.L908
+	jbe	.L912
 	lea	r9, 4[rdx]
 	mov	rax, rcx
 	sub	rax, r9
 	cmp	rax, 8
-	jbe	.L908
+	jbe	.L912
 	mov	r11d, r8d
 	xor	eax, eax
 	shr	r11d, 4
@@ -3723,45 +3696,45 @@ __cmovw:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L909:
+.L913:
 	movdqu	xmm0, XMMWORD PTR [rdx+rax]
 	movups	XMMWORD PTR [rcx+rax], xmm0
 	add	rax, 16
 	cmp	rax, r9
-	jne	.L909
+	jne	.L913
 	lea	eax, 0[0+r11*4]
 	cmp	ebx, eax
-	je	.L912
+	je	.L916
 	mov	r9d, eax
 	mov	r11d, DWORD PTR [rdx+r9*4]
 	mov	DWORD PTR [rcx+r9*4], r11d
 	lea	r9d, 1[rax]
 	cmp	r9d, ebx
-	jnb	.L912
+	jnb	.L916
 	mov	r11d, DWORD PTR [rdx+r9*4]
 	add	eax, 2
 	mov	DWORD PTR [rcx+r9*4], r11d
 	cmp	eax, ebx
-	jnb	.L912
+	jnb	.L916
 	mov	r9d, DWORD PTR [rdx+rax*4]
 	mov	DWORD PTR [rcx+rax*4], r9d
-.L912:
+.L916:
 	cmp	r10d, r8d
-	jnb	.L901
+	jnb	.L905
 	mov	esi, r8d
 	mov	r9d, r10d
 	sub	esi, r10d
 	lea	eax, -1[rsi]
 	cmp	eax, 6
-	jbe	.L904
+	jbe	.L908
 	lea	rbx, [rcx+r9]
 	lea	rdi, 1[rdx+r9]
 	mov	r11, rbx
 	sub	r11, rdi
 	cmp	r11, 14
-	jbe	.L904
+	jbe	.L908
 	cmp	eax, 14
-	jbe	.L921
+	jbe	.L925
 	mov	r11d, esi
 	lea	rdi, [rdx+r9]
 	xor	eax, eax
@@ -3770,22 +3743,22 @@ __cmovw:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L914:
+.L918:
 	movdqu	xmm0, XMMWORD PTR [rdi+rax]
 	movups	XMMWORD PTR [rbx+rax], xmm0
 	add	rax, 16
 	cmp	r11, rax
-	jne	.L914
+	jne	.L918
 	mov	eax, esi
 	and	eax, -16
 	add	r10d, eax
 	test	sil, 15
-	je	.L901
+	je	.L905
 	sub	esi, eax
 	lea	r11d, -1[rsi]
 	cmp	r11d, 6
-	jbe	.L916
-.L913:
+	jbe	.L920
+.L917:
 	add	rax, r9
 	mov	r9, QWORD PTR [rdx+rax]
 	mov	QWORD PTR [rcx+rax], r9
@@ -3793,103 +3766,103 @@ __cmovw:
 	and	eax, -8
 	add	r10d, eax
 	and	esi, 7
-	je	.L901
-.L916:
+	je	.L905
+.L920:
 	mov	eax, r10d
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 1[r10]
 	cmp	eax, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 2[r10]
 	cmp	eax, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 3[r10]
 	cmp	eax, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 4[r10]
 	cmp	eax, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	lea	eax, 5[r10]
 	cmp	eax, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	r9d, BYTE PTR [rdx+rax]
 	add	r10d, 6
 	mov	BYTE PTR [rcx+rax], r9b
 	cmp	r10d, r8d
-	jnb	.L901
+	jnb	.L905
 	movzx	eax, BYTE PTR [rdx+r10]
 	mov	BYTE PTR [rcx+r10], al
-.L901:
+.L905:
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L937:
+.L941:
 	lea	eax, -1[r8]
 	test	r8d, r8d
-	je	.L901
+	je	.L905
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L920:
+.L924:
 	movzx	r8d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r8b
 	sub	rax, 1
-	jnb	.L920
+	jnb	.L924
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
-.L921:
+.L925:
 	xor	eax, eax
-	jmp	.L913
+	jmp	.L917
 	.p2align 4,,10
 	.p2align 3
-.L938:
+.L942:
 	mov	r9d, r10d
 	test	r8d, r8d
-	je	.L901
-.L904:
+	je	.L905
+.L908:
 	mov	rax, r9
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L918:
+.L922:
 	movzx	r9d, BYTE PTR [rdx+rax]
 	mov	BYTE PTR [rcx+rax], r9b
 	add	rax, 1
 	cmp	eax, r8d
-	jb	.L918
+	jb	.L922
 	pop	rbx
 	pop	rsi
 	pop	rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L908:
+.L912:
 	lea	r11d, 0[0+rbx*4]
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L911:
+.L915:
 	mov	r9d, DWORD PTR [rdx+rax]
 	mov	DWORD PTR [rcx+rax], r9d
 	add	rax, 4
 	cmp	rax, r11
-	jne	.L911
-	jmp	.L912
+	jne	.L915
+	jmp	.L916
 	.seh_endproc
 	.p2align 4
 	.globl	__modi
@@ -3933,13 +3906,13 @@ __uitof:
 __ulltod:
 	.seh_endprologue
 	test	rcx, rcx
-	js	.L947
+	js	.L951
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, rcx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L947:
+.L951:
 	mov	rax, rcx
 	and	ecx, 1
 	pxor	xmm0, xmm0
@@ -3956,13 +3929,13 @@ __ulltod:
 __ulltof:
 	.seh_endprologue
 	test	rcx, rcx
-	js	.L950
+	js	.L954
 	pxor	xmm0, xmm0
 	cvtsi2ss	xmm0, rcx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L950:
+.L954:
 	mov	rax, rcx
 	and	ecx, 1
 	pxor	xmm0, xmm0
@@ -3993,93 +3966,93 @@ __clzhi2:
 	.seh_endprologue
 	movzx	edx, cx
 	test	ch, -128
-	jne	.L956
-	mov	eax, edx
-	sar	eax, 14
-	jne	.L953
-	mov	eax, edx
-	shr	eax, 13
-	jne	.L957
-	mov	eax, edx
-	shr	eax, 12
-	jne	.L958
-	mov	eax, edx
-	shr	eax, 11
-	jne	.L959
-	mov	eax, edx
-	shr	eax, 10
 	jne	.L960
 	mov	eax, edx
-	shr	eax, 9
+	sar	eax, 14
+	jne	.L957
+	mov	eax, edx
+	shr	eax, 13
 	jne	.L961
 	mov	eax, edx
-	shr	eax, 8
+	shr	eax, 12
 	jne	.L962
 	mov	eax, edx
-	shr	eax, 7
+	shr	eax, 11
 	jne	.L963
 	mov	eax, edx
-	shr	eax, 6
+	shr	eax, 10
 	jne	.L964
 	mov	eax, edx
-	shr	eax, 5
+	shr	eax, 9
 	jne	.L965
 	mov	eax, edx
-	shr	eax, 4
+	shr	eax, 8
 	jne	.L966
 	mov	eax, edx
-	shr	eax, 3
+	shr	eax, 7
 	jne	.L967
 	mov	eax, edx
-	shr	eax, 2
+	shr	eax, 6
 	jne	.L968
-	shr	edx
+	mov	eax, edx
+	shr	eax, 5
 	jne	.L969
+	mov	eax, edx
+	shr	eax, 4
+	jne	.L970
+	mov	eax, edx
+	shr	eax, 3
+	jne	.L971
+	mov	eax, edx
+	shr	eax, 2
+	jne	.L972
+	shr	edx
+	jne	.L973
 	cmp	cx, 1
 	mov	eax, 15
 	adc	eax, 0
-.L953:
-	ret
-.L956:
-	xor	eax, eax
-	ret
-.L967:
-	mov	eax, 12
-	ret
 .L957:
-	mov	eax, 2
-	ret
-.L958:
-	mov	eax, 3
-	ret
-.L959:
-	mov	eax, 4
 	ret
 .L960:
-	mov	eax, 5
+	xor	eax, eax
+	ret
+.L971:
+	mov	eax, 12
 	ret
 .L961:
-	mov	eax, 6
+	mov	eax, 2
 	ret
 .L962:
-	mov	eax, 7
+	mov	eax, 3
 	ret
 .L963:
-	mov	eax, 8
+	mov	eax, 4
 	ret
 .L964:
-	mov	eax, 9
+	mov	eax, 5
 	ret
 .L965:
-	mov	eax, 10
+	mov	eax, 6
 	ret
 .L966:
-	mov	eax, 11
+	mov	eax, 7
+	ret
+.L967:
+	mov	eax, 8
 	ret
 .L968:
-	mov	eax, 13
+	mov	eax, 9
 	ret
 .L969:
+	mov	eax, 10
+	ret
+.L970:
+	mov	eax, 11
+	ret
+.L972:
+	mov	eax, 13
+	ret
+.L973:
 	mov	eax, 14
 	ret
 	.seh_endproc
@@ -4090,83 +4063,83 @@ __clzhi2:
 __ctzhi2:
 	.seh_endprologue
 	test	cl, 1
-	jne	.L974
-	test	cl, 2
-	jne	.L975
-	test	cl, 4
-	jne	.L976
-	test	cl, 8
-	jne	.L977
-	test	cl, 16
 	jne	.L978
-	test	cl, 32
+	test	cl, 2
 	jne	.L979
-	test	cl, 64
+	test	cl, 4
 	jne	.L980
-	test	cl, -128
+	test	cl, 8
 	jne	.L981
-	test	ch, 1
+	test	cl, 16
 	jne	.L982
-	test	ch, 2
+	test	cl, 32
 	jne	.L983
-	test	ch, 4
+	test	cl, 64
 	jne	.L984
-	test	ch, 8
+	test	cl, -128
 	jne	.L985
-	test	ch, 16
+	test	ch, 1
 	jne	.L986
-	test	ch, 32
+	test	ch, 2
 	jne	.L987
-	test	ch, 64
+	test	ch, 4
 	jne	.L988
+	test	ch, 8
+	jne	.L989
+	test	ch, 16
+	jne	.L990
+	test	ch, 32
+	jne	.L991
+	test	ch, 64
+	jne	.L992
 	xor	eax, eax
 	and	ch, -128
 	sete	al
 	add	eax, 15
 	ret
-.L974:
+.L978:
 	xor	eax, eax
 	ret
-.L975:
+.L979:
 	mov	eax, 1
 	ret
-.L986:
+.L990:
 	mov	eax, 12
 	ret
-.L976:
+.L980:
 	mov	eax, 2
 	ret
-.L977:
+.L981:
 	mov	eax, 3
 	ret
-.L978:
+.L982:
 	mov	eax, 4
 	ret
-.L979:
+.L983:
 	mov	eax, 5
 	ret
-.L980:
+.L984:
 	mov	eax, 6
 	ret
-.L981:
+.L985:
 	mov	eax, 7
 	ret
-.L982:
+.L986:
 	mov	eax, 8
 	ret
-.L983:
+.L987:
 	mov	eax, 9
 	ret
-.L984:
+.L988:
 	mov	eax, 10
 	ret
-.L985:
+.L989:
 	mov	eax, 11
 	ret
-.L987:
+.L991:
 	mov	eax, 13
 	ret
-.L988:
+.L992:
 	mov	eax, 14
 	ret
 	.seh_endproc
@@ -4176,14 +4149,14 @@ __ctzhi2:
 	.seh_proc	__fixunssfsi
 __fixunssfsi:
 	.seh_endprologue
-	comiss	xmm0, DWORD PTR .LC13[rip]
+	comiss	xmm0, DWORD PTR .LC14[rip]
 	cvttss2si	eax, xmm0
-	jnb	.L996
+	jnb	.L1000
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L996:
-	subss	xmm0, DWORD PTR .LC13[rip]
+.L1000:
+	subss	xmm0, DWORD PTR .LC14[rip]
 	cvttss2si	eax, xmm0
 	add	eax, 32768
 	ret
@@ -4333,11 +4306,11 @@ __mulsi3_iq2000:
 	.seh_endprologue
 	xor	r8d, r8d
 	test	ecx, ecx
-	je	.L999
+	je	.L1003
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L1001:
+.L1005:
 	mov	eax, ecx
 	and	eax, 1
 	neg	eax
@@ -4345,8 +4318,8 @@ __mulsi3_iq2000:
 	add	edx, edx
 	add	r8d, eax
 	shr	ecx
-	jne	.L1001
-.L999:
+	jne	.L1005
+.L1003:
 	mov	eax, r8d
 	ret
 	.seh_endproc
@@ -4358,13 +4331,13 @@ __mulsi3_lm32:
 	.seh_endprologue
 	xor	r8d, r8d
 	test	ecx, ecx
-	je	.L1004
+	je	.L1008
 	test	edx, edx
-	je	.L1004
+	je	.L1008
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L1006:
+.L1010:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -4372,8 +4345,8 @@ __mulsi3_lm32:
 	add	ecx, ecx
 	add	r8d, eax
 	shr	edx
-	jne	.L1006
-.L1004:
+	jne	.L1010
+.L1008:
 	mov	eax, r8d
 	ret
 	.seh_endproc
@@ -4385,44 +4358,44 @@ __udivmodsi4:
 	.seh_endprologue
 	mov	eax, 1
 	cmp	edx, ecx
-	jb	.L1012
-	jmp	.L1013
+	jb	.L1016
+	jmp	.L1017
 	.p2align 4,,10
 	.p2align 3
-.L1015:
+.L1019:
 	add	edx, edx
 	add	eax, eax
 	cmp	edx, ecx
-	jnb	.L1014
+	jnb	.L1018
 	test	eax, eax
-	je	.L1014
-.L1012:
+	je	.L1018
+.L1016:
 	test	edx, edx
-	jns	.L1015
-.L1013:
+	jns	.L1019
+.L1017:
 	xor	r9d, r9d
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L1018:
+.L1022:
 	cmp	ecx, edx
-	jb	.L1017
+	jb	.L1021
 	sub	ecx, edx
 	or	r9d, eax
-.L1017:
+.L1021:
 	shr	edx
 	shr	eax
-	jne	.L1018
+	jne	.L1022
 	test	r8d, r8d
 	cmovne	r9d, ecx
 	mov	eax, r9d
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1014:
+.L1018:
 	xor	r9d, r9d
 	test	eax, eax
-	jne	.L1013
+	jne	.L1017
 	test	r8d, r8d
 	cmovne	r9d, ecx
 	mov	eax, r9d
@@ -4436,11 +4409,11 @@ __mspabi_cmpf:
 	.seh_endprologue
 	mov	eax, -1
 	comiss	xmm1, xmm0
-	ja	.L1033
+	ja	.L1037
 	xor	eax, eax
 	comiss	xmm0, xmm1
 	seta	al
-.L1033:
+.L1037:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -4451,11 +4424,11 @@ __mspabi_cmpd:
 	.seh_endprologue
 	mov	eax, -1
 	comisd	xmm1, xmm0
-	ja	.L1036
+	ja	.L1040
 	xor	eax, eax
 	comisd	xmm0, xmm1
 	seta	al
-.L1036:
+.L1040:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -4487,16 +4460,16 @@ __mspabi_mpyull:
 __mulhi3:
 	.seh_endprologue
 	test	edx, edx
-	js	.L1050
-	je	.L1046
+	js	.L1054
+	je	.L1050
 	xor	r11d, r11d
-.L1043:
+.L1047:
 	mov	r8d, 1
 	xor	r9d, r9d
 	.p2align 6
 	.p2align 4
 	.p2align 3
-.L1045:
+.L1049:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -4509,7 +4482,7 @@ __mulhi3:
 	setne	al
 	add	r8d, 1
 	test	r10b, al
-	jne	.L1045
+	jne	.L1049
 	mov	eax, r9d
 	neg	eax
 	test	r11d, r11d
@@ -4518,13 +4491,13 @@ __mulhi3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1050:
+.L1054:
 	neg	edx
 	mov	r11d, 1
-	jmp	.L1043
+	jmp	.L1047
 	.p2align 4,,10
 	.p2align 3
-.L1046:
+.L1050:
 	xor	r9d, r9d
 	mov	eax, r9d
 	ret
@@ -4538,48 +4511,48 @@ __divsi3:
 	mov	eax, 1
 	xor	r10d, r10d
 	test	ecx, ecx
-	jns	.L1052
+	jns	.L1056
 	neg	ecx
 	xor	eax, eax
 	mov	r10d, 1
-.L1052:
+.L1056:
 	test	edx, edx
-	jns	.L1053
+	jns	.L1057
 	neg	edx
 	mov	r10d, eax
-.L1053:
+.L1057:
 	mov	r9d, ecx
 	mov	r8d, 1
 	cmp	edx, ecx
-	jb	.L1054
-	jmp	.L1055
+	jb	.L1058
+	jmp	.L1059
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-.L1073:
+.L1077:
 	test	r8d, r8d
-	je	.L1072
-.L1054:
+	je	.L1076
+.L1058:
 	add	edx, edx
 	add	r8d, r8d
 	cmp	edx, ecx
-	jb	.L1073
+	jb	.L1077
 	test	r8d, r8d
-	je	.L1072
-.L1055:
+	je	.L1076
+.L1059:
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L1060:
+.L1064:
 	cmp	r9d, edx
-	jb	.L1059
+	jb	.L1063
 	sub	r9d, edx
 	or	eax, r8d
-.L1059:
+.L1063:
 	shr	edx
 	shr	r8d
-	jne	.L1060
+	jne	.L1064
 	mov	edx, eax
 	neg	edx
 	test	r10d, r10d
@@ -4587,7 +4560,7 @@ __divsi3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1072:
+.L1076:
 	xor	eax, eax
 	mov	edx, eax
 	neg	edx
@@ -4603,42 +4576,42 @@ __modsi3:
 	.seh_endprologue
 	xor	r9d, r9d
 	test	ecx, ecx
-	jns	.L1075
+	jns	.L1079
 	neg	ecx
 	mov	r9d, 1
-.L1075:
+.L1079:
 	mov	eax, edx
 	mov	r8d, 1
 	neg	eax
 	cmovns	edx, eax
 	mov	eax, ecx
 	cmp	edx, ecx
-	jb	.L1076
-	jmp	.L1082
+	jb	.L1080
+	jmp	.L1086
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-.L1095:
+.L1099:
 	test	r8d, r8d
-	je	.L1094
-.L1076:
+	je	.L1098
+.L1080:
 	add	edx, edx
 	add	r8d, r8d
 	cmp	edx, ecx
-	jb	.L1095
+	jb	.L1099
 	test	r8d, r8d
-	je	.L1094
+	je	.L1098
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L1082:
+.L1086:
 	mov	ecx, eax
 	sub	ecx, edx
 	cmp	eax, edx
 	cmovnb	eax, ecx
 	shr	edx
 	shr	r8d
-	jne	.L1082
+	jne	.L1086
 	mov	edx, eax
 	neg	edx
 	test	r9d, r9d
@@ -4646,7 +4619,7 @@ __modsi3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1094:
+.L1098:
 	mov	eax, ecx
 	mov	edx, eax
 	neg	edx
@@ -4666,85 +4639,45 @@ __udivmodhi4:
 	mov	r11d, ecx
 	mov	eax, edx
 	cmp	dx, cx
-	jb	.L1097
-	jmp	.L1152
+	jb	.L1101
+	jmp	.L1156
 	.p2align 4,,10
 	.p2align 3
-.L1100:
+.L1104:
 	lea	r10d, [rax+rax]
 	lea	edx, [r9+r9]
 	cmp	r10w, r11w
-	jnb	.L1099
+	jnb	.L1103
 	test	dx, dx
-	je	.L1099
+	je	.L1103
 	mov	r9d, edx
 	mov	eax, r10d
-.L1097:
+.L1101:
 	test	ax, ax
-	jns	.L1100
+	jns	.L1104
 	xor	edx, edx
 	cmp	cx, ax
-	jb	.L1123
+	jb	.L1127
 	mov	r11d, ecx
 	mov	edx, r9d
 	sub	r11d, eax
-.L1123:
+.L1127:
 	mov	ecx, eax
 	mov	ebx, r9d
 	shr	cx
 	shr	bx
-	je	.L1140
-.L1104:
+	je	.L1144
+.L1108:
 	cmp	r11w, cx
-	jb	.L1105
+	jb	.L1109
 	sub	r11d, ecx
 	or	edx, ebx
-.L1105:
+.L1109:
 	mov	ecx, eax
 	mov	r10d, r9d
 	shr	cx, 2
 	shr	r10w, 2
-	je	.L1140
-	cmp	r11w, cx
-	jb	.L1106
-	sub	r11d, ecx
-	or	edx, r10d
-.L1106:
-	mov	ecx, eax
-	mov	r10d, r9d
-	shr	cx, 3
-	shr	r10w, 3
-	je	.L1140
-	cmp	r11w, cx
-	jb	.L1107
-	sub	r11d, ecx
-	or	edx, r10d
-.L1107:
-	mov	ecx, eax
-	mov	r10d, r9d
-	shr	cx, 4
-	shr	r10w, 4
-	je	.L1140
-	cmp	r11w, cx
-	jb	.L1108
-	sub	r11d, ecx
-	or	edx, r10d
-.L1108:
-	mov	ecx, eax
-	mov	r10d, r9d
-	shr	cx, 5
-	shr	r10w, 5
-	je	.L1140
-	cmp	r11w, cx
-	jb	.L1109
-	sub	r11d, ecx
-	or	edx, r10d
-.L1109:
-	mov	ecx, eax
-	mov	r10d, r9d
-	shr	cx, 6
-	shr	r10w, 6
-	je	.L1140
+	je	.L1144
 	cmp	r11w, cx
 	jb	.L1110
 	sub	r11d, ecx
@@ -4752,89 +4685,129 @@ __udivmodhi4:
 .L1110:
 	mov	ecx, eax
 	mov	r10d, r9d
-	shr	cx, 7
-	shr	r10w, 7
-	je	.L1140
+	shr	cx, 3
+	shr	r10w, 3
+	je	.L1144
 	cmp	r11w, cx
-	jnb	.L1153
+	jb	.L1111
+	sub	r11d, ecx
+	or	edx, r10d
 .L1111:
 	mov	ecx, eax
 	mov	r10d, r9d
-	shr	cx, 8
-	shr	r10w, 8
-	je	.L1140
+	shr	cx, 4
+	shr	r10w, 4
+	je	.L1144
 	cmp	r11w, cx
-	jnb	.L1154
+	jb	.L1112
+	sub	r11d, ecx
+	or	edx, r10d
 .L1112:
 	mov	ecx, eax
 	mov	r10d, r9d
-	shr	cx, 9
-	shr	r10w, 9
-	je	.L1140
+	shr	cx, 5
+	shr	r10w, 5
+	je	.L1144
 	cmp	r11w, cx
-	jnb	.L1155
+	jb	.L1113
+	sub	r11d, ecx
+	or	edx, r10d
 .L1113:
 	mov	ecx, eax
 	mov	r10d, r9d
-	shr	cx, 10
-	shr	r10w, 10
-	je	.L1140
+	shr	cx, 6
+	shr	r10w, 6
+	je	.L1144
 	cmp	r11w, cx
-	jnb	.L1156
+	jb	.L1114
+	sub	r11d, ecx
+	or	edx, r10d
 .L1114:
 	mov	ecx, eax
 	mov	r10d, r9d
-	shr	cx, 11
-	shr	r10w, 11
-	je	.L1140
+	shr	cx, 7
+	shr	r10w, 7
+	je	.L1144
 	cmp	r11w, cx
 	jnb	.L1157
 .L1115:
 	mov	ecx, eax
 	mov	r10d, r9d
+	shr	cx, 8
+	shr	r10w, 8
+	je	.L1144
+	cmp	r11w, cx
+	jnb	.L1158
+.L1116:
+	mov	ecx, eax
+	mov	r10d, r9d
+	shr	cx, 9
+	shr	r10w, 9
+	je	.L1144
+	cmp	r11w, cx
+	jnb	.L1159
+.L1117:
+	mov	ecx, eax
+	mov	r10d, r9d
+	shr	cx, 10
+	shr	r10w, 10
+	je	.L1144
+	cmp	r11w, cx
+	jnb	.L1160
+.L1118:
+	mov	ecx, eax
+	mov	r10d, r9d
+	shr	cx, 11
+	shr	r10w, 11
+	je	.L1144
+	cmp	r11w, cx
+	jnb	.L1161
+.L1119:
+	mov	ecx, eax
+	mov	r10d, r9d
 	shr	cx, 12
 	shr	r10w, 12
-	je	.L1140
+	je	.L1144
 	cmp	r11w, cx
-	jb	.L1116
+	jb	.L1120
 	sub	r11d, ecx
 	or	edx, r10d
-.L1116:
+.L1120:
 	mov	ecx, eax
 	mov	r10d, r9d
 	shr	cx, 13
 	shr	r10w, 13
-	je	.L1140
+	je	.L1144
 	cmp	r11w, cx
-	jb	.L1117
+	jb	.L1121
 	sub	r11d, ecx
 	or	edx, r10d
-.L1117:
+.L1121:
 	mov	ecx, eax
 	mov	r10d, r9d
 	shr	cx, 14
 	shr	r10w, 14
-	je	.L1140
+	je	.L1144
 	cmp	r11w, cx
-	jb	.L1118
+	jb	.L1122
 	sub	r11d, ecx
 	or	edx, r10d
-.L1118:
+.L1122:
 	shr	ax, 15
 	test	r9w, r9w
-	jns	.L1140
+	jns	.L1144
 	xor	ebx, ebx
 	cmp	r11w, ax
-	jb	.L1102
+	jb	.L1106
 	mov	ebx, r11d
 	or	edx, 1
 	sub	ebx, eax
-	jmp	.L1102
+	jmp	.L1106
 	.p2align 4,,10
 	.p2align 3
-.L1140:
+.L1144:
 	mov	ebx, r11d
-.L1102:
+.L1106:
 	test	r8d, r8d
 	cmove	ebx, edx
 	mov	eax, ebx
@@ -4842,12 +4815,12 @@ __udivmodhi4:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1099:
+.L1103:
 	mov	ebx, ecx
 	test	dx, dx
-	je	.L1102
+	je	.L1106
 	cmp	cx, r10w
-	jb	.L1103
+	jb	.L1107
 	mov	r11d, ecx
 	mov	ebx, r9d
 	and	ax, 32767
@@ -4856,16 +4829,16 @@ __udivmodhi4:
 	sub	r11d, r10d
 	and	bx, 32767
 	mov	eax, r10d
-	jmp	.L1104
+	jmp	.L1108
 	.p2align 4,,10
 	.p2align 3
-.L1153:
+.L1157:
 	sub	r11d, ecx
 	or	edx, r10d
-	jmp	.L1111
+	jmp	.L1115
 	.p2align 4,,10
 	.p2align 3
-.L1103:
+.L1107:
 	mov	ebx, r9d
 	and	ax, 32767
 	mov	r9d, edx
@@ -4873,37 +4846,37 @@ __udivmodhi4:
 	mov	ecx, eax
 	and	bx, 32767
 	mov	eax, r10d
-	jmp	.L1104
+	jmp	.L1108
 	.p2align 4,,10
 	.p2align 3
-.L1154:
+.L1158:
 	sub	r11d, ecx
 	or	edx, r10d
-	jmp	.L1112
+	jmp	.L1116
 	.p2align 4,,10
 	.p2align 3
-.L1155:
+.L1159:
 	sub	r11d, ecx
 	or	edx, r10d
-	jmp	.L1113
+	jmp	.L1117
 	.p2align 4,,10
 	.p2align 3
+.L1160:
+	sub	r11d, ecx
+	or	edx, r10d
+	jmp	.L1118
+	.p2align 4,,10
+	.p2align 3
+.L1161:
+	sub	r11d, ecx
+	or	edx, r10d
+	jmp	.L1119
 .L1156:
-	sub	r11d, ecx
-	or	edx, r10d
-	jmp	.L1114
-	.p2align 4,,10
-	.p2align 3
-.L1157:
-	sub	r11d, ecx
-	or	edx, r10d
-	jmp	.L1115
-.L1152:
 	sete	dl
 	mov	ebx, 0
 	cmovne	ebx, ecx
 	movzx	edx, dl
-	jmp	.L1102
+	jmp	.L1106
 	.seh_endproc
 	.p2align 4
 	.globl	__udivmodsi4_libgcc
@@ -4913,44 +4886,44 @@ __udivmodsi4_libgcc:
 	.seh_endprologue
 	mov	eax, 1
 	cmp	edx, ecx
-	jb	.L1159
-	jmp	.L1160
+	jb	.L1163
+	jmp	.L1164
 	.p2align 4,,10
 	.p2align 3
-.L1162:
+.L1166:
 	add	edx, edx
 	add	eax, eax
 	cmp	edx, ecx
-	jnb	.L1161
+	jnb	.L1165
 	test	eax, eax
-	je	.L1161
-.L1159:
+	je	.L1165
+.L1163:
 	test	edx, edx
-	jns	.L1162
-.L1160:
+	jns	.L1166
+.L1164:
 	xor	r9d, r9d
 	.p2align 4
 	.p2align 4
 	.p2align 3
-.L1165:
+.L1169:
 	cmp	ecx, edx
-	jb	.L1164
+	jb	.L1168
 	sub	ecx, edx
 	or	r9d, eax
-.L1164:
+.L1168:
 	shr	edx
 	shr	eax
-	jne	.L1165
+	jne	.L1169
 	test	r8d, r8d
 	cmovne	r9d, ecx
 	mov	eax, r9d
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1161:
+.L1165:
 	xor	r9d, r9d
 	test	eax, eax
-	jne	.L1160
+	jne	.L1164
 	test	r8d, r8d
 	cmovne	r9d, ecx
 	mov	eax, r9d
@@ -4964,21 +4937,21 @@ __ashldi3:
 	.seh_endprologue
 	mov	r8, rcx
 	test	dl, 32
-	je	.L1181
+	je	.L1185
 	lea	ecx, -32[rdx]
 	xor	eax, eax
 	sal	r8d, cl
-.L1182:
+.L1186:
 	sal	r8, 32
 	or	rax, r8
-.L1180:
+.L1184:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1181:
+.L1185:
 	mov	rax, rcx
 	test	edx, edx
-	je	.L1180
+	je	.L1184
 	mov	ecx, edx
 	mov	r9d, r8d
 	sar	r8, 32
@@ -4989,7 +4962,7 @@ __ashldi3:
 	mov	ecx, edx
 	sal	r8d, cl
 	or	r8d, r9d
-	jmp	.L1182
+	jmp	.L1186
 	.seh_endproc
 	.p2align 4
 	.globl	__ashlti3
@@ -5002,15 +4975,15 @@ __ashlti3:
 	mov	rax, QWORD PTR [rcx]
 	mov	r8, QWORD PTR 8[rcx]
 	test	dl, 64
-	je	.L1187
+	je	.L1191
 	lea	ecx, -64[rdx]
 	xor	r9d, r9d
 	sal	rax, cl
-.L1188:
+.L1192:
 	mov	rcx, rax
 	mov	rax, r9
 	mov	rdx, rcx
-.L1189:
+.L1193:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	r11, QWORD PTR 8[rsp]
 	movq	xmm1, rdx
@@ -5022,9 +4995,9 @@ __ashlti3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1187:
+.L1191:
 	test	edx, edx
-	je	.L1190
+	je	.L1194
 	mov	r9, rax
 	mov	ecx, edx
 	sal	r9, cl
@@ -5034,12 +5007,12 @@ __ashlti3:
 	mov	ecx, edx
 	sal	r8, cl
 	or	rax, r8
-	jmp	.L1188
+	jmp	.L1192
 	.p2align 4,,10
 	.p2align 3
-.L1190:
+.L1194:
 	mov	rdx, r8
-	jmp	.L1189
+	jmp	.L1193
 	.seh_endproc
 	.p2align 4
 	.globl	__ashrdi3
@@ -5049,23 +5022,23 @@ __ashrdi3:
 	.seh_endprologue
 	mov	r8, rcx
 	test	dl, 32
-	je	.L1192
+	je	.L1196
 	sar	r8, 32
 	lea	ecx, -32[rdx]
 	mov	eax, r8d
 	sar	r8d, cl
 	sar	eax, 31
-.L1193:
+.L1197:
 	sal	rax, 32
 	or	rax, r8
-.L1191:
+.L1195:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1192:
+.L1196:
 	mov	rax, rcx
 	test	edx, edx
-	je	.L1191
+	je	.L1195
 	mov	r9, rcx
 	mov	ecx, edx
 	sar	r9, 32
@@ -5077,7 +5050,7 @@ __ashrdi3:
 	mov	ecx, edx
 	shr	r8d, cl
 	or	r8d, r9d
-	jmp	.L1193
+	jmp	.L1197
 	.seh_endproc
 	.p2align 4
 	.globl	__ashrti3
@@ -5090,15 +5063,15 @@ __ashrti3:
 	mov	r8, QWORD PTR [rcx]
 	mov	rax, QWORD PTR 8[rcx]
 	test	dl, 64
-	je	.L1198
+	je	.L1202
 	mov	r10, rax
 	lea	ecx, -64[rdx]
 	sar	r10, 63
 	sar	rax, cl
-.L1199:
+.L1203:
 	mov	rdx, rax
 	mov	rax, r10
-.L1200:
+.L1204:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	rcx, QWORD PTR 8[rsp]
 	movq	xmm1, rax
@@ -5110,9 +5083,9 @@ __ashrti3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1198:
+.L1202:
 	test	edx, edx
-	je	.L1201
+	je	.L1205
 	mov	r10, rax
 	mov	ecx, edx
 	sar	r10, cl
@@ -5122,12 +5095,12 @@ __ashrti3:
 	mov	ecx, edx
 	shr	r8, cl
 	or	rax, r8
-	jmp	.L1199
+	jmp	.L1203
 	.p2align 4,,10
 	.p2align 3
-.L1201:
+.L1205:
 	mov	rdx, r8
-	jmp	.L1200
+	jmp	.L1204
 	.seh_endproc
 	.p2align 4
 	.globl	__bswapdi2
@@ -5231,17 +5204,17 @@ __cmpdi2:
 	sar	r9, 32
 	sar	r8, 32
 	cmp	r9d, r8d
-	jl	.L1206
+	jl	.L1210
 	mov	eax, 2
-	jg	.L1206
+	jg	.L1210
 	xor	eax, eax
 	cmp	ecx, edx
-	jb	.L1206
+	jb	.L1210
 	xor	eax, eax
 	cmp	edx, ecx
 	setb	al
 	add	eax, 1
-.L1206:
+.L1210:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5256,16 +5229,16 @@ __aeabi_lcmp:
 	sar	r9, 32
 	sar	r8, 32
 	cmp	r9d, r8d
-	jl	.L1212
+	jl	.L1216
 	mov	eax, 1
-	jg	.L1212
+	jg	.L1216
 	mov	eax, -1
 	cmp	ecx, edx
-	jb	.L1212
+	jb	.L1216
 	xor	eax, eax
 	cmp	edx, ecx
 	setb	al
-.L1212:
+.L1216:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5279,17 +5252,17 @@ __cmpti2:
 	mov	r8, QWORD PTR [rcx]
 	mov	rdx, QWORD PTR 8[rdx]
 	cmp	QWORD PTR 8[rcx], rdx
-	jl	.L1217
+	jl	.L1221
 	mov	eax, 2
-	jg	.L1217
+	jg	.L1221
 	xor	eax, eax
 	cmp	r8, r9
-	jb	.L1217
+	jb	.L1221
 	xor	eax, eax
 	cmp	r9, r8
 	setb	al
 	add	eax, 1
-.L1217:
+.L1221:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5367,7 +5340,7 @@ __ffsti2:
 	mov	rax, QWORD PTR [rcx]
 	mov	rdx, QWORD PTR 8[rcx]
 	test	rax, rax
-	jne	.L1226
+	jne	.L1230
 	xor	eax, eax
 	rep bsf	rax, rdx
 	add	eax, 65
@@ -5377,7 +5350,7 @@ __ffsti2:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1226:
+.L1230:
 	rep bsf	rax, rax
 	add	eax, 1
 	ret
@@ -5390,22 +5363,22 @@ __lshrdi3:
 	.seh_endprologue
 	mov	r8, rcx
 	test	dl, 32
-	je	.L1230
+	je	.L1234
 	shr	r8, 32
 	lea	ecx, -32[rdx]
 	xor	eax, eax
 	shr	r8d, cl
-.L1231:
+.L1235:
 	sal	rax, 32
 	or	rax, r8
-.L1229:
+.L1233:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1230:
+.L1234:
 	mov	rax, rcx
 	test	edx, edx
-	je	.L1229
+	je	.L1233
 	mov	r9, rcx
 	mov	ecx, edx
 	shr	r9, 32
@@ -5417,7 +5390,7 @@ __lshrdi3:
 	mov	ecx, edx
 	shr	r8d, cl
 	or	r8d, r9d
-	jmp	.L1231
+	jmp	.L1235
 	.seh_endproc
 	.p2align 4
 	.globl	__lshrti3
@@ -5430,14 +5403,14 @@ __lshrti3:
 	mov	r8, QWORD PTR [rcx]
 	mov	rax, QWORD PTR 8[rcx]
 	test	dl, 64
-	je	.L1236
+	je	.L1240
 	lea	ecx, -64[rdx]
 	xor	r10d, r10d
 	shr	rax, cl
-.L1237:
+.L1241:
 	mov	rdx, rax
 	mov	rax, r10
-.L1238:
+.L1242:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	rcx, QWORD PTR 8[rsp]
 	movq	xmm1, rax
@@ -5449,9 +5422,9 @@ __lshrti3:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L1236:
+.L1240:
 	test	edx, edx
-	je	.L1239
+	je	.L1243
 	mov	r10, rax
 	mov	ecx, edx
 	shr	r10, cl
@@ -5461,12 +5434,12 @@ __lshrti3:
 	mov	ecx, edx
 	shr	r8, cl
 	or	rax, r8
-	jmp	.L1237
+	jmp	.L1241
 	.p2align 4,,10
 	.p2align 3
-.L1239:
+.L1243:
 	mov	rdx, r8
-	jmp	.L1238
+	jmp	.L1242
 	.seh_endproc
 	.p2align 4
 	.globl	__muldsi3
@@ -5868,41 +5841,41 @@ __popcountti2:
 	.seh_proc	__powidf2
 __powidf2:
 	.seh_endprologue
-	movsd	xmm2, QWORD PTR .LC11[rip]
+	movsd	xmm2, QWORD PTR .LC12[rip]
 	movapd	xmm1, xmm2
 	mov	eax, edx
 	test	dl, 1
-	je	.L1253
+	je	.L1257
 	.p2align 4
 	.p2align 3
-.L1255:
-	mulsd	xmm1, xmm0
-.L1253:
-	mov	ecx, eax
-	shr	ecx, 31
-	add	eax, ecx
-	sar	eax
-	je	.L1254
-	mulsd	xmm0, xmm0
-	test	al, 1
-	jne	.L1255
 .L1259:
+	mulsd	xmm1, xmm0
+.L1257:
+	mov	ecx, eax
+	shr	ecx, 31
+	add	eax, ecx
+	sar	eax
+	je	.L1258
+	mulsd	xmm0, xmm0
+	test	al, 1
+	jne	.L1259
+.L1263:
 	mulsd	xmm0, xmm0
 	mov	ecx, eax
 	shr	ecx, 31
 	add	eax, ecx
 	sar	eax
 	test	al, 1
-	jne	.L1255
-	jmp	.L1259
+	jne	.L1259
+	jmp	.L1263
 	.p2align 4,,10
 	.p2align 3
-.L1254:
+.L1258:
 	test	edx, edx
-	jns	.L1252
+	jns	.L1256
 	divsd	xmm2, xmm1
 	movapd	xmm1, xmm2
-.L1252:
+.L1256:
 	movapd	xmm0, xmm1
 	ret
 	.seh_endproc
@@ -5912,41 +5885,41 @@ __powidf2:
 	.seh_proc	__powisf2
 __powisf2:
 	.seh_endprologue
-	movss	xmm2, DWORD PTR .LC14[rip]
+	movss	xmm2, DWORD PTR .LC15[rip]
 	movaps	xmm1, xmm2
 	mov	eax, edx
 	test	dl, 1
-	je	.L1261
+	je	.L1265
 	.p2align 4
 	.p2align 3
-.L1263:
-	mulss	xmm1, xmm0
-.L1261:
-	mov	ecx, eax
-	shr	ecx, 31
-	add	eax, ecx
-	sar	eax
-	je	.L1262
-	mulss	xmm0, xmm0
-	test	al, 1
-	jne	.L1263
 .L1267:
+	mulss	xmm1, xmm0
+.L1265:
+	mov	ecx, eax
+	shr	ecx, 31
+	add	eax, ecx
+	sar	eax
+	je	.L1266
+	mulss	xmm0, xmm0
+	test	al, 1
+	jne	.L1267
+.L1271:
 	mulss	xmm0, xmm0
 	mov	ecx, eax
 	shr	ecx, 31
 	add	eax, ecx
 	sar	eax
 	test	al, 1
-	jne	.L1263
-	jmp	.L1267
+	jne	.L1267
+	jmp	.L1271
 	.p2align 4,,10
 	.p2align 3
-.L1262:
+.L1266:
 	test	edx, edx
-	jns	.L1260
+	jns	.L1264
 	divss	xmm2, xmm1
 	movaps	xmm1, xmm2
-.L1260:
+.L1264:
 	movaps	xmm0, xmm1
 	ret
 	.seh_endproc
@@ -5962,18 +5935,18 @@ __ucmpdi2:
 	shr	r8, 32
 	shr	r9, 32
 	cmp	r8d, r9d
-	jb	.L1268
+	jb	.L1272
 	mov	eax, 2
 	cmp	r9d, r8d
-	jb	.L1268
+	jb	.L1272
 	xor	eax, eax
 	cmp	ecx, edx
-	jb	.L1268
+	jb	.L1272
 	xor	eax, eax
 	cmp	edx, ecx
 	setb	al
 	add	eax, 1
-.L1268:
+.L1272:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5988,17 +5961,17 @@ __aeabi_ulcmp:
 	shr	r8, 32
 	shr	r9, 32
 	cmp	r8d, r9d
-	jb	.L1274
+	jb	.L1278
 	mov	eax, 1
 	cmp	r9d, r8d
-	jb	.L1274
+	jb	.L1278
 	mov	eax, -1
 	cmp	ecx, edx
-	jb	.L1274
+	jb	.L1278
 	xor	eax, eax
 	cmp	edx, ecx
 	setb	al
-.L1274:
+.L1278:
 	ret
 	.seh_endproc
 	.p2align 4
@@ -6013,18 +5986,18 @@ __ucmpti2:
 	mov	rcx, QWORD PTR 8[rcx]
 	mov	rdx, QWORD PTR 8[rdx]
 	cmp	rcx, rdx
-	jb	.L1279
+	jb	.L1283
 	mov	eax, 2
 	cmp	rdx, rcx
-	jb	.L1279
+	jb	.L1283
 	xor	eax, eax
 	cmp	r8, r9
-	jb	.L1279
+	jb	.L1283
 	xor	eax, eax
 	cmp	r9, r8
 	setb	al
 	add	eax, 1
-.L1279:
+.L1283:
 	ret
 	.seh_endproc
 .lcomm s.0,7,1
@@ -6039,37 +6012,37 @@ digits:
 	.word	255
 	.word	255
 	.word	255
-	.set	.LC6,.LC8+4
+	.set	.LC7,.LC9+4
 	.align 4
-.LC7:
-	.long	1056964608
-	.align 8
 .LC8:
-	.long	0
-	.long	1073741824
+	.long	1056964608
 	.align 8
 .LC9:
 	.long	0
+	.long	1073741824
+	.align 8
+.LC10:
+	.long	0
 	.long	1071644672
 	.align 16
-.LC10:
+.LC11:
 	.long	0
 	.long	-2147483648
 	.long	0
 	.long	0
 	.align 8
-.LC11:
+.LC12:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC12:
+.LC13:
 	.long	0
 	.long	1070596096
 	.align 4
-.LC13:
+.LC14:
 	.long	1191182336
 	.align 4
-.LC14:
+.LC15:
 	.long	1065353216
 	.ident	"GCC: (GNU) 14.2.1 20240801 (Fedora MinGW 14.2.1-3.fc41)"
 	.def	memcpy;	.scl	2;	.type	32;	.endef
