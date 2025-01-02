@@ -4713,7 +4713,7 @@ __udivmodhi4:
 	mov_s	r0,r13	;4
 	.align 4
 .L1333:
-	brlo	r12,r3,.L1376
+	blo_s	.L1376
 	sub_s	r12,r12,r3
 	mov_s	r13,4096	;13
 	exth_s	r12,r12
