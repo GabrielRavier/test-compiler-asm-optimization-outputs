@@ -527,23 +527,25 @@ isupper:
 	.proc	04
 iswcntrl:
 	add	%o0, -127, %g2
-	mov	%o0, %g1
 	cmp	%g2, 32
-	bleu	.L187
-	 mov	1, %o0
-	cmp	%g1, 31
-	bleu	.L187
+	bleu	.L185
+	 mov	%o0, %g1
+	cmp	%o0, 31
+	bleu	.L185
 	 sethi	%hi(-9216), %g2
 	or	%g2, 984, %g2
 	add	%g1, %g2, %g2
 	cmp	%g2, 1
 	bleu	.L187
-	 sethi	%hi(-65536), %g2
+	 mov	1, %o0
+	sethi	%hi(-65536), %g2
 	or	%g2, 7, %g2
 	add	%g1, %g2, %g1
 	cmp	%g1, 3
 	jmp	%o7+8
 	 addx	%g0, 0, %o0
+.L185:
+	mov	1, %o0
 .L187:
 	jmp	%o7+8
 	 nop
@@ -1031,13 +1033,13 @@ fminl:
 	.proc	0102
 l64a:
 	mov	%o0, %g1
-	sethi	%hi(s.0), %o0
 	cmp	%g1, 0
 	be	.L290
-	 or	%o0, %lo(s.0), %o0
+	 sethi	%hi(s.0), %o0
 	sethi	%hi(digits), %g4
-	mov	%o0, %g2
+	or	%o0, %lo(s.0), %o0
 	or	%g4, %lo(digits), %g4
+	mov	%o0, %g2
 .L289:
 	and	%g1, 63, %g3
 	ldub	[%g4+%g3], %g3
@@ -1049,6 +1051,7 @@ l64a:
 	jmp	%o7+8
 	 stb	%g0, [%g2]
 .L290:
+	or	%o0, %lo(s.0), %o0
 	mov	%o0, %g2
 	jmp	%o7+8
 	 stb	%g0, [%g2]
@@ -2218,17 +2221,17 @@ bswap_16:
 	.type	bswap_32, #function
 	.proc	016
 bswap_32:
-	srl	%o0, 24, %g3
-	sll	%o0, 24, %g1
-	srl	%o0, 8, %g2
-	or	%g1, %g3, %g1
 	sethi	%hi(64512), %g3
 	or	%g3, 768, %g3
+	srl	%o0, 24, %g4
+	sll	%o0, 24, %g1
+	srl	%o0, 8, %g2
+	or	%g1, %g4, %g1
 	and	%g2, %g3, %g2
 	sll	%o0, 8, %o0
+	sethi	%hi(16711680), %g3
 	or	%g1, %g2, %g1
-	sethi	%hi(16711680), %g2
-	and	%o0, %g2, %o0
+	and	%o0, %g3, %o0
 	jmp	%o7+8
 	 or	%g1, %o0, %o0
 	.size	bswap_32, .-bswap_32
@@ -2837,6 +2840,7 @@ strstr:
 .L803:
 	ldub	[%g4], %g1
 	add	%o5, 1, %o5
+	and	%g1, 0xff, %g1
 	cmp	%g4, %o0
 	bne	.L824
 	 xor	%g1, %g3, %o4
@@ -4719,17 +4723,17 @@ __bswapdi2:
 	.type	__bswapsi2, #function
 	.proc	016
 __bswapsi2:
-	sll	%o0, 24, %g3
-	srl	%o0, 24, %g1
-	srl	%o0, 8, %g2
-	or	%g1, %g3, %g1
 	sethi	%hi(64512), %g3
 	or	%g3, 768, %g3
+	sll	%o0, 24, %g4
+	srl	%o0, 24, %g1
+	srl	%o0, 8, %g2
+	or	%g1, %g4, %g1
 	and	%g2, %g3, %g2
 	sll	%o0, 8, %o0
+	sethi	%hi(16711680), %g3
 	or	%g1, %g2, %g1
-	sethi	%hi(16711680), %g2
-	and	%o0, %g2, %o0
+	and	%o0, %g3, %o0
 	jmp	%o7+8
 	 or	%g1, %o0, %o0
 	.size	__bswapsi2, .-__bswapsi2
@@ -4740,12 +4744,12 @@ __bswapsi2:
 __clzsi2:
 	sethi	%hi(64512), %g1
 	or	%g1, 1023, %g2
+	mov	16, %g3
 	cmp	%g2, %o0
 	or	%g1, 768, %g2
 	subx	%g0, -1, %g4
-	mov	16, %g1
 	sll	%g4, 4, %g4
-	sub	%g1, %g4, %g1
+	sub	%g3, %g4, %g1
 	srl	%o0, %g1, %g1
 	and	%g1, %g2, %g2
 	mov	8, %g3
@@ -4851,9 +4855,9 @@ __ctzsi2:
 	and	%g1, 3, %g1
 	xnor	%g0, %g1, %g2
 	srl	%g1, 1, %g1
+	mov	2, %g4
 	and	%g2, 1, %g2
-	mov	2, %g3
-	sub	%g3, %g1, %g3
+	sub	%g4, %g1, %g3
 	sub	%g0, %g2, %g1
 	and	%g1, %g3, %g1
 	jmp	%o7+8
@@ -4988,16 +4992,16 @@ __negdi2:
 	.proc	04
 __paritydi2:
 	xor	%o0, %o1, %o1
-	srl	%o1, 16, %g1
-	sethi	%hi(26624), %o0
-	xor	%g1, %o1, %o1
-	or	%o0, 406, %o0
-	srl	%o1, 8, %g2
-	xor	%g2, %o1, %g2
-	srl	%g2, 4, %g1
-	xor	%g1, %g2, %g1
-	and	%g1, 15, %g1
-	sra	%o0, %g1, %o0
+	srl	%o1, 16, %g2
+	sethi	%hi(26624), %g1
+	xor	%g2, %o1, %o1
+	or	%g1, 406, %g1
+	srl	%o1, 8, %g3
+	xor	%g3, %o1, %g3
+	srl	%g3, 4, %g2
+	xor	%g2, %g3, %g2
+	and	%g2, 15, %g2
+	sra	%g1, %g2, %o0
 	jmp	%o7+8
 	 and	%o0, 1, %o0
 	.size	__paritydi2, .-__paritydi2
@@ -5006,18 +5010,18 @@ __paritydi2:
 	.type	__paritysi2, #function
 	.proc	04
 __paritysi2:
-	srl	%o0, 16, %g1
-	xor	%g1, %o0, %o0
-	srl	%o0, 8, %g1
-	xor	%g1, %o0, %o0
-	srl	%o0, 4, %g1
-	xor	%g1, %o0, %g1
-	sethi	%hi(26624), %o0
-	and	%g1, 15, %g1
-	or	%o0, 406, %o0
-	sra	%o0, %g1, %o0
+	srl	%o0, 16, %g2
+	xor	%g2, %o0, %o0
+	srl	%o0, 8, %g2
+	xor	%g2, %o0, %o0
+	sethi	%hi(26624), %g1
+	srl	%o0, 4, %g2
+	or	%g1, 406, %g1
+	xor	%g2, %o0, %g2
+	and	%g2, 15, %g2
+	sra	%g1, %g2, %g1
 	jmp	%o7+8
-	 and	%o0, 1, %o0
+	 and	%g1, 1, %o0
 	.size	__paritysi2, .-__paritysi2
 	.align 4
 	.global __popcountdi2
@@ -5026,12 +5030,12 @@ __paritysi2:
 __popcountdi2:
 	save	%sp, -96, %sp
 	sethi	%hi(1431655424), %g2
-	sll	%i0, 31, %g4
+	sll	%i0, 31, %g1
 	or	%g2, 341, %g2
-	srl	%i0, 1, %g1
+	srl	%i0, 1, %g4
 	srl	%i1, 1, %g3
-	and	%g1, %g2, %i4
-	or	%g4, %g3, %g3
+	and	%g4, %g2, %i4
+	or	%g1, %g3, %g3
 	and	%g3, %g2, %i5
 	subcc	%i1, %i5, %g3
 	subx	%i0, %i4, %g2
@@ -5072,9 +5076,9 @@ __popcountdi2:
 	.proc	04
 __popcountsi2:
 	srl	%o0, 1, %g2
-	sethi	%hi(1431655424), %g1
-	or	%g1, 341, %g1
-	and	%g2, %g1, %g2
+	sethi	%hi(1431655424), %g3
+	or	%g3, 341, %g3
+	and	%g2, %g3, %g2
 	sethi	%hi(858992640), %g1
 	sub	%o0, %g2, %o0
 	or	%g1, 819, %g1
@@ -5082,11 +5086,11 @@ __popcountsi2:
 	and	%o0, %g1, %o0
 	and	%g2, %g1, %g2
 	add	%g2, %o0, %g2
+	sethi	%hi(252644352), %g3
 	srl	%g2, 4, %g1
+	or	%g3, 783, %g3
 	add	%g1, %g2, %g1
-	sethi	%hi(252644352), %g2
-	or	%g2, 783, %g2
-	and	%g1, %g2, %g1
+	and	%g1, %g3, %g1
 	srl	%g1, 16, %g2
 	add	%g2, %g1, %g1
 	srl	%g1, 8, %o0

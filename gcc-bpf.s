@@ -1758,8 +1758,8 @@ l64a:
 	.global	srand
 	.type	srand, @function
 srand:
-	r1 += -1
 	r0 = seed ll
+	r1 += -1
 	r1 = r1;r1 &= 0xffffffff
 	*(u64 *) (r0+0) = r1
 	exit
@@ -8943,10 +8943,11 @@ __udivmodhi4:
 	r1 = r5
 	goto .L3080
 .L3059:
-	r2 = r0
+	r5 = r0
+	r2 = 0
+	r5 <<= 48
 	r4 = 32768
-	r2 <<= 48
-	if r2 s<= 0 goto .L3083
+	if r5 s<= r2 goto .L3083
 	r5 = r4
 	goto .L3079
 .L3089:
@@ -8956,7 +8957,7 @@ __udivmodhi4:
 	r5 = 128
 	goto .L3079
 .L3083:
-	r0 = 0
+	r0 = r2
 	r5 = r4
 	r1 = r4
 	goto .L3062
@@ -9173,16 +9174,16 @@ __ashrdi3:
 	exit
 .L3189:
 	if r2 == 0 goto .L3192
-	r5 = r2;r5 &= 0xffffffff
+	r9 = r2;r9 &= 0xffffffff
 	r4 = r1
 	r3 = r1;r3 &= 0xffffffff
 	r4 s>>= 32
-	r3 >>= r5
+	r3 >>= r9
 	r0 = r4
-	r1 = 32
-	r1 -= r2
-	r9 = r1;r9 &= 0xffffffff
-	r0 <<= r9
+	r5 = 32
+	r5 -= r2
+	r5 = r5;r5 &= 0xffffffff
+	r0 <<= r5
 	r0 |= r3
 	r1 = r4
 	r1 s>>= r2
@@ -9204,11 +9205,11 @@ __ashrti3:
 	r0 = r3
 	r0 &= 64
 	if r0 == 0 goto .L3194
-	r4 = r2
+	r5 = r2
 	r0 = r2
-	r4 s>>= 63
+	r5 s>>= 63
 	r3 += -64
-	r1 = r4
+	r1 = r5
 	r3 <<= 32
 	r3 s>>= 32
 	r0 s>>= r3
@@ -9216,16 +9217,16 @@ __ashrti3:
 .L3194:
 	if r3 == 0 goto .L3197
 	r4 = r3;r4 &= 0xffffffff
-	r1 >>= r4
-	r0 = r2
-	r4 = r2
 	r5 = 64
-	r4 s>>= r3
+	r1 >>= r4
 	r5 -= r3
+	r0 = r2
 	r9 = r5;r9 &= 0xffffffff
+	r5 = r2
 	r0 <<= r9
+	r5 s>>= r3
 	r0 |= r1
-	r1 = r4
+	r1 = r5
 	exit
 .L3197:
 	r0 = r1
@@ -9260,47 +9261,47 @@ __clzsi2:
 	r0 <<= 36
 	r2 = 16
 	r0 s>>= 32
-	r9 = 8
 	r2 -= r0
-	r4 = r2;r4 &= 0xffffffff
-	r1 >>= r4
-	r5 = r1;r5 &= 0xffffffff
+	r9 = r2;r9 &= 0xffffffff
+	r1 >>= r9
+	r2 = r1;r2 &= 0xffffffff
 	r1 &= 65280
 	r1 += -1
 	r1 >>= 63
 	r1 <<= 3
-	r9 -= r1
 	r3 = 2
 	r0 += r1
-	r2 = 4
-	r1 = r9;r1 &= 0xffffffff
-	r5 >>= r1
-	r9 = r5;r9 &= 0xffffffff
-	r5 &= 240
-	r5 += -1
-	r5 >>= 63
-	r5 <<= r3
-	r2 -= r5
-	r0 += r5
-	r4 = r2;r4 &= 0xffffffff
-	r1 = r3
-	r9 >>= r4
-	r5 = r9;r5 &= 0xffffffff
+	r5 = 8
+	r4 = 4
+	r5 -= r1
+	r1 = r5;r1 &= 0xffffffff
+	r2 >>= r1
+	r9 = r2;r9 &= 0xffffffff
+	r2 &= 240
+	r2 += -1
+	r2 >>= 63
+	r2 <<= r3
+	r4 -= r2
+	r0 += r2
+	r5 = r4;r5 &= 0xffffffff
+	r4 = r3
+	r9 >>= r5
+	r2 = r9;r2 &= 0xffffffff
 	r9 &= 12
 	r9 += -1
 	r9 >>= 63
 	r9 <<= 1
-	r1 -= r9
-	r2 = r1;r2 &= 0xffffffff
-	r5 >>= r2
-	r1 = r5;r1 &= 0xffffffff
-	r4 = r1
+	r4 -= r9
+	r1 = r4;r1 &= 0xffffffff
+	r2 >>= r1
+	r2 = r2;r2 &= 0xffffffff
+	r4 = r2
 	r4 >>= 1
 	r4 &= 1
 	r5 = r4
 	r5 ^= 1
 	if r4 != 0 goto .L3202
-	r3 -= r1
+	r3 -= r2
 	r0 += r9
 	r0 += r3
 	exit
@@ -9406,48 +9407,48 @@ __cmpti2:
 	.type	__ctzsi2, @function
 __ctzsi2:
 	r1 <<= 32
-	r3 = r1
+	r4 = r1
 	r1 >>= 32
-	r3 s>>= 32
-	r3 &= 0xffff
-	r3 += -1
-	r3 >>= 63
-	r3 <<= 4
-	r1 >>= r3
-	r2 = r1;r2 &= 0xffffffff
+	r4 s>>= 32
+	r4 &= 0xffff
+	r4 += -1
+	r4 >>= 63
+	r4 <<= 4
+	r1 >>= r4
+	r3 = r1;r3 &= 0xffffffff
 	r1 &= 0xff
 	r1 += -1
 	r1 >>= 63
-	r4 = r1
-	r4 <<= 3
-	r2 >>= r4
-	r3 += r4
-	r0 = r2;r0 &= 0xffffffff
-	r4 = r2
-	r4 &= 15
-	r4 += -1
-	r4 >>= 63
-	r4 <<= 2
-	r0 >>= r4
-	r2 = r0;r2 &= 0xffffffff
+	r5 = r1
+	r5 <<= 3
+	r3 >>= r5
+	r4 += r5
+	r2 = 2
+	r0 = r3;r0 &= 0xffffffff
+	r5 = r3
+	r5 &= 15
+	r5 += -1
+	r5 >>= 63
+	r5 <<= r2
+	r0 >>= r5
+	r3 = r0;r3 &= 0xffffffff
 	r0 &= 3
 	r0 += -1
 	r0 >>= 63
-	r1 = r3
-	r9 = r0
+	r1 = r4
+	r4 = r0
+	r1 += r5
+	r4 <<= 1
 	r1 += r4
-	r9 <<= 1
-	r4 = 2
-	r1 += r9
-	r2 >>= r9
-	r2 &= 3
-	r0 = r2
-	r2 >>= 1
+	r3 >>= r4
+	r3 &= 3
+	r0 = r3
+	r3 >>= 1
 	r0 ^= -1
-	r4 -= r2
+	r2 -= r3
 	r0 &= 1
 	r0 = -r0
-	r0 &= r4
+	r0 &= r2
 	r0 += r1
 	exit
 	.size	__ctzsi2, .-__ctzsi2
@@ -9513,34 +9514,34 @@ __lshrdi3:
 	r0 = 0
 	r0 <<= 32
 	r2 += -32
-	r9 = r0
+	r4 = r0
 	r5 = r2;r5 &= 0xffffffff
 	r1 >>= 32
 	r1 >>= r5
 	r3 = r1;r3 &= 0xffffffff
 	r0 = r3
-	r0 |= r9
+	r0 |= r4
 	exit
 .L3250:
 	if r2 == 0 goto .L3253
 	r5 = r2;r5 &= 0xffffffff
 	r3 = r1
+	r4 = 32
 	r3 >>= 32
+	r4 -= r2
 	r9 = r3
 	r9 >>= r5
 	r0 = r9;r0 &= 0xffffffff
 	r0 <<= 32
-	r4 = 32
-	r9 = r0
-	r4 -= r2
-	r1 = r1;r1 &= 0xffffffff
 	r2 = r4;r2 &= 0xffffffff
+	r1 = r1;r1 &= 0xffffffff
+	r4 = r0
 	r1 >>= r5
 	r3 <<= r2
 	r3 |= r1
 	r3 = r3;r3 &= 0xffffffff
 	r0 = r3
-	r0 |= r9
+	r0 |= r4
 	exit
 .L3253:
 	r0 = r1
@@ -9722,40 +9723,39 @@ __multi3:
 	r9 = 4294967295 ll
 	*(u64 *) (r10+-24) = r2
 	r5 = r1
-	r0 = r3
-	r5 &= r9
-	r0 &= r9
-	r7 = r3
-	r2 = r5
-	r7 >>= 32
-	r2 *= r0
-	r8 = r2
-	r8 >>= 32
 	r6 = r1
-	r2 &= r9
-	r6 >>= 32
-	r5 *= r7
-	r0 *= r6
-	r6 *= r7
-	r0 += r8
-	r8 = r0
-	r0 >>= 32
-	r8 <<= 32
-	r0 += r6
-	r2 += r8
-	r8 >>= 32
-	r5 += r8
-	r7 = r5
-	r5 >>= 32
-	r0 += r5
-	r2 &= r9
-	r7 <<= 32
 	r1 *= r4
-	r2 += r7
 	r4 = *(u64 *) (r10+-24)
-	r1 += r0
+	r5 &= r9
+	r6 >>= 32
+	r2 = r3
+	r7 = r3
+	r2 &= r9
+	r7 >>= 32
 	r3 *= r4
-	r0 = r2
+	r0 = r5
+	r5 *= r7
+	r0 *= r2
+	r2 *= r6
+	r8 = r0
+	r6 *= r7
+	r8 >>= 32
+	r0 &= r9
+	r2 += r8
+	r4 = r2
+	r2 >>= 32
+	r4 <<= 32
+	r2 += r6
+	r0 += r4
+	r4 >>= 32
+	r0 &= r9
+	r5 += r4
+	r9 = r5
+	r5 >>= 32
+	r9 <<= 32
+	r2 += r5
+	r0 += r9
+	r1 += r2
 	r1 += r3
 	exit
 	.size	__multi3, .-__multi3
@@ -9786,22 +9786,22 @@ __negti2:
 	.global	__paritydi2
 	.type	__paritydi2, @function
 __paritydi2:
-	r0 = r1
-	r0 s>>= 32
-	r0 ^= r1
-	r2 = r0;r2 &= 0xffffffff
+	r2 = r1
 	r0 = 27030
-	r1 = r2
-	r1 >>= 16
-	r1 ^= r2
+	r2 s>>= 32
+	r2 ^= r1
+	r1 = r2;r1 &= 0xffffffff
 	r3 = r1
-	r3 >>= 8
+	r3 >>= 16
 	r3 ^= r1
 	r4 = r3
-	r4 >>= 4
+	r4 >>= 8
 	r4 ^= r3
-	r4 &= 15
-	r0 s>>= r4
+	r5 = r4
+	r5 >>= 4
+	r5 ^= r4
+	r5 &= 15
+	r0 s>>= r5
 	r0 &= 1
 	exit
 	.size	__paritydi2, .-__paritydi2
@@ -9810,22 +9810,22 @@ __paritydi2:
 	.type	__parityti2, @function
 __parityti2:
 	r1 ^= r2
-	r0 = r1
-	r0 s>>= 32
-	r0 ^= r1
-	r2 = r0;r2 &= 0xffffffff
 	r0 = 27030
-	r1 = r2
-	r1 >>= 16
-	r1 ^= r2
+	r2 = r1
+	r2 s>>= 32
+	r2 ^= r1
+	r1 = r2;r1 &= 0xffffffff
 	r3 = r1
-	r3 >>= 8
+	r3 >>= 16
 	r3 ^= r1
 	r4 = r3
-	r4 >>= 4
+	r4 >>= 8
 	r4 ^= r3
-	r4 &= 15
-	r0 s>>= r4
+	r5 = r4
+	r5 >>= 4
+	r5 ^= r4
+	r5 &= 15
+	r0 s>>= r5
 	r0 &= 1
 	exit
 	.size	__parityti2, .-__parityti2
@@ -9834,18 +9834,18 @@ __parityti2:
 	.type	__paritysi2, @function
 __paritysi2:
 	r1 = r1;r1 &= 0xffffffff
-	r2 = r1
-	r2 >>= 16
-	r2 ^= r1
-	r0 = r2
-	r0 >>= 8
-	r0 ^= r2
-	r3 = r0
-	r3 >>= 4
-	r3 ^= r0
 	r0 = 27030
-	r3 &= 15
-	r0 s>>= r3
+	r3 = r1
+	r3 >>= 16
+	r3 ^= r1
+	r2 = r3
+	r2 >>= 8
+	r2 ^= r3
+	r4 = r2
+	r4 >>= 4
+	r4 ^= r2
+	r4 &= 15
+	r0 s>>= r4
 	r0 &= 1
 	exit
 	.size	__paritysi2, .-__paritysi2
@@ -9853,33 +9853,33 @@ __paritysi2:
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	r3 = 3689348814741910323 ll
-	r0 = r1
+	r4 = 3689348814741910323 ll
 	r2 = 6148914691236517205 ll
+	r3 = 1085102592571150095 ll
+	r0 = r1
 	r0 >>= 1
 	r0 &= r2
 	r1 -= r0
-	r4 = r1
-	r1 &= r3
-	r4 >>= 2
-	r4 &= r3
-	r4 += r1
-	r1 = 1085102592571150095 ll
-	r5 = r4
-	r5 >>= 4
-	r5 += r4
-	r5 &= r1
+	r5 = r1
+	r1 &= r4
+	r5 >>= 2
+	r5 &= r4
+	r5 += r1
 	r9 = r5
-	r9 >>= 32
+	r9 >>= 4
 	r9 += r5
-	r3 = r9;r3 &= 0xffffffff
-	r0 = r3
-	r0 >>= 16
+	r9 &= r3
+	r1 = r9
+	r1 >>= 32
+	r1 += r9
+	r4 = r1;r4 &= 0xffffffff
+	r2 = r4
+	r2 >>= 16
+	r2 += r4
+	r0 = r2;r0 &= 0xffffffff
+	r3 = r0
+	r3 >>= 8
 	r0 += r3
-	r0 = r0;r0 &= 0xffffffff
-	r2 = r0
-	r2 >>= 8
-	r0 += r2
 	r0 &= 127
 	exit
 	.size	__popcountdi2, .-__popcountdi2

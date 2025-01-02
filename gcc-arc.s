@@ -4870,7 +4870,9 @@ __bswapsi2:
 	.global	__clzsi2
 	.type	__clzsi2, @function
 __clzsi2:
+	push_s	r13
 	seths	r3,65535,r0
+	mov_s	r13,0	;3
 	asl_s	r3,r3,4
 	rsub	r2,r3,16
 	lsr	r2,r0,r2
@@ -4891,11 +4893,11 @@ __clzsi2:
 	lsr_s	r2,r2,r12
 	rsub	r0,r2,2
 	btst_s	r2,1
-	mov_s	r2,0	;3
-	mov.eq	r2,r0
-	mov_s	r0,r2	;4
-	j_s.d	[blink]
+	mov.eq	r13,r0
+	mov_s	r0,r13	;4
 	add_s	r0,r0,r3   ;b,b,h
+	j_s.d	[blink]
+	pop_s	r13
 	.size	__clzsi2, .-__clzsi2
 	.align 4
 	.global	__cmpdi2

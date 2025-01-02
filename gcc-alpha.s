@@ -1084,9 +1084,9 @@ $LFB28:
 	lda $1,-8234($16)
 	zapnot $1,15,$1
 	ldah $3,1($31)
-	lda $4,-18475($3)
-	cmpule $1,$4,$1
+	lda $5,-18475($3)
 	lda $4,8231($31)
+	cmpule $1,$5,$1
 	cmpule $2,$4,$2
 	lda $0,1($31)
 	bis $1,$2,$1
@@ -1103,13 +1103,14 @@ $LFB28:
 	addl $2,4,$2
 	addl $16,$2,$16
 	zapnot $0,15,$0
-	zapnot $16,15,$16
 	ldah $1,16($31)
-	cmpeq $0,$3,$0
+	zapnot $16,15,$16
 	lda $1,3($1)
+	cmpeq $0,$3,$0
 	cmpule $16,$1,$16
 	xor $0,1,$0
-	cmoveq $16,0,$0
+	mov $31,$1
+	cmoveq $16,$1,$0
 $L175:
 	ret $31,($26),1
 	.align 4
@@ -1445,10 +1446,12 @@ $L216:
 	ldq $27,_OtsLssX($29)		!literal!8
 	jsr $26,($27),_OtsLssX		!lituse_jsr!8
 	ldah $29,0($26)		!gpdisp!9
-	cmplt $31,$0,$0
+	mov $31,$3
+	cmplt $3,$0,$3
 	lda $29,0($29)		!gpdisp!9
-	cmovne $0,$9,$14
-	cmovne $0,$15,$11
+	cmovne $3,$9,$14
+	cpys $f31,$f31,$f31
+	cmovne $3,$15,$11
 	br $31,$L215
 	.align 4
 $L220:
@@ -1677,10 +1680,12 @@ $L239:
 	ldq $27,_OtsLssX($29)		!literal!15
 	jsr $26,($27),_OtsLssX		!lituse_jsr!15
 	ldah $29,0($26)		!gpdisp!16
-	cmplt $31,$0,$0
+	mov $31,$4
+	cmplt $4,$0,$4
 	lda $29,0($29)		!gpdisp!16
-	cmovne $0,$15,$13
-	cmovne $0,$14,$12
+	cmovne $4,$15,$13
+	cpys $f31,$f31,$f31
+	cmovne $4,$14,$12
 	br $31,$L238
 	.align 4
 $L243:
@@ -3821,11 +3826,13 @@ $gl_isinfl..ng:
 	ldq $19,8($1)
 	jsr $26,($27),_OtsGtrX		!lituse_jsr!52
 	ldah $29,0($26)		!gpdisp!53
+	mov $31,$1
 	lda $29,0($29)		!gpdisp!53
-	cmplt $31,$0,$1
+	cmplt $1,$0,$1
 $L632:
 	ldq $26,0($30)
 	ldq $10,8($30)
+	bis $31,$31,$31
 	mov $1,$0
 	ldq $11,16($30)
 	lda $30,32($30)
@@ -7706,20 +7713,20 @@ $LFB139:
 	cmpule $1,$3,$3
 	lda $2,16($31)
 	sll $3,4,$3
-	lda $4,8($31)
+	lda $5,8($31)
 	subl $2,$3,$2
 	zapnot $2,15,$2
-	lda $0,2($31)
+	lda $4,4($31)
 	srl $1,$2,$1
+	lda $0,2($31)
 	zapnot $1,2,$2
 	zapnot $1,15,$1
 	cmpeq $2,0,$2
 	s8addl $2,0,$2
-	subl $4,$2,$4
-	zapnot $4,15,$4
+	subl $5,$2,$5
+	zapnot $5,15,$5
 	addl $2,$3,$3
-	srl $1,$4,$1
-	lda $4,4($31)
+	srl $1,$5,$1
 	and $1,240,$2
 	cmpeq $2,0,$2
 	zapnot $1,15,$1
@@ -7886,6 +7893,7 @@ $LFB144:
 	zapnot $16,3,$2
 	zapnot $16,15,$1
 	cmpeq $2,0,$2
+	lda $4,2($31)
 	sll $2,4,$2
 	srl $1,$2,$1
 	and $1,0xff,$3
@@ -7896,21 +7904,20 @@ $LFB144:
 	and $1,15,$3
 	cmpeq $3,0,$3
 	zapnot $1,15,$1
-	s4addq $3,0,$4
-	srl $1,$4,$1
+	s4addq $3,0,$5
+	srl $1,$5,$1
 	s4addl $3,$2,$3
 	and $1,3,$0
 	cmpeq $0,0,$0
 	zapnot $1,15,$1
 	addq $0,$0,$2
 	srl $1,$2,$1
-	lda $4,2($31)
+	addl $0,$0,$0
 	and $1,3,$1
 	ornot $31,$1,$2
 	srl $1,1,$1
 	and $2,1,$2
 	subl $4,$1,$4
-	addl $0,$0,$0
 	subl $31,$2,$1
 	and $1,$4,$1
 	addl $0,$3,$0
@@ -8407,22 +8414,24 @@ $LFB158:
 	lda $29,0($29)		!gpdisp!98
 $__popcountdi2..ng:
 	.prologue 1
-	ldah $2,$LC23($29)		!gprelhigh
+	ldah $1,$LC23($29)		!gprelhigh
+	ldah $2,$LC24($29)		!gprelhigh
+	ldq $3,$LC23($1)		!gprellow
 	srl $16,1,$1
-	ldq $2,$LC23($2)		!gprellow
-	and $1,$2,$1
+	and $1,$3,$1
+	cpys $f31,$f31,$f31
 	subq $16,$1,$16
-	ldah $1,$LC24($29)		!gprelhigh
+	ldq $1,$LC24($2)		!gprellow
 	srl $16,2,$2
-	ldq $1,$LC24($1)		!gprellow
+	ldah $3,$LC25($29)		!gprelhigh
 	and $16,$1,$16
+	cpys $f31,$f31,$f31
 	and $2,$1,$2
+	ldq $3,$LC25($3)		!gprellow
 	addq $2,$16,$2
 	srl $2,4,$1
 	addq $1,$2,$1
-	ldah $2,$LC25($29)		!gprelhigh
-	ldq $2,$LC25($2)		!gprellow
-	and $1,$2,$1
+	and $1,$3,$1
 	srl $1,32,$2
 	addl $2,$1,$2
 	zapnot $2,15,$1
@@ -8459,12 +8468,12 @@ $LFB159:
 	and $1,$2,$1
 	and $2,$16,$2
 	addl $1,$2,$1
-	zapnot $1,15,$2
-	srl $2,4,$2
-	addl $2,$1,$2
-	ldah $1,3855($31)
-	lda $1,3855($1)
-	and $1,$2,$1
+	zapnot $1,15,$3
+	ldah $2,3855($31)
+	srl $3,4,$3
+	lda $2,3855($2)
+	addl $3,$1,$1
+	and $2,$1,$1
 	srl $1,16,$2
 	addq $2,$1,$0
 	srl $0,8,$0
@@ -8514,14 +8523,15 @@ $__popcountti2..ng:
 	cmpult $1,$3,$3
 	addq $4,$2,$2
 	addq $3,$2,$3
-	sll $3,60,$4
+	sll $3,60,$5
 	srl $1,4,$2
-	bis $4,$2,$2
 	ldah $4,$LC25($29)		!gprelhigh
+	bis $5,$2,$2
+	cpys $f31,$f31,$f31
 	addq $2,$1,$1
-	cmpult $1,$2,$2
 	ldq $5,$LC25($4)		!gprellow
 	srl $3,4,$4
+	cmpult $1,$2,$2
 	addq $4,$3,$3
 	addq $2,$3,$2
 	and $1,$5,$1

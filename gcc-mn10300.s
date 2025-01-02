@@ -992,10 +992,10 @@ l64a:
 	.global srand
 	.type	srand, @function
 srand:
+	clr d1
 	add -1,d0
 	mov d0,(+seed)
-	clr d0
-	mov d0,(+seed+4)
+	mov d1,(+seed+4)
 	retf [],0
 	.size	srand, .-srand
 	.global rand
@@ -2199,12 +2199,12 @@ gl_isinff:
 	.type	gl_isinfd, @function
 gl_isinfd:
 	movm [d2,d3,a2],(sp)
-	mov_mov d0, d2, -1, a2
-	mov -1048577,d0
+	mov -1048577,a0
+	mov -1,a2
 	add -20,sp
-	mov d0,(16,sp)
 	mov a2,(12,sp)
-	mov_mov d2, d0, d1, d3
+	mov a0,(16,sp)
+	mov_mov d0, d2, d1, d3
 	call +__ltdf2,[],0
 	cmp 0,d0
 	blt .L771
@@ -2230,12 +2230,12 @@ gl_isinfd:
 	.type	gl_isinfl, @function
 gl_isinfl:
 	movm [d2,d3,a2],(sp)
-	mov_mov d0, d2, -1, a2
-	mov -1048577,d0
+	mov -1048577,a0
+	mov -1,a2
 	add -20,sp
-	mov d0,(16,sp)
 	mov a2,(12,sp)
-	mov_mov d2, d0, d1, d3
+	mov a0,(16,sp)
+	mov_mov d0, d2, d1, d3
 	call +__ltdf2,[],0
 	cmp 0,d0
 	blt .L778

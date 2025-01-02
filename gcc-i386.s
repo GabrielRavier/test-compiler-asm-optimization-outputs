@@ -4290,8 +4290,9 @@ frexp:
 	.p2align 4
 	.p2align 3
 .L835:
-	fmul	DWORD PTR .LC9
+	fld	DWORD PTR .LC9
 	add	edx, 1
+	fmulp	st(1), st
 	fld1
 	fxch	st(1)
 	fcom	st(1)
@@ -5236,7 +5237,8 @@ __ulltod:
 	fild	QWORD PTR [esp+16]
 	test	eax, eax
 	jns	.L1003
-	fadd	DWORD PTR .LC13
+	fld	DWORD PTR .LC13
+	faddp	st(1), st
 .L1003:
 	fstp	QWORD PTR [esp]
 	fld	QWORD PTR [esp]
@@ -5258,7 +5260,8 @@ __ulltof:
 	fild	QWORD PTR [esp+16]
 	test	eax, eax
 	jns	.L1006
-	fadd	DWORD PTR .LC13
+	fld	DWORD PTR .LC13
+	faddp	st(1), st
 .L1006:
 	fstp	DWORD PTR [esp+4]
 	fld	DWORD PTR [esp+4]
@@ -6787,15 +6790,12 @@ __aeabi_lcmp:
 __ctzsi2:
 .LFB138:
 	.cfi_startproc
-	push	esi
-	.cfi_def_cfa_offset 8
-	.cfi_offset 6, -8
-	xor	edx, edx
-	mov	esi, 2
 	push	ebx
-	.cfi_def_cfa_offset 12
-	.cfi_offset 3, -12
-	mov	eax, DWORD PTR [esp+12]
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	mov	eax, DWORD PTR [esp+8]
+	xor	edx, edx
+	mov	ebx, 2
 	test	ax, ax
 	sete	dl
 	sal	edx, 4
@@ -6806,13 +6806,13 @@ __ctzsi2:
 	sete	cl
 	sal	ecx, 3
 	shr	eax, cl
-	lea	ebx, [ecx+edx]
+	add	edx, ecx
 	xor	ecx, ecx
 	test	al, 15
 	sete	cl
 	sal	ecx, 2
 	shr	eax, cl
-	lea	edx, [ecx+ebx]
+	add	edx, ecx
 	xor	ecx, ecx
 	test	al, 3
 	sete	cl
@@ -6820,19 +6820,16 @@ __ctzsi2:
 	shr	eax, cl
 	add	ecx, edx
 	and	eax, 3
-	mov	ebx, eax
+	mov	edx, eax
 	shr	eax
-	not	ebx
-	sub	esi, eax
-	mov	eax, ebx
-	pop	ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 8
+	not	edx
+	sub	ebx, eax
+	mov	eax, edx
 	and	eax, 1
 	neg	eax
-	and	eax, esi
-	pop	esi
-	.cfi_restore 6
+	and	eax, ebx
+	pop	ebx
+	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	add	eax, ecx
 	ret
@@ -6935,16 +6932,16 @@ __muldsi3:
 	push	ebx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	mov	ecx, DWORD PTR [esp+16]
-	mov	esi, DWORD PTR [esp+20]
-	movzx	eax, cx
-	shr	ecx, 16
-	movzx	edx, si
-	mov	ebx, eax
+	mov	esi, DWORD PTR [esp+16]
+	mov	ecx, DWORD PTR [esp+20]
+	movzx	eax, si
 	shr	esi, 16
+	movzx	edx, cx
+	mov	ebx, eax
+	shr	ecx, 16
 	imul	ebx, edx
-	imul	edx, ecx
-	imul	eax, esi
+	imul	edx, esi
+	imul	eax, ecx
 	mov	edi, ebx
 	imul	ecx, esi
 	movzx	ebx, bx
@@ -6954,11 +6951,11 @@ __muldsi3:
 	shr	edx, 16
 	add	eax, edi
 	add	edx, ecx
-	mov	edi, eax
+	mov	esi, eax
 	shr	eax, 16
-	sal	edi, 16
+	sal	esi, 16
 	add	edx, eax
-	add	ebx, edi
+	add	ebx, esi
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -6994,32 +6991,34 @@ __muldi3_compiler_rt:
 	mov	edx, DWORD PTR [esp+20]
 	movzx	eax, WORD PTR [esp+28]
 	movzx	ecx, dx
-	mov	esi, edx
+	mov	edi, edx
 	mov	ebx, ecx
-	shr	esi, 16
+	shr	edi, 16
 	imul	edx, DWORD PTR [esp+32]
 	imul	ebx, eax
-	imul	eax, esi
-	mov	edi, ebx
+	imul	eax, edi
+	mov	esi, ebx
 	movzx	ebx, bx
-	shr	edi, 16
-	add	eax, edi
-	mov	edi, DWORD PTR [esp+28]
+	shr	esi, 16
+	add	eax, esi
+	mov	esi, DWORD PTR [esp+28]
 	movzx	ebp, ax
 	shr	eax, 16
-	shr	edi, 16
-	imul	ecx, edi
+	shr	esi, 16
+	imul	ecx, esi
 	imul	esi, edi
 	add	ecx, ebp
 	add	eax, esi
-	mov	ebp, ecx
+	mov	edi, ecx
 	shr	ecx, 16
 	add	ecx, eax
 	mov	eax, DWORD PTR [esp+28]
 	imul	eax, DWORD PTR [esp+24]
-	sal	ebp, 16
-	add	ebp, ebx
+	sal	edi, 16
+	add	ebx, edi
 	add	edx, ecx
+	add	edx, eax
+	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 16
@@ -7029,8 +7028,6 @@ __muldi3_compiler_rt:
 	pop	edi
 	.cfi_restore 7
 	.cfi_def_cfa_offset 8
-	add	edx, eax
-	mov	eax, ebp
 	pop	ebp
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
@@ -7233,7 +7230,8 @@ __powidf2:
 	fstp	st(1)
 	test	ecx, ecx
 	jns	.L1306
-	fdivr	DWORD PTR .LC12
+	fld1
+	fdivrp	st(1), st
 .L1306:
 	ret
 	.cfi_endproc
@@ -7288,7 +7286,8 @@ __powisf2:
 	fstp	st(1)
 	test	ecx, ecx
 	jns	.L1316
-	fdivr	DWORD PTR .LC12
+	fld1
+	fdivrp	st(1), st
 .L1316:
 	ret
 	.cfi_endproc
@@ -7422,9 +7421,6 @@ digits:
 	.align 4
 .LC11:
 	.long	-1090519040
-	.align 4
-.LC12:
-	.long	1065353216
 	.align 4
 .LC13:
 	.long	1602224128

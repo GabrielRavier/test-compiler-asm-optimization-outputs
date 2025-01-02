@@ -934,40 +934,41 @@ fmaxf:
 fmaxl:
 .LFB33:
 	.cfi_startproc
-	lw	a3,8(a1)
-	lw	a4,12(a1)
-	lw	t0,0(a1)
-	lw	t1,4(a1)
 	addi	sp,sp,-72
 	.cfi_def_cfa_offset 72
-	sw	t0,44(sp)
-	sw	t0,28(sp)
-	sw	t1,48(sp)
-	sw	t1,32(sp)
-	sw	a3,52(sp)
-	sw	a3,36(sp)
-	sw	a4,56(sp)
-	sw	a4,40(sp)
-	lw	a5,0(a2)
-	sw	a3,16(sp)
-	sw	a4,12(sp)
-	lw	a3,8(a2)
-	lw	a4,4(a2)
+	lw	t0,0(a1)
+	lw	t1,4(a1)
+	lw	a3,8(a1)
+	lw	a4,12(a1)
 	sw	s1,60(sp)
-	addi	a1,sp,28
+	lw	a1,4(a2)
 	.cfi_offset 9, -12
 	mv	s1,a0
-	addi	a0,sp,44
+	lw	a0,8(a2)
+	lw	a5,0(a2)
 	sw	s0,64(sp)
-	sw	ra,68(sp)
 	.cfi_offset 8, -8
-	.cfi_offset 1, -4
 	lw	s0,12(a2)
-	sw	t0,24(sp)
-	sw	t1,20(sp)
+	addi	a2,sp,44
+	sw	a1,4(sp)
+	sw	a0,8(sp)
+	addi	a1,sp,28
+	mv	a0,a2
+	sw	ra,68(sp)
+	.cfi_offset 1, -4
 	sw	a5,0(sp)
-	sw	a4,4(sp)
-	sw	a3,8(sp)
+	sw	t0,44(sp)
+	sw	t1,48(sp)
+	sw	a3,52(sp)
+	sw	a4,56(sp)
+	sw	t0,28(sp)
+	sw	t0,24(sp)
+	sw	t1,32(sp)
+	sw	t1,20(sp)
+	sw	a3,36(sp)
+	sw	a3,16(sp)
+	sw	a4,40(sp)
+	sw	a4,12(sp)
 	call	__unordtf2
 	bne	a0,zero,.L221
 	lw	a4,4(sp)
@@ -1192,24 +1193,18 @@ fminf:
 fminl:
 .LFB36:
 	.cfi_startproc
-	lw	a3,4(a1)
-	lw	a5,0(a1)
-	lw	t1,8(a1)
-	lw	a4,12(a1)
+	lw	a3,8(a1)
 	addi	sp,sp,-72
 	.cfi_def_cfa_offset 72
-	sw	a5,44(sp)
-	sw	a5,28(sp)
-	sw	a3,48(sp)
-	sw	a3,32(sp)
-	sw	t1,52(sp)
-	sw	t1,36(sp)
-	sw	a4,56(sp)
-	sw	a4,40(sp)
+	lw	a5,0(a1)
+	sw	a3,0(sp)
+	lw	a3,8(a2)
+	lw	t1,4(a1)
+	lw	a4,12(a1)
 	lw	t2,0(a2)
 	lw	t0,4(a2)
-	sw	a3,4(sp)
-	lw	a3,8(a2)
+	sw	a3,12(sp)
+	lw	a3,0(sp)
 	sw	s0,64(sp)
 	addi	a1,sp,28
 	.cfi_offset 8, -8
@@ -1217,14 +1212,21 @@ fminl:
 	addi	a0,sp,44
 	sw	s1,60(sp)
 	sw	t2,20(sp)
-	sw	t0,16(sp)
-	sw	a3,12(sp)
 	.cfi_offset 9, -12
 	lw	s1,12(a2)
+	sw	t0,16(sp)
+	sw	a3,52(sp)
+	sw	a3,36(sp)
 	sw	ra,68(sp)
 	.cfi_offset 1, -4
-	sw	a5,0(sp)
+	sw	a5,44(sp)
+	sw	t1,48(sp)
+	sw	a4,56(sp)
+	sw	a5,4(sp)
+	sw	a5,28(sp)
 	sw	t1,8(sp)
+	sw	t1,32(sp)
+	sw	a4,40(sp)
 	sw	a4,24(sp)
 	call	__unordtf2
 	lw	a3,12(sp)
@@ -1253,9 +1255,9 @@ fminl:
 	beq	a1,a2,.L256
 	beq	a1,zero,.L255
 .L261:
-	lw	t2,0(sp)
-	lw	t0,4(sp)
-	lw	a3,8(sp)
+	lw	t2,4(sp)
+	lw	t0,8(sp)
+	lw	a3,0(sp)
 	mv	s1,a4
 .L255:
 	sw	s1,12(s0)
@@ -1275,15 +1277,15 @@ fminl:
 	jr	ra
 .L256:
 	.cfi_restore_state
-	lw	a5,0(sp)
+	lw	a5,4(sp)
 	addi	a1,sp,28
 	addi	a0,sp,44
 	sw	a5,44(sp)
-	lw	a5,4(sp)
+	lw	a5,8(sp)
 	sw	a4,56(sp)
 	sw	a4,12(sp)
 	sw	a5,48(sp)
-	lw	a5,8(sp)
+	lw	a5,0(sp)
 	sw	t2,28(sp)
 	sw	t2,24(sp)
 	sw	a5,52(sp)
@@ -3262,12 +3264,12 @@ ldexpl:
 	addi	a0,sp,68
 	sw	s0,88(sp)
 	sw	t2,68(sp)
+	sw	t0,72(sp)
+	sw	t1,76(sp)
 	sw	t2,52(sp)
 	sw	t2,12(sp)
-	sw	t0,72(sp)
 	sw	t0,56(sp)
 	sw	t0,8(sp)
-	sw	t1,76(sp)
 	sw	t1,60(sp)
 	sw	t1,4(sp)
 	sw	ra,92(sp)
@@ -3363,10 +3365,10 @@ ldexpl:
 	addi	a1,sp,52
 	addi	a0,sp,68
 	sw	a5,56(sp)
-	sw	a4,60(sp)
-	sw	a3,64(sp)
 	sw	a5,40(sp)
+	sw	a4,60(sp)
 	sw	a4,44(sp)
+	sw	a3,64(sp)
 	sw	a3,48(sp)
 	call	__multf3
 	srli	a5,s0,31
@@ -6562,8 +6564,8 @@ __powidf2:
 	sw	a5,48(sp)
 .L1332:
 	sw	t1,20(sp)
-	sw	s1,16(sp)
 	sw	a0,24(sp)
+	sw	s1,16(sp)
 	sw	a1,28(sp)
 	lw	a2,16(sp)
 	lw	a3,20(sp)

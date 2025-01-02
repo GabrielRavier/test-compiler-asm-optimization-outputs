@@ -609,11 +609,11 @@ iswprint:
 	.ENTRY
 	ldi 254,%r28
 	comb,>>= %r28,%r26,.L164
-	ldo -42(%r26),%r19
-	ldil L'49152,%r28
-	ldo -8192(%r19),%r19
-	ldo -2091(%r28),%r28
-	comb,>>= %r28,%r19,.L162
+	ldo -42(%r26),%r28
+	ldil L'49152,%r19
+	ldo -8192(%r28),%r28
+	ldo -2091(%r19),%r19
+	comb,>>= %r19,%r28,.L162
 	ldil L'16384,%r19
 	ldo -8153(%r19),%r19
 	comclr,<< %r19,%r26,%r28
@@ -992,12 +992,12 @@ l64a:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	addil LR's.0-$global$,%r27
 	movb,= %r26,%r26,.L261
-	ldo RR's.0-$global$(%r1),%r28
+	addil LR's.0-$global$,%r27
 	ldil LR'digits,%r21
-	copy %r28,%r19
+	ldo RR's.0-$global$(%r1),%r28
 	ldo RR'digits(%r21),%r21
+	copy %r28,%r19
 .L260:
 	extru %r26,31,6,%r20
 	ldbx %r21(%r20),%r20
@@ -1008,6 +1008,7 @@ l64a:
 	bv %r0(%r2)
 	stb %r0,0(%r19)
 .L261:
+	ldo RR's.0-$global$(%r1),%r28
 	copy %r28,%r19
 	bv %r0(%r2)
 	stb %r0,0(%r19)
@@ -1021,8 +1022,8 @@ srand:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	ldo -1(%r26),%r26
 	addil LR'seed-$global$,%r27
+	ldo -1(%r26),%r26
 	ldo RR'seed-$global$(%r1),%r1
 	stw %r26,4(%r1)
 	bv %r0(%r2)
@@ -3156,7 +3157,7 @@ frexp:
 	fcmp,dbl,!>= %fr5,%fr22
 	ftest
 	b .L783
-	ldi 0,%r20
+	ldi 0,%r21
 	ldil LR'.LC27,%r19
 	ldo RR'.LC27(%r19),%r19
 	fldds 0(%r19),%fr22
@@ -3173,13 +3174,13 @@ frexp:
 	stws %r28,-16(%sp)
 	stws %r29,-12(%sp)
 	fldds -16(%sp),%fr5
-	ldi 1,%r20
+	ldi 1,%r21
 	ldo RR'.LC26(%r19),%r19
 .L783:
+	ldil LR'.LC27,%r20
 	fldds 0(%r19),%fr23
 	ldi 0,%r28
-	ldil LR'.LC27,%r19
-	ldo RR'.LC27(%r19),%r19
+	ldo RR'.LC27(%r20),%r19
 	fldds 0(%r19),%fr22
 .L789:
 	fmpy,dbl %fr5,%fr22,%fr5
@@ -3188,7 +3189,7 @@ frexp:
 	b .L789
 	ldo 1(%r28),%r28
 	stw %r28,0(%r24)
-	comib,= 0,%r20,.L780
+	comib,= 0,%r21,.L780
 	fcpy,dbl %fr5,%fr4
 .L804:
 	fstds %fr5,-16(%sp)
@@ -3233,7 +3234,7 @@ frexp:
 	stw %r0,0(%r24)
 .L793:
 	ldil LR'.LC27,%r19
-	ldi 1,%r20
+	ldi 1,%r21
 	ldo RR'.LC27(%r19),%r19
 .L784:
 	stws %r28,-16(%sp)
@@ -3248,7 +3249,7 @@ frexp:
 	b .L791
 	ldo -1(%r28),%r28
 	stw %r28,0(%r24)
-	comib,<> 0,%r20,.L804
+	comib,<> 0,%r21,.L804
 	fcpy,dbl %fr5,%fr4
 	b,n .L780
 .L795:
@@ -4818,33 +4819,33 @@ __clzsi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	zdepi -1,31,16,%r21
-	comclr,<< %r21,%r26,%r21
-	ldi 1,%r21
-	zdep %r21,27,28,%r21
-	subi 16,%r21,%r19
+	zdepi -1,31,16,%r31
+	comclr,<< %r31,%r26,%r31
+	ldi 1,%r31
+	zdep %r31,27,28,%r31
+	subi 16,%r31,%r19
 	mtsar %r19
 	ldi 0,%r28
 	vshd %r0,%r26,%r19
-	zdepi -1,23,8,%r20
-	and %r19,%r20,%r20
-	comclr,<> %r28,%r20,%r20
-	ldi 1,%r20
-	zdep %r20,28,29,%r20
-	subi 8,%r20,%r22
-	mtsar %r22
-	addl %r20,%r21,%r21
+	zdepi -1,23,8,%r22
+	and %r19,%r22,%r22
+	comclr,<> %r28,%r22,%r22
+	ldi 1,%r22
+	zdep %r22,28,29,%r22
+	subi 8,%r22,%r29
+	mtsar %r29
+	addl %r22,%r31,%r22
 	vshd %r0,%r19,%r19
-	ldi 240,%r20
-	and %r19,%r20,%r20
-	comclr,<> %r28,%r20,%r20
-	ldi 1,%r20
-	zdep %r20,29,30,%r20
-	subi 4,%r20,%r22
-	mtsar %r22
-	addl %r20,%r21,%r21
-	vshd %r0,%r19,%r19
+	ldi 240,%r21
+	and %r19,%r21,%r21
+	comclr,<> %r28,%r21,%r21
+	ldi 1,%r21
+	zdep %r21,29,30,%r21
+	subi 4,%r21,%r31
+	mtsar %r31
 	ldi 12,%r20
+	vshd %r0,%r19,%r19
+	addl %r21,%r22,%r21
 	and %r19,%r20,%r20
 	comclr,<> %r28,%r20,%r20
 	ldi 1,%r20
@@ -5137,13 +5138,13 @@ __paritydi2:
 	xor %r25,%r26,%r25
 	extru %r25,15,16,%r19
 	xor %r19,%r25,%r19
-	extru %r19,23,24,%r28
-	xor %r28,%r19,%r28
-	extru %r28,27,28,%r19
-	xor %r19,%r28,%r19
 	ldil L'32768,%r28
-	extru %r19,31,4,%r19
+	extru %r19,23,24,%r20
 	ldo -5738(%r28),%r28
+	xor %r20,%r19,%r20
+	extru %r20,27,28,%r19
+	xor %r19,%r20,%r19
+	extru %r19,31,4,%r19
 	subi 31,%r19,%r19
 	mtsar %r19
 	vextrs %r28,32,%r28
@@ -5159,13 +5160,13 @@ __paritysi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	extru %r26,15,16,%r28
-	xor %r28,%r26,%r28
-	extru %r28,23,24,%r26
-	xor %r26,%r28,%r26
+	extru %r26,15,16,%r19
+	xor %r19,%r26,%r19
 	ldil L'32768,%r28
-	extru %r26,27,28,%r19
+	extru %r19,23,24,%r26
 	ldo -5738(%r28),%r28
+	xor %r26,%r19,%r26
+	extru %r26,27,28,%r19
 	xor %r19,%r26,%r19
 	extru %r19,31,4,%r19
 	subi 31,%r19,%r19
@@ -5183,18 +5184,18 @@ __popcountdi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	extru %r25,30,31,%r21
+	extru %r25,30,31,%r22
 	shd %r25,%r26,1,%r20
 	copy %r25,%r28
 	copy %r26,%r29
 	ldil L'1431650304,%r19
-	ldo 5461(%r19),%r19
-	and %r21,%r19,%r23
-	and %r20,%r19,%r24
 	ldil L'858996736,%r21
+	ldo 5461(%r19),%r19
+	ldo -3277(%r21),%r21
+	and %r22,%r19,%r23
+	and %r20,%r19,%r24
 	sub %r29,%r24,%r29
 	subb %r28,%r23,%r28
-	ldo -3277(%r21),%r21
 	copy %r28,%r22
 	shd %r22,%r29,2,%r22
 	and %r28,%r21,%r23
@@ -5232,22 +5233,22 @@ __popcountsi2:
 	.PROC
 	.CALLINFO FRAME=0,NO_CALLS
 	.ENTRY
-	extru %r26,30,31,%r19
 	ldil L'1431650304,%r28
-	ldo 5461(%r28),%r28
-	and %r19,%r28,%r19
+	extru %r26,30,31,%r19
+	ldo 5461(%r28),%r20
 	ldil L'858996736,%r28
-	sub %r26,%r19,%r26
+	and %r19,%r20,%r19
 	ldo -3277(%r28),%r28
+	sub %r26,%r19,%r26
+	ldil L'252641280,%r20
 	extru %r26,29,30,%r19
+	ldo 3855(%r20),%r20
 	and %r26,%r28,%r26
 	and %r19,%r28,%r19
 	addl %r19,%r26,%r19
 	extru %r19,27,28,%r28
 	addl %r28,%r19,%r28
-	ldil L'252641280,%r19
-	ldo 3855(%r19),%r19
-	and %r28,%r19,%r28
+	and %r28,%r20,%r28
 	extru %r28,15,16,%r19
 	addl %r19,%r28,%r19
 	extru %r19,23,24,%r28

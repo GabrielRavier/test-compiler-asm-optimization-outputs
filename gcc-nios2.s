@@ -4681,17 +4681,17 @@ __clzsi2:
 	cmpgeu	r5, r5, r4
 	slli	r5, r5, 4
 	movi	r2, 16
-	movi	r6, 8
+	movi	r7, 8
 	sub	r2, r2, r5
 	srl	r3, r4, r2
+	movi	r6, 4
 	movi	r2, 2
 	andi	r4, r3, 65280
 	cmpeq	r4, r4, zero
 	slli	r4, r4, 3
-	sub	r6, r6, r4
-	srl	r3, r3, r6
+	sub	r7, r7, r4
+	srl	r3, r3, r7
 	add	r5, r4, r5
-	movi	r6, 4
 	andi	r4, r3, 240
 	cmpeq	r4, r4, zero
 	slli	r4, r4, 2
@@ -4756,6 +4756,7 @@ __ctzsi2:
 	andi	r5, r4, 65535
 	cmpeq	r5, r5, zero
 	slli	r5, r5, 4
+	movi	r6, 2
 	srl	r3, r4, r5
 	andi	r2, r3, 255
 	cmpeq	r2, r2, zero
@@ -4772,12 +4773,11 @@ __ctzsi2:
 	add	r2, r2, r2
 	srl	r3, r3, r2
 	add	r2, r2, r4
-	movi	r4, 2
 	andi	r3, r3, 3
-	srli	r5, r3, 1
+	srli	r4, r3, 1
 	nor	r3, zero, r3
 	andi	r3, r3, 1
-	sub	r4, r4, r5
+	sub	r4, r6, r4
 	mul	r3, r3, r4
 	add	r2, r3, r2
 	ret
@@ -4878,13 +4878,13 @@ __negdi2:
 __paritydi2:
 	xor	r5, r5, r4
 	srli	r3, r5, 16
-	xor	r3, r3, r5
-	srli	r2, r3, 8
-	xor	r2, r2, r3
-	srli	r3, r2, 4
-	xor	r3, r3, r2
-	andi	r3, r3, 15
 	movi	r2, 27030
+	xor	r3, r3, r5
+	srli	r4, r3, 8
+	xor	r4, r4, r3
+	srli	r3, r4, 4
+	xor	r3, r3, r4
+	andi	r3, r3, 15
 	sra	r2, r2, r3
 	andi	r2, r2, 1
 	ret
@@ -4893,12 +4893,12 @@ __paritydi2:
 	.global	__paritysi2
 	.type	__paritysi2, @function
 __paritysi2:
-	srli	r2, r4, 16
-	xor	r2, r2, r4
-	srli	r4, r2, 8
-	xor	r4, r4, r2
-	srli	r3, r4, 4
+	srli	r3, r4, 16
 	movi	r2, 27030
+	xor	r3, r3, r4
+	srli	r4, r3, 8
+	xor	r4, r4, r3
+	srli	r3, r4, 4
 	xor	r3, r3, r4
 	andi	r3, r3, 15
 	sra	r2, r2, r3

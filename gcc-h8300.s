@@ -1008,10 +1008,10 @@ _rand:
 	mov.l	er4,@-er7
 	mov.l	er5,@-er7
 	mov.l	er6,@-er7
-	sub.l	#8,er7
-	mov.l	#1481765933,er2
-	mov.l	er2,@er7
+	mov.l	#1481765933,er3
 	mov.l	#1284865837,er2
+	sub.l	#8,er7
+	mov.l	er3,@er7
 	mov.l	er2,@(4,er7)
 	mov.l	@_seed:32,er0
 	mov.l	@_seed+4:32,er1
@@ -1412,8 +1412,8 @@ _atoll:
 	sub.l	er6,er6
 	add.b	#1,r6l
 .L378:
-	sub.l	#8,er7
 	sub.l	er0,er0
+	sub.l	#8,er7
 	mov.l	er0,@er7
 	sub.l	er0,er0
 	add.b	#10,r0l

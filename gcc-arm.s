@@ -2615,12 +2615,12 @@ memxor:
 	eor	r3, r3, r1
 	strb	r3, [r0, r6, lsl #2]
 	popeq	{r4, r5, r6, r7, r8, pc}
-	cmp	r2, #2
-	ldrb	r2, [r7, #1]	@ zero_extendqisi2
+	ldrb	r1, [r7, #1]	@ zero_extendqisi2
 	ldrb	r3, [r5, #1]	@ zero_extendqisi2
-	eor	r3, r3, r2
-	strb	r3, [r7, #1]
+	cmp	r2, #2
+	eor	r3, r3, r1
 	ldrbne	r2, [r7, #2]	@ zero_extendqisi2
+	strb	r3, [r7, #1]
 	ldrbne	r3, [r5, #2]	@ zero_extendqisi2
 	eorne	r3, r3, r2
 	strbne	r3, [r7, #2]

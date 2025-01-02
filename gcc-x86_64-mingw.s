@@ -966,9 +966,7 @@ fmax:
 	.p2align 4,,10
 	.p2align 3
 .L206:
-	movapd	xmm2, xmm1
-	maxsd	xmm2, xmm0
-	movapd	xmm1, xmm2
+	maxsd	xmm1, xmm0
 	movapd	xmm0, xmm1
 	ret
 	.seh_endproc
@@ -998,9 +996,7 @@ fmaxf:
 	.p2align 4,,10
 	.p2align 3
 .L215:
-	movaps	xmm2, xmm1
-	maxss	xmm2, xmm0
-	movaps	xmm1, xmm2
+	maxss	xmm1, xmm0
 	movaps	xmm0, xmm1
 	ret
 	.seh_endproc
@@ -1062,7 +1058,6 @@ fmaxl:
 fmin:
 	.seh_endprologue
 	ucomisd	xmm0, xmm0
-	movapd	xmm2, xmm0
 	jp	.L237
 	ucomisd	xmm1, xmm1
 	jp	.L232
@@ -1081,8 +1076,7 @@ fmin:
 	.p2align 4,,10
 	.p2align 3
 .L234:
-	minsd	xmm2, xmm1
-	movapd	xmm0, xmm2
+	minsd	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1110,9 +1104,7 @@ fminf:
 	.p2align 4,,10
 	.p2align 3
 .L243:
-	movaps	xmm2, xmm0
-	minss	xmm2, xmm1
-	movaps	xmm0, xmm2
+	minss	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -4161,8 +4153,8 @@ __clzhi2:
 	jne	.L1048
 	shr	edx
 	jne	.L1049
-	cmp	cx, 1
 	mov	eax, 15
+	cmp	cx, 1
 	adc	eax, 0
 .L1033:
 	ret
@@ -5313,10 +5305,10 @@ __clzsi2:
 	add	r8d, r8d
 	sub	ecx, r8d
 	shr	edx, cl
+	xor	ecx, ecx
 	sub	eax, edx
 	and	edx, 2
-	mov	edx, 0
-	cmovne	eax, edx
+	cmovne	eax, ecx
 	add	r8d, r9d
 	add	eax, r8d
 	ret
@@ -5332,11 +5324,12 @@ __clzti2:
 	mov	rcx, QWORD PTR 8[rcx]
 	test	rcx, rcx
 	sete	al
+	xor	r9d, r9d
 	lea	edx, -1[rax]
 	movsx	rdx, edx
 	and	rdx, rcx
 	test	rcx, rcx
-	mov	ecx, 0
+	mov	rcx, r9
 	cmove	rcx, r8
 	or	rdx, rcx
 	bsr	rdx, rdx
@@ -5425,7 +5418,7 @@ __cmpti2:
 __ctzsi2:
 	.seh_endprologue
 	xor	edx, edx
-	mov	r9d, 2
+	mov	r8d, 2
 	test	cx, cx
 	mov	eax, ecx
 	sete	dl
@@ -5443,22 +5436,22 @@ __ctzsi2:
 	sete	cl
 	sal	ecx, 2
 	shr	eax, cl
-	lea	r8d, [rcx+rdx]
+	add	edx, ecx
 	xor	ecx, ecx
 	test	al, 3
 	sete	cl
 	add	ecx, ecx
 	shr	eax, cl
-	add	ecx, r8d
+	add	ecx, edx
 	and	eax, 3
 	mov	edx, eax
 	shr	eax
 	not	edx
-	sub	r9d, eax
+	sub	r8d, eax
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
-	and	eax, r9d
+	and	eax, r8d
 	add	eax, ecx
 	ret
 	.seh_endproc
@@ -5495,11 +5488,11 @@ __ffsti2:
 	test	rax, rax
 	jne	.L1315
 	xor	eax, eax
+	xor	ecx, ecx
 	rep bsf	rax, rdx
 	add	eax, 65
 	test	rdx, rdx
-	mov	edx, 0
-	cmove	eax, edx
+	cmove	eax, ecx
 	ret
 	.p2align 4,,10
 	.p2align 3
@@ -5634,45 +5627,46 @@ __muldi3_compiler_rt:
 	push	rbx
 	.seh_pushreg	rbx
 	.seh_endprologue
-	mov	r8, rcx
-	mov	rcx, rdx
-	movzx	edx, r8w
-	movzx	eax, cx
-	mov	r10d, r8d
-	mov	r9d, edx
-	shr	r10d, 16
-	imul	r9d, eax
-	imul	eax, r10d
-	mov	r11d, r9d
-	movzx	r9d, r9w
-	shr	r11d, 16
-	add	eax, r11d
+	mov	r9, rcx
+	movzx	ecx, cx
+	mov	r8, rdx
+	movzx	edx, dx
 	mov	r11d, ecx
-	shr	r11d, 16
-	movzx	ebx, ax
+	mov	eax, r9d
+	imul	r11d, edx
 	shr	eax, 16
-	imul	edx, r11d
-	imul	r10d, r11d
-	add	edx, ebx
-	add	eax, r10d
-	mov	ebx, edx
+	imul	edx, eax
+	mov	r10d, r11d
+	movzx	r11d, r11w
+	shr	r10d, 16
+	add	edx, r10d
+	mov	r10d, r8d
+	shr	r10d, 16
+	movzx	ebx, dx
 	shr	edx, 16
-	add	edx, eax
-	sal	ebx, 16
-	mov	edx, edx
-	lea	eax, [r9+rbx]
-	sal	rdx, 32
-	or	rax, rdx
-	mov	rdx, rcx
-	sar	rdx, 32
-	mov	r9, rax
-	mov	eax, eax
-	imul	edx, r8d
-	sar	r8, 32
-	sar	r9, 32
-	imul	ecx, r8d
-	add	edx, r9d
+	imul	ecx, r10d
+	imul	r10d, eax
+	add	ecx, ebx
+	mov	eax, ecx
+	add	edx, r10d
+	shr	ecx, 16
 	add	edx, ecx
+	sal	eax, 16
+	add	eax, r11d
+	mov	edx, edx
+	sal	rdx, 32
+	mov	eax, eax
+	or	rax, rdx
+	mov	rdx, r8
+	sar	rdx, 32
+	mov	rcx, rax
+	mov	eax, eax
+	imul	edx, r9d
+	sar	r9, 32
+	sar	rcx, 32
+	imul	r8d, r9d
+	add	edx, ecx
+	add	edx, r8d
 	mov	edx, edx
 	sal	rdx, 32
 	or	rax, rdx
@@ -5733,43 +5727,44 @@ __multi3:
 	sub	rsp, 16
 	.seh_stackalloc	16
 	.seh_endprologue
+	mov	rax, QWORD PTR [rcx]
 	mov	r9, QWORD PTR [rdx]
-	mov	eax, r9d
-	mov	r8, rcx
-	mov	rcx, QWORD PTR [rcx]
-	mov	r10, rdx
-	mov	edx, ecx
-	mov	rbx, rcx
-	mov	r11, rdx
+	mov	ebx, r9d
+	mov	r10, rax
+	shr	r10, 32
+	mov	rsi, rdx
+	mov	edx, eax
+	mov	r11, rcx
+	mov	rcx, rdx
+	imul	rax, QWORD PTR 8[rsi]
+	imul	rcx, rbx
+	imul	rbx, r10
+	mov	r8, rax
+	mov	rdi, rcx
+	mov	ecx, ecx
+	shr	rdi, 32
+	lea	rax, [rbx+rdi]
+	mov	rbx, r9
 	shr	rbx, 32
-	imul	rcx, QWORD PTR 8[r10]
-	imul	r11, rax
-	imul	rax, rbx
-	mov	rsi, r11
-	mov	r11d, r11d
-	shr	rsi, 32
-	add	rax, rsi
-	mov	rsi, r9
-	shr	rsi, 32
-	imul	r9, QWORD PTR 8[r8]
-	mov	edi, eax
+	imul	r9, QWORD PTR 8[r11]
+	mov	esi, eax
 	shr	rax, 32
-	imul	rdx, rsi
-	imul	rbx, rsi
-	add	rdx, rdi
-	mov	rdi, rdx
-	add	rax, rbx
+	imul	rdx, rbx
+	imul	r10, rbx
+	add	rdx, rsi
+	mov	r11, rdx
+	add	rax, r10
 	shr	rdx, 32
-	sal	rdi, 32
+	sal	r11, 32
 	add	rax, rdx
-	add	r11, rdi
+	add	rcx, r11
 	mov	QWORD PTR 8[rsp], rax
-	add	rcx, rax
-	mov	QWORD PTR [rsp], r11
-	mov	rax, QWORD PTR [rsp]
-	add	rcx, r9
-	mov	QWORD PTR 8[rsp], rcx
-	mov	QWORD PTR [rsp], rax
+	add	rax, r8
+	mov	QWORD PTR [rsp], rcx
+	mov	rsi, QWORD PTR [rsp]
+	add	rax, r9
+	mov	QWORD PTR 8[rsp], rax
+	mov	QWORD PTR [rsp], rsi
 	movdqa	xmm0, XMMWORD PTR [rsp]
 	add	rsp, 16
 	pop	rbx

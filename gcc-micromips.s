@@ -4696,17 +4696,17 @@ frexp:
 
 	.align	3
 .L911:
-	ld	$3,0($sp)
-	li	$2,-1			# 0xffffffffffffffff
-	dsll	$2,$2,63
-	xor	$2,$3,$2
 	ld	$3,%got_page(.LC12)($6)
+	li	$2,-1			# 0xffffffffffffffff
 	ldc1	$f0,%got_ofst(.LC12)($3)
+	ld	$3,0($sp)
+	dsll	$2,$2,63
 	c.le.d	$fcc1,$f12,$f0
 	bc1f	$fcc1,.L913
-	li	$4,1			# 0x1
+	xor	$2,$3,$2
 
 	sd	$2,0($sp)
+	li	$4,1			# 0x1
 	b	.L891
 	ld	$2,%got_page(.LC14)($6)
 
@@ -7628,16 +7628,16 @@ __ctzsi2:
 	andi	$3,$3,0x3
 	dsll	$7,$6,4
 	dsll	$2,$2,3
-	daddu	$2,$2,$7
 	nor	$6,$0,$3
-	dsll	$5,$5,2
-	daddu	$5,$5,$2
+	daddu	$2,$2,$7
 	andi	$6,$6,0x1
-	li	$2,2			# 0x2
+	li	$7,2			# 0x2
+	dsll	$5,$5,2
 	srl	$3,$3,1
-	subu	$3,$2,$3
-	dsll	$4,$4,1
+	daddu	$5,$5,$2
+	subu	$3,$7,$3
 	subu	$2,$0,$6
+	dsll	$4,$4,1
 	and	$2,$2,$3
 	addu	$4,$4,$5
 	jr	$31
@@ -8170,8 +8170,8 @@ __popcountdi2:
 	dsll	$2,$2,16
 	daddiu	$3,$2,21845
 	li	$2,858980352			# 0x33330000
-	daddiu	$2,$2,13107
 	dsll	$3,$3,16
+	daddiu	$2,$2,13107
 	dsrl	$5,$4,1
 	daddiu	$3,$3,21845
 	dsll	$2,$2,16
@@ -8179,13 +8179,13 @@ __popcountdi2:
 	daddiu	$2,$2,13107
 	dsubu	$4,$4,$3
 	dsll	$2,$2,16
+	li	$3,252641280			# 0xf0f0000
 	daddiu	$2,$2,13107
 	dsrl	$5,$4,2
-	li	$3,252641280			# 0xf0f0000
+	daddiu	$3,$3,3855
 	and	$5,$5,$2
 	and	$4,$4,$2
-	daddiu	$2,$3,3855
-	dsll	$2,$2,16
+	dsll	$2,$3,16
 	daddu	$4,$5,$4
 	daddiu	$2,$2,3855
 	dsrl	$3,$4,4
@@ -8232,9 +8232,9 @@ __popcountsi2:
 	and	$2,$4,$2
 	addu	$2,$2,$3
 	srl	$3,$2,4
+	li	$4,252641280			# 0xf0f0000
 	addu	$2,$3,$2
-	li	$3,252641280			# 0xf0f0000
-	addiu	$3,$3,3855
+	addiu	$3,$4,3855
 	and	$2,$2,$3
 	dext	$3,$2,16,13
 	addu	$2,$2,$3
@@ -8260,20 +8260,20 @@ __popcountti2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	li	$2,1431633920			# 0x55550000
-	daddiu	$2,$2,21845
-	dsll	$3,$2,16
-	daddiu	$3,$3,21845
-	dsll	$6,$4,63
+	li	$6,1431633920			# 0x55550000
+	daddiu	$6,$6,21845
+	dsll	$6,$6,16
+	daddiu	$6,$6,21845
+	dsll	$3,$4,63
 	dsrl	$2,$5,1
-	dsll	$3,$3,16
-	daddiu	$3,$3,21845
-	or	$2,$2,$6
-	dsrl	$6,$4,1
-	and	$6,$6,$3
-	and	$2,$2,$3
+	dsll	$6,$6,16
+	daddiu	$6,$6,21845
+	or	$2,$2,$3
+	dsrl	$7,$4,1
+	and	$2,$2,$6
 	li	$3,858980352			# 0x33330000
 	dsubu	$2,$5,$2
+	and	$6,$7,$6
 	daddiu	$3,$3,13107
 	sltu	$5,$5,$2
 	dsubu	$4,$4,$6

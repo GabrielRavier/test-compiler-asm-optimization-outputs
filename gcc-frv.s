@@ -634,19 +634,19 @@ fdim:
 	sti gr23, @(sp,20)
 	setlo #gotofffuncdesclo(__unorddf2), gr4
 	sti gr5, @(fp,8)
-	mov gr15, gr21
+	mov gr15, gr19
 	ldd @(gr4,gr15), gr14
 	mov gr10, gr22
 	mov gr11, gr23
 	mov gr8, gr10
 	mov gr9, gr11
-	mov gr8, gr18
-	mov gr9, gr19
-	add gr4,gr21,gr20
+	mov gr8, gr20
+	mov gr9, gr21
+	add gr4,gr19,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L165
-	ldd @(gr20,gr0), gr14
+	ldd @(gr18,gr0), gr14
 	mov gr22, gr10
 	mov gr23, gr11
 	mov gr22, gr8
@@ -656,11 +656,11 @@ fdim:
 	bne icc0,0,.L166
 	sethi #gotofffuncdeschi(__gtdf2), gr4
 	setlo #gotofffuncdesclo(__gtdf2), gr4
-	ldd @(gr4,gr21), gr14
+	ldd @(gr4,gr19), gr14
 	mov gr22, gr10
 	mov gr23, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	cmpi gr8,#0,icc0
 	bgt icc0,2,.L170
@@ -680,16 +680,16 @@ fdim:
 .L170:
 	sethi #gotofffuncdeschi(__subd), gr4
 	setlo #gotofffuncdesclo(__subd), gr4
-	ldd @(gr4,gr21), gr14
+	ldd @(gr4,gr19), gr14
 	mov gr22, gr10
 	mov gr23, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	bra .L162
 .L165:
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	bra .L162
 .L166:
 	mov gr22, gr8
@@ -715,12 +715,12 @@ fdimf:
 	ldd @(gr4,gr15), gr14
 	mov gr9, gr21
 	mov gr8, gr9
-	mov gr8, gr18
-	add gr4,gr20,gr19
+	mov gr8, gr19
+	add gr4,gr20,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L174
-	ldd @(gr19,gr0), gr14
+	ldd @(gr18,gr0), gr14
 	mov gr21, gr9
 	mov gr21, gr8
 	calll @(gr14,gr0)
@@ -730,7 +730,7 @@ fdimf:
 	setlo #gotofffuncdesclo(__gtsf2), gr4
 	ldd @(gr4,gr20), gr14
 	mov gr21, gr9
-	mov gr18, gr8
+	mov gr19, gr8
 	calll @(gr14,gr0)
 	cmpi gr8,#0,icc0
 	bgt icc0,2,.L179
@@ -749,7 +749,7 @@ fdimf:
 	setlo #gotofffuncdesclo(__subf), gr4
 	ldd @(gr4,gr20), gr14
 	mov gr21, gr9
-	mov gr18, gr8
+	mov gr19, gr8
 	calll @(gr14,gr0)
 	ldi @(fp,8), gr5
 	ldi @(sp,0), gr18
@@ -760,7 +760,7 @@ fdimf:
 	addi sp,#32,sp
 	jmpl @(gr5,gr0)
 .L174:
-	mov gr18, gr8
+	mov gr19, gr8
 	bra .L171
 .L175:
 	mov gr21, gr8
@@ -783,37 +783,37 @@ fmax:
 	sti gr23, @(sp,20)
 	setlo #gotofffuncdesclo(__unorddf2), gr4
 	sti gr5, @(fp,8)
-	mov gr15, gr21
+	mov gr15, gr19
 	ldd @(gr4,gr15), gr14
-	mov gr10, gr18
-	mov gr11, gr19
+	mov gr10, gr20
+	mov gr11, gr21
 	mov gr8, gr10
 	mov gr9, gr11
 	mov gr8, gr22
 	mov gr9, gr23
-	add gr4,gr21,gr20
+	add gr4,gr19,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L188
-	ldd @(gr20,gr0), gr14
-	mov gr18, gr10
-	mov gr19, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	ldd @(gr18,gr0), gr14
+	mov gr20, gr10
+	mov gr21, gr11
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L187
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
 	and gr4, gr22, gr5
-	and gr4, gr18, gr4
+	and gr4, gr20, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L189
 	sethi #gotofffuncdeschi(__ltdf2), gr4
 	setlo #gotofffuncdesclo(__ltdf2), gr4
-	ldd @(gr4,gr21), gr14
-	mov gr18, gr10
-	mov gr19, gr11
+	ldd @(gr4,gr19), gr14
+	mov gr20, gr10
+	mov gr21, gr11
 	mov gr22, gr8
 	mov gr23, gr9
 	calll @(gr14,gr0)
@@ -829,8 +829,8 @@ fmax:
 	cmpi gr5, #0, icc0
 	beq icc0,2,.L187
 .L188:
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 .L180:
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
@@ -860,40 +860,40 @@ fmaxf:
 	sti gr5, @(fp,8)
 	mov gr15, gr21
 	ldd @(gr4,gr15), gr14
-	mov gr9, gr18
+	mov gr9, gr19
 	mov gr8, gr9
 	mov gr8, gr20
-	add gr4,gr21,gr19
+	add gr4,gr21,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L198
-	ldd @(gr19,gr0), gr14
-	mov gr18, gr9
-	mov gr18, gr8
+	ldd @(gr18,gr0), gr14
+	mov gr19, gr9
+	mov gr19, gr8
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L197
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
 	and gr4, gr20, gr5
-	and gr4, gr18, gr4
+	and gr4, gr19, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L199
 	sethi #gotofffuncdeschi(__ltsf2), gr4
 	setlo #gotofffuncdesclo(__ltsf2), gr4
 	ldd @(gr4,gr21), gr14
-	mov gr18, gr9
+	mov gr19, gr9
 	mov gr20, gr8
 	calll @(gr14,gr0)
 	srli gr8, #31, gr8
 	andi gr8,#0xff,gr8
 	cmpi gr8, #0, icc0
 	bne icc0,2,.L198
-	mov gr20, gr18
+	mov gr20, gr19
 .L198:
-	mov gr18, gr8
-	ldi @(sp,4), gr19
+	mov gr19, gr8
 	ldi @(sp,0), gr18
+	ldi @(sp,4), gr19
 	ldi @(sp,8), gr20
 	ldi @(sp,12), gr21
 	ldi @(fp,8), gr5
@@ -931,37 +931,37 @@ fmaxl:
 	sti gr23, @(sp,20)
 	setlo #gotofffuncdesclo(__unorddf2), gr4
 	sti gr5, @(fp,8)
-	mov gr15, gr21
+	mov gr15, gr19
 	ldd @(gr4,gr15), gr14
-	mov gr10, gr18
-	mov gr11, gr19
+	mov gr10, gr20
+	mov gr11, gr21
 	mov gr8, gr10
 	mov gr9, gr11
 	mov gr8, gr22
 	mov gr9, gr23
-	add gr4,gr21,gr20
+	add gr4,gr19,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L208
-	ldd @(gr20,gr0), gr14
-	mov gr18, gr10
-	mov gr19, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	ldd @(gr18,gr0), gr14
+	mov gr20, gr10
+	mov gr21, gr11
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L207
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
 	and gr4, gr22, gr5
-	and gr4, gr18, gr4
+	and gr4, gr20, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L209
 	sethi #gotofffuncdeschi(__ltdf2), gr4
 	setlo #gotofffuncdesclo(__ltdf2), gr4
-	ldd @(gr4,gr21), gr14
-	mov gr18, gr10
-	mov gr19, gr11
+	ldd @(gr4,gr19), gr14
+	mov gr20, gr10
+	mov gr21, gr11
 	mov gr22, gr8
 	mov gr23, gr9
 	calll @(gr14,gr0)
@@ -977,8 +977,8 @@ fmaxl:
 	cmpi gr5, #0, icc0
 	beq icc0,2,.L207
 .L208:
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 .L200:
 	ldi @(sp,0), gr18
 	ldi @(sp,4), gr19
@@ -1008,19 +1008,19 @@ fmin:
 	sti gr23, @(sp,20)
 	setlo #gotofffuncdesclo(__unorddf2), gr4
 	sti gr5, @(fp,8)
-	mov gr15, gr21
+	mov gr15, gr19
 	ldd @(gr4,gr15), gr14
 	mov gr10, gr22
 	mov gr11, gr23
 	mov gr8, gr10
 	mov gr9, gr11
-	mov gr8, gr18
-	mov gr9, gr19
-	add gr4,gr21,gr20
+	mov gr8, gr20
+	mov gr9, gr21
+	add gr4,gr19,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L216
-	ldd @(gr20,gr0), gr14
+	ldd @(gr18,gr0), gr14
 	mov gr22, gr10
 	mov gr23, gr11
 	mov gr22, gr8
@@ -1030,25 +1030,25 @@ fmin:
 	bne icc0,0,.L218
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
-	and gr4, gr18, gr5
+	and gr4, gr20, gr5
 	and gr4, gr22, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L219
 	sethi #gotofffuncdeschi(__ltdf2), gr4
 	setlo #gotofffuncdesclo(__ltdf2), gr4
-	ldd @(gr4,gr21), gr14
+	ldd @(gr4,gr19), gr14
 	mov gr22, gr10
 	mov gr23, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	srli gr8, #31, gr8
 	andi gr8,#0xff,gr8
 	cmpi gr8, #0, icc0
 	beq icc0,2,.L216
 .L218:
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	bra .L210
 .L219:
 	cmpi gr5, #0, icc0
@@ -1087,12 +1087,12 @@ fminf:
 	ldd @(gr4,gr15), gr14
 	mov gr9, gr20
 	mov gr8, gr9
-	mov gr8, gr18
-	add gr4,gr21,gr19
+	mov gr8, gr19
+	add gr4,gr21,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L226
-	ldd @(gr19,gr0), gr14
+	ldd @(gr18,gr0), gr14
 	mov gr20, gr9
 	mov gr20, gr8
 	calll @(gr14,gr0)
@@ -1100,7 +1100,7 @@ fminf:
 	bne icc0,0,.L228
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
-	and gr4, gr18, gr5
+	and gr4, gr19, gr5
 	and gr4, gr20, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L229
@@ -1108,17 +1108,17 @@ fminf:
 	setlo #gotofffuncdesclo(__ltsf2), gr4
 	ldd @(gr4,gr21), gr14
 	mov gr20, gr9
-	mov gr18, gr8
+	mov gr19, gr8
 	calll @(gr14,gr0)
 	srli gr8, #31, gr8
 	andi gr8,#0xff,gr8
 	cmpi gr8, #0, icc0
 	bne icc0,2,.L228
-	mov gr20, gr18
+	mov gr20, gr19
 .L228:
-	mov gr18, gr8
-	ldi @(sp,4), gr19
+	mov gr19, gr8
 	ldi @(sp,0), gr18
+	ldi @(sp,4), gr19
 	ldi @(sp,8), gr20
 	ldi @(sp,12), gr21
 	ldi @(fp,8), gr5
@@ -1156,19 +1156,19 @@ fminl:
 	sti gr23, @(sp,20)
 	setlo #gotofffuncdesclo(__unorddf2), gr4
 	sti gr5, @(fp,8)
-	mov gr15, gr21
+	mov gr15, gr19
 	ldd @(gr4,gr15), gr14
 	mov gr10, gr22
 	mov gr11, gr23
 	mov gr8, gr10
 	mov gr9, gr11
-	mov gr8, gr18
-	mov gr9, gr19
-	add gr4,gr21,gr20
+	mov gr8, gr20
+	mov gr9, gr21
+	add gr4,gr19,gr18
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bne icc0,0,.L236
-	ldd @(gr20,gr0), gr14
+	ldd @(gr18,gr0), gr14
 	mov gr22, gr10
 	mov gr23, gr11
 	mov gr22, gr8
@@ -1178,25 +1178,25 @@ fminl:
 	bne icc0,0,.L238
 	sethi #hi(#-2147483648), gr4
 	setlo #lo(#-2147483648), gr4
-	and gr4, gr18, gr5
+	and gr4, gr20, gr5
 	and gr4, gr22, gr4
 	cmp gr5,gr4,icc0
 	bne icc0,2,.L239
 	sethi #gotofffuncdeschi(__ltdf2), gr4
 	setlo #gotofffuncdesclo(__ltdf2), gr4
-	ldd @(gr4,gr21), gr14
+	ldd @(gr4,gr19), gr14
 	mov gr22, gr10
 	mov gr23, gr11
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	calll @(gr14,gr0)
 	srli gr8, #31, gr8
 	andi gr8,#0xff,gr8
 	cmpi gr8, #0, icc0
 	beq icc0,2,.L236
 .L238:
-	mov gr18, gr8
-	mov gr19, gr9
+	mov gr20, gr8
+	mov gr21, gr9
 	bra .L230
 .L239:
 	cmpi gr5, #0, icc0
@@ -1224,8 +1224,8 @@ l64a:
 	beq icc0,0,.L243
 	sethi #gotoffhi(s.0), gr7
 	ldi @(gr15,#got12(_gp)), gr5
-	mov gr7, gr4
 	sethi #gprelhi(digits), gr6
+	mov gr7, gr4
 	setlo #gotofflo(s.0), gr4
 	setlo #gprello(digits), gr6
 	add gr4,gr15,gr4
@@ -2480,18 +2480,18 @@ bswap_16:
 	.globl bswap_32
 	.type	bswap_32, @function
 bswap_32:
-	srli gr8, #24, gr6
-	slli gr8,#24,gr4
-	or gr4, gr6, gr4
 	sethi #hi(#65280), gr6
 	srli gr8, #8, gr5
 	setlo #lo(#65280), gr6
+	srli gr8, #24, gr7
 	and gr5, gr6, gr5
-	or gr4, gr5, gr4
-	sethi #hi(#16711680), gr5
-	setlo #lo(#16711680), gr5
+	slli gr8,#24,gr4
+	sethi #hi(#16711680), gr6
+	or gr4, gr7, gr4
+	setlo #lo(#16711680), gr6
 	slli gr8,#8,gr8
-	and gr8, gr5, gr8
+	or gr4, gr5, gr4
+	and gr8, gr6, gr8
 	or gr4, gr8, gr8
 	ret
 	.size	bswap_32, .-bswap_32
@@ -3427,22 +3427,22 @@ mempcpy:
 	.type	frexp, @function
 frexp:
 	addi sp,#-64,sp
-	sti gr22, @(sp,24)
-	sethi #gotofffuncdeschi(__ltdf2), gr22
+	sti gr21, @(sp,20)
+	sethi #gotofffuncdeschi(__ltdf2), gr21
 	sti fp, @(sp,48)
 	movsg lr, gr5
 	addi sp,#48,fp
-	mov gr22, gr4
+	mov gr21, gr4
 	sti gr18, @(sp,8)
 	sti gr19, @(sp,12)
 	sti gr20, @(sp,16)
-	sti gr23, @(sp,28)
+	sti gr22, @(sp,24)
 	sti gr27, @(sp,44)
 	setlo #gotofffuncdesclo(__ltdf2), gr4
 	sti gr5, @(fp,8)
 	sti gr16, @(sp,0)
 	sti gr17, @(sp,4)
-	sti gr21, @(sp,20)
+	sti gr23, @(sp,28)
 	sti gr24, @(sp,32)
 	sti gr25, @(sp,36)
 	sti gr26, @(sp,40)
@@ -3453,12 +3453,12 @@ frexp:
 	setlos #0, gr10
 	mov gr8, gr18
 	mov gr9, gr19
-	add gr4,gr20,gr23
+	add gr4,gr20,gr22
 	calll @(gr14,gr0)
 	cmpi gr8, #0, icc0
 	bn icc0,0,.L735
-	sethi #gotofffuncdeschi(__gedf2), gr21
-	mov gr21, gr4
+	sethi #gotofffuncdeschi(__gedf2), gr26
+	mov gr26, gr4
 	setlo #gotofffuncdesclo(__gedf2), gr4
 	ldd @(gr4,gr20), gr14
 	sethi #hi(#1072693248), gr10
@@ -3471,24 +3471,24 @@ frexp:
 	bn icc0,0,.L736
 	setlos #0, gr16
 .L716:
-	sethi #gotofffuncdeschi(__muld), gr26
+	sethi #gotofffuncdeschi(__muld), gr21
 	sethi #hi(#1071644672), gr24
 	sethi #hi(#1072693248), gr22
 	setlos #0, gr17
-	setlo #gotofffuncdesclo(__muld), gr26
+	setlo #gotofffuncdesclo(__muld), gr21
 	setlo #lo(#1071644672), gr24
 	setlos #0, gr25
-	setlo #gotofffuncdesclo(__gedf2), gr21
+	setlo #gotofffuncdesclo(__gedf2), gr26
 	setlo #lo(#1072693248), gr22
 	setlos #0, gr23
 .L722:
-	ldd @(gr26,gr20), gr14
+	ldd @(gr21,gr20), gr14
 	mov gr24, gr10
 	mov gr25, gr11
 	mov gr18, gr8
 	mov gr19, gr9
 	calll @(gr14,gr0)
-	ldd @(gr21,gr20), gr14
+	ldd @(gr26,gr20), gr14
 	mov gr8, gr18
 	mov gr22, gr10
 	mov gr23, gr11
@@ -3524,7 +3524,7 @@ frexp:
 	addi sp,#64,sp
 	jmpl @(gr5,gr0)
 .L736:
-	ldd @(gr23,gr0), gr14
+	ldd @(gr22,gr0), gr14
 	sethi #hi(#1071644672), gr10
 	setlo #lo(#1071644672), gr10
 	setlos #0, gr11
@@ -3552,21 +3552,21 @@ frexp:
 	sethi #gotofffuncdeschi(__ledf2), gr4
 	setlo #gotofffuncdesclo(__ledf2), gr4
 	ldd @(gr4,gr20), gr14
+	sethi #hi(#-2147483648), gr5
 	sethi #hi(#3220176896), gr10
-	sethi #hi(#-2147483648), gr4
-	setlo #lo(#-2147483648), gr4
+	setlo #lo(#-2147483648), gr5
 	setlo #lo(#3220176896), gr10
 	setlos #0, gr11
 	mov gr18, gr8
 	mov gr19, gr9
-	xor gr18, gr4, gr24
+	xor gr18, gr5, gr22
 	calll @(gr14,gr0)
 	cmpi gr8,#0,icc0
-	mov gr19, gr25
+	mov gr19, gr23
 	bgt icc0,0,.L737
-	mov gr24, gr18
+	mov gr22, gr18
 	setlos #1, gr16
-	sethi #gotofffuncdeschi(__gedf2), gr21
+	sethi #gotofffuncdeschi(__gedf2), gr26
 	bra .L716
 .L729:
 	mov gr18, gr8
@@ -3586,24 +3586,23 @@ frexp:
 	ble icc0,2,.L719
 	setlos #1, gr16
 .L717:
-	mov gr24, gr18
-	sethi #gotofffuncdeschi(__addd), gr21
-	mov gr22, gr24
+	sethi #gotofffuncdeschi(__addd), gr24
+	mov gr22, gr18
 	sethi #hi(#1071644672), gr22
-	mov gr25, gr19
+	mov gr23, gr19
 	setlos #0, gr17
-	setlo #gotofffuncdesclo(__addd), gr21
-	setlo #gotofffuncdesclo(__ltdf2), gr24
+	setlo #gotofffuncdesclo(__addd), gr24
+	setlo #gotofffuncdesclo(__ltdf2), gr21
 	setlo #lo(#1071644672), gr22
 	setlos #0, gr23
 .L724:
-	ldd @(gr21,gr20), gr14
+	ldd @(gr24,gr20), gr14
 	mov gr18, gr10
 	mov gr19, gr11
 	mov gr18, gr8
 	mov gr19, gr9
 	calll @(gr14,gr0)
-	ldd @(gr24,gr20), gr14
+	ldd @(gr21,gr20), gr14
 	mov gr8, gr18
 	mov gr22, gr10
 	mov gr23, gr11
@@ -3615,8 +3614,8 @@ frexp:
 	bn icc0,2,.L724
 	bra .L723
 .L728:
-	mov gr18, gr24
-	mov gr19, gr25
+	mov gr18, gr22
+	mov gr19, gr23
 	setlos #0, gr16
 	bra .L717
 	.size	frexp, .-frexp
@@ -5571,18 +5570,18 @@ __bswapdi2:
 	.globl __bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
-	slli gr8,#24,gr6
-	srli gr8, #24, gr4
-	or gr4, gr6, gr4
 	sethi #hi(#65280), gr6
 	srli gr8, #8, gr5
 	setlo #lo(#65280), gr6
+	slli gr8,#24,gr7
 	and gr5, gr6, gr5
-	or gr4, gr5, gr4
-	sethi #hi(#16711680), gr5
-	setlo #lo(#16711680), gr5
+	srli gr8, #24, gr4
+	sethi #hi(#16711680), gr6
+	or gr4, gr7, gr4
+	setlo #lo(#16711680), gr6
 	slli gr8,#8,gr8
-	and gr8, gr5, gr8
+	or gr4, gr5, gr4
+	and gr8, gr6, gr8
 	or gr4, gr8, gr8
 	ret
 	.size	__bswapsi2, .-__bswapsi2
@@ -5709,12 +5708,12 @@ __ctzsi2:
 	srl gr4, gr8, gr4
 	andi gr4, #3, gr4
 	add gr6,gr7,gr6
+	setlos #2, gr9
 	not gr4,gr7
-	add gr5,gr6,gr5
 	srli gr4, #1, gr4
+	add gr5,gr6,gr5
+	sub gr9,gr4,gr4
 	andi gr7, #1, gr6
-	setlos #2, gr7
-	sub gr7,gr4,gr4
 	umul gr6,gr4,gr6
 	add gr8,gr5,gr8
 	add gr8,gr7,gr8

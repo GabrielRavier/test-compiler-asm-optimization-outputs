@@ -1306,11 +1306,11 @@ fminl:
 l64a:
 	l.movhi	r17, hi(0)
 	l.movhi	r11, ha(.LANCHOR0)
-	l.addi	r11, r11, lo(.LANCHOR0)
 	l.sfeq	r3, r17
-	l.bf	.L279
-	l.or	r19, r11, r11
+	l.bf	.L281
+	l.addi	r11, r11, lo(.LANCHOR0)
 	l.movhi	r21, ha(.LANCHOR1)
+	l.or	r19, r11, r11
 	l.addi	r21, r21, lo(.LANCHOR1)
 .L280:
 	l.andi	r17, r3, 63
@@ -1323,7 +1323,10 @@ l64a:
 	l.sfne	r3, r17
 	l.bf	.L280
 	l.addi	r19, r19, 1
-.L279:
+	l.jr	r9
+	l.sb	0(r19), r0
+.L281:
+	l.or	r19, r11, r11
 	l.jr	r9
 	l.sb	0(r19), r0
 	.size	l64a, .-l64a
@@ -1345,8 +1348,8 @@ rand:
 	l.addi	r1, r1, -8
 	l.sw	0(r1), r16
 	l.movhi	r5, hi(1481703424)
-	l.movhi	r6, hi(1284833280)
 	l.movhi	r16, ha(.LANCHOR0)
+	l.movhi	r6, hi(1284833280)
 	l.addi	r16, r16, lo(.LANCHOR0)
 	l.ori	r5, r5, 62509
 	l.ori	r6, r6, 32557
@@ -2756,9 +2759,9 @@ bswap_32:
 	l.or	r11, r11, r19
 	l.andi	r17, r17, 65280
 	l.sll	r3, r3, r21
+	l.movhi	r19, hi(16711680)
 	l.or	r11, r11, r17
-	l.movhi	r17, hi(16711680)
-	l.and	r3, r3, r17
+	l.and	r3, r3, r19
 	l.jr	r9
 	l.or	r11, r11, r3
 	.size	bswap_32, .-bswap_32
@@ -3863,12 +3866,12 @@ frexp:
 	l.j	.L815
 	l.or	r11, r16, r16
 .L838:
-	l.movhi	r17, hi(-2147483648)
+	l.movhi	r19, hi(-2147483648)
+	l.movhi	r17, ha(.LC16+4)
 	l.movhi	r5, hi(-1074790400)
 	l.or	r3, r16, r16
 	l.or	r4, r18, r18
-	l.xor	r20, r16, r17
-	l.movhi	r17, ha(.LC16+4)
+	l.xor	r20, r16, r19
 	l.jal	__ledf2
 	l.lwz	r6, lo(.LC16+4)(r17)
 	l.sfles	r11, r22
@@ -4113,8 +4116,8 @@ __mulsi3:
 	.global	__cmovd
 	.type	__cmovd, @function
 __cmovd:
-	l.ori	r17, r0, 3
 	l.xori	r27, r0, -8
+	l.ori	r17, r0, 3
 	l.sfgeu	r3, r4
 	l.srl	r25, r5, r17
 	l.bnf	.L898
@@ -4337,8 +4340,8 @@ __cmovh:
 	.global	__cmovw
 	.type	__cmovw, @function
 __cmovw:
-	l.ori	r17, r0, 2
 	l.xori	r25, r0, -4
+	l.ori	r17, r0, 2
 	l.sfgeu	r3, r4
 	l.srl	r23, r5, r17
 	l.bnf	.L965
@@ -6214,9 +6217,9 @@ __bswapsi2:
 	l.or	r11, r11, r19
 	l.andi	r17, r17, 65280
 	l.sll	r3, r3, r21
+	l.movhi	r19, hi(16711680)
 	l.or	r11, r11, r17
-	l.movhi	r17, hi(16711680)
-	l.and	r3, r3, r17
+	l.and	r3, r3, r19
 	l.jr	r9
 	l.or	r11, r11, r3
 	.size	__bswapsi2, .-__bswapsi2
@@ -6373,11 +6376,11 @@ __ctzsi2:
 	l.add	r23, r23, r25
 	l.xori	r11, r17, -1
 	l.ori	r25, r0, 1
-	l.add	r21, r21, r23
 	l.srl	r17, r17, r25
-	l.ori	r23, r0, 2
 	l.andi	r11, r11, 1
-	l.sub	r17, r23, r17
+	l.ori	r25, r0, 2
+	l.add	r21, r21, r23
+	l.sub	r17, r25, r17
 	l.sub	r11, r0, r11
 	l.and	r11, r11, r17
 	l.add	r19, r19, r21
@@ -6601,8 +6604,8 @@ __popcountdi2:
 	.global	__popcountsi2
 	.type	__popcountsi2, @function
 __popcountsi2:
-	l.ori	r17, r0, 1
 	l.movhi	r19, hi(1431633920)
+	l.ori	r17, r0, 1
 	l.srl	r17, r3, r17
 	l.ori	r19, r19, 21845
 	l.and	r17, r17, r19
@@ -6616,9 +6619,9 @@ __popcountsi2:
 	l.add	r19, r19, r3
 	l.ori	r17, r0, 4
 	l.srl	r17, r19, r17
+	l.movhi	r21, hi(252641280)
 	l.add	r17, r17, r19
-	l.movhi	r19, hi(252641280)
-	l.ori	r19, r19, 3855
+	l.ori	r19, r21, 3855
 	l.and	r17, r17, r19
 	l.ori	r19, r0, 16
 	l.srl	r19, r17, r19

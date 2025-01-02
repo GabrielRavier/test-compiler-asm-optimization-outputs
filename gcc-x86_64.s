@@ -1001,9 +1001,7 @@ fmax:
 	.p2align 4,,10
 	.p2align 3
 .L215:
-	movapd	xmm2, xmm1
-	maxsd	xmm2, xmm0
-	movapd	xmm1, xmm2
+	maxsd	xmm1, xmm0
 	movapd	xmm0, xmm1
 	ret
 	.cfi_endproc
@@ -1035,9 +1033,7 @@ fmaxf:
 	.p2align 4,,10
 	.p2align 3
 .L224:
-	movaps	xmm2, xmm1
-	maxss	xmm2, xmm0
-	movaps	xmm1, xmm2
+	maxss	xmm1, xmm0
 	movaps	xmm0, xmm1
 	ret
 	.cfi_endproc
@@ -1099,7 +1095,6 @@ fmin:
 .LFB36:
 	.cfi_startproc
 	ucomisd	xmm0, xmm0
-	movapd	xmm2, xmm0
 	jp	.L245
 	ucomisd	xmm1, xmm1
 	jp	.L240
@@ -1113,16 +1108,12 @@ fmin:
 	jne	.L240
 .L245:
 	movapd	xmm0, xmm1
-	ret
-	.p2align 4,,10
-	.p2align 3
 .L240:
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L242:
-	minsd	xmm2, xmm1
-	movapd	xmm0, xmm2
+	minsd	xmm0, xmm1
 	ret
 	.cfi_endproc
 .LFE36:
@@ -1152,9 +1143,7 @@ fminf:
 	.p2align 4,,10
 	.p2align 3
 .L251:
-	movaps	xmm2, xmm0
-	minss	xmm2, xmm1
-	movaps	xmm0, xmm2
+	minss	xmm0, xmm1
 	ret
 	.cfi_endproc
 .LFE37:
@@ -2045,10 +2034,10 @@ wcscmp:
 	test	edx, edx
 	jne	.L460
 .L459:
-	xor	eax, eax
 	cmp	edx, ecx
 	mov	edx, -1
 	setg	al
+	movzx	eax, al
 	cmovl	eax, edx
 	ret
 	.cfi_endproc
@@ -5859,12 +5848,12 @@ __muldi3_compiler_rt:
 	imul	r8d, r9d
 	add	edx, r10d
 	add	eax, r8d
-	mov	r10d, edx
+	mov	r9d, edx
 	shr	edx, 16
 	add	edx, eax
-	sal	r10d, 16
+	sal	r9d, 16
 	mov	edx, edx
-	lea	eax, [rsi+r10]
+	lea	eax, [rsi+r9]
 	sal	rdx, 32
 	or	rax, rdx
 	mov	rdx, rcx
@@ -5924,43 +5913,37 @@ __mulddi3:
 __multi3:
 .LFB152:
 	.cfi_startproc
-	mov	eax, edi
-	mov	r8, rdi
-	mov	r9, rsi
-	mov	esi, edx
-	mov	rdi, rax
+	mov	r11, rsi
+	mov	esi, edi
+	mov	eax, edx
+	mov	r9, rdi
+	mov	r8, rsi
+	shr	r9, 32
+	imul	rcx, rdi
+	imul	r8, rax
+	imul	rax, r9
 	mov	r10, r8
-	push	rbx
-	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	imul	rdi, rsi
+	mov	r8d, r8d
 	shr	r10, 32
-	imul	rsi, r10
-	imul	r8, rcx
-	mov	r11, rdi
-	mov	edi, edi
-	shr	r11, 32
-	add	rsi, r11
-	mov	r11, rdx
-	shr	r11, 32
-	imul	rdx, r9
-	mov	ebx, esi
-	shr	rsi, 32
-	imul	rax, r11
-	imul	r10, r11
-	add	rax, rbx
-	mov	rbx, rax
-	add	rsi, r10
+	add	rax, r10
+	mov	r10, rdx
+	shr	r10, 32
+	imul	rdx, r11
+	mov	edi, eax
 	shr	rax, 32
-	add	rsi, rax
-	sal	rbx, 32
+	imul	rsi, r10
+	imul	r9, r10
+	add	rdi, rsi
+	mov	rsi, rdi
+	shr	rdi, 32
+	sal	rsi, 32
 	add	r8, rsi
-	add	rdi, rbx
-	pop	rbx
-	.cfi_def_cfa_offset 8
-	add	r8, rdx
-	mov	rax, rdi
-	mov	rdx, r8
+	lea	rsi, [rax+r9]
+	add	rsi, rdi
+	mov	rax, r8
+	add	rcx, rsi
+	add	rcx, rdx
+	mov	rdx, rcx
 	ret
 	.cfi_endproc
 .LFE152:
@@ -6197,37 +6180,37 @@ __powidf2:
 	mov	eax, edi
 	movapd	xmm1, xmm2
 	test	dil, 1
-	je	.L1367
+	je	.L1366
 	.p2align 4
 	.p2align 3
-.L1369:
+.L1368:
 	mulsd	xmm1, xmm0
-.L1367:
+.L1366:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	.L1368
+	je	.L1367
 	mulsd	xmm0, xmm0
 	test	al, 1
-	jne	.L1369
-.L1373:
+	jne	.L1368
+.L1372:
 	mulsd	xmm0, xmm0
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
 	test	al, 1
-	jne	.L1369
-	jmp	.L1373
+	jne	.L1368
+	jmp	.L1372
 	.p2align 4,,10
 	.p2align 3
-.L1368:
+.L1367:
 	test	edi, edi
-	jns	.L1366
+	jns	.L1365
 	divsd	xmm2, xmm1
 	movapd	xmm1, xmm2
-.L1366:
+.L1365:
 	movapd	xmm0, xmm1
 	ret
 	.cfi_endproc
@@ -6243,37 +6226,37 @@ __powisf2:
 	mov	eax, edi
 	movaps	xmm1, xmm2
 	test	dil, 1
-	je	.L1375
+	je	.L1374
 	.p2align 4
 	.p2align 3
-.L1377:
+.L1376:
 	mulss	xmm1, xmm0
-.L1375:
+.L1374:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	.L1376
+	je	.L1375
 	mulss	xmm0, xmm0
 	test	al, 1
-	jne	.L1377
-.L1381:
+	jne	.L1376
+.L1380:
 	mulss	xmm0, xmm0
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
 	test	al, 1
-	jne	.L1377
-	jmp	.L1381
+	jne	.L1376
+	jmp	.L1380
 	.p2align 4,,10
 	.p2align 3
-.L1376:
+.L1375:
 	test	edi, edi
-	jns	.L1374
+	jns	.L1373
 	divss	xmm2, xmm1
 	movaps	xmm1, xmm2
-.L1374:
+.L1373:
 	movaps	xmm0, xmm1
 	ret
 	.cfi_endproc
@@ -6291,18 +6274,18 @@ __ucmpdi2:
 	shr	rdx, 32
 	shr	rcx, 32
 	cmp	edx, ecx
-	jb	.L1382
+	jb	.L1381
 	mov	eax, 2
 	cmp	ecx, edx
-	jb	.L1382
+	jb	.L1381
 	xor	eax, eax
 	cmp	edi, esi
-	jb	.L1382
+	jb	.L1381
 	xor	eax, eax
 	cmp	esi, edi
 	setb	al
 	add	eax, 1
-.L1382:
+.L1381:
 	ret
 	.cfi_endproc
 .LFE163:
@@ -6319,17 +6302,17 @@ __aeabi_ulcmp:
 	shr	rdx, 32
 	shr	rcx, 32
 	cmp	edx, ecx
-	jb	.L1388
+	jb	.L1387
 	mov	eax, 1
 	cmp	ecx, edx
-	jb	.L1388
+	jb	.L1387
 	mov	eax, -1
 	cmp	edi, esi
-	jb	.L1388
+	jb	.L1387
 	xor	eax, eax
 	cmp	esi, edi
 	setb	al
-.L1388:
+.L1387:
 	ret
 	.cfi_endproc
 .LFE164:
@@ -6342,18 +6325,18 @@ __ucmpti2:
 	.cfi_startproc
 	xor	eax, eax
 	cmp	rsi, rcx
-	jb	.L1393
+	jb	.L1392
 	mov	eax, 2
 	cmp	rcx, rsi
-	jb	.L1393
+	jb	.L1392
 	xor	eax, eax
 	cmp	rdi, rdx
-	jb	.L1393
+	jb	.L1392
 	xor	eax, eax
 	cmp	rdx, rdi
 	setb	al
 	add	eax, 1
-.L1393:
+.L1392:
 	ret
 	.cfi_endproc
 .LFE165:

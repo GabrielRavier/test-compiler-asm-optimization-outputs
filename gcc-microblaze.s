@@ -3929,10 +3929,12 @@ $LC3:
 gl_isinfd:
 	.frame	r1,40,r15		# vars= 0, regs= 3, args= 24
 	.mask	0x00c88000
-	lwi	r7,r0,$LC2
-	lwi	r8,r0,$LC2+4
+	lwi	r8,r0,$LC2
+	lwi	r9,r0,$LC2+4
 	addik	r1,r1,-40
 	swi	r22,r1,32
+	addk	r7,r8,r0
+	addk	r8,r9,r0
 	swi	r23,r1,36
 	addk	r22,r5,r0
 	addk	r23,r6,r0
@@ -3943,10 +3945,12 @@ gl_isinfd:
 	addk	r4,r3,r0
 	bltid	r4,$L674
 	addik	r3,r0,1	# 0x1
+	lwi	r8,r0,$LC3
+	lwi	r9,r0,$LC3+4
 	addk	r5,r22,r0
 	addk	r6,r23,r0
-	lwi	r7,r0,$LC3
-	lwi	r8,r0,$LC3+4
+	addk	r7,r8,r0
+	addk	r8,r9,r0
 	brlid	r15,__gtdf2
 	
 	addk	r19,r3,r0
@@ -3984,10 +3988,12 @@ $LC5:
 gl_isinfl:
 	.frame	r1,40,r15		# vars= 0, regs= 3, args= 24
 	.mask	0x00c88000
-	lwi	r7,r0,$LC4
-	lwi	r8,r0,$LC4+4
+	lwi	r8,r0,$LC4
+	lwi	r9,r0,$LC4+4
 	addik	r1,r1,-40
 	swi	r22,r1,32
+	addk	r7,r8,r0
+	addk	r8,r9,r0
 	swi	r23,r1,36
 	addk	r22,r5,r0
 	addk	r23,r6,r0
@@ -3998,10 +4004,12 @@ gl_isinfl:
 	addk	r4,r3,r0
 	bltid	r4,$L680
 	addik	r3,r0,1	# 0x1
+	lwi	r8,r0,$LC5
+	lwi	r9,r0,$LC5+4
 	addk	r5,r22,r0
 	addk	r6,r23,r0
-	lwi	r7,r0,$LC5
-	lwi	r8,r0,$LC5+4
+	addk	r7,r8,r0
+	addk	r8,r9,r0
 	brlid	r15,__gtdf2
 	
 	addk	r19,r3,r0
@@ -8932,10 +8940,10 @@ __paritydi2:
 	srl	r4,r4
 	srl	r4,r4
 	xor	r4,r4,r3
+	addik	r7,r0,27030	# 0x6996
 	andi	r4,r4,15 #and1
-	addik	r5,r0,27030	# 0x6996
 	andi	r18,r4,31
-	addk	r3,r0,r5
+	addk	r3,r0,r7
 	beqid	r18,.+20
 	addk	r3,r3,r0
 	addik	r18,r18,-1
@@ -8988,10 +8996,10 @@ __paritysi2:
 	srl	r4,r4
 	srl	r4,r4
 	xor	r4,r4,r5
+	addik	r6,r0,27030	# 0x6996
 	andi	r4,r4,15 #and1
-	addik	r5,r0,27030	# 0x6996
 	andi	r18,r4,31
-	addk	r3,r0,r5
+	addk	r3,r0,r6
 	beqid	r18,.+20
 	addk	r3,r3,r0
 	addik	r18,r18,-1
