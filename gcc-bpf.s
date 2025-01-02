@@ -8507,10 +8507,10 @@ __udivmodhi4:
 	r4 <<= 13
 	r4 &= 0xffff
 	if r4 > r0 goto .L3096
-	r5 = r1
-	r1 = r4
-	r1 <<= 48
-	if r1 s<= r5 goto .L3056
+	r5 = r4
+	r5 <<= 48
+	r5 s>>= 48
+	if r1 s>= r5 goto .L3056
 	r4 = r2
 	r4 <<= 14
 	r4 &= 0xffff
@@ -8518,167 +8518,167 @@ __udivmodhi4:
 	r9 = r4
 	r9 <<= 48
 	r9 s>>= 48
-	if r5 s>= r9 goto .L3058
-	r1 = r2
-	r1 <<= 15
-	r1 &= 0xffff
-	if r1 > r0 goto .L3059
-	if r1 != r5 goto .L3144
+	if r1 s>= r9 goto .L3058
+	r2 <<= 15
+	r5 = r2
+	r5 &= 0xffff
+	if r5 > r0 goto .L3059
+	if r5 != r1 goto .L3144
 .L3060:
 	if r3 != 0 goto .L3112
-	r0 = r1
+	r0 = r5
 	exit
 .L3112:
 	exit
 .L3092:
-	r5 = 512
+	r1 = 512
 .L3079:
-	r9 = r5
+	r9 = r1
 	r2 = r4
 	r9 >>= 1
 	r2 >>= 1
-	r1 = 0
+	r5 = 0
 .L3080:
 	if r2 >= r0 goto .L3062
 	r0 -= r2
-	r1 |= r9
+	r5 |= r9
 	r0 &= 0xffff
 .L3062:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 2
 	r9 >>= 2
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3063
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3063:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 3
 	r9 >>= 3
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3064
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3064:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 4
 	r9 >>= 4
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3065
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3065:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 5
 	r9 >>= 5
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3066
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3066:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 6
 	r9 >>= 6
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3067
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3067:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 7
 	r9 >>= 7
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3068
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3068:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 8
 	r9 >>= 8
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3069
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3069:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 9
 	r9 >>= 9
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3070
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3070:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 10
 	r9 >>= 10
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3071
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3071:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 11
 	r9 >>= 11
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3072
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3072:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 12
 	r9 >>= 12
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3073
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3073:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 13
 	r9 >>= 13
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3074
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3074:
-	r2 = r5
+	r2 = r1
 	r9 = r4
 	r2 >>= 14
 	r9 >>= 14
 	if r2 == 0 goto .L3060
 	if r9 >= r0 goto .L3075
 	r0 -= r9
-	r1 |= r2
+	r5 |= r2
 	r0 &= 0xffff
 .L3075:
 	r4 >>= 15
-	if r5 == 16384 goto .L3060
+	if r1 == 16384 goto .L3060
 	if r4 >= r0 goto .L3082
 	r0 -= r4
-	r1 |= 1
+	r5 |= 1
 	r0 &= 0xffff
 	goto .L3060
 .L3144:
@@ -8687,201 +8687,201 @@ __udivmodhi4:
 	r2 = 16384
 	r0 &= 0xffff
 	r9 = r2
-	r5 = r4
 	r1 = r4
+	r5 = r4
 	goto .L3080
 .L3082:
 	r0 = 0
 	goto .L3060
 .L3143:
 	if r2 == r0 goto .L3081
-	r1 = 0
+	r5 = 0
 	goto .L3060
 .L3030:
 	r0 -= r2
-	r1 = 1
+	r5 = 1
 	r0 &= 0xffff
 	goto .L3060
 .L3032:
 	r0 -= r4
-	r5 = 2
+	r1 = 2
 	r0 &= 0xffff
 	r2 &= 32767
 	r9 = 1
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3034:
 	r0 -= r4
-	r5 = 4
+	r1 = 4
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 2
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3036:
 	r0 -= r4
-	r5 = 8
+	r1 = 8
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 4
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3038:
 	r0 -= r4
-	r5 = 16
+	r1 = 16
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 8
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3040:
 	r0 -= r4
-	r5 = 32
+	r1 = 32
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 16
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3042:
 	r0 -= r4
-	r5 = 64
+	r1 = 64
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 32
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3044:
 	r0 -= r4
-	r5 = 128
+	r1 = 128
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 64
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3046:
 	r0 -= r4
-	r5 = 256
+	r1 = 256
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 128
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3048:
 	r0 -= r4
-	r5 = 512
+	r1 = 512
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 256
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3081:
-	r1 = 1
+	r5 = 1
 	r0 = 0
 	goto .L3060
 .L3084:
-	r5 = 2
+	r1 = 2
 	goto .L3079
 .L3050:
 	r0 -= r4
-	r5 = 1024
+	r1 = 1024
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 512
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3085:
-	r5 = 4
+	r1 = 4
 	goto .L3079
 .L3052:
 	r0 -= r4
-	r5 = 2048
+	r1 = 2048
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 1024
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3054:
 	r0 -= r4
-	r5 = 4096
+	r1 = 4096
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 2048
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3086:
-	r5 = 8
+	r1 = 8
 	goto .L3079
 .L3056:
 	r0 -= r4
-	r5 = 8192
+	r1 = 8192
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 4096
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3087:
-	r5 = 16
+	r1 = 16
 	goto .L3079
 .L3088:
-	r5 = 32
+	r1 = 32
 	goto .L3079
 .L3058:
 	r0 -= r4
-	r5 = 16384
+	r1 = 16384
 	r2 = r4
 	r0 &= 0xffff
 	r2 >>= 1
 	r9 = 8192
-	r1 = r5
+	r5 = r1
 	goto .L3080
 .L3059:
 	r2 = r0
 	r4 = 32768
 	r2 <<= 48
 	r2 s>>= 48
-	if r5 s>= r2 goto .L3083
-	r5 = r4
+	if r1 s>= r2 goto .L3083
+	r1 = r4
 	goto .L3079
 .L3089:
-	r5 = 64
+	r1 = 64
 	goto .L3079
 .L3090:
-	r5 = 128
+	r1 = 128
 	goto .L3079
 .L3083:
-	r0 = r5
-	r1 = r4
+	r0 = r1
 	r5 = r4
+	r1 = r4
 	goto .L3062
 .L3091:
-	r5 = 256
+	r1 = 256
 	goto .L3079
 .L3095:
-	r5 = 4096
+	r1 = 4096
 	goto .L3079
 .L3096:
-	r5 = 8192
+	r1 = 8192
 	goto .L3079
 .L3097:
-	r5 = 16384
+	r1 = 16384
 	goto .L3079
 .L3094:
-	r5 = 2048
+	r1 = 2048
 	goto .L3079
 .L3093:
-	r5 = 1024
+	r1 = 1024
 	goto .L3079
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align	3

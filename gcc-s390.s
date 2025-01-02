@@ -8401,131 +8401,130 @@ __divsi3:
 	ltr	%r4,%r2
 	jl	.L2432
 	lhi	%r1,1
-	lhi	%r0,0
+	lhi	%r5,0
 .L2387:
 	ltr	%r3,%r3
 	jhe	.L2388
 	lcr	%r3,%r3
-	lr	%r0,%r1
+	lr	%r5,%r1
 .L2388:
-	lr	%r5,%r4
-	lr	%r1,%r3
 	clr	%r4,%r3
 	jle	.L2395
-	sll	%r1,1
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,1
+	clr	%r4,%r0
 	jle	.L2396
-	lr	%r1,%r3
-	sll	%r1,2
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,2
+	clr	%r4,%r2
 	jle	.L2397
 	lr	%r1,%r3
 	sll	%r1,3
 	clr	%r4,%r1
 	jle	.L2398
-	lr	%r1,%r3
-	sll	%r1,4
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,4
+	clr	%r4,%r0
 	jle	.L2399
-	lr	%r1,%r3
-	sll	%r1,5
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,5
+	clr	%r4,%r2
 	jle	.L2400
 	lr	%r1,%r3
 	sll	%r1,6
 	clr	%r4,%r1
 	jle	.L2401
-	lr	%r1,%r3
-	sll	%r1,7
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,7
+	clr	%r4,%r0
 	jle	.L2402
-	lr	%r1,%r3
-	sll	%r1,8
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,8
+	clr	%r4,%r2
 	jle	.L2403
 	lr	%r1,%r3
 	sll	%r1,9
 	clr	%r4,%r1
 	jle	.L2404
-	lr	%r1,%r3
-	sll	%r1,10
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,10
+	clr	%r4,%r0
 	jle	.L2405
-	lr	%r1,%r3
-	sll	%r1,11
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,11
+	clr	%r4,%r2
 	jle	.L2406
 	lr	%r1,%r3
 	sll	%r1,12
 	clr	%r4,%r1
 	jle	.L2407
-	lr	%r1,%r3
-	sll	%r1,13
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,13
+	clr	%r4,%r0
 	jle	.L2408
-	lr	%r1,%r3
-	sll	%r1,14
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,14
+	clr	%r4,%r2
 	jle	.L2409
 	lr	%r1,%r3
 	sll	%r1,15
 	clr	%r4,%r1
 	jle	.L2410
-	lr	%r1,%r3
-	sll	%r1,16
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,16
+	clr	%r4,%r0
 	jle	.L2411
-	lr	%r1,%r3
-	sll	%r1,17
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,17
+	clr	%r4,%r2
 	jle	.L2412
 	lr	%r1,%r3
 	sll	%r1,18
 	clr	%r4,%r1
 	jle	.L2413
-	lr	%r1,%r3
-	sll	%r1,19
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,19
+	clr	%r4,%r0
 	jle	.L2414
-	lr	%r1,%r3
-	sll	%r1,20
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,20
+	clr	%r4,%r2
 	jle	.L2415
 	lr	%r1,%r3
 	sll	%r1,21
 	clr	%r4,%r1
 	jle	.L2416
-	lr	%r1,%r3
-	sll	%r1,22
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,22
+	clr	%r4,%r0
 	jle	.L2417
-	lr	%r1,%r3
-	sll	%r1,23
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,23
+	clr	%r4,%r2
 	jle	.L2418
 	lr	%r1,%r3
 	sll	%r1,24
 	clr	%r4,%r1
 	jle	.L2419
-	lr	%r1,%r3
-	sll	%r1,25
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,25
+	clr	%r4,%r0
 	jle	.L2420
-	lr	%r1,%r3
-	sll	%r1,26
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,26
+	clr	%r4,%r2
 	jle	.L2421
 	lr	%r1,%r3
 	sll	%r1,27
 	clr	%r4,%r1
 	jle	.L2422
-	lr	%r1,%r3
-	sll	%r1,28
-	clr	%r4,%r1
+	lr	%r0,%r3
+	sll	%r0,28
+	clr	%r4,%r0
 	jle	.L2423
-	lr	%r1,%r3
-	sll	%r1,29
-	clr	%r4,%r1
+	lr	%r2,%r3
+	sll	%r2,29
+	clr	%r4,%r2
 	jle	.L2424
 	lr	%r1,%r3
 	sll	%r1,30
@@ -8536,7 +8535,7 @@ __divsi3:
 	clr	%r4,%r3
 	jle	.L2433
 .L2390:
-	ltr	%r0,%r0
+	ltr	%r5,%r5
 	je	.L2386
 	lcr	%r2,%r2
 .L2386:
@@ -8548,116 +8547,146 @@ __divsi3:
 	.cfi_restore_state
 	lcr	%r4,%r4
 	lhi	%r1,0
-	lhi	%r0,1
+	lhi	%r5,1
 	j	.L2387
 .L2413:
-	l	%r3,.L2435-.L2434(%r13)
+	l	%r0,.L2435-.L2434(%r13)
+	lr	%r3,%r1
 .L2389:
 	lhi	%r2,0
 .L2392:
-	clr	%r5,%r1
+	clr	%r4,%r3
 	jl	.L2391
-	sr	%r5,%r1
-	or	%r2,%r3
+	sr	%r4,%r3
+	or	%r2,%r0
 .L2391:
+	srl	%r0,1
 	srl	%r3,1
-	srl	%r1,1
-	ltr	%r3,%r3
+	ltr	%r0,%r0
 	jne	.L2392
 	j	.L2390
 .L2395:
-	lhi	%r3,1
+	lhi	%r0,1
 	j	.L2389
 .L2396:
-	lhi	%r3,2
+	lr	%r3,%r0
+	lhi	%r0,2
 	j	.L2389
 .L2398:
-	lhi	%r3,8
+	lr	%r3,%r1
+	lhi	%r0,8
 	j	.L2389
 .L2397:
-	lhi	%r3,4
+	lr	%r3,%r2
+	lhi	%r0,4
 	j	.L2389
 .L2399:
-	lhi	%r3,16
+	lr	%r3,%r0
+	lhi	%r0,16
 	j	.L2389
 .L2400:
-	lhi	%r3,32
+	lr	%r3,%r2
+	lhi	%r0,32
 	j	.L2389
 .L2402:
-	lhi	%r3,128
+	lr	%r3,%r0
+	lhi	%r0,128
 	j	.L2389
 .L2401:
-	lhi	%r3,64
+	lr	%r3,%r1
+	lhi	%r0,64
 	j	.L2389
 .L2403:
-	lhi	%r3,256
+	lr	%r3,%r2
+	lhi	%r0,256
 	j	.L2389
 .L2404:
-	lhi	%r3,512
+	lr	%r3,%r1
+	lhi	%r0,512
 	j	.L2389
 .L2405:
-	lhi	%r3,1024
+	lr	%r3,%r0
+	lhi	%r0,1024
 	j	.L2389
 .L2406:
-	lhi	%r3,2048
+	lr	%r3,%r2
+	lhi	%r0,2048
 	j	.L2389
 .L2408:
-	lhi	%r3,8192
+	lr	%r3,%r0
+	lhi	%r0,8192
 	j	.L2389
 .L2407:
-	lhi	%r3,4096
+	lr	%r3,%r1
+	lhi	%r0,4096
 	j	.L2389
 .L2410:
-	l	%r3,.L2436-.L2434(%r13)
-	j	.L2389
-.L2409:
-	lhi	%r3,16384
-	j	.L2389
-.L2412:
-	l	%r3,.L2437-.L2434(%r13)
-	j	.L2389
-.L2411:
-	l	%r3,.L2438-.L2434(%r13)
-	j	.L2389
-.L2414:
-	l	%r3,.L2439-.L2434(%r13)
-	j	.L2389
-.L2415:
-	l	%r3,.L2440-.L2434(%r13)
-	j	.L2389
-.L2416:
-	l	%r3,.L2441-.L2434(%r13)
-	j	.L2389
-.L2417:
-	l	%r3,.L2442-.L2434(%r13)
-	j	.L2389
-.L2418:
-	l	%r3,.L2443-.L2434(%r13)
-	j	.L2389
-.L2419:
-	l	%r3,.L2444-.L2434(%r13)
-	j	.L2389
-.L2420:
-	l	%r3,.L2445-.L2434(%r13)
-	j	.L2389
-.L2421:
-	l	%r3,.L2446-.L2434(%r13)
-	j	.L2389
-.L2422:
-	l	%r3,.L2447-.L2434(%r13)
-	j	.L2389
-.L2433:
-	l	%r1,.L2448-.L2434(%r13)
+	l	%r0,.L2436-.L2434(%r13)
 	lr	%r3,%r1
 	j	.L2389
+.L2409:
+	lr	%r3,%r2
+	lhi	%r0,16384
+	j	.L2389
+.L2412:
+	l	%r0,.L2437-.L2434(%r13)
+	lr	%r3,%r2
+	j	.L2389
+.L2411:
+	lr	%r3,%r0
+	l	%r0,.L2438-.L2434(%r13)
+	j	.L2389
+.L2414:
+	lr	%r3,%r0
+	l	%r0,.L2439-.L2434(%r13)
+	j	.L2389
+.L2415:
+	l	%r0,.L2440-.L2434(%r13)
+	lr	%r3,%r2
+	j	.L2389
+.L2416:
+	l	%r0,.L2441-.L2434(%r13)
+	lr	%r3,%r1
+	j	.L2389
+.L2417:
+	lr	%r3,%r0
+	l	%r0,.L2442-.L2434(%r13)
+	j	.L2389
+.L2418:
+	l	%r0,.L2443-.L2434(%r13)
+	lr	%r3,%r2
+	j	.L2389
+.L2419:
+	l	%r0,.L2444-.L2434(%r13)
+	lr	%r3,%r1
+	j	.L2389
+.L2420:
+	lr	%r3,%r0
+	l	%r0,.L2445-.L2434(%r13)
+	j	.L2389
+.L2421:
+	l	%r0,.L2446-.L2434(%r13)
+	lr	%r3,%r2
+	j	.L2389
+.L2422:
+	l	%r0,.L2447-.L2434(%r13)
+	lr	%r3,%r1
+	j	.L2389
+.L2433:
+	l	%r3,.L2448-.L2434(%r13)
+	lr	%r0,%r3
+	j	.L2389
 .L2424:
-	l	%r3,.L2449-.L2434(%r13)
+	l	%r0,.L2449-.L2434(%r13)
+	lr	%r3,%r2
 	j	.L2389
 .L2423:
-	l	%r3,.L2450-.L2434(%r13)
+	lr	%r3,%r0
+	l	%r0,.L2450-.L2434(%r13)
 	j	.L2389
 .L2425:
-	l	%r3,.L2451-.L2434(%r13)
+	l	%r0,.L2451-.L2434(%r13)
+	lr	%r3,%r1
 	j	.L2389
 	.section	.rodata
 	.align	8
@@ -8708,156 +8737,150 @@ __divsi3:
 __modsi3:
 .LFB128:
 	.cfi_startproc
-	st	%r13,52(%r15)
-	.cfi_offset 13, -44
-	larl	%r13,.L2500
-	ltr	%r2,%r2
+	larl	%r5,.L2501
+	lr	%r1,%r3
+	ltr	%r3,%r2
 	jl	.L2498
 	lhi	%r4,0
 .L2453:
-	lpr	%r1,%r3
-	clr	%r2,%r1
-	lr	%r3,%r2
+	lpr	%r1,%r1
+	clr	%r3,%r1
 	jle	.L2460
-	lr	%r5,%r1
-	sll	%r5,1
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,1
+	clr	%r3,%r2
 	jle	.L2461
 	lr	%r0,%r1
 	sll	%r0,2
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2462
-	lr	%r5,%r1
-	sll	%r5,3
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,3
+	clr	%r3,%r2
 	jle	.L2463
 	lr	%r0,%r1
 	sll	%r0,4
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2464
-	lr	%r5,%r1
-	sll	%r5,5
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,5
+	clr	%r3,%r2
 	jle	.L2465
 	lr	%r0,%r1
 	sll	%r0,6
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2466
-	lr	%r5,%r1
-	sll	%r5,7
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,7
+	clr	%r3,%r2
 	jle	.L2467
 	lr	%r0,%r1
 	sll	%r0,8
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2468
-	lr	%r5,%r1
-	sll	%r5,9
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,9
+	clr	%r3,%r2
 	jle	.L2469
 	lr	%r0,%r1
 	sll	%r0,10
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2470
-	lr	%r5,%r1
-	sll	%r5,11
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,11
+	clr	%r3,%r2
 	jle	.L2471
 	lr	%r0,%r1
 	sll	%r0,12
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2472
-	lr	%r5,%r1
-	sll	%r5,13
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,13
+	clr	%r3,%r2
 	jle	.L2473
 	lr	%r0,%r1
 	sll	%r0,14
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2474
-	lr	%r5,%r1
-	sll	%r5,15
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,15
+	clr	%r3,%r2
 	jle	.L2475
 	lr	%r0,%r1
 	sll	%r0,16
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2476
-	lr	%r5,%r1
-	sll	%r5,17
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,17
+	clr	%r3,%r2
 	jle	.L2477
 	lr	%r0,%r1
 	sll	%r0,18
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2478
-	lr	%r5,%r1
-	sll	%r5,19
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,19
+	clr	%r3,%r2
 	jle	.L2479
 	lr	%r0,%r1
 	sll	%r0,20
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2480
-	lr	%r5,%r1
-	sll	%r5,21
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,21
+	clr	%r3,%r2
 	jle	.L2481
 	lr	%r0,%r1
 	sll	%r0,22
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2482
-	lr	%r5,%r1
-	sll	%r5,23
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,23
+	clr	%r3,%r2
 	jle	.L2483
 	lr	%r0,%r1
 	sll	%r0,24
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2484
-	lr	%r5,%r1
-	sll	%r5,25
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,25
+	clr	%r3,%r2
 	jle	.L2485
 	lr	%r0,%r1
 	sll	%r0,26
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2486
-	lr	%r5,%r1
-	sll	%r5,27
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,27
+	clr	%r3,%r2
 	jle	.L2487
 	lr	%r0,%r1
 	sll	%r0,28
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2488
-	lr	%r5,%r1
-	sll	%r5,29
-	clr	%r2,%r5
+	lr	%r2,%r1
+	sll	%r2,29
+	clr	%r3,%r2
 	jle	.L2489
 	lr	%r0,%r1
 	sll	%r0,30
-	clr	%r2,%r0
+	clr	%r3,%r0
 	jle	.L2490
 	sll	%r1,31
-	clr	%r2,%r1
+	lr	%r2,%r3
+	clr	%r3,%r1
 	jle	.L2499
-.L2455:
 	ltr	%r4,%r4
-	je	.L2452
+	ber	%r14
+.L2500:
 	lcr	%r2,%r2
-.L2452:
-	l	%r13,52(%r15)
-	.cfi_remember_state
-	.cfi_restore 13
 	br	%r14
 .L2498:
-	.cfi_restore_state
-	lcr	%r2,%r2
+	lcr	%r3,%r3
 	lhi	%r4,1
 	j	.L2453
 .L2478:
-	l	%r2,.L2501-.L2500(%r13)
+	l	%r2,.L2502-.L2501(%r5)
 	lr	%r1,%r0
 .L2496:
 	clr	%r3,%r1
@@ -8868,167 +8891,169 @@ __modsi3:
 	srl	%r1,1
 	ltr	%r2,%r2
 	jne	.L2496
+	ltr	%r4,%r4
 	lr	%r2,%r3
-	j	.L2455
+	ber	%r14
+	j	.L2500
+.L2499:
+	l	%r1,.L2503-.L2501(%r5)
+	lr	%r2,%r1
+	j	.L2496
 .L2460:
 	lhi	%r2,1
 	j	.L2496
 .L2461:
-	lr	%r1,%r5
+	lr	%r1,%r2
 	lhi	%r2,2
-	j	.L2496
-.L2463:
-	lr	%r1,%r5
-	lhi	%r2,8
 	j	.L2496
 .L2462:
 	lr	%r1,%r0
 	lhi	%r2,4
+	j	.L2496
+.L2463:
+	lr	%r1,%r2
+	lhi	%r2,8
 	j	.L2496
 .L2464:
 	lr	%r1,%r0
 	lhi	%r2,16
 	j	.L2496
 .L2465:
-	lr	%r1,%r5
+	lr	%r1,%r2
 	lhi	%r2,32
-	j	.L2496
-.L2467:
-	lr	%r1,%r5
-	lhi	%r2,128
 	j	.L2496
 .L2466:
 	lr	%r1,%r0
 	lhi	%r2,64
 	j	.L2496
+.L2467:
+	lr	%r1,%r2
+	lhi	%r2,128
+	j	.L2496
 .L2468:
 	lr	%r1,%r0
 	lhi	%r2,256
-	j	.L2496
-.L2469:
-	lr	%r1,%r5
-	lhi	%r2,512
 	j	.L2496
 .L2470:
 	lr	%r1,%r0
 	lhi	%r2,1024
 	j	.L2496
-.L2471:
-	lr	%r1,%r5
-	lhi	%r2,2048
+.L2469:
+	lr	%r1,%r2
+	lhi	%r2,512
 	j	.L2496
-.L2473:
-	lr	%r1,%r5
-	lhi	%r2,8192
+.L2471:
+	lr	%r1,%r2
+	lhi	%r2,2048
 	j	.L2496
 .L2472:
 	lr	%r1,%r0
 	lhi	%r2,4096
 	j	.L2496
-.L2475:
-	l	%r2,.L2502-.L2500(%r13)
-	lr	%r1,%r5
+.L2473:
+	lr	%r1,%r2
+	lhi	%r2,8192
 	j	.L2496
 .L2474:
 	lr	%r1,%r0
 	lhi	%r2,16384
 	j	.L2496
-.L2477:
-	l	%r2,.L2503-.L2500(%r13)
-	lr	%r1,%r5
+.L2475:
+	lr	%r1,%r2
+	l	%r2,.L2504-.L2501(%r5)
 	j	.L2496
 .L2476:
-	l	%r2,.L2504-.L2500(%r13)
+	l	%r2,.L2505-.L2501(%r5)
 	lr	%r1,%r0
+	j	.L2496
+.L2477:
+	lr	%r1,%r2
+	l	%r2,.L2506-.L2501(%r5)
 	j	.L2496
 .L2479:
-	l	%r2,.L2505-.L2500(%r13)
-	lr	%r1,%r5
-	j	.L2496
-.L2480:
-	l	%r2,.L2506-.L2500(%r13)
-	lr	%r1,%r0
+	lr	%r1,%r2
+	l	%r2,.L2507-.L2501(%r5)
 	j	.L2496
 .L2481:
-	l	%r2,.L2507-.L2500(%r13)
-	lr	%r1,%r5
+	lr	%r1,%r2
+	l	%r2,.L2508-.L2501(%r5)
 	j	.L2496
 .L2482:
-	l	%r2,.L2508-.L2500(%r13)
+	l	%r2,.L2509-.L2501(%r5)
+	lr	%r1,%r0
+	j	.L2496
+.L2480:
+	l	%r2,.L2510-.L2501(%r5)
+	lr	%r1,%r0
+	j	.L2496
+.L2484:
+	l	%r2,.L2511-.L2501(%r5)
 	lr	%r1,%r0
 	j	.L2496
 .L2483:
-	l	%r2,.L2509-.L2500(%r13)
-	lr	%r1,%r5
-	j	.L2496
-.L2484:
-	l	%r2,.L2510-.L2500(%r13)
-	lr	%r1,%r0
-	j	.L2496
-.L2485:
-	l	%r2,.L2511-.L2500(%r13)
-	lr	%r1,%r5
-	j	.L2496
-.L2486:
-	l	%r2,.L2512-.L2500(%r13)
-	lr	%r1,%r0
+	lr	%r1,%r2
+	l	%r2,.L2512-.L2501(%r5)
 	j	.L2496
 .L2487:
-	l	%r2,.L2513-.L2500(%r13)
-	lr	%r1,%r5
+	lr	%r1,%r2
+	l	%r2,.L2513-.L2501(%r5)
 	j	.L2496
-.L2499:
-	l	%r1,.L2514-.L2500(%r13)
-	lr	%r2,%r1
+.L2485:
+	lr	%r1,%r2
+	l	%r2,.L2514-.L2501(%r5)
 	j	.L2496
-.L2489:
-	l	%r2,.L2515-.L2500(%r13)
-	lr	%r1,%r5
-	j	.L2496
-.L2488:
-	l	%r2,.L2516-.L2500(%r13)
+.L2486:
+	l	%r2,.L2515-.L2501(%r5)
 	lr	%r1,%r0
 	j	.L2496
+.L2489:
+	lr	%r1,%r2
+	l	%r2,.L2516-.L2501(%r5)
+	j	.L2496
 .L2490:
-	l	%r2,.L2517-.L2500(%r13)
+	l	%r2,.L2517-.L2501(%r5)
+	lr	%r1,%r0
+	j	.L2496
+.L2488:
+	l	%r2,.L2518-.L2501(%r5)
 	lr	%r1,%r0
 	j	.L2496
 	.section	.rodata
 	.align	8
-.L2500:
+.L2501:
+.L2518:
+	.long	268435456
 .L2517:
 	.long	1073741824
 .L2516:
-	.long	268435456
-.L2515:
 	.long	536870912
+.L2515:
+	.long	67108864
 .L2514:
-	.long	-2147483648
+	.long	33554432
 .L2513:
 	.long	134217728
 .L2512:
-	.long	67108864
-.L2511:
-	.long	33554432
-.L2510:
-	.long	16777216
-.L2509:
 	.long	8388608
-.L2508:
-	.long	4194304
-.L2507:
-	.long	2097152
-.L2506:
+.L2511:
+	.long	16777216
+.L2510:
 	.long	1048576
-.L2505:
+.L2509:
+	.long	4194304
+.L2508:
+	.long	2097152
+.L2507:
 	.long	524288
-.L2504:
-	.long	65536
-.L2503:
+.L2506:
 	.long	131072
-.L2502:
+.L2505:
+	.long	65536
+.L2504:
 	.long	32768
-.L2501:
+.L2503:
+	.long	-2147483648
+.L2502:
 	.long	262144
 	.align	2
 .text
@@ -9046,628 +9071,628 @@ __udivmodhi4:
 	.cfi_offset 11, -52
 	.cfi_offset 12, -48
 	.cfi_offset 13, -44
-	larl	%r13,.L2638
+	larl	%r13,.L2639
 	lr	%r5,%r2
 	clr	%r3,%r2
-	jhe	.L2636
+	jhe	.L2637
 	tml	%r3,32768
-	jne	.L2521
+	jne	.L2522
 	lr	%r1,%r3
 	sll	%r1,1
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2522
+	jle	.L2523
 	tml	%r1,32768
-	jne	.L2523
+	jne	.L2524
 	lr	%r1,%r3
 	sll	%r1,2
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2524
+	jle	.L2525
 	tml	%r1,32768
-	jne	.L2525
+	jne	.L2526
 	lr	%r1,%r3
 	sll	%r1,3
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2526
+	jle	.L2527
 	tml	%r1,32768
-	jne	.L2527
+	jne	.L2528
 	lr	%r1,%r3
 	sll	%r1,4
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2528
+	jle	.L2529
 	tml	%r1,32768
-	jne	.L2529
+	jne	.L2530
 	lr	%r1,%r3
 	sll	%r1,5
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2530
+	jle	.L2531
 	tml	%r1,32768
-	jne	.L2531
+	jne	.L2532
 	lr	%r1,%r3
 	sll	%r1,6
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2532
+	jle	.L2533
 	tml	%r1,32768
-	jne	.L2533
+	jne	.L2534
 	lr	%r1,%r3
 	sll	%r1,7
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2534
+	jle	.L2535
 	tml	%r1,32768
-	jne	.L2535
+	jne	.L2536
 	lr	%r1,%r3
 	sll	%r1,8
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2536
+	jle	.L2537
 	tml	%r1,32768
-	jne	.L2537
+	jne	.L2538
 	lr	%r1,%r3
 	sll	%r1,9
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2538
+	jle	.L2539
 	tml	%r1,32768
-	jne	.L2539
+	jne	.L2540
 	lr	%r1,%r3
 	sll	%r1,10
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2540
+	jle	.L2541
 	tml	%r1,32768
-	jne	.L2541
+	jne	.L2542
 	lr	%r1,%r3
 	sll	%r1,11
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2542
+	jle	.L2543
 	tml	%r1,32768
-	jne	.L2543
+	jne	.L2544
 	lr	%r1,%r3
 	sll	%r1,12
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2544
+	jle	.L2545
 	tml	%r1,32768
-	jne	.L2545
+	jne	.L2546
 	lr	%r1,%r3
 	sll	%r1,13
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2546
+	jle	.L2547
 	tml	%r1,32768
-	jne	.L2547
+	jne	.L2548
 	lr	%r1,%r3
 	sll	%r1,14
-	n	%r1,.L2639-.L2638(%r13)
+	n	%r1,.L2640-.L2639(%r13)
 	clr	%r2,%r1
-	jle	.L2548
+	jle	.L2549
 	tml	%r1,32768
-	jne	.L2549
+	jne	.L2550
 	sll	%r3,15
-	n	%r3,.L2639-.L2638(%r13)
+	n	%r3,.L2640-.L2639(%r13)
 	clr	%r2,%r3
-	jle	.L2550
+	jle	.L2551
 	lhi	%r2,0
 	ltr	%r3,%r3
-	jne	.L2637
-.L2551:
+	jne	.L2638
+.L2552:
 	ltr	%r4,%r4
-	je	.L2569
+	je	.L2570
 	lr	%r2,%r5
-.L2569:
-	n	%r2,.L2639-.L2638(%r13)
+.L2570:
+	n	%r2,.L2640-.L2639(%r13)
 	lm	%r11,%r13,44(%r15)
 	.cfi_remember_state
 	.cfi_restore 13
 	.cfi_restore 12
 	.cfi_restore 11
 	br	%r14
-.L2538:
+.L2539:
 	.cfi_restore_state
-	jl	.L2585
+	jl	.L2586
 	sr	%r5,%r1
 	lhi	%r0,512
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,512
-.L2553:
-	l	%r11,.L2639-.L2638(%r13)
+.L2554:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,2
 	srl	%r11,2
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2554
+	jl	.L2555
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2554:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2555:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,3
 	srl	%r11,3
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2555
+	jl	.L2556
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2555:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2556:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,4
 	srl	%r11,4
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2556
+	jl	.L2557
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2556:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2557:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,5
 	srl	%r11,5
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2557
+	jl	.L2558
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2557:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2558:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,6
 	srl	%r11,6
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2558
+	jl	.L2559
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2558:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2559:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,7
 	srl	%r11,7
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2559
+	jl	.L2560
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2559:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2560:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,8
 	srl	%r11,8
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2560
+	jl	.L2561
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2560:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2561:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,9
 	srl	%r11,9
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2561
+	jl	.L2562
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2561:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2562:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,10
 	srl	%r11,10
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2562
+	jl	.L2563
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2562:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2563:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,11
 	srl	%r11,11
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2563
+	jl	.L2564
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2563:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2564:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,12
 	srl	%r11,12
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2564
+	jl	.L2565
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2564:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2565:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,13
 	srl	%r11,13
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2565
+	jl	.L2566
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2565:
-	l	%r11,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2566:
+	l	%r11,.L2640-.L2639(%r13)
 	lr	%r12,%r1
 	nr	%r11,%r0
 	srl	%r12,14
 	srl	%r11,14
 	ltr	%r11,%r11
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r12
-	jl	.L2566
+	jl	.L2567
 	sr	%r5,%r12
 	or	%r2,%r11
-	n	%r5,.L2639-.L2638(%r13)
-.L2566:
-	n	%r0,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
+.L2567:
+	n	%r0,.L2640-.L2639(%r13)
 	srl	%r1,15
 	chi	%r0,16384
-	je	.L2551
+	je	.L2552
 	clr	%r5,%r1
-	jl	.L2574
+	jl	.L2575
 	sr	%r5,%r1
 	lhi	%r0,1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	or	%r2,%r0
-	j	.L2551
-.L2574:
+	j	.L2552
+.L2575:
 	lhi	%r5,0
-	j	.L2551
-.L2636:
-	je	.L2572
+	j	.L2552
+.L2637:
+	je	.L2573
 	lhi	%r2,0
-	j	.L2551
-.L2521:
+	j	.L2552
+.L2522:
 	sr	%r5,%r3
 	lhi	%r2,1
-	n	%r5,.L2639-.L2638(%r13)
-	j	.L2551
-.L2522:
-	jl	.L2577
+	n	%r5,.L2640-.L2639(%r13)
+	j	.L2552
+.L2523:
+	jl	.L2578
 	sr	%r5,%r1
 	lhi	%r0,2
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,2
-	j	.L2553
-.L2523:
+	j	.L2554
+.L2524:
 	lhi	%r2,32767
 	sr	%r5,%r1
 	nr	%r3,%r2
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r12,1
 	lhi	%r0,2
 	lhi	%r2,2
-.L2571:
+.L2572:
 	clr	%r5,%r3
-	jl	.L2553
+	jl	.L2554
 	sr	%r5,%r3
 	or	%r2,%r12
-	n	%r5,.L2639-.L2638(%r13)
-	j	.L2553
-.L2524:
-	jl	.L2578
+	n	%r5,.L2640-.L2639(%r13)
+	j	.L2554
+.L2525:
+	jl	.L2579
 	sr	%r5,%r1
 	lhi	%r0,4
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,4
-	j	.L2553
-.L2525:
+	j	.L2554
+.L2526:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,2
 	lhi	%r0,4
 	lhi	%r2,4
-	j	.L2571
-.L2526:
-	jl	.L2579
+	j	.L2572
+.L2527:
+	jl	.L2580
 	sr	%r5,%r1
 	lhi	%r0,8
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,8
-	j	.L2553
-.L2527:
+	j	.L2554
+.L2528:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,4
 	lhi	%r0,8
 	lhi	%r2,8
-	j	.L2571
-.L2528:
-	jl	.L2580
+	j	.L2572
+.L2529:
+	jl	.L2581
 	sr	%r5,%r1
 	lhi	%r0,16
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,16
-	j	.L2553
-.L2529:
+	j	.L2554
+.L2530:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,8
 	lhi	%r0,16
 	lhi	%r2,16
-	j	.L2571
-.L2530:
-	jl	.L2581
+	j	.L2572
+.L2531:
+	jl	.L2582
 	sr	%r5,%r1
 	lhi	%r0,32
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,32
-	j	.L2553
-.L2531:
+	j	.L2554
+.L2532:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,16
 	lhi	%r0,32
 	lhi	%r2,32
-	j	.L2571
-.L2532:
-	jl	.L2582
+	j	.L2572
+.L2533:
+	jl	.L2583
 	sr	%r5,%r1
 	lhi	%r0,64
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,64
-	j	.L2553
-.L2533:
+	j	.L2554
+.L2534:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,32
 	lhi	%r0,64
 	lhi	%r2,64
-	j	.L2571
-.L2534:
-	jl	.L2583
+	j	.L2572
+.L2535:
+	jl	.L2584
 	sr	%r5,%r1
 	lhi	%r0,128
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r2,128
-	j	.L2553
-.L2535:
+	j	.L2554
+.L2536:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,64
 	lhi	%r0,128
 	lhi	%r2,128
-	j	.L2571
-.L2537:
+	j	.L2572
+.L2538:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,128
 	lhi	%r0,256
 	lhi	%r2,256
-	j	.L2571
-.L2539:
+	j	.L2572
+.L2540:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,256
 	lhi	%r0,512
 	lhi	%r2,512
-	j	.L2571
-.L2572:
+	j	.L2572
+.L2573:
 	lhi	%r2,1
 	lhi	%r5,0
-	j	.L2551
-.L2577:
+	j	.L2552
+.L2578:
 	lhi	%r0,2
-.L2570:
+.L2571:
 	lr	%r3,%r1
 	lr	%r12,%r0
 	srl	%r3,1
 	sll	%r12,16
 	lhi	%r2,0
 	srl	%r12,17
-	j	.L2571
-.L2541:
+	j	.L2572
+.L2542:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,512
 	lhi	%r0,1024
 	lhi	%r2,1024
-	j	.L2571
-.L2543:
+	j	.L2572
+.L2544:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,1024
 	lhi	%r0,2048
 	lhi	%r2,2048
-	j	.L2571
-.L2578:
-	lhi	%r0,4
-	j	.L2570
+	j	.L2572
 .L2579:
+	lhi	%r0,4
+	j	.L2571
+.L2580:
 	lhi	%r0,8
-	j	.L2570
-.L2545:
+	j	.L2571
+.L2546:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,2048
 	lhi	%r0,4096
 	lhi	%r2,4096
-	j	.L2571
-.L2547:
+	j	.L2572
+.L2548:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,4096
 	lhi	%r0,8192
 	lhi	%r2,8192
-	j	.L2571
-.L2580:
-	lhi	%r0,16
-	j	.L2570
+	j	.L2572
 .L2581:
+	lhi	%r0,16
+	j	.L2571
+.L2582:
 	lhi	%r0,32
-	j	.L2570
-.L2549:
+	j	.L2571
+.L2550:
 	sr	%r5,%r1
 	lr	%r3,%r1
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	srl	%r3,1
 	lhi	%r12,8192
 	lhi	%r0,16384
 	lhi	%r2,16384
-	j	.L2571
-.L2550:
-	l	%r1,.L2640-.L2638(%r13)
+	j	.L2572
+.L2551:
+	l	%r1,.L2641-.L2639(%r13)
 	lhi	%r0,-32768
 	tml	%r2,32768
-	je	.L2570
+	je	.L2571
 	lhi	%r2,-32768
 	lhi	%r5,0
-	j	.L2553
-.L2582:
+	j	.L2554
+.L2583:
 	lhi	%r0,64
-	j	.L2570
-.L2637:
+	j	.L2571
+.L2638:
 	ahi	%r5,-32768
-	l	%r1,.L2640-.L2638(%r13)
+	l	%r1,.L2641-.L2639(%r13)
 	lhi	%r3,16384
-	n	%r5,.L2639-.L2638(%r13)
+	n	%r5,.L2640-.L2639(%r13)
 	lhi	%r12,16384
 	lhi	%r0,-32768
 	lhi	%r2,-32768
-	j	.L2571
-.L2583:
-	lhi	%r0,128
-	j	.L2570
-.L2536:
-	jl	.L2584
-	sr	%r5,%r1
-	lhi	%r0,256
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,256
-	j	.L2553
+	j	.L2572
 .L2584:
+	lhi	%r0,128
+	j	.L2571
+.L2537:
+	jl	.L2585
+	sr	%r5,%r1
 	lhi	%r0,256
-	j	.L2570
-.L2540:
-	jl	.L2586
-	sr	%r5,%r1
-	lhi	%r0,1024
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,1024
-	j	.L2553
-.L2548:
-	jl	.L2590
-	sr	%r5,%r1
-	lhi	%r0,16384
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,16384
-	j	.L2553
-.L2586:
-	lhi	%r0,1024
-	j	.L2570
-.L2590:
-	lhi	%r0,16384
-	j	.L2570
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,256
+	j	.L2554
 .L2585:
-	lhi	%r0,512
-	j	.L2570
-.L2546:
-	jl	.L2589
-	sr	%r5,%r1
-	lhi	%r0,8192
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,8192
-	j	.L2553
-.L2544:
-	jl	.L2588
-	sr	%r5,%r1
-	lhi	%r0,4096
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,4096
-	j	.L2553
-.L2542:
+	lhi	%r0,256
+	j	.L2571
+.L2541:
 	jl	.L2587
 	sr	%r5,%r1
-	lhi	%r0,2048
-	n	%r5,.L2639-.L2638(%r13)
-	lhi	%r2,2048
-	j	.L2553
-.L2589:
-	lhi	%r0,8192
-	j	.L2570
-.L2588:
-	lhi	%r0,4096
-	j	.L2570
+	lhi	%r0,1024
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,1024
+	j	.L2554
+.L2549:
+	jl	.L2591
+	sr	%r5,%r1
+	lhi	%r0,16384
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,16384
+	j	.L2554
 .L2587:
+	lhi	%r0,1024
+	j	.L2571
+.L2591:
+	lhi	%r0,16384
+	j	.L2571
+.L2586:
+	lhi	%r0,512
+	j	.L2571
+.L2547:
+	jl	.L2590
+	sr	%r5,%r1
+	lhi	%r0,8192
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,8192
+	j	.L2554
+.L2545:
+	jl	.L2589
+	sr	%r5,%r1
+	lhi	%r0,4096
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,4096
+	j	.L2554
+.L2543:
+	jl	.L2588
+	sr	%r5,%r1
 	lhi	%r0,2048
-	j	.L2570
+	n	%r5,.L2640-.L2639(%r13)
+	lhi	%r2,2048
+	j	.L2554
+.L2590:
+	lhi	%r0,8192
+	j	.L2571
+.L2589:
+	lhi	%r0,4096
+	j	.L2571
+.L2588:
+	lhi	%r0,2048
+	j	.L2571
 	.section	.rodata
 	.align	8
-.L2638:
-.L2640:
-	.long	32768
 .L2639:
+.L2641:
+	.long	32768
+.L2640:
 	.long	65535
 	.align	2
 .text
@@ -9684,65 +9709,65 @@ __udivmodsi4_libgcc:
 	lr	%r5,%r2
 	lhi	%r1,1
 	clr	%r2,%r3
-	jle	.L2643
+	jle	.L2644
 	lhi	%r2,32
 	lhi	%r1,1
 	lhi	%r0,8
-.L2642:
+.L2643:
 	ltr	%r3,%r3
-	jl	.L2643
+	jl	.L2644
 	sll	%r3,1
 	sll	%r1,1
 	clr	%r5,%r3
-	jle	.L2644
+	jle	.L2645
 	ltr	%r3,%r3
-	jl	.L2643
+	jl	.L2644
 	sll	%r3,1
 	sll	%r1,1
 	clr	%r5,%r3
-	jle	.L2644
+	jle	.L2645
 	ltr	%r3,%r3
-	jl	.L2643
+	jl	.L2644
 	sll	%r3,1
 	sll	%r1,1
 	clr	%r5,%r3
-	jle	.L2644
+	jle	.L2645
 	ltr	%r3,%r3
-	jl	.L2643
+	jl	.L2644
 	sll	%r3,1
 	sll	%r1,1
 	clr	%r5,%r3
-	jle	.L2644
+	jle	.L2645
 	ahi	%r2,-4
-	brct	%r0,.L2642
+	brct	%r0,.L2643
 	ltr	%r4,%r4
 	ber	%r14
-.L2664:
+.L2665:
 	lr	%r2,%r5
 	br	%r14
-.L2644:
+.L2645:
 	ltr	%r1,%r1
-	je	.L2651
-.L2643:
+	je	.L2652
+.L2644:
 	lhi	%r2,0
-.L2648:
+.L2649:
 	clr	%r5,%r3
-	jl	.L2647
+	jl	.L2648
 	sr	%r5,%r3
 	or	%r2,%r1
-.L2647:
+.L2648:
 	srl	%r1,1
 	srl	%r3,1
 	ltr	%r1,%r1
-	jne	.L2648
+	jne	.L2649
 	ltr	%r4,%r4
 	ber	%r14
-	j	.L2664
-.L2651:
+	j	.L2665
+.L2652:
 	ltr	%r4,%r4
 	lhi	%r2,0
 	ber	%r14
-	j	.L2664
+	j	.L2665
 	.cfi_endproc
 .LFE164:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -9754,13 +9779,13 @@ __ashldi3:
 .LFB131:
 	.cfi_startproc
 	tml	%r4,32
-	je	.L2667
+	je	.L2668
 	lr	%r2,%r3
 	lhi	%r1,0
 	sll	%r2,4064(%r4)
 	lr	%r3,%r1
 	br	%r14
-.L2667:
+.L2668:
 	ltr	%r4,%r4
 	ber	%r14
 	lr	%r1,%r3
@@ -9783,14 +9808,14 @@ __ashrdi3:
 .LFB132:
 	.cfi_startproc
 	tml	%r4,32
-	je	.L2673
+	je	.L2674
 	lr	%r3,%r2
 	lr	%r1,%r2
 	sra	%r3,4064(%r4)
 	sra	%r1,31
 	lr	%r2,%r1
 	br	%r14
-.L2673:
+.L2674:
 	ltr	%r4,%r4
 	ber	%r14
 	lr	%r1,%r2
@@ -9840,12 +9865,12 @@ __clzsi2:
 	.cfi_startproc
 	st	%r13,52(%r15)
 	.cfi_offset 13, -44
-	larl	%r13,.L2686
-	cl	%r2,.L2687-.L2686(%r13)
+	larl	%r13,.L2687
+	cl	%r2,.L2688-.L2687(%r13)
 	lr	%r1,%r2
 	lhi	%r2,0
 	slbr	%r2,%r2
-	l	%r5,.L2688-.L2686(%r13)
+	l	%r5,.L2689-.L2687(%r13)
 	lhi	%r3,16
 	lhi	%r0,4
 	lhi	%r4,8
@@ -9880,7 +9905,7 @@ __clzsi2:
 	sr	%r3,%r0
 	srl	%r1,0(%r3)
 	tml	%r1,2
-	jne	.L2683
+	jne	.L2684
 	lr	%r2,%r5
 	ar	%r0,%r4
 	sr	%r2,%r1
@@ -9889,7 +9914,7 @@ __clzsi2:
 	.cfi_restore 13
 	ar	%r2,%r0
 	br	%r14
-.L2683:
+.L2684:
 	.cfi_restore_state
 	lhi	%r2,0
 	ar	%r0,%r4
@@ -9899,10 +9924,10 @@ __clzsi2:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2686:
-.L2688:
-	.long	65280
 .L2687:
+.L2689:
+	.long	65280
+.L2688:
 	.long	65535
 	.align	2
 .text
@@ -9917,17 +9942,17 @@ __cmpdi2:
 .LFB136:
 	.cfi_startproc
 	cr	%r2,%r4
-	jl	.L2693
-	jh	.L2694
+	jl	.L2694
+	jh	.L2695
 	clr	%r3,%r5
-	jl	.L2693
-	jh	.L2694
+	jl	.L2694
+	jh	.L2695
 	lhi	%r2,1
 	br	%r14
-.L2693:
+.L2694:
 	lhi	%r2,0
 	br	%r14
-.L2694:
+.L2695:
 	lhi	%r2,2
 	br	%r14
 	.cfi_endproc
@@ -9941,17 +9966,17 @@ __aeabi_lcmp:
 .LFB137:
 	.cfi_startproc
 	cr	%r2,%r4
-	jl	.L2700
-	jh	.L2699
+	jl	.L2701
+	jh	.L2700
 	clr	%r3,%r5
-	jl	.L2700
+	jl	.L2701
 	lhi	%r2,0
 	alcr	%r2,%r2
 	br	%r14
-.L2700:
+.L2701:
 	lhi	%r2,-1
 	br	%r14
-.L2699:
+.L2700:
 	lhi	%r2,1
 	br	%r14
 	.cfi_endproc
@@ -9966,8 +9991,8 @@ __ctzsi2:
 	.cfi_startproc
 	st	%r13,52(%r15)
 	.cfi_offset 13, -44
-	larl	%r13,.L2704
-	l	%r4,.L2705-.L2704(%r13)
+	larl	%r13,.L2705
+	l	%r4,.L2706-.L2705(%r13)
 	lr	%r1,%r2
 	nr	%r4,%r2
 	lhi	%r5,15
@@ -10011,8 +10036,8 @@ __ctzsi2:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2704:
 .L2705:
+.L2706:
 	.long	65535
 	.align	2
 .text
@@ -10027,12 +10052,12 @@ __lshrdi3:
 .LFB139:
 	.cfi_startproc
 	tml	%r4,32
-	je	.L2707
+	je	.L2708
 	srl	%r2,4064(%r4)
 	lr	%r3,%r2
 	lhi	%r2,0
 	br	%r14
-.L2707:
+.L2708:
 	ltr	%r4,%r4
 	ber	%r14
 	st	%r12,48(%r15)
@@ -10062,9 +10087,9 @@ __muldsi3:
 	.cfi_startproc
 	st	%r13,52(%r15)
 	.cfi_offset 13, -44
-	larl	%r13,.L2719
-	l	%r4,.L2720-.L2719(%r13)
-	l	%r1,.L2720-.L2719(%r13)
+	larl	%r13,.L2720
+	l	%r4,.L2721-.L2720(%r13)
+	l	%r1,.L2721-.L2720(%r13)
 	nr	%r4,%r2
 	nr	%r1,%r3
 	lr	%r5,%r3
@@ -10075,9 +10100,9 @@ __muldsi3:
 	msr	%r3,%r1
 	msr	%r1,%r2
 	msr	%r2,%r5
-	l	%r5,.L2720-.L2719(%r13)
+	l	%r5,.L2721-.L2720(%r13)
 	lr	%r0,%r3
-	n	%r3,.L2720-.L2719(%r13)
+	n	%r3,.L2721-.L2720(%r13)
 	srl	%r0,16
 	l	%r13,52(%r15)
 	.cfi_restore 13
@@ -10094,8 +10119,8 @@ __muldsi3:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2719:
 .L2720:
+.L2721:
 	.long	65535
 	.align	2
 .text
@@ -10113,9 +10138,9 @@ __muldi3_compiler_rt:
 	.cfi_offset 11, -52
 	.cfi_offset 12, -48
 	.cfi_offset 13, -44
-	larl	%r13,.L2723
-	l	%r1,.L2724-.L2723(%r13)
-	l	%r0,.L2724-.L2723(%r13)
+	larl	%r13,.L2724
+	l	%r1,.L2725-.L2724(%r13)
+	l	%r0,.L2725-.L2724(%r13)
 	nr	%r1,%r5
 	msr	%r2,%r5
 	srl	%r5,16
@@ -10129,9 +10154,9 @@ __muldi3_compiler_rt:
 	msr	%r1,%r3
 	msr	%r5,%r12
 	msr	%r3,%r12
-	l	%r12,.L2724-.L2723(%r13)
+	l	%r12,.L2725-.L2724(%r13)
 	lr	%r0,%r11
-	n	%r11,.L2724-.L2723(%r13)
+	n	%r11,.L2725-.L2724(%r13)
 	srl	%r0,16
 	ar	%r1,%r0
 	nr	%r12,%r1
@@ -10153,8 +10178,8 @@ __muldi3_compiler_rt:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2723:
 .L2724:
+.L2725:
 	.long	65535
 	.align	2
 .text
@@ -10170,9 +10195,9 @@ __negdi2:
 	.cfi_startproc
 	lcr	%r2,%r2
 	lcr	%r3,%r3
-	je	.L2726
+	je	.L2727
 	ahi	%r2,-1
-.L2726:
+.L2727:
 	br	%r14
 	.cfi_endproc
 .LFE142:
@@ -10242,26 +10267,26 @@ __popcountdi2:
 	stm	%r12,%r13,48(%r15)
 	.cfi_offset 12, -48
 	.cfi_offset 13, -44
-	larl	%r13,.L2734
-	l	%r0,.L2735-.L2734(%r13)
-	l	%r1,.L2735-.L2734(%r13)
+	larl	%r13,.L2735
+	l	%r0,.L2736-.L2735(%r13)
+	l	%r1,.L2736-.L2735(%r13)
 	lr	%r4,%r2
 	lr	%r5,%r3
-	l	%r12,.L2736-.L2734(%r13)
+	l	%r12,.L2737-.L2735(%r13)
 	srdl	%r2,1
 	nr	%r0,%r2
 	nr	%r1,%r3
 	slr	%r5,%r1
 	slbr	%r4,%r0
-	l	%r2,.L2737-.L2734(%r13)
-	l	%r3,.L2737-.L2734(%r13)
+	l	%r2,.L2738-.L2735(%r13)
+	l	%r3,.L2738-.L2735(%r13)
 	lr	%r1,%r5
 	lr	%r0,%r4
 	srdl	%r0,2
 	nr	%r2,%r0
-	l	%r0,.L2737-.L2734(%r13)
+	l	%r0,.L2738-.L2735(%r13)
 	nr	%r3,%r1
-	l	%r1,.L2737-.L2734(%r13)
+	l	%r1,.L2738-.L2735(%r13)
 	nr	%r0,%r4
 	nr	%r1,%r5
 	alr	%r3,%r1
@@ -10273,7 +10298,7 @@ __popcountdi2:
 	lhi	%r5,127
 	alcr	%r2,%r4
 	nr	%r12,%r3
-	n	%r2,.L2736-.L2734(%r13)
+	n	%r2,.L2737-.L2735(%r13)
 	ar	%r2,%r12
 	lm	%r12,%r13,48(%r15)
 	.cfi_restore 13
@@ -10288,12 +10313,12 @@ __popcountdi2:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2734:
-.L2737:
-	.long	858993459
-.L2736:
-	.long	252645135
 .L2735:
+.L2738:
+	.long	858993459
+.L2737:
+	.long	252645135
+.L2736:
 	.long	1431655765
 	.align	2
 .text
@@ -10307,20 +10332,20 @@ __popcountdi2:
 __popcountsi2:
 .LFB146:
 	.cfi_startproc
-	larl	%r5,.L2740
+	larl	%r5,.L2741
 	lr	%r1,%r2
 	srl	%r1,1
-	n	%r1,.L2741-.L2740(%r5)
+	n	%r1,.L2742-.L2741(%r5)
 	sr	%r2,%r1
 	lr	%r0,%r2
-	n	%r2,.L2742-.L2740(%r5)
+	n	%r2,.L2743-.L2741(%r5)
 	srl	%r0,2
-	n	%r0,.L2742-.L2740(%r5)
+	n	%r0,.L2743-.L2741(%r5)
 	ar	%r2,%r0
 	lr	%r3,%r2
 	srl	%r3,4
 	ar	%r3,%r2
-	n	%r3,.L2743-.L2740(%r5)
+	n	%r3,.L2744-.L2741(%r5)
 	lr	%r2,%r3
 	srl	%r2,16
 	lhi	%r4,63
@@ -10332,12 +10357,12 @@ __popcountsi2:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2740:
-.L2743:
-	.long	252645135
-.L2742:
-	.long	858993459
 .L2741:
+.L2744:
+	.long	252645135
+.L2743:
+	.long	858993459
+.L2742:
 	.long	1431655765
 	.align	2
 .text
@@ -10351,44 +10376,44 @@ __popcountsi2:
 __powidf2:
 .LFB147:
 	.cfi_startproc
-	larl	%r5,.L2753
+	larl	%r5,.L2754
 	ldr	%f2,%f0
 	lr	%r1,%r2
-	ld	%f0,.L2754-.L2753(%r5)
+	ld	%f0,.L2755-.L2754(%r5)
 	tml	%r2,1
-	je	.L2745
-.L2747:
+	je	.L2746
+.L2748:
 	mdbr	%f0,%f2
-.L2745:
+.L2746:
 	lr	%r3,%r1
 	srl	%r3,31
 	ar	%r1,%r3
 	sra	%r1,1
 	ltr	%r1,%r1
-	je	.L2746
+	je	.L2747
 	mdbr	%f2,%f2
 	tml	%r1,1
-	jne	.L2747
-.L2752:
+	jne	.L2748
+.L2753:
 	lr	%r0,%r1
 	srl	%r0,31
 	ar	%r1,%r0
 	mdbr	%f2,%f2
 	sra	%r1,1
 	tml	%r1,1
-	jne	.L2747
-	j	.L2752
-.L2746:
+	jne	.L2748
+	j	.L2753
+.L2747:
 	ltr	%r2,%r2
 	bher	%r14
-	ld	%f1,.L2754-.L2753(%r5)
+	ld	%f1,.L2755-.L2754(%r5)
 	ddbr	%f1,%f0
 	ldr	%f0,%f1
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2753:
 .L2754:
+.L2755:
 	.long	1072693248
 	.long	0
 	.align	2
@@ -10403,44 +10428,44 @@ __powidf2:
 __powisf2:
 .LFB148:
 	.cfi_startproc
-	larl	%r5,.L2764
+	larl	%r5,.L2765
 	ler	%f2,%f0
 	lr	%r1,%r2
-	le	%f0,.L2765-.L2764(%r5)
+	le	%f0,.L2766-.L2765(%r5)
 	tml	%r2,1
-	je	.L2756
-.L2758:
+	je	.L2757
+.L2759:
 	meebr	%f0,%f2
-.L2756:
+.L2757:
 	lr	%r3,%r1
 	srl	%r3,31
 	ar	%r1,%r3
 	sra	%r1,1
 	ltr	%r1,%r1
-	je	.L2757
+	je	.L2758
 	meebr	%f2,%f2
 	tml	%r1,1
-	jne	.L2758
-.L2763:
+	jne	.L2759
+.L2764:
 	lr	%r0,%r1
 	srl	%r0,31
 	ar	%r1,%r0
 	meebr	%f2,%f2
 	sra	%r1,1
 	tml	%r1,1
-	jne	.L2758
-	j	.L2763
-.L2757:
+	jne	.L2759
+	j	.L2764
+.L2758:
 	ltr	%r2,%r2
 	bher	%r14
-	le	%f1,.L2765-.L2764(%r5)
+	le	%f1,.L2766-.L2765(%r5)
 	debr	%f1,%f0
 	ler	%f0,%f1
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2764:
 .L2765:
+.L2766:
 	.long	1065353216
 	.align	2
 .text
@@ -10455,17 +10480,17 @@ __ucmpdi2:
 .LFB149:
 	.cfi_startproc
 	clr	%r2,%r4
-	jl	.L2770
-	jh	.L2771
+	jl	.L2771
+	jh	.L2772
 	clr	%r3,%r5
-	jl	.L2770
-	jh	.L2771
+	jl	.L2771
+	jh	.L2772
 	lhi	%r2,1
 	br	%r14
-.L2770:
+.L2771:
 	lhi	%r2,0
 	br	%r14
-.L2771:
+.L2772:
 	lhi	%r2,2
 	br	%r14
 	.cfi_endproc
@@ -10479,17 +10504,17 @@ __aeabi_ulcmp:
 .LFB150:
 	.cfi_startproc
 	clr	%r2,%r4
-	jl	.L2777
-	jh	.L2776
+	jl	.L2778
+	jh	.L2777
 	clr	%r3,%r5
-	jl	.L2777
+	jl	.L2778
 	lhi	%r2,0
 	alcr	%r2,%r2
 	br	%r14
-.L2777:
+.L2778:
 	lhi	%r2,-1
 	br	%r14
-.L2776:
+.L2777:
 	lhi	%r2,1
 	br	%r14
 	.cfi_endproc
