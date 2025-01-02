@@ -2275,17 +2275,17 @@ bcopy:
 	.type	rotl64, @function
 rotl64:
 	movem.l #15872,-(%sp)
-	move.l 24(%sp),%d4
-	move.l 28(%sp),%d3
+	move.l 24(%sp),%d3
+	move.l 28(%sp),%d5
 	move.l 32(%sp),%d2
 	move.w #-32,%a0
 	add.l %d2,%a0
 	cmp.w #0,%a0
 	jlt .L633
-	move.l %d3,%d0
+	move.l %d5,%d0
 	move.l %a0,%d1
 	lsl.l %d1,%d0
-	moveq #0,%d5
+	moveq #0,%d6
 	neg.l %d2
 	moveq #63,%d1
 	and.l %d1,%d2
@@ -2294,25 +2294,25 @@ rotl64:
 	cmp.w #0,%a0
 	jlt .L635
 .L639:
-	move.l %d4,%d1
+	move.l %d3,%d1
 	move.l %a0,%d2
 	lsr.l %d2,%d1
-	moveq #0,%d4
-	or.l %d4,%d0
-	or.l %d5,%d1
+	moveq #0,%d3
+	or.l %d3,%d0
+	or.l %d6,%d1
 	movem.l (%sp)+,#124
 	rts
 .L633:
-	moveq #31,%d0
-	sub.l %d2,%d0
+	moveq #31,%d1
+	sub.l %d2,%d1
+	move.l %d5,%d0
+	lsr.l #1,%d0
+	lsr.l %d1,%d0
 	move.l %d3,%d1
-	lsr.l #1,%d1
-	lsr.l %d0,%d1
-	move.l %d4,%d0
-	lsl.l %d2,%d0
+	lsl.l %d2,%d1
 	or.l %d1,%d0
-	move.l %d3,%d5
-	lsl.l %d2,%d5
+	move.l %d5,%d6
+	lsl.l %d2,%d6
 	neg.l %d2
 	moveq #63,%d1
 	and.l %d1,%d2
@@ -2321,17 +2321,17 @@ rotl64:
 	cmp.w #0,%a0
 	jge .L639
 .L635:
-	move.l %d4,%d6
-	add.l %d6,%d6
+	move.l %d3,%d4
+	add.l %d4,%d4
 	moveq #31,%d1
 	sub.l %d2,%d1
-	lsl.l %d1,%d6
-	move.l %d3,%d1
-	lsr.l %d2,%d1
-	or.l %d6,%d1
-	lsr.l %d2,%d4
-	or.l %d4,%d0
+	lsl.l %d1,%d4
+	lsr.l %d2,%d5
+	move.l %d4,%d1
 	or.l %d5,%d1
+	lsr.l %d2,%d3
+	or.l %d3,%d0
+	or.l %d6,%d1
 	movem.l (%sp)+,#124
 	rts
 	.size	rotl64, .-rotl64
@@ -2340,17 +2340,17 @@ rotl64:
 	.type	rotr64, @function
 rotr64:
 	movem.l #15872,-(%sp)
-	move.l 24(%sp),%d3
-	move.l 28(%sp),%d4
+	move.l 24(%sp),%d5
+	move.l 28(%sp),%d3
 	move.l 32(%sp),%d2
 	move.w #-32,%a0
 	add.l %d2,%a0
 	cmp.w #0,%a0
 	jlt .L641
-	move.l %d3,%d1
+	move.l %d5,%d1
 	move.l %a0,%d0
 	lsr.l %d0,%d1
-	moveq #0,%d5
+	moveq #0,%d6
 	neg.l %d2
 	moveq #63,%d0
 	and.l %d0,%d2
@@ -2359,25 +2359,25 @@ rotr64:
 	cmp.w #0,%a0
 	jlt .L643
 .L647:
-	move.l %d4,%d0
+	move.l %d3,%d0
 	move.l %a0,%d2
 	lsl.l %d2,%d0
-	moveq #0,%d4
-	or.l %d5,%d0
-	or.l %d4,%d1
+	moveq #0,%d3
+	or.l %d6,%d0
+	or.l %d3,%d1
 	movem.l (%sp)+,#124
 	rts
 .L641:
-	moveq #31,%d1
-	sub.l %d2,%d1
+	moveq #31,%d0
+	sub.l %d2,%d0
+	move.l %d5,%d1
+	add.l %d1,%d1
+	lsl.l %d0,%d1
 	move.l %d3,%d0
-	add.l %d0,%d0
-	lsl.l %d1,%d0
-	move.l %d4,%d1
-	lsr.l %d2,%d1
+	lsr.l %d2,%d0
 	or.l %d0,%d1
-	move.l %d3,%d5
-	lsr.l %d2,%d5
+	move.l %d5,%d6
+	lsr.l %d2,%d6
 	neg.l %d2
 	moveq #63,%d0
 	and.l %d0,%d2
@@ -2386,17 +2386,17 @@ rotr64:
 	cmp.w #0,%a0
 	jge .L647
 .L643:
-	move.l %d4,%d6
-	lsr.l #1,%d6
+	move.l %d3,%d4
+	lsr.l #1,%d4
 	moveq #31,%d0
 	sub.l %d2,%d0
-	lsr.l %d0,%d6
-	move.l %d3,%d0
-	lsl.l %d2,%d0
-	or.l %d6,%d0
-	lsl.l %d2,%d4
+	lsr.l %d0,%d4
+	lsl.l %d2,%d5
+	move.l %d4,%d0
 	or.l %d5,%d0
-	or.l %d4,%d1
+	lsl.l %d2,%d3
+	or.l %d6,%d0
+	or.l %d3,%d1
 	movem.l (%sp)+,#124
 	rts
 	.size	rotr64, .-rotr64

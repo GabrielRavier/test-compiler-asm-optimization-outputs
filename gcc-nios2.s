@@ -1935,33 +1935,33 @@ rotl64:
 	mov	r2, zero
 	blt	r7, zero, .L590
 .L592:
-	srl	r4, r5, r7
-	mov	r5, zero
-	or	r3, r5, r3
-	or	r2, r4, r2
+	srl	r7, r5, r7
+	mov	r6, zero
+	or	r3, r6, r3
+	or	r2, r7, r2
 	ret
 .L588:
-	srli	r7, r4, 1
+	srli	r3, r4, 1
 	movi	r2, 31
 	sub	r2, r2, r6
-	srl	r7, r7, r2
-	sll	r3, r5, r6
+	sll	r7, r5, r6
+	srl	r3, r3, r2
 	sll	r2, r4, r6
 	sub	r6, zero, r6
 	andi	r6, r6, 63
-	or	r3, r7, r3
+	or	r3, r3, r7
 	addi	r7, r6, -32
 	bge	r7, zero, .L592
 .L590:
 	slli	r7, r5, 1
 	movi	r8, 31
 	sub	r8, r8, r6
-	sll	r7, r7, r8
 	srl	r4, r4, r6
-	srl	r5, r5, r6
-	or	r4, r7, r4
-	or	r2, r4, r2
-	or	r3, r5, r3
+	sll	r7, r7, r8
+	srl	r6, r5, r6
+	or	r7, r7, r4
+	or	r2, r7, r2
+	or	r3, r6, r3
 	ret
 	.size	rotl64, .-rotl64
 	.align	2
@@ -1977,33 +1977,33 @@ rotr64:
 	mov	r3, zero
 	blt	r7, zero, .L596
 .L598:
-	sll	r5, r4, r7
-	mov	r4, zero
-	or	r2, r4, r2
-	or	r3, r5, r3
+	sll	r7, r4, r7
+	mov	r6, zero
+	or	r2, r6, r2
+	or	r3, r7, r3
 	ret
 .L594:
-	slli	r7, r5, 1
-	movi	r2, 31
-	sub	r2, r2, r6
-	sll	r7, r7, r2
-	srl	r2, r4, r6
+	slli	r2, r5, 1
+	movi	r3, 31
+	sub	r3, r3, r6
+	srl	r7, r4, r6
+	sll	r2, r2, r3
 	srl	r3, r5, r6
 	sub	r6, zero, r6
 	andi	r6, r6, 63
-	or	r2, r7, r2
+	or	r2, r2, r7
 	addi	r7, r6, -32
 	bge	r7, zero, .L598
 .L596:
 	srli	r7, r4, 1
 	movi	r8, 31
 	sub	r8, r8, r6
-	srl	r7, r7, r8
 	sll	r5, r5, r6
-	sll	r4, r4, r6
-	or	r5, r7, r5
-	or	r2, r4, r2
-	or	r3, r5, r3
+	srl	r7, r7, r8
+	sll	r6, r4, r6
+	or	r7, r7, r5
+	or	r2, r6, r2
+	or	r3, r7, r3
 	ret
 	.size	rotr64, .-rotr64
 	.align	2
@@ -4909,24 +4909,24 @@ __paritysi2:
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	slli	r7, r5, 31
-	srli	r2, r4, 1
+	srli	r7, r4, 1
+	slli	r2, r5, 31
 	srli	r6, r5, 1
 	movhi	r3, 21845
 	addi	r3, r3, 21845
-	or	r2, r7, r2
+	or	r2, r2, r7
 	and	r2, r2, r3
 	sub	r2, r4, r2
 	and	r3, r6, r3
 	cmpltu	r4, r4, r2
 	sub	r5, r5, r3
 	sub	r5, r5, r4
-	slli	r7, r5, 30
-	srli	r4, r2, 2
+	srli	r7, r2, 2
+	slli	r4, r5, 30
 	srli	r6, r5, 2
 	movhi	r3, 13107
 	addi	r3, r3, 13107
-	or	r4, r7, r4
+	or	r4, r4, r7
 	and	r4, r4, r3
 	and	r2, r2, r3
 	add	r2, r4, r2
@@ -4935,21 +4935,21 @@ __popcountdi2:
 	add	r3, r6, r5
 	cmpltu	r4, r2, r4
 	add	r4, r4, r3
-	slli	r7, r4, 28
-	srli	r3, r2, 4
+	srli	r7, r2, 4
+	slli	r3, r4, 28
 	srli	r6, r4, 4
 	movhi	r5, 3855
-	or	r3, r7, r3
+	or	r3, r3, r7
 	add	r2, r3, r2
 	cmpltu	r3, r2, r3
 	add	r4, r6, r4
 	addi	r5, r5, 3855
 	add	r3, r3, r4
-	and	r2, r2, r5
 	and	r3, r3, r5
+	and	r2, r2, r5
+	add	r2, r3, r2
+	srli	r3, r2, 16
 	add	r3, r3, r2
-	srli	r2, r3, 16
-	add	r3, r2, r3
 	srli	r2, r3, 8
 	add	r2, r2, r3
 	andi	r2, r2, 127

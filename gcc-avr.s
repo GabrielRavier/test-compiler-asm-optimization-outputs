@@ -2722,11 +2722,11 @@ atoi:
 .L306:
 	mov r26,r30
 	mov r27,r31
-	ld r25,Z+
-	cpi r25,lo8(32)
+	ld r24,Z+
+	cpi r24,lo8(32)
 	breq .L306
-	mov r20,r25
-	mov __tmp_reg__,r25
+	mov r20,r24
+	mov __tmp_reg__,r24
 	lsl r0
 	sbc r21,r21
 	mov r18,r20
@@ -2736,18 +2736,18 @@ atoi:
 	cpi r18,5
 	cpc r19,__zero_reg__
 	brlo .L306
-	cpi r25,lo8(43)
+	cpi r24,lo8(43)
 	brne .+2
 	rjmp .L308
-	cpi r25,lo8(45)
+	cpi r24,lo8(45)
 	brne .L326
 	mov r30,r26
 	mov r31,r27
 	adiw r30,1
 	adiw r26,1
-	ld r25,X
-	mov r20,r25
-	lsl r25
+	ld r20,X
+	mov __tmp_reg__,r20
+	lsl r0
 	sbc r21,r21
 	mov r24,r20
 	mov r25,r21
@@ -2759,44 +2759,43 @@ atoi:
 	ldi r29,0
 .L311:
 	adiw r30,1
-	ldi r22,0
-	ldi r23,0
+	ldi r24,0
+	ldi r25,0
 .L314:
-	mov r18,r22
-	mov r19,r23
+	mov r18,r24
+	mov r19,r25
 	lsl r18
 	rol r19
 	lsl r18
 	rol r19
-	add r18,r22
-	adc r19,r23
+	add r18,r24
+	adc r19,r25
 	lsl r18
 	rol r19
+	mov r22,r20
+	mov r23,r21
+	subi r22,48
+	sbc r23,__zero_reg__
+	mov r24,r18
+	mov r25,r19
+	sub r24,r22
+	sbc r25,r23
+	ld r20,Z+
+	mov __tmp_reg__,r20
+	lsl r0
+	sbc r21,r21
 	mov r26,r20
 	mov r27,r21
 	sbiw r26,48
-	mov r22,r18
-	mov r23,r19
-	sub r22,r26
-	sbc r23,r27
-	ld r25,Z+
-	mov r20,r25
-	lsl r25
-	sbc r21,r21
-	mov r24,r20
-	mov r25,r21
-	sbiw r24,48
-	sbiw r24,10
+	sbiw r26,10
 	brlo .L314
 	or r28,r29
 	brne .L305
-	mov r22,r26
-	mov r23,r27
-	sub r22,r18
-	sbc r23,r19
-.L305:
 	mov r24,r22
 	mov r25,r23
+	sub r24,r18
+	sbc r25,r19
+.L305:
 /* epilogue start */
 	pop r29
 	pop r28
@@ -2818,9 +2817,9 @@ atoi:
 	mov r31,r27
 	adiw r30,1
 	adiw r26,1
-	ld r25,X
-	mov r20,r25
-	lsl r25
+	ld r20,X
+	mov __tmp_reg__,r20
+	lsl r0
 	sbc r21,r21
 	mov r24,r20
 	mov r25,r21
@@ -2828,10 +2827,8 @@ atoi:
 	sbiw r24,10
 	brlo .L325
 .L317:
-	ldi r22,0
-	ldi r23,0
-	mov r24,r22
-	mov r25,r23
+	ldi r24,0
+	ldi r25,0
 /* epilogue start */
 	pop r29
 	pop r28
@@ -2859,31 +2856,33 @@ atol:
 .L328:
 	mov r26,r30
 	mov r27,r31
-	ld r23,Z+
-	cpi r23,lo8(32)
+	ld r24,Z+
+	cpi r24,lo8(32)
 	breq .L328
-	mov r18,r23
-	mov __tmp_reg__,r23
+	mov r18,r24
+	mov __tmp_reg__,r24
 	lsl r0
 	sbc r19,r19
-	mov r24,r18
-	mov r25,r19
-	sbiw r24,9
-	sbiw r24,5
+	mov r20,r18
+	mov r21,r19
+	subi r20,9
+	sbc r21,__zero_reg__
+	cpi r20,5
+	cpc r21,__zero_reg__
 	brlo .L328
-	cpi r23,lo8(43)
+	cpi r24,lo8(43)
 	brne .+2
 	rjmp .L330
-	cpi r23,lo8(45)
+	cpi r24,lo8(45)
 	breq .+2
 	rjmp .L348
 	mov r30,r26
 	mov r31,r27
 	adiw r30,1
 	adiw r26,1
-	ld r23,X
-	mov r18,r23
-	lsl r23
+	ld r18,X
+	mov __tmp_reg__,r18
+	lsl r0
 	sbc r19,r19
 	mov r24,r18
 	mov r25,r19
@@ -2936,9 +2935,9 @@ atol:
 	sbc r9,r13
 	sbc r10,r14
 	sbc r11,r15
-	ld r23,Z+
-	mov r18,r23
-	lsl r23
+	ld r18,Z+
+	mov __tmp_reg__,r18
+	lsl r0
 	sbc r19,r19
 	mov r28,r18
 	mov r29,r19
@@ -2989,9 +2988,9 @@ atol:
 	mov r31,r27
 	adiw r30,1
 	adiw r26,1
-	ld r23,X
-	mov r18,r23
-	lsl r23
+	ld r18,X
+	mov __tmp_reg__,r18
+	lsl r0
 	sbc r19,r19
 	mov r24,r18
 	mov r25,r19
@@ -3070,10 +3069,12 @@ atoll:
 	mov r26,r24
 	lsl r24
 	sbc r27,r27
-	mov r24,r26
-	mov r25,r27
-	sbiw r24,48
-	sbiw r24,10
+	mov r18,r26
+	mov r19,r27
+	subi r18,48
+	sbc r19,__zero_reg__
+	cpi r18,10
+	cpc r19,__zero_reg__
 	brlo .+2
 	rjmp .L361
 	ldi r24,lo8(1)
@@ -3243,10 +3244,12 @@ atoll:
 	mov r26,r24
 	lsl r24
 	sbc r27,r27
-	mov r24,r26
-	mov r25,r27
-	sbiw r24,48
-	sbiw r24,10
+	mov r18,r26
+	mov r19,r27
+	subi r18,48
+	sbc r19,__zero_reg__
+	cpi r18,10
+	cpc r19,__zero_reg__
 	brlo .L369
 .L361:
 	mov r10,__zero_reg__
@@ -4501,19 +4504,19 @@ rotl32:
 	sbc r31,__zero_reg__
 	andi r30,31
 	clr r31
+	rjmp 2f
+	1:
+	lsr r19
+	ror r18
+	ror r17
+	ror r16
+	2:
+	dec r30
+	brpl 1b
 	mov r25,r19
 	mov r24,r18
 	mov r23,r17
 	mov r22,r16
-	rjmp 2f
-	1:
-	lsr r25
-	ror r24
-	ror r23
-	ror r22
-	2:
-	dec r30
-	brpl 1b
 	or r22,r12
 	or r23,r13
 	or r24,r14
@@ -4564,19 +4567,19 @@ rotr32:
 	sbc r31,__zero_reg__
 	andi r30,31
 	clr r31
+	rjmp 2f
+	1:
+	lsl r16
+	rol r17
+	rol r18
+	rol r19
+	2:
+	dec r30
+	brpl 1b
 	mov r25,r19
 	mov r24,r18
 	mov r23,r17
 	mov r22,r16
-	rjmp 2f
-	1:
-	lsl r22
-	rol r23
-	rol r24
-	rol r25
-	2:
-	dec r30
-	brpl 1b
 	or r22,r12
 	or r23,r13
 	or r24,r14

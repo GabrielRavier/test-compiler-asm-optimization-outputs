@@ -2029,37 +2029,37 @@ rotl64:
 	be	.L635
 	 xnor	%g0, %o2, %g3
 	sll	%o1, %o2, %g1
-	mov	0, %g3
+	mov	0, %o5
 	sub	%g0, %o2, %o2
 	andcc	%o2, 32, %g0
 	be	.L637
-	 and	%o2, 63, %g2
+	 and	%o2, 63, %g4
 .L639:
-	srl	%o0, %g2, %o1
+	srl	%o0, %g4, %o1
 	mov	0, %o0
-	or	%o1, %g3, %o1
+	or	%o1, %o5, %o1
 	jmp	%o7+8
 	 or	%o0, %g1, %o0
 .L635:
-	srl	%o1, 1, %g2
-	srl	%g2, %g3, %g2
-	sll	%o0, %o2, %g1
-	sll	%o1, %o2, %g3
-	or	%g2, %g1, %g1
+	sll	%o0, %o2, %g2
+	srl	%o1, 1, %g1
+	sll	%o1, %o2, %o5
+	srl	%g1, %g3, %g1
 	sub	%g0, %o2, %o2
+	or	%g1, %g2, %g1
 	andcc	%o2, 32, %g0
 	bne	.L639
-	 and	%o2, 63, %g2
+	 and	%o2, 63, %g4
 .L637:
-	sll	%o0, 1, %g4
-	xnor	%g0, %g2, %o5
-	srl	%o1, %g2, %o1
-	sll	%g4, %o5, %g4
-	srl	%o0, %g2, %o0
-	or	%g4, %o1, %o1
+	sll	%o0, 1, %g2
+	xnor	%g0, %g4, %o4
+	srl	%o1, %g4, %g3
+	sll	%g2, %o4, %g2
+	srl	%o0, %g4, %o0
+	or	%g2, %g3, %o1
 	or	%o0, %g1, %o0
 	jmp	%o7+8
-	 or	%o1, %g3, %o1
+	 or	%o1, %o5, %o1
 	.size	rotl64, .-rotl64
 	.align 4
 	.global rotr64
@@ -2070,37 +2070,37 @@ rotr64:
 	be	.L641
 	 xnor	%g0, %o2, %g3
 	srl	%o0, %o2, %g1
-	mov	0, %g3
+	mov	0, %o5
 	sub	%g0, %o2, %o2
 	andcc	%o2, 32, %g0
 	be	.L643
-	 and	%o2, 63, %g2
+	 and	%o2, 63, %g4
 .L645:
-	sll	%o1, %g2, %o0
+	sll	%o1, %g4, %o0
 	mov	0, %o1
-	or	%o0, %g3, %o0
+	or	%o0, %o5, %o0
 	jmp	%o7+8
 	 or	%o1, %g1, %o1
 .L641:
-	sll	%o0, 1, %g2
-	sll	%g2, %g3, %g2
-	srl	%o1, %o2, %g1
-	srl	%o0, %o2, %g3
-	or	%g2, %g1, %g1
+	srl	%o1, %o2, %g2
+	sll	%o0, 1, %g1
+	srl	%o0, %o2, %o5
+	sll	%g1, %g3, %g1
 	sub	%g0, %o2, %o2
+	or	%g1, %g2, %g1
 	andcc	%o2, 32, %g0
 	bne	.L645
-	 and	%o2, 63, %g2
+	 and	%o2, 63, %g4
 .L643:
-	srl	%o1, 1, %g4
-	xnor	%g0, %g2, %o5
-	sll	%o0, %g2, %o0
-	srl	%g4, %o5, %g4
-	sll	%o1, %g2, %o1
-	or	%g4, %o0, %o0
+	srl	%o1, 1, %g2
+	xnor	%g0, %g4, %o4
+	sll	%o0, %g4, %g3
+	srl	%g2, %o4, %g2
+	sll	%o1, %g4, %o1
+	or	%g2, %g3, %o0
 	or	%o1, %g1, %o1
 	jmp	%o7+8
-	 or	%o0, %g3, %o0
+	 or	%o0, %o5, %o0
 	.size	rotr64, .-rotr64
 	.align 4
 	.global rotl32
@@ -2240,31 +2240,31 @@ bswap_32:
 	.type	bswap_64, #function
 	.proc	017
 bswap_64:
-	sll	%o0, 24, %o4
-	srl	%o0, 24, %g1
-	srl	%o0, 8, %o5
-	sethi	%hi(64512), %g4
-	sll	%o0, 8, %o0
-	or	%g4, 768, %g4
-	and	%o5, %g4, %o5
-	or	%g1, %o5, %g1
-	sethi	%hi(16711680), %o3
+	sll	%o0, 24, %o3
+	srl	%o0, 8, %g1
 	srl	%o1, 24, %o5
-	sll	%o1, 24, %g2
-	srl	%o1, 24, %g3
-	or	%g2, %o5, %g2
-	or	%o0, %g3, %g3
-	sll	%o1, 8, %o0
-	and	%g3, %o3, %g3
-	and	%o0, %o3, %o0
-	or	%g1, %g3, %g3
-	srl	%o1, 8, %g1
-	or	%g3, %o4, %o1
-	or	%g1, %o4, %g1
-	and	%g1, %g4, %g1
-	or	%g2, %g1, %g2
+	srl	%o0, 24, %g2
+	sethi	%hi(64512), %o4
+	sll	%o0, 8, %o0
+	or	%o4, 768, %o4
+	and	%g1, %o4, %g4
+	or	%g2, %g4, %g2
+	or	%o0, %o5, %g1
+	sethi	%hi(16711680), %o2
+	sll	%o1, 24, %g3
+	and	%g1, %o2, %g4
+	srl	%o1, 8, %o5
+	or	%g2, %g4, %g4
+	or	%o3, %o5, %o5
+	sll	%o1, 8, %g2
+	and	%g1, 255, %g1
+	and	%o5, %o4, %o5
+	or	%g3, %g1, %o0
+	and	%g2, %o2, %g2
+	or	%o0, %o5, %o0
+	or	%g4, %o3, %o1
 	jmp	%o7+8
-	 or	%g2, %o0, %o0
+	 or	%o0, %g2, %o0
 	.size	bswap_64, .-bswap_64
 	.align 4
 	.global ffs
@@ -4283,43 +4283,43 @@ __divsi3:
 __modsi3:
 	cmp	%o0, 0
 	bge	.L1219
-	 mov	0, %g4
+	 mov	0, %o5
 	sub	%g0, %o0, %o0
-	mov	1, %g4
+	mov	1, %o5
 .L1219:
-	sra	%o1, 31, %g3
-	mov	%o0, %g2
-	xor	%g3, %o1, %o1
-	sub	%o1, %g3, %o1
-	cmp	%o0, %o1
+	sra	%o1, 31, %g4
+	mov	%o0, %g3
+	xor	%g4, %o1, %g1
+	sub	%g1, %g4, %g1
+	cmp	%o0, %g1
 	bgu	.L1220
-	 mov	1, %g1
+	 mov	1, %g2
 	b	.L1243
-	 cmp	%o1, %g2
+	 cmp	%g1, %g3
 .L1242:
-	cmp	%g1, 0
+	cmp	%g2, 0
 	be	.L1245
-	 cmp	%g4, 0
+	 cmp	%o5, 0
 .L1220:
-	sll	%o1, 1, %o1
-	cmp	%o1, %o0
+	sll	%g1, 1, %g1
+	cmp	%g1, %o0
 	blu	.L1242
-	 sll	%g1, 1, %g1
-	cmp	%g1, 0
+	 sll	%g2, 1, %g2
+	cmp	%g2, 0
 	be	.L1245
-	 cmp	%g4, 0
+	 cmp	%o5, 0
 .L1240:
-	cmp	%o1, %g2
+	cmp	%g1, %g3
 .L1243:
 	bleu,a	.L1225
-	 sub	%g2, %o1, %g2
+	 sub	%g3, %g1, %g3
 .L1225:
-	srl	%g1, 1, %g1
-	cmp	%g1, 0
+	srl	%g2, 1, %g2
+	cmp	%g2, 0
 	bne	.L1240
-	 srl	%o1, 1, %o1
-	mov	%g2, %o0
-	cmp	%g4, 0
+	 srl	%g1, 1, %g1
+	mov	%g3, %o0
+	cmp	%o5, 0
 .L1245:
 	bne,a	.L1244
 	 sub	%g0, %o0, %o0
@@ -4692,31 +4692,31 @@ __ashrdi3:
 	.type	__bswapdi2, #function
 	.proc	017
 __bswapdi2:
-	sll	%o0, 24, %o4
-	srl	%o0, 24, %g1
-	srl	%o0, 8, %o5
-	sethi	%hi(64512), %g4
-	sll	%o0, 8, %o0
-	or	%g4, 768, %g4
-	and	%o5, %g4, %o5
-	or	%g1, %o5, %g1
-	sethi	%hi(16711680), %o3
+	sll	%o0, 24, %o3
+	srl	%o0, 8, %g1
 	srl	%o1, 24, %o5
-	sll	%o1, 24, %g2
-	srl	%o1, 24, %g3
-	or	%g2, %o5, %g2
-	or	%o0, %g3, %g3
-	sll	%o1, 8, %o0
-	and	%g3, %o3, %g3
-	and	%o0, %o3, %o0
-	or	%g1, %g3, %g3
-	srl	%o1, 8, %g1
-	or	%g3, %o4, %o1
-	or	%g1, %o4, %g1
-	and	%g1, %g4, %g1
-	or	%g2, %g1, %g2
+	srl	%o0, 24, %g2
+	sethi	%hi(64512), %o4
+	sll	%o0, 8, %o0
+	or	%o4, 768, %o4
+	and	%g1, %o4, %g4
+	or	%g2, %g4, %g2
+	or	%o0, %o5, %g1
+	sethi	%hi(16711680), %o2
+	sll	%o1, 24, %g3
+	and	%g1, %o2, %g4
+	srl	%o1, 8, %o5
+	or	%g2, %g4, %g4
+	or	%o3, %o5, %o5
+	sll	%o1, 8, %g2
+	and	%g1, 255, %g1
+	and	%o5, %o4, %o5
+	or	%g3, %g1, %o0
+	and	%g2, %o2, %g2
+	or	%o0, %o5, %o0
+	or	%g4, %o3, %o1
 	jmp	%o7+8
-	 or	%g2, %o0, %o0
+	 or	%o0, %g2, %o0
 	.size	__bswapdi2, .-__bswapdi2
 	.align 4
 	.global __bswapsi2
@@ -5030,20 +5030,20 @@ __paritysi2:
 __popcountdi2:
 	save	%sp, -96, %sp
 	sethi	%hi(1431655424), %g2
-	sll	%i0, 31, %g1
+	srl	%i1, 1, %g1
 	or	%g2, 341, %g2
 	srl	%i0, 1, %g4
-	srl	%i1, 1, %g3
+	sll	%i0, 31, %g3
 	and	%g4, %g2, %i4
-	or	%g1, %g3, %g3
+	or	%g3, %g1, %g3
 	and	%g3, %g2, %i5
 	subcc	%i1, %i5, %g3
 	subx	%i0, %i4, %g2
-	sll	%g2, 30, %i4
+	srl	%g3, 2, %i4
 	srl	%g2, 2, %i5
-	srl	%g3, 2, %g4
+	sll	%g2, 30, %g4
 	sethi	%hi(858992640), %g1
-	or	%i4, %g4, %g4
+	or	%g4, %i4, %g4
 	or	%g1, 819, %g1
 	and	%i5, %g1, %o4
 	and	%g2, %g1, %i2

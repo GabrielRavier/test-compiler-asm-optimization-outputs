@@ -3100,25 +3100,25 @@ rotl64:
 	push	esi
 	.cfi_def_cfa_offset 12
 	.cfi_offset 6, -12
-	mov	eax, DWORD PTR [esp+12]
-	mov	edx, DWORD PTR [esp+16]
+	mov	esi, DWORD PTR [esp+12]
+	mov	edi, DWORD PTR [esp+16]
 	mov	ecx, DWORD PTR [esp+20]
-	mov	esi, eax
-	mov	edi, edx
-	shld	edi, esi, cl
-	sal	esi, cl
+	mov	eax, esi
+	mov	edx, edi
+	shld	edx, eax, cl
+	sal	eax, cl
 	test	cl, 32
 	je	.L605
-	mov	edi, esi
-	xor	esi, esi
+	mov	edx, eax
+	xor	eax, eax
 .L605:
 	neg	ecx
-	shrd	eax, edx, cl
-	shr	edx, cl
+	shrd	esi, edi, cl
+	shr	edi, cl
 	test	cl, 32
 	je	.L606
-	mov	eax, edx
-	xor	edx, edx
+	mov	esi, edi
+	xor	edi, edi
 .L606:
 	or	eax, esi
 	or	edx, edi
@@ -3144,25 +3144,25 @@ rotr64:
 	push	esi
 	.cfi_def_cfa_offset 12
 	.cfi_offset 6, -12
-	mov	eax, DWORD PTR [esp+12]
-	mov	edx, DWORD PTR [esp+16]
+	mov	esi, DWORD PTR [esp+12]
+	mov	edi, DWORD PTR [esp+16]
 	mov	ecx, DWORD PTR [esp+20]
-	mov	esi, eax
-	mov	edi, edx
-	shrd	esi, edi, cl
-	shr	edi, cl
+	mov	eax, esi
+	mov	edx, edi
+	shrd	eax, edx, cl
+	shr	edx, cl
 	test	cl, 32
 	je	.L609
-	mov	esi, edi
-	xor	edi, edi
+	mov	eax, edx
+	xor	edx, edx
 .L609:
 	neg	ecx
-	shld	edx, eax, cl
-	sal	eax, cl
+	shld	edi, esi, cl
+	sal	esi, cl
 	test	cl, 32
 	je	.L610
-	mov	edx, eax
-	xor	eax, eax
+	mov	edi, esi
+	xor	esi, esi
 .L610:
 	or	eax, esi
 	or	edx, edi
@@ -6066,24 +6066,24 @@ __modsi3:
 	push	esi
 	.cfi_def_cfa_offset 8
 	.cfi_offset 6, -8
-	xor	esi, esi
 	push	ebx
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
-	mov	ebx, DWORD PTR [esp+12]
+	mov	esi, DWORD PTR [esp+12]
+	xor	ebx, ebx
 	mov	edx, DWORD PTR [esp+16]
-	test	ebx, ebx
+	test	esi, esi
 	jns	.L1144
-	neg	ebx
-	mov	esi, 1
+	neg	esi
+	mov	ebx, 1
 .L1144:
 	mov	eax, edx
 	mov	ecx, 1
 	sar	eax, 31
 	xor	edx, eax
 	sub	edx, eax
-	mov	eax, ebx
-	cmp	edx, ebx
+	mov	eax, esi
+	cmp	edx, esi
 	jb	.L1145
 	jmp	.L1165
 	.p2align 4
@@ -6095,7 +6095,7 @@ __modsi3:
 .L1145:
 	add	edx, edx
 	add	ecx, ecx
-	cmp	edx, ebx
+	cmp	edx, esi
 	jb	.L1169
 	test	ecx, ecx
 	je	.L1164
@@ -6111,7 +6111,7 @@ __modsi3:
 	shr	ecx
 	jne	.L1165
 .L1147:
-	test	esi, esi
+	test	ebx, ebx
 	je	.L1143
 	neg	eax
 .L1143:
@@ -6127,7 +6127,7 @@ __modsi3:
 	.p2align 3
 .L1164:
 	.cfi_restore_state
-	mov	eax, ebx
+	mov	eax, esi
 	jmp	.L1147
 	.cfi_endproc
 .LFE128:

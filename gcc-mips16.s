@@ -7536,15 +7536,15 @@ __mspabi_mpysll:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	mult	$4,$5
-	mflo	$3
+	mflo	$4
 	mfhi	$2
-	dsll	$3,$3,32
-	dsrl	$3,32
+	dsll	$4,$4,32
+	dsrl	$4,32
 	dsll	$2,$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	or	$2,$3
+	or	$2,$4
 	.set	macro
 	.set	reorder
 
@@ -7561,15 +7561,15 @@ __mspabi_mpyull:
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	multu	$4,$5
-	mflo	$3
+	mflo	$4
 	mfhi	$2
-	dsll	$3,$3,32
-	dsrl	$3,32
+	dsll	$4,$4,32
+	dsrl	$4,32
 	dsll	$2,$2,32
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	or	$2,$3
+	or	$2,$4
 	.set	macro
 	.set	reorder
 
@@ -9486,50 +9486,47 @@ __muldi3_compiler_rt:
 	.ent	__mulddi3
 	.type	__mulddi3, @function
 __mulddi3:
-	.frame	$sp,32,$31		# vars= 16, regs= 1/0, args= 0, gp= 8
-	.mask	0x00010000,-8
+	.frame	$sp,40,$31		# vars= 16, regs= 2/0, args= 0, gp= 8
+	.mask	0x00030000,-8
 	.fmask	0x00000000,0
-	sll	$7,$4,0
-	sll	$3,$5,0
-	multu	$7,$3
+	addiu	$sp,-40
+	sll	$2,$5,0
+	sd	$16,24($sp)
+	sll	$16,$4,0
+	multu	$16,$2
 	dsrl	$4,32
-	mflo	$6
 	sll	$4,$4,0
-	mfhi	$2
-	dsll	$6,$6,32
-	multu	$3,$4
-	dsll	$2,$2,32
-	dsrl	$6,32
-	or	$6,$2
+	mflo	$6
+	mfhi	$3
+	multu	$2,$4
 	dsrl	$5,32
 	mflo	$2
+	mfhi	$7
 	sll	$5,$5,0
-	mfhi	$3
 	dsll	$2,$2,32
-	multu	$7,$5
+	multu	$16,$5
+	dsll	$7,$7,32
 	dsll	$3,$3,32
 	dsrl	$2,32
-	addiu	$sp,-32
+	dsrl	$3,32
+	or	$2,$7
+	daddu	$2,$2,$3
 	mfhi	$7
-	or	$2,$3
 	mflo	$3
 	multu	$4,$5
-	sd	$16,24($sp)
-	move	$16,$6
-	mflo	$4
-	dsrl	$16,32
-	mfhi	$5
-	daddu	$2,$2,$16
 	dsll	$3,$3,32
-	dsll	$16,$2,32
+	mflo	$4
+	mfhi	$5
+	sd	$17,32($sp)
 	dsll	$7,$7,32
+	dsll	$17,$2,32
 	dsrl	$3,32
 	dsll	$4,$4,32
-	dsrl	$16,32
+	dsrl	$17,32
 	or	$3,$7
 	dsll	$5,$5,32
 	dsrl	$4,32
-	daddu	$3,$3,$16
+	daddu	$3,$3,$17
 	or	$4,$5
 	dsll	$6,$6,32
 	dsrl	$2,32
@@ -9543,11 +9540,12 @@ __mulddi3:
 	sd	$2,8($sp)
 	ld	$3,16($sp)
 	ld	$2,8($sp)
+	ld	$17,32($sp)
 	ld	$16,24($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$31
-	addiu	$sp,32
+	addiu	$sp,40
 	.set	macro
 	.set	reorder
 
@@ -9564,73 +9562,70 @@ __multi3:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	sll	$2,$5,0
-	sll	$3,$7,0
-	multu	$2,$3
 	addiu	$sp,-40
-	sd	$16,24($sp)
-	mflo	$16
 	move	$9,$2
-	mfhi	$2
-	dsll	$16,$16,32
-	dsll	$2,$2,32
-	dsrl	$16,32
-	or	$16,$2
-	move	$2,$5
-	dsrl	$2,32
-	sll	$2,$2,0
-	multu	$3,$2
-	move	$8,$2
-	mflo	$2
-	mfhi	$3
-	dsll	$2,$2,32
+	sll	$2,$7,0
 	sd	$17,32($sp)
-	dsll	$3,$3,32
-	move	$17,$16
-	dsrl	$2,32
-	dsrl	$17,32
-	or	$2,$3
-	daddu	$2,$2,$17
-	dsll	$3,$2,32
-	move	$17,$7
-	dsrl	$3,32
-	dsrl	$17,32
-	move	$10,$3
-	sll	$17,$17,0
 	move	$3,$9
-	multu	$3,$17
-	move	$11,$4
+	move	$17,$5
+	multu	$3,$2
+	dsrl	$17,32
+	sll	$17,$17,0
+	sd	$16,24($sp)
 	mflo	$3
-	mfhi	$4
-	dsll	$3,$3,32
-	dsll	$4,$4,32
-	dsrl	$3,32
-	or	$3,$4
-	move	$4,$10
-	daddu	$3,$3,$4
-	dsll	$16,$16,32
-	dsll	$4,$3,32
-	dsrl	$16,32
-	daddu	$16,$16,$4
-	move	$4,$8
-	multu	$4,$17
-	sd	$16,16($sp)
+	mfhi	$16
+	multu	$2,$17
+	move	$8,$17
+	mflo	$2
 	mfhi	$17
-	mflo	$16
-	dmult	$5,$6
-	dsll	$16,$16,32
+	dsll	$2,$2,32
 	dsll	$17,$17,32
-	dsrl	$16,32
-	or	$16,$17
+	dsll	$16,$16,32
 	dsrl	$2,32
+	dsrl	$16,32
+	or	$2,$17
 	daddu	$2,$2,$16
+	dsll	$16,$2,32
+	move	$17,$7
+	dsrl	$16,32
+	dsrl	$17,32
+	move	$10,$16
+	sll	$17,$17,0
+	move	$16,$9
+	multu	$16,$17
+	move	$11,$4
+	mflo	$16
+	mfhi	$4
+	dsll	$16,$16,32
+	dsll	$4,$4,32
+	dsrl	$16,32
+	or	$16,$4
+	move	$4,$10
+	daddu	$16,$16,$4
+	dsll	$3,$3,32
+	dsll	$4,$16,32
 	dsrl	$3,32
-	daddu	$2,$2,$3
+	daddu	$3,$3,$4
+	sd	$3,16($sp)
+	move	$3,$8
+	multu	$3,$17
+	dsrl	$2,32
+	mfhi	$17
 	mflo	$3
+	dmult	$5,$6
+	dsll	$3,$3,32
+	dsll	$17,$17,32
+	dsrl	$3,32
+	or	$3,$17
+	daddu	$2,$2,$3
+	dsrl	$16,32
+	daddu	$2,$2,$16
 	ld	$17,32($sp)
+	mflo	$3
+	ld	$16,24($sp)
 	daddu	$2,$3,$2
 	move	$3,$11
 	dmult	$7,$3
-	ld	$16,24($sp)
 	mflo	$3
 	daddu	$2,$2,$3
 	sd	$2,8($sp)

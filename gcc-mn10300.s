@@ -2989,9 +2989,9 @@ __clrsbqi2:
 	asl 8,d0
 	clr d1
 	bsch d0, d1
-	xor 31,d1
-	mov -1,d0
-	add d1,d0
+	mov d1,d0
+	xor 31,d0
+	add -1,d0
 	retf [],0
 .L1028:
 	mov 7,d0

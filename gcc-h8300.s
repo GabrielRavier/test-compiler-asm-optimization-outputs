@@ -7375,10 +7375,10 @@ ___lshrdi3:
 	mov.l	er4,@-er7
 	mov.l	er5,@-er7
 	mov.l	er6,@-er7
-	sub.l	#16,er7
+	sub.l	#8,er7
+	mov.l	er0,er4
 	mov.l	er1,er5
-	mov.l	er0,@er7
-	mov.l	er1,@(4,er7)
+	mov.l	er4,er0
 	btst	#5,r2l
 	beq	.L1522
 	add.w	#-32,r2
@@ -7394,8 +7394,8 @@ ___lshrdi3:
 .L1522:
 	mov.w	r2,r2
 	beq	.L1525
-	mov.l	er0,er1
-	mov.l	er0,er3
+	mov.l	er4,er3
+	mov.l	er4,er1
 	mov.b	r2l,r0l
 	ble	.L1529
 .L1528:
@@ -7426,12 +7426,12 @@ ___lshrdi3:
 	mov.l	er0,er3
 	bra	.L1521
 .L1525:
-	mov.l	er0,er2
-	mov.l	er1,er3
+	mov.l	er4,er2
+	mov.l	er5,er3
 .L1521:
 	mov.l	er2,er0
 	mov.l	er3,er1
-	add.l	#16,er7
+	add.l	#8,er7
 	mov.l	@er7+,er6
 	mov.l	@er7+,er5
 	mov.l	@er7+,er4
