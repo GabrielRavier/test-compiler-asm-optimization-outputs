@@ -3776,7 +3776,7 @@ memmem:
 .LFB99:
 	.cfi_startproc
 	cmpdi 0,6,0
-	mr 10,3
+	mr 9,3
 	beqlr 0
 	cmpld 0,4,6
 	blt 0,.L813
@@ -3790,26 +3790,26 @@ memmem:
 	b .L810
 	.p2align 4,,15
 .L807:
-	cmpld 0,0,10
+	cmpld 0,0,9
 	blt 0,.L813
 .L810:
-	lbzu 9,1(11)
-	mr 3,10
-	addi 10,10,1
-	cmpw 0,9,12
+	lbzu 10,1(11)
+	mr 3,9
+	addi 9,9,1
+	cmpw 0,10,12
 	bne 0,.L807
 	beqlr 7
-	not 9,11
+	subf 10,11,9
 	mr 7,5
-	add 9,9,11
+	add 10,10,6
 	mr 8,11
-	add 9,9,6
-	mtctr 9
+	addi 10,10,-2
+	mtctr 10
 	.p2align 5
 .L808:
 	lbzu 4,1(8)
-	lbzu 9,1(7)
-	cmpw 0,4,9
+	lbzu 10,1(7)
+	cmpw 0,4,10
 	bne 0,.L807
 	bdnz .L808
 	blr

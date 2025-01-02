@@ -4022,9 +4022,9 @@ memmem:
 	cmpw 0,10,12
 	bne+ 0,.L806
 	beqlr- 7
-	not 10,11
-	add 10,10,11
+	subf 10,11,9
 	add 10,10,6
+	addi 10,10,-2
 	mtctr 10
 	mr 8,5
 	mr 10,11

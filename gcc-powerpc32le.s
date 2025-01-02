@@ -4238,7 +4238,7 @@ memmem:
 .LFB97:
 	.cfi_startproc
 	cmpwi 0,6,0
-	mr 10,3
+	mr 9,3
 	beqlr- 0
 	cmplw 0,4,6
 	blt- 0,.L855
@@ -4251,25 +4251,25 @@ memmem:
 	addi 11,3,-1
 	b .L852
 .L849:
-	cmplw 0,0,10
+	cmplw 0,0,9
 	blt- 0,.L855
 .L852:
-	lbzu 9,1(11)
-	mr 3,10
-	addi 10,10,1
-	cmpw 0,9,12
+	lbzu 10,1(11)
+	mr 3,9
+	addi 9,9,1
+	cmpw 0,10,12
 	bne+ 0,.L849
 	beqlr- 7
-	not 9,11
+	subf 10,11,9
 	mr 7,5
-	add 9,9,11
+	add 10,10,6
 	mr 8,11
-	add 9,9,6
-	mtctr 9
+	addi 10,10,-2
+	mtctr 10
 .L850:
 	lbzu 4,1(8)
-	lbzu 9,1(7)
-	cmpw 0,4,9
+	lbzu 10,1(7)
+	cmpw 0,4,10
 	bne- 0,.L849
 	bdnz .L850
 	blr
