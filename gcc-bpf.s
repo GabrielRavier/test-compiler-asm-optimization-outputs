@@ -8910,42 +8910,42 @@ __udivmodsi4_libgcc:
 	r2 += r2
 	r4 += r4
 	if r2 > r1 goto .L3148
-	r0 += -1
 	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
+	r0 += -1
 	r5 &= r9
+	r0 = r0;r0 &= 0xffffffff
 	if r5 != 0 goto .L3147
 	r2 += r2
 	r4 += r4
 	if r2 > r1 goto .L3148
-	r0 += -1
 	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
+	r0 += -1
 	r5 &= r9
+	r0 = r0;r0 &= 0xffffffff
 	if r5 != 0 goto .L3147
 	r2 += r2
 	r4 += r4
 	if r2 > r1 goto .L3148
-	r0 += -1
 	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
+	r0 += -1
 	r5 &= r9
+	r0 = r0;r0 &= 0xffffffff
 	if r5 != 0 goto .L3147
 	r2 += r2
 	r4 += r4
 	if r2 > r1 goto .L3148
-	r0 += -1
 	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
+	r0 += -1
 	r5 &= r9
+	r0 = r0;r0 &= 0xffffffff
 	if r5 != 0 goto .L3147
 	r2 += r2
 	r4 += r4
 	if r2 > r1 goto .L3148
-	r0 += -1
 	r5 = r2
-	r0 = r0;r0 &= 0xffffffff
+	r0 += -1
 	r5 &= r9
+	r0 = r0;r0 &= 0xffffffff
 	if r5 != 0 goto .L3147
 	r2 += r2
 	r4 += r4
