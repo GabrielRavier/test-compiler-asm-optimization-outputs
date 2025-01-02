@@ -1,7 +1,6 @@
 	.arch armv4
 	.fpu vfpv3-d16
 	.eabi_attribute 28, 1
-	.eabi_attribute 19, 1
 	.eabi_attribute 22, 1
 	.eabi_attribute 23, 1
 	.eabi_attribute 24, 1
