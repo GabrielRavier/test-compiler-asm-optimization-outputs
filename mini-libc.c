@@ -988,6 +988,8 @@ _Qp_itoq (long double *result, int a)
   *result = (double) a;
 }
 
+#ifndef __TMS320C6X__
+
 float
 ldexpf (float x, int exponent)
 {
@@ -1048,6 +1050,8 @@ ldexpl (long double x, int exponent)
 
   return x;
 }
+
+#endif
 
 void *
 memxor (void *restrict dest, const void *restrict src, size_t n)
@@ -1180,6 +1184,8 @@ mempcpy (void *dst, const void *src, size_t len)
 
 #endif
 
+#ifndef __TMS320C6X__
+
 double
 frexp(double x, int *i)
 {
@@ -1205,6 +1211,8 @@ frexp(double x, int *i)
     if(neg) x = -x;
     return(x);
     }
+
+#endif
 
 /* Generic multiplication procedure. No mpy operation involved.  */
 int64_t
