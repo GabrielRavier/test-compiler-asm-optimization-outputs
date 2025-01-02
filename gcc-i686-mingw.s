@@ -5348,7 +5348,6 @@ L959:
 	shr	edx
 	shr	ecx
 	jne	L960
-L956:
 	mov	edx, eax
 	pop	ebx
 	.cfi_remember_state
@@ -5366,7 +5365,17 @@ L956:
 L972:
 	.cfi_restore_state
 	xor	eax, eax
-	jmp	L956
+	pop	ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 8
+	mov	edx, eax
+	neg	edx
+	test	esi, esi
+	pop	esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 4
+	cmovne	eax, edx
+	ret
 	.cfi_endproc
 LFE129:
 	.p2align 4
@@ -5421,7 +5430,6 @@ L984:
 	shr	edx
 	shr	ecx
 	jne	L984
-L980:
 	mov	edx, eax
 	pop	ebx
 	.cfi_remember_state
@@ -5439,7 +5447,17 @@ L980:
 L996:
 	.cfi_restore_state
 	mov	eax, ebx
-	jmp	L980
+	pop	ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 8
+	mov	edx, eax
+	neg	edx
+	test	esi, esi
+	pop	esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 4
+	cmovne	eax, edx
+	ret
 	.cfi_endproc
 LFE130:
 	.p2align 4

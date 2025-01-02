@@ -3636,34 +3636,34 @@ __modsi3:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	subs	ip, r0, #0
+	eor	r3, r1, r1, asr #31
 	rsblt	ip, ip, #0
+	sub	r3, r3, r1, asr #31
 	str	lr, [sp, #-4]!
 	movlt	lr, #1
 	movge	lr, #0
-	cmp	r1, #0
-	rsblt	r1, r1, #0
-	cmp	ip, r1
+	cmp	ip, r3
 	mov	r0, ip
-	mov	r3, #1
+	mov	r2, #1
 	bls	.L893
 .L888:
-	lsls	r3, r3, #1
-	movne	r2, #1
-	moveq	r2, #0
-	lsl	r1, r1, #1
-	cmp	ip, r1
-	movls	r2, #0
-	andhi	r2, r2, #1
-	cmp	r2, #0
+	lsls	r2, r2, #1
+	movne	r1, #1
+	moveq	r1, #0
+	lsl	r3, r3, #1
+	cmp	ip, r3
+	movls	r1, #0
+	andhi	r1, r1, #1
+	cmp	r1, #0
 	bne	.L888
-	cmp	r3, #0
+	cmp	r2, #0
 	moveq	r0, ip
 	beq	.L890
 .L893:
-	cmp	r1, r0
-	subls	r0, r0, r1
-	lsrs	r3, r3, #1
-	lsr	r1, r1, #1
+	cmp	r3, r0
+	subls	r0, r0, r3
+	lsrs	r2, r2, #1
+	lsr	r3, r3, #1
 	bne	.L893
 .L890:
 	cmp	lr, #0

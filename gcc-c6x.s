@@ -5098,65 +5098,46 @@ __divsi3:
 __modsi3:
 		shr	.s1x	B4, 31, A3
 	||	cmpgt	.l1	0, A4, A0
-	[A0]	neg	.s1	A4, A4
+	||	mvk	.d1	1, A16
+		xor	.l1x	A3, B4, A5
+	||[A0]	neg	.s1	A4, A4
 	||[A0]	mvk	.d1	1, A1
-	||[!A0]	mvk	.l1	0, A1
-		xor	.d2x	B4, A3, B4
-	||	mvk	.d1	1, A0
-	||	mv	.s1	A4, A6
-		mv	.l2x	A3, B5
-		sub	.d2	B4, B5, B6
-		nop	1
-		mv	.l1x	B6, A5
-		cmpltu	.l1	A5, A4, A2
-	[!A2]	b	.s1	.L1173
+		sub	.l1	A5, A3, A17
+	||[!A0]	mvk	.d1	0, A1
+	||	mv	.s1	A4, A7
+		cmpltu	.l1	A17, A4, A2
+	[!A2]	b	.s1	.L1161
 		nop	5
-	;; condjump to .L1173 occurs
+	;; condjump to .L1161 occurs
 .L1156:
-		shl	.s2	B6, 1, B6
-	||	shl	.s1	A0, 1, A0
-		cmpeq	.l1	0, A0, A9
-		mv	.s1x	B6, A7
-	||	cmpeq	.l1	0, A9, A16
-		cmpltu	.l1	A7, A4, A8
-		and	.d1	A16, A8, A2
+		shl	.s1	A16, 1, A16
+		shl	.s1	A17, 1, A17
+	||	cmpeq	.l1	0, A16, A6
+		cmpltu	.l1	A17, A4, A8
+		cmpeq	.l1	0, A6, A9
+		and	.d1	A9, A8, A2
 	[A2]	b	.s1	.L1156
 		nop	5
 	;; condjump to .L1156 occurs
-	[!A0]	b	.s1	.L1158
+		mv	.d1	A16, A2
+	[!A2]	b	.s1	.L1158
 		nop	5
 	;; condjump to .L1158 occurs
 .L1161:
-		shru	.s1	A0, 1, A0
-	||	cmpltu	.l1x	A6, B6, A4
+		shru	.s1	A16, 1, A16
+	||	cmpltu	.l1	A7, A17, A2
+		mv	.d1	A16, A0
+	||[!A2]	sub	.l1	A7, A17, A7
+	||	shru	.s1	A17, 1, A17
 	[A0]	b	.s1	.L1161
-	||	mv	.d1	A4, A2
-	[!A2]	mv	.l1x	B6, A4
-	||	shru	.s2	B6, 1, B6
-	[!A2]	sub	.d1	A6, A4, A6
-		nop	3
+		nop	5
 	;; condjump to .L1161 occurs
-.L1174:
-		mv	.d1	A6, A4
+		mv	.d1	A7, A4
 .L1158:
 		ret	.s2	B3
 	||[A1]	neg	.l1	A4, A4
 		nop	5
 	;; return occurs
-.L1173:
-		mvk	.d1	1, A0
-	||	cmpltu	.l1x	A6, B6, A4
-		shru	.s1	A0, 1, A0
-	||	mv	.d1	A4, A2
-	[A0]	b	.s1	.L1161
-	||[!A2]	mv	.l1x	B6, A4
-	||	shru	.s2	B6, 1, B6
-	[!A2]	sub	.d1	A6, A4, A6
-		nop	4
-	;; condjump to .L1161 occurs
-		b	.s1	.L1174
-		nop	5
-	;; jump to .L1174 occurs
 	.size	__modsi3, .-__modsi3
 	.align	2
 	.global	__udivmodhi4
@@ -5169,14 +5150,14 @@ __udivmodhi4:
 		ext	.s1	A8, 16, 16, A9
 	||	cmpgtu	.l1	A17, A5, A1
 		cmpgt	.l1	0, A9, A2
-	||[!A1]	b	.s1	.L1224
+	||[!A1]	b	.s1	.L1222
 	||[A1]	mvk	.d1	1, A7
 		nop	5
-	;; condjump to .L1224 occurs
-	[A2]	b	.s1	.L1225
+	;; condjump to .L1222 occurs
+	[A2]	b	.s1	.L1223
 		nop	5
-	;; condjump to .L1225 occurs
-.L1179:
+	;; condjump to .L1223 occurs
+.L1177:
 		shl	.s1	A7, 1, A22
 		shl	.s1x	B4, 1, A23
 		extu	.s1	A22, 16, 16, A24
@@ -5186,7 +5167,7 @@ __udivmodhi4:
 	||	mv	.s1	A22, A18
 		cmpltu	.l1	A25, A17, A26
 		and	.d1	A27, A26, A0
-	[!A0]	b	.s1	.L1178
+	[!A0]	b	.s1	.L1176
 	||[A0]	mv	.l2x	A23, B4
 	||[A0]	mv	.d1	A22, A7
 		nop	1
@@ -5194,31 +5175,31 @@ __udivmodhi4:
 		ext	.s1	A8, 16, 16, A9
 		cmpgt	.l1	0, A9, A2
 		nop	1
-	;; condjump to .L1178 occurs
-	[!A2]	b	.s1	.L1179
+	;; condjump to .L1176 occurs
+	[!A2]	b	.s1	.L1177
 		nop	5
-	;; condjump to .L1179 occurs
-.L1225:
+	;; condjump to .L1177 occurs
+.L1223:
 		extu	.s1	A8, 16, 16, A19
 		cmpgtu	.l1	A19, A17, A1
-	[A1]	b	.s1	.L1202
+	[A1]	b	.s1	.L1200
 	||[A1]	mvk	.d1	0, A18
 		nop	5
-	;; condjump to .L1202 occurs
+	;; condjump to .L1200 occurs
 		sub	.l2x	A4, B4, B4
 	||	mv	.d1	A7, A18
 		nop	1
 		mv	.l1x	B4, A4
-.L1202:
+.L1200:
 		extu	.s1	A7, 16, 16, A7
 		shru	.s1	A7, 1, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 	||	mv	.d1	A1, A21
 		shru	.s1	A19, 1, A20
 		extu	.s1	A4, 16, 16, A17
 		nop	3
-	;; condjump to .L1181 occurs
-.L1183:
+	;; condjump to .L1179 occurs
+.L1181:
 		extu	.s1	A20, 16, 16, A3
 		cmpgtu	.l1	A3, A17, A1
 	||	shru	.s1	A7, 2, A8
@@ -5228,7 +5209,7 @@ __udivmodhi4:
 	[!A1]	mv	.d1	A20, A4
 	||	mv	.l1	A8, A1
 	||	shru	.s1	A7, 3, A20
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A16
 		cmpgtu	.l1	A9, A16, A1
 	||	shru	.s1	A19, 3, A21
@@ -5236,11 +5217,11 @@ __udivmodhi4:
 	||	shru	.s1	A7, 4, A22
 		shru	.s1	A19, 4, A23
 		shru	.s1	A7, 5, A25
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A9, A4
 	||[!A1]	or	.l1	A18, A8, A18
 	||	mv	.s1	A20, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A17
 		cmpgtu	.l1	A21, A17, A1
 	||	shru	.s1	A19, 5, A26
@@ -5248,11 +5229,11 @@ __udivmodhi4:
 	||	shru	.s1	A7, 6, A28
 		shru	.s1	A19, 6, A0
 		shru	.s1	A7, 7, A29
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A21, A4
 	||[!A1]	or	.l1	A18, A20, A18
 	||	mv	.s1	A22, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A24
 		cmpgtu	.l1	A23, A24, A1
 	||	shru	.s1	A19, 7, A30
@@ -5260,11 +5241,11 @@ __udivmodhi4:
 	||	shru	.s1	A7, 8, A2
 		shru	.s1	A19, 8, A8
 		shru	.s1	A7, 9, A9
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A23, A4
 	||[!A1]	or	.l1	A18, A22, A18
 	||	mv	.s1	A25, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A27
 		cmpgtu	.l1	A26, A27, A1
 	||	shru	.s1	A19, 9, A16
@@ -5272,11 +5253,11 @@ __udivmodhi4:
 	||	shru	.s1	A7, 10, A21
 		shru	.s1	A19, 10, A17
 		shru	.s1	A7, 11, A23
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A26, A4
 	||[!A1]	or	.l1	A18, A25, A18
 	||	mv	.s1	A28, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A5
 		cmpgtu	.l1	A0, A5, A1
 	||	shru	.s1	A19, 11, A24
@@ -5284,11 +5265,11 @@ __udivmodhi4:
 	||	shru	.s1	A7, 12, A26
 		shru	.s1	A19, 12, A27
 		nop	1
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A0, A4
 	||[!A1]	or	.l1	A18, A28, A18
 	||	mv	.s1	A29, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A31
 		cmpgtu	.l1	A30, A31, A1
 	||	shru	.s1	A19, 13, A0
@@ -5296,8 +5277,8 @@ __udivmodhi4:
 	||	shru	.s1	A19, 14, A31
 		shru	.s1	A19, 15, A19
 		nop	1
-	;; condjump to .L1181 occurs
-	[!A2]	b	.s1	.L1181
+	;; condjump to .L1179 occurs
+	[!A2]	b	.s1	.L1179
 	||[!A1]	mv	.d1	A30, A4
 	||[!A1]	or	.l1	A18, A29, A18
 		extu	.s1	A4, 16, 16, A3
@@ -5306,89 +5287,89 @@ __udivmodhi4:
 	[!A1]	sub	.d1	A4, A8, A8
 	||	shru	.s1	A7, 14, A30
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A8, A4
 	||[!A1]	or	.l1	A18, A2, A18
 	||	mv	.s1	A9, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A20
 		cmpgtu	.l1	A16, A20, A1
 	[!A1]	sub	.d1	A4, A16, A16
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A16, A4
 	||[!A1]	or	.l1	A18, A9, A18
 	||	mv	.s1	A21, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A22
 		cmpgtu	.l1	A17, A22, A1
 	[!A1]	sub	.d1	A4, A17, A17
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A17, A4
 	||[!A1]	or	.l1	A18, A21, A18
 	||	mv	.s1	A23, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A25
 		cmpgtu	.l1	A24, A25, A1
 	[!A1]	sub	.d1	A4, A24, A24
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A24, A4
 	||[!A1]	or	.l1	A18, A23, A18
 	||	mv	.s1	A26, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A28
 		cmpgtu	.l1	A27, A28, A1
 	[!A1]	sub	.d1	A4, A27, A27
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A27, A4
 	||[!A1]	or	.l1	A18, A26, A18
 	||	mv	.s1	A29, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A5
 		cmpgtu	.l1	A0, A5, A1
 	[!A1]	sub	.d1	A4, A0, A0
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A0, A4
 	||[!A1]	or	.l1	A18, A29, A18
 	||	mv	.s1	A30, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A8
 		cmpgtu	.l1	A31, A8, A1
 	[!A1]	sub	.d1	A4, A31, A31
 		nop	2
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	mv	.d1	A31, A4
 	||[!A1]	or	.l1	A18, A30, A18
 	||	shru	.s1	A7, 15, A1
-	[!A1]	b	.s1	.L1181
+	[!A1]	b	.s1	.L1179
 		extu	.s1	A4, 16, 16, A7
 		cmpgtu	.l1	A19, A7, A1
 		nop	3
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 	[!A1]	sub	.l1	A4, A19, A4
 	||[!A1]	or	.s1	1, A18, A18
 	||[A1]	mvk	.d1	0, A4
-.L1181:
+.L1179:
 		ret	.s2	B3
 	||	mv	.d1	A6, A2
 	[!A2]	mv	.d1	A18, A4
 		nop	4
 	;; return occurs
-.L1178:
+.L1176:
 		mv	.d1	A24, A2
 	||	cmpgtu	.l1	A25, A17, A1
 	||	mvk	.s1	32767, A28
-	[!A2]	b	.s1	.L1181
+	[!A2]	b	.s1	.L1179
 		nop	5
-	;; condjump to .L1181 occurs
-	[A1]	b	.s1	.L1182
+	;; condjump to .L1179 occurs
+	[A1]	b	.s1	.L1180
 		nop	5
-	;; condjump to .L1182 occurs
-		b	.s1	.L1183
+	;; condjump to .L1180 occurs
+		b	.s1	.L1181
 	||	sub	.d1	A4, A23, A4
 	||	and	.l1	A28, A7, A21
 		and	.d1x	A28, B4, A20
@@ -5396,23 +5377,23 @@ __udivmodhi4:
 		extu	.s1	A23, 16, 16, A19
 		extu	.s1	A22, 16, 16, A7
 		nop	2
-	;; jump to .L1183 occurs
-.L1182:
-		b	.s1	.L1183
+	;; jump to .L1181 occurs
+.L1180:
+		b	.s1	.L1181
 	||	and	.l1	A28, A7, A21
 	||	mvk	.d1	0, A18
 		and	.d1x	A28, B4, A20
 	||	extu	.s1	A22, 16, 16, A7
 		extu	.s1	A23, 16, 16, A19
 		nop	3
-	;; jump to .L1183 occurs
-.L1224:
+	;; jump to .L1181 occurs
+.L1222:
 		cmpeq	.l1	A17, A5, A0
-	[A0]	b	.s1	.L1181
+	[A0]	b	.s1	.L1179
 	||[A0]	mvk	.d1	1, A18
 	||[A0]	mvk	.l1	0, A4
 		nop	5
-	;; condjump to .L1181 occurs
+	;; condjump to .L1179 occurs
 		ret	.s2	B3
 	||	mvk	.d1	0, A18
 	||	mv	.s1	A6, A2
@@ -5428,12 +5409,12 @@ __udivmodsi4_libgcc:
 	||	mvk	.d1	1, A2
 	||	mv	.l1	A4, A7
 		cmpltu	.l1	A3, A4, A0
-	[!A0]	b	.s1	.L1241
+	[!A0]	b	.s1	.L1239
 		nop	5
-	;; condjump to .L1241 occurs
-.L1227:
+	;; condjump to .L1239 occurs
+.L1225:
 		cmpgt	.l1x	0, B4, A1
-	[A1]	b	.s1	.L1228
+	[A1]	b	.s1	.L1226
 	||[!A1]	shl	.s2	B4, 1, B4
 	[!A1]	shl	.s1	A2, 1, A2
 		mv	.s1x	B4, A4
@@ -5441,38 +5422,38 @@ __udivmodsi4_libgcc:
 		cmpltu	.l1	A4, A7, A8
 		cmpeq	.l1	0, A5, A9
 		and	.d1	A9, A8, A1
-	;; condjump to .L1228 occurs
-	[A1]	b	.s1	.L1227
+	;; condjump to .L1226 occurs
+	[A1]	b	.s1	.L1225
 		nop	5
-	;; condjump to .L1227 occurs
-	[!A2]	b	.s1	.L1231
+	;; condjump to .L1225 occurs
+	[!A2]	b	.s1	.L1229
 	||[!A2]	mvk	.d1	0, A4
 		nop	5
-	;; condjump to .L1231 occurs
-.L1228:
+	;; condjump to .L1229 occurs
+.L1226:
 		mvk	.d1	0, A4
-.L1233:
+.L1231:
 		mv	.l1x	B4, A16
 	||	shru	.s2	B4, 1, B4
 		cmpgtu	.l1	A16, A7, A1
 	[!A1]	or	.d1	A2, A4, A4
 	||	shru	.s1	A2, 1, A2
 	||[!A1]	sub	.l1	A7, A16, A7
-	[A2]	b	.s1	.L1233
+	[A2]	b	.s1	.L1231
 		nop	5
-	;; condjump to .L1233 occurs
-.L1231:
+	;; condjump to .L1231 occurs
+.L1229:
 		ret	.s2	B3
 	||	mv	.d1	A6, A0
 	[A0]	mv	.d1	A7, A4
 		nop	4
 	;; return occurs
-.L1241:
-		b	.s1	.L1233
+.L1239:
+		b	.s1	.L1231
 	||	mvk	.d1	1, A2
 	||	mvk	.l1	0, A4
 		nop	5
-	;; jump to .L1233 occurs
+	;; jump to .L1231 occurs
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align	2
 	.global	__ashldi3
@@ -5480,32 +5461,32 @@ __udivmodsi4_libgcc:
 __ashldi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s1	.L1243
+	[!A1]	b	.s1	.L1241
 		nop	5
-	;; condjump to .L1243 occurs
+	;; condjump to .L1241 occurs
 		subah	.d2	B4, 16, B4
 	||	mvk	.d1	0, A8
 		nop	1
 		mv	.l1x	B4, A9
 		shl	.s1	A4, A9, A5
 	||	mv	.d1	A8, A4
-.L1245:
+.L1243:
 		ret	.s2	B3
 		nop	5
 	;; return occurs
-.L1243:
+.L1241:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s1	.L1245
+	[!A2]	b	.s1	.L1243
 	||	sub	.d1	A6, A2, A3
-	[A2]	b	.s1	.L1245
+	[A2]	b	.s1	.L1243
 		shru	.s1	A4, A3, A7
 	[A2]	shl	.s1	A5, A2, A5
 		shl	.s1	A4, A2, A8
 	||[A2]	or	.d1	A5, A7, A5
 	[A2]	mv	.d1	A8, A4
 		nop	1
-	;; condjump to .L1245 occurs
-	;; jump to .L1245 occurs
+	;; condjump to .L1243 occurs
+	;; jump to .L1243 occurs
 	.size	__ashldi3, .-__ashldi3
 	.align	2
 	.global	__ashrdi3
@@ -5513,32 +5494,32 @@ __ashldi3:
 __ashrdi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s1	.L1250
+	[!A1]	b	.s1	.L1248
 		nop	5
-	;; condjump to .L1250 occurs
+	;; condjump to .L1248 occurs
 		subah	.d2	B4, 16, B4
 	||	shr	.s1	A5, 31, A8
 		nop	1
 		mv	.l1x	B4, A9
 		shr	.s1	A5, A9, A4
 	||	mv	.d1	A8, A5
-.L1252:
+.L1250:
 		ret	.s2	B3
 		nop	5
 	;; return occurs
-.L1250:
+.L1248:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s1	.L1252
+	[!A2]	b	.s1	.L1250
 	||	sub	.d1	A6, A2, A3
-	[A2]	b	.s1	.L1252
+	[A2]	b	.s1	.L1250
 		shl	.s1	A5, A3, A7
 	[A2]	shru	.s1	A4, A2, A4
 		shr	.s1	A5, A2, A8
 	||[A2]	or	.d1	A4, A7, A4
 	[A2]	mv	.d1	A8, A5
 		nop	1
-	;; condjump to .L1252 occurs
-	;; jump to .L1252 occurs
+	;; condjump to .L1250 occurs
+	;; jump to .L1250 occurs
 	.size	__ashrdi3, .-__ashrdi3
 	.align	2
 	.global	__bswapdi2
@@ -5611,31 +5592,31 @@ __clzsi2:
 __cmpdi2:
 		mv	.l1x	B5, A3
 		cmpgt	.l1	A3, A5, A0
-	[A0]	b	.s1	.L1268
+	[A0]	b	.s1	.L1266
 	||	cmplt	.l1	A3, A5, A0
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	;; condjump to .L1268 occurs
-	[A0]	b	.s1	.L1269
+	;; condjump to .L1266 occurs
+	[A0]	b	.s1	.L1267
 		nop	5
-	;; condjump to .L1269 occurs
-	[A1]	b	.s1	.L1268
+	;; condjump to .L1267 occurs
+	[A1]	b	.s1	.L1266
 		nop	5
-	;; condjump to .L1268 occurs
-	[A2]	b	.s1	.L1269
+	;; condjump to .L1266 occurs
+	[A2]	b	.s1	.L1267
 	||[!A2]	ret	.s2	B3
 		nop	5
-	;; condjump to .L1269 occurs
+	;; condjump to .L1267 occurs
 	;; return occurs
-.L1268:
+.L1266:
 		ret	.s2	B3
 	||	mvk	.d1	0, A4
 		nop	5
 	;; return occurs
-.L1269:
+.L1267:
 		ret	.s2	B3
 	||	mvk	.d1	2, A4
 		nop	5
@@ -5647,25 +5628,25 @@ __cmpdi2:
 __aeabi_lcmp:
 		mv	.l1x	B5, A3
 		cmpgt	.l1	A3, A5, A0
-	[A0]	b	.s1	.L1276
+	[A0]	b	.s1	.L1274
 	||	cmplt	.l1	A3, A5, A0
 	[A0]	mvk	.d1	1, A4
 	||	mv	.s1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
 		nop	3
-	;; condjump to .L1276 occurs
-	[A0]	b	.s1	.L1272
+	;; condjump to .L1274 occurs
+	[A0]	b	.s1	.L1270
 		nop	5
-	;; condjump to .L1272 occurs
-	[A1]	b	.s1	.L1276
+	;; condjump to .L1270 occurs
+	[A1]	b	.s1	.L1274
 	||[!A1]	cmpltu	.l1	A5, A4, A4
 		nop	5
-	;; condjump to .L1276 occurs
-.L1272:
+	;; condjump to .L1274 occurs
+.L1270:
 		ret	.s2	B3
 		nop	5
 	;; return occurs
-.L1276:
+.L1274:
 		ret	.s2	B3
 	||	mvk	.d1	-1, A4
 		nop	5
@@ -5711,32 +5692,32 @@ __ctzsi2:
 __lshrdi3:
 		mvk	.s1	32, A6
 		and	.d1x	A6, B4, A1
-	[!A1]	b	.s1	.L1282
+	[!A1]	b	.s1	.L1280
 		nop	5
-	;; condjump to .L1282 occurs
+	;; condjump to .L1280 occurs
 		subah	.d2	B4, 16, B4
 	||	mvk	.d1	0, A8
 		nop	1
 		mv	.l1x	B4, A9
 		shru	.s1	A5, A9, A4
 	||	mv	.d1	A8, A5
-.L1284:
+.L1282:
 		ret	.s2	B3
 		nop	5
 	;; return occurs
-.L1282:
+.L1280:
 		mv	.l1x	B4, A2
-	[!A2]	b	.s1	.L1284
+	[!A2]	b	.s1	.L1282
 	||	sub	.d1	A6, A2, A3
-	[A2]	b	.s1	.L1284
+	[A2]	b	.s1	.L1282
 		shl	.s1	A5, A3, A7
 	[A2]	shru	.s1	A4, A2, A4
 		shru	.s1	A5, A2, A8
 	||[A2]	or	.d1	A4, A7, A4
 	[A2]	mv	.d1	A8, A5
 		nop	1
-	;; condjump to .L1284 occurs
-	;; jump to .L1284 occurs
+	;; condjump to .L1282 occurs
+	;; jump to .L1282 occurs
 	.size	__lshrdi3, .-__lshrdi3
 	.align	2
 	.global	__muldsi3
@@ -5927,7 +5908,7 @@ __powidf2:
 		stw	.d2t1	A15, *+B15(40)
 		mvk	.d1	0, A15
 	||	stw	.d2t1	A14, *+B15(28)
-	[!A0]	b	.s1	.L1303
+	[!A0]	b	.s1	.L1301
 	||	stw	.d2t1	A13, *+B15(24)
 		stw	.d2t1	A12, *+B15(20)
 		stw	.d2t1	A10, *+B15(12)
@@ -5936,74 +5917,74 @@ __powidf2:
 	||	mv	.l1x	B4, A10
 	||	mvk	.d1	0, A14
 		mvklh	.s1	16368, A15
-	;; condjump to .L1303 occurs
-.L1305:
+	;; condjump to .L1301 occurs
+.L1303:
 		call	.s2	(__c6xabi_mpyd)
 	||	dmv	.s1	A15, A14, A5:A4
 	||	mv	.l2x	A12, B4
 		mv	.l2x	A13, B5
-	||	addkpc	.s2	.L1312, B3, 0
+	||	addkpc	.s2	.L1310, B3, 0
 	;; call to (__c6xabi_mpyd) occurs, with return value
 		nop	4
-.L1312:
+.L1310:
 		dmv	.s1	A5, A4, A15:A14
-.L1303:
+.L1301:
 		shru	.s1	A10, 31, A3
 		add	.d1	A3, A10, A10
 		shr	.s1	A10, 1, A10
 		mv	.d1	A10, A1
-	[!A1]	b	.s1	.L1304
+	[!A1]	b	.s1	.L1302
 		nop	5
-	;; condjump to .L1304 occurs
-.L1306:
+	;; condjump to .L1302 occurs
+.L1304:
 		call	.s2	(__c6xabi_mpyd)
 	||	mv	.l2x	A12, B4
 	||	mv	.d1	A12, A4
 	||	mv	.s1	A13, A5
 		mv	.l2x	A13, B5
-	||	addkpc	.s2	.L1313, B3, 0
+	||	addkpc	.s2	.L1311, B3, 0
 	;; call to (__c6xabi_mpyd) occurs, with return value
 		nop	4
-.L1313:
+.L1311:
 		and	.d1	1, A10, A2
 	||	dmv	.s1	A5, A4, A13:A12
-	[A2]	b	.s1	.L1305
+	[A2]	b	.s1	.L1303
 		nop	5
-	;; condjump to .L1305 occurs
-		b	.s1	.L1306
+	;; condjump to .L1303 occurs
+		b	.s1	.L1304
 		shru	.s1	A10, 31, A4
 		add	.d1	A4, A10, A5
 		shr	.s1	A5, 1, A10
 		nop	2
-	;; jump to .L1306 occurs
-.L1304:
+	;; jump to .L1304 occurs
+.L1302:
 		cmpgt	.l2x	0, A11, B0
 	||	dmv	.s1	A15, A14, A5:A4
-	[B0]	b	.s1	.L1311
+	[B0]	b	.s1	.L1309
 	||[!B0]	ldw	.d2t2	*+B15(32), B3
 	[!B0]	ldw	.d2t1	*+B15(12), A10
 	[!B0]	ldw	.d2t1	*+B15(16), A11
 	[!B0]	ldw	.d2t1	*+B15(20), A12
 	[!B0]	ldw	.d2t1	*+B15(24), A13
 	[!B0]	ldw	.d2t1	*+B15(28), A14
-	;; condjump to .L1311 occurs
+	;; condjump to .L1309 occurs
 		ret	.s2	B3
 	||	ldw	.d2t2	*+B15(36), B14
 		ldw	.d2t1	*+B15(40), A15
 	||	addk	.s2	40, B15
 		nop	4
 	;; return occurs
-.L1311:
+.L1309:
 		call	.s2	(__c6xabi_divd)
 	||	mv	.l2x	A14, B4
 	||	mvk	.d1	0, A4
 	||	mvk	.l1	0, A5
 		mv	.l2x	A15, B5
 	||	mvklh	.s1	16368, A5
-	||	addkpc	.s2	.L1314, B3, 0
+	||	addkpc	.s2	.L1312, B3, 0
 	;; call to (__c6xabi_divd) occurs, with return value
 		nop	4
-.L1314:
+.L1312:
 		ldw	.d2t2	*+B15(32), B3
 	||	dmv	.s1	A5, A4, A15:A14
 		dmv	.s1	A15, A14, A5:A4
@@ -6029,7 +6010,7 @@ __powisf2:
 	||	stw	.d2t2	B14, *+B15(32)
 		and	.d1	1, A13, A0
 	||	ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
-	[!A0]	b	.s1	.L1316
+	[!A0]	b	.s1	.L1314
 	||	stw	.d2t1	A12, *+B15(20)
 		stw	.d2t1	A11, *+B15(16)
 		stw	.d2t1	A10, *+B15(12)
@@ -6038,39 +6019,39 @@ __powisf2:
 	||	mv	.s1x	B4, A10
 	||	mvk	.d1	0, A12
 		mvklh	.s1	16256, A12
-	;; condjump to .L1316 occurs
-.L1318:
+	;; condjump to .L1314 occurs
+.L1316:
 		callp	.s2	(__c6xabi_mpyf), B3
 	||	mv	.d1	A12, A4
 	||	mv	.l2x	A11, B4
 		mv	.d1	A4, A12
-.L1316:
+.L1314:
 		shru	.s1	A10, 31, A3
 		add	.d1	A3, A10, A10
 		shr	.s1	A10, 1, A10
 		mv	.d1	A10, A1
-	[!A1]	b	.s1	.L1317
+	[!A1]	b	.s1	.L1315
 		nop	5
-	;; condjump to .L1317 occurs
-.L1319:
+	;; condjump to .L1315 occurs
+.L1317:
 		callp	.s2	(__c6xabi_mpyf), B3
 	||	mv	.l2x	A11, B4
 	||	mv	.d1	A11, A4
 		and	.d1	1, A10, A2
 	||	mv	.s1	A4, A11
-	[A2]	b	.s1	.L1318
+	[A2]	b	.s1	.L1316
 		nop	5
-	;; condjump to .L1318 occurs
-		b	.s1	.L1319
+	;; condjump to .L1316 occurs
+		b	.s1	.L1317
 		shru	.s1	A10, 31, A4
 		add	.d1	A4, A10, A5
 		shr	.s1	A5, 1, A10
 		nop	2
-	;; jump to .L1319 occurs
-.L1317:
+	;; jump to .L1317 occurs
+.L1315:
 		cmpgt	.l2x	0, A13, B0
 	||	mv	.d1	A12, A4
-	[B0]	b	.s1	.L1324
+	[B0]	b	.s1	.L1322
 	||[!B0]	ldw	.d2t2	*+B15(28), B3
 	[!B0]	ldw	.d2t1	*+B15(12), A10
 	[!B0]	ldw	.d2t1	*+B15(16), A11
@@ -6078,19 +6059,19 @@ __powisf2:
 	[!B0]	ldw	.d2t1	*+B15(24), A13
 	[!B0]	ret	.s2	B3
 	||[!B0]	ldw	.d2t2	*+B15(32), B14
-	;; condjump to .L1324 occurs
+	;; condjump to .L1322 occurs
 		addab	.d2	B15, 32, B15
 		nop	4
 	;; return occurs
-.L1324:
+.L1322:
 		call	.s2	(__c6xabi_divf)
 	||	mv	.l2x	A12, B4
 	||	mvk	.d1	0, A4
 		mvklh	.s1	16256, A4
-	||	addkpc	.s2	.L1327, B3, 0
+	||	addkpc	.s2	.L1325, B3, 0
 	;; call to (__c6xabi_divf) occurs, with return value
 		nop	4
-.L1327:
+.L1325:
 		ldw	.d2t2	*+B15(28), B3
 	||	mv	.d1	A4, A12
 		mv	.d1	A12, A4
@@ -6110,31 +6091,31 @@ __powisf2:
 __ucmpdi2:
 		mv	.l1x	B5, A3
 		cmpgtu	.l1	A3, A5, A0
-	[A0]	b	.s1	.L1332
+	[A0]	b	.s1	.L1330
 	||	cmpltu	.l1	A3, A5, A0
 		mv	.l1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
 		cmpltu	.l1	A5, A4, A4
 		mv	.d1	A4, A2
 	[!A2]	mvk	.d1	1, A4
-	;; condjump to .L1332 occurs
-	[A0]	b	.s1	.L1333
+	;; condjump to .L1330 occurs
+	[A0]	b	.s1	.L1331
 		nop	5
-	;; condjump to .L1333 occurs
-	[A1]	b	.s1	.L1332
+	;; condjump to .L1331 occurs
+	[A1]	b	.s1	.L1330
 		nop	5
-	;; condjump to .L1332 occurs
-	[A2]	b	.s1	.L1333
+	;; condjump to .L1330 occurs
+	[A2]	b	.s1	.L1331
 	||[!A2]	ret	.s2	B3
 		nop	5
-	;; condjump to .L1333 occurs
+	;; condjump to .L1331 occurs
 	;; return occurs
-.L1332:
+.L1330:
 		ret	.s2	B3
 	||	mvk	.d1	0, A4
 		nop	5
 	;; return occurs
-.L1333:
+.L1331:
 		ret	.s2	B3
 	||	mvk	.d1	2, A4
 		nop	5
@@ -6146,25 +6127,25 @@ __ucmpdi2:
 __aeabi_ulcmp:
 		mv	.l1x	B5, A3
 		cmpgtu	.l1	A3, A5, A0
-	[A0]	b	.s1	.L1340
+	[A0]	b	.s1	.L1338
 	||	cmpltu	.l1	A3, A5, A0
 	[A0]	mvk	.d1	1, A4
 	||	mv	.s1x	B4, A5
 		cmpgtu	.l1	A5, A4, A1
 		nop	3
-	;; condjump to .L1340 occurs
-	[A0]	b	.s1	.L1336
+	;; condjump to .L1338 occurs
+	[A0]	b	.s1	.L1334
 		nop	5
-	;; condjump to .L1336 occurs
-	[A1]	b	.s1	.L1340
+	;; condjump to .L1334 occurs
+	[A1]	b	.s1	.L1338
 	||[!A1]	cmpltu	.l1	A5, A4, A4
 		nop	5
-	;; condjump to .L1340 occurs
-.L1336:
+	;; condjump to .L1338 occurs
+.L1334:
 		ret	.s2	B3
 		nop	5
 	;; return occurs
-.L1340:
+.L1338:
 		ret	.s2	B3
 	||	mvk	.d1	-1, A4
 		nop	5

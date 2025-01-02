@@ -3855,7 +3855,6 @@ __divsi3:
 	shr	edx
 	shr	r8d
 	jne	.L878
-.L874:
 	mov	edx, eax
 	neg	edx
 	test	r10d, r10d
@@ -3865,7 +3864,11 @@ __divsi3:
 	.p2align 3
 .L890:
 	xor	eax, eax
-	jmp	.L874
+	mov	edx, eax
+	neg	edx
+	test	r10d, r10d
+	cmovne	eax, edx
+	ret
 	.seh_endproc
 	.p2align 4
 	.globl	__modsi3
@@ -3911,7 +3914,6 @@ __modsi3:
 	shr	edx
 	shr	r8d
 	jne	.L900
-.L896:
 	mov	edx, eax
 	neg	edx
 	test	r9d, r9d
@@ -3921,7 +3923,11 @@ __modsi3:
 	.p2align 3
 .L912:
 	mov	eax, ecx
-	jmp	.L896
+	mov	edx, eax
+	neg	edx
+	test	r9d, r9d
+	cmovne	eax, edx
+	ret
 	.seh_endproc
 	.p2align 4
 	.globl	__udivmodhi4
