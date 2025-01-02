@@ -1398,36 +1398,37 @@ bsearch_r:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
 	subs	r4, r2, #0
-	movne	fp, r0
-	movne	r8, r1
-	movne	r7, r3
-	ldr	r10, [sp, #40]
-	ldr	r9, [sp, #44]
-	bne	.L340
-	b	.L343
-.L352:
-	movle	r4, r6
-	asrgt	r4, r4, #1
-	addgt	r8, r5, r7
-	cmp	r4, #0
-	beq	.L343
+	mov	r10, r0
+	mov	r7, r1
+	mov	r6, r3
+	ldr	r9, [sp, #40]
+	ldr	r8, [sp, #44]
+	beq	.L344
 .L340:
-	asr	r6, r4, #1
-	mla	r5, r7, r6, r8
-	mov	r2, r9
-	mov	r0, fp
+	asr	fp, r4, #1
+	mla	r5, r6, fp, r7
+	mov	r2, r8
+	mov	r0, r10
 	mov	r1, r5
 	mov	lr, pc
-	mov	pc, r10
+	mov	pc, r9
 	cmp	r0, #0
 	sub	r4, r4, #1
-	bne	.L352
-	mov	r0, r5
-	pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
-.L343:
+	beq	.L339
+	ble	.L342
+	asrs	r4, r4, #1
+	add	r7, r5, r6
+	bne	.L340
+.L344:
 	mov	r5, #0
+.L339:
 	mov	r0, r5
 	pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+.L342:
+	cmp	fp, #0
+	beq	.L344
+	mov	r4, fp
+	b	.L340
 	.size	bsearch_r, .-bsearch_r
 	.align	2
 	.global	div

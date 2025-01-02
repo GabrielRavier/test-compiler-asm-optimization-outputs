@@ -1824,17 +1824,11 @@ bsearch_r:
 	.cfi_offset 15, -40
 	lay	%r15,-160(%r15)
 	.cfi_def_cfa_offset 320
-	cije	%r4,0,.L569
 	lgr	%r7,%r2
 	lgr	%r8,%r3
 	lgr	%r9,%r5
 	lr	%r11,%r4
-	j	.L566
-.L575:
-	ahi	%r11,-1
-	agrk	%r8,%r12,%r9
-	sra	%r11,1
-	cije	%r11,0,.L569
+	cije	%r4,0,.L570
 .L566:
 	srak	%r10,%r11,1
 	lgr	%r12,%r9
@@ -1846,14 +1840,17 @@ bsearch_r:
 	basr	%r14,%r6
 	ltr	%r2,%r2
 	je	.L565
-	jh	.L575
-	lr	%r11,%r10
-	cijlh	%r11,0,.L566
-.L569:
+	jle	.L568
+	agrk	%r8,%r12,%r9
+	ahi	%r11,-1
+	sra	%r11,1
+	jne	.L566
+.L570:
 	lghi	%r12,0
 .L565:
 	lgr	%r2,%r12
 	lmg	%r7,%r15,216(%r15)
+	.cfi_remember_state
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -1865,6 +1862,11 @@ bsearch_r:
 	.cfi_restore 7
 	.cfi_def_cfa_offset 160
 	br	%r14
+.L568:
+	.cfi_restore_state
+	cije	%r10,0,.L570
+	lr	%r11,%r10
+	j	.L566
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r

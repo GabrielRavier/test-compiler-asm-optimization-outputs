@@ -1999,25 +1999,25 @@ bsearch:
 	.type	bsearch_r, @function
 bsearch_r:
 		subah	.d2	B15, 24, B15
-		stw	.d2t1	A10, *+B15(12)
-		mv	.d1	A6, A10
+		mv	.d1	A6, A0
 	||	stw	.d2t2	B14, *+B15(44)
-		mv	.d1	A10, A0
-	||	ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
+		ldw	.d2t2	*+B14($DSBT_index(__c6xabi_DSBT_BASE)), B14
 		stw	.d2t1	A15, *+B15(48)
 		stw	.d2t1	A14, *+B15(28)
-	[!A0]	b	.s1	.L477
-	||	stw	.d2t1	A13, *+B15(24)
-		stw	.d2t1	A12, *+B15(20)
+		stw	.d2t1	A13, *+B15(24)
+	[!A0]	b	.s1	.L467
+	||	stw	.d2t1	A12, *+B15(20)
 		stw	.d2t1	A11, *+B15(16)
+		stw	.d2t1	A10, *+B15(12)
 		stw	.d2t2	B11, *+B15(40)
 		stw	.d2t2	B10, *+B15(36)
 		stw	.d2t2	B3, *+B15(32)
-	;; condjump to .L477 occurs
+	;; condjump to .L467 occurs
 		mv	.d1	A4, A15
 	||	mv	.l1x	B4, A12
 	||	mv	.s1	A8, A14
-		mv	.l1x	B6, A11
+		mv	.s1x	B6, A11
+	||	mv	.d1	A6, A10
 		mv	.l1x	B8, A13
 .L463:
 		shr	.s2x	A10, 1, B11
@@ -2034,18 +2034,20 @@ bsearch_r:
 	;; indirect call occurs, with return value
 		nop	1
 .L478:
-		cmplt	.l1	0, A4, A2
-	||	mv	.s1	A4, A1
-	[!A2]	mv	.l1x	B11, A10
-	||[!A1]	b	.s1	.L462
-		mv	.d1	A10, A0
-	||[A2]	add	.s1x	A11, B10, A12
-		nop	4
+		mv	.s1	A4, A1
+	||	cmplt	.l1	0, A4, A2
+	[!A1]	b	.s1	.L462
+	||	mv	.d1	A10, A1
+	||[A2]	add	.l1x	A11, B10, A12
+		nop	5
 	;; condjump to .L462 occurs
-	[A0]	b	.s1	.L463
+	[!A2]	b	.s1	.L465
+		nop	5
+	;; condjump to .L465 occurs
+	[A1]	b	.s1	.L463
 		nop	5
 	;; condjump to .L463 occurs
-.L477:
+.L467:
 		mvk	.d2	0, B10
 .L462:
 		ldw	.d2t2	*+B15(32), B3
@@ -2063,6 +2065,16 @@ bsearch_r:
 	||	addk	.s2	48, B15
 		nop	4
 	;; return occurs
+.L465:
+		mv	.l1x	B11, A0
+	[A0]	b	.s1	.L463
+	||	mv	.l1x	B11, A10
+		nop	5
+	;; condjump to .L463 occurs
+		b	.s1	.L462
+	||	mvk	.d2	0, B10
+		nop	5
+	;; jump to .L462 occurs
 	.size	bsearch_r, .-bsearch_r
 	.align	2
 	.global	div

@@ -1343,12 +1343,11 @@ bsearch_r:
 	add -16,sp
 	mov (60,sp),d2
 	mov (64,sp),a2
+	cmp 0,d2
 	mov (68,sp),r5
 	mov (72,sp),r4
 	mov_mov d0, a3, d1, d3
-.L487:
-	cmp 0,d2
-	beq .L490
+	beq .L480
 .L476:
 	mov d2,r7
 	asr 1,r7
@@ -1360,18 +1359,20 @@ bsearch_r:
 	add -1,d2
 	cmp_asr 0, d0, 1, d2
 	beq .L475
-	ble .L480
+	ble .L478
 	add a2,r6,d3
 	cmp 0,d2
 	bne .L476
-.L490:
+.L480:
 	clr r6
 .L475:
 	mov_mov r6, d0, r6, a0
 	ret [d2,d3,a2,a3,exreg1],48
-.L480:
-	mov r7,d2
-	jmp .L487
+.L478:
+	cmp_mov 0, r7, r7, d2
+	bne .L476
+	clr r6
+	jmp .L475
 	.size	bsearch_r, .-bsearch_r
 	.global div
 	.type	div, @function

@@ -2181,28 +2181,20 @@ bsearch_r:
 	addiu	$sp,$sp,-64
 	sw	$21,48($sp)
 	sw	$20,44($sp)
+	sw	$19,40($sp)
+	sw	$18,36($sp)
+	sw	$17,32($sp)
+	sw	$16,28($sp)
 	lw	$21,80($sp)
 	lw	$20,84($sp)
 	sw	$31,60($sp)
 	sw	$23,56($sp)
 	sw	$22,52($sp)
-	sw	$19,40($sp)
-	sw	$18,36($sp)
-	sw	$17,32($sp)
-	beq	$6,$0,$L385
-	sw	$16,28($sp)
-
 	move	$16,$6
 	move	$19,$4
 	move	$18,$5
-	.option	pic0
-	b	$L382
-	.option	pic2
+	beq	$6,$0,$L386
 	move	$17,$7
-
-$L394:
-	beq	$16,$0,$L385
-	addu	$18,$22,$17
 
 $L382:
 	sra	$23,$16,1
@@ -2212,6 +2204,7 @@ $L395:
 	move	$4,$19
 	move	$25,$21
 	addiu	$16,$16,-1
+	sra	$16,$16,1
 	mflo	$22
 	addu	$22,$18,$22
 	jalr	$25
@@ -2220,14 +2213,13 @@ $L395:
 	beq	$2,$0,$L381
 	nop
 
-	bgtz	$2,$L394
-	sra	$16,$16,1
+	blez	$2,$L384
+	nop
 
-	move	$16,$23
-	bne	$16,$0,$L395
-	sra	$23,$16,1
+	bne	$16,$0,$L382
+	addu	$18,$22,$17
 
-$L385:
+$L386:
 	move	$22,$0
 $L381:
 	lw	$31,60($sp)
@@ -2242,6 +2234,15 @@ $L381:
 	lw	$22,52($sp)
 	jr	$31
 	addiu	$sp,$sp,64
+
+$L384:
+	beq	$23,$0,$L386
+	move	$16,$23
+
+	.option	pic0
+	b	$L395
+	.option	pic2
+	sra	$23,$16,1
 
 	.set	macro
 	.set	reorder

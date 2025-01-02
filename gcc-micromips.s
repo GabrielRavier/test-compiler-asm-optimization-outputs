@@ -2270,75 +2270,80 @@ bsearch:
 	.ent	bsearch_r
 	.type	bsearch_r, @function
 bsearch_r:
-	.frame	$sp,80,$31		# vars= 0, regs= 10/0, args= 0, gp= 0
-	.mask	0x90ff0000,-8
+	.frame	$sp,96,$31		# vars= 0, regs= 11/0, args= 0, gp= 0
+	.mask	0xd0ff0000,-8
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	daddiu	$sp,$sp,-80
+	daddiu	$sp,$sp,-96
 	sll	$6,$6,0
-	sd	$31,72($sp)
-	sd	$23,56($sp)
-	sd	$22,48($sp)
-	sd	$21,40($sp)
-	sd	$20,32($sp)
-	sd	$19,24($sp)
-	sd	$18,16($sp)
-	sd	$17,8($sp)
-	beqz	$6,.L404
-	sd	$16,0($sp)
-
+	sd	$22,56($sp)
+	sd	$21,48($sp)
+	sd	$20,40($sp)
+	sd	$18,24($sp)
+	sd	$17,16($sp)
+	sd	$16,8($sp)
+	sd	$31,88($sp)
+	sd	$fp,80($sp)
+	sd	$23,64($sp)
+	sd	$19,32($sp)
 	move	$22,$4
 	move	$18,$5
 	move	$17,$7
 	move	$21,$8
 	move	$20,$9
-	b	.L401
+	beqz	$6,.L405
 	move	$16,$6
 
 	.align	3
-.L413:
-	beqz	$16,.L404
-	daddu	$18,$23,$17
-
 .L401:
-	dsra	$2,$16,1
+	dsra	$fp,$16,1
+	.align	3
 .L415:
-	dmult	$2,$17
+	dmult	$fp,$17
 	move	$6,$20
 	move	$4,$22
 	move	$25,$21
 	sra	$19,$16,1
 	addiu	$16,$16,-1
+	sra	$16,$16,1
 	mflo	$23
 	daddu	$23,$18,$23
 	jalr	$25
 	move	$5,$23
 
 	beqz	$2,.L414
-	ld	$31,72($sp)
+	ld	$31,88($sp)
 
-	bgtz	$2,.L413
-	sra	$16,$16,1
+	blez	$2,.L403
+	nop
 
-	move	$16,$19
-	bnez	$16,.L415
-	dsra	$2,$16,1
+	bnez	$16,.L401
+	daddu	$18,$23,$17
 
-.L404:
+.L405:
 	move	$23,$0
-	ld	$31,72($sp)
+	ld	$31,88($sp)
 .L414:
 	move	$2,$23
-	ld	$22,48($sp)
-	ld	$23,56($sp)
-	ld	$21,40($sp)
-	ld	$20,32($sp)
-	ld	$19,24($sp)
-	ld	$18,16($sp)
-	ld	$17,8($sp)
-	ld	$16,0($sp)
-	jraddiusp	80
+	ld	$fp,80($sp)
+	ld	$23,64($sp)
+	ld	$22,56($sp)
+	ld	$21,48($sp)
+	ld	$20,40($sp)
+	ld	$19,32($sp)
+	ld	$18,24($sp)
+	ld	$17,16($sp)
+	ld	$16,8($sp)
+	jraddiusp	96
+	.align	3
+.L403:
+	beqz	$fp,.L405
+	move	$16,$19
+
+	b	.L415
+	dsra	$fp,$16,1
+
 	.set	macro
 	.set	reorder
 	.end	bsearch_r

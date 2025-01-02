@@ -2354,76 +2354,81 @@ bsearch:
 	.ent	bsearch_r
 	.type	bsearch_r, @function
 bsearch_r:
-	.frame	$sp,80,$31		# vars= 0, regs= 10/0, args= 0, gp= 0
-	.mask	0x90ff0000,-8
+	.frame	$sp,96,$31		# vars= 0, regs= 11/0, args= 0, gp= 0
+	.mask	0xd0ff0000,-8
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	daddiu	$sp,$sp,-80
+	daddiu	$sp,$sp,-96
 	sll	$6,$6,0
-	sd	$31,72($sp)
-	sd	$23,56($sp)
-	sd	$22,48($sp)
-	sd	$21,40($sp)
-	sd	$20,32($sp)
-	sd	$19,24($sp)
-	sd	$18,16($sp)
-	sd	$17,8($sp)
-	beq	$6,$0,.L429
-	sd	$16,0($sp)
-
-	move	$23,$4
-	move	$19,$5
-	move	$18,$7
-	move	$22,$8
-	move	$21,$9
-	b	.L426
+	sd	$fp,80($sp)
+	sd	$23,64($sp)
+	sd	$22,56($sp)
+	sd	$20,40($sp)
+	sd	$19,32($sp)
+	sd	$16,8($sp)
+	sd	$31,88($sp)
+	sd	$21,48($sp)
+	sd	$18,24($sp)
+	sd	$17,16($sp)
+	move	$fp,$4
+	move	$20,$5
+	move	$19,$7
+	move	$23,$8
+	move	$22,$9
+	beq	$6,$0,.L430
 	move	$16,$6
 
 	.align	3
-.L438:
-	beq	$16,$0,.L429
-	daddu	$19,$17,$18
-
 .L426:
-	dsra	$2,$16,1
+	dsra	$18,$16,1
+	.align	3
 .L440:
-	dmult	$2,$18
-	move	$6,$21
-	move	$4,$23
-	move	$25,$22
-	sra	$20,$16,1
+	dmult	$18,$19
+	move	$6,$22
+	move	$4,$fp
+	move	$25,$23
+	sra	$21,$16,1
 	addiu	$16,$16,-1
+	sra	$16,$16,1
 	mflo	$17
-	daddu	$17,$19,$17
+	daddu	$17,$20,$17
 	jalr	$25
 	move	$5,$17
 
 	beq	$2,$0,.L439
-	ld	$31,72($sp)
+	ld	$31,88($sp)
 
-	bgtz	$2,.L438
-	sra	$16,$16,1
+	blez	$2,.L428
+	nop
 
-	move	$16,$20
-	bne	$16,$0,.L440
-	dsra	$2,$16,1
+	bne	$16,$0,.L426
+	daddu	$20,$17,$19
 
-.L429:
+.L430:
 	move	$17,$0
-	ld	$31,72($sp)
+	ld	$31,88($sp)
 .L439:
-	ld	$23,56($sp)
-	ld	$22,48($sp)
-	ld	$21,40($sp)
-	ld	$20,32($sp)
-	ld	$19,24($sp)
-	ld	$18,16($sp)
-	ld	$16,0($sp)
+	ld	$fp,80($sp)
+	ld	$23,64($sp)
+	ld	$22,56($sp)
+	ld	$21,48($sp)
+	ld	$20,40($sp)
+	ld	$19,32($sp)
+	ld	$18,24($sp)
+	ld	$16,8($sp)
 	move	$2,$17
-	ld	$17,8($sp)
+	ld	$17,16($sp)
 	jr	$31
-	daddiu	$sp,$sp,80
+	daddiu	$sp,$sp,96
+
+	.align	3
+.L428:
+	beq	$18,$0,.L430
+	move	$16,$21
+
+	b	.L440
+	dsra	$18,$16,1
 
 	.set	macro
 	.set	reorder

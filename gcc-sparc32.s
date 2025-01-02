@@ -1455,11 +1455,9 @@ bsearch:
 	.proc	0120
 bsearch_r:
 	save	%sp, -96, %sp
-	mov	%i0, %l1
-.L418:
 	cmp	%i2, 0
-	be	.L419
-	 nop
+	be	.L411
+	 mov	%i0, %l1
 .L407:
 	mov	%i3, %o1
 	sra	%i2, 1, %l0
@@ -1473,16 +1471,33 @@ bsearch_r:
 	cmp	%o0, 0
 	be	.L420
 	 nop
-	ble,a	.L418
-	 mov	%l0, %i2
-	add	%i2, -1, %i2
+.L419:
+	ble	.L409
+	 add	%i2, -1, %i2
 	sra	%i2, 1, %i2
 	cmp	%i2, 0
 	bne	.L407
 	 add	%i0, %i3, %i1
-.L419:
+.L411:
 	jmp	%i7+8
 	 restore %g0, 0, %o0
+.L409:
+	cmp	%l0, 0
+	be	.L411
+	 nop
+	mov	%i3, %o1
+	mov	%l0, %i2
+	sra	%i2, 1, %l0
+	call	.umul, 0
+	 mov	%l0, %o0
+	mov	%i5, %o2
+	add	%i1, %o0, %i0
+	mov	%l1, %o0
+	call	%i4, 0
+	 mov	%i0, %o1
+	cmp	%o0, 0
+	bne	.L419
+	 nop
 .L420:
 	jmp	%i7+8
 	 restore

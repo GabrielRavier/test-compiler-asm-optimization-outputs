@@ -1872,69 +1872,60 @@ bsearch_r:
 	.cfi_startproc
 	addi	sp,sp,-36
 	.cfi_def_cfa_offset 36
+	sw	s1,24(sp)
 	sw	ra,32(sp)
+	sw	s0,28(sp)
+	.cfi_offset 9, -12
+	.cfi_offset 1, -4
+	.cfi_offset 8, -8
 	sw	a0,12(sp)
 	sw	a1,4(sp)
 	sw	a3,8(sp)
 	sw	a4,16(sp)
 	sw	a5,20(sp)
-	.cfi_offset 1, -4
-	beq	a2,zero,.L380
-	sw	s1,24(sp)
-	sw	s0,28(sp)
-	.cfi_offset 9, -12
-	.cfi_offset 8, -8
 	mv	s1,a2
+	beq	a2,zero,.L381
 .L377:
 	lw	a1,8(sp)
-	srai	s0,s1,1
-	mv	a0,s0
+	srai	a5,s1,1
+	mv	a0,a5
+	sw	a5,0(sp)
 	call	__mulsi3
 	lw	a4,4(sp)
 	lw	a2,20(sp)
 	lw	a5,16(sp)
-	add	a1,a4,a0
+	add	s0,a4,a0
 	lw	a0,12(sp)
-	sw	a1,0(sp)
+	mv	a1,s0
 	jalr	a5
-	lw	a1,0(sp)
 	addi	t1,s1,-1
-	beq	a0,zero,.L389
-	mv	s1,s0
+	srai	s1,t1,1
+	beq	a0,zero,.L376
+	lw	a5,0(sp)
 	ble	a0,zero,.L379
 	lw	a5,8(sp)
-	srai	s1,t1,1
-	add	a5,a1,a5
+	add	a5,s0,a5
 	sw	a5,4(sp)
-.L379:
 	bne	s1,zero,.L377
+.L381:
+	li	s0,0
+.L376:
+	lw	ra,32(sp)
+	.cfi_remember_state
+	.cfi_restore 1
+	mv	a0,s0
 	lw	s0,28(sp)
 	.cfi_restore 8
 	lw	s1,24(sp)
 	.cfi_restore 9
-.L380:
-	lw	ra,32(sp)
-	.cfi_restore 1
-	li	a1,0
-	mv	a0,a1
 	addi	sp,sp,36
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L389:
-	.cfi_def_cfa_offset 36
-	.cfi_offset 1, -4
-	.cfi_offset 8, -8
-	.cfi_offset 9, -12
-	lw	s0,28(sp)
-	.cfi_restore 8
-	lw	ra,32(sp)
-	.cfi_restore 1
-	lw	s1,24(sp)
-	.cfi_restore 9
-	mv	a0,a1
-	addi	sp,sp,36
-	.cfi_def_cfa_offset 0
-	jr	ra
+.L379:
+	.cfi_restore_state
+	beq	a5,zero,.L381
+	mv	s1,a5
+	j	.L377
 	.cfi_endproc
 .LFE49:
 	.size	bsearch_r, .-bsearch_r

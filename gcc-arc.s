@@ -1288,25 +1288,13 @@ bsearch_r:
 	std.a	r16,[sp,-8]
 	std.a	r14,[sp,-8]
 	push_s	r13
+	mov_s	r20,r0	;4
+	mov_s	r17,r1	;4
+	mov_s	r16,r3	;4
+	mov_s	r19,r4	;4
 	mov.f	r13,r2
-	mov.ne	r20,r0
-	mov.ne	r17,r1
-	mov.ne	r16,r3
-	mov.ne	r19,r4
-	bne.d	.L414
-	mov.ne	r18,r5
-	b.d	.L413
-	mov_s	r14,0	;3
-	.align 4
-.L426:
-	cmp_s	r0,0
-	ble.d	.L416
-	mov.le	r13,r15
-	add	r17,r14,r16 ;a,b,c/u6
-	asr_s	r13,r13,1
-	.align 2
-.L416:
-	breq_s	r13,0,.L417
+	beq.d	.L418
+	mov_s	r18,r5	;4
 	.align 2
 .L414:
 	asr_s	r15,r13,1
@@ -1317,7 +1305,14 @@ bsearch_r:
 	mov_s	r0,r20	;4
 	jl.d	[r19]
 	add_s	r13,r13,-1   ;h,h,s3
-	brne_s	r0,0,.L426
+	breq_s	r0,0,.L413
+	brle	r0,0,.L416
+	asr.f	r13,r13,1
+	bne.d	.L414
+	add	r17,r14,r16 ;a,b,c/u6
+	.align 2
+.L418:
+	mov_s	r14,0	;3
 	.align 2
 .L413:
 	mov_s	r0,r14	;4
@@ -1329,9 +1324,10 @@ bsearch_r:
 	j_s.d	[blink]
 	ld.ab	r20,[sp,8]	;23
 	.align 4
-.L417:
-	b.d	.L413
-	mov_s	r14,0	;3
+.L416:
+	breq_s	r15,0,.L418
+	b.d	.L414
+	mov_s	r13,r15	;4
 	.size	bsearch_r, .-bsearch_r
 	.align 4
 	.global	div

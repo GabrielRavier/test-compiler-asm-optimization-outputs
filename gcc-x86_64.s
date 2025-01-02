@@ -1642,15 +1642,19 @@ bsearch_r:
 	push	r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
+	mov	r14, r8
 	push	r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
+	mov	r13d, edx
 	push	r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
+	mov	r12, rsi
 	push	rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
+	mov	rbp, rcx
 	push	rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
@@ -1659,43 +1663,34 @@ bsearch_r:
 	mov	QWORD PTR [rsp], rdi
 	mov	QWORD PTR [rsp+8], r9
 	test	edx, edx
-	je	.L361
-	mov	r12, rsi
-	mov	rbp, rcx
-	mov	r14, r8
-	mov	r15d, edx
-	jmp	.L358
-	.p2align 4,,10
+	je	.L362
+	.p2align 4
 	.p2align 3
-.L370:
-	lea	r8d, [r15-1]
-	lea	r12, [r13+0+rbp]
-	sar	r8d
-	mov	r15d, r8d
-	test	r15d, r15d
-	je	.L361
 .L358:
-	mov	ebx, r15d
+	mov	r15d, r13d
 	mov	rdx, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp]
-	sar	ebx
-	movsx	rcx, ebx
-	imul	rcx, rbp
-	lea	r13, [r12+rcx]
-	mov	rsi, r13
+	sar	r15d
+	movsx	rbx, r15d
+	imul	rbx, rbp
+	add	rbx, r12
+	mov	rsi, rbx
 	call	r14
 	test	eax, eax
 	je	.L357
-	jg	.L370
-	mov	r15d, ebx
-	test	r15d, r15d
+	jle	.L360
+	lea	ecx, [r13-1]
+	lea	r12, [rbx+rbp]
+	sar	ecx
+	mov	r13d, ecx
 	jne	.L358
-.L361:
-	xor	r13d, r13d
+.L362:
+	xor	ebx, ebx
 .L357:
 	add	rsp, 24
+	.cfi_remember_state
 	.cfi_def_cfa_offset 56
-	mov	rax, r13
+	mov	rax, rbx
 	pop	rbx
 	.cfi_def_cfa_offset 48
 	pop	rbp
@@ -1709,6 +1704,14 @@ bsearch_r:
 	pop	r15
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L360:
+	.cfi_restore_state
+	test	r15d, r15d
+	je	.L362
+	mov	r13d, r15d
+	jmp	.L358
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r

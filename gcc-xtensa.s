@@ -1332,8 +1332,8 @@ bsearch_r:
 	entry	sp, 48
 	s32i	a7, sp, 4
 	s32i	a2, sp, 0
-.L358:
 	bnez.n	a4, .L347
+.L351:
 	movi.n	a2, 0
 	j	.L346
 .L347:
@@ -1343,16 +1343,18 @@ bsearch_r:
 	l32i	a10, sp, 0
 	add.n	a2, a3, a11
 	mov.n	a11, a2
-	callx8	a6
 	addi.n	a4, a4, -1
-	beqz.n	a10, .L346
-	blti	a10, 1, .L351
-	add.n	a3, a2, a5
+	callx8	a6
 	srai	a4, a4, 1
-	j	.L358
-.L351:
+	beqz.n	a10, .L346
+	blti	a10, 1, .L349
+	add.n	a3, a2, a5
+	bnez.n	a4, .L347
+	j	.L351
+.L349:
+	beqz.n	a7, .L351
 	mov.n	a4, a7
-	j	.L358
+	j	.L347
 .L346:
 	retw.n
 	.size	bsearch_r, .-bsearch_r
