@@ -4737,17 +4737,18 @@ __ctzhi2:
 	bne	t0,zero,.L1035
 	andi	t1,a0,1024
 	bne	t1,zero,.L1036
-	slli	t2,a0,20
-	blt	t2,zero,.L1037
-	slli	a1,a0,19
-	blt	a1,zero,.L1038
-	slli	a2,a0,18
-	blt	a2,zero,.L1039
-	slli	a3,a0,17
-	blt	a3,zero,.L1040
+	slli	a1,a0,20
+	li	t2,4096
+	blt	a1,zero,.L1037
+	and	a2,a0,t2
+	bne	a2,zero,.L1038
+	slli	a3,a0,18
+	blt	a3,zero,.L1039
+	slli	a4,a0,17
+	blt	a4,zero,.L1040
 	srai	a0,a0,15
-	seqz	a4,a0
-	addi	a0,a4,15
+	seqz	a5,a0
+	addi	a0,a5,15
 	ret
 .L1026:
 	li	a0,0

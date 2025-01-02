@@ -4055,17 +4055,18 @@ __ctzhi2:
 	bne	a7,zero,.L1011
 	andi	t3,a0,1024
 	bne	t3,zero,.L1012
-	slli	t4,a0,52
-	blt	t4,zero,.L1013
-	slli	t5,a0,51
-	blt	t5,zero,.L1014
-	slli	t6,a0,50
-	blt	t6,zero,.L1015
-	slli	a5,a0,49
-	blt	a5,zero,.L1016
+	slli	t5,a0,52
+	li	t4,4096
+	blt	t5,zero,.L1013
+	and	t6,a0,t4
+	bne	t6,zero,.L1014
+	slli	a5,a0,50
+	blt	a5,zero,.L1015
+	slli	t0,a0,49
+	blt	t0,zero,.L1016
 	sraiw	a0,a0,15
-	seqz	t0,a0
-	addi	a0,t0,15
+	seqz	t1,a0
+	addi	a0,t1,15
 	ret
 .L1002:
 	li	a0,0
