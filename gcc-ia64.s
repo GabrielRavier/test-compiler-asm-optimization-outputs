@@ -9451,8 +9451,8 @@ __cmovh:
 .L1333:
 	.mmi
 	and r15 = -8, r34
-	nop 0
 	and r34 = 7, r34
+	mov ar.lc = r3
 	;;
 	.mib
 	sub r19 = r19, r15
@@ -9513,14 +9513,14 @@ __cmovh:
 	st1 [r30] = r21
 	(p20) br.cond.dpnt .L1275
 	;;
-	.mmb
+	.mmi
 	add r33 = r33, r11
-	add r32 = r32, r11
 	nop 0
+	add r32 = r32, r11
 	.mmi
 	ld1.sa r22 = [r34]
 	ld1.sa r23 = [r24]
-	mov ar.lc = r3
+	nop 0
 	;;
 	.mmi
 	ld1.sa r14 = [r25]
