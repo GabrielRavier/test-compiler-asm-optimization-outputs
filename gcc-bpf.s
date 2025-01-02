@@ -5483,85 +5483,85 @@ __muldi3:
 	r3 = r1
 	if r1 == 0 goto .L2138
 	r0 = 0
+	r5 = r0
 .L2137:
-	r5 = r2
+	r9 = r2
 	r1 = r3
 	r4 = r3
-	r5 += r2
+	r9 += r2
 	r4 &= 1
 	r1 >>= 1
 	r4 = -r4
 	r4 &= r2
 	r0 += r4
 	if r1 == 0 goto .L2154
-	r9 = r5
-	r2 = r3
+	r4 = r9
 	r1 &= 1
-	r9 += r5
+	r2 = r3
 	r1 = -r1
+	r4 += r9
+	r1 &= r9
 	r2 >>= 2
-	r1 &= r5
-	r0 += r1
-	if r2 == 0 goto .L2135
-	r5 = r9
-	r1 = r3
+	r5 += r1
+	if r2 == 0 goto .L2154
+	r9 = r4
 	r2 &= 1
-	r5 += r9
+	r1 = r3
 	r2 = -r2
+	r9 += r4
+	r2 &= r4
 	r1 >>= 3
-	r2 &= r9
 	r0 += r2
-	if r1 == 0 goto .L2135
-	r4 = r5
+	if r1 == 0 goto .L2154
+	r4 = r9
+	r1 &= 1
+	r2 = r3
+	r1 = -r1
+	r4 += r9
+	r1 &= r9
+	r2 >>= 4
+	r5 += r1
+	if r2 == 0 goto .L2154
+	r9 = r4
+	r2 &= 1
+	r1 = r3
+	r2 = -r2
+	r9 += r4
+	r2 &= r4
+	r1 >>= 5
+	r0 += r2
+	if r1 == 0 goto .L2154
+	r1 &= 1
+	r1 = -r1
+	r1 &= r9
+	r2 = r9
+	r5 += r1
+	r2 += r9
+	r1 = r3
+	r1 >>= 6
+	if r1 == 0 goto .L2154
+	r4 = r2
 	r9 = r3
 	r1 &= 1
-	r4 += r5
+	r4 += r2
 	r1 = -r1
-	r9 >>= 4
-	r1 &= r5
+	r9 >>= 7
+	r1 &= r2
 	r0 += r1
-	if r9 == 0 goto .L2135
-	r2 = r4
+	if r9 == 0 goto .L2154
 	r9 &= 1
-	r5 = r3
+	r2 = r4
 	r9 = -r9
 	r2 += r4
 	r9 &= r4
-	r5 >>= 5
-	r0 += r9
-	if r5 == 0 goto .L2135
-	r4 = r2
-	r5 &= 1
-	r9 = r3
-	r5 = -r5
-	r4 += r2
-	r5 &= r2
-	r9 >>= 6
-	r0 += r5
-	if r9 == 0 goto .L2135
-	r5 = r4
-	r1 = r3
-	r9 &= 1
-	r5 += r4
-	r9 = -r9
-	r1 >>= 7
-	r9 &= r4
-	r0 += r9
-	if r1 == 0 goto .L2135
-	r1 &= 1
-	r2 = r5
-	r1 = -r1
-	r2 += r5
-	r1 &= r5
 	r3 >>= 8
-	r0 += r1
+	r5 += r9
 	if r3 != 0 goto .L2137
+.L2154:
+	r0 += r5
 	exit
 .L2138:
 	r0 = r1
-.L2135:
-	exit
-.L2154:
 	exit
 	.size	__muldi3, .-__muldi3
 	.align	3
