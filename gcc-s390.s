@@ -7177,10 +7177,10 @@ __parityhi2:
 	nr	%r0,%r5
 	ar	%r2,%r0
 	lr	%r4,%r1
+	sra	%r4,13
 	lr	%r3,%r1
 	sra	%r1,15
 	lhi	%r0,1
-	sra	%r4,13
 	sra	%r3,14
 	nr	%r4,%r0
 	nr	%r3,%r0
@@ -7263,11 +7263,11 @@ __popcounthi2:
 	nr	%r0,%r5
 	ar	%r1,%r0
 	lr	%r3,%r2
+	sra	%r3,13
 	lr	%r4,%r2
 	sra	%r2,15
 	lhi	%r0,1
 	lr	%r5,%r2
-	sra	%r3,13
 	sra	%r4,14
 	nr	%r3,%r0
 	nr	%r4,%r0

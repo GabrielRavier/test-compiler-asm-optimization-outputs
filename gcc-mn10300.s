@@ -2065,27 +2065,28 @@ bswap_64:
 	mov r1,d2
 	and -16777216,d2
 	or d0,a1
+	asl 24,a3
 	mov a1,(56,sp)
+	extbu d3,a0
 	or d2,a1
 	mov a1,(8,sp)
-	asl 24,a3
-	lsr 24,d1
-	extbu d3,a0
 	mov a3,(12,sp)
-	mov d1,(4,sp)
 	mov a0,(20,sp)
-	mov (8,sp),d1
-	mov 0,a2
+	lsr 24,d1
 	mov (12,sp),a1
+	mov d1,(4,sp)
 	mov d0,(48,sp)
+	mov (8,sp),d1
 	mov (20,sp),d0
-	mov r4,r2
+	mov_mov 0, a2, r4, r2
 	asl 8,r2
 	or a2,d1
-	mov r2,(76,sp)
-	mov d1,(24,sp)
-	and 16711680,r2
 	or d0,a1
+	mov d1,(24,sp)
+	mov r2,(76,sp)
+	mov a1,(28,sp)
+	and 16711680,r2
+	mov (24,sp),r0
 	mov a3,(44,sp)
 	mov a3,(60,sp)
 	mov d2,(64,sp)
@@ -2096,8 +2097,6 @@ bswap_64:
 	mov a2,(32,sp)
 	mov d3,(sp)
 	mov r2,(36,sp)
-	mov a1,(28,sp)
-	mov (24,sp),r0
 	mov (28,sp),r3
 	mov (36,sp),r7
 	and 65280,r1
@@ -3649,8 +3648,8 @@ __parityhi2:
 	and 1,r3
 	add r1,d0
 	asr 12,a0
-	add r2,d0
 	and 1,a0
+	add r2,d0
 	add r3,d0
 	add_mov a0, d0, d1, a1
 	asr 13,a1
@@ -3708,8 +3707,8 @@ __popcounthi2:
 	and 1,r3
 	add r1,d0
 	asr 12,d1
-	add r2,d0
 	and 1,d1
+	add r2,d0
 	add r3,d0
 	add_mov d1, d0, a0, r0
 	asr 13,r0
@@ -4777,18 +4776,18 @@ __bswapdi2:
 	mov (48,sp),d3
 	or r2,r3
 	and 16711680,d0
-	mov r3,a2
+	mov_mov r3, a2, r4, r0
 	and -16777216,a2
-	or_mov d0, d3, r4, r0
 	lsr 24,r0
-	mov d3,(64,sp)
+	or d0,d3
 	or r0,r1
+	mov d3,(64,sp)
+	extbu r1,a0
 	or a2,d3
 	mov d3,(8,sp)
-	extbu r1,a0
 	mov a0,(20,sp)
-	mov (8,sp),a1
 	mov r4,d3
+	mov (8,sp),a1
 	mov (20,sp),r1
 	asl 8,d3
 	mov d3,(84,sp)
@@ -4797,26 +4796,26 @@ __bswapdi2:
 	asl 24,r7
 	mov d0,(56,sp)
 	mov r3,d0
-	mov a2,(72,sp)
 	mov d3,(44,sp)
 	and 65280,d0
+	mov r7,d3
+	mov a2,(72,sp)
 	or_mov a3, a1, d1, d2
-	mov_mov r7, d3, a3, a2
+	or_mov r1, d3, a3, a2
+	mov d0,(28,sp)
 	lsr 24,d2
+	or d3,d0
 	or a1,a2
-	or r1,d3
 	mov a3,(16,sp)
 	mov a3,(24,sp)
 	mov a3,(80,sp)
 	mov a3,(40,sp)
-	mov d2,(4,sp)
-	mov d0,(28,sp)
 	mov a2,(32,sp)
-	or d3,d0
+	mov d0,(36,sp)
 	mov r7,(52,sp)
+	mov d2,(4,sp)
 	mov r7,(68,sp)
 	mov r7,(12,sp)
-	mov d0,(36,sp)
 	mov (44,sp),d2
 	or_mov a3, a2, d1, r5
 	or d2,d0,a3
