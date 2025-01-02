@@ -7991,44 +7991,40 @@ frexp:
 	nop 0
 	movl r14 = 0xbff0000000000000
 	.mmf
-	mov r15 = r0
+	nop 0
 	nop 0
 	mov f6 = f8
 	;;
-	.mfi
-	setf.d f7 = r14
-	fneg f10 = f8
-	nop 0
-	.mlx
-	nop 0
-	movl r2 = 0x3fe0000000000000
-	;;
-	.mlx
-	setf.d f9 = r2
-	movl r16 = 0xbfe0000000000000
 	.mmf
+	setf.d f7 = r14
 	nop 0
+	fneg f10 = f8
+	.mmf
+	mov r15 = r0
 	nop 0
 	fcmp.lt p6, p7 = f8, f0
 	;;
 	.mlx
 	nop 0
-	movl r3 = 0x3fe0000000000000
+	movl r2 = 0x3fe0000000000000
 	.mfb
-	nop 0
+	mov r8 = r0
 	fcmp.neq p12, p13 = f8, f0
 	(p6) br.cond.dpnt .L1138
 	;;
 	.mfi
-	nop 0
+	setf.d f9 = r2
 	fcmp.ge p8, p9 = f8, f1
 	nop 0
-	.mmf
-	mov r8 = r0
-	setf.d f11 = r3
+	.mfi
+	nop 0
 	mov f10 = f8
+	nop 0
 	;;
-	.mib
+	.mlx
+	nop 0
+	movl r3 = 0x3fe0000000000000
+	.mmb
 	nop 0
 	nop 0
 	(p9) br.cond.dpnt .L1139
@@ -8076,13 +8072,13 @@ frexp:
 	;;
 .L1139:
 	.pred.rel.mutex p12, p13
-	.mmf
-	nop 0
+	.mfi
 	nop 0
 	fcmp.lt p10, p11 = f8, f9
+	nop 0
 	.mmf
 	mov r15 = r0
-	nop 0
+	setf.d f11 = r3
 	mov f6 = f10
 	;;
 	.mbb
@@ -8099,14 +8095,21 @@ frexp:
 	nop 0
 	fcmp.le p14, p15 = f6, f7
 	addl r15 = 1, r0
-	.mmi
-	setf.d f8 = r16
-	setf.d f11 = r3
-	mov r8 = r0
+	.mlx
+	nop 0
+	movl r16 = 0xbfe0000000000000
 	;;
-	.mfb
+	.mlx
+	setf.d f8 = r16
+	movl r3 = 0x3fe0000000000000
+	;;
+	.mmf
+	nop 0
 	nop 0
 	(p14) mov f6 = f10
+	.mmb
+	setf.d f11 = r3
+	nop 0
 	(p14) br.cond.dptk .L1116
 	;;
 	.mfi
