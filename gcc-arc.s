@@ -4496,6 +4496,7 @@ __udivmodhi4:
 	mov_s	r0,16	;3
 	.align 4
 .L1319:
+	cmp_s	r12,r3
 	blo	.L1369
 	sub_s	r12,r12,r3
 	exth_s	r12,r12
