@@ -7,14 +7,14 @@ memmove:
 	mov	r2, r4
 	bgeu	r5, r4, .L2
 	add	r5, r5, r6
-	add	r3, r4, r6
+	add	r15, r4, r6
 	beq	r6, zero, .L3
 .L4:
-	ldbu	r4, -1(r5)
-	addi	r3, r3, -1
+	ldbu	r14, -1(r5)
+	addi	r15, r15, -1
 	addi	r5, r5, -1
-	stb	r4, 0(r3)
-	bne	r2, r3, .L4
+	stb	r14, 0(r15)
+	bne	r2, r15, .L4
 	ret
 .L2:
 	bne	r4, r5, .L35
@@ -23,49 +23,49 @@ memmove:
 .L35:
 	beq	r6, zero, .L3
 	addi	r3, r6, -1
-	cmpltui	r3, r3, 7
-	addi	r4, r5, 1
-	bne	r3, zero, .L5
-	or	r3, r5, r2
-	andi	r3, r3, 3
-	addi	r4, r5, 1
-	bne	r3, zero, .L5
-	sub	r3, r2, r4
-	cmpgeui	r3, r3, 3
-	beq	r3, zero, .L5
-	srli	r8, r6, 2
-	mov	r3, r2
-	slli	r8, r8, 2
-	add	r7, r5, r8
+	cmpltui	r7, r3, 7
+	addi	r13, r5, 1
+	bne	r7, zero, .L5
+	or	r4, r5, r4
+	andi	r8, r4, 3
+	addi	r13, r5, 1
+	bne	r8, zero, .L5
+	sub	r9, r2, r13
+	cmpgeui	r10, r9, 3
+	beq	r10, zero, .L5
+	srli	r11, r6, 2
+	mov	r15, r2
+	slli	r12, r11, 2
+	add	r13, r5, r12
 .L6:
-	ldw	r4, 0(r5)
+	ldw	r14, 0(r5)
 	addi	r5, r5, 4
-	addi	r3, r3, 4
-	stw	r4, -4(r3)
-	bne	r7, r5, .L6
-	add	r5, r2, r8
-	sub	r3, r6, r8
-	beq	r6, r8, .L3
-	ldbu	r6, 0(r7)
-	cmpeqi	r4, r3, 1
+	addi	r15, r15, 4
+	stw	r14, -4(r15)
+	bne	r13, r5, .L6
+	add	r5, r2, r12
+	sub	r3, r6, r12
+	beq	r6, r12, .L3
+	ldbu	r6, 0(r13)
+	cmpeqi	r7, r3, 1
 	stb	r6, 0(r5)
-	bne	r4, zero, .L3
-	ldbu	r4, 1(r7)
-	cmpeqi	r3, r3, 2
+	bne	r7, zero, .L3
+	ldbu	r4, 1(r13)
+	cmpeqi	r8, r3, 2
 	stb	r4, 1(r5)
-	bne	r3, zero, .L3
-	ldbu	r3, 2(r7)
-	stb	r3, 2(r5)
+	bne	r8, zero, .L3
+	ldbu	r9, 2(r13)
+	stb	r9, 2(r5)
 	ret
 .L5:
-	add	r6, r2, r6
-	mov	r3, r2
+	add	r10, r2, r6
+	mov	r12, r2
 .L9:
-	ldbu	r5, -1(r4)
-	addi	r3, r3, 1
-	addi	r4, r4, 1
-	stb	r5, -1(r3)
-	bne	r3, r6, .L9
+	ldbu	r11, -1(r13)
+	addi	r12, r12, 1
+	addi	r13, r13, 1
+	stb	r11, -1(r12)
+	bne	r12, r10, .L9
 	ret
 	.size	memmove, .-memmove
 	.align	2
@@ -83,8 +83,8 @@ memccpy:
 	addi	r7, r7, -1
 	addi	r5, r5, 1
 	stb	r3, 0(r4)
-	andi	r3, r3, 0xff
-	bne	r3, r6, .L40
+	andi	r2, r3, 0xff
+	bne	r2, r6, .L40
 	addi	r2, r4, 1
 	ret
 .L39:
@@ -153,17 +153,17 @@ memcpy:
 	.type	memrchr, @function
 memrchr:
 	addi	r6, r6, -1
-	add	r6, r4, r6
+	add	r7, r4, r6
 	andi	r5, r5, 0xff
 	addi	r4, r4, -1
 	br	.L77
 .L79:
 	ldbu	r3, 0(r2)
-	addi	r6, r6, -1
+	addi	r7, r7, -1
 	beq	r3, r5, .L76
 .L77:
-	mov	r2, r6
-	bne	r6, r4, .L79
+	mov	r2, r7
+	bne	r7, r4, .L79
 	mov	r2, zero
 .L76:
 	ret
@@ -193,19 +193,19 @@ stpcpy:
 	ldbu	r3, 0(r5)
 	mov	r2, r4
 	stb	r3, 0(r4)
-	andi	r3, r3, 255
-	xori	r3, r3, 128
-	addi	r3, r3, -128
-	beq	r3, zero, .L86
+	andi	r4, r3, 255
+	xori	r6, r4, 128
+	addi	r7, r6, -128
+	beq	r7, zero, .L86
 .L87:
-	ldbu	r3, 1(r5)
+	ldbu	r8, 1(r5)
 	addi	r2, r2, 1
 	addi	r5, r5, 1
-	andi	r4, r3, 255
-	xori	r4, r4, 128
-	addi	r4, r4, -128
-	stb	r3, 0(r2)
-	bne	r4, zero, .L87
+	andi	r9, r8, 255
+	xori	r10, r9, 128
+	addi	r11, r10, -128
+	stb	r8, 0(r2)
+	bne	r11, zero, .L87
 .L86:
 	ret
 	.size	stpcpy, .-stpcpy
@@ -213,23 +213,23 @@ stpcpy:
 	.global	strchrnul
 	.type	strchrnul, @function
 strchrnul:
-	ldbu	r3, 0(r4)
+	ldbu	r8, 0(r4)
 	mov	r2, r4
 	andi	r5, r5, 0xff
-	andi	r4, r3, 255
-	xori	r4, r4, 128
-	addi	r4, r4, -128
-	bne	r4, zero, .L93
+	andi	r4, r8, 255
+	xori	r6, r4, 128
+	addi	r7, r6, -128
+	bne	r7, zero, .L93
 	ret
 .L95:
-	ldbu	r3, 1(r2)
+	ldbu	r8, 1(r2)
 	addi	r2, r2, 1
-	andi	r4, r3, 255
-	xori	r4, r4, 128
-	addi	r4, r4, -128
-	beq	r4, zero, .L92
+	andi	r9, r8, 255
+	xori	r10, r9, 128
+	addi	r11, r10, -128
+	beq	r11, zero, .L92
 .L93:
-	andi	r3, r3, 0xff
+	andi	r3, r8, 0xff
 	bne	r3, r5, .L95
 .L92:
 	ret
@@ -259,22 +259,22 @@ strcmp:
 	ldbu	r2, 0(r4)
 	ldbu	r6, 0(r5)
 	andi	r3, r2, 255
-	andi	r7, r6, 255
-	xori	r3, r3, 128
-	xori	r7, r7, 128
-	addi	r3, r3, -128
-	addi	r7, r7, -128
-	bne	r3, r7, .L116
+	andi	r9, r6, 255
+	xori	r7, r3, 128
+	xori	r10, r9, 128
+	addi	r8, r7, -128
+	addi	r11, r10, -128
+	bne	r8, r11, .L116
 	addi	r4, r4, 1
 	addi	r5, r5, 1
-	bne	r3, zero, .L109
-	mov	r2, zero
+	bne	r8, zero, .L109
+	mov	r4, zero
 .L108:
-	andi	r6, r6, 0xff
-	sub	r2, r2, r6
+	andi	r5, r6, 0xff
+	sub	r2, r4, r5
 	ret
 .L116:
-	andi	r2, r2, 0xff
+	andi	r4, r2, 0xff
 	br	.L108
 	.size	strcmp, .-strcmp
 	.align	2
@@ -283,12 +283,12 @@ strcmp:
 strlen:
 	ldb	r2, 0(r4)
 	beq	r2, zero, .L120
-	mov	r2, r4
+	mov	r5, r4
 .L119:
-	ldb	r3, 1(r2)
-	addi	r2, r2, 1
+	ldb	r3, 1(r5)
+	addi	r5, r5, 1
 	bne	r3, zero, .L119
-	sub	r2, r2, r4
+	sub	r2, r5, r4
 	ret
 .L120:
 	mov	r2, zero
@@ -302,10 +302,10 @@ strncmp:
 	ldbu	r2, 0(r4)
 	beq	r2, zero, .L132
 	addi	r6, r6, -1
-	add	r6, r4, r6
+	add	r8, r4, r6
 	br	.L126
 .L134:
-	beq	r4, r6, .L125
+	beq	r4, r8, .L125
 	addi	r4, r4, 1
 	bne	r3, r2, .L125
 	ldbu	r2, 0(r4)
@@ -336,16 +336,16 @@ swab:
 	cmplti	r2, r6, 2
 	bne	r2, zero, .L135
 	srli	r6, r6, 1
-	add	r6, r6, r6
-	add	r2, r4, r6
+	add	r3, r6, r6
+	add	r7, r4, r3
 .L137:
-	ldbu	r6, 1(r4)
-	ldbu	r3, 0(r4)
+	ldbu	r8, 1(r4)
+	ldbu	r9, 0(r4)
 	addi	r4, r4, 2
-	stb	r6, 0(r5)
-	stb	r3, 1(r5)
+	stb	r8, 0(r5)
+	stb	r9, 1(r5)
 	addi	r5, r5, 2
-	bne	r4, r2, .L137
+	bne	r4, r7, .L137
 .L135:
 	ret
 	.size	swab, .-swab
@@ -354,8 +354,8 @@ swab:
 	.type	isalpha, @function
 isalpha:
 	ori	r2, r4, 32
-	addi	r2, r2, -97
-	cmpltui	r2, r2, 26
+	addi	r3, r2, -97
+	cmpltui	r2, r3, 26
 	ret
 	.size	isalpha, .-isalpha
 	.align	2
@@ -448,19 +448,19 @@ isupper:
 iswcntrl:
 	cmpltui	r2, r4, 32
 	bne	r2, zero, .L159
-	addi	r2, r4, -127
-	cmpltui	r2, r2, 33
-	beq	r2, zero, .L160
+	addi	r3, r4, -127
+	cmpltui	r5, r3, 33
+	beq	r5, zero, .L160
 .L159:
 	movi	r2, 1
 	ret
 .L160:
-	addi	r2, r4, -8232
-	cmpltui	r2, r2, 2
-	bne	r2, zero, .L159
-	movhi	r2, 65535
-	addi	r2, r2, 7
-	add	r4, r4, r2
+	addi	r6, r4, -8232
+	cmpltui	r7, r6, 2
+	bne	r7, zero, .L159
+	movhi	r8, 65535
+	addi	r9, r8, 7
+	add	r4, r4, r9
 	cmpltui	r2, r4, 3
 	ret
 	.size	iswcntrl, .-iswcntrl
@@ -478,22 +478,22 @@ iswdigit:
 iswprint:
 	cmpgeui	r2, r4, 255
 	beq	r2, zero, .L169
-	cmpltui	r2, r4, 8232
-	bne	r2, zero, .L167
-	addi	r2, r4, -8234
-	cmpltui	r2, r2, 47062
-	bne	r2, zero, .L167
-	movhi	r2, 65535
-	addi	r2, r2, 8192
-	add	r2, r4, r2
-	cmpltui	r2, r2, 8185
-	bne	r2, zero, .L167
-	movhi	r2, 65535
-	addi	r2, r2, 4
-	movhi	r3, 16
-	add	r2, r4, r2
-	addi	r3, r3, 3
-	bltu	r3, r2, .L168
+	cmpltui	r3, r4, 8232
+	bne	r3, zero, .L167
+	addi	r5, r4, -8234
+	cmpltui	r6, r5, 47062
+	bne	r6, zero, .L167
+	movhi	r7, 65535
+	addi	r8, r7, 8192
+	add	r9, r4, r8
+	cmpltui	r10, r9, 8185
+	bne	r10, zero, .L167
+	movhi	r11, 65535
+	addi	r12, r11, 4
+	movhi	r13, 16
+	add	r14, r4, r12
+	addi	r15, r13, 3
+	bltu	r15, r14, .L168
 	andi	r4, r4, 65534
 	movui	r2, 65534
 	cmpne	r2, r4, r2
@@ -502,9 +502,9 @@ iswprint:
 	movi	r2, 1
 	ret
 .L169:
-	addi	r2, r4, 1
-	andi	r2, r2, 127
-	cmpgeui	r2, r2, 33
+	addi	r3, r4, 1
+	andi	r5, r3, 127
+	cmpgeui	r2, r5, 33
 	ret
 .L168:
 	mov	r2, zero
@@ -515,11 +515,11 @@ iswprint:
 	.type	iswxdigit, @function
 iswxdigit:
 	addi	r2, r4, -48
-	cmpltui	r2, r2, 10
-	bne	r2, zero, .L172
-	ori	r2, r4, 32
-	addi	r2, r2, -97
-	cmpltui	r2, r2, 6
+	cmpltui	r3, r2, 10
+	bne	r3, zero, .L172
+	ori	r4, r4, 32
+	addi	r5, r4, -97
+	cmpltui	r2, r5, 6
 	ret
 .L172:
 	movi	r2, 1
@@ -931,11 +931,11 @@ l64a:
 .L270:
 	andi	r5, r4, 63
 	movhi	r2, %hiadj(digits)
-	add	r2, r5, r2
-	ldbu	r2, %lo(digits)(r2)
+	add	r6, r5, r2
+	ldbu	r7, %lo(digits)(r6)
 	srli	r4, r4, 6
 	addi	r3, r3, 1
-	stb	r2, -1(r3)
+	stb	r7, -1(r3)
 	bne	r4, zero, .L270
 .L269:
 	stb	zero, 0(r3)
@@ -966,10 +966,10 @@ rand:
 	call	__muldi3
 	addi	r4, r2, 1
 	cmpltu	r2, r4, r2
-	add	r2, r2, r3
-	stw	r2, %gprel(seed+4)(gp)
-	srli	r2, r2, 1
+	add	r3, r2, r3
+	srli	r2, r3, 1
 	stw	r4, %gprel(seed)(gp)
+	stw	r3, %gprel(seed+4)(gp)
 	ldw	ra, 0(sp)
 	addi	sp, sp, 4
 	ret
@@ -983,9 +983,9 @@ insque:
 	stw	r5, 4(r4)
 	stw	r2, 0(r4)
 	stw	r4, 0(r5)
-	ldw	r2, 0(r4)
-	beq	r2, zero, .L276
-	stw	r4, 4(r2)
+	ldw	r3, 0(r4)
+	beq	r3, zero, .L276
+	stw	r4, 4(r3)
 .L276:
 	ret
 .L282:
@@ -1002,9 +1002,9 @@ remque:
 	ldw	r3, 4(r4)
 	stw	r3, 4(r2)
 .L284:
-	ldw	r3, 4(r4)
-	beq	r3, zero, .L283
-	stw	r2, 0(r3)
+	ldw	r4, 4(r4)
+	beq	r4, zero, .L283
+	stw	r2, 0(r4)
 .L283:
 	ret
 	.size	remque, .-remque
@@ -1056,10 +1056,10 @@ lsearch:
 .L293:
 	ldw	r2, 4(sp)
 	mul	r19, r16, r17
-	addi	r17, r17, 1
-	stw	r17, 0(r2)
-	ldw	r2, 0(sp)
-	add	r19, r2, r19
+	ldw	r4, 0(sp)
+	addi	r3, r17, 1
+	stw	r3, 0(r2)
+	add	r19, r4, r19
 	beq	r16, zero, .L292
 	mov	r6, r16
 	mov	r5, r18
@@ -1132,40 +1132,40 @@ atoi:
 	ldb	r3, 0(r4)
 	addi	r2, r3, -9
 	cmpeqi	r5, r3, 32
-	cmpltui	r2, r2, 5
+	cmpltui	r6, r2, 5
 	bne	r5, zero, .L325
-	bne	r2, zero, .L325
-	cmpeqi	r2, r3, 43
-	bne	r2, zero, .L326
-	cmpeqi	r2, r3, 45
-	beq	r2, zero, .L346
+	bne	r6, zero, .L325
+	cmpeqi	r7, r3, 43
+	bne	r7, zero, .L326
+	cmpeqi	r8, r3, 45
+	beq	r8, zero, .L346
 	ldb	r3, 1(r4)
 	addi	r4, r4, 1
-	addi	r2, r3, -48
-	cmpgeui	r2, r2, 10
-	bne	r2, zero, .L336
-	movi	r8, 1
+	addi	r10, r3, -48
+	cmpgeui	r11, r10, 10
+	bne	r11, zero, .L336
+	movi	r13, 1
 .L329:
 	mov	r2, zero
 .L333:
 	addi	r4, r4, 1
-	addi	r7, r3, -48
+	addi	r14, r3, -48
 	ldb	r3, 0(r4)
-	muli	r6, r2, 10
-	addi	r5, r3, -48
-	cmpltui	r5, r5, 10
-	sub	r2, r6, r7
+	muli	r15, r2, 10
+	addi	r2, r3, -48
+	cmpltui	r5, r2, 10
+	sub	r2, r15, r14
 	bne	r5, zero, .L333
-	bne	r8, zero, .L324
-	sub	r2, r7, r6
+	bne	r13, zero, .L324
+	sub	r2, r14, r15
 	ret
 .L325:
 	addi	r4, r4, 1
 	br	.L331
 .L346:
-	addi	r2, r3, -48
-	cmpltui	r2, r2, 10
-	mov	r8, zero
+	addi	r12, r3, -48
+	cmpltui	r2, r12, 10
+	mov	r13, zero
 	bne	r2, zero, .L329
 	ret
 .L336:
@@ -1174,10 +1174,10 @@ atoi:
 	ret
 .L326:
 	ldb	r3, 1(r4)
-	mov	r8, zero
+	mov	r13, zero
 	addi	r4, r4, 1
-	addi	r2, r3, -48
-	cmpltui	r2, r2, 10
+	addi	r9, r3, -48
+	cmpltui	r2, r9, 10
 	bne	r2, zero, .L329
 	ret
 	.size	atoi, .-atoi
@@ -1189,49 +1189,49 @@ atol:
 	ldb	r3, 0(r4)
 	addi	r2, r3, -9
 	cmpeqi	r5, r3, 32
-	cmpltui	r2, r2, 5
+	cmpltui	r6, r2, 5
 	bne	r5, zero, .L348
-	bne	r2, zero, .L348
-	cmpeqi	r2, r3, 43
-	bne	r2, zero, .L349
-	cmpeqi	r2, r3, 45
-	beq	r2, zero, .L369
+	bne	r6, zero, .L348
+	cmpeqi	r7, r3, 43
+	bne	r7, zero, .L349
+	cmpeqi	r10, r3, 45
+	beq	r10, zero, .L369
 	ldb	r3, 1(r4)
-	movi	r8, 1
+	movi	r13, 1
 	addi	r4, r4, 1
-	addi	r2, r3, -48
-	cmpltui	r2, r2, 10
+	addi	r11, r3, -48
+	cmpltui	r2, r11, 10
 	beq	r2, zero, .L370
 .L353:
 	mov	r2, zero
 .L356:
 	addi	r4, r4, 1
-	addi	r7, r3, -48
+	addi	r14, r3, -48
 	ldb	r3, 0(r4)
-	muli	r6, r2, 10
-	addi	r5, r3, -48
-	cmpltui	r5, r5, 10
-	sub	r2, r6, r7
+	muli	r15, r2, 10
+	addi	r2, r3, -48
+	cmpltui	r5, r2, 10
+	sub	r2, r15, r14
 	bne	r5, zero, .L356
-	bne	r8, zero, .L347
-	sub	r2, r7, r6
+	bne	r13, zero, .L347
+	sub	r2, r14, r15
 	ret
 .L348:
 	addi	r4, r4, 1
 	br	.L352
 .L369:
-	addi	r2, r3, -48
-	cmpltui	r2, r2, 10
+	addi	r12, r3, -48
+	cmpltui	r2, r12, 10
 	beq	r2, zero, .L371
 .L360:
-	mov	r8, zero
+	mov	r13, zero
 	br	.L353
 .L349:
 	ldb	r3, 1(r4)
 	addi	r4, r4, 1
-	addi	r2, r3, -48
-	cmpgeui	r2, r2, 10
-	beq	r2, zero, .L360
+	addi	r8, r3, -48
+	cmpgeui	r9, r8, 10
+	beq	r9, zero, .L360
 	mov	r2, zero
 .L347:
 	ret
@@ -1254,17 +1254,17 @@ atoll:
 	cmpeqi	r3, r17, 32
 	bne	r3, zero, .L373
 	addi	r2, r17, -9
-	cmpltui	r2, r2, 5
-	bne	r2, zero, .L373
-	cmpeqi	r2, r17, 43
-	bne	r2, zero, .L374
-	cmpeqi	r2, r17, 45
-	beq	r2, zero, .L395
+	cmpltui	r5, r2, 5
+	bne	r5, zero, .L373
+	cmpeqi	r6, r17, 43
+	bne	r6, zero, .L374
+	cmpeqi	r8, r17, 45
+	beq	r8, zero, .L395
 	ldb	r17, 1(r4)
 	addi	r16, r4, 1
-	addi	r2, r17, -48
-	cmpgeui	r2, r2, 10
-	bne	r2, zero, .L384
+	addi	r9, r17, -48
+	cmpgeui	r10, r9, 10
+	bne	r10, zero, .L384
 	movi	r18, 1
 .L377:
 	mov	r4, zero
@@ -1274,21 +1274,21 @@ atoll:
 	mov	r7, zero
 	call	__muldi3
 	addi	r16, r16, 1
-	addi	r7, r17, -48
+	addi	r13, r17, -48
 	ldb	r17, 0(r16)
-	srai	r8, r7, 31
-	sub	r4, r2, r7
-	addi	r6, r17, -48
-	cmpltu	r9, r2, r4
-	sub	r5, r3, r8
-	cmpltui	r6, r6, 10
-	sub	r5, r5, r9
+	srai	r14, r13, 31
+	sub	r4, r2, r13
+	addi	r15, r17, -48
+	cmpltu	r7, r2, r4
+	sub	r5, r3, r14
+	cmpltui	r6, r15, 10
+	sub	r5, r5, r7
 	bne	r6, zero, .L381
 	bne	r18, zero, .L372
-	sub	r4, r7, r2
-	cmpltu	r7, r7, r4
-	sub	r8, r8, r3
-	sub	r5, r8, r7
+	sub	r4, r13, r2
+	cmpltu	ra, r13, r4
+	sub	r17, r14, r3
+	sub	r5, r17, ra
 .L372:
 	mov	r2, r4
 	mov	r3, r5
@@ -1302,9 +1302,9 @@ atoll:
 	addi	r4, r4, 1
 	br	.L379
 .L395:
-	addi	r2, r17, -48
-	cmpltui	r2, r2, 10
-	beq	r2, zero, .L384
+	addi	r11, r17, -48
+	cmpltui	r12, r11, 10
+	beq	r12, zero, .L384
 	mov	r16, r4
 	mov	r18, zero
 	br	.L377
@@ -1312,9 +1312,9 @@ atoll:
 	ldb	r17, 1(r4)
 	addi	r16, r4, 1
 	mov	r18, zero
-	addi	r2, r17, -48
-	cmpltui	r2, r2, 10
-	bne	r2, zero, .L377
+	addi	r4, r17, -48
+	cmpltui	r7, r4, 10
+	bne	r7, zero, .L377
 .L384:
 	mov	r4, zero
 	mov	r5, zero
@@ -1438,23 +1438,23 @@ div:
 	mov	r16, r4
 	mov	r17, r5
 	bne	r2, zero, .L428
-	slli	r2, r4, 4
+	slli	r4, r4, 4
 	movhi	r3, %hiadj(__divsi3_table)
-	cmpgeui	r18, r18, 16
-	or	r2, r2, r5
-	add	r3, r2, r3
-	ldbu	r19, %lo(__divsi3_table)(r3)
-	bne	r18, zero, .L430
+	cmpgeui	r7, r18, 16
+	or	r5, r4, r5
+	add	r6, r5, r3
+	ldbu	r19, %lo(__divsi3_table)(r6)
+	bne	r7, zero, .L430
 .L432:
-	slli	r2, r16, 4
-	movhi	r3, %hiadj(__divsi3_table)
-	or	r2, r2, r17
-	add	r3, r2, r3
-	ldbu	r3, %lo(__divsi3_table)(r3)
+	slli	r8, r16, 4
+	movhi	r9, %hiadj(__divsi3_table)
+	or	r10, r8, r17
+	add	r11, r10, r9
+	ldbu	r12, %lo(__divsi3_table)(r11)
 .L429:
-	mul	r3, r3, r17
+	mul	r13, r12, r17
 	mov	r2, r19
-	sub	r3, r16, r3
+	sub	r3, r16, r13
 	ldw	ra, 16(sp)
 	ldw	r19, 12(sp)
 	ldw	r18, 8(sp)
@@ -1464,14 +1464,14 @@ div:
 	ret
 .L428:
 	call	__divsi3
-	cmpgeui	r18, r18, 16
+	cmpgeui	r7, r18, 16
 	mov	r19, r2
-	beq	r18, zero, .L432
+	beq	r7, zero, .L432
 .L430:
 	mov	r5, r17
 	mov	r4, r16
 	call	__divsi3
-	mov	r3, r2
+	mov	r12, r2
 	br	.L429
 	.size	div, .-div
 	.align	2
@@ -1553,23 +1553,23 @@ ldiv:
 	mov	r16, r4
 	mov	r17, r5
 	bne	r2, zero, .L442
-	slli	r2, r4, 4
+	slli	r4, r4, 4
 	movhi	r3, %hiadj(__divsi3_table)
-	cmpgeui	r18, r18, 16
-	or	r2, r2, r5
-	add	r3, r2, r3
-	ldbu	r19, %lo(__divsi3_table)(r3)
-	bne	r18, zero, .L444
+	cmpgeui	r7, r18, 16
+	or	r5, r4, r5
+	add	r6, r5, r3
+	ldbu	r19, %lo(__divsi3_table)(r6)
+	bne	r7, zero, .L444
 .L446:
-	slli	r2, r16, 4
-	movhi	r3, %hiadj(__divsi3_table)
-	or	r2, r2, r17
-	add	r3, r2, r3
-	ldbu	r3, %lo(__divsi3_table)(r3)
+	slli	r8, r16, 4
+	movhi	r9, %hiadj(__divsi3_table)
+	or	r10, r8, r17
+	add	r11, r10, r9
+	ldbu	r12, %lo(__divsi3_table)(r11)
 .L443:
-	mul	r3, r3, r17
+	mul	r13, r12, r17
 	mov	r2, r19
-	sub	r3, r16, r3
+	sub	r3, r16, r13
 	ldw	ra, 16(sp)
 	ldw	r19, 12(sp)
 	ldw	r18, 8(sp)
@@ -1579,14 +1579,14 @@ ldiv:
 	ret
 .L442:
 	call	__divsi3
-	cmpgeui	r18, r18, 16
+	cmpgeui	r7, r18, 16
 	mov	r19, r2
-	beq	r18, zero, .L446
+	beq	r7, zero, .L446
 .L444:
 	mov	r5, r17
 	mov	r4, r16
 	call	__divsi3
-	mov	r3, r2
+	mov	r12, r2
 	br	.L443
 	.size	ldiv, .-ldiv
 	.align	2
@@ -1701,13 +1701,13 @@ wcscpy:
 wcslen:
 	ldw	r2, 0(r4)
 	beq	r2, zero, .L477
-	mov	r2, r4
+	mov	r5, r4
 .L476:
-	ldw	r3, 4(r2)
-	addi	r2, r2, 4
+	ldw	r3, 4(r5)
+	addi	r5, r5, 4
 	bne	r3, zero, .L476
-	sub	r2, r2, r4
-	srai	r2, r2, 2
+	sub	r4, r5, r4
+	srai	r2, r4, 2
 	ret
 .L477:
 	mov	r2, zero
@@ -1731,10 +1731,10 @@ wcsncmp:
 	mov	r2, zero
 	ret
 .L482:
-	ldw	r3, 0(r4)
-	ldw	r2, 0(r5)
-	blt	r3, r2, .L492
-	cmplt	r2, r2, r3
+	ldw	r4, 0(r4)
+	ldw	r5, 0(r5)
+	blt	r4, r5, .L492
+	cmplt	r2, r5, r4
 	ret
 .L492:
 	movi	r2, -1
@@ -1811,27 +1811,27 @@ wmemmove:
 	addi	r3, r6, -1
 	bgeu	r7, r4, .L543
 	beq	r6, zero, .L536
-	slli	r3, r3, 2
-	add	r6, r5, r3
-	add	r3, r2, r3
+	slli	r10, r3, 2
+	add	r14, r5, r10
+	add	r13, r2, r10
 .L533:
-	ldw	r8, 0(r6)
-	mov	r7, r6
-	addi	r3, r3, -4
-	stw	r8, 4(r3)
-	addi	r6, r6, -4
-	bne	r5, r7, .L533
+	ldw	r11, 0(r14)
+	mov	r12, r14
+	addi	r13, r13, -4
+	stw	r11, 4(r13)
+	addi	r14, r14, -4
+	bne	r5, r12, .L533
 	ret
 .L543:
-	mov	r7, r2
+	mov	r9, r2
 	beq	r6, zero, .L536
 .L531:
 	ldw	r8, 0(r5)
 	addi	r3, r3, -1
 	cmpnei	r6, r3, -1
-	stw	r8, 0(r7)
+	stw	r8, 0(r9)
 	addi	r5, r5, 4
-	addi	r7, r7, 4
+	addi	r9, r9, 4
 	bne	r6, zero, .L531
 .L536:
 	ret
@@ -1858,15 +1858,15 @@ wmemset:
 	.type	bcopy, @function
 bcopy:
 	bgeu	r4, r5, .L552
-	add	r2, r4, r6
-	add	r5, r5, r6
+	add	r13, r4, r6
+	add	r14, r5, r6
 	beq	r6, zero, .L551
 .L554:
-	ldbu	r3, -1(r2)
-	addi	r2, r2, -1
-	addi	r5, r5, -1
-	stb	r3, 0(r5)
-	bne	r4, r2, .L554
+	ldbu	r12, -1(r13)
+	addi	r13, r13, -1
+	addi	r14, r14, -1
+	stb	r12, 0(r14)
+	bne	r4, r13, .L554
 	ret
 .L552:
 	bne	r4, r5, .L585
@@ -1875,51 +1875,51 @@ bcopy:
 .L585:
 	beq	r6, zero, .L551
 	addi	r2, r6, -1
-	cmpltui	r2, r2, 7
-	bne	r2, zero, .L584
-	or	r2, r5, r4
-	andi	r2, r2, 3
-	bne	r2, zero, .L584
-	addi	r2, r4, 1
-	sub	r3, r5, r2
-	cmpgeui	r3, r3, 3
-	beq	r3, zero, .L555
-	srli	r8, r6, 2
-	mov	r2, r5
-	slli	r8, r8, 2
-	add	r7, r4, r8
+	cmpltui	r3, r2, 7
+	bne	r3, zero, .L584
+	or	r7, r5, r4
+	andi	r8, r7, 3
+	bne	r8, zero, .L584
+	addi	r11, r4, 1
+	sub	r9, r5, r11
+	cmpgeui	r10, r9, 3
+	beq	r10, zero, .L555
+	srli	r11, r6, 2
+	mov	r15, r5
+	slli	r12, r11, 2
+	add	r13, r4, r12
 .L556:
-	ldw	r3, 0(r4)
+	ldw	r14, 0(r4)
 	addi	r4, r4, 4
-	addi	r2, r2, 4
-	stw	r3, -4(r2)
-	bne	r7, r4, .L556
-	add	r5, r5, r8
-	sub	r2, r6, r8
-	beq	r6, r8, .L551
-	ldbu	r4, 0(r7)
-	cmpeqi	r3, r2, 1
+	addi	r15, r15, 4
+	stw	r14, -4(r15)
+	bne	r13, r4, .L556
+	add	r5, r5, r12
+	sub	r2, r6, r12
+	beq	r6, r12, .L551
+	ldbu	r4, 0(r13)
+	cmpeqi	r6, r2, 1
 	stb	r4, 0(r5)
-	bne	r3, zero, .L551
-	ldbu	r3, 1(r7)
-	cmpeqi	r2, r2, 2
+	bne	r6, zero, .L551
+	ldbu	r3, 1(r13)
+	cmpeqi	r7, r2, 2
 	stb	r3, 1(r5)
-	bne	r2, zero, .L551
-	ldbu	r2, 2(r7)
-	stb	r2, 2(r5)
+	bne	r7, zero, .L551
+	ldbu	r8, 2(r13)
+	stb	r8, 2(r5)
 	ret
 .L584:
-	addi	r2, r4, 1
+	addi	r11, r4, 1
 .L555:
-	add	r4, r4, r6
+	add	r9, r4, r6
 	br	.L559
 .L586:
-	addi	r2, r2, 1
+	addi	r11, r11, 1
 .L559:
-	ldbu	r3, -1(r2)
+	ldbu	r10, -1(r11)
 	addi	r5, r5, 1
-	stb	r3, -1(r5)
-	bne	r2, r4, .L586
+	stb	r10, -1(r5)
+	bne	r11, r9, .L586
 	ret
 	.size	bcopy, .-bcopy
 	.align	2
@@ -1929,39 +1929,39 @@ rotl64:
 	addi	r3, r6, -32
 	blt	r3, zero, .L588
 	sub	r6, zero, r6
-	andi	r6, r6, 63
-	addi	r7, r6, -32
-	sll	r3, r4, r3
-	mov	r2, zero
-	blt	r7, zero, .L590
+	andi	r13, r6, 63
+	addi	r14, r13, -32
+	sll	r12, r4, r3
+	mov	r11, zero
+	blt	r14, zero, .L590
 .L592:
-	srl	r7, r5, r7
-	mov	r6, zero
-	or	r3, r6, r3
-	or	r2, r7, r2
+	srl	r8, r5, r14
+	mov	r5, zero
+	or	r3, r5, r12
+	or	r2, r8, r11
 	ret
 .L588:
-	srli	r3, r4, 1
+	srli	r7, r4, 1
 	movi	r2, 31
-	sub	r2, r2, r6
-	sll	r7, r5, r6
-	srl	r3, r3, r2
-	sll	r2, r4, r6
+	sub	r8, r2, r6
+	sll	r10, r5, r6
+	srl	r9, r7, r8
+	sll	r11, r4, r6
 	sub	r6, zero, r6
-	andi	r6, r6, 63
-	or	r3, r3, r7
-	addi	r7, r6, -32
-	bge	r7, zero, .L592
+	andi	r13, r6, 63
+	addi	r14, r13, -32
+	or	r12, r9, r10
+	bge	r14, zero, .L592
 .L590:
-	slli	r7, r5, 1
-	movi	r8, 31
-	sub	r8, r8, r6
-	srl	r4, r4, r6
-	sll	r7, r7, r8
-	srl	r6, r5, r6
-	or	r7, r7, r4
-	or	r2, r7, r2
-	or	r3, r6, r3
+	slli	r15, r5, 1
+	movi	r3, 31
+	sub	r7, r3, r13
+	sll	r2, r15, r7
+	srl	r4, r4, r13
+	srl	r5, r5, r13
+	or	r8, r2, r4
+	or	r2, r8, r11
+	or	r3, r5, r12
 	ret
 	.size	rotl64, .-rotl64
 	.align	2
@@ -1971,39 +1971,39 @@ rotr64:
 	addi	r2, r6, -32
 	blt	r2, zero, .L594
 	sub	r6, zero, r6
-	andi	r6, r6, 63
-	addi	r7, r6, -32
-	srl	r2, r5, r2
-	mov	r3, zero
-	blt	r7, zero, .L596
+	andi	r13, r6, 63
+	addi	r14, r13, -32
+	srl	r12, r5, r2
+	mov	r11, zero
+	blt	r14, zero, .L596
 .L598:
-	sll	r7, r4, r7
-	mov	r6, zero
-	or	r2, r6, r2
-	or	r3, r7, r3
+	sll	r8, r4, r14
+	mov	r4, zero
+	or	r2, r4, r12
+	or	r3, r8, r11
 	ret
 .L594:
-	slli	r2, r5, 1
+	slli	r7, r5, 1
 	movi	r3, 31
-	sub	r3, r3, r6
-	srl	r7, r4, r6
-	sll	r2, r2, r3
-	srl	r3, r5, r6
+	sub	r8, r3, r6
+	srl	r10, r4, r6
+	sll	r9, r7, r8
+	srl	r11, r5, r6
 	sub	r6, zero, r6
-	andi	r6, r6, 63
-	or	r2, r2, r7
-	addi	r7, r6, -32
-	bge	r7, zero, .L598
+	andi	r13, r6, 63
+	addi	r14, r13, -32
+	or	r12, r9, r10
+	bge	r14, zero, .L598
 .L596:
-	srli	r7, r4, 1
-	movi	r8, 31
-	sub	r8, r8, r6
-	sll	r5, r5, r6
-	srl	r7, r7, r8
-	sll	r6, r4, r6
-	or	r7, r7, r5
-	or	r2, r6, r2
-	or	r3, r7, r3
+	srli	r15, r4, 1
+	movi	r2, 31
+	sub	r7, r2, r13
+	srl	r3, r15, r7
+	sll	r5, r5, r13
+	sll	r4, r4, r13
+	or	r8, r3, r5
+	or	r2, r4, r12
+	or	r3, r8, r11
 	ret
 	.size	rotr64, .-rotr64
 	.align	2
@@ -2041,10 +2041,10 @@ rotl16:
 	andi	r5, r5, 15
 	sub	r3, zero, r5
 	andi	r2, r4, 0xffff
-	andi	r3, r3, 15
+	andi	r6, r3, 15
 	sll	r4, r4, r5
-	srl	r2, r2, r3
-	or	r2, r4, r2
+	srl	r7, r2, r6
+	or	r2, r4, r7
 	ret
 	.size	rotl16, .-rotl16
 	.align	2
@@ -2054,10 +2054,10 @@ rotr16:
 	andi	r5, r5, 15
 	sub	r3, zero, r5
 	andi	r2, r4, 0xffff
-	andi	r3, r3, 15
-	srl	r2, r2, r5
-	sll	r4, r4, r3
-	or	r2, r2, r4
+	andi	r6, r3, 15
+	srl	r7, r2, r5
+	sll	r4, r4, r6
+	or	r2, r7, r4
 	ret
 	.size	rotr16, .-rotr16
 	.align	2
@@ -2067,10 +2067,10 @@ rotl8:
 	andi	r5, r5, 7
 	sub	r3, zero, r5
 	andi	r2, r4, 0xff
-	andi	r3, r3, 7
+	andi	r6, r3, 7
 	sll	r4, r4, r5
-	srl	r2, r2, r3
-	or	r2, r4, r2
+	srl	r7, r2, r6
+	or	r2, r4, r7
 	ret
 	.size	rotl8, .-rotl8
 	.align	2
@@ -2080,10 +2080,10 @@ rotr8:
 	andi	r5, r5, 7
 	sub	r3, zero, r5
 	andi	r2, r4, 0xff
-	andi	r3, r3, 7
-	srl	r2, r2, r5
-	sll	r4, r4, r3
-	or	r2, r2, r4
+	andi	r6, r3, 7
+	srl	r7, r2, r5
+	sll	r4, r4, r6
+	or	r2, r7, r4
 	ret
 	.size	rotr8, .-rotr8
 	.align	2
@@ -2091,24 +2091,24 @@ rotr8:
 	.type	bswap_16, @function
 bswap_16:
 	andi	r2, r4, 0xffff
-	srli	r2, r2, 8
+	srli	r3, r2, 8
 	slli	r4, r4, 8
-	or	r2, r2, r4
+	or	r2, r3, r4
 	ret
 	.size	bswap_16, .-bswap_16
 	.align	2
 	.global	bswap_32
 	.type	bswap_32, @function
 bswap_32:
-	srli	r5, r4, 24
 	slli	r2, r4, 24
+	srli	r5, r4, 24
 	srli	r3, r4, 8
 	slli	r4, r4, 8
-	or	r2, r2, r5
-	andi	r3, r3, 65280
-	or	r2, r2, r3
-	andhi	r4, r4, 255
-	or	r2, r2, r4
+	or	r6, r2, r5
+	andi	r7, r3, 65280
+	or	r8, r6, r7
+	andhi	r9, r4, 255
+	or	r2, r8, r9
 	ret
 	.size	bswap_32, .-bswap_32
 	.align	2
@@ -2116,23 +2116,23 @@ bswap_32:
 	.type	bswap_64, @function
 bswap_64:
 	srli	r8, r5, 8
-	srli	r9, r4, 24
 	slli	r3, r4, 24
 	srli	r2, r5, 24
 	slli	r7, r5, 8
 	srli	r6, r4, 8
+	srli	r9, r4, 24
 	slli	r4, r4, 8
+	andi	r10, r8, 65280
 	slli	r5, r5, 24
-	andi	r8, r8, 65280
-	or	r2, r2, r8
-	andhi	r7, r7, 255
-	or	r3, r3, r9
-	andi	r6, r6, 65280
-	or	r2, r2, r7
-	or	r3, r3, r6
-	andhi	r4, r4, 255
-	or	r2, r2, r5
-	or	r3, r3, r4
+	or	r11, r2, r10
+	or	r13, r3, r9
+	andhi	r12, r7, 255
+	andi	r14, r6, 65280
+	or	r15, r11, r12
+	or	r8, r13, r14
+	andhi	r3, r4, 255
+	or	r2, r15, r5
+	or	r3, r8, r3
 	ret
 	.size	bswap_64, .-bswap_64
 	.align	2
@@ -2147,8 +2147,8 @@ ffs:
 	srl	r3, r4, r2
 	addi	r2, r2, 1
 	cmpnei	r5, r2, 32
-	andi	r3, r3, 1
-	beq	r3, zero, .L616
+	andi	r6, r3, 1
+	beq	r6, zero, .L616
 	ret
 .L615:
 	mov	r2, zero
@@ -2185,8 +2185,8 @@ gl_isinff:
 	mov	r16, r4
 	call	__ltsf2
 	blt	r2, zero, .L626
-	movhi	r5, 32640
-	addi	r5, r5, -1
+	movhi	r2, 32640
+	addi	r5, r2, -1
 	mov	r4, r16
 	call	__gtsf2
 	cmplt	r2, zero, r2
@@ -2216,9 +2216,9 @@ gl_isinfd:
 	mov	r16, r5
 	call	__ltdf2
 	blt	r2, zero, .L631
-	movhi	r7, 32752
+	movhi	r2, 32752
 	movi	r6, -1
-	addi	r7, r7, -1
+	addi	r7, r2, -1
 	mov	r4, r17
 	mov	r5, r16
 	call	__gtdf2
@@ -2248,9 +2248,9 @@ gl_isinfl:
 	mov	r16, r5
 	call	__ltdf2
 	blt	r2, zero, .L636
-	movhi	r7, 32752
+	movhi	r2, 32752
 	movi	r6, -1
-	addi	r7, r7, -1
+	addi	r7, r2, -1
 	mov	r4, r17
 	mov	r5, r16
 	call	__gtdf2
@@ -2314,20 +2314,20 @@ ldexpf:
 	call	__mulsf3
 	mov	r18, r2
 .L643:
-	srli	r2, r16, 31
-	add	r16, r2, r16
+	srli	r3, r16, 31
+	add	r16, r3, r16
 	srai	r16, r16, 1
 	beq	r16, zero, .L641
 .L645:
-	mov	r4, r17
 	mov	r5, r17
+	mov	r4, r17
 	call	__mulsf3
-	srli	r3, r16, 31
+	srli	r5, r16, 31
 	andi	r4, r16, 1
 	mov	r17, r2
-	add	r3, r3, r16
+	add	r6, r5, r16
 	bne	r4, zero, .L644
-	srai	r16, r3, 1
+	srai	r16, r6, 1
 	br	.L645
 .L641:
 	mov	r2, r18
@@ -2385,21 +2385,21 @@ ldexp:
 	mov	r18, r2
 	mov	r17, r3
 .L661:
-	srli	r2, r16, 31
-	add	r2, r2, r16
-	srai	r16, r2, 1
+	srli	r3, r16, 31
+	add	r4, r3, r16
+	srai	r16, r4, 1
 	beq	r16, zero, .L659
 .L663:
-	mov	r4, r6
 	mov	r5, r7
+	mov	r4, r6
 	call	__muldf3
 	srli	r8, r16, 31
-	andi	r4, r16, 1
+	andi	r5, r16, 1
 	mov	r6, r2
-	add	r8, r8, r16
+	add	r9, r8, r16
 	mov	r7, r3
-	bne	r4, zero, .L662
-	srai	r16, r8, 1
+	bne	r5, zero, .L662
+	srai	r16, r9, 1
 	br	.L663
 .L659:
 	mov	r2, r18
@@ -2458,21 +2458,21 @@ ldexpl:
 	mov	r18, r2
 	mov	r17, r3
 .L679:
-	srli	r2, r16, 31
-	add	r2, r2, r16
-	srai	r16, r2, 1
+	srli	r3, r16, 31
+	add	r4, r3, r16
+	srai	r16, r4, 1
 	beq	r16, zero, .L677
 .L681:
-	mov	r4, r6
 	mov	r5, r7
+	mov	r4, r6
 	call	__muldf3
 	srli	r8, r16, 31
-	andi	r4, r16, 1
+	andi	r5, r16, 1
 	mov	r6, r2
-	add	r8, r8, r16
+	add	r9, r8, r16
 	mov	r7, r3
-	bne	r4, zero, .L680
-	srai	r16, r8, 1
+	bne	r5, zero, .L680
+	srai	r16, r9, 1
 	br	.L681
 .L677:
 	mov	r2, r18
@@ -2494,42 +2494,42 @@ memxor:
 	mov	r2, r4
 	beq	r6, zero, .L695
 	addi	r3, r6, -1
-	cmpltui	r3, r3, 4
-	bne	r3, zero, .L696
-	or	r3, r4, r5
-	andi	r3, r3, 3
-	bne	r3, zero, .L696
-	srli	r4, r6, 2
-	mov	r3, r2
-	slli	r4, r4, 2
-	add	r9, r5, r4
+	cmpltui	r4, r3, 4
+	bne	r4, zero, .L696
+	or	r7, r2, r5
+	andi	r8, r7, 3
+	bne	r8, zero, .L696
+	srli	r9, r6, 2
+	mov	r14, r2
+	slli	r10, r9, 2
+	add	r11, r5, r10
 .L697:
-	ldw	r8, 0(r3)
-	ldw	r7, 0(r5)
-	addi	r3, r3, 4
+	ldw	r12, 0(r14)
+	ldw	r13, 0(r5)
+	addi	r14, r14, 4
 	addi	r5, r5, 4
-	xor	r7, r7, r8
-	stw	r7, -4(r3)
-	bne	r9, r5, .L697
-	add	r3, r2, r4
-	sub	r5, r6, r4
-	beq	r6, r4, .L695
+	xor	r15, r13, r12
+	stw	r15, -4(r14)
+	bne	r11, r5, .L697
+	add	r3, r2, r10
+	sub	r5, r6, r10
+	beq	r6, r10, .L695
 	ldbu	r6, 0(r3)
-	ldbu	r7, 0(r9)
+	ldbu	r7, 0(r11)
 	cmpeqi	r4, r5, 1
-	xor	r6, r6, r7
-	stb	r6, 0(r3)
+	xor	r8, r6, r7
+	stb	r8, 0(r3)
 	bne	r4, zero, .L695
-	ldbu	r6, 1(r3)
-	ldbu	r4, 1(r9)
-	cmpeqi	r5, r5, 2
-	xor	r4, r4, r6
-	stb	r4, 1(r3)
-	bne	r5, zero, .L695
-	ldbu	r5, 2(r3)
-	ldbu	r4, 2(r9)
-	xor	r4, r4, r5
-	stb	r4, 2(r3)
+	ldbu	r9, 1(r3)
+	ldbu	r10, 1(r11)
+	cmpeqi	r12, r5, 2
+	xor	r13, r10, r9
+	stb	r13, 1(r3)
+	bne	r12, zero, .L695
+	ldbu	r14, 2(r3)
+	ldbu	r11, 2(r11)
+	xor	r15, r11, r14
+	stb	r15, 2(r3)
 	ret
 .L696:
 	add	r6, r5, r6
@@ -2539,8 +2539,8 @@ memxor:
 	ldbu	r7, 0(r5)
 	addi	r3, r3, 1
 	addi	r5, r5, 1
-	xor	r7, r7, r4
-	stb	r7, -1(r3)
+	xor	r8, r7, r4
+	stb	r8, -1(r3)
 	bne	r6, r5, .L699
 .L695:
 	ret
@@ -2552,31 +2552,31 @@ strncat:
 	ldb	r3, 0(r4)
 	mov	r2, r4
 	beq	r3, zero, .L719
-	mov	r3, r4
+	mov	r11, r4
 .L714:
-	ldb	r7, 1(r3)
-	addi	r3, r3, 1
+	ldb	r7, 1(r11)
+	addi	r11, r11, 1
 	bne	r7, zero, .L714
 .L727:
 	beq	r6, zero, .L716
 .L729:
-	ldbu	r7, 0(r5)
+	ldbu	r4, 0(r5)
 	addi	r6, r6, -1
 	addi	r5, r5, 1
-	stb	r7, 0(r3)
-	andi	r7, r7, 255
-	xori	r7, r7, 128
-	addi	r7, r7, -128
-	beq	r7, zero, .L728
-	addi	r3, r3, 1
+	andi	r8, r4, 255
+	xori	r9, r8, 128
+	stb	r4, 0(r11)
+	addi	r10, r9, -128
+	beq	r10, zero, .L728
+	addi	r11, r11, 1
 	bne	r6, zero, .L729
 .L716:
-	stb	zero, 0(r3)
+	stb	zero, 0(r11)
 	ret
 .L728:
 	ret
 .L719:
-	mov	r3, r4
+	mov	r11, r4
 	br	.L727
 	.size	strncat, .-strncat
 	.align	2
@@ -2587,8 +2587,8 @@ strnlen:
 	beq	r5, zero, .L730
 .L731:
 	add	r3, r4, r2
-	ldb	r3, 0(r3)
-	bne	r3, zero, .L733
+	ldb	r6, 0(r3)
+	bne	r6, zero, .L733
 .L730:
 	ret
 .L733:
@@ -2647,35 +2647,35 @@ strstr:
 	bne	r3, zero, .L753
 	sub	r10, r2, r5
 	beq	r2, r5, .L762
-	addi	r10, r10, -1
+	addi	r14, r10, -1
 	br	.L771
 .L773:
 	addi	r4, r4, 1
 	beq	r2, zero, .L772
 .L771:
-	ldbu	r3, 0(r4)
-	andi	r2, r3, 255
-	xori	r2, r2, 128
-	addi	r2, r2, -128
+	ldbu	r7, 0(r4)
+	andi	r6, r7, 255
+	xori	r9, r6, 128
+	addi	r2, r9, -128
 	bne	r2, r8, .L773
-	add	r9, r4, r10
-	mov	r2, r5
-	mov	r6, r4
-	andi	r3, r3, 0xff
+	add	r13, r4, r14
+	mov	r3, r5
+	mov	r12, r4
+	andi	r15, r7, 0xff
 	br	.L755
 .L774:
-	beq	r6, r9, .L756
-	addi	r6, r6, 1
-	bne	r7, r3, .L756
-	ldbu	r3, 0(r6)
-	addi	r2, r2, 1
-	beq	r3, zero, .L756
+	beq	r12, r13, .L756
+	addi	r12, r12, 1
+	bne	r11, r15, .L756
+	ldbu	r15, 0(r12)
+	addi	r3, r3, 1
+	beq	r15, zero, .L756
 .L755:
-	ldbu	r7, 0(r2)
-	bne	r7, zero, .L774
+	ldbu	r11, 0(r3)
+	bne	r11, zero, .L774
 .L756:
-	ldbu	r2, 0(r2)
-	beq	r3, r2, .L762
+	ldbu	r2, 0(r3)
+	beq	r15, r2, .L762
 	addi	r4, r4, 1
 	br	.L771
 .L772:
@@ -2758,28 +2758,28 @@ memmem:
 .L787:
 	ret
 .L803:
-	mov	r4, r6
+	mov	r15, r6
 	beq	r7, zero, .L787
 .L792:
-	mov	r3, r10
-	add	r11, r10, r7
+	mov	r14, r10
+	add	r5, r10, r7
 	br	.L790
 .L791:
-	beq	r3, r11, .L787
+	beq	r14, r5, .L787
 .L790:
-	ldbu	r8, 0(r3)
-	ldbu	r5, 0(r4)
-	addi	r3, r3, 1
-	addi	r4, r4, 1
-	beq	r8, r5, .L791
+	ldbu	r8, 0(r14)
+	ldbu	r13, 0(r15)
+	addi	r14, r14, 1
+	addi	r15, r15, 1
+	beq	r8, r13, .L791
 	bltu	r9, r10, .L798
-	ldb	r3, 0(r10)
+	ldb	r4, 0(r10)
 	addi	r2, r10, 1
-	bne	r12, r3, .L789
-	mov	r3, r10
-	mov	r4, r6
+	bne	r12, r4, .L789
+	mov	r11, r10
+	mov	r15, r6
 	mov	r10, r2
-	mov	r2, r3
+	mov	r2, r11
 	br	.L792
 	.size	memmem, .-memmem
 	.align	2
@@ -2942,8 +2942,8 @@ __muldi3:
 	mov	r21, zero
 .L839:
 	mov	r6, r19
-	andi	r4, r16, 1
 	mov	r7, r17
+	andi	r4, r16, 1
 	mov	r5, zero
 	call	__muldi3
 	slli	r5, r18, 31
@@ -2951,16 +2951,16 @@ __muldi3:
 	srli	r18, r18, 1
 	srli	r4, r19, 31
 	slli	r17, r17, 1
-	add	r2, r20, r2
+	add	r7, r20, r2
 	or	r16, r5, r16
-	cmpltu	r6, r2, r20
+	cmpltu	r6, r7, r20
 	add	r3, r21, r3
-	or	r5, r16, r18
+	or	r8, r16, r18
 	slli	r19, r19, 1
-	mov	r20, r2
+	mov	r20, r7
 	add	r21, r6, r3
 	or	r17, r4, r17
-	bne	r5, zero, .L839
+	bne	r8, zero, .L839
 .L836:
 	mov	r2, r20
 	mov	r3, r21
@@ -3020,15 +3020,15 @@ udivmodsi4:
 	.type	__clrsbqi2, @function
 __clrsbqi2:
 	andi	r3, r4, 255
-	xori	r3, r3, 128
-	addi	r3, r3, -128
-	srai	r2, r3, 7
-	xor	r4, r2, r4
-	beq	r3, r2, .L861
-	andi	r4, r4, 255
-	xori	r4, r4, 128
-	addi	r4, r4, -128
-	slli	r4, r4, 8
+	xori	r2, r3, 128
+	addi	r5, r2, -128
+	srai	r6, r5, 7
+	xor	r4, r6, r4
+	beq	r5, r6, .L861
+	andi	r7, r4, 255
+	xori	r8, r7, 128
+	addi	r9, r8, -128
+	slli	r4, r9, 8
 	addi	sp, sp, -4
 	stw	ra, 0(sp)
 	call	__clzsi2
@@ -3071,10 +3071,10 @@ __mulsi3:
 	beq	r4, zero, .L879
 .L878:
 	andi	r3, r4, 1
-	mul	r3, r3, r5
+	mul	r6, r3, r5
 	srli	r4, r4, 1
 	add	r5, r5, r5
-	add	r2, r2, r3
+	add	r2, r2, r6
 	bne	r4, zero, .L878
 	ret
 .L879:
@@ -3086,93 +3086,93 @@ __mulsi3:
 __cmovd:
 	movi	r10, -8
 	srli	r9, r6, 3
-	and	r10, r6, r10
+	and	r12, r6, r10
 	bltu	r4, r5, .L882
 	add	r2, r5, r6
 	bgeu	r2, r4, .L911
 .L882:
 	beq	r9, zero, .L885
-	slli	r9, r9, 3
-	mov	r2, r5
-	mov	r3, r4
-	add	r9, r9, r5
+	slli	r13, r9, 3
+	mov	r2, r4
+	mov	r9, r5
+	add	r14, r13, r5
 .L886:
-	ldw	r8, 0(r2)
-	ldw	r7, 4(r2)
+	ldw	r15, 0(r9)
+	ldw	r10, 4(r9)
+	addi	r9, r9, 8
+	stw	r15, 0(r2)
+	stw	r10, 4(r2)
 	addi	r2, r2, 8
-	stw	r8, 0(r3)
-	stw	r7, 4(r3)
-	addi	r3, r3, 8
-	bne	r2, r9, .L886
-	bgeu	r10, r6, .L881
-	sub	r11, r6, r10
-	addi	r2, r11, -1
-	cmpltui	r2, r2, 7
-	bne	r2, zero, .L910
-	addi	r7, r10, 1
-	add	r3, r4, r10
-	add	r7, r5, r7
-	sub	r7, r3, r7
-	cmpgeui	r7, r7, 3
-	add	r2, r5, r10
-	beq	r7, zero, .L888
-	or	r7, r2, r3
-	andi	r7, r7, 3
-	bne	r7, zero, .L888
-	srli	r9, r11, 2
-	slli	r9, r9, 2
-	add	r8, r2, r9
+	bne	r9, r14, .L886
+	bgeu	r12, r6, .L881
+	sub	r11, r6, r12
+	addi	r3, r11, -1
+	cmpltui	r7, r3, 7
+	bne	r7, zero, .L910
+	addi	r8, r12, 1
+	add	r3, r4, r12
+	add	r13, r5, r8
+	sub	r14, r3, r13
+	cmpgeui	r15, r14, 3
+	add	r2, r5, r12
+	beq	r15, zero, .L888
+	or	r10, r2, r3
+	andi	r9, r10, 3
+	bne	r9, zero, .L888
+	srli	r7, r11, 2
+	slli	r13, r7, 2
+	add	r8, r2, r13
 .L889:
-	ldw	r7, 0(r2)
+	ldw	r14, 0(r2)
 	addi	r2, r2, 4
 	addi	r3, r3, 4
-	stw	r7, -4(r3)
+	stw	r14, -4(r3)
 	bne	r2, r8, .L889
-	add	r10, r10, r9
-	beq	r11, r9, .L881
-	add	r2, r5, r10
-	ldbu	r7, 0(r2)
-	add	r3, r4, r10
-	addi	r2, r10, 1
-	stb	r7, 0(r3)
-	bgeu	r2, r6, .L881
-	add	r3, r5, r2
-	ldbu	r3, 0(r3)
-	add	r2, r4, r2
-	addi	r10, r10, 2
-	stb	r3, 0(r2)
-	bgeu	r10, r6, .L881
-	add	r5, r5, r10
-	ldbu	r2, 0(r5)
-	add	r4, r4, r10
-	stb	r2, 0(r4)
+	add	r12, r12, r13
+	beq	r11, r13, .L881
+	add	r2, r5, r12
+	ldbu	r11, 0(r2)
+	add	r3, r4, r12
+	addi	r15, r12, 1
+	stb	r11, 0(r3)
+	bgeu	r15, r6, .L881
+	add	r10, r5, r15
+	ldbu	r9, 0(r10)
+	add	r7, r4, r15
+	addi	r13, r12, 2
+	stb	r9, 0(r7)
+	bgeu	r13, r6, .L881
+	add	r5, r5, r13
+	ldbu	r6, 0(r5)
+	add	r4, r4, r13
+	stb	r6, 0(r4)
 	ret
 .L911:
-	addi	r2, r6, -1
+	addi	r8, r6, -1
 	beq	r6, zero, .L881
 .L883:
-	add	r3, r5, r2
+	add	r3, r5, r8
 	ldbu	r6, 0(r3)
-	add	r3, r4, r2
-	addi	r2, r2, -1
-	stb	r6, 0(r3)
-	cmpnei	r3, r2, -1
-	bne	r3, zero, .L883
+	add	r7, r4, r8
+	addi	r8, r8, -1
+	stb	r6, 0(r7)
+	cmpnei	r11, r8, -1
+	bne	r11, zero, .L883
 .L881:
 	ret
 .L885:
 	beq	r6, zero, .L881
 .L910:
-	add	r3, r4, r10
-	add	r2, r5, r10
+	add	r3, r4, r12
+	add	r2, r5, r12
 .L888:
-	add	r6, r5, r6
+	add	r8, r5, r6
 .L891:
-	ldbu	r4, 0(r2)
+	ldbu	r14, 0(r2)
 	addi	r2, r2, 1
 	addi	r3, r3, 1
-	stb	r4, -1(r3)
-	bne	r2, r6, .L891
+	stb	r14, -1(r3)
+	bne	r2, r8, .L891
 	ret
 	.size	__cmovd, .-__cmovd
 	.align	2
@@ -3185,67 +3185,67 @@ __cmovh:
 	bgeu	r2, r4, .L940
 .L913:
 	beq	r10, zero, .L916
-	addi	r2, r10, -1
-	cmpltui	r2, r2, 9
-	bne	r2, zero, .L917
-	or	r2, r5, r4
-	andi	r2, r2, 3
-	bne	r2, zero, .L917
-	addi	r2, r5, 2
-	beq	r4, r2, .L917
+	addi	r11, r10, -1
+	cmpltui	r12, r11, 9
+	bne	r12, zero, .L917
+	or	r13, r5, r4
+	andi	r14, r13, 3
+	bne	r14, zero, .L917
+	addi	r15, r5, 2
+	beq	r4, r15, .L917
 	srli	r9, r6, 2
 	mov	r2, r5
 	mov	r3, r4
-	slli	r8, r9, 2
-	add	r8, r8, r5
+	slli	r7, r9, 2
+	add	r8, r7, r5
 .L918:
-	ldw	r7, 0(r2)
+	ldw	r11, 0(r2)
 	addi	r2, r2, 4
 	addi	r3, r3, 4
-	stw	r7, -4(r3)
+	stw	r11, -4(r3)
 	bne	r2, r8, .L918
-	add	r9, r9, r9
-	beq	r10, r9, .L916
-	add	r9, r9, r9
-	add	r2, r5, r9
-	ldhu	r2, 0(r2)
-	add	r9, r4, r9
-	sth	r2, 0(r9)
+	add	r12, r9, r9
+	beq	r10, r12, .L916
+	add	r10, r12, r12
+	add	r13, r5, r10
+	ldhu	r14, 0(r13)
+	add	r15, r4, r10
+	sth	r14, 0(r15)
 .L916:
-	andi	r2, r6, 1
-	beq	r2, zero, .L912
+	andi	r3, r6, 1
+	beq	r3, zero, .L912
 .L941:
 	add	r5, r5, r6
-	ldbu	r2, -1(r5)
+	ldbu	r12, -1(r5)
 	add	r4, r4, r6
-	stb	r2, -1(r4)
+	stb	r12, -1(r4)
 	ret
 .L940:
-	addi	r2, r6, -1
+	addi	r8, r6, -1
 	beq	r6, zero, .L912
 .L914:
-	add	r3, r5, r2
+	add	r3, r5, r8
 	ldbu	r6, 0(r3)
-	add	r3, r4, r2
-	addi	r2, r2, -1
-	stb	r6, 0(r3)
-	cmpnei	r3, r2, -1
-	bne	r3, zero, .L914
+	add	r7, r4, r8
+	addi	r8, r8, -1
+	stb	r6, 0(r7)
+	cmpnei	r9, r8, -1
+	bne	r9, zero, .L914
 .L912:
 	ret
 .L917:
-	add	r10, r10, r10
-	mov	r2, r5
-	mov	r3, r4
-	add	r10, r10, r5
+	add	r9, r10, r10
+	mov	r11, r5
+	mov	r2, r4
+	add	r8, r9, r5
 .L920:
-	ldhu	r7, 0(r2)
+	ldhu	r7, 0(r11)
+	addi	r11, r11, 2
 	addi	r2, r2, 2
-	addi	r3, r3, 2
-	sth	r7, -2(r3)
-	bne	r10, r2, .L920
-	andi	r2, r6, 1
-	beq	r2, zero, .L912
+	sth	r7, -2(r2)
+	bne	r8, r11, .L920
+	andi	r3, r6, 1
+	beq	r3, zero, .L912
 	br	.L941
 	.size	__cmovh, .-__cmovh
 	.align	2
@@ -3254,91 +3254,91 @@ __cmovh:
 __cmovw:
 	movi	r9, -4
 	srli	r8, r6, 2
-	and	r9, r6, r9
+	and	r12, r6, r9
 	bltu	r4, r5, .L943
 	add	r2, r5, r6
 	bgeu	r2, r4, .L972
 .L943:
 	beq	r8, zero, .L946
-	slli	r8, r8, 2
-	mov	r2, r5
-	mov	r3, r4
-	add	r8, r8, r5
+	slli	r13, r8, 2
+	mov	r9, r5
+	mov	r8, r4
+	add	r14, r13, r5
 .L947:
-	ldw	r7, 0(r2)
-	addi	r2, r2, 4
-	addi	r3, r3, 4
-	stw	r7, -4(r3)
-	bne	r2, r8, .L947
-	bgeu	r9, r6, .L942
-	sub	r11, r6, r9
+	ldw	r15, 0(r9)
+	addi	r9, r9, 4
+	addi	r8, r8, 4
+	stw	r15, -4(r8)
+	bne	r9, r14, .L947
+	bgeu	r12, r6, .L942
+	sub	r11, r6, r12
 	addi	r2, r11, -1
-	cmpltui	r2, r2, 7
-	bne	r2, zero, .L971
-	addi	r7, r9, 1
-	add	r3, r4, r9
-	add	r7, r5, r7
-	sub	r7, r3, r7
-	cmpgeui	r7, r7, 3
-	add	r2, r5, r9
-	beq	r7, zero, .L949
-	or	r7, r2, r3
-	andi	r7, r7, 3
-	bne	r7, zero, .L949
-	srli	r10, r11, 2
-	slli	r10, r10, 2
-	add	r8, r2, r10
+	cmpltui	r3, r2, 7
+	bne	r3, zero, .L971
+	addi	r7, r12, 1
+	add	r3, r4, r12
+	add	r10, r5, r7
+	sub	r13, r3, r10
+	cmpgeui	r14, r13, 3
+	add	r2, r5, r12
+	beq	r14, zero, .L949
+	or	r15, r2, r3
+	andi	r9, r15, 3
+	bne	r9, zero, .L949
+	srli	r8, r11, 2
+	slli	r10, r8, 2
+	add	r13, r2, r10
 .L950:
 	ldw	r7, 0(r2)
 	addi	r2, r2, 4
 	addi	r3, r3, 4
 	stw	r7, -4(r3)
-	bne	r2, r8, .L950
-	add	r9, r9, r10
+	bne	r2, r13, .L950
+	add	r12, r12, r10
 	beq	r11, r10, .L942
-	add	r2, r5, r9
-	ldbu	r7, 0(r2)
-	add	r3, r4, r9
-	addi	r2, r9, 1
-	stb	r7, 0(r3)
+	add	r11, r5, r12
+	ldbu	r14, 0(r11)
+	add	r3, r4, r12
+	addi	r2, r12, 1
+	stb	r14, 0(r3)
 	bgeu	r2, r6, .L942
-	add	r3, r5, r2
-	ldbu	r3, 0(r3)
-	add	r2, r4, r2
-	addi	r9, r9, 2
-	stb	r3, 0(r2)
+	add	r15, r5, r2
+	ldbu	r8, 0(r15)
+	add	r10, r4, r2
+	addi	r9, r12, 2
+	stb	r8, 0(r10)
 	bgeu	r9, r6, .L942
 	add	r5, r5, r9
-	ldbu	r2, 0(r5)
+	ldbu	r6, 0(r5)
 	add	r4, r4, r9
-	stb	r2, 0(r4)
+	stb	r6, 0(r4)
 	ret
 .L972:
-	addi	r2, r6, -1
+	addi	r10, r6, -1
 	beq	r6, zero, .L942
 .L944:
-	add	r3, r5, r2
+	add	r3, r5, r10
 	ldbu	r6, 0(r3)
-	add	r3, r4, r2
-	addi	r2, r2, -1
-	stb	r6, 0(r3)
-	cmpnei	r3, r2, -1
-	bne	r3, zero, .L944
+	add	r7, r4, r10
+	addi	r10, r10, -1
+	stb	r6, 0(r7)
+	cmpnei	r11, r10, -1
+	bne	r11, zero, .L944
 .L942:
 	ret
 .L946:
 	beq	r6, zero, .L942
 .L971:
-	add	r3, r4, r9
-	add	r2, r5, r9
+	add	r3, r4, r12
+	add	r2, r5, r12
 .L949:
-	add	r6, r5, r6
+	add	r13, r5, r6
 .L952:
-	ldbu	r4, 0(r2)
+	ldbu	r7, 0(r2)
 	addi	r2, r2, 1
 	addi	r3, r3, 1
-	stb	r4, -1(r3)
-	bne	r2, r6, .L952
+	stb	r7, -1(r3)
+	bne	r2, r13, .L952
 	ret
 	.size	__cmovw, .-__cmovw
 	.align	2
@@ -3350,18 +3350,18 @@ __modi:
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
 	stw	ra, 8(sp)
-	cmpgeui	r2, r2, 16
+	cmpgeui	r3, r2, 16
 	mov	r16, r4
 	mov	r17, r5
-	bne	r2, zero, .L975
-	slli	r2, r4, 4
-	movhi	r3, %hiadj(__divsi3_table)
-	or	r2, r2, r5
-	add	r3, r2, r3
-	ldbu	r2, %lo(__divsi3_table)(r3)
+	bne	r3, zero, .L975
+	slli	r4, r4, 4
+	movhi	r5, %hiadj(__divsi3_table)
+	or	r6, r4, r17
+	add	r7, r6, r5
+	ldbu	r2, %lo(__divsi3_table)(r7)
 .L974:
-	mul	r2, r2, r17
-	sub	r2, r16, r2
+	mul	r8, r2, r17
+	sub	r2, r16, r8
 	ldw	ra, 8(sp)
 	ldw	r17, 4(sp)
 	ldw	r16, 0(sp)
@@ -3435,30 +3435,30 @@ __clzhi2:
 	bne	r2, zero, .L990
 	srai	r2, r4, 14
 	bne	r2, zero, .L987
-	srai	r2, r4, 13
-	bne	r2, zero, .L991
-	srai	r2, r4, 12
-	bne	r2, zero, .L992
-	srai	r2, r4, 11
-	bne	r2, zero, .L993
-	srai	r2, r4, 10
-	bne	r2, zero, .L994
-	srai	r2, r4, 9
-	bne	r2, zero, .L995
-	srai	r2, r4, 8
-	bne	r2, zero, .L996
-	srai	r2, r4, 7
-	bne	r2, zero, .L997
-	srai	r2, r4, 6
-	bne	r2, zero, .L998
-	srai	r2, r4, 5
-	bne	r2, zero, .L999
-	srai	r2, r4, 4
-	bne	r2, zero, .L1000
-	srai	r2, r4, 3
-	bne	r2, zero, .L1001
-	srai	r2, r4, 2
-	bne	r2, zero, .L1002
+	srai	r3, r4, 13
+	bne	r3, zero, .L991
+	srai	r5, r4, 12
+	bne	r5, zero, .L992
+	srai	r6, r4, 11
+	bne	r6, zero, .L993
+	srai	r7, r4, 10
+	bne	r7, zero, .L994
+	srai	r8, r4, 9
+	bne	r8, zero, .L995
+	srai	r9, r4, 8
+	bne	r9, zero, .L996
+	srai	r10, r4, 7
+	bne	r10, zero, .L997
+	srai	r11, r4, 6
+	bne	r11, zero, .L998
+	srai	r12, r4, 5
+	bne	r12, zero, .L999
+	srai	r13, r4, 4
+	bne	r13, zero, .L1000
+	srai	r14, r4, 3
+	bne	r14, zero, .L1001
+	srai	r15, r4, 2
+	bne	r15, zero, .L1002
 	srai	r2, r4, 1
 	bne	r2, zero, .L1003
 	movi	r2, 16
@@ -3517,38 +3517,38 @@ __clzhi2:
 __ctzhi2:
 	andi	r2, r4, 1
 	bne	r2, zero, .L1010
-	andi	r2, r4, 2
-	bne	r2, zero, .L1011
-	andi	r2, r4, 4
-	bne	r2, zero, .L1012
-	andi	r2, r4, 8
-	bne	r2, zero, .L1013
-	andi	r2, r4, 16
-	bne	r2, zero, .L1014
-	andi	r2, r4, 32
-	bne	r2, zero, .L1015
-	andi	r2, r4, 64
-	bne	r2, zero, .L1016
-	andi	r2, r4, 128
-	bne	r2, zero, .L1017
-	andi	r2, r4, 256
-	bne	r2, zero, .L1018
-	andi	r2, r4, 512
-	bne	r2, zero, .L1019
-	andi	r2, r4, 1024
-	bne	r2, zero, .L1020
-	andi	r2, r4, 2048
-	bne	r2, zero, .L1021
-	andi	r2, r4, 4096
-	bne	r2, zero, .L1022
+	andi	r3, r4, 2
+	bne	r3, zero, .L1011
+	andi	r5, r4, 4
+	bne	r5, zero, .L1012
+	andi	r6, r4, 8
+	bne	r6, zero, .L1013
+	andi	r7, r4, 16
+	bne	r7, zero, .L1014
+	andi	r8, r4, 32
+	bne	r8, zero, .L1015
+	andi	r9, r4, 64
+	bne	r9, zero, .L1016
+	andi	r10, r4, 128
+	bne	r10, zero, .L1017
+	andi	r11, r4, 256
+	bne	r11, zero, .L1018
+	andi	r12, r4, 512
+	bne	r12, zero, .L1019
+	andi	r13, r4, 1024
+	bne	r13, zero, .L1020
+	andi	r14, r4, 2048
+	bne	r14, zero, .L1021
+	andi	r15, r4, 4096
+	bne	r15, zero, .L1022
 	andi	r2, r4, 8192
 	bne	r2, zero, .L1023
-	andi	r2, r4, 16384
-	bne	r2, zero, .L1024
+	andi	r3, r4, 16384
+	bne	r3, zero, .L1024
 	andi	r4, r4, 0xffff
-	srai	r4, r4, 15
+	srai	r5, r4, 15
 	movi	r2, 16
-	bne	r4, zero, .L1027
+	bne	r5, zero, .L1027
 .L1007:
 	ret
 .L1010:
@@ -3639,48 +3639,48 @@ __parityhi2:
 	srai	r7, r3, 2
 	srai	r6, r3, 3
 	srai	r5, r3, 4
+	andi	r9, r2, 1
 	andi	r4, r4, 1
-	andi	r2, r2, 1
+	add	r10, r9, r4
 	srai	r8, r3, 5
-	add	r2, r2, r4
-	andi	r4, r7, 1
-	add	r2, r2, r4
-	srai	r7, r3, 6
-	andi	r4, r6, 1
-	add	r2, r2, r4
-	srai	r6, r3, 7
-	andi	r4, r5, 1
-	add	r2, r2, r4
+	andi	r11, r7, 1
+	add	r13, r10, r11
+	srai	r12, r3, 6
+	andi	r14, r6, 1
+	add	r2, r13, r14
+	srai	r15, r3, 7
+	andi	r7, r5, 1
+	add	r6, r2, r7
 	srai	r5, r3, 8
-	andi	r8, r8, 1
+	andi	r9, r8, 1
+	add	r10, r6, r9
 	srai	r4, r3, 9
-	add	r2, r2, r8
-	andi	r7, r7, 1
+	andi	r11, r12, 1
+	add	r12, r10, r11
 	srai	r8, r3, 10
-	add	r2, r2, r7
-	andi	r6, r6, 1
-	srai	r7, r3, 11
-	add	r2, r2, r6
-	andi	r5, r5, 1
+	andi	r13, r15, 1
+	add	r15, r12, r13
+	srai	r14, r3, 11
+	andi	r2, r5, 1
+	add	r7, r15, r2
 	srai	r6, r3, 12
-	add	r2, r2, r5
-	andi	r4, r4, 1
+	andi	r9, r4, 1
+	add	r10, r7, r9
 	srai	r5, r3, 13
-	add	r2, r2, r4
-	andi	r8, r8, 1
+	andi	r11, r8, 1
 	srai	r4, r3, 14
-	add	r2, r2, r8
-	andi	r7, r7, 1
-	add	r2, r2, r7
-	andi	r6, r6, 1
+	andi	r12, r14, 1
+	add	r8, r10, r11
+	andi	r14, r6, 1
+	add	r13, r8, r12
+	andi	r2, r5, 1
 	srai	r3, r3, 15
-	add	r2, r2, r6
-	andi	r5, r5, 1
-	add	r2, r2, r5
-	andi	r4, r4, 1
-	add	r2, r2, r4
-	add	r2, r2, r3
-	andi	r2, r2, 1
+	add	r15, r13, r14
+	add	r6, r15, r2
+	andi	r7, r4, 1
+	add	r9, r6, r7
+	add	r5, r9, r3
+	andi	r2, r5, 1
 	ret
 	.size	__parityhi2, .-__parityhi2
 	.align	2
@@ -3692,47 +3692,47 @@ __popcounthi2:
 	srai	r7, r3, 2
 	srai	r6, r3, 3
 	srai	r5, r3, 4
+	andi	r9, r2, 1
 	andi	r4, r4, 1
-	andi	r2, r2, 1
+	add	r10, r9, r4
 	srai	r8, r3, 5
-	add	r2, r2, r4
-	andi	r4, r7, 1
-	add	r2, r2, r4
-	srai	r7, r3, 6
-	andi	r4, r6, 1
-	add	r2, r2, r4
-	srai	r6, r3, 7
-	andi	r4, r5, 1
-	add	r2, r2, r4
+	andi	r11, r7, 1
+	add	r13, r10, r11
+	srai	r12, r3, 6
+	andi	r14, r6, 1
+	add	r2, r13, r14
+	srai	r15, r3, 7
+	andi	r7, r5, 1
+	add	r6, r2, r7
 	srai	r5, r3, 8
-	andi	r8, r8, 1
+	andi	r9, r8, 1
+	add	r10, r6, r9
 	srai	r4, r3, 9
-	add	r2, r2, r8
-	andi	r7, r7, 1
+	andi	r11, r12, 1
+	add	r12, r10, r11
 	srai	r8, r3, 10
-	add	r2, r2, r7
-	andi	r6, r6, 1
-	srai	r7, r3, 11
-	add	r2, r2, r6
-	andi	r5, r5, 1
+	andi	r13, r15, 1
+	add	r15, r12, r13
+	srai	r14, r3, 11
+	andi	r2, r5, 1
+	add	r7, r15, r2
 	srai	r6, r3, 12
-	add	r2, r2, r5
-	andi	r4, r4, 1
+	andi	r9, r4, 1
+	add	r10, r7, r9
 	srai	r5, r3, 13
-	add	r2, r2, r4
-	andi	r8, r8, 1
+	andi	r11, r8, 1
 	srai	r4, r3, 14
-	add	r2, r2, r8
-	andi	r7, r7, 1
-	add	r2, r2, r7
-	andi	r6, r6, 1
+	andi	r12, r14, 1
+	add	r8, r10, r11
+	andi	r14, r6, 1
+	add	r13, r8, r12
+	andi	r2, r5, 1
 	srai	r3, r3, 15
-	add	r2, r2, r6
-	andi	r5, r5, 1
-	add	r2, r2, r5
-	andi	r4, r4, 1
-	add	r2, r2, r4
-	add	r2, r2, r3
+	add	r15, r13, r14
+	add	r6, r15, r2
+	andi	r7, r4, 1
+	add	r9, r6, r7
+	add	r2, r9, r3
 	ret
 	.size	__popcounthi2, .-__popcounthi2
 	.align	2
@@ -3743,10 +3743,10 @@ __mulsi3_iq2000:
 	beq	r4, zero, .L1041
 .L1040:
 	andi	r3, r4, 1
-	mul	r3, r3, r5
+	mul	r6, r3, r5
 	srli	r4, r4, 1
 	add	r5, r5, r5
-	add	r2, r2, r3
+	add	r2, r2, r6
 	bne	r4, zero, .L1040
 	ret
 .L1041:
@@ -3761,10 +3761,10 @@ __mulsi3_lm32:
 	beq	r5, zero, .L1047
 .L1045:
 	andi	r3, r5, 1
-	mul	r3, r3, r4
+	mul	r6, r3, r4
 	srli	r5, r5, 1
 	add	r4, r4, r4
-	add	r2, r2, r3
+	add	r2, r2, r6
 	bne	r5, zero, .L1045
 	ret
 .L1046:
@@ -3912,11 +3912,11 @@ __mulhi3:
 	beq	r7, zero, .L1083
 .L1084:
 	andi	r6, r5, 1
-	mul	r6, r6, r4
+	mul	r9, r6, r4
 	srai	r5, r5, 1
 	addi	r3, r3, -1
 	andi	r7, r3, 0xff
-	add	r2, r2, r6
+	add	r2, r2, r9
 	add	r4, r4, r4
 	bne	r5, zero, .L1094
 .L1083:
@@ -3947,14 +3947,14 @@ __divsi3:
 	mov	r6, r4
 	movi	r3, 1
 	bgeu	r5, r4, .L1099
-	movi	r2, 32
+	movi	r8, 32
 	movi	r3, 1
 	br	.L1098
 .L1101:
-	beq	r2, zero, .L1102
+	beq	r8, zero, .L1102
 .L1098:
 	add	r5, r5, r5
-	addi	r2, r2, -1
+	addi	r8, r8, -1
 	add	r3, r3, r3
 	bltu	r5, r4, .L1101
 .L1102:
@@ -4033,127 +4033,127 @@ __udivmodhi4:
 	andi	r2, r5, 0xffff
 	andi	r8, r4, 0xffff
 	bgeu	r2, r8, .L1249
-	andi	r2, r5, 65535
-	xori	r2, r2, 32768
-	addi	r2, r2, -32768
-	blt	r2, zero, .L1138
-	add	r2, r5, r5
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1139
-	andi	r3, r2, 65535
-	xori	r3, r3, 32768
-	addi	r3, r3, -32768
-	blt	r3, zero, .L1140
-	slli	r2, r5, 2
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1141
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1142
-	slli	r2, r5, 3
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1143
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1144
+	andi	r3, r5, 65535
+	xori	r7, r3, 32768
+	addi	r9, r7, -32768
+	blt	r9, zero, .L1138
+	add	r10, r5, r5
+	andi	r11, r10, 0xffff
+	andi	r7, r10, 0xffff
+	bgeu	r11, r8, .L1139
+	andi	r12, r10, 65535
+	xori	r13, r12, 32768
+	addi	r14, r13, -32768
+	blt	r14, zero, .L1140
+	slli	r15, r5, 2
+	andi	r2, r15, 0xffff
+	andi	r7, r15, 0xffff
+	bgeu	r2, r8, .L1141
+	andi	r3, r15, 65535
+	xori	r9, r3, 32768
+	addi	r10, r9, -32768
+	blt	r10, zero, .L1142
+	slli	r11, r5, 3
+	andi	r12, r11, 0xffff
+	andi	r7, r11, 0xffff
+	bgeu	r12, r8, .L1143
+	andi	r13, r11, 65535
+	xori	r14, r13, 32768
+	addi	r15, r14, -32768
+	blt	r15, zero, .L1144
 	slli	r2, r5, 4
 	andi	r3, r2, 0xffff
 	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1145
 	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1146
-	slli	r2, r5, 5
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1147
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1148
-	slli	r2, r5, 6
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
+	xori	r10, r9, 32768
+	addi	r11, r10, -32768
+	blt	r11, zero, .L1146
+	slli	r12, r5, 5
+	andi	r13, r12, 0xffff
+	andi	r7, r12, 0xffff
+	bgeu	r13, r8, .L1147
+	andi	r14, r12, 65535
+	xori	r15, r14, 32768
+	addi	r2, r15, -32768
+	blt	r2, zero, .L1148
+	slli	r10, r5, 6
+	andi	r3, r10, 0xffff
+	andi	r7, r10, 0xffff
 	bgeu	r3, r8, .L1149
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1150
-	slli	r2, r5, 7
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1151
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1152
-	slli	r2, r5, 8
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
+	andi	r9, r10, 65535
+	xori	r11, r9, 32768
+	addi	r12, r11, -32768
+	blt	r12, zero, .L1150
+	slli	r13, r5, 7
+	andi	r14, r13, 0xffff
+	andi	r7, r13, 0xffff
+	bgeu	r14, r8, .L1151
+	andi	r15, r13, 65535
+	xori	r2, r15, 32768
+	addi	r10, r2, -32768
+	blt	r10, zero, .L1152
+	slli	r11, r5, 8
+	andi	r3, r11, 0xffff
+	andi	r7, r11, 0xffff
 	bgeu	r3, r8, .L1153
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1154
-	slli	r2, r5, 9
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1155
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1156
-	slli	r2, r5, 10
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
+	andi	r9, r11, 65535
+	xori	r12, r9, 32768
+	addi	r13, r12, -32768
+	blt	r13, zero, .L1154
+	slli	r14, r5, 9
+	andi	r15, r14, 0xffff
+	andi	r7, r14, 0xffff
+	bgeu	r15, r8, .L1155
+	andi	r2, r14, 65535
+	xori	r10, r2, 32768
+	addi	r11, r10, -32768
+	blt	r11, zero, .L1156
+	slli	r12, r5, 10
+	andi	r3, r12, 0xffff
+	andi	r7, r12, 0xffff
 	bgeu	r3, r8, .L1157
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1158
-	slli	r2, r5, 11
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1159
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1160
-	slli	r2, r5, 12
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
+	andi	r9, r12, 65535
+	xori	r13, r9, 32768
+	addi	r14, r13, -32768
+	blt	r14, zero, .L1158
+	slli	r15, r5, 11
+	andi	r2, r15, 0xffff
+	andi	r7, r15, 0xffff
+	bgeu	r2, r8, .L1159
+	andi	r10, r15, 65535
+	xori	r11, r10, 32768
+	addi	r12, r11, -32768
+	blt	r12, zero, .L1160
+	slli	r13, r5, 12
+	andi	r3, r13, 0xffff
+	andi	r7, r13, 0xffff
 	bgeu	r3, r8, .L1161
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1162
+	andi	r9, r13, 65535
+	xori	r14, r9, 32768
+	addi	r15, r14, -32768
+	blt	r15, zero, .L1162
 	slli	r2, r5, 13
-	andi	r3, r2, 0xffff
+	andi	r10, r2, 0xffff
 	andi	r7, r2, 0xffff
-	bgeu	r3, r8, .L1163
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1164
-	slli	r2, r5, 14
-	andi	r3, r2, 0xffff
-	andi	r7, r2, 0xffff
+	bgeu	r10, r8, .L1163
+	andi	r11, r2, 65535
+	xori	r12, r11, 32768
+	addi	r13, r12, -32768
+	blt	r13, zero, .L1164
+	slli	r14, r5, 14
+	andi	r3, r14, 0xffff
+	andi	r7, r14, 0xffff
 	bgeu	r3, r8, .L1165
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1166
+	andi	r9, r14, 65535
+	xori	r15, r9, 32768
+	addi	r2, r15, -32768
+	blt	r2, zero, .L1166
 	slli	r5, r5, 15
-	andi	r3, r5, 0xffff
-	bgeu	r3, r8, .L1167
+	andi	r7, r5, 0xffff
+	bgeu	r7, r8, .L1167
 	mov	r2, r4
-	bne	r3, zero, .L1250
+	bne	r7, zero, .L1250
 .L1168:
 	bne	r6, zero, .L1135
 	mov	r2, r5
@@ -4161,120 +4161,120 @@ __udivmodhi4:
 .L1135:
 	ret
 .L1155:
-	bltu	r8, r3, .L1201
-	sub	r2, r4, r2
+	bltu	r8, r15, .L1201
+	sub	r2, r4, r14
 	movi	r5, 512
 	movi	r8, 512
 .L1170:
-	srli	r3, r8, 2
-	srli	r4, r7, 2
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1171
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r15, r8, 2
+	srli	r3, r7, 2
+	beq	r15, zero, .L1168
+	andi	r4, r2, 0xffff
+	bltu	r4, r3, .L1171
+	sub	r2, r2, r3
+	or	r5, r15, r5
 .L1171:
-	srli	r3, r8, 3
-	srli	r4, r7, 3
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1172
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r10, r8, 3
+	srli	r11, r7, 3
+	beq	r10, zero, .L1168
+	andi	r12, r2, 0xffff
+	bltu	r12, r11, .L1172
+	sub	r2, r2, r11
+	or	r5, r10, r5
 .L1172:
-	srli	r3, r8, 4
-	srli	r4, r7, 4
-	beq	r3, zero, .L1168
+	srli	r13, r8, 4
+	srli	r14, r7, 4
+	beq	r13, zero, .L1168
 	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1173
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	bltu	r9, r14, .L1173
+	sub	r2, r2, r14
+	or	r5, r13, r5
 .L1173:
-	srli	r3, r8, 5
-	srli	r4, r7, 5
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1174
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r15, r8, 5
+	srli	r3, r7, 5
+	beq	r15, zero, .L1168
+	andi	r4, r2, 0xffff
+	bltu	r4, r3, .L1174
+	sub	r2, r2, r3
+	or	r5, r15, r5
 .L1174:
-	srli	r3, r8, 6
-	srli	r4, r7, 6
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1175
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r10, r8, 6
+	srli	r11, r7, 6
+	beq	r10, zero, .L1168
+	andi	r12, r2, 0xffff
+	bltu	r12, r11, .L1175
+	sub	r2, r2, r11
+	or	r5, r10, r5
 .L1175:
-	srli	r3, r8, 7
-	srli	r4, r7, 7
-	beq	r3, zero, .L1168
+	srli	r13, r8, 7
+	srli	r14, r7, 7
+	beq	r13, zero, .L1168
 	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1176
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	bltu	r9, r14, .L1176
+	sub	r2, r2, r14
+	or	r5, r13, r5
 .L1176:
-	srli	r3, r8, 8
-	srli	r4, r7, 8
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1177
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r15, r8, 8
+	srli	r3, r7, 8
+	beq	r15, zero, .L1168
+	andi	r4, r2, 0xffff
+	bltu	r4, r3, .L1177
+	sub	r2, r2, r3
+	or	r5, r15, r5
 .L1177:
-	srli	r3, r8, 9
-	srli	r4, r7, 9
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1178
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r10, r8, 9
+	srli	r11, r7, 9
+	beq	r10, zero, .L1168
+	andi	r12, r2, 0xffff
+	bltu	r12, r11, .L1178
+	sub	r2, r2, r11
+	or	r5, r10, r5
 .L1178:
-	srli	r3, r8, 10
-	srli	r4, r7, 10
-	beq	r3, zero, .L1168
+	srli	r13, r8, 10
+	srli	r14, r7, 10
+	beq	r13, zero, .L1168
 	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1179
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	bltu	r9, r14, .L1179
+	sub	r2, r2, r14
+	or	r5, r13, r5
 .L1179:
-	srli	r3, r8, 11
-	srli	r4, r7, 11
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1180
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r15, r8, 11
+	srli	r3, r7, 11
+	beq	r15, zero, .L1168
+	andi	r4, r2, 0xffff
+	bltu	r4, r3, .L1180
+	sub	r2, r2, r3
+	or	r5, r15, r5
 .L1180:
-	srli	r3, r8, 12
-	srli	r4, r7, 12
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1181
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r10, r8, 12
+	srli	r11, r7, 12
+	beq	r10, zero, .L1168
+	andi	r12, r2, 0xffff
+	bltu	r12, r11, .L1181
+	sub	r2, r2, r11
+	or	r5, r10, r5
 .L1181:
-	srli	r3, r8, 13
-	srli	r4, r7, 13
-	beq	r3, zero, .L1168
+	srli	r13, r8, 13
+	srli	r14, r7, 13
+	beq	r13, zero, .L1168
 	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1182
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	bltu	r9, r14, .L1182
+	sub	r2, r2, r14
+	or	r5, r13, r5
 .L1182:
-	srli	r3, r8, 14
-	srli	r4, r7, 14
-	beq	r3, zero, .L1168
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1183
-	sub	r2, r2, r4
-	or	r5, r3, r5
+	srli	r15, r8, 14
+	srli	r3, r7, 14
+	beq	r15, zero, .L1168
+	andi	r4, r2, 0xffff
+	bltu	r4, r3, .L1183
+	sub	r2, r2, r3
+	or	r5, r15, r5
 .L1183:
 	cmpnei	r8, r8, 16384
 	srli	r7, r7, 15
 	beq	r8, zero, .L1168
-	andi	r3, r2, 0xffff
-	bltu	r3, r7, .L1191
+	andi	r10, r2, 0xffff
+	bltu	r10, r7, .L1191
 	sub	r2, r2, r7
 	ori	r5, r5, 1
 	br	.L1168
@@ -4286,9 +4286,9 @@ __udivmodhi4:
 	movui	r8, 32768
 	movui	r7, 32768
 .L1188:
-	andi	r9, r2, 0xffff
-	andi	r10, r3, 0xffff
-	bltu	r9, r10, .L1170
+	andi	r14, r2, 0xffff
+	andi	r9, r3, 0xffff
+	bltu	r14, r9, .L1170
 	sub	r2, r2, r3
 	or	r5, r5, r4
 	br	.L1170
@@ -4305,40 +4305,40 @@ __udivmodhi4:
 	movi	r5, 1
 	br	.L1168
 .L1139:
-	bltu	r8, r3, .L1193
-	sub	r2, r4, r2
+	bltu	r8, r11, .L1193
+	sub	r2, r4, r10
 	movi	r5, 2
 	movi	r8, 2
 	br	.L1170
 .L1140:
-	sub	r2, r4, r2
+	sub	r2, r4, r10
 	andi	r3, r5, 32767
 	movi	r4, 1
 	movi	r5, 2
 	movi	r8, 2
 	br	.L1188
 .L1141:
-	bltu	r8, r3, .L1194
-	sub	r2, r4, r2
+	bltu	r8, r2, .L1194
+	sub	r2, r4, r15
 	movi	r5, 4
 	movi	r8, 4
 	br	.L1170
 .L1142:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
-	movi	r4, 2
+	srli	r3, r2, 1
 	movi	r5, 4
+	sub	r2, r4, r15
 	movi	r8, 4
+	movi	r4, 2
 	br	.L1188
 .L1143:
-	bltu	r8, r3, .L1195
-	sub	r2, r4, r2
+	bltu	r8, r12, .L1195
+	sub	r2, r4, r11
 	movi	r5, 8
 	movi	r8, 8
 	br	.L1170
 .L1144:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
+	sub	r2, r4, r11
+	srli	r3, r12, 1
 	movi	r4, 4
 	movi	r5, 8
 	movi	r8, 8
@@ -4357,46 +4357,46 @@ __udivmodhi4:
 	movi	r8, 16
 	br	.L1188
 .L1147:
-	bltu	r8, r3, .L1197
-	sub	r2, r4, r2
+	bltu	r8, r13, .L1197
+	sub	r2, r4, r12
 	movi	r5, 32
 	movi	r8, 32
 	br	.L1170
 .L1148:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
+	sub	r2, r4, r12
+	srli	r3, r13, 1
 	movi	r4, 16
 	movi	r5, 32
 	movi	r8, 32
 	br	.L1188
 .L1149:
 	bltu	r8, r3, .L1198
-	sub	r2, r4, r2
+	sub	r2, r4, r10
 	movi	r5, 64
 	movi	r8, 64
 	br	.L1170
 .L1150:
-	sub	r2, r4, r2
+	sub	r2, r4, r10
 	srli	r3, r3, 1
 	movi	r4, 32
 	movi	r5, 64
 	movi	r8, 64
 	br	.L1188
 .L1151:
-	bltu	r8, r3, .L1199
-	sub	r2, r4, r2
+	bltu	r8, r14, .L1199
+	sub	r2, r4, r13
 	movi	r5, 128
 	movi	r8, 128
 	br	.L1170
 .L1152:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
+	sub	r2, r4, r13
+	srli	r3, r14, 1
 	movi	r4, 64
 	movi	r5, 128
 	movi	r8, 128
 	br	.L1188
 .L1154:
-	sub	r2, r4, r2
+	sub	r2, r4, r11
 	srli	r3, r3, 1
 	movi	r4, 128
 	movi	r5, 256
@@ -4407,8 +4407,8 @@ __udivmodhi4:
 	mov	r2, zero
 	br	.L1168
 .L1156:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
+	sub	r2, r4, r14
+	srli	r3, r15, 1
 	movi	r4, 256
 	movi	r5, 512
 	movi	r8, 512
@@ -4416,14 +4416,14 @@ __udivmodhi4:
 .L1193:
 	movi	r8, 2
 .L1187:
-	srli	r5, r8, 1
+	srli	r13, r8, 1
 	mov	r2, r4
 	srli	r3, r7, 1
-	mov	r4, r5
+	mov	r4, r13
 	mov	r5, zero
 	br	.L1188
 .L1158:
-	sub	r2, r4, r2
+	sub	r2, r4, r12
 	srli	r3, r3, 1
 	movi	r4, 512
 	movi	r5, 1024
@@ -4433,17 +4433,17 @@ __udivmodhi4:
 	movi	r8, 4
 	br	.L1187
 .L1160:
-	sub	r2, r4, r2
-	srli	r3, r3, 1
-	movi	r4, 1024
+	srli	r3, r2, 1
 	movi	r5, 2048
+	sub	r2, r4, r15
 	movi	r8, 2048
+	movi	r4, 1024
 	br	.L1188
 .L1195:
 	movi	r8, 8
 	br	.L1187
 .L1162:
-	sub	r2, r4, r2
+	sub	r2, r4, r13
 	srli	r3, r3, 1
 	movi	r4, 2048
 	movi	r5, 4096
@@ -4451,7 +4451,7 @@ __udivmodhi4:
 	br	.L1188
 .L1164:
 	sub	r2, r4, r2
-	srli	r3, r3, 1
+	srli	r3, r10, 1
 	movi	r4, 4096
 	movi	r5, 8192
 	movi	r8, 8192
@@ -4460,7 +4460,7 @@ __udivmodhi4:
 	movi	r8, 16
 	br	.L1187
 .L1166:
-	sub	r2, r4, r2
+	sub	r2, r4, r14
 	srli	r3, r3, 1
 	movi	r4, 8192
 	movi	r5, 16384
@@ -4473,10 +4473,10 @@ __udivmodhi4:
 	movi	r8, 64
 	br	.L1187
 .L1167:
-	andi	r2, r4, 65535
-	xori	r2, r2, 32768
-	addi	r2, r2, -32768
-	blt	r2, zero, .L1192
+	andi	r10, r4, 65535
+	xori	r11, r10, 32768
+	addi	r12, r11, -32768
+	blt	r12, zero, .L1192
 	movui	r7, 32768
 	movui	r8, 32768
 	br	.L1187
@@ -4485,7 +4485,7 @@ __udivmodhi4:
 	br	.L1187
 .L1153:
 	bltu	r8, r3, .L1200
-	sub	r2, r4, r2
+	sub	r2, r4, r11
 	movi	r5, 256
 	movi	r8, 256
 	br	.L1170
@@ -4499,14 +4499,14 @@ __udivmodhi4:
 	movi	r8, 256
 	br	.L1187
 .L1163:
-	bltu	r8, r3, .L1205
+	bltu	r8, r10, .L1205
 	sub	r2, r4, r2
 	movi	r5, 8192
 	movi	r8, 8192
 	br	.L1170
 .L1157:
 	bltu	r8, r3, .L1202
-	sub	r2, r4, r2
+	sub	r2, r4, r12
 	movi	r5, 1024
 	movi	r8, 1024
 	br	.L1170
@@ -4521,19 +4521,19 @@ __udivmodhi4:
 	br	.L1187
 .L1161:
 	bltu	r8, r3, .L1204
-	sub	r2, r4, r2
+	sub	r2, r4, r13
 	movi	r5, 4096
 	movi	r8, 4096
 	br	.L1170
 .L1159:
-	bltu	r8, r3, .L1203
-	sub	r2, r4, r2
+	bltu	r8, r2, .L1203
+	sub	r2, r4, r15
 	movi	r5, 2048
 	movi	r8, 2048
 	br	.L1170
 .L1165:
 	bltu	r8, r3, .L1206
-	sub	r2, r4, r2
+	sub	r2, r4, r14
 	movi	r5, 16384
 	movi	r8, 16384
 	br	.L1170
@@ -4597,12 +4597,12 @@ __ashldi3:
 	ret
 .L1268:
 	beq	r6, zero, .L1271
-	movi	r2, 32
-	sub	r2, r2, r6
-	srl	r2, r4, r2
-	sll	r3, r5, r6
+	movi	r3, 32
+	sub	r7, r3, r6
+	srl	r8, r4, r7
+	sll	r5, r5, r6
 	sll	r4, r4, r6
-	or	r3, r2, r3
+	or	r3, r8, r5
 	mov	r2, r4
 	ret
 .L1271:
@@ -4623,11 +4623,11 @@ __ashrdi3:
 .L1273:
 	beq	r6, zero, .L1276
 	movi	r7, 32
-	sub	r7, r7, r6
-	sll	r7, r5, r7
-	srl	r2, r4, r6
+	sub	r3, r7, r6
+	sll	r8, r5, r3
+	srl	r4, r4, r6
 	sra	r3, r5, r6
-	or	r2, r7, r2
+	or	r2, r8, r4
 	ret
 .L1276:
 	mov	r2, r4
@@ -4639,38 +4639,38 @@ __ashrdi3:
 	.type	__bswapdi2, @function
 __bswapdi2:
 	srli	r8, r5, 8
-	srli	r9, r4, 24
 	srli	r2, r5, 24
 	slli	r3, r4, 24
 	slli	r7, r5, 8
 	srli	r6, r4, 8
+	srli	r9, r4, 24
 	slli	r4, r4, 8
+	andi	r10, r8, 65280
 	slli	r5, r5, 24
-	andi	r8, r8, 65280
-	or	r2, r2, r8
-	andhi	r7, r7, 255
-	or	r3, r3, r9
-	andi	r6, r6, 65280
-	or	r2, r2, r7
-	or	r3, r3, r6
-	andhi	r4, r4, 255
-	or	r2, r2, r5
-	or	r3, r3, r4
+	or	r11, r2, r10
+	or	r13, r3, r9
+	andhi	r12, r7, 255
+	andi	r14, r6, 65280
+	or	r15, r11, r12
+	or	r8, r13, r14
+	andhi	r3, r4, 255
+	or	r2, r15, r5
+	or	r3, r8, r3
 	ret
 	.size	__bswapdi2, .-__bswapdi2
 	.align	2
 	.global	__bswapsi2
 	.type	__bswapsi2, @function
 __bswapsi2:
-	slli	r5, r4, 24
 	srli	r2, r4, 24
+	slli	r5, r4, 24
 	srli	r3, r4, 8
 	slli	r4, r4, 8
-	or	r2, r2, r5
-	andi	r3, r3, 65280
-	or	r2, r2, r3
-	andhi	r4, r4, 255
-	or	r2, r2, r4
+	or	r6, r2, r5
+	andi	r7, r3, 65280
+	or	r8, r6, r7
+	andhi	r9, r4, 255
+	or	r2, r8, r9
 	ret
 	.size	__bswapsi2, .-__bswapsi2
 	.align	2
@@ -4678,42 +4678,42 @@ __bswapsi2:
 	.type	__clzsi2, @function
 __clzsi2:
 	movui	r5, 65535
-	cmpgeu	r5, r5, r4
-	slli	r5, r5, 4
-	movi	r2, 16
+	cmpgeu	r2, r5, r4
+	slli	r8, r2, 4
+	movi	r3, 16
 	movi	r7, 8
-	sub	r2, r2, r5
-	srl	r3, r4, r2
-	movi	r6, 4
-	movi	r2, 2
-	andi	r4, r3, 65280
-	cmpeq	r4, r4, zero
-	slli	r4, r4, 3
-	sub	r7, r7, r4
-	srl	r3, r3, r7
-	add	r5, r4, r5
-	andi	r4, r3, 240
-	cmpeq	r4, r4, zero
-	slli	r4, r4, 2
-	sub	r6, r6, r4
-	srl	r3, r3, r6
-	add	r5, r4, r5
-	andi	r4, r3, 12
-	cmpeq	r4, r4, zero
-	add	r4, r4, r4
-	sub	r6, r2, r4
-	srl	r3, r3, r6
-	srli	r6, r3, 1
-	andi	r6, r6, 1
-	bne	r6, zero, .L1280
-	sub	r2, r2, r3
-	add	r4, r4, r5
-	add	r2, r2, r4
+	sub	r6, r3, r8
+	srl	r9, r4, r6
+	movi	r10, 4
+	movi	r11, 2
+	andi	r4, r9, 65280
+	cmpeq	r12, r4, zero
+	slli	r13, r12, 3
+	sub	r14, r7, r13
+	srl	r15, r9, r14
+	add	r5, r13, r8
+	andi	r2, r15, 240
+	cmpeq	r8, r2, zero
+	slli	r7, r8, 2
+	sub	r3, r10, r7
+	srl	r9, r15, r3
+	add	r10, r7, r5
+	andi	r6, r9, 12
+	cmpeq	r4, r6, zero
+	add	r12, r4, r4
+	sub	r13, r11, r12
+	srl	r14, r9, r13
+	srli	r15, r14, 1
+	andi	r5, r15, 1
+	bne	r5, zero, .L1280
+	sub	r11, r11, r14
+	add	r2, r12, r10
+	add	r2, r11, r2
 	ret
 .L1280:
-	add	r4, r4, r5
-	mov	r2, zero
-	add	r2, r2, r4
+	mov	r11, zero
+	add	r2, r12, r10
+	add	r2, r11, r2
 	ret
 	.size	__clzsi2, .-__clzsi2
 	.align	2
@@ -4754,32 +4754,32 @@ __aeabi_lcmp:
 	.type	__ctzsi2, @function
 __ctzsi2:
 	andi	r5, r4, 65535
-	cmpeq	r5, r5, zero
-	slli	r5, r5, 4
+	cmpeq	r2, r5, zero
+	slli	r7, r2, 4
 	movi	r6, 2
-	srl	r3, r4, r5
-	andi	r2, r3, 255
-	cmpeq	r2, r2, zero
-	slli	r2, r2, 3
-	srl	r3, r3, r2
-	add	r4, r2, r5
-	andi	r2, r3, 15
-	cmpeq	r2, r2, zero
-	slli	r2, r2, 2
-	srl	r3, r3, r2
-	add	r4, r2, r4
-	andi	r2, r3, 3
-	cmpeq	r2, r2, zero
-	add	r2, r2, r2
-	srl	r3, r3, r2
-	add	r2, r2, r4
-	andi	r3, r3, 3
-	srli	r4, r3, 1
-	nor	r3, zero, r3
-	andi	r3, r3, 1
-	sub	r4, r6, r4
-	mul	r3, r3, r4
-	add	r2, r3, r2
+	srl	r3, r4, r7
+	andi	r4, r3, 255
+	cmpeq	r8, r4, zero
+	slli	r9, r8, 3
+	srl	r10, r3, r9
+	add	r11, r9, r7
+	andi	r12, r10, 15
+	cmpeq	r13, r12, zero
+	slli	r14, r13, 2
+	srl	r15, r10, r14
+	add	r5, r14, r11
+	andi	r2, r15, 3
+	cmpeq	r7, r2, zero
+	add	r4, r7, r7
+	srl	r3, r15, r4
+	add	r8, r4, r5
+	andi	r9, r3, 3
+	srli	r10, r9, 1
+	nor	r11, zero, r9
+	andi	r12, r11, 1
+	sub	r6, r6, r10
+	mul	r13, r12, r6
+	add	r2, r13, r8
 	ret
 	.size	__ctzsi2, .-__ctzsi2
 	.align	2
@@ -4796,11 +4796,11 @@ __lshrdi3:
 .L1295:
 	beq	r6, zero, .L1298
 	movi	r3, 32
-	sub	r3, r3, r6
-	sll	r3, r5, r3
-	srl	r2, r4, r6
+	sub	r7, r3, r6
+	sll	r8, r5, r7
+	srl	r4, r4, r6
 	srl	r5, r5, r6
-	or	r2, r3, r2
+	or	r2, r8, r4
 	mov	r3, r5
 	ret
 .L1298:
@@ -4818,19 +4818,19 @@ __muldsi3:
 	srli	r4, r4, 16
 	srli	r5, r5, 16
 	srli	r2, r7, 16
-	mul	r3, r3, r4
-	mul	r6, r6, r5
-	mul	r4, r4, r5
-	add	r5, r3, r2
-	andi	r2, r5, 0xffff
-	add	r3, r6, r2
-	srli	r5, r5, 16
-	slli	r2, r3, 16
-	srli	r3, r3, 16
-	andi	r7, r7, 0xffff
-	add	r5, r5, r4
-	add	r2, r7, r2
-	add	r3, r5, r3
+	mul	r8, r3, r4
+	mul	r9, r6, r5
+	mul	r10, r4, r5
+	add	r11, r8, r2
+	andi	r12, r11, 0xffff
+	add	r13, r9, r12
+	srli	r14, r11, 16
+	slli	r15, r13, 16
+	srli	r6, r13, 16
+	andi	r3, r7, 0xffff
+	add	r7, r14, r10
+	add	r2, r3, r15
+	add	r3, r7, r6
 	ret
 	.size	__muldsi3, .-__muldsi3
 	.align	2
@@ -4843,23 +4843,23 @@ __muldi3_compiler_rt:
 	srli	r9, r4, 16
 	srli	r10, r6, 16
 	srli	r11, r3, 16
-	mul	r8, r8, r9
-	mul	r2, r2, r10
-	mul	r9, r9, r10
-	add	r8, r8, r11
-	andi	r10, r8, 0xffff
-	add	r2, r2, r10
-	srli	r8, r8, 16
-	srli	r10, r2, 16
+	mul	r12, r8, r9
+	mul	r13, r2, r10
+	mul	r14, r9, r10
+	add	r15, r12, r11
+	andi	r2, r15, 0xffff
+	add	r9, r13, r2
+	srli	r8, r15, 16
+	srli	r10, r9, 16
 	mul	r4, r4, r7
 	mul	r6, r6, r5
-	add	r8, r8, r9
-	slli	r2, r2, 16
-	add	r8, r8, r10
+	slli	r7, r9, 16
+	add	r5, r8, r14
+	add	r11, r5, r10
 	andi	r3, r3, 0xffff
-	add	r4, r4, r8
-	add	r2, r3, r2
-	add	r3, r4, r6
+	add	r12, r4, r11
+	add	r2, r3, r7
+	add	r3, r12, r6
 	ret
 	.size	__muldi3_compiler_rt, .-__muldi3_compiler_rt
 	.align	2
@@ -4879,14 +4879,14 @@ __paritydi2:
 	xor	r5, r5, r4
 	srli	r3, r5, 16
 	movi	r2, 27030
-	xor	r3, r3, r5
-	srli	r4, r3, 8
-	xor	r4, r4, r3
-	srli	r3, r4, 4
-	xor	r3, r3, r4
-	andi	r3, r3, 15
-	sra	r2, r2, r3
-	andi	r2, r2, 1
+	xor	r6, r3, r5
+	srli	r4, r6, 8
+	xor	r7, r4, r6
+	srli	r8, r7, 4
+	xor	r9, r8, r7
+	andi	r10, r9, 15
+	sra	r11, r2, r10
+	andi	r2, r11, 1
 	ret
 	.size	__paritydi2, .-__paritydi2
 	.align	2
@@ -4895,64 +4895,64 @@ __paritydi2:
 __paritysi2:
 	srli	r3, r4, 16
 	movi	r2, 27030
-	xor	r3, r3, r4
-	srli	r4, r3, 8
-	xor	r4, r4, r3
-	srli	r3, r4, 4
-	xor	r3, r3, r4
-	andi	r3, r3, 15
-	sra	r2, r2, r3
-	andi	r2, r2, 1
+	xor	r5, r3, r4
+	srli	r4, r5, 8
+	xor	r6, r4, r5
+	srli	r7, r6, 4
+	xor	r8, r7, r6
+	andi	r9, r8, 15
+	sra	r10, r2, r9
+	andi	r2, r10, 1
 	ret
 	.size	__paritysi2, .-__paritysi2
 	.align	2
 	.global	__popcountdi2
 	.type	__popcountdi2, @function
 __popcountdi2:
-	srli	r7, r4, 1
 	slli	r2, r5, 31
+	srli	r7, r4, 1
 	srli	r6, r5, 1
 	movhi	r3, 21845
-	addi	r3, r3, 21845
-	or	r2, r2, r7
-	and	r2, r2, r3
-	sub	r2, r4, r2
-	and	r3, r6, r3
-	cmpltu	r4, r4, r2
-	sub	r5, r5, r3
-	sub	r5, r5, r4
-	srli	r7, r2, 2
-	slli	r4, r5, 30
-	srli	r6, r5, 2
-	movhi	r3, 13107
-	addi	r3, r3, 13107
-	or	r4, r4, r7
-	and	r4, r4, r3
-	and	r2, r2, r3
-	add	r2, r4, r2
-	and	r6, r6, r3
-	and	r5, r5, r3
-	add	r3, r6, r5
-	cmpltu	r4, r2, r4
-	add	r4, r4, r3
-	srli	r7, r2, 4
-	slli	r3, r4, 28
-	srli	r6, r4, 4
-	movhi	r5, 3855
-	or	r3, r3, r7
-	add	r2, r3, r2
-	cmpltu	r3, r2, r3
-	add	r4, r6, r4
-	addi	r5, r5, 3855
-	add	r3, r3, r4
-	and	r3, r3, r5
-	and	r2, r2, r5
-	add	r2, r3, r2
-	srli	r3, r2, 16
-	add	r3, r3, r2
-	srli	r2, r3, 8
-	add	r2, r2, r3
-	andi	r2, r2, 127
+	addi	r8, r3, 21845
+	or	r9, r2, r7
+	and	r10, r9, r8
+	sub	r11, r4, r10
+	and	r12, r6, r8
+	cmpltu	r4, r4, r11
+	sub	r5, r5, r12
+	sub	r13, r5, r4
+	slli	r14, r13, 30
+	srli	r15, r11, 2
+	srli	r7, r13, 2
+	movhi	r2, 13107
+	addi	r3, r2, 13107
+	or	r6, r14, r15
+	and	r8, r6, r3
+	and	r9, r11, r3
+	add	r10, r8, r9
+	and	r11, r7, r3
+	and	r12, r13, r3
+	cmpltu	r4, r10, r8
+	add	r5, r11, r12
+	add	r13, r4, r5
+	slli	r14, r13, 28
+	srli	r15, r10, 4
+	srli	r7, r13, 4
+	movhi	r6, 3855
+	or	r3, r14, r15
+	add	r2, r3, r10
+	add	r9, r7, r13
+	cmpltu	r8, r2, r3
+	addi	r10, r6, 3855
+	add	r11, r8, r9
+	and	r12, r2, r10
+	and	r4, r11, r10
+	add	r5, r4, r12
+	srli	r13, r5, 16
+	add	r14, r13, r5
+	srli	r15, r14, 8
+	add	r7, r15, r14
+	andi	r2, r7, 127
 	ret
 	.size	__popcountdi2, .-__popcountdi2
 	.align	2
@@ -4961,25 +4961,25 @@ __popcountdi2:
 __popcountsi2:
 	srli	r2, r4, 1
 	movhi	r3, 21845
-	addi	r3, r3, 21845
-	and	r2, r2, r3
-	sub	r4, r4, r2
-	srli	r3, r4, 2
-	movhi	r2, 13107
-	addi	r2, r2, 13107
-	and	r4, r4, r2
-	and	r3, r3, r2
-	add	r3, r3, r4
-	srli	r2, r3, 4
-	movhi	r4, 3855
-	addi	r4, r4, 3855
-	add	r2, r2, r3
-	and	r2, r2, r4
-	srli	r3, r2, 16
-	add	r3, r3, r2
-	srli	r2, r3, 8
-	add	r2, r2, r3
-	andi	r2, r2, 63
+	addi	r5, r3, 21845
+	and	r6, r2, r5
+	sub	r4, r4, r6
+	srli	r7, r4, 2
+	movhi	r8, 13107
+	addi	r9, r8, 13107
+	and	r10, r7, r9
+	and	r11, r4, r9
+	add	r12, r10, r11
+	srli	r13, r12, 4
+	movhi	r14, 3855
+	addi	r15, r14, 3855
+	add	r2, r13, r12
+	and	r5, r2, r15
+	srli	r3, r5, 16
+	add	r6, r3, r5
+	srli	r4, r6, 8
+	add	r7, r4, r6
+	andi	r2, r7, 63
 	ret
 	.size	__popcountsi2, .-__popcountsi2
 	.align	2
@@ -5011,21 +5011,21 @@ __powidf2:
 	mov	r18, r2
 	mov	r17, r3
 .L1308:
-	srli	r2, r16, 31
-	add	r2, r2, r16
-	srai	r16, r2, 1
+	srli	r3, r16, 31
+	add	r4, r3, r16
+	srai	r16, r4, 1
 	beq	r16, zero, .L1309
 .L1311:
-	mov	r4, r6
 	mov	r5, r7
+	mov	r4, r6
 	call	__muldf3
 	srli	r8, r16, 31
-	andi	r4, r16, 1
+	andi	r5, r16, 1
 	mov	r6, r2
-	add	r8, r8, r16
+	add	r9, r8, r16
 	mov	r7, r3
-	bne	r4, zero, .L1310
-	srai	r16, r8, 1
+	bne	r5, zero, .L1310
+	srai	r16, r9, 1
 	br	.L1311
 .L1309:
 	bge	r19, zero, .L1307
@@ -5069,20 +5069,20 @@ __powisf2:
 	call	__mulsf3
 	mov	r18, r2
 .L1316:
-	srli	r2, r16, 31
-	add	r16, r2, r16
+	srli	r3, r16, 31
+	add	r16, r3, r16
 	srai	r16, r16, 1
 	beq	r16, zero, .L1317
 .L1319:
-	mov	r4, r17
 	mov	r5, r17
+	mov	r4, r17
 	call	__mulsf3
-	srli	r3, r16, 31
+	srli	r5, r16, 31
 	andi	r4, r16, 1
 	mov	r17, r2
-	add	r3, r3, r16
+	add	r6, r5, r16
 	bne	r4, zero, .L1318
-	srai	r16, r3, 1
+	srai	r16, r6, 1
 	br	.L1319
 .L1317:
 	bge	r19, zero, .L1315
