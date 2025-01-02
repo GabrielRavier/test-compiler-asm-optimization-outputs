@@ -30,7 +30,7 @@ gcc-x86_64.s: mini-libc.c
 > x86_64-linux-gnu-gcc -masm=intel -S $< -o $@ $(GCC_OPT_FLAGS) -mtune=generic
 
 gcc-i386.s: mini-libc.c
-> x86_64-linux-gnu-gcc -masm=intel -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=i486 -mtune=generic
+> x86_64-linux-gnu-gcc -masm=intel -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=i686 -mtune=generic
 
 gcc-i686-mingw.s: mini-libc.c
 > i686-w64-mingw32-gcc -masm=intel -S $< -o $@ $(GCC_OPT_FLAGS) -march=i686 -mtune=generic
