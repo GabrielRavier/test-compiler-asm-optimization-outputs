@@ -8079,17 +8079,27 @@ __mulhi3:
 	lr	%r4,%r2
 	ltr	%r1,%r3
 	jl	.L2384
-	je	.L2287
+	je	.L2288
 	lhi	%r2,1
 	nr	%r2,%r1
 	lcr	%r2,%r2
 	nr	%r2,%r4
+	lr	%r5,%r4
+	lr	%r3,%r1
+	sll	%r5,1
+	sra	%r3,1
+	ber	%r14
+	lhi	%r0,1
+	nr	%r3,%r0
+	lcr	%r3,%r3
+	nr	%r3,%r5
+	ar	%r2,%r3
+	sra	%r1,2
 	lr	%r3,%r4
-	sra	%r1,1
-	sll	%r3,1
+	sll	%r3,2
 	ber	%r14
 	lhi	%r5,0
-.L2282:
+.L2286:
 	lhi	%r4,1
 	nr	%r4,%r1
 	lcr	%r0,%r4
@@ -8099,7 +8109,7 @@ __mulhi3:
 	lr	%r0,%r3
 	sra	%r4,1
 	sll	%r0,1
-	je	.L2381
+	je	.L2380
 	st	%r12,48(%r15)
 	.cfi_offset 12, -48
 	lhi	%r12,1
@@ -8111,7 +8121,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,2
 	sra	%r4,2
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8120,7 +8130,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,3
 	sra	%r4,3
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8129,7 +8139,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,4
 	sra	%r4,4
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8138,7 +8148,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,5
 	sra	%r4,5
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8147,7 +8157,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,6
 	sra	%r4,6
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8156,7 +8166,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,7
 	sra	%r4,7
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8165,7 +8175,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,8
 	sra	%r4,8
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8174,7 +8184,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,9
 	sra	%r4,9
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8183,7 +8193,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,10
 	sra	%r4,10
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8192,7 +8202,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,11
 	sra	%r4,11
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8201,7 +8211,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,12
 	sra	%r4,12
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8210,7 +8220,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,13
 	sra	%r4,13
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8219,7 +8229,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,14
 	sra	%r4,14
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8228,7 +8238,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,15
 	sra	%r4,15
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8237,7 +8247,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,16
 	sra	%r4,16
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8246,7 +8256,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,17
 	sra	%r4,17
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8255,7 +8265,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,18
 	sra	%r4,18
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8264,7 +8274,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,19
 	sra	%r4,19
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8273,7 +8283,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,20
 	sra	%r4,20
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8282,7 +8292,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,21
 	sra	%r4,21
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8291,7 +8301,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,22
 	sra	%r4,22
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8300,7 +8310,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,23
 	sra	%r4,23
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8309,7 +8319,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,24
 	sra	%r4,24
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8318,7 +8328,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,25
 	sra	%r4,25
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8327,7 +8337,7 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,26
 	sra	%r4,26
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -8336,27 +8346,18 @@ __mulhi3:
 	lr	%r4,%r1
 	sll	%r0,27
 	sra	%r4,27
-	je	.L2285
+	je	.L2287
 	nr	%r4,%r12
-	lcr	%r4,%r4
-	nr	%r4,%r0
-	ar	%r2,%r4
-	lr	%r0,%r3
-	lr	%r4,%r1
-	sll	%r0,28
-	sra	%r4,28
-	je	.L2285
-	nr	%r4,%r12
-	sra	%r1,29
+	sra	%r1,28
 	lcr	%r12,%r4
 	lcr	%r1,%r1
 	nr	%r12,%r0
-	sll	%r3,29
+	sll	%r3,28
 	ar	%r12,%r2
 	nr	%r3,%r1
-	lr	%r2,%r12
-	ar	%r2,%r3
-.L2285:
+	lr	%r2,%r3
+	ar	%r2,%r12
+.L2287:
 	ltr	%r5,%r5
 	je	.L2280
 	lcr	%r2,%r2
@@ -8365,22 +8366,33 @@ __mulhi3:
 	.cfi_restore 12
 	br	%r14
 .L2384:
-	lhi	%r0,1
-	nr	%r0,%r1
-	lcr	%r2,%r0
-	nr	%r2,%r4
+	lhi	%r2,1
+	nr	%r2,%r1
 	lcr	%r1,%r1
-	lr	%r3,%r4
+	lcr	%r2,%r2
+	nr	%r2,%r4
+	lr	%r5,%r4
+	lr	%r3,%r1
+	sll	%r5,1
+	sra	%r3,1
+	je	.L2378
+	lhi	%r0,1
+	nr	%r3,%r0
+	lcr	%r3,%r3
+	nr	%r3,%r5
+	ar	%r2,%r3
 	lhi	%r5,1
-	sll	%r3,1
-	sra	%r1,1
-	jne	.L2282
+	lr	%r3,%r4
+	sra	%r1,2
+	sll	%r3,2
+	jne	.L2286
+.L2378:
 	lcr	%r2,%r2
 	br	%r14
-.L2287:
+.L2288:
 	lhi	%r2,0
 	br	%r14
-.L2381:
+.L2380:
 	ltr	%r5,%r5
 	ber	%r14
 	lcr	%r2,%r2
