@@ -3276,9 +3276,8 @@ ldexpf:
 	fld	DWORD PTR [esp+4]
 	mov	edx, DWORD PTR [esp+8]
 	fld	st(0)
-	fld	st(1)
-	fadd	st, st(2)
-	fcompp
+	fadd	st, st(1)
+	fcomp	st(1)
 	fnstsw	ax
 	sahf
 	je	.L583
@@ -3335,9 +3334,8 @@ ldexp:
 	fld	QWORD PTR [esp+4]
 	mov	edx, DWORD PTR [esp+12]
 	fld	st(0)
-	fld	st(1)
-	fadd	st, st(2)
-	fcompp
+	fadd	st, st(1)
+	fcomp	st(1)
 	fnstsw	ax
 	sahf
 	je	.L601

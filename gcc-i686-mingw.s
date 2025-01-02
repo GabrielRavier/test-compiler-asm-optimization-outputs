@@ -3190,10 +3190,8 @@ LFB89:
 	fld	DWORD PTR [esp+4]
 	mov	eax, DWORD PTR [esp+8]
 	fld	st(0)
-	fld	st(1)
-	fadd	st, st(2)
+	fadd	st, st(1)
 	fcomip	st, st(1)
-	fstp	st(0)
 	je	L581
 	fld	DWORD PTR LC2
 	test	eax, eax
@@ -3247,10 +3245,8 @@ LFB90:
 	fld	QWORD PTR [esp+4]
 	mov	eax, DWORD PTR [esp+12]
 	fld	st(0)
-	fld	st(1)
-	fadd	st, st(2)
+	fadd	st, st(1)
 	fcomip	st, st(1)
-	fstp	st(0)
 	je	L599
 	test	eax, eax
 	js	L613
