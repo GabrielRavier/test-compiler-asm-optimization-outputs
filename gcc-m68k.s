@@ -3034,7 +3034,7 @@ strstr:
 	move.l %d1,%a0
 	move.b (%a0),%d0
 	addq.l #1,%d1
-	cmp.b %d3,%d0
+	cmp.b %d0,%d3
 	jeq .L787
 	tst.b %d0
 	jne .L788

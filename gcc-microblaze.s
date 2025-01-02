@@ -4596,18 +4596,18 @@ $L728:
 	beqid	r3,$L707
 	addik	r5,r5,1
 $L716:
-	lbui	r4,r5,0
-	sext8	r3,r4
-	xor	r7,r3,r10
-	bneid	r7,$L728
-	addk	r9,r5,r0
-	addk	r3,r6,r0
+	lbui	r7,r5,0
+	sext8	r3,r7
+	xor	r4,r3,r10
+	bneid	r4,$L728
+	addk	r9,r6,r0
+	addk	r3,r5,r0
 	brid	$L711
-	andi	r7,r4,0x00ff
+	andi	r7,r7,0x00ff
 $L729:
-	xor	r8,r4,r7
-	addik	r8,r8,-1
-	rsubk	r4,r4,r0
+	xor	r4,r8,r7
+	addik	r4,r4,-1
+	rsubk	r8,r8,r0
 	and	r4,r4,r8
 	addk	r8,r0,r4
 	srl	r8,r4
@@ -4642,18 +4642,18 @@ $L729:
 	srl	r8,r8
 	srl	r8,r8
 	beqi	r8,$L712
-	lbui	r7,r9,0
+	lbui	r7,r3,0
 	beqid	r7,$L712
-	addik	r3,r3,1
-$L711:
-	xor	r4,r3,r11
-	rsubk	r8,r4,r0
-	or	r8,r8,r4
 	addik	r9,r9,1
-	bltid	r8,$L729
-	lbui	r4,r3,0
+$L711:
+	xor	r8,r9,r11
+	rsubk	r4,r8,r0
+	or	r4,r4,r8
+	addik	r3,r3,1
+	bltid	r4,$L729
+	lbui	r8,r9,0
 $L712:
-	lbui	r3,r3,0
+	lbui	r3,r9,0
 	xor	r3,r3,r7
 	beqid	r3,$L730
 	addk	r3,r5,r0

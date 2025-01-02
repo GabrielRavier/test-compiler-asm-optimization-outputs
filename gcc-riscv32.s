@@ -3473,61 +3473,61 @@ strrchr:
 strstr:
 .LFB95:
 	.cfi_startproc
-	lbu	t1,0(a1)
-	mv	a4,a0
-	beq	t1,zero,.L668
+	lbu	t0,0(a1)
+	mv	a3,a0
+	beq	t0,zero,.L668
 	addi	sp,sp,-4
 	.cfi_def_cfa_offset 4
 	sw	s0,0(sp)
 	.cfi_offset 8, -4
 	mv	a5,a1
 .L659:
-	lbu	a3,1(a5)
+	lbu	a4,1(a5)
 	addi	a5,a5,1
-	bne	a3,zero,.L659
+	bne	a4,zero,.L659
 	sub	s0,a5,a1
-	mv	a0,a4
+	mv	a0,a3
 	addi	s0,s0,-1
 	bne	a5,a1,.L667
 	j	.L657
 .L682:
-	addi	a4,a4,1
+	addi	a3,a3,1
 	beq	a5,zero,.L681
 .L667:
-	lbu	a5,0(a4)
-	bne	t1,a5,.L682
-	add	t2,a4,s0
-	mv	a0,a1
-	mv	a3,a4
-	mv	a2,t1
-.L661:
-	beq	a3,t2,.L663
-	addi	a3,a3,1
-	bne	a2,a5,.L664
 	lbu	a5,0(a3)
+	bne	a5,t0,.L682
+	add	t2,a3,s0
+	mv	a0,a1
+	mv	a4,a3
+	mv	a2,t0
+.L661:
+	beq	a4,t2,.L663
+	addi	a4,a4,1
+	bne	a5,a2,.L664
+	lbu	a5,0(a4)
 	lbu	a2,1(a0)
-	addi	t0,a0,1
+	addi	t1,a0,1
 	beq	a5,zero,.L663
-	mv	a0,t0
+	mv	a0,t1
 	bne	a2,zero,.L661
 .L664:
-	addi	a4,a4,1
+	addi	a3,a3,1
 	j	.L667
-.L663:
-	bne	a5,a2,.L664
-	lw	s0,0(sp)
-	.cfi_remember_state
-	.cfi_restore 8
-	mv	a0,a4
-	addi	sp,sp,4
-	.cfi_def_cfa_offset 0
-	jr	ra
 .L681:
-	.cfi_restore_state
 	li	a0,0
 .L657:
 	lw	s0,0(sp)
+	.cfi_remember_state
 	.cfi_restore 8
+	addi	sp,sp,4
+	.cfi_def_cfa_offset 0
+	jr	ra
+.L663:
+	.cfi_restore_state
+	bne	a5,a2,.L664
+	lw	s0,0(sp)
+	.cfi_restore 8
+	mv	a0,a3
 	addi	sp,sp,4
 	.cfi_def_cfa_offset 0
 	jr	ra

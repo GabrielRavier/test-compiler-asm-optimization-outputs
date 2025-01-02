@@ -2529,11 +2529,10 @@ strstr:
 	beq	.L613
 	ldrb	ip, [lr, #1]!	@ zero_extendqisi2
 .L600:
+	subs	r2, ip, #0
+	movne	r2, #1
 	cmp	r3, ip
-	moveq	r2, #1
 	movne	r2, #0
-	cmp	ip, #0
-	moveq	r2, #0
 	cmp	r5, lr
 	moveq	r2, #0
 	andne	r2, r2, #1

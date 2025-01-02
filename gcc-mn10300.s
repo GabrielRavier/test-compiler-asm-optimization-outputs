@@ -2503,7 +2503,7 @@ strstr:
 	extbu d3
 .L825:
 	movbu (d0),a0
-	cmp a0,r3
+	cmp r3,a0
 	beq .L824
 	add_cmp 1, d0, 0, a0
 	bne .L825
@@ -2516,7 +2516,7 @@ strstr:
 .L819:
 	cmp d2,a1
 	beq .L821
-	add_cmp 1, a1, a0, r0
+	add_cmp 1, a1, r0, a0
 	bne .L822
 	movbu (a1),a0
 	mov 1,r2

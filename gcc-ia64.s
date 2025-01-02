@@ -5518,9 +5518,9 @@ strstr:
 	ld1 r15 = [r14]
 	adds r14 = 1, r14
 	;;
-	cmp4.eq p6, p7 = r16, r15
+	cmp4.ne p6, p7 = 0, r15
 	.mmi
-	cmp4.ne p8, p9 = 0, r15
+	cmp4.eq p8, p9 = r16, r15
 	;;
 	(p8) addl r18 = 1, r0
 	(p6) addl r15 = 1, r0

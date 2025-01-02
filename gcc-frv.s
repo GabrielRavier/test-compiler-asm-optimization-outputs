@@ -3108,7 +3108,7 @@ strstr:
 	beq icc0,0,.L590
 .L578:
 	ldsb @(gr8,gr0),gr4
-	cmp gr10,gr4,icc0
+	cmp gr4,gr10,icc0
 	bne icc0,2,.L591
 	mov gr13, gr5
 	add gr8,gr12,gr11

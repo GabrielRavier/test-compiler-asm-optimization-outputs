@@ -2543,24 +2543,24 @@ strstr:
 	andi	r2, r3, 255
 	xori	r2, r2, 128
 	addi	r2, r2, -128
-	bne	r8, r2, .L684
+	bne	r2, r8, .L684
 	add	r9, r4, r10
-	mov	r6, r5
-	mov	r2, r4
+	mov	r2, r5
+	mov	r6, r4
 	andi	r3, r3, 0xff
 	br	.L667
 .L685:
-	beq	r2, r9, .L668
-	addi	r2, r2, 1
-	bne	r7, r3, .L668
-	ldbu	r3, 0(r2)
+	beq	r6, r9, .L668
 	addi	r6, r6, 1
+	bne	r7, r3, .L668
+	ldbu	r3, 0(r6)
+	addi	r2, r2, 1
 	beq	r3, zero, .L668
 .L667:
-	ldbu	r7, 0(r6)
+	ldbu	r7, 0(r2)
 	bne	r7, zero, .L685
 .L668:
-	ldbu	r2, 0(r6)
+	ldbu	r2, 0(r2)
 	beq	r3, r2, .L674
 	addi	r4, r4, 1
 	br	.L671

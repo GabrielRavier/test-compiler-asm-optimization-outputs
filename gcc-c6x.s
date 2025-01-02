@@ -3452,37 +3452,36 @@ strrchr:
 	.global	strstr
 	.type	strstr, @function
 strstr:
-		ldb	.d2t1	*B4, A3
-	||	mv	.d1	A4, A5
-	||	mv	.s1x	B4, A4
+		mv	.d1	A4, A3
+	||	ldb	.d2t1	*B4, A4
+	||	mv	.s1x	B4, A5
 		nop	4
-		ext	.s1	A3, 24, 24, A0
+		ext	.s1	A4, 24, 24, A0
 	[!A0]	b	.s1	.L810
-		shl	.s1	A3, 24, A16
+		shl	.s1	A4, 24, A17
 		nop	4
 	;; condjump to .L810 occurs
 .L802:
-		ldb	.d1t1	*++A4[1], A1
+		ldb	.d1t1	*++A5[1], A1
 		nop	4
 	[A1]	b	.s1	.L802
 		nop	5
 	;; condjump to .L802 occurs
 		mv	.l1x	B4, A6
-		sub	.d1	A4, A6, A2
+		sub	.d1	A5, A6, A2
 	[!A2]	b	.s1	.L810
-	||[A2]	add	.d1x	A2, B4, A17
-	[A2]	shr	.s1	A16, 24, A16
+	||[A2]	add	.d1x	A2, B4, A16
+	[A2]	shr	.s1	A17, 24, A17
 		nop	4
 	;; condjump to .L810 occurs
 .L808:
-		ldb	.d1t1	*A5, A7
-	||	mv	.l1	A5, A4
-	||	mv	.s1	A5, A8
-		add	.d1	A5, 1, A5
+		ldb	.d1t1	*A3, A8
+	||	mv	.l1	A3, A4
+	||	mv	.s1	A3, A7
+		add	.d1	A3, 1, A3
 		nop	3
-		ext	.s1	A7, 24, 24, A9
-		cmpeq	.l1	A16, A9, A1
-	||	mv	.s1	A9, A0
+		ext	.s1	A8, 24, 24, A0
+		cmpeq	.l1	A17, A0, A1
 	[A1]	b	.s1	.L807
 		nop	5
 	;; condjump to .L807 occurs
@@ -3495,43 +3494,43 @@ strstr:
 		nop	5
 	;; return occurs
 .L807:
-		mv	.l1x	B4, A21
-	||	extu	.s1	A7, 24, 24, A28
+		mv	.l1x	B4, A20
+	||	extu	.s1	A8, 24, 24, A27
 .L804:
-		ldb	.d1t1	*A21, A18
-	||	mv	.l1	A21, A19
-	||	add	.s1	1, A21, A21
-		cmpeq	.l1	A21, A17, A24
-		cmpeq	.l1	0, A24, A26
-		nop	2
-		extu	.s1	A18, 24, 24, A20
-		cmpeq	.l1	0, A20, A23
-		cmpeq	.l1	A28, A20, A22
+		ldb	.d1t1	*A20, A9
+	||	mv	.l1	A20, A18
+	||	add	.s1	1, A20, A20
+		cmpeq	.l1	A20, A16, A23
 		cmpeq	.l1	0, A23, A25
-		and	.d1	A25, A22, A27
-		and	.d1	A27, A26, A2
+		nop	2
+		extu	.s1	A9, 24, 24, A19
+		cmpeq	.l1	0, A19, A22
+		cmpeq	.l1	A27, A19, A21
+		cmpeq	.l1	0, A22, A24
+		and	.d1	A21, A24, A26
+		and	.d1	A26, A25, A2
 	[!A2]	b	.s1	.L805
-	||[A2]	ldbu	.d1t1	*++A8[1], A28
+	||[A2]	ldbu	.d1t1	*++A7[1], A27
 		nop	4
-		mv	.d1	A28, A1
+		mv	.d1	A27, A0
 	;; condjump to .L805 occurs
-	[A1]	b	.s1	.L804
+	[A0]	b	.s1	.L804
 		nop	5
 	;; condjump to .L804 occurs
-		mv	.d1	A21, A19
+		mv	.d1	A20, A18
 .L805:
-		ldbu	.d1t1	*A19, A29
-	||	add	.s1	1, A4, A5
+		ldbu	.d1t1	*A18, A28
+	||	add	.s1	1, A4, A3
 		nop	4
-		cmpeq	.l1	A29, A28, A0
-	[A0]	b	.s1	.L800
-	[!A0]	b	.s1	.L808
+		cmpeq	.l1	A28, A27, A1
+	[A1]	b	.s1	.L800
+	[!A1]	b	.s1	.L808
 		nop	5
 	;; condjump to .L800 occurs
 	;; jump to .L808 occurs
 .L810:
 		ret	.s2	B3
-	||	mv	.d1	A5, A4
+	||	mv	.d1	A3, A4
 		nop	5
 	;; return occurs
 	.size	strstr, .-strstr

@@ -3551,69 +3551,67 @@ LFB97:
 	push	ebx
 	.cfi_def_cfa_offset 20
 	.cfi_offset 3, -20
-	mov	esi, DWORD PTR [esp+24]
-	mov	eax, DWORD PTR [esp+20]
-	movzx	edi, BYTE PTR [esi]
-	mov	ebx, edi
+	mov	ebp, DWORD PTR [esp+24]
+	mov	edx, DWORD PTR [esp+20]
+	movzx	ebx, BYTE PTR [ebp+0]
 	test	bl, bl
 	je	L662
-	mov	edx, esi
+	mov	eax, ebp
 	.p2align 3
 	.p2align 4
 	.p2align 3
 L652:
-	add	edx, 1
-	cmp	BYTE PTR [edx], 0
+	add	eax, 1
+	cmp	BYTE PTR [eax], 0
 	jne	L652
-	mov	ecx, eax
-	sub	edx, esi
+	mov	ecx, edx
+	sub	eax, ebp
 	je	L650
-	lea	ebp, [esi-1+edx]
-	mov	ecx, edi
+	lea	edi, [ebp-1+eax]
 	jmp	L659
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
 L674:
-	add	eax, 1
-	test	dl, dl
+	add	edx, 1
+	test	al, al
 	je	L673
 L659:
-	movzx	edx, BYTE PTR [eax]
-	cmp	dl, cl
+	movzx	eax, BYTE PTR [edx]
+	cmp	al, bl
 	jne	L674
-	mov	DWORD PTR [esp+24], esi
-	mov	edx, esi
-	mov	edi, ecx
-	mov	esi, eax
-	mov	DWORD PTR [esp+20], eax
-	mov	ebx, ecx
+	mov	DWORD PTR [esp+24], ebp
+	mov	eax, ebp
+	mov	ecx, ebx
+	mov	esi, edx
+	mov	DWORD PTR [esp+20], edx
+	mov	ebp, ebx
 	jmp	L654
 	.p2align 4,,10
 	.p2align 3
 L675:
-	cmp	al, bl
-	sete	cl
-	test	al, al
-	setne	al
-	test	cl, al
+	test	dl, dl
+	setne	bl
+	cmp	dl, cl
+	sete	dl
+	test	bl, dl
 	je	L655
-	movzx	ebx, BYTE PTR [esi+1]
+	movzx	ecx, BYTE PTR [esi+1]
 	add	esi, 1
-	add	edx, 1
-	test	bl, bl
+	add	eax, 1
+	test	cl, cl
 	je	L655
 L654:
-	movzx	eax, BYTE PTR [edx]
-	cmp	edx, ebp
+	movzx	edx, BYTE PTR [eax]
+	cmp	eax, edi
 	jne	L675
 L655:
-	mov	eax, DWORD PTR [esp+20]
-	mov	esi, DWORD PTR [esp+24]
-	mov	ecx, edi
-	cmp	bl, BYTE PTR [edx]
+	mov	ebx, ebp
+	mov	edx, DWORD PTR [esp+20]
+	mov	ebp, DWORD PTR [esp+24]
+	cmp	cl, BYTE PTR [eax]
 	je	L662
-	add	eax, 1
+	add	edx, 1
 	jmp	L659
 	.p2align 4,,10
 	.p2align 3
@@ -3637,7 +3635,7 @@ L650:
 	ret
 L662:
 	.cfi_restore_state
-	mov	ecx, eax
+	mov	ecx, edx
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 16

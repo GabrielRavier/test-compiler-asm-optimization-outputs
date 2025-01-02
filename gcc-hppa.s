@@ -2889,15 +2889,15 @@ strstr:
 	copy %r25,%r20
 	copy %r23,%r28
 	b .L629
-	copy %r26,%r22
+	copy %r26,%r21
 .L647:
-	comclr,<> %r28,%r19,%r21
-	ldi 1,%r21
+	comclr,<> %r28,%r19,%r22
+	ldi 1,%r22
 	comiclr,= 0,%r19,%r19
 	ldi 1,%r19
-	and %r21,%r19,%r19
+	and %r19,%r22,%r19
 	comib,=,n 0,%r19,.L630
-	ldbs,mb 1(%r22),%r28
+	ldbs,mb 1(%r21),%r28
 	extru %r28,31,8,%r28
 	comib,= 0,%r28,.L630
 	ldo 1(%r20),%r20

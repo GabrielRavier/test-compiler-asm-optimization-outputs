@@ -4260,33 +4260,33 @@ strstr:
 
 .L758:
 	lb	$3,0($4)
-	bne	$8,$3,.L772
+	bne	$3,$8,.L772
 	daddu	$9,$4,$10
 
 	andi	$3,$3,0x00ff
-	move	$6,$5
+	move	$2,$5
 	b	.L754
-	move	$2,$4
+	move	$6,$4
 
 	.align	3
 .L773:
-	beql	$2,$9,.L774
-	lbu	$2,0($6)
+	beql	$6,$9,.L774
+	lbu	$2,0($2)
 
 	bne	$7,$3,.L755
-	daddiu	$2,$2,1
-
-	lbu	$3,0($2)
-	beq	$3,$0,.L755
 	daddiu	$6,$6,1
 
+	lbu	$3,0($6)
+	beq	$3,$0,.L755
+	daddiu	$2,$2,1
+
 .L754:
-	lbu	$7,0($6)
+	lbu	$7,0($2)
 	bne	$7,$0,.L773
 	nop
 
 .L755:
-	lbu	$2,0($6)
+	lbu	$2,0($2)
 .L774:
 	beq	$2,$3,.L761
 	nop

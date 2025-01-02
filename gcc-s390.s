@@ -4244,7 +4244,7 @@ strstr:
 	ic	%r1,0(%r2)
 	lhi	%r4,255
 	nr	%r4,%r1
-	cr	%r0,%r4
+	cr	%r4,%r0
 	jne	.L1200
 	lr	%r9,%r11
 	lr	%r12,%r3
@@ -4263,9 +4263,9 @@ strstr:
 	j	.L1188
 .L1196:
 	lhi	%r8,255
-	nr	%r4,%r8
 	nr	%r1,%r8
-	cr	%r4,%r1
+	nr	%r4,%r8
+	cr	%r1,%r4
 	jne	.L1185
 	lr	%r8,%r12
 	ahi	%r8,1

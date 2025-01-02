@@ -4801,8 +4801,8 @@ strstr:
 	addiu	$sp,-16
 	sd	$17,8($sp)
 	sd	$16,0($sp)
-	lb	$16,0($5)
-	beqz	$16,$L708
+	lb	$17,0($5)
+	beqz	$17,$L708
 	move	$8,$5
 $L699:
 	lb	$3,1($5)
@@ -4817,26 +4817,26 @@ $L717:
 	beqz	$3,$L716
 $L705:
 	lb	$3,0($4)
-	cmp	$16,$3
+	cmp	$3,$17
 	btnez	$L717
-	addiu	$17,$5,-1
+	addiu	$16,$5,-1
 	zeb	$3
-	addu	$17,$4,$17
-	move	$7,$8
-	move	$6,$4
+	addu	$16,$4,$16
+	move	$2,$8
+	move	$7,$4
 $L701:
-	lbu	$2,0($7)
-	beqz	$2,$L702
-	cmp	$6,$17
+	lbu	$6,0($2)
+	beqz	$6,$L702
+	cmp	$7,$16
 	bteqz	$L702
-	xor	$2,$3
-	bnez	$2,$L702
-	lbu	$3,1($6)
-	addiu	$6,1
+	xor	$6,$3
+	bnez	$6,$L702
+	lbu	$3,1($7)
 	addiu	$7,1
+	addiu	$2,1
 	bnez	$3,$L701
 $L702:
-	lbu	$2,0($7)
+	lbu	$2,0($2)
 	xor	$2,$3
 	beqz	$2,$L708
 	addiu	$4,1

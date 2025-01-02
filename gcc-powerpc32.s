@@ -4074,31 +4074,31 @@ strstr:
 .LFB95:
 	.cfi_startproc
 	lbz 11,0(4)
-	mr 10,3
+	mr 8,3
 	andi. 5,11,0xff
 	beq- 0,.L820
 	mr 9,4
 .L809:
-	lbzu 8,1(9)
-	cmpwi 0,8,0
+	lbzu 10,1(9)
+	cmpwi 0,10,0
 	bne+ 0,.L809
 	subf. 9,4,9
-	mr 3,10
+	mr 3,8
 	beqlr- 0
 	addi 3,9,-1
 	b .L817
 .L830:
 	cmpwi 0,9,0
-	addi 10,10,1
+	addi 8,8,1
 	beq- 0,.L829
 .L817:
-	lbz 9,0(10)
-	cmpw 0,5,9
+	lbz 9,0(8)
+	cmpw 0,9,5
 	bne+ 0,.L830
 	addi 0,3,1
 	mr 6,4
-	mr 8,11
-	mr 7,10
+	mr 10,11
+	mr 7,8
 	mtctr 0
 	b .L811
 .L832:
@@ -4107,24 +4107,24 @@ strstr:
 	lbzu 9,1(7)
 	cmpwi 0,9,0
 	beq- 0,.L831
-	lbzu 8,1(6)
+	lbzu 10,1(6)
 .L811:
-	andi. 8,8,0xff
-	cmpw 7,8,9
+	andi. 10,10,0xff
+	cmpw 7,10,9
 	bne+ 0,.L832
 .L814:
-	addi 10,10,1
+	addi 8,8,1
 	b .L817
-.L831:
-	lbz 8,1(6)
-.L813:
-	cmpw 0,9,8
-	bne+ 0,.L814
-.L820:
-	mr 3,10
-	blr
 .L829:
 	li 3,0
+	blr
+.L831:
+	lbz 10,1(6)
+.L813:
+	cmpw 0,9,10
+	bne+ 0,.L814
+.L820:
+	mr 3,8
 	blr
 	.cfi_endproc
 .LFE95:

@@ -3154,7 +3154,7 @@ _strstr:
 	P2 += 1;
 	R0 = B [P2+-1] (X);
 	R2 = R0.B (X);
-	cc =R3==R2;
+	cc =R2==R3;
 	if !cc jump .L633 (bp);
 	R1 = R6 - R7;
 	P0 = R1;

@@ -2765,49 +2765,49 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	ldrb	w7, [x1]
-	mov	x4, x0
-	cbz	w7, .L568
-	mov	x8, x1
+	ldrb	w8, [x1]
+	mov	x5, x0
+	cbz	w8, .L568
+	mov	x7, x1
 	.p2align 3,,7
 .L559:
-	ldrb	w0, [x8, 1]!
+	ldrb	w0, [x7, 1]!
 	cbnz	w0, .L559
-	subs	x8, x8, x1
-	mov	x0, x4
+	subs	x7, x7, x1
+	mov	x0, x5
 	sub	x9, x1, #1
 	bne	.L565
 	b	.L557
 	.p2align 2,,3
 .L574:
-	add	x4, x4, 1
+	add	x5, x5, 1
 	cbz	w2, .L573
 .L565:
-	ldrb	w2, [x4]
-	cmp	w2, w7
+	ldrb	w2, [x5]
+	cmp	w2, w8
 	bne	.L574
-	mov	w5, w7
-	mov	x0, x1
-	mov	x6, x4
+	mov	w0, w8
+	mov	x4, x1
+	mov	x6, x5
 	b	.L564
 	.p2align 2,,3
 .L563:
 	ldrb	w2, [x6, 1]!
-	add	x3, x0, 1
-	ldrb	w5, [x0, 1]
+	add	x3, x4, 1
+	ldrb	w0, [x4, 1]
 	cbz	w2, .L562
-	mov	x0, x3
+	mov	x4, x3
 .L564:
-	cmp	w5, 0
-	sub	x3, x8, x0
-	ccmp	w2, w5, 0, ne
+	cmp	w0, 0
+	sub	x3, x7, x4
+	ccmp	w2, w0, 0, ne
 	add	x3, x9, x3
 	ccmp	x3, 0, 4, eq
 	bne	.L563
 .L562:
-	cmp	w2, w5
+	cmp	w2, w0
 	beq	.L568
-	add	x4, x4, 1
+	add	x5, x5, 1
 	b	.L565
 	.p2align 2,,3
 .L573:
@@ -2815,7 +2815,7 @@ strstr:
 .L557:
 	ret
 .L568:
-	mov	x0, x4
+	mov	x0, x5
 	ret
 	.cfi_endproc
 .LFE97:

@@ -3201,14 +3201,14 @@ strstr:
 	cmpb,*= %r0,%r28,.L672
 	ldo 1(%r26),%r26
 .L681:
-	ldb 0(%r26),%r31
+	ldb 0(%r26),%r19
 .L696:
-	extrd,s %r31,63,8,%r28
+	extrd,s %r19,63,8,%r28
 	cmpb,<> %r22,%r28,.L693
-	extrd,u %r31,63,8,%r19
-	copy %r25,%r28
+	extrd,u %r19,63,8,%r19
+	copy %r25,%r21
 	b .L676
-	copy %r26,%r21
+	copy %r26,%r28
 .L694:
 	xor %r31,%r19,%r20
 	extrw,s,>= %r31,31,8,%r31
@@ -3219,19 +3219,19 @@ strstr:
 	ldo -1(%r20),%r20
 	and %r31,%r20,%r31
 	bb,>=,n %r31,24,.L677
-	ldb,mb 1(%r21),%r31
-	extrd,u %r31,63,8,%r19
+	ldb,mb 1(%r28),%r19
+	extrd,u %r19,63,8,%r19
 	cmpb,*= %r0,%r19,.L677
-	ldo 1(%r28),%r28
+	ldo 1(%r21),%r21
 .L676:
-	cmpb,*<> %r23,%r28,.L694
-	ldb 0(%r28),%r31
+	cmpb,*<> %r23,%r21,.L694
+	ldb 0(%r21),%r31
 .L677:
-	ldb 0(%r28),%r28
+	ldb 0(%r21),%r28
 	cmpb,=,n %r19,%r28,.L684
 	ldo 1(%r26),%r26
 	b .L696
-	ldb 0(%r26),%r31
+	ldb 0(%r26),%r19
 .L684:
 	copy %r26,%r28
 .L672:

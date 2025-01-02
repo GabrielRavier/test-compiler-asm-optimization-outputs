@@ -4164,36 +4164,36 @@ $L713:
 $L700:
 	lb	$2,0($4)
 	nop
-	bne	$8,$2,$L713
+	bne	$2,$8,$L713
 	move	$6,$11
 
 	addu	$9,$4,$10
-	move	$3,$5
+	move	$2,$5
 	.option	pic0
 	b	$L696
 	.option	pic2
-	move	$2,$4
+	move	$3,$4
 
 $L714:
-	beq	$2,$9,$L697
+	beq	$3,$9,$L697
 	nop
 
 	bne	$7,$6,$L697
-	addiu	$2,$2,1
-
-	lbu	$6,0($2)
-	nop
-	beq	$6,$0,$L697
 	addiu	$3,$3,1
 
+	lbu	$6,0($3)
+	nop
+	beq	$6,$0,$L697
+	addiu	$2,$2,1
+
 $L696:
-	lbu	$7,0($3)
+	lbu	$7,0($2)
 	nop
 	bne	$7,$0,$L714
 	nop
 
 $L697:
-	lbu	$2,0($3)
+	lbu	$2,0($2)
 	nop
 	beq	$2,$6,$L703
 	nop

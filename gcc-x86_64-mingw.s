@@ -2599,59 +2599,58 @@ strstr:
 	.seh_endprologue
 	mov	rsi, rdx
 	movzx	edx, BYTE PTR [rdx]
-	mov	rax, rcx
 	test	dl, dl
 	je	.L600
-	mov	rcx, rsi
+	mov	rax, rsi
 	.p2align 4
 	.p2align 4
 	.p2align 3
 .L590:
-	add	rcx, 1
-	cmp	BYTE PTR [rcx], 0
+	add	rax, 1
+	cmp	BYTE PTR [rax], 0
 	jne	.L590
-	mov	r8, rax
-	sub	rcx, rsi
+	mov	r8, rcx
+	sub	rax, rsi
 	je	.L588
-	lea	rbx, -1[rsi+rcx]
+	lea	rbx, -1[rsi+rax]
 	jmp	.L597
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
 .L611:
-	add	rax, 1
-	test	cl, cl
+	add	rcx, 1
+	test	al, al
 	je	.L610
 .L597:
-	movzx	ecx, BYTE PTR [rax]
-	cmp	cl, dl
+	movzx	eax, BYTE PTR [rcx]
+	cmp	al, dl
 	jne	.L611
 	mov	r8d, edx
-	mov	rcx, rsi
-	mov	r9, rax
+	mov	rax, rsi
+	mov	r10, rcx
 	jmp	.L592
 	.p2align 4,,10
 	.p2align 3
 .L612:
-	cmp	r10b, r8b
-	sete	r11b
-	test	r10b, r10b
-	setne	r10b
-	test	r11b, r10b
+	test	r9b, r9b
+	setne	r11b
+	cmp	r9b, r8b
+	sete	r9b
+	test	r11b, r9b
 	je	.L593
-	movzx	r8d, BYTE PTR 1[r9]
-	add	r9, 1
-	add	rcx, 1
+	movzx	r8d, BYTE PTR 1[r10]
+	add	r10, 1
+	add	rax, 1
 	test	r8b, r8b
 	je	.L593
 .L592:
-	movzx	r10d, BYTE PTR [rcx]
-	cmp	rcx, rbx
+	movzx	r9d, BYTE PTR [rax]
+	cmp	rax, rbx
 	jne	.L612
 .L593:
-	cmp	r8b, BYTE PTR [rcx]
+	cmp	r8b, BYTE PTR [rax]
 	je	.L600
-	add	rax, 1
+	add	rcx, 1
 	jmp	.L597
 	.p2align 4,,10
 	.p2align 3
@@ -2663,7 +2662,7 @@ strstr:
 	pop	rsi
 	ret
 .L600:
-	mov	r8, rax
+	mov	r8, rcx
 	mov	rax, r8
 	pop	rbx
 	pop	rsi

@@ -2839,50 +2839,50 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	lbu	a6,0(a1)
-	mv	a4,a0
-	beq	a6,zero,.L637
+	lbu	a7,0(a1)
+	mv	a3,a0
+	beq	a7,zero,.L637
 	mv	a5,a1
 .L626:
-	lbu	a3,1(a5)
+	lbu	a4,1(a5)
 	addi	a5,a5,1
-	bne	a3,zero,.L626
+	bne	a4,zero,.L626
 	sub	t3,a5,a1
-	mv	a0,a4
+	mv	a0,a3
 	addi	t3,t3,-1
 	bne	a5,a1,.L634
 	ret
 .L645:
-	addi	a4,a4,1
+	addi	a3,a3,1
 	beq	a5,zero,.L644
 .L634:
-	lbu	a5,0(a4)
-	bne	a6,a5,.L645
-	add	t1,a4,t3
-	mv	a0,a1
-	mv	a3,a4
-	mv	a2,a6
-.L628:
-	beq	a3,t1,.L630
-	addi	a3,a3,1
-	bne	a2,a5,.L631
 	lbu	a5,0(a3)
+	bne	a5,a7,.L645
+	add	t1,a3,t3
+	mv	a0,a1
+	mv	a4,a3
+	mv	a2,a7
+.L628:
+	beq	a4,t1,.L630
+	addi	a4,a4,1
+	bne	a5,a2,.L631
+	lbu	a5,0(a4)
 	lbu	a2,1(a0)
-	addi	a7,a0,1
+	addi	a6,a0,1
 	beq	a5,zero,.L630
-	mv	a0,a7
+	mv	a0,a6
 	bne	a2,zero,.L628
 .L631:
-	addi	a4,a4,1
+	addi	a3,a3,1
 	j	.L634
+.L644:
+	li	a0,0
+	ret
 .L630:
 	bne	a5,a2,.L631
 .L637:
-	mv	a0,a4
+	mv	a0,a3
 .L624:
-	ret
-.L644:
-	li	a0,0
 	ret
 	.cfi_endproc
 .LFE97:

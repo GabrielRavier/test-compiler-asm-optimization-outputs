@@ -4448,33 +4448,33 @@ strstr:
 	if r0 == r2 goto .L1678
 	r4 += -1
 	r9 = r5;r9 &= 0xff
-	r8 = r4
-	r7 = r1
+	r7 = r4
+	r8 = r1
 	goto .L1544
 .L1680:
-	r7 += 1
+	r8 += 1
 	if r0 == 0 goto .L1679
 .L1544:
-	r0 = *(u8 *) (r7+0)
+	r0 = *(u8 *) (r8+0)
 	r0 <<= 56
 	r0 s>>= 56
-	if r5 != r0 goto .L1680
-	r1 = r7
-	r1 += r8
+	if r0 != r5 goto .L1680
+	r1 = r8
+	r1 += r7
 	*(u64 *) (r10+-8) = r1
-	r4 = r8
+	r4 = r7
 	r0 = r9
 	r6 = r2
-	r3 = r7
+	r3 = r8
 	r4 &= 7
 	if r4 == 0 goto .L1651
 	r3 = *(u8 *) (r2+0)
 	if r3 == 0 goto .L1541
 	if r3 != r9 goto .L1541
-	r3 = r7
+	r3 = r8
 	r6 += 1
 	r3 += 1
-	r0 = *(u8 *) (r7+1)
+	r0 = *(u8 *) (r8+1)
 	if r0 == 0 goto .L1541
 	if r4 == 1 goto .L1651
 	if r4 == 2 goto .L1597
@@ -4530,28 +4530,28 @@ strstr:
 	r0 = *(u8 *) (r3+0)
 	if r0 == 0 goto .L1541
 .L1651:
-	*(u64 *) (r10+-16) = r7
+	*(u64 *) (r10+-16) = r8
 .L1540:
-	r7 = *(u8 *) (r6+0)
-	if r7 == 0 goto .L1671
+	r8 = *(u8 *) (r6+0)
+	if r8 == 0 goto .L1671
 	r1 = *(u64 *) (r10+-8)
 	if r3 == r1 goto .L1671
-	if r7 != r0 goto .L1671
+	if r8 != r0 goto .L1671
 	r6 += 1
 	r4 = r3
 	r1 = r6
 	r4 += 1
 	r0 = *(u8 *) (r3+1)
 	if r0 == 0 goto .L1671
-	r7 = *(u8 *) (r6+0)
-	if r7 == 0 goto .L1671
-	if r7 != r0 goto .L1671
+	r8 = *(u8 *) (r6+0)
+	if r8 == 0 goto .L1671
+	if r8 != r0 goto .L1671
 	r6 += 1
 	r0 = *(u8 *) (r3+2)
 	if r0 == 0 goto .L1671
-	r7 = *(u8 *) (r6+0)
-	if r7 == 0 goto .L1671
-	if r7 != r0 goto .L1671
+	r8 = *(u8 *) (r6+0)
+	if r8 == 0 goto .L1671
+	if r8 != r0 goto .L1671
 	r6 = r1
 	r0 = *(u8 *) (r3+3)
 	r6 += 2
@@ -4562,9 +4562,9 @@ strstr:
 	r6 += 1
 	r0 = *(u8 *) (r4+3)
 	if r0 == 0 goto .L1671
-	r7 = *(u8 *) (r6+0)
-	if r7 == 0 goto .L1671
-	if r7 != r0 goto .L1671
+	r8 = *(u8 *) (r6+0)
+	if r8 == 0 goto .L1671
+	if r8 != r0 goto .L1671
 	r6 += 1
 	r0 = *(u8 *) (r4+4)
 	if r0 == 0 goto .L1671
@@ -4574,9 +4574,9 @@ strstr:
 	r6 += 1
 	r0 = *(u8 *) (r4+5)
 	if r0 == 0 goto .L1671
-	r7 = *(u8 *) (r6+0)
-	if r7 == 0 goto .L1671
-	if r7 != r0 goto .L1671
+	r8 = *(u8 *) (r6+0)
+	if r8 == 0 goto .L1671
+	if r8 != r0 goto .L1671
 	r6 += 1
 	r0 = *(u8 *) (r4+6)
 	if r0 == 0 goto .L1671
@@ -4590,16 +4590,16 @@ strstr:
 	r0 = *(u8 *) (r4+7)
 	if r0 != 0 goto .L1540
 .L1671:
-	r7 = *(u64 *) (r10+-16)
+	r8 = *(u64 *) (r10+-16)
 .L1541:
 	r4 = *(u8 *) (r6+0)
 	if r4 == r0 goto .L1547
-	r7 += 1
+	r8 += 1
 	goto .L1544
 .L1679:
 	exit
 .L1547:
-	r1 = r7
+	r1 = r8
 .L1678:
 	r0 = r1
 	exit

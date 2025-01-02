@@ -3394,7 +3394,7 @@ strstr:
 	l.addi	r3, r3, 1
 .L691:
 	l.lbs	r17, 0(r3)
-	l.sfeq	r25, r17
+	l.sfeq	r17, r25
 	l.bnf	.L704
 	l.or	r21, r31, r31
 	l.add	r27, r3, r29

@@ -2783,59 +2783,59 @@ strstr:
 .LFB97:
 	.cfi_startproc
 	movzx	r10d, BYTE PTR [rsi]
-	mov	rax, rdi
+	mov	rdx, rdi
 	test	r10b, r10b
 	je	.L622
-	mov	rdx, rsi
+	mov	rax, rsi
 	.p2align 4
 	.p2align 4
 	.p2align 3
 .L612:
-	add	rdx, 1
-	cmp	BYTE PTR [rdx], 0
+	add	rax, 1
+	cmp	BYTE PTR [rax], 0
 	jne	.L612
-	mov	rcx, rax
-	sub	rdx, rsi
+	mov	rcx, rdx
+	sub	rax, rsi
 	je	.L610
-	lea	r11, [rsi-1+rdx]
+	lea	r11, [rsi-1+rax]
 	jmp	.L619
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
 .L633:
-	add	rax, 1
-	test	dl, dl
+	add	rdx, 1
+	test	al, al
 	je	.L632
 .L619:
-	movzx	edx, BYTE PTR [rax]
-	cmp	dl, r10b
+	movzx	eax, BYTE PTR [rdx]
+	cmp	al, r10b
 	jne	.L633
 	mov	ecx, r10d
-	mov	rdx, rsi
-	mov	rdi, rax
+	mov	rax, rsi
+	mov	r8, rdx
 	jmp	.L614
 	.p2align 4,,10
 	.p2align 3
 .L634:
-	cmp	r8b, cl
-	sete	r9b
-	test	r8b, r8b
-	setne	r8b
-	test	r9b, r8b
+	test	dil, dil
+	setne	r9b
+	cmp	dil, cl
+	sete	dil
+	test	r9b, dil
 	je	.L615
-	movzx	ecx, BYTE PTR [rdi+1]
-	add	rdi, 1
-	add	rdx, 1
+	movzx	ecx, BYTE PTR [r8+1]
+	add	r8, 1
+	add	rax, 1
 	test	cl, cl
 	je	.L615
 .L614:
-	movzx	r8d, BYTE PTR [rdx]
-	cmp	rdx, r11
+	movzx	edi, BYTE PTR [rax]
+	cmp	rax, r11
 	jne	.L634
 .L615:
-	cmp	cl, BYTE PTR [rdx]
+	cmp	cl, BYTE PTR [rax]
 	je	.L622
-	add	rax, 1
+	add	rdx, 1
 	jmp	.L619
 	.p2align 4,,10
 	.p2align 3
@@ -2845,7 +2845,7 @@ strstr:
 	mov	rax, rcx
 	ret
 .L622:
-	mov	rcx, rax
+	mov	rcx, rdx
 	mov	rax, rcx
 	ret
 	.cfi_endproc

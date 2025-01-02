@@ -3142,54 +3142,54 @@ strstr:
 .LFB97 = .
 	.cfi_startproc
 	ld.b	$r17,$r5,0
-	or	$r12,$r4,$r0
+	or	$r13,$r4,$r0
 	beqz	$r17,.L617
-	or	$r13,$r5,$r0
+	or	$r12,$r5,$r0
 	.align	3
 .L608:
-	ld.bu	$r14,$r13,1
-	addi.d	$r13,$r13,1
+	ld.bu	$r14,$r12,1
+	addi.d	$r12,$r12,1
 	bnez	$r14,.L608
-	sub.d	$r19,$r13,$r5
-	or	$r4,$r12,$r0
+	sub.d	$r19,$r12,$r5
+	or	$r4,$r13,$r0
 	bstrpick.w	$r20,$r17,7,0
 	addi.d	$r19,$r19,-1
-	bne	$r13,$r5,.L614
+	bne	$r12,$r5,.L614
 	jr	$r1
 	.align	5
 .L628:
-	addi.d	$r12,$r12,1
-	beqz	$r13,.L627
+	addi.d	$r13,$r13,1
+	beqz	$r12,.L627
 .L614:
-	ld.b	$r13,$r12,0
-	bne	$r17,$r13,.L628
+	ld.b	$r12,$r13,0
+	bne	$r12,$r17,.L628
 	or	$r15,$r20,$r0
-	add.d	$r18,$r12,$r19
+	add.d	$r18,$r13,$r19
 	or	$r14,$r5,$r0
-	or	$r13,$r12,$r0
+	or	$r12,$r13,$r0
 	b	.L610
 	.align	5
 .L629:
-	beq	$r13,$r18,.L611
-	addi.d	$r13,$r13,1
+	beq	$r12,$r18,.L611
+	addi.d	$r12,$r12,1
 	bne	$r16,$r15,.L611
-	ld.bu	$r15,$r13,0
+	ld.bu	$r15,$r12,0
 	addi.d	$r14,$r14,1
 	beqz	$r15,.L611
 .L610:
 	ld.bu	$r16,$r14,0
 	bnez	$r16,.L629
 .L611:
-	ld.bu	$r13,$r14,0
-	beq	$r13,$r15,.L617
-	addi.d	$r12,$r12,1
+	ld.bu	$r12,$r14,0
+	beq	$r12,$r15,.L617
+	addi.d	$r13,$r13,1
 	b	.L614
 	.align	5
 .L627:
 	or	$r4,$r0,$r0
 	jr	$r1
 .L617:
-	or	$r4,$r12,$r0
+	or	$r4,$r13,$r0
 .L606:
 	jr	$r1
 	.cfi_endproc

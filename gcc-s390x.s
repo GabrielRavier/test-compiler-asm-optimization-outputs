@@ -3413,7 +3413,7 @@ strstr:
 	cije	%r1,0,.L1126
 .L1115:
 	llc	%r1,0(%r2)
-	crjlh	%r10,%r1,.L1127
+	crjlh	%r1,%r10,.L1127
 	lgr	%r5,%r3
 	lgr	%r4,%r2
 	lr	%r12,%r8
@@ -3427,7 +3427,7 @@ strstr:
 	la	%r2,1(%r2)
 	j	.L1115
 .L1123:
-	crjlh	%r12,%r1,.L1112
+	crjlh	%r1,%r12,.L1112
 	la	%r4,1(%r4)
 	llc	%r12,1(%r5)
 	llc	%r1,0(%r4)

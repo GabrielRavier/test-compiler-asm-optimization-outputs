@@ -2683,15 +2683,15 @@ strstr:
 	be,pn	%icc, .L607
 	 add	%g3, 1, %g3
 .L606:
-	ldub	[%g3], %o3
+	ldub	[%g3], %g5
 	xor	%g3, %o0, %o5
 	mov	0, %g4
 	movrne	%o5, 1, %g4
-	xor	%o3, %g2, %g5
+	xor	%g5, %g2, %o3
 	cmp	%g0, %g5
-	subx	%g0, -1, %g5
+	addx	%g0, 0, %g5
 	cmp	%g0, %o3
-	addx	%g0, 0, %o3
+	subx	%g0, -1, %o3
 	and	%g5, %o3, %g5
 	andcc	%g5, %g4, %g0
 	bne,pt	%icc, .L608

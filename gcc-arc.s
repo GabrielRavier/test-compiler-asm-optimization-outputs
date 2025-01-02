@@ -2352,7 +2352,7 @@ strstr:
 .L738:
 	ldb_s	r2,[r3]
 	mov_s	r0,r3	;4
-	brne.d	r14,r2,.L748
+	brne.d	r2,r14,.L748
 	add_s	r3,r3,1   ;b,b,h
 	mov_s	r13,r1	;4
 	add	r15,r0,r4 ;a,b,c/u6
@@ -2374,19 +2374,20 @@ strstr:
 	b.d	.L738
 	add_s	r3,r0,1   ;a,b,c/u3
 	.align 4
-.L749:
-	ldb_s	r3,[r13,1]
-	.align 2
-.L734:
-	brne	r2,r3,.L735
+.L747:
+	mov_s	r0,0	;3
 .L728:
 	pop_s	r13
 	ldd.ab	r14,[sp,8]
 	j_s	[blink]
 	.align 4
-.L747:
-	b.d	.L728
-	mov_s	r0,0	;3
+.L749:
+	ldb_s	r3,[r13,1]
+	.align 2
+.L734:
+	breq	r2,r3,.L728
+	b.d	.L738
+	add_s	r3,r0,1   ;a,b,c/u3
 	.align 4
 .L740:
 	b.d	.L728

@@ -6241,8 +6241,8 @@ strrchr:
 .global	strstr
 	.type	strstr, @function
 strstr:
+	push r14
 	push r15
-	push r16
 	push r17
 	push r28
 	push r29
@@ -6250,58 +6250,55 @@ strstr:
 /* frame size = 0 */
 /* stack size = 5 */
 .L__stack_usage = 5
-	mov r18,r24
-	mov r19,r25
-	mov r16,r22
-	mov r17,r23
-	mov r30,r16
-	mov r31,r17
-	ld r15,Z
-	cp r15, __zero_reg__
-	brne .+2
-	rjmp .L658
-	mov r24,r16
-	mov r25,r17
-	adiw r24,1
-.L650:
 	mov r30,r24
 	mov r31,r25
+	mov r20,r22
+	mov r21,r23
+	mov r26,r20
+	mov r27,r21
+	ld r17,X
+	cp r17, __zero_reg__
+	brne .+2
+	rjmp .L658
+	mov r24,r20
+	mov r25,r21
 	adiw r24,1
-	ld r20,Z
-	cpse r20,__zero_reg__
+.L650:
+	mov r26,r24
+	mov r27,r25
+	adiw r24,1
+	ld r18,X
+	cpse r18,__zero_reg__
 	rjmp .L650
-	mov r22,r30
-	mov r23,r31
-	sub r22,r16
-	sbc r23,r17
-	cp r30,r16
-	cpc r31,r17
+	mov r22,r26
+	mov r23,r27
+	sub r22,r20
+	sbc r23,r21
+	cp r26,r20
+	cpc r27,r21
 	brne .L656
 	rjmp .L658
 .L666:
 	cp r24, __zero_reg__
 	breq .L665
 .L656:
-	mov r26,r18
-	mov r27,r19
-	ld r24,X
-	subi r18,-1
-	sbci r19,-1
-	cpse r15,r24
+	mov r26,r30
+	mov r27,r31
+	ld r24,Z
+	adiw r30,1
+	cpse r24,r17
 	rjmp .L666
-	mov r24,r15
-	mov r20,r16
-	mov r21,r17
-	mov r30,r18
-	mov r31,r19
-	mov r18,r22
-	mov r19,r23
-	add r18,r26
-	adc r19,r27
+	mov r24,r17
+	mov r18,r20
+	mov r19,r21
+	mov r14,r22
+	mov r15,r23
+	add r14,r26
+	adc r15,r27
 	rjmp .L652
 .L668:
-	cp r30,r18
-	cpc r31,r19
+	cp r30,r14
+	cpc r31,r15
 	breq .L653
 	cpse r25,r24
 	rjmp .L653
@@ -6309,21 +6306,20 @@ strstr:
 	cp r24, __zero_reg__
 	breq .L667
 .L652:
-	mov r28,r20
-	mov r29,r21
+	mov r28,r18
+	mov r29,r19
 	ld r25,Y
-	subi r20,-1
-	sbci r21,-1
+	subi r18,-1
+	sbci r19,-1
 	cpse r25,__zero_reg__
 	rjmp .L668
 .L653:
 	ld r25,Y
 	cp r24,r25
 	breq .L648
-	mov r18,r26
-	mov r19,r27
-	subi r18,-1
-	sbci r19,-1
+	mov r30,r26
+	mov r31,r27
+	adiw r30,1
 	rjmp .L656
 .L665:
 	ldi r26,0
@@ -6335,24 +6331,24 @@ strstr:
 	pop r29
 	pop r28
 	pop r17
-	pop r16
 	pop r15
+	pop r14
 	ret
 .L667:
-	mov r28,r20
-	mov r29,r21
+	mov r28,r18
+	mov r29,r19
 	rjmp .L653
 .L658:
-	mov r26,r18
-	mov r27,r19
+	mov r26,r30
+	mov r27,r31
 	mov r24,r26
 	mov r25,r27
 /* epilogue start */
 	pop r29
 	pop r28
 	pop r17
-	pop r16
 	pop r15
+	pop r14
 	ret
 	.size	strstr, .-strstr
 .global	copysign

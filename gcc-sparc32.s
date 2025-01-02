@@ -2655,68 +2655,68 @@ strrchr:
 	.type	strstr, #function
 	.proc	0102
 strstr:
-	ldub	[%o1], %o3
-	sll	%o3, 24, %o3
-	cmp	%o3, 0
+	ldub	[%o1], %o2
+	sll	%o2, 24, %o2
+	cmp	%o2, 0
 	be	.L708
-	 mov	%o0, %g1
-	mov	%o1, %g2
+	 mov	%o0, %g2
+	mov	%o1, %g1
 .L698:
-	ldsb	[%g2+1], %g3
+	ldsb	[%g1+1], %g3
 	cmp	%g3, 0
 	bne	.L698
-	 add	%g2, 1, %g2
-	subcc	%g2, %o1, %g2
-	be	.L722
-	 mov	%g1, %o0
-	add	%o1, -1, %o2
-	sra	%o3, 24, %o3
-	b	.L705
-	 add	%o2, %g2, %o2
-.L719:
-	cmp	%g3, 0
-	be	.L718
 	 add	%g1, 1, %g1
+	subcc	%g1, %o1, %g1
+	be	.L722
+	 mov	%g2, %o0
+	add	%o1, -1, %o0
+	sra	%o2, 24, %o2
+	b	.L705
+	 add	%o0, %g1, %o0
+.L719:
+	cmp	%g1, 0
+	be	.L718
+	 add	%g2, 1, %g2
 .L705:
-	ldsb	[%g1], %g3
-	cmp	%g3, %o3
+	ldsb	[%g2], %g1
+	cmp	%g1, %o2
 	bne	.L719
-	 ldub	[%g1], %g2
+	 ldub	[%g2], %g3
 	mov	%o1, %g4
-	mov	%g1, %o5
+	mov	%g2, %o5
 	b	.L700
-	 and	%g2, 0xff, %g2
+	 and	%g3, 0xff, %g3
 .L720:
+	cmp	%g0, %g1
+	addx	%g0, 0, %o3
 	cmp	%g0, %o4
-	subx	%g0, -1, %o4
-	cmp	%g0, %g3
-	addx	%g0, 0, %g3
-	andcc	%o4, %g3, %g0
+	subx	%g0, -1, %g1
+	andcc	%o3, %g1, %g0
 	be,a	.L721
-	 ldub	[%g4], %g3
-	ldub	[%o5], %g2
-	cmp	%g2, 0
+	 ldub	[%g4], %g1
+	ldub	[%o5], %g3
+	cmp	%g3, 0
 	be	.L701
 	 add	%g4, 1, %g4
 .L700:
-	ldub	[%g4], %g3
+	ldub	[%g4], %g1
 	add	%o5, 1, %o5
-	cmp	%g4, %o2
+	cmp	%g4, %o0
 	bne	.L720
-	 xor	%g3, %g2, %o4
+	 xor	%g1, %g3, %o4
 .L701:
-	ldub	[%g4], %g3
+	ldub	[%g4], %g1
 .L721:
-	cmp	%g2, %g3
-	be	.L722
-	 mov	%g1, %o0
+	cmp	%g3, %g1
+	be,a	.L722
+	 mov	%g2, %o0
 	b	.L705
-	 add	%g1, 1, %g1
+	 add	%g2, 1, %g2
 .L718:
 	jmp	%o7+8
 	 mov	0, %o0
 .L708:
-	mov	%g1, %o0
+	mov	%g2, %o0
 .L722:
 	jmp	%o7+8
 	 nop

@@ -3909,32 +3909,32 @@ strstr:
 .LFB97:
 	.cfi_startproc
 	lbz 11,0(4)
-	mr 10,3
+	mr 8,3
 	andi. 5,11,0xff
 	beq- 0,.L779
 	mr 9,4
 .L768:
-	lbzu 8,1(9)
-	cmpwi 0,8,0
+	lbzu 10,1(9)
+	cmpwi 0,10,0
 	bne+ 0,.L768
 	subf. 9,4,9
-	mr 3,10
+	mr 3,8
 	beqlr- 0
 	addi 3,9,-1
 	b .L776
 .L789:
 	cmpwi 0,9,0
-	addi 10,10,1
+	addi 8,8,1
 	beq- 0,.L788
 .L776:
-	lbz 9,0(10)
-	cmpw 0,5,9
+	lbz 9,0(8)
+	cmpw 0,9,5
 	bne+ 0,.L789
 	addi 0,3,1
 	mtctr 0
 	mr 6,4
-	mr 8,11
-	mr 7,10
+	mr 10,11
+	mr 7,8
 	b .L770
 .L791:
 	bdz .L772
@@ -3942,24 +3942,24 @@ strstr:
 	lbzu 9,1(7)
 	cmpwi 0,9,0
 	beq- 0,.L790
-	lbzu 8,1(6)
+	lbzu 10,1(6)
 .L770:
-	andi. 8,8,0xff
-	cmpw 7,8,9
+	andi. 10,10,0xff
+	cmpw 7,10,9
 	bne+ 0,.L791
 .L773:
-	addi 10,10,1
+	addi 8,8,1
 	b .L776
-.L790:
-	lbz 8,1(6)
-.L772:
-	cmpw 0,9,8
-	bne+ 0,.L773
-.L779:
-	mr 3,10
-	blr
 .L788:
 	li 3,0
+	blr
+.L790:
+	lbz 10,1(6)
+.L772:
+	cmpw 0,9,10
+	bne+ 0,.L773
+.L779:
+	mr 3,8
 	blr
 	.long 0
 	.byte 0,0,0,0,0,0,0,0

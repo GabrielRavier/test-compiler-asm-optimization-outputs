@@ -3382,41 +3382,40 @@ _strstr:
 	mov.l	@(4,er7),er6
 	mov.l	er0,er3
 	mov.b	r4l,r1l
-	mov.l	er0,@er7
-	mov.l	er5,er0
+	mov.b	r4l,@(3,er7)
 	bra	.L759
 .L763:
 	adds	#1,er3
-	mov.l	er6,er5
-	adds	#1,er5
+	mov.l	er6,er4
+	adds	#1,er4
 	mov.b	@er3,r2l
 	bne	.L760
-	mov.l	@er7,er0
+	mov.b	@(3,er7),r4l
 	mov.b	@(1,er6),r1l
 	bra	.L761
 .L760:
-	mov.b	@er5,r1l
+	mov.b	@er4,r1l
 	beq	.L774
-	mov.l	er5,er6
+	mov.l	er4,er6
 .L759:
-	cmp.l	er0,er3
+	cmp.l	er5,er3
 	beq	.L775
-	cmp.b	r2l,r1l
+	cmp.b	r1l,r2l
 	beq	.L763
 	bra	.L774
 .L775:
-	mov.l	@er7,er0
+	mov.b	@(3,er7),r4l
 .L761:
 	cmp.b	r1l,r2l
-	bne	.L762
-	bra	.L755
+	beq	.L755
+	bra	.L762
 .L774:
-	mov.l	@er7,er0
+	mov.b	@(3,er7),r4l
 .L762:
 	adds	#1,er0
 .L765:
 	mov.b	@er0,r2l
-	cmp.b	r2l,r4l
+	cmp.b	r4l,r2l
 	beq	.L764
 	adds	#1,er0
 	mov.b	r2l,r2l
