@@ -7115,77 +7115,77 @@ __parityhi2:
 .LFB117:
 	.cfi_startproc
 	lr	%r1,%r2
-	lhi	%r4,1
 	lhi	%r3,1
-	nr	%r3,%r1
-	sra	%r2,1
 	lr	%r0,%r1
-	nr	%r2,%r4
+	lhi	%r5,1
 	sra	%r0,2
-	ar	%r2,%r3
-	lhi	%r5,1
-	lr	%r3,%r1
-	nr	%r0,%r5
-	sra	%r3,3
 	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r2,%r0
-	lhi	%r5,1
-	ar	%r2,%r3
-	lr	%r0,%r1
-	lr	%r3,%r1
-	sra	%r0,4
-	sra	%r3,5
 	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r2,%r0
+	nr	%r4,%r1
+	sra	%r2,1
 	lhi	%r5,1
-	ar	%r2,%r3
-	lr	%r0,%r1
-	lr	%r3,%r1
-	sra	%r0,6
-	sra	%r3,7
-	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r2,%r0
-	lhi	%r5,1
-	ar	%r2,%r3
-	lr	%r0,%r1
-	lr	%r3,%r1
-	sra	%r0,8
-	sra	%r3,9
-	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r2,%r0
-	lhi	%r4,1
-	ar	%r2,%r3
-	lr	%r0,%r1
-	lhi	%r5,1
-	sra	%r0,10
-	lr	%r3,%r1
-	nr	%r0,%r5
-	sra	%r3,11
-	ar	%r2,%r0
-	nr	%r3,%r4
-	ar	%r2,%r3
-	lr	%r0,%r1
-	sra	%r0,12
-	nr	%r0,%r4
-	lr	%r5,%r1
-	ar	%r2,%r0
-	lr	%r0,%r1
-	sra	%r1,15
-	sra	%r5,13
+	nr	%r2,%r3
 	lhi	%r3,1
-	sra	%r0,14
-	nr	%r5,%r3
-	lhi	%r4,1
-	ar	%r2,%r5
-	nr	%r0,%r4
+	ar	%r2,%r4
+	lr	%r4,%r1
 	ar	%r2,%r0
+	sra	%r4,3
+	lr	%r0,%r1
+	nr	%r4,%r3
+	sra	%r0,4
+	nr	%r0,%r5
+	ar	%r2,%r4
+	lhi	%r3,1
+	ar	%r2,%r0
+	lr	%r4,%r1
+	lr	%r0,%r1
+	sra	%r4,5
+	sra	%r0,6
+	nr	%r4,%r3
+	lhi	%r5,1
+	nr	%r0,%r5
+	ar	%r2,%r4
+	lhi	%r3,1
+	ar	%r2,%r0
+	lr	%r4,%r1
+	lr	%r0,%r1
+	sra	%r4,7
+	sra	%r0,8
+	nr	%r4,%r3
+	lhi	%r5,1
+	nr	%r0,%r5
+	ar	%r2,%r4
+	lhi	%r3,1
+	ar	%r2,%r0
+	lr	%r4,%r1
+	lr	%r0,%r1
+	sra	%r4,9
+	sra	%r0,10
+	nr	%r4,%r3
+	lhi	%r5,1
+	nr	%r0,%r5
+	ar	%r2,%r4
+	lhi	%r3,1
+	ar	%r2,%r0
+	lr	%r4,%r1
+	lr	%r0,%r1
+	sra	%r4,11
+	sra	%r0,12
+	nr	%r4,%r3
+	lhi	%r5,1
+	ar	%r2,%r4
+	nr	%r0,%r5
+	ar	%r2,%r0
+	lr	%r4,%r1
+	lr	%r3,%r1
+	sra	%r1,15
+	lhi	%r0,1
+	sra	%r4,13
+	sra	%r3,14
+	nr	%r4,%r0
+	nr	%r3,%r0
+	ar	%r2,%r4
+	ar	%r2,%r3
 	ar	%r2,%r1
 	lhi	%r1,1
 	nr	%r2,%r1
@@ -7200,82 +7200,81 @@ __parityhi2:
 __popcounthi2:
 .LFB118:
 	.cfi_startproc
-	lhi	%r4,1
 	lhi	%r3,1
-	nr	%r3,%r2
-	lr	%r1,%r2
 	lr	%r0,%r2
-	sra	%r1,1
+	lhi	%r5,1
 	sra	%r0,2
-	nr	%r1,%r4
-	lhi	%r5,1
-	ar	%r1,%r3
-	nr	%r0,%r5
-	lr	%r3,%r2
 	lhi	%r4,1
-	sra	%r3,3
-	nr	%r3,%r4
-	ar	%r1,%r0
+	nr	%r0,%r5
+	nr	%r4,%r2
+	lr	%r1,%r2
 	lhi	%r5,1
-	ar	%r1,%r3
+	sra	%r1,1
+	nr	%r1,%r3
+	lhi	%r3,1
+	ar	%r1,%r4
+	lr	%r4,%r2
+	ar	%r1,%r0
+	sra	%r4,3
 	lr	%r0,%r2
-	lr	%r3,%r2
+	nr	%r4,%r3
 	sra	%r0,4
-	sra	%r3,5
 	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
+	ar	%r1,%r4
+	lhi	%r3,1
 	ar	%r1,%r0
-	lhi	%r5,1
-	ar	%r1,%r3
+	lr	%r4,%r2
 	lr	%r0,%r2
-	lr	%r3,%r2
+	sra	%r4,5
 	sra	%r0,6
-	sra	%r3,7
-	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r1,%r0
+	nr	%r4,%r3
 	lhi	%r5,1
-	ar	%r1,%r3
+	nr	%r0,%r5
+	ar	%r1,%r4
+	lhi	%r3,1
+	ar	%r1,%r0
+	lr	%r4,%r2
 	lr	%r0,%r2
-	lr	%r3,%r2
+	sra	%r4,7
 	sra	%r0,8
-	sra	%r3,9
-	nr	%r0,%r5
-	lhi	%r4,1
-	nr	%r3,%r4
-	ar	%r1,%r0
+	nr	%r4,%r3
 	lhi	%r5,1
-	ar	%r1,%r3
+	nr	%r0,%r5
+	ar	%r1,%r4
+	lhi	%r3,1
+	ar	%r1,%r0
+	lr	%r4,%r2
 	lr	%r0,%r2
-	lr	%r3,%r2
+	sra	%r4,9
 	sra	%r0,10
-	sra	%r3,11
-	nr	%r0,%r5
-	lhi	%r4,1
-	ar	%r1,%r0
-	nr	%r3,%r4
-	ar	%r1,%r3
-	lr	%r0,%r2
+	nr	%r4,%r3
 	lhi	%r5,1
+	nr	%r0,%r5
+	ar	%r1,%r4
+	lhi	%r3,1
+	ar	%r1,%r0
+	lr	%r4,%r2
+	lr	%r0,%r2
+	sra	%r4,11
 	sra	%r0,12
-	nr	%r0,%r5
-	lr	%r3,%r2
-	ar	%r1,%r0
-	sra	%r3,13
-	lhi	%r4,1
-	lr	%r0,%r2
-	nr	%r3,%r4
-	sra	%r2,15
-	ar	%r1,%r3
-	sra	%r0,14
-	lr	%r3,%r2
+	nr	%r4,%r3
 	lhi	%r5,1
+	ar	%r1,%r4
 	nr	%r0,%r5
 	ar	%r1,%r0
+	lr	%r3,%r2
+	lr	%r4,%r2
+	sra	%r2,15
+	lhi	%r0,1
+	lr	%r5,%r2
+	sra	%r3,13
+	sra	%r4,14
+	nr	%r3,%r0
+	nr	%r4,%r0
+	ar	%r1,%r3
+	ar	%r1,%r4
 	lr	%r2,%r1
-	ar	%r2,%r3
+	ar	%r2,%r5
 	br	%r14
 	.cfi_endproc
 .LFE118:

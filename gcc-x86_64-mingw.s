@@ -4344,16 +4344,16 @@ __parityhi2:
 	mov	ecx, edx
 	add	eax, r8d
 	and	r11d, 1
-	mov	r8d, edx
 	sar	ecx, 12
+	mov	r8d, edx
 	add	eax, r9d
+	and	ecx, 1
 	mov	r9d, edx
 	add	eax, r10d
 	add	eax, r11d
-	and	ecx, 1
+	add	eax, ecx
 	sar	r8d, 13
 	sar	r9d, 14
-	add	eax, ecx
 	and	r8d, 1
 	sar	edx, 15
 	add	eax, r8d
@@ -4413,16 +4413,16 @@ __popcounthi2:
 	mov	ecx, edx
 	add	eax, r8d
 	and	r11d, 1
-	mov	r8d, edx
 	sar	ecx, 12
+	mov	r8d, edx
 	add	eax, r9d
+	and	ecx, 1
 	mov	r9d, edx
 	add	eax, r10d
 	add	eax, r11d
-	and	ecx, 1
+	add	eax, ecx
 	sar	r8d, 13
 	sar	r9d, 14
-	add	eax, ecx
 	and	r8d, 1
 	sar	edx, 15
 	add	eax, r8d

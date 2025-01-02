@@ -2067,28 +2067,28 @@ bswap_64:
 	or d0,a1
 	mov a1,(56,sp)
 	or d2,a1
-	asl 24,a3
 	mov a1,(8,sp)
+	asl 24,a3
+	lsr 24,d1
 	extbu d3,a0
 	mov a3,(12,sp)
-	mov a0,(20,sp)
-	lsr 24,d1
 	mov d1,(4,sp)
+	mov a0,(20,sp)
 	mov (8,sp),d1
+	mov 0,a2
 	mov (12,sp),a1
 	mov d0,(48,sp)
-	mov r4,r2
 	mov (20,sp),d0
-	mov 0,a2
+	mov r4,r2
 	asl 8,r2
-	mov r2,(76,sp)
-	and 16711680,r2
 	or a2,d1
+	mov r2,(76,sp)
+	mov d1,(24,sp)
+	and 16711680,r2
+	or d0,a1
 	mov a3,(44,sp)
 	mov a3,(60,sp)
 	mov d2,(64,sp)
-	mov d1,(24,sp)
-	or d0,a1
 	mov a2,(52,sp)
 	mov a2,(68,sp)
 	mov a2,(16,sp)
@@ -3645,19 +3645,19 @@ __parityhi2:
 	and 1,r2
 	add r0,d0
 	asr 11,r3
+	mov d1,a0
 	and 1,r3
 	add r1,d0
-	add_mov r2, d0, d1, a0
-	add r3,d0
 	asr 12,a0
+	add r2,d0
 	and 1,a0
-	mov d1,a1
+	add r3,d0
+	add_mov a0, d0, d1, a1
 	asr 13,a1
 	mov d1,r0
 	and 1,a1
 	asr 14,r0
 	and 1,r0
-	add a0,d0
 	add a1,d0
 	asr 15,d1
 	add r0,d0
@@ -3669,55 +3669,57 @@ __parityhi2:
 	.type	__popcounthi2, @function
 __popcounthi2:
 	exthu d0,a0
-	mov_mov d0, d1, a0, d0
-	mov_asr a0, a1, 1, d0
+	mov_mov d0, d1, a0, a1
+	mov_asr a0, d0, 2, a1
+	asr 1,d0
 	and 1,d1
 	and 1,d0
-	mov_asr a0, r0, 2, a1
-	and 1,a1
-	mov_asr a0, r1, 3, r0
+	mov_mov a1, r0, a0, r1
 	and 1,r0
-	add_asr d1, d0, 4, r1
-	mov a0,r2
+	mov_asr a0, r2, 3, r1
 	and 1,r1
-	add_asr a1, d0, 5, r2
+	add_asr d1, d0, 4, r2
 	mov a0,r3
 	and 1,r2
-	add_asr r0, d0, 6, r3
+	add_asr r0, d0, 5, r3
 	mov a0,d1
 	and 1,r3
-	add_asr r1, d0, 7, d1
+	add_asr r1, d0, 6, d1
 	mov a0,a1
 	and 1,d1
-	add r2,d0
-	asr 8,a1
+	add_asr r2, d0, 7, a1
 	mov a0,r0
 	and 1,a1
 	add r3,d0
-	asr 9,r0
+	asr 8,r0
 	mov a0,r1
 	and 1,r0
 	add d1,d0
-	asr 10,r1
+	asr 9,r1
 	mov a0,r2
 	and 1,r1
 	add a1,d0
-	asr 11,r2
+	asr 10,r2
+	mov a0,r3
 	and 1,r2
 	add r0,d0
-	add_mov r1, d0, a0, r3
-	add r2,d0
-	asr 12,r3
-	and 1,r3
+	asr 11,r3
 	mov a0,d1
-	asr 13,d1
+	and 1,r3
+	add r1,d0
+	asr 12,d1
+	add r2,d0
 	and 1,d1
-	mov_add a0, a1, r3, d0
+	add r3,d0
+	add_mov d1, d0, a0, r0
+	asr 13,r0
+	and 1,r0
+	mov a0,a1
 	asr 14,a1
-	add_mov d0, d1, a1, d0
+	add_mov d0, r0, a1, d0
 	and 1,d0
 	asr 15,a0
-	add d1,d0
+	add r0,d0
 	add a0,d0
 	retf [],0
 	.size	__popcounthi2, .-__popcounthi2
@@ -4777,50 +4779,48 @@ __bswapdi2:
 	and 16711680,d0
 	mov r3,a2
 	and -16777216,a2
-	or d0,d3
+	or_mov d0, d3, r4, r0
+	lsr 24,r0
 	mov d3,(64,sp)
+	or r0,r1
 	or a2,d3
 	mov d3,(8,sp)
-	mov r4,r0
-	lsr 24,r0
-	mov (8,sp),a1
-	or r0,r1
 	extbu r1,a0
-	mov r4,d3
-	mov d0,(56,sp)
 	mov a0,(20,sp)
-	asl 8,d3
-	mov r3,d0
-	mov d3,(84,sp)
-	and 65280,d0
-	and 16711680,d3
-	mov_mov r4, r7, d1, d2
-	asl 24,r7
+	mov (8,sp),a1
+	mov r4,d3
 	mov (20,sp),r1
+	asl 8,d3
+	mov d3,(84,sp)
+	mov r4,r7
+	and 16711680,d3
+	asl 24,r7
+	mov d0,(56,sp)
+	mov r3,d0
 	mov a2,(72,sp)
+	mov d3,(44,sp)
+	and 65280,d0
+	or_mov a3, a1, d1, d2
+	mov_mov r7, d3, a3, a2
 	lsr 24,d2
-	or_mov a3, a1, a3, a2
+	or a1,a2
+	or r1,d3
 	mov a3,(16,sp)
 	mov a3,(24,sp)
 	mov a3,(80,sp)
 	mov a3,(40,sp)
 	mov d2,(4,sp)
-	mov d3,(44,sp)
 	mov d0,(28,sp)
-	or a1,a2
+	mov a2,(32,sp)
+	or d3,d0
 	mov r7,(52,sp)
 	mov r7,(68,sp)
 	mov r7,(12,sp)
-	mov a2,(32,sp)
-	mov (44,sp),d2
-	mov r7,d3
-	or r1,d3
-	or d3,d0
-	or a3,a2
-	or d2,d0,a3
 	mov d0,(36,sp)
-	mov_mov d1, r5, a2, d0
-	mov a3,d1
+	mov (44,sp),d2
+	or_mov a3, a2, d1, r5
+	or d2,d0,a3
+	mov_mov a3, d1, a2, d0
 	retf [d2,d3,a2,a3,exreg1],120
 	.size	__bswapdi2, .-__bswapdi2
 	.global __bswapsi2

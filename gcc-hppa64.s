@@ -6073,17 +6073,17 @@ __multi3:
 	ldd -56(%r30),%r24
 	add,l %r22,%r24,%r26
 	add,l %r31,%r1,%r31
-	fstd %fr26,-56(%r30)
 	add,l %r26,%r19,%r21
-	ldd -56(%r30),%r20
+	fstd %fr26,-56(%r30)
 	depd,z %r31,31,32,%r23
+	ldd -56(%r30),%r20
+	extrd,u %r29,63,32,%r29
 	add,l %r28,%r20,%r22
 	fstd %fr28,-56(%r30)
-	add,l %r22,%r21,%r1
 	ldd -56(%r30),%r24
-	extrd,u %r29,63,32,%r29
-	add,l %r23,%r24,%r26
+	add,l %r22,%r21,%r1
 	add,l %r29,%r25,%r29
+	add,l %r23,%r24,%r26
 	add,l %r1,%r26,%r28
 	bve (%r2)
 	ldo -64(%r30),%r30
