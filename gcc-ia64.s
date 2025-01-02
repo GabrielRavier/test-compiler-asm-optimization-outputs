@@ -11886,283 +11886,262 @@ __udivmodhi4:
 	(p14) br.cond.dpnt .L1642
 	;;
 .L1644:
-	.mmi
+	.mmb
 	cmp4.gtu p6, p7 = r10, r8
+	or r28 = r20, r19
 	nop 0
-	extr.u r25 = r18, 2, 14
-	;;
 	.mmi
-	(p7) sub r8 = r8, r10
-	(p7) or r19 = r20, r19
-	extr.u r26 = r16, 2, 14
+	sub r27 = r8, r10
+	nop 0
+	extr.u r29 = r18, 2, 14
+	;;
 	.mii
-	cmp4.eq p8, p9 = 0, r25
+	nop 0
+	extr.u r14 = r16, 2, 14
+	(p7) zxt2 r19 = r28
+	.mmb
+	nop 0
+	cmp4.eq p8, p9 = 0, r29
 	nop 0
 	;;
-	(p7) zxt2 r8 = r8
+	.mii
+	nop 0
+	extr.u r30 = r18, 3, 13
+	(p7) zxt2 r8 = r27
+	;;
+	.mii
+	nop 0
+	extr.u r31 = r18, 4, 12
+	zxt2 r15 = r19
+	;;
+	.mii
+	nop 0
+	extr.u r33 = r18, 5, 11
+	;;
+	extr.u r2 = r18, 6, 10
+	;;
+	.mii
+	nop 0
+	extr.u r3 = r18, 7, 9
+	;;
+	extr.u r25 = r18, 8, 8
+	;;
 	.mib
 	nop 0
-	(p7) zxt2 r19 = r19
+	extr.u r26 = r18, 9, 7
 	(p8) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p10, p11 = r26, r8
+	cmp4.gtu p10, p11 = r14, r8
+	sub r9 = r8, r14
+	extr.u r20 = r16, 3, 13
+	.mmi
 	nop 0
-	extr.u r27 = r18, 3, 13
+	cmp4.eq p12, p13 = 0, r30
+	nop 0
 	;;
 	.mii
-	(p11) sub r8 = r8, r26
-	extr.u r28 = r16, 3, 13
-	(p11) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p12, p13 = 0, r27
+	(p11) or r19 = r29, r15
+	extr.u r17 = r18, 10, 6
+	(p11) zxt2 r8 = r9
 	;;
+	.mib
 	nop 0
-	(p11) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p11) or r19 = r25, r19
+	zxt2 r10 = r19
 	(p12) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p14, p15 = r28, r8
+	cmp4.gtu p14, p15 = r20, r8
+	sub r32 = r8, r20
+	extr.u r21 = r16, 4, 12
+	.mmi
 	nop 0
-	extr.u r29 = r18, 4, 12
+	cmp4.eq p6, p7 = 0, r31
+	nop 0
 	;;
 	.mii
-	(p15) sub r8 = r8, r28
-	extr.u r30 = r16, 4, 12
-	(p15) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p6, p7 = 0, r29
+	(p15) or r19 = r30, r10
+	extr.u r11 = r18, 11, 5
+	(p15) zxt2 r8 = r32
 	;;
+	.mib
 	nop 0
-	(p15) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p15) or r19 = r27, r19
+	zxt2 r22 = r19
 	(p6) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p8, p9 = r30, r8
+	cmp4.gtu p8, p9 = r21, r8
+	sub r24 = r8, r21
+	extr.u r27 = r16, 5, 11
+	.mmi
 	nop 0
-	extr.u r31 = r18, 5, 11
+	cmp4.eq p10, p11 = 0, r33
+	nop 0
 	;;
 	.mii
-	(p9) sub r8 = r8, r30
-	extr.u r33 = r16, 5, 11
-	(p9) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p10, p11 = 0, r31
+	(p9) or r19 = r31, r22
+	extr.u r29 = r18, 12, 4
+	(p9) zxt2 r8 = r24
 	;;
+	.mib
 	nop 0
-	(p9) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p9) or r19 = r29, r19
+	zxt2 r23 = r19
 	(p10) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p12, p13 = r33, r8
+	cmp4.gtu p12, p13 = r27, r8
+	sub r28 = r8, r27
+	extr.u r30 = r18, 13, 3
+	.mmi
 	nop 0
-	extr.u r14 = r18, 6, 10
+	cmp4.eq p14, p15 = 0, r2
+	nop 0
 	;;
 	.mii
-	(p13) sub r8 = r8, r33
-	extr.u r15 = r16, 6, 10
-	(p13) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p14, p15 = 0, r14
+	(p13) or r19 = r33, r23
+	extr.u r33 = r16, 6, 10
+	(p13) zxt2 r8 = r28
 	;;
+	.mib
 	nop 0
-	(p13) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p13) or r19 = r31, r19
+	zxt2 r31 = r19
 	(p14) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p6, p7 = r15, r8
+	cmp4.gtu p6, p7 = r33, r8
+	sub r15 = r8, r33
+	extr.u r14 = r16, 7, 9
+	.mmi
 	nop 0
-	extr.u r17 = r18, 7, 9
+	cmp4.eq p8, p9 = 0, r3
+	nop 0
 	;;
 	.mii
-	(p7) sub r8 = r8, r15
-	extr.u r2 = r16, 7, 9
-	(p7) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p8, p9 = 0, r17
+	(p7) or r19 = r2, r31
+	extr.u r9 = r18, 14, 2
+	(p7) zxt2 r8 = r15
 	;;
+	.mib
 	nop 0
-	(p7) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p7) or r19 = r14, r19
+	zxt2 r2 = r19
 	(p8) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p10, p11 = r2, r8
-	nop 0
-	extr.u r3 = r18, 8, 8
-	;;
-	.mii
-	(p11) sub r8 = r8, r2
-	extr.u r9 = r16, 8, 8
-	(p11) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p12, p13 = 0, r3
-	;;
-	nop 0
-	(p11) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p11) or r19 = r17, r19
-	(p12) br.cond.dpnt .L1642
-	;;
-	.mmi
-	cmp4.gtu p14, p15 = r9, r8
-	nop 0
-	extr.u r10 = r18, 9, 7
-	;;
-	.mii
-	(p15) sub r8 = r8, r9
-	extr.u r20 = r16, 9, 7
-	(p15) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p6, p7 = 0, r10
-	;;
-	nop 0
-	(p15) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p15) or r19 = r3, r19
-	(p6) br.cond.dpnt .L1642
-	;;
-	.mmi
-	cmp4.gtu p8, p9 = r20, r8
-	nop 0
-	extr.u r32 = r18, 10, 6
-	;;
-	.mii
-	(p9) sub r8 = r8, r20
-	extr.u r11 = r16, 10, 6
-	(p9) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p10, p11 = 0, r32
-	;;
-	nop 0
-	(p9) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p9) or r19 = r10, r19
-	(p10) br.cond.dpnt .L1642
-	;;
-	.mmi
-	cmp4.gtu p12, p13 = r11, r8
-	nop 0
-	extr.u r22 = r18, 11, 5
-	;;
-	.mii
-	(p13) sub r8 = r8, r11
-	extr.u r21 = r16, 11, 5
-	(p13) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p14, p15 = 0, r22
-	;;
-	nop 0
-	(p13) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p13) or r19 = r32, r19
-	(p14) br.cond.dpnt .L1642
-	;;
-	.mmi
-	cmp4.gtu p6, p7 = r21, r8
-	nop 0
-	extr.u r24 = r18, 12, 4
-	;;
-	.mii
-	(p7) sub r8 = r8, r21
-	extr.u r23 = r16, 12, 4
-	(p7) zxt2 r19 = r19
-	.mmi
-	cmp4.eq p8, p9 = 0, r24
-	;;
-	nop 0
-	(p7) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p7) or r19 = r22, r19
-	(p8) br.cond.dpnt .L1642
-	;;
-	.mmi
-	cmp4.gtu p10, p11 = r23, r8
-	nop 0
-	extr.u r25 = r18, 13, 3
-	;;
-	.mii
-	(p11) sub r8 = r8, r23
-	extr.u r26 = r16, 13, 3
-	(p11) zxt2 r19 = r19
+	cmp4.gtu p10, p11 = r14, r8
+	sub r10 = r8, r14
+	extr.u r20 = r16, 8, 8
 	.mmi
 	cmp4.eq p12, p13 = 0, r25
 	;;
+	(p11) or r19 = r3, r2
+	(p11) zxt2 r8 = r10
+	;;
+	.mib
 	nop 0
-	(p11) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p11) or r19 = r24, r19
+	zxt2 r3 = r19
 	(p12) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p14, p15 = r26, r8
-	nop 0
-	extr.u r27 = r18, 14, 2
-	;;
-	.mii
-	(p15) sub r8 = r8, r26
-	extr.u r28 = r16, 14, 2
-	(p15) zxt2 r19 = r19
+	cmp4.gtu p14, p15 = r20, r8
+	sub r32 = r8, r20
+	extr.u r22 = r16, 9, 7
 	.mmi
-	cmp4.eq p6, p7 = 0, r27
+	cmp4.eq p6, p7 = 0, r26
 	;;
+	(p15) or r19 = r25, r3
+	(p15) zxt2 r8 = r32
+	;;
+	.mib
 	nop 0
-	(p15) zxt2 r8 = r8
-	.mmb
-	nop 0
-	(p15) or r19 = r25, r19
+	zxt2 r25 = r19
 	(p6) br.cond.dpnt .L1642
-	;;
 	.mmi
-	cmp4.gtu p8, p9 = r28, r8
+	cmp4.gtu p8, p9 = r22, r8
+	sub r21 = r8, r22
+	extr.u r23 = r16, 10, 6
+	.mmi
+	cmp4.eq p10, p11 = 0, r17
+	;;
+	(p9) or r19 = r26, r25
+	(p9) zxt2 r8 = r21
+	;;
+	.mib
 	nop 0
+	zxt2 r26 = r19
+	(p10) br.cond.dpnt .L1642
+	.mmi
+	cmp4.gtu p12, p13 = r23, r8
+	sub r24 = r8, r23
+	extr.u r27 = r16, 11, 5
+	.mmi
+	cmp4.eq p14, p15 = 0, r11
+	;;
+	(p13) or r19 = r17, r26
+	(p13) zxt2 r8 = r24
+	;;
+	.mib
+	nop 0
+	zxt2 r17 = r19
+	(p14) br.cond.dpnt .L1642
+	.mmi
+	cmp4.gtu p6, p7 = r27, r8
+	sub r28 = r8, r27
+	extr.u r31 = r16, 12, 4
+	.mmi
+	cmp4.eq p8, p9 = 0, r29
+	;;
+	(p7) or r19 = r11, r17
+	(p7) zxt2 r8 = r28
+	;;
+	.mib
+	nop 0
+	zxt2 r11 = r19
+	(p8) br.cond.dpnt .L1642
+	.mmi
+	cmp4.gtu p10, p11 = r31, r8
+	sub r33 = r8, r31
+	extr.u r15 = r16, 13, 3
+	.mmi
+	cmp4.eq p12, p13 = 0, r30
+	;;
+	(p11) or r19 = r29, r11
+	(p11) zxt2 r8 = r33
+	;;
+	.mib
+	nop 0
+	zxt2 r29 = r19
+	(p12) br.cond.dpnt .L1642
+	.mmi
+	cmp4.gtu p14, p15 = r15, r8
+	sub r2 = r8, r15
+	extr.u r14 = r16, 14, 2
+	.mmi
+	cmp4.eq p6, p7 = 0, r9
+	;;
+	(p15) or r19 = r30, r29
+	(p15) zxt2 r8 = r2
+	;;
+	.mib
+	nop 0
+	zxt2 r30 = r19
+	(p6) br.cond.dpnt .L1642
+	.mmi
+	cmp4.gtu p8, p9 = r14, r8
+	sub r10 = r8, r14
 	extr.u r16 = r16, 15, 1
 	;;
 	.mii
-	(p9) sub r8 = r8, r28
+	(p9) or r19 = r9, r30
 	tbit.nz p10, p11 = r18, 15
-	(p9) zxt2 r19 = r19
+	(p9) zxt2 r8 = r10
 	;;
-	.mii
+	.mib
 	nop 0
-	(p9) zxt2 r8 = r8
-	nop 0
-	.mmb
-	(p9) or r19 = r27, r19
-	nop 0
+	zxt2 r9 = r19
 	(p11) br.cond.dpnt .L1642
-	;;
 	.mmi
 	cmp4.gtu p12, p13 = r16, r8
-	;;
-	(p13) sub r8 = r8, r16
-	(p13) zxt2 r19 = r19
+	nop 0
+	sub r18 = r8, r16
 	;;
 	.mii
 	(p12) mov r8 = r0
-	(p13) or r19 = 1, r19
+	(p13) or r19 = 1, r9
 	;;
-	(p13) zxt2 r8 = r8
+	(p13) zxt2 r8 = r18
 .L1642:
 	.mmi
 	nop 0
