@@ -3705,7 +3705,7 @@ __mulhi3:
 	.global	__divsi3
 	.type	__divsi3, @function
 __divsi3:
-	blt	r4, zero, .L981
+	blt	r4, zero, .L979
 	mov	r7, zero
 .L962:
 	bge	r5, zero, .L963
@@ -3718,14 +3718,14 @@ __divsi3:
 	movi	r2, 32
 	movi	r3, 1
 	br	.L964
-.L968:
-	beq	r2, zero, .L967
+.L967:
+	beq	r2, zero, .L968
 .L964:
 	add	r5, r5, r5
 	addi	r2, r2, -1
 	add	r3, r3, r3
-	bltu	r5, r4, .L968
-.L967:
+	bltu	r5, r4, .L967
+.L968:
 	mov	r2, zero
 	beq	r3, zero, .L966
 .L965:
@@ -3743,7 +3743,7 @@ __divsi3:
 	sub	r2, zero, r2
 .L961:
 	ret
-.L981:
+.L979:
 	sub	r4, zero, r4
 	movi	r7, 1
 	br	.L962
@@ -3752,46 +3752,46 @@ __divsi3:
 	.global	__modsi3
 	.type	__modsi3, @function
 __modsi3:
-	blt	r4, zero, .L1002
+	blt	r4, zero, .L998
 	mov	r7, zero
-.L983:
+.L981:
 	mov	r2, r4
-	bge	r5, zero, .L984
+	bge	r5, zero, .L982
 	sub	r5, zero, r5
-.L984:
+.L982:
 	movi	r3, 1
-	bgeu	r5, r4, .L991
+	bgeu	r5, r4, .L989
 	movi	r6, 32
 	movi	r3, 1
-	br	.L985
-.L989:
-	beq	r6, zero, .L988
-.L985:
+	br	.L983
+.L986:
+	beq	r6, zero, .L987
+.L983:
 	add	r5, r5, r5
 	addi	r6, r6, -1
 	add	r3, r3, r3
-	bltu	r5, r4, .L989
-.L988:
-	beq	r3, zero, .L1003
-.L991:
-	srli	r3, r3, 1
-	bltu	r2, r5, .L990
-	sub	r2, r2, r5
-.L990:
-	srli	r5, r5, 1
-	bne	r3, zero, .L991
+	bltu	r5, r4, .L986
 .L987:
-	beq	r7, zero, .L982
+	beq	r3, zero, .L999
+.L989:
+	srli	r3, r3, 1
+	bltu	r2, r5, .L988
+	sub	r2, r2, r5
+.L988:
+	srli	r5, r5, 1
+	bne	r3, zero, .L989
+.L985:
+	beq	r7, zero, .L980
 	sub	r2, zero, r2
-.L982:
+.L980:
 	ret
-.L1002:
+.L998:
 	sub	r4, zero, r4
 	movi	r7, 1
-	br	.L983
-.L1003:
+	br	.L981
+.L999:
 	mov	r2, r4
-	br	.L987
+	br	.L985
 	.size	__modsi3, .-__modsi3
 	.align	2
 	.global	__udivmodhi4
@@ -3799,20 +3799,36 @@ __modsi3:
 __udivmodhi4:
 	andi	r2, r5, 0xffff
 	andi	r8, r4, 0xffff
-	bgeu	r2, r8, .L1117
+	bgeu	r2, r8, .L1113
 	andi	r2, r5, 65535
 	xori	r2, r2, 32768
 	addi	r2, r2, -32768
-	blt	r2, zero, .L1007
+	blt	r2, zero, .L1003
 	add	r2, r5, r5
 	andi	r3, r2, 0xffff
 	mov	r7, r2
-	bgeu	r3, r8, .L1008
+	bgeu	r3, r8, .L1004
 	andi	r3, r2, 65535
 	xori	r3, r3, 32768
 	addi	r3, r3, -32768
-	blt	r3, zero, .L1009
+	blt	r3, zero, .L1005
 	slli	r2, r5, 2
+	andi	r3, r2, 0xffff
+	mov	r7, r2
+	bgeu	r3, r8, .L1006
+	andi	r9, r2, 65535
+	xori	r9, r9, 32768
+	addi	r9, r9, -32768
+	blt	r9, zero, .L1007
+	slli	r2, r5, 3
+	andi	r3, r2, 0xffff
+	mov	r7, r2
+	bgeu	r3, r8, .L1008
+	andi	r9, r2, 65535
+	xori	r9, r9, 32768
+	addi	r9, r9, -32768
+	blt	r9, zero, .L1009
+	slli	r2, r5, 4
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1010
@@ -3820,7 +3836,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1011
-	slli	r2, r5, 3
+	slli	r2, r5, 5
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1012
@@ -3828,7 +3844,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1013
-	slli	r2, r5, 4
+	slli	r2, r5, 6
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1014
@@ -3836,7 +3852,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1015
-	slli	r2, r5, 5
+	slli	r2, r5, 7
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1016
@@ -3844,7 +3860,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1017
-	slli	r2, r5, 6
+	slli	r2, r5, 8
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1018
@@ -3852,7 +3868,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1019
-	slli	r2, r5, 7
+	slli	r2, r5, 9
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1020
@@ -3860,7 +3876,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1021
-	slli	r2, r5, 8
+	slli	r2, r5, 10
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1022
@@ -3868,7 +3884,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1023
-	slli	r2, r5, 9
+	slli	r2, r5, 11
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1024
@@ -3876,7 +3892,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1025
-	slli	r2, r5, 10
+	slli	r2, r5, 12
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1026
@@ -3884,7 +3900,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1027
-	slli	r2, r5, 11
+	slli	r2, r5, 13
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1028
@@ -3892,7 +3908,7 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1029
-	slli	r2, r5, 12
+	slli	r2, r5, 14
 	andi	r3, r2, 0xffff
 	mov	r7, r2
 	bgeu	r3, r8, .L1030
@@ -3900,306 +3916,290 @@ __udivmodhi4:
 	xori	r9, r9, 32768
 	addi	r9, r9, -32768
 	blt	r9, zero, .L1031
-	slli	r2, r5, 13
-	andi	r3, r2, 0xffff
-	mov	r7, r2
-	bgeu	r3, r8, .L1032
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1033
-	slli	r2, r5, 14
-	andi	r3, r2, 0xffff
-	mov	r7, r2
-	bgeu	r3, r8, .L1034
-	andi	r9, r2, 65535
-	xori	r9, r9, 32768
-	addi	r9, r9, -32768
-	blt	r9, zero, .L1035
 	slli	r5, r5, 15
 	andi	r3, r5, 0xffff
-	bgeu	r3, r8, .L1036
+	bgeu	r3, r8, .L1032
 	mov	r2, r4
-	bne	r3, zero, .L1118
-.L1037:
-	bne	r6, zero, .L1004
+	bne	r3, zero, .L1114
+.L1033:
+	bne	r6, zero, .L1000
 	mov	r2, r5
 	ret
-.L1004:
+.L1000:
 	ret
-.L1024:
-	bltu	r8, r3, .L1070
+.L1020:
+	bltu	r8, r3, .L1066
 	sub	r2, r4, r2
 	movi	r5, 512
 	movi	r8, 512
 	andi	r7, r7, 0xffff
-.L1039:
+.L1035:
 	srli	r3, r8, 2
 	srli	r4, r7, 2
-	beq	r3, zero, .L1037
+	beq	r3, zero, .L1033
+	andi	r9, r2, 0xffff
+	bltu	r9, r4, .L1036
+	sub	r2, r2, r4
+	or	r5, r3, r5
+.L1036:
+	srli	r3, r8, 3
+	srli	r4, r7, 3
+	beq	r3, zero, .L1033
+	andi	r9, r2, 0xffff
+	bltu	r9, r4, .L1037
+	sub	r2, r2, r4
+	or	r5, r3, r5
+.L1037:
+	srli	r3, r8, 4
+	srli	r4, r7, 4
+	beq	r3, zero, .L1033
+	andi	r9, r2, 0xffff
+	bltu	r9, r4, .L1038
+	sub	r2, r2, r4
+	or	r5, r3, r5
+.L1038:
+	srli	r3, r8, 5
+	srli	r4, r7, 5
+	beq	r3, zero, .L1033
+	andi	r9, r2, 0xffff
+	bltu	r9, r4, .L1039
+	sub	r2, r2, r4
+	or	r5, r3, r5
+.L1039:
+	srli	r3, r8, 6
+	srli	r4, r7, 6
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1040
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1040:
-	srli	r3, r8, 3
-	srli	r4, r7, 3
-	beq	r3, zero, .L1037
+	srli	r3, r8, 7
+	srli	r4, r7, 7
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1041
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1041:
-	srli	r3, r8, 4
-	srli	r4, r7, 4
-	beq	r3, zero, .L1037
+	srli	r3, r8, 8
+	srli	r4, r7, 8
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1042
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1042:
-	srli	r3, r8, 5
-	srli	r4, r7, 5
-	beq	r3, zero, .L1037
+	srli	r3, r8, 9
+	srli	r4, r7, 9
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1043
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1043:
-	srli	r3, r8, 6
-	srli	r4, r7, 6
-	beq	r3, zero, .L1037
+	srli	r3, r8, 10
+	srli	r4, r7, 10
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1044
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1044:
-	srli	r3, r8, 7
-	srli	r4, r7, 7
-	beq	r3, zero, .L1037
+	srli	r3, r8, 11
+	srli	r4, r7, 11
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1045
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1045:
-	srli	r3, r8, 8
-	srli	r4, r7, 8
-	beq	r3, zero, .L1037
+	srli	r3, r8, 12
+	srli	r4, r7, 12
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1046
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1046:
-	srli	r3, r8, 9
-	srli	r4, r7, 9
-	beq	r3, zero, .L1037
+	srli	r3, r8, 13
+	srli	r4, r7, 13
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1047
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1047:
-	srli	r3, r8, 10
-	srli	r4, r7, 10
-	beq	r3, zero, .L1037
+	srli	r3, r8, 14
+	srli	r4, r7, 14
+	beq	r3, zero, .L1033
 	andi	r9, r2, 0xffff
 	bltu	r9, r4, .L1048
 	sub	r2, r2, r4
 	or	r5, r3, r5
 .L1048:
-	srli	r3, r8, 11
-	srli	r4, r7, 11
-	beq	r3, zero, .L1037
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1049
-	sub	r2, r2, r4
-	or	r5, r3, r5
-.L1049:
-	srli	r3, r8, 12
-	srli	r4, r7, 12
-	beq	r3, zero, .L1037
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1050
-	sub	r2, r2, r4
-	or	r5, r3, r5
-.L1050:
-	srli	r3, r8, 13
-	srli	r4, r7, 13
-	beq	r3, zero, .L1037
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1051
-	sub	r2, r2, r4
-	or	r5, r3, r5
-.L1051:
-	srli	r3, r8, 14
-	srli	r4, r7, 14
-	beq	r3, zero, .L1037
-	andi	r9, r2, 0xffff
-	bltu	r9, r4, .L1052
-	sub	r2, r2, r4
-	or	r5, r3, r5
-.L1052:
 	cmpnei	r8, r8, 16384
 	srli	r7, r7, 15
-	beq	r8, zero, .L1037
+	beq	r8, zero, .L1033
 	andi	r3, r2, 0xffff
-	bltu	r3, r7, .L1060
+	bltu	r3, r7, .L1056
 	sub	r2, r2, r7
 	ori	r5, r5, 1
-	br	.L1037
-.L1118:
+	br	.L1033
+.L1114:
 	addi	r2, r4, -32768
 	movi	r3, 16384
 	movi	r4, 16384
 	movi	r5, -32768
 	movui	r8, 32768
 	movui	r7, 32768
-.L1057:
+.L1053:
 	andi	r9, r2, 0xffff
 	andi	r10, r3, 0xffff
-	bltu	r9, r10, .L1039
+	bltu	r9, r10, .L1035
 	sub	r2, r2, r3
 	or	r5, r5, r4
-	br	.L1039
-.L1060:
+	br	.L1035
+.L1056:
 	mov	r2, zero
-	br	.L1037
-.L1117:
-	beq	r2, r8, .L1058
+	br	.L1033
+.L1113:
+	beq	r2, r8, .L1054
 	mov	r2, r4
 	mov	r5, zero
-	br	.L1037
-.L1007:
+	br	.L1033
+.L1003:
 	sub	r2, r4, r5
 	movi	r5, 1
-	br	.L1037
-.L1008:
-	bltu	r8, r3, .L1062
+	br	.L1033
+.L1004:
+	bltu	r8, r3, .L1058
 	sub	r2, r4, r2
 	movi	r5, 2
 	movi	r8, 2
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1009:
+	br	.L1035
+.L1005:
 	sub	r2, r4, r2
 	andi	r3, r5, 32767
 	movi	r4, 1
 	movi	r5, 2
 	movi	r8, 2
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1010:
-	bltu	r8, r3, .L1063
+	br	.L1053
+.L1006:
+	bltu	r8, r3, .L1059
 	sub	r2, r4, r2
 	movi	r5, 4
 	movi	r8, 4
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1011:
+	br	.L1035
+.L1007:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 2
 	movi	r5, 4
 	movi	r8, 4
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1012:
-	bltu	r8, r3, .L1064
+	br	.L1053
+.L1008:
+	bltu	r8, r3, .L1060
 	sub	r2, r4, r2
 	movi	r5, 8
 	movi	r8, 8
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1013:
+	br	.L1035
+.L1009:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 4
 	movi	r5, 8
 	movi	r8, 8
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1014:
-	bltu	r8, r3, .L1065
+	br	.L1053
+.L1010:
+	bltu	r8, r3, .L1061
 	sub	r2, r4, r2
 	movi	r5, 16
 	movi	r8, 16
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1015:
+	br	.L1035
+.L1011:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 8
 	movi	r5, 16
 	movi	r8, 16
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1016:
-	bltu	r8, r3, .L1066
+	br	.L1053
+.L1012:
+	bltu	r8, r3, .L1062
 	sub	r2, r4, r2
 	movi	r5, 32
 	movi	r8, 32
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1017:
+	br	.L1035
+.L1013:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 16
 	movi	r5, 32
 	movi	r8, 32
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1018:
-	bltu	r8, r3, .L1067
+	br	.L1053
+.L1014:
+	bltu	r8, r3, .L1063
 	sub	r2, r4, r2
 	movi	r5, 64
 	movi	r8, 64
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1019:
+	br	.L1035
+.L1015:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 32
 	movi	r5, 64
 	movi	r8, 64
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1020:
-	bltu	r8, r3, .L1068
+	br	.L1053
+.L1016:
+	bltu	r8, r3, .L1064
 	sub	r2, r4, r2
 	movi	r5, 128
 	movi	r8, 128
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1021:
+	br	.L1035
+.L1017:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 64
 	movi	r5, 128
 	movi	r8, 128
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1023:
+	br	.L1053
+.L1019:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 128
 	movi	r5, 256
 	movi	r8, 256
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1058:
+	br	.L1053
+.L1054:
 	movi	r5, 1
 	mov	r2, zero
-	br	.L1037
-.L1025:
+	br	.L1033
+.L1021:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 256
 	movi	r5, 512
 	movi	r8, 512
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1062:
+	br	.L1053
+.L1058:
 	movi	r8, 2
-.L1056:
+.L1052:
 	andi	r8, r8, 0xffff
 	srli	r5, r8, 1
 	andi	r7, r7, 0xffff
@@ -4207,193 +4207,193 @@ __udivmodhi4:
 	srli	r3, r7, 1
 	mov	r4, r5
 	mov	r5, zero
-	br	.L1057
-.L1027:
+	br	.L1053
+.L1023:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 512
 	movi	r5, 1024
 	movi	r8, 1024
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1063:
+	br	.L1053
+.L1059:
 	movi	r8, 4
-	br	.L1056
-.L1029:
+	br	.L1052
+.L1025:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 1024
 	movi	r5, 2048
 	movi	r8, 2048
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1064:
+	br	.L1053
+.L1060:
 	movi	r8, 8
-	br	.L1056
-.L1031:
+	br	.L1052
+.L1027:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 2048
 	movi	r5, 4096
 	movi	r8, 4096
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1033:
+	br	.L1053
+.L1029:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 4096
 	movi	r5, 8192
 	movi	r8, 8192
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1065:
+	br	.L1053
+.L1061:
 	movi	r8, 16
-	br	.L1056
-.L1035:
+	br	.L1052
+.L1031:
 	sub	r2, r4, r2
 	srli	r3, r3, 1
 	movi	r4, 8192
 	movi	r5, 16384
 	movi	r8, 16384
 	andi	r7, r7, 0xffff
-	br	.L1057
-.L1066:
+	br	.L1053
+.L1062:
 	movi	r8, 32
-	br	.L1056
-.L1067:
+	br	.L1052
+.L1063:
 	movi	r8, 64
-	br	.L1056
-.L1036:
+	br	.L1052
+.L1032:
 	andi	r2, r4, 65535
 	xori	r2, r2, 32768
 	addi	r2, r2, -32768
-	blt	r2, zero, .L1061
+	blt	r2, zero, .L1057
 	movi	r7, -32768
 	movi	r8, -32768
-	br	.L1056
-.L1068:
+	br	.L1052
+.L1064:
 	movi	r8, 128
-	br	.L1056
-.L1022:
-	bltu	r8, r3, .L1069
+	br	.L1052
+.L1018:
+	bltu	r8, r3, .L1065
 	sub	r2, r4, r2
 	movi	r5, 256
 	movi	r8, 256
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1061:
+	br	.L1035
+.L1057:
 	movi	r5, -32768
 	mov	r2, zero
 	movui	r8, 32768
 	movui	r7, 32768
-	br	.L1039
-.L1069:
+	br	.L1035
+.L1065:
 	movi	r8, 256
-	br	.L1056
-.L1032:
-	bltu	r8, r3, .L1074
+	br	.L1052
+.L1028:
+	bltu	r8, r3, .L1070
 	sub	r2, r4, r2
 	movi	r5, 8192
 	movi	r8, 8192
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1026:
-	bltu	r8, r3, .L1071
+	br	.L1035
+.L1022:
+	bltu	r8, r3, .L1067
 	sub	r2, r4, r2
 	movi	r5, 1024
 	movi	r8, 1024
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1074:
-	movi	r8, 8192
-	br	.L1056
-.L1071:
-	movi	r8, 1024
-	br	.L1056
+	br	.L1035
 .L1070:
+	movi	r8, 8192
+	br	.L1052
+.L1067:
+	movi	r8, 1024
+	br	.L1052
+.L1066:
 	movi	r8, 512
-	br	.L1056
-.L1030:
-	bltu	r8, r3, .L1073
+	br	.L1052
+.L1026:
+	bltu	r8, r3, .L1069
 	sub	r2, r4, r2
 	movi	r5, 4096
 	movi	r8, 4096
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1028:
-	bltu	r8, r3, .L1072
+	br	.L1035
+.L1024:
+	bltu	r8, r3, .L1068
 	sub	r2, r4, r2
 	movi	r5, 2048
 	movi	r8, 2048
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1034:
-	bltu	r8, r3, .L1075
+	br	.L1035
+.L1030:
+	bltu	r8, r3, .L1071
 	sub	r2, r4, r2
 	movi	r5, 16384
 	movi	r8, 16384
 	andi	r7, r7, 0xffff
-	br	.L1039
-.L1073:
+	br	.L1035
+.L1069:
 	movi	r8, 4096
-	br	.L1056
-.L1072:
+	br	.L1052
+.L1068:
 	movi	r8, 2048
-	br	.L1056
-.L1075:
+	br	.L1052
+.L1071:
 	movi	r8, 16384
-	br	.L1056
+	br	.L1052
 	.size	__udivmodhi4, .-__udivmodhi4
 	.align	2
 	.global	__udivmodsi4_libgcc
 	.type	__udivmodsi4_libgcc, @function
 __udivmodsi4_libgcc:
 	movi	r3, 1
-	bgeu	r5, r4, .L1121
+	bgeu	r5, r4, .L1117
 	movi	r2, 32
 	movi	r3, 1
-	br	.L1120
-.L1124:
+	br	.L1116
+.L1120:
 	add	r5, r5, r5
 	add	r3, r3, r3
-	bgeu	r5, r4, .L1122
-	beq	r2, zero, .L1123
-.L1120:
+	bgeu	r5, r4, .L1118
+	beq	r2, zero, .L1119
+.L1116:
 	addi	r2, r2, -1
-	bge	r5, zero, .L1124
-.L1121:
+	bge	r5, zero, .L1120
+.L1117:
 	mov	r2, zero
-.L1126:
-	bltu	r4, r5, .L1125
+.L1122:
+	bltu	r4, r5, .L1121
 	sub	r4, r4, r5
 	or	r2, r2, r3
-.L1125:
+.L1121:
 	srli	r3, r3, 1
 	srli	r5, r5, 1
-	bne	r3, zero, .L1126
-.L1123:
-	beq	r6, zero, .L1119
-	mov	r2, r4
+	bne	r3, zero, .L1122
 .L1119:
+	beq	r6, zero, .L1115
+	mov	r2, r4
+.L1115:
 	ret
-.L1122:
-	bne	r3, zero, .L1121
+.L1118:
+	bne	r3, zero, .L1117
 	mov	r2, zero
-	br	.L1123
+	br	.L1119
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
 	.align	2
 	.global	__ashldi3
 	.type	__ashldi3, @function
 __ashldi3:
 	andi	r2, r6, 32
-	beq	r2, zero, .L1136
+	beq	r2, zero, .L1132
 	addi	r6, r6, -32
 	sll	r3, r4, r6
 	mov	r4, zero
 	mov	r2, r4
 	ret
-.L1136:
-	beq	r6, zero, .L1139
+.L1132:
+	beq	r6, zero, .L1135
 	movi	r2, 32
 	sub	r2, r2, r6
 	srl	r2, r4, r2
@@ -4402,7 +4402,7 @@ __ashldi3:
 	or	r3, r2, r3
 	mov	r2, r4
 	ret
-.L1139:
+.L1135:
 	mov	r2, r4
 	mov	r3, r5
 	ret
@@ -4412,13 +4412,13 @@ __ashldi3:
 	.type	__ashrdi3, @function
 __ashrdi3:
 	andi	r2, r6, 32
-	beq	r2, zero, .L1141
+	beq	r2, zero, .L1137
 	addi	r6, r6, -32
 	srai	r3, r5, 31
 	sra	r2, r5, r6
 	ret
-.L1141:
-	beq	r6, zero, .L1144
+.L1137:
+	beq	r6, zero, .L1140
 	movi	r7, 32
 	sub	r7, r7, r6
 	sll	r7, r5, r7
@@ -4426,7 +4426,7 @@ __ashrdi3:
 	sra	r3, r5, r6
 	or	r2, r7, r2
 	ret
-.L1144:
+.L1140:
 	mov	r2, r4
 	mov	r3, r5
 	ret
@@ -4502,12 +4502,12 @@ __clzsi2:
 	srl	r3, r3, r6
 	srli	r6, r3, 1
 	andi	r6, r6, 1
-	bne	r6, zero, .L1148
+	bne	r6, zero, .L1144
 	sub	r2, r2, r3
 	add	r4, r4, r5
 	add	r2, r2, r4
 	ret
-.L1148:
+.L1144:
 	add	r4, r4, r5
 	mov	r2, zero
 	add	r2, r2, r4
@@ -4517,16 +4517,16 @@ __clzsi2:
 	.global	__cmpdi2
 	.type	__cmpdi2, @function
 __cmpdi2:
-	blt	r5, r7, .L1154
-	blt	r7, r5, .L1155
-	bltu	r4, r6, .L1154
-	bltu	r6, r4, .L1155
+	blt	r5, r7, .L1150
+	blt	r7, r5, .L1151
+	bltu	r4, r6, .L1150
+	bltu	r6, r4, .L1151
 	movi	r2, 1
 	ret
-.L1154:
+.L1150:
 	mov	r2, zero
 	ret
-.L1155:
+.L1151:
 	movi	r2, 2
 	ret
 	.size	__cmpdi2, .-__cmpdi2
@@ -4534,15 +4534,15 @@ __cmpdi2:
 	.global	__aeabi_lcmp
 	.type	__aeabi_lcmp, @function
 __aeabi_lcmp:
-	blt	r5, r7, .L1160
-	blt	r7, r5, .L1159
-	bltu	r4, r6, .L1160
+	blt	r5, r7, .L1156
+	blt	r7, r5, .L1155
+	bltu	r4, r6, .L1156
 	cmpltu	r2, r6, r4
 	ret
-.L1160:
+.L1156:
 	movi	r2, -1
 	ret
-.L1159:
+.L1155:
 	movi	r2, 1
 	ret
 	.size	__aeabi_lcmp, .-__aeabi_lcmp
@@ -4584,14 +4584,14 @@ __ctzsi2:
 	.type	__lshrdi3, @function
 __lshrdi3:
 	andi	r2, r6, 32
-	beq	r2, zero, .L1163
+	beq	r2, zero, .L1159
 	addi	r6, r6, -32
 	srl	r2, r5, r6
 	mov	r5, zero
 	mov	r3, r5
 	ret
-.L1163:
-	beq	r6, zero, .L1166
+.L1159:
+	beq	r6, zero, .L1162
 	movi	r3, 32
 	sub	r3, r3, r6
 	sll	r3, r5, r3
@@ -4600,7 +4600,7 @@ __lshrdi3:
 	or	r2, r3, r2
 	mov	r3, r5
 	ret
-.L1166:
+.L1162:
 	mov	r2, r4
 	mov	r3, r5
 	ret
@@ -4796,8 +4796,8 @@ __powidf2:
 	mov	r16, r19
 	mov	r18, zero
 	movhi	r17, 16368
-	beq	r2, zero, .L1176
-.L1178:
+	beq	r2, zero, .L1172
+.L1174:
 	mov	r4, r18
 	mov	r5, r17
 	stw	r6, 4(sp)
@@ -4807,12 +4807,12 @@ __powidf2:
 	ldw	r6, 4(sp)
 	mov	r18, r2
 	mov	r17, r3
-.L1176:
+.L1172:
 	srli	r2, r16, 31
 	add	r2, r2, r16
 	srai	r16, r2, 1
-	beq	r16, zero, .L1177
-.L1179:
+	beq	r16, zero, .L1173
+.L1175:
 	mov	r4, r6
 	mov	r5, r7
 	call	__muldf3
@@ -4821,11 +4821,11 @@ __powidf2:
 	mov	r6, r2
 	add	r8, r8, r16
 	mov	r7, r3
-	bne	r4, zero, .L1178
+	bne	r4, zero, .L1174
 	srai	r16, r8, 1
-	br	.L1179
-.L1177:
-	bge	r19, zero, .L1175
+	br	.L1175
+.L1173:
+	bge	r19, zero, .L1171
 	mov	r6, r18
 	mov	r7, r17
 	mov	r4, zero
@@ -4833,7 +4833,7 @@ __powidf2:
 	call	__divdf3
 	mov	r18, r2
 	mov	r17, r3
-.L1175:
+.L1171:
 	mov	r2, r18
 	mov	r3, r17
 	ldw	ra, 24(sp)
@@ -4859,18 +4859,18 @@ __powisf2:
 	mov	r17, r4
 	mov	r16, r5
 	movhi	r18, 16256
-	beq	r2, zero, .L1184
-.L1186:
+	beq	r2, zero, .L1180
+.L1182:
 	mov	r4, r18
 	mov	r5, r17
 	call	__mulsf3
 	mov	r18, r2
-.L1184:
+.L1180:
 	srli	r2, r16, 31
 	add	r16, r2, r16
 	srai	r16, r16, 1
-	beq	r16, zero, .L1185
-.L1187:
+	beq	r16, zero, .L1181
+.L1183:
 	mov	r4, r17
 	mov	r5, r17
 	call	__mulsf3
@@ -4878,16 +4878,16 @@ __powisf2:
 	andi	r4, r16, 1
 	mov	r17, r2
 	add	r3, r3, r16
-	bne	r4, zero, .L1186
+	bne	r4, zero, .L1182
 	srai	r16, r3, 1
-	br	.L1187
-.L1185:
-	bge	r19, zero, .L1183
+	br	.L1183
+.L1181:
+	bge	r19, zero, .L1179
 	mov	r5, r18
 	movhi	r4, 16256
 	call	__divsf3
 	mov	r18, r2
-.L1183:
+.L1179:
 	mov	r2, r18
 	ldw	ra, 16(sp)
 	ldw	r19, 12(sp)
@@ -4901,16 +4901,16 @@ __powisf2:
 	.global	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
-	bltu	r5, r7, .L1195
-	bltu	r7, r5, .L1196
-	bltu	r4, r6, .L1195
-	bltu	r6, r4, .L1196
+	bltu	r5, r7, .L1191
+	bltu	r7, r5, .L1192
+	bltu	r4, r6, .L1191
+	bltu	r6, r4, .L1192
 	movi	r2, 1
 	ret
-.L1195:
+.L1191:
 	mov	r2, zero
 	ret
-.L1196:
+.L1192:
 	movi	r2, 2
 	ret
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4918,15 +4918,15 @@ __ucmpdi2:
 	.global	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
-	bltu	r5, r7, .L1201
-	bltu	r7, r5, .L1200
-	bltu	r4, r6, .L1201
+	bltu	r5, r7, .L1197
+	bltu	r7, r5, .L1196
+	bltu	r4, r6, .L1197
 	cmpltu	r2, r6, r4
 	ret
-.L1201:
+.L1197:
 	movi	r2, -1
 	ret
-.L1200:
+.L1196:
 	movi	r2, 1
 	ret
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
