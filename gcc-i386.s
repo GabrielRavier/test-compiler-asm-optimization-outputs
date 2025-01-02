@@ -4048,21 +4048,21 @@ frexp:
 	fcomp	st(1)
 	fnstsw	ax
 	sahf
-	ja	.L783
+	ja	.L787
+	xor	ecx, ecx
+.L761:
 	fld1
 	fxch	st(1)
-	xor	ecx, ecx
+	xor	edx, edx
 	fcom	st(1)
 	fnstsw	ax
 	fstp	st(1)
 	sahf
-	jb	.L784
-.L763:
-	xor	edx, edx
+	jb	.L786
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L769:
+.L765:
 	fld	DWORD PTR .LC2
 	fxch	st(1)
 	add	edx, 1
@@ -4071,84 +4071,51 @@ frexp:
 	fstp	st(1)
 	fmul	DWORD PTR .LC3
 	sahf
-	jnb	.L769
+	jnb	.L765
+.L766:
 	mov	eax, DWORD PTR [esp+12]
 	mov	DWORD PTR [eax], edx
 	test	ecx, ecx
-	je	.L760
-.L786:
+	je	.L768
 	fchs
-.L760:
+.L768:
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L784:
-	fld	DWORD PTR .LC3
-	fcomp	st(1)
-	fnstsw	ax
-	sahf
-	jbe	.L766
-	ftst
-	fnstsw	ax
-	sahf
-	jne	.L775
-	jmp	.L766
 	.p2align 4,,10
 	.p2align 3
 .L787:
-	fstp	st(0)
-.L766:
-	mov	eax, DWORD PTR [esp+12]
-	mov	DWORD PTR [eax], 0
-	ret
+	fchs
+	mov	ecx, 1
+	jmp	.L761
 	.p2align 4,,10
 	.p2align 3
-.L783:
-	fld	st(0)
-	fchs
-	fld1
-	fchs
-	fcomp	st(2)
+.L786:
+	fcom	QWORD PTR .LC5
 	fnstsw	ax
 	sahf
-	jb	.L785
-	fstp	st(1)
-	mov	ecx, 1
-	jmp	.L763
-	.p2align 4,,10
-	.p2align 3
-.L785:
-	fld	DWORD PTR .LC5
-	fxch	st(2)
-	fcom	st(2)
+	jnb	.L770
+	ftst
 	fnstsw	ax
-	fstp	st(2)
 	sahf
-	jbe	.L787
-	fstp	st(1)
-	mov	ecx, 1
-.L764:
-	xor	edx, edx
+	je	.L770
 	.p2align 5
 	.p2align 4
 	.p2align 3
-.L771:
+.L767:
 	fld	st(0)
 	sub	edx, 1
 	fadd	st, st(0)
-	fld	DWORD PTR .LC7
+	fld	DWORD PTR .LC6
 	fcomp	st(2)
 	fnstsw	ax
 	fstp	st(1)
 	sahf
-	ja	.L771
-	mov	eax, DWORD PTR [esp+12]
-	mov	DWORD PTR [eax], edx
-	test	ecx, ecx
-	jne	.L786
-	ret
-.L775:
-	jmp	.L764
+	ja	.L767
+	jmp	.L766
+	.p2align 4,,10
+	.p2align 3
+.L770:
+	xor	edx, edx
+	jmp	.L766
 	.cfi_endproc
 .LFE99:
 	.size	frexp, .-frexp
@@ -4999,7 +4966,7 @@ __ulltod:
 	fild	QWORD PTR [esp+4]
 	test	eax, eax
 	jns	.L933
-	fadd	DWORD PTR .LC8
+	fadd	DWORD PTR .LC7
 .L933:
 	ret
 	.cfi_endproc
@@ -5015,7 +4982,7 @@ __ulltof:
 	fild	QWORD PTR [esp+4]
 	test	eax, eax
 	jns	.L935
-	fadd	DWORD PTR .LC8
+	fadd	DWORD PTR .LC7
 .L935:
 	ret
 	.cfi_endproc
@@ -5235,7 +5202,7 @@ __fixunssfsi:
 	sub	esp, 8
 	.cfi_def_cfa_offset 12
 	fld	DWORD PTR [esp+12]
-	fcom	DWORD PTR .LC9
+	fcom	DWORD PTR .LC8
 	fnstsw	ax
 	sahf
 	jnb	.L982
@@ -5256,7 +5223,7 @@ __fixunssfsi:
 .L982:
 	.cfi_restore_state
 	fnstcw	WORD PTR [esp+6]
-	fsub	DWORD PTR .LC9
+	fsub	DWORD PTR .LC8
 	movzx	eax, WORD PTR [esp+6]
 	or	ah, 12
 	mov	WORD PTR [esp+4], ax
@@ -6986,7 +6953,7 @@ __powidf2:
 	fstp	st(1)
 	test	ecx, ecx
 	jns	.L1226
-	fdivr	DWORD PTR .LC6
+	fdivr	DWORD PTR .LC4
 .L1226:
 	ret
 	.cfi_endproc
@@ -7041,7 +7008,7 @@ __powisf2:
 	fstp	st(1)
 	test	ecx, ecx
 	jns	.L1236
-	fdivr	DWORD PTR .LC6
+	fdivr	DWORD PTR .LC4
 .L1236:
 	ret
 	.cfi_endproc
@@ -7144,19 +7111,22 @@ digits:
 .LC3:
 	.long	1056964608
 	.align 4
+.LC4:
+	.long	1065353216
+	.section	.rodata.cst8,"aM",@progbits,8
+	.align 8
 .LC5:
-	.long	-1090519040
+	.long	0
+	.long	1071644672
+	.section	.rodata.cst4
 	.align 4
 .LC6:
-	.long	1065353216
-	.align 4
-.LC7:
 	.long	1048576000
 	.align 4
-.LC8:
+.LC7:
 	.long	1602224128
 	.align 4
-.LC9:
+.LC8:
 	.long	1191182336
 	.globl	__divmoddi4
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
