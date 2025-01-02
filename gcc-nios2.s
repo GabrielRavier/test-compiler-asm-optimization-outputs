@@ -4039,7 +4039,7 @@ __udivmodhi4:
 	blt	r2, zero, .L1138
 	add	r2, r5, r5
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1139
 	andi	r3, r2, 65535
 	xori	r3, r3, 32768
@@ -4047,7 +4047,7 @@ __udivmodhi4:
 	blt	r3, zero, .L1140
 	slli	r2, r5, 2
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1141
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4055,7 +4055,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1142
 	slli	r2, r5, 3
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1143
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4063,7 +4063,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1144
 	slli	r2, r5, 4
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1145
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4071,7 +4071,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1146
 	slli	r2, r5, 5
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1147
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4079,7 +4079,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1148
 	slli	r2, r5, 6
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1149
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4087,7 +4087,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1150
 	slli	r2, r5, 7
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1151
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4095,7 +4095,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1152
 	slli	r2, r5, 8
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1153
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4103,7 +4103,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1154
 	slli	r2, r5, 9
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1155
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4111,7 +4111,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1156
 	slli	r2, r5, 10
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1157
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4119,7 +4119,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1158
 	slli	r2, r5, 11
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1159
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4127,7 +4127,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1160
 	slli	r2, r5, 12
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1161
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4135,7 +4135,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1162
 	slli	r2, r5, 13
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1163
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4143,7 +4143,7 @@ __udivmodhi4:
 	blt	r9, zero, .L1164
 	slli	r2, r5, 14
 	andi	r3, r2, 0xffff
-	mov	r7, r2
+	andi	r7, r2, 0xffff
 	bgeu	r3, r8, .L1165
 	andi	r9, r2, 65535
 	xori	r9, r9, 32768
@@ -4165,7 +4165,6 @@ __udivmodhi4:
 	sub	r2, r4, r2
 	movi	r5, 512
 	movi	r8, 512
-	andi	r7, r7, 0xffff
 .L1170:
 	srli	r3, r8, 2
 	srli	r4, r7, 2
@@ -4310,7 +4309,6 @@ __udivmodhi4:
 	sub	r2, r4, r2
 	movi	r5, 2
 	movi	r8, 2
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1140:
 	sub	r2, r4, r2
@@ -4318,14 +4316,12 @@ __udivmodhi4:
 	movi	r4, 1
 	movi	r5, 2
 	movi	r8, 2
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1141:
 	bltu	r8, r3, .L1194
 	sub	r2, r4, r2
 	movi	r5, 4
 	movi	r8, 4
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1142:
 	sub	r2, r4, r2
@@ -4333,14 +4329,12 @@ __udivmodhi4:
 	movi	r4, 2
 	movi	r5, 4
 	movi	r8, 4
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1143:
 	bltu	r8, r3, .L1195
 	sub	r2, r4, r2
 	movi	r5, 8
 	movi	r8, 8
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1144:
 	sub	r2, r4, r2
@@ -4348,14 +4342,12 @@ __udivmodhi4:
 	movi	r4, 4
 	movi	r5, 8
 	movi	r8, 8
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1145:
 	bltu	r8, r3, .L1196
 	sub	r2, r4, r2
 	movi	r5, 16
 	movi	r8, 16
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1146:
 	sub	r2, r4, r2
@@ -4363,14 +4355,12 @@ __udivmodhi4:
 	movi	r4, 8
 	movi	r5, 16
 	movi	r8, 16
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1147:
 	bltu	r8, r3, .L1197
 	sub	r2, r4, r2
 	movi	r5, 32
 	movi	r8, 32
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1148:
 	sub	r2, r4, r2
@@ -4378,14 +4368,12 @@ __udivmodhi4:
 	movi	r4, 16
 	movi	r5, 32
 	movi	r8, 32
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1149:
 	bltu	r8, r3, .L1198
 	sub	r2, r4, r2
 	movi	r5, 64
 	movi	r8, 64
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1150:
 	sub	r2, r4, r2
@@ -4393,14 +4381,12 @@ __udivmodhi4:
 	movi	r4, 32
 	movi	r5, 64
 	movi	r8, 64
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1151:
 	bltu	r8, r3, .L1199
 	sub	r2, r4, r2
 	movi	r5, 128
 	movi	r8, 128
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1152:
 	sub	r2, r4, r2
@@ -4408,7 +4394,6 @@ __udivmodhi4:
 	movi	r4, 64
 	movi	r5, 128
 	movi	r8, 128
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1154:
 	sub	r2, r4, r2
@@ -4416,7 +4401,6 @@ __udivmodhi4:
 	movi	r4, 128
 	movi	r5, 256
 	movi	r8, 256
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1189:
 	movi	r5, 1
@@ -4428,14 +4412,11 @@ __udivmodhi4:
 	movi	r4, 256
 	movi	r5, 512
 	movi	r8, 512
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1193:
 	movi	r8, 2
 .L1187:
-	andi	r8, r8, 0xffff
 	srli	r5, r8, 1
-	andi	r7, r7, 0xffff
 	mov	r2, r4
 	srli	r3, r7, 1
 	mov	r4, r5
@@ -4447,7 +4428,6 @@ __udivmodhi4:
 	movi	r4, 512
 	movi	r5, 1024
 	movi	r8, 1024
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1194:
 	movi	r8, 4
@@ -4458,7 +4438,6 @@ __udivmodhi4:
 	movi	r4, 1024
 	movi	r5, 2048
 	movi	r8, 2048
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1195:
 	movi	r8, 8
@@ -4469,7 +4448,6 @@ __udivmodhi4:
 	movi	r4, 2048
 	movi	r5, 4096
 	movi	r8, 4096
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1164:
 	sub	r2, r4, r2
@@ -4477,7 +4455,6 @@ __udivmodhi4:
 	movi	r4, 4096
 	movi	r5, 8192
 	movi	r8, 8192
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1196:
 	movi	r8, 16
@@ -4488,7 +4465,6 @@ __udivmodhi4:
 	movi	r4, 8192
 	movi	r5, 16384
 	movi	r8, 16384
-	andi	r7, r7, 0xffff
 	br	.L1188
 .L1197:
 	movi	r8, 32
@@ -4501,8 +4477,8 @@ __udivmodhi4:
 	xori	r2, r2, 32768
 	addi	r2, r2, -32768
 	blt	r2, zero, .L1192
-	movi	r7, -32768
-	movi	r8, -32768
+	movui	r7, 32768
+	movui	r8, 32768
 	br	.L1187
 .L1199:
 	movi	r8, 128
@@ -4512,7 +4488,6 @@ __udivmodhi4:
 	sub	r2, r4, r2
 	movi	r5, 256
 	movi	r8, 256
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1192:
 	movi	r5, -32768
@@ -4528,14 +4503,12 @@ __udivmodhi4:
 	sub	r2, r4, r2
 	movi	r5, 8192
 	movi	r8, 8192
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1157:
 	bltu	r8, r3, .L1202
 	sub	r2, r4, r2
 	movi	r5, 1024
 	movi	r8, 1024
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1205:
 	movi	r8, 8192
@@ -4551,21 +4524,18 @@ __udivmodhi4:
 	sub	r2, r4, r2
 	movi	r5, 4096
 	movi	r8, 4096
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1159:
 	bltu	r8, r3, .L1203
 	sub	r2, r4, r2
 	movi	r5, 2048
 	movi	r8, 2048
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1165:
 	bltu	r8, r3, .L1206
 	sub	r2, r4, r2
 	movi	r5, 16384
 	movi	r8, 16384
-	andi	r7, r7, 0xffff
 	br	.L1170
 .L1204:
 	movi	r8, 4096

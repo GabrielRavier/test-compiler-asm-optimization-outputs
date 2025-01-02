@@ -9319,7 +9319,6 @@ __clzti2:
 	if r2 == 0 goto .L3205
 	r6 = 0
 .L3205:
-	r6 &= 0xff
 	r1 = r6
 	r1 += -1
 	r1 &= r2
@@ -9461,7 +9460,6 @@ __ctzti2:
 	if r1 == 0 goto .L3235
 	r6 = 0
 .L3235:
-	r6 &= 0xff
 	if r0 == 0 goto .L3241
 	r1 = 0
 .L3237:

@@ -1842,19 +1842,18 @@ rotl64:
 	mov_mov d0, r2, d1, r3
 	mov a0,d0
 	and 32,d0
+	mov 0,d0
 	beq .L710
-	clr d0
 	asl a0,r2,d1
 .L711:
 	not a0
 	inc a0
 	mov a0,a1
 	and 32,a1
-	and 63,a0
-	cmp 0,a1
-	beq .L712
 	clr r0
-	mov r0,r1
+	and 63,a0
+	cmp_mov 0, a1, r0, r1
+	beq .L712
 	lsr a0,r3,r0
 	or d0,r0,a0
 	or d1,r1,a1
@@ -1890,9 +1889,9 @@ rotr64:
 	mov_mov d0, r2, d1, r3
 	mov a0,d0
 	and 32,d0
-	beq .L717
-	clr d0
+	mov 0,d0
 	mov d0,d1
+	beq .L717
 	lsr a0,r3,d0
 .L718:
 	not a0
@@ -1900,12 +1899,12 @@ rotr64:
 	mov a0,a1
 	and 32,a1
 	and 63,a0
+	clr r0
 	cmp 0,a1
 	beq .L719
 	asl a0,r2,r1
-	clr r0
-	or d0,r0,a0
 	or d1,r1,a1
+	or d0,r0,a0
 	mov_mov a0, d0, a1, d1
 	retf [d2],4
 .L719:
@@ -1921,12 +1920,13 @@ rotr64:
 	mov_mov a0, d0, a1, d1
 	retf [d2],4
 .L717:
-	mov_mov d1, a1, a0, d2
+	mov_mov r3, a1, a0, d2
 	add a1,a1
 	not d2
 	asl d2,a1
 	lsr a0,r2,d0
-	or_lsr a1, d0, a0, d1
+	or a1,d0
+	lsr a0,r3,d1
 	jmp .L718
 	.size	rotr64, .-rotr64
 	.global rotl32
@@ -2784,9 +2784,9 @@ frexp:
 	mov_mov d0, d2, d1, d3
 	call +__ltdf2,[],0
 	cmp a3,d0
-	mov a3,(12,sp)
 	blt .L998
 	mov 1072693248,d0
+	mov a3,(12,sp)
 	mov d0,(16,sp)
 	mov_mov d3, d1, d2, d0
 	call +__gedf2,[],0
@@ -2811,15 +2811,14 @@ frexp:
 	mov (64,sp),d0
 	cmp 0,a3
 	mov r6,(d0)
-	mov d2,a0
 	beq .L989
 	mov -2147483648,a1
-	add_mov d3, a1, a0, d0
-	mov a1,d1
+	mov_add d2, a0, d3, a1
+	mov_mov a0, d0, a1, d1
 	ret [d2,d3,a2,a3,exreg1],52
 .L989:
-	mov_mov d3, a1, a0, d0
-	mov a1,d1
+	mov_mov d2, a0, d3, a1
+	mov_mov a0, d0, a1, d1
 	ret [d2,d3,a2,a3,exreg1],52
 .L999:
 	mov 1071644672,d0
@@ -2844,6 +2843,7 @@ frexp:
 	ret [d2,d3,a2,a3,exreg1],52
 .L998:
 	mov -1074790400,d0
+	mov a3,(12,sp)
 	mov d0,(16,sp)
 	mov_mov d3, d1, d2, d0
 	call +__ledf2,[],0
@@ -4059,7 +4059,7 @@ __udivmodhi4:
 	add d0,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1341
 	exth d0,a0
 	cmp 0,a0
@@ -4068,7 +4068,7 @@ __udivmodhi4:
 	asl2 d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1343
 	exth d0,r3
 	cmp 0,r3
@@ -4078,7 +4078,7 @@ __udivmodhi4:
 	add d0,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1345
 	exth d0,r3
 	cmp 0,r3
@@ -4088,7 +4088,7 @@ __udivmodhi4:
 	asl2 d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1347
 	exth d0,r3
 	cmp 0,r3
@@ -4097,7 +4097,7 @@ __udivmodhi4:
 	asl 5,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1349
 	exth d0,r3
 	cmp 0,r3
@@ -4106,7 +4106,7 @@ __udivmodhi4:
 	asl 6,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1351
 	exth d0,r3
 	cmp 0,r3
@@ -4115,7 +4115,7 @@ __udivmodhi4:
 	asl 7,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1353
 	exth d0,r3
 	cmp 0,r3
@@ -4124,7 +4124,7 @@ __udivmodhi4:
 	asl 8,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1355
 	exth d0,r3
 	cmp 0,r3
@@ -4133,7 +4133,7 @@ __udivmodhi4:
 	asl 9,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1357
 	exth d0,r3
 	cmp 0,r3
@@ -4142,7 +4142,7 @@ __udivmodhi4:
 	asl 10,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1359
 	exth d0,d2
 	cmp 0,d2
@@ -4151,7 +4151,7 @@ __udivmodhi4:
 	asl 11,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1361
 	exth d0,d2
 	cmp 0,d2
@@ -4160,7 +4160,7 @@ __udivmodhi4:
 	asl 12,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1363
 	exth d0,d2
 	cmp 0,d2
@@ -4169,7 +4169,7 @@ __udivmodhi4:
 	asl 13,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1365
 	exth d0,d2
 	cmp 0,d2
@@ -4178,7 +4178,7 @@ __udivmodhi4:
 	asl 14,d0
 	exthu d0,a0
 	cmp a0,r2
-	mov d0,a1
+	exthu d0,a1
 	bls .L1367
 	exth d0,d2
 	cmp 0,d2
@@ -4201,7 +4201,6 @@ __udivmodhi4:
 	sub d0,r1,d0
 	mov 512,r2
 	mov 512,d1
-	exthu a1
 .L1372:
 	mov_mov r2, r1, a1, a0
 	lsr 2,r1
@@ -4373,7 +4372,6 @@ __udivmodhi4:
 	sub d0,r1,d0
 	mov 2,r2
 	mov 2,d1
-	exthu a1
 	jmp .L1372
 .L1342:
 	mov d1,a0
@@ -4382,28 +4380,24 @@ __udivmodhi4:
 	mov 2,r2
 	mov 1,d2
 	mov 2,d1
-	exthu a1
 	jmp .L1390
 .L1343:
 	bcs .L1396
 	sub d0,r1,d0
 	mov 4,r2
 	mov 4,d1
-	exthu a1
 	jmp .L1372
 .L1344:
 	sub d0,r1,d0
 	mov_lsr 4, r2, 1, a0
 	mov 2,d2
 	mov 4,d1
-	exthu a1
 	jmp .L1390
 .L1345:
 	bcs .L1397
 	sub d0,r1,d0
 	mov 8,r2
 	mov 8,d1
-	exthu a1
 	jmp .L1372
 .L1346:
 	sub d0,r1,d0
@@ -4411,14 +4405,12 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 4,d2
 	mov 8,d1
-	exthu a1
 	jmp .L1390
 .L1347:
 	bcs .L1398
 	sub d0,r1,d0
 	mov 16,r2
 	mov 16,d1
-	exthu a1
 	jmp .L1372
 .L1348:
 	sub d0,r1,d0
@@ -4426,14 +4418,12 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 8,d2
 	mov 16,d1
-	exthu a1
 	jmp .L1390
 .L1349:
 	bcs .L1399
 	sub d0,r1,d0
 	mov 32,r2
 	mov 32,d1
-	exthu a1
 	jmp .L1372
 .L1350:
 	sub d0,r1,d0
@@ -4441,14 +4431,12 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 16,d2
 	mov 32,d1
-	exthu a1
 	jmp .L1390
 .L1351:
 	bcs .L1400
 	sub d0,r1,d0
 	mov 64,r2
 	mov 64,d1
-	exthu a1
 	jmp .L1372
 .L1352:
 	sub d0,r1,d0
@@ -4456,14 +4444,12 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 32,d2
 	mov 64,d1
-	exthu a1
 	jmp .L1390
 .L1353:
 	bcs .L1401
 	sub d0,r1,d0
 	movu 128,r2
 	mov 128,d1
-	exthu a1
 	jmp .L1372
 .L1354:
 	sub d0,r1,d0
@@ -4471,7 +4457,6 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 64,d2
 	mov 128,d1
-	exthu a1
 	jmp .L1390
 .L1356:
 	sub d0,r1,d0
@@ -4479,7 +4464,6 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 128,d2
 	mov 256,d1
-	exthu a1
 	jmp .L1390
 .L1391:
 	mov 1,d1
@@ -4491,13 +4475,10 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 256,d2
 	mov 512,d1
-	exthu a1
 	jmp .L1390
 .L1395:
-	mov 2,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov 2, r2, a1, a0
+	mov r2,d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4509,13 +4490,10 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 512,d2
 	mov 1024,d1
-	exthu a1
 	jmp .L1390
 .L1396:
-	mov 4,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov 4, r2, a1, a0
+	mov r2,d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4527,13 +4505,10 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 1024,d2
 	mov 2048,d1
-	exthu a1
 	jmp .L1390
 .L1397:
 	mov 8,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4545,7 +4520,6 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 2048,d2
 	mov 4096,d1
-	exthu a1
 	jmp .L1390
 .L1366:
 	sub d0,r1,d0
@@ -4553,13 +4527,10 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 4096,d2
 	mov 8192,d1
-	exthu a1
 	jmp .L1390
 .L1398:
 	mov 16,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4571,13 +4542,10 @@ __udivmodhi4:
 	lsr 1,a0
 	mov 8192,d2
 	mov 16384,d1
-	exthu a1
 	jmp .L1390
 .L1399:
 	mov 32,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4585,9 +4553,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1400:
 	mov 64,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4597,10 +4563,8 @@ __udivmodhi4:
 	exth r1,d0
 	cmp 0,d0
 	blt .L1394
-	mov -32768,a1
-	mov a1,r2
-	exthu a1
-	exthu r2
+	mov 32768,a1
+	exthu a1,r2
 	mov_mov r2, d2, a1, a0
 	mov r1,d0
 	lsr 1,d2
@@ -4609,9 +4573,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1401:
 	movu 128,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4622,7 +4584,6 @@ __udivmodhi4:
 	sub d0,r1,d0
 	mov 256,r2
 	mov 256,d1
-	exthu a1
 	jmp .L1372
 .L1394:
 	mov 32768,r2
@@ -4632,9 +4593,7 @@ __udivmodhi4:
 	jmp .L1372
 .L1402:
 	mov 256,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4645,20 +4604,16 @@ __udivmodhi4:
 	sub d0,r1,d0
 	mov 8192,r2
 	mov 8192,d1
-	exthu a1
 	jmp .L1372
 .L1359:
 	bcs .L1404
 	sub d0,r1,d0
 	mov 1024,r2
 	mov 1024,d1
-	exthu a1
 	jmp .L1372
 .L1407:
 	mov 8192,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4666,9 +4621,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1404:
 	mov 1024,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4676,9 +4629,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1403:
 	mov 512,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4689,27 +4640,22 @@ __udivmodhi4:
 	sub d0,r1,d0
 	mov 4096,r2
 	mov 4096,d1
-	exthu a1
 	jmp .L1372
 .L1361:
 	bcs .L1405
 	sub d0,r1,d0
 	mov 2048,r2
 	mov 2048,d1
-	exthu a1
 	jmp .L1372
 .L1367:
 	bcs .L1408
 	sub d0,r1,d0
 	mov 16384,r2
 	mov 16384,d1
-	exthu a1
 	jmp .L1372
 .L1406:
 	mov 4096,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4717,9 +4663,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1405:
 	mov 2048,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0
@@ -4727,9 +4671,7 @@ __udivmodhi4:
 	jmp .L1390
 .L1408:
 	mov 16384,r2
-	exthu r2
-	exthu a1
-	mov_mov r2, d2, a1, a0
+	mov_mov a1, a0, r2, d2
 	mov r1,d0
 	lsr 1,d2
 	lsr 1,a0

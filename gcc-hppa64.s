@@ -4772,12 +4772,11 @@ __mspabi_cmpf:
 	b,n .L1178
 	fcmp,sgl,!> %fr4R,%fr5R
 	ftest
-	b .L1177
+	b .L1176
 	ldi 1,%r28
 	ldi 0,%r28
-.L1177:
-	bve (%r2)
-	extrd,s %r28,63,32,%r28
+.L1176:
+	bve,n (%r2)
 .L1178:
 	bve (%r2)
 	ldi -1,%r28
@@ -4796,12 +4795,11 @@ __mspabi_cmpd:
 	b,n .L1182
 	fcmp,dbl,!> %fr4,%fr5
 	ftest
-	b .L1181
+	b .L1180
 	ldi 1,%r28
 	ldi 0,%r28
-.L1181:
-	bve (%r2)
-	extrd,s %r28,63,32,%r28
+.L1180:
+	bve,n (%r2)
 .L1182:
 	bve (%r2)
 	ldi -1,%r28

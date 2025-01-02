@@ -11903,7 +11903,7 @@ __udivmodhi4:
 	(p6) br.cond.dpnt .L1562
 	;;
 	.mmi
-	mov r18 = r14
+	addp4 r18 = r14, r0
 	nop 0
 	mov r16 = r15
 	;;
@@ -12260,15 +12260,6 @@ __udivmodhi4:
 	.mmi
 	addp4 r20 = r18, r0
 	sub r21 = r32, r15
-	addp4 r18 = r18, r0
-	;;
-	.mmb
-	and r20 = r22, r20
-	mov r16 = r17
-	nop 0
-	.mii
-	and r17 = r23, r17
-	zxt2 r21 = r21
 	cmp4.eq p6, p7 = 0, r14
 	;;
 	.mib
@@ -12276,23 +12267,32 @@ __udivmodhi4:
 	nop 0
 	(p6) br.cond.dpnt .L1565
 	;;
-	.mii
+	.mmi
+	and r20 = r22, r20
+	mov r16 = r17
+	nop 0
+	.mmi
+	and r17 = r23, r17
 	cmp4.gtu p6, p7 = r15, r32
+	zxt2 r21 = r21
+	;;
+	.mii
+	nop 0
 	zxt2 r17 = r17
 	zxt2 r20 = r20
-	.mmi
+	.mmb
 	and r16 = r22, r16
-	;;
 	(p6) mov r18 = r14
-	(p6) mov r19 = r0
-	.mmi
-	(p7) mov r16 = r15
 	nop 0
-	(p7) mov r8 = r21
 	;;
 	.mmi
+	(p6) mov r19 = r0
+	(p7) mov r16 = r15
+	(p7) mov r8 = r21
+	.mii
 	(p7) and r20 = r23, r18
 	(p7) mov r18 = r14
+	;;
 	(p6) zxt2 r17 = r16
 	.mmb
 	nop 0
