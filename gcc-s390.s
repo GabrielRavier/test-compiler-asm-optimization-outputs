@@ -941,24 +941,24 @@ swab:
 	ahi	%r1,-1
 	mvc	0(1,%r3),1(%r2)
 .L317:
-	mvc	7(1,%r3),6(%r2)
-	mvc	6(1,%r3),7(%r2)
-	mvc	5(1,%r3),4(%r2)
-	mvc	4(1,%r3),5(%r2)
-	mvc	3(1,%r3),2(%r2)
-	mvc	2(1,%r3),3(%r2)
 	mvc	1(1,%r3),0(%r2)
+	mvc	2(1,%r3),3(%r2)
+	mvc	3(1,%r3),2(%r2)
+	mvc	4(1,%r3),5(%r2)
+	mvc	5(1,%r3),4(%r2)
+	mvc	6(1,%r3),7(%r2)
+	mvc	7(1,%r3),6(%r2)
 	ahi	%r2,8
 	ahi	%r3,8
 	mvc	0(1,%r3),1(%r2)
 	brct	%r1,.L317
-	mvc	7(1,%r3),6(%r2)
-	mvc	6(1,%r3),7(%r2)
-	mvc	5(1,%r3),4(%r2)
-	mvc	4(1,%r3),5(%r2)
-	mvc	3(1,%r3),2(%r2)
-	mvc	2(1,%r3),3(%r2)
 	mvc	1(1,%r3),0(%r2)
+	mvc	2(1,%r3),3(%r2)
+	mvc	3(1,%r3),2(%r2)
+	mvc	4(1,%r3),5(%r2)
+	mvc	5(1,%r3),4(%r2)
+	mvc	6(1,%r3),7(%r2)
+	mvc	7(1,%r3),6(%r2)
 	br	%r14
 .L338:
 	mvc	0(1,%r3),1(%r2)
@@ -3337,16 +3337,16 @@ wmemset:
 	jle	.L936
 	ahi	%r4,-1
 	st	%r3,0(%r1)
-.L912:
-	st	%r3,12(%r1)
-	st	%r3,8(%r1)
 	st	%r3,4(%r1)
+	st	%r3,8(%r1)
+	st	%r3,12(%r1)
+.L912:
 	ahi	%r1,16
 	st	%r3,0(%r1)
-	brct	%r4,.L912
-	st	%r3,12(%r1)
-	st	%r3,8(%r1)
 	st	%r3,4(%r1)
+	st	%r3,8(%r1)
+	st	%r3,12(%r1)
+	brct	%r4,.L912
 	br	%r14
 .L936:
 	st	%r3,0(%r1)
@@ -4431,29 +4431,29 @@ memxor:
 	x	%r0,0(%r1,%r3)
 	st	%r0,0(%r1,%r2)
 .L1202:
-	l	%r0,12(%r1,%r2)
-	x	%r0,12(%r1,%r3)
-	st	%r0,12(%r1,%r2)
-	l	%r0,8(%r1,%r2)
-	x	%r0,8(%r1,%r3)
-	st	%r0,8(%r1,%r2)
 	l	%r0,4(%r1,%r2)
 	x	%r0,4(%r1,%r3)
 	st	%r0,4(%r1,%r2)
+	l	%r0,8(%r1,%r2)
+	x	%r0,8(%r1,%r3)
+	st	%r0,8(%r1,%r2)
+	l	%r0,12(%r1,%r2)
+	x	%r0,12(%r1,%r3)
+	st	%r0,12(%r1,%r2)
 	ahi	%r1,16
 	l	%r0,0(%r1,%r2)
 	x	%r0,0(%r1,%r3)
 	st	%r0,0(%r1,%r2)
 	brct	%r5,.L1202
-	l	%r5,12(%r1,%r2)
-	x	%r5,12(%r1,%r3)
-	st	%r5,12(%r1,%r2)
-	l	%r5,8(%r1,%r2)
-	x	%r5,8(%r1,%r3)
-	st	%r5,8(%r1,%r2)
 	l	%r5,4(%r1,%r2)
 	x	%r5,4(%r1,%r3)
 	st	%r5,4(%r1,%r2)
+	l	%r5,8(%r1,%r2)
+	x	%r5,8(%r1,%r3)
+	st	%r5,8(%r1,%r2)
+	l	%r5,12(%r1,%r2)
+	x	%r5,12(%r1,%r3)
+	st	%r5,12(%r1,%r2)
 	ahi	%r1,16
 .L1270:
 	ar	%r3,%r1
@@ -4561,68 +4561,68 @@ memxor:
 	xr	%r5,%r0
 	stc	%r5,0(%r1,%r2)
 .L1204:
-	ic	%r5,7(%r1,%r2)
-	ic	%r0,7(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,7(%r1,%r2)
-	ic	%r5,6(%r1,%r2)
-	ic	%r0,6(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,6(%r1,%r2)
-	ic	%r5,5(%r1,%r2)
-	ic	%r0,5(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,5(%r1,%r2)
-	ic	%r5,4(%r1,%r2)
-	ic	%r0,4(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,4(%r1,%r2)
-	ic	%r5,3(%r1,%r2)
-	ic	%r0,3(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,3(%r1,%r2)
-	ic	%r5,2(%r1,%r2)
-	ic	%r0,2(%r1,%r3)
-	xr	%r5,%r0
-	stc	%r5,2(%r1,%r2)
 	ic	%r5,1(%r1,%r2)
 	ic	%r0,1(%r1,%r3)
 	xr	%r5,%r0
 	stc	%r5,1(%r1,%r2)
+	ic	%r5,2(%r1,%r2)
+	ic	%r0,2(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,2(%r1,%r2)
+	ic	%r5,3(%r1,%r2)
+	ic	%r0,3(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,3(%r1,%r2)
+	ic	%r5,4(%r1,%r2)
+	ic	%r0,4(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,4(%r1,%r2)
+	ic	%r5,5(%r1,%r2)
+	ic	%r0,5(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,5(%r1,%r2)
+	ic	%r5,6(%r1,%r2)
+	ic	%r0,6(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,6(%r1,%r2)
+	ic	%r5,7(%r1,%r2)
+	ic	%r0,7(%r1,%r3)
+	xr	%r5,%r0
+	stc	%r5,7(%r1,%r2)
 	ahi	%r1,8
 	ic	%r5,0(%r1,%r2)
 	ic	%r0,0(%r1,%r3)
 	xr	%r5,%r0
 	stc	%r5,0(%r1,%r2)
 	brct	%r4,.L1204
-	ic	%r4,7(%r1,%r2)
-	ic	%r5,7(%r1,%r3)
+	ic	%r4,1(%r1,%r2)
+	ic	%r5,1(%r1,%r3)
 	xr	%r4,%r5
-	stc	%r4,7(%r1,%r2)
-	ic	%r4,6(%r1,%r2)
-	ic	%r5,6(%r1,%r3)
-	xr	%r4,%r5
-	stc	%r4,6(%r1,%r2)
-	ic	%r4,5(%r1,%r2)
-	ic	%r5,5(%r1,%r3)
-	xr	%r4,%r5
-	stc	%r4,5(%r1,%r2)
-	ic	%r4,4(%r1,%r2)
-	ic	%r5,4(%r1,%r3)
-	xr	%r4,%r5
-	stc	%r4,4(%r1,%r2)
-	ic	%r4,3(%r1,%r2)
-	ic	%r5,3(%r1,%r3)
-	xr	%r4,%r5
-	stc	%r4,3(%r1,%r2)
+	stc	%r4,1(%r1,%r2)
 	ic	%r4,2(%r1,%r2)
 	ic	%r5,2(%r1,%r3)
 	xr	%r4,%r5
 	stc	%r4,2(%r1,%r2)
-	ic	%r4,1(%r1,%r2)
-	ic	%r3,1(%r1,%r3)
+	ic	%r4,3(%r1,%r2)
+	ic	%r5,3(%r1,%r3)
+	xr	%r4,%r5
+	stc	%r4,3(%r1,%r2)
+	ic	%r4,4(%r1,%r2)
+	ic	%r5,4(%r1,%r3)
+	xr	%r4,%r5
+	stc	%r4,4(%r1,%r2)
+	ic	%r4,5(%r1,%r2)
+	ic	%r5,5(%r1,%r3)
+	xr	%r4,%r5
+	stc	%r4,5(%r1,%r2)
+	ic	%r4,6(%r1,%r2)
+	ic	%r5,6(%r1,%r3)
+	xr	%r4,%r5
+	stc	%r4,6(%r1,%r2)
+	ic	%r4,7(%r1,%r2)
+	ic	%r3,7(%r1,%r3)
 	xr	%r4,%r3
-	stc	%r4,1(%r1,%r2)
+	stc	%r4,7(%r1,%r2)
 	j	.L1200
 .L1279:
 	ic	%r5,0(%r1,%r2)
