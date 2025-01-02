@@ -4525,17 +4525,17 @@ __parityhi2:
 	mov	edi, edx
 	add	eax, r10d
 	and	esi, 1
-	mov	r8d, edx
 	sar	edi, 11
+	mov	r8d, edx
 	add	eax, r11d
+	and	edi, 1
 	mov	r9d, edx
 	mov	r10d, edx
 	add	eax, ecx
 	add	eax, esi
-	and	edi, 1
+	add	eax, edi
 	sar	r8d, 12
 	sar	r9d, 13
-	add	eax, edi
 	and	r8d, 1
 	sar	r10d, 14
 	add	eax, r8d
@@ -4596,17 +4596,17 @@ __popcounthi2:
 	mov	edi, edx
 	add	eax, r10d
 	and	esi, 1
-	mov	r8d, edx
 	sar	edi, 11
+	mov	r8d, edx
 	add	eax, r11d
+	and	edi, 1
 	mov	r9d, edx
 	mov	r10d, edx
 	add	eax, ecx
 	add	eax, esi
-	and	edi, 1
+	add	eax, edi
 	sar	r8d, 12
 	sar	r9d, 13
-	add	eax, edi
 	and	r8d, 1
 	sar	r10d, 14
 	add	eax, r8d
