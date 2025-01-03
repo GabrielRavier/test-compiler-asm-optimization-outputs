@@ -608,38 +608,31 @@ swab:
 	movq	QWORD PTR [rdi+8], xmm14
 	je	.L158
 .L163:
-	movzx	r9d, WORD PTR [rax]
-	rol	r9w, 8
+	movbe	r9w, WORD PTR [rax]
 	mov	WORD PTR [r8], r9w
 	cmp	rdx, 3
 	jle	.L158
-	movzx	edi, WORD PTR [rax+2]
-	rol	di, 8
+	movbe	di, WORD PTR [rax+2]
 	mov	WORD PTR [r8+2], di
 	cmp	rdx, 5
 	jle	.L158
-	movzx	r11d, WORD PTR [rax+4]
-	rol	r11w, 8
+	movbe	r11w, WORD PTR [rax+4]
 	mov	WORD PTR [r8+4], r11w
 	cmp	rdx, 7
 	jle	.L158
-	movzx	r10d, WORD PTR [rax+6]
-	rol	r10w, 8
+	movbe	r10w, WORD PTR [rax+6]
 	mov	WORD PTR [r8+6], r10w
 	cmp	rdx, 9
 	jle	.L158
-	movzx	ecx, WORD PTR [rax+8]
-	rol	cx, 8
+	movbe	cx, WORD PTR [rax+8]
 	mov	WORD PTR [r8+8], cx
 	cmp	rdx, 11
 	jle	.L158
-	movzx	esi, WORD PTR [rax+10]
-	rol	si, 8
+	movbe	si, WORD PTR [rax+10]
 	mov	WORD PTR [r8+10], si
 	cmp	rdx, 13
 	jle	.L158
-	movzx	edx, WORD PTR [rax+12]
-	rol	dx, 8
+	movbe	dx, WORD PTR [rax+12]
 	mov	WORD PTR [r8+12], dx
 .L158:
 	ret

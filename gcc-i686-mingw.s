@@ -3412,8 +3412,7 @@ LFE79:
 _bswap_16:
 LFB80:
 	.cfi_startproc
-	movzx	eax, WORD PTR [esp+4]
-	rol	ax, 8
+	movbe	ax, WORD PTR [esp+4]
 	ret
 	.cfi_endproc
 LFE80:
@@ -3423,8 +3422,7 @@ LFE80:
 _bswap_32:
 LFB81:
 	.cfi_startproc
-	mov	eax, DWORD PTR [esp+4]
-	bswap	eax
+	movbe	eax, DWORD PTR [esp+4]
 	ret
 	.cfi_endproc
 LFE81:
@@ -3434,10 +3432,8 @@ LFE81:
 _bswap_64:
 LFB82:
 	.cfi_startproc
-	mov	edx, DWORD PTR [esp+4]
-	mov	eax, DWORD PTR [esp+8]
-	bswap	edx
-	bswap	eax
+	movbe	edx, DWORD PTR [esp+4]
+	movbe	eax, DWORD PTR [esp+8]
 	ret
 	.cfi_endproc
 LFE82:
@@ -7046,10 +7042,8 @@ LFE134:
 ___bswapdi2:
 LFB135:
 	.cfi_startproc
-	mov	edx, DWORD PTR [esp+4]
-	mov	eax, DWORD PTR [esp+8]
-	bswap	edx
-	bswap	eax
+	movbe	edx, DWORD PTR [esp+4]
+	movbe	eax, DWORD PTR [esp+8]
 	ret
 	.cfi_endproc
 LFE135:
@@ -7059,8 +7053,7 @@ LFE135:
 ___bswapsi2:
 LFB136:
 	.cfi_startproc
-	mov	eax, DWORD PTR [esp+4]
-	bswap	eax
+	movbe	eax, DWORD PTR [esp+4]
 	ret
 	.cfi_endproc
 LFE136:

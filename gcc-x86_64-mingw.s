@@ -589,38 +589,31 @@ swab:
 	movq	QWORD PTR 8[r9], xmm0
 	je	.L150
 .L155:
-	movzx	r11d, WORD PTR [rax]
-	rol	r11w, 8
+	movbe	r11w, WORD PTR [rax]
 	mov	WORD PTR [r10], r11w
 	cmp	r8, 3
 	jle	.L150
-	movzx	r9d, WORD PTR 2[rax]
-	rol	r9w, 8
+	movbe	r9w, WORD PTR 2[rax]
 	mov	WORD PTR 2[r10], r9w
 	cmp	r8, 5
 	jle	.L150
-	movzx	esi, WORD PTR 4[rax]
-	rol	si, 8
+	movbe	si, WORD PTR 4[rax]
 	mov	WORD PTR 4[r10], si
 	cmp	r8, 7
 	jle	.L150
-	movzx	ebx, WORD PTR 6[rax]
-	rol	bx, 8
+	movbe	bx, WORD PTR 6[rax]
 	mov	WORD PTR 6[r10], bx
 	cmp	r8, 9
 	jle	.L150
-	movzx	edx, WORD PTR 8[rax]
-	rol	dx, 8
+	movbe	dx, WORD PTR 8[rax]
 	mov	WORD PTR 8[r10], dx
 	cmp	r8, 11
 	jle	.L150
-	movzx	ecx, WORD PTR 10[rax]
-	rol	cx, 8
+	movbe	cx, WORD PTR 10[rax]
 	mov	WORD PTR 10[r10], cx
 	cmp	r8, 13
 	jle	.L150
-	movzx	r8d, WORD PTR 12[rax]
-	rol	r8w, 8
+	movbe	r8w, WORD PTR 12[rax]
 	mov	WORD PTR 12[r10], r8w
 .L150:
 	add	rsp, 24

@@ -3398,8 +3398,7 @@ rotr8:
 bswap_16:
 .LFB78:
 	.cfi_startproc
-	movzx	eax, WORD PTR [esp+4]
-	rol	ax, 8
+	movbe	ax, WORD PTR [esp+4]
 	ret
 	.cfi_endproc
 .LFE78:
@@ -3410,8 +3409,7 @@ bswap_16:
 bswap_32:
 .LFB79:
 	.cfi_startproc
-	mov	eax, DWORD PTR [esp+4]
-	bswap	eax
+	movbe	eax, DWORD PTR [esp+4]
 	ret
 	.cfi_endproc
 .LFE79:
@@ -3422,10 +3420,8 @@ bswap_32:
 bswap_64:
 .LFB80:
 	.cfi_startproc
-	mov	edx, DWORD PTR [esp+4]
-	mov	eax, DWORD PTR [esp+8]
-	bswap	edx
-	bswap	eax
+	movbe	edx, DWORD PTR [esp+4]
+	movbe	eax, DWORD PTR [esp+8]
 	ret
 	.cfi_endproc
 .LFE80:
@@ -7092,10 +7088,8 @@ __ashrdi3:
 __bswapdi2:
 .LFB133:
 	.cfi_startproc
-	mov	edx, DWORD PTR [esp+4]
-	mov	eax, DWORD PTR [esp+8]
-	bswap	edx
-	bswap	eax
+	movbe	edx, DWORD PTR [esp+4]
+	movbe	eax, DWORD PTR [esp+8]
 	ret
 	.cfi_endproc
 .LFE133:
@@ -7106,8 +7100,7 @@ __bswapdi2:
 __bswapsi2:
 .LFB134:
 	.cfi_startproc
-	mov	eax, DWORD PTR [esp+4]
-	bswap	eax
+	movbe	eax, DWORD PTR [esp+4]
 	ret
 	.cfi_endproc
 .LFE134:
