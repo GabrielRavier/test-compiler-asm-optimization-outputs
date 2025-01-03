@@ -44,7 +44,7 @@ gcc-aarch64.s: mini-libc.c
 > aarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer -march=armv9.4-a+crc+crypto+fp+simd+sve+lse+rdma+fp16+fp16fml+rcpc+dotprod+aes+sha2+sha3+sm4+profile+rng+memtag+sb+ssbs+predres+sve2+sve2-bitperm+sve2-sm4+sve2-aes+sve2-sha3+tme+i8mm+f32mm+f64mm+bf16+ls64+mops+flagm+pauth+cssc+sme+sme-i16i64+sme-f64f64+sme2+lse128+d128+gcs+the+rcpc3 -mtune=generic
 
 gcc-alpha.s: mini-libc.c
-> alpha-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mno-soft-float -mfp-regs -mbwx -mcix
+> alpha-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mno-soft-float -mfp-regs -mbwx -mcix -mfix
 
 gcc-arc.s: mini-libc.c
 > arc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
