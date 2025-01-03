@@ -1,4 +1,4 @@
-	.arch armv8.5-a+crc+sve
+	.arch armv8.5-a+crc+sve2
 	.file	"mini-libc.c"
 	.text
 	.align	2
@@ -36,82 +36,81 @@ make_tu:
 memmove:
 .LFB2:
 	.cfi_startproc
-	mov	x12, x1
+	mov	x10, x1
 	cmp	x0, x1
 	bls	.L5
 	cbz	x2, .L6
 	sub	x3, x2, #1
-	cnth	x9
+	cnth	x5
 	cmp	x3, 14
-	sub	x10, x9, #1
-	ccmp	x3, x10, 0, hi
+	sub	x6, x5, #1
+	ccmp	x3, x6, 0, hi
 	bcc	.L7
-	sub	x11, x2, #2
-	add	x13, x0, x3
-	add	x14, x1, x11
-	cntb	x15
-	sub	x16, x13, x14
-	sub	x17, x15, #2
-	add	x18, x16, x17
-	cmp	x18, x17
+	sub	x7, x2, #2
+	add	x8, x0, x3
+	add	x9, x1, x7
+	cntb	x11
+	sub	x12, x8, x9
+	sub	x13, x11, #2
+	add	x14, x12, x13
+	cmp	x14, x13
 	bls	.L7
-	sub	x1, x15, #1
-	add	x6, x12, x2
+	sub	x15, x11, #1
+	add	x6, x1, x2
 	add	x5, x0, x2
-	cmp	x3, x1
+	cmp	x3, x15
 	bcc	.L20
-	rdvl	x9, #-1
-	add	x8, x2, x9
-	add	x11, x12, x8
-	add	x10, x0, x8
-	mov	x3, 0
+	addvl	x17, x2, #-1
+	mov	x18, 0
+	add	x1, x1, x17
+	add	x3, x0, x17
 	mov	x4, 0
 	ptrue	p0.b, all
 	.p2align 3,,7
 .L9:
-	ld1b	z30.b, p0/z, [x11, x3]
-	add	x4, x4, x15
-	st1b	z30.b, p0, [x10, x3]
-	add	x3, x3, x9
-	cmp	x8, x4
+	ld1b	z30.b, p0/z, [x1, x18]
+	incb	x4
+	st1b	z30.b, p0, [x3, x18]
+	decb	x18
+	cmp	x17, x4
 	bcs	.L9
-	sub	x7, x2, x4
+	sub	x16, x2, x4
 	sub	x5, x5, x4
 	sub	x6, x6, x4
-	mov	x1, x7
+	mov	x17, x16
 	cmp	x2, x4
 	beq	.L6
 .L8:
 	cnth	x2
-	sub	x13, x7, #1
-	sub	x14, x2, #1
-	cmp	x13, x14
+	sub	x7, x16, #1
+	sub	x8, x2, #1
+	cmp	x7, x8
 	bcc	.L11
-	sub	x15, x7, x2
+	addpl	x9, x16, #-4
 	ptrue	p1.b, all
-	ld1b	z29.h, p1/z, [x12, x15]
-	st1b	z29.h, p1, [x0, x15]
-	add	x12, x12, x15
-	add	x16, x0, x15
-	cmp	x15, x2
+	ld1b	z29.h, p1/z, [x10, x9]
+	st1b	z29.h, p1, [x0, x9]
+	add	x10, x10, x9
+	add	x11, x0, x9
+	cmp	x9, x2
 	bcs	.L39
 .L12:
-	sub	x1, x1, x2
+	sub	x17, x17, x2
 	sub	x5, x5, x2
 	sub	x6, x6, x2
-	cmp	x7, x2
+	cmp	x16, x2
 	beq	.L6
 .L11:
-	mvn	x17, x1
-	mov	x8, x1
-	add	x18, x6, x17
-	add	x7, x5, x17
+	mvn	x12, x17
+	mov	x16, x17
+	add	x13, x6, x12
+	add	x14, x5, x12
 	.p2align 3,,7
 .L14:
-	ldrb	w9, [x18, x1]
-	subs	x8, x8, #1
-	strb	w9, [x7, x1]
-	sub	x1, x1, #1
+	ldrb	w15, [x13, x17]
+	subs	x16, x16, #1
+	strb	w15, [x14, x17]
+	sub	x17, x17, #1
 	bne	.L14
 .L6:
 	ret
@@ -119,60 +118,56 @@ memmove:
 .L5:
 	beq	.L6
 	cbz	x2, .L6
-	add	x1, x1, 1
-	cntb	x5
-	sub	x4, x0, x1
-	sub	x3, x5, #2
-	cmp	x4, x3
-	mov	x8, 0
-	bls	.L17
-	mov	x6, x2
+	mov	x3, 0
+	whilewr	p15.b, x1, x0
+	b.nlast	.L17
+	mov	x4, x2
 	whilelo	p7.b, xzr, x2
-	uqdecb	x6
+	uqdecb	x4
 	.p2align 3,,7
 .L18:
-	ld1b	z31.b, p7/z, [x12, x8]
-	st1b	z31.b, p7, [x0, x8]
-	whilelo	p7.b, x8, x6
-	add	x8, x8, x5
+	ld1b	z31.b, p7/z, [x10, x3]
+	st1b	z31.b, p7, [x0, x3]
+	whilelo	p7.b, x3, x4
+	incb	x3
 	b.any	.L18
 	ret
 	.p2align 2,,3
 .L17:
-	ldrb	w7, [x12, x8]
+	ldrb	w1, [x10, x3]
 	subs	x2, x2, #1
-	strb	w7, [x0, x8]
-	add	x8, x8, 1
+	strb	w1, [x0, x3]
+	add	x3, x3, 1
 	beq	.L6
-	ldrb	w7, [x12, x8]
+	ldrb	w1, [x10, x3]
 	subs	x2, x2, #1
-	strb	w7, [x0, x8]
-	add	x8, x8, 1
+	strb	w1, [x0, x3]
+	add	x3, x3, 1
 	bne	.L17
 	b	.L6
 	.p2align 2,,3
 .L39:
-	ld1b	z28.h, p1/z, [x12, #-1, mul vl]
+	ld1b	z28.h, p1/z, [x10, #-1, mul vl]
 	cntb	x2
-	st1b	z28.h, p1, [x16, #-1, mul vl]
+	st1b	z28.h, p1, [x11, #-1, mul vl]
 	b	.L12
 	.p2align 2,,3
 .L7:
-	sub	x11, x12, #1
-	sub	x10, x0, #1
+	sub	x18, x10, #1
+	sub	x7, x0, #1
 	add	x4, x3, 1
 	.p2align 3,,7
 .L15:
-	ldrb	w13, [x11, x2]
+	ldrb	w1, [x18, x2]
 	subs	x4, x4, #1
-	strb	w13, [x10, x2]
+	strb	w1, [x7, x2]
 	mov	x2, x3
 	sub	x3, x3, #1
 	bne	.L15
 	ret
 .L20:
-	mov	x1, x2
-	mov	x7, x2
+	mov	x17, x2
+	mov	x16, x2
 	b	.L8
 	.cfi_endproc
 .LFE2:
@@ -519,8 +514,6 @@ swab:
 	ble	.L135
 	mov	x3, 0
 	mov	x4, 0
-	cntb	x6
-	cntb	x5, all, mul #2
 	lsr	x2, x2, 1
 	whilelo	p7.b, xzr, x2
 	.p2align 3,,7
@@ -528,8 +521,8 @@ swab:
 	ld2b	{z30.b - z31.b}, p7/z, [x0, x3]
 	mov	z29.d, z31.d
 	st2b	{z29.b - z30.b}, p7, [x1, x3]
-	add	x4, x4, x6
-	add	x3, x3, x5
+	incb	x4
+	incb	x3, all, mul #2
 	whilelo	p7.b, x4, x2
 	b.any	.L137
 .L135:
@@ -2130,50 +2123,49 @@ wmemmove:
 	beq	.L481
 	lsl	x4, x2, 2
 	sub	x5, x0, x1
-	sub	x3, x2, #1
+	sub	x7, x2, #1
 	cmp	x5, x4
 	bcs	.L492
 	cbz	x2, .L481
-	cmp	x3, 13
-	cntw	x13
-	sub	x14, x13, #1
-	ccmp	x3, x14, 0, hi
+	cmp	x7, 13
+	cntw	x8
+	sub	x9, x8, #1
+	ccmp	x7, x9, 0, hi
 	bcc	.L466
-	sub	x15, x4, #4
-	sub	x16, x4, #8
-	add	x17, x0, x15
-	add	x18, x1, x16
-	sub	x5, x17, x18
-	cntb	x6
-	sub	x7, x6, #8
-	add	x8, x5, x7
-	cmp	x8, x7
+	sub	x10, x4, #4
+	sub	x11, x4, #8
+	add	x12, x0, x10
+	add	x13, x1, x11
+	sub	x14, x12, x13
+	cntb	x15
+	sub	x16, x15, #8
+	add	x17, x14, x16
+	cmp	x17, x16
 	bls	.L466
-	rdvl	x10, #-1
-	add	x4, x4, x10
-	sub	x9, x2, x13
-	add	x12, x1, x4
-	add	x14, x0, x4
-	mov	x11, 0
+	decb	x4
+	addpl	x6, x2, #-2
+	add	x5, x1, x4
+	add	x4, x0, x4
+	mov	x18, 0
 	ptrue	p0.b, all
 	.p2align 3,,7
 .L467:
-	ld1w	z30.s, p0/z, [x12]
-	add	x11, x11, x13
-	st1w	z30.s, p0, [x14]
-	add	x12, x12, x10
-	add	x14, x14, x10
-	cmp	x9, x11
+	ld1w	z30.s, p0/z, [x5]
+	incw	x18
+	st1w	z30.s, p0, [x4]
+	decb	x5
+	decb	x4
+	cmp	x6, x18
 	bcs	.L467
-	sub	x3, x3, x11
-	cmp	x2, x11
+	sub	x3, x7, x18
+	cmp	x2, x18
 	beq	.L481
 	add	x2, x3, 1
 	.p2align 3,,7
 .L470:
-	ldr	w13, [x1, x3, lsl 2]
+	ldr	w7, [x1, x3, lsl 2]
 	subs	x2, x2, #1
-	str	w13, [x0, x3, lsl 2]
+	str	w7, [x0, x3, lsl 2]
 	sub	x3, x3, #1
 	bne	.L470
 .L481:
@@ -2181,52 +2173,47 @@ wmemmove:
 	.p2align 2,,3
 .L492:
 	cbz	x2, .L481
-	cmp	x3, 2
+	cmp	x7, 2
 	bls	.L477
-	add	x3, x1, 4
-	cntb	x6
-	sub	x7, x0, x3
-	sub	x8, x6, #8
-	cmp	x7, x8
-	mov	x12, 0
-	bls	.L475
-	cntw	x9
-	mov	x10, x2
+	mov	x3, 0
+	whilewr	p15.s, x1, x0
+	b.nlast	.L475
+	mov	x6, x2
 	whilelo	p7.s, xzr, x2
-	uqdecw	x10
+	uqdecw	x6
 	.p2align 3,,7
 .L474:
-	ld1w	z31.s, p7/z, [x1, x12, lsl 2]
-	st1w	z31.s, p7, [x0, x12, lsl 2]
-	whilelo	p7.s, x12, x10
-	add	x12, x12, x9
+	ld1w	z31.s, p7/z, [x1, x3, lsl 2]
+	st1w	z31.s, p7, [x0, x3, lsl 2]
+	whilelo	p7.s, x3, x6
+	incw	x3
 	b.any	.L474
 	ret
 	.p2align 2,,3
 .L477:
-	mov	x12, 0
+	mov	x3, 0
 	.p2align 3,,7
 .L475:
-	ldr	w11, [x1, x12, lsl 2]
+	ldr	w7, [x1, x3, lsl 2]
 	subs	x2, x2, #1
-	str	w11, [x0, x12, lsl 2]
-	add	x12, x12, 1
+	str	w7, [x0, x3, lsl 2]
+	add	x3, x3, 1
 	beq	.L481
-	ldr	w11, [x1, x12, lsl 2]
+	ldr	w7, [x1, x3, lsl 2]
 	subs	x2, x2, #1
-	str	w11, [x0, x12, lsl 2]
-	add	x12, x12, 1
+	str	w7, [x0, x3, lsl 2]
+	add	x3, x3, 1
 	bne	.L475
 	b	.L481
 	.p2align 2,,3
 .L466:
-	add	x16, x3, 1
+	add	x9, x7, 1
 	.p2align 3,,7
 .L471:
-	ldr	w15, [x1, x3, lsl 2]
-	subs	x16, x16, #1
-	str	w15, [x0, x3, lsl 2]
-	sub	x3, x3, #1
+	ldr	w8, [x1, x7, lsl 2]
+	subs	x9, x9, #1
+	str	w8, [x0, x7, lsl 2]
+	sub	x7, x7, #1
 	bne	.L471
 	ret
 	.cfi_endproc
@@ -2241,7 +2228,6 @@ wmemset:
 	.cfi_startproc
 	cbz	x2, .L494
 	mov	x3, 0
-	cntw	x4
 	mov	z31.s, w1
 	whilelo	p7.s, xzr, x2
 	mov	x1, x2
@@ -2250,7 +2236,7 @@ wmemset:
 .L495:
 	st1w	z31.s, p7, [x0, x3, lsl 2]
 	whilelo	p7.s, x3, x1
-	add	x3, x3, x4
+	incw	x3
 	b.any	.L495
 .L494:
 	ret
@@ -2264,82 +2250,81 @@ wmemset:
 bcopy:
 .LFB69:
 	.cfi_startproc
-	mov	x12, x0
+	mov	x10, x0
 	cmp	x0, x1
 	bcs	.L501
 	cbz	x2, .L500
 	sub	x3, x2, #1
-	cnth	x9
+	cnth	x5
 	cmp	x3, 14
-	sub	x10, x9, #1
-	ccmp	x3, x10, 0, hi
+	sub	x6, x5, #1
+	ccmp	x3, x6, 0, hi
 	bcc	.L503
-	sub	x11, x2, #2
-	add	x13, x1, x3
-	add	x14, x0, x11
-	cntb	x15
-	sub	x16, x13, x14
-	sub	x17, x15, #2
-	add	x18, x16, x17
-	cmp	x18, x17
+	sub	x7, x2, #2
+	add	x8, x1, x3
+	add	x9, x0, x7
+	cntb	x11
+	sub	x12, x8, x9
+	sub	x13, x11, #2
+	add	x14, x12, x13
+	cmp	x14, x13
 	bls	.L503
-	sub	x0, x15, #1
-	add	x6, x12, x2
+	sub	x15, x11, #1
+	add	x6, x0, x2
 	add	x5, x1, x2
-	cmp	x3, x0
+	cmp	x3, x15
 	bcc	.L516
-	rdvl	x9, #-1
-	add	x8, x2, x9
-	add	x11, x12, x8
-	add	x10, x1, x8
-	mov	x3, 0
+	addvl	x17, x2, #-1
+	mov	x18, 0
+	add	x0, x0, x17
+	add	x3, x1, x17
 	mov	x4, 0
 	ptrue	p0.b, all
 	.p2align 3,,7
 .L505:
-	ld1b	z30.b, p0/z, [x11, x3]
-	add	x4, x4, x15
-	st1b	z30.b, p0, [x10, x3]
-	add	x3, x3, x9
-	cmp	x8, x4
+	ld1b	z30.b, p0/z, [x0, x18]
+	incb	x4
+	st1b	z30.b, p0, [x3, x18]
+	decb	x18
+	cmp	x17, x4
 	bcs	.L505
-	sub	x7, x2, x4
+	sub	x16, x2, x4
 	sub	x6, x6, x4
 	sub	x5, x5, x4
-	mov	x0, x7
+	mov	x17, x16
 	cmp	x2, x4
 	beq	.L500
 .L504:
 	cnth	x2
-	sub	x13, x7, #1
-	sub	x14, x2, #1
-	cmp	x13, x14
+	sub	x7, x16, #1
+	sub	x8, x2, #1
+	cmp	x7, x8
 	bcc	.L507
-	sub	x15, x7, x2
+	addpl	x9, x16, #-4
 	ptrue	p1.b, all
-	ld1b	z29.h, p1/z, [x12, x15]
-	st1b	z29.h, p1, [x1, x15]
-	add	x12, x12, x15
-	add	x1, x1, x15
-	cmp	x15, x2
+	ld1b	z29.h, p1/z, [x10, x9]
+	st1b	z29.h, p1, [x1, x9]
+	add	x10, x10, x9
+	add	x1, x1, x9
+	cmp	x9, x2
 	bcs	.L535
 .L508:
-	sub	x0, x0, x2
+	sub	x17, x17, x2
 	sub	x6, x6, x2
 	sub	x5, x5, x2
-	cmp	x7, x2
+	cmp	x16, x2
 	beq	.L500
 .L507:
-	mvn	x16, x0
-	mov	x9, x0
-	add	x17, x6, x16
-	add	x18, x5, x16
+	mvn	x11, x17
+	mov	x15, x17
+	add	x12, x6, x11
+	add	x13, x5, x11
 	.p2align 3,,7
 .L510:
-	ldrb	w7, [x17, x0]
-	subs	x9, x9, #1
-	strb	w7, [x18, x0]
-	sub	x0, x0, #1
+	ldrb	w14, [x12, x17]
+	subs	x15, x15, #1
+	strb	w14, [x13, x17]
+	sub	x17, x17, #1
 	bne	.L510
 .L500:
 	ret
@@ -2347,60 +2332,56 @@ bcopy:
 .L501:
 	beq	.L500
 	cbz	x2, .L500
-	add	x0, x0, 1
-	cntb	x5
-	sub	x4, x1, x0
-	sub	x3, x5, #2
-	cmp	x4, x3
-	mov	x8, 0
-	bls	.L513
-	mov	x6, x2
+	mov	x3, 0
+	whilewr	p15.b, x0, x1
+	b.nlast	.L513
+	mov	x4, x2
 	whilelo	p7.b, xzr, x2
-	uqdecb	x6
+	uqdecb	x4
 	.p2align 3,,7
 .L514:
-	ld1b	z31.b, p7/z, [x12, x8]
-	st1b	z31.b, p7, [x1, x8]
-	whilelo	p7.b, x8, x6
-	add	x8, x8, x5
+	ld1b	z31.b, p7/z, [x10, x3]
+	st1b	z31.b, p7, [x1, x3]
+	whilelo	p7.b, x3, x4
+	incb	x3
 	b.any	.L514
 	ret
 	.p2align 2,,3
 .L513:
-	ldrb	w7, [x12, x8]
+	ldrb	w0, [x10, x3]
 	subs	x2, x2, #1
-	strb	w7, [x1, x8]
-	add	x8, x8, 1
+	strb	w0, [x1, x3]
+	add	x3, x3, 1
 	beq	.L500
-	ldrb	w7, [x12, x8]
+	ldrb	w0, [x10, x3]
 	subs	x2, x2, #1
-	strb	w7, [x1, x8]
-	add	x8, x8, 1
+	strb	w0, [x1, x3]
+	add	x3, x3, 1
 	bne	.L513
 	b	.L500
 	.p2align 2,,3
 .L535:
-	ld1b	z28.h, p1/z, [x12, #-1, mul vl]
+	ld1b	z28.h, p1/z, [x10, #-1, mul vl]
 	cntb	x2
 	st1b	z28.h, p1, [x1, #-1, mul vl]
 	b	.L508
 	.p2align 2,,3
 .L503:
-	sub	x8, x12, #1
-	sub	x11, x1, #1
+	sub	x16, x10, #1
+	sub	x18, x1, #1
 	add	x4, x3, 1
 	.p2align 3,,7
 .L511:
-	ldrb	w10, [x8, x2]
+	ldrb	w0, [x16, x2]
 	subs	x4, x4, #1
-	strb	w10, [x11, x2]
+	strb	w0, [x18, x2]
 	mov	x2, x3
 	sub	x3, x3, #1
 	bne	.L511
 	ret
 .L516:
-	mov	x0, x2
-	mov	x7, x2
+	mov	x17, x2
+	mov	x16, x2
 	b	.L504
 	.cfi_endproc
 .LFE69:
@@ -2599,8 +2580,7 @@ ffs:
 	cmp	w1, 31
 	bhi	.L556
 	mov	w4, 32
-	mov	x5, 0
-	cntw	x3
+	mov	x3, 0
 	mov	z26.s, w0
 	whilelo	p0.s, wzr, w4
 	index	z27.s, w4, #-1
@@ -2610,8 +2590,8 @@ ffs:
 	b	.L553
 	.p2align 2,,3
 .L551:
-	add	x5, x5, x3
-	whilelo	p0.s, w5, w4
+	incw	x3
+	whilelo	p0.s, w3, w4
 	b.none	.L559
 .L553:
 	mov	z31.d, z28.d
@@ -2625,27 +2605,27 @@ ffs:
 	ptest	p15, p7.b
 	b.none	.L551
 	umov	w2, v30.s[0]
-	umov	w8, v31.s[0]
+	umov	w7, v31.s[0]
 .L550:
-	sub	w6, w2, #1
-	add	x9, x6, 1
+	sub	w5, w2, #1
+	add	x8, x5, 1
 	b	.L555
 	.p2align 2,,3
 .L560:
-	subs	x9, x9, #1
+	subs	x8, x8, #1
 	beq	.L559
 .L555:
-	lsr	w7, w0, w8
-	add	w8, w8, 1
-	tbz	x7, 0, .L560
-	mov	w0, w8
+	lsr	w6, w0, w7
+	add	w7, w7, 1
+	tbz	x6, 0, .L560
+	mov	w0, w7
 	ret
 	.p2align 2,,3
 .L559:
 	mov	w0, 0
 	ret
 .L556:
-	mov	w8, 0
+	mov	w7, 0
 	mov	w2, 32
 	b	.L550
 	.cfi_endproc
@@ -2942,7 +2922,6 @@ memxor:
 	.cfi_startproc
 	cbz	x2, .L628
 	mov	x3, 0
-	cntb	x5
 	mov	x4, x2
 	whilelo	p7.b, xzr, x2
 	uqdecb	x4
@@ -2953,7 +2932,7 @@ memxor:
 	eor	z0.d, z30.d, z31.d
 	st1b	z0.b, p7, [x0, x3]
 	whilelo	p7.b, x3, x4
-	add	x3, x3, x5
+	incb	x3
 	b.any	.L629
 .L628:
 	ret
@@ -3471,68 +3450,58 @@ __cmovd:
 	bcc	.L790
 	add	x3, x1, w2, uxtw
 	cmp	x0, x3
-	bls	.L827
+	bls	.L829
 .L790:
 	cbz	w4, .L789
-	sub	w10, w4, #1
-	cmp	w10, 4
+	sub	w8, w4, #1
+	cmp	w8, 4
 	bls	.L793
-	add	x11, x1, 8
-	cntb	x13
-	sub	x14, x0, x11
-	sub	x12, x13, #16
-	cmp	x14, x12
-	bls	.L793
-	mov	x16, 0
-	cntd	x15
+	whilewr	p15.d, x1, x0
+	b.nlast	.L793
+	mov	x9, 0
 	whilelo	p1.d, wzr, w4
 	.p2align 3,,7
 .L794:
-	ld1d	z28.d, p1/z, [x1, x16, lsl 3]
-	st1d	z28.d, p1, [x0, x16, lsl 3]
-	add	x16, x16, x15
-	whilelo	p1.d, w16, w4
+	ld1d	z28.d, p1/z, [x1, x9, lsl 3]
+	st1d	z28.d, p1, [x0, x9, lsl 3]
+	incd	x9
+	whilelo	p1.d, w9, w4
 	b.any	.L794
 .L789:
 	cmp	w2, w5
 	bls	.L786
-	uxtw	x18, w5
-	cntb	x10
-	add	x3, x18, 1
-	add	x11, x0, x18
-	add	x8, x1, x3
-	sub	x9, x10, #2
-	sub	x13, x11, x8
-	cmp	x13, x9
-	bls	.L828
-	add	x1, x1, x18
+	uxtw	x4, w5
+	add	x16, x1, x4
+	add	x17, x0, x4
+	whilewr	p15.b, x16, x17
+	b.nlast	.L830
 	mov	x0, 0
-	sub	w5, w2, w5
-	whilelo	p2.b, xzr, x5
+	sub	w1, w2, w5
+	whilelo	p2.b, xzr, x1
 	.p2align 3,,7
 .L798:
-	ld1b	z27.b, p2/z, [x1, x0]
-	st1b	z27.b, p2, [x11, x0]
-	add	x0, x0, x10
-	whilelo	p2.b, x0, x5
+	ld1b	z27.b, p2/z, [x16, x0]
+	st1b	z27.b, p2, [x17, x0]
+	incb	x0
+	whilelo	p2.b, x0, x1
 	b.any	.L798
 .L786:
 	ret
 	.p2align 2,,3
-.L827:
+.L829:
 	sub	w3, w2, #1
 	cbz	w2, .L786
 	cnth	x6
 	sub	w7, w6, #1
 	cmp	w3, w7
-	uxtw	x12, w3
+	uxtw	x10, w3
 	ccmp	w3, 14, 0, cs
 	bls	.L800
-	sub	x9, x12, #1
-	add	x10, x0, x12
-	add	x11, x1, x9
+	sub	x9, x10, #1
+	add	x11, x0, x10
+	add	x12, x1, x9
 	cntb	x8
-	sub	x14, x10, x11
+	sub	x14, x11, x12
 	sub	x13, x8, #2
 	add	x15, x14, x13
 	cmp	x15, x13
@@ -3541,104 +3510,103 @@ __cmovd:
 	sub	w17, w16, #1
 	cmp	w3, w17
 	bcc	.L811
-	addvl	x5, x12, #-1
-	sub	w8, w2, w16
+	addvl	x5, x10, #-1
+	addvl	x8, x2, #-1
 	add	x5, x5, 1
 	mov	x4, 0
 	add	x6, x1, x5
 	add	x7, x0, x5
 	mov	w18, 0
-	rdvl	x9, #-1
 	ptrue	p7.b, all
 	.p2align 3,,7
 .L802:
 	ld1b	z31.b, p7/z, [x6, x4]
-	add	w18, w18, w16
+	incb	x18
 	st1b	z31.b, p7, [x7, x4]
-	add	x4, x4, x9
+	decb	x4
 	cmp	w8, w18
 	bcs	.L802
 	sub	w3, w3, w18
 	cmp	w2, w18
 	beq	.L786
 	sub	w2, w2, w18
-	cnth	x10
+	cnth	x9
 	sub	w11, w2, #1
-	sub	w13, w10, #1
-	cmp	w11, w13
+	sub	w12, w9, #1
+	cmp	w11, w12
 	bcc	.L805
 .L801:
-	addpl	x14, x12, #-4
+	addpl	x13, x10, #-4
 	ptrue	p0.b, all
-	add	x14, x14, 1
-	sub	x12, x14, w18, uxtw
-	cnth	x18
-	ld1b	z30.h, p0/z, [x1, x12]
-	sub	w15, w2, w18
-	st1b	z30.h, p0, [x0, x12]
-	add	x16, x1, x12
-	add	x17, x0, x12
-	cmp	w15, w18
+	add	x13, x13, 1
+	addpl	x14, x2, #-4
+	sub	x10, x13, w18, uxtw
+	ld1b	z30.h, p0/z, [x1, x10]
+	st1b	z30.h, p0, [x0, x10]
+	add	x15, x1, x10
+	add	x16, x0, x10
+	cnth	x17
+	cmp	w14, w17
 	bcc	.L806
-	cntb	x18
-	ld1b	z29.h, p0/z, [x16, #-1, mul vl]
-	st1b	z29.h, p0, [x17, #-1, mul vl]
+	cntb	x17
+	ld1b	z29.h, p0/z, [x15, #-1, mul vl]
+	st1b	z29.h, p0, [x16, #-1, mul vl]
 .L806:
-	sub	w3, w3, w18
-	cmp	w2, w18
+	sub	w3, w3, w17
+	cmp	w2, w17
 	beq	.L786
 .L805:
 	uxtw	x2, w3
-	add	x6, x2, 1
+	add	x5, x2, 1
 	.p2align 3,,7
 .L808:
-	ldrb	w5, [x1, x2]
-	subs	x6, x6, #1
-	strb	w5, [x0, x2]
+	ldrb	w18, [x1, x2]
+	subs	x5, x5, #1
+	strb	w18, [x0, x2]
 	sub	x2, x2, #1
 	bne	.L808
 	ret
 	.p2align 2,,3
 .L793:
-	lsl	w17, w4, 3
-	mov	x4, 0
-	sub	x18, x17, #8
-	lsr	x3, x18, 3
-	add	x7, x3, 1
+	lsl	w11, w4, 3
+	mov	x15, 0
+	sub	x12, x11, #8
+	lsr	x13, x12, 3
+	add	x14, x13, 1
 	.p2align 3,,7
 .L796:
-	ldr	x6, [x1, x4]
-	str	x6, [x0, x4]
-	subs	x7, x7, #1
-	add	x4, x4, 8
+	ldr	x10, [x1, x15]
+	str	x10, [x0, x15]
+	subs	x14, x14, #1
+	add	x15, x15, 8
 	bne	.L796
 	b	.L789
 	.p2align 2,,3
-.L828:
-	sub	w14, w2, w3
-	add	w12, w18, 1
-	cmp	w12, w2
-	add	x15, x14, 1
-	mov	x2, 1
-	csel	x17, x15, x2, ls
+.L830:
+	mvn	w3, w4
+	add	w18, w4, 1
+	add	w5, w2, w3
+	cmp	w18, w2
+	add	x2, x5, 1
+	mov	x6, 1
+	csel	x8, x2, x6, ls
 	.p2align 3,,7
 .L797:
-	ldrb	w16, [x1, x18]
-	subs	x17, x17, #1
-	strb	w16, [x0, x18]
-	mov	x18, x3
-	add	x3, x3, 1
+	ldrb	w7, [x1, x4]
+	subs	x8, x8, #1
+	strb	w7, [x0, x4]
+	add	x4, x4, 1
 	bne	.L797
 	ret
 .L800:
-	mov	x9, x12
-	add	x8, x12, 1
+	mov	x7, x10
+	add	x6, x10, 1
 	.p2align 3,,7
 .L809:
-	ldrb	w7, [x1, x9]
-	subs	x8, x8, #1
-	strb	w7, [x0, x9]
-	sub	x9, x9, #1
+	ldrb	w4, [x1, x7]
+	subs	x6, x6, #1
+	strb	w4, [x0, x7]
+	sub	x7, x7, #1
 	bne	.L809
 	ret
 .L811:
@@ -3656,146 +3624,140 @@ __cmovh:
 	.cfi_startproc
 	lsr	w4, w2, 1
 	cmp	x0, x1
-	bcc	.L833
+	bcc	.L835
 	add	x3, x1, w2, uxtw
 	cmp	x0, x3
-	bls	.L864
-.L833:
-	cbz	w4, .L832
-	add	x9, x1, 2
-	cntb	x10
-	sub	x11, x0, x9
-	sub	x13, x10, #4
-	cmp	x11, x13
-	bls	.L836
-	mov	x14, 0
-	cnth	x12
+	bls	.L866
+.L835:
+	cbz	w4, .L834
+	whilewr	p15.h, x1, x0
+	b.nlast	.L838
+	mov	x8, 0
 	whilelo	p1.h, wzr, w4
 	.p2align 3,,7
-.L837:
-	ld1h	z28.h, p1/z, [x1, x14, lsl 1]
-	st1h	z28.h, p1, [x0, x14, lsl 1]
-	add	x14, x14, x12
-	whilelo	p1.h, w14, w4
-	b.any	.L837
-.L832:
-	tbz	x2, 0, .L829
-.L865:
-	sub	w5, w2, #1
-	ldrb	w1, [x1, w5, uxtw]
-	strb	w1, [x0, w5, uxtw]
-.L829:
+.L839:
+	ld1h	z28.h, p1/z, [x1, x8, lsl 1]
+	st1h	z28.h, p1, [x0, x8, lsl 1]
+	inch	x8
+	whilelo	p1.h, w8, w4
+	b.any	.L839
+.L834:
+	tbz	x2, 0, .L831
+.L867:
+	sub	w14, w2, #1
+	ldrb	w1, [x1, w14, uxtw]
+	strb	w1, [x0, w14, uxtw]
+.L831:
 	ret
 	.p2align 2,,3
-.L864:
+.L866:
 	sub	w3, w2, #1
-	cbz	w2, .L829
+	cbz	w2, .L831
 	cnth	x5
 	sub	w6, w5, #1
 	cmp	w3, w6
-	uxtw	x12, w3
+	uxtw	x10, w3
 	ccmp	w3, 14, 0, cs
-	bls	.L841
-	sub	x7, x12, #1
-	add	x9, x0, x12
-	add	x10, x1, x7
+	bls	.L843
+	sub	x7, x10, #1
+	add	x9, x0, x10
+	add	x11, x1, x7
 	cntb	x8
-	sub	x13, x9, x10
-	sub	x11, x8, #2
-	add	x14, x13, x11
-	cmp	x14, x11
-	bls	.L841
+	sub	x13, x9, x11
+	sub	x12, x8, #2
+	add	x14, x13, x12
+	cmp	x14, x12
+	bls	.L843
 	cntb	x15
 	sub	w16, w15, #1
 	cmp	w3, w16
-	bcc	.L851
-	addvl	x18, x12, #-1
-	sub	w8, w2, w15
+	bcc	.L853
+	addvl	x18, x10, #-1
+	addvl	x8, x2, #-1
 	add	x18, x18, 1
 	mov	x4, 0
 	add	x5, x1, x18
 	add	x6, x0, x18
 	mov	w17, 0
-	rdvl	x7, #-1
 	ptrue	p7.b, all
 	.p2align 3,,7
-.L843:
+.L845:
 	ld1b	z31.b, p7/z, [x5, x4]
-	add	w17, w17, w15
+	incb	x17
 	st1b	z31.b, p7, [x6, x4]
-	add	x4, x4, x7
+	decb	x4
 	cmp	w8, w17
-	bcs	.L843
+	bcs	.L845
 	sub	w3, w3, w17
 	cmp	w2, w17
-	beq	.L829
+	beq	.L831
 	sub	w2, w2, w17
 	cnth	x9
-	sub	w10, w2, #1
+	sub	w7, w2, #1
 	sub	w11, w9, #1
-	cmp	w10, w11
-	bcc	.L845
-.L842:
-	addpl	x13, x12, #-4
+	cmp	w7, w11
+	bcc	.L847
+.L844:
+	addpl	x12, x10, #-4
 	ptrue	p0.b, all
-	add	x13, x13, 1
-	sub	x12, x13, w17, uxtw
-	cnth	x17
-	ld1b	z30.h, p0/z, [x1, x12]
-	sub	w14, w2, w17
-	st1b	z30.h, p0, [x0, x12]
-	add	x15, x1, x12
-	add	x16, x0, x12
-	cmp	w14, w17
-	bcc	.L846
-	cntb	x17
-	ld1b	z29.h, p0/z, [x15, #-1, mul vl]
-	st1b	z29.h, p0, [x16, #-1, mul vl]
-.L846:
-	sub	w3, w3, w17
-	cmp	w2, w17
-	beq	.L829
-.L845:
-	uxtw	x2, w3
-	add	x5, x2, 1
-	.p2align 3,,7
+	add	x12, x12, 1
+	addpl	x13, x2, #-4
+	sub	x10, x12, w17, uxtw
+	ld1b	z30.h, p0/z, [x1, x10]
+	st1b	z30.h, p0, [x0, x10]
+	add	x14, x1, x10
+	add	x15, x0, x10
+	cnth	x16
+	cmp	w13, w16
+	bcc	.L848
+	cntb	x16
+	ld1b	z29.h, p0/z, [x14, #-1, mul vl]
+	st1b	z29.h, p0, [x15, #-1, mul vl]
 .L848:
-	ldrb	w18, [x1, x2]
-	subs	x5, x5, #1
-	strb	w18, [x0, x2]
+	sub	w3, w3, w16
+	cmp	w2, w16
+	beq	.L831
+.L847:
+	uxtw	x2, w3
+	add	x18, x2, 1
+	.p2align 3,,7
+.L850:
+	ldrb	w17, [x1, x2]
+	subs	x18, x18, #1
+	strb	w17, [x0, x2]
 	sub	x2, x2, #1
-	bne	.L848
+	bne	.L850
 	ret
 	.p2align 2,,3
-.L836:
-	lsl	w15, w4, 1
-	mov	x4, 0
-	sub	x16, x15, #2
-	lsr	x17, x16, 1
-	add	x3, x17, 1
+.L838:
+	lsl	w9, w4, 1
+	mov	x13, 0
+	sub	x7, x9, #2
+	lsr	x11, x7, 1
+	add	x10, x11, 1
 	.p2align 3,,7
-.L839:
-	ldrsh	w18, [x1, x4]
-	subs	x3, x3, #1
-	strh	w18, [x0, x4]
-	add	x4, x4, 2
-	bne	.L839
-	tbz	x2, 0, .L829
-	b	.L865
 .L841:
-	mov	x7, x12
-	add	x8, x12, 1
+	ldrsh	w12, [x1, x13]
+	subs	x10, x10, #1
+	strh	w12, [x0, x13]
+	add	x13, x13, 2
+	bne	.L841
+	tbz	x2, 0, .L831
+	b	.L867
+.L843:
+	mov	x6, x10
+	add	x5, x10, 1
 	.p2align 3,,7
-.L849:
-	ldrb	w6, [x1, x7]
-	subs	x8, x8, #1
-	strb	w6, [x0, x7]
-	sub	x7, x7, #1
-	bne	.L849
-	ret
 .L851:
+	ldrb	w4, [x1, x6]
+	subs	x5, x5, #1
+	strb	w4, [x0, x6]
+	sub	x6, x6, #1
+	bne	.L851
+	ret
+.L853:
 	mov	w17, 0
-	b	.L842
+	b	.L844
 	.cfi_endproc
 .LFE108:
 	.size	__cmovh, .-__cmovh
@@ -3809,182 +3771,171 @@ __cmovw:
 	lsr	w4, w2, 2
 	and	w5, w2, -4
 	cmp	x0, x1
-	bcc	.L870
+	bcc	.L872
 	add	x3, x1, w2, uxtw
 	cmp	x0, x3
-	bls	.L907
-.L870:
-	cbz	w4, .L869
-	sub	w10, w4, #1
-	cmp	w10, 2
-	bls	.L873
-	add	x11, x1, 4
-	cntb	x13
-	sub	x14, x0, x11
-	sub	x12, x13, #8
-	cmp	x14, x12
-	bls	.L873
-	mov	x16, 0
-	cntw	x15
+	bls	.L911
+.L872:
+	cbz	w4, .L871
+	sub	w8, w4, #1
+	cmp	w8, 2
+	bls	.L875
+	whilewr	p15.s, x1, x0
+	b.nlast	.L875
+	mov	x9, 0
 	whilelo	p1.s, wzr, w4
 	.p2align 3,,7
-.L874:
-	ld1w	z28.s, p1/z, [x1, x16, lsl 2]
-	st1w	z28.s, p1, [x0, x16, lsl 2]
-	add	x16, x16, x15
-	whilelo	p1.s, w16, w4
-	b.any	.L874
-.L869:
+.L876:
+	ld1w	z28.s, p1/z, [x1, x9, lsl 2]
+	st1w	z28.s, p1, [x0, x9, lsl 2]
+	incw	x9
+	whilelo	p1.s, w9, w4
+	b.any	.L876
+.L871:
 	cmp	w2, w5
-	bls	.L866
-	uxtw	x18, w5
-	cntb	x10
-	add	x3, x18, 1
-	add	x11, x0, x18
-	add	x8, x1, x3
-	sub	x9, x10, #2
-	sub	x13, x11, x8
-	cmp	x13, x9
-	bls	.L908
-	add	x1, x1, x18
+	bls	.L868
+	uxtw	x4, w5
+	add	x16, x1, x4
+	add	x17, x0, x4
+	whilewr	p15.b, x16, x17
+	b.nlast	.L912
 	mov	x0, 0
-	sub	w5, w2, w5
-	whilelo	p2.b, xzr, x5
+	sub	w1, w2, w5
+	whilelo	p2.b, xzr, x1
 	.p2align 3,,7
-.L878:
-	ld1b	z27.b, p2/z, [x1, x0]
-	st1b	z27.b, p2, [x11, x0]
-	add	x0, x0, x10
-	whilelo	p2.b, x0, x5
-	b.any	.L878
-.L866:
+.L880:
+	ld1b	z27.b, p2/z, [x16, x0]
+	st1b	z27.b, p2, [x17, x0]
+	incb	x0
+	whilelo	p2.b, x0, x1
+	b.any	.L880
+.L868:
 	ret
 	.p2align 2,,3
-.L907:
+.L911:
 	sub	w3, w2, #1
-	cbz	w2, .L866
+	cbz	w2, .L868
 	cnth	x6
 	sub	w7, w6, #1
 	cmp	w3, w7
-	uxtw	x12, w3
+	uxtw	x10, w3
 	ccmp	w3, 14, 0, cs
-	bls	.L880
-	sub	x9, x12, #1
-	add	x10, x0, x12
-	add	x11, x1, x9
+	bls	.L882
+	sub	x9, x10, #1
+	add	x11, x0, x10
+	add	x12, x1, x9
 	cntb	x8
-	sub	x14, x10, x11
+	sub	x14, x11, x12
 	sub	x13, x8, #2
 	add	x15, x14, x13
 	cmp	x15, x13
-	bls	.L880
+	bls	.L882
 	cntb	x16
 	sub	w17, w16, #1
 	cmp	w3, w17
-	bcc	.L891
-	addvl	x5, x12, #-1
-	sub	w8, w2, w16
+	bcc	.L893
+	addvl	x5, x10, #-1
+	addvl	x8, x2, #-1
 	add	x5, x5, 1
 	mov	x4, 0
 	add	x6, x1, x5
 	add	x7, x0, x5
 	mov	w18, 0
-	rdvl	x9, #-1
 	ptrue	p7.b, all
 	.p2align 3,,7
-.L882:
+.L884:
 	ld1b	z31.b, p7/z, [x6, x4]
-	add	w18, w18, w16
+	incb	x18
 	st1b	z31.b, p7, [x7, x4]
-	add	x4, x4, x9
+	decb	x4
 	cmp	w8, w18
-	bcs	.L882
+	bcs	.L884
 	sub	w3, w3, w18
 	cmp	w2, w18
-	beq	.L866
+	beq	.L868
 	sub	w2, w2, w18
-	cnth	x10
+	cnth	x9
 	sub	w11, w2, #1
-	sub	w13, w10, #1
-	cmp	w11, w13
-	bcc	.L885
-.L881:
-	addpl	x14, x12, #-4
+	sub	w12, w9, #1
+	cmp	w11, w12
+	bcc	.L887
+.L883:
+	addpl	x13, x10, #-4
 	ptrue	p0.b, all
-	add	x14, x14, 1
-	sub	x12, x14, w18, uxtw
-	cnth	x18
-	ld1b	z30.h, p0/z, [x1, x12]
-	sub	w15, w2, w18
-	st1b	z30.h, p0, [x0, x12]
-	add	x16, x1, x12
-	add	x17, x0, x12
-	cmp	w15, w18
-	bcc	.L886
-	cntb	x18
-	ld1b	z29.h, p0/z, [x16, #-1, mul vl]
-	st1b	z29.h, p0, [x17, #-1, mul vl]
-.L886:
-	sub	w3, w3, w18
-	cmp	w2, w18
-	beq	.L866
-.L885:
-	uxtw	x2, w3
-	add	x6, x2, 1
-	.p2align 3,,7
+	add	x13, x13, 1
+	addpl	x14, x2, #-4
+	sub	x10, x13, w18, uxtw
+	ld1b	z30.h, p0/z, [x1, x10]
+	st1b	z30.h, p0, [x0, x10]
+	add	x15, x1, x10
+	add	x16, x0, x10
+	cnth	x17
+	cmp	w14, w17
+	bcc	.L888
+	cntb	x17
+	ld1b	z29.h, p0/z, [x15, #-1, mul vl]
+	st1b	z29.h, p0, [x16, #-1, mul vl]
 .L888:
-	ldrb	w5, [x1, x2]
-	subs	x6, x6, #1
-	strb	w5, [x0, x2]
+	sub	w3, w3, w17
+	cmp	w2, w17
+	beq	.L868
+.L887:
+	uxtw	x2, w3
+	add	x5, x2, 1
+	.p2align 3,,7
+.L890:
+	ldrb	w18, [x1, x2]
+	subs	x5, x5, #1
+	strb	w18, [x0, x2]
 	sub	x2, x2, #1
-	bne	.L888
+	bne	.L890
 	ret
 	.p2align 2,,3
-.L873:
-	lsl	w17, w4, 2
-	mov	x4, 0
-	sub	x18, x17, #4
-	lsr	x3, x18, 2
-	add	x7, x3, 1
+.L875:
+	lsl	w11, w4, 2
+	mov	x15, 0
+	sub	x12, x11, #4
+	lsr	x13, x12, 2
+	add	x14, x13, 1
 	.p2align 3,,7
-.L876:
-	ldr	w6, [x1, x4]
-	subs	x7, x7, #1
-	str	w6, [x0, x4]
-	add	x4, x4, 4
-	bne	.L876
-	b	.L869
+.L878:
+	ldr	w10, [x1, x15]
+	subs	x14, x14, #1
+	str	w10, [x0, x15]
+	add	x15, x15, 4
+	bne	.L878
+	b	.L871
 	.p2align 2,,3
-.L908:
-	sub	w14, w2, w3
-	add	w12, w18, 1
-	cmp	w12, w2
-	add	x15, x14, 1
-	mov	x2, 1
-	csel	x17, x15, x2, ls
+.L912:
+	mvn	w3, w4
+	add	w18, w4, 1
+	add	w5, w2, w3
+	cmp	w18, w2
+	add	x2, x5, 1
+	mov	x6, 1
+	csel	x8, x2, x6, ls
 	.p2align 3,,7
-.L877:
-	ldrb	w16, [x1, x18]
-	subs	x17, x17, #1
-	strb	w16, [x0, x18]
-	mov	x18, x3
-	add	x3, x3, 1
-	bne	.L877
-	ret
-.L880:
-	mov	x9, x12
-	add	x8, x12, 1
-	.p2align 3,,7
-.L889:
-	ldrb	w7, [x1, x9]
+.L879:
+	ldrb	w7, [x1, x4]
 	subs	x8, x8, #1
-	strb	w7, [x0, x9]
-	sub	x9, x9, #1
-	bne	.L889
+	strb	w7, [x0, x4]
+	add	x4, x4, 1
+	bne	.L879
 	ret
+.L882:
+	mov	x7, x10
+	add	x6, x10, 1
+	.p2align 3,,7
 .L891:
+	ldrb	w4, [x1, x7]
+	subs	x6, x6, #1
+	strb	w4, [x0, x7]
+	sub	x7, x7, #1
+	bne	.L891
+	ret
+.L893:
 	mov	w18, 0
-	b	.L881
+	b	.L883
 	.cfi_endproc
 .LFE109:
 	.size	__cmovw, .-__cmovw
@@ -4069,20 +4020,19 @@ __umodi:
 __clzhi2:
 .LFB116:
 	.cfi_startproc
-	and	w4, w0, 65535
+	and	w3, w0, 65535
 	cntw	x0
 	cmp	w0, 15
-	bhi	.L916
-	mov	x6, 0
-	cntw	x3
+	bhi	.L920
+	mov	x4, 0
 	mov	w2, 16
-	mov	z27.s, w4
+	mov	z27.s, w3
 	whilelo	p0.s, wzr, w2
 	index	z29.s, w2, #-1
 	index	z30.s, #0, #1
 	ptrue	p6.b, all
 	ptrue	p15.s, all
-.L920:
+.L924:
 	mov	z28.d, z30.d
 	mov	z26.d, z29.d
 	movprfx	z31, z28
@@ -4093,139 +4043,139 @@ __clzhi2:
 	and	z31.s, z31.s, #0x1
 	cmpne	p7.s, p0/z, z31.s, #0
 	ptest	p15, p7.b
-	b.any	.L959
-	add	x6, x6, x3
-	whilelo	p0.s, w6, w2
-	b.any	.L920
-.L953:
+	b.any	.L963
+	incw	x4
+	whilelo	p0.s, w4, w2
+	b.any	.L924
+.L957:
 	mov	w0, 16
-.L915:
+.L919:
 	ret
 	.p2align 2,,3
-.L959:
+.L963:
 	umov	w0, v28.s[0]
-	mov	w7, 15
+	mov	w6, 15
 	umov	w1, v26.s[0]
-	sub	w8, w7, w0
-	asr	w9, w4, w8
-	tbnz	x9, 0, .L915
+	sub	w7, w6, w0
+	asr	w8, w3, w7
+	tbnz	x8, 0, .L919
 	add	w5, w0, 1
 	cmp	w1, 1
-	beq	.L953
-	sub	w10, w7, w5
-	asr	w11, w4, w10
-	tbnz	x11, 0, .L950
+	beq	.L957
+	sub	w9, w6, w5
+	asr	w10, w3, w9
+	tbnz	x10, 0, .L954
 	add	w5, w0, 2
 	cmp	w1, 2
-	beq	.L953
-	sub	w12, w7, w5
-	asr	w13, w4, w12
-	tbnz	x13, 0, .L952
+	beq	.L957
+	sub	w11, w6, w5
+	asr	w12, w3, w11
+	tbnz	x12, 0, .L956
 	add	w5, w0, 3
 	cmp	w1, 3
-	beq	.L953
-.L923:
-	mov	w14, 15
-	sub	w15, w14, w5
-	asr	w16, w4, w15
-	tbnz	x16, 0, .L950
+	beq	.L957
+.L927:
+	mov	w13, 15
+	sub	w14, w13, w5
+	asr	w15, w3, w14
+	tbnz	x15, 0, .L954
 	add	w5, w0, 4
 	cmp	w1, 4
-	beq	.L953
-	sub	w17, w14, w5
-	asr	w18, w4, w17
-	tbnz	x18, 0, .L950
+	beq	.L957
+	sub	w16, w13, w5
+	asr	w17, w3, w16
+	tbnz	x17, 0, .L954
 	add	w5, w0, 5
 	cmp	w1, 5
-	beq	.L953
-	sub	w3, w14, w5
-	asr	w2, w4, w3
-	tbnz	x2, 0, .L950
+	beq	.L957
+	sub	w18, w13, w5
+	asr	w4, w3, w18
+	tbnz	x4, 0, .L954
 	add	w5, w0, 6
 	cmp	w1, 6
-	beq	.L953
-	sub	w6, w14, w5
-	asr	w7, w4, w6
-	tbnz	x7, 0, .L950
+	beq	.L957
+	sub	w2, w13, w5
+	asr	w6, w3, w2
+	tbnz	x6, 0, .L954
 	add	w5, w0, 7
 	cmp	w1, 7
-	beq	.L953
-	sub	w8, w14, w5
-	asr	w9, w4, w8
-	tbnz	x9, 0, .L950
+	beq	.L957
+	sub	w7, w13, w5
+	asr	w8, w3, w7
+	tbnz	x8, 0, .L954
 	add	w5, w0, 8
 	cmp	w1, 8
-	beq	.L953
-	sub	w10, w14, w5
-	asr	w11, w4, w10
-	tbnz	x11, 0, .L950
+	beq	.L957
+	sub	w9, w13, w5
+	asr	w10, w3, w9
+	tbnz	x10, 0, .L954
 	add	w5, w0, 9
 	cmp	w1, 9
-	beq	.L953
-	sub	w12, w14, w5
-	asr	w13, w4, w12
-	tbnz	x13, 0, .L950
+	beq	.L957
+	sub	w11, w13, w5
+	asr	w12, w3, w11
+	tbnz	x12, 0, .L954
 	add	w5, w0, 10
 	cmp	w1, 10
-	beq	.L953
-	sub	w15, w14, w5
-	asr	w16, w4, w15
-	tbnz	x16, 0, .L950
+	beq	.L957
+	sub	w14, w13, w5
+	asr	w15, w3, w14
+	tbnz	x15, 0, .L954
 	add	w5, w0, 11
 	cmp	w1, 11
-	beq	.L953
-	sub	w17, w14, w5
-	asr	w18, w4, w17
-	tbnz	x18, 0, .L950
+	beq	.L957
+	sub	w16, w13, w5
+	asr	w17, w3, w16
+	tbnz	x17, 0, .L954
 	add	w5, w0, 12
 	cmp	w1, 12
-	beq	.L953
-	sub	w3, w14, w5
-	asr	w2, w4, w3
-	tbnz	x2, 0, .L950
+	beq	.L957
+	sub	w18, w13, w5
+	asr	w4, w3, w18
+	tbnz	x4, 0, .L954
 	add	w5, w0, 13
 	cmp	w1, 13
-	beq	.L953
-	sub	w6, w14, w5
-	asr	w7, w4, w6
-	tbnz	x7, 0, .L950
+	beq	.L957
+	sub	w2, w13, w5
+	asr	w6, w3, w2
+	tbnz	x6, 0, .L954
 	add	w5, w0, 14
 	cmp	w1, 14
-	beq	.L953
-	sub	w14, w14, w5
-	asr	w8, w4, w14
-	tbnz	x8, 0, .L952
+	beq	.L957
+	sub	w13, w13, w5
+	asr	w7, w3, w13
+	tbnz	x7, 0, .L956
 	cmp	w1, 15
-	beq	.L953
+	beq	.L957
 	neg	w1, w0
 	add	w0, w0, 15
-	mov	w9, 16
-	asr	w4, w4, w1
-	tst	x4, 1
-	csel	w0, w0, w9, ne
+	mov	w8, 16
+	asr	w3, w3, w1
+	tst	x3, 1
+	csel	w0, w0, w8, ne
 	ret
 	.p2align 2,,3
-.L950:
+.L954:
 	mov	w0, w5
 	ret
 	.p2align 2,,3
-.L916:
-	cmp	wzr, w4, lsr 15
-	bne	.L924
-	asr	w0, w4, 14
-	cbnz	w0, .L915
-	asr	w0, w4, 13
-	cbnz	w0, .L955
+.L920:
+	cmp	wzr, w3, lsr 15
+	bne	.L928
+	asr	w0, w3, 14
+	cbnz	w0, .L919
+	asr	w0, w3, 13
+	cbnz	w0, .L959
 	mov	w5, 3
 	mov	w1, 16
-	b	.L923
-.L952:
+	b	.L927
+.L956:
 	mov	w0, w5
 	ret
-.L924:
+.L928:
 	mov	w0, 0
 	ret
-.L955:
+.L959:
 	mov	w0, 2
 	ret
 	.cfi_endproc
@@ -4238,20 +4188,19 @@ __clzhi2:
 __ctzhi2:
 .LFB117:
 	.cfi_startproc
-	and	w4, w0, 65535
-	cntw	x0
-	cmp	w0, 15
-	bhi	.L961
-	mov	x6, 0
-	cntw	x5
+	and	w3, w0, 65535
+	cntw	x1
+	cmp	w1, 15
+	bhi	.L965
+	mov	x0, 0
 	mov	w2, 16
-	mov	z27.s, w4
+	mov	z27.s, w3
 	whilelo	p0.s, wzr, w2
 	index	z29.s, w2, #-1
 	index	z30.s, #0, #1
 	ptrue	p6.b, all
 	ptrue	p15.s, all
-.L965:
+.L969:
 	mov	z28.d, z30.d
 	mov	z26.d, z29.d
 	movprfx	z31, z27
@@ -4261,119 +4210,119 @@ __ctzhi2:
 	decw	z29.s
 	cmpne	p7.s, p0/z, z31.s, #0
 	ptest	p15, p7.b
-	b.any	.L1006
-	add	x6, x6, x5
-	whilelo	p0.s, w6, w2
-	b.any	.L965
-.L999:
+	b.any	.L1010
+	incw	x0
+	whilelo	p0.s, w0, w2
+	b.any	.L969
+.L1003:
 	mov	w0, 16
-.L960:
+.L964:
 	ret
 	.p2align 2,,3
-.L1006:
+.L1010:
 	umov	w0, v28.s[0]
-	umov	w3, v26.s[0]
-	asr	w7, w4, w0
-	tbnz	x7, 0, .L960
-	add	w1, w0, 1
-	cmp	w3, 1
-	beq	.L999
-	asr	w8, w4, w1
-	tbnz	x8, 0, .L998
-	add	w1, w0, 2
-	cmp	w3, 2
-	beq	.L999
-	asr	w9, w4, w1
-	tbnz	x9, 0, .L998
-	add	w1, w0, 3
-	cmp	w3, 3
-	beq	.L999
-.L968:
-	asr	w10, w4, w1
-	tbnz	x10, 0, .L998
-	add	w1, w0, 4
-	cmp	w3, 4
-	beq	.L999
-	asr	w11, w4, w1
-	tbnz	x11, 0, .L998
-	add	w1, w0, 5
-	cmp	w3, 5
-	beq	.L999
-	asr	w12, w4, w1
-	tbnz	x12, 0, .L998
-	add	w1, w0, 6
-	cmp	w3, 6
-	beq	.L999
-	asr	w13, w4, w1
-	tbnz	x13, 0, .L998
-	add	w1, w0, 7
-	cmp	w3, 7
-	beq	.L999
-	asr	w14, w4, w1
-	tbnz	x14, 0, .L998
-	add	w1, w0, 8
-	cmp	w3, 8
-	beq	.L999
-	asr	w15, w4, w1
-	tbnz	x15, 0, .L998
-	add	w1, w0, 9
-	cmp	w3, 9
-	beq	.L999
-	asr	w16, w4, w1
-	tbnz	x16, 0, .L998
-	add	w1, w0, 10
-	cmp	w3, 10
-	beq	.L999
-	asr	w17, w4, w1
-	tbnz	x17, 0, .L998
-	add	w1, w0, 11
-	cmp	w3, 11
-	beq	.L999
-	asr	w18, w4, w1
-	tbnz	x18, 0, .L998
-	add	w1, w0, 12
-	cmp	w3, 12
-	beq	.L999
-	asr	w5, w4, w1
-	tbnz	x5, 0, .L998
-	add	w1, w0, 13
-	cmp	w3, 13
-	beq	.L999
-	asr	w2, w4, w1
-	tbnz	x2, 0, .L998
-	add	w1, w0, 14
-	cmp	w3, 14
-	beq	.L999
-	asr	w6, w4, w1
-	tbnz	x6, 0, .L998
-	add	w0, w0, 15
-	cmp	w3, 15
-	beq	.L999
-	asr	w4, w4, w0
-	mov	w3, 16
-	tst	x4, 1
-	csel	w0, w0, w3, ne
+	umov	w4, v26.s[0]
+	asr	w6, w3, w0
+	tbnz	x6, 0, .L964
+	add	w5, w0, 1
+	cmp	w4, 1
+	beq	.L1003
+	asr	w7, w3, w5
+	tbnz	x7, 0, .L1002
+	add	w5, w0, 2
+	cmp	w4, 2
+	beq	.L1003
+	asr	w8, w3, w5
+	tbnz	x8, 0, .L1002
+	add	w5, w0, 3
+	cmp	w4, 3
+	beq	.L1003
+.L972:
+	asr	w9, w3, w5
+	tbnz	x9, 0, .L1002
+	add	w5, w0, 4
+	cmp	w4, 4
+	beq	.L1003
+	asr	w10, w3, w5
+	tbnz	x10, 0, .L1002
+	add	w5, w0, 5
+	cmp	w4, 5
+	beq	.L1003
+	asr	w11, w3, w5
+	tbnz	x11, 0, .L1002
+	add	w5, w0, 6
+	cmp	w4, 6
+	beq	.L1003
+	asr	w12, w3, w5
+	tbnz	x12, 0, .L1002
+	add	w5, w0, 7
+	cmp	w4, 7
+	beq	.L1003
+	asr	w13, w3, w5
+	tbnz	x13, 0, .L1002
+	add	w5, w0, 8
+	cmp	w4, 8
+	beq	.L1003
+	asr	w14, w3, w5
+	tbnz	x14, 0, .L1002
+	add	w5, w0, 9
+	cmp	w4, 9
+	beq	.L1003
+	asr	w15, w3, w5
+	tbnz	x15, 0, .L1002
+	add	w5, w0, 10
+	cmp	w4, 10
+	beq	.L1003
+	asr	w16, w3, w5
+	tbnz	x16, 0, .L1002
+	add	w5, w0, 11
+	cmp	w4, 11
+	beq	.L1003
+	asr	w17, w3, w5
+	tbnz	x17, 0, .L1002
+	add	w5, w0, 12
+	cmp	w4, 12
+	beq	.L1003
+	asr	w18, w3, w5
+	tbnz	x18, 0, .L1002
+	add	w5, w0, 13
+	cmp	w4, 13
+	beq	.L1003
+	asr	w1, w3, w5
+	tbnz	x1, 0, .L1002
+	add	w5, w0, 14
+	cmp	w4, 14
+	beq	.L1003
+	asr	w2, w3, w5
+	tbnz	x2, 0, .L1002
+	add	w5, w0, 15
+	cmp	w4, 15
+	beq	.L1003
+	asr	w3, w3, w5
+	mov	w4, 16
+	tst	x3, 1
+	csel	w0, w5, w4, ne
 	ret
 	.p2align 2,,3
-.L998:
-	mov	w0, w1
+.L1002:
+	mov	w0, w5
 	ret
 	.p2align 2,,3
-.L961:
-	tbnz	x4, 0, .L969
-	tbnz	x4, 1, .L1007
-	tbnz	x4, 2, .L1001
-	mov	w3, 16
+.L965:
+	tbnz	x3, 0, .L973
+	tbnz	x3, 1, .L1011
+	tbnz	x3, 2, .L1005
+	mov	w4, 16
 	mov	w0, 0
-	mov	w1, 3
-	b	.L968
-.L969:
+	mov	w5, 3
+	b	.L972
+.L973:
 	mov	w0, 0
 	ret
-.L1007:
+.L1011:
 	mov	w0, 1
 	ret
-.L1001:
+.L1005:
 	mov	w0, 2
 	ret
 	.cfi_endproc
@@ -4388,11 +4337,11 @@ __fixunssfsi:
 	.cfi_startproc
 	movi	v31.2s, 0x47, lsl 24
 	fcmpe	s0, s31
-	bge	.L1012
+	bge	.L1016
 	fcvtzs	x0, s0
 	ret
 	.p2align 2,,3
-.L1012:
+.L1016:
 	fsub	s0, s0, s31
 	fcvtzs	x0, s0
 	add	x0, x0, 32768
@@ -4408,7 +4357,6 @@ __parityhi2:
 .LFB119:
 	.cfi_startproc
 	mov	x1, 0
-	cntw	x3
 	and	w0, w0, 65535
 	mov	w2, 16
 	mov	z28.s, w0
@@ -4416,18 +4364,18 @@ __parityhi2:
 	mov	z30.b, #0
 	index	z29.s, #0, #1
 	ptrue	p6.b, all
-.L1016:
+.L1020:
 	mov	z31.d, z29.d
-	add	x1, x1, x3
+	incw	x1
 	asrr	z31.s, p6/m, z31.s, z28.s
 	incw	z29.s
 	and	z31.s, z31.s, #0x1
 	add	z30.s, p7/m, z30.s, z31.s
 	whilelo	p7.s, w1, w2
-	b.any	.L1016
+	b.any	.L1020
 	uaddv	d0, p6, z30.s
-	fmov	x4, d0
-	and	w0, w4, 1
+	fmov	x3, d0
+	and	w0, w3, 1
 	ret
 	.cfi_endproc
 .LFE119:
@@ -4440,7 +4388,6 @@ __popcounthi2:
 .LFB120:
 	.cfi_startproc
 	mov	x1, 0
-	cntw	x3
 	and	w0, w0, 65535
 	mov	w2, 16
 	mov	z31.s, w0
@@ -4448,15 +4395,15 @@ __popcounthi2:
 	mov	z30.b, #0
 	index	z29.s, #0, #1
 	ptrue	p6.b, all
-.L1019:
+.L1023:
 	mov	z28.d, z29.d
-	add	x1, x1, x3
+	incw	x1
 	asrr	z28.s, p6/m, z28.s, z31.s
 	incw	z29.s
 	and	z28.s, z28.s, #0x1
 	add	z30.s, p7/m, z30.s, z28.s
 	whilelo	p7.s, w1, w2
-	b.any	.L1019
+	b.any	.L1023
 	uaddv	d0, p6, z30.s
 	fmov	x0, d0
 	ret
@@ -4472,16 +4419,16 @@ __mulsi3_iq2000:
 	.cfi_startproc
 	mov	w2, w0
 	mov	w0, 0
-	cbz	w2, .L1021
+	cbz	w2, .L1025
 	.p2align 3,,7
-.L1023:
+.L1027:
 	sbfx	x3, x2, 0, 1
 	lsr	w2, w2, 1
 	and	w4, w3, w1
 	lsl	w1, w1, 1
 	add	w0, w0, w4
-	cbnz	w2, .L1023
-.L1021:
+	cbnz	w2, .L1027
+.L1025:
 	ret
 	.cfi_endproc
 .LFE177:
@@ -4495,17 +4442,17 @@ __mulsi3_lm32:
 	.cfi_startproc
 	mov	w3, w0
 	mov	w0, 0
-	cbz	w3, .L1026
-	cbz	w1, .L1026
+	cbz	w3, .L1030
+	cbz	w1, .L1030
 	.p2align 3,,7
-.L1028:
+.L1032:
 	sbfx	x2, x1, 0, 1
 	lsr	w1, w1, 1
 	and	w4, w2, w3
 	lsl	w3, w3, 1
 	add	w0, w0, w4
-	cbnz	w1, .L1028
-.L1026:
+	cbnz	w1, .L1032
+.L1030:
 	ret
 	.cfi_endproc
 .LFE122:
@@ -4519,21 +4466,21 @@ __udivmodsi4:
 	.cfi_startproc
 	mov	w3, 1
 	cmp	w1, w0
-	bcs	.L1051
+	bcs	.L1055
 	.p2align 3,,7
-.L1034:
-	tbnz	w1, #31, .L1038
+.L1038:
+	tbnz	w1, #31, .L1042
 	lsl	w3, w3, 1
 	lsl	w1, w1, 1
 	cmp	w3, 0
 	ccmp	w0, w1, 0, ne
-	bhi	.L1034
+	bhi	.L1038
 	mov	w4, 0
-	cbz	w3, .L1039
-.L1038:
+	cbz	w3, .L1043
+.L1042:
 	mov	w4, 0
 	.p2align 3,,7
-.L1040:
+.L1044:
 	subs	w6, w0, w1
 	lsr	w1, w1, 1
 	cset	w5, cs
@@ -4542,16 +4489,16 @@ __udivmodsi4:
 	csel	w0, w6, w0, ne
 	orr	w4, w4, w7
 	lsr	w3, w3, 1
-	cbnz	w3, .L1040
-.L1039:
+	cbnz	w3, .L1044
+.L1043:
 	cmp	w2, 0
 	csel	w0, w4, w0, eq
 	ret
-.L1051:
+.L1055:
 	sub	w1, w0, w1
 	cset	w4, ls
 	csel	w0, w1, w0, ls
-	b	.L1039
+	b	.L1043
 	.cfi_endproc
 .LFE123:
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -4615,14 +4562,14 @@ __mulhi3:
 .LFB128:
 	.cfi_startproc
 	cmp	w1, 0
-	blt	.L1070
-	beq	.L1066
+	blt	.L1074
+	beq	.L1070
 	mov	w5, 0
-.L1063:
+.L1067:
 	mov	w4, 0
 	mov	w6, 0
 	.p2align 3,,7
-.L1065:
+.L1069:
 	add	w2, w6, 1
 	sbfx	x3, x1, 0, 1
 	and	w6, w2, 255
@@ -4632,17 +4579,17 @@ __mulhi3:
 	ccmp	w1, 0, 4, ne
 	add	w4, w4, w7
 	lsl	w0, w0, 1
-	bne	.L1065
+	bne	.L1069
 	cmp	w5, 0
 	csneg	w0, w4, w4, eq
 	ret
 	.p2align 2,,3
-.L1070:
+.L1074:
 	neg	w1, w1
 	mov	w5, 1
-	b	.L1063
+	b	.L1067
 	.p2align 2,,3
-.L1066:
+.L1070:
 	mov	w0, 0
 	ret
 	.cfi_endproc
@@ -4657,31 +4604,31 @@ __divsi3:
 	.cfi_startproc
 	mov	w2, 1
 	mov	w6, 0
-	tbnz	x0, #63, .L1094
-.L1072:
-	tbz	x1, #63, .L1073
+	tbnz	x0, #63, .L1098
+.L1076:
+	tbz	x1, #63, .L1077
 	neg	x1, x1
 	mov	w6, w2
-.L1073:
+.L1077:
 	mov	w4, w0
 	mov	w8, w1
 	mov	w3, 1
 	cmp	w0, w1
-	bls	.L1092
+	bls	.L1096
 	.p2align 3,,7
-.L1074:
-	tbnz	w8, #31, .L1076
+.L1078:
+	tbnz	w8, #31, .L1080
 	lsl	w3, w3, 1
 	lsl	w8, w8, 1
 	cmp	w3, 0
 	ccmp	w4, w8, 0, ne
-	bhi	.L1074
+	bhi	.L1078
 	mov	x0, 0
-	cbz	w3, .L1077
-.L1076:
+	cbz	w3, .L1081
+.L1080:
 	mov	w0, 0
 	.p2align 3,,7
-.L1079:
+.L1083:
 	subs	w5, w4, w8
 	lsr	w8, w8, 1
 	cset	w1, cs
@@ -4690,20 +4637,20 @@ __divsi3:
 	csel	w4, w5, w4, ne
 	orr	w0, w0, w7
 	lsr	w3, w3, 1
-	cbnz	w3, .L1079
-.L1077:
+	cbnz	w3, .L1083
+.L1081:
 	cmp	w6, 0
 	csneg	x0, x0, x0, eq
 	ret
 	.p2align 2,,3
-.L1094:
+.L1098:
 	neg	x0, x0
 	mov	w2, 0
 	mov	w6, 1
-	b	.L1072
-.L1092:
+	b	.L1076
+.L1096:
 	cset	w0, cs
-	b	.L1077
+	b	.L1081
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3, .-__divsi3
@@ -4715,42 +4662,42 @@ __modsi3:
 .LFB130:
 	.cfi_startproc
 	mov	w5, 0
-	tbz	x0, #63, .L1096
+	tbz	x0, #63, .L1100
 	neg	x0, x0
 	mov	w5, 1
-.L1096:
+.L1100:
 	cmp	x1, 0
 	mov	w4, w0
 	csneg	x1, x1, x1, ge
 	mov	w3, 1
 	mov	w7, w1
 	cmp	w0, w1
-	bls	.L1115
+	bls	.L1119
 	.p2align 3,,7
-.L1097:
-	tbnz	w7, #31, .L1113
+.L1101:
+	tbnz	w7, #31, .L1117
 	lsl	w3, w3, 1
 	lsl	w7, w7, 1
 	cmp	w3, 0
 	ccmp	w4, w7, 0, ne
-	bhi	.L1097
-	cbz	w3, .L1100
+	bhi	.L1101
+	cbz	w3, .L1104
 	.p2align 3,,7
-.L1113:
+.L1117:
 	subs	w6, w4, w7
 	lsr	w3, w3, 1
 	csel	w4, w6, w4, cs
 	lsr	w7, w7, 1
-	cbnz	w3, .L1113
-.L1100:
+	cbnz	w3, .L1117
+.L1104:
 	uxtw	x0, w4
 	cmp	w5, 0
 	csneg	x0, x0, x0, eq
 	ret
-.L1115:
+.L1119:
 	sub	w2, w0, w1
 	csel	w4, w2, w0, cs
-	b	.L1100
+	b	.L1104
 	.cfi_endproc
 .LFE130:
 	.size	__modsi3, .-__modsi3
@@ -4765,20 +4712,20 @@ __udivmodhi4:
 	and	w1, w1, 65535
 	mov	w4, 1
 	cmp	w1, w11
-	bcc	.L1119
-	b	.L1181
+	bcc	.L1123
+	b	.L1185
 	.p2align 2,,3
-.L1122:
+.L1126:
 	cmp	w13, 0
 	ubfiz	w14, w4, 1, 15
 	ccmp	w11, w5, 0, ne
-	bls	.L1121
+	bls	.L1125
 	mov	w4, w13
 	mov	w1, w5
-.L1119:
+.L1123:
 	ubfiz	w13, w4, 1, 15
 	ubfiz	w5, w1, 1, 15
-	tbz	x1, 15, .L1122
+	tbz	x1, 15, .L1126
 	subs	w3, w11, w1
 	ubfx	x9, x4, 1, 16
 	cset	w6, cs
@@ -4788,8 +4735,8 @@ __udivmodhi4:
 	csel	w10, w4, wzr, ne
 	and	w11, w8, 65535
 	and	w12, w10, 65535
-	cbz	w9, .L1182
-.L1126:
+	cbz	w9, .L1186
+.L1130:
 	subs	w0, w11, w7
 	ubfx	x3, x4, 2, 16
 	cset	w5, cs
@@ -4800,7 +4747,7 @@ __udivmodhi4:
 	orr	w9, w12, w6
 	and	w11, w7, 65535
 	and	w13, w9, 65535
-	cbz	w3, .L1124
+	cbz	w3, .L1128
 	subs	w10, w11, w8
 	ubfx	x12, x4, 3, 16
 	cset	w11, cs
@@ -4811,7 +4758,7 @@ __udivmodhi4:
 	orr	w13, w13, w15
 	and	w11, w16, 65535
 	and	w13, w13, 65535
-	cbz	w12, .L1124
+	cbz	w12, .L1128
 	subs	w17, w11, w14
 	ubfx	x3, x4, 4, 16
 	cset	w18, cs
@@ -4822,7 +4769,7 @@ __udivmodhi4:
 	orr	w8, w13, w5
 	and	w11, w6, 65535
 	and	w13, w8, 65535
-	cbz	w3, .L1124
+	cbz	w3, .L1128
 	subs	w7, w11, w0
 	ubfx	x9, x4, 5, 16
 	cset	w10, cs
@@ -4833,7 +4780,7 @@ __udivmodhi4:
 	orr	w15, w13, w11
 	and	w11, w14, 65535
 	and	w13, w15, 65535
-	cbz	w9, .L1124
+	cbz	w9, .L1128
 	subs	w16, w11, w12
 	ubfx	x18, x4, 6, 16
 	cset	w17, cs
@@ -4844,7 +4791,7 @@ __udivmodhi4:
 	orr	w13, w13, w0
 	and	w11, w5, 65535
 	and	w13, w13, 65535
-	cbz	w18, .L1124
+	cbz	w18, .L1128
 	subs	w6, w11, w3
 	ubfx	x10, x4, 7, 16
 	cset	w8, cs
@@ -4855,7 +4802,7 @@ __udivmodhi4:
 	orr	w14, w13, w9
 	and	w11, w12, 65535
 	and	w13, w14, 65535
-	cbz	w10, .L1124
+	cbz	w10, .L1128
 	subs	w11, w11, w7
 	ubfx	x16, x4, 8, 16
 	cset	w15, cs
@@ -4866,7 +4813,7 @@ __udivmodhi4:
 	orr	w0, w13, w18
 	and	w11, w3, 65535
 	and	w13, w0, 65535
-	cbz	w16, .L1124
+	cbz	w16, .L1128
 	subs	w5, w11, w17
 	ubfx	x10, x4, 9, 16
 	cset	w6, cs
@@ -4877,7 +4824,7 @@ __udivmodhi4:
 	orr	w13, w13, w8
 	and	w11, w12, 65535
 	and	w13, w13, 65535
-	cbz	w10, .L1124
+	cbz	w10, .L1128
 	subs	w14, w11, w7
 	ubfx	x15, x4, 10, 16
 	cset	w9, cs
@@ -4888,7 +4835,7 @@ __udivmodhi4:
 	orr	w18, w13, w11
 	and	w11, w17, 65535
 	and	w13, w18, 65535
-	cbz	w15, .L1124
+	cbz	w15, .L1128
 	subs	w3, w11, w16
 	ubfx	x10, x4, 11, 16
 	cset	w0, cs
@@ -4899,7 +4846,7 @@ __udivmodhi4:
 	orr	w8, w13, w7
 	and	w11, w5, 65535
 	and	w13, w8, 65535
-	cbz	w10, .L1124
+	cbz	w10, .L1128
 	subs	w12, w11, w6
 	ubfx	x15, x4, 12, 16
 	cset	w14, cs
@@ -4910,7 +4857,7 @@ __udivmodhi4:
 	orr	w13, w13, w9
 	and	w11, w17, 65535
 	and	w13, w13, 65535
-	cbz	w15, .L1124
+	cbz	w15, .L1128
 	subs	w11, w11, w16
 	ubfx	x10, x4, 13, 16
 	cset	w18, cs
@@ -4921,7 +4868,7 @@ __udivmodhi4:
 	orr	w6, w13, w3
 	and	w11, w5, 65535
 	and	w13, w6, 65535
-	cbz	w10, .L1124
+	cbz	w10, .L1128
 	subs	w7, w11, w0
 	ubfx	x8, x4, 14, 16
 	cset	w12, cs
@@ -4932,7 +4879,7 @@ __udivmodhi4:
 	orr	w9, w13, w15
 	and	w11, w16, 65535
 	and	w13, w9, 65535
-	cbz	w8, .L1124
+	cbz	w8, .L1128
 	subs	w17, w11, w14
 	lsr	w1, w1, 15
 	cset	w11, cs
@@ -4942,19 +4889,19 @@ __udivmodhi4:
 	orr	w13, w13, w18
 	and	w11, w10, 65535
 	and	w13, w13, 65535
-	tbz	x4, 15, .L1124
+	tbz	x4, 15, .L1128
 	subs	w4, w11, w1
 	csel	w0, w4, w10, cs
 	cset	w3, cs
 	and	w11, w0, 65535
 	orr	w13, w3, w13
-.L1124:
+.L1128:
 	cmp	w2, 0
 	csel	w0, w11, w13, ne
 	ret
 	.p2align 2,,3
-.L1121:
-	cbz	w13, .L1124
+.L1125:
+	cbz	w13, .L1128
 	cmp	w11, w5
 	sub	w15, w11, w5
 	cset	w16, cs
@@ -4967,16 +4914,16 @@ __udivmodhi4:
 	and	w12, w17, 65535
 	and	w11, w18, 65535
 	mov	w1, w5
-	b	.L1126
-.L1181:
+	b	.L1130
+.L1185:
 	sub	w1, w11, w1
 	cset	w13, eq
 	csel	w0, w1, w11, eq
 	and	w11, w0, 65535
-	b	.L1124
-.L1182:
+	b	.L1128
+.L1186:
 	mov	w13, w12
-	b	.L1124
+	b	.L1128
 	.cfi_endproc
 .LFE131:
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -4989,21 +4936,21 @@ __udivmodsi4_libgcc:
 	.cfi_startproc
 	mov	x3, 1
 	cmp	x1, x0
-	bcs	.L1201
+	bcs	.L1205
 	.p2align 3,,7
-.L1184:
-	tbnz	x1, 31, .L1188
+.L1188:
+	tbnz	x1, 31, .L1192
 	lsl	x3, x3, 1
 	lsl	x1, x1, 1
 	cmp	x3, 0
 	ccmp	x0, x1, 0, ne
-	bhi	.L1184
+	bhi	.L1188
 	mov	x4, 0
-	cbz	x3, .L1189
-.L1188:
+	cbz	x3, .L1193
+.L1192:
 	mov	x4, 0
 	.p2align 3,,7
-.L1190:
+.L1194:
 	subs	x6, x0, x1
 	lsr	x1, x1, 1
 	cset	w5, cs
@@ -5012,16 +4959,16 @@ __udivmodsi4_libgcc:
 	csel	x0, x6, x0, ne
 	orr	x4, x4, x7
 	lsr	x3, x3, 1
-	cbnz	x3, .L1190
-.L1189:
+	cbnz	x3, .L1194
+.L1193:
 	cmp	w2, 0
 	csel	x0, x4, x0, eq
 	ret
-.L1201:
+.L1205:
 	sub	x1, x0, x1
 	cset	x4, ls
 	csel	x0, x1, x0, ls
-	b	.L1189
+	b	.L1193
 	.cfi_endproc
 .LFE132:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -5033,25 +4980,25 @@ __ashldi3:
 .LFB133:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L1204
+	tbz	x1, 5, .L1208
 	sub	w7, w1, #32
 	mov	w3, 0
 	lsl	w6, w0, w7
-.L1205:
+.L1209:
 	uxtw	x8, w3
 	orr	x0, x8, x6, lsl 32
-.L1203:
+.L1207:
 	ret
 	.p2align 2,,3
-.L1204:
-	cbz	w1, .L1203
+.L1208:
+	cbz	w1, .L1207
 	neg	w4, w1
 	asr	x0, x0, 32
 	lsl	w3, w2, w1
 	lsr	w5, w2, w4
 	lsl	w1, w0, w1
 	orr	w6, w5, w1
-	b	.L1205
+	b	.L1209
 	.cfi_endproc
 .LFE133:
 	.size	__ashldi3, .-__ashldi3
@@ -5062,23 +5009,23 @@ __ashldi3:
 __ashlti3:
 .LFB134:
 	.cfi_startproc
-	tbz	x2, 6, .L1210
+	tbz	x2, 6, .L1214
 	sub	w5, w2, #64
 	mov	x3, 0
 	lsl	x1, x0, x5
 	mov	x0, x3
-.L1212:
+.L1216:
 	ret
 	.p2align 2,,3
-.L1210:
-	cbz	w2, .L1212
+.L1214:
+	cbz	w2, .L1216
 	neg	w4, w2
 	lsl	x1, x1, x2
 	lsl	x3, x0, x2
 	lsr	x2, x0, x4
 	mov	x0, x3
 	orr	x1, x2, x1
-	b	.L1212
+	b	.L1216
 	.cfi_endproc
 .LFE134:
 	.size	__ashlti3, .-__ashlti3
@@ -5090,17 +5037,17 @@ __ashrdi3:
 .LFB135:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L1215
+	tbz	x1, 5, .L1219
 	asr	x8, x0, 32
 	sub	w1, w1, #32
 	asr	w7, w8, 31
 	asr	w6, w8, w1
 	orr	x0, x6, x7, lsl 32
-.L1214:
+.L1218:
 	ret
 	.p2align 2,,3
-.L1215:
-	cbz	w1, .L1214
+.L1219:
+	cbz	w1, .L1218
 	asr	x0, x0, 32
 	neg	w3, w1
 	lsr	w4, w2, w1
@@ -5108,7 +5055,7 @@ __ashrdi3:
 	orr	w6, w5, w4
 	asr	w7, w0, w1
 	orr	x0, x6, x7, lsl 32
-	b	.L1214
+	b	.L1218
 	.cfi_endproc
 .LFE135:
 	.size	__ashrdi3, .-__ashrdi3
@@ -5119,23 +5066,23 @@ __ashrdi3:
 __ashrti3:
 .LFB136:
 	.cfi_startproc
-	tbz	x2, 6, .L1221
+	tbz	x2, 6, .L1225
 	sub	w5, w2, #64
 	asr	x3, x1, 63
 	asr	x0, x1, x5
 	mov	x1, x3
-.L1223:
+.L1227:
 	ret
 	.p2align 2,,3
-.L1221:
-	cbz	w2, .L1223
+.L1225:
+	cbz	w2, .L1227
 	neg	w4, w2
 	lsr	x0, x0, x2
 	asr	x3, x1, x2
 	lsl	x2, x1, x4
 	mov	x1, x3
 	orr	x0, x2, x0
-	b	.L1223
+	b	.L1227
 	.cfi_endproc
 .LFE136:
 	.size	__ashrti3, .-__ashrti3
@@ -5236,18 +5183,18 @@ __cmpdi2:
 	asr	x3, x0, 32
 	asr	x0, x1, 32
 	cmp	w3, w0
-	blt	.L1231
+	blt	.L1235
 	mov	w0, 2
-	bgt	.L1229
+	bgt	.L1233
 	cmp	w2, w1
 	mov	w4, 0
 	cset	w1, hi
 	add	w5, w1, 1
 	csel	w0, w5, w4, cs
-.L1229:
+.L1233:
 	ret
 	.p2align 2,,3
-.L1231:
+.L1235:
 	mov	w0, 0
 	ret
 	.cfi_endproc
@@ -5264,16 +5211,16 @@ __aeabi_lcmp:
 	asr	x3, x0, 32
 	asr	x0, x1, 32
 	cmp	w3, w0
-	blt	.L1237
+	blt	.L1241
 	mov	w0, 1
-	bgt	.L1235
+	bgt	.L1239
 	cmp	w2, w1
 	cset	w1, hi
 	csinv	w0, w1, wzr, cs
-.L1235:
+.L1239:
 	ret
 	.p2align 2,,3
-.L1237:
+.L1241:
 	mov	w0, -1
 	ret
 	.cfi_endproc
@@ -5289,15 +5236,15 @@ __cmpti2:
 	mov	x4, x0
 	mov	w0, 0
 	cmp	x1, x3
-	blt	.L1240
+	blt	.L1244
 	mov	w0, 2
-	bgt	.L1240
+	bgt	.L1244
 	cmp	x4, x2
 	mov	w3, 0
 	cset	w1, hi
 	add	w0, w1, 1
 	csel	w0, w0, w3, cs
-.L1240:
+.L1244:
 	ret
 	.cfi_endproc
 .LFE143:
@@ -5366,7 +5313,7 @@ __ctzti2:
 __ffsti2:
 .LFB146:
 	.cfi_startproc
-	cbnz	x0, .L1249
+	cbnz	x0, .L1253
 	rbit	x2, x1
 	cmp	x1, 0
 	clz	x3, x2
@@ -5374,7 +5321,7 @@ __ffsti2:
 	csel	w0, w4, wzr, ne
 	ret
 	.p2align 2,,3
-.L1249:
+.L1253:
 	rbit	x0, x0
 	clz	x1, x0
 	add	w0, w1, 1
@@ -5390,17 +5337,17 @@ __lshrdi3:
 .LFB147:
 	.cfi_startproc
 	mov	x2, x0
-	tbz	x1, 5, .L1253
+	tbz	x1, 5, .L1257
 	lsr	x8, x0, 32
 	sub	w1, w1, #32
 	mov	w7, 0
 	lsr	w6, w8, w1
 	orr	x0, x6, x7, lsl 32
-.L1252:
+.L1256:
 	ret
 	.p2align 2,,3
-.L1253:
-	cbz	w1, .L1252
+.L1257:
+	cbz	w1, .L1256
 	lsr	x0, x0, 32
 	neg	w3, w1
 	lsr	w4, w2, w1
@@ -5408,7 +5355,7 @@ __lshrdi3:
 	orr	w6, w5, w4
 	lsr	w7, w0, w1
 	orr	x0, x6, x7, lsl 32
-	b	.L1252
+	b	.L1256
 	.cfi_endproc
 .LFE147:
 	.size	__lshrdi3, .-__lshrdi3
@@ -5419,23 +5366,23 @@ __lshrdi3:
 __lshrti3:
 .LFB148:
 	.cfi_startproc
-	tbz	x2, 6, .L1259
+	tbz	x2, 6, .L1263
 	sub	w5, w2, #64
 	mov	x3, 0
 	lsr	x0, x1, x5
 	mov	x1, x3
-.L1261:
+.L1265:
 	ret
 	.p2align 2,,3
-.L1259:
-	cbz	w2, .L1261
+.L1263:
+	cbz	w2, .L1265
 	neg	w4, w2
 	lsr	x0, x0, x2
 	lsr	x3, x1, x2
 	lsl	x2, x1, x4
 	mov	x1, x3
 	orr	x0, x2, x0
-	b	.L1261
+	b	.L1265
 	.cfi_endproc
 .LFE148:
 	.size	__lshrti3, .-__lshrti3
@@ -5728,29 +5675,29 @@ __powidf2:
 	fmov	d1, d0
 	mov	w3, w0
 	fmov	d31, 1.0e+0
-	tbz	x0, 0, .L1276
+	tbz	x0, 0, .L1280
 	.p2align 3,,7
-.L1278:
+.L1282:
 	fmul	d31, d31, d1
-.L1276:
+.L1280:
 	add	w1, w3, w3, lsr 31
 	asr	w3, w1, 1
-	cbz	w3, .L1277
+	cbz	w3, .L1281
 	fmul	d1, d1, d1
 	add	w2, w3, w3, lsr 31
-	tbnz	x3, 0, .L1278
-.L1282:
+	tbnz	x3, 0, .L1282
+.L1286:
 	asr	w3, w2, 1
 	fmul	d1, d1, d1
 	add	w2, w3, w3, lsr 31
-	tbnz	x3, 0, .L1278
-	b	.L1282
+	tbnz	x3, 0, .L1282
+	b	.L1286
 	.p2align 2,,3
-.L1277:
-	tbz	w0, #31, .L1275
+.L1281:
+	tbz	w0, #31, .L1279
 	fmov	d0, 1.0e+0
 	fdiv	d31, d0, d31
-.L1275:
+.L1279:
 	fmov	d0, d31
 	ret
 	.cfi_endproc
@@ -5766,29 +5713,29 @@ __powisf2:
 	fmov	s1, s0
 	mov	w3, w0
 	fmov	s31, 1.0e+0
-	tbz	x0, 0, .L1284
+	tbz	x0, 0, .L1288
 	.p2align 3,,7
-.L1286:
+.L1290:
 	fmul	s31, s31, s1
-.L1284:
+.L1288:
 	add	w1, w3, w3, lsr 31
 	asr	w3, w1, 1
-	cbz	w3, .L1285
+	cbz	w3, .L1289
 	fmul	s1, s1, s1
 	add	w2, w3, w3, lsr 31
-	tbnz	x3, 0, .L1286
-.L1290:
+	tbnz	x3, 0, .L1290
+.L1294:
 	asr	w3, w2, 1
 	fmul	s1, s1, s1
 	add	w2, w3, w3, lsr 31
-	tbnz	x3, 0, .L1286
-	b	.L1290
+	tbnz	x3, 0, .L1290
+	b	.L1294
 	.p2align 2,,3
-.L1285:
-	tbz	w0, #31, .L1283
+.L1289:
+	tbz	w0, #31, .L1287
 	fmov	s0, 1.0e+0
 	fdiv	s31, s0, s31
-.L1283:
+.L1287:
 	fmov	s0, s31
 	ret
 	.cfi_endproc
@@ -5805,18 +5752,18 @@ __ucmpdi2:
 	lsr	x3, x0, 32
 	lsr	x0, x1, 32
 	cmp	w3, w0
-	bcc	.L1293
+	bcc	.L1297
 	mov	w0, 2
-	bhi	.L1291
+	bhi	.L1295
 	cmp	w2, w1
 	mov	w4, 0
 	cset	w1, hi
 	add	w5, w1, 1
 	csel	w0, w5, w4, cs
-.L1291:
+.L1295:
 	ret
 	.p2align 2,,3
-.L1293:
+.L1297:
 	mov	w0, 0
 	ret
 	.cfi_endproc
@@ -5833,16 +5780,16 @@ __aeabi_ulcmp:
 	lsr	x3, x0, 32
 	lsr	x0, x1, 32
 	cmp	w3, w0
-	bcc	.L1299
+	bcc	.L1303
 	mov	w0, 1
-	bhi	.L1297
+	bhi	.L1301
 	cmp	w2, w1
 	cset	w1, hi
 	csinv	w0, w1, wzr, cs
-.L1297:
+.L1301:
 	ret
 	.p2align 2,,3
-.L1299:
+.L1303:
 	mov	w0, -1
 	ret
 	.cfi_endproc
@@ -5858,15 +5805,15 @@ __ucmpti2:
 	mov	x4, x0
 	mov	w0, 0
 	cmp	x1, x3
-	bcc	.L1302
+	bcc	.L1306
 	mov	w0, 2
-	bhi	.L1302
+	bhi	.L1306
 	cmp	x4, x2
 	mov	w3, 0
 	cset	w1, hi
 	add	w0, w1, 1
 	csel	w0, w0, w3, cs
-.L1302:
+.L1306:
 	ret
 	.cfi_endproc
 .LFE165:
