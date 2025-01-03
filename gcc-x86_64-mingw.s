@@ -1253,7 +1253,7 @@ rand:
 	imul	rax, QWORD PTR seed[rip]
 	add	rax, 1
 	mov	QWORD PTR seed[rip], rax
-	shr	rax, 33
+	bextr	rax, rax, 7969
 	ret
 	.seh_endproc
 	.p2align 4
@@ -6402,8 +6402,7 @@ __negti2:
 __paritydi2:
 	.seh_endprologue
 	mov	r9d, 27030
-	mov	rax, rcx
-	shr	rax, 32
+	bextr	rax, rcx, 8224
 	xor	eax, ecx
 	mov	edx, eax
 	shr	edx, 16

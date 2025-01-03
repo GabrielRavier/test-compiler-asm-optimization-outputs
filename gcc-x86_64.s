@@ -1296,7 +1296,7 @@ rand:
 	imul	rax, QWORD PTR seed[rip]
 	add	rax, 1
 	mov	QWORD PTR seed[rip], rax
-	shr	rax, 33
+	bextr	rax, rax, 7969
 	ret
 	.cfi_endproc
 .LFE41:
@@ -6533,8 +6533,7 @@ __negti2:
 __paritydi2:
 .LFB155:
 	.cfi_startproc
-	mov	rax, rdi
-	shr	rax, 32
+	bextr	rax, rdi, 8224
 	xor	eax, edi
 	mov	edi, 27030
 	mov	edx, eax
