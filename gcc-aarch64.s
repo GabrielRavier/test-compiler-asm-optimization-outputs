@@ -1,4 +1,4 @@
-	.arch armv9.2-a+crc+mops
+	.arch armv9.4-a+crc
 	.file	"mini-libc.c"
 	.text
 	.align	2
@@ -1386,8 +1386,7 @@ lfind:
 abs:
 .LFB46:
 	.cfi_startproc
-	cmp	w0, 0
-	csneg	w0, w0, w0, ge
+	abs	w0, w0
 	ret
 	.cfi_endproc
 .LFE46:
@@ -1799,8 +1798,7 @@ div:
 imaxabs:
 .LFB53:
 	.cfi_startproc
-	cmp	x0, 0
-	csneg	x0, x0, x0, ge
+	abs	x0, x0
 	ret
 	.cfi_endproc
 .LFE53:
@@ -1826,8 +1824,7 @@ imaxdiv:
 labs:
 .LFB167:
 	.cfi_startproc
-	cmp	x0, 0
-	csneg	x0, x0, x0, ge
+	abs	x0, x0
 	ret
 	.cfi_endproc
 .LFE167:
@@ -1853,8 +1850,7 @@ ldiv:
 llabs:
 .LFB169:
 	.cfi_startproc
-	cmp	x0, 0
-	csneg	x0, x0, x0, ge
+	abs	x0, x0
 	ret
 	.cfi_endproc
 .LFE169:
@@ -4616,37 +4612,36 @@ __modsi3:
 	neg	x0, x0
 	mov	w5, 1
 .L1096:
-	cmp	x1, 0
-	mov	w4, w0
-	csneg	x1, x1, x1, ge
-	mov	w3, 1
-	mov	w7, w1
-	cmp	w0, w1
+	abs	x4, x1
+	mov	w3, w0
+	mov	w7, w4
+	mov	w2, 1
+	cmp	w0, w4
 	bls	.L1115
 	.p2align 3,,7
 .L1097:
 	tbnz	w7, #31, .L1113
-	lsl	w3, w3, 1
+	lsl	w2, w2, 1
 	lsl	w7, w7, 1
-	cmp	w3, 0
-	ccmp	w4, w7, 0, ne
+	cmp	w2, 0
+	ccmp	w3, w7, 0, ne
 	bhi	.L1097
-	cbz	w3, .L1100
+	cbz	w2, .L1100
 	.p2align 3,,7
 .L1113:
-	subs	w6, w4, w7
-	lsr	w3, w3, 1
-	csel	w4, w6, w4, cs
+	subs	w6, w3, w7
+	lsr	w2, w2, 1
+	csel	w3, w6, w3, cs
 	lsr	w7, w7, 1
-	cbnz	w3, .L1113
+	cbnz	w2, .L1113
 .L1100:
-	uxtw	x0, w4
+	uxtw	x0, w3
 	cmp	w5, 0
 	csneg	x0, x0, x0, eq
 	ret
 .L1115:
-	sub	w2, w0, w1
-	csel	w4, w2, w0, cs
+	sub	w1, w0, w4
+	csel	w3, w1, w0, cs
 	b	.L1100
 	.cfi_endproc
 .LFE130:
@@ -5245,13 +5240,12 @@ __ctzti2:
 	.cfi_startproc
 	cmp	x0, 0
 	csetm	x2, ne
-	csel	x1, x1, xzr, eq
-	and	x0, x2, x0
 	cset	w3, eq
+	and	x0, x2, x0
+	csel	x1, x1, xzr, eq
 	orr	x4, x1, x0
-	rbit	x5, x4
-	clz	x6, x5
-	add	w0, w6, w3, lsl 6
+	ctz	x5, x4
+	add	w0, w5, w3, lsl 6
 	ret
 	.cfi_endproc
 .LFE145:
@@ -5264,17 +5258,15 @@ __ffsti2:
 .LFB146:
 	.cfi_startproc
 	cbnz	x0, .L1249
-	rbit	x2, x1
 	cmp	x1, 0
-	clz	x3, x2
-	add	w4, w3, 65
-	csel	w0, w4, wzr, ne
+	ctz	x1, x1
+	add	w2, w1, 65
+	csel	w0, w2, wzr, ne
 	ret
 	.p2align 2,,3
 .L1249:
-	rbit	x0, x0
-	clz	x1, x0
-	add	w0, w1, 1
+	ctz	x0, x0
+	add	w0, w0, 1
 	ret
 	.cfi_endproc
 .LFE146:
