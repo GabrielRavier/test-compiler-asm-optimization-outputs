@@ -6262,7 +6262,7 @@ __ctzti2:
 	movsx	r8, edi
 	and	r8, rcx
 	or	rdx, r8
-	rep bsf	r9, rdx
+	tzcnt	r9, rdx
 	add	eax, r9d
 	ret
 	.cfi_endproc
@@ -6278,7 +6278,7 @@ __ffsti2:
 	jne	.L1581
 	xor	eax, eax
 	xor	edx, edx
-	rep bsf	rax, rsi
+	tzcnt	rax, rsi
 	add	eax, 65
 	test	rsi, rsi
 	cmove	eax, edx
@@ -6286,7 +6286,7 @@ __ffsti2:
 	.p2align 4,,10
 	.p2align 3
 .L1581:
-	rep bsf	rdi, rdi
+	tzcnt	rdi, rdi
 	lea	eax, [rdi+1]
 	ret
 	.cfi_endproc

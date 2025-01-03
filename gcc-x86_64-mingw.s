@@ -6114,7 +6114,7 @@ __ctzti2:
 	movsx	r10, r9d
 	and	r10, r8
 	or	rdx, r10
-	rep bsf	r11, rdx
+	tzcnt	r11, rdx
 	add	eax, r11d
 	ret
 	.seh_endproc
@@ -6130,7 +6130,7 @@ __ffsti2:
 	jne	.L1648
 	xor	eax, eax
 	xor	ecx, ecx
-	rep bsf	rax, rdx
+	tzcnt	rax, rdx
 	add	eax, 65
 	test	rdx, rdx
 	cmove	eax, ecx
@@ -6138,7 +6138,7 @@ __ffsti2:
 	.p2align 4,,10
 	.p2align 3
 .L1648:
-	rep bsf	rax, rax
+	tzcnt	rax, rax
 	add	eax, 1
 	ret
 	.seh_endproc
