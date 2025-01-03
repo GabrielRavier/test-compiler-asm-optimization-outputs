@@ -5770,9 +5770,9 @@ LFB118:
 	fld	DWORD PTR [esp+8]
 	fcomi	st, st(1)
 	jnb	L1172
-	fstp	st(0)
-	fstp	st(0)
-	cvttss2si	eax, DWORD PTR [esp+8]
+	fstp	st(1)
+	fisttp	DWORD PTR [esp]
+	mov	eax, DWORD PTR [esp]
 	add	esp, 4
 	.cfi_remember_state
 	.cfi_def_cfa_offset 4
@@ -5782,8 +5782,8 @@ LFB118:
 L1172:
 	.cfi_restore_state
 	fsubrp	st(1), st
-	fstp	DWORD PTR [esp]
-	cvttss2si	eax, DWORD PTR [esp]
+	fisttp	DWORD PTR [esp]
+	mov	eax, DWORD PTR [esp]
 	add	esp, 4
 	.cfi_def_cfa_offset 4
 	add	eax, 32768
