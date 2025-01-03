@@ -6657,7 +6657,7 @@ LFB119:
 	vpbroadcastd	zmm0, eax
 	vpsravd	zmm2, zmm0, zmm1
 	vpandd	zmm4, zmm2, zmm3
-	vextracti64x4	ymm5, zmm4, 0x1
+	vextracti32x8	ymm5, zmm4, 0x1
 	vpaddd	ymm6, ymm5, ymm4
 	vextracti32x4	xmm7, ymm6, 0x1
 	vpaddd	xmm0, xmm7, xmm6
@@ -6692,7 +6692,7 @@ LFB120:
 	vpbroadcastd	zmm0, eax
 	vpsravd	zmm2, zmm0, zmm1
 	vpandd	zmm4, zmm2, zmm3
-	vextracti64x4	ymm5, zmm4, 0x1
+	vextracti32x8	ymm5, zmm4, 0x1
 	vpaddd	ymm6, ymm5, ymm4
 	vextracti32x4	xmm7, ymm6, 0x1
 	vpaddd	xmm0, xmm7, xmm6
