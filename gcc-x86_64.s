@@ -1289,8 +1289,7 @@ insque:
 	test	rsi, rsi
 	je	.L315
 	movq	xmm0, QWORD PTR [rsi]
-	movq	xmm1, rsi
-	punpcklqdq	xmm0, xmm1
+	pinsrq	xmm0, rsi, 1
 	movups	XMMWORD PTR [rdi], xmm0
 	mov	QWORD PTR [rsi], rdi
 	mov	rax, QWORD PTR [rdi]
@@ -1302,8 +1301,8 @@ insque:
 	.p2align 4,,10
 	.p2align 3
 .L315:
-	pxor	xmm2, xmm2
-	movups	XMMWORD PTR [rdi], xmm2
+	pxor	xmm1, xmm1
+	movups	XMMWORD PTR [rdi], xmm1
 	ret
 	.cfi_endproc
 .LFE42:

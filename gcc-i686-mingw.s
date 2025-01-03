@@ -1594,8 +1594,7 @@ LFB42:
 	test	eax, eax
 	je	L325
 	movd	xmm0, DWORD PTR [eax]
-	movd	xmm1, eax
-	punpckldq	xmm0, xmm1
+	pinsrd	xmm0, eax, 1
 	movq	QWORD PTR [edx], xmm0
 	mov	DWORD PTR [eax], edx
 	mov	ecx, DWORD PTR [edx]
@@ -5846,8 +5845,7 @@ LFB113:
 	mov	eax, DWORD PTR [esp+24]
 	mov	edx, DWORD PTR [esp+28]
 	movd	xmm0, eax
-	movd	xmm1, edx
-	punpckldq	xmm0, xmm1
+	pinsrd	xmm0, edx, 1
 	movq	QWORD PTR [esp+8], xmm0
 	fild	QWORD PTR [esp+8]
 	test	edx, edx
@@ -5873,8 +5871,7 @@ LFB114:
 	mov	eax, DWORD PTR [esp+24]
 	mov	edx, DWORD PTR [esp+28]
 	movd	xmm0, eax
-	movd	xmm1, edx
-	punpckldq	xmm0, xmm1
+	pinsrd	xmm0, edx, 1
 	movq	QWORD PTR [esp+8], xmm0
 	fild	QWORD PTR [esp+8]
 	test	edx, edx

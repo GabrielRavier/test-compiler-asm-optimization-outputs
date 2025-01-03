@@ -1236,8 +1236,7 @@ insque:
 	test	rdx, rdx
 	je	.L308
 	movq	xmm0, QWORD PTR [rdx]
-	movq	xmm1, rdx
-	punpcklqdq	xmm0, xmm1
+	pinsrq	xmm0, rdx, 1
 	movups	XMMWORD PTR [rcx], xmm0
 	mov	QWORD PTR [rdx], rcx
 	mov	rax, QWORD PTR [rcx]
@@ -1249,8 +1248,8 @@ insque:
 	.p2align 4,,10
 	.p2align 3
 .L308:
-	pxor	xmm2, xmm2
-	movups	XMMWORD PTR [rcx], xmm2
+	pxor	xmm1, xmm1
+	movups	XMMWORD PTR [rcx], xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5604,10 +5603,9 @@ __ashlti3:
 .L1487:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	r11, QWORD PTR 8[rsp]
+	movq	xmm0, rax
 	movq	xmm1, r8
-	mov	QWORD PTR [rsp], rax
-	mov	QWORD PTR 8[rsp], r11
-	movdqa	xmm0, XMMWORD PTR [rsp]
+	pinsrq	xmm0, r11, 1
 	punpcklqdq	xmm0, xmm1
 	add	rsp, 24
 	ret
@@ -5687,10 +5685,9 @@ __ashrti3:
 .L1498:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	r10, QWORD PTR 8[rsp]
+	movq	xmm0, r9
 	movq	xmm1, rax
-	mov	QWORD PTR [rsp], r9
-	mov	QWORD PTR 8[rsp], r10
-	movdqa	xmm0, XMMWORD PTR [rsp]
+	pinsrq	xmm0, r10, 1
 	punpcklqdq	xmm0, xmm1
 	add	rsp, 24
 	ret
@@ -6023,10 +6020,9 @@ __lshrti3:
 .L1536:
 	movaps	XMMWORD PTR [rsp], xmm0
 	mov	r10, QWORD PTR 8[rsp]
+	movq	xmm0, r9
 	movq	xmm1, rax
-	mov	QWORD PTR [rsp], r9
-	mov	QWORD PTR 8[rsp], r10
-	movdqa	xmm0, XMMWORD PTR [rsp]
+	pinsrq	xmm0, r10, 1
 	punpcklqdq	xmm0, xmm1
 	add	rsp, 24
 	ret
@@ -6163,12 +6159,11 @@ __mulddi3:
 	mov	r10, r8
 	shr	r8, 32
 	sal	r10, 32
-	mov	QWORD PTR 8[rsp], rcx
 	add	rax, r8
 	add	r9, r10
 	movq	xmm1, rax
-	mov	QWORD PTR [rsp], r9
-	movdqa	xmm0, XMMWORD PTR [rsp]
+	movq	xmm0, r9
+	pinsrq	xmm0, rcx, 1
 	punpcklqdq	xmm0, xmm1
 	add	rsp, 24
 	ret
@@ -6250,9 +6245,10 @@ __negti2:
 	mov	rax, QWORD PTR [rcx]
 	neg	rax
 	sbb	rdx, QWORD PTR 8[rcx]
+	movq	xmm0, rax
+	pinsrq	xmm0, rdx, 1
 	mov	QWORD PTR [rsp], rax
 	mov	QWORD PTR 8[rsp], rdx
-	movdqa	xmm0, XMMWORD PTR [rsp]
 	add	rsp, 24
 	ret
 	.seh_endproc
