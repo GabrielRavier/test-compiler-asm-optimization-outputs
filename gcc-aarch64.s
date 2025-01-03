@@ -1,4 +1,4 @@
-	.arch armv9.4-a+crc
+	.arch armv9.4-a+rng+crc+rcpc3+f32mm+f64mm+sve2-aes+sve2-bitperm+sve2-sha3+sve2-sm4+memtag+profile+tme+ls64+sme-f64f64+sme-i16i64+sme2+d128+the+gcs
 	.file	"mini-libc.c"
 	.text
 	.align	2

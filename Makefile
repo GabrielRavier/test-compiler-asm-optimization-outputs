@@ -41,7 +41,7 @@ gcc-x86_64-mingw.s: mini-libc.c
 > x86_64-w64-mingw32-gcc -masm=intel -S $< -o $@ $(GCC_OPT_FLAGS) -march=x86-64-v4 $(GCC_X86_OPTIONS) -mapxf -mtune=generic
 
 gcc-aarch64.s: mini-libc.c
-> aarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer -march=armv9.4-a -mtune=generic
+> aarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer -march=armv9.4-a+crc+crypto+fp+simd+sve+lse+rdma+fp16+fp16fml+rcpc+dotprod+aes+sha2+sha3+sm4+profile+rng+memtag+sb+ssbs+predres+sve2+sve2-bitperm+sve2-sm4+sve2-aes+sve2-sha3+tme+i8mm+f32mm+f64mm+bf16+ls64+mops+flagm+pauth+cssc+sme+sme-i16i64+sme-f64f64+sme2+lse128+d128+gcs+the+rcpc3 -mtune=generic
 
 gcc-alpha.s: mini-libc.c
 > alpha-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
