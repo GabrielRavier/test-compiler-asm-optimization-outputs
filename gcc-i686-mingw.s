@@ -3253,19 +3253,19 @@ LFB68:
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	eax, DWORD PTR [ebp+16]
+	mov	eax, DWORD PTR [ebp+12]
+	mov	ebx, DWORD PTR [ebp+16]
 	mov	ecx, DWORD PTR [ebp+8]
-	mov	edi, DWORD PTR [ebp+12]
-	test	eax, eax
+	mov	DWORD PTR [esp+28], eax
+	test	ebx, ebx
 	je	L728
-	lea	ebx, [eax-1]
-	cmp	ebx, 14
+	lea	esi, [ebx-1]
+	cmp	esi, 14
 	jbe	L734
-	mov	esi, eax
-	vmovd	xmm0, edi
+	mov	edi, ebx
+	vpbroadcastw	ymm0, WORD PTR [esp+28]
 	xor	eax, eax
-	shr	esi, 4
-	vpbroadcastw	ymm1, xmm0
+	shr	edi, 4
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -3273,54 +3273,50 @@ L730:
 	mov	edx, eax
 	add	eax, 1
 	sal	edx, 5
-	vmovdqu	YMMWORD PTR [ecx+edx], ymm1
-	cmp	esi, eax
+	vmovdqu	YMMWORD PTR [ecx+edx], ymm0
+	cmp	edi, eax
 	jne	L730
-	mov	eax, DWORD PTR [ebp+16]
-	and	eax, -16
-	mov	DWORD PTR [esp+28], eax
-	sub	ebx, eax
-	lea	eax, [ecx+eax*2]
-	test	BYTE PTR [ebp+16], 15
+	mov	edx, ebx
+	and	edx, -16
+	sub	esi, edx
+	lea	eax, [ecx+edx*2]
+	test	bl, 15
 	je	L765
 	vzeroupper
 L729:
-	mov	edx, DWORD PTR [esp+28]
-	mov	esi, DWORD PTR [ebp+16]
-	sub	esi, edx
-	lea	edx, [esi-1]
-	cmp	edx, 6
-	jbe	L732
-	mov	edx, DWORD PTR [esp+28]
-	vmovd	xmm2, edi
-	vpbroadcastw	xmm3, xmm2
-	vmovdqu	XMMWORD PTR [ecx+edx*2], xmm3
-	mov	edx, esi
-	and	edx, -8
 	sub	ebx, edx
-	and	esi, 7
+	lea	edi, [ebx-1]
+	cmp	edi, 6
+	jbe	L732
+	vpbroadcastw	xmm1, WORD PTR [esp+28]
+	vmovdqu	XMMWORD PTR [ecx+edx*2], xmm1
+	mov	edx, ebx
+	and	edx, -8
+	sub	esi, edx
+	and	ebx, 7
 	lea	eax, [eax+edx*2]
 	je	L728
 L732:
-	mov	WORD PTR [eax], di
-	test	ebx, ebx
+	mov	ebx, DWORD PTR [esp+28]
+	mov	WORD PTR [eax], bx
+	test	esi, esi
 	je	L728
-	mov	WORD PTR [eax+2], di
-	cmp	ebx, 1
+	mov	WORD PTR [eax+2], bx
+	cmp	esi, 1
 	je	L728
-	mov	WORD PTR [eax+4], di
-	cmp	ebx, 2
+	mov	WORD PTR [eax+4], bx
+	cmp	esi, 2
 	je	L728
-	mov	WORD PTR [eax+6], di
-	cmp	ebx, 3
+	mov	WORD PTR [eax+6], bx
+	cmp	esi, 3
 	je	L728
-	mov	WORD PTR [eax+8], di
-	cmp	ebx, 4
+	mov	WORD PTR [eax+8], bx
+	cmp	esi, 4
 	je	L728
-	mov	WORD PTR [eax+10], di
-	cmp	ebx, 5
+	mov	WORD PTR [eax+10], bx
+	cmp	esi, 5
 	je	L728
-	mov	WORD PTR [eax+12], di
+	mov	WORD PTR [eax+12], bx
 L728:
 	lea	esp, [ebp-12]
 	mov	eax, ecx
@@ -3337,8 +3333,8 @@ L728:
 	ret
 L734:
 	.cfi_restore_state
-	mov	DWORD PTR [esp+28], 0
 	mov	eax, ecx
+	xor	edx, edx
 	jmp	L729
 L765:
 	vzeroupper
@@ -4402,7 +4398,7 @@ LFB92:
 	.p2align 3
 L1024:
 	vmovdqu	ymm0, YMMWORD PTR [edx]
-	vpxor	ymm1, ymm0, YMMWORD PTR [ebx]
+	vpxorq	ymm1, ymm0, YMMWORD PTR [ebx]
 	add	ebx, 32
 	add	edx, 32
 	vmovdqu	YMMWORD PTR [edx-32], ymm1
@@ -4425,7 +4421,7 @@ L1023:
 	vmovdqu	xmm2, XMMWORD PTR [edi]
 	mov	DWORD PTR [esp+28], edi
 	mov	edi, DWORD PTR [ebp+12]
-	vpxor	xmm3, xmm2, XMMWORD PTR [edi+esi]
+	vpxorq	xmm3, xmm2, XMMWORD PTR [edi+esi]
 	mov	edi, ecx
 	mov	esi, DWORD PTR [esp+28]
 	and	edi, -16
@@ -7095,7 +7091,7 @@ LFB119:
 	vpandd	zmm4, zmm2, zmm3
 	vextracti64x4	ymm5, zmm4, 0x1
 	vpaddd	ymm6, ymm5, ymm4
-	vextracti128	xmm7, ymm6, 0x1
+	vextracti32x4	xmm7, ymm6, 0x1
 	vpaddd	xmm0, xmm7, xmm6
 	vpsrldq	xmm1, xmm0, 8
 	vpaddd	xmm2, xmm0, xmm1
@@ -7130,7 +7126,7 @@ LFB120:
 	vpandd	zmm4, zmm2, zmm3
 	vextracti64x4	ymm5, zmm4, 0x1
 	vpaddd	ymm6, ymm5, ymm4
-	vextracti128	xmm7, ymm6, 0x1
+	vextracti32x4	xmm7, ymm6, 0x1
 	vpaddd	xmm0, xmm7, xmm6
 	vpsrldq	xmm1, xmm0, 8
 	vpaddd	xmm2, xmm0, xmm1

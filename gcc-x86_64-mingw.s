@@ -1025,7 +1025,7 @@ fdim:
 	.p2align 4,,10
 	.p2align 3
 .L284:
-	vmovsd	xmm0, xmm1, xmm1
+	vmovapd	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1051,7 +1051,7 @@ fdimf:
 	.p2align 4,,10
 	.p2align 3
 .L292:
-	vmovss	xmm0, xmm1, xmm1
+	vmovaps	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1073,15 +1073,15 @@ fmax:
 	test	eax, eax
 	jne	.L296
 .L302:
-	vmovsd	xmm1, xmm0, xmm0
+	vmovapd	xmm1, xmm0
 .L296:
-	vmovsd	xmm0, xmm1, xmm1
+	vmovapd	xmm0, xmm1
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L298:
 	vmaxsd	xmm1, xmm1, xmm0
-	vmovsd	xmm0, xmm1, xmm1
+	vmovapd	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1103,15 +1103,15 @@ fmaxf:
 	test	eax, eax
 	jne	.L305
 .L311:
-	vmovss	xmm1, xmm0, xmm0
+	vmovaps	xmm1, xmm0
 .L305:
-	vmovss	xmm0, xmm1, xmm1
+	vmovaps	xmm0, xmm1
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L307:
 	vmaxss	xmm1, xmm1, xmm0
-	vmovss	xmm0, xmm1, xmm1
+	vmovaps	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -1184,7 +1184,7 @@ fmin:
 	test	eax, eax
 	jne	.L324
 .L329:
-	vmovsd	xmm0, xmm1, xmm1
+	vmovapd	xmm0, xmm1
 .L324:
 	ret
 	.p2align 4,,10
@@ -1212,7 +1212,7 @@ fminf:
 	test	eax, eax
 	jne	.L333
 .L338:
-	vmovss	xmm0, xmm1, xmm1
+	vmovaps	xmm0, xmm1
 .L333:
 	ret
 	.p2align 4,,10
@@ -2450,10 +2450,10 @@ wmemset:
 	cmp	r10, 14
 	jbe	.L695
 	mov	r11, r8
-	vmovd	xmm0, edx
+	vmovd	xmm1, edx
 	xor	eax, eax
 	shr	r11, 4
-	vpbroadcastw	ymm1, xmm0
+	vpbroadcastw	ymm0, xmm1
 	.p2align 5
 	.p2align 4
 	.p2align 3
@@ -2461,7 +2461,7 @@ wmemset:
 	mov	rcx, rax
 	add	rax, 1
 	sal	rcx, 5
-	vmovdqu	YMMWORD PTR [r9+rcx], ymm1
+	vmovdqu	YMMWORD PTR [r9+rcx], ymm0
 	cmp	r11, rax
 	jne	.L691
 	mov	rcx, r8
@@ -3357,7 +3357,7 @@ memxor:
 	.p2align 3
 .L973:
 	vmovdqu	ymm0, YMMWORD PTR [rcx+rbx]
-	vpxor	ymm1, ymm0, YMMWORD PTR [rdx+rbx]
+	vpxorq	ymm1, ymm0, YMMWORD PTR [rdx+rbx]
 	vmovdqu	YMMWORD PTR [rcx+rbx], ymm1
 	add	rbx, 32
 	cmp	rbx, r9
@@ -3376,7 +3376,7 @@ memxor:
 	jbe	.L975
 	lea	rbx, [rcx+r9]
 	vmovdqu	xmm2, XMMWORD PTR [rbx]
-	vpxor	xmm3, xmm2, XMMWORD PTR [rdx+r9]
+	vpxorq	xmm3, xmm2, XMMWORD PTR [rdx+r9]
 	mov	rdx, r8
 	and	rdx, -16
 	add	rax, rdx
@@ -3814,7 +3814,7 @@ frexp:
 	vcomisd	xmm4, xmm0
 	jb	.L1152
 	vmovsd	xmm5, QWORD PTR .LC23[rip]
-	vmovsd	xmm0, xmm3, xmm3
+	vmovapd	xmm0, xmm3
 	mov	ecx, 1
 	jmp	.L1129
 	.p2align 4,,10
@@ -3825,7 +3825,7 @@ frexp:
 	vmovsd	xmm1, QWORD PTR .LC19[rip]
 	mov	ecx, 1
 .L1130:
-	vmovsd	xmm0, xmm3, xmm3
+	vmovapd	xmm0, xmm3
 	xor	eax, eax
 	.p2align 4
 	.p2align 4
@@ -3840,7 +3840,7 @@ frexp:
 	jne	.L1153
 	jmp	.L1126
 .L1142:
-	vmovsd	xmm3, xmm0, xmm0
+	vmovapd	xmm3, xmm0
 	xor	ecx, ecx
 	jmp	.L1130
 	.seh_endproc
@@ -5485,7 +5485,7 @@ __parityhi2:
 	vpandd	zmm4, zmm2, zmm3
 	vextracti64x4	ymm5, zmm4, 0x1
 	vpaddd	ymm1, ymm5, ymm4
-	vextracti128	xmm0, ymm1, 0x1
+	vextracti32x4	xmm0, ymm1, 0x1
 	vpaddd	xmm2, xmm0, xmm1
 	vpsrldq	xmm3, xmm2, 8
 	vpaddd	xmm4, xmm2, xmm3
@@ -5511,7 +5511,7 @@ __popcounthi2:
 	vpandd	zmm4, zmm2, zmm3
 	vextracti64x4	ymm5, zmm4, 0x1
 	vpaddd	ymm1, ymm5, ymm4
-	vextracti128	xmm0, ymm1, 0x1
+	vextracti32x4	xmm0, ymm1, 0x1
 	vpaddd	xmm2, xmm0, xmm1
 	vpsrldq	xmm3, xmm2, 8
 	vpaddd	xmm4, xmm2, xmm3
@@ -7102,7 +7102,7 @@ __popcountti2:
 __powidf2:
 	.seh_endprologue
 	vmovsd	xmm2, QWORD PTR .LC23[rip]
-	vmovsd	xmm1, xmm2, xmm2
+	vmovapd	xmm1, xmm2
 	mov	eax, edx
 	test	dl, 1
 	je	.L1889
@@ -7135,7 +7135,7 @@ __powidf2:
 	jns	.L1888
 	vdivsd	xmm1, xmm2, xmm1
 .L1888:
-	vmovsd	xmm0, xmm1, xmm1
+	vmovapd	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
@@ -7145,7 +7145,7 @@ __powidf2:
 __powisf2:
 	.seh_endprologue
 	vmovss	xmm2, DWORD PTR .LC26[rip]
-	vmovss	xmm1, xmm2, xmm2
+	vmovaps	xmm1, xmm2
 	mov	eax, edx
 	test	dl, 1
 	je	.L1897
@@ -7178,7 +7178,7 @@ __powisf2:
 	jns	.L1896
 	vdivss	xmm1, xmm2, xmm1
 .L1896:
-	vmovss	xmm0, xmm1, xmm1
+	vmovaps	xmm0, xmm1
 	ret
 	.seh_endproc
 	.p2align 4
