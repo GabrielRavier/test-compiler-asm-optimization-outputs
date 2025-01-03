@@ -4645,7 +4645,6 @@ __popcountsi2:
 	.global	__powidf2
 	.type	__powidf2, @function
 __powidf2:
-	push_s	blink
 	push_s	r13
 	vadd2	r12,r0,0
 	mov_s	r3,r2	;4
@@ -4671,14 +4670,12 @@ __powidf2:
 	.align 4
 .L1479:
 	brge	r2,0,.L1477
-	vadd2	r2,r0,0
-	mov_s	r1,1072693248	;13
-	bl.d	@__divdf3;1
-	mov_s	r0,0	;3
+	mov_s	r2,0	;3
+	mov_s	r3,1072693248	;13
+	fddiv r0,r2,r0
 .L1477:
-	ld	blink,[sp,4]	;23
 	j_s.d	[blink]
-	ld.ab	r13,[sp,8]	;23
+	pop_s	r13
 	.size	__powidf2, .-__powidf2
 	.align 4
 	.global	__powisf2
@@ -4699,20 +4696,16 @@ __powisf2:
 	fsmul	r3,r3,r3
 	div	r2,r2,2
 	.align 2
-.L1499:
+.L1496:
 	bbit1.d	r2,0,@.L1490
 	fsmul	r3,r3,r3
-	b.d	.L1499
+	b.d	.L1496
 	div	r2,r2,2
 	.align 4
 .L1489:
 	tst_s	r1,r1
 	jp	[blink]
-	push_s	blink
-	mov_s	r1,r0
-	mov_s	r0,0x3f800000 ; 1.0e+0
-	bl	@__divsf3;1
-	pop_s	blink
+	fsdiv	r0,0x3f800000,r0
 	j_s	[blink]
 	.size	__powisf2, .-__powisf2
 	.align 4
@@ -4720,19 +4713,19 @@ __powisf2:
 	.type	__ucmpdi2, @function
 __ucmpdi2:
 	cmp_s	r1,r3
-	blo_s	.L1504
-	bhi_s	.L1505
+	blo_s	.L1501
+	bhi_s	.L1502
 	cmp_s	r0,r2
-	blo_s	.L1504
-	bhi_s	.L1505
+	blo_s	.L1501
+	bhi_s	.L1502
 	j_s.d	[blink]
 	mov_s	r0,1	;3
 	.align 4
-.L1504:
+.L1501:
 	j_s.d	[blink]
 	mov_s	r0,0	;3
 	.align 4
-.L1505:
+.L1502:
 	j_s.d	[blink]
 	mov_s	r0,2	;3
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4741,17 +4734,17 @@ __ucmpdi2:
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
 	cmp_s	r1,r3
-	blo_s	.L1511
-	bhi_s	.L1510
-	brlo	r0,r2,.L1511
+	blo_s	.L1508
+	bhi_s	.L1507
+	brlo	r0,r2,.L1508
 	j_s.d	[blink]
 	setlo	r0,r2,r0
 	.align 4
-.L1511:
+.L1508:
 	j_s.d	[blink]
 	mov_s	r0,-1	;4
 	.align 4
-.L1510:
+.L1507:
 	j_s.d	[blink]
 	mov_s	r0,1	;3
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
@@ -4772,8 +4765,6 @@ seed:
 	.size	digits, 65
 digits:
 	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.global	__divsf3
-	.global	__divdf3
 	.global	__moddi3
 	.global	__divdi3
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
