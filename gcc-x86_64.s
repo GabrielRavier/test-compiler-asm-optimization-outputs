@@ -3879,9 +3879,9 @@ __clrsbqi2:
 	cmp	dil, dl
 	je	.L1026
 	movsx	ecx, al
+	xor	esi, esi
 	sal	ecx, 8
-	bsr	esi, ecx
-	xor	esi, 31
+	lzcnt	esi, ecx
 	lea	r8d, [rsi-1]
 .L1026:
 	mov	eax, r8d
@@ -3897,16 +3897,13 @@ __clrsbdi2:
 	.cfi_startproc
 	mov	rdx, rdi
 	mov	rax, rdi
-	mov	esi, 63
+	mov	ecx, 63
 	sar	rdx, 63
 	xor	rax, rdx
+	lzcnt	rax, rax
+	sub	eax, 1
 	cmp	rdi, rdx
-	je	.L1029
-	bsr	rcx, rax
-	xor	rcx, 63
-	lea	esi, [rcx-1]
-.L1029:
-	mov	eax, esi
+	cmove	eax, ecx
 	ret
 	.cfi_endproc
 .LFE105:
@@ -6110,18 +6107,17 @@ __clzti2:
 	.cfi_startproc
 	xor	eax, eax
 	test	rsi, rsi
-	mov	rdx, rdi
 	sete	al
 	xor	ecx, ecx
-	lea	edi, [rax-1]
-	movsx	r8, edi
+	lea	edx, [rax-1]
+	movsx	r8, edx
 	and	r8, rsi
 	test	rsi, rsi
-	cmovne	rdx, rcx
-	or	r8, rdx
-	bsr	rsi, r8
+	cmovne	rdi, rcx
+	xor	esi, esi
 	sal	eax, 6
-	xor	rsi, 63
+	or	r8, rdi
+	lzcnt	rsi, r8
 	add	eax, esi
 	ret
 	.cfi_endproc

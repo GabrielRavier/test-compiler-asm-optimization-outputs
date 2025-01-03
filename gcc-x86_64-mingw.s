@@ -3816,9 +3816,9 @@ __clrsbqi2:
 	cmp	cl, dl
 	je	.L1105
 	movsx	ecx, al
+	xor	r8d, r8d
 	sal	ecx, 8
-	bsr	r8d, ecx
-	xor	r8d, 31
+	lzcnt	r8d, ecx
 	lea	r9d, -1[r8]
 .L1105:
 	mov	eax, r9d
@@ -3835,13 +3835,10 @@ __clrsbdi2:
 	mov	rax, rcx
 	sar	rdx, 63
 	xor	rax, rdx
+	lzcnt	rax, rax
+	sub	eax, 1
 	cmp	rcx, rdx
-	je	.L1108
-	bsr	rcx, rax
-	xor	rcx, 63
-	lea	r8d, -1[rcx]
-.L1108:
-	mov	eax, r8d
+	cmove	eax, r8d
 	ret
 	.seh_endproc
 	.p2align 4
@@ -5974,10 +5971,10 @@ __clzti2:
 	and	r10, rcx
 	test	rcx, rcx
 	cmove	r9, r8
-	or	r10, r9
-	bsr	r11, r10
+	xor	r11d, r11d
 	sal	eax, 6
-	xor	r11, 63
+	or	r10, r9
+	lzcnt	r11, r10
 	add	eax, r11d
 	ret
 	.seh_endproc

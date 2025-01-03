@@ -5143,9 +5143,9 @@ LFB104:
 	cmp	dl, cl
 	je	L1168
 	movsx	ebx, al
+	xor	edx, edx
 	sal	ebx, 8
-	bsr	edx, ebx
-	xor	edx, 31
+	lzcnt	edx, ebx
 	lea	ebx, [edx-1]
 L1168:
 	mov	eax, ebx
@@ -5188,8 +5188,8 @@ LFB105:
 	je	L1173
 	test	edi, edi
 	je	L1175
-	bsr	ebp, edi
-	xor	ebp, 31
+	xor	ebp, ebp
+	lzcnt	ebp, edi
 L1176:
 	lea	ecx, [ebp-1]
 L1173:
@@ -5212,8 +5212,8 @@ L1173:
 	.p2align 3
 L1175:
 	.cfi_restore_state
-	bsr	ebp, esi
-	xor	ebp, 31
+	xor	ebp, ebp
+	lzcnt	ebp, esi
 	add	ebp, 32
 	jmp	L1176
 	.cfi_endproc
