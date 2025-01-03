@@ -15,102 +15,102 @@ LFB2:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
 	mov	edi, DWORD PTR [ebp+8]
-	mov	eax, DWORD PTR [ebp+12]
-	mov	ecx, DWORD PTR [ebp+16]
-	cmp	eax, edi
+	mov	ecx, DWORD PTR [ebp+12]
+	mov	eax, DWORD PTR [ebp+16]
+	cmp	ecx, edi
 	jnb	L2
-	test	ecx, ecx
+	test	eax, eax
 	je	L3
-	lea	edx, [ecx-1]
+	lea	edx, [eax-1]
 	cmp	edx, 2
-	jbe	L67
-	lea	esi, [eax-2+ecx]
+	jbe	L96
+	lea	esi, [ecx-2+eax]
 	mov	ebx, edi
 	sub	ebx, esi
 	lea	esi, [ebx+14+edx]
 	cmp	esi, 14
-	jbe	L67
-	lea	ebx, [eax+ecx]
-	lea	esi, [edi+ecx]
-	mov	DWORD PTR [esp+8], ebx
-	mov	DWORD PTR [esp+12], esi
+	jbe	L96
+	lea	ebx, [ecx+eax]
+	lea	esi, [edi+eax]
+	mov	DWORD PTR [esp+24], ebx
+	mov	DWORD PTR [esp+28], esi
 	cmp	edx, 14
-	jbe	L23
-	lea	ebx, [ecx-16]
-	mov	esi, ecx
-	lea	edx, [eax+ebx]
-	add	ebx, edi
-	and	esi, -16
-	mov	DWORD PTR [esp+4], ebx
+	jbe	L22
+	lea	ebx, [eax-16]
+	lea	esi, [ebx+edi]
+	lea	edx, [ecx+ebx]
+	mov	DWORD PTR [esp+16], esi
+	mov	esi, eax
 	mov	ebx, edx
+	and	esi, -16
 	sub	ebx, esi
-	mov	DWORD PTR [esp], esi
+	mov	DWORD PTR [esp+20], esi
 	mov	esi, ebx
-	mov	ebx, DWORD PTR [esp+4]
+	mov	ebx, DWORD PTR [esp+16]
 	.p2align 5
 	.p2align 4
 	.p2align 3
 L6:
-	movdqu	xmm3, XMMWORD PTR [edx]
+	vmovdqu	xmm2, XMMWORD PTR [edx]
 	sub	edx, 16
 	sub	ebx, 16
-	movups	XMMWORD PTR [ebx+16], xmm3
+	vmovdqu	XMMWORD PTR [ebx+16], xmm2
 	cmp	esi, edx
 	jne	L6
-	mov	esi, DWORD PTR [esp]
-	mov	edx, ecx
-	sub	DWORD PTR [esp+8], esi
-	sub	DWORD PTR [esp+12], esi
+	mov	esi, DWORD PTR [esp+20]
+	mov	edx, eax
+	sub	DWORD PTR [esp+24], esi
+	sub	DWORD PTR [esp+28], esi
 	sub	edx, esi
-	cmp	ecx, esi
+	cmp	eax, esi
 	je	L3
 	lea	ebx, [edx-1]
-	mov	ecx, edx
+	mov	eax, edx
 	cmp	ebx, 2
 	jbe	L8
 L5:
-	lea	ebx, [ecx-4]
-	mov	esi, ecx
-	add	eax, ebx
+	lea	ebx, [eax-4]
+	mov	esi, eax
+	add	ecx, ebx
 	shr	esi, 2
 	add	ebx, edi
-	movd	xmm4, DWORD PTR [eax]
-	movd	DWORD PTR [ebx], xmm4
+	vmovd	xmm3, DWORD PTR [ecx]
+	vmovd	DWORD PTR [ebx], xmm3
 	cmp	esi, 1
 	je	L9
-	movd	xmm5, DWORD PTR [eax-4]
-	movd	DWORD PTR [ebx-4], xmm5
+	vmovd	xmm4, DWORD PTR [ecx-4]
+	vmovd	DWORD PTR [ebx-4], xmm4
 	cmp	esi, 2
 	je	L9
-	mov	eax, DWORD PTR [eax-8]
-	mov	DWORD PTR [ebx-8], eax
+	mov	ecx, DWORD PTR [ecx-8]
+	mov	DWORD PTR [ebx-8], ecx
 L9:
-	mov	esi, ecx
+	mov	esi, eax
 	and	esi, -4
-	sub	DWORD PTR [esp+8], esi
-	sub	DWORD PTR [esp+12], esi
+	sub	DWORD PTR [esp+24], esi
+	sub	DWORD PTR [esp+28], esi
 	sub	edx, esi
-	and	ecx, 3
+	test	al, 3
 	je	L3
 L8:
-	mov	ecx, DWORD PTR [esp+8]
-	mov	ebx, DWORD PTR [esp+12]
-	movzx	eax, BYTE PTR [ecx-1]
-	mov	BYTE PTR [ebx-1], al
+	mov	ebx, DWORD PTR [esp+24]
+	mov	ecx, DWORD PTR [esp+28]
+	movzx	eax, BYTE PTR [ebx-1]
+	mov	BYTE PTR [ecx-1], al
 	cmp	edx, 1
 	je	L3
-	movzx	eax, BYTE PTR [ecx-2]
-	mov	BYTE PTR [ebx-2], al
+	movzx	eax, BYTE PTR [ebx-2]
+	mov	BYTE PTR [ecx-2], al
 	cmp	edx, 2
 	je	L3
-	movzx	edx, BYTE PTR [ecx-3]
-	mov	BYTE PTR [ebx-3], dl
+	movzx	edx, BYTE PTR [ebx-3]
+	mov	BYTE PTR [ecx-3], dl
 L3:
 	lea	esp, [ebp-12]
 	mov	eax, edi
@@ -129,120 +129,167 @@ L3:
 	.p2align 3
 L2:
 	.cfi_restore_state
-	cmp	edi, eax
+	cmp	edi, ecx
 	je	L3
-	test	ecx, ecx
+	test	eax, eax
 	je	L3
-	lea	ebx, [ecx-1]
-	lea	edx, [eax+1]
-	cmp	ebx, 2
+	lea	ebx, [eax-1]
+	lea	edx, [ecx+1]
+	cmp	ebx, 14
 	jbe	L13
 	mov	esi, edi
 	sub	esi, edx
-	cmp	esi, 14
+	cmp	esi, 30
 	jbe	L13
-	cmp	ebx, 14
-	jbe	L24
-	mov	ebx, ecx
-	mov	esi, edi
-	and	ebx, -16
-	lea	edx, [eax+ebx]
+	cmp	ebx, 30
+	jbe	L23
+	mov	esi, eax
+	mov	edx, ecx
+	mov	ebx, edi
+	and	esi, -32
+	mov	DWORD PTR [esp+20], esi
+	add	esi, ecx
 	.p2align 5
 	.p2align 4
 	.p2align 3
 L15:
-	movdqu	xmm0, XMMWORD PTR [eax]
-	add	eax, 16
-	add	esi, 16
-	movups	XMMWORD PTR [esi-16], xmm0
-	cmp	edx, eax
+	vmovdqu	ymm0, YMMWORD PTR [edx]
+	add	edx, 32
+	add	ebx, 32
+	vmovdqu	YMMWORD PTR [ebx-32], ymm0
+	cmp	edx, esi
 	jne	L15
+	mov	ebx, DWORD PTR [esp+20]
+	mov	DWORD PTR [esp+24], edx
+	mov	edx, eax
+	sub	edx, ebx
 	lea	esi, [edi+ebx]
-	mov	DWORD PTR [esp+8], edx
-	mov	DWORD PTR [esp+12], esi
-	mov	eax, esi
-	mov	esi, ecx
-	sub	esi, ebx
-	cmp	ecx, ebx
-	je	L3
-	lea	ebx, [esi-1]
-	mov	ecx, esi
-	cmp	ebx, 2
-	jbe	L18
+	mov	DWORD PTR [esp+28], edx
+	cmp	eax, ebx
+	je	L99
+	lea	ebx, [edx-1]
+	mov	eax, edx
+	cmp	ebx, 14
+	jbe	L103
+	vzeroupper
 L14:
-	movd	xmm1, DWORD PTR [edx]
-	mov	ebx, ecx
-	shr	ebx, 2
-	movd	DWORD PTR [eax], xmm1
-	cmp	ebx, 1
-	je	L19
-	movd	xmm2, DWORD PTR [edx+4]
-	movd	DWORD PTR [eax+4], xmm2
-	cmp	ebx, 2
-	je	L19
-	mov	edx, DWORD PTR [edx+8]
-	mov	DWORD PTR [eax+8], edx
-L19:
-	test	cl, 3
+	mov	edx, DWORD PTR [esp+20]
+	vmovdqu	xmm1, XMMWORD PTR [ecx+edx]
+	mov	ecx, eax
+	and	ecx, -16
+	add	DWORD PTR [esp+24], ecx
+	sub	DWORD PTR [esp+28], ecx
+	add	esi, ecx
+	vmovdqu	XMMWORD PTR [edi+edx], xmm1
+	test	al, 15
 	je	L3
-	and	ecx, -4
-	add	DWORD PTR [esp+8], ecx
-	add	DWORD PTR [esp+12], ecx
-	sub	esi, ecx
 L18:
-	mov	eax, DWORD PTR [esp+8]
-	mov	ecx, DWORD PTR [esp+12]
-	movzx	ebx, BYTE PTR [eax]
-	mov	BYTE PTR [ecx], bl
-	cmp	esi, 1
+	mov	edx, DWORD PTR [esp+24]
+	mov	ebx, DWORD PTR [esp+28]
+	movzx	eax, BYTE PTR [edx]
+	mov	BYTE PTR [esi], al
+	cmp	ebx, 1
 	je	L3
-	movzx	edx, BYTE PTR [eax+1]
-	mov	BYTE PTR [ecx+1], dl
-	cmp	esi, 2
+	movzx	ecx, BYTE PTR [edx+1]
+	mov	BYTE PTR [esi+1], cl
+	cmp	ebx, 2
 	je	L3
-	movzx	eax, BYTE PTR [eax+2]
-	mov	BYTE PTR [ecx+2], al
+	movzx	eax, BYTE PTR [edx+2]
+	mov	BYTE PTR [esi+2], al
+	cmp	ebx, 3
+	je	L3
+	movzx	ecx, BYTE PTR [edx+3]
+	mov	BYTE PTR [esi+3], cl
+	cmp	ebx, 4
+	je	L3
+	movzx	eax, BYTE PTR [edx+4]
+	mov	BYTE PTR [esi+4], al
+	cmp	ebx, 5
+	je	L3
+	movzx	ecx, BYTE PTR [edx+5]
+	mov	BYTE PTR [esi+5], cl
+	cmp	ebx, 6
+	je	L3
+	movzx	eax, BYTE PTR [edx+6]
+	mov	BYTE PTR [esi+6], al
+	cmp	ebx, 7
+	je	L3
+	movzx	ecx, BYTE PTR [edx+7]
+	mov	BYTE PTR [esi+7], cl
+	cmp	ebx, 8
+	je	L3
+	movzx	eax, BYTE PTR [edx+8]
+	mov	BYTE PTR [esi+8], al
+	cmp	ebx, 9
+	je	L3
+	movzx	ecx, BYTE PTR [edx+9]
+	mov	BYTE PTR [esi+9], cl
+	cmp	ebx, 10
+	je	L3
+	movzx	eax, BYTE PTR [edx+10]
+	mov	BYTE PTR [esi+10], al
+	cmp	ebx, 11
+	je	L3
+	movzx	ecx, BYTE PTR [edx+11]
+	mov	BYTE PTR [esi+11], cl
+	cmp	ebx, 12
+	je	L3
+	movzx	eax, BYTE PTR [edx+12]
+	mov	BYTE PTR [esi+12], al
+	cmp	ebx, 13
+	je	L3
+	movzx	ecx, BYTE PTR [edx+13]
+	mov	BYTE PTR [esi+13], cl
+	cmp	ebx, 14
+	je	L3
+	movzx	edx, BYTE PTR [edx+14]
+	mov	BYTE PTR [esi+14], dl
 	jmp	L3
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L72:
+L104:
 	sub	edx, 1
-L67:
-	movzx	ebx, BYTE PTR [eax-1+ecx]
-	mov	BYTE PTR [edi-1+ecx], bl
-	mov	ecx, edx
+L96:
+	movzx	ebx, BYTE PTR [ecx-1+eax]
+	mov	BYTE PTR [edi-1+eax], bl
+	mov	eax, edx
 	test	edx, edx
-	jne	L72
+	jne	L104
 	jmp	L3
 	.p2align 4,,10
 	.p2align 3
 L13:
-	add	ecx, edi
+	add	eax, edi
 	mov	esi, edi
-	jmp	L21
+	jmp	L20
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L73:
+L105:
 	add	edx, 1
-L21:
+L20:
 	movzx	ebx, BYTE PTR [edx-1]
 	add	esi, 1
 	mov	BYTE PTR [esi-1], bl
-	cmp	esi, ecx
-	jne	L73
+	cmp	esi, eax
+	jne	L105
 	jmp	L3
-L23:
-	mov	edx, ecx
-	jmp	L5
-L24:
-	mov	DWORD PTR [esp+8], eax
+L103:
+	vzeroupper
+	jmp	L18
+L22:
 	mov	edx, eax
-	mov	esi, ecx
-	mov	eax, edi
-	mov	DWORD PTR [esp+12], edi
+	jmp	L5
+L23:
+	mov	DWORD PTR [esp+24], ecx
+	mov	esi, edi
+	mov	DWORD PTR [esp+28], eax
+	mov	DWORD PTR [esp+20], 0
 	jmp	L14
+L99:
+	vzeroupper
+	jmp	L3
 	.cfi_endproc
 LFE2:
 	.p2align 4
@@ -262,21 +309,21 @@ LFB3:
 	mov	ebx, DWORD PTR [esp+16]
 	movzx	esi, BYTE PTR [esp+20]
 	test	ecx, ecx
-	jne	L75
-	jmp	L77
+	jne	L107
+	jmp	L109
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L78:
+L110:
 	add	ebx, 1
 	add	eax, 1
 	sub	ecx, 1
-	je	L77
-L75:
+	je	L109
+L107:
 	movzx	edx, BYTE PTR [ebx]
 	mov	BYTE PTR [eax], dl
 	cmp	edx, esi
-	jne	L78
+	jne	L110
 	add	eax, 1
 	pop	ebx
 	.cfi_remember_state
@@ -288,7 +335,7 @@ L75:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L77:
+L109:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -313,19 +360,19 @@ LFB4:
 	mov	eax, DWORD PTR [esp+8]
 	movzx	ebx, BYTE PTR [esp+12]
 	test	edx, edx
-	jne	L87
-	jmp	L90
+	jne	L119
+	jmp	L122
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L89:
+L121:
 	add	eax, 1
 	sub	edx, 1
-	je	L90
-L87:
+	je	L122
+L119:
 	movzx	ecx, BYTE PTR [eax]
 	cmp	ecx, ebx
-	jne	L89
+	jne	L121
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -333,7 +380,7 @@ L87:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L90:
+L122:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -355,24 +402,24 @@ LFB5:
 	mov	ecx, DWORD PTR [esp+8]
 	mov	edx, DWORD PTR [esp+12]
 	test	eax, eax
-	jne	L96
-	jmp	L95
+	jne	L128
+	jmp	L127
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L98:
+L130:
 	add	ecx, 1
 	add	edx, 1
 	sub	eax, 1
-	je	L100
-L96:
+	je	L132
+L128:
 	movzx	ebx, BYTE PTR [edx]
 	cmp	BYTE PTR [ecx], bl
-	je	L98
+	je	L130
 	movzx	eax, BYTE PTR [ecx]
 	movzx	edx, BYTE PTR [edx]
 	sub	eax, edx
-L95:
+L127:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -380,7 +427,7 @@ L95:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L100:
+L132:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -403,13 +450,13 @@ LFB6:
 	mov	eax, DWORD PTR [esp+40]
 	mov	ebx, DWORD PTR [esp+32]
 	test	eax, eax
-	je	L108
+	je	L140
 	mov	edx, DWORD PTR [esp+36]
 	mov	DWORD PTR [esp+8], eax
 	mov	DWORD PTR [esp], ebx
 	mov	DWORD PTR [esp+4], edx
 	call	_memcpy
-L108:
+L140:
 	add	esp, 24
 	.cfi_def_cfa_offset 8
 	mov	eax, ebx
@@ -436,21 +483,21 @@ LFB7:
 	movzx	esi, BYTE PTR [esp+16]
 	lea	eax, [ebx-1+eax]
 	sub	ebx, 1
-	jmp	L114
+	jmp	L146
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L116:
+L148:
 	mov	edx, eax
 	sub	eax, 1
 	movzx	ecx, BYTE PTR [edx]
 	cmp	ecx, esi
-	je	L113
-L114:
+	je	L145
+L146:
 	cmp	eax, ebx
-	jne	L116
+	jne	L148
 	xor	edx, edx
-L113:
+L145:
 	mov	eax, edx
 	pop	ebx
 	.cfi_restore 3
@@ -475,13 +522,13 @@ LFB8:
 	mov	eax, DWORD PTR [esp+40]
 	mov	ebx, DWORD PTR [esp+32]
 	test	eax, eax
-	je	L121
+	je	L153
 	movzx	edx, BYTE PTR [esp+36]
 	mov	DWORD PTR [esp+8], eax
 	mov	DWORD PTR [esp], ebx
 	mov	DWORD PTR [esp+4], edx
 	call	_memset
-L121:
+L153:
 	add	esp, 24
 	.cfi_def_cfa_offset 8
 	mov	eax, ebx
@@ -502,18 +549,18 @@ LFB9:
 	movzx	ecx, BYTE PTR [edx]
 	mov	BYTE PTR [eax], cl
 	test	cl, cl
-	je	L124
+	je	L156
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L125:
+L157:
 	movzx	ecx, BYTE PTR [edx+1]
 	add	edx, 1
 	add	eax, 1
 	mov	BYTE PTR [eax], cl
 	test	cl, cl
-	jne	L125
-L124:
+	jne	L157
+L156:
 	ret
 	.cfi_endproc
 LFE9:
@@ -527,20 +574,20 @@ LFB10:
 	movzx	ecx, BYTE PTR [esp+8]
 	movzx	eax, BYTE PTR [edx]
 	test	al, al
-	jne	L131
-	jmp	L130
+	jne	L163
+	jmp	L162
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L133:
+L165:
 	movzx	eax, BYTE PTR [edx+1]
 	add	edx, 1
 	test	al, al
-	je	L130
-L131:
+	je	L162
+L163:
 	cmp	eax, ecx
-	jne	L133
-L130:
+	jne	L165
+L162:
 	mov	eax, edx
 	ret
 	.cfi_endproc
@@ -556,18 +603,18 @@ LFB11:
 	.cfi_offset 3, -8
 	mov	eax, DWORD PTR [esp+8]
 	mov	ebx, DWORD PTR [esp+12]
-	jmp	L140
+	jmp	L172
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L144:
+L176:
 	add	eax, 1
 	test	cl, cl
-	je	L143
-L140:
+	je	L175
+L172:
 	movsx	ecx, BYTE PTR [eax]
 	cmp	ecx, ebx
-	jne	L144
+	jne	L176
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -575,7 +622,7 @@ L140:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L143:
+L175:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -598,23 +645,23 @@ LFB12:
 	movzx	eax, BYTE PTR [edx]
 	movzx	ebx, BYTE PTR [ecx]
 	cmp	al, bl
-	je	L146
-	jmp	L147
+	je	L178
+	jmp	L179
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L148:
+L180:
 	movzx	eax, BYTE PTR [edx+1]
 	movzx	ebx, BYTE PTR [ecx+1]
 	add	edx, 1
 	add	ecx, 1
 	cmp	al, bl
-	jne	L147
-L146:
+	jne	L179
+L178:
 	test	al, al
-	jne	L148
+	jne	L180
 	xor	eax, eax
-L147:
+L179:
 	sub	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -630,20 +677,20 @@ LFB13:
 	.cfi_startproc
 	mov	edx, DWORD PTR [esp+4]
 	cmp	BYTE PTR [edx], 0
-	je	L157
+	je	L189
 	mov	eax, edx
 	.p2align 3
 	.p2align 4
 	.p2align 3
-L156:
+L188:
 	add	eax, 1
 	cmp	BYTE PTR [eax], 0
-	jne	L156
+	jne	L188
 	sub	eax, edx
 	ret
 	.p2align 4,,10
 	.p2align 3
-L157:
+L189:
 	xor	eax, eax
 	ret
 	.cfi_endproc
@@ -671,28 +718,28 @@ LFB14:
 	.cfi_def_cfa_offset 24
 	mov	ebp, DWORD PTR [esp+32]
 	test	ebp, ebp
-	je	L159
+	je	L191
 	mov	eax, DWORD PTR [esp+24]
 	mov	edx, DWORD PTR [esp+28]
 	sub	ebp, 1
 	movzx	eax, BYTE PTR [eax]
 	add	ebp, edx
 	test	al, al
-	jne	L163
-	jmp	L178
+	jne	L195
+	jmp	L210
 	.p2align 4,,10
 	.p2align 3
-L180:
+L212:
 	cmp	edx, ebp
-	je	L162
+	je	L194
 	add	DWORD PTR [esp+24], 1
 	mov	eax, DWORD PTR [esp+24]
 	lea	esi, [edx+1]
 	movzx	eax, BYTE PTR [eax]
 	test	al, al
-	je	L179
+	je	L211
 	mov	edx, esi
-L163:
+L195:
 	movzx	ecx, BYTE PTR [edx]
 	test	cl, cl
 	mov	BYTE PTR [esp+3], cl
@@ -700,11 +747,11 @@ L163:
 	cmp	cl, al
 	sete	cl
 	test	bl, cl
-	jne	L180
-L162:
+	jne	L212
+L194:
 	movzx	edi, BYTE PTR [esp+3]
 	sub	eax, edi
-L159:
+L191:
 	add	esp, 4
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -723,17 +770,17 @@ L159:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L179:
+L211:
 	.cfi_restore_state
 	movzx	edx, BYTE PTR [edx+1]
 	xor	eax, eax
 	mov	BYTE PTR [esp+3], dl
-	jmp	L162
-L178:
+	jmp	L194
+L210:
 	movzx	ecx, BYTE PTR [edx]
 	xor	eax, eax
 	mov	BYTE PTR [esp+3], cl
-	jmp	L162
+	jmp	L194
 	.cfi_endproc
 LFE14:
 	.p2align 4
@@ -758,15 +805,15 @@ LFB15:
 	mov	ecx, DWORD PTR [ebp+16]
 	mov	edi, DWORD PTR [ebp+8]
 	cmp	ecx, 1
-	jle	L181
+	jle	L232
 	mov	ebx, ecx
 	lea	edx, [ecx-2]
 	shr	ebx
 	lea	eax, [ebx-1]
 	mov	DWORD PTR [esp+12], eax
 	cmp	edx, 13
-	jbe	L189
-	movdqa	xmm1, XMMWORD PTR LC0
+	jbe	L221
+	vmovdqa	xmm1, XMMWORD PTR LC0
 	mov	esi, ecx
 	mov	edx, DWORD PTR [ebp+12]
 	mov	eax, edi
@@ -776,55 +823,55 @@ LFB15:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L184:
-	movdqu	xmm0, XMMWORD PTR [eax]
+L216:
+	vmovdqu	xmm0, XMMWORD PTR [eax]
 	add	eax, 16
 	add	edx, 16
-	pshufb	xmm0, xmm1
-	movups	XMMWORD PTR [edx-16], xmm0
+	vpshufb	xmm2, xmm0, xmm1
+	vmovdqu	XMMWORD PTR [edx-16], xmm2
 	cmp	eax, ecx
-	jne	L184
+	jne	L216
 	mov	edx, DWORD PTR [ebp+12]
 	lea	eax, [0+esi*8]
 	sal	esi, 4
 	add	edx, esi
 	add	esi, edi
 	cmp	ebx, eax
-	je	L181
-L183:
+	je	L232
+L215:
 	sub	ebx, eax
 	cmp	DWORD PTR [esp+12], eax
-	je	L186
-	movdqa	xmm3, XMMWORD PTR LC1
+	je	L218
+	vmovdqa	xmm4, XMMWORD PTR LC1
 	add	eax, eax
 	mov	ecx, ebx
 	add	edi, eax
 	shr	ecx
 	add	eax, DWORD PTR [ebp+12]
-	movd	xmm2, DWORD PTR [edi]
-	pshufb	xmm2, xmm3
-	movd	DWORD PTR [eax], xmm2
+	vmovd	xmm3, DWORD PTR [edi]
+	vpshufb	xmm5, xmm3, xmm4
+	vmovd	DWORD PTR [eax], xmm5
 	cmp	ecx, 1
-	je	L187
-	movd	xmm4, DWORD PTR [edi+4]
-	pshufb	xmm4, xmm3
-	movd	DWORD PTR [eax+4], xmm4
+	je	L219
+	vmovd	xmm6, DWORD PTR [edi+4]
+	vpshufb	xmm7, xmm6, xmm4
+	vmovd	DWORD PTR [eax+4], xmm7
 	cmp	ecx, 2
-	je	L187
-	movd	xmm5, DWORD PTR [edi+8]
-	pshufb	xmm5, xmm3
-	movd	DWORD PTR [eax+8], xmm5
-L187:
+	je	L219
+	vmovd	xmm1, DWORD PTR [edi+8]
+	vpshufb	xmm0, xmm1, xmm4
+	vmovd	DWORD PTR [eax+8], xmm0
+L219:
 	test	bl, 1
-	je	L181
+	je	L232
 	and	ebx, -2
 	add	ebx, ebx
 	add	edx, ebx
 	add	esi, ebx
-L186:
+L218:
 	movbe	di, WORD PTR [esi]
 	mov	WORD PTR [edx], di
-L181:
+L232:
 	lea	esp, [ebp-12]
 	pop	ebx
 	.cfi_remember_state
@@ -837,12 +884,12 @@ L181:
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
 	ret
-L189:
+L221:
 	.cfi_restore_state
 	mov	edx, DWORD PTR [ebp+12]
 	mov	esi, edi
 	xor	eax, eax
-	jmp	L183
+	jmp	L215
 	.cfi_endproc
 LFE15:
 	.p2align 4
@@ -1001,13 +1048,13 @@ LFB26:
 	movzx	eax, dx
 	lea	ecx, [eax-127]
 	cmp	ecx, 32
-	jbe	L213
+	jbe	L246
 	cmp	dx, 31
-	jbe	L213
+	jbe	L246
 	lea	ecx, [eax-8232]
 	mov	edx, 1
 	cmp	ecx, 1
-	jbe	L211
+	jbe	L244
 	sub	eax, 65529
 	xor	edx, edx
 	cmp	eax, 2
@@ -1016,9 +1063,9 @@ LFB26:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L213:
+L246:
 	mov	edx, 1
-L211:
+L244:
 	mov	eax, edx
 	ret
 	.cfi_endproc
@@ -1048,21 +1095,21 @@ LFB28:
 	.cfi_offset 3, -8
 	mov	eax, DWORD PTR [esp+8]
 	cmp	ax, 254
-	jbe	L223
+	jbe	L256
 	movzx	edx, ax
 	lea	ecx, [edx-8234]
 	cmp	ecx, 47061
-	jbe	L219
+	jbe	L252
 	cmp	ax, 8231
-	jbe	L219
+	jbe	L252
 	lea	ebx, [edx-57344]
 	mov	ecx, 1
 	cmp	ebx, 8184
-	jbe	L216
+	jbe	L249
 	sub	edx, 65532
 	xor	ecx, ecx
 	cmp	edx, 1048579
-	ja	L216
+	ja	L249
 	not	eax
 	xor	ecx, ecx
 	pop	ebx
@@ -1075,10 +1122,10 @@ LFB28:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L219:
+L252:
 	.cfi_restore_state
 	mov	ecx, 1
-L216:
+L249:
 	mov	eax, ecx
 	pop	ebx
 	.cfi_remember_state
@@ -1087,7 +1134,7 @@ L216:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L223:
+L256:
 	.cfi_restore_state
 	add	eax, 1
 	xor	ecx, ecx
@@ -1112,14 +1159,14 @@ LFB29:
 	movzx	edx, ax
 	sub	edx, 48
 	cmp	edx, 9
-	jbe	L224
+	jbe	L257
 	or	eax, 32
 	xor	ecx, ecx
 	movzx	eax, ax
 	sub	eax, 97
 	cmp	eax, 5
 	setbe	cl
-L224:
+L257:
 	mov	eax, ecx
 	ret
 	.cfi_endproc
@@ -1144,31 +1191,31 @@ LFB31:
 	fld	QWORD PTR [esp+12]
 	fld	QWORD PTR [esp+4]
 	fucomi	st, st(0)
-	jp	L236
+	jp	L269
 	fxch	st(1)
 	fucomi	st, st(0)
-	jp	L232
+	jp	L265
 	fxch	st(1)
 	fcomi	st, st(1)
-	jbe	L235
+	jbe	L268
 	fsubrp	st(1), st
 	ret
 	.p2align 4,,10
 	.p2align 3
-L235:
+L268:
 	fstp	st(0)
 	fstp	st(0)
 	fldz
-	jmp	L228
+	jmp	L261
 	.p2align 4,,10
 	.p2align 3
-L236:
+L269:
 	fstp	st(1)
-L228:
+L261:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L232:
+L265:
 	fstp	st(1)
 	ret
 	.cfi_endproc
@@ -1182,31 +1229,31 @@ LFB32:
 	fld	DWORD PTR [esp+8]
 	fld	DWORD PTR [esp+4]
 	fucomi	st, st(0)
-	jp	L245
+	jp	L278
 	fxch	st(1)
 	fucomi	st, st(0)
-	jp	L241
+	jp	L274
 	fxch	st(1)
 	fcomi	st, st(1)
-	jbe	L244
+	jbe	L277
 	fsubrp	st(1), st
 	ret
 	.p2align 4,,10
 	.p2align 3
-L244:
+L277:
 	fstp	st(0)
 	fstp	st(0)
 	fldz
-	jmp	L237
+	jmp	L270
 	.p2align 4,,10
 	.p2align 3
-L245:
+L278:
 	fstp	st(1)
-L237:
+L270:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L241:
+L274:
 	fstp	st(1)
 	ret
 	.cfi_endproc
@@ -1220,10 +1267,10 @@ LFB33:
 	fld	QWORD PTR [esp+12]
 	fld	QWORD PTR [esp+4]
 	fucomi	st, st(0)
-	jp	L251
+	jp	L284
 	fxch	st(1)
 	fucomi	st, st(0)
-	jp	L254
+	jp	L287
 	fxch	st(1)
 	fxam
 	fnstsw	ax
@@ -1234,25 +1281,25 @@ LFB33:
 	and	edx, 512
 	and	eax, 512
 	cmp	edx, eax
-	je	L248
+	je	L281
 	test	edx, edx
 	fcmove	st, st(1)
 	fstp	st(1)
 	ret
 	.p2align 4,,10
 	.p2align 3
-L251:
+L284:
 	fstp	st(0)
-	jmp	L246
+	jmp	L279
 	.p2align 4,,10
 	.p2align 3
-L254:
+L287:
 	fstp	st(0)
-L246:
+L279:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L248:
+L281:
 	fcomi	st, st(1)
 	fcmovbe	st, st(1)
 	fstp	st(1)
@@ -1268,165 +1315,10 @@ LFB34:
 	fld	DWORD PTR [esp+8]
 	fld	DWORD PTR [esp+4]
 	fucomi	st, st(0)
-	jp	L260
+	jp	L293
 	fxch	st(1)
-	fucomi	st, st(0)
-	jp	L263
-	fxch	st(1)
-	fxam
-	fnstsw	ax
-	fxch	st(1)
-	mov	edx, eax
-	fxam
-	fnstsw	ax
-	and	edx, 512
-	and	eax, 512
-	cmp	edx, eax
-	je	L257
-	test	edx, edx
-	fcmove	st, st(1)
-	fstp	st(1)
-	ret
-	.p2align 4,,10
-	.p2align 3
-L260:
-	fstp	st(0)
-	jmp	L255
-	.p2align 4,,10
-	.p2align 3
-L263:
-	fstp	st(0)
-L255:
-	ret
-	.p2align 4,,10
-	.p2align 3
-L257:
-	fcomi	st, st(1)
-	fcmovbe	st, st(1)
-	fstp	st(1)
-	ret
-	.cfi_endproc
-LFE34:
-	.p2align 4
-	.globl	_fmaxl
-	.def	_fmaxl;	.scl	2;	.type	32;	.endef
-_fmaxl:
-LFB35:
-	.cfi_startproc
-	fld	TBYTE PTR [esp+16]
-	fld	TBYTE PTR [esp+4]
-	fucomi	st, st(0)
-	jp	L275
-	fxch	st(1)
-	fucomi	st, st(0)
-	jp	L276
-	fxch	st(1)
-	fxam
-	fnstsw	ax
-	fxch	st(1)
-	mov	edx, eax
-	fxam
-	fnstsw	ax
-	and	edx, 512
-	and	eax, 512
-	cmp	edx, eax
-	jne	L274
-	fcomi	st, st(1)
-	jbe	L277
-	fstp	st(1)
-	jmp	L270
-	.p2align 4,,10
-	.p2align 3
-L276:
-	fstp	st(0)
-	jmp	L270
-	.p2align 4,,10
-	.p2align 3
-L277:
-	fstp	st(0)
-	jmp	L270
-	.p2align 4,,10
-	.p2align 3
-L278:
-	fstp	st(0)
-L270:
-	jmp	L264
-	.p2align 4,,10
-	.p2align 3
-L275:
-	fstp	st(0)
-L264:
-	ret
-	.p2align 4,,10
-	.p2align 3
-L274:
-	test	edx, edx
-	je	L278
-	fstp	st(1)
-	ret
-	.cfi_endproc
-LFE35:
-	.p2align 4
-	.globl	_fmin
-	.def	_fmin;	.scl	2;	.type	32;	.endef
-_fmin:
-LFB36:
-	.cfi_startproc
-	fld	QWORD PTR [esp+12]
-	fld	QWORD PTR [esp+4]
-	fucomi	st, st(0)
-	jp	L287
-	fxch	st(1)
-	fucomi	st, st(0)
-	jp	L285
-	fxch	st(1)
-	fxam
-	fnstsw	ax
-	fxch	st(1)
-	mov	edx, eax
-	fxam
-	fnstsw	ax
-	and	edx, 512
-	and	eax, 512
-	cmp	edx, eax
-	je	L281
-	test	edx, edx
-	fcmovne	st, st(1)
-	fstp	st(1)
-	ret
-	.p2align 4,,10
-	.p2align 3
-L285:
-	fstp	st(0)
-	jmp	L279
-	.p2align 4,,10
-	.p2align 3
-L287:
-	fstp	st(0)
-L279:
-	ret
-	.p2align 4,,10
-	.p2align 3
-L281:
-	fcomi	st, st(1)
-	fcmovnbe	st, st(1)
-	fstp	st(1)
-	ret
-	.cfi_endproc
-LFE36:
-	.p2align 4
-	.globl	_fminf
-	.def	_fminf;	.scl	2;	.type	32;	.endef
-_fminf:
-LFB37:
-	.cfi_startproc
-	fld	DWORD PTR [esp+8]
-	fld	DWORD PTR [esp+4]
 	fucomi	st, st(0)
 	jp	L296
-	fxch	st(1)
-	fucomi	st, st(0)
-	jp	L294
 	fxch	st(1)
 	fxam
 	fnstsw	ax
@@ -1439,12 +1331,12 @@ LFB37:
 	cmp	edx, eax
 	je	L290
 	test	edx, edx
-	fcmovne	st, st(1)
+	fcmove	st, st(1)
 	fstp	st(1)
 	ret
 	.p2align 4,,10
 	.p2align 3
-L294:
+L293:
 	fstp	st(0)
 	jmp	L288
 	.p2align 4,,10
@@ -1457,16 +1349,16 @@ L288:
 	.p2align 3
 L290:
 	fcomi	st, st(1)
-	fcmovnbe	st, st(1)
+	fcmovbe	st, st(1)
 	fstp	st(1)
 	ret
 	.cfi_endproc
-LFE37:
+LFE34:
 	.p2align 4
-	.globl	_fminl
-	.def	_fminl;	.scl	2;	.type	32;	.endef
-_fminl:
-LFB38:
+	.globl	_fmaxl
+	.def	_fmaxl;	.scl	2;	.type	32;	.endef
+_fmaxl:
+LFB35:
 	.cfi_startproc
 	fld	TBYTE PTR [esp+16]
 	fld	TBYTE PTR [esp+4]
@@ -1488,27 +1380,27 @@ LFB38:
 	jne	L307
 	fcomi	st, st(1)
 	jbe	L310
-	fstp	st(0)
-	jmp	L302
-	.p2align 4,,10
-	.p2align 3
-L308:
-	fstp	st(0)
-	jmp	L302
-	.p2align 4,,10
-	.p2align 3
-L310:
 	fstp	st(1)
-	jmp	L302
-	.p2align 4,,10
-	.p2align 3
-L311:
-	fstp	st(1)
-L302:
-	jmp	L297
+	jmp	L303
 	.p2align 4,,10
 	.p2align 3
 L309:
+	fstp	st(0)
+	jmp	L303
+	.p2align 4,,10
+	.p2align 3
+L310:
+	fstp	st(0)
+	jmp	L303
+	.p2align 4,,10
+	.p2align 3
+L311:
+	fstp	st(0)
+L303:
+	jmp	L297
+	.p2align 4,,10
+	.p2align 3
+L308:
 	fstp	st(0)
 L297:
 	ret
@@ -1517,6 +1409,161 @@ L297:
 L307:
 	test	edx, edx
 	je	L311
+	fstp	st(1)
+	ret
+	.cfi_endproc
+LFE35:
+	.p2align 4
+	.globl	_fmin
+	.def	_fmin;	.scl	2;	.type	32;	.endef
+_fmin:
+LFB36:
+	.cfi_startproc
+	fld	QWORD PTR [esp+12]
+	fld	QWORD PTR [esp+4]
+	fucomi	st, st(0)
+	jp	L320
+	fxch	st(1)
+	fucomi	st, st(0)
+	jp	L318
+	fxch	st(1)
+	fxam
+	fnstsw	ax
+	fxch	st(1)
+	mov	edx, eax
+	fxam
+	fnstsw	ax
+	and	edx, 512
+	and	eax, 512
+	cmp	edx, eax
+	je	L314
+	test	edx, edx
+	fcmovne	st, st(1)
+	fstp	st(1)
+	ret
+	.p2align 4,,10
+	.p2align 3
+L318:
+	fstp	st(0)
+	jmp	L312
+	.p2align 4,,10
+	.p2align 3
+L320:
+	fstp	st(0)
+L312:
+	ret
+	.p2align 4,,10
+	.p2align 3
+L314:
+	fcomi	st, st(1)
+	fcmovnbe	st, st(1)
+	fstp	st(1)
+	ret
+	.cfi_endproc
+LFE36:
+	.p2align 4
+	.globl	_fminf
+	.def	_fminf;	.scl	2;	.type	32;	.endef
+_fminf:
+LFB37:
+	.cfi_startproc
+	fld	DWORD PTR [esp+8]
+	fld	DWORD PTR [esp+4]
+	fucomi	st, st(0)
+	jp	L329
+	fxch	st(1)
+	fucomi	st, st(0)
+	jp	L327
+	fxch	st(1)
+	fxam
+	fnstsw	ax
+	fxch	st(1)
+	mov	edx, eax
+	fxam
+	fnstsw	ax
+	and	edx, 512
+	and	eax, 512
+	cmp	edx, eax
+	je	L323
+	test	edx, edx
+	fcmovne	st, st(1)
+	fstp	st(1)
+	ret
+	.p2align 4,,10
+	.p2align 3
+L327:
+	fstp	st(0)
+	jmp	L321
+	.p2align 4,,10
+	.p2align 3
+L329:
+	fstp	st(0)
+L321:
+	ret
+	.p2align 4,,10
+	.p2align 3
+L323:
+	fcomi	st, st(1)
+	fcmovnbe	st, st(1)
+	fstp	st(1)
+	ret
+	.cfi_endproc
+LFE37:
+	.p2align 4
+	.globl	_fminl
+	.def	_fminl;	.scl	2;	.type	32;	.endef
+_fminl:
+LFB38:
+	.cfi_startproc
+	fld	TBYTE PTR [esp+16]
+	fld	TBYTE PTR [esp+4]
+	fucomi	st, st(0)
+	jp	L341
+	fxch	st(1)
+	fucomi	st, st(0)
+	jp	L342
+	fxch	st(1)
+	fxam
+	fnstsw	ax
+	fxch	st(1)
+	mov	edx, eax
+	fxam
+	fnstsw	ax
+	and	edx, 512
+	and	eax, 512
+	cmp	edx, eax
+	jne	L340
+	fcomi	st, st(1)
+	jbe	L343
+	fstp	st(0)
+	jmp	L335
+	.p2align 4,,10
+	.p2align 3
+L341:
+	fstp	st(0)
+	jmp	L335
+	.p2align 4,,10
+	.p2align 3
+L343:
+	fstp	st(1)
+	jmp	L335
+	.p2align 4,,10
+	.p2align 3
+L344:
+	fstp	st(1)
+L335:
+	jmp	L330
+	.p2align 4,,10
+	.p2align 3
+L342:
+	fstp	st(0)
+L330:
+	ret
+	.p2align 4,,10
+	.p2align 3
+L340:
+	test	edx, edx
+	je	L344
 	fstp	st(0)
 	ret
 	.cfi_endproc
@@ -1530,19 +1577,19 @@ LFB39:
 	mov	eax, DWORD PTR [esp+4]
 	mov	edx, OFFSET FLAT:_s.0
 	test	eax, eax
-	je	L313
+	je	L346
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L314:
+L347:
 	mov	ecx, eax
 	add	edx, 1
 	and	ecx, 63
 	movzx	ecx, BYTE PTR _digits[ecx]
 	mov	BYTE PTR [edx-1], cl
 	shr	eax, 6
-	jne	L314
-L313:
+	jne	L347
+L346:
 	mov	BYTE PTR [edx], 0
 	mov	eax, OFFSET FLAT:_s.0
 	ret
@@ -1592,20 +1639,20 @@ LFB42:
 	mov	eax, DWORD PTR [esp+8]
 	mov	edx, DWORD PTR [esp+4]
 	test	eax, eax
-	je	L325
-	movd	xmm0, DWORD PTR [eax]
-	pinsrd	xmm0, eax, 1
-	movq	QWORD PTR [edx], xmm0
+	je	L359
+	vmovd	xmm1, DWORD PTR [eax]
+	vpinsrd	xmm0, xmm1, eax, 1
+	vmovq	QWORD PTR [edx], xmm0
 	mov	DWORD PTR [eax], edx
 	mov	ecx, DWORD PTR [edx]
 	test	ecx, ecx
-	je	L319
+	je	L358
 	mov	DWORD PTR [ecx+4], edx
-L319:
+L358:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L325:
+L359:
 	mov	DWORD PTR [edx], 0
 	mov	DWORD PTR [edx+4], 0
 	ret
@@ -1620,15 +1667,15 @@ LFB43:
 	mov	eax, DWORD PTR [esp+4]
 	mov	edx, DWORD PTR [eax]
 	test	edx, edx
-	je	L327
+	je	L361
 	mov	ecx, DWORD PTR [eax+4]
 	mov	DWORD PTR [edx+4], ecx
-L327:
+L361:
 	mov	eax, DWORD PTR [eax+4]
 	test	eax, eax
-	je	L326
+	je	L369
 	mov	DWORD PTR [eax], edx
-L326:
+L369:
 	ret
 	.cfi_endproc
 LFE43:
@@ -1656,28 +1703,28 @@ LFB44:
 	mov	edi, DWORD PTR [esp+76]
 	mov	ecx, DWORD PTR [eax]
 	test	ecx, ecx
-	je	L336
+	je	L371
 	mov	ebx, DWORD PTR [esp+68]
 	mov	DWORD PTR [esp+28], ecx
 	xor	ebp, ebp
 	mov	esi, ebx
-	jmp	L338
+	jmp	L373
 	.p2align 4,,10
 	.p2align 3
-L353:
+L388:
 	add	ebp, 1
 	add	esi, edi
 	cmp	DWORD PTR [esp+28], ebp
-	je	L352
-L338:
+	je	L387
+L373:
 	mov	edx, DWORD PTR [esp+64]
 	mov	DWORD PTR [esp+4], esi
 	mov	ebx, esi
 	mov	DWORD PTR [esp], edx
 	call	[DWORD PTR [esp+80]]
 	test	eax, eax
-	jne	L353
-L335:
+	jne	L388
+L370:
 	add	esp, 44
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -1697,10 +1744,10 @@ L335:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L352:
+L387:
 	.cfi_restore_state
 	mov	ecx, DWORD PTR [esp+28]
-L336:
+L371:
 	mov	ebp, DWORD PTR [esp+72]
 	lea	eax, [ecx+1]
 	imul	ecx, edi
@@ -1708,7 +1755,7 @@ L336:
 	mov	DWORD PTR [ebp+0], eax
 	mov	ebx, ecx
 	test	edi, edi
-	je	L335
+	je	L370
 	mov	DWORD PTR [esp+8], edi
 	mov	edi, DWORD PTR [esp+64]
 	mov	DWORD PTR [esp], ecx
@@ -1755,25 +1802,25 @@ LFB45:
 	mov	eax, DWORD PTR [esp+56]
 	mov	ebp, DWORD PTR [eax]
 	test	ebp, ebp
-	je	L355
+	je	L390
 	mov	edi, DWORD PTR [esp+52]
 	xor	esi, esi
-	jmp	L357
+	jmp	L392
 	.p2align 4,,10
 	.p2align 3
-L367:
+L402:
 	add	esi, 1
 	add	edi, DWORD PTR [esp+60]
 	cmp	ebp, esi
-	je	L355
-L357:
+	je	L390
+L392:
 	mov	edx, DWORD PTR [esp+48]
 	mov	DWORD PTR [esp+4], edi
 	mov	ebx, edi
 	mov	DWORD PTR [esp], edx
 	call	[DWORD PTR [esp+64]]
 	test	eax, eax
-	jne	L367
+	jne	L402
 	add	esp, 28
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -1793,7 +1840,7 @@ L357:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L355:
+L390:
 	.cfi_restore_state
 	add	esp, 28
 	.cfi_def_cfa_offset 20
@@ -1849,39 +1896,39 @@ LFB47:
 	movsx	ecx, BYTE PTR [eax]
 	lea	ebx, [ecx-9]
 	cmp	ebx, 4
-	jbe	L392
+	jbe	L427
 	mov	edx, ecx
-	jmp	L396
+	jmp	L431
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L392:
+L427:
 	movsx	ecx, BYTE PTR [eax+1]
 	add	eax, 1
 	lea	esi, [ecx-9]
 	mov	edx, ecx
 	cmp	esi, 4
-	jbe	L392
-L396:
+	jbe	L427
+L431:
 	cmp	dl, 32
-	je	L392
+	je	L427
 	cmp	dl, 43
-	je	L373
+	je	L408
 	cmp	dl, 45
-	jne	L397
+	jne	L432
 	movsx	ebp, BYTE PTR [eax+1]
 	lea	edi, [eax+1]
 	mov	edx, ebp
 	sub	ebp, 48
 	cmp	ebp, 9
-	ja	L382
+	ja	L417
 	mov	ebp, 1
-L376:
+L411:
 	xor	esi, esi
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L379:
+L414:
 	lea	ebx, [edx-48]
 	add	edi, 1
 	lea	ecx, [esi+esi*4]
@@ -1893,7 +1940,7 @@ L379:
 	sub	ebx, 48
 	sub	esi, eax
 	cmp	ebx, 9
-	jbe	L379
+	jbe	L414
 	sub	eax, ecx
 	test	ebp, ebp
 	pop	ebx
@@ -1913,16 +1960,16 @@ L379:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L397:
+L432:
 	.cfi_restore_state
 	sub	ecx, 48
 	mov	edi, eax
 	xor	ebp, ebp
 	cmp	ecx, 9
-	jbe	L376
-L382:
+	jbe	L411
+L417:
 	xor	eax, eax
-L398:
+L433:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -1939,7 +1986,7 @@ L398:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L373:
+L408:
 	.cfi_restore_state
 	lea	edi, [eax+1]
 	movsx	eax, BYTE PTR [eax+1]
@@ -1947,9 +1994,9 @@ L373:
 	mov	edx, eax
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	L376
+	jbe	L411
 	xor	eax, eax
-	jmp	L398
+	jmp	L433
 	.cfi_endproc
 LFE47:
 	.p2align 4
@@ -1974,37 +2021,37 @@ LFB158:
 	movsx	ecx, BYTE PTR [eax]
 	lea	ebx, [ecx-9]
 	cmp	ebx, 4
-	jbe	L420
+	jbe	L455
 	mov	edx, ecx
-	jmp	L423
+	jmp	L458
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L420:
+L455:
 	movsx	ecx, BYTE PTR [eax+1]
 	add	eax, 1
 	lea	esi, [ecx-9]
 	mov	edx, ecx
 	cmp	esi, 4
-	jbe	L420
-L423:
+	jbe	L455
+L458:
 	cmp	dl, 32
-	je	L420
+	je	L455
 	cmp	dl, 43
-	je	L403
+	je	L438
 	cmp	dl, 45
-	je	L424
+	je	L459
 	sub	ecx, 48
 	mov	edi, eax
 	xor	ebp, ebp
 	cmp	ecx, 9
-	ja	L411
-L405:
+	ja	L446
+L440:
 	xor	esi, esi
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L408:
+L443:
 	lea	ebx, [edx-48]
 	add	edi, 1
 	lea	ecx, [esi+esi*4]
@@ -2016,7 +2063,7 @@ L408:
 	sub	ebx, 48
 	sub	esi, eax
 	cmp	ebx, 9
-	jbe	L408
+	jbe	L443
 	sub	eax, ecx
 	test	ebp, ebp
 	pop	ebx
@@ -2036,7 +2083,7 @@ L408:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L424:
+L459:
 	.cfi_restore_state
 	lea	edi, [eax+1]
 	movsx	eax, BYTE PTR [eax+1]
@@ -2044,8 +2091,8 @@ L424:
 	mov	edx, eax
 	sub	eax, 48
 	cmp	eax, 9
-	jbe	L405
-L411:
+	jbe	L440
+L446:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -2063,16 +2110,16 @@ L411:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L403:
+L438:
 	.cfi_restore_state
 	movsx	ebp, BYTE PTR [eax+1]
 	lea	edi, [eax+1]
 	mov	edx, ebp
 	sub	ebp, 48
 	cmp	ebp, 9
-	ja	L411
+	ja	L446
 	xor	ebp, ebp
-	jmp	L405
+	jmp	L440
 	.cfi_endproc
 LFE158:
 	.p2align 4
@@ -2099,41 +2146,41 @@ LFB49:
 	movsx	eax, BYTE PTR [ecx]
 	lea	ebx, [eax-9]
 	cmp	ebx, 4
-	jbe	L448
+	jbe	L483
 	mov	edx, eax
-	jmp	L453
+	jmp	L488
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L448:
+L483:
 	movsx	eax, BYTE PTR [ecx+1]
 	add	ecx, 1
 	lea	esi, [eax-9]
 	mov	edx, eax
 	cmp	esi, 4
-	jbe	L448
-L453:
+	jbe	L483
+L488:
 	cmp	dl, 32
-	je	L448
+	je	L483
 	cmp	dl, 43
-	je	L429
+	je	L464
 	cmp	dl, 45
-	jne	L454
+	jne	L489
 	movsx	ebp, BYTE PTR [ecx+1]
 	lea	eax, [ecx+1]
 	mov	edx, ebp
 	sub	ebp, 48
 	cmp	ebp, 9
-	ja	L438
+	ja	L473
 	mov	esi, 1
-L432:
+L467:
 	mov	DWORD PTR [esp+12], esi
 	xor	ecx, ecx
 	xor	ebx, ebx
 	.p2align 6
 	.p2align 4
 	.p2align 3
-L435:
+L470:
 	mov	ebp, ecx
 	mov	edi, ebx
 	sal	ebp, 2
@@ -2155,15 +2202,15 @@ L435:
 	sbb	ebx, edi
 	sub	ebp, 48
 	cmp	ebp, 9
-	jbe	L435
+	jbe	L470
 	mov	edx, DWORD PTR [esp+12]
 	test	edx, edx
-	jne	L425
+	jne	L460
 	sub	esi, DWORD PTR [esp]
 	sbb	edi, DWORD PTR [esp+4]
 	mov	ecx, esi
 	mov	ebx, edi
-L425:
+L460:
 	add	esp, 20
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -2184,14 +2231,14 @@ L425:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L454:
+L489:
 	.cfi_restore_state
 	lea	ebx, [eax-48]
 	xor	esi, esi
 	mov	eax, ecx
 	cmp	ebx, 9
-	jbe	L432
-L438:
+	jbe	L467
+L473:
 	add	esp, 20
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -2214,7 +2261,7 @@ L438:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L429:
+L464:
 	.cfi_restore_state
 	movsx	edi, BYTE PTR [ecx+1]
 	lea	eax, [ecx+1]
@@ -2222,8 +2269,8 @@ L429:
 	mov	edx, edi
 	sub	edi, 48
 	cmp	edi, 9
-	jbe	L432
-	jmp	L438
+	jbe	L467
+	jmp	L473
 	.cfi_endproc
 LFE49:
 	.p2align 4
@@ -2250,10 +2297,10 @@ LFB50:
 	mov	edi, DWORD PTR [esp+60]
 	.p2align 4
 	.p2align 3
-L470:
+L505:
 	test	ebx, ebx
-	je	L456
-L471:
+	je	L491
+L506:
 	mov	esi, ebx
 	mov	eax, DWORD PTR [esp+48]
 	shr	esi
@@ -2264,17 +2311,17 @@ L471:
 	mov	DWORD PTR [esp+4], ebp
 	call	[DWORD PTR [esp+64]]
 	test	eax, eax
-	js	L460
-	je	L455
+	js	L495
+	je	L490
 	sub	ebx, 1
 	lea	edx, [ebp+0+edi]
 	sub	ebx, esi
 	mov	DWORD PTR [esp+52], edx
 	test	ebx, ebx
-	jne	L471
-L456:
+	jne	L506
+L491:
 	xor	ebp, ebp
-L455:
+L490:
 	add	esp, 28
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -2294,10 +2341,10 @@ L455:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L460:
+L495:
 	.cfi_restore_state
 	mov	ebx, esi
-	jmp	L470
+	jmp	L505
 	.cfi_endproc
 LFE50:
 	.p2align 4
@@ -2323,10 +2370,10 @@ LFB51:
 	mov	ebp, DWORD PTR [esp+56]
 	mov	edi, DWORD PTR [esp+60]
 	test	ebp, ebp
-	je	L477
+	je	L512
 	.p2align 4
 	.p2align 3
-L485:
+L520:
 	mov	esi, ebp
 	mov	eax, DWORD PTR [esp+68]
 	mov	edx, DWORD PTR [esp+48]
@@ -2339,16 +2386,16 @@ L485:
 	mov	DWORD PTR [esp+4], ebx
 	call	[DWORD PTR [esp+64]]
 	test	eax, eax
-	je	L472
-	jle	L475
+	je	L507
+	jle	L510
 	lea	ebp, [ebp-1]
 	lea	ecx, [ebx+edi]
 	sar	ebp
 	mov	DWORD PTR [esp+52], ecx
-	jne	L485
-L477:
+	jne	L520
+L512:
 	xor	ebx, ebx
-L472:
+L507:
 	add	esp, 28
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -2368,12 +2415,12 @@ L472:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L475:
+L510:
 	.cfi_restore_state
 	test	esi, esi
-	je	L477
+	je	L512
 	mov	ebp, esi
-	jmp	L485
+	jmp	L520
 	.cfi_endproc
 LFE51:
 	.p2align 4
@@ -2547,23 +2594,23 @@ LFB59:
 	movzx	ecx, WORD PTR [esp+8]
 	movzx	edx, WORD PTR [eax]
 	test	dx, dx
-	jne	L501
-	jmp	L504
+	jne	L536
+	jmp	L539
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L503:
+L538:
 	movzx	edx, WORD PTR [eax+2]
 	add	eax, 2
 	test	dx, dx
-	je	L504
-L501:
+	je	L539
+L536:
 	cmp	cx, dx
-	jne	L503
+	jne	L538
 	ret
 	.p2align 4,,10
 	.p2align 3
-L504:
+L539:
 	xor	eax, eax
 	ret
 	.cfi_endproc
@@ -2582,29 +2629,29 @@ LFB60:
 	movzx	eax, WORD PTR [edx]
 	movzx	ebx, WORD PTR [ecx]
 	cmp	ax, bx
-	je	L509
-	jmp	L510
+	je	L544
+	jmp	L545
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L511:
+L546:
 	movzx	eax, WORD PTR [edx+2]
 	movzx	ebx, WORD PTR [ecx+2]
 	add	edx, 2
 	add	ecx, 2
 	cmp	ax, bx
-	jne	L510
-L509:
+	jne	L545
+L544:
 	test	ax, ax
-	jne	L511
-L510:
+	jne	L546
+L545:
 	mov	edx, -1
 	cmp	ax, bx
-	jb	L508
+	jb	L543
 	xor	edx, edx
 	cmp	bx, ax
 	setb	dl
-L508:
+L543:
 	mov	eax, edx
 	pop	ebx
 	.cfi_restore 3
@@ -2627,12 +2674,12 @@ LFB61:
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L518:
+L553:
 	movzx	edx, WORD PTR [ebx+eax]
 	mov	WORD PTR [ecx+eax], dx
 	add	eax, 2
 	test	dx, dx
-	jne	L518
+	jne	L553
 	mov	eax, ecx
 	pop	ebx
 	.cfi_restore 3
@@ -2648,21 +2695,21 @@ LFB62:
 	.cfi_startproc
 	mov	edx, DWORD PTR [esp+4]
 	cmp	WORD PTR [edx], 0
-	je	L524
+	je	L559
 	mov	eax, edx
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L523:
+L558:
 	add	eax, 2
 	cmp	WORD PTR [eax], 0
-	jne	L523
+	jne	L558
 	sub	eax, edx
 	sar	eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-L524:
+L559:
 	xor	eax, eax
 	ret
 	.cfi_endproc
@@ -2680,26 +2727,26 @@ LFB63:
 	mov	edx, DWORD PTR [esp+8]
 	mov	eax, DWORD PTR [esp+12]
 	test	ecx, ecx
-	jne	L527
-	jmp	L533
+	jne	L562
+	jmp	L568
 	.p2align 4,,10
 	.p2align 3
-L541:
+L576:
 	test	bx, bx
-	je	L531
+	je	L566
 	add	edx, 2
 	add	eax, 2
 	sub	ecx, 1
-	je	L533
-L527:
+	je	L568
+L562:
 	movzx	ebx, WORD PTR [edx]
 	cmp	WORD PTR [eax], bx
-	je	L541
-L531:
+	je	L576
+L566:
 	movzx	ebx, WORD PTR [edx]
 	movzx	eax, WORD PTR [eax]
 	cmp	bx, ax
-	jb	L542
+	jb	L577
 	cmp	ax, bx
 	pop	ebx
 	.cfi_remember_state
@@ -2710,7 +2757,7 @@ L531:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L542:
+L577:
 	.cfi_restore_state
 	mov	eax, -1
 	pop	ebx
@@ -2720,7 +2767,7 @@ L542:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L533:
+L568:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -2739,22 +2786,22 @@ LFB64:
 	mov	eax, DWORD PTR [esp+4]
 	movzx	ecx, WORD PTR [esp+8]
 	test	edx, edx
-	jne	L544
-	jmp	L547
+	jne	L579
+	jmp	L582
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L546:
+L581:
 	add	eax, 2
 	sub	edx, 1
-	je	L547
-L544:
+	je	L582
+L579:
 	cmp	WORD PTR [eax], cx
-	jne	L546
+	jne	L581
 	ret
 	.p2align 4,,10
 	.p2align 3
-L547:
+L582:
 	xor	eax, eax
 	ret
 	.cfi_endproc
@@ -2772,27 +2819,27 @@ LFB65:
 	mov	ecx, DWORD PTR [esp+8]
 	mov	edx, DWORD PTR [esp+12]
 	test	eax, eax
-	jne	L552
-	jmp	L551
+	jne	L587
+	jmp	L586
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L554:
+L589:
 	add	ecx, 2
 	add	edx, 2
 	sub	eax, 1
-	je	L557
-L552:
+	je	L592
+L587:
 	movzx	ebx, WORD PTR [ecx]
 	cmp	bx, WORD PTR [edx]
-	je	L554
+	je	L589
 	movzx	eax, WORD PTR [edx]
 	cmp	bx, ax
-	jb	L564
+	jb	L599
 	cmp	ax, bx
 	setb	dl
 	movzx	eax, dl
-L551:
+L586:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -2800,7 +2847,7 @@ L551:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L564:
+L599:
 	.cfi_restore_state
 	mov	eax, -1
 	pop	ebx
@@ -2810,7 +2857,7 @@ L564:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L557:
+L592:
 	.cfi_restore_state
 	xor	eax, eax
 	pop	ebx
@@ -2833,14 +2880,14 @@ LFB66:
 	mov	eax, DWORD PTR [esp+40]
 	mov	ebx, DWORD PTR [esp+32]
 	test	eax, eax
-	je	L566
+	je	L601
 	mov	edx, DWORD PTR [esp+36]
 	add	eax, eax
 	mov	DWORD PTR [esp], ebx
 	mov	DWORD PTR [esp+8], eax
 	mov	DWORD PTR [esp+4], edx
 	call	_memcpy
-L566:
+L601:
 	add	esp, 24
 	.cfi_def_cfa_offset 8
 	mov	eax, ebx
@@ -2864,92 +2911,91 @@ LFB67:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	edi, DWORD PTR [ebp+8]
-	mov	ecx, DWORD PTR [ebp+12]
-	mov	esi, DWORD PTR [ebp+16]
-	cmp	edi, ecx
-	je	L611
-	mov	edx, edi
-	lea	ebx, [esi-1]
-	lea	eax, [esi+esi]
-	sub	edx, ecx
-	mov	DWORD PTR [esp+12], ebx
-	cmp	edx, eax
-	jnb	L641
-	test	esi, esi
-	je	L611
-	cmp	esi, 1
-	je	L596
-	mov	edx, edi
-	sub	edx, ecx
-	add	edx, 14
-	cmp	edx, 12
-	jbe	L584
-	cmp	DWORD PTR [esp+12], 6
-	jbe	L597
-	sub	eax, 16
-	lea	edx, [ecx+eax]
-	add	eax, edi
-	mov	DWORD PTR [esp+8], eax
-	mov	eax, esi
-	mov	ebx, edx
-	shr	eax, 3
-	sal	eax, 4
-	sub	ebx, eax
-	mov	eax, DWORD PTR [esp+8]
-	.p2align 5
-	.p2align 4
-	.p2align 3
-L578:
-	movdqu	xmm3, XMMWORD PTR [edx]
+	mov	edi, DWORD PTR [ebp+12]
+	mov	ebx, DWORD PTR [ebp+16]
+	cmp	DWORD PTR [ebp+8], edi
+	je	L649
+	mov	ecx, DWORD PTR [ebp+8]
+	lea	edx, [ebx+ebx]
+	lea	eax, [ebx-1]
+	sub	ecx, edi
+	cmp	ecx, edx
+	jnb	L687
+	test	ebx, ebx
+	je	L649
+	cmp	ebx, 1
+	je	L630
+	mov	esi, DWORD PTR [ebp+8]
+	sub	esi, edi
+	add	esi, 14
+	cmp	esi, 12
+	jbe	L619
+	cmp	eax, 6
+	jbe	L631
 	sub	edx, 16
-	sub	eax, 16
-	movups	XMMWORD PTR [eax+16], xmm3
-	cmp	ebx, edx
-	jne	L578
-	mov	eax, esi
-	and	eax, -8
-	sub	DWORD PTR [esp+12], eax
-	test	esi, 7
-	je	L611
-	mov	edx, esi
-	sub	edx, eax
-	cmp	edx, 1
-	je	L581
-L577:
-	sub	esi, eax
-	mov	ebx, edx
-	lea	eax, [esi-4+esi]
-	shr	ebx
-	lea	esi, [ecx+eax]
-	add	eax, edi
-	movd	xmm4, DWORD PTR [esi]
-	movd	DWORD PTR [eax], xmm4
-	cmp	ebx, 1
-	je	L582
-	movd	xmm5, DWORD PTR [esi-4]
-	movd	DWORD PTR [eax-4], xmm5
-	cmp	ebx, 2
-	je	L582
-	mov	ebx, DWORD PTR [esi-8]
-	mov	DWORD PTR [eax-8], ebx
-L582:
-	test	dl, 1
-	je	L611
-	and	edx, -2
-	sub	DWORD PTR [esp+12], edx
-L581:
-	mov	edx, DWORD PTR [esp+12]
-	movzx	ecx, WORD PTR [ecx+edx*2]
-	mov	WORD PTR [edi+edx*2], cx
-L611:
+	mov	esi, ebx
+	lea	ecx, [edi+edx]
+	shr	esi, 3
+	add	edx, DWORD PTR [ebp+8]
+	mov	DWORD PTR [esp+28], edx
+	sal	esi, 4
+	mov	edx, ecx
+	sub	edx, esi
+	mov	esi, edx
+	mov	edx, DWORD PTR [esp+28]
+	.p2align 5
+	.p2align 4
+	.p2align 3
+L613:
+	vmovdqu	xmm2, XMMWORD PTR [ecx]
+	sub	ecx, 16
+	sub	edx, 16
+	vmovdqu	XMMWORD PTR [edx+16], xmm2
+	cmp	esi, ecx
+	jne	L613
+	mov	edx, ebx
+	and	edx, -8
+	sub	eax, edx
+	test	bl, 7
+	je	L649
+	mov	ecx, ebx
+	sub	ecx, edx
+	cmp	ecx, 1
+	je	L616
+L612:
+	sub	ebx, edx
+	mov	esi, ecx
+	lea	edx, [ebx-4+ebx]
+	shr	esi
+	lea	ebx, [edi+edx]
+	add	edx, DWORD PTR [ebp+8]
+	vmovd	xmm3, DWORD PTR [ebx]
+	vmovd	DWORD PTR [edx], xmm3
+	cmp	esi, 1
+	je	L617
+	vmovd	xmm4, DWORD PTR [ebx-4]
+	vmovd	DWORD PTR [edx-4], xmm4
+	cmp	esi, 2
+	je	L617
+	mov	esi, DWORD PTR [ebx-8]
+	mov	DWORD PTR [edx-8], esi
+L617:
+	test	cl, 1
+	je	L649
+	and	ecx, -2
+	sub	eax, ecx
+L616:
+	movzx	ecx, WORD PTR [edi+eax*2]
+	mov	edi, DWORD PTR [ebp+8]
+	mov	WORD PTR [edi+eax*2], cx
+L649:
+	mov	eax, DWORD PTR [ebp+8]
 	lea	esp, [ebp-12]
-	mov	eax, edi
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -2963,130 +3009,142 @@ L611:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L641:
+L687:
 	.cfi_restore_state
-	test	esi, esi
-	je	L611
-	cmp	esi, 1
-	je	L598
-	lea	eax, [ecx+2]
-	mov	ebx, edi
-	sub	ebx, eax
-	cmp	ebx, 12
-	jbe	L586
-	cmp	DWORD PTR [esp+12], 6
-	jbe	L599
-	mov	ebx, esi
-	xor	eax, eax
-	shr	ebx, 3
+	test	ebx, ebx
+	je	L649
+	cmp	eax, 6
+	jbe	L632
+	mov	edx, DWORD PTR [ebp+8]
+	lea	esi, [edi+2]
+	sub	edx, esi
+	cmp	edx, 28
+	jbe	L633
+	cmp	eax, 14
+	jbe	L634
+	mov	DWORD PTR [esp+28], eax
+	mov	esi, ebx
+	mov	ecx, DWORD PTR [ebp+8]
+	xor	edx, edx
+	shr	esi, 4
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L588:
-	mov	edx, eax
-	add	eax, 1
-	sal	edx, 4
-	movdqu	xmm0, XMMWORD PTR [ecx+edx]
-	movups	XMMWORD PTR [edi+edx], xmm0
-	cmp	ebx, eax
-	jne	L588
-	mov	ebx, esi
-	and	ebx, -8
-	lea	eax, [ebx+ebx]
-	lea	edx, [ecx+eax]
-	mov	DWORD PTR [esp+12], edx
-	lea	edx, [edi+eax]
-	test	esi, 7
-	je	L611
-	sub	esi, ebx
-	cmp	esi, 1
-	je	L591
-L587:
-	add	ecx, eax
-	mov	ebx, esi
-	add	eax, edi
-	movd	xmm1, DWORD PTR [ecx]
-	shr	ebx
-	movd	DWORD PTR [eax], xmm1
-	cmp	ebx, 1
-	je	L592
-	movd	xmm2, DWORD PTR [ecx+4]
-	movd	DWORD PTR [eax+4], xmm2
-	cmp	ebx, 2
-	je	L592
-	mov	ecx, DWORD PTR [ecx+8]
-	mov	DWORD PTR [eax+8], ecx
-L592:
-	test	esi, 1
-	je	L611
-	mov	eax, esi
-	and	eax, -2
-	add	eax, eax
-	add	DWORD PTR [esp+12], eax
-	add	edx, eax
-L591:
-	mov	esi, DWORD PTR [esp+12]
-	mov	eax, edi
-	movzx	ebx, WORD PTR [esi]
+L623:
+	mov	eax, edx
+	add	edx, 1
+	sal	eax, 5
+	vmovdqu	ymm0, YMMWORD PTR [edi+eax]
+	vmovdqu	YMMWORD PTR [ecx+eax], ymm0
+	cmp	esi, edx
+	jne	L623
+	mov	esi, ebx
+	mov	eax, DWORD PTR [esp+28]
+	and	esi, -16
+	lea	edx, [esi+esi]
+	mov	DWORD PTR [esp+28], esi
+	sub	eax, esi
+	lea	ecx, [edi+edx]
+	add	edx, DWORD PTR [ebp+8]
+	test	bl, 15
+	je	L684
+	sub	ebx, esi
+	lea	esi, [ebx-1]
+	cmp	esi, 6
+	jbe	L688
+	vzeroupper
+L622:
+	mov	esi, DWORD PTR [esp+28]
+	vmovdqu	xmm1, XMMWORD PTR [edi+esi*2]
+	mov	edi, DWORD PTR [ebp+8]
+	vmovdqu	XMMWORD PTR [edi+esi*2], xmm1
+	mov	esi, ebx
+	and	esi, -8
+	sub	eax, esi
+	add	esi, esi
+	add	ecx, esi
+	add	edx, esi
+	and	ebx, 7
+	je	L649
+L626:
+	movzx	ebx, WORD PTR [ecx]
 	mov	WORD PTR [edx], bx
-	lea	esp, [ebp-12]
-	pop	ebx
-	.cfi_remember_state
-	.cfi_restore 3
-	pop	esi
-	.cfi_restore 6
-	pop	edi
-	.cfi_restore 7
-	pop	ebp
-	.cfi_restore 5
-	.cfi_def_cfa 4, 4
-	ret
+	test	eax, eax
+	je	L649
+	movzx	edi, WORD PTR [ecx+2]
+	mov	WORD PTR [edx+2], di
+	cmp	eax, 1
+	je	L649
+	movzx	esi, WORD PTR [ecx+4]
+	mov	WORD PTR [edx+4], si
+	cmp	eax, 2
+	je	L649
+	movzx	ebx, WORD PTR [ecx+6]
+	mov	WORD PTR [edx+6], bx
+	cmp	eax, 3
+	je	L649
+	movzx	edi, WORD PTR [ecx+8]
+	mov	WORD PTR [edx+8], di
+	cmp	eax, 4
+	je	L649
+	movzx	esi, WORD PTR [ecx+10]
+	mov	WORD PTR [edx+10], si
+	cmp	eax, 5
+	je	L649
+	movzx	eax, WORD PTR [ecx+12]
+	mov	WORD PTR [edx+12], ax
+	jmp	L649
 	.p2align 4,,10
 	.p2align 3
-L596:
-	.cfi_restore_state
-	mov	DWORD PTR [esp+12], 0
-L584:
-	mov	esi, DWORD PTR [esp+12]
+L630:
+	xor	eax, eax
+L619:
+	mov	ebx, DWORD PTR [ebp+8]
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L638:
-	movzx	eax, WORD PTR [ecx+esi*2]
-	mov	WORD PTR [edi+esi*2], ax
-	sub	esi, 1
-	jnb	L638
-	jmp	L611
+L682:
+	movzx	edx, WORD PTR [edi+eax*2]
+	mov	WORD PTR [ebx+eax*2], dx
+	sub	eax, 1
+	jnb	L682
+	jmp	L649
 	.p2align 4,,10
 	.p2align 3
-L598:
-	mov	DWORD PTR [esp+12], 0
-	lea	eax, [ecx+2]
-L586:
-	mov	ebx, DWORD PTR [esp+12]
-	mov	esi, edi
-	jmp	L594
+L632:
+	mov	edx, DWORD PTR [ebp+8]
+	lea	esi, [edi+2]
+	jmp	L683
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L642:
-	add	eax, 2
-L594:
-	movzx	ecx, WORD PTR [eax-2]
+L689:
 	add	esi, 2
-	mov	WORD PTR [esi-2], cx
-	sub	ebx, 1
-	jb	L611
-	jmp	L642
-L599:
-	mov	DWORD PTR [esp+12], ecx
-	mov	edx, edi
-	xor	eax, eax
-	jmp	L587
-L597:
-	mov	edx, esi
-	xor	eax, eax
-	jmp	L577
+L683:
+	movzx	ecx, WORD PTR [esi-2]
+	add	edx, 2
+	mov	WORD PTR [edx-2], cx
+	sub	eax, 1
+	jb	L649
+	jmp	L689
+L633:
+	mov	edx, DWORD PTR [ebp+8]
+	jmp	L683
+L634:
+	mov	DWORD PTR [esp+28], 0
+	mov	edx, DWORD PTR [ebp+8]
+	mov	ecx, edi
+	jmp	L622
+L631:
+	mov	ecx, ebx
+	xor	edx, edx
+	jmp	L612
+L688:
+	vzeroupper
+	jmp	L626
+L684:
+	vzeroupper
+	jmp	L649
 	.cfi_endproc
 LFE67:
 	.p2align 4
@@ -3101,65 +3159,88 @@ LFB68:
 	mov	ebp, esp
 	.cfi_def_cfa_register 5
 	push	edi
-	mov	eax, DWORD PTR [ebp+16]
-	mov	ecx, DWORD PTR [ebp+8]
 	push	esi
+	push	ebx
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
-	mov	edi, DWORD PTR [ebp+12]
-	push	ebx
 	.cfi_offset 3, -20
+	mov	eax, DWORD PTR [ebp+16]
+	mov	ecx, DWORD PTR [ebp+8]
+	mov	edi, DWORD PTR [ebp+12]
 	test	eax, eax
-	je	L644
-	lea	esi, [eax-1]
-	cmp	esi, 6
-	jbe	L648
-	mov	ebx, eax
-	movd	xmm0, edi
+	je	L691
+	lea	ebx, [eax-1]
+	cmp	ebx, 14
+	jbe	L697
+	vmovd	xmm0, edi
+	mov	esi, eax
 	xor	eax, eax
-	pshufb	xmm0, XMMWORD PTR LC4
-	shr	ebx, 3
-	.p2align 4
+	vpshufb	xmm1, xmm0, XMMWORD PTR LC4
+	shr	esi, 4
+	vinsertf128	ymm1, ymm1, xmm1, 1
+	.p2align 5
 	.p2align 4
 	.p2align 3
-L646:
+L693:
 	mov	edx, eax
 	add	eax, 1
-	sal	edx, 4
-	movups	XMMWORD PTR [ecx+edx], xmm0
-	cmp	ebx, eax
-	jne	L646
-	mov	ebx, DWORD PTR [ebp+16]
-	and	ebx, -8
-	sub	esi, ebx
-	lea	edx, [ecx+ebx*2]
-	test	BYTE PTR [ebp+16], 7
-	je	L644
-L645:
-	mov	WORD PTR [edx], di
-	test	esi, esi
-	je	L644
-	mov	WORD PTR [edx+2], di
-	cmp	esi, 1
-	je	L644
-	mov	WORD PTR [edx+4], di
-	cmp	esi, 2
-	je	L644
-	mov	WORD PTR [edx+6], di
-	cmp	esi, 3
-	je	L644
-	mov	WORD PTR [edx+8], di
-	cmp	esi, 4
-	je	L644
-	mov	WORD PTR [edx+10], di
-	cmp	esi, 5
-	je	L644
-	mov	WORD PTR [edx+12], di
-L644:
+	sal	edx, 5
+	vmovdqu	YMMWORD PTR [ecx+edx], ymm1
+	cmp	esi, eax
+	jne	L693
+	mov	eax, DWORD PTR [ebp+16]
+	and	eax, -16
+	mov	DWORD PTR [esp+28], eax
+	sub	ebx, eax
+	lea	eax, [ecx+eax*2]
+	test	BYTE PTR [ebp+16], 15
+	je	L728
+	vzeroupper
+L692:
+	mov	edx, DWORD PTR [esp+28]
+	mov	esi, DWORD PTR [ebp+16]
+	sub	esi, edx
+	lea	edx, [esi-1]
+	cmp	edx, 6
+	jbe	L695
+	mov	edx, DWORD PTR [esp+28]
+	vmovd	xmm2, edi
+	vpshufb	xmm3, xmm2, XMMWORD PTR LC4
+	vmovdqu	XMMWORD PTR [ecx+edx*2], xmm3
+	mov	edx, esi
+	and	edx, -8
+	sub	ebx, edx
+	and	esi, 7
+	lea	eax, [eax+edx*2]
+	je	L691
+L695:
+	mov	WORD PTR [eax], di
+	test	ebx, ebx
+	je	L691
+	mov	WORD PTR [eax+2], di
+	cmp	ebx, 1
+	je	L691
+	mov	WORD PTR [eax+4], di
+	cmp	ebx, 2
+	je	L691
+	mov	WORD PTR [eax+6], di
+	cmp	ebx, 3
+	je	L691
+	mov	WORD PTR [eax+8], di
+	cmp	ebx, 4
+	je	L691
+	mov	WORD PTR [eax+10], di
+	cmp	ebx, 5
+	je	L691
+	mov	WORD PTR [eax+12], di
+L691:
+	lea	esp, [ebp-12]
+	mov	eax, ecx
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
-	mov	eax, ecx
 	pop	esi
 	.cfi_restore 6
 	pop	edi
@@ -3168,10 +3249,14 @@ L644:
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
 	ret
-L648:
+L697:
 	.cfi_restore_state
-	mov	edx, ecx
-	jmp	L645
+	mov	DWORD PTR [esp+28], 0
+	mov	eax, ecx
+	jmp	L692
+L728:
+	vzeroupper
+	jmp	L691
 	.cfi_endproc
 LFE68:
 	.p2align 4
@@ -3188,103 +3273,101 @@ LFB69:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	eax, DWORD PTR [ebp+8]
 	mov	ecx, DWORD PTR [ebp+12]
 	mov	edx, DWORD PTR [ebp+16]
-	cmp	eax, ecx
-	jnb	L676
+	cmp	DWORD PTR [ebp+8], ecx
+	jnb	L730
 	test	edx, edx
-	je	L675
-	lea	ebx, [edx-1]
-	cmp	ebx, 2
-	jbe	L685
-	lea	edi, [eax-2+edx]
-	mov	esi, ecx
-	sub	esi, edi
-	lea	edi, [esi+14+ebx]
+	je	L827
+	lea	eax, [edx-1]
+	cmp	eax, 2
+	jbe	L739
+	mov	edi, DWORD PTR [ebp+8]
+	mov	ebx, ecx
+	lea	esi, [edi-2+edx]
+	sub	ebx, esi
+	lea	edi, [ebx+14+eax]
 	cmp	edi, 14
-	jbe	L685
-	lea	esi, [eax+edx]
-	lea	edi, [ecx+edx]
-	mov	DWORD PTR [esp+12], esi
-	mov	DWORD PTR [esp+8], edi
-	cmp	ebx, 14
-	jbe	L697
-	lea	esi, [edx-16]
-	lea	edi, [esi+ecx]
-	lea	ebx, [eax+esi]
-	mov	DWORD PTR [esp+4], edi
+	jbe	L739
+	mov	esi, DWORD PTR [ebp+8]
+	lea	ebx, [ecx+edx]
+	mov	DWORD PTR [esp+24], ebx
+	add	esi, edx
+	mov	DWORD PTR [esp+28], esi
+	cmp	eax, 14
+	jbe	L750
+	mov	eax, DWORD PTR [ebp+8]
+	lea	ebx, [edx-16]
 	mov	edi, edx
-	mov	esi, ebx
 	and	edi, -16
+	add	eax, ebx
+	add	ebx, ecx
+	mov	esi, eax
 	sub	esi, edi
-	mov	DWORD PTR [esp], edi
-	mov	edi, esi
-	mov	esi, DWORD PTR [esp+4]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L680:
-	movdqu	xmm3, XMMWORD PTR [ebx]
+L734:
+	vmovdqu	xmm2, XMMWORD PTR [eax]
+	sub	eax, 16
 	sub	ebx, 16
-	sub	esi, 16
-	movups	XMMWORD PTR [esi+16], xmm3
-	cmp	edi, ebx
-	jne	L680
-	mov	edi, DWORD PTR [esp]
-	mov	ebx, edx
-	sub	DWORD PTR [esp+8], edi
-	sub	DWORD PTR [esp+12], edi
-	sub	ebx, edi
+	vmovdqu	XMMWORD PTR [ebx+16], xmm2
+	cmp	esi, eax
+	jne	L734
+	mov	eax, edx
+	sub	DWORD PTR [esp+24], edi
+	sub	DWORD PTR [esp+28], edi
+	sub	eax, edi
 	cmp	edx, edi
-	je	L675
-	lea	esi, [ebx-1]
-	mov	edx, ebx
-	cmp	esi, 2
-	jbe	L682
-L679:
-	lea	esi, [edx-4]
-	mov	edi, edx
-	add	eax, esi
-	add	esi, ecx
-	shr	edi, 2
-	mov	ecx, DWORD PTR [eax]
-	mov	DWORD PTR [esi], ecx
-	cmp	edi, 1
-	je	L683
-	mov	ecx, DWORD PTR [eax-4]
-	mov	DWORD PTR [esi-4], ecx
-	cmp	edi, 2
-	je	L683
-	mov	eax, DWORD PTR [eax-8]
-	mov	DWORD PTR [esi-8], eax
-L683:
-	mov	edi, edx
-	and	edi, -4
-	sub	DWORD PTR [esp+8], edi
-	sub	DWORD PTR [esp+12], edi
-	sub	ebx, edi
-	and	edx, 3
-	je	L675
-L682:
-	mov	esi, DWORD PTR [esp+12]
-	mov	edx, DWORD PTR [esp+8]
-	movzx	ecx, BYTE PTR [esi-1]
-	mov	BYTE PTR [edx-1], cl
-	cmp	ebx, 1
-	je	L675
-	movzx	eax, BYTE PTR [esi-2]
-	mov	BYTE PTR [edx-2], al
+	je	L827
+	lea	ebx, [eax-1]
+	mov	edx, eax
 	cmp	ebx, 2
-	je	L675
-	movzx	ebx, BYTE PTR [esi-3]
-	mov	BYTE PTR [edx-3], bl
-L675:
+	jbe	L736
+L733:
+	mov	esi, DWORD PTR [ebp+8]
+	lea	ebx, [edx-4]
+	mov	edi, edx
+	shr	edi, 2
+	add	esi, ebx
+	add	ebx, ecx
+	mov	ecx, DWORD PTR [esi]
+	mov	DWORD PTR [ebx], ecx
+	cmp	edi, 1
+	je	L737
+	mov	ecx, DWORD PTR [esi-4]
+	mov	DWORD PTR [ebx-4], ecx
+	cmp	edi, 2
+	je	L737
+	mov	edi, DWORD PTR [esi-8]
+	mov	DWORD PTR [ebx-8], edi
+L737:
+	mov	ebx, edx
+	and	ebx, -4
+	sub	DWORD PTR [esp+24], ebx
+	sub	DWORD PTR [esp+28], ebx
+	sub	eax, ebx
+	and	edx, 3
+	je	L827
+L736:
+	mov	esi, DWORD PTR [esp+28]
+	mov	ecx, DWORD PTR [esp+24]
+	movzx	edx, BYTE PTR [esi-1]
+	mov	BYTE PTR [ecx-1], dl
+	cmp	eax, 1
+	je	L827
+	movzx	ebx, BYTE PTR [esi-2]
+	mov	BYTE PTR [ecx-2], bl
+	cmp	eax, 2
+	je	L827
+	movzx	eax, BYTE PTR [esi-3]
+	mov	BYTE PTR [ecx-3], al
+L827:
 	lea	esp, [ebp-12]
 	pop	ebx
 	.cfi_remember_state
@@ -3299,122 +3382,173 @@ L675:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L676:
+L730:
 	.cfi_restore_state
-	je	L675
+	je	L827
 	test	edx, edx
-	je	L675
-	lea	esi, [edx-1]
-	lea	ebx, [eax+1]
-	cmp	esi, 2
-	jbe	L687
-	mov	edi, ecx
-	sub	edi, ebx
-	cmp	edi, 14
-	jbe	L687
-	cmp	esi, 14
-	jbe	L698
+	je	L827
+	lea	eax, [edx-1]
+	cmp	eax, 14
+	jbe	L829
+	mov	esi, DWORD PTR [ebp+8]
+	mov	ebx, ecx
+	lea	edi, [esi+1]
+	sub	ebx, edi
+	cmp	ebx, 30
+	jbe	L741
+	cmp	eax, 30
+	jbe	L751
 	mov	esi, edx
-	mov	edi, ecx
-	and	esi, -16
-	lea	ebx, [eax+esi]
+	mov	eax, DWORD PTR [ebp+8]
+	mov	ebx, ecx
+	and	esi, -32
+	mov	edi, esi
+	add	edi, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L689:
-	movdqu	xmm0, XMMWORD PTR [eax]
-	add	eax, 16
-	add	edi, 16
-	movups	XMMWORD PTR [edi-16], xmm0
-	cmp	ebx, eax
-	jne	L689
-	lea	eax, [ecx+esi]
+L743:
+	vmovdqu	ymm0, YMMWORD PTR [eax]
+	add	eax, 32
+	add	ebx, 32
+	vmovdqu	YMMWORD PTR [ebx-32], ymm0
+	cmp	eax, edi
+	jne	L743
 	mov	edi, edx
-	mov	DWORD PTR [esp+12], ebx
-	mov	ecx, eax
+	mov	DWORD PTR [esp+28], eax
+	lea	ebx, [ecx+esi]
 	sub	edi, esi
 	cmp	edx, esi
-	je	L675
-	lea	esi, [edi-1]
+	je	L825
+	lea	eax, [edi-1]
 	mov	edx, edi
-	cmp	esi, 2
-	jbe	L692
-L688:
-	movd	xmm1, DWORD PTR [ebx]
-	mov	esi, edx
-	shr	esi, 2
-	movd	DWORD PTR [eax], xmm1
-	cmp	esi, 1
-	je	L693
-	movd	xmm2, DWORD PTR [ebx+4]
-	movd	DWORD PTR [eax+4], xmm2
-	cmp	esi, 2
-	je	L693
-	mov	ebx, DWORD PTR [ebx+8]
-	mov	DWORD PTR [eax+8], ebx
-L693:
-	test	dl, 3
-	je	L675
-	and	edx, -4
-	add	DWORD PTR [esp+12], edx
-	add	ecx, edx
-	sub	edi, edx
-L692:
-	mov	eax, DWORD PTR [esp+12]
-	movzx	edx, BYTE PTR [eax]
-	mov	BYTE PTR [ecx], dl
+	cmp	eax, 14
+	jbe	L830
+	vzeroupper
+L742:
+	mov	eax, DWORD PTR [ebp+8]
+	vmovdqu	xmm1, XMMWORD PTR [eax+esi]
+	vmovdqu	XMMWORD PTR [ecx+esi], xmm1
+	mov	ecx, edx
+	and	ecx, -16
+	add	DWORD PTR [esp+28], ecx
+	add	ebx, ecx
+	sub	edi, ecx
+	and	edx, 15
+	je	L827
+L746:
+	mov	esi, DWORD PTR [esp+28]
+	movzx	edx, BYTE PTR [esi]
+	mov	BYTE PTR [ebx], dl
 	cmp	edi, 1
-	je	L675
-	movzx	ebx, BYTE PTR [eax+1]
-	mov	BYTE PTR [ecx+1], bl
+	je	L827
+	movzx	eax, BYTE PTR [esi+1]
+	mov	BYTE PTR [ebx+1], al
 	cmp	edi, 2
-	je	L675
-	movzx	eax, BYTE PTR [eax+2]
-	mov	BYTE PTR [ecx+2], al
-	jmp	L675
+	je	L827
+	movzx	ecx, BYTE PTR [esi+2]
+	mov	BYTE PTR [ebx+2], cl
+	cmp	edi, 3
+	je	L827
+	movzx	edx, BYTE PTR [esi+3]
+	mov	BYTE PTR [ebx+3], dl
+	cmp	edi, 4
+	je	L827
+	movzx	eax, BYTE PTR [esi+4]
+	mov	BYTE PTR [ebx+4], al
+	cmp	edi, 5
+	je	L827
+	movzx	ecx, BYTE PTR [esi+5]
+	mov	BYTE PTR [ebx+5], cl
+	cmp	edi, 6
+	je	L827
+	movzx	edx, BYTE PTR [esi+6]
+	mov	BYTE PTR [ebx+6], dl
+	cmp	edi, 7
+	je	L827
+	movzx	eax, BYTE PTR [esi+7]
+	mov	BYTE PTR [ebx+7], al
+	cmp	edi, 8
+	je	L827
+	movzx	ecx, BYTE PTR [esi+8]
+	mov	BYTE PTR [ebx+8], cl
+	cmp	edi, 9
+	je	L827
+	movzx	edx, BYTE PTR [esi+9]
+	mov	BYTE PTR [ebx+9], dl
+	cmp	edi, 10
+	je	L827
+	movzx	eax, BYTE PTR [esi+10]
+	mov	BYTE PTR [ebx+10], al
+	cmp	edi, 11
+	je	L827
+	movzx	ecx, BYTE PTR [esi+11]
+	mov	BYTE PTR [ebx+11], cl
+	cmp	edi, 12
+	je	L827
+	movzx	edx, BYTE PTR [esi+12]
+	mov	BYTE PTR [ebx+12], dl
+	cmp	edi, 13
+	je	L827
+	movzx	eax, BYTE PTR [esi+13]
+	mov	BYTE PTR [ebx+13], al
+	cmp	edi, 14
+	je	L827
+	movzx	ecx, BYTE PTR [esi+14]
+	mov	BYTE PTR [ebx+14], cl
+	jmp	L827
 	.p2align 4,,10
 	.p2align 3
-L685:
-	mov	edi, ebx
-	jmp	L741
+L739:
+	mov	edi, DWORD PTR [ebp+8]
+	jmp	L824
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L743:
-	sub	edi, 1
-L741:
-	movzx	ebx, BYTE PTR [eax-1+edx]
+L831:
+	sub	eax, 1
+L824:
+	movzx	ebx, BYTE PTR [edi-1+edx]
 	mov	BYTE PTR [ecx-1+edx], bl
-	mov	edx, edi
-	test	edi, edi
-	jne	L743
-	jmp	L675
-	.p2align 4,,10
-	.p2align 3
-L687:
-	add	eax, edx
-	jmp	L695
+	mov	edx, eax
+	test	eax, eax
+	jne	L831
+	jmp	L827
+L829:
+	mov	ebx, DWORD PTR [ebp+8]
+	lea	edi, [ebx+1]
+L741:
+	mov	ebx, DWORD PTR [ebp+8]
+	add	ebx, edx
+	jmp	L748
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L744:
-	add	ebx, 1
-L695:
-	movzx	edx, BYTE PTR [ebx-1]
+L832:
+	add	edi, 1
+L748:
+	movzx	edx, BYTE PTR [edi-1]
 	add	ecx, 1
 	mov	BYTE PTR [ecx-1], dl
-	cmp	ebx, eax
-	jne	L744
-	jmp	L675
-L697:
-	mov	ebx, edx
-	jmp	L679
-L698:
-	mov	DWORD PTR [esp+12], eax
-	mov	ebx, eax
+	cmp	edi, ebx
+	jne	L832
+	jmp	L827
+L830:
+	vzeroupper
+	jmp	L746
+L750:
+	mov	eax, edx
+	jmp	L733
+L751:
+	mov	eax, DWORD PTR [ebp+8]
+	mov	ebx, ecx
 	mov	edi, edx
-	mov	eax, ecx
-	jmp	L688
+	xor	esi, esi
+	mov	DWORD PTR [esp+28], eax
+	jmp	L742
+L825:
+	vzeroupper
+	jmp	L827
 	.cfi_endproc
 LFE69:
 	.p2align 4
@@ -3437,18 +3571,18 @@ LFB70:
 	shld	edx, eax, cl
 	sal	eax, cl
 	test	cl, 32
-	je	L747
+	je	L835
 	mov	edx, eax
 	xor	eax, eax
-L747:
+L835:
 	neg	ecx
 	shrd	esi, edi, cl
 	shr	edi, cl
 	test	cl, 32
-	je	L748
+	je	L836
 	mov	esi, edi
 	xor	edi, edi
-L748:
+L836:
 	or	eax, esi
 	or	edx, edi
 	pop	esi
@@ -3480,18 +3614,18 @@ LFB71:
 	shrd	eax, edx, cl
 	shr	edx, cl
 	test	cl, 32
-	je	L751
+	je	L839
 	mov	eax, edx
 	xor	edx, edx
-L751:
+L839:
 	neg	ecx
 	shld	edi, esi, cl
 	sal	esi, cl
 	test	cl, 32
-	je	L752
+	je	L840
 	mov	edi, esi
 	xor	esi, esi
-L752:
+L840:
 	or	eax, esi
 	or	edx, edi
 	pop	esi
@@ -3638,24 +3772,24 @@ LFB83:
 	.cfi_startproc
 	mov	edx, DWORD PTR [esp+4]
 	xor	ecx, ecx
-	jmp	L767
+	jmp	L855
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L765:
+L853:
 	cmp	ecx, 32
-	je	L769
-L767:
+	je	L857
+L855:
 	mov	eax, edx
 	shr	eax, cl
 	add	ecx, 1
 	test	al, 1
-	je	L765
+	je	L853
 	mov	eax, ecx
 	ret
 	.p2align 4,,10
 	.p2align 3
-L769:
+L857:
 	xor	eax, eax
 	ret
 	.cfi_endproc
@@ -3669,20 +3803,20 @@ LFB84:
 	mov	eax, DWORD PTR [esp+4]
 	xor	edx, edx
 	test	eax, eax
-	je	L770
+	je	L858
 	mov	edx, eax
 	and	edx, 1
-	jne	L770
+	jne	L858
 	mov	edx, 1
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L772:
+L860:
 	sar	eax
 	add	edx, 1
 	test	al, 1
-	je	L772
-L770:
+	je	L860
+L858:
 	mov	eax, edx
 	ret
 	.cfi_endproc
@@ -3697,19 +3831,19 @@ LFB85:
 	fld	DWORD PTR LC5
 	mov	eax, 1
 	fcomip	st, st(1)
-	ja	L780
+	ja	L868
 	fld	DWORD PTR LC6
 	fxch	st(1)
 	xor	eax, eax
 	fcomip	st, st(1)
 	fstp	st(0)
 	seta	al
-	jmp	L777
+	jmp	L865
 	.p2align 4,,10
 	.p2align 3
-L780:
+L868:
 	fstp	st(0)
-L777:
+L865:
 	ret
 	.cfi_endproc
 LFE85:
@@ -3723,19 +3857,19 @@ LFB86:
 	fld	QWORD PTR LC7
 	mov	eax, 1
 	fcomip	st, st(1)
-	ja	L784
+	ja	L872
 	fld	QWORD PTR LC8
 	fxch	st(1)
 	xor	eax, eax
 	fcomip	st, st(1)
 	fstp	st(0)
 	seta	al
-	jmp	L781
+	jmp	L869
 	.p2align 4,,10
 	.p2align 3
-L784:
+L872:
 	fstp	st(0)
-L781:
+L869:
 	ret
 	.cfi_endproc
 LFE86:
@@ -3749,19 +3883,19 @@ LFB87:
 	mov	eax, 1
 	fld	TBYTE PTR LC9
 	fcomip	st, st(1)
-	ja	L788
+	ja	L876
 	fld	TBYTE PTR LC10
 	fxch	st(1)
 	xor	eax, eax
 	fcomip	st, st(1)
 	fstp	st(0)
 	seta	al
-	jmp	L785
+	jmp	L873
 	.p2align 4,,10
 	.p2align 3
-L788:
+L876:
 	fstp	st(0)
-L785:
+L873:
 	ret
 	.cfi_endproc
 LFE87:
@@ -3786,52 +3920,52 @@ LFB89:
 	fld	DWORD PTR [esp+4]
 	mov	eax, DWORD PTR [esp+8]
 	fucomi	st, st(0)
-	jp	L791
+	jp	L879
 	fld	st(0)
 	fadd	st, st(1)
 	fucomip	st, st(1)
-	jp	L798
-	jne	L798
-	jmp	L791
+	jp	L886
+	jne	L886
+	jmp	L879
 	.p2align 4,,10
 	.p2align 3
-L806:
+L894:
 	fstp	st(0)
-L791:
+L879:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L798:
+L886:
 	fld	DWORD PTR LC11
 	test	eax, eax
-	jns	L793
+	jns	L881
 	fstp	st(0)
 	fld	DWORD PTR LC12
-L793:
+L881:
 	test	al, 1
-	je	L794
+	je	L882
 	.p2align 4
 	.p2align 3
-L795:
+L883:
 	fmul	st(1), st
-L794:
+L882:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	L806
+	je	L894
 	fmul	st, st(0)
 	test	al, 1
-	jne	L795
-L805:
+	jne	L883
+L893:
 	mov	ecx, eax
 	fmul	st, st(0)
 	shr	ecx, 31
 	add	eax, ecx
 	sar	eax
 	test	al, 1
-	jne	L795
-	jmp	L805
+	jne	L883
+	jmp	L893
 	.cfi_endproc
 LFE89:
 	.p2align 4
@@ -3843,55 +3977,55 @@ LFB90:
 	fld	QWORD PTR [esp+4]
 	mov	eax, DWORD PTR [esp+12]
 	fucomi	st, st(0)
-	jp	L808
+	jp	L896
 	fld	st(0)
 	fadd	st, st(1)
 	fucomip	st, st(1)
-	jp	L815
-	jne	L815
-	jmp	L808
+	jp	L903
+	jne	L903
+	jmp	L896
 	.p2align 4,,10
 	.p2align 3
-L824:
+L912:
 	fstp	st(0)
-L808:
+L896:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L815:
+L903:
 	test	eax, eax
-	js	L822
+	js	L910
 	fld	DWORD PTR LC11
-L810:
+L898:
 	test	al, 1
-	je	L811
+	je	L899
 	.p2align 4
 	.p2align 3
-L812:
+L900:
 	fmul	st(1), st
-L811:
+L899:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	L824
+	je	L912
 	fmul	st, st(0)
 	test	al, 1
-	jne	L812
-L823:
+	jne	L900
+L911:
 	mov	ecx, eax
 	fmul	st, st(0)
 	shr	ecx, 31
 	add	eax, ecx
 	sar	eax
 	test	al, 1
-	jne	L812
-	jmp	L823
+	jne	L900
+	jmp	L911
 	.p2align 4,,10
 	.p2align 3
-L822:
+L910:
 	fld	DWORD PTR LC12
-	jmp	L810
+	jmp	L898
 	.cfi_endproc
 LFE90:
 	.p2align 4
@@ -3903,55 +4037,55 @@ LFB91:
 	fld	TBYTE PTR [esp+4]
 	mov	eax, DWORD PTR [esp+16]
 	fucomi	st, st(0)
-	jp	L826
+	jp	L914
 	fld	st(0)
 	fadd	st, st(1)
 	fucomip	st, st(1)
-	jp	L833
-	jne	L833
-	jmp	L826
+	jp	L921
+	jne	L921
+	jmp	L914
 	.p2align 4,,10
 	.p2align 3
-L842:
+L930:
 	fstp	st(0)
-L826:
+L914:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L833:
+L921:
 	test	eax, eax
-	js	L840
+	js	L928
 	fld	DWORD PTR LC11
-L828:
+L916:
 	test	al, 1
-	je	L829
+	je	L917
 	.p2align 4
 	.p2align 3
-L830:
+L918:
 	fmul	st(1), st
-L829:
+L917:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	L842
+	je	L930
 	fmul	st, st(0)
 	test	al, 1
-	jne	L830
-L841:
+	jne	L918
+L929:
 	mov	ecx, eax
 	fmul	st, st(0)
 	shr	ecx, 31
 	add	eax, ecx
 	sar	eax
 	test	al, 1
-	jne	L830
-	jmp	L841
+	jne	L918
+	jmp	L929
 	.p2align 4,,10
 	.p2align 3
-L840:
+L928:
 	fld	DWORD PTR LC12
-	jmp	L828
+	jmp	L916
 	.cfi_endproc
 LFE91:
 	.p2align 4
@@ -3968,88 +4102,121 @@ LFB92:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
 	mov	ecx, DWORD PTR [ebp+16]
-	mov	ebx, DWORD PTR [ebp+12]
 	test	ecx, ecx
-	je	L844
+	je	L932
 	lea	eax, [ecx-1]
-	cmp	eax, 14
-	jbe	L851
-	mov	edx, ecx
-	mov	esi, DWORD PTR [ebp+8]
-	mov	eax, ebx
-	and	edx, -16
-	lea	edi, [edx+ebx]
+	cmp	eax, 30
+	jbe	L938
+	mov	esi, ecx
+	mov	ebx, DWORD PTR [ebp+12]
+	mov	edx, DWORD PTR [ebp+8]
+	and	esi, -32
+	mov	eax, esi
+	add	eax, ebx
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L846:
-	movdqu	xmm1, XMMWORD PTR [esi]
-	movdqu	xmm0, XMMWORD PTR [eax]
-	add	eax, 16
-	add	esi, 16
-	pxor	xmm0, xmm1
-	movups	XMMWORD PTR [esi-16], xmm0
-	cmp	eax, edi
-	jne	L846
-	mov	esi, DWORD PTR [ebp+8]
-	mov	edi, ecx
-	sub	edi, edx
-	mov	DWORD PTR [esp+12], edi
-	add	esi, edx
-	cmp	ecx, edx
-	je	L844
-L845:
-	sub	ecx, edx
-	lea	edi, [ecx-1]
-	cmp	edi, 2
-	jbe	L848
-	add	ebx, edx
-	add	edx, DWORD PTR [ebp+8]
-	mov	edi, ecx
-	movd	xmm2, DWORD PTR [edx]
-	movd	xmm3, DWORD PTR [ebx]
-	shr	edi, 2
-	pxor	xmm2, xmm3
-	movd	DWORD PTR [edx], xmm2
-	cmp	edi, 1
-	je	L849
-	movd	xmm5, DWORD PTR [edx+4]
-	movd	xmm4, DWORD PTR [ebx+4]
-	pxor	xmm5, xmm4
-	movd	DWORD PTR [edx+4], xmm5
-	cmp	edi, 2
-	je	L849
-	movd	xmm7, DWORD PTR [edx+8]
-	movd	xmm6, DWORD PTR [ebx+8]
-	pxor	xmm7, xmm6
-	movd	DWORD PTR [edx+8], xmm7
-L849:
+L934:
+	vmovdqu	ymm0, YMMWORD PTR [edx]
+	vxorps	ymm1, ymm0, YMMWORD PTR [ebx]
+	add	ebx, 32
+	add	edx, 32
+	vmovdqu	YMMWORD PTR [edx-32], ymm1
+	cmp	eax, ebx
+	jne	L934
+	mov	edx, DWORD PTR [ebp+8]
 	mov	ebx, ecx
-	and	ebx, -4
-	sub	DWORD PTR [esp+12], ebx
-	add	esi, ebx
-	add	eax, ebx
-	and	ecx, 3
-	je	L844
-L848:
-	mov	edi, DWORD PTR [esp+12]
+	sub	ebx, esi
+	add	edx, esi
+	cmp	ecx, esi
+	je	L990
+	vzeroupper
+L933:
+	sub	ecx, esi
+	lea	edi, [ecx-1]
+	cmp	edi, 14
+	jbe	L936
+	mov	edi, DWORD PTR [ebp+8]
+	add	edi, esi
+	vmovdqu	xmm2, XMMWORD PTR [edi]
+	mov	DWORD PTR [esp+28], edi
+	mov	edi, DWORD PTR [ebp+12]
+	vpxor	xmm3, xmm2, XMMWORD PTR [edi+esi]
+	mov	edi, ecx
+	mov	esi, DWORD PTR [esp+28]
+	and	edi, -16
+	add	edx, edi
+	add	eax, edi
+	sub	ebx, edi
+	and	ecx, 15
+	vmovdqu	XMMWORD PTR [esi], xmm3
+	je	L932
+L936:
 	movzx	ecx, BYTE PTR [eax]
-	xor	BYTE PTR [esi], cl
-	cmp	edi, 1
-	je	L844
-	movzx	edx, BYTE PTR [eax+1]
-	xor	BYTE PTR [esi+1], dl
-	cmp	edi, 2
-	je	L844
-	movzx	eax, BYTE PTR [eax+2]
-	xor	BYTE PTR [esi+2], al
-L844:
+	xor	BYTE PTR [edx], cl
+	cmp	ebx, 1
+	je	L932
+	movzx	ecx, BYTE PTR [eax+1]
+	xor	BYTE PTR [edx+1], cl
+	cmp	ebx, 2
+	je	L932
+	movzx	ecx, BYTE PTR [eax+2]
+	xor	BYTE PTR [edx+2], cl
+	cmp	ebx, 3
+	je	L932
+	movzx	ecx, BYTE PTR [eax+3]
+	xor	BYTE PTR [edx+3], cl
+	cmp	ebx, 4
+	je	L932
+	movzx	ecx, BYTE PTR [eax+4]
+	xor	BYTE PTR [edx+4], cl
+	cmp	ebx, 5
+	je	L932
+	movzx	ecx, BYTE PTR [eax+5]
+	xor	BYTE PTR [edx+5], cl
+	cmp	ebx, 6
+	je	L932
+	movzx	ecx, BYTE PTR [eax+6]
+	xor	BYTE PTR [edx+6], cl
+	cmp	ebx, 7
+	je	L932
+	movzx	ecx, BYTE PTR [eax+7]
+	xor	BYTE PTR [edx+7], cl
+	cmp	ebx, 8
+	je	L932
+	movzx	ecx, BYTE PTR [eax+8]
+	xor	BYTE PTR [edx+8], cl
+	cmp	ebx, 9
+	je	L932
+	movzx	ecx, BYTE PTR [eax+9]
+	xor	BYTE PTR [edx+9], cl
+	cmp	ebx, 10
+	je	L932
+	movzx	ecx, BYTE PTR [eax+10]
+	xor	BYTE PTR [edx+10], cl
+	cmp	ebx, 11
+	je	L932
+	movzx	ecx, BYTE PTR [eax+11]
+	xor	BYTE PTR [edx+11], cl
+	cmp	ebx, 12
+	je	L932
+	movzx	ecx, BYTE PTR [eax+12]
+	xor	BYTE PTR [edx+12], cl
+	cmp	ebx, 13
+	je	L932
+	movzx	ecx, BYTE PTR [eax+13]
+	xor	BYTE PTR [edx+13], cl
+	cmp	ebx, 14
+	je	L932
+	movzx	eax, BYTE PTR [eax+14]
+	xor	BYTE PTR [edx+14], al
+L932:
 	mov	eax, DWORD PTR [ebp+8]
 	lea	esp, [ebp-12]
 	pop	ebx
@@ -4063,13 +4230,16 @@ L844:
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
 	ret
-L851:
+L938:
 	.cfi_restore_state
-	mov	DWORD PTR [esp+12], ecx
-	mov	esi, DWORD PTR [ebp+8]
-	mov	eax, ebx
-	xor	edx, edx
-	jmp	L845
+	mov	edx, DWORD PTR [ebp+8]
+	mov	eax, DWORD PTR [ebp+12]
+	mov	ebx, ecx
+	xor	esi, esi
+	jmp	L933
+L990:
+	vzeroupper
+	jmp	L932
 	.cfi_endproc
 LFE92:
 	.p2align 4
@@ -4089,31 +4259,31 @@ LFB93:
 	mov	edx, DWORD PTR [esp+20]
 	cmp	BYTE PTR [esi], 0
 	mov	eax, esi
-	je	L873
+	je	L992
 	.p2align 3
 	.p2align 4
 	.p2align 3
-L874:
+L993:
 	add	eax, 1
 	cmp	BYTE PTR [eax], 0
-	jne	L874
-L873:
+	jne	L993
+L992:
 	test	edx, edx
-	jne	L875
-	jmp	L876
+	jne	L994
+	jmp	L995
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L877:
+L996:
 	add	ecx, 1
 	add	eax, 1
 	sub	edx, 1
-	je	L876
-L875:
+	je	L995
+L994:
 	movzx	ebx, BYTE PTR [ecx]
 	mov	BYTE PTR [eax], bl
 	test	bl, bl
-	jne	L877
+	jne	L996
 	mov	eax, esi
 	pop	ebx
 	.cfi_remember_state
@@ -4125,7 +4295,7 @@ L875:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L876:
+L995:
 	.cfi_restore_state
 	mov	BYTE PTR [eax], 0
 	mov	eax, esi
@@ -4148,18 +4318,18 @@ LFB94:
 	mov	ecx, DWORD PTR [esp+4]
 	xor	eax, eax
 	test	edx, edx
-	je	L887
-L888:
+	je	L1006
+L1007:
 	cmp	BYTE PTR [ecx+eax], 0
-	jne	L890
-L887:
+	jne	L1009
+L1006:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L890:
+L1009:
 	add	eax, 1
 	cmp	edx, eax
-	jne	L888
+	jne	L1007
 	ret
 	.cfi_endproc
 LFE94:
@@ -4175,28 +4345,28 @@ LFB95:
 	mov	ebx, DWORD PTR [esp+8]
 	movzx	ecx, BYTE PTR [ebx]
 	test	cl, cl
-	je	L901
-L897:
+	je	L1020
+L1016:
 	mov	eax, DWORD PTR [esp+12]
-	jmp	L900
+	jmp	L1019
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L899:
+L1018:
 	add	eax, 1
 	cmp	dl, cl
-	je	L898
-L900:
+	je	L1017
+L1019:
 	movzx	edx, BYTE PTR [eax]
 	test	dl, dl
-	jne	L899
+	jne	L1018
 	movzx	ecx, BYTE PTR [ebx+1]
 	add	ebx, 1
 	test	cl, cl
-	jne	L897
-L901:
+	jne	L1016
+L1020:
 	xor	ebx, ebx
-L898:
+L1017:
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -4222,13 +4392,13 @@ LFB96:
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L907:
+L1026:
 	movsx	ebx, BYTE PTR [eax]
 	cmp	ebx, esi
 	cmove	ecx, eax
 	add	eax, 1
 	test	bl, bl
-	jne	L907
+	jne	L1026
 	mov	eax, ecx
 	pop	ebx
 	.cfi_restore 3
@@ -4261,68 +4431,68 @@ LFB97:
 	mov	edx, DWORD PTR [esp+20]
 	movzx	ebx, BYTE PTR [ebp+0]
 	test	bl, bl
-	je	L922
+	je	L1041
 	mov	eax, ebp
 	.p2align 3
 	.p2align 4
 	.p2align 3
-L912:
+L1031:
 	add	eax, 1
 	cmp	BYTE PTR [eax], 0
-	jne	L912
+	jne	L1031
 	mov	esi, edx
 	sub	eax, ebp
-	je	L910
+	je	L1029
 	mov	DWORD PTR [esp+24], ebp
 	lea	edi, [ebp-1+eax]
-	jmp	L932
+	jmp	L1051
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L935:
+L1054:
 	add	edx, 1
 	test	cl, cl
-	je	L934
-L932:
+	je	L1053
+L1051:
 	movzx	ecx, BYTE PTR [edx]
 	cmp	cl, bl
-	jne	L935
+	jne	L1054
 	mov	DWORD PTR [esp+20], edx
 	mov	eax, DWORD PTR [esp+24]
 	mov	ecx, ebx
 	mov	esi, edx
 	mov	ebp, ebx
-	jmp	L914
+	jmp	L1033
 	.p2align 4,,10
 	.p2align 3
-L936:
+L1055:
 	test	dl, dl
 	setne	bl
 	cmp	dl, cl
 	sete	dl
 	test	bl, dl
-	je	L915
+	je	L1034
 	movzx	ecx, BYTE PTR [esi+1]
 	add	esi, 1
 	add	eax, 1
 	test	cl, cl
-	je	L915
-L914:
+	je	L1034
+L1033:
 	movzx	edx, BYTE PTR [eax]
 	cmp	eax, edi
-	jne	L936
-L915:
+	jne	L1055
+L1034:
 	mov	edx, DWORD PTR [esp+20]
 	mov	ebx, ebp
 	cmp	cl, BYTE PTR [eax]
-	je	L922
+	je	L1041
 	add	edx, 1
-	jmp	L932
+	jmp	L1051
 	.p2align 4,,10
 	.p2align 3
-L934:
+L1053:
 	xor	esi, esi
-L910:
+L1029:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -4338,7 +4508,7 @@ L910:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L922:
+L1041:
 	.cfi_restore_state
 	mov	esi, edx
 	pop	ebx
@@ -4367,30 +4537,30 @@ LFB98:
 	fld	QWORD PTR [esp+12]
 	fldz
 	fcomi	st, st(2)
-	ja	L947
+	ja	L1066
 	fxch	st(2)
 	fcomi	st, st(2)
-	jbe	L948
+	jbe	L1067
 	fxch	st(2)
 	fcomip	st, st(1)
 	fstp	st(0)
-	ja	L940
-	jmp	L941
+	ja	L1059
+	jmp	L1060
 	.p2align 4,,10
 	.p2align 3
-L948:
+L1067:
 	fstp	st(1)
 	fstp	st(1)
-L941:
+L1060:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L947:
+L1066:
 	fxch	st(1)
 	fcomip	st, st(1)
 	fstp	st(0)
-	jbe	L941
-L940:
+	jbe	L1060
+L1059:
 	fchs
 	ret
 	.cfi_endproc
@@ -4418,58 +4588,58 @@ LFB99:
 	mov	edi, DWORD PTR [esp+28]
 	mov	edx, DWORD PTR [esp+20]
 	test	eax, eax
-	je	L949
+	je	L1068
 	cmp	esi, DWORD PTR [esp+32]
-	jb	L960
+	jb	L1079
 	sub	esi, DWORD PTR [esp+32]
 	add	esi, edx
-	jc	L960
+	jc	L1079
 	movzx	ebp, BYTE PTR [edi]
-	jmp	L955
+	jmp	L1074
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L959:
+L1078:
 	mov	edx, ebx
-L951:
+L1070:
 	cmp	esi, edx
-	jb	L960
-L955:
+	jb	L1079
+L1074:
 	lea	ebx, [edx+1]
 	mov	ecx, ebp
 	cmp	BYTE PTR [edx], cl
-	jne	L959
+	jne	L1078
 	cmp	DWORD PTR [esp+32], 1
-	je	L949
-L954:
+	je	L1068
+L1073:
 	mov	eax, 1
-	jmp	L952
+	jmp	L1071
 	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L953:
+L1072:
 	add	eax, 1
 	cmp	DWORD PTR [esp+32], eax
-	je	L949
-L952:
+	je	L1068
+L1071:
 	movzx	ecx, BYTE PTR [edi+eax]
 	cmp	BYTE PTR [edx+eax], cl
-	je	L953
+	je	L1072
 	cmp	esi, ebx
-	jb	L960
+	jb	L1079
 	lea	edx, [ebx+1]
 	mov	eax, ebp
 	cmp	al, BYTE PTR [ebx]
-	jne	L951
+	jne	L1070
 	mov	ecx, ebx
 	mov	ebx, edx
 	mov	edx, ecx
-	jmp	L954
+	jmp	L1073
 	.p2align 4,,10
 	.p2align 3
-L960:
+L1079:
 	xor	edx, edx
-L949:
+L1068:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 16
@@ -4503,13 +4673,13 @@ LFB100:
 	mov	esi, DWORD PTR [esp+40]
 	mov	ebx, DWORD PTR [esp+32]
 	test	esi, esi
-	je	L971
+	je	L1090
 	mov	eax, DWORD PTR [esp+36]
 	mov	DWORD PTR [esp+8], esi
 	mov	DWORD PTR [esp], ebx
 	mov	DWORD PTR [esp+4], eax
 	call	_memmove
-L971:
+L1090:
 	add	esp, 20
 	.cfi_def_cfa_offset 12
 	lea	eax, [ebx+esi]
@@ -4531,20 +4701,20 @@ LFB101:
 	fld	QWORD PTR [esp+4]
 	fldz
 	fcomi	st, st(1)
-	ja	L1000
+	ja	L1119
 	fld1
 	fxch	st(2)
 	xor	edx, edx
 	fcomi	st, st(2)
 	fstp	st(2)
-	jb	L1001
+	jb	L1120
 	fstp	st(0)
-L979:
+L1098:
 	xor	eax, eax
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L986:
+L1105:
 	fld	DWORD PTR LC12
 	add	eax, 1
 	fmulp	st(1), st
@@ -4552,82 +4722,82 @@ L986:
 	fxch	st(1)
 	fcomi	st, st(1)
 	fstp	st(1)
-	jnb	L986
+	jnb	L1105
 	mov	ecx, DWORD PTR [esp+12]
 	mov	DWORD PTR [ecx], eax
 	test	edx, edx
-	je	L976
-L1003:
+	je	L1095
+L1122:
 	fchs
-L976:
+L1095:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1001:
+L1120:
 	fld	DWORD PTR LC12
 	fcomip	st, st(2)
-	jbe	L1004
+	jbe	L1123
 	fxch	st(1)
 	fucomi	st, st(1)
 	fstp	st(1)
-	jp	L992
-	jne	L992
-	jmp	L982
+	jp	L1111
+	jne	L1111
+	jmp	L1101
 	.p2align 4,,10
 	.p2align 3
-L1004:
+L1123:
 	fstp	st(0)
-	jmp	L982
+	jmp	L1101
 	.p2align 4,,10
 	.p2align 3
-L1005:
+L1124:
 	fstp	st(0)
-L982:
+L1101:
 	mov	eax, DWORD PTR [esp+12]
 	mov	DWORD PTR [eax], 0
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1000:
+L1119:
 	fstp	st(0)
 	fld	st(0)
 	fchs
 	fld1
 	fchs
 	fcomip	st, st(2)
-	jb	L1002
+	jb	L1121
 	fstp	st(1)
 	mov	edx, 1
-	jmp	L979
+	jmp	L1098
 	.p2align 4,,10
 	.p2align 3
-L1002:
+L1121:
 	fld	DWORD PTR LC14
 	fxch	st(2)
 	fcomi	st, st(2)
 	fstp	st(2)
-	jbe	L1005
+	jbe	L1124
 	fstp	st(1)
 	mov	edx, 1
-L980:
+L1099:
 	xor	eax, eax
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L988:
+L1107:
 	fadd	st, st(0)
 	fld	DWORD PTR LC12
 	sub	eax, 1
 	fcomip	st, st(1)
-	ja	L988
+	ja	L1107
 	mov	ecx, DWORD PTR [esp+12]
 	mov	DWORD PTR [ecx], eax
 	test	edx, edx
-	jne	L1003
+	jne	L1122
 	ret
-L992:
+L1111:
 	xor	edx, edx
-	jmp	L980
+	jmp	L1099
 	.cfi_endproc
 LFE101:
 	.p2align 4
@@ -4655,11 +4825,11 @@ LFB102:
 	mov	DWORD PTR [esp+4], 0
 	mov	ecx, eax
 	or	ecx, edx
-	je	L1006
+	je	L1125
 	.p2align 6
 	.p2align 4
 	.p2align 3
-L1008:
+L1127:
 	mov	ecx, eax
 	and	ecx, 1
 	neg	ecx
@@ -4674,8 +4844,8 @@ L1008:
 	mov	ecx, eax
 	shr	edx
 	or	ecx, edx
-	jne	L1008
-L1006:
+	jne	L1127
+L1125:
 	mov	eax, DWORD PTR [esp]
 	mov	edx, DWORD PTR [esp+4]
 	add	esp, 8
@@ -4716,22 +4886,22 @@ LFB103:
 	mov	edx, DWORD PTR [esp+28]
 	mov	edi, DWORD PTR [esp+32]
 	cmp	edx, eax
-	jnb	L1036
+	jnb	L1155
 	mov	ecx, 1
-	jmp	L1013
+	jmp	L1132
 	.p2align 4,,10
 	.p2align 3
-L1016:
+L1135:
 	add	edx, edx
 	add	ecx, ecx
 	cmp	edx, eax
-	jnb	L1015
+	jnb	L1134
 	test	ecx, ecx
-	je	L1015
-L1013:
+	je	L1134
+L1132:
 	test	edx, edx
-	jns	L1016
-L1017:
+	jns	L1135
+L1136:
 	xor	ebx, ebx
 	mov	DWORD PTR [esp+32], edi
 	xor	ebp, ebp
@@ -4739,7 +4909,7 @@ L1017:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1019:
+L1138:
 	mov	edi, eax
 	mov	esi, ebp
 	sub	edi, edx
@@ -4751,10 +4921,10 @@ L1019:
 	shr	edx
 	or	DWORD PTR [esp], esi
 	shr	ecx
-	jne	L1019
+	jne	L1138
 	mov	esi, DWORD PTR [esp]
 	mov	edi, DWORD PTR [esp+32]
-L1018:
+L1137:
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -4775,11 +4945,11 @@ L1018:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1015:
+L1134:
 	.cfi_restore_state
 	xor	esi, esi
 	test	ecx, ecx
-	jne	L1017
+	jne	L1136
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -4798,7 +4968,7 @@ L1015:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L1036:
+L1155:
 	.cfi_restore_state
 	mov	ecx, eax
 	sub	ecx, edx
@@ -4806,7 +4976,7 @@ L1036:
 	setnb	bl
 	cmovnb	eax, ecx
 	movzx	esi, bl
-	jmp	L1018
+	jmp	L1137
 	.cfi_endproc
 LFE103:
 	.p2align 4
@@ -4825,13 +4995,13 @@ LFB104:
 	mov	eax, ecx
 	xor	eax, edx
 	cmp	dl, cl
-	je	L1040
+	je	L1159
 	movsx	ebx, al
 	sal	ebx, 8
 	bsr	edx, ebx
 	xor	edx, 31
 	lea	ebx, [edx-1]
-L1040:
+L1159:
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -4869,14 +5039,14 @@ LFB105:
 	xor	esi, ebx
 	xor	edi, ebx
 	or	eax, edx
-	je	L1045
+	je	L1164
 	test	edi, edi
-	je	L1047
+	je	L1166
 	bsr	ebp, edi
 	xor	ebp, 31
-L1048:
+L1167:
 	lea	ecx, [ebp-1]
-L1045:
+L1164:
 	pop	ebx
 	.cfi_remember_state
 	.cfi_restore 3
@@ -4894,12 +5064,12 @@ L1045:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1047:
+L1166:
 	.cfi_restore_state
 	bsr	ebp, esi
 	xor	ebp, 31
 	add	ebp, 32
-	jmp	L1048
+	jmp	L1167
 	.cfi_endproc
 LFE105:
 	.p2align 4
@@ -4915,11 +5085,11 @@ LFB106:
 	xor	ebx, ebx
 	mov	ecx, DWORD PTR [esp+12]
 	test	edx, edx
-	je	L1052
+	je	L1171
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1054:
+L1173:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -4927,8 +5097,8 @@ L1054:
 	add	ecx, ecx
 	add	ebx, eax
 	shr	edx
-	jne	L1054
-L1052:
+	jne	L1173
+L1171:
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -4950,138 +5120,223 @@ LFB107:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	esi, DWORD PTR [ebp+16]
-	mov	ecx, DWORD PTR [ebp+16]
-	mov	edi, DWORD PTR [ebp+12]
-	shr	esi, 3
-	and	ecx, -8
-	cmp	DWORD PTR [ebp+8], edi
-	jb	L1062
-	mov	eax, DWORD PTR [ebp+16]
-	add	eax, edi
-	cmp	eax, DWORD PTR [ebp+8]
-	jnb	L1124
-L1062:
-	test	esi, esi
-	je	L1061
-	lea	ebx, [esi-1]
-	cmp	ebx, 2
-	jbe	L1065
-	lea	edx, [edi+8]
-	cmp	DWORD PTR [ebp+8], edx
-	je	L1065
-	mov	eax, DWORD PTR [ebp+16]
-	mov	ebx, DWORD PTR [ebp+16]
-	mov	edx, DWORD PTR [ebp+8]
-	shr	eax, 4
-	and	ebx, -16
-	mov	DWORD PTR [esp+12], eax
-	add	ebx, edi
+	mov	edi, DWORD PTR [ebp+16]
+	mov	ecx, DWORD PTR [ebp+12]
+	mov	esi, edi
 	mov	eax, edi
+	shr	esi, 3
+	and	eax, -8
+	mov	DWORD PTR [esp+24], esi
+	mov	DWORD PTR [esp+28], eax
+	cmp	DWORD PTR [ebp+8], ecx
+	jb	L1182
+	lea	edx, [ecx+edi]
+	cmp	edx, DWORD PTR [ebp+8]
+	jnb	L1255
+L1182:
+	mov	ebx, DWORD PTR [esp+24]
+	test	ebx, ebx
+	je	L1256
+	mov	esi, DWORD PTR [esp+24]
+	lea	eax, [esi-1]
+	cmp	eax, 3
+	jbe	L1184
+	mov	ebx, DWORD PTR [ebp+8]
+	lea	edx, [ecx+8]
+	sub	ebx, edx
+	cmp	ebx, 16
+	jbe	L1184
+	mov	eax, edi
+	mov	ebx, edi
+	mov	edx, DWORD PTR [ebp+8]
+	shr	eax, 5
+	and	ebx, -32
+	mov	DWORD PTR [esp+24], eax
+	add	ebx, ecx
+	mov	eax, ecx
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1066:
-	movdqu	xmm1, XMMWORD PTR [eax]
-	add	eax, 16
-	add	edx, 16
-	movups	XMMWORD PTR [edx-16], xmm1
-	cmp	eax, ebx
-	jne	L1066
-	mov	edx, DWORD PTR [esp+12]
-	lea	eax, [edx+edx]
-	cmp	esi, eax
-	je	L1061
-	mov	eax, edx
+L1185:
+	vmovdqu	ymm3, YMMWORD PTR [eax]
+	add	eax, 32
+	add	edx, 32
+	vmovdqu	YMMWORD PTR [edx-32], ymm3
+	cmp	ebx, eax
+	jne	L1185
+	mov	eax, DWORD PTR [esp+24]
+	mov	DWORD PTR [esp+24], esi
+	lea	edx, [0+eax*4]
+	mov	DWORD PTR [esp+20], edx
+	cmp	esi, edx
+	je	L1188
+	sal	eax, 5
 	mov	edx, DWORD PTR [ebp+8]
-	sal	eax, 4
-	mov	ebx, DWORD PTR [edi+eax]
-	mov	esi, DWORD PTR [edi+4+eax]
+	mov	ebx, DWORD PTR [ecx+eax]
+	mov	esi, DWORD PTR [ecx+4+eax]
 	mov	DWORD PTR [edx+eax], ebx
 	mov	DWORD PTR [edx+4+eax], esi
-L1061:
-	cmp	ecx, DWORD PTR [ebp+16]
-	jnb	L1058
-	mov	ebx, DWORD PTR [ebp+16]
-	sub	ebx, ecx
-	lea	eax, [ebx-1]
-	mov	DWORD PTR [esp+12], eax
-	cmp	eax, 2
-	jbe	L1125
-	mov	eax, DWORD PTR [ebp+8]
-	lea	esi, [edi+1+ecx]
-	add	eax, ecx
-	mov	edx, eax
-	sub	edx, esi
+	mov	edx, DWORD PTR [esp+20]
+	mov	esi, DWORD PTR [esp+24]
+	lea	ebx, [edx+1]
+	cmp	ebx, esi
+	jnb	L1188
+	mov	edx, DWORD PTR [ebp+8]
+	mov	ebx, DWORD PTR [ecx+8+eax]
+	mov	esi, DWORD PTR [ecx+12+eax]
+	mov	DWORD PTR [edx+8+eax], ebx
+	mov	ebx, DWORD PTR [esp+24]
+	mov	DWORD PTR [edx+12+eax], esi
+	mov	edx, DWORD PTR [esp+20]
+	add	edx, 2
+	cmp	edx, ebx
+	jnb	L1188
+	mov	edx, DWORD PTR [ebp+8]
+	mov	ebx, DWORD PTR [ecx+16+eax]
+	mov	esi, DWORD PTR [ecx+20+eax]
+	mov	DWORD PTR [edx+16+eax], ebx
+	mov	DWORD PTR [edx+20+eax], esi
+L1188:
+	mov	eax, DWORD PTR [esp+28]
+	cmp	eax, edi
+	jnb	L1252
+	mov	esi, edi
+	sub	esi, eax
+	lea	edx, [esi-1]
+	mov	DWORD PTR [esp+24], edx
 	cmp	edx, 14
-	jbe	L1070
-	cmp	DWORD PTR [esp+12], 14
-	jbe	L1089
-	mov	esi, ebx
-	lea	edx, [edi+ecx]
-	and	esi, -16
-	mov	DWORD PTR [esp+12], esi
-	add	esi, edx
+	jbe	L1257
+	mov	edx, DWORD PTR [esp+28]
+	mov	eax, DWORD PTR [ebp+8]
+	add	eax, edx
+	lea	ebx, [ecx+1+edx]
+	mov	edx, eax
+	sub	edx, ebx
+	cmp	edx, 30
+	jbe	L1236
+	cmp	DWORD PTR [esp+24], 30
+	jbe	L1206
+	mov	ebx, DWORD PTR [esp+28]
+	lea	edx, [ecx+ebx]
+	mov	ebx, esi
+	and	ebx, -32
+	mov	DWORD PTR [esp+24], ebx
+	add	ebx, edx
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1072:
-	movdqu	xmm2, XMMWORD PTR [edx]
-	add	edx, 16
-	add	eax, 16
-	movups	XMMWORD PTR [eax-16], xmm2
-	cmp	edx, esi
-	jne	L1072
-	mov	edx, DWORD PTR [esp+12]
-	add	ecx, edx
-	mov	eax, ecx
-	cmp	ebx, edx
-	je	L1058
-	sub	ebx, edx
-	lea	esi, [ebx-1]
-	cmp	esi, 2
-	jbe	L1074
-L1071:
-	lea	edx, [edi+ecx]
-	mov	esi, ebx
-	add	ecx, DWORD PTR [ebp+8]
-	movd	xmm3, DWORD PTR [edx]
-	shr	esi, 2
-	movd	DWORD PTR [ecx], xmm3
-	cmp	esi, 1
-	je	L1075
-	movd	xmm4, DWORD PTR [edx+4]
-	movd	DWORD PTR [ecx+4], xmm4
-	cmp	esi, 2
-	je	L1075
-	mov	esi, DWORD PTR [edx+8]
-	mov	DWORD PTR [ecx+8], esi
-L1075:
-	mov	ecx, ebx
-	and	ecx, -4
-	add	eax, ecx
-	and	ebx, 3
-	je	L1058
-L1074:
-	movzx	ebx, BYTE PTR [edi+eax]
+L1190:
+	vmovdqu	ymm4, YMMWORD PTR [edx]
+	add	edx, 32
+	add	eax, 32
+	vmovdqu	YMMWORD PTR [eax-32], ymm4
+	cmp	edx, ebx
+	jne	L1190
+	mov	edx, DWORD PTR [esp+28]
+	mov	ebx, DWORD PTR [esp+24]
+	add	edx, ebx
+	mov	eax, edx
+	cmp	esi, ebx
+	je	L1252
+	sub	esi, ebx
+	lea	ebx, [esi-1]
+	cmp	ebx, 14
+	jbe	L1192
+L1189:
+	vmovdqu	xmm5, XMMWORD PTR [ecx+edx]
+	mov	ebx, DWORD PTR [ebp+8]
+	vmovdqu	XMMWORD PTR [ebx+edx], xmm5
+	mov	edx, esi
+	and	edx, -16
+	add	eax, edx
+	and	esi, 15
+	je	L1252
+L1192:
+	movzx	ebx, BYTE PTR [ecx+eax]
 	mov	esi, DWORD PTR [ebp+8]
 	lea	edx, [eax+1]
 	mov	BYTE PTR [esi+eax], bl
-	cmp	edx, DWORD PTR [ebp+16]
-	jnb	L1058
-	movzx	ecx, BYTE PTR [edi+1+eax]
-	lea	ebx, [eax+2]
-	mov	BYTE PTR [esi+1+eax], cl
-	cmp	ebx, DWORD PTR [ebp+16]
-	jnb	L1058
-	movzx	edx, BYTE PTR [edi+2+eax]
-	mov	BYTE PTR [esi+2+eax], dl
-L1058:
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+1+eax]
+	lea	edx, [eax+2]
+	mov	BYTE PTR [esi+1+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+2+eax]
+	lea	edx, [eax+3]
+	mov	BYTE PTR [esi+2+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+3+eax]
+	lea	edx, [eax+4]
+	mov	BYTE PTR [esi+3+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+4+eax]
+	lea	edx, [eax+5]
+	mov	BYTE PTR [esi+4+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+5+eax]
+	lea	edx, [eax+6]
+	mov	BYTE PTR [esi+5+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+6+eax]
+	lea	edx, [eax+7]
+	mov	BYTE PTR [esi+6+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+7+eax]
+	lea	edx, [eax+8]
+	mov	BYTE PTR [esi+7+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+8+eax]
+	lea	edx, [eax+9]
+	mov	BYTE PTR [esi+8+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+9+eax]
+	lea	edx, [eax+10]
+	mov	BYTE PTR [esi+9+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+10+eax]
+	lea	edx, [eax+11]
+	mov	BYTE PTR [esi+10+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+11+eax]
+	lea	edx, [eax+12]
+	mov	BYTE PTR [esi+11+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+12+eax]
+	lea	edx, [eax+13]
+	mov	BYTE PTR [esi+12+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+13+eax]
+	lea	edx, [eax+14]
+	mov	BYTE PTR [esi+13+eax], bl
+	cmp	edx, edi
+	jnb	L1252
+	movzx	ebx, BYTE PTR [ecx+14+eax]
+	mov	BYTE PTR [esi+14+eax], bl
+	vzeroupper
+	jmp	L1253
+	.p2align 4,,10
+	.p2align 3
+L1252:
+	vzeroupper
+L1253:
 	lea	esp, [ebp-12]
 	pop	ebx
 	.cfi_remember_state
@@ -5096,130 +5351,101 @@ L1058:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1124:
+L1255:
 	.cfi_restore_state
-	mov	edx, DWORD PTR [ebp+16]
-	lea	ecx, [edx-1]
-	test	edx, edx
-	je	L1058
-	cmp	ecx, 2
-	jbe	L1087
+	lea	ebx, [edi-1]
+	test	edi, edi
+	je	L1253
+	cmp	ebx, 2
+	jbe	L1204
 	mov	esi, DWORD PTR [ebp+8]
-	lea	eax, [edi-2+edx]
-	mov	ebx, edx
-	add	esi, ecx
+	lea	eax, [ecx-2+edi]
+	add	esi, ebx
 	sub	esi, eax
 	add	esi, 14
 	cmp	esi, 14
-	jbe	L1087
-	cmp	ecx, 14
-	jbe	L1080
-	lea	edx, [edx-16]
-	mov	esi, ebx
-	lea	eax, [edi+edx]
-	and	esi, -16
+	jbe	L1204
+	cmp	ebx, 14
+	jbe	L1197
+	lea	edx, [edi-16]
+	mov	esi, edi
+	lea	eax, [ecx+edx]
 	add	edx, DWORD PTR [ebp+8]
-	mov	ebx, eax
-	sub	ebx, esi
+	and	esi, -16
+	mov	DWORD PTR [esp+28], edx
+	mov	edx, eax
+	sub	edx, esi
+	mov	DWORD PTR [esp+24], esi
+	mov	esi, edx
+	mov	edx, DWORD PTR [esp+28]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1081:
-	movdqu	xmm0, XMMWORD PTR [eax]
+L1198:
+	vmovdqu	xmm0, XMMWORD PTR [eax]
 	sub	eax, 16
 	sub	edx, 16
-	movups	XMMWORD PTR [edx+16], xmm0
-	cmp	eax, ebx
-	jne	L1081
-	sub	ecx, esi
-	cmp	DWORD PTR [ebp+16], esi
-	je	L1058
-	sub	DWORD PTR [ebp+16], esi
-	mov	edx, DWORD PTR [ebp+16]
-	sub	edx, 1
-	cmp	edx, 2
-	jbe	L1084
-L1080:
-	mov	eax, DWORD PTR [ebp+16]
-	mov	ebx, DWORD PTR [ebp+16]
-	sub	eax, 4
-	shr	ebx, 2
-	lea	edx, [edi+eax]
+	vmovdqu	XMMWORD PTR [edx+16], xmm0
+	cmp	eax, esi
+	jne	L1198
+	mov	eax, DWORD PTR [esp+24]
+	sub	ebx, eax
+	cmp	edi, eax
+	je	L1253
+	sub	edi, eax
+	lea	esi, [edi-1]
+	cmp	esi, 2
+	jbe	L1201
+L1197:
+	lea	eax, [edi-4]
+	mov	esi, edi
+	lea	edx, [ecx+eax]
+	shr	esi, 2
 	add	eax, DWORD PTR [ebp+8]
-	mov	esi, DWORD PTR [edx]
-	mov	DWORD PTR [eax], esi
-	cmp	ebx, 1
-	je	L1085
-	mov	esi, DWORD PTR [edx-4]
-	mov	DWORD PTR [eax-4], esi
-	cmp	ebx, 2
-	je	L1085
-	mov	ebx, DWORD PTR [edx-8]
-	mov	DWORD PTR [eax-8], ebx
-L1085:
-	test	BYTE PTR [ebp+16], 3
-	je	L1058
-	mov	eax, DWORD PTR [ebp+16]
-	and	eax, -4
-	sub	ecx, eax
-L1084:
-	movzx	edx, BYTE PTR [edi+ecx]
-	mov	esi, DWORD PTR [ebp+8]
-	mov	BYTE PTR [esi+ecx], dl
-	test	ecx, ecx
-	je	L1058
-	movzx	ebx, BYTE PTR [edi-1+ecx]
-	mov	BYTE PTR [esi-1+ecx], bl
-	cmp	ecx, 1
-	je	L1058
-	movzx	eax, BYTE PTR [edi-2+ecx]
-	mov	BYTE PTR [esi-2+ecx], al
-	jmp	L1058
-L1089:
-	mov	eax, ecx
-	jmp	L1071
-	.p2align 4,,10
-	.p2align 3
-L1125:
-	mov	eax, DWORD PTR [ebp+8]
-	add	eax, ecx
-L1070:
-	add	ecx, edi
-	add	edi, DWORD PTR [ebp+16]
-	.p2align 4
-	.p2align 4
-	.p2align 3
-L1077:
-	movzx	ebx, BYTE PTR [ecx]
-	add	ecx, 1
-	add	eax, 1
-	mov	BYTE PTR [eax-1], bl
-	cmp	ecx, edi
-	jne	L1077
-	lea	esp, [ebp-12]
-	pop	ebx
-	.cfi_remember_state
-	.cfi_restore 3
-	pop	esi
-	.cfi_restore 6
-	pop	edi
-	.cfi_restore 7
-	pop	ebp
-	.cfi_restore 5
-	.cfi_def_cfa 4, 4
-	ret
-	.p2align 4,,10
-	.p2align 3
-L1065:
-	.cfi_restore_state
-	mov	DWORD PTR [ebp+12], edi
+	vmovd	xmm1, DWORD PTR [edx]
+	vmovd	DWORD PTR [eax], xmm1
+	cmp	esi, 1
+	je	L1202
+	vmovd	xmm2, DWORD PTR [edx-4]
+	vmovd	DWORD PTR [eax-4], xmm2
+	cmp	esi, 2
+	je	L1202
+	mov	esi, DWORD PTR [edx-8]
+	mov	DWORD PTR [eax-8], esi
+L1202:
+	test	edi, 3
+	je	L1253
+	and	edi, -4
+	sub	ebx, edi
+L1201:
+	movzx	eax, BYTE PTR [ecx+ebx]
 	mov	edx, DWORD PTR [ebp+8]
-	mov	eax, edi
-	lea	ebx, [edi+esi*8]
+	mov	BYTE PTR [edx+ebx], al
+	test	ebx, ebx
+	je	L1253
+	movzx	eax, BYTE PTR [ecx-1+ebx]
+	mov	BYTE PTR [edx-1+ebx], al
+	cmp	ebx, 1
+	je	L1253
+	movzx	eax, BYTE PTR [ecx-2+ebx]
+	mov	BYTE PTR [edx-2+ebx], al
+	jmp	L1253
+L1206:
+	mov	eax, DWORD PTR [esp+28]
+	mov	edx, eax
+	jmp	L1189
+	.p2align 4,,10
+	.p2align 3
+L1184:
+	mov	ebx, DWORD PTR [esp+24]
+	mov	edx, DWORD PTR [ebp+8]
+	mov	DWORD PTR [ebp+16], edi
+	mov	eax, ecx
+	lea	ebx, [ecx+ebx*8]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1068:
+L1187:
 	mov	esi, DWORD PTR [eax]
 	mov	edi, DWORD PTR [eax+4]
 	add	eax, 8
@@ -5227,20 +5453,64 @@ L1068:
 	mov	DWORD PTR [edx-8], esi
 	mov	DWORD PTR [edx-4], edi
 	cmp	ebx, eax
-	jne	L1068
-	mov	edi, DWORD PTR [ebp+12]
-	jmp	L1061
-L1087:
-	mov	edx, DWORD PTR [ebp+8]
+	jne	L1187
+	mov	edi, DWORD PTR [ebp+16]
+	jmp	L1188
+	.p2align 4,,10
+	.p2align 3
+L1256:
+	mov	eax, DWORD PTR [ebp+8]
+	mov	esi, DWORD PTR [esp+28]
+	add	eax, esi
+	test	edi, edi
+	je	L1253
+L1180:
+	mov	edx, DWORD PTR [esp+28]
+	add	edx, ecx
+	add	ecx, edi
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L1122:
-	movzx	eax, BYTE PTR [edi+ecx]
-	mov	BYTE PTR [edx+ecx], al
-	sub	ecx, 1
-	jnb	L1122
-	jmp	L1058
+L1194:
+	movzx	ebx, BYTE PTR [edx]
+	add	edx, 1
+	add	eax, 1
+	mov	BYTE PTR [eax-1], bl
+	cmp	edx, ecx
+	jne	L1194
+	lea	esp, [ebp-12]
+	pop	ebx
+	.cfi_remember_state
+	.cfi_restore 3
+	pop	esi
+	.cfi_restore 6
+	pop	edi
+	.cfi_restore 7
+	pop	ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+L1236:
+	.cfi_restore_state
+	vzeroupper
+	jmp	L1180
+L1204:
+	mov	esi, DWORD PTR [ebp+8]
+	.p2align 4
+	.p2align 4
+	.p2align 3
+L1234:
+	movzx	edx, BYTE PTR [ecx+ebx]
+	mov	BYTE PTR [esi+ebx], dl
+	sub	ebx, 1
+	jnb	L1234
+	jmp	L1253
+L1257:
+	mov	eax, DWORD PTR [ebp+8]
+	mov	ebx, DWORD PTR [esp+28]
+	add	eax, ebx
+	vzeroupper
+	jmp	L1180
 	.cfi_endproc
 LFE107:
 	.p2align 4
@@ -5257,92 +5527,113 @@ LFB108:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	ecx, DWORD PTR [ebp+16]
-	mov	ebx, DWORD PTR [ebp+12]
-	mov	esi, ecx
+	mov	esi, DWORD PTR [ebp+16]
+	mov	ebx, DWORD PTR [ebp+8]
+	mov	ecx, DWORD PTR [ebp+12]
 	shr	esi
-	cmp	DWORD PTR [ebp+8], ebx
-	jb	L1130
-	lea	eax, [ebx+ecx]
-	cmp	eax, DWORD PTR [ebp+8]
-	jnb	L1192
-L1130:
+	cmp	ebx, ecx
+	jb	L1262
+	mov	eax, DWORD PTR [ebp+16]
+	add	eax, ecx
+	cmp	eax, ebx
+	jnb	L1315
+L1262:
 	test	esi, esi
-	je	L1129
-	cmp	esi, 1
-	je	L1133
-	mov	eax, DWORD PTR [ebp+8]
-	lea	edi, [ebx+2]
-	sub	eax, edi
-	cmp	eax, 12
-	jbe	L1133
-	lea	edx, [esi-1]
-	cmp	edx, 6
-	jbe	L1152
-	mov	edi, ecx
-	mov	edx, DWORD PTR [ebp+8]
-	mov	eax, ebx
-	shr	edi, 4
-	mov	DWORD PTR [esp+12], edi
-	mov	edi, ecx
-	and	edi, -16
-	add	edi, ebx
+	je	L1261
+	lea	eax, [esi-1]
+	cmp	eax, 6
+	jbe	L1265
+	lea	edi, [ecx+2]
+	mov	edx, ebx
+	sub	edx, edi
+	cmp	edx, 28
+	jbe	L1265
+	cmp	eax, 14
+	jbe	L1283
+	mov	eax, DWORD PTR [ebp+16]
+	mov	edi, DWORD PTR [ebp+16]
+	mov	edx, ebx
+	shr	eax, 5
+	and	edi, -32
+	mov	DWORD PTR [esp+28], eax
+	add	edi, ecx
+	mov	eax, ecx
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1135:
-	movdqu	xmm3, XMMWORD PTR [eax]
-	add	eax, 16
-	add	edx, 16
-	movups	XMMWORD PTR [edx-16], xmm3
+L1267:
+	vmovdqu	ymm3, YMMWORD PTR [eax]
+	add	eax, 32
+	add	edx, 32
+	vmovdqu	YMMWORD PTR [edx-32], ymm3
 	cmp	eax, edi
-	jne	L1135
-	mov	eax, DWORD PTR [esp+12]
-	sal	eax, 3
+	jne	L1267
+	mov	eax, DWORD PTR [esp+28]
+	sal	eax, 4
 	cmp	esi, eax
-	je	L1129
-	sub	esi, eax
-	cmp	esi, 1
-	je	L1137
-L1134:
+	je	L1310
 	mov	edx, esi
-	shr	edx
-	mov	DWORD PTR [esp+12], edx
+	sub	edx, eax
+	lea	edi, [edx-1]
+	cmp	edi, 6
+	jbe	L1316
+	vzeroupper
+L1266:
+	vmovdqu	xmm4, XMMWORD PTR [ecx+eax*2]
+	mov	edi, edx
+	and	edi, -8
+	vmovdqu	XMMWORD PTR [ebx+eax*2], xmm4
+	add	eax, edi
+	and	edx, 7
+	je	L1261
+L1269:
+	movzx	edi, WORD PTR [ecx+eax*2]
 	lea	edx, [eax+eax]
-	lea	edi, [ebx+edx]
-	add	edx, DWORD PTR [ebp+8]
-	cmp	DWORD PTR [esp+12], 1
-	movd	xmm4, DWORD PTR [edi]
-	movd	DWORD PTR [edx], xmm4
-	je	L1138
-	movd	xmm5, DWORD PTR [edi+4]
-	cmp	DWORD PTR [esp+12], 2
-	movd	DWORD PTR [edx+4], xmm5
-	je	L1138
-	mov	edi, DWORD PTR [edi+8]
-	mov	DWORD PTR [edx+8], edi
-L1138:
-	test	esi, 1
-	je	L1129
-	and	esi, -2
-	add	eax, esi
-L1137:
-	movzx	esi, WORD PTR [ebx+eax*2]
-	mov	edx, DWORD PTR [ebp+8]
-	mov	WORD PTR [edx+eax*2], si
-L1129:
-	test	cl, 1
-	je	L1126
-L1193:
-	movzx	eax, BYTE PTR [ebx-1+ecx]
-	mov	ebx, DWORD PTR [ebp+8]
-	mov	BYTE PTR [ebx-1+ecx], al
-L1126:
+	mov	WORD PTR [ebx+eax*2], di
+	lea	edi, [eax+1]
+	cmp	edi, esi
+	jnb	L1261
+	movzx	edi, WORD PTR [ecx+2+edx]
+	mov	WORD PTR [ebx+2+edx], di
+	lea	edi, [eax+2]
+	cmp	edi, esi
+	jnb	L1261
+	movzx	edi, WORD PTR [ecx+4+edx]
+	mov	WORD PTR [ebx+4+edx], di
+	lea	edi, [eax+3]
+	cmp	edi, esi
+	jnb	L1261
+	movzx	edi, WORD PTR [ecx+6+edx]
+	mov	WORD PTR [ebx+6+edx], di
+	lea	edi, [eax+4]
+	cmp	edi, esi
+	jnb	L1261
+	movzx	edi, WORD PTR [ecx+8+edx]
+	mov	WORD PTR [ebx+8+edx], di
+	lea	edi, [eax+5]
+	cmp	edi, esi
+	jnb	L1261
+	movzx	edi, WORD PTR [ecx+10+edx]
+	add	eax, 6
+	mov	WORD PTR [ebx+10+edx], di
+	cmp	eax, esi
+	jnb	L1261
+	movzx	esi, WORD PTR [ecx+12+edx]
+	mov	WORD PTR [ebx+12+edx], si
+L1261:
+	test	BYTE PTR [ebp+16], 1
+	je	L1312
+L1317:
+	mov	eax, DWORD PTR [ebp+16]
+	movzx	edx, BYTE PTR [ecx-1+eax]
+	mov	ecx, DWORD PTR [ebp+16]
+	mov	BYTE PTR [ebx-1+ecx], dl
+L1312:
 	lea	esp, [ebp-12]
 	pop	ebx
 	.cfi_remember_state
@@ -5357,118 +5648,130 @@ L1126:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1192:
+L1315:
 	.cfi_restore_state
-	lea	esi, [ecx-1]
-	test	ecx, ecx
-	je	L1126
+	mov	edx, DWORD PTR [ebp+16]
+	lea	esi, [edx-1]
+	test	edx, edx
+	je	L1312
 	cmp	esi, 2
-	jbe	L1150
-	mov	edi, DWORD PTR [ebp+8]
-	lea	edx, [ebx-2+ecx]
-	add	edi, esi
-	sub	edi, edx
-	add	edi, 14
-	cmp	edi, 14
-	jbe	L1150
+	jbe	L1309
+	mov	edi, edx
+	lea	eax, [ebx+esi]
+	lea	edx, [ecx-2+edx]
+	sub	eax, edx
+	add	eax, 14
+	cmp	eax, 14
+	jbe	L1309
 	cmp	esi, 14
-	jbe	L1144
-	lea	edi, [ecx-16]
-	lea	eax, [ebx+edi]
-	add	edi, DWORD PTR [ebp+8]
-	mov	DWORD PTR [esp+8], edi
-	mov	edi, ecx
+	jbe	L1275
+	lea	edx, [edi-16]
+	lea	edi, [edx+ebx]
+	lea	eax, [ecx+edx]
+	mov	DWORD PTR [esp+24], edi
+	mov	edi, DWORD PTR [ebp+16]
 	mov	edx, eax
 	and	edi, -16
 	sub	edx, edi
-	mov	DWORD PTR [esp+12], edi
+	mov	DWORD PTR [esp+28], edi
 	mov	edi, edx
-	mov	edx, DWORD PTR [esp+8]
+	mov	edx, DWORD PTR [esp+24]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1145:
-	movdqu	xmm0, XMMWORD PTR [eax]
+L1276:
+	vmovdqu	xmm0, XMMWORD PTR [eax]
 	sub	eax, 16
 	sub	edx, 16
-	movups	XMMWORD PTR [edx+16], xmm0
+	vmovdqu	XMMWORD PTR [edx+16], xmm0
 	cmp	edi, eax
-	jne	L1145
-	mov	eax, DWORD PTR [esp+12]
+	jne	L1276
+	mov	eax, DWORD PTR [esp+28]
 	sub	esi, eax
-	cmp	ecx, eax
-	je	L1126
-	sub	ecx, eax
-	lea	edi, [ecx-1]
+	cmp	DWORD PTR [ebp+16], eax
+	je	L1312
+	sub	DWORD PTR [ebp+16], eax
+	mov	edi, DWORD PTR [ebp+16]
+	sub	edi, 1
 	cmp	edi, 2
-	jbe	L1147
-L1144:
-	lea	eax, [ecx-4]
-	mov	edi, ecx
-	lea	edx, [ebx+eax]
+	jbe	L1278
+L1275:
+	mov	eax, DWORD PTR [ebp+16]
+	mov	edi, DWORD PTR [ebp+16]
+	sub	eax, 4
 	shr	edi, 2
-	add	eax, DWORD PTR [ebp+8]
-	movd	xmm1, DWORD PTR [edx]
-	movd	DWORD PTR [eax], xmm1
+	lea	edx, [ecx+eax]
+	add	eax, ebx
+	vmovd	xmm1, DWORD PTR [edx]
+	vmovd	DWORD PTR [eax], xmm1
 	cmp	edi, 1
-	je	L1148
-	movd	xmm2, DWORD PTR [edx-4]
-	movd	DWORD PTR [eax-4], xmm2
+	je	L1279
+	vmovd	xmm2, DWORD PTR [edx-4]
+	vmovd	DWORD PTR [eax-4], xmm2
 	cmp	edi, 2
-	je	L1148
+	je	L1279
 	mov	edi, DWORD PTR [edx-8]
 	mov	DWORD PTR [eax-8], edi
-L1148:
-	test	cl, 3
-	je	L1126
-	and	ecx, -4
-	sub	esi, ecx
-L1147:
-	movzx	eax, BYTE PTR [ebx+esi]
-	mov	ecx, DWORD PTR [ebp+8]
-	mov	BYTE PTR [ecx+esi], al
+L1279:
+	test	BYTE PTR [ebp+16], 3
+	je	L1312
+	mov	eax, DWORD PTR [ebp+16]
+	and	eax, -4
+	sub	esi, eax
+L1278:
+	movzx	edx, BYTE PTR [ecx+esi]
+	mov	BYTE PTR [ebx+esi], dl
 	test	esi, esi
-	je	L1126
-	movzx	edx, BYTE PTR [ebx-1+esi]
-	mov	BYTE PTR [ecx-1+esi], dl
+	je	L1312
+	movzx	eax, BYTE PTR [ecx-1+esi]
+	mov	BYTE PTR [ebx-1+esi], al
 	cmp	esi, 1
-	je	L1126
-	movzx	eax, BYTE PTR [ebx-2+esi]
-	mov	BYTE PTR [ecx-2+esi], al
-	jmp	L1126
-L1152:
-	xor	eax, eax
-	jmp	L1134
+	je	L1312
+	movzx	ecx, BYTE PTR [ecx-2+esi]
+	mov	BYTE PTR [ebx-2+esi], cl
+	jmp	L1312
+	.p2align 5
 	.p2align 4,,10
 	.p2align 3
-L1133:
-	mov	edx, DWORD PTR [ebp+8]
-	mov	eax, ebx
-	lea	esi, [ebx+esi*2]
+L1309:
+	movzx	edx, BYTE PTR [ecx+esi]
+	mov	BYTE PTR [ebx+esi], dl
+	sub	esi, 1
+	jb	L1312
+	movzx	edx, BYTE PTR [ecx+esi]
+	mov	BYTE PTR [ebx+esi], dl
+	sub	esi, 1
+	jnb	L1309
+	jmp	L1312
+L1283:
+	mov	edx, esi
+	xor	eax, eax
+	jmp	L1266
+	.p2align 4,,10
+	.p2align 3
+L1265:
+	mov	eax, ecx
+	mov	edx, ebx
+	lea	esi, [ecx+esi*2]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1140:
+L1271:
 	movzx	edi, WORD PTR [eax]
 	add	eax, 2
 	add	edx, 2
 	mov	WORD PTR [edx-2], di
-	cmp	esi, eax
-	jne	L1140
-	test	cl, 1
-	je	L1126
-	jmp	L1193
-L1150:
-	mov	edi, DWORD PTR [ebp+8]
-	.p2align 4
-	.p2align 4
-	.p2align 3
-L1190:
-	movzx	edx, BYTE PTR [ebx+esi]
-	mov	BYTE PTR [edi+esi], dl
-	sub	esi, 1
-	jnb	L1190
-	jmp	L1126
+	cmp	eax, esi
+	jne	L1271
+	test	BYTE PTR [ebp+16], 1
+	je	L1312
+	jmp	L1317
+L1316:
+	vzeroupper
+	jmp	L1269
+L1310:
+	vzeroupper
+	jmp	L1261
 	.cfi_endproc
 LFE108:
 	.p2align 4
@@ -5485,284 +5788,311 @@ LFB109:
 	push	edi
 	push	esi
 	push	ebx
-	and	esp, -16
-	sub	esp, 16
+	and	esp, -32
+	sub	esp, 32
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	mov	eax, DWORD PTR [ebp+16]
-	mov	esi, DWORD PTR [ebp+16]
+	mov	edi, DWORD PTR [ebp+16]
 	mov	ecx, DWORD PTR [ebp+12]
+	mov	eax, edi
+	mov	esi, edi
 	and	eax, -4
 	shr	esi, 2
-	mov	DWORD PTR [esp+12], eax
+	mov	DWORD PTR [esp+28], eax
 	cmp	DWORD PTR [ebp+8], ecx
-	jb	L1199
-	mov	edx, DWORD PTR [ebp+16]
-	add	edx, ecx
-	cmp	edx, DWORD PTR [ebp+8]
-	jnb	L1260
-L1199:
-	test	esi, esi
-	je	L1261
-	lea	edi, [esi-1]
-	cmp	edi, 2
-	jbe	L1201
-	mov	eax, DWORD PTR [ebp+8]
-	lea	ebx, [ecx+4]
-	sub	eax, ebx
-	cmp	eax, 8
-	jbe	L1201
-	mov	ebx, DWORD PTR [ebp+16]
-	mov	edi, DWORD PTR [ebp+16]
-	mov	eax, ecx
-	mov	edx, DWORD PTR [ebp+8]
-	and	ebx, -16
-	shr	edi, 4
-	add	ebx, ecx
-	.p2align 5
-	.p2align 4
-	.p2align 3
-L1202:
-	movdqu	xmm1, XMMWORD PTR [eax]
-	add	eax, 16
-	add	edx, 16
-	movups	XMMWORD PTR [edx-16], xmm1
-	cmp	eax, ebx
-	jne	L1202
-	lea	edx, [0+edi*4]
-	cmp	esi, edx
-	je	L1205
-	mov	eax, edi
-	mov	edi, DWORD PTR [ebp+8]
-	sal	eax, 4
-	mov	ebx, DWORD PTR [ecx+eax]
-	mov	DWORD PTR [edi+eax], ebx
-	lea	ebx, [edx+1]
-	cmp	ebx, esi
-	jnb	L1205
-	mov	ebx, DWORD PTR [ecx+4+eax]
-	add	edx, 2
-	mov	DWORD PTR [edi+4+eax], ebx
-	cmp	edx, esi
-	jnb	L1205
-	mov	esi, DWORD PTR [ecx+8+eax]
-	mov	DWORD PTR [edi+8+eax], esi
-L1205:
-	mov	esi, DWORD PTR [esp+12]
-	cmp	esi, DWORD PTR [ebp+16]
-	jnb	L1194
-	mov	ebx, DWORD PTR [ebp+16]
-	mov	eax, DWORD PTR [ebp+8]
-	sub	ebx, esi
-	add	eax, esi
-	lea	edx, [ebx-1]
-	cmp	edx, 2
-	jbe	L1197
-	mov	eax, DWORD PTR [ebp+8]
-	lea	edi, [ecx+1+esi]
-	add	eax, esi
-	mov	esi, eax
-	sub	esi, edi
-	cmp	esi, 14
-	jbe	L1197
-	cmp	edx, 14
-	jbe	L1224
-	mov	edi, DWORD PTR [esp+12]
+	jb	L1323
 	lea	edx, [ecx+edi]
-	mov	edi, ebx
-	and	edi, -16
-	lea	esi, [edi+edx]
+	cmp	edx, DWORD PTR [ebp+8]
+	jnb	L1403
+L1323:
+	test	esi, esi
+	je	L1404
+	lea	eax, [esi-1]
+	cmp	eax, 2
+	jbe	L1325
+	mov	edx, DWORD PTR [ebp+8]
+	lea	ebx, [ecx+4]
+	sub	edx, ebx
+	cmp	edx, 24
+	jbe	L1325
+	cmp	eax, 6
+	jbe	L1350
+	mov	eax, edi
+	mov	ebx, edi
+	mov	edx, DWORD PTR [ebp+8]
+	shr	eax, 5
+	and	ebx, -32
+	mov	DWORD PTR [esp+24], eax
+	add	ebx, ecx
+	mov	eax, ecx
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1207:
-	movdqu	xmm2, XMMWORD PTR [edx]
-	add	edx, 16
-	add	eax, 16
-	movups	XMMWORD PTR [eax-16], xmm2
-	cmp	edx, esi
-	jne	L1207
-	mov	edx, DWORD PTR [esp+12]
-	add	edx, edi
+L1327:
+	vmovdqu	ymm3, YMMWORD PTR [eax]
+	add	eax, 32
+	add	edx, 32
+	vmovdqu	YMMWORD PTR [edx-32], ymm3
+	cmp	ebx, eax
+	jne	L1327
+	mov	eax, DWORD PTR [esp+24]
+	sal	eax, 3
+	mov	DWORD PTR [esp+24], eax
+	cmp	esi, eax
+	je	L1332
+	mov	edx, esi
+	sub	edx, eax
+	lea	ebx, [edx-1]
+	cmp	ebx, 2
+	jbe	L1329
+L1326:
+	mov	eax, DWORD PTR [esp+24]
+	mov	ebx, DWORD PTR [ebp+8]
+	vmovdqu	xmm4, XMMWORD PTR [ecx+eax*4]
+	vmovdqu	XMMWORD PTR [ebx+eax*4], xmm4
 	mov	eax, edx
-	cmp	ebx, edi
-	je	L1194
-	sub	ebx, edi
-	lea	edi, [ebx-1]
-	cmp	edi, 2
-	jbe	L1209
-L1206:
-	lea	esi, [ecx+edx]
-	mov	edi, ebx
-	add	edx, DWORD PTR [ebp+8]
-	movd	xmm3, DWORD PTR [esi]
-	shr	edi, 2
-	movd	DWORD PTR [edx], xmm3
-	cmp	edi, 1
-	je	L1210
-	movd	xmm4, DWORD PTR [esi+4]
-	movd	DWORD PTR [edx+4], xmm4
-	cmp	edi, 2
-	je	L1210
-	mov	edi, DWORD PTR [esi+8]
-	mov	DWORD PTR [edx+8], edi
-L1210:
-	mov	edx, ebx
-	and	edx, -4
+	and	eax, -4
+	add	DWORD PTR [esp+24], eax
+	and	edx, 3
+	je	L1332
+L1329:
+	mov	edx, DWORD PTR [esp+24]
+	mov	eax, DWORD PTR [esp+24]
+	sal	edx, 2
+	mov	ebx, DWORD PTR [ecx+eax*4]
+	mov	DWORD PTR [esp+20], edx
+	mov	edx, DWORD PTR [ebp+8]
+	mov	DWORD PTR [edx+eax*4], ebx
+	add	eax, 1
+	cmp	eax, esi
+	jnb	L1332
+	mov	eax, DWORD PTR [esp+20]
+	mov	ebx, DWORD PTR [ecx+4+eax]
+	mov	DWORD PTR [edx+4+eax], ebx
+	mov	eax, DWORD PTR [esp+24]
+	add	eax, 2
+	cmp	eax, esi
+	jnb	L1332
+	mov	ebx, DWORD PTR [esp+20]
+	mov	eax, DWORD PTR [ecx+8+ebx]
+	mov	DWORD PTR [edx+8+ebx], eax
+L1332:
+	mov	eax, DWORD PTR [esp+28]
+	cmp	eax, edi
+	jnb	L1400
+	mov	esi, edi
+	sub	esi, eax
+	lea	edx, [esi-1]
+	mov	DWORD PTR [esp+24], edx
+	cmp	edx, 14
+	jbe	L1405
+	mov	edx, DWORD PTR [esp+28]
+	mov	eax, DWORD PTR [ebp+8]
 	add	eax, edx
-	and	ebx, 3
-	je	L1194
-L1209:
+	lea	ebx, [ecx+1+edx]
+	mov	edx, eax
+	sub	edx, ebx
+	cmp	edx, 30
+	jbe	L1384
+	cmp	DWORD PTR [esp+24], 30
+	jbe	L1351
+	mov	ebx, DWORD PTR [esp+28]
+	lea	edx, [ecx+ebx]
+	mov	ebx, esi
+	and	ebx, -32
+	mov	DWORD PTR [esp+24], ebx
+	add	ebx, edx
+	.p2align 5
+	.p2align 4
+	.p2align 3
+L1334:
+	vmovdqu	ymm5, YMMWORD PTR [edx]
+	add	edx, 32
+	add	eax, 32
+	vmovdqu	YMMWORD PTR [eax-32], ymm5
+	cmp	ebx, edx
+	jne	L1334
+	mov	edx, DWORD PTR [esp+28]
+	mov	ebx, DWORD PTR [esp+24]
+	add	edx, ebx
+	mov	eax, edx
+	cmp	esi, ebx
+	je	L1400
+	sub	esi, ebx
+	lea	ebx, [esi-1]
+	cmp	ebx, 14
+	jbe	L1336
+L1333:
+	vmovdqu	xmm6, XMMWORD PTR [ecx+edx]
+	mov	ebx, DWORD PTR [ebp+8]
+	vmovdqu	XMMWORD PTR [ebx+edx], xmm6
+	mov	edx, esi
+	and	edx, -16
+	add	eax, edx
+	and	esi, 15
+	je	L1400
+L1336:
 	movzx	ebx, BYTE PTR [ecx+eax]
 	mov	esi, DWORD PTR [ebp+8]
-	lea	edi, [eax+1]
+	lea	edx, [eax+1]
 	mov	BYTE PTR [esi+eax], bl
-	cmp	edi, DWORD PTR [ebp+16]
-	jnb	L1194
-	movzx	edx, BYTE PTR [ecx+1+eax]
-	lea	ebx, [eax+2]
-	mov	BYTE PTR [esi+1+eax], dl
-	cmp	ebx, DWORD PTR [ebp+16]
-	jnb	L1194
-	movzx	edx, BYTE PTR [ecx+2+eax]
-	mov	BYTE PTR [esi+2+eax], dl
-L1194:
-	lea	esp, [ebp-12]
-	pop	ebx
-	.cfi_remember_state
-	.cfi_restore 3
-	pop	esi
-	.cfi_restore 6
-	pop	edi
-	.cfi_restore 7
-	pop	ebp
-	.cfi_restore 5
-	.cfi_def_cfa 4, 4
-	ret
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+1+eax]
+	lea	edx, [eax+2]
+	mov	BYTE PTR [esi+1+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+2+eax]
+	lea	edx, [eax+3]
+	mov	BYTE PTR [esi+2+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+3+eax]
+	lea	edx, [eax+4]
+	mov	BYTE PTR [esi+3+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+4+eax]
+	lea	edx, [eax+5]
+	mov	BYTE PTR [esi+4+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+5+eax]
+	lea	edx, [eax+6]
+	mov	BYTE PTR [esi+5+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+6+eax]
+	lea	edx, [eax+7]
+	mov	BYTE PTR [esi+6+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+7+eax]
+	lea	edx, [eax+8]
+	mov	BYTE PTR [esi+7+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+8+eax]
+	lea	edx, [eax+9]
+	mov	BYTE PTR [esi+8+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+9+eax]
+	lea	edx, [eax+10]
+	mov	BYTE PTR [esi+9+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+10+eax]
+	lea	edx, [eax+11]
+	mov	BYTE PTR [esi+10+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+11+eax]
+	lea	edx, [eax+12]
+	mov	BYTE PTR [esi+11+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+12+eax]
+	lea	edx, [eax+13]
+	mov	BYTE PTR [esi+12+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ebx, BYTE PTR [ecx+13+eax]
+	lea	edx, [eax+14]
+	mov	BYTE PTR [esi+13+eax], bl
+	cmp	edx, edi
+	jnb	L1400
+	movzx	ecx, BYTE PTR [ecx+14+eax]
+	mov	BYTE PTR [esi+14+eax], cl
+	vzeroupper
+	jmp	L1401
 	.p2align 4,,10
 	.p2align 3
-L1260:
-	.cfi_restore_state
-	mov	edi, DWORD PTR [ebp+16]
+L1403:
 	lea	ebx, [edi-1]
 	test	edi, edi
-	je	L1194
+	je	L1401
 	cmp	ebx, 2
-	jbe	L1222
+	jbe	L1348
 	mov	esi, DWORD PTR [ebp+8]
 	lea	eax, [ecx-2+edi]
 	add	esi, ebx
 	sub	esi, eax
 	add	esi, 14
 	cmp	esi, 14
-	jbe	L1222
+	jbe	L1348
 	cmp	ebx, 14
-	jbe	L1215
+	jbe	L1341
 	lea	edx, [edi-16]
-	and	edi, -16
+	mov	esi, edi
 	lea	eax, [ecx+edx]
 	add	edx, DWORD PTR [ebp+8]
-	mov	esi, eax
-	sub	esi, edi
+	and	esi, -16
+	mov	DWORD PTR [esp+28], edx
+	mov	edx, eax
+	sub	edx, esi
+	mov	DWORD PTR [esp+24], esi
+	mov	esi, edx
+	mov	edx, DWORD PTR [esp+28]
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1216:
-	movdqu	xmm0, XMMWORD PTR [eax]
+L1342:
+	vmovdqu	xmm0, XMMWORD PTR [eax]
 	sub	eax, 16
 	sub	edx, 16
-	movups	XMMWORD PTR [edx+16], xmm0
+	vmovdqu	XMMWORD PTR [edx+16], xmm0
 	cmp	esi, eax
-	jne	L1216
-	sub	ebx, edi
-	cmp	DWORD PTR [ebp+16], edi
-	je	L1194
-	sub	DWORD PTR [ebp+16], edi
-	mov	edi, DWORD PTR [ebp+16]
-	sub	edi, 1
-	cmp	edi, 2
-	jbe	L1219
-L1215:
-	mov	eax, DWORD PTR [ebp+16]
-	mov	esi, DWORD PTR [ebp+16]
-	sub	eax, 4
-	shr	esi, 2
-	lea	edx, [ecx+eax]
-	add	eax, DWORD PTR [ebp+8]
-	mov	edi, DWORD PTR [edx]
-	mov	DWORD PTR [eax], edi
-	cmp	esi, 1
-	je	L1220
-	mov	edi, DWORD PTR [edx-4]
-	mov	DWORD PTR [eax-4], edi
+	jne	L1342
+	mov	eax, DWORD PTR [esp+24]
+	sub	ebx, eax
+	cmp	edi, eax
+	je	L1401
+	sub	edi, eax
+	lea	esi, [edi-1]
 	cmp	esi, 2
-	je	L1220
+	jbe	L1345
+L1341:
+	lea	eax, [edi-4]
+	mov	esi, edi
+	lea	edx, [ecx+eax]
+	shr	esi, 2
+	add	eax, DWORD PTR [ebp+8]
+	vmovd	xmm1, DWORD PTR [edx]
+	vmovd	DWORD PTR [eax], xmm1
+	cmp	esi, 1
+	je	L1346
+	vmovd	xmm2, DWORD PTR [edx-4]
+	vmovd	DWORD PTR [eax-4], xmm2
+	cmp	esi, 2
+	je	L1346
 	mov	esi, DWORD PTR [edx-8]
 	mov	DWORD PTR [eax-8], esi
-L1220:
-	test	BYTE PTR [ebp+16], 3
-	je	L1194
-	mov	eax, DWORD PTR [ebp+16]
-	and	eax, -4
-	sub	ebx, eax
-L1219:
-	movzx	edx, BYTE PTR [ecx+ebx]
-	mov	edi, DWORD PTR [ebp+8]
-	mov	BYTE PTR [edi+ebx], dl
-	test	ebx, ebx
-	je	L1194
-	movzx	eax, BYTE PTR [ecx-1+ebx]
-	mov	BYTE PTR [edi-1+ebx], al
-	cmp	ebx, 1
-	je	L1194
-	movzx	edx, BYTE PTR [ecx-2+ebx]
-	mov	BYTE PTR [edi-2+ebx], dl
-	jmp	L1194
-L1224:
-	mov	eax, DWORD PTR [esp+12]
-	mov	edx, eax
-	jmp	L1206
-	.p2align 4,,10
-	.p2align 3
-L1201:
+L1346:
+	test	edi, 3
+	je	L1401
+	and	edi, -4
+	sub	ebx, edi
+L1345:
+	movzx	eax, BYTE PTR [ecx+ebx]
 	mov	edx, DWORD PTR [ebp+8]
-	mov	eax, ecx
-	lea	edi, [ecx+esi*4]
-	.p2align 4
-	.p2align 4
-	.p2align 3
-L1204:
-	mov	ebx, DWORD PTR [eax]
-	add	eax, 4
-	add	edx, 4
-	mov	DWORD PTR [edx-4], ebx
-	cmp	edi, eax
-	jne	L1204
-	jmp	L1205
+	mov	BYTE PTR [edx+ebx], al
+	test	ebx, ebx
+	je	L1401
+	movzx	eax, BYTE PTR [ecx-1+ebx]
+	mov	BYTE PTR [edx-1+ebx], al
+	cmp	ebx, 1
+	je	L1401
+	movzx	ecx, BYTE PTR [ecx-2+ebx]
+	mov	BYTE PTR [edx-2+ebx], cl
+	jmp	L1401
 	.p2align 4,,10
 	.p2align 3
-L1261:
-	mov	eax, DWORD PTR [ebp+8]
-	mov	ebx, DWORD PTR [esp+12]
-	mov	edx, DWORD PTR [ebp+16]
-	add	eax, ebx
-	test	edx, edx
-	je	L1194
-L1197:
-	mov	esi, DWORD PTR [esp+12]
-	add	esi, ecx
-	add	ecx, DWORD PTR [ebp+16]
-	.p2align 4
-	.p2align 4
-	.p2align 3
-L1212:
-	movzx	ebx, BYTE PTR [esi]
-	add	esi, 1
-	add	eax, 1
-	mov	BYTE PTR [eax-1], bl
-	cmp	esi, ecx
-	jne	L1212
+L1400:
+	vzeroupper
+L1401:
 	lea	esp, [ebp-12]
 	pop	ebx
 	.cfi_remember_state
@@ -5775,18 +6105,87 @@ L1212:
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
 	ret
-L1222:
+L1350:
 	.cfi_restore_state
+	mov	DWORD PTR [esp+24], 0
+	mov	edx, esi
+	jmp	L1326
+	.p2align 4,,10
+	.p2align 3
+L1325:
+	mov	edx, DWORD PTR [ebp+8]
+	mov	eax, ecx
+	lea	ebx, [ecx+esi*4]
+	.p2align 4
+	.p2align 4
+	.p2align 3
+L1331:
+	mov	esi, DWORD PTR [eax]
+	add	eax, 4
+	add	edx, 4
+	mov	DWORD PTR [edx-4], esi
+	cmp	eax, ebx
+	jne	L1331
+	jmp	L1332
+	.p2align 4,,10
+	.p2align 3
+L1404:
+	mov	eax, DWORD PTR [ebp+8]
+	mov	ebx, DWORD PTR [esp+28]
+	add	eax, ebx
+	test	edi, edi
+	je	L1401
+L1321:
+	mov	edx, DWORD PTR [esp+28]
+	add	edx, ecx
+	add	ecx, edi
+	.p2align 4
+	.p2align 4
+	.p2align 3
+L1338:
+	movzx	ebx, BYTE PTR [edx]
+	add	edx, 1
+	add	eax, 1
+	mov	BYTE PTR [eax-1], bl
+	cmp	ecx, edx
+	jne	L1338
+	lea	esp, [ebp-12]
+	pop	ebx
+	.cfi_remember_state
+	.cfi_restore 3
+	pop	esi
+	.cfi_restore 6
+	pop	edi
+	.cfi_restore 7
+	pop	ebp
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+L1384:
+	.cfi_restore_state
+	vzeroupper
+	jmp	L1321
+L1351:
+	mov	eax, DWORD PTR [esp+28]
+	mov	edx, eax
+	jmp	L1333
+L1348:
 	mov	esi, DWORD PTR [ebp+8]
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L1258:
-	movzx	eax, BYTE PTR [ecx+ebx]
-	mov	BYTE PTR [esi+ebx], al
+L1382:
+	movzx	edx, BYTE PTR [ecx+ebx]
+	mov	BYTE PTR [esi+ebx], dl
 	sub	ebx, 1
-	jnb	L1258
-	jmp	L1194
+	jnb	L1382
+	jmp	L1401
+L1405:
+	mov	eax, DWORD PTR [ebp+8]
+	mov	ebx, DWORD PTR [esp+28]
+	add	eax, ebx
+	vzeroupper
+	jmp	L1321
 	.cfi_endproc
 LFE109:
 	.p2align 4
@@ -5810,8 +6209,8 @@ LFB111:
 	.cfi_startproc
 	sub	esp, 12
 	.cfi_def_cfa_offset 16
-	movd	xmm0, DWORD PTR [esp+16]
-	movq	QWORD PTR [esp], xmm0
+	vmovd	xmm0, DWORD PTR [esp+16]
+	vmovq	QWORD PTR [esp], xmm0
 	fild	QWORD PTR [esp]
 	add	esp, 12
 	.cfi_def_cfa_offset 4
@@ -5826,8 +6225,8 @@ LFB112:
 	.cfi_startproc
 	sub	esp, 12
 	.cfi_def_cfa_offset 16
-	movd	xmm0, DWORD PTR [esp+16]
-	movq	QWORD PTR [esp], xmm0
+	vmovd	xmm0, DWORD PTR [esp+16]
+	vmovq	QWORD PTR [esp], xmm0
 	fild	QWORD PTR [esp]
 	add	esp, 12
 	.cfi_def_cfa_offset 4
@@ -5844,15 +6243,15 @@ LFB113:
 	.cfi_def_cfa_offset 24
 	mov	eax, DWORD PTR [esp+24]
 	mov	edx, DWORD PTR [esp+28]
-	movd	xmm0, eax
-	pinsrd	xmm0, edx, 1
-	movq	QWORD PTR [esp+8], xmm0
+	vmovd	xmm0, eax
+	vpinsrd	xmm1, xmm0, edx, 1
+	vmovq	QWORD PTR [esp+8], xmm1
 	fild	QWORD PTR [esp+8]
 	test	edx, edx
-	jns	L1268
+	jns	L1412
 	fld	DWORD PTR LC16
 	faddp	st(1), st
-L1268:
+L1412:
 	fstp	QWORD PTR [esp]
 	fld	QWORD PTR [esp]
 	add	esp, 20
@@ -5870,15 +6269,15 @@ LFB114:
 	.cfi_def_cfa_offset 24
 	mov	eax, DWORD PTR [esp+24]
 	mov	edx, DWORD PTR [esp+28]
-	movd	xmm0, eax
-	pinsrd	xmm0, edx, 1
-	movq	QWORD PTR [esp+8], xmm0
+	vmovd	xmm0, eax
+	vpinsrd	xmm1, xmm0, edx, 1
+	vmovq	QWORD PTR [esp+8], xmm1
 	fild	QWORD PTR [esp+8]
 	test	edx, edx
-	jns	L1271
+	jns	L1415
 	fld	DWORD PTR LC16
 	faddp	st(1), st
-L1271:
+L1415:
 	fstp	DWORD PTR [esp+4]
 	fld	DWORD PTR [esp+4]
 	add	esp, 20
@@ -5908,93 +6307,93 @@ LFB116:
 	mov	ecx, DWORD PTR [esp+4]
 	movzx	edx, cx
 	test	ch, -128
-	jne	L1277
+	jne	L1421
 	mov	eax, edx
 	sar	eax, 14
-	jne	L1274
+	jne	L1418
 	mov	eax, edx
 	shr	eax, 13
-	jne	L1278
+	jne	L1422
 	mov	eax, edx
 	shr	eax, 12
-	jne	L1279
+	jne	L1423
 	mov	eax, edx
 	shr	eax, 11
-	jne	L1280
+	jne	L1424
 	mov	eax, edx
 	shr	eax, 10
-	jne	L1281
+	jne	L1425
 	mov	eax, edx
 	shr	eax, 9
-	jne	L1282
+	jne	L1426
 	mov	eax, edx
 	shr	eax, 8
-	jne	L1283
+	jne	L1427
 	mov	eax, edx
 	shr	eax, 7
-	jne	L1284
+	jne	L1428
 	mov	eax, edx
 	shr	eax, 6
-	jne	L1285
+	jne	L1429
 	mov	eax, edx
 	shr	eax, 5
-	jne	L1286
+	jne	L1430
 	mov	eax, edx
 	shr	eax, 4
-	jne	L1287
+	jne	L1431
 	mov	eax, edx
 	shr	eax, 3
-	jne	L1288
+	jne	L1432
 	mov	eax, edx
 	shr	eax, 2
-	jne	L1289
+	jne	L1433
 	shr	edx
-	jne	L1290
+	jne	L1434
 	cmp	cx, 1
 	mov	eax, 15
 	adc	eax, 0
 	ret
-L1290:
+L1434:
 	mov	eax, 14
-L1274:
+L1418:
 	ret
-L1277:
+L1421:
 	xor	eax, eax
 	ret
-L1288:
+L1432:
 	mov	eax, 12
 	ret
-L1278:
+L1422:
 	mov	eax, 2
 	ret
-L1279:
+L1423:
 	mov	eax, 3
 	ret
-L1280:
+L1424:
 	mov	eax, 4
 	ret
-L1281:
+L1425:
 	mov	eax, 5
 	ret
-L1282:
+L1426:
 	mov	eax, 6
 	ret
-L1283:
+L1427:
 	mov	eax, 7
 	ret
-L1284:
+L1428:
 	mov	eax, 8
 	ret
-L1285:
+L1429:
 	mov	eax, 9
 	ret
-L1286:
+L1430:
 	mov	eax, 10
 	ret
-L1287:
+L1431:
 	mov	eax, 11
 	ret
-L1289:
+L1433:
 	mov	eax, 13
 	ret
 	.cfi_endproc
@@ -6007,83 +6406,83 @@ LFB117:
 	.cfi_startproc
 	mov	eax, DWORD PTR [esp+4]
 	test	al, 1
-	jne	L1295
+	jne	L1439
 	test	al, 2
-	jne	L1296
+	jne	L1440
 	test	al, 4
-	jne	L1297
+	jne	L1441
 	test	al, 8
-	jne	L1298
+	jne	L1442
 	test	al, 16
-	jne	L1299
+	jne	L1443
 	test	al, 32
-	jne	L1300
+	jne	L1444
 	test	al, 64
-	jne	L1301
+	jne	L1445
 	test	al, -128
-	jne	L1302
+	jne	L1446
 	test	ah, 1
-	jne	L1303
+	jne	L1447
 	test	ah, 2
-	jne	L1304
+	jne	L1448
 	test	ah, 4
-	jne	L1305
+	jne	L1449
 	test	ah, 8
-	jne	L1306
+	jne	L1450
 	test	ah, 16
-	jne	L1307
+	jne	L1451
 	test	ah, 32
-	jne	L1308
+	jne	L1452
 	test	ah, 64
-	jne	L1309
+	jne	L1453
 	test	ah, -128
 	sete	dl
 	movzx	eax, dl
 	add	eax, 15
 	ret
-L1295:
+L1439:
 	xor	eax, eax
 	ret
-L1296:
+L1440:
 	mov	eax, 1
 	ret
-L1307:
+L1451:
 	mov	eax, 12
 	ret
-L1297:
+L1441:
 	mov	eax, 2
 	ret
-L1298:
+L1442:
 	mov	eax, 3
 	ret
-L1299:
+L1443:
 	mov	eax, 4
 	ret
-L1300:
+L1444:
 	mov	eax, 5
 	ret
-L1301:
+L1445:
 	mov	eax, 6
 	ret
-L1302:
+L1446:
 	mov	eax, 7
 	ret
-L1303:
+L1447:
 	mov	eax, 8
 	ret
-L1304:
+L1448:
 	mov	eax, 9
 	ret
-L1305:
+L1449:
 	mov	eax, 10
 	ret
-L1306:
+L1450:
 	mov	eax, 11
 	ret
-L1308:
+L1452:
 	mov	eax, 13
 	ret
-L1309:
+L1453:
 	mov	eax, 14
 	ret
 	.cfi_endproc
@@ -6099,7 +6498,7 @@ LFB118:
 	fld	DWORD PTR LC17
 	fld	DWORD PTR [esp+8]
 	fcomi	st, st(1)
-	jnb	L1318
+	jnb	L1462
 	fstp	st(1)
 	fisttp	DWORD PTR [esp]
 	mov	eax, DWORD PTR [esp]
@@ -6109,7 +6508,7 @@ LFB118:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1318:
+L1462:
 	.cfi_restore_state
 	fsubrp	st(1), st
 	fisttp	DWORD PTR [esp]
@@ -6274,11 +6673,11 @@ LFB168:
 	xor	ebx, ebx
 	mov	ecx, DWORD PTR [esp+12]
 	test	edx, edx
-	je	L1321
+	je	L1465
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1323:
+L1467:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -6286,8 +6685,8 @@ L1323:
 	add	ecx, ecx
 	add	ebx, eax
 	shr	edx
-	jne	L1323
-L1321:
+	jne	L1467
+L1465:
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -6308,13 +6707,13 @@ LFB122:
 	xor	ebx, ebx
 	mov	edx, DWORD PTR [esp+12]
 	test	ecx, ecx
-	je	L1327
+	je	L1471
 	test	edx, edx
-	je	L1327
+	je	L1471
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1329:
+L1473:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -6322,8 +6721,8 @@ L1329:
 	add	ecx, ecx
 	add	ebx, eax
 	shr	edx
-	jne	L1329
-L1327:
+	jne	L1473
+L1471:
 	mov	eax, ebx
 	pop	ebx
 	.cfi_restore 3
@@ -6355,22 +6754,22 @@ LFB164:
 	mov	edx, DWORD PTR [esp+28]
 	mov	edi, DWORD PTR [esp+32]
 	cmp	edx, eax
-	jnb	L1359
+	jnb	L1503
 	mov	ecx, 1
-	jmp	L1336
+	jmp	L1480
 	.p2align 4,,10
 	.p2align 3
-L1339:
+L1483:
 	add	edx, edx
 	add	ecx, ecx
 	cmp	edx, eax
-	jnb	L1338
+	jnb	L1482
 	test	ecx, ecx
-	je	L1338
-L1336:
+	je	L1482
+L1480:
 	test	edx, edx
-	jns	L1339
-L1340:
+	jns	L1483
+L1484:
 	xor	ebx, ebx
 	mov	DWORD PTR [esp+32], edi
 	xor	ebp, ebp
@@ -6378,7 +6777,7 @@ L1340:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1342:
+L1486:
 	mov	edi, eax
 	mov	esi, ebp
 	sub	edi, edx
@@ -6390,10 +6789,10 @@ L1342:
 	shr	edx
 	or	DWORD PTR [esp], esi
 	shr	ecx
-	jne	L1342
+	jne	L1486
 	mov	esi, DWORD PTR [esp]
 	mov	edi, DWORD PTR [esp+32]
-L1341:
+L1485:
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -6414,11 +6813,11 @@ L1341:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1338:
+L1482:
 	.cfi_restore_state
 	xor	esi, esi
 	test	ecx, ecx
-	jne	L1340
+	jne	L1484
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -6437,7 +6836,7 @@ L1338:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L1359:
+L1503:
 	.cfi_restore_state
 	mov	ecx, eax
 	sub	ecx, edx
@@ -6445,7 +6844,7 @@ L1359:
 	setnb	bl
 	cmovnb	eax, ecx
 	movzx	esi, bl
-	jmp	L1341
+	jmp	L1485
 	.cfi_endproc
 LFE164:
 	.p2align 4
@@ -6458,19 +6857,19 @@ LFB124:
 	fld	DWORD PTR [esp+8]
 	mov	eax, -1
 	fcomi	st, st(1)
-	ja	L1366
+	ja	L1510
 	fxch	st(1)
 	xor	eax, eax
 	fcomip	st, st(1)
 	fstp	st(0)
 	seta	al
-	jmp	L1363
+	jmp	L1507
 	.p2align 4,,10
 	.p2align 3
-L1366:
+L1510:
 	fstp	st(0)
 	fstp	st(0)
-L1363:
+L1507:
 	ret
 	.cfi_endproc
 LFE124:
@@ -6484,19 +6883,19 @@ LFB125:
 	fld	QWORD PTR [esp+12]
 	mov	eax, -1
 	fcomi	st, st(1)
-	ja	L1370
+	ja	L1514
 	fxch	st(1)
 	xor	eax, eax
 	fcomip	st, st(1)
 	fstp	st(0)
 	seta	al
-	jmp	L1367
+	jmp	L1511
 	.p2align 4,,10
 	.p2align 3
-L1370:
+L1514:
 	fstp	st(0)
 	fstp	st(0)
-L1367:
+L1511:
 	ret
 	.cfi_endproc
 LFE125:
@@ -6542,16 +6941,16 @@ LFB128:
 	.cfi_offset 3, -20
 	mov	edx, DWORD PTR [esp+24]
 	test	edx, edx
-	js	L1383
-	je	L1378
+	js	L1527
+	je	L1522
 	xor	edi, edi
-L1375:
+L1519:
 	mov	ebx, 1
 	xor	esi, esi
 	.p2align 6
 	.p2align 4
 	.p2align 3
-L1377:
+L1521:
 	mov	eax, edx
 	and	eax, 1
 	neg	eax
@@ -6564,7 +6963,7 @@ L1377:
 	setne	al
 	add	ebx, 1
 	test	cl, al
-	jne	L1377
+	jne	L1521
 	mov	eax, esi
 	pop	ebx
 	.cfi_remember_state
@@ -6585,14 +6984,14 @@ L1377:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1383:
+L1527:
 	.cfi_restore_state
 	neg	edx
 	mov	edi, 1
-	jmp	L1375
+	jmp	L1519
 	.p2align 4,,10
 	.p2align 3
-L1378:
+L1522:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 16
@@ -6634,44 +7033,44 @@ LFB129:
 	mov	ebx, DWORD PTR [esp+28]
 	mov	esi, DWORD PTR [esp+32]
 	test	ebx, ebx
-	jns	L1385
+	jns	L1529
 	neg	ebx
 	xor	eax, eax
 	mov	edi, 1
-L1385:
+L1529:
 	test	esi, esi
-	jns	L1386
+	jns	L1530
 	neg	esi
 	mov	edi, eax
-L1386:
+L1530:
 	mov	edx, esi
 	mov	ecx, ebx
 	mov	eax, 1
 	cmp	esi, ebx
-	jb	L1387
-	jmp	L1411
+	jb	L1531
+	jmp	L1555
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L1417:
+L1561:
 	test	eax, eax
-	je	L1392
-L1387:
+	je	L1536
+L1531:
 	add	edx, edx
 	add	eax, eax
 	cmp	edx, ebx
-	jb	L1417
-L1392:
+	jb	L1561
+L1536:
 	xor	esi, esi
 	xor	ebp, ebp
 	test	eax, eax
-	je	L1412
+	je	L1556
 	mov	DWORD PTR [esp+4], edi
 	mov	DWORD PTR [esp], esi
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1389:
+L1533:
 	mov	edi, ecx
 	mov	esi, ebp
 	sub	edi, edx
@@ -6683,10 +7082,10 @@ L1389:
 	shr	edx
 	or	DWORD PTR [esp], esi
 	shr	eax
-	jne	L1389
+	jne	L1533
 	mov	edi, DWORD PTR [esp+4]
 	mov	ebp, DWORD PTR [esp]
-L1390:
+L1534:
 	mov	eax, ebp
 	neg	eax
 	test	edi, edi
@@ -6707,15 +7106,15 @@ L1390:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L1412:
+L1556:
 	.cfi_restore_state
 	xor	ebp, ebp
-	jmp	L1390
-L1411:
+	jmp	L1534
+L1555:
 	cmp	ebx, esi
 	setnb	bl
 	movzx	ebp, bl
-	jmp	L1390
+	jmp	L1534
 	.cfi_endproc
 LFE129:
 	.p2align 4
@@ -6734,43 +7133,43 @@ LFB130:
 	mov	ebx, DWORD PTR [esp+12]
 	mov	edx, DWORD PTR [esp+16]
 	test	ebx, ebx
-	jns	L1419
+	jns	L1563
 	neg	ebx
 	mov	esi, 1
-L1419:
+L1563:
 	mov	eax, edx
 	mov	ecx, ebx
 	neg	eax
 	cmovs	eax, edx
 	mov	edx, 1
 	cmp	eax, ebx
-	jb	L1420
-	jmp	L1444
+	jb	L1564
+	jmp	L1588
 	.p2align 4
 	.p2align 4,,10
 	.p2align 3
-L1448:
+L1592:
 	test	edx, edx
-	je	L1440
-L1420:
+	je	L1584
+L1564:
 	add	eax, eax
 	add	edx, edx
 	cmp	eax, ebx
-	jb	L1448
+	jb	L1592
 	test	edx, edx
-	je	L1440
+	je	L1584
 	.p2align 4
 	.p2align 4
 	.p2align 3
-L1422:
+L1566:
 	mov	ebx, ecx
 	sub	ebx, eax
 	cmp	ecx, eax
 	cmovnb	ecx, ebx
 	shr	eax
 	shr	edx
-	jne	L1422
-L1423:
+	jne	L1566
+L1567:
 	mov	eax, ecx
 	pop	ebx
 	.cfi_remember_state
@@ -6785,7 +7184,7 @@ L1423:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1440:
+L1584:
 	.cfi_restore_state
 	mov	ecx, ebx
 	pop	ebx
@@ -6800,12 +7199,12 @@ L1440:
 	.cfi_def_cfa_offset 4
 	cmove	eax, ecx
 	ret
-L1444:
+L1588:
 	.cfi_restore_state
 	sub	ebx, eax
 	cmp	ecx, eax
 	cmovnb	ecx, ebx
-	jmp	L1423
+	jmp	L1567
 	.cfi_endproc
 LFE130:
 	.p2align 4
@@ -6834,22 +7233,22 @@ LFB131:
 	mov	ebp, esi
 	mov	edx, eax
 	cmp	ax, si
-	jb	L1450
-	jmp	L1518
+	jb	L1594
+	jmp	L1662
 	.p2align 4,,10
 	.p2align 3
-L1453:
+L1597:
 	lea	ebx, [edx+edx]
 	lea	eax, [ecx+ecx]
 	cmp	bx, bp
-	jnb	L1452
+	jnb	L1596
 	test	ax, ax
-	je	L1452
+	je	L1596
 	mov	ecx, eax
 	mov	edx, ebx
-L1450:
+L1594:
 	test	dx, dx
-	jns	L1453
+	jns	L1597
 	mov	ebp, esi
 	mov	ebx, ecx
 	sub	ebp, edx
@@ -6863,8 +7262,8 @@ L1450:
 	shr	bx
 	mov	WORD PTR [esp+2], bx
 	mov	edi, eax
-	je	L1519
-L1457:
+	je	L1663
+L1601:
 	mov	eax, ebp
 	sub	eax, esi
 	cmp	bp, si
@@ -6879,7 +7278,7 @@ L1457:
 	shr	ax, 2
 	shr	bx, 2
 	mov	WORD PTR [esp+2], si
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6893,7 +7292,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 3
 	shr	bx, 3
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6907,7 +7306,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 4
 	shr	bx, 4
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6921,7 +7320,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 5
 	shr	bx, 5
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6935,7 +7334,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 6
 	shr	bx, 6
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6949,7 +7348,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 7
 	shr	bx, 7
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6963,7 +7362,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 8
 	shr	bx, 8
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6977,7 +7376,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 9
 	shr	bx, 9
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -6991,7 +7390,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 10
 	shr	bx, 10
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -7005,7 +7404,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 11
 	shr	bx, 11
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -7019,7 +7418,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 12
 	shr	bx, 12
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -7033,7 +7432,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 13
 	shr	bx, 13
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -7047,7 +7446,7 @@ L1457:
 	mov	ebx, ecx
 	shr	ax, 14
 	shr	bx, 14
-	je	L1455
+	je	L1599
 	mov	edi, ebp
 	mov	esi, 0
 	sub	edi, eax
@@ -7060,7 +7459,7 @@ L1457:
 	shr	dx, 15
 	movzx	ebx, WORD PTR [esp+2]
 	test	cx, cx
-	jns	L1455
+	jns	L1599
 	mov	ecx, ebp
 	sub	ecx, edx
 	cmp	bp, dx
@@ -7069,7 +7468,7 @@ L1457:
 	movzx	edi, dl
 	or	ebx, edi
 	mov	WORD PTR [esp+2], bx
-L1455:
+L1599:
 	mov	eax, DWORD PTR [esp+32]
 	test	eax, eax
 	movzx	eax, WORD PTR [esp+2]
@@ -7092,12 +7491,12 @@ L1455:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1452:
+L1596:
 	.cfi_restore_state
 	mov	WORD PTR [esp+2], ax
 	mov	ebp, esi
 	test	ax, ax
-	je	L1455
+	je	L1599
 	sub	ebp, ebx
 	cmp	bx, si
 	cmova	ebp, esi
@@ -7110,18 +7509,18 @@ L1452:
 	mov	esi, edx
 	mov	ecx, eax
 	mov	edx, ebx
-	jmp	L1457
-L1518:
+	jmp	L1601
+L1662:
 	sub	ebp, eax
 	cmp	ax, si
 	sete	dl
 	cmovne	ebp, esi
 	movzx	ecx, dl
 	mov	WORD PTR [esp+2], cx
-	jmp	L1455
-L1519:
+	jmp	L1599
+L1663:
 	mov	WORD PTR [esp+2], ax
-	jmp	L1455
+	jmp	L1599
 	.cfi_endproc
 LFE131:
 	.p2align 4
@@ -7148,22 +7547,22 @@ LFB166:
 	mov	edx, DWORD PTR [esp+28]
 	mov	edi, DWORD PTR [esp+32]
 	cmp	edx, eax
-	jnb	L1544
+	jnb	L1688
 	mov	ecx, 1
-	jmp	L1521
+	jmp	L1665
 	.p2align 4,,10
 	.p2align 3
-L1524:
+L1668:
 	add	edx, edx
 	add	ecx, ecx
 	cmp	edx, eax
-	jnb	L1523
+	jnb	L1667
 	test	ecx, ecx
-	je	L1523
-L1521:
+	je	L1667
+L1665:
 	test	edx, edx
-	jns	L1524
-L1525:
+	jns	L1668
+L1669:
 	xor	ebx, ebx
 	mov	DWORD PTR [esp+32], edi
 	xor	ebp, ebp
@@ -7171,7 +7570,7 @@ L1525:
 	.p2align 5
 	.p2align 4
 	.p2align 3
-L1527:
+L1671:
 	mov	edi, eax
 	mov	esi, ebp
 	sub	edi, edx
@@ -7183,10 +7582,10 @@ L1527:
 	shr	edx
 	or	DWORD PTR [esp], esi
 	shr	ecx
-	jne	L1527
+	jne	L1671
 	mov	esi, DWORD PTR [esp]
 	mov	edi, DWORD PTR [esp+32]
-L1526:
+L1670:
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -7207,11 +7606,11 @@ L1526:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1523:
+L1667:
 	.cfi_restore_state
 	xor	esi, esi
 	test	ecx, ecx
-	jne	L1525
+	jne	L1669
 	test	edi, edi
 	cmove	eax, esi
 	add	esp, 4
@@ -7230,7 +7629,7 @@ L1523:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L1544:
+L1688:
 	.cfi_restore_state
 	mov	ecx, eax
 	sub	ecx, edx
@@ -7238,7 +7637,7 @@ L1544:
 	setnb	bl
 	cmovnb	eax, ecx
 	movzx	esi, bl
-	jmp	L1526
+	jmp	L1670
 	.cfi_endproc
 LFE166:
 	.p2align 4
@@ -7257,7 +7656,7 @@ LFB133:
 	mov	edx, DWORD PTR [esp+12]
 	mov	esi, DWORD PTR [esp+16]
 	test	bl, 32
-	je	L1549
+	je	L1693
 	lea	ecx, [ebx-32]
 	xor	eax, eax
 	pop	ebx
@@ -7271,11 +7670,11 @@ LFB133:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1549:
+L1693:
 	.cfi_restore_state
 	mov	eax, edx
 	test	ebx, ebx
-	je	L1552
+	je	L1696
 	mov	ecx, ebx
 	sal	eax, cl
 	mov	ecx, 32
@@ -7294,7 +7693,7 @@ L1549:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1552:
+L1696:
 	.cfi_restore_state
 	mov	edx, esi
 	pop	ebx
@@ -7325,7 +7724,7 @@ LFB134:
 	mov	edi, DWORD PTR [esp+16]
 	mov	esi, DWORD PTR [esp+20]
 	test	bl, 32
-	je	L1555
+	je	L1699
 	mov	edx, esi
 	lea	ecx, [ebx-32]
 	mov	eax, esi
@@ -7344,10 +7743,10 @@ LFB134:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1555:
+L1699:
 	.cfi_restore_state
 	test	ebx, ebx
-	je	L1558
+	je	L1702
 	mov	ecx, ebx
 	mov	edx, esi
 	mov	eax, esi
@@ -7371,7 +7770,7 @@ L1555:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1558:
+L1702:
 	.cfi_restore_state
 	mov	eax, edi
 	mov	edx, esi
@@ -7481,17 +7880,17 @@ LFB138:
 	mov	ecx, DWORD PTR [esp+16]
 	mov	ebx, DWORD PTR [esp+20]
 	cmp	DWORD PTR [esp+12], ebx
-	jl	L1564
+	jl	L1708
 	mov	eax, 2
-	jg	L1564
+	jg	L1708
 	xor	eax, eax
 	cmp	edx, ecx
-	jb	L1564
+	jb	L1708
 	xor	eax, eax
 	cmp	ecx, edx
 	setb	al
 	add	eax, 1
-L1564:
+L1708:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
@@ -7512,16 +7911,16 @@ LFB139:
 	mov	ecx, DWORD PTR [esp+16]
 	mov	ebx, DWORD PTR [esp+20]
 	cmp	DWORD PTR [esp+12], ebx
-	jl	L1571
+	jl	L1715
 	mov	eax, 1
-	jg	L1571
+	jg	L1715
 	mov	eax, -1
 	cmp	edx, ecx
-	jb	L1571
+	jb	L1715
 	xor	eax, eax
 	cmp	ecx, edx
 	setb	al
-L1571:
+L1715:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
@@ -7598,7 +7997,7 @@ LFB141:
 	mov	edi, DWORD PTR [esp+16]
 	mov	esi, DWORD PTR [esp+20]
 	test	bl, 32
-	je	L1580
+	je	L1724
 	lea	ecx, [ebx-32]
 	mov	eax, esi
 	pop	ebx
@@ -7616,10 +8015,10 @@ LFB141:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1580:
+L1724:
 	.cfi_restore_state
 	test	ebx, ebx
-	je	L1583
+	je	L1727
 	mov	ecx, ebx
 	mov	edx, esi
 	mov	eax, esi
@@ -7643,7 +8042,7 @@ L1580:
 	ret
 	.p2align 4,,10
 	.p2align 3
-L1583:
+L1727:
 	.cfi_restore_state
 	mov	eax, edi
 	mov	edx, esi
@@ -7927,47 +8326,47 @@ LFB149:
 	mov	eax, ecx
 	fld1
 	test	cl, 1
-	je	L1596
-	jmp	L1598
+	je	L1740
+	jmp	L1742
 	.p2align 4,,10
 	.p2align 3
-L1603:
+L1747:
 	fxch	st(1)
-	jmp	L1598
+	jmp	L1742
 	.p2align 4,,10
 	.p2align 3
-L1604:
+L1748:
 	fxch	st(1)
-L1598:
+L1742:
 	fmul	st, st(1)
-L1596:
+L1740:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	L1597
+	je	L1741
 	fxch	st(1)
 	fmul	st, st(0)
 	test	al, 1
-	jne	L1603
-L1602:
+	jne	L1747
+L1746:
 	mov	edx, eax
 	fmul	st, st(0)
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
 	test	al, 1
-	jne	L1604
-	jmp	L1602
+	jne	L1748
+	jmp	L1746
 	.p2align 4,,10
 	.p2align 3
-L1597:
+L1741:
 	fstp	st(1)
 	test	ecx, ecx
-	jns	L1595
+	jns	L1739
 	fld1
 	fdivrp	st(1), st
-L1595:
+L1739:
 	ret
 	.cfi_endproc
 LFE149:
@@ -7982,47 +8381,47 @@ LFB150:
 	mov	eax, ecx
 	fld1
 	test	cl, 1
-	je	L1606
-	jmp	L1608
+	je	L1750
+	jmp	L1752
 	.p2align 4,,10
 	.p2align 3
-L1613:
+L1757:
 	fxch	st(1)
-	jmp	L1608
+	jmp	L1752
 	.p2align 4,,10
 	.p2align 3
-L1614:
+L1758:
 	fxch	st(1)
-L1608:
+L1752:
 	fmul	st, st(1)
-L1606:
+L1750:
 	mov	edx, eax
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
-	je	L1607
+	je	L1751
 	fxch	st(1)
 	fmul	st, st(0)
 	test	al, 1
-	jne	L1613
-L1612:
+	jne	L1757
+L1756:
 	mov	edx, eax
 	fmul	st, st(0)
 	shr	edx, 31
 	add	eax, edx
 	sar	eax
 	test	al, 1
-	jne	L1614
-	jmp	L1612
+	jne	L1758
+	jmp	L1756
 	.p2align 4,,10
 	.p2align 3
-L1607:
+L1751:
 	fstp	st(1)
 	test	ecx, ecx
-	jns	L1605
+	jns	L1749
 	fld1
 	fdivrp	st(1), st
-L1605:
+L1749:
 	ret
 	.cfi_endproc
 LFE150:
@@ -8044,18 +8443,18 @@ LFB151:
 	mov	ebx, DWORD PTR [esp+12]
 	mov	esi, DWORD PTR [esp+20]
 	cmp	edx, ecx
-	jb	L1615
+	jb	L1759
 	mov	eax, 2
 	cmp	ecx, edx
-	jb	L1615
+	jb	L1759
 	xor	eax, eax
 	cmp	ebx, esi
-	jb	L1615
+	jb	L1759
 	xor	eax, eax
 	cmp	esi, ebx
 	setb	al
 	add	eax, 1
-L1615:
+L1759:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 8
@@ -8083,17 +8482,17 @@ LFB152:
 	mov	ebx, DWORD PTR [esp+12]
 	mov	esi, DWORD PTR [esp+20]
 	cmp	edx, ecx
-	jb	L1622
+	jb	L1766
 	mov	eax, 1
 	cmp	ecx, edx
-	jb	L1622
+	jb	L1766
 	mov	eax, -1
 	cmp	ebx, esi
-	jb	L1622
+	jb	L1766
 	xor	eax, eax
 	cmp	esi, ebx
 	setb	al
-L1622:
+L1766:
 	pop	ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 8
