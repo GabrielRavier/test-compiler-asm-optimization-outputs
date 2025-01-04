@@ -17,7 +17,7 @@
 	.module	crc
 	.module	ginv
 	.module	loongson-mmi
-	.module	loongson-ext
+	.module	loongson-ext2
 	.abicalls
 	.text
 	.align	2
@@ -8238,38 +8238,25 @@ __ctzsi2:
 	.ent	__ctzti2
 	.type	__ctzti2, @function
 __ctzti2:
-	.frame	$sp,32,$31		# vars= 0, regs= 3/0, args= 0, gp= 0
-	.mask	0x90010000,-8
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	daddiu	$sp,$sp,-32
-	sd	$28,16($sp)
-	lui	$28,%hi(%neg(%gp_rel(__ctzti2)))
-	daddu	$28,$28,$25
-	sd	$16,8($sp)
-	sd	$31,24($sp)
-	daddiu	$28,$28,%lo(%neg(%gp_rel(__ctzti2)))
-	sltu	$16,$4,1
+	sltu	$2,$4,1
 	beq	$4,$0,.L1662
 	move	$3,$5
 
 	move	$3,$0
 .L1662:
-	ld	$25,%call16(__ctzdi2)($28)
-	daddiu	$2,$16,-1
-	and	$4,$2,$4
-	.reloc	1f,R_MIPS_JALR,__ctzdi2
-1:	jalr	$25
-	or	$4,$3,$4
-
-	ld	$31,24($sp)
-	sll	$5,$16,6
-	ld	$28,16($sp)
-	ld	$16,8($sp)
-	addu	$2,$2,$5
+	daddiu	$5,$2,-1
+	and	$4,$5,$4
+	or	$7,$3,$4
+	dctz	$8,$7
+	sll	$9,$8,0
+	sll	$10,$2,6
 	jr	$31
-	daddiu	$sp,$sp,32
+	addu	$2,$9,$10
 
 	.set	macro
 	.set	reorder
@@ -8283,52 +8270,32 @@ __ctzti2:
 	.ent	__ffsti2
 	.type	__ffsti2, @function
 __ffsti2:
-	.frame	$sp,16,$31		# vars= 0, regs= 2/0, args= 0, gp= 0
-	.mask	0x90000000,-8
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
+	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	daddiu	$sp,$sp,-16
-	sd	$28,0($sp)
-	lui	$28,%hi(%neg(%gp_rel(__ffsti2)))
-	daddu	$28,$28,$25
-	sd	$31,8($sp)
-	bne	$4,$0,.L1667
-	daddiu	$28,$28,%lo(%neg(%gp_rel(__ffsti2)))
+	bnel	$4,$0,.L1667
+	dctz	$2,$4
 
 	bne	$5,$0,.L1672
 	move	$2,$0
 
-	ld	$31,8($sp)
-	ld	$28,0($sp)
 	jr	$31
-	daddiu	$sp,$sp,16
+	nop
 
 	.align	3
 .L1667:
-	ld	$25,%call16(__ctzdi2)($28)
-	.reloc	1f,R_MIPS_JALR,__ctzdi2
-1:	jalr	$25
-	nop
-
-	ld	$31,8($sp)
-	ld	$28,0($sp)
-	addiu	$2,$2,1
+	sll	$4,$2,0
 	jr	$31
-	daddiu	$sp,$sp,16
+	addiu	$2,$4,1
 
 	.align	3
 .L1672:
-	ld	$25,%call16(__ctzdi2)($28)
-	.reloc	1f,R_MIPS_JALR,__ctzdi2
-1:	jalr	$25
-	move	$4,$5
-
-	ld	$31,8($sp)
-	ld	$28,0($sp)
-	addiu	$2,$2,65
+	dctz	$5,$5
+	sll	$6,$5,0
 	jr	$31
-	daddiu	$sp,$sp,16
+	addiu	$2,$6,65
 
 	.set	macro
 	.set	reorder
@@ -9331,7 +9298,6 @@ digits:
 	.align	2
 .LC16:
 	.word	1065353216
-	.globl	__ctzdi2
 	.globl	__clzdi2
 	.globl	__multf3
 	.globl	__netf2

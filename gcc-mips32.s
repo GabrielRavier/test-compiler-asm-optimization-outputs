@@ -17,7 +17,7 @@
 	.module	crc
 	.module	ginv
 	.module	loongson-mmi
-	.module	loongson-ext
+	.module	loongson-ext2
 	.abicalls
 	.text
 	.align	2

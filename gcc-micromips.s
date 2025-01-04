@@ -17,7 +17,7 @@
 	.module	crc
 	.module	ginv
 	.module	loongson-mmi
-	.module	loongson-ext
+	.module	loongson-ext2
 	.abicalls
 	.text
 	.align	2
@@ -7533,19 +7533,16 @@ __ctzti2:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	sltu	$3,$4,1
-	daddiu	$2,$3,-1
-	and	$2,$2,$4
+	sltu	$2,$4,1
+	daddiu	$3,$2,-1
 	movn	$5,$0,$4
-	or	$5,$5,$2
-	dsubu	$4,$0,$5
-	and	$5,$5,$4
-	dclz	$5,$5
-	li	$7,63			# 0x3f
-	subu	$8,$7,$5
-	sll	$3,$3,6
+	and	$3,$3,$4
+	or	$3,$3,$5
+	dctz	$4,$3
+	sll	$5,$4,0
+	sll	$7,$2,6
 	jr	$31
-	addu	$2,$3,$8
+	addu	$2,$5,$7
 
 	.set	macro
 	.set	reorder
@@ -7565,31 +7562,25 @@ __ffsti2:
 	.set	noreorder
 	.set	nomacro
 	bnez	$4,.L1461
-	dsubu	$2,$0,$4
+	dctz	$2,$4
 
 	bnez	$5,.L1465
-	dsubu	$7,$0,$5
+	dctz	$5,$5
 
 	jr	$31
 	move	$2,$0
 
 	.align	3
 .L1461:
-	and	$4,$4,$2
-	dclz	$4,$4
-	li	$5,63			# 0x3f
-	subu	$6,$5,$4
+	sll	$4,$2,0
 	jr	$31
-	addiu	$2,$6,1
+	addiu	$2,$4,1
 
 	.align	3
 .L1465:
-	and	$5,$5,$7
-	dclz	$8,$5
-	li	$9,63			# 0x3f
-	subu	$10,$9,$8
+	sll	$6,$5,0
 	jr	$31
-	addiu	$2,$10,65
+	addiu	$2,$6,65
 
 	.set	macro
 	.set	reorder
