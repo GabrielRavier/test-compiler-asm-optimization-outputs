@@ -4,7 +4,7 @@
 	.nan	2008
 	.module	fp=32
 	.module	oddspreg
-	.module	arch=mips32
+	.module	arch=mips64
 	.module	dspr2
 	.module	eva
 	.module	mcu
@@ -1496,8 +1496,8 @@ rand:
 	mfhi	$9
 	mul	$14,$13,$7
 	li	$4,1481703424			# 0x58510000
-	ori	$11,$4,0xf42d
 	addiu	$24,$8,1
+	ori	$11,$4,0xf42d
 	gsmultu	$12,$10,$11
 	addu	$15,$14,$12
 	sltu	$2,$24,$8
@@ -1626,14 +1626,14 @@ $L286:
 
 $L273:
 	move	$5,$16
+	move	$4,$19
 	move	$25,$22
 	jalr	$25
-	move	$4,$19
-
 	move	$21,$16
-	lw	$28,16($sp)
-	bne	$2,$0,$L286
+
 	addiu	$17,$17,1
+	bne	$2,$0,$L286
+	lw	$28,16($sp)
 
 $L270:
 	lw	$31,60($sp)
@@ -1653,9 +1653,9 @@ $L270:
 $L271:
 	mul	$3,$18,$20
 	addiu	$2,$20,1
-	addu	$21,$3,$fp
-	beq	$18,$0,$L270
 	sw	$2,0($23)
+	beq	$18,$0,$L270
+	addu	$21,$3,$fp
 
 	lw	$25,%call16(memmove)($28)
 	move	$6,$18
@@ -1721,11 +1721,11 @@ $L299:
 
 $L290:
 	move	$5,$16
+	move	$4,$18
 	move	$25,$21
 	jalr	$25
-	move	$4,$18
-
 	move	$22,$16
+
 	bne	$2,$0,$L299
 	addiu	$17,$17,1
 
@@ -2122,13 +2122,14 @@ $L373:
 $L384:
 	mul	$2,$17,$19
 	move	$4,$20
-	addu	$22,$2,$18
 	move	$25,$21
+	addiu	$16,$16,-1
+	addu	$22,$2,$18
 	jalr	$25
 	move	$5,$22
 
 	bgez	$2,$L383
-	addiu	$16,$16,-1
+	nop
 
 	move	$16,$17
 	bne	$16,$0,$L384
@@ -2188,13 +2189,13 @@ $L398:
 $L401:
 	mul	$2,$22,$18
 	move	$6,$21
+	move	$4,$19
+	move	$25,$20
 	addu	$23,$2,$17
 	move	$5,$23
-	move	$25,$20
 	jalr	$25
-	move	$4,$19
-
 	addiu	$16,$16,-1
+
 	beq	$2,$0,$L385
 	sra	$16,$16,1
 
@@ -2306,18 +2307,19 @@ imaxdiv:
 	lw	$25,%call16(__divdi3)($28)
 	sw	$18,32($sp)
 	sw	$17,28($sp)
-	move	$18,$6
-	move	$17,$7
-	lw	$6,56($sp)
-	lw	$7,60($sp)
-	sw	$31,36($sp)
 	sw	$16,24($sp)
-	.cprestore	16
+	move	$18,$6
 	move	$16,$4
-	move	$5,$17
+	move	$17,$7
+	move	$5,$7
+	move	$4,$6
+	lw	$7,60($sp)
+	lw	$6,56($sp)
+	sw	$31,36($sp)
+	.cprestore	16
 	.reloc	1f,R_MIPS_JALR,__divdi3
 1:	jalr	$25
-	move	$4,$18
+	nop
 
 	lw	$28,16($sp)
 	lw	$6,56($sp)
@@ -2443,18 +2445,19 @@ lldiv:
 	lw	$25,%call16(__divdi3)($28)
 	sw	$18,32($sp)
 	sw	$17,28($sp)
-	move	$18,$6
-	move	$17,$7
-	lw	$6,56($sp)
-	lw	$7,60($sp)
-	sw	$31,36($sp)
 	sw	$16,24($sp)
-	.cprestore	16
+	move	$18,$6
 	move	$16,$4
-	move	$5,$17
+	move	$17,$7
+	move	$5,$7
+	move	$4,$6
+	lw	$7,60($sp)
+	lw	$6,56($sp)
+	sw	$31,36($sp)
+	.cprestore	16
 	.reloc	1f,R_MIPS_JALR,__divdi3
 1:	jalr	$25
-	move	$4,$18
+	nop
 
 	lw	$28,16($sp)
 	lw	$6,56($sp)
@@ -5065,8 +5068,8 @@ __ulltod:
 	.set	nomacro
 	lui	$28,%hi(__gnu_local_gp)
 	addiu	$28,$28,%lo(__gnu_local_gp)
-	addiu	$sp,$sp,-32
 	lw	$25,%call16(__floatundidf)($28)
+	addiu	$sp,$sp,-32
 	sw	$31,28($sp)
 	.cprestore	16
 	.reloc	1f,R_MIPS_JALR,__floatundidf
@@ -5095,8 +5098,8 @@ __ulltof:
 	.set	nomacro
 	lui	$28,%hi(__gnu_local_gp)
 	addiu	$28,$28,%lo(__gnu_local_gp)
-	addiu	$sp,$sp,-32
 	lw	$25,%call16(__floatundisf)($28)
+	addiu	$sp,$sp,-32
 	sw	$31,28($sp)
 	.cprestore	16
 	.reloc	1f,R_MIPS_JALR,__floatundisf
@@ -6962,11 +6965,11 @@ __muldsi3:
 	andi	$6,$5,0xffff
 	srl	$4,$4,16
 	mul	$8,$6,$4
-	gsmultu	$2,$3,$6
 	srl	$5,$5,16
 	mul	$11,$3,$5
-	srl	$7,$2,16
+	gsmultu	$2,$3,$6
 	mul	$14,$4,$5
+	srl	$7,$2,16
 	addu	$9,$8,$7
 	andi	$10,$9,0xffff
 	addu	$12,$11,$10
