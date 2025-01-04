@@ -88,7 +88,7 @@ gcc-m68k.s: mini-libc.c
 > m68k-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=68060 -mdiv -mbitfield -mhard-float
 
 gcc-microblaze.s: mini-libc.c
-> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-float
 
 gcc-mips64.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3
