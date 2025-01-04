@@ -4,7 +4,7 @@
 	.nan	2008
 	.module	fp=32
 	.module	oddspreg
-	.module	arch=mips2
+	.module	arch=mips3
 	.module	dspr2
 	.module	eva
 	.module	mcu
@@ -1314,9 +1314,10 @@ fmin:
 	.set	noreorder
 	.set	nomacro
 	mfc1	$2,$f14
+	c.un.d	$f12,$f12
 	mfc1	$3,$f15
 	mtc1	$2,$f0
-	c.un.d	$f12,$f12
+	nop
 	mtc1	$3,$f1
 	bc1t	$L259
 	sdc1	$f12,0($sp)
@@ -1440,9 +1441,10 @@ fminl:
 	.set	noreorder
 	.set	nomacro
 	mfc1	$2,$f14
+	c.un.d	$f12,$f12
 	mfc1	$3,$f15
 	mtc1	$2,$f0
-	c.un.d	$f12,$f12
+	nop
 	mtc1	$3,$f1
 	bc1t	$L289
 	sdc1	$f12,0($sp)
@@ -1582,7 +1584,6 @@ rand:
 	gsmultu	$11,$4,$8
 	gsmultu	$13,$12,$10
 	addu	$14,$11,$13
-	addiu	$sp,$sp,16
 	mflo	$9
 	addiu	$15,$9,1
 	sltu	$25,$15,$9
@@ -1590,9 +1591,10 @@ rand:
 	addu	$24,$14,$3
 	addu	$2,$25,$24
 	sw	$2,%lo(seed+4)($5)
+	srl	$2,$2,1
 	sw	$15,%lo(seed)($5)
 	jr	$31
-	srl	$2,$2,1
+	addiu	$sp,$sp,16
 
 	.set	macro
 	.set	reorder
