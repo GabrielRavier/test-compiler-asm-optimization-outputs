@@ -6,8 +6,17 @@
 	.module	oddspreg
 	.module	arch=mips1
 	.module	dspr2
+	.module	eva
+	.module	mcu
+	.module	mdmx
+	.module	mt
 	.module	smartmips
+	.module	virt
+	.module	xpa
 	.module	mips16e2
+	.module	crc
+	.module	ginv
+	.module	loongson-mmi
 	.abicalls
 	.text
 	.align	2
@@ -7168,6 +7177,7 @@ __ashldi3:
 	beq	$2,$0,$L1398
 	nop
 
+	addiu	$6,$6,-32
 	sll	$5,$4,$6
 	move	$4,$0
 $L1401:
@@ -7179,11 +7189,12 @@ $L1398:
 	beq	$6,$0,$L1401
 	nop
 
-	subu	$3,$0,$6
-	srl	$7,$4,$3
+	li	$3,32			# 0x20
+	subu	$7,$3,$6
+	srl	$8,$4,$7
 	sll	$5,$5,$6
 	sll	$4,$4,$6
-	or	$5,$7,$5
+	or	$5,$8,$5
 	move	$2,$4
 	jr	$31
 	move	$3,$5
@@ -7208,14 +7219,16 @@ __ashrdi3:
 	beq	$2,$0,$L1403
 	sra	$3,$5,31
 
+	addiu	$6,$6,-32
 	jr	$31
 	sra	$2,$5,$6
 
 $L1403:
 	beq	$6,$0,$L1406
-	subu	$7,$0,$6
+	li	$7,32			# 0x20
 
-	sll	$8,$5,$7
+	subu	$3,$7,$6
+	sll	$8,$5,$3
 	srl	$4,$4,$6
 	sra	$3,$5,$6
 	jr	$31
@@ -7499,8 +7512,10 @@ __lshrdi3:
 	.set	nomacro
 	andi	$2,$6,0x20
 	beq	$2,$0,$L1425
-	srl	$2,$5,$6
+	nop
 
+	addiu	$6,$6,-32
+	srl	$2,$5,$6
 	move	$5,$0
 	jr	$31
 	move	$3,$5
@@ -7509,11 +7524,12 @@ $L1425:
 	beq	$6,$0,$L1428
 	nop
 
-	subu	$3,$0,$6
-	sll	$7,$5,$3
+	li	$3,32			# 0x20
+	subu	$7,$3,$6
+	sll	$8,$5,$7
 	srl	$4,$4,$6
 	srl	$5,$5,$6
-	or	$2,$7,$4
+	or	$2,$8,$4
 	jr	$31
 	move	$3,$5
 
