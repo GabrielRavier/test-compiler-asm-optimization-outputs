@@ -3,7 +3,7 @@
 	.previous
 	.nan	legacy
 	.module	fp=32
-	.module	nooddspreg
+	.module	oddspreg
 	.module	arch=mips1
 	.module	mips16e2
 	.abicalls
@@ -3556,9 +3556,9 @@ gl_isinff:
 	bc1t	$L625
 	lui	$3,%hi($LC1)
 
-	lwc1	$f2,%lo($LC1)($3)
+	lwc1	$f1,%lo($LC1)($3)
 	nop
-	c.lt.s	$f2,$f12
+	c.lt.s	$f1,$f12
 	nop
 	bc1f	$L627
 	li	$2,1			# 0x1
@@ -3710,8 +3710,8 @@ ldexpf:
 	bc1t	$L660
 	mov.s	$f0,$f12
 
-	add.s	$f2,$f12,$f12
-	c.eq.s	$f2,$f12
+	add.s	$f1,$f12,$f12
+	c.eq.s	$f1,$f12
 	nop
 	bc1t	$L660
 	nop
@@ -3719,14 +3719,14 @@ ldexpf:
 	bltz	$5,$L655
 	lui	$2,%hi($LC4)
 
-	lwc1	$f4,%lo($LC4)($2)
+	lwc1	$f2,%lo($LC4)($2)
 	andi	$4,$5,0x1
 $L658:
 	beq	$4,$0,$L659
 	srl	$6,$5,31
 
 $L645:
-	mul.s	$f0,$f0,$f4
+	mul.s	$f0,$f0,$f2
 	srl	$6,$5,31
 $L659:
 	addu	$5,$6,$5
@@ -3735,7 +3735,7 @@ $L659:
 	srl	$7,$5,31
 
 	andi	$8,$5,0x1
-	mul.s	$f4,$f4,$f4
+	mul.s	$f2,$f2,$f2
 	bne	$8,$0,$L645
 	addu	$2,$7,$5
 
@@ -3743,7 +3743,7 @@ $L659:
 $L657:
 	srl	$7,$5,31
 	andi	$8,$5,0x1
-	mul.s	$f4,$f4,$f4
+	mul.s	$f2,$f2,$f2
 	bne	$8,$0,$L645
 	addu	$2,$7,$5
 
@@ -3758,7 +3758,7 @@ $L660:
 
 $L655:
 	lui	$3,%hi($LC5)
-	lwc1	$f4,%lo($LC5)($3)
+	lwc1	$f2,%lo($LC5)($3)
 	.option	pic0
 	b	$L658
 	.option	pic2
@@ -5759,18 +5759,18 @@ __fixunssfsi:
 	li	$3,32768			# 0x8000
 
 	.set	macro
-	trunc.w.s $f2,$f12,$3
+	trunc.w.s $f1,$f12,$3
 	.set	nomacro
-	mfc1	$2,$f2
+	mfc1	$2,$f1
 	jr	$31
 	nop
 
 $L1076:
 	sub.s	$f12,$f12,$f0
 	.set	macro
-	trunc.w.s $f4,$f12,$4
+	trunc.w.s $f2,$f12,$4
 	.set	nomacro
-	mfc1	$4,$f4
+	mfc1	$4,$f2
 	jr	$31
 	addu	$2,$4,$3
 
@@ -8000,9 +8000,9 @@ $L1449:
 	nop
 
 $L1456:
-	lwc1	$f2,%lo($LC13)($6)
+	lwc1	$f1,%lo($LC13)($6)
 	jr	$31
-	div.s	$f0,$f2,$f0
+	div.s	$f0,$f1,$f0
 
 	.set	macro
 	.set	reorder
