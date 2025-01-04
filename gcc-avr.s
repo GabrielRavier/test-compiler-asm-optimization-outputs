@@ -2,7 +2,7 @@
 __SP_H__ = 0x3e
 __SP_L__ = 0x3d
 __SREG__ = 0x3f
-__RAMPZ__ = 0x3b
+__CCP__ = 0x34
 __tmp_reg__ = 0
 __zero_reg__ = 1
 	.text
@@ -896,11 +896,8 @@ fdim:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,30
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 30 */
 /* stack size = 46 */
@@ -982,11 +979,8 @@ fdim:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,30
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1057,11 +1051,8 @@ fdimf:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,30
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 30 */
 /* stack size = 46 */
@@ -1143,11 +1134,8 @@ fdimf:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,30
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1218,11 +1206,8 @@ fmax:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 22 */
 /* stack size = 38 */
@@ -1326,11 +1311,8 @@ fmax:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1371,11 +1353,8 @@ fmaxf:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 22 */
 /* stack size = 38 */
@@ -1479,11 +1458,8 @@ fmaxf:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1523,12 +1499,11 @@ fmaxl:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 26 */
@@ -1597,11 +1572,8 @@ fmaxl:
 .L206:
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1679,11 +1651,8 @@ fmin:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 22 */
 /* stack size = 38 */
@@ -1785,11 +1754,8 @@ fmin:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1830,11 +1796,8 @@ fminf:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 22 */
 /* stack size = 38 */
@@ -1936,11 +1899,8 @@ fminf:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,22
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -1980,12 +1940,11 @@ fminl:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 26 */
@@ -2054,11 +2013,8 @@ fminl:
 .L240:
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -2257,28 +2213,28 @@ insque:
 	ld r24,X+
 	ld r25,X
 	sbiw r26,1
-	std Z+1,r25
 	st Z,r24
-	std Z+3,r23
+	std Z+1,r25
 	std Z+2,r22
+	std Z+3,r23
 	st X+,r30
 	st X,r31
 	ld r26,Z
 	ldd r27,Z+1
 	sbiw r26,0
 	breq .L259
-	adiw r26,2+1
+	adiw r26,2
+	st X+,r30
 	st X,r31
-	st -X,r30
-	sbiw r26,2
+	sbiw r26,2+1
 .L259:
 /* epilogue start */
 	ret
 .L265:
-	std Z+3,__zero_reg__
 	std Z+2,__zero_reg__
-	std Z+1,__zero_reg__
+	std Z+3,__zero_reg__
 	st Z,__zero_reg__
+	std Z+1,__zero_reg__
 	ret
 	.size	insque, .-insque
 .global	remque
@@ -2295,18 +2251,18 @@ remque:
 	breq .L267
 	ldd r24,Z+2
 	ldd r25,Z+3
-	adiw r26,2+1
+	adiw r26,2
+	st X+,r24
 	st X,r25
-	st -X,r24
-	sbiw r26,2
+	sbiw r26,2+1
 .L267:
 	ldd __tmp_reg__,Z+2
 	ldd r31,Z+3
 	mov r30,__tmp_reg__
 	sbiw r30,0
 	breq .L266
-	std Z+1,r27
 	st Z,r26
+	std Z+1,r27
 .L266:
 /* epilogue start */
 	ret
@@ -2366,7 +2322,7 @@ lsearch:
 	mov r24,r3
 	mov r25,r2
 	movw r30,r10
-	eicall
+	icall
 	or r24,r25
 	brne .L290
 .L275:
@@ -2395,8 +2351,8 @@ lsearch:
 	movw r24,r8
 	adiw r24,1
 	movw r28,r6
-	std Y+1,r25
 	st Y,r24
+	std Y+1,r25
 	mul r12,r8
 	movw r14,r0
 	mul r12,r9
@@ -2465,7 +2421,7 @@ lfind:
 	mov r24,r9
 	mov r25,r8
 	movw r30,r14
-	eicall
+	icall
 	or r24,r25
 	brne .L302
 .L291:
@@ -2791,6 +2747,7 @@ atoll:
 	push r29
 	rcall .
 	rcall .
+	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -2799,8 +2756,8 @@ atoll:
 .L__stack_usage = 24
 	movw r30,r24
 .L350:
-	std Y+4,r31
 	std Y+3,r30
+	std Y+4,r31
 	ld r24,Z+
 	cpi r24,lo8(32)
 	breq .L350
@@ -2839,8 +2796,8 @@ atoll:
 	rjmp .L361
 	ldi r22,lo8(1)
 	ldi r23,0
-	std Y+4,r23
 	std Y+3,r22
+	std Y+4,r23
 .L355:
 	adiw r30,1
 	mov r10,__zero_reg__
@@ -2873,8 +2830,8 @@ atoll:
 	std Y+2,r25
 	movw r24,r26
 	sbiw r24,48
-	std Y+6,r25
 	std Y+5,r24
+	std Y+6,r25
 	lsl r25
 	sbc r25,r25
 	std Y+1,r25
@@ -2941,12 +2898,9 @@ atoll:
 	mov r24,r2
 	mov r25,r17
 /* epilogue start */
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
+	adiw r28,6
+	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -2974,8 +2928,8 @@ atoll:
 	sbiw r24,10
 	brsh .L361
 .L369:
-	std Y+4,__zero_reg__
 	std Y+3,__zero_reg__
+	std Y+4,__zero_reg__
 	rjmp .L355
 .L352:
 	ldd r30,Y+3
@@ -3052,7 +3006,7 @@ bsearch:
 	movw r22,r16
 	movw r24,r4
 	movw r30,r6
-	eicall
+	icall
 	sbrc r25,7
 	rjmp .L376
 	or r24,r25
@@ -3143,7 +3097,7 @@ bsearch_r:
 	mov r24,r3
 	mov r25,r2
 	movw r30,r4
-	eicall
+	icall
 	sbiw r24,0
 	breq .L386
 	brlt .L389
@@ -3278,12 +3232,11 @@ imaxdiv:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 28 */
@@ -3346,11 +3299,8 @@ imaxdiv:
 	movw r24,r30
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -3404,12 +3354,11 @@ labs:
 ldiv:
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 10 */
@@ -3417,11 +3366,8 @@ ldiv:
 	call __divmodsi4
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	ret
@@ -3496,12 +3442,11 @@ lldiv:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 28 */
@@ -3564,11 +3509,8 @@ lldiv:
 	movw r24,r30
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -4992,11 +4934,8 @@ ldexpf:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,34
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 34 */
 /* stack size = 52 */
@@ -5146,11 +5085,8 @@ ldexpf:
 	ldd r25,Y+16
 /* epilogue start */
 	adiw r28,34
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -5195,11 +5131,8 @@ ldexp:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,34
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 34 */
 /* stack size = 52 */
@@ -5349,11 +5282,8 @@ ldexp:
 	ldd r25,Y+16
 /* epilogue start */
 	adiw r28,34
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -5395,12 +5325,11 @@ ldexpl:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 28 */
@@ -5483,15 +5412,15 @@ ldexpl:
 	sbrs r27,7
 	rjmp .L596
 	adiw r26,1
-	std Y+10,r27
 	std Y+9,r26
+	std Y+10,r27
 .L596:
 	ldd r30,Y+9
 	ldd r31,Y+10
 	asr r31
 	ror r30
-	std Y+10,r31
 	std Y+9,r30
+	std Y+10,r31
 	or r30,r31
 	breq .L592
 .L599:
@@ -5527,15 +5456,15 @@ ldexpl:
 	sbrs r25,7
 	rjmp .L598
 	adiw r24,1
-	std Y+10,r25
 	std Y+9,r24
+	std Y+10,r25
 .L598:
 	ldd r10,Y+9
 	ldd r11,Y+10
 	asr r11
 	ror r10
-	std Y+10,r11
 	std Y+9,r10
+	std Y+10,r11
 	rjmp .L599
 .L592:
 	ldd r18,Y+1
@@ -5548,11 +5477,8 @@ ldexpl:
 	ldd r25,Y+8
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -6092,7 +6018,7 @@ frexp:
 	push r28
 	push r29
 	rcall .
-	push __tmp_reg__
+	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -6122,14 +6048,14 @@ frexp:
 	sbrc r24,7
 	rjmp .L727
 .L707:
-	std Y+2,__zero_reg__
 	std Y+1,__zero_reg__
+	std Y+2,__zero_reg__
 .L713:
 	ldd r24,Y+1
 	ldd r25,Y+2
 	adiw r24,1
-	std Y+2,r25
 	std Y+1,r24
+	std Y+2,r25
 	ldi r18,0
 	ldi r19,0
 	ldi r20,0
@@ -6154,8 +6080,8 @@ frexp:
 	ldd r4,Y+1
 	ldd r5,Y+2
 	movw r30,r16
-	std Z+1,r5
 	st Z,r4
+	std Z+1,r5
 	movw r24,r14
 	movw r22,r12
 	or r2,r3
@@ -6163,10 +6089,9 @@ frexp:
 	subi r25,0x80
 .L704:
 /* epilogue start */
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
+	adiw r28,4
+	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -6206,8 +6131,8 @@ frexp:
 	rjmp .L719
 .L710:
 	movw r30,r16
-	std Z+1,__zero_reg__
 	st Z,__zero_reg__
+	std Z+1,__zero_reg__
 	movw r24,r14
 	movw r22,r12
 	rjmp .L704
@@ -6261,14 +6186,14 @@ frexp:
 	ldd r13,Y+2
 	ldd r14,Y+3
 	ldd r15,Y+4
-	std Y+2,__zero_reg__
 	std Y+1,__zero_reg__
+	std Y+2,__zero_reg__
 .L715:
 	ldd r30,Y+1
 	ldd r31,Y+2
 	sbiw r30,1
-	std Y+2,r31
 	std Y+1,r30
+	std Y+2,r31
 	movw r20,r14
 	movw r18,r12
 	movw r24,r14
@@ -6318,6 +6243,7 @@ __muldi3:
 	push r17
 	push r28
 	push r29
+	rcall .
 	rcall .
 	rcall .
 	in r28,__SP_L__
@@ -6427,12 +6353,9 @@ __muldi3:
 	ldd r24,Y+4
 	mov r25,r17
 /* epilogue start */
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
+	adiw r28,6
+	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -6702,7 +6625,7 @@ __clrsbdi2:
 	push r28
 	push r29
 	rcall .
-	push __tmp_reg__
+	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -6758,10 +6681,9 @@ __clrsbdi2:
 	sbiw r24,1
 .L768:
 /* epilogue start */
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
-	pop __tmp_reg__
+	adiw r28,4
+	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -7839,12 +7761,11 @@ __fixunssfsi:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 26 */
@@ -7879,11 +7800,8 @@ __fixunssfsi:
 	movw r22,r8
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -8508,12 +8426,11 @@ __mspabi_cmpf:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 26 */
@@ -8565,11 +8482,8 @@ __mspabi_cmpf:
 .L962:
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -8614,12 +8528,11 @@ __mspabi_cmpd:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,10
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 10 */
 /* stack size = 26 */
@@ -8671,11 +8584,8 @@ __mspabi_cmpd:
 .L967:
 /* epilogue start */
 	adiw r28,10
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -10678,12 +10588,11 @@ __ashldi3:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 20 */
@@ -10723,11 +10632,8 @@ __ashldi3:
 	mov r24,r17
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -10811,12 +10717,11 @@ __ashrdi3:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 20 */
@@ -10857,11 +10762,8 @@ __ashrdi3:
 	mov r19,r30
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -11706,12 +11608,11 @@ __lshrdi3:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	push __tmp_reg__
-	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,8
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 8 */
 /* stack size = 26 */
@@ -11747,11 +11648,8 @@ __lshrdi3:
 .L1411:
 /* epilogue start */
 	adiw r28,8
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -11845,11 +11743,8 @@ __muldsi3:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,18
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 18 */
 /* stack size = 36 */
@@ -11951,11 +11846,8 @@ __muldsi3:
 	movw r24,r14
 /* epilogue start */
 	adiw r28,18
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -12000,11 +11892,8 @@ __muldi3_compiler_rt:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,36
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 36 */
 /* stack size = 54 */
@@ -12151,11 +12040,8 @@ __muldi3_compiler_rt:
 	movw r24,r14
 /* epilogue start */
 	adiw r28,36
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -12336,11 +12222,11 @@ __popcountdi2:
 	push r17
 	push r28
 	push r29
-	rcall .
-	rcall .
-	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
+	sbiw r28,9
+	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 9 */
 /* stack size = 21 */
@@ -12469,11 +12355,8 @@ __popcountdi2:
 	clr r25
 /* epilogue start */
 	adiw r28,9
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -12597,11 +12480,8 @@ __powidf2:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,20
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 20 */
 /* stack size = 38 */
@@ -12614,8 +12494,8 @@ __powidf2:
 	std Y+10,r21
 	ldd r24,Y+9
 	ldd r25,Y+10
-	std Y+20,r25
 	std Y+19,r24
+	std Y+20,r25
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
 	ldi r20,lo8(-128)
@@ -12650,15 +12530,15 @@ __powidf2:
 	sbrs r27,7
 	rjmp .L1425
 	adiw r26,1
-	std Y+20,r27
 	std Y+19,r26
+	std Y+20,r27
 .L1425:
 	ldd r30,Y+19
 	ldd r31,Y+20
 	asr r31
 	ror r30
-	std Y+20,r31
 	std Y+19,r30
+	std Y+20,r31
 	or r30,r31
 	breq .L1426
 .L1429:
@@ -12686,15 +12566,15 @@ __powidf2:
 	sbrs r25,7
 	rjmp .L1428
 	adiw r24,1
-	std Y+20,r25
 	std Y+19,r24
+	std Y+20,r25
 .L1428:
 	ldd r4,Y+19
 	ldd r5,Y+20
 	asr r5
 	ror r4
-	std Y+20,r5
 	std Y+19,r4
+	std Y+20,r5
 	rjmp .L1429
 .L1426:
 	ldd r6,Y+9
@@ -12727,11 +12607,8 @@ __powidf2:
 	ldd r25,Y+14
 /* epilogue start */
 	adiw r28,20
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
@@ -12776,11 +12653,8 @@ __powisf2:
 	in r28,__SP_L__
 	in r29,__SP_H__
 	sbiw r28,20
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 20 */
 /* stack size = 38 */
@@ -12793,8 +12667,8 @@ __powisf2:
 	std Y+10,r21
 	ldd r24,Y+9
 	ldd r25,Y+10
-	std Y+20,r25
 	std Y+19,r24
+	std Y+20,r25
 	mov r2,__zero_reg__
 	mov r3,__zero_reg__
 	ldi r20,lo8(-128)
@@ -12829,15 +12703,15 @@ __powisf2:
 	sbrs r27,7
 	rjmp .L1435
 	adiw r26,1
-	std Y+20,r27
 	std Y+19,r26
+	std Y+20,r27
 .L1435:
 	ldd r30,Y+19
 	ldd r31,Y+20
 	asr r31
 	ror r30
-	std Y+20,r31
 	std Y+19,r30
+	std Y+20,r31
 	or r30,r31
 	breq .L1436
 .L1439:
@@ -12865,15 +12739,15 @@ __powisf2:
 	sbrs r25,7
 	rjmp .L1438
 	adiw r24,1
-	std Y+20,r25
 	std Y+19,r24
+	std Y+20,r25
 .L1438:
 	ldd r4,Y+19
 	ldd r5,Y+20
 	asr r5
 	ror r4
-	std Y+20,r5
 	std Y+19,r4
+	std Y+20,r5
 	rjmp .L1439
 .L1436:
 	ldd r6,Y+9
@@ -12906,11 +12780,8 @@ __powisf2:
 	ldd r25,Y+14
 /* epilogue start */
 	adiw r28,20
-	in __tmp_reg__,__SREG__
-	cli
-	out __SP_H__,r29
-	out __SREG__,__tmp_reg__
 	out __SP_L__,r28
+	out __SP_H__,r29
 	pop r29
 	pop r28
 	pop r17
