@@ -87,8 +87,9 @@ gcc-loongarch64.s: mini-libc.c
 gcc-m68k.s: mini-libc.c
 > m68k-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=68060 -mdiv -mbitfield -mhard-float
 
+# add -mxl-reorder once -mcpu is at least v8.30.a since that's a requirement for it
 gcc-microblaze.s: mini-libc.c
-> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian
+> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v8.10.a -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian
 
 gcc-mips64.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3
