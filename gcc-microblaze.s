@@ -2804,10 +2804,9 @@ $Lfe78:
 bswap_16:
 	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
 	.mask	0x00000000
-	bsrli	r3,r5,8
-	bslli	r5,r5,8
-	or	r4,r3,r5
-	andi	r3,r4,0xffff
+	swapb r3, r5
+   swaph r3, r3
+	andi	r3,r3,0xffff
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2821,17 +2820,9 @@ $Lfe79:
 bswap_32:
 	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
 	.mask	0x00000000
-	bslli	r3,r5,24
-	bsrli	r6,r5,24
-	bsrli	r4,r5,8
-	bslli	r5,r5,8
-	or	r7,r3,r6
-	andi	r8,r4,65280 #and2
-	or	r9,r7,r8
-	andi	r10,r5,16711680 #and2
 	rtsd	r15,8 
 	
-	or	r3,r9,r10
+	swapb r3, r5
 	.end	bswap_32
 $Lfe80:
 	.size	bswap_32,$Lfe80-bswap_32
@@ -2842,26 +2833,10 @@ $Lfe80:
 bswap_64:
 	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
 	.mask	0x00000000
-	bsrli	r9,r6,8
-	bsrli	r3,r6,24
-	bslli	r8,r6,8
-	bsrli	r7,r5,8
-	bsrli	r10,r5,24
-	bslli	r4,r5,24
-	bslli	r5,r5,8
-	bslli	r6,r6,24
-	andi	r11,r9,65280 #and2
-	or	r4,r4,r10
-	andi	r9,r8,16711680 #and2
-	or	r12,r3,r11
-	andi	r8,r7,65280 #and2
-	or	r3,r12,r9
-	or	r7,r4,r8
-	andi	r10,r5,16711680 #and2
-	or	r3,r3,r6
+	swapb r4, r5
 	rtsd	r15,8 
 	
-	or	r4,r7,r10
+	swapb r3, r6
 	.end	bswap_64
 $Lfe81:
 	.size	bswap_64,$Lfe81-bswap_64
@@ -6014,26 +5989,10 @@ $Lfe133:
 __bswapdi2:
 	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
 	.mask	0x00000000
-	bsrli	r9,r6,8
-	bsrli	r3,r6,24
-	bslli	r8,r6,8
-	bsrli	r7,r5,8
-	bsrli	r10,r5,24
-	bslli	r4,r5,24
-	bslli	r5,r5,8
-	bslli	r6,r6,24
-	andi	r11,r9,65280 #and2
-	or	r4,r4,r10
-	andi	r9,r8,16711680 #and2
-	or	r12,r3,r11
-	andi	r8,r7,65280 #and2
-	or	r3,r12,r9
-	or	r7,r4,r8
-	andi	r10,r5,16711680 #and2
-	or	r3,r3,r6
+	swapb r4, r5
 	rtsd	r15,8 
 	
-	or	r4,r7,r10
+	swapb r3, r6
 	.end	__bswapdi2
 $Lfe134:
 	.size	__bswapdi2,$Lfe134-__bswapdi2
@@ -6044,17 +6003,9 @@ $Lfe134:
 __bswapsi2:
 	.frame	r1,0,r15		# vars= 0, regs= 0, args= 0
 	.mask	0x00000000
-	bsrli	r3,r5,24
-	bslli	r6,r5,24
-	bsrli	r4,r5,8
-	bslli	r5,r5,8
-	or	r7,r3,r6
-	andi	r8,r4,65280 #and2
-	or	r9,r7,r8
-	andi	r10,r5,16711680 #and2
 	rtsd	r15,8 
 	
-	or	r3,r9,r10
+	swapb r3, r5
 	.end	__bswapsi2
 $Lfe135:
 	.size	__bswapsi2,$Lfe135-__bswapsi2
