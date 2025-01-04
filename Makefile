@@ -107,8 +107,9 @@ gcc-micromips.s: mini-libc.c
 gcc-mn10300.s: mini-libc.c
 > mn10300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mam34 -mtune=mn10300 -mno-mult-bug -mno-return-pointer-on-d0 -mliw -msetlb
 
+# -mbmx and -mcdx require -march=r2 so wait for that to add them
 gcc-nios2.s: mini-libc.c
-> nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r1 -mel -mhw-mul -mhw-mulx -mhw-div
+> nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r1 -mel -mhw-mul -mhw-mulx -mhw-div -mcustom-fmuls=252
 
 gcc-openrisc.s: mini-libc.c
 > openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
