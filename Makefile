@@ -90,8 +90,7 @@ gcc-m68k.s: mini-libc.c
 gcc-microblaze.s: mini-libc.c
 > microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v99.99.z -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian -mxl-reorder
 
-#-mpaired-single # -mips3d
-GCC_MIPS_OPTIONS = -EL -mmips16e2 -mhard-float -modd-spreg -mabs=2008 -mnan=2008 -mllsc -mdsp -mdspr2 -msmartmips -mdmx -mmt -mmcu -meva -mvirt -mxpa -mcrc -mginv -mloongson-mmi -mloongson-ext -mloongson-ext2 -mload-store-pairs -mno-strict-align -mmad -mbranch-likely -msynci -march=mips64r5 -mfp64
+GCC_MIPS_OPTIONS = -EL -mmips16e2 -mhard-float -modd-spreg -mabs=2008 -mnan=2008 -mllsc -mdsp -mdspr2 -msmartmips -mdmx -mmt -mmcu -meva -mvirt -mxpa -mcrc -mginv -mloongson-mmi -mloongson-ext -mloongson-ext2 -mload-store-pairs -mno-strict-align -mmad -mbranch-likely -msynci -march=mips64r5 -mfp64 -mips3d
 
 gcc-mips64.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_MIPS_OPTIONS)

@@ -11,6 +11,7 @@
 	.module	eva
 	.module	mcu
 	.module	mdmx
+	.module	mips3d
 	.module	mt
 	.module	smartmips
 	.module	virt
