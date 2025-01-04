@@ -50,7 +50,7 @@ gcc-arc.s: mini-libc.c
 > arc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mbarrel-shifter -mnorm -mswap -matomic -mdiv-rem -mcode-density -mll64 -mmpy-option=plus_qmacw -mfpu=fpud_div -mfpu=fpud_all -mbranch-index -mauto-modify-reg -mearly-cbranchsi -mindexed-loads -mlra -mcode-density-frame -mcpu=hs4x_rel31
 
 gcc-arm.s: mini-libc.c
-> arm-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=armv4
+> arm-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=armv4t -mfloat-abi=hard
 
 gcc-avr.s: mini-libc.c
 > avr-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
