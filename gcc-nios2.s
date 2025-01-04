@@ -2623,117 +2623,116 @@ mempcpy:
 	.global	frexp
 	.type	frexp, @function
 frexp:
-	addi	sp, sp, -24
-	stw	r17, 4(sp)
-	stw	r16, 0(sp)
+	addi	sp, sp, -16
+	mov	r8, r4
 	mov	r2, zero
-	mov	r16, r4
-	mov	r17, r5
+	mov	r9, r5
 	mov	r3, zero
+	stw	r16, 0(sp)
+	stw	ra, 12(sp)
 	stw	r18, 8(sp)
-	stw	ra, 20(sp)
-	stw	r20, 16(sp)
-	stw	r19, 12(sp)
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	20, r2, r2, r3 # fcmpltd r2, r16, r2
-	mov	r18, r6
+	stw	r17, 4(sp)
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	20, r2, r2, r3 # fcmpltd r2, r8, r2
+	mov	r16, r6
 	bne	r2, zero, .L794
 	mov	r2, zero
 	movhi	r3, 16368
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	17, r3, r2, r3 # fcmpged r3, r16, r2
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	17, r3, r2, r3 # fcmpged r3, r8, r2
 	beq	r3, zero, .L795
-	mov	r19, zero
+	mov	r17, zero
 .L774:
-	mov	r20, zero
+	mov	r18, zero
 .L780:
-	mov	r4, r16
-	mov	r5, r17
+	mov	r4, r8
+	mov	r5, r9
 	mov	r6, zero
 	movhi	r7, 16352
 	call	__muldf3
-	mov	r16, r2
+	mov	r8, r2
 	mov	r4, zero
-	mov	r17, r3
+	mov	r9, r3
 	movhi	r5, 16368
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	17, r8, r4, r5 # fcmpged r8, r16, r4
-	addi	r20, r20, 1
-	bne	r8, zero, .L780
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	17, r11, r4, r5 # fcmpged r11, r8, r4
+	addi	r18, r18, 1
+	bne	r11, zero, .L780
 .L781:
-	stw	r20, 0(r18)
-	beq	r19, zero, .L787
-	custom	14, r5, r16, r17 # fnegd r4, r16
+	stw	r18, 0(r16)
+	beq	r17, zero, .L787
+	custom	14, r5, r8, r9 # fnegd r4, r8
 	custom	4, r4, zero, zero # frdy r4
 .L771:
 	mov	r2, r4
 	mov	r3, r5
-	ldw	ra, 20(sp)
-	ldw	r20, 16(sp)
-	ldw	r19, 12(sp)
+	ldw	ra, 12(sp)
 	ldw	r18, 8(sp)
 	ldw	r17, 4(sp)
 	ldw	r16, 0(sp)
-	addi	sp, sp, 24
+	addi	sp, sp, 16
 	ret
 .L795:
 	mov	r2, zero
 	movhi	r3, 16352
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	20, r4, r2, r3 # fcmpltd r4, r16, r2
-	beq	r4, zero, .L777
-	mov	r6, zero
-	mov	r7, zero
-	mov	r4, r16
-	call	__nedf2
-	bne	r2, zero, .L786
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	20, r5, r2, r3 # fcmpltd r5, r8, r2
+	beq	r5, zero, .L777
+	mov	r2, zero
+	mov	r3, zero
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	21, r6, r2, r3 # fcmpned r6, r8, r2
+	bne	r6, zero, .L786
 .L777:
-	mov	r4, r16
-	stw	zero, 0(r18)
-	mov	r5, r17
+	stw	zero, 0(r16)
+	mov	r5, r9
 	br	.L771
 .L794:
 	mov	r2, zero
 	movhi	r3, 49136
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	19, r6, r2, r3 # fcmpled r6, r16, r2
-	custom	14, r5, r16, r17 # fnegd r4, r16
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	19, r7, r2, r3 # fcmpled r7, r8, r2
+	custom	14, r5, r8, r9 # fnegd r4, r8
 	custom	4, r4, zero, zero # frdy r4
-	beq	r6, zero, .L796
-	mov	r16, r4
-	mov	r17, r5
-	movi	r19, 1
+	beq	r7, zero, .L796
+	mov	r8, r4
+	mov	r9, r5
+	movi	r17, 1
 	br	.L774
 .L787:
-	mov	r4, r16
-	mov	r5, r17
+	mov	r4, r8
+	mov	r5, r9
 	br	.L771
 .L796:
 	mov	r2, zero
 	movhi	r3, 49120
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	18, r7, r2, r3 # fcmpgtd r7, r16, r2
-	beq	r7, zero, .L777
-	movi	r19, 1
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	18, r10, r2, r3 # fcmpgtd r10, r8, r2
+	bne	r10, zero, .L784
+	mov	r4, r8
+	stw	zero, 0(r6)
+	mov	r5, r9
+	br	.L771
+.L784:
+	movi	r17, 1
 .L775:
-	mov	r16, r4
-	mov	r17, r5
-	mov	r20, zero
+	mov	r8, r4
+	mov	r9, r5
+	mov	r18, zero
 .L782:
 	mov	r2, zero
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	11, r17, r16, r17 # faddd r16, r16, r16
-	custom	4, r16, zero, zero # frdy r16
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	11, r9, r8, r9 # faddd r8, r8, r8
+	custom	4, r8, zero, zero # frdy r8
 	movhi	r3, 16352
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	20, r5, r2, r3 # fcmpltd r5, r16, r2
-	addi	r20, r20, -1
-	bne	r5, zero, .L782
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	20, r4, r2, r3 # fcmpltd r4, r8, r2
+	addi	r18, r18, -1
+	bne	r4, zero, .L782
 	br	.L781
 .L786:
-	mov	r4, r16
-	mov	r5, r17
-	mov	r19, zero
+	mov	r5, r9
+	mov	r17, zero
 	br	.L775
 	.size	frexp, .-frexp
 	.align	2
@@ -4816,7 +4815,6 @@ digits:
 	.global	__floatunsidf
 	.global	__clzdi2
 	.global	__clzsi2
-	.global	__nedf2
 	.global	__muldf3
 	.global	__floatsidf
 	.global	__moddi3
