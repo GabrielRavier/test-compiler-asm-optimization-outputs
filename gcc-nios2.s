@@ -617,9 +617,7 @@ fdimf:
 	addi	sp, sp, 12
 	ret
 .L193:
-	mov	r5, r17
-	mov	r4, r16
-	call	__subsf3
+	custom	254, r2, r16, r17 # fsubs r2, r16, r17
 	br	.L184
 .L187:
 	mov	r2, r16
@@ -3487,10 +3485,8 @@ __fixunssfsi:
 	addi	sp, sp, 8
 	ret
 .L1029:
-	movhi	r5, 18176
-	mov	r4, r16
-	call	__subsf3
-	mov	r4, r2
+	movhi	r4, 18176
+	custom	254, r4, r16, r4 # fsubs r4, r16, r4
 	call	__fixsfsi
 	movui	r3, 32768
 	add	r2, r2, r3
@@ -4972,7 +4968,6 @@ digits:
 	.global	__divdi3
 	.global	__ltsf2
 	.global	__ltdf2
-	.global	__subsf3
 	.global	__gtsf2
 	.global	__unordsf2
 	.global	__subdf3
