@@ -4383,39 +4383,40 @@ div:
 	br.call.sptk.many b0 = __moddi3#
 	;;
 	.mmi
-	adds r15 = 16, r12
-	mov r14 = r0
-	adds r16 = 20, r12
+	adds r17 = 20, r12
+	adds r16 = 16, r12
+	mov r15 = r0
 	.mmi
 	mov r1 = r37
 	;;
+	ld4.a r14 = [r17]
+	nop 0
+	;;
+	.mii
 	nop 0
 	unpack4.l r2 = r8, r34
-	.mmi
-	ld4.a r8 = [r16]
-	;;
-	st8 [r15] = r2
 	nop 0
 	;;
 	.mmi
+	st8 [r16] = r2
+	;;
+	ld4.c.clr r14 = [r17]
 	nop 0
-	ld4 r3 = [r15]
+	;;
+	.mmi
+	ld4 r3 = [r16]
+	;;
 	nop 0
+	shl r8 = r3, 32
 	;;
 	.mii
 	nop 0
-	shl r9 = r3, 32
+	mix4.l r15 = r15, r8
 	;;
-	mix4.l r14 = r14, r9
-	;;
-	.mmi
-	ld4.c.clr r8 = [r16]
-	;;
-	nop 0
-	mix4.r r14 = r8, r14
+	mix4.r r15 = r14, r15
 	;;
 	.mii
-	mov r8 = r14
+	mov r8 = r15
 	mov ar.pfs = r36
 	;;
 	mov b0 = r35
