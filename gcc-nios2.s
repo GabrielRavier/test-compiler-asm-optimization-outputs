@@ -2686,13 +2686,12 @@ frexp:
 	mov	r16, r4
 	mov	r17, r5
 	call	__ltdf2
-	mov	r6, zero
 	blt	r2, zero, .L803
-	movhi	r7, 16368
-	mov	r4, r16
-	mov	r5, r17
-	call	__gedf2
-	blt	r2, zero, .L804
+	mov	r2, zero
+	movhi	r3, 16368
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	17, r2, r2, r3 # fcmpged r2, r16, r2
+	beq	r2, zero, .L804
 	mov	r19, zero
 .L783:
 	mov	r20, zero
@@ -2702,15 +2701,14 @@ frexp:
 	mov	r6, zero
 	movhi	r7, 16352
 	call	__muldf3
-	mov	r5, r3
-	mov	r6, zero
-	movhi	r7, 16368
-	mov	r4, r2
-	addi	r20, r20, 1
 	mov	r16, r2
+	mov	r4, zero
 	mov	r17, r3
-	call	__gedf2
-	bge	r2, zero, .L789
+	movhi	r5, 16368
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	17, r4, r4, r5 # fcmpged r4, r16, r4
+	addi	r20, r20, 1
+	bne	r4, zero, .L789
 .L790:
 	stw	r20, 0(r18)
 	beq	r19, zero, .L796
@@ -2747,13 +2745,13 @@ frexp:
 	mov	r5, r17
 	br	.L780
 .L803:
-	movhi	r7, 49136
-	mov	r4, r16
-	mov	r5, r17
+	mov	r2, zero
+	movhi	r3, 49136
+	custom	0, zero, r2, r3 # fwrx r2
+	custom	17, r3, r16, r17 # fcmpged r3, r2, r16
 	custom	14, r21, r16, r17 # fnegd r20, r16
 	custom	4, r20, zero, zero # frdy r20
-	call	__ledf2
-	bgt	r2, zero, .L805
+	beq	r3, zero, .L805
 	mov	r16, r20
 	mov	r17, r21
 	movi	r19, 1
@@ -4889,8 +4887,6 @@ digits:
 	.global	__clzdi2
 	.global	__clzsi2
 	.global	__nedf2
-	.global	__gedf2
-	.global	__ledf2
 	.global	__muldf3
 	.global	__floatsidf
 	.global	__moddi3
