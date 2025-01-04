@@ -3,10 +3,11 @@
 	.previous
 	.section .gcc_compiled_long32
 	.previous
-	.nan	legacy
+	.nan	2008
 	.module	fp=64
 	.module	oddspreg
 	.module	arch=mips64r2
+	.module	dsp
 	.module	mips16e2
 	.abicalls
 	.text
