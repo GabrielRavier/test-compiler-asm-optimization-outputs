@@ -349,6 +349,8 @@ int isupper(int c)
     return (unsigned)c-'A' < 26;
 }
 
+#ifndef __mips16
+
 int iswcntrl(wint_t wc)
 {
     return (unsigned)wc < 32
@@ -357,10 +359,14 @@ int iswcntrl(wint_t wc)
         || (unsigned)(wc-0xfff9) < 3;
 }
 
+#endif
+
 int iswdigit(wint_t wc)
 {
     return (unsigned)wc-'0' < 10;
 }
+
+#ifndef __mips16
 
 /* Consider all legal codepoints as printable except for:
  * - C0 and C1 control characters
@@ -378,6 +384,8 @@ int iswprint(wint_t wc)
         return 0;
     return 1;
 }
+
+#endif
 
 int iswxdigit(wint_t wc)
 {

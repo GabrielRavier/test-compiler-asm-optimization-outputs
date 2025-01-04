@@ -5,6 +5,7 @@
 	.module	fp=32
 	.module	nooddspreg
 	.module	arch=mips1
+	.module	mips16e2
 	.abicalls
 	.text
 	.align	2

@@ -5,6 +5,7 @@
 	.module	fp=64
 	.module	oddspreg
 	.module	arch=mips3
+	.module	mips16e2
 	.abicalls
 	.text
 	.align	2
