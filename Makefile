@@ -70,11 +70,13 @@ gcc-frv.s: mini-libc.c
 gcc-h8300.s: mini-libc.c
 > h8300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -ms -mn -ms2600
 
+GCC_HPPA_OPTIONS = -march=2.0
+
 gcc-hppa64.s: mini-libc.c
-> hppa64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> hppa64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_HPPA_OPTIONS)
 
 gcc-hppa.s: mini-libc.c
-> hppa-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> hppa-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_HPPA_OPTIONS)
 
 gcc-ia64.s: mini-libc.c
 > ia64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
