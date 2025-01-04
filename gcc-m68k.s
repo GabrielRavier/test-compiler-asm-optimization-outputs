@@ -1737,21 +1737,9 @@ bsearch_r:
 	.globl	div
 	.type	div, @function
 div:
-	movem.l #14336,-(%sp)
-	move.l 16(%sp),%d3
-	move.l 20(%sp),%d4
-	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	jsr __divsi3
-	addq.l #8,%sp
-	move.l %d0,%d2
-	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	jsr __modsi3
-	addq.l #8,%sp
-	move.l %d0,%d1
-	move.l %d2,%d0
-	movem.l (%sp)+,#28
+	move.l 4(%sp),%d0
+	rems.l 8(%sp),%d1:%d0
+	divs.l 8(%sp),%d0
 	rts
 	.size	div, .-div
 	.align	2
@@ -1813,21 +1801,9 @@ labs:
 	.globl	ldiv
 	.type	ldiv, @function
 ldiv:
-	movem.l #14336,-(%sp)
-	move.l 16(%sp),%d3
-	move.l 20(%sp),%d4
-	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	jsr __divsi3
-	addq.l #8,%sp
-	move.l %d0,%d2
-	move.l %d4,-(%sp)
-	move.l %d3,-(%sp)
-	jsr __modsi3
-	addq.l #8,%sp
-	move.l %d0,%d1
-	move.l %d2,%d0
-	movem.l (%sp)+,#28
+	move.l 4(%sp),%d0
+	rems.l 8(%sp),%d1:%d0
+	divs.l 8(%sp),%d0
 	rts
 	.size	ldiv, .-ldiv
 	.align	2
@@ -4061,10 +4037,8 @@ __cmovw:
 	.globl	__modi
 	.type	__modi, @function
 __modi:
-	move.l 8(%sp),-(%sp)
-	move.l 8(%sp),-(%sp)
-	jsr __modsi3
-	addq.l #8,%sp
+	move.l 4(%sp),%d1
+	rems.l 8(%sp),%d0:%d1
 	rts
 	.size	__modi, .-__modi
 	.align	2
@@ -4109,10 +4083,8 @@ __ulltof:
 	.globl	__umodi
 	.type	__umodi, @function
 __umodi:
-	move.l 8(%sp),-(%sp)
-	move.l 8(%sp),-(%sp)
-	jsr __umodsi3
-	addq.l #8,%sp
+	move.l 4(%sp),%d1
+	remu.l 8(%sp),%d0:%d1
 	rts
 	.size	__umodi, .-__umodi
 	.align	2
@@ -6353,7 +6325,6 @@ digits:
 	.globl	__divdf3
 	.globl	__fixsfsi
 	.globl	__gesf2
-	.globl	__umodsi3
 	.globl	__floatundisf
 	.globl	__floatundidf
 	.globl	__floatunsisf
@@ -6376,8 +6347,6 @@ digits:
 	.globl	__gtxf2
 	.globl	__moddi3
 	.globl	__divdi3
-	.globl	__modsi3
-	.globl	__divsi3
 	.globl	__mulsi3
 	.globl	__muldi3
 	.globl	__ltxf2
