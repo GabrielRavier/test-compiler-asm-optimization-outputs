@@ -2204,10 +2204,7 @@ ldexpf:
 	call	__unordsf2
 	bne	r2, zero, .L628
 	mov	r5, r17
-	mov	r4, r17
-	call	__addsf3
-	mov	r5, r17
-	mov	r4, r2
+	custom	253, r4, r17, r17 # fadds r4, r17, r17
 	call	__eqsf2
 	beq	r2, zero, .L628
 	blt	r16, zero, .L644
@@ -4970,7 +4967,6 @@ digits:
 	.global	__eqdf2
 	.global	__adddf3
 	.global	__eqsf2
-	.global	__addsf3
 	.global	__floatsidf
 	.global	__moddi3
 	.global	__divdi3
