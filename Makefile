@@ -68,7 +68,7 @@ gcc-frv.s: mini-libc.c
 > frv-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=frv -mgpr-64 -mfpr-64 -mhard-float -malloc-cc -mdword -mdouble -mmedia -mmuladd -mpack -mcond-move -mscc -mcond-exec -mvliw-branch -mmulti-cond-exec -mnested-cond-exec -moptimize-membar
 
 gcc-h8300.s: mini-libc.c
-> h8300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -ms
+> h8300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -ms -mn
 
 gcc-hppa64.s: mini-libc.c
 > hppa64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
