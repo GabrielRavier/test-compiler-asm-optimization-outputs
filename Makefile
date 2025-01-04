@@ -59,7 +59,7 @@ gcc-bfin.s: mini-libc.c
 > bfin-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer -mno-specld-anomaly -mno-csync-anomaly -mcpu=bf592
 
 gcc-bpf.s: mini-libc.c
-> bpf-unknown-none-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v1 -mjmpext
+> bpf-unknown-none-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v1 -mjmpext -mjmp32
 
 gcc-c6x.s: mini-libc.c
 > c6x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
