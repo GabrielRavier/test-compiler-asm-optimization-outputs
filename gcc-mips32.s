@@ -5,7 +5,8 @@
 	.module	fp=32
 	.module	oddspreg
 	.module	arch=mips1
-	.module	dsp
+	.module	dspr2
+	.module	smartmips
 	.module	mips16e2
 	.abicalls
 	.text
@@ -3194,11 +3195,9 @@ rotl32:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	subu	$2,$0,$5
-	srl	$3,$4,$2
-	sll	$5,$4,$5
+	subu	$5,$0,$5
 	jr	$31
-	or	$2,$3,$5
+	ror	$2,$4,$5
 
 	.set	macro
 	.set	reorder
@@ -3216,11 +3215,8 @@ rotr32:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	subu	$2,$0,$5
-	sll	$3,$4,$2
-	srl	$5,$4,$5
 	jr	$31
-	or	$2,$3,$5
+	ror	$2,$4,$5
 
 	.set	macro
 	.set	reorder
@@ -3238,11 +3234,9 @@ rotl_sz:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	subu	$2,$0,$5
-	srl	$3,$4,$2
-	sll	$5,$4,$5
+	subu	$5,$0,$5
 	jr	$31
-	or	$2,$3,$5
+	ror	$2,$4,$5
 
 	.set	macro
 	.set	reorder
@@ -3260,11 +3254,8 @@ rotr_sz:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	subu	$2,$0,$5
-	sll	$3,$4,$2
-	srl	$5,$4,$5
 	jr	$31
-	or	$2,$3,$5
+	ror	$2,$4,$5
 
 	.set	macro
 	.set	reorder

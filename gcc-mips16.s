@@ -7,7 +7,8 @@
 	.module	fp=64
 	.module	oddspreg
 	.module	arch=mips64r2
-	.module	dsp
+	.module	dspr2
+	.module	smartmips
 	.module	mips16e2
 	.abicalls
 	.text
