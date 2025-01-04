@@ -3474,18 +3474,17 @@ __fixunssfsi:
 	mov	r16, r4
 	call	__gesf2
 	bge	r2, zero, .L1028
-	mov	r4, r16
-	call	__fixsfsi
+	custom	244, r2, r16, zero # fixsi r2, r16
 	ldw	ra, 4(sp)
 	ldw	r16, 0(sp)
 	addi	sp, sp, 8
 	ret
 .L1028:
-	movhi	r4, 18176
-	custom	254, r4, r16, r4 # fsubs r4, r16, r4
-	call	__fixsfsi
-	movui	r3, 32768
-	add	r2, r2, r3
+	movhi	r2, 18176
+	custom	254, r3, r16, r2 # fsubs r3, r16, r2
+	custom	244, r4, r3, zero # fixsi r4, r3
+	movui	r5, 32768
+	add	r2, r4, r5
 	ldw	ra, 4(sp)
 	ldw	r16, 0(sp)
 	addi	sp, sp, 8
@@ -4937,7 +4936,6 @@ seed:
 digits:
 	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	.global	__divdf3
-	.global	__fixsfsi
 	.global	__gesf2
 	.global	__floatundisf
 	.global	__floatundidf
