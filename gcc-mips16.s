@@ -19,6 +19,7 @@
 	.module	crc
 	.module	ginv
 	.module	loongson-mmi
+	.module	loongson-ext
 	.abicalls
 	.text
 	.align	2
@@ -1917,8 +1918,7 @@ rand:
 	lw	$3,$L274
 	ld	$4,0($3)
 	ld	$5,$L275
-	dmult	$4,$5
-	mflo	$2
+	gsdmultu	$2,$4,$5
 	daddiu	$2,1
 	sd	$2,0($3)
 	dsrl	$2,33
@@ -2052,13 +2052,12 @@ $L294:
 
 $L295:
 	lw	$3,44($sp)
-	lw	$16,96($sp)
 	lw	$5,80($sp)
-	mult	$16,$3
 	lw	$4,88($sp)
-	mflo	$2
 	lw	$7,96($sp)
+	lw	$16,96($sp)
 	addiu	$6,$3,1
+	gsmultu	$2,$16,$3
 	addu	$17,$5,$2
 	sw	$6,0($4)
 	sw	$17,40($sp)
@@ -2446,13 +2445,12 @@ bsearch:
 	beqz	$6,$L402
 	move	$16,$6
 $L405:
+	lw	$5,80($sp)
 	lw	$2,96($sp)
 	srl	$17,$16,1
-	mult	$17,$2
-	lw	$5,80($sp)
-	mflo	$4
-	lw	$7,104($sp)
+	gsmultu	$4,$17,$2
 	addu	$6,$5,$4
+	lw	$7,104($sp)
 	sw	$6,40($sp)
 	lw	$5,40($sp)
 	lw	$4,72($sp)
@@ -2514,12 +2512,11 @@ bsearch_r:
 	move	$17,$6
 	beqz	$6,$L420
 $L428:
-	lw	$4,96($sp)
-	sra	$2,$17,1
-	mult	$2,$4
 	lw	$5,80($sp)
-	mflo	$16
+	sra	$2,$17,1
+	lw	$4,96($sp)
 	sw	$2,40($sp)
+	gsmultu	$16,$2,$4
 	lw	$2,104($sp)
 	lw	$6,112($sp)
 	lw	$4,72($sp)
@@ -5760,17 +5757,11 @@ __modi:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	div	$0,$4,$5
+	gsmod	$2,$4,$5
 	bnez	$5,1f
 	break	7
 1:
-	.set	noreorder
-	.set	nomacro
 	jr	$31
-	mfhi	$2
-	.set	macro
-	.set	reorder
-
 	.end	__modi
 	.size	__modi, .-__modi
 	.align	2
@@ -5963,17 +5954,11 @@ __umodi:
 	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
-	divu	$0,$4,$5
+	gsmodu	$2,$4,$5
 	bnez	$5,1f
 	break	7
 1:
-	.set	noreorder
-	.set	nomacro
 	jr	$31
-	mfhi	$2
-	.set	macro
-	.set	reorder
-
 	.end	__umodi
 	.size	__umodi, .-__umodi
 	.align	2
@@ -8670,47 +8655,43 @@ __muldsi3:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	li	$7,65535
+	move	$7,$4
 	move	$3,$5
-	sd	$17,8($sp)
-	move	$17,$4
-	and	$17,$7
-	and	$3,$7
-	mult	$17,$3
-	srl	$4,$4,8
-	srl	$4,$4,8
-	mflo	$6
-	mult	$3,$4
 	sd	$16,0($sp)
-	mflo	$3
-	srl	$16,$6,8
-	srl	$2,$16,8
-	srl	$5,$5,8
+	li	$16,65535
+	sd	$17,8($sp)
+	and	$7,$16
+	and	$3,$16
+	gsmultu	$6,$7,$3
+	srl	$17,$6,8
+	srl	$2,$17,8
+	srl	$4,$4,8
+	srl	$4,$4,8
+	gsmultu	$3,$3,$4
 	addu	$3,$3,$2
+	sll	$17,$3,8
+	and	$6,$16
+	sll	$17,$17,8
+	addu	$2,$6,$17
+	srl	$6,$17,8
+	srl	$17,$6,8
 	srl	$5,$5,8
-	mult	$17,$5
-	sll	$16,$3,8
-	and	$6,$7
-	sll	$16,$16,8
-	mflo	$17
-	addu	$2,$6,$16
-	srl	$6,$16,8
-	mult	$4,$5
-	srl	$16,$6,8
-	addu	$6,$17,$16
-	mflo	$4
-	and	$2,$7
+	srl	$5,$5,8
+	gsmultu	$7,$7,$5
+	addu	$6,$7,$17
+	and	$2,$16
 	srl	$3,$3,8
-	sll	$7,$6,8
-	sll	$16,$7,8
-	srl	$17,$3,8
+	sll	$16,$6,8
+	sll	$17,$16,8
+	srl	$7,$3,8
 	srl	$6,$6,8
-	addu	$5,$17,$4
-	addu	$2,$2,$16
-	srl	$7,$6,8
-	addu	$16,$5,$7
+	srl	$16,$6,8
+	addu	$2,$2,$17
+	gsmultu	$4,$4,$5
+	addu	$5,$7,$4
+	addu	$17,$5,$16
 	dsll	$2,$2,32
-	dsll	$3,$16,32
+	dsll	$3,$17,32
 	dsrl	$2,32
 	ld	$17,8($sp)
 	ld	$16,0($sp)
@@ -8735,76 +8716,72 @@ __muldi3_compiler_rt:
 	.mask	0x00030000,-8
 	.fmask	0x00000000,0
 	addiu	$sp,-16
-	sll	$7,$5,0
-	sd	$16,0($sp)
-	sll	$16,$4,0
+	li	$3,65535
+	sll	$7,$4,0
 	sd	$17,8($sp)
-	move	$12,$4
-	li	$17,65535
-	move	$4,$16
-	move	$3,$7
-	and	$4,$17
-	and	$3,$17
-	mult	$4,$3
-	move	$11,$4
-	srl	$4,$16,8
-	srl	$4,$4,8
-	mflo	$2
-	mult	$3,$4
-	srl	$6,$2,8
-	mflo	$3
-	srl	$6,$6,8
-	addu	$6,$3,$6
-	move	$10,$4
-	sll	$4,$6,8
-	sll	$3,$4,8
-	and	$2,$17
+	sd	$16,0($sp)
+	move	$17,$3
+	sll	$16,$5,0
+	move	$6,$3
+	move	$9,$3
+	and	$17,$7
+	and	$6,$16
+	gsmultu	$2,$17,$6
+	srl	$3,$2,8
+	srl	$3,$3,8
+	move	$10,$3
+	srl	$3,$7,8
+	srl	$3,$3,8
 	move	$8,$3
+	gsmultu	$6,$6,$3
+	move	$3,$10
+	addu	$6,$6,$3
+	move	$3,$9
+	and	$2,$3
+	sll	$3,$6,8
+	sll	$3,$3,8
+	move	$11,$3
 	addu	$3,$2,$3
-	move	$2,$8
-	srl	$4,$2,8
-	srl	$2,$4,8
-	srl	$4,$7,8
-	move	$13,$2
-	srl	$2,$4,8
-	move	$9,$2
-	move	$4,$9
 	move	$2,$11
-	mult	$2,$4
-	move	$4,$13
-	mflo	$2
-	and	$3,$17
-	addu	$2,$2,$4
-	sll	$17,$2,8
-	sll	$4,$17,8
-	addu	$3,$3,$4
+	srl	$2,$2,8
+	srl	$2,$2,8
+	move	$12,$2
+	srl	$2,$16,8
+	srl	$2,$2,8
+	move	$13,$2
+	gsmultu	$2,$17,$2
+	move	$17,$12
+	addu	$2,$2,$17
 	move	$17,$9
-	move	$4,$10
-	mult	$4,$17
+	and	$3,$17
+	sll	$17,$2,8
+	sll	$17,$17,8
+	addu	$3,$3,$17
 	srl	$6,$6,8
-	mflo	$4
+	move	$14,$3
 	srl	$2,$2,8
 	srl	$6,$6,8
-	srl	$17,$2,8
-	addu	$6,$6,$4
-	dsra	$5,32
-	mult	$16,$5
-	addu	$4,$6,$17
-	dsll	$3,$3,32
-	move	$17,$12
-	dsll	$6,$4,32
-	dsra	$17,32
+	move	$3,$13
+	move	$17,$8
+	gsmultu	$17,$17,$3
+	srl	$3,$2,8
+	addu	$6,$6,$17
+	move	$2,$14
+	addu	$17,$6,$3
+	dsll	$3,$2,32
+	dsll	$6,$17,32
 	dsrl	$3,32
-	mflo	$16
 	or	$3,$6
-	mult	$7,$17
-	move	$5,$3
-	mflo	$7
 	dsra	$5,32
-	addu	$2,$16,$5
-	addu	$4,$2,$7
+	gsmultu	$7,$7,$5
+	move	$5,$3
+	dsra	$5,32
+	addu	$17,$7,$5
 	dsll	$6,$3,32
-	dsll	$2,$4,32
+	dsra	$4,32
+	gsmultu	$4,$16,$4
+	addu	$16,$17,$4
+	dsll	$2,$16,32
 	dsrl	$6,32
 	ld	$17,8($sp)
 	ld	$16,0($sp)
@@ -8947,28 +8924,26 @@ __multi3:
 	move	$5,$8
 	multu	$5,$17
 	sd	$3,8($sp)
-	mfhi	$17
 	mflo	$3
-	dmult	$4,$7
+	mfhi	$17
 	dsll	$5,$3,32
-	dsll	$3,$17,32
-	move	$17,$11
 	dsrl	$5,32
+	dsll	$3,$17,32
 	or	$5,$3
 	dsrl	$2,32
 	daddu	$2,$2,$5
 	dsrl	$16,32
-	mflo	$4
-	dmult	$6,$17
 	daddu	$16,$2,$16
+	gsdmultu	$4,$4,$7
 	daddu	$7,$4,$16
-	ld	$2,8($sp)
-	ld	$17,32($sp)
-	ld	$16,24($sp)
-	mflo	$6
+	move	$17,$11
+	gsdmultu	$6,$6,$17
 	daddu	$5,$7,$6
 	sd	$5,16($sp)
 	ld	$3,16($sp)
+	ld	$2,8($sp)
+	ld	$17,32($sp)
+	ld	$16,24($sp)
 	.set	noreorder
 	.set	nomacro
 	jr	$31

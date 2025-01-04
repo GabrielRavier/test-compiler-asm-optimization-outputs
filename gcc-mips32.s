@@ -17,6 +17,7 @@
 	.module	crc
 	.module	ginv
 	.module	loongson-mmi
+	.module	loongson-ext
 	.abicalls
 	.text
 	.align	2
@@ -1552,37 +1553,30 @@ rand:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	lui	$4,%hi(seed)
-	lw	$2,%lo(seed)($4)
+	lui	$5,%hi(seed)
+	lw	$2,%lo(seed)($5)
+	li	$6,1284833280			# 0x4c950000
+	addiu	$3,$6,32557
+	multu	$ac0,$2,$3
+	lw	$4,%lo(seed+4)($5)
+	li	$7,1481703424			# 0x58510000
+	ori	$10,$7,0xf42d
+	gsmultu	$12,$2,$10
+	gsmultu	$11,$4,$3
+	addu	$13,$11,$12
 	addiu	$sp,$sp,-16
 	sw	$2,8($sp)
-	lw	$7,8($sp)
-	li	$6,1284833280			# 0x4c950000
-	addiu	$8,$6,32557
-	multu	$ac0,$7,$8
-	lw	$3,%lo(seed+4)($4)
-	lw	$13,8($sp)
-	li	$5,1481703424			# 0x58510000
-	ori	$9,$5,0xf42d
 	addiu	$sp,$sp,16
-	mflo	$10
-	addiu	$14,$10,1
-	sltu	$15,$14,$10
-	mfhi	$11
-	sw	$14,%lo(seed)($4)
-	nop
-	mult	$3,$8
-	mflo	$12
-	nop
-	nop
-	mult	$13,$9
-	mflo	$24
-	addu	$25,$12,$24
-	addu	$2,$25,$11
-	addu	$3,$15,$2
-	srl	$2,$3,1
+	mflo	$8
+	addiu	$14,$8,1
+	sltu	$24,$14,$8
+	mfhi	$9
+	addu	$15,$13,$9
+	addu	$25,$24,$15
+	srl	$2,$25,1
+	sw	$14,%lo(seed)($5)
 	jr	$31
-	sw	$3,%lo(seed+4)($4)
+	sw	$25,%lo(seed+4)($5)
 
 	.set	macro
 	.set	reorder
@@ -1732,12 +1726,11 @@ $L297:
 	addiu	$sp,$sp,64
 
 $L298:
-	mult	$18,$19
 	addiu	$2,$19,1
+	gsmultu	$3,$18,$19
 	sw	$2,0($23)
-	mflo	$21
 	beq	$18,$0,$L297
-	addu	$21,$fp,$21
+	addu	$21,$fp,$3
 
 	lw	$25,%call16(memmove)($28)
 	move	$6,$18
@@ -2190,17 +2183,15 @@ $L410:
 $L400:
 	srl	$22,$16,1
 $L411:
-	mult	$22,$19
-	move	$4,$20
-	move	$25,$21
-	addiu	$16,$16,-1
-	mflo	$17
+	gsmultu	$17,$22,$19
 	addu	$17,$18,$17
-	jalr	$25
 	move	$5,$17
+	move	$25,$21
+	jalr	$25
+	move	$4,$20
 
 	bgez	$2,$L410
-	nop
+	addiu	$16,$16,-1
 
 	move	$16,$22
 	bne	$16,$0,$L411
@@ -2258,19 +2249,17 @@ bsearch_r:
 $L425:
 	sra	$23,$16,1
 $L428:
-	mult	$23,$18
-	move	$6,$21
-	move	$4,$19
-	move	$25,$20
-	addiu	$16,$16,-1
-	sra	$16,$16,1
-	mflo	$22
+	gsmultu	$22,$23,$18
 	addu	$22,$17,$22
-	jalr	$25
+	move	$6,$21
 	move	$5,$22
+	move	$25,$20
+	jalr	$25
+	move	$4,$19
 
+	addiu	$16,$16,-1
 	beq	$2,$0,$L412
-	nop
+	sra	$16,$16,1
 
 	blez	$2,$L415
 	nop
@@ -5246,10 +5235,9 @@ __modi:
 	.set	noreorder
 	.set	nomacro
 	bne	$5,$0,1f
-	div	$0,$4,$5
+	gsmod	$2,$4,$5
 	break	7
 1:
-	mfhi	$2
 	jr	$31
 	nop
 
@@ -5393,10 +5381,9 @@ __umodi:
 	.set	noreorder
 	.set	nomacro
 	bne	$5,$0,1f
-	divu	$0,$4,$5
+	gsmodu	$2,$4,$5
 	break	7
 1:
-	mfhi	$2
 	jr	$31
 	nop
 
@@ -7556,28 +7543,24 @@ __muldsi3:
 	.set	nomacro
 	andi	$6,$4,0xffff
 	andi	$3,$5,0xffff
-	mult	$6,$3
+	gsmultu	$2,$6,$3
 	srl	$4,$4,16
+	srl	$7,$2,16
+	gsmultu	$8,$3,$4
+	addu	$9,$8,$7
 	srl	$5,$5,16
-	mflo	$2
-	srl	$9,$2,16
-	andi	$10,$2,0xffff
-	mult	$3,$4
-	mflo	$7
-	addu	$11,$7,$9
-	andi	$12,$11,0xffff
-	mult	$6,$5
-	srl	$14,$11,16
-	mflo	$8
-	addu	$13,$8,$12
-	srl	$25,$13,16
-	mult	$4,$5
+	andi	$10,$9,0xffff
+	gsmultu	$12,$6,$5
+	srl	$11,$9,16
+	addu	$13,$12,$10
+	srl	$14,$13,16
+	andi	$25,$2,0xffff
 	sll	$6,$13,16
-	addu	$2,$10,$6
-	mflo	$15
-	addu	$24,$14,$15
+	gsmultu	$15,$4,$5
+	addu	$24,$11,$15
+	addu	$3,$24,$14
 	jr	$31
-	addu	$3,$24,$25
+	addu	$2,$25,$6
 
 	.set	macro
 	.set	reorder
@@ -7597,44 +7580,28 @@ __muldi3_compiler_rt:
 	.set	nomacro
 	andi	$8,$4,0xffff
 	andi	$3,$6,0xffff
-	mult	$8,$3
-	srl	$10,$4,16
-	srl	$9,$6,16
-	mflo	$2
-	nop
-	nop
-	mult	$3,$10
-	mflo	$11
-	nop
-	nop
-	mult	$8,$9
-	mflo	$12
-	nop
-	nop
-	mult	$10,$9
-	mflo	$13
-	nop
-	nop
-	mult	$4,$7
-	srl	$4,$2,16
-	mflo	$7
-	nop
-	nop
-	mult	$6,$5
-	addu	$5,$11,$4
-	andi	$14,$5,0xffff
-	addu	$15,$12,$14
-	srl	$24,$5,16
-	addu	$25,$24,$13
-	srl	$8,$15,16
-	addu	$3,$25,$8
-	andi	$6,$2,0xffff
-	sll	$10,$15,16
-	addu	$2,$7,$3
-	mflo	$11
-	addu	$3,$2,$11
+	srl	$9,$4,16
+	gsmultu	$2,$8,$3
+	srl	$10,$2,16
+	gsmultu	$11,$3,$9
+	addu	$12,$11,$10
+	srl	$13,$6,16
+	andi	$14,$12,0xffff
+	gsmultu	$24,$8,$13
+	srl	$15,$12,16
+	addu	$25,$24,$14
+	gsmultu	$3,$9,$13
+	srl	$8,$25,16
+	addu	$9,$15,$3
+	addu	$10,$9,$8
+	sll	$11,$25,16
+	gsmultu	$4,$4,$7
+	andi	$2,$2,0xffff
+	addu	$7,$4,$10
+	gsmultu	$6,$6,$5
+	addu	$2,$2,$11
 	jr	$31
-	addu	$2,$6,$10
+	addu	$3,$7,$6
 
 	.set	macro
 	.set	reorder
