@@ -65,7 +65,7 @@ gcc-c6x.s: mini-libc.c
 > c6x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=c674x
 
 gcc-frv.s: mini-libc.c
-> frv-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=simple -mgpr-64 -mfpr-64 -mhard-float -malloc-cc -mdword -mdouble
+> frv-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=frv -mgpr-64 -mfpr-64 -mhard-float -malloc-cc -mdword -mdouble -mmedia -mmuladd -mpack -mcond-move -mscc -mcond-exec -mvliw-branch -mmulti-cond-exec -mnested-cond-exec -moptimize-membar
 
 gcc-h8300.s: mini-libc.c
 > h8300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
