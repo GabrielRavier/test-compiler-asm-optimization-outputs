@@ -4874,42 +4874,36 @@ __powisf2:
 	movi	r7, 2
 	custom	252, r4, r4, r4 # fmuls r4, r4, r4
 	bne	r8, zero, .L1390
-.L1398:
+.L1394:
 	div	r6, r6, r7
 	andi	r8, r6, 1
 	custom	252, r4, r4, r4 # fmuls r4, r4, r4
 	bne	r8, zero, .L1390
-	br	.L1398
+	br	.L1394
 .L1389:
-	blt	r5, zero, .L1399
+	bge	r5, zero, .L1387
+	movhi	r4, 16256
+	custom	255, r2, r4, r2 # fdivs r2, r4, r2
+.L1387:
 	ret
 .L1393:
 	movhi	r2, 16256
 	br	.L1388
-.L1399:
-	addi	sp, sp, -4
-	mov	r5, r2
-	movhi	r4, 16256
-	stw	ra, 0(sp)
-	call	__divsf3
-	ldw	ra, 0(sp)
-	addi	sp, sp, 4
-	ret
 	.size	__powisf2, .-__powisf2
 	.align	2
 	.global	__ucmpdi2
 	.type	__ucmpdi2, @function
 __ucmpdi2:
-	bltu	r5, r7, .L1404
-	bltu	r7, r5, .L1405
-	bltu	r4, r6, .L1404
-	bltu	r6, r4, .L1405
+	bltu	r5, r7, .L1399
+	bltu	r7, r5, .L1400
+	bltu	r4, r6, .L1399
+	bltu	r6, r4, .L1400
 	movi	r2, 1
 	ret
-.L1404:
+.L1399:
 	mov	r2, zero
 	ret
-.L1405:
+.L1400:
 	movi	r2, 2
 	ret
 	.size	__ucmpdi2, .-__ucmpdi2
@@ -4917,15 +4911,15 @@ __ucmpdi2:
 	.global	__aeabi_ulcmp
 	.type	__aeabi_ulcmp, @function
 __aeabi_ulcmp:
-	bltu	r5, r7, .L1410
-	bltu	r7, r5, .L1409
-	bltu	r4, r6, .L1410
+	bltu	r5, r7, .L1405
+	bltu	r7, r5, .L1404
+	bltu	r4, r6, .L1405
 	cmpltu	r2, r6, r4
 	ret
-.L1410:
+.L1405:
 	movi	r2, -1
 	ret
-.L1409:
+.L1404:
 	movi	r2, 1
 	ret
 	.size	__aeabi_ulcmp, .-__aeabi_ulcmp
@@ -4946,7 +4940,6 @@ seed:
 	.size	digits, 65
 digits:
 	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.global	__divsf3
 	.global	__divdf3
 	.global	__fixsfsi
 	.global	__gesf2
