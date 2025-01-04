@@ -2695,8 +2695,8 @@ frexp:
 .L794:
 	mov	r2, zero
 	movhi	r3, 49136
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	17, r6, r16, r17 # fcmpged r6, r2, r16
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	19, r6, r2, r3 # fcmpled r6, r16, r2
 	custom	14, r5, r16, r17 # fnegd r4, r16
 	custom	4, r4, zero, zero # frdy r4
 	beq	r6, zero, .L796
