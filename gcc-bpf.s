@@ -2152,22 +2152,16 @@ atoll:
 	.global	div
 	.type	div, @function
 div:
+	r0 = r1
 	r2 <<= 32
 	r3 <<= 32
+	r2 s>>= 32
 	r3 s>>= 32
-	r6 = r1
-	r8 = r3
-	r7 = r2
-	r2 = r3
-	r7 s>>= 32
-	r1 = r7
-	call	__divdi3
-	r2 = r8
-	*(u32 *) (r6+0) = r0
-	r1 = r7
-	call	__moddi3
-	*(u32 *) (r6+4) = r0
-	r0 = r6
+	r1 = r2
+	w2 s%= w3
+	w1 s/= w3
+	*(u32 *) (r0+4) = r2
+	*(u32 *) (r0+0) = r1
 	exit
 	.size	div, .-div
 	.align	3
@@ -2185,18 +2179,12 @@ imaxabs:
 	.global	imaxdiv
 	.type	imaxdiv, @function
 imaxdiv:
-	r6 = r1
-	r7 = r2
-	r8 = r3
-	r2 = r3
-	r1 = r7
-	call	__divdi3
-	r2 = r8
-	*(u64 *) (r6+0) = r0
-	r1 = r7
-	call	__moddi3
-	*(u64 *) (r6+8) = r0
-	r0 = r6
+	r0 = r1
+	r1 = r2
+	r2 s%= r3
+	r1 s/= r3
+	*(u64 *) (r0+8) = r2
+	*(u64 *) (r0+0) = r1
 	exit
 	.size	imaxdiv, .-imaxdiv
 	.align	3
@@ -2214,18 +2202,12 @@ labs:
 	.global	ldiv
 	.type	ldiv, @function
 ldiv:
-	r6 = r1
-	r7 = r2
-	r8 = r3
-	r2 = r3
-	r1 = r7
-	call	__divdi3
-	r2 = r8
-	*(u64 *) (r6+0) = r0
-	r1 = r7
-	call	__moddi3
-	*(u64 *) (r6+8) = r0
-	r0 = r6
+	r0 = r1
+	r1 = r2
+	r2 s%= r3
+	r1 s/= r3
+	*(u64 *) (r0+8) = r2
+	*(u64 *) (r0+0) = r1
 	exit
 	.size	ldiv, .-ldiv
 	.align	3
@@ -2243,18 +2225,12 @@ llabs:
 	.global	lldiv
 	.type	lldiv, @function
 lldiv:
-	r6 = r1
-	r7 = r2
-	r8 = r3
-	r2 = r3
-	r1 = r7
-	call	__divdi3
-	r2 = r8
-	*(u64 *) (r6+0) = r0
-	r1 = r7
-	call	__moddi3
-	*(u64 *) (r6+8) = r0
-	r0 = r6
+	r0 = r1
+	r1 = r2
+	r2 s%= r3
+	r1 s/= r3
+	*(u64 *) (r0+8) = r2
+	*(u64 *) (r0+0) = r1
 	exit
 	.size	lldiv, .-lldiv
 	.align	3
@@ -7349,11 +7325,8 @@ __cmovw:
 	.global	__modi
 	.type	__modi, @function
 __modi:
-	r1 <<= 32
-	r2 <<= 32
-	r1 s>>= 32
-	r2 s>>= 32
-	call	__moddi3
+	r0 = r1
+	w0 s%= w2
 	exit
 	.size	__modi, .-__modi
 	.align	3
@@ -10471,8 +10444,6 @@ digits:
 	.global	__nesf2
 	.global	__addsf3
 	.global	__bpf_floatsidf
-	.global	__moddi3
-	.global	__divdi3
 	.global	__ltsf2
 	.global	__ltdf2
 	.global	__subsf3
