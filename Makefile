@@ -88,7 +88,7 @@ gcc-m68k.s: mini-libc.c
 > m68k-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=68060 -mdiv -mbitfield -mhard-float
 
 gcc-microblaze.s: mini-libc.c
-> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v8.30.a -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian -mxl-reorder
+> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v99.99.z -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian -mxl-reorder
 
 gcc-mips64.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3
