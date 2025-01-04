@@ -90,17 +90,19 @@ gcc-m68k.s: mini-libc.c
 gcc-microblaze.s: mini-libc.c
 > microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v99.99.z -mhard-float -mno-xl-soft-mul -mno-xl-soft-div -mxl-barrel-shift -mxl-pattern-compare -mxl-multiply-high -mxl-float-convert -mxl-float-sqrt -mlittle-endian -mxl-reorder
 
+GCC_MIPS_OPTIONS = -EL
+
 gcc-mips64.s: mini-libc.c
-> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3
+> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3 $(GCC_MIPS_OPTIONS)
 
 gcc-mips32.s: mini-libc.c
-> mips64-linux-gnu-gcc -mabi=32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips1 -mfp32
+> mips64-linux-gnu-gcc -mabi=32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips1 -mfp32 $(GCC_MIPS_OPTIONS)
 
 gcc-mips16.s: mini-libc.c
-> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mips16 -mabi=o64
+> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mips16 -mabi=o64 $(GCC_MIPS_OPTIONS)
 
 gcc-micromips.s: mini-libc.c
-> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmicromips
+> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmicromips $(GCC_MIPS_OPTIONS)
 
 gcc-mn10300.s: mini-libc.c
 > mn10300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mam33 -mtune=mn10300
