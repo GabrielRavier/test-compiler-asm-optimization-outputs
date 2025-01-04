@@ -3445,7 +3445,7 @@ __ctzhi2:
 	.type	__fixunssfsi, @function
 __fixunssfsi:
 	movhi	r2, 18176
-	custom	249, r3, r2, r4 # fcmples r3, r2, r4
+	custom	228, r3, r4, r2 # fcmpges r3, r4, r2
 	bne	r3, zero, .L1014
 	custom	244, r2, r4, zero # fixsi r2, r4
 	ret
