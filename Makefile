@@ -53,7 +53,7 @@ gcc-arm.s: mini-libc.c
 > arm-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=armv8.6-a+fp16+simd+crypto+i8mm+bf16 -mfloat-abi=hard
 
 gcc-avr.s: mini-libc.c
-> avr-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmcu=avrxmega6 -mflmap -mrmw
+> avr-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmcu=avrxmega7 -mflmap -mrmw
 
 gcc-bfin.s: mini-libc.c
 > bfin-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
