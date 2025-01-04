@@ -105,7 +105,7 @@ gcc-micromips.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmicromips $(GCC_MIPS_OPTIONS)
 
 gcc-mn10300.s: mini-libc.c
-> mn10300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mam33 -mtune=mn10300
+> mn10300-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mam33 -mtune=mn10300 -mno-mult-bug -mno-return-pointer-on-d0
 
 gcc-nios2.s: mini-libc.c
 > nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r1
