@@ -702,7 +702,7 @@ fmaxf:
 	mov	r2, r17
 	br	.L206
 .L208:
-	custom	246, r4, r16, r17 # fcmpgts r4, r16, r17
+	custom	231, r4, r17, r16 # fcmplts r4, r17, r16
 	bne	r4, zero, .L213
 	mov	r16, r17
 .L213:
@@ -845,7 +845,7 @@ fminf:
 	mov	r2, r17
 	br	.L239
 .L241:
-	custom	246, r4, r17, r16 # fcmpgts r4, r17, r16
+	custom	231, r4, r16, r17 # fcmplts r4, r16, r17
 	bne	r4, zero, .L246
 	mov	r16, r17
 .L246:
@@ -2075,7 +2075,7 @@ libiberty_ffs:
 gl_isinff:
 	movhi	r3, 65408
 	addi	r2, r3, -1
-	custom	246, r5, r2, r4 # fcmpgts r5, r2, r4
+	custom	231, r5, r4, r2 # fcmplts r5, r4, r2
 	bne	r5, zero, .L604
 	movhi	r6, 32640
 	addi	r7, r6, -1
@@ -3655,7 +3655,7 @@ __udivmodsi4:
 	.global	__mspabi_cmpf
 	.type	__mspabi_cmpf, @function
 __mspabi_cmpf:
-	custom	246, r2, r5, r4 # fcmpgts r2, r5, r4
+	custom	231, r2, r4, r5 # fcmplts r2, r4, r5
 	bne	r2, zero, .L1056
 	custom	246, r2, r4, r5 # fcmpgts r2, r4, r5
 	ret

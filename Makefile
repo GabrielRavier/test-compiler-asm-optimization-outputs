@@ -109,7 +109,7 @@ gcc-mn10300.s: mini-libc.c
 
 # -mbmx and -mcdx require -march=r2 so wait for that to add them
 gcc-nios2.s: mini-libc.c
-> nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r1 -mel -mhw-mul -mhw-mulx -mhw-div -mcustom-fabss=224 -mcustom-fnegs=225 -mcustom-fcmpges=228 -mcustom-floatus=243 -mcustom-fixsi=244 -mcustom-floatis=245 -mcustom-fcmpgts=246 -mcustom-fcmples=249 -mcustom-fcmpeqs=250 -mcustom-fcmpnes=251 -mcustom-fmuls=252 -mcustom-fadds=253 -mcustom-fsubs=254 -mcustom-fdivs=255
+> nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r1 -mel -mhw-mul -mhw-mulx -mhw-div -mcustom-fabss=224 -mcustom-fnegs=225 -mcustom-fcmpges=228 -mcustom-fcmplts=231 -mcustom-floatus=243 -mcustom-fixsi=244 -mcustom-floatis=245 -mcustom-fcmpgts=246 -mcustom-fcmples=249 -mcustom-fcmpeqs=250 -mcustom-fcmpnes=251 -mcustom-fmuls=252 -mcustom-fadds=253 -mcustom-fsubs=254 -mcustom-fdivs=255
 
 gcc-openrisc.s: mini-libc.c
 > openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
