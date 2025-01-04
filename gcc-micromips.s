@@ -4448,46 +4448,35 @@ strstr:
 	.ent	copysign
 	.type	copysign, @function
 copysign:
-	.frame	$sp,16,$31		# vars= 16, regs= 0/0, args= 0, gp= 0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	dmtc1	$0,$f0
-	daddiu	$sp,$sp,-16
-	c.lt.d	$fcc0,$f12,$f0
+	dmtc1	$0,$f1
+	c.lt.d	$fcc0,$f12,$f1
 	bc1t	$fcc0,.L861
-	sdc1	$f12,0($sp)
+	mov.d	$f0,$f12
 
-	c.lt.d	$fcc2,$f0,$f12
-	bc1f	$fcc2,.L854
+	c.lt.d	$fcc2,$f1,$f12
+	bc1f	$fcc2,.L862
 	nop
 
-	c.lt.d	$fcc3,$f13,$f0
-	bc1t	$fcc3,.L862
-	ld	$3,0($sp)
+	c.lt.d	$fcc3,$f13,$f1
+	bc1t	$fcc3,.L853
+	nop
 
-.L854:
-	ldc1	$f0,0($sp)
-.L863:
-	jr	$31
-	daddiu	$sp,$sp,16
-
+.L862:
+	jrc	$31
 	.align	3
 .L861:
-	c.lt.d	$fcc1,$f0,$f13
-	bc1f	$fcc1,.L863
-	ldc1	$f0,0($sp)
+	c.lt.d	$fcc1,$f1,$f13
+	bc1f	$fcc1,.L862
+	nop
 
-	ld	$3,0($sp)
-.L862:
-	li	$2,-1			# 0xffffffffffffffff
-	dsll	$5,$2,63
-	xor	$6,$3,$5
-	sd	$6,0($sp)
-	ldc1	$f0,0($sp)
+.L853:
 	jr	$31
-	daddiu	$sp,$sp,16
+	neg.d	$f0,$f0
 
 	.set	macro
 	.set	reorder
@@ -4506,69 +4495,69 @@ memmem:
 	.fmask	0x00000000,0
 	.set	noreorder
 	.set	nomacro
-	beqz	$7,.L881
+	beqz	$7,.L880
 	move	$2,$4
 
 	sltu	$3,$5,$7
-	bnez	$3,.L875
+	bnez	$3,.L874
 	dsubu	$5,$5,$7
 
 	daddu	$9,$4,$5
 	sltu	$4,$9,$4
-	bnez	$4,.L875
+	bnez	$4,.L874
 	daddiu	$7,$7,-1
 
 	lb	$13,0($6)
 	move	$12,$13
-	b	.L870
+	b	.L869
 	daddiu	$6,$6,1
 
 	.align	3
-.L874:
+.L873:
 	move	$2,$4
-.L866:
+.L865:
 	sltu	$10,$9,$2
-	bnezc	$10,.L875
-.L870:
+	bnezc	$10,.L874
+.L869:
 	lb	$8,0($2)
-	bne	$8,$12,.L874
+	bne	$8,$12,.L873
 	daddiu	$4,$2,1
 
-	beqz	$7,.L881
+	beqz	$7,.L880
 	move	$5,$6
 
-.L869:
+.L868:
 	move	$3,$4
-	b	.L867
+	b	.L866
 	daddu	$8,$4,$7
 
 	.align	3
-.L868:
-	beq	$3,$8,.L881
+.L867:
+	beq	$3,$8,.L880
 	daddiu	$5,$5,1
 
-.L867:
+.L866:
 	lbu	$15,0($3)
 	lbu	$24,0($5)
-	beq	$15,$24,.L868
+	beq	$15,$24,.L867
 	daddiu	$3,$3,1
 
 	sltu	$2,$9,$4
-	bnezc	$2,.L875
+	bnezc	$2,.L874
 	lb	$11,0($4)
-	bne	$11,$13,.L866
+	bne	$11,$13,.L865
 	daddiu	$2,$4,1
 
 	move	$25,$4
 	move	$5,$6
 	move	$4,$2
-	b	.L869
+	b	.L868
 	move	$2,$25
 
 	.align	3
-.L875:
+.L874:
 	move	$2,$0
-.L881:
+.L880:
 	jrc	$31
 	.set	macro
 	.set	reorder
@@ -4596,7 +4585,7 @@ mempcpy:
 	sd	$31,24($sp)
 	daddiu	$28,$28,%lo(%neg(%gp_rel(mempcpy)))
 	move	$16,$6
-	beqz	$6,.L883
+	beqz	$6,.L882
 	move	$17,$4
 
 	ld	$25,%call16(memmove)($28)
@@ -4604,7 +4593,7 @@ mempcpy:
 1:	jalrs	$25
 	nop
 
-.L883:
+.L882:
 	ld	$31,24($sp)
 	daddu	$2,$17,$16
 	ld	$28,16($sp)
@@ -4623,7 +4612,7 @@ mempcpy:
 	.ent	frexp
 	.type	frexp, @function
 frexp:
-	.frame	$sp,16,$31		# vars= 16, regs= 0/0, args= 0, gp= 0
+	.frame	$sp,0,$31		# vars= 0, regs= 0/0, args= 0, gp= 0
 	.mask	0x00000000,0
 	.fmask	0x00000000,0
 	.set	noreorder
@@ -4631,111 +4620,96 @@ frexp:
 	dmtc1	$0,$f0
 	lui	$6,%hi(%neg(%gp_rel(frexp)))
 	c.lt.d	$fcc0,$f12,$f0
-	daddiu	$sp,$sp,-16
 	daddu	$6,$6,$25
+	bc1t	$fcc0,.L910
 	daddiu	$6,$6,%lo(%neg(%gp_rel(frexp)))
-	bc1t	$fcc0,.L911
-	sdc1	$f12,0($sp)
 
 	ld	$2,%got_page(.LC14)($6)
 	ldc1	$f1,%got_ofst(.LC14)($2)
 	c.le.d	$fcc3,$f1,$f12
-	bc1f	$fcc3,.L912
+	bc1f	$fcc3,.L911
 	move	$3,$0
 
-.L891:
-	ld	$13,%got_page(.LC9)($6)
-	ldc1	$f11,%got_ofst(.LC14)($2)
-	ldc1	$f12,%got_ofst(.LC9)($13)
+.L890:
+	ld	$9,%got_page(.LC9)($6)
+	ldc1	$f7,%got_ofst(.LC14)($2)
+	ldc1	$f8,%got_ofst(.LC9)($9)
 	move	$2,$0
 	.align	3
-.L897:
-	ldc1	$f13,0($sp)
+.L896:
+	mul.d	$f12,$f12,$f8
+	c.le.d	$fcc6,$f7,$f12
+	bc1t	$fcc6,.L896
 	addiu	$2,$2,1
-	mul.d	$f14,$f13,$f12
-	c.le.d	$fcc6,$f11,$f14
-	bc1t	$fcc6,.L897
-	sdc1	$f14,0($sp)
 
-.L898:
-	beqz	$3,.L888
+.L897:
+	beqz	$3,.L903
 	sw	$2,0($5)
 
-	ld	$15,0($sp)
-	li	$5,-1			# 0xffffffffffffffff
-	dsll	$14,$5,63
-	xor	$24,$15,$14
-	sd	$24,0($sp)
-.L888:
-	ldc1	$f0,0($sp)
 	jr	$31
-	daddiu	$sp,$sp,16
-
-	.align	3
-.L912:
-	ld	$4,%got_page(.LC9)($6)
-	ldc1	$f3,%got_ofst(.LC9)($4)
-	c.lt.d	$fcc4,$f12,$f3
-	bc1f	$fcc4,.L894
-	c.eq.d	$fcc5,$f12,$f0
-
-	bc1f	$fcc5,.L903
-	dmfc1	$7,$f12
-
-.L894:
-	ldc1	$f0,0($sp)
-	sw	$0,0($5)
-	jr	$31
-	daddiu	$sp,$sp,16
+	neg.d	$f0,$f12
 
 	.align	3
 .L911:
-	ld	$8,%got_page(.LC12)($6)
-	ld	$11,0($sp)
-	ldc1	$f6,%got_ofst(.LC12)($8)
-	li	$9,-1			# 0xffffffffffffffff
-	dsll	$10,$9,63
-	c.le.d	$fcc1,$f12,$f6
-	bc1f	$fcc1,.L913
-	xor	$7,$11,$10
-
-	ld	$2,%got_page(.LC14)($6)
-	sd	$7,0($sp)
-	b	.L891
-	li	$3,1			# 0x1
-
-	.align	3
-.L913:
-	ld	$12,%got_page(.LC13)($6)
-	ldc1	$f7,%got_ofst(.LC13)($12)
-	c.lt.d	$fcc2,$f7,$f12
-	bc1t	$fcc2,.L901
 	ld	$4,%got_page(.LC9)($6)
+	ldc1	$f2,%got_ofst(.LC9)($4)
+	c.lt.d	$fcc4,$f12,$f2
+	bc1f	$fcc4,.L893
+	c.eq.d	$fcc5,$f12,$f0
 
-	b	.L888
+	bc1f	$fcc5,.L902
+	mov.d	$f3,$f12
+
+.L893:
+	mov.d	$f0,$f12
+.L913:
+	jr	$31
 	sw	$0,0($5)
 
 	.align	3
-.L901:
+.L910:
+	ld	$7,%got_page(.LC12)($6)
+	ldc1	$f4,%got_ofst(.LC12)($7)
+	c.le.d	$fcc1,$f12,$f4
+	bc1f	$fcc1,.L912
+	neg.d	$f3,$f12
+
+	mov.d	$f12,$f3
+	ld	$2,%got_page(.LC14)($6)
+	b	.L890
 	li	$3,1			# 0x1
-.L892:
-	ldc1	$f8,%got_ofst(.LC9)($4)
-	sd	$7,0($sp)
+
+	.align	3
+.L903:
+	jr	$31
+	mov.d	$f0,$f12
+
+	.align	3
+.L912:
+	ld	$8,%got_page(.LC13)($6)
+	ldc1	$f5,%got_ofst(.LC13)($8)
+	c.lt.d	$fcc2,$f5,$f12
+	bc1f	$fcc2,.L913
+	mov.d	$f0,$f12
+
+	ld	$4,%got_page(.LC9)($6)
+	li	$3,1			# 0x1
+.L891:
+	ldc1	$f6,%got_ofst(.LC9)($4)
+	mov.d	$f12,$f3
 	move	$2,$0
 	.align	3
-.L899:
-	ldc1	$f9,0($sp)
+.L898:
+	add.d	$f12,$f12,$f12
+	c.lt.d	$fcc7,$f12,$f6
+	bc1t	$fcc7,.L898
 	addiu	$2,$2,-1
-	add.d	$f10,$f9,$f9
-	c.lt.d	$fcc7,$f10,$f8
-	bc1t	$fcc7,.L899
-	sdc1	$f10,0($sp)
 
-	b	.L898
+	b	.L897
 	nop
 
-.L903:
-	b	.L892
+.L902:
+	b	.L891
 	move	$3,$0
 
 	.set	macro
