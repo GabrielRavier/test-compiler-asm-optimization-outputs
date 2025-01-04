@@ -665,8 +665,8 @@ fmax:
 	mov	r3, r19
 	br	.L194
 .L196:
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	18, r2, r18, r19 # fcmpgtd r2, r16, r18
+	custom	0, zero, r18, r19 # fwrx r18
+	custom	20, r2, r16, r17 # fcmpltd r2, r18, r16
 	beq	r2, zero, .L200
 	br	.L201
 	.size	fmax, .-fmax
@@ -751,8 +751,8 @@ fmaxl:
 	mov	r3, r19
 	br	.L214
 .L216:
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	18, r2, r18, r19 # fcmpgtd r2, r16, r18
+	custom	0, zero, r18, r19 # fwrx r18
+	custom	20, r2, r16, r17 # fcmpltd r2, r18, r16
 	beq	r2, zero, .L220
 	br	.L221
 	.size	fmaxl, .-fmaxl
@@ -800,8 +800,8 @@ fmin:
 	mov	r3, r19
 	br	.L225
 .L227:
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	18, r2, r18, r19 # fcmpgtd r2, r16, r18
+	custom	0, zero, r18, r19 # fwrx r18
+	custom	20, r2, r16, r17 # fcmpltd r2, r18, r16
 	beq	r2, zero, .L230
 	br	.L232
 	.size	fmin, .-fmin
@@ -886,8 +886,8 @@ fminl:
 	mov	r3, r19
 	br	.L245
 .L247:
-	custom	0, zero, r16, r17 # fwrx r16
-	custom	18, r2, r18, r19 # fcmpgtd r2, r16, r18
+	custom	0, zero, r18, r19 # fwrx r18
+	custom	20, r2, r16, r17 # fcmpltd r2, r18, r16
 	beq	r2, zero, .L250
 	br	.L252
 	.size	fminl, .-fminl
@@ -2075,8 +2075,8 @@ gl_isinfd:
 	mov	r2, r4
 	mov	r3, r5
 	addi	r7, r7, -1
-	custom	0, zero, r6, r7 # fwrx r6
-	custom	18, r6, r2, r3 # fcmpgtd r6, r6, r2
+	custom	0, zero, r2, r3 # fwrx r2
+	custom	20, r6, r6, r7 # fcmpltd r6, r2, r6
 	bne	r6, zero, .L603
 	movhi	r5, 32752
 	movi	r4, -1
@@ -2097,8 +2097,8 @@ gl_isinfl:
 	mov	r2, r4
 	mov	r3, r5
 	addi	r7, r7, -1
-	custom	0, zero, r6, r7 # fwrx r6
-	custom	18, r6, r2, r3 # fcmpgtd r6, r6, r2
+	custom	0, zero, r2, r3 # fwrx r2
+	custom	20, r6, r6, r7 # fcmpltd r6, r2, r6
 	bne	r6, zero, .L606
 	movhi	r5, 32752
 	movi	r4, -1
@@ -2518,8 +2518,8 @@ copysign:
 	mov	r9, r5
 	mov	r2, zero
 	mov	r3, zero
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	18, r2, r8, r9 # fcmpgtd r2, r2, r8
+	custom	0, zero, r8, r9 # fwrx r8
+	custom	20, r2, r2, r3 # fcmpltd r2, r8, r2
 	mov	r4, r6
 	mov	r5, r7
 	bne	r2, zero, .L747
@@ -2530,8 +2530,8 @@ copysign:
 	beq	r3, zero, .L741
 	mov	r2, zero
 	mov	r3, zero
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	18, r4, r4, r5 # fcmpgtd r4, r2, r4
+	custom	0, zero, r4, r5 # fwrx r4
+	custom	20, r4, r2, r3 # fcmpltd r4, r4, r2
 	bne	r4, zero, .L740
 .L741:
 	mov	r2, r8
@@ -2634,8 +2634,8 @@ frexp:
 	stw	ra, 20(sp)
 	stw	r20, 16(sp)
 	stw	r19, 12(sp)
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	18, r2, r16, r17 # fcmpgtd r2, r2, r16
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	20, r2, r2, r3 # fcmpltd r2, r16, r2
 	mov	r18, r6
 	bne	r2, zero, .L794
 	mov	r2, zero
@@ -2679,8 +2679,8 @@ frexp:
 .L795:
 	mov	r2, zero
 	movhi	r3, 16352
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	18, r4, r16, r17 # fcmpgtd r4, r2, r16
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	20, r4, r2, r3 # fcmpltd r4, r16, r2
 	beq	r4, zero, .L777
 	mov	r6, zero
 	mov	r7, zero
@@ -2725,8 +2725,8 @@ frexp:
 	custom	11, r17, r16, r17 # faddd r16, r16, r16
 	custom	4, r16, zero, zero # frdy r16
 	movhi	r3, 16352
-	custom	0, zero, r2, r3 # fwrx r2
-	custom	18, r5, r16, r17 # fcmpgtd r5, r2, r16
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	20, r5, r2, r3 # fcmpltd r5, r16, r2
 	addi	r20, r20, -1
 	bne	r5, zero, .L782
 	br	.L781
@@ -3612,8 +3612,8 @@ __mspabi_cmpd:
 	mov	r8, r6
 	mov	r3, r5
 	mov	r9, r7
-	custom	0, zero, r8, r9 # fwrx r8
-	custom	18, r4, r2, r3 # fcmpgtd r4, r8, r2
+	custom	0, zero, r2, r3 # fwrx r2
+	custom	20, r4, r8, r9 # fcmpltd r4, r2, r8
 	bne	r4, zero, .L1044
 	custom	0, zero, r2, r3 # fwrx r2
 	custom	18, r2, r8, r9 # fcmpgtd r2, r2, r8
