@@ -537,34 +537,36 @@ toascii:
 	.type	fdim, @function
 fdim:
 	addi	sp, sp, -20
-	stw	r19, 12(sp)
-	stw	r18, 8(sp)
-	mov	r19, r6
-	mov	r18, r7
-	mov	r6, r4
-	mov	r7, r5
 	stw	r17, 4(sp)
 	stw	r16, 0(sp)
+	mov	r17, r7
+	mov	r16, r6
+	mov	r7, r5
+	mov	r6, r4
+	stw	r19, 12(sp)
+	stw	r18, 8(sp)
 	stw	ra, 16(sp)
-	mov	r17, r4
-	mov	r16, r5
+	mov	r18, r4
+	mov	r19, r5
 	call	__unorddf2
 	bne	r2, zero, .L177
-	mov	r6, r19
-	mov	r7, r18
-	mov	r4, r19
-	mov	r5, r18
+	mov	r6, r16
+	mov	r7, r17
+	mov	r4, r16
+	mov	r5, r17
 	call	__unorddf2
 	bne	r2, zero, .L178
-	mov	r6, r19
-	mov	r7, r18
-	mov	r4, r17
-	mov	r5, r16
+	mov	r6, r16
+	mov	r7, r17
+	mov	r4, r18
+	mov	r5, r19
 	call	__gtdf2
 	bgt	r2, zero, .L183
-	mov	r2, zero
-	mov	r3, zero
+	mov	r4, zero
+	mov	r5, zero
 .L174:
+	mov	r2, r4
+	mov	r3, r5
 	ldw	ra, 16(sp)
 	ldw	r19, 12(sp)
 	ldw	r18, 8(sp)
@@ -573,19 +575,17 @@ fdim:
 	addi	sp, sp, 20
 	ret
 .L183:
-	mov	r6, r19
-	mov	r7, r18
-	mov	r4, r17
-	mov	r5, r16
-	call	__subdf3
+	custom	0, zero, r18, r19 # fwrx r18
+	custom	12, r5, r16, r17 # fsubd r4, r18, r16
+	custom	4, r4, zero, zero # frdy r4
 	br	.L174
 .L177:
-	mov	r2, r17
-	mov	r3, r16
+	mov	r4, r18
+	mov	r5, r19
 	br	.L174
 .L178:
-	mov	r2, r19
-	mov	r3, r18
+	mov	r4, r16
+	mov	r5, r17
 	br	.L174
 	.size	fdim, .-fdim
 	.align	2
@@ -4900,7 +4900,6 @@ digits:
 	.global	__divdi3
 	.global	__ltdf2
 	.global	__unordsf2
-	.global	__subdf3
 	.global	__gtdf2
 	.global	__unorddf2
 	.ident	"GCC: (GNU) 14.2.1 20240912 (Red Hat Cross 14.2.1-1)"
