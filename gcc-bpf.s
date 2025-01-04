@@ -3650,7 +3650,7 @@ rotr8:
 	.type	bswap_16, @function
 bswap_16:
 	r0 = r1
-	r0 = be16 r0
+	r0 = bswap16 r0
 	exit
 	.size	bswap_16, .-bswap_16
 	.align	3
@@ -3658,7 +3658,7 @@ bswap_16:
 	.type	bswap_32, @function
 bswap_32:
 	r0 = r1
-	r0 = be32 r0
+	r0 = bswap32 r0
 	exit
 	.size	bswap_32, .-bswap_32
 	.align	3
@@ -3666,7 +3666,7 @@ bswap_32:
 	.type	bswap_64, @function
 bswap_64:
 	r0 = r1
-	r0 = be64 r0
+	r0 = bswap64 r0
 	exit
 	.size	bswap_64, .-bswap_64
 	.align	3
@@ -9344,7 +9344,7 @@ __ashrti3:
 	.type	__bswapdi2, @function
 __bswapdi2:
 	r0 = r1
-	r0 = be64 r0
+	r0 = bswap64 r0
 	exit
 	.size	__bswapdi2, .-__bswapdi2
 	.align	3
@@ -9352,7 +9352,7 @@ __bswapdi2:
 	.type	__bswapsi2, @function
 __bswapsi2:
 	r0 = r1
-	r0 = be32 r0
+	r0 = bswap32 r0
 	exit
 	.size	__bswapsi2, .-__bswapsi2
 	.align	3
