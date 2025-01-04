@@ -4,7 +4,7 @@
 	.nan	2008
 	.module	fp=64
 	.module	oddspreg
-	.module	arch=mips64r2
+	.module	arch=mips64r5
 	.module	dspr2
 	.module	eva
 	.module	mcu
