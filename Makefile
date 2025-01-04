@@ -82,7 +82,7 @@ gcc-ia64.s: mini-libc.c
 > ia64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -msdata -msched-br-data-spec -msched-control-spec -msched-br-in-data-spec -msched-ar-in-data-spec -msched-in-control-spec
 
 gcc-loongarch64.s: mini-libc.c
-> loongarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mtune=generic
+> loongarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mtune=generic -mfrecipe -mdiv32 -mlam-bh -mlamcas -mld-seq-sa -mfpu=64 -msimd=lasx
 
 gcc-m68k.s: mini-libc.c
 > m68k-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=68000
