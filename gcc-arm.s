@@ -1,8 +1,4 @@
-	.arch armv7-a
-	.arch_extension virt
-	.arch_extension idiv
-	.arch_extension sec
-	.arch_extension mp
+	.arch armv8.6-a
 	.fpu vfpv3-d16
 	.eabi_attribute 28, 1
 	.eabi_attribute 20, 1
@@ -13,6 +9,7 @@
 	.eabi_attribute 26, 2
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 1
+	.eabi_attribute 38, 1
 	.eabi_attribute 18, 4
 	.file	"mini-libc.c"
 	.text
