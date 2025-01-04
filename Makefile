@@ -79,7 +79,7 @@ gcc-hppa.s: mini-libc.c
 > hppa-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_HPPA_OPTIONS)
 
 gcc-ia64.s: mini-libc.c
-> ia64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -msdata -msched-br-data-spec
+> ia64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -msdata -msched-br-data-spec -msched-control-spec -msched-br-in-data-spec -msched-ar-in-data-spec -msched-in-control-spec
 
 gcc-loongarch64.s: mini-libc.c
 > loongarch64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mtune=generic
