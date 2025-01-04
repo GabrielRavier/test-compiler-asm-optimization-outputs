@@ -2219,62 +2219,58 @@ ldexpf:
 	.type	ldexp, @function
 ldexp:
 	addi	sp, sp, -28
-	stw	r16, 8(sp)
-	mov	r7, r5
-	mov	r16, r6
-	mov	r6, r4
 	stw	r18, 16(sp)
+	mov	r7, r5
+	mov	r18, r6
+	mov	r6, r4
 	stw	r17, 12(sp)
+	stw	r16, 8(sp)
 	stw	ra, 24(sp)
 	stw	r19, 20(sp)
-	mov	r18, r4
+	mov	r16, r4
 	mov	r17, r5
 	call	__unorddf2
 	bne	r2, zero, .L634
-	mov	r6, r18
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	11, r5, r16, r17 # faddd r4, r16, r16
+	custom	4, r4, zero, zero # frdy r4
+	mov	r6, r16
 	mov	r7, r17
-	mov	r4, r18
-	mov	r5, r17
-	call	__adddf3
-	mov	r6, r18
-	mov	r7, r17
-	mov	r4, r2
-	mov	r5, r3
 	call	__eqdf2
 	beq	r2, zero, .L634
 	mov	r6, zero
-	blt	r16, zero, .L650
+	blt	r18, zero, .L650
 	movhi	r7, 16384
 .L635:
-	andi	r2, r16, 1
+	andi	r2, r18, 1
 	beq	r2, zero, .L636
 .L637:
-	mov	r4, r18
+	mov	r4, r16
 	mov	r5, r17
 	stw	r6, 4(sp)
 	stw	r7, 0(sp)
 	call	__muldf3
 	ldw	r6, 4(sp)
 	ldw	r7, 0(sp)
-	mov	r18, r2
+	mov	r16, r2
 	mov	r17, r3
 .L636:
 	movi	r3, 2
-	div	r16, r16, r3
-	beq	r16, zero, .L634
+	div	r18, r18, r3
+	beq	r18, zero, .L634
 	movi	r19, 2
 .L638:
 	mov	r4, r6
 	mov	r5, r7
 	call	__muldf3
-	andi	r4, r16, 1
+	andi	r8, r18, 1
 	mov	r6, r2
 	mov	r7, r3
-	bne	r4, zero, .L637
-	div	r16, r16, r19
+	bne	r8, zero, .L637
+	div	r18, r18, r19
 	br	.L638
 .L634:
-	mov	r2, r18
+	mov	r2, r16
 	mov	r3, r17
 	ldw	ra, 24(sp)
 	ldw	r19, 20(sp)
@@ -2292,62 +2288,60 @@ ldexp:
 	.type	ldexpl, @function
 ldexpl:
 	addi	sp, sp, -28
-	stw	r16, 8(sp)
-	mov	r7, r5
-	mov	r16, r6
-	mov	r6, r4
 	stw	r18, 16(sp)
+	mov	r7, r5
+	mov	r18, r6
+	mov	r6, r4
 	stw	r17, 12(sp)
+	stw	r16, 8(sp)
 	stw	ra, 24(sp)
 	stw	r19, 20(sp)
-	mov	r18, r4
+	mov	r16, r4
 	mov	r17, r5
 	call	__unorddf2
 	bne	r2, zero, .L652
-	mov	r6, r18
-	mov	r7, r17
-	mov	r4, r18
-	mov	r5, r17
-	call	__adddf3
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	11, r3, r16, r17 # faddd r2, r16, r16
+	custom	4, r2, zero, zero # frdy r2
 	mov	r6, r2
 	mov	r7, r3
-	mov	r4, r18
+	mov	r4, r16
 	mov	r5, r17
 	call	__eqdf2
 	beq	r2, zero, .L652
 	mov	r6, zero
-	blt	r16, zero, .L668
+	blt	r18, zero, .L668
 	movhi	r7, 16384
 .L653:
-	andi	r2, r16, 1
+	andi	r2, r18, 1
 	beq	r2, zero, .L654
 .L655:
-	mov	r4, r18
+	mov	r4, r16
 	mov	r5, r17
 	stw	r6, 4(sp)
 	stw	r7, 0(sp)
 	call	__muldf3
 	ldw	r6, 4(sp)
 	ldw	r7, 0(sp)
-	mov	r18, r2
+	mov	r16, r2
 	mov	r17, r3
 .L654:
 	movi	r3, 2
-	div	r16, r16, r3
-	beq	r16, zero, .L652
+	div	r18, r18, r3
+	beq	r18, zero, .L652
 	movi	r19, 2
 .L656:
 	mov	r4, r6
 	mov	r5, r7
 	call	__muldf3
-	andi	r4, r16, 1
+	andi	r4, r18, 1
 	mov	r6, r2
 	mov	r7, r3
 	bne	r4, zero, .L655
-	div	r16, r16, r19
+	div	r18, r18, r19
 	br	.L656
 .L652:
-	mov	r2, r18
+	mov	r2, r16
 	mov	r3, r17
 	ldw	ra, 24(sp)
 	ldw	r19, 20(sp)
@@ -2681,117 +2675,119 @@ mempcpy:
 	.global	frexp
 	.type	frexp, @function
 frexp:
-	addi	sp, sp, -24
+	addi	sp, sp, -28
 	stw	r19, 12(sp)
 	mov	r7, zero
 	mov	r19, r6
 	mov	r6, zero
-	stw	r18, 8(sp)
-	stw	r16, 0(sp)
-	stw	ra, 20(sp)
-	stw	r20, 16(sp)
 	stw	r17, 4(sp)
-	mov	r18, r4
-	mov	r16, r5
+	stw	r16, 0(sp)
+	stw	ra, 24(sp)
+	stw	r21, 20(sp)
+	stw	r20, 16(sp)
+	stw	r18, 8(sp)
+	mov	r16, r4
+	mov	r17, r5
 	call	__ltdf2
 	mov	r6, zero
 	blt	r2, zero, .L809
 	movhi	r7, 16368
-	mov	r4, r18
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	call	__gedf2
 	blt	r2, zero, .L810
 	mov	r20, zero
 .L789:
-	mov	r17, zero
+	mov	r21, zero
 .L795:
-	mov	r4, r18
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	mov	r6, zero
 	movhi	r7, 16352
 	call	__muldf3
+	mov	r5, r3
 	mov	r6, zero
 	movhi	r7, 16368
 	mov	r4, r2
-	mov	r5, r3
-	addi	r17, r17, 1
-	mov	r18, r2
-	mov	r16, r3
+	addi	r21, r21, 1
+	mov	r16, r2
+	mov	r17, r3
 	call	__gedf2
 	bge	r2, zero, .L795
 .L796:
-	stw	r17, 0(r19)
+	stw	r21, 0(r19)
+	mov	r2, r16
 	beq	r20, zero, .L802
-	xorhi	r3, r16, 32768
+	xorhi	r3, r17, 32768
 .L786:
-	mov	r2, r18
-	ldw	ra, 20(sp)
+	ldw	ra, 24(sp)
+	ldw	r21, 20(sp)
 	ldw	r20, 16(sp)
 	ldw	r19, 12(sp)
 	ldw	r18, 8(sp)
 	ldw	r17, 4(sp)
 	ldw	r16, 0(sp)
-	addi	sp, sp, 24
+	addi	sp, sp, 28
 	ret
 .L810:
 	mov	r6, zero
 	movhi	r7, 16352
-	mov	r4, r18
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	call	__ltdf2
 	bge	r2, zero, .L792
 	mov	r6, zero
 	mov	r7, zero
-	mov	r4, r18
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	call	__nedf2
 	bne	r2, zero, .L801
 .L792:
 	stw	zero, 0(r19)
-	mov	r3, r16
+	mov	r2, r16
+	mov	r3, r17
 	br	.L786
 .L809:
 	movhi	r7, 49136
-	mov	r4, r18
-	mov	r5, r16
-	xorhi	r17, r16, 32768
+	mov	r4, r16
+	mov	r5, r17
+	mov	r21, r16
+	xorhi	r18, r17, 32768
 	call	__ledf2
 	bgt	r2, zero, .L811
-	mov	r16, r17
+	mov	r17, r18
 	movi	r20, 1
 	br	.L789
 .L802:
-	mov	r3, r16
+	mov	r3, r17
 	br	.L786
 .L811:
 	mov	r6, zero
 	movhi	r7, 49120
-	mov	r4, r18
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	call	__gtdf2
 	ble	r2, zero, .L792
 	movi	r20, 1
 .L790:
-	mov	r16, r17
-	mov	r17, zero
+	mov	r16, r21
+	mov	r17, r18
+	mov	r21, zero
 .L797:
-	mov	r6, r18
-	mov	r7, r16
-	mov	r4, r18
-	mov	r5, r16
-	call	__adddf3
+	custom	0, zero, r16, r17 # fwrx r16
+	custom	11, r17, r16, r17 # faddd r16, r16, r16
+	custom	4, r16, zero, zero # frdy r16
 	mov	r6, zero
 	movhi	r7, 16352
-	mov	r4, r2
-	mov	r5, r3
-	addi	r17, r17, -1
-	mov	r18, r2
-	mov	r16, r3
+	mov	r4, r16
+	mov	r5, r17
+	addi	r21, r21, -1
 	call	__ltdf2
 	blt	r2, zero, .L797
 	br	.L796
 .L801:
-	mov	r17, r16
+	mov	r21, r16
+	mov	r18, r17
 	mov	r20, zero
 	br	.L790
 	.size	frexp, .-frexp
@@ -4899,7 +4895,6 @@ digits:
 	.global	__ledf2
 	.global	__muldf3
 	.global	__eqdf2
-	.global	__adddf3
 	.global	__floatsidf
 	.global	__moddi3
 	.global	__divdi3
