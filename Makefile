@@ -88,7 +88,7 @@ gcc-m68k.s: mini-libc.c
 > m68k-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=68060 -mdiv -mbitfield -mhard-float
 
 gcc-microblaze.s: mini-libc.c
-> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-float -mxl-barrel-shift
+> microblaze-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-float -mxl-barrel-shift -mxl-pattern-compare
 
 gcc-mips64.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3
@@ -97,7 +97,7 @@ gcc-mips32.s: mini-libc.c
 > mips64-linux-gnu-gcc -mabi=32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips1 -mfp32
 
 gcc-mips16.s: mini-libc.c
-> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mips16 -mabi=o64 -frerun-cse-after-loop
+> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mips16 -mabi=o64
 
 gcc-micromips.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmicromips
