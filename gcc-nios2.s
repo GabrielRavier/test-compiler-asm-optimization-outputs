@@ -4750,20 +4750,20 @@ __powidf2:
 	stw	r19, 20(sp)
 	mov	r6, r4
 	mov	r7, r5
+	mov	r16, zero
 	mov	r20, r18
-	mov	r17, zero
-	movhi	r16, 16368
+	movhi	r17, 16368
 	beq	r2, zero, .L1363
 .L1365:
-	mov	r4, r17
-	mov	r5, r16
+	mov	r4, r16
+	mov	r5, r17
 	stw	r6, 4(sp)
 	stw	r7, 0(sp)
 	call	__muldf3
 	ldw	r7, 0(sp)
 	ldw	r6, 4(sp)
-	mov	r17, r2
-	mov	r16, r3
+	mov	r16, r2
+	mov	r17, r3
 .L1363:
 	movi	r3, 2
 	div	r20, r20, r3
@@ -4781,16 +4781,14 @@ __powidf2:
 	br	.L1366
 .L1364:
 	bge	r18, zero, .L1362
-	mov	r6, r17
-	mov	r7, r16
-	mov	r4, zero
-	movhi	r5, 16368
-	call	__divdf3
-	mov	r17, r2
-	mov	r16, r3
+	mov	r2, zero
+	movhi	r3, 16368
+	custom	0, zero, r2, r3 # fwrx r2
+	custom	13, r17, r16, r17 # fdivd r16, r2, r16
+	custom	4, r16, zero, zero # frdy r16
 .L1362:
-	mov	r2, r17
-	mov	r3, r16
+	mov	r2, r16
+	mov	r3, r17
 	ldw	ra, 28(sp)
 	ldw	r20, 24(sp)
 	ldw	r19, 20(sp)
@@ -4884,7 +4882,6 @@ seed:
 	.size	digits, 65
 digits:
 	.string	"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	.global	__divdf3
 	.global	__floatundisf
 	.global	__floatundidf
 	.global	__floatunsidf
