@@ -56,7 +56,7 @@ gcc-avr.s: mini-libc.c
 > avr-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mmcu=avrxmega7 -mflmap -mrmw
 
 gcc-bfin.s: mini-libc.c
-> bfin-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer
+> bfin-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -momit-leaf-frame-pointer -mno-specld-anomaly
 
 gcc-bpf.s: mini-libc.c
 > bpf-unknown-none-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v1

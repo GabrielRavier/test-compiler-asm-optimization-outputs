@@ -72,21 +72,14 @@ _memmove:
 	P0 = R3;
 	R1 = R0 - R2;
 	if cc jump .L3;
-	nop;
-	nop;
 	cc =R1==1;
 	R0 = B [P0] (X);
 	B [P5] = R0;
 	if cc jump .L3;
-	nop;
-	nop;
 	cc =R1==2;
 	R2 = B [P0+1] (X);
 	B [P5+1] = R2;
 	if cc jump .L3;
-	nop;
-	nop;
-	nop;
 	R3 = B [P0+2] (X);
 	B [P5+2] = R3;
 	jump.s .L3;
@@ -120,8 +113,6 @@ _memccpy:
 	R3 = R2.B (Z);
 	cc =P1==0;
 	if cc jump .L39;
-	nop;
-	nop;
 	LSETUP (.L40, .L50) LC1 = P1;
 .L40:
 	R0 = B [P0++] (Z);
@@ -145,7 +136,6 @@ _memchr:
 	R2 = R1.B (Z);
 	cc =P1==0;
 	if cc jump .L59;
-	nop;
 	LSETUP (.L53, .L60) LC1 = P1;
 .L53:
 	R0 = P2;
@@ -310,7 +300,6 @@ _strchr:
 .L106:
 	cc =R0==0;
 	if cc jump .L105;
-	nop;
 .L103:
 	P2 = R1;
 	R1 += 1;
@@ -340,7 +329,6 @@ _strcmp:
 	P2 += 1;
 	jump.s .L110;
 .L111:
-	nop;
 	R0 = B [P1++] (X);
 	R3 = B [P2++] (X);
 	cc =R0==R3;
@@ -395,14 +383,10 @@ _strncmp:
 	P1 = R1;
 	cc =P2==0;
 	if cc jump .L127;
-	nop;
-	nop;
 	P0 += 1;
 	R0 = B [P0+-1] (Z);
 	cc =R0==0;
 	if cc jump .L129;
-	nop;
-	nop;
 .L123:
 	P5 = P1;
 	R1 = B [P1++] (Z);
@@ -419,9 +403,6 @@ _strncmp:
 .L125:
 	cc =R1==R0;
 	if !cc jump .L122;
-	nop;
-	nop;
-	nop;
 	R0 = B [P0++] (Z);
 	cc =R0==0;
 	if !cc jump .L123 (bp);
@@ -1232,9 +1213,6 @@ _remque:
 	P1 = [P2];
 	cc =P1==0;
 	if cc jump .L266;
-	nop;
-	nop;
-	nop;
 	R0 = [P2+4];
 	[P1+4] = R0;
 .L266:
@@ -1921,7 +1899,6 @@ _wcscmp:
 	P2 += 4;
 	jump.s .L423;
 .L424:
-	nop;
 	R0 = [P1++];
 	R1 = [P2++];
 	cc =R0==R1;
@@ -1947,7 +1924,6 @@ _wcscpy:
 	P2 = R1;
 	P1 = R0;
 .L428:
-	nop;
 	R0 = [P2++];
 	cc =R0==0;
 	[P1++] = R0;
@@ -2033,7 +2009,6 @@ _wmemchr:
 	R3 = R1;
 	cc =P1==0;
 	if cc jump .L456;
-	nop;
 	LSETUP (.L450, .L457) LC1 = P1;
 .L450:
 	R0 = P2;
@@ -2140,8 +2115,6 @@ _wmemmove:
 	P5 = R0;
 	cc =P5==0;
 	if cc jump .L486;
-	nop;
-	nop;
 	LSETUP (.L482, .L494) LC1 = P5;
 .L482:
 	P1 = [P2++];
@@ -2240,21 +2213,14 @@ _bcopy:
 	P2 = R3;
 	R0 = R1 - R2;
 	if cc jump .L504;
-	nop;
-	nop;
 	cc =R0==1;
 	R1 = B [P2] (X);
 	B [P5] = R1;
 	if cc jump .L504;
-	nop;
-	nop;
 	cc =R0==2;
 	R2 = B [P2+1] (X);
 	B [P5+1] = R2;
 	if cc jump .L504;
-	nop;
-	nop;
-	nop;
 	R7 = B [P2+2] (X);
 	B [P5+2] = R7;
 	jump.s .L504;
@@ -3002,25 +2968,18 @@ _memxor:
 	R1 = R2 - R7;
 	P5 = P5 + P0;
 	if cc jump .L631;
-	nop;
-	nop;
 	cc =R1==1;
 	R7 = B [P4] (X);
 	R2 = B [P5] (X);
 	R0 = R7 ^ R2;
 	B [P4] = R0;
 	if cc jump .L631;
-	nop;
-	nop;
 	cc =R1==2;
 	R2 = B [P4+1] (X);
 	R7 = B [P5+1] (X);
 	R0 = R7 ^ R2;
 	B [P4+1] = R0;
 	if cc jump .L631;
-	nop;
-	nop;
-	nop;
 	R1 = B [P4+2] (X);
 	R7 = B [P5+2] (X);
 	R2 = R7 ^ R1;
@@ -3068,8 +3027,6 @@ _strncat:
 .L651:
 	cc =P1==0;
 	if cc jump .L653;
-	nop;
-	nop;
 	LSETUP (.L654, .L663) LC1 = P1;
 .L654:
 	R3 = B [P0++] (X);
@@ -3099,7 +3056,6 @@ _strnlen:
 	cc =R0==0;
 	R1 = 0 (X);
 	if cc jump .L664;
-	nop;
 	P1 = R0;
 	LSETUP (.L666, .L675) LC1 = P1;
 .L666:
@@ -3130,9 +3086,6 @@ _strpbrk:
 .L679:
 	cc =R0==R1;
 	if cc jump .L678;
-	nop;
-	nop;
-	nop;
 .L680:
 	R0 = B [P2++] (X);
 	cc =R0==0;
@@ -3155,7 +3108,6 @@ _strrchr:
 	P2 = R0;
 	R1 = 0 (X);
 .L686:
-	nop;
 	R0 = B [P2] (X);
 	cc =R0==R2;
 	if cc R1 = P2;
@@ -3195,7 +3147,6 @@ _strstr:
 .L712:
 	cc =R2==0;
 	if cc jump .L711;
-	nop;
 .L696:
 	P1 = P2;
 	P2 += 1;
@@ -3208,15 +3159,12 @@ _strstr:
 	P5 = R7;
 	P0 += 1;
 .L692:
-	nop;
 	R2 = B [P5] (Z);
 	cc =R2==0;
 	if cc jump .L693;
 	P0 += -1;
 	cc =P0==0;
 	if !cc jump .L706;
-	nop;
-	nop;
 	P5 = R6;
 .L693:
 	R1 = B [P5] (Z);
@@ -3228,8 +3176,6 @@ _strstr:
 .L706:
 	cc =R2==R0;
 	if !cc jump .L693;
-	nop;
-	nop;
 	P5 += 1;
 	R0 = B [P2++] (Z);
 	cc =R0==0;
@@ -3339,8 +3285,6 @@ _memmem:
 .L726:
 	cc =P3<P2 (iu);
 	if cc jump .L735;
-	nop;
-	nop;
 .L730:
 	P0 = P2;
 	R0 = B [P0++] (X);
@@ -3369,8 +3313,6 @@ _memmem:
 .L740:
 	cc =P3<P0 (iu);
 	if cc jump .L735;
-	nop;
-	nop;
 	P2 = P0;
 	R1 = B [P2++] (X);
 	cc =R2==R1;
@@ -3875,7 +3817,6 @@ ___cmovd:
 	cc =R2<=R6 (iu);
 	B [P1] = R4;
 	if cc jump .L813;
-	nop;
 	P4 = P4 + P2;
 	P5 = P5 + P2;
 	R2 = B [P4] (X);
@@ -4117,7 +4058,6 @@ ___cmovw:
 	cc =R2<=R6 (iu);
 	B [P1] = R4;
 	if cc jump .L883;
-	nop;
 	P4 = P4 + P2;
 	P5 = P5 + P2;
 	R2 = B [P4] (X);
