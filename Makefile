@@ -62,7 +62,7 @@ gcc-bpf.s: mini-libc.c
 > bpf-unknown-none-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=v4 -mjmpext -mjmp32 -malu32 -mv3-atomics -mbswap -msdiv -msmov -mxbpf
 
 gcc-c6x.s: mini-libc.c
-> c6x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> c6x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=c674x
 
 gcc-frv.s: mini-libc.c
 > frv-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=simple
