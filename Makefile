@@ -94,10 +94,10 @@ gcc-microblaze.s: mini-libc.c
 GCC_MIPS_OPTIONS = -EL -mmips16e2 -mhard-float -modd-spreg -mabs=2008 -mnan=2008 -mllsc -mdsp -mdspr2 -msmartmips -mdmx -mmt -mmcu -meva -mvirt -mxpa -mcrc -mginv -mloongson-mmi -mloongson-ext -mloongson-ext2 -mload-store-pairs -mno-strict-align -mmad -mbranch-likely -msynci
 
 gcc-mips64.s: mini-libc.c
-> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3 $(GCC_MIPS_OPTIONS)
+> mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips4 $(GCC_MIPS_OPTIONS)
 
 gcc-mips32.s: mini-libc.c
-> mips64-linux-gnu-gcc -mabi=32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips3 -mfp32 $(GCC_MIPS_OPTIONS)
+> mips64-linux-gnu-gcc -mabi=32 -S $< -o $@ $(GCC_OPT_FLAGS) -march=mips4 -mfp32 $(GCC_MIPS_OPTIONS)
 
 gcc-mips16.s: mini-libc.c
 > mips64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mips16 -mabi=o64 $(GCC_MIPS_OPTIONS)
