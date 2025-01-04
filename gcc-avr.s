@@ -2,6 +2,7 @@
 __SP_H__ = 0x3e
 __SP_L__ = 0x3d
 __SREG__ = 0x3f
+__RAMPZ__ = 0x3b
 __CCP__ = 0x34
 __tmp_reg__ = 0
 __zero_reg__ = 1
@@ -2322,7 +2323,7 @@ lsearch:
 	mov r24,r3
 	mov r25,r2
 	movw r30,r10
-	icall
+	eicall
 	or r24,r25
 	brne .L290
 .L275:
@@ -2421,7 +2422,7 @@ lfind:
 	mov r24,r9
 	mov r25,r8
 	movw r30,r14
-	icall
+	eicall
 	or r24,r25
 	brne .L302
 .L291:
@@ -2747,7 +2748,6 @@ atoll:
 	push r29
 	rcall .
 	rcall .
-	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -3006,7 +3006,7 @@ bsearch:
 	movw r22,r16
 	movw r24,r4
 	movw r30,r6
-	icall
+	eicall
 	sbrc r25,7
 	rjmp .L376
 	or r24,r25
@@ -3097,7 +3097,7 @@ bsearch_r:
 	mov r24,r3
 	mov r25,r2
 	movw r30,r4
-	icall
+	eicall
 	sbiw r24,0
 	breq .L386
 	brlt .L389
@@ -6018,7 +6018,7 @@ frexp:
 	push r28
 	push r29
 	rcall .
-	rcall .
+	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -6243,7 +6243,6 @@ __muldi3:
 	push r17
 	push r28
 	push r29
-	rcall .
 	rcall .
 	rcall .
 	in r28,__SP_L__
@@ -6625,7 +6624,7 @@ __clrsbdi2:
 	push r28
 	push r29
 	rcall .
-	rcall .
+	push __tmp_reg__
 	in r28,__SP_L__
 	in r29,__SP_H__
 /* prologue: function */
@@ -12222,11 +12221,11 @@ __popcountdi2:
 	push r17
 	push r28
 	push r29
+	rcall .
+	rcall .
+	rcall .
 	in r28,__SP_L__
 	in r29,__SP_H__
-	sbiw r28,9
-	out __SP_L__,r28
-	out __SP_H__,r29
 /* prologue: function */
 /* frame size = 9 */
 /* stack size = 21 */
