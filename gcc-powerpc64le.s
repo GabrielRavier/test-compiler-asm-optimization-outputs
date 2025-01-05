@@ -1,5 +1,5 @@
 	.file	"mini-libc.c"
-	.machine power10
+	.machine power11
 	.machine altivec
 	.abiversion 2
 	.section	".text"
