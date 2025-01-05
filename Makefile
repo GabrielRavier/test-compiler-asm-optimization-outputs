@@ -111,7 +111,7 @@ gcc-nios2.s: mini-libc.c
 > nios2-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -march=r2 -mel -mhw-mul -mhw-mulx -mhw-div -mcustom-fabss=224 -mcustom-fnegs=225 -mcustom-fcmpges=228 -mcustom-fcmplts=231 -mcustom-fmaxs=232 -mcustom-fmins=233 -mcustom-round=248 -mcustom-fsqrts=242 -mcustom-floatus=243 -mcustom-fixsi=244 -mcustom-floatis=245 -mcustom-fcmpgts=246 -mcustom-fcmples=249 -mcustom-fcmpeqs=250 -mcustom-fcmpnes=251 -mcustom-fmuls=252 -mcustom-fadds=253 -mcustom-fsubs=254 -mcustom-fdivs=255 -mcustom-fwrx=0 -mcustom-fwry=1 -mcustom-frdxhi=2 -mcustom-frdxlo=3 -mcustom-frdy=4 -mcustom-fcoss=5 -mcustom-fsins=6 -mcustom-ftans=7 -mcustom-fatans=8 -mcustom-fexps=9 -mcustom-flogs=10 -mcustom-faddd=11 -mcustom-fsubd=12 -mcustom-fdivd=13 -mcustom-fnegd=14 -mcustom-fabsd=15 -mcustom-fcmpeqd=16 -mcustom-fcmpged=17 -mcustom-fcmpgtd=18 -mcustom-fcmpled=19 -mcustom-fcmpltd=20 -mcustom-fcmpned=21 -mcustom-fmind=22 -mcustom-fmaxd=23 -mcustom-fsqrtd=24 -mcustom-fcosd=25 -mcustom-fsind=26 -mcustom-ftand=27 -mcustom-fatand=28 -mcustom-fexpd=29 -mcustom-flogd=30 -mbmx -mcdx
 
 gcc-openrisc.s: mini-libc.c
-> openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-div -mhard-mul -mhard-float -mdouble-float -munordered-float
+> openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-div -mhard-mul -mhard-float -mdouble-float -munordered-float -mcmov
 
 gcc-powerpc64le.s: mini-libc.c
 > powerpc64le-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 -mtune=powerpc64le
