@@ -113,10 +113,9 @@ gcc-nios2.s: mini-libc.c
 gcc-openrisc.s: mini-libc.c
 > openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-div -mhard-mul -mhard-float -mdouble-float -munordered-float -mcmov -mror -mrori -msext -msfimm -mshftimm
 
-# Add -mfloat128-hardware when we have "full ISA 3.0 support"
 # Add -mprefixed when we have power10
 # Add -mpcrel when we have -mprefixed
-GCC_POWERPC_OPTIONS = -mpowerpc-gpopt -mpowerpc-gfxopt -mpowerpc64 -mmfcrf -mpopcntb -mpopcntd -mfprnd -mcmpb -mhard-float -mhard-dfp -maltivec -mvrsave -misel -mvsx -mcrypto -mhtm -mpower8-fusion -mquad-memory -mquad-memory-atomic -mfloat128 -mmultiple -mupdate -mno-avoid-indexed-addresses -mmulhw -mdlmzb -mno-strict-align -mregnames -mcpu=power9
+GCC_POWERPC_OPTIONS = -mpowerpc-gpopt -mpowerpc-gfxopt -mpowerpc64 -mmfcrf -mpopcntb -mpopcntd -mfprnd -mcmpb -mhard-float -mhard-dfp -maltivec -mvrsave -misel -mvsx -mcrypto -mhtm -mpower8-fusion -mquad-memory -mquad-memory-atomic -mfloat128 -mmultiple -mupdate -mno-avoid-indexed-addresses -mmulhw -mdlmzb -mno-strict-align -mregnames -mcpu=power10
 
 gcc-powerpc64le.s: mini-libc.c
 > powerpc64le-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_POWERPC_OPTIONS) -mtune=powerpc64le
