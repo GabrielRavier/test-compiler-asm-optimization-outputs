@@ -130,7 +130,7 @@ gcc-powerpc32.s: mini-libc.c
 # Add -mdiv when we have the m extension
 GCC_RISCV_OPTIONS = -mplt -mfdiv -mmovcc -mshorten-memrefs -mno-strict-align -mlittle-endian
 
-GCC_RISCV_ARCH_EXTENSIONS = i2p1_d2p2_m2p0
+GCC_RISCV_ARCH_EXTENSIONS = i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0
 
 gcc-riscv64.s: mini-libc.c
 > riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=lp64d -march=rv64imafdc_zifencei -mtune=rocket
