@@ -127,11 +127,13 @@ gcc-powerpc32le.s: mini-libc.c
 gcc-powerpc32.s: mini-libc.c
 > powerpc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_POWERPC_OPTIONS) -mtune=powerpc
 
+GCC_RISCV_OPTIONS = -mplt
+
 gcc-riscv64.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mtune=rocket
 
 gcc-riscv32.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mabi=ilp32e -march=rv32e
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32 -march=rv32i
 
 gcc-s390x.s: mini-libc.c
 > s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
