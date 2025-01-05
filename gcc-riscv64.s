@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_za128rs1p0_za64rs1p0_zawrs1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl512b1p0_zvl64b1p0"
+	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_za128rs1p0_za64rs1p0_zawrs1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -41,7 +41,7 @@ memmove:
 	add	a6,a0,a2
 	beq	a2,zero,.L40
 	addi	t5,a2,-1
-	sltiu	t3,t5,255
+	sltiu	t3,t5,511
 	bne	t3,zero,.L42
 	csrr	t6,vlenb
 	srli	t4,t6,3
@@ -2093,7 +2093,7 @@ wmemmove:
 	addi	t5,a2,-1
 	bgeu	a5,t1,.L608
 	beq	a2,zero,.L603
-	sltiu	t4,t5,63
+	sltiu	t4,t5,127
 	bne	t4,zero,.L571
 	csrr	t6,vlenb
 	srli	a5,t6,3
@@ -2250,7 +2250,7 @@ bcopy:
 	add	a7,a1,a2
 	beq	a2,zero,.L658
 	addi	t5,a2,-1
-	sltiu	t3,t5,255
+	sltiu	t3,t5,511
 	bne	t3,zero,.L660
 	csrr	t6,vlenb
 	srli	t4,t6,3
@@ -3471,7 +3471,7 @@ __cmovd:
 	addiw	t1,t0,-1
 	zext.w	t3,a5
 	bltu	a5,t1,.L986
-	li	t2,254
+	li	t2,510
 	zext.w	t3,a5
 	bgtu	a5,t2,.L1011
 .L986:
@@ -3629,7 +3629,7 @@ __cmovh:
 	addiw	t1,t0,-1
 	zext.w	t3,a5
 	bltu	a5,t1,.L1035
-	li	t2,254
+	li	t2,510
 	zext.w	t3,a5
 	bgtu	a5,t2,.L1060
 .L1035:
@@ -3788,7 +3788,7 @@ __cmovw:
 	addiw	t1,t0,-1
 	zext.w	t3,a5
 	bltu	a5,t1,.L1086
-	li	t2,254
+	li	t2,510
 	zext.w	t3,a5
 	bgtu	a5,t2,.L1111
 .L1086:
