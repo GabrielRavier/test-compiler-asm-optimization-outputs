@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zcf1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvmac1p0"
+	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zcf1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -2645,7 +2645,9 @@ rotl32:
 rotr32:
 .LFB71:
 	.cfi_startproc
-	ror	a0,a0,a1
+	li	a5,32
+	sub	t0,a5,a1
+	rol	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE71:
@@ -2667,7 +2669,9 @@ rotl_sz:
 rotr_sz:
 .LFB160:
 	.cfi_startproc
-	ror	a0,a0,a1
+	li	a5,32
+	sub	t0,a5,a1
+	rol	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE160:
@@ -3643,33 +3647,32 @@ frexp:
 __muldi3:
 .LFB100:
 	.cfi_startproc
-	or	a5,a1,a0
-	mv	t4,a0
-	mv	a7,a1
+	or	a4,a1,a0
+	mv	t6,a0
+	mv	a6,a1
 	li	a0,0
 	li	a1,0
-	beq	a5,zero,.L930
+	beq	a4,zero,.L930
 .L929:
-	andi	a4,t4,1
-	neg	t0,a4
+	th.ext	t0,t6,0,0
 	and	t2,t0,a2
-	slli	t1,a7,31
-	neg	t3,a4
-	srli	a6,t4,1
-	add	t5,a0,t2
-	and	t6,t3,a3
-	or	t4,t1,a6
-	srli	a7,a7,1
-	sltu	a5,t5,a0
-	srli	t0,a2,31
-	add	a1,a1,t6
+	th.ext	a7,t6,0,0
+	slli	t1,a6,31
+	srli	a5,t6,1
+	add	t4,a0,t2
+	and	t5,a7,a3
+	or	t6,t1,a5
+	srli	a6,a6,1
+	sltu	t3,t4,a0
+	srli	a4,a2,31
+	add	a1,a1,t5
 	slli	a3,a3,1
-	or	a4,t4,a7
-	mv	a0,t5
-	add	a1,a5,a1
-	or	a3,t0,a3
+	or	t0,t6,a6
+	mv	a0,t4
+	add	a1,t3,a1
+	or	a3,a4,a3
 	slli	a2,a2,1
-	bne	a4,zero,.L929
+	bne	t0,zero,.L929
 	ret
 .L930:
 	ret
@@ -3781,8 +3784,8 @@ __mulsi3:
 	li	a0,0
 	beq	a5,zero,.L974
 .L973:
-	bexti	a4,a5,0
-	czero.eqz	t0,a1,a4
+	th.ext	a4,a5,0,0
+	and	t0,a4,a1
 	srli	a5,a5,1
 	add	a0,a0,t0
 	slli	a1,a1,1
@@ -4583,8 +4586,8 @@ __mulsi3_iq2000:
 	li	a0,0
 	beq	a5,zero,.L1193
 .L1192:
-	bexti	a4,a5,0
-	czero.eqz	t0,a1,a4
+	th.ext	a4,a5,0,0
+	and	t0,a4,a1
 	srli	a5,a5,1
 	add	a0,a0,t0
 	slli	a1,a1,1
@@ -4606,8 +4609,8 @@ __mulsi3_lm32:
 	beq	a4,zero,.L1199
 	beq	a1,zero,.L1200
 .L1198:
-	bexti	a5,a1,0
-	czero.eqz	t0,a4,a5
+	th.ext	a5,a1,0,0
+	and	t0,a5,a4
 	srli	a1,a1,1
 	add	a0,a0,t0
 	slli	a4,a4,1
@@ -4751,8 +4754,8 @@ __mulhi3:
 .L1254:
 	beq	t1,zero,.L1242
 .L1243:
-	bexti	a4,a1,0
-	czero.eqz	t0,a3,a4
+	th.ext	a4,a1,0,0
+	and	t0,a4,a3
 	addi	a5,t1,-1
 	srai	a1,a1,1
 	andi	t1,a5,0xff
@@ -5488,10 +5491,10 @@ __ctzsi2:
 	srli	a5,t0,1
 	li	t2,2
 	add	a4,a7,t1
-	bexti	a0,a2,0
+	th.ext	a0,a2,0,0
 	sub	a3,t2,a5
 	add	a6,t6,a4
-	czero.eqz	a7,a3,a0
+	and	a7,a0,a3
 	add	a0,a7,a6
 	ret
 	.cfi_endproc

@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvmac1p0"
+	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -2382,7 +2382,9 @@ rotl64:
 rotr64:
 .LFB71:
 	.cfi_startproc
-	ror	a0,a0,a1
+	li	a5,64
+	subw	t0,a5,a1
+	rol	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE71:
@@ -2404,7 +2406,9 @@ rotl32:
 rotr32:
 .LFB73:
 	.cfi_startproc
-	rorw	a0,a0,a1
+	li	a5,32
+	subw	t0,a5,a1
+	rolw	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE73:
@@ -2426,7 +2430,9 @@ rotl_sz:
 rotr_sz:
 .LFB175:
 	.cfi_startproc
-	ror	a0,a0,a1
+	li	a5,64
+	subw	t0,a5,a1
+	rol	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE175:
@@ -2517,8 +2523,8 @@ bswap_16:
 bswap_32:
 .LFB81:
 	.cfi_startproc
-	rev8	a0,a0
-	srai	a0,a0,32
+	th.revw	a0,a0
+	sext.w	a0,a0
 	ret
 	.cfi_endproc
 .LFE81:
@@ -3273,8 +3279,8 @@ __muldi3:
 	li	a0,0
 	beq	a5,zero,.L926
 .L925:
-	bexti	a4,a5,0
-	czero.eqz	t0,a1,a4
+	th.ext	a4,a5,0,0
+	and	t0,a4,a1
 	srli	a5,a5,1
 	add	a0,a0,t0
 	slli	a1,a1,1
@@ -3384,8 +3390,8 @@ __mulsi3:
 	li	a0,0
 	beq	a5,zero,.L968
 .L967:
-	bexti	a4,a5,0
-	czero.eqz	t0,a1,a4
+	th.ext	a4,a5,0,0
+	and	t0,a1,a4
 	srliw	a5,a5,1
 	addw	a0,t0,a0
 	slliw	a1,a1,1
@@ -4194,8 +4200,8 @@ __mulsi3_iq2000:
 	li	a0,0
 	beq	a5,zero,.L1182
 .L1181:
-	bexti	a4,a5,0
-	czero.eqz	t0,a1,a4
+	th.ext	a4,a5,0,0
+	and	t0,a1,a4
 	srliw	a5,a5,1
 	addw	a0,t0,a0
 	slliw	a1,a1,1
@@ -4217,8 +4223,8 @@ __mulsi3_lm32:
 	beq	a4,zero,.L1188
 	beq	a1,zero,.L1189
 .L1187:
-	bexti	a5,a1,0
-	czero.eqz	t0,a4,a5
+	th.ext	a5,a1,0,0
+	and	t0,a4,a5
 	srliw	a1,a1,1
 	addw	a0,t0,a0
 	slliw	a4,a4,1
@@ -4354,8 +4360,8 @@ __mulhi3:
 .L1249:
 	beq	t1,zero,.L1237
 .L1238:
-	bexti	a4,a1,0
-	czero.eqz	t0,a3,a4
+	th.ext	a4,a1,0,0
+	and	t0,a3,a4
 	addiw	a5,t1,-1
 	sraiw	a1,a1,1
 	andi	t1,a5,0xff
@@ -4512,433 +4518,418 @@ __udivmodhi4:
 	sext.w	a5,a1
 	sext.w	a7,a0
 	bgeu	a1,a0,.L1481
-	sext.h	a3,a1
-	slli	a6,a3,32
-	blt	a6,zero,.L1318
-	slliw	t6,a1,1
-	zext.h	a5,t6
+	srli	a3,a1,15
+	bne	a3,zero,.L1318
+	slliw	t5,a1,1
+	zext.h	a5,t5
 	sext.w	a3,a5
 	bleu	a7,a5,.L1390
-	sext.h	a4,a5
-	slli	t0,a4,32
-	blt	t0,zero,.L1391
+	srli	t6,a5,15
+	bne	t6,zero,.L1391
 	slliw	a5,a1,2
 	zext.h	a5,a5
 	sext.w	a3,a5
 	bleu	a7,a5,.L1392
-	sext.h	t1,a5
-	slli	t2,t1,32
-	blt	t2,zero,.L1393
-	slliw	a3,a1,3
-	zext.h	a5,a3
-	sext.w	a3,a5
-	bleu	a7,a5,.L1394
-	sext.h	a6,a5
-	slli	t3,a6,32
-	blt	t3,zero,.L1395
-	slliw	t4,a1,4
-	zext.h	a5,t4
-	sext.w	a3,a5
-	bleu	a7,a5,.L1396
-	sext.h	t5,a5
-	slli	t6,t5,32
-	blt	t6,zero,.L1397
-	slliw	a4,a1,5
-	zext.h	a5,a4
-	sext.w	a3,a5
-	bleu	a7,a5,.L1398
-	sext.h	t0,a5
-	slli	t1,t0,32
-	blt	t1,zero,.L1399
-	slliw	a5,a1,6
-	zext.h	a5,a5
-	sext.w	a3,a5
-	bleu	a7,a5,.L1400
-	sext.h	t2,a5
-	slli	a6,t2,32
-	blt	a6,zero,.L1401
-	slliw	a3,a1,7
-	zext.h	a5,a3
-	sext.w	a3,a5
-	bleu	a7,a5,.L1402
-	sext.h	t3,a5
-	slli	t4,t3,32
-	blt	t4,zero,.L1403
-	slliw	t5,a1,8
-	zext.h	a5,t5
-	sext.w	a3,a5
-	bleu	a7,a5,.L1404
-	sext.h	t6,a5
-	slli	a4,t6,32
-	blt	a4,zero,.L1405
-	slliw	t0,a1,9
+	srli	a4,a5,15
+	bne	a4,zero,.L1393
+	slliw	t0,a1,3
 	zext.h	a5,t0
 	sext.w	a3,a5
-	bleu	a7,a5,.L1406
-	sext.h	t1,a5
-	slli	t2,t1,32
-	blt	t2,zero,.L1407
-	slliw	a5,a1,10
+	bleu	a7,a5,.L1394
+	srli	t1,a5,15
+	bne	t1,zero,.L1395
+	slliw	t2,a1,4
+	zext.h	a5,t2
+	sext.w	a3,a5
+	bleu	a7,a5,.L1396
+	srli	a6,a5,15
+	bne	a6,zero,.L1397
+	slliw	a3,a1,5
+	zext.h	a5,a3
+	sext.w	a3,a5
+	bleu	a7,a5,.L1398
+	srli	t3,a5,15
+	bne	t3,zero,.L1399
+	slliw	t4,a1,6
+	zext.h	a5,t4
+	sext.w	a3,a5
+	bleu	a7,a5,.L1400
+	srli	t5,a5,15
+	bne	t5,zero,.L1401
+	slliw	t6,a1,7
+	zext.h	a5,t6
+	sext.w	a3,a5
+	bleu	a7,a5,.L1402
+	srli	a4,a5,15
+	bne	a4,zero,.L1403
+	slliw	a5,a1,8
 	zext.h	a5,a5
 	sext.w	a3,a5
+	bleu	a7,a5,.L1404
+	srli	t0,a5,15
+	bne	t0,zero,.L1405
+	slliw	t1,a1,9
+	zext.h	a5,t1
+	sext.w	a3,a5
+	bleu	a7,a5,.L1406
+	srli	t2,a5,15
+	bne	t2,zero,.L1407
+	slliw	a6,a1,10
+	zext.h	a5,a6
+	sext.w	a3,a5
 	bleu	a7,a5,.L1408
-	sext.h	a6,a5
-	slli	t3,a6,32
-	blt	t3,zero,.L1409
+	srli	t3,a5,15
+	bne	t3,zero,.L1409
 	slliw	a3,a1,11
 	zext.h	a5,a3
 	sext.w	a3,a5
 	bleu	a7,a5,.L1410
-	sext.h	t4,a5
-	slli	t5,t4,32
-	blt	t5,zero,.L1411
-	slliw	t6,a1,12
-	zext.h	a5,t6
+	srli	t4,a5,15
+	bne	t4,zero,.L1411
+	slliw	t5,a1,12
+	zext.h	a5,t5
 	sext.w	a3,a5
 	bleu	a7,a5,.L1412
-	sext.h	a4,a5
-	slli	t0,a4,32
-	blt	t0,zero,.L1413
-	slliw	t1,a1,13
-	zext.h	a5,t1
+	srli	t6,a5,15
+	bne	t6,zero,.L1413
+	slliw	a4,a1,13
+	zext.h	a5,a4
 	sext.w	a3,a5
 	bleu	a7,a5,.L1414
-	sext.h	t2,a5
-	slli	a6,t2,32
-	blt	a6,zero,.L1415
+	srli	t0,a5,15
+	bne	t0,zero,.L1415
 	slliw	a5,a1,14
 	zext.h	a5,a5
 	sext.w	a3,a5
 	bleu	a7,a5,.L1416
-	sext.h	t3,a5
-	slli	t4,t3,32
-	blt	t4,zero,.L1417
+	srli	t1,a5,15
+	bne	t1,zero,.L1417
 	slliw	a1,a1,15
-	zext.h	t5,a1
-	bleu	a7,t5,.L1418
-	li	t6,32768
-	mv	t4,a0
-	mv	a5,t6
-	mv	a3,t6
-	bne	t5,zero,.L1320
+	zext.h	t4,a1
+	bleu	a7,t4,.L1418
+	li	t2,32768
+	mv	t3,a0
+	mv	a5,t2
+	mv	a3,t2
+	bne	t4,zero,.L1320
 .L1321:
-	czero.eqz	a3,t4,a2
-	czero.nez	a2,t5,a2
-	add	a0,a2,a3
+	czero.eqz	t3,t3,a2
+	czero.nez	a2,t4,a2
+	add	a0,a2,t3
 	ret
 .L1391:
-	li	t6,2
+	li	t2,2
 .L1320:
-	sltu	a6,a7,a3
-	subw	t3,a0,a5
-	xori	t4,a6,1
-	zext.h	a1,t3
-	czero.nez	a3,a0,t4
-	czero.eqz	a7,a1,t4
-	add	t5,a7,a3
-	zext.h	t0,t5
+	sltu	a4,a7,a3
+	subw	t0,a0,a5
+	xori	t1,a4,1
+	zext.h	a1,t0
+	czero.nez	a3,a0,t1
+	czero.eqz	a7,a1,t1
+	add	a6,a7,a3
+	zext.h	t4,a6
 	li	a0,0
-	bne	t4,zero,.L1480
+	bne	t1,zero,.L1480
 .L1389:
-	srli	t2,a5,1
-	subw	a4,t0,t2
-	sgtu	a6,t2,t0
-	xori	a3,a6,1
-	zext.h	t3,a4
-	czero.nez	t4,t0,a3
-	czero.eqz	a1,t3,a3
-	add	a7,a1,t4
-	zext.h	t4,a7
-	srli	t1,t6,1
+	srli	t3,a5,1
+	subw	t6,t4,t3
+	sgtu	t0,t3,t4
+	xori	t1,t0,1
+	zext.h	a4,t6
+	czero.nez	a1,t4,t1
+	czero.eqz	a3,a4,t1
+	add	a7,a3,a1
+	zext.h	t3,a7
+	srli	t5,t2,1
 	li	a7,0
-	beq	a3,zero,.L1325
-	mv	a7,t1
+	beq	t1,zero,.L1325
+	mv	a7,t5
 .L1325:
-	or	t5,a0,a7
-	srli	t0,t6,2
-	zext.h	t5,t5
-	srli	t1,a5,2
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sgtu	t2,a0,t4
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
+	or	a6,a0,a7
+	srli	t5,t2,2
+	zext.h	t4,a6
+	srli	t6,a5,2
+	beq	t5,zero,.L1321
+	sext.w	a0,t6
+	sgtu	t0,a0,t3
+	subw	a4,t3,t6
+	xori	t1,t0,1
+	zext.h	a1,a4
+	czero.nez	t3,t3,t1
+	czero.eqz	a3,a1,t1
+	add	a7,a3,t3
+	zext.h	t3,a7
 	li	a7,0
-	beq	a6,zero,.L1329
-	mv	a7,t0
+	beq	t1,zero,.L1329
+	mv	a7,t5
 .L1329:
-	or	t5,t5,a7
-	srli	t0,t6,3
-	zext.h	t5,t5
-	srli	t1,a5,3
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sgtu	t2,a0,t4
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1333
-	mv	a7,t0
-.L1333:
-	or	t5,t5,a7
-	srli	t0,t6,4
-	zext.h	t5,t5
-	srli	t1,a5,4
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1337
-	mv	a7,t0
-.L1337:
-	or	t5,t5,a7
-	srli	t0,t6,5
-	zext.h	t5,t5
-	srli	t1,a5,5
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1341
-	mv	a7,t0
-.L1341:
-	or	t5,t5,a7
-	srli	t0,t6,6
-	zext.h	t5,t5
-	srli	t1,a5,6
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1345
-	mv	a7,t0
-.L1345:
-	or	t5,t5,a7
-	srli	t0,t6,7
-	zext.h	t5,t5
-	srli	t1,a5,7
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1482
-.L1349:
-	or	t5,t5,a7
-	srli	t0,t6,8
-	zext.h	t5,t5
-	srli	t1,a5,8
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1483
-.L1353:
-	or	t5,t5,a7
-	srli	t0,t6,9
-	zext.h	t5,t5
-	srli	t1,a5,9
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1484
-.L1357:
-	or	t5,t5,a7
-	srli	t0,t6,10
-	zext.h	t5,t5
-	srli	t1,a5,10
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1485
-.L1361:
-	or	t5,t5,a7
-	srli	t0,t6,11
-	zext.h	t5,t5
-	srli	t1,a5,11
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1486
-.L1365:
-	or	t5,t5,a7
-	srli	t0,t6,12
-	zext.h	t5,t5
-	srli	t1,a5,12
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	bne	a6,zero,.L1487
-	or	t5,t5,a7
-	srli	t0,t6,13
-	zext.h	t5,t5
-	srli	t1,a5,13
-	beq	t0,zero,.L1321
-.L1488:
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1373
-	mv	a7,t0
-.L1373:
-	or	t5,t5,a7
-	srli	t0,t6,14
-	zext.h	t5,t5
-	srli	t1,a5,14
-	beq	t0,zero,.L1321
-	sext.w	a0,t1
-	sltu	t2,t4,a0
-	subw	a4,t4,t1
-	xori	a6,t2,1
-	zext.h	t3,a4
-	czero.nez	t4,t4,a6
-	czero.eqz	a3,t3,a6
-	add	a1,a3,t4
-	zext.h	t4,a1
-	li	a7,0
-	beq	a6,zero,.L1377
-	mv	a7,t0
-.L1377:
-	or	t5,t5,a7
-	li	t0,16384
-	zext.h	t5,t5
-	srli	a5,a5,15
-	beq	t6,t0,.L1321
-	sext.w	t6,a5
-	subw	a0,t4,a5
-	sltu	t1,t4,t6
-	xori	t2,t1,1
-	zext.h	a6,a0
-	czero.nez	a4,t4,t2
-	czero.eqz	t3,a6,t2
-	add	t4,t3,a4
+	or	t4,t4,a7
+	srli	a6,t2,3
 	zext.h	t4,t4
-	or	t5,t2,t5
-	czero.eqz	a3,t4,a2
-	czero.nez	a2,t5,a2
-	add	a0,a2,a3
+	srli	t5,a5,3
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sgtu	a0,t6,t3
+	subw	t0,t3,t5
+	xori	t1,a0,1
+	zext.h	a1,t0
+	czero.nez	a4,t3,t1
+	czero.eqz	t3,a1,t1
+	add	a3,t3,a4
+	zext.h	t3,a3
+	li	a7,0
+	beq	t1,zero,.L1333
+	mv	a7,a6
+.L1333:
+	or	t4,t4,a7
+	srli	a6,t2,4
+	zext.h	t4,t4
+	srli	t5,a5,4
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	beq	a1,zero,.L1337
+	mv	a7,a6
+.L1337:
+	or	t4,t4,a7
+	srli	a6,t2,5
+	zext.h	t4,t4
+	srli	t5,a5,5
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	beq	a1,zero,.L1341
+	mv	a7,a6
+.L1341:
+	or	t4,t4,a7
+	srli	a6,t2,6
+	zext.h	t4,t4
+	srli	t5,a5,6
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	beq	a1,zero,.L1345
+	mv	a7,a6
+.L1345:
+	or	t4,t4,a7
+	srli	a6,t2,7
+	zext.h	t4,t4
+	srli	t5,a5,7
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1482
+.L1349:
+	or	t4,t4,a7
+	srli	a6,t2,8
+	zext.h	t4,t4
+	srli	t5,a5,8
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1483
+.L1353:
+	or	t4,t4,a7
+	srli	a6,t2,9
+	zext.h	t4,t4
+	srli	t5,a5,9
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1484
+.L1357:
+	or	t4,t4,a7
+	srli	a6,t2,10
+	zext.h	t4,t4
+	srli	t5,a5,10
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1485
+.L1361:
+	or	t4,t4,a7
+	srli	a6,t2,11
+	zext.h	t4,t4
+	srli	t5,a5,11
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1486
+.L1365:
+	or	t4,t4,a7
+	srli	a6,t2,12
+	zext.h	t4,t4
+	srli	t5,a5,12
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	bne	a1,zero,.L1487
+	or	t4,t4,a7
+	srli	a6,t2,13
+	zext.h	t4,t4
+	srli	t5,a5,13
+	beq	a6,zero,.L1321
+.L1488:
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	beq	a1,zero,.L1373
+	mv	a7,a6
+.L1373:
+	or	t4,t4,a7
+	srli	a6,t2,14
+	zext.h	t4,t4
+	srli	t5,a5,14
+	beq	a6,zero,.L1321
+	sext.w	t6,t5
+	sltu	a0,t3,t6
+	subw	t0,t3,t5
+	xori	a1,a0,1
+	zext.h	a4,t0
+	czero.nez	t1,t3,a1
+	czero.eqz	t3,a4,a1
+	add	a3,t3,t1
+	zext.h	t3,a3
+	li	a7,0
+	beq	a1,zero,.L1377
+	mv	a7,a6
+.L1377:
+	or	t4,t4,a7
+	li	a6,16384
+	zext.h	t4,t4
+	srli	a5,a5,15
+	beq	t2,a6,.L1321
+	sext.w	t2,a5
+	sltu	t5,t3,t2
+	subw	t6,t3,a5
+	xori	a0,t5,1
+	zext.h	t0,t6
+	czero.nez	a1,t3,a0
+	czero.eqz	a4,t0,a0
+	add	t1,a4,a1
+	or	t4,a0,t4
+	zext.h	t3,t1
+	czero.eqz	t3,t3,a2
+	czero.nez	a2,t4,a2
+	add	a0,a2,t3
 	ret
 .L1406:
-	li	t6,512
+	li	t2,512
 .L1319:
-	subw	t5,a0,a5
+	subw	a6,a0,a5
 	sltu	a7,a7,a3
-	xori	a4,a7,1
-	zext.h	t0,t5
-	czero.nez	a0,a0,a4
-	czero.eqz	t1,t0,a4
-	add	t2,t1,a0
-	zext.h	t0,t2
+	xori	t3,a7,1
+	zext.h	t4,a6
+	czero.nez	a0,a0,t3
+	czero.eqz	t5,t4,t3
+	add	t6,t5,a0
+	zext.h	t4,t6
 	li	a0,0
-	beq	a4,zero,.L1389
+	beq	t3,zero,.L1389
 .L1480:
-	zext.h	a0,t6
+	zext.h	a0,t2
 	j	.L1389
 .L1482:
-	mv	a7,t0
+	mv	a7,a6
 	j	.L1349
 .L1483:
-	mv	a7,t0
+	mv	a7,a6
 	j	.L1353
 .L1484:
-	mv	a7,t0
+	mv	a7,a6
 	j	.L1357
 .L1485:
-	mv	a7,t0
+	mv	a7,a6
 	j	.L1361
 .L1486:
-	mv	a7,t0
+	mv	a7,a6
 	j	.L1365
 .L1487:
-	mv	a7,t0
-	or	t5,t5,a7
-	srli	t0,t6,13
-	zext.h	t5,t5
-	srli	t1,a5,13
-	bne	t0,zero,.L1488
+	mv	a7,a6
+	or	t4,t4,a7
+	srli	a6,t2,13
+	zext.h	t4,t4
+	srli	t5,a5,13
+	bne	a6,zero,.L1488
 	j	.L1321
 .L1481:
 	subw	a4,a0,a1
@@ -4947,96 +4938,96 @@ __udivmodhi4:
 	czero.nez	t2,t0,t1
 	czero.eqz	a0,a0,t1
 	add	a1,t2,a0
-	zext.h	t4,a1
-	seqz	t5,t1
+	zext.h	t3,a1
+	seqz	t4,t1
 	j	.L1321
 .L1390:
-	li	t6,2
+	li	t2,2
 	j	.L1319
 .L1392:
-	li	t6,4
+	li	t2,4
 	j	.L1319
 .L1393:
-	li	t6,4
+	li	t2,4
 	j	.L1320
 .L1394:
-	li	t6,8
+	li	t2,8
 	j	.L1319
 .L1395:
-	li	t6,8
+	li	t2,8
 	j	.L1320
 .L1396:
-	li	t6,16
+	li	t2,16
 	j	.L1319
 .L1397:
-	li	t6,16
+	li	t2,16
 	j	.L1320
 .L1398:
-	li	t6,32
+	li	t2,32
 	j	.L1319
 .L1399:
-	li	t6,32
+	li	t2,32
 	j	.L1320
 .L1400:
-	li	t6,64
+	li	t2,64
 	j	.L1319
 .L1401:
-	li	t6,64
+	li	t2,64
 	j	.L1320
 .L1402:
-	li	t6,128
+	li	t2,128
 	j	.L1319
 .L1403:
-	li	t6,128
+	li	t2,128
 	j	.L1320
 .L1404:
-	li	t6,256
+	li	t2,256
 	j	.L1319
 .L1405:
-	li	t6,256
+	li	t2,256
 	j	.L1320
 .L1407:
-	li	t6,512
+	li	t2,512
 	j	.L1320
 .L1408:
-	li	t6,1024
+	li	t2,1024
 	j	.L1319
 .L1410:
-	bseti	t6,zero,11
+	bseti	t2,zero,11
 	j	.L1319
 .L1409:
-	li	t6,1024
+	li	t2,1024
 	j	.L1320
 .L1411:
-	bseti	t6,zero,11
+	bseti	t2,zero,11
 	j	.L1320
 .L1413:
-	li	t6,4096
+	li	t2,4096
 	j	.L1320
 .L1412:
-	li	t6,4096
+	li	t2,4096
 	j	.L1319
 .L1415:
-	li	t6,8192
+	li	t2,8192
 	j	.L1320
 .L1414:
-	li	t6,8192
+	li	t2,8192
 	j	.L1319
 .L1417:
-	li	t6,16384
+	li	t2,16384
 	j	.L1320
 .L1416:
-	li	t6,16384
+	li	t2,16384
 	j	.L1319
 .L1418:
 	li	a5,32768
-	mv	t6,a5
+	mv	t2,a5
 	mv	a3,a5
 	j	.L1319
 .L1318:
-	subw	t3,a0,a1
-	zext.h	t4,t3
-	li	t5,1
+	subw	a6,a0,a1
+	zext.h	t3,a6
+	li	t4,1
 	j	.L1321
 	.cfi_endproc
 .LFE131:
@@ -5116,7 +5107,7 @@ __ashldi3:
 	beq	a1,zero,.L1527
 	li	t0,32
 	subw	t1,t0,a1
-	srai	a3,a0,32
+	th.ext	a3,a0,63,32
 	srlw	t2,a0,t1
 	sllw	a0,a3,a1
 	or	a2,t2,a0
@@ -5159,7 +5150,7 @@ __ashrdi3:
 	andi	a4,a1,32
 	mv	a5,a0
 	beq	a4,zero,.L1535
-	srai	a6,a0,32
+	th.ext	a6,a0,63,32
 	addiw	a7,a1,-32
 	sraw	a1,a6,a7
 	sraiw	a3,a6,31
@@ -5173,7 +5164,7 @@ __ashrdi3:
 	beq	a1,zero,.L1540
 	li	t0,32
 	subw	t1,t0,a1
-	srai	a0,a0,32
+	th.ext	a0,a0,63,32
 	sllw	t2,a0,t1
 	srlw	a2,a5,a1
 	sraw	a3,a0,a1
@@ -5224,8 +5215,8 @@ __bswapdi2:
 __bswapsi2:
 .LFB138:
 	.cfi_startproc
-	rev8	a0,a0
-	srai	a0,a0,32
+	th.revw	a0,a0
+	sext.w	a0,a0
 	ret
 	.cfi_endproc
 .LFE138:
@@ -5236,8 +5227,8 @@ __bswapsi2:
 __clzsi2:
 .LFB139:
 	.cfi_startproc
-	li	a3,65536
-	addi	t0,a3,-1
+	li	a2,65536
+	addi	t0,a2,-1
 	sgtu	t1,a0,t0
 	seqz	t2,t1
 	slliw	a7,t2,4
@@ -5245,35 +5236,37 @@ __clzsi2:
 	subw	a1,a5,a7
 	li	a4,65536
 	srlw	a0,a0,a1
-	addi	a2,a4,-256
-	and	a6,a0,a2
+	addi	a3,a4,-256
+	and	a6,a0,a3
 	seqz	t3,a6
 	slliw	t4,t3,3
 	li	t5,8
 	subw	t6,t5,t4
-	srlw	a3,a0,t6
-	andi	t0,a3,240
+	srlw	a2,a0,t6
+	andi	t0,a2,240
 	seqz	t1,t0
 	slliw	t2,t1,2
 	li	a5,4
 	subw	a1,a5,t2
-	srlw	a4,a3,a1
+	srlw	a4,a2,a1
 	andi	a0,a4,12
-	seqz	a2,a0
-	slliw	t3,a2,1
-	li	t5,2
-	subw	a6,t5,t3
-	srlw	t6,a4,a6
+	seqz	a3,a0
+	slliw	t3,a3,1
+	li	a6,2
+	subw	t5,a6,t3
+	srlw	t6,a4,t5
+	bexti	a2,t6,1
+	xori	t0,a2,1
 	addw	a7,t4,a7
-	bexti	t0,t6,1
-	subw	t4,t5,t6
-	li	a3,0
-	addw	t1,t2,a7
-	czero.eqz	a5,a3,t0
-	czero.nez	t2,t4,t0
-	addw	a1,t3,t1
-	addw	a4,a5,t2
-	addw	a0,a4,a1
+	andi	t1,t0,0xff
+	subw	t4,a6,t6
+	li	a5,0
+	addw	t2,t2,a7
+	czero.eqz	a1,t4,t1
+	czero.nez	a4,a5,t1
+	addw	a0,t3,t2
+	addw	a3,a4,a1
+	addw	a0,a3,a0
 	ret
 	.cfi_endproc
 .LFE139:
@@ -5397,10 +5390,10 @@ __ctzsi2:
 	srliw	a5,t0,1
 	li	t2,2
 	addw	a4,a7,t1
-	bexti	a0,a2,0
-	subw	a3,t2,a5
+	subw	a0,t2,a5
+	th.ext	a3,a2,0,0
 	addw	a6,t6,a4
-	czero.eqz	a7,a3,a0
+	and	a7,a0,a3
 	addw	a0,a6,a7
 	ret
 	.cfi_endproc
@@ -5452,7 +5445,7 @@ __lshrdi3:
 	mv	a5,a0
 	beq	a4,zero,.L1583
 	addiw	a7,a1,-32
-	srli	a6,a0,32
+	th.extu	a6,a0,63,32
 	srlw	a3,a6,a7
 	li	a1,0
 .L1584:
@@ -5465,7 +5458,7 @@ __lshrdi3:
 	beq	a1,zero,.L1588
 	li	t0,32
 	subw	t1,t0,a1
-	srai	a0,a0,32
+	th.extu	a0,a0,63,32
 	srlw	a2,a5,a1
 	sllw	t2,a0,t1
 	srlw	a1,a0,a1
@@ -5542,39 +5535,39 @@ __muldi3_compiler_rt:
 	.cfi_startproc
 	zext.h	a5,a0
 	zext.h	a4,a1
-	mulw	a3,a5,a4
+	mulw	a6,a5,a4
 	srliw	a2,a0,16
-	srliw	a7,a1,16
-	srai	t3,a1,32
-	srai	t1,a0,32
+	srliw	t3,a1,16
+	th.ext	t1,a1,63,32
+	th.ext	a3,a0,63,32
 	mulw	t0,a4,a2
-	srliw	a6,a3,16
-	zext.h	t2,a3
-	mulw	t5,a5,a7
-	addw	t6,t0,a6
-	slliw	t4,t6,16
-	addw	a5,t4,t2
-	srliw	a4,a5,16
-	srliw	a3,t6,16
-	zext.h	t0,a5
-	mulw	a2,a2,a7
-	addw	a6,t5,a4
-	srliw	a7,a6,16
-	slliw	t2,a6,16
-	addw	t5,t2,t0
-	zext.w	t6,t5
-	mulw	t3,a0,t3
-	addw	a0,a2,a3
-	addw	t4,a7,a0
-	slli	a5,t4,32
-	or	a4,t6,a5
-	srai	a3,a4,32
-	zext.w	t0,a4
-	mulw	a1,a1,t1
-	addw	t1,t3,a3
-	addw	a2,a1,t1
-	slli	a6,a2,32
-	or	a0,t0,a6
+	srliw	t4,a6,16
+	zext.h	a7,a6
+	mulw	t2,a5,t3
+	addw	t5,t0,t4
+	slliw	t6,t5,16
+	addw	a5,t6,a7
+	srliw	t0,a5,16
+	srliw	a4,t5,16
+	zext.h	a6,a5
+	mulw	a2,a2,t3
+	addw	t3,t2,t0
+	srliw	t4,t3,16
+	slliw	a7,t3,16
+	addw	t2,a7,a6
+	zext.w	t5,t2
+	mulw	t1,t1,a0
+	addw	a0,a2,a4
+	addw	t6,t4,a0
+	slli	a5,t6,32
+	or	t0,t5,a5
+	th.ext	a4,t0,63,32
+	zext.w	a6,t0
+	mulw	a1,a3,a1
+	addw	a3,a4,t1
+	addw	a2,a1,a3
+	slli	t3,a2,32
+	or	a0,a6,t3
 	ret
 	.cfi_endproc
 .LFE150:
@@ -5693,14 +5686,14 @@ __paritydi2:
 __parityti2:
 .LFB156:
 	.cfi_startproc
-	xor	a0,a0,a1
-	srai	a5,a0,32
-	xor	t0,a5,a0
-	sext.w	a4,t0
-	srliw	t1,t0,16
-	xor	t2,t1,a4
-	srliw	a1,t2,8
-	xor	a2,a1,t2
+	xor	a5,a0,a1
+	th.ext	a4,a5,63,32
+	xor	t0,a5,a4
+	sext.w	t1,t0
+	srliw	t2,t0,16
+	xor	a0,t2,t1
+	srliw	a1,a0,8
+	xor	a2,a1,a0
 	srliw	a3,a2,4
 	xor	a6,a3,a2
 	li	a7,28672
