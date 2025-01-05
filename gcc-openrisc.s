@@ -2229,45 +2229,33 @@ rotr64:
 	.global	rotl32
 	.type	rotl32, @function
 rotl32:
-	l.sub	r17, r0, r4
-	l.andi	r5, r17, 31
-	l.sll	r4, r3, r4
-	l.srl	r3, r3, r5
+	l.ori	r17, r0, 32
+	l.sub	r4, r17, r4
 	l.jr	r9
-	l.or	r11, r3, r4
+	l.ror	r11, r3, r4
 	.size	rotl32, .-rotl32
 	.align 4
 	.global	rotr32
 	.type	rotr32, @function
 rotr32:
-	l.sub	r17, r0, r4
-	l.andi	r5, r17, 31
-	l.srl	r4, r3, r4
-	l.sll	r3, r3, r5
 	l.jr	r9
-	l.or	r11, r3, r4
+	l.ror	r11, r3, r4
 	.size	rotr32, .-rotr32
 	.align 4
 	.global	rotl_sz
 	.type	rotl_sz, @function
 rotl_sz:
-	l.sub	r17, r0, r4
-	l.andi	r5, r17, 31
-	l.sll	r4, r3, r4
-	l.srl	r3, r3, r5
+	l.ori	r17, r0, 32
+	l.sub	r4, r17, r4
 	l.jr	r9
-	l.or	r11, r3, r4
+	l.ror	r11, r3, r4
 	.size	rotl_sz, .-rotl_sz
 	.align 4
 	.global	rotr_sz
 	.type	rotr_sz, @function
 rotr_sz:
-	l.sub	r17, r0, r4
-	l.andi	r5, r17, 31
-	l.srl	r4, r3, r4
-	l.sll	r3, r3, r5
 	l.jr	r9
-	l.or	r11, r3, r4
+	l.ror	r11, r3, r4
 	.size	rotr_sz, .-rotr_sz
 	.align 4
 	.global	rotl16
