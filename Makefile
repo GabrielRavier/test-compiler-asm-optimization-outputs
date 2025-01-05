@@ -130,10 +130,10 @@ gcc-powerpc32.s: mini-libc.c
 GCC_RISCV_OPTIONS = -mplt
 
 gcc-riscv64.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mtune=rocket
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=lp64d -mtune=rocket
 
 gcc-riscv32.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32 -march=rv32i
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32 -march=rv32if
 
 gcc-s390x.s: mini-libc.c
 > s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
