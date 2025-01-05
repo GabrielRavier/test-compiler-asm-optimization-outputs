@@ -128,7 +128,7 @@ gcc-powerpc32.s: mini-libc.c
 > powerpc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_POWERPC_OPTIONS) -mtune=powerpc
 
 # Add -mdiv when we have the m extension
-GCC_RISCV_OPTIONS = -mplt -mfdiv -mmovcc
+GCC_RISCV_OPTIONS = -mplt -mfdiv -mmovcc -mshorten-memrefs
 
 gcc-riscv64.s: mini-libc.c
 > riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=lp64d -mtune=rocket
