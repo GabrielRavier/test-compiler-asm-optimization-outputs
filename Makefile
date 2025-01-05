@@ -113,17 +113,19 @@ gcc-nios2.s: mini-libc.c
 gcc-openrisc.s: mini-libc.c
 > openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-div -mhard-mul -mhard-float -mdouble-float -munordered-float -mcmov -mror -mrori -msext -msfimm -mshftimm
 
+GCC_POWERPC_OPTIONS = -mpowerpc-gpopt -mpowerpc-gfxopt -mpowerpc64
+
 gcc-powerpc64le.s: mini-libc.c
-> powerpc64le-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 -mtune=powerpc64le
+> powerpc64le-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 $(GCC_POWERPC_OPTIONS) -mtune=powerpc64le
 
 gcc-powerpc64.s: mini-libc.c
-> powerpc64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 -mtune=powerpc64
+> powerpc64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 $(GCC_POWERPC_OPTIONS) -mtune=powerpc64
 
 gcc-powerpc32le.s: mini-libc.c
-> powerpc64le-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=401 -mtune=powerpc
+> powerpc64le-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=401 $(GCC_POWERPC_OPTIONS) -mtune=powerpc
 
 gcc-powerpc32.s: mini-libc.c
-> powerpc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=401 -mtune=powerpc
+> powerpc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=401 $(GCC_POWERPC_OPTIONS) -mtune=powerpc
 
 gcc-riscv64.s: mini-libc.c
 > riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
