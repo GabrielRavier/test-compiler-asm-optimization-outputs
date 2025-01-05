@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_za128rs1p0_za64rs1p0_zawrs1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0"
+	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -2713,36 +2713,31 @@ ldexpf:
 	fadd.s	fa5,fa0,fa0
 	feq.s	t0,fa5,fa0
 	bne	t0,zero,.L728
-	lui	t1,%hi(.LC8)
-	lui	a3,%hi(.LC7)
-	slti	a4,a0,0
-	addi	t2,t1,%lo(.LC8)
-	addi	a1,a3,%lo(.LC7)
-	czero.eqz	a2,t2,a4
-	czero.nez	a6,a1,a4
-	add	a7,a2,a6
-	andi	a5,a0,1
-	flw	ft0,0(a7)
-	beq	a5,zero,.L718
+	fli.s	ft0,2.0
+	bge	a0,zero,.L717
+	fli.s	ft0,0.5
+.L717:
+	andi	t1,a0,1
+	beq	t1,zero,.L718
 .L719:
 	fmul.s	fa0,fa0,ft0
 .L718:
-	srliw	t3,a0,31
-	addw	a0,t3,a0
+	srliw	t2,a0,31
+	addw	a0,t2,a0
 	sraiw	a0,a0,1
 	beq	a0,zero,.L728
-	srliw	t4,a0,31
-	andi	t5,a0,1
+	srliw	a1,a0,31
+	andi	a4,a0,1
 	fmul.s	ft0,ft0,ft0
-	addw	t6,t4,a0
-	bne	t5,zero,.L719
+	addw	a2,a1,a0
+	bne	a4,zero,.L719
 .L730:
-	sraiw	a0,t6,1
-	srliw	t4,a0,31
-	andi	t5,a0,1
+	sraiw	a0,a2,1
+	srliw	a1,a0,31
+	andi	a4,a0,1
 	fmul.s	ft0,ft0,ft0
-	addw	t6,t4,a0
-	bne	t5,zero,.L719
+	addw	a2,a1,a0
+	bne	a4,zero,.L719
 	j	.L730
 .L728:
 	ret
@@ -2760,36 +2755,31 @@ ldexp:
 	fadd.d	fa5,fa0,fa0
 	feq.d	t0,fa5,fa0
 	bne	t0,zero,.L744
-	lui	t1,%hi(.LC10)
-	lui	a3,%hi(.LC9)
-	slti	a4,a0,0
-	addi	t2,t1,%lo(.LC10)
-	addi	a1,a3,%lo(.LC9)
-	czero.eqz	a2,t2,a4
-	czero.nez	a6,a1,a4
-	add	a7,a2,a6
-	andi	a5,a0,1
-	fld	ft0,0(a7)
-	beq	a5,zero,.L734
+	fli.d	ft0,2.0
+	bge	a0,zero,.L733
+	fli.d	ft0,0.5
+.L733:
+	andi	t1,a0,1
+	beq	t1,zero,.L734
 .L735:
 	fmul.d	fa0,fa0,ft0
 .L734:
-	srliw	t3,a0,31
-	addw	a0,t3,a0
+	srliw	t2,a0,31
+	addw	a0,t2,a0
 	sraiw	a0,a0,1
 	beq	a0,zero,.L744
-	srliw	t4,a0,31
-	andi	t5,a0,1
+	srliw	a1,a0,31
+	andi	a4,a0,1
 	fmul.d	ft0,ft0,ft0
-	addw	t6,t4,a0
-	bne	t5,zero,.L735
+	addw	a2,a1,a0
+	bne	a4,zero,.L735
 .L746:
-	sraiw	a0,t6,1
-	srliw	t4,a0,31
-	andi	t5,a0,1
+	sraiw	a0,a2,1
+	srliw	a1,a0,31
+	andi	a4,a0,1
 	fmul.d	ft0,ft0,ft0
-	addw	t6,t4,a0
-	bne	t5,zero,.L735
+	addw	a2,a1,a0
+	bne	a4,zero,.L735
 	j	.L746
 .L744:
 	ret
@@ -2833,8 +2823,8 @@ ldexpl:
 	.cfi_offset 9, -24
 	.cfi_offset 18, -32
 	blt	s0,zero,.L765
-	lui	a5,%hi(.LC11)
-	addi	t0,a5,%lo(.LC11)
+	lui	a5,%hi(.LC7)
+	addi	t0,a5,%lo(.LC7)
 	ld	s1,0(t0)
 	ld	s2,8(t0)
 .L750:
@@ -2894,8 +2884,8 @@ ldexpl:
 	.cfi_offset 18, -32
 	.cfi_offset 19, -40
 	.cfi_offset 20, -48
-	lui	t1,%hi(.LC12)
-	addi	t2,t1,%lo(.LC12)
+	lui	t1,%hi(.LC8)
+	addi	t2,t1,%lo(.LC8)
 	ld	s1,0(t2)
 	ld	s2,8(t2)
 	j	.L750
@@ -3213,30 +3203,27 @@ frexp:
 	fmv.d.x	fa5,zero
 	flt.d	a5,fa0,fa5
 	bne	a5,zero,.L919
-	lui	t5,%hi(.LC15)
-	fld	fa4,%lo(.LC15)(t5)
-	li	t4,0
-	fge.d	a4,fa0,fa4
-	beq	a4,zero,.L920
-.L894:
-	lui	t6,%hi(.LC10)
-	fld	ft5,%lo(.LC10)(t6)
-	fld	ft6,%lo(.LC15)(t5)
+	fli.d	fa4,1.0
 	li	a7,0
+	fge.d	t0,fa0,fa4
+	beq	t0,zero,.L920
+.L894:
+	fli.d	ft5,0.5
+	fli.d	ft6,1.0
+	li	a6,0
 .L900:
 	fmul.d	fa0,fa0,ft5
-	addiw	a7,a7,1
-	fge.d	a5,fa0,ft6
-	bne	a5,zero,.L900
-	sw	a7,0(a0)
-	beq	t4,zero,.L914
+	addiw	a6,a6,1
+	fge.d	t3,fa0,ft6
+	bne	t3,zero,.L900
+	sw	a6,0(a0)
+	beq	a7,zero,.L914
 .L922:
 	fneg.d	fa0,fa0
 .L914:
 	ret
 .L920:
-	lui	t0,%hi(.LC10)
-	fld	ft0,%lo(.LC10)(t0)
+	fli.d	ft0,0.5
 	flt.d	t1,fa0,ft0
 	beq	t1,zero,.L897
 	feq.d	t2,fa0,fa5
@@ -3245,33 +3232,30 @@ frexp:
 	sw	zero,0(a0)
 	ret
 .L919:
-	lui	a1,%hi(.LC13)
-	fld	ft2,%lo(.LC13)(a1)
+	fli.d	ft2,-1.0
 	fneg.d	ft1,fa0
-	fle.d	a2,fa0,ft2
-	beq	a2,zero,.L921
+	fle.d	a1,fa0,ft2
+	beq	a1,zero,.L921
 	fmv.d	fa0,ft1
-	li	t4,1
-	lui	t5,%hi(.LC15)
+	li	a7,1
 	j	.L894
 .L921:
-	lui	a3,%hi(.LC14)
-	fld	ft3,%lo(.LC14)(a3)
-	fgt.d	a6,fa0,ft3
-	beq	a6,zero,.L897
-	li	t4,1
-	lui	t0,%hi(.LC10)
+	lui	a2,%hi(.LC9)
+	fld	ft3,%lo(.LC9)(a2)
+	fgt.d	a3,fa0,ft3
+	beq	a3,zero,.L897
+	li	a7,1
 .L895:
 	fmv.d	fa0,ft1
-	fld	ft4,%lo(.LC10)(t0)
-	li	a7,0
+	fli.d	ft4,0.5
+	li	a6,0
 .L902:
 	fadd.d	fa0,fa0,fa0
-	addiw	a7,a7,-1
-	flt.d	t3,fa0,ft4
-	bne	t3,zero,.L902
-	sw	a7,0(a0)
-	bne	t4,zero,.L922
+	addiw	a6,a6,-1
+	flt.d	a4,fa0,ft4
+	bne	a4,zero,.L902
+	sw	a6,0(a0)
+	bne	a7,zero,.L922
 	ret
 .L906:
 	fmv.d	ft1,fa0
@@ -4147,17 +4131,16 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118:
 	.cfi_startproc
-	lui	a5,%hi(.LC16)
-	flw	fa5,%lo(.LC16)(a5)
-	fge.s	t0,fa0,fa5
-	bne	t0,zero,.L1176
+	fli.s	fa5,32768.0
+	fge.s	a5,fa0,fa5
+	bne	a5,zero,.L1176
 	fcvt.l.s a0,fa0,rtz
 	ret
 .L1176:
 	fsub.s	fa0,fa0,fa5
-	li	t1,32768
+	li	t0,32768
 	fcvt.l.s a0,fa0,rtz
-	add	a0,a0,t1
+	add	a0,a0,t0
 	ret
 	.cfi_endproc
 .LFE118:
@@ -5888,10 +5871,9 @@ __popcountti2:
 __powidf2:
 .LFB161:
 	.cfi_startproc
-	lui	a2,%hi(.LC15)
 	andi	a5,a0,1
 	fmv.d	fa5,fa0
-	fld	fa0,%lo(.LC15)(a2)
+	fli.d	fa0,1.0
 	beq	a5,zero,.L1613
 	mv	a1,a0
 .L1610:
@@ -5921,7 +5903,7 @@ __powidf2:
 	mv	a1,a0
 	j	.L1608
 .L1616:
-	fld	ft0,%lo(.LC15)(a2)
+	fli.d	ft0,1.0
 	fdiv.d	fa0,ft0,fa0
 	ret
 	.cfi_endproc
@@ -5933,10 +5915,9 @@ __powidf2:
 __powisf2:
 .LFB162:
 	.cfi_startproc
-	lui	a2,%hi(.LC20)
 	andi	a5,a0,1
 	fmv.s	fa5,fa0
-	flw	fa0,%lo(.LC20)(a2)
+	fli.s	fa0,1.0
 	beq	a5,zero,.L1623
 	mv	a1,a0
 .L1620:
@@ -5966,7 +5947,7 @@ __powisf2:
 	mv	a1,a0
 	j	.L1618
 .L1626:
-	flw	ft0,%lo(.LC20)(a2)
+	fli.s	ft0,1.0
 	fdiv.s	fa0,ft0,fa0
 	ret
 	.cfi_endproc
@@ -6074,50 +6055,23 @@ __ucmpti2:
 	.word	-1
 	.word	-1
 	.word	2147418111
-	.set	.LC7,.LC11+12
-	.section	.srodata.cst4
-	.align	2
-.LC8:
-	.word	1056964608
-	.set	.LC9,.LC11+8
-	.section	.srodata.cst8
-	.align	3
-.LC10:
-	.word	0
-	.word	1071644672
-	.section	.rodata.cst16
 	.align	4
-.LC11:
+.LC7:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073741824
 	.align	4
-.LC12:
+.LC8:
 	.word	0
 	.word	0
 	.word	0
 	.word	1073610752
 	.section	.srodata.cst8
 	.align	3
-.LC13:
-	.word	0
-	.word	-1074790400
-	.align	3
-.LC14:
+.LC9:
 	.word	0
 	.word	-1075838976
-	.align	3
-.LC15:
-	.word	0
-	.word	1072693248
-	.section	.srodata.cst4
-	.align	2
-.LC16:
-	.word	1191182336
-	.align	2
-.LC20:
-	.word	1065353216
 	.section	.rodata
 	.align	3
 	.set	.LANCHOR0,. + 0
