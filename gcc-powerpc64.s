@@ -1,5 +1,5 @@
 	.file	"mini-libc.c"
-	.machine ppc64
+	.machine power4
 	.section	".text"
 	.align 2
 	.globl make_ti
@@ -3674,7 +3674,7 @@ gl_isinff:
 	addis 3,2,.LC5@toc@ha
 	lfs 2,.LC5@toc@l(3)
 	fcmpu 1,1,2
-	mfcr 0
+	mfcr 0,64
 	rlwinm 0,0,6,1
 .L792:
 	rldicl 3,0,0,63
@@ -3703,7 +3703,7 @@ gl_isinfd:
 	addis 3,2,.LC9@toc@ha
 	lfd 2,.LC9@toc@l(3)
 	fcmpu 1,1,2
-	mfcr 0
+	mfcr 0,64
 	rlwinm 0,0,6,1
 .L795:
 	rldicl 3,0,0,63
@@ -3740,7 +3740,7 @@ gl_isinfl:
 	fcmpu 1,1,12
 	bne 1,$+8
 	fcmpu 1,2,13
-	mfcr 0
+	mfcr 0,64
 	rlwinm 0,0,6,1
 .L798:
 	rldicl 3,0,0,63
@@ -6374,7 +6374,7 @@ __mspabi_cmpf:
 	fcmpu 0,1,2
 	li 3,-1
 	blt- 0,.L1458
-	mfcr 3
+	mfcr 3,128
 	rlwinm 3,3,2,1
 .L1458:
 	extsw 3,3
@@ -6398,7 +6398,7 @@ __mspabi_cmpd:
 	fcmpu 0,1,2
 	li 3,-1
 	blt- 0,.L1461
-	mfcr 3
+	mfcr 3,128
 	rlwinm 3,3,2,1
 .L1461:
 	extsw 3,3
@@ -7520,7 +7520,7 @@ __cmpdi2:
 	cmplw 1,3,4
 	li 0,0
 	blt- 1,.L1808
-	mfcr 3
+	mfcr 3,64
 	rlwinm 3,3,6,1
 	addi 0,3,1
 .L1808:
@@ -7589,7 +7589,7 @@ __cmpti2:
 	cmpld 1,4,6
 	li 0,0
 	blt- 1,.L1819
-	mfcr 3
+	mfcr 3,64
 	rlwinm 3,3,6,1
 	addi 0,3,1
 .L1819:
@@ -8362,7 +8362,7 @@ __ucmpdi2:
 	cmplw 1,3,4
 	li 0,0
 	blt- 1,.L1875
-	mfcr 3
+	mfcr 3,64
 	rlwinm 3,3,6,1
 	addi 0,3,1
 .L1875:
@@ -8431,7 +8431,7 @@ __ucmpti2:
 	cmpld 1,4,6
 	li 0,0
 	blt- 1,.L1886
-	mfcr 3
+	mfcr 3,64
 	rlwinm 3,3,6,1
 	addi 0,3,1
 .L1886:

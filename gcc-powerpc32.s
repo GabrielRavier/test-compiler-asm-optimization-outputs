@@ -6905,7 +6905,7 @@ __cmpdi2:
 	cmplw 1,0,7
 	li 3,0
 	bltlr- 1
-	mfcr 8
+	mfcr 8,64
 	rlwinm 8,8,6,1
 	addi 3,8,1
 	blr
@@ -7402,7 +7402,7 @@ __ucmpdi2:
 	cmplw 1,0,7
 	li 3,0
 	bltlr- 1
-	mfcr 8
+	mfcr 8,64
 	rlwinm 8,8,6,1
 	addi 3,8,1
 	blr
