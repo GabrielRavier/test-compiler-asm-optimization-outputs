@@ -128,13 +128,15 @@ gcc-powerpc32.s: mini-libc.c
 > powerpc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_POWERPC_OPTIONS) -mtune=powerpc
 
 # Add -mdiv when we have the m extension
-GCC_RISCV_OPTIONS = -mplt -mfdiv -mmovcc -mshorten-memrefs -mno-strict-align
+GCC_RISCV_OPTIONS = -mplt -mfdiv -mmovcc -mshorten-memrefs -mno-strict-align -mlittle-endian
+
+GCC_RISCV_ARCH_EXTENSIONS = i2p1_d2p2_m2p0
 
 gcc-riscv64.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=lp64d -mtune=rocket
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=lp64d -march=rv64imafdc_zifencei -mtune=rocket
 
 gcc-riscv32.s: mini-libc.c
-> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32d -march=rv32id
+> riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32d -march=rv32$(GCC_RISCV_ARCH_EXTENSIONS)
 
 gcc-s390x.s: mini-libc.c
 > s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
