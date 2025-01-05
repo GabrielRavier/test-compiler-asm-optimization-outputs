@@ -642,45 +642,42 @@ toascii:
 fdim:
 .LFB29:
 	.cfi_startproc
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	sw	a0,0(sp)
-	sw	a1,4(sp)
-	fld	fa5,0(sp)
-	sw	a2,8(sp)
-	sw	a3,12(sp)
-	feq.d	a5,fa5,fa5
-	fld	fa4,8(sp)
-	beq	a5,zero,.L172
-	feq.d	t0,fa4,fa4
-	beq	t0,zero,.L173
-	fgt.d	t1,fa5,fa4
-	bne	t1,zero,.L179
-	sw	zero,0(sp)
-	sw	zero,4(sp)
+	addi	sp,sp,-32
+	.cfi_def_cfa_offset 32
+	fsd	fa0,0(sp)
+	lw	a5,0(sp)
+	lw	t0,4(sp)
+	fsd	fa1,16(sp)
+	sw	a5,8(sp)
+	sw	t0,12(sp)
+	fld	fa0,8(sp)
+	lw	t1,16(sp)
+	lw	a4,20(sp)
+	feq.d	t2,fa0,fa0
+	sw	t1,24(sp)
+	sw	a4,28(sp)
+	fld	fa5,24(sp)
+	beq	t2,zero,.L169
+	feq.d	a0,fa5,fa5
+	beq	a0,zero,.L173
+	fgt.d	a1,fa0,fa5
+	beq	a1,zero,.L177
+	fsub.d	fa0,fa0,fa5
 .L169:
-	lw	a0,0(sp)
-	lw	a1,4(sp)
-	addi	sp,sp,16
+	addi	sp,sp,32
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L179:
+.L177:
 	.cfi_restore_state
-	fsub.d	ft0,fa5,fa4
-	fsd	ft0,0(sp)
-	lw	a0,0(sp)
-	lw	a1,4(sp)
-	addi	sp,sp,16
+	fcvt.d.w	fa0,x0
+	addi	sp,sp,32
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L172:
-	.cfi_restore_state
-	fsd	fa5,0(sp)
-	j	.L169
 .L173:
-	fsd	fa4,0(sp)
+	.cfi_restore_state
+	fmv.d	fa0,fa5
 	j	.L169
 	.cfi_endproc
 .LFE29:
@@ -692,18 +689,18 @@ fdimf:
 .LFB30:
 	.cfi_startproc
 	feq.s	a5,fa0,fa0
-	beq	a5,zero,.L180
+	beq	a5,zero,.L179
 	feq.s	t0,fa1,fa1
-	beq	t0,zero,.L184
+	beq	t0,zero,.L183
 	fgt.s	t1,fa0,fa1
-	beq	t1,zero,.L188
+	beq	t1,zero,.L187
 	fsub.s	fa0,fa0,fa1
 	ret
-.L188:
+.L187:
 	fmv.s.x	fa0,zero
-.L180:
+.L179:
 	ret
-.L184:
+.L183:
 	fmv.s	fa0,fa1
 	ret
 	.cfi_endproc
@@ -715,56 +712,62 @@ fdimf:
 fmax:
 .LFB31:
 	.cfi_startproc
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	sw	a0,0(sp)
-	sw	a1,4(sp)
-	fld	fa5,0(sp)
-	sw	a2,8(sp)
-	sw	a3,12(sp)
-	feq.d	a5,fa5,fa5
-	fld	ft0,8(sp)
-	beq	a5,zero,.L194
-	feq.d	t0,ft0,ft0
-	beq	t0,zero,.L195
-	lw	t2,12(sp)
-	li	t1,-2147483648
-	and	a3,t1,a1
-	and	a6,t1,t2
-	bne	a3,a6,.L199
-	fld	ft1,0(sp)
-	mv	a7,a0
-	mv	t3,a1
-	flt.d	a0,ft1,ft0
-	beq	a0,zero,.L189
-	lw	t3,12(sp)
-	mv	a7,a2
-.L189:
-	mv	a0,a7
-	mv	a1,t3
-	addi	sp,sp,16
+	addi	sp,sp,-48
+	.cfi_def_cfa_offset 48
+	fsd	fa0,8(sp)
+	lw	a5,8(sp)
+	lw	t0,12(sp)
+	fsd	fa1,24(sp)
+	lw	t1,24(sp)
+	lw	a4,28(sp)
+	sw	a5,16(sp)
+	sw	t0,20(sp)
+	fld	fa5,16(sp)
+	sw	t1,32(sp)
+	sw	a4,36(sp)
+	fld	ft0,32(sp)
+	feq.d	t2,fa5,fa5
+	fsd	fa5,8(sp)
+	fsd	ft0,16(sp)
+	beq	t2,zero,.L193
+	feq.d	a0,ft0,ft0
+	beq	a0,zero,.L194
+	lw	a2,12(sp)
+	lw	a6,20(sp)
+	li	a1,-2147483648
+	and	a3,a1,a2
+	and	a7,a1,a6
+	bne	a3,a7,.L198
+	fld	ft1,8(sp)
+	lw	t4,8(sp)
+	lw	t5,12(sp)
+	flt.d	t3,ft1,ft0
+	beq	t3,zero,.L188
+.L193:
+	lw	t4,16(sp)
+	lw	t5,20(sp)
+.L188:
+	sw	t4,40(sp)
+	sw	t5,44(sp)
+	fld	fa0,40(sp)
+	addi	sp,sp,48
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L199:
+.L198:
 	.cfi_restore_state
-	mv	t3,t2
-	mv	a7,a2
-	bne	a3,zero,.L189
-.L195:
-	mv	a7,a0
-	mv	t3,a1
-	mv	a0,a7
-	mv	a1,t3
-	addi	sp,sp,16
-	.cfi_remember_state
-	.cfi_def_cfa_offset 0
-	jr	ra
+	lw	t4,16(sp)
+	mv	t5,a6
+	bne	a3,zero,.L188
 .L194:
-	.cfi_restore_state
-	mv	a7,a2
-	mv	t3,a3
-	j	.L189
+	lw	t4,8(sp)
+	lw	t5,12(sp)
+	sw	t4,40(sp)
+	sw	t5,44(sp)
+	fld	fa0,40(sp)
+	addi	sp,sp,48
+	.cfi_def_cfa_offset 0
+	jr	ra
 	.cfi_endproc
 .LFE31:
 	.size	fmax, .-fmax
@@ -777,24 +780,24 @@ fmaxf:
 	feq.s	a3,fa0,fa0
 	fmv.x.s	a5,fa0
 	fmv.x.s	a4,fa1
-	beq	a3,zero,.L205
+	beq	a3,zero,.L204
 	feq.s	t0,fa1,fa1
-	beq	t0,zero,.L206
+	beq	t0,zero,.L205
 	li	t1,-2147483648
 	and	a2,t1,a5
 	and	t2,t1,a4
-	bne	a2,t2,.L209
+	bne	a2,t2,.L208
 	flt.s	a0,fa0,fa1
-	beq	a0,zero,.L200
-.L205:
+	beq	a0,zero,.L199
+.L204:
 	fmv.s.x	fa0,a4
 	ret
-.L209:
+.L208:
 	fmv.s	fa0,fa1
-	beq	a2,zero,.L206
-.L200:
+	beq	a2,zero,.L205
+.L199:
 	ret
-.L206:
+.L205:
 	fmv.s.x	fa0,a5
 	ret
 	.cfi_endproc
@@ -848,7 +851,7 @@ fmaxl:
 	sw	s2,8(sp)
 	sw	s1,12(sp)
 	call	__unordtf2
-	bne	a0,zero,.L217
+	bne	a0,zero,.L216
 	mv	a1,sp
 	addi	a0,sp,16
 	sw	s8,16(sp)
@@ -860,18 +863,18 @@ fmaxl:
 	sw	s6,8(sp)
 	sw	s5,12(sp)
 	call	__unordtf2
-	bne	a0,zero,.L211
+	bne	a0,zero,.L210
 	li	a5,-2147483648
 	and	a4,s1,a5
 	and	t0,s5,a5
-	beq	a4,t0,.L212
-	beq	a4,zero,.L211
-.L217:
+	beq	a4,t0,.L211
+	beq	a4,zero,.L210
+.L216:
 	mv	s4,s8
 	mv	s3,s7
 	mv	s2,s6
 	mv	s1,s5
-.L211:
+.L210:
 	sw	s4,0(s0)
 	sw	s3,4(s0)
 	sw	s2,8(s0)
@@ -901,7 +904,7 @@ fmaxl:
 	addi	sp,sp,80
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L212:
+.L211:
 	.cfi_restore_state
 	mv	a1,sp
 	addi	a0,sp,16
@@ -914,8 +917,8 @@ fmaxl:
 	sw	s6,8(sp)
 	sw	s5,12(sp)
 	call	__lttf2
-	bge	a0,zero,.L211
-	j	.L217
+	bge	a0,zero,.L210
+	j	.L216
 	.cfi_endproc
 .LFE33:
 	.size	fmaxl, .-fmaxl
@@ -925,56 +928,62 @@ fmaxl:
 fmin:
 .LFB34:
 	.cfi_startproc
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	sw	a0,0(sp)
-	sw	a1,4(sp)
-	fld	fa5,0(sp)
-	sw	a2,8(sp)
-	sw	a3,12(sp)
-	feq.d	a5,fa5,fa5
-	fld	ft0,8(sp)
-	beq	a5,zero,.L229
-	feq.d	t0,ft0,ft0
-	beq	t0,zero,.L230
-	lw	t2,12(sp)
-	li	t1,-2147483648
-	and	a3,t1,a1
-	and	a6,t1,t2
-	bne	a3,a6,.L234
-	fld	ft1,0(sp)
-	mv	a7,a2
-	lw	t3,12(sp)
-	flt.d	a2,ft1,ft0
-	beq	a2,zero,.L224
-.L230:
-	mv	a7,a0
-	mv	t3,a1
-.L224:
-	mv	a0,a7
-	mv	a1,t3
-	addi	sp,sp,16
-	.cfi_remember_state
-	.cfi_def_cfa_offset 0
-	jr	ra
-.L234:
-	.cfi_restore_state
-	mv	a7,a0
-	mv	t3,a1
-	bne	a3,zero,.L224
-	lw	t3,12(sp)
-	mv	a7,a2
-	mv	a0,a7
-	mv	a1,t3
-	addi	sp,sp,16
-	.cfi_remember_state
-	.cfi_def_cfa_offset 0
-	jr	ra
+	addi	sp,sp,-48
+	.cfi_def_cfa_offset 48
+	fsd	fa0,8(sp)
+	lw	a5,8(sp)
+	lw	t0,12(sp)
+	fsd	fa1,24(sp)
+	lw	t1,24(sp)
+	lw	a4,28(sp)
+	sw	a5,16(sp)
+	sw	t0,20(sp)
+	fld	fa5,16(sp)
+	sw	t1,32(sp)
+	sw	a4,36(sp)
+	fld	ft0,32(sp)
+	feq.d	t2,fa5,fa5
+	fsd	fa5,8(sp)
+	fsd	ft0,16(sp)
+	beq	t2,zero,.L228
+	feq.d	a0,ft0,ft0
+	beq	a0,zero,.L229
+	lw	a2,12(sp)
+	lw	a6,20(sp)
+	li	a1,-2147483648
+	and	a3,a1,a2
+	and	a7,a1,a6
+	bne	a3,a7,.L233
+	fld	ft1,8(sp)
+	lw	t4,16(sp)
+	mv	t5,a6
+	flt.d	t3,ft1,ft0
+	beq	t3,zero,.L223
 .L229:
+	lw	t4,8(sp)
+	lw	t5,12(sp)
+.L223:
+	sw	t4,40(sp)
+	sw	t5,44(sp)
+	fld	fa0,40(sp)
+	addi	sp,sp,48
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	ra
+.L233:
 	.cfi_restore_state
-	mv	a7,a2
-	mv	t3,a3
-	j	.L224
+	lw	t4,8(sp)
+	lw	t5,12(sp)
+	bne	a3,zero,.L223
+.L228:
+	lw	t4,16(sp)
+	lw	t5,20(sp)
+	sw	t4,40(sp)
+	sw	t5,44(sp)
+	fld	fa0,40(sp)
+	addi	sp,sp,48
+	.cfi_def_cfa_offset 0
+	jr	ra
 	.cfi_endproc
 .LFE34:
 	.size	fmin, .-fmin
@@ -987,24 +996,24 @@ fminf:
 	feq.s	a3,fa0,fa0
 	fmv.x.s	a5,fa0
 	fmv.x.s	a4,fa1
-	beq	a3,zero,.L240
+	beq	a3,zero,.L239
 	feq.s	t0,fa1,fa1
-	beq	t0,zero,.L241
+	beq	t0,zero,.L240
 	li	t1,-2147483648
 	and	a2,t1,a5
 	and	t2,t1,a4
-	beq	a2,t2,.L237
-	bne	a2,zero,.L235
-.L240:
+	beq	a2,t2,.L236
+	bne	a2,zero,.L234
+.L239:
 	fmv.s.x	fa0,a4
 	ret
-.L237:
+.L236:
 	flt.s	a0,fa0,fa1
 	fmv.s	fa0,fa1
-	bne	a0,zero,.L241
-.L235:
+	bne	a0,zero,.L240
+.L234:
 	ret
-.L241:
+.L240:
 	fmv.s.x	fa0,a5
 	ret
 	.cfi_endproc
@@ -1058,7 +1067,7 @@ fminl:
 	sw	s5,8(sp)
 	sw	s8,12(sp)
 	call	__unordtf2
-	bne	a0,zero,.L245
+	bne	a0,zero,.L244
 	mv	a1,sp
 	addi	a0,sp,16
 	sw	s4,16(sp)
@@ -1070,18 +1079,18 @@ fminl:
 	sw	s2,8(sp)
 	sw	s1,12(sp)
 	call	__unordtf2
-	bne	a0,zero,.L251
+	bne	a0,zero,.L250
 	li	a5,-2147483648
 	and	a4,s8,a5
 	and	t0,s1,a5
-	beq	a4,t0,.L246
-	beq	a4,zero,.L245
-.L251:
+	beq	a4,t0,.L245
+	beq	a4,zero,.L244
+.L250:
 	mv	s4,s7
 	mv	s3,s6
 	mv	s2,s5
 	mv	s1,s8
-.L245:
+.L244:
 	sw	s4,0(s0)
 	sw	s3,4(s0)
 	sw	s2,8(s0)
@@ -1111,7 +1120,7 @@ fminl:
 	addi	sp,sp,80
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L246:
+.L245:
 	.cfi_restore_state
 	mv	a1,sp
 	addi	a0,sp,16
@@ -1124,8 +1133,8 @@ fminl:
 	sw	s2,8(sp)
 	sw	s1,12(sp)
 	call	__lttf2
-	bge	a0,zero,.L245
-	j	.L251
+	bge	a0,zero,.L244
+	j	.L250
 	.cfi_endproc
 .LFE36:
 	.size	fminl, .-fminl
@@ -1136,22 +1145,22 @@ l64a:
 .LFB37:
 	.cfi_startproc
 	lui	a2,%hi(s.0)
-	beq	a0,zero,.L261
+	beq	a0,zero,.L260
 	lui	a3,%hi(.LANCHOR0)
 	addi	a4,a2,%lo(s.0)
 	addi	t0,a3,%lo(.LANCHOR0)
-.L260:
+.L259:
 	andi	a5,a0,63
 	add	t1,t0,a5
 	lbu	t2,0(t1)
 	srli	a0,a0,6
 	addi	a4,a4,1
 	sb	t2,-1(a4)
-	bne	a0,zero,.L260
+	bne	a0,zero,.L259
 	sb	zero,0(a4)
 	addi	a0,a2,%lo(s.0)
 	ret
-.L261:
+.L260:
 	addi	a4,a2,%lo(s.0)
 	sb	zero,0(a4)
 	addi	a0,a2,%lo(s.0)
@@ -1214,17 +1223,17 @@ rand:
 insque:
 .LFB40:
 	.cfi_startproc
-	beq	a1,zero,.L272
+	beq	a1,zero,.L271
 	lw	a5,0(a1)
 	sw	a1,4(a0)
 	sw	a5,0(a0)
 	sw	a0,0(a1)
 	lw	t0,0(a0)
-	beq	t0,zero,.L266
+	beq	t0,zero,.L265
 	sw	a0,4(t0)
-.L266:
+.L265:
 	ret
-.L272:
+.L271:
 	sw	zero,4(a0)
 	sw	zero,0(a0)
 	ret
@@ -1238,14 +1247,14 @@ remque:
 .LFB41:
 	.cfi_startproc
 	lw	a5,0(a0)
-	beq	a5,zero,.L274
+	beq	a5,zero,.L273
 	lw	a4,4(a0)
 	sw	a4,4(a5)
-.L274:
-	lw	t0,4(a0)
-	beq	t0,zero,.L273
-	sw	a5,0(t0)
 .L273:
+	lw	t0,4(a0)
+	beq	t0,zero,.L272
+	sw	a5,0(t0)
+.L272:
 	ret
 	.cfi_endproc
 .LFE41:
@@ -1277,7 +1286,7 @@ lsearch:
 	mv	s5,a0
 	mv	s7,a1
 	mv	s2,a3
-	beq	s6,zero,.L283
+	beq	s6,zero,.L282
 	sw	s0,40(sp)
 	sw	s1,36(sp)
 	sw	s4,24(sp)
@@ -1287,24 +1296,24 @@ lsearch:
 	mv	s0,a1
 	mv	s4,a4
 	li	s1,0
-	j	.L285
-.L300:
+	j	.L284
+.L299:
 	add	s0,s0,s2
-	beq	s6,s1,.L299
-.L285:
+	beq	s6,s1,.L298
+.L284:
 	mv	a1,s0
 	mv	a0,s5
 	jalr	s4
 	mv	s3,s0
 	addi	s1,s1,1
-	bne	a0,zero,.L300
+	bne	a0,zero,.L299
 	lw	s0,40(sp)
 	.cfi_restore 8
 	lw	s1,36(sp)
 	.cfi_restore 9
 	lw	s4,24(sp)
 	.cfi_restore 20
-.L282:
+.L281:
 	lw	ra,44(sp)
 	.cfi_restore 1
 	lw	s2,32(sp)
@@ -1323,7 +1332,7 @@ lsearch:
 	addi	sp,sp,48
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L299:
+.L298:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 1, -4
 	.cfi_offset 8, -8
@@ -1341,19 +1350,19 @@ lsearch:
 	.cfi_restore 9
 	lw	s4,24(sp)
 	.cfi_restore 20
-.L283:
+.L282:
 	addi	a5,s6,1
 	sw	a5,0(s8)
 	mv	a1,s6
 	mv	a0,s2
 	call	__mulsi3
 	add	s3,s7,a0
-	beq	s2,zero,.L282
+	beq	s2,zero,.L281
 	mv	a2,s2
 	mv	a1,s5
 	mv	a0,s3
 	call	memmove
-	j	.L282
+	j	.L281
 	.cfi_endproc
 .LFE42:
 	.size	lsearch, .-lsearch
@@ -1372,7 +1381,7 @@ lfind:
 	sw	s6,0(sp)
 	.cfi_offset 1, -4
 	.cfi_offset 22, -32
-	beq	s5,zero,.L302
+	beq	s5,zero,.L301
 	sw	s0,24(sp)
 	sw	s1,20(sp)
 	sw	s2,16(sp)
@@ -1388,17 +1397,17 @@ lfind:
 	mv	s3,a4
 	mv	s0,a1
 	li	s1,0
-	j	.L304
-.L315:
+	j	.L303
+.L314:
 	add	s0,s0,s4
-	beq	s5,s1,.L314
-.L304:
+	beq	s5,s1,.L313
+.L303:
 	mv	a1,s0
 	mv	a0,s2
 	jalr	s3
 	mv	s6,s0
 	addi	s1,s1,1
-	bne	a0,zero,.L315
+	bne	a0,zero,.L314
 	lw	s0,24(sp)
 	.cfi_remember_state
 	.cfi_restore 8
@@ -1420,7 +1429,7 @@ lfind:
 	addi	sp,sp,32
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L314:
+.L313:
 	.cfi_restore_state
 	lw	s0,24(sp)
 	.cfi_restore 8
@@ -1432,7 +1441,7 @@ lfind:
 	.cfi_restore 19
 	lw	s4,8(sp)
 	.cfi_restore 20
-.L302:
+.L301:
 	lw	ra,28(sp)
 	.cfi_restore 1
 	li	s6,0
@@ -1468,25 +1477,25 @@ atoi:
 	.cfi_startproc
 	li	a3,32
 	li	a2,4
-.L324:
+.L323:
 	lbu	a4,0(a0)
 	addi	a5,a4,-9
-	beq	a4,a3,.L318
-	bleu	a5,a2,.L318
+	beq	a4,a3,.L317
+	bleu	a5,a2,.L317
 	li	t0,43
-	beq	a4,t0,.L319
+	beq	a4,t0,.L318
 	li	a1,45
-	bne	a4,a1,.L336
+	bne	a4,a1,.L335
 	lbu	a6,1(a0)
 	li	a7,9
 	addi	t5,a0,1
 	addi	t3,a6,-48
-	bgtu	t3,a7,.L329
+	bgtu	t3,a7,.L328
 	li	t6,1
-.L322:
+.L321:
 	li	a0,0
 	li	a3,9
-.L326:
+.L325:
 	slli	a4,a0,2
 	lbu	a2,1(t5)
 	add	a0,a4,a0
@@ -1495,30 +1504,30 @@ atoi:
 	mv	a4,t3
 	addi	t3,a2,-48
 	addi	t5,t5,1
-	bleu	t3,a3,.L326
-	bne	t6,zero,.L317
+	bleu	t3,a3,.L325
+	bne	t6,zero,.L316
 	sub	a0,a4,a5
 	ret
-.L318:
+.L317:
 	addi	a0,a0,1
-	j	.L324
-.L336:
+	j	.L323
+.L335:
 	addi	t3,a4,-48
 	li	t4,9
 	mv	t5,a0
 	li	t6,0
-	bleu	t3,t4,.L322
-.L329:
+	bleu	t3,t4,.L321
+.L328:
 	li	a0,0
-.L317:
+.L316:
 	ret
-.L319:
+.L318:
 	lbu	t1,1(a0)
 	li	t2,9
 	addi	t5,a0,1
 	addi	t3,t1,-48
 	li	t6,0
-	bleu	t3,t2,.L322
+	bleu	t3,t2,.L321
 	li	a0,0
 	ret
 	.cfi_endproc
@@ -1532,25 +1541,25 @@ atol:
 	.cfi_startproc
 	li	a3,32
 	li	a2,4
-.L342:
+.L341:
 	lbu	a4,0(a0)
 	addi	a5,a4,-9
-	beq	a4,a3,.L338
-	bleu	a5,a2,.L338
+	beq	a4,a3,.L337
+	bleu	a5,a2,.L337
 	li	t0,43
-	beq	a4,t0,.L339
+	beq	a4,t0,.L338
 	li	a1,45
-	bne	a4,a1,.L356
+	bne	a4,a1,.L355
 	lbu	a6,1(a0)
 	li	t3,9
 	addi	t6,a0,1
 	addi	t4,a6,-48
 	li	a7,1
-	bgtu	t4,t3,.L349
-.L343:
+	bgtu	t4,t3,.L348
+.L342:
 	li	a0,0
 	li	a3,9
-.L346:
+.L345:
 	slli	a4,a0,2
 	lbu	a2,1(t6)
 	add	a0,a4,a0
@@ -1559,31 +1568,31 @@ atol:
 	mv	a4,t4
 	addi	t4,a2,-48
 	addi	t6,t6,1
-	bleu	t4,a3,.L346
-	bne	a7,zero,.L337
+	bleu	t4,a3,.L345
+	bne	a7,zero,.L336
 	sub	a0,a4,a5
 	ret
-.L338:
+.L337:
 	addi	a0,a0,1
-	j	.L342
-.L356:
+	j	.L341
+.L355:
 	addi	t4,a4,-48
 	li	t5,9
 	mv	t6,a0
 	li	a7,0
-	bleu	t4,t5,.L343
-.L349:
+	bleu	t4,t5,.L342
+.L348:
 	li	a0,0
-.L337:
+.L336:
 	ret
-.L339:
+.L338:
 	lbu	t1,1(a0)
 	li	t2,9
 	addi	t6,a0,1
 	addi	t4,t1,-48
-	bgtu	t4,t2,.L349
+	bgtu	t4,t2,.L348
 	li	a7,0
-	j	.L343
+	j	.L342
 	.cfi_endproc
 .LFE156:
 	.size	atol, .-atol
@@ -1595,26 +1604,26 @@ atoll:
 	.cfi_startproc
 	li	a3,32
 	li	a2,4
-.L364:
+.L363:
 	lbu	a4,0(a0)
 	addi	a5,a4,-9
-	beq	a4,a3,.L358
-	bleu	a5,a2,.L358
+	beq	a4,a3,.L357
+	bleu	a5,a2,.L357
 	li	t0,43
-	beq	a4,t0,.L359
+	beq	a4,t0,.L358
 	li	a1,45
-	bne	a4,a1,.L376
+	bne	a4,a1,.L375
 	lbu	a6,1(a0)
 	li	a7,9
 	addi	t5,a0,1
 	addi	t6,a6,-48
-	bgtu	t6,a7,.L369
+	bgtu	t6,a7,.L368
 	li	t4,1
-.L362:
+.L361:
 	li	a0,0
 	li	a1,0
 	li	a4,9
-.L366:
+.L365:
 	srli	a3,a0,30
 	slli	a2,a1,2
 	slli	a5,a0,2
@@ -1636,35 +1645,35 @@ atoll:
 	addi	t6,a7,-48
 	addi	t5,t5,1
 	sub	a1,t0,t2
-	bleu	t6,a4,.L366
-	bne	t4,zero,.L357
+	bleu	t6,a4,.L365
+	bne	t4,zero,.L356
 	sub	a0,t1,a2
 	sgtu	t6,a0,t1
 	sub	t5,a3,a5
 	sub	a1,t5,t6
 	ret
-.L358:
+.L357:
 	addi	a0,a0,1
-	j	.L364
-.L376:
+	j	.L363
+.L375:
 	addi	t6,a4,-48
 	li	t3,9
 	mv	t5,a0
 	li	t4,0
-	bleu	t6,t3,.L362
-.L369:
+	bleu	t6,t3,.L361
+.L368:
 	li	a0,0
 	li	a1,0
-.L357:
+.L356:
 	ret
-.L359:
+.L358:
 	lbu	t1,1(a0)
 	li	t2,9
 	addi	t5,a0,1
 	addi	t6,t1,-48
 	li	t4,0
-	bleu	t6,t2,.L362
-	j	.L369
+	bleu	t6,t2,.L361
+	j	.L368
 	.cfi_endproc
 .LFE47:
 	.size	atoll, .-atoll
@@ -1680,7 +1689,7 @@ bsearch:
 	sw	s1,20(sp)
 	.cfi_offset 1, -4
 	.cfi_offset 9, -12
-	beq	a2,zero,.L378
+	beq	a2,zero,.L377
 	sw	s0,24(sp)
 	sw	s3,12(sp)
 	sw	s4,8(sp)
@@ -1698,7 +1707,7 @@ bsearch:
 	mv	s3,a1
 	mv	s4,a3
 	mv	s6,a4
-.L381:
+.L380:
 	srli	s2,s0,1
 	mv	a1,s4
 	mv	a0,s2
@@ -1708,12 +1717,12 @@ bsearch:
 	mv	a0,s5
 	jalr	s6
 	addi	s0,s0,-1
-	blt	a0,zero,.L382
-	beq	a0,zero,.L391
+	blt	a0,zero,.L381
+	beq	a0,zero,.L390
 	sub	s0,s0,s2
 	add	s3,s1,s4
-	bne	s0,zero,.L381
-.L392:
+	bne	s0,zero,.L380
+.L391:
 	lw	s0,24(sp)
 	.cfi_restore 8
 	lw	s2,16(sp)
@@ -1726,7 +1735,7 @@ bsearch:
 	.cfi_restore 21
 	lw	s6,0(sp)
 	.cfi_restore 22
-.L378:
+.L377:
 	lw	ra,28(sp)
 	.cfi_restore 1
 	li	s1,0
@@ -1736,7 +1745,7 @@ bsearch:
 	addi	sp,sp,32
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L382:
+.L381:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 1, -4
 	.cfi_offset 8, -8
@@ -1747,9 +1756,9 @@ bsearch:
 	.cfi_offset 21, -28
 	.cfi_offset 22, -32
 	mv	s0,s2
-	bne	s0,zero,.L381
-	j	.L392
-.L391:
+	bne	s0,zero,.L380
+	j	.L391
+.L390:
 	lw	s0,24(sp)
 	.cfi_restore 8
 	lw	ra,28(sp)
@@ -1803,10 +1812,10 @@ bsearch_r:
 	mv	s4,a3
 	mv	s6,a4
 	mv	s7,a5
-	beq	a2,zero,.L398
+	beq	a2,zero,.L397
 	sw	s2,32(sp)
 	.cfi_offset 18, -16
-.L406:
+.L405:
 	srai	s2,s0,1
 	mv	a1,s4
 	mv	a0,s2
@@ -1818,16 +1827,16 @@ bsearch_r:
 	addi	s0,s0,-1
 	jalr	s6
 	srai	s0,s0,1
-	beq	a0,zero,.L410
-	ble	a0,zero,.L396
+	beq	a0,zero,.L409
+	ble	a0,zero,.L395
 	add	s3,s1,s4
-	bne	s0,zero,.L406
-.L411:
+	bne	s0,zero,.L405
+.L410:
 	lw	s2,32(sp)
 	.cfi_restore 18
-.L398:
+.L397:
 	li	s1,0
-.L393:
+.L392:
 	lw	ra,44(sp)
 	.cfi_restore 1
 	lw	s0,40(sp)
@@ -1848,7 +1857,7 @@ bsearch_r:
 	addi	sp,sp,48
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L396:
+.L395:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 1, -4
 	.cfi_offset 8, -8
@@ -1859,13 +1868,13 @@ bsearch_r:
 	.cfi_offset 21, -28
 	.cfi_offset 22, -32
 	.cfi_offset 23, -36
-	beq	s2,zero,.L411
+	beq	s2,zero,.L410
 	mv	s0,s2
-	j	.L406
-.L410:
+	j	.L405
+.L409:
 	lw	s2,32(sp)
 	.cfi_restore 18
-	j	.L393
+	j	.L392
 	.cfi_endproc
 .LFE49:
 	.size	bsearch_r, .-bsearch_r
@@ -2116,16 +2125,16 @@ lldiv:
 wcschr:
 .LFB57:
 	.cfi_startproc
-	j	.L432
-.L434:
-	beq	a1,a5,.L433
+	j	.L431
+.L433:
+	beq	a1,a5,.L432
 	addi	a0,a0,4
-.L432:
+.L431:
 	lw	a5,0(a0)
-	bne	a5,zero,.L434
+	bne	a5,zero,.L433
 	li	a0,0
 	ret
-.L433:
+.L432:
 	ret
 	.cfi_endproc
 .LFE57:
@@ -2136,18 +2145,18 @@ wcschr:
 wcscmp:
 .LFB58:
 	.cfi_startproc
-.L438:
+.L437:
 	lw	a5,0(a0)
 	lw	a4,0(a1)
-	bne	a5,a4,.L437
+	bne	a5,a4,.L436
 	addi	a0,a0,4
 	addi	a1,a1,4
-	bne	a5,zero,.L438
-.L437:
+	bne	a5,zero,.L437
+.L436:
 	li	a0,-1
-	blt	a5,a4,.L435
+	blt	a5,a4,.L434
 	sgt	a0,a5,a4
-.L435:
+.L434:
 	ret
 	.cfi_endproc
 .LFE58:
@@ -2159,12 +2168,12 @@ wcscpy:
 .LFB59:
 	.cfi_startproc
 	mv	a5,a0
-.L445:
+.L444:
 	lw	a4,0(a1)
 	addi	a1,a1,4
 	addi	a5,a5,4
 	sw	a4,-4(a5)
-	bne	a4,zero,.L445
+	bne	a4,zero,.L444
 	ret
 	.cfi_endproc
 .LFE59:
@@ -2176,16 +2185,16 @@ wcslen:
 .LFB60:
 	.cfi_startproc
 	lw	a5,0(a0)
-	beq	a5,zero,.L450
+	beq	a5,zero,.L449
 	mv	t0,a0
-.L449:
+.L448:
 	lw	a4,4(t0)
 	addi	t0,t0,4
-	bne	a4,zero,.L449
+	bne	a4,zero,.L448
 	sub	a0,t0,a0
 	srai	a0,a0,2
 	ret
-.L450:
+.L449:
 	li	a0,0
 	ret
 	.cfi_endproc
@@ -2197,26 +2206,26 @@ wcslen:
 wcsncmp:
 .LFB61:
 	.cfi_startproc
-	beq	a2,zero,.L458
-.L464:
+	beq	a2,zero,.L457
+.L463:
 	lw	a5,0(a0)
 	lw	a4,0(a1)
 	addi	a2,a2,-1
-	bne	a5,a4,.L455
-	beq	a5,zero,.L455
+	bne	a5,a4,.L454
+	beq	a5,zero,.L454
 	addi	a0,a0,4
 	addi	a1,a1,4
-	bne	a2,zero,.L464
-.L458:
+	bne	a2,zero,.L463
+.L457:
 	li	a0,0
 	ret
-.L455:
+.L454:
 	lw	t0,0(a0)
 	lw	t1,0(a1)
 	sgt	a0,t0,t1
-	blt	t0,t1,.L465
+	blt	t0,t1,.L464
 	ret
-.L465:
+.L464:
 	li	a0,-1
 	ret
 	.cfi_endproc
@@ -2228,17 +2237,17 @@ wcsncmp:
 wmemchr:
 .LFB62:
 	.cfi_startproc
-	beq	a2,zero,.L470
-.L477:
+	beq	a2,zero,.L469
+.L476:
 	lw	a5,0(a0)
 	addi	a2,a2,-1
-	beq	a5,a1,.L476
+	beq	a5,a1,.L475
 	addi	a0,a0,4
-	bne	a2,zero,.L477
-.L470:
+	bne	a2,zero,.L476
+.L469:
 	li	a0,0
 	ret
-.L476:
+.L475:
 	ret
 	.cfi_endproc
 .LFE62:
@@ -2249,23 +2258,23 @@ wmemchr:
 wmemcmp:
 .LFB63:
 	.cfi_startproc
-	beq	a2,zero,.L484
-.L493:
+	beq	a2,zero,.L483
+.L492:
 	lw	a4,0(a0)
 	lw	a5,0(a1)
 	addi	a2,a2,-1
 	addi	a0,a0,4
-	bne	a4,a5,.L492
+	bne	a4,a5,.L491
 	addi	a1,a1,4
-	bne	a2,zero,.L493
-.L484:
+	bne	a2,zero,.L492
+.L483:
 	li	a0,0
 	ret
-.L492:
+.L491:
 	sgt	a0,a4,a5
-	blt	a4,a5,.L494
+	blt	a4,a5,.L493
 	ret
-.L494:
+.L493:
 	li	a0,-1
 	ret
 	.cfi_endproc
@@ -2284,10 +2293,10 @@ wmemcpy:
 	.cfi_offset 8, -8
 	.cfi_offset 1, -4
 	mv	s0,a0
-	beq	a2,zero,.L496
+	beq	a2,zero,.L495
 	slli	a2,a2,2
 	call	memcpy
-.L496:
+.L495:
 	lw	ra,12(sp)
 	.cfi_restore 1
 	mv	a0,s0
@@ -2305,34 +2314,34 @@ wmemcpy:
 wmemmove:
 .LFB65:
 	.cfi_startproc
-	beq	a0,a1,.L509
+	beq	a0,a1,.L508
 	sub	a3,a0,a1
 	slli	a4,a2,2
 	addi	a5,a2,-1
-	bgeu	a3,a4,.L516
-	beq	a2,zero,.L509
+	bgeu	a3,a4,.L515
+	beq	a2,zero,.L508
 	slli	t4,a5,2
 	li	a2,-4
-.L506:
+.L505:
 	add	t2,a1,t4
 	lw	a7,0(t2)
 	add	t3,a0,t4
 	addi	t4,t4,-4
 	sw	a7,0(t3)
-	bne	t4,a2,.L506
+	bne	t4,a2,.L505
 	ret
-.L516:
+.L515:
 	mv	t1,a0
 	li	a6,-1
-	beq	a2,zero,.L509
-.L504:
+	beq	a2,zero,.L508
+.L503:
 	lw	t0,0(a1)
 	addi	a5,a5,-1
 	addi	a1,a1,4
 	sw	t0,0(t1)
 	addi	t1,t1,4
-	bne	a5,a6,.L504
-.L509:
+	bne	a5,a6,.L503
+.L508:
 	ret
 	.cfi_endproc
 .LFE65:
@@ -2344,15 +2353,15 @@ wmemset:
 .LFB66:
 	.cfi_startproc
 	addi	a5,a2,-1
-	beq	a2,zero,.L518
+	beq	a2,zero,.L517
 	mv	a4,a0
 	li	a3,-1
-.L519:
+.L518:
 	addi	a5,a5,-1
 	sw	a1,0(a4)
 	addi	a4,a4,4
-	bne	a5,a3,.L519
-.L518:
+	bne	a5,a3,.L518
+.L517:
 	ret
 	.cfi_endproc
 .LFE66:
@@ -2363,68 +2372,68 @@ wmemset:
 bcopy:
 .LFB67:
 	.cfi_startproc
-	bgeu	a0,a1,.L525
+	bgeu	a0,a1,.L524
 	add	a7,a1,a2
 	add	t2,a0,a2
-	beq	a2,zero,.L524
-.L527:
+	beq	a2,zero,.L523
+.L526:
 	lbu	a3,-1(t2)
 	addi	t2,t2,-1
 	addi	a7,a7,-1
 	sb	a3,0(a7)
-	bne	a0,t2,.L527
+	bne	a0,t2,.L526
 	ret
-.L525:
-	bne	a0,a1,.L553
 .L524:
+	bne	a0,a1,.L552
+.L523:
 	ret
-.L553:
-	beq	a2,zero,.L524
+.L552:
+	beq	a2,zero,.L523
 	addi	a5,a2,-1
 	li	a4,6
-	bleu	a5,a4,.L551
+	bleu	a5,a4,.L550
 	or	t0,a1,a0
 	andi	t1,t0,3
-	bne	t1,zero,.L551
+	bne	t1,zero,.L550
 	addi	a6,a0,1
 	sub	t2,a1,a6
 	sltiu	a3,t2,3
-	bne	a3,zero,.L528
+	bne	a3,zero,.L527
 	andi	a6,a2,-4
 	add	a7,a0,a6
 	mv	t4,a1
-.L529:
+.L528:
 	lw	t3,0(a0)
 	addi	a0,a0,4
 	addi	t4,t4,4
 	sw	t3,-4(t4)
-	bne	a7,a0,.L529
+	bne	a7,a0,.L528
 	add	a1,a1,a6
 	sub	a0,a2,a6
-	beq	a2,a6,.L524
+	beq	a2,a6,.L523
 	lbu	a2,0(a7)
 	li	t5,1
 	sb	a2,0(a1)
-	beq	a0,t5,.L524
+	beq	a0,t5,.L523
 	lbu	t6,1(a7)
 	li	a5,2
 	sb	t6,1(a1)
-	beq	a0,a5,.L524
+	beq	a0,a5,.L523
 	lbu	a4,2(a7)
 	sb	a4,2(a1)
 	ret
-.L551:
+.L550:
 	addi	a6,a0,1
-.L528:
+.L527:
 	add	t0,a0,a2
-	j	.L532
-.L554:
+	j	.L531
+.L553:
 	addi	a6,a6,1
-.L532:
+.L531:
 	lbu	t1,-1(a6)
 	addi	a1,a1,1
 	sb	t1,-1(a1)
-	bne	a6,t0,.L554
+	bne	a6,t0,.L553
 	ret
 	.cfi_endproc
 .LFE67:
@@ -2436,20 +2445,20 @@ rotl64:
 .LFB68:
 	.cfi_startproc
 	addi	a5,a2,-32
-	blt	a5,zero,.L556
+	blt	a5,zero,.L555
 	neg	a2,a2
 	andi	t5,a2,63
 	addi	a6,t5,-32
 	sll	t3,a0,a5
 	li	t4,0
-	blt	a6,zero,.L558
-.L560:
+	blt	a6,zero,.L557
+.L559:
 	srl	t0,a1,a6
 	li	a1,0
 	or	a0,t0,t4
 	or	a1,a1,t3
 	ret
-.L556:
+.L555:
 	li	a4,31
 	sub	t0,a4,a2
 	sll	a3,a1,a2
@@ -2460,8 +2469,8 @@ rotl64:
 	srl	t2,t1,t0
 	addi	a6,t5,-32
 	or	t3,t2,a3
-	bge	a6,zero,.L560
-.L558:
+	bge	a6,zero,.L559
+.L557:
 	li	a7,31
 	slli	a5,a1,1
 	sub	t6,a7,t5
@@ -2482,20 +2491,20 @@ rotr64:
 .LFB69:
 	.cfi_startproc
 	addi	a5,a2,-32
-	blt	a5,zero,.L562
+	blt	a5,zero,.L561
 	neg	a2,a2
 	andi	t5,a2,63
 	addi	a6,t5,-32
 	srl	t3,a1,a5
 	li	t4,0
-	blt	a6,zero,.L564
-.L566:
+	blt	a6,zero,.L563
+.L565:
 	sll	t0,a0,a6
 	li	a0,0
 	or	a0,a0,t3
 	or	a1,t0,t4
 	ret
-.L562:
+.L561:
 	li	a4,31
 	sub	t0,a4,a2
 	srl	a3,a0,a2
@@ -2506,8 +2515,8 @@ rotr64:
 	sll	t2,t1,t0
 	addi	a6,t5,-32
 	or	t3,t2,a3
-	bge	a6,zero,.L566
-.L564:
+	bge	a6,zero,.L565
+.L563:
 	li	a7,31
 	srli	a5,a0,1
 	sub	t6,a7,t5
@@ -2726,17 +2735,17 @@ ffs:
 	.cfi_startproc
 	li	a5,0
 	li	a3,32
-	j	.L581
-.L579:
-	beq	a5,a3,.L583
-.L581:
+	j	.L580
+.L578:
+	beq	a5,a3,.L582
+.L580:
 	srl	a4,a0,a5
 	andi	t0,a4,1
 	addi	a5,a5,1
-	beq	t0,zero,.L579
+	beq	t0,zero,.L578
 	mv	a0,a5
 	ret
-.L583:
+.L582:
 	li	a0,0
 	ret
 	.cfi_endproc
@@ -2749,19 +2758,19 @@ libiberty_ffs:
 .LFB82:
 	.cfi_startproc
 	mv	a5,a0
-	beq	a0,zero,.L587
+	beq	a0,zero,.L586
 	andi	a0,a0,1
-	bne	a0,zero,.L584
+	bne	a0,zero,.L583
 	li	a0,1
-.L586:
+.L585:
 	srai	a5,a5,1
 	andi	a4,a5,1
 	addi	a0,a0,1
-	beq	a4,zero,.L586
+	beq	a4,zero,.L585
 	ret
-.L587:
+.L586:
 	li	a0,0
-.L584:
+.L583:
 	ret
 	.cfi_endproc
 .LFE82:
@@ -2776,11 +2785,11 @@ gl_isinff:
 	flw	fa5,%lo(.LC1)(a5)
 	li	a0,1
 	flt.s	t0,fa0,fa5
-	bne	t0,zero,.L590
+	bne	t0,zero,.L589
 	lui	t1,%hi(.LC2)
 	flw	ft0,%lo(.LC2)(t1)
 	fgt.s	a0,fa0,ft0
-.L590:
+.L589:
 	ret
 	.cfi_endproc
 .LFE83:
@@ -2793,18 +2802,21 @@ gl_isinfd:
 	.cfi_startproc
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
-	sw	a0,8(sp)
-	sw	a1,12(sp)
+	fsd	fa0,0(sp)
+	lw	t0,0(sp)
+	lw	t1,4(sp)
 	lui	a5,%hi(.LC3)
-	fld	fa5,8(sp)
+	sw	t0,8(sp)
+	sw	t1,12(sp)
 	fld	fa4,%lo(.LC3)(a5)
+	fld	fa5,8(sp)
 	li	a0,1
-	flt.d	t0,fa5,fa4
-	bne	t0,zero,.L594
-	lui	t1,%hi(.LC4)
-	fld	ft0,%lo(.LC4)(t1)
+	flt.d	t2,fa5,fa4
+	bne	t2,zero,.L593
+	lui	a0,%hi(.LC4)
+	fld	ft0,%lo(.LC4)(a0)
 	fgt.d	a0,fa5,ft0
-.L594:
+.L593:
 	addi	sp,sp,16
 	.cfi_def_cfa_offset 0
 	jr	ra
@@ -2849,7 +2861,7 @@ gl_isinfl:
 	sw	s0,4(sp)
 	sw	s0,8(sp)
 	call	__lttf2
-	blt	a0,zero,.L601
+	blt	a0,zero,.L602
 	li	t1,2147418112
 	add	t2,t1,s0
 	mv	a1,sp
@@ -2873,7 +2885,7 @@ gl_isinfl:
 	addi	sp,sp,64
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L601:
+.L602:
 	.cfi_restore_state
 	lw	ra,60(sp)
 	.cfi_restore 1
@@ -2900,32 +2912,29 @@ gl_isinfl:
 _Qp_itoq:
 .LFB86:
 	.cfi_startproc
-	fcvt.d.w	fa5,a1
-	addi	sp,sp,-48
-	.cfi_def_cfa_offset 48
-	sw	s0,40(sp)
-	fsd	fa5,8(sp)
-	lw	a2,12(sp)
-	lw	a1,8(sp)
+	fcvt.d.w	fa0,a1
+	addi	sp,sp,-32
+	.cfi_def_cfa_offset 32
+	sw	s0,24(sp)
 	.cfi_offset 8, -8
 	mv	s0,a0
-	addi	a0,sp,16
-	sw	ra,44(sp)
+	mv	a0,sp
+	sw	ra,28(sp)
 	.cfi_offset 1, -4
 	call	__extenddftf2
-	lw	a2,16(sp)
-	lw	a3,20(sp)
-	lw	a4,24(sp)
-	lw	a5,28(sp)
-	lw	ra,44(sp)
+	lw	a2,0(sp)
+	lw	a3,4(sp)
+	lw	a4,8(sp)
+	lw	a5,12(sp)
+	lw	ra,28(sp)
 	.cfi_restore 1
 	sw	a2,0(s0)
 	sw	a3,4(s0)
 	sw	a4,8(s0)
 	sw	a5,12(s0)
-	lw	s0,40(sp)
+	lw	s0,24(sp)
 	.cfi_restore 8
-	addi	sp,sp,48
+	addi	sp,sp,32
 	.cfi_def_cfa_offset 0
 	jr	ra
 	.cfi_endproc
@@ -2938,42 +2947,42 @@ ldexpf:
 .LFB87:
 	.cfi_startproc
 	feq.s	a5,fa0,fa0
-	beq	a5,zero,.L606
+	beq	a5,zero,.L607
 	fadd.s	fa5,fa0,fa0
 	feq.s	t0,fa5,fa0
-	bne	t0,zero,.L606
-	blt	a0,zero,.L619
+	bne	t0,zero,.L607
+	blt	a0,zero,.L620
 	lui	t1,%hi(.LC7)
 	flw	ft0,%lo(.LC7)(t1)
-.L607:
-	andi	a1,a0,1
-	beq	a1,zero,.L608
-.L609:
-	fmul.s	fa0,fa0,ft0
 .L608:
+	andi	a1,a0,1
+	beq	a1,zero,.L609
+.L610:
+	fmul.s	fa0,fa0,ft0
+.L609:
 	srli	a2,a0,31
 	add	a0,a2,a0
 	srai	a0,a0,1
-	beq	a0,zero,.L606
+	beq	a0,zero,.L607
 	srli	a3,a0,31
 	andi	a4,a0,1
 	fmul.s	ft0,ft0,ft0
 	add	a6,a3,a0
-	bne	a4,zero,.L609
-.L620:
+	bne	a4,zero,.L610
+.L621:
 	srai	a0,a6,1
 	srli	a3,a0,31
 	andi	a4,a0,1
 	fmul.s	ft0,ft0,ft0
 	add	a6,a3,a0
-	bne	a4,zero,.L609
-	j	.L620
-.L606:
+	bne	a4,zero,.L610
+	j	.L621
+.L607:
 	ret
-.L619:
+.L620:
 	lui	t2,%hi(.LC8)
 	flw	ft0,%lo(.LC8)(t2)
-	j	.L607
+	j	.L608
 	.cfi_endproc
 .LFE87:
 	.size	ldexpf, .-ldexpf
@@ -2985,53 +2994,53 @@ ldexp:
 	.cfi_startproc
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
-	sw	a0,8(sp)
-	sw	a1,12(sp)
-	fld	fa5,8(sp)
-	feq.d	a5,fa5,fa5
-	beq	a5,zero,.L622
-	fadd.d	fa4,fa5,fa5
-	feq.d	t0,fa4,fa5
-	bne	t0,zero,.L622
-	blt	a2,zero,.L636
-	lui	t1,%hi(.LC9)
-	fld	ft0,%lo(.LC9)(t1)
-.L623:
-	andi	a0,a2,1
-	beq	a0,zero,.L624
-.L625:
-	fmul.d	fa5,fa5,ft0
+	fsd	fa0,0(sp)
+	lw	a5,0(sp)
+	lw	t0,4(sp)
+	sw	a5,8(sp)
+	sw	t0,12(sp)
+	fld	fa0,8(sp)
+	feq.d	t1,fa0,fa0
+	beq	t1,zero,.L623
+	fadd.d	fa5,fa0,fa0
+	feq.d	t2,fa5,fa0
+	bne	t2,zero,.L623
+	blt	a0,zero,.L637
+	lui	a1,%hi(.LC9)
+	fld	ft0,%lo(.LC9)(a1)
 .L624:
-	srli	a1,a2,31
-	add	a2,a1,a2
-	srai	a2,a2,1
-	beq	a2,zero,.L622
-	srli	a3,a2,31
-	andi	a4,a2,1
+	andi	a3,a0,1
+	beq	a3,zero,.L625
+.L626:
+	fmul.d	fa0,fa0,ft0
+.L625:
+	srli	a4,a0,31
+	add	a0,a4,a0
+	srai	a0,a0,1
+	beq	a0,zero,.L623
+	srli	a6,a0,31
+	andi	a7,a0,1
 	fmul.d	ft0,ft0,ft0
-	add	a6,a3,a2
-	bne	a4,zero,.L625
-.L637:
-	srai	a2,a6,1
-	srli	a3,a2,31
-	andi	a4,a2,1
+	add	t3,a6,a0
+	bne	a7,zero,.L626
+.L638:
+	srai	a0,t3,1
+	srli	a6,a0,31
+	andi	a7,a0,1
 	fmul.d	ft0,ft0,ft0
-	add	a6,a3,a2
-	bne	a4,zero,.L625
-	j	.L637
-.L622:
-	fsd	fa5,8(sp)
-	lw	a0,8(sp)
-	lw	a1,12(sp)
+	add	t3,a6,a0
+	bne	a7,zero,.L626
+	j	.L638
+.L623:
 	addi	sp,sp,16
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L636:
+.L637:
 	.cfi_restore_state
-	lui	t2,%hi(.LC10)
-	fld	ft0,%lo(.LC10)(t2)
-	j	.L623
+	lui	a2,%hi(.LC10)
+	fld	ft0,%lo(.LC10)(a2)
+	j	.L624
 	.cfi_endproc
 .LFE88:
 	.size	ldexp, .-ldexp
@@ -3074,7 +3083,7 @@ ldexpl:
 	.cfi_offset 1, -4
 	mv	s0,a2
 	call	__unordtf2
-	bne	a0,zero,.L639
+	bne	a0,zero,.L640
 	addi	a2,sp,16
 	addi	a1,sp,32
 	addi	a0,sp,48
@@ -3098,7 +3107,7 @@ ldexpl:
 	sw	a4,40(sp)
 	sw	a5,44(sp)
 	call	__netf2
-	beq	a0,zero,.L639
+	beq	a0,zero,.L640
 	sw	s6,80(sp)
 	sw	s7,76(sp)
 	sw	s8,72(sp)
@@ -3111,12 +3120,12 @@ ldexpl:
 	li	s7,0
 	li	s8,0
 	li	s9,1073610752
-	blt	s0,zero,.L641
+	blt	s0,zero,.L642
 	li	s9,1073741824
-.L641:
+.L642:
 	andi	t0,s0,1
-	beq	t0,zero,.L642
-.L643:
+	beq	t0,zero,.L643
+.L644:
 	mv	a2,sp
 	addi	a1,sp,16
 	addi	a0,sp,32
@@ -3133,12 +3142,12 @@ ldexpl:
 	lw	s3,36(sp)
 	lw	s2,40(sp)
 	lw	s1,44(sp)
-.L642:
+.L643:
 	srli	t1,s0,31
 	add	s0,t1,s0
 	srai	s0,s0,1
-	beq	s0,zero,.L654
-.L644:
+	beq	s0,zero,.L655
+.L645:
 	addi	a1,sp,32
 	addi	a0,sp,48
 	addi	a2,sp,16
@@ -3158,10 +3167,10 @@ ldexpl:
 	lw	s8,56(sp)
 	lw	s9,60(sp)
 	add	a1,t2,s0
-	bne	a0,zero,.L643
+	bne	a0,zero,.L644
 	srai	s0,a1,1
-	j	.L644
-.L654:
+	j	.L645
+.L655:
 	lw	s6,80(sp)
 	.cfi_restore 22
 	lw	s7,76(sp)
@@ -3170,7 +3179,7 @@ ldexpl:
 	.cfi_restore 24
 	lw	s9,68(sp)
 	.cfi_restore 25
-.L639:
+.L640:
 	lw	ra,108(sp)
 	.cfi_restore 1
 	lw	s0,104(sp)
@@ -3202,56 +3211,56 @@ ldexpl:
 memxor:
 .LFB90:
 	.cfi_startproc
-	beq	a2,zero,.L656
+	beq	a2,zero,.L657
 	addi	a5,a2,-1
 	li	a4,3
-	bleu	a5,a4,.L657
+	bleu	a5,a4,.L658
 	or	t0,a0,a1
 	and	t1,t0,a4
-	bne	t1,zero,.L657
+	bne	t1,zero,.L658
 	andi	a7,a2,-4
 	add	a6,a1,a7
 	mv	t4,a0
-.L658:
+.L659:
 	lw	a3,0(t4)
 	lw	t2,0(a1)
 	addi	a1,a1,4
 	addi	t4,t4,4
 	xor	t3,t2,a3
 	sw	t3,-4(t4)
-	bne	a6,a1,.L658
+	bne	a6,a1,.L659
 	add	t5,a0,a7
 	sub	t6,a2,a7
-	beq	a2,a7,.L656
+	beq	a2,a7,.L657
 	lbu	a5,0(t5)
 	lbu	a1,0(a6)
 	li	a2,1
 	xor	a4,a5,a1
 	sb	a4,0(t5)
-	beq	t6,a2,.L656
+	beq	t6,a2,.L657
 	lbu	t1,1(t5)
 	lbu	t0,1(a6)
 	li	a7,2
 	xor	t2,t0,t1
 	sb	t2,1(t5)
-	beq	t6,a7,.L656
+	beq	t6,a7,.L657
 	lbu	a3,2(t5)
 	lbu	a6,2(a6)
 	xor	t3,a6,a3
 	sb	t3,2(t5)
 	ret
-.L657:
+.L658:
 	add	t4,a1,a2
 	mv	t5,a0
-.L660:
+.L661:
 	lbu	a5,0(t5)
 	lbu	t6,0(a1)
 	addi	a1,a1,1
 	addi	t5,t5,1
 	xor	a2,t6,a5
 	sb	a2,-1(t5)
-	bne	t4,a1,.L660
-.L656:
+	bne	t4,a1,.L661
+.L657:
 	ret
 	.cfi_endproc
 .LFE90:
@@ -3263,30 +3272,30 @@ strncat:
 .LFB91:
 	.cfi_startproc
 	lbu	a5,0(a0)
-	beq	a5,zero,.L674
+	beq	a5,zero,.L675
 	mv	t1,a0
-.L669:
+.L670:
 	lbu	a4,1(t1)
 	addi	t1,t1,1
-	bne	a4,zero,.L669
-.L682:
-	beq	a2,zero,.L671
-.L684:
+	bne	a4,zero,.L670
+.L683:
+	beq	a2,zero,.L672
+.L685:
 	lbu	t0,0(a1)
 	addi	a2,a2,-1
 	addi	a1,a1,1
 	sb	t0,0(t1)
-	beq	t0,zero,.L683
+	beq	t0,zero,.L684
 	addi	t1,t1,1
-	bne	a2,zero,.L684
-.L671:
+	bne	a2,zero,.L685
+.L672:
 	sb	zero,0(t1)
 	ret
-.L683:
+.L684:
 	ret
-.L674:
+.L675:
 	mv	t1,a0
-	j	.L682
+	j	.L683
 	.cfi_endproc
 .LFE91:
 	.size	strncat, .-strncat
@@ -3298,16 +3307,16 @@ strnlen:
 	.cfi_startproc
 	mv	a5,a0
 	li	a0,0
-	beq	a1,zero,.L685
-.L686:
+	beq	a1,zero,.L686
+.L687:
 	add	a4,a5,a0
 	lbu	t0,0(a4)
-	bne	t0,zero,.L688
-.L685:
+	bne	t0,zero,.L689
+.L686:
 	ret
-.L688:
+.L689:
 	addi	a0,a0,1
-	bne	a1,a0,.L686
+	bne	a1,a0,.L687
 	ret
 	.cfi_endproc
 .LFE92:
@@ -3319,22 +3328,22 @@ strpbrk:
 .LFB93:
 	.cfi_startproc
 	lbu	a3,0(a0)
-	beq	a3,zero,.L699
-.L705:
+	beq	a3,zero,.L700
+.L706:
 	mv	a5,a1
-	j	.L698
-.L697:
-	beq	a4,a3,.L696
+	j	.L699
 .L698:
+	beq	a4,a3,.L697
+.L699:
 	lbu	a4,0(a5)
 	addi	a5,a5,1
-	bne	a4,zero,.L697
+	bne	a4,zero,.L698
 	lbu	a3,1(a0)
 	addi	a0,a0,1
-	bne	a3,zero,.L705
-.L699:
+	bne	a3,zero,.L706
+.L700:
 	li	a0,0
-.L696:
+.L697:
 	ret
 	.cfi_endproc
 .LFE93:
@@ -3347,15 +3356,15 @@ strrchr:
 	.cfi_startproc
 	mv	a5,a0
 	li	a3,0
-.L709:
+.L710:
 	lbu	a4,0(a5)
 	mv	a0,a3
-	bne	a4,a1,.L708
+	bne	a4,a1,.L709
 	mv	a0,a5
-.L708:
+.L709:
 	addi	a5,a5,1
 	mv	a3,a0
-	bne	a4,zero,.L709
+	bne	a4,zero,.L710
 	ret
 	.cfi_endproc
 .LFE94:
@@ -3368,48 +3377,48 @@ strstr:
 	.cfi_startproc
 	lbu	a7,0(a1)
 	mv	a3,a0
-	beq	a7,zero,.L725
+	beq	a7,zero,.L726
 	mv	a5,a1
-.L714:
+.L715:
 	lbu	a4,1(a5)
 	addi	a5,a5,1
-	bne	a4,zero,.L714
+	bne	a4,zero,.L715
 	sub	t3,a5,a1
 	mv	a0,a3
 	addi	t4,t3,-1
-	bne	a5,a1,.L732
+	bne	a5,a1,.L733
 	ret
-.L734:
+.L735:
 	addi	a3,a3,1
-	beq	t0,zero,.L733
-.L732:
+	beq	t0,zero,.L734
+.L733:
 	lbu	t0,0(a3)
-	bne	t0,a7,.L734
+	bne	t0,a7,.L735
 	add	t1,a3,t4
 	mv	a0,a1
 	mv	t2,a3
 	mv	a2,a7
-.L716:
-	beq	t2,t1,.L718
+.L717:
+	beq	t2,t1,.L719
 	addi	t2,t2,1
-	bne	t0,a2,.L719
+	bne	t0,a2,.L720
 	lbu	t0,0(t2)
 	lbu	a2,1(a0)
 	addi	a6,a0,1
-	beq	t0,zero,.L718
+	beq	t0,zero,.L719
 	mv	a0,a6
-	bne	a2,zero,.L716
-.L719:
+	bne	a2,zero,.L717
+.L720:
 	addi	a3,a3,1
-	j	.L732
-.L733:
+	j	.L733
+.L734:
 	li	a0,0
 	ret
-.L718:
-	bne	t0,a2,.L719
-.L725:
+.L719:
+	bne	t0,a2,.L720
+.L726:
 	mv	a0,a3
-.L712:
+.L713:
 	ret
 	.cfi_endproc
 .LFE95:
@@ -3420,39 +3429,39 @@ strstr:
 copysign:
 .LFB96:
 	.cfi_startproc
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	sw	a0,0(sp)
-	sw	a1,4(sp)
-	fld	fa5,0(sp)
-	fcvt.d.w	fa3,x0
-	sw	a2,8(sp)
-	sw	a3,12(sp)
-	flt.d	a5,fa5,fa3
-	fld	fa4,8(sp)
-	bne	a5,zero,.L749
-	fgt.d	t0,fa5,fa3
-	beq	t0,zero,.L739
-	flt.d	t1,fa4,fa3
-	bne	t1,zero,.L738
-.L739:
-	fsd	fa5,0(sp)
-	lw	a0,0(sp)
-	lw	a1,4(sp)
-	addi	sp,sp,16
+	addi	sp,sp,-32
+	.cfi_def_cfa_offset 32
+	fsd	fa0,0(sp)
+	lw	a5,0(sp)
+	lw	t0,4(sp)
+	fcvt.d.w	fa4,x0
+	sw	a5,8(sp)
+	sw	t0,12(sp)
+	fld	fa0,8(sp)
+	fsd	fa1,16(sp)
+	lw	t1,16(sp)
+	lw	t2,20(sp)
+	flt.d	a0,fa0,fa4
+	sw	t1,24(sp)
+	sw	t2,28(sp)
+	fld	fa5,24(sp)
+	bne	a0,zero,.L750
+	fgt.d	a1,fa0,fa4
+	beq	a1,zero,.L740
+	flt.d	a2,fa5,fa4
+	bne	a2,zero,.L739
+.L740:
+	addi	sp,sp,32
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L749:
+.L750:
 	.cfi_restore_state
-	fgt.d	t2,fa4,fa3
-	beq	t2,zero,.L739
-.L738:
-	fneg.d	fa5,fa5
-	fsd	fa5,0(sp)
-	lw	a0,0(sp)
-	lw	a1,4(sp)
-	addi	sp,sp,16
+	fgt.d	a3,fa5,fa4
+	beq	a3,zero,.L740
+.L739:
+	fneg.d	fa0,fa0
+	addi	sp,sp,32
 	.cfi_def_cfa_offset 0
 	jr	ra
 	.cfi_endproc
@@ -3464,49 +3473,49 @@ copysign:
 memmem:
 .LFB97:
 	.cfi_startproc
-	beq	a3,zero,.L750
-	bltu	a1,a3,.L761
+	beq	a3,zero,.L751
+	bltu	a1,a3,.L762
 	sub	a1,a1,a3
 	add	a7,a0,a1
-	bgtu	a0,a7,.L761
+	bgtu	a0,a7,.L762
 	lbu	t4,0(a2)
 	addi	a3,a3,-1
 	addi	a2,a2,1
-.L756:
+.L757:
 	lbu	a5,0(a0)
 	addi	t1,a0,1
-	beq	a5,t4,.L766
+	beq	a5,t4,.L767
 	mv	a0,t1
-.L752:
-	bgeu	a7,a0,.L756
-.L761:
+.L753:
+	bgeu	a7,a0,.L757
+.L762:
 	li	a0,0
-.L750:
+.L751:
 	ret
-.L766:
+.L767:
 	mv	t5,a2
-	beq	a3,zero,.L750
-.L755:
+	beq	a3,zero,.L751
+.L756:
 	mv	t2,t1
 	add	t6,t1,a3
-	j	.L753
+	j	.L754
+.L755:
+	beq	t2,t6,.L751
 .L754:
-	beq	t2,t6,.L750
-.L753:
 	lbu	a6,0(t2)
 	lbu	t0,0(t5)
 	addi	t2,t2,1
 	addi	t5,t5,1
-	beq	a6,t0,.L754
-	bgtu	t1,a7,.L761
+	beq	a6,t0,.L755
+	bgtu	t1,a7,.L762
 	lbu	a4,0(t1)
 	addi	a0,t1,1
-	bne	a4,t4,.L752
+	bne	a4,t4,.L753
 	mv	t3,t1
 	mv	t5,a2
 	mv	t1,a0
 	mv	a0,t3
-	j	.L755
+	j	.L756
 	.cfi_endproc
 .LFE97:
 	.size	memmem, .-memmem
@@ -3526,9 +3535,9 @@ mempcpy:
 	.cfi_offset 1, -4
 	mv	s0,a2
 	mv	s1,a0
-	beq	a2,zero,.L768
+	beq	a2,zero,.L769
 	call	memmove
-.L768:
+.L769:
 	add	a0,s1,s0
 	lw	ra,12(sp)
 	.cfi_restore 1
@@ -3550,89 +3559,86 @@ frexp:
 	.cfi_startproc
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
-	sw	a0,8(sp)
-	sw	a1,12(sp)
-	fld	fa5,8(sp)
-	fcvt.d.w	fa4,x0
-	flt.d	a5,fa5,fa4
-	bne	a5,zero,.L801
-	lui	t5,%hi(.LC15)
-	fld	fa3,%lo(.LC15)(t5)
+	fsd	fa0,0(sp)
+	lw	a5,0(sp)
+	lw	t0,4(sp)
+	fcvt.d.w	fa5,x0
+	sw	a5,8(sp)
+	sw	t0,12(sp)
+	fld	fa0,8(sp)
+	flt.d	t1,fa0,fa5
+	bne	t1,zero,.L802
+	lui	a5,%hi(.LC15)
+	fld	fa4,%lo(.LC15)(a5)
+	li	t6,0
+	fge.d	a4,fa0,fa4
+	beq	a4,zero,.L803
+.L777:
+	lui	t0,%hi(.LC10)
+	fld	ft5,%lo(.LC10)(t0)
+	fld	ft6,%lo(.LC15)(a5)
 	li	t4,0
-	fge.d	a4,fa5,fa3
-	beq	a4,zero,.L802
-.L776:
-	lui	t6,%hi(.LC10)
-	fld	ft5,%lo(.LC10)(t6)
-	fld	ft6,%lo(.LC15)(t5)
-	li	a7,0
-.L782:
-	fmul.d	fa5,fa5,ft5
-	addi	a7,a7,1
-	fge.d	a5,fa5,ft6
-	bne	a5,zero,.L782
-	sw	a7,0(a2)
-	beq	t4,zero,.L773
-.L804:
-	fneg.d	fa5,fa5
-.L773:
-	fsd	fa5,8(sp)
-	lw	a0,8(sp)
-	lw	a1,12(sp)
+.L783:
+	fmul.d	fa0,fa0,ft5
+	addi	t4,t4,1
+	fge.d	t1,fa0,ft6
+	bne	t1,zero,.L783
+	sw	t4,0(a0)
+	beq	t6,zero,.L774
+.L805:
+	fneg.d	fa0,fa0
+.L774:
+	addi	sp,sp,16
+	.cfi_remember_state
+	.cfi_def_cfa_offset 0
+	jr	ra
+.L803:
+	.cfi_restore_state
+	lui	t2,%hi(.LC10)
+	fld	ft0,%lo(.LC10)(t2)
+	flt.d	a1,fa0,ft0
+	beq	a1,zero,.L780
+	feq.d	a2,fa0,fa5
+	beq	a2,zero,.L789
+.L780:
+	sw	zero,0(a0)
 	addi	sp,sp,16
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
 .L802:
 	.cfi_restore_state
-	lui	t0,%hi(.LC10)
-	fld	ft0,%lo(.LC10)(t0)
-	flt.d	t1,fa5,ft0
-	beq	t1,zero,.L779
-	feq.d	t2,fa5,fa4
-	beq	t2,zero,.L788
-.L779:
-	fsd	fa5,8(sp)
-	sw	zero,0(a2)
-	lw	a0,8(sp)
-	lw	a1,12(sp)
-	addi	sp,sp,16
-	.cfi_remember_state
-	.cfi_def_cfa_offset 0
-	jr	ra
-.L801:
-	.cfi_restore_state
-	lui	a0,%hi(.LC13)
-	fld	ft2,%lo(.LC13)(a0)
-	fneg.d	ft1,fa5
-	fle.d	a1,fa5,ft2
-	beq	a1,zero,.L803
-	fmv.d	fa5,ft1
-	li	t4,1
-	lui	t5,%hi(.LC15)
-	j	.L776
-.L803:
-	lui	a3,%hi(.LC14)
-	fld	ft3,%lo(.LC14)(a3)
-	fgt.d	a6,fa5,ft3
-	beq	a6,zero,.L779
-	li	t4,1
-	lui	t0,%hi(.LC10)
-.L777:
-	fmv.d	fa5,ft1
-	fld	ft4,%lo(.LC10)(t0)
-	li	a7,0
-.L784:
-	fadd.d	fa5,fa5,fa5
-	addi	a7,a7,-1
-	flt.d	t3,fa5,ft4
-	bne	t3,zero,.L784
-	sw	a7,0(a2)
-	bne	t4,zero,.L804
-	j	.L773
-.L788:
-	fmv.d	ft1,fa5
+	lui	a3,%hi(.LC13)
+	fld	ft2,%lo(.LC13)(a3)
+	fneg.d	ft1,fa0
+	fle.d	a6,fa0,ft2
+	beq	a6,zero,.L804
+	fmv.d	fa0,ft1
+	li	t6,1
+	lui	a5,%hi(.LC15)
 	j	.L777
+.L804:
+	lui	a7,%hi(.LC14)
+	fld	ft3,%lo(.LC14)(a7)
+	fgt.d	t3,fa0,ft3
+	beq	t3,zero,.L780
+	li	t6,1
+	lui	t2,%hi(.LC10)
+.L778:
+	fmv.d	fa0,ft1
+	fld	ft4,%lo(.LC10)(t2)
+	li	t4,0
+.L785:
+	fadd.d	fa0,fa0,fa0
+	addi	t4,t4,-1
+	flt.d	t5,fa0,ft4
+	bne	t5,zero,.L785
+	sw	t4,0(a0)
+	bne	t6,zero,.L805
+	j	.L774
+.L789:
+	fmv.d	ft1,fa0
+	j	.L778
 	.cfi_endproc
 .LFE99:
 	.size	frexp, .-frexp
@@ -3647,8 +3653,8 @@ __muldi3:
 	mv	a7,a1
 	li	a0,0
 	li	a1,0
-	beq	a5,zero,.L809
-.L808:
+	beq	a5,zero,.L810
+.L809:
 	andi	a4,t4,1
 	neg	t0,a4
 	and	t2,t0,a2
@@ -3668,9 +3674,9 @@ __muldi3:
 	add	a1,a5,a1
 	or	a3,t0,a3
 	slli	a2,a2,1
-	bne	a4,zero,.L808
+	bne	a4,zero,.L809
 	ret
-.L809:
+.L810:
 	ret
 	.cfi_endproc
 .LFE100:
@@ -3684,49 +3690,49 @@ udivmodsi4:
 	mv	a5,a0
 	li	t2,1
 	li	a0,32
-	bltu	a1,a5,.L812
-	j	.L838
-.L816:
+	bltu	a1,a5,.L813
+	j	.L839
+.L817:
 	slli	a1,a1,1
 	slli	t2,t2,1
-	bleu	a5,a1,.L814
-	beq	a0,zero,.L815
-.L812:
+	bleu	a5,a1,.L815
+	beq	a0,zero,.L816
+.L813:
 	addi	a0,a0,-1
-	bge	a1,zero,.L816
-.L817:
+	bge	a1,zero,.L817
+.L818:
 	li	a0,0
-.L822:
+.L823:
 	sltu	a6,a5,a1
 	xori	a3,a6,1
 	neg	t0,a3
 	and	t1,t2,t0
 	sub	a7,a5,a1
 	srli	t2,t2,1
-	bne	a6,zero,.L819
+	bne	a6,zero,.L820
 	mv	a5,a7
-.L819:
+.L820:
 	or	a0,a0,t1
 	srli	a1,a1,1
-	bne	t2,zero,.L822
-.L815:
-	bne	a2,zero,.L839
-.L811:
+	bne	t2,zero,.L823
+.L816:
+	bne	a2,zero,.L840
+.L812:
 	ret
-.L814:
-	bne	t2,zero,.L817
+.L815:
+	bne	t2,zero,.L818
 	li	a0,0
-	beq	a2,zero,.L811
-.L839:
+	beq	a2,zero,.L812
+.L840:
 	mv	a0,a5
 	ret
-.L838:
+.L839:
 	sgtu	a4,a1,a5
 	xori	a0,a4,1
 	sub	a1,a5,a1
-	bne	a4,zero,.L815
+	bne	a4,zero,.L816
 	mv	a5,a1
-	j	.L815
+	j	.L816
 	.cfi_endproc
 .LFE101:
 	.size	udivmodsi4, .-udivmodsi4
@@ -3736,7 +3742,7 @@ udivmodsi4:
 __clrsbqi2:
 .LFB102:
 	.cfi_startproc
-	beq	a0,zero,.L842
+	beq	a0,zero,.L843
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
 	slli	a0,a0,8
@@ -3749,7 +3755,7 @@ __clrsbqi2:
 	addi	sp,sp,16
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L842:
+.L843:
 	li	a0,7
 	ret
 	.cfi_endproc
@@ -3766,8 +3772,8 @@ __clrsbdi2:
 	mv	a4,a1
 	xor	a0,a0,a3
 	xor	a1,a1,a3
-	beq	a5,a3,.L856
-.L851:
+	beq	a5,a3,.L857
+.L852:
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
 	sw	ra,12(sp)
@@ -3779,8 +3785,8 @@ __clrsbdi2:
 	addi	sp,sp,16
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L856:
-	bne	a4,a5,.L851
+.L857:
+	bne	a4,a5,.L852
 	li	a0,63
 	ret
 	.cfi_endproc
@@ -3794,17 +3800,17 @@ __mulsi3:
 	.cfi_startproc
 	mv	a4,a0
 	li	a0,0
-	beq	a4,zero,.L860
-.L859:
+	beq	a4,zero,.L861
+.L860:
 	andi	a5,a4,1
 	neg	t0,a5
 	and	t1,t0,a1
 	srli	a4,a4,1
 	add	a0,a0,t1
 	slli	a1,a1,1
-	bne	a4,zero,.L859
+	bne	a4,zero,.L860
 	ret
-.L860:
+.L861:
 	ret
 	.cfi_endproc
 .LFE104:
@@ -3817,97 +3823,97 @@ __cmovd:
 	.cfi_startproc
 	srli	a3,a2,3
 	andi	t1,a2,-8
-	bltu	a0,a1,.L866
+	bltu	a0,a1,.L867
 	add	a5,a1,a2
-	bleu	a0,a5,.L895
-.L866:
-	beq	a3,zero,.L896
+	bleu	a0,a5,.L896
+.L867:
+	beq	a3,zero,.L897
 	slli	t3,a3,3
 	add	t4,t3,a1
 	mv	a3,a1
 	mv	a5,a0
-.L869:
+.L870:
 	lw	t5,0(a3)
 	lw	t6,4(a3)
 	addi	a3,a3,8
 	sw	t5,0(a5)
 	sw	t6,4(a5)
 	addi	a5,a5,8
-	bne	a3,t4,.L869
-	bleu	a2,t1,.L862
+	bne	a3,t4,.L870
+	bleu	a2,t1,.L863
 	sub	t0,a2,t1
 	addi	a6,t0,-1
 	li	a4,6
-	bleu	a6,a4,.L897
+	bleu	a6,a4,.L898
 	addi	t2,t1,1
 	add	a7,a1,t2
 	add	a4,a0,t1
 	sub	t3,a4,a7
 	sltiu	t4,t3,3
 	add	a5,a1,t1
-	bne	t4,zero,.L871
+	bne	t4,zero,.L872
 	or	t5,a5,a4
 	andi	t6,t5,3
-	bne	t6,zero,.L871
+	bne	t6,zero,.L872
 	andi	t2,t0,-4
 	add	a6,a5,t2
-.L872:
+.L873:
 	lw	a3,0(a5)
 	addi	a5,a5,4
 	addi	a4,a4,4
 	sw	a3,-4(a4)
-	bne	a5,a6,.L872
+	bne	a5,a6,.L873
 	add	t1,t1,t2
-	beq	t0,t2,.L862
+	beq	t0,t2,.L863
 	add	a5,a1,t1
 	lbu	t0,0(a5)
 	add	a4,a0,t1
 	addi	a7,t1,1
 	sb	t0,0(a4)
-	bleu	a2,a7,.L862
+	bleu	a2,a7,.L863
 	add	t3,a1,a7
 	lbu	t4,0(t3)
 	add	t5,a0,a7
 	addi	t6,t1,2
 	sb	t4,0(t5)
-	bleu	a2,t6,.L862
+	bleu	a2,t6,.L863
 	add	a1,a1,t6
 	lbu	a2,0(a1)
 	add	a0,a0,t6
 	sb	a2,0(a0)
 	ret
-.L895:
+.L896:
 	addi	a7,a2,-1
 	li	a6,-1
-	beq	a2,zero,.L862
-.L867:
+	beq	a2,zero,.L863
+.L868:
 	add	a4,a1,a7
 	lbu	t0,0(a4)
 	add	t2,a0,a7
 	addi	a7,a7,-1
 	sb	t0,0(t2)
-	bne	a7,a6,.L867
-.L862:
-	ret
-.L896:
-	add	a4,a0,t1
-	add	a5,a1,t1
-	beq	a2,zero,.L898
-.L871:
-	add	t2,a1,a2
-.L874:
-	lbu	a6,0(a5)
-	addi	a5,a5,1
-	addi	a4,a4,1
-	sb	a6,-1(a4)
-	bne	a5,t2,.L874
-	ret
-.L898:
+	bne	a7,a6,.L868
+.L863:
 	ret
 .L897:
 	add	a4,a0,t1
 	add	a5,a1,t1
-	j	.L871
+	beq	a2,zero,.L899
+.L872:
+	add	t2,a1,a2
+.L875:
+	lbu	a6,0(a5)
+	addi	a5,a5,1
+	addi	a4,a4,1
+	sb	a6,-1(a4)
+	bne	a5,t2,.L875
+	ret
+.L899:
+	ret
+.L898:
+	add	a4,a0,t1
+	add	a5,a1,t1
+	j	.L872
 	.cfi_endproc
 .LFE105:
 	.size	__cmovd, .-__cmovd
@@ -3918,72 +3924,72 @@ __cmovh:
 .LFB106:
 	.cfi_startproc
 	srli	a7,a2,1
-	bltu	a0,a1,.L903
+	bltu	a0,a1,.L904
 	add	a5,a1,a2
-	bleu	a0,a5,.L926
-.L903:
-	beq	a7,zero,.L902
+	bleu	a0,a5,.L927
+.L904:
+	beq	a7,zero,.L903
 	addi	t2,a7,-1
 	li	t3,8
-	bleu	t2,t3,.L906
+	bleu	t2,t3,.L907
 	or	t4,a1,a0
 	andi	t5,t4,3
-	bne	t5,zero,.L906
+	bne	t5,zero,.L907
 	addi	t6,a1,2
-	beq	a0,t6,.L906
+	beq	a0,t6,.L907
 	andi	t0,a2,-4
 	add	a6,a1,t0
 	srli	t1,a2,2
 	mv	a5,a1
 	mv	a4,a0
-.L907:
+.L908:
 	lw	a3,0(a5)
 	addi	a5,a5,4
 	addi	a4,a4,4
 	sw	a3,-4(a4)
-	bne	a5,a6,.L907
+	bne	a5,a6,.L908
 	slli	t2,t1,1
-	beq	a7,t2,.L902
+	beq	a7,t2,.L903
 	add	a7,a1,t0
 	lh	t3,0(a7)
 	add	t4,a0,t0
 	sh	t3,0(t4)
-.L902:
+.L903:
 	andi	a3,a2,1
-	beq	a3,zero,.L899
-.L927:
+	beq	a3,zero,.L900
+.L928:
 	add	a1,a1,a2
 	lbu	a5,-1(a1)
 	add	a0,a0,a2
 	sb	a5,-1(a0)
 	ret
-.L926:
+.L927:
 	addi	t1,a2,-1
 	li	a6,-1
-	beq	a2,zero,.L899
-.L904:
+	beq	a2,zero,.L900
+.L905:
 	add	a4,a1,t1
 	lbu	a3,0(a4)
 	add	t0,a0,t1
 	addi	t1,t1,-1
 	sb	a3,0(t0)
-	bne	t1,a6,.L904
-.L899:
+	bne	t1,a6,.L905
+.L900:
 	ret
-.L906:
+.L907:
 	slli	t5,a7,1
 	add	t6,t5,a1
 	mv	a6,a1
 	mv	t1,a0
-.L909:
+.L910:
 	lh	t0,0(a6)
 	addi	a6,a6,2
 	addi	t1,t1,2
 	sh	t0,-2(t1)
-	bne	t6,a6,.L909
+	bne	t6,a6,.L910
 	andi	a3,a2,1
-	beq	a3,zero,.L899
-	j	.L927
+	beq	a3,zero,.L900
+	j	.L928
 	.cfi_endproc
 .LFE106:
 	.size	__cmovh, .-__cmovh
@@ -3995,95 +4001,95 @@ __cmovw:
 	.cfi_startproc
 	srli	a6,a2,2
 	andi	a7,a2,-4
-	bltu	a0,a1,.L932
+	bltu	a0,a1,.L933
 	add	a5,a1,a2
-	bleu	a0,a5,.L961
-.L932:
-	beq	a6,zero,.L962
+	bleu	a0,a5,.L962
+.L933:
+	beq	a6,zero,.L963
 	slli	t3,a6,2
 	add	t4,t3,a1
 	mv	t6,a1
 	mv	a6,a0
-.L935:
+.L936:
 	lw	t5,0(t6)
 	addi	t6,t6,4
 	addi	a6,a6,4
 	sw	t5,-4(a6)
-	bne	t6,t4,.L935
-	bleu	a2,a7,.L928
+	bne	t6,t4,.L936
+	bleu	a2,a7,.L929
 	sub	t0,a2,a7
 	addi	a4,t0,-1
 	li	a5,6
-	bleu	a4,a5,.L963
+	bleu	a4,a5,.L964
 	addi	a3,a7,1
 	add	t1,a1,a3
 	add	a4,a0,a7
 	sub	t2,a4,t1
 	sltiu	t3,t2,3
 	add	t1,a1,a7
-	bne	t3,zero,.L937
+	bne	t3,zero,.L938
 	or	t4,t1,a4
 	andi	t5,t4,3
-	bne	t5,zero,.L937
+	bne	t5,zero,.L938
 	andi	t6,t0,-4
 	add	a6,t1,t6
-.L938:
+.L939:
 	lw	a3,0(t1)
 	addi	t1,t1,4
 	addi	a4,a4,4
 	sw	a3,-4(a4)
-	bne	t1,a6,.L938
+	bne	t1,a6,.L939
 	add	a7,a7,t6
-	beq	t0,t6,.L928
+	beq	t0,t6,.L929
 	add	t0,a1,a7
 	lbu	t1,0(t0)
 	add	a4,a0,a7
 	addi	a5,a7,1
 	sb	t1,0(a4)
-	bleu	a2,a5,.L928
+	bleu	a2,a5,.L929
 	add	t2,a1,a5
 	lbu	t3,0(t2)
 	add	t4,a0,a5
 	addi	t5,a7,2
 	sb	t3,0(t4)
-	bleu	a2,t5,.L928
+	bleu	a2,t5,.L929
 	add	a1,a1,t5
 	lbu	a2,0(a1)
 	add	a0,a0,t5
 	sb	a2,0(a0)
 	ret
-.L961:
+.L962:
 	addi	t2,a2,-1
 	li	t0,-1
-	beq	a2,zero,.L928
-.L933:
+	beq	a2,zero,.L929
+.L934:
 	add	a4,a1,t2
 	lbu	a3,0(a4)
 	add	t1,a0,t2
 	addi	t2,t2,-1
 	sb	a3,0(t1)
-	bne	t2,t0,.L933
-.L928:
-	ret
-.L962:
-	add	a4,a0,a7
-	add	t1,a1,a7
-	beq	a2,zero,.L964
-.L937:
-	add	t6,a1,a2
-.L940:
-	lbu	a6,0(t1)
-	addi	t1,t1,1
-	addi	a4,a4,1
-	sb	a6,-1(a4)
-	bne	t1,t6,.L940
-	ret
-.L964:
+	bne	t2,t0,.L934
+.L929:
 	ret
 .L963:
 	add	a4,a0,a7
 	add	t1,a1,a7
-	j	.L937
+	beq	a2,zero,.L965
+.L938:
+	add	t6,a1,a2
+.L941:
+	lbu	a6,0(t1)
+	addi	t1,t1,1
+	addi	a4,a4,1
+	sb	a6,-1(a4)
+	bne	t1,t6,.L941
+	ret
+.L965:
+	ret
+.L964:
+	add	a4,a0,a7
+	add	t1,a1,a7
+	j	.L938
 	.cfi_endproc
 .LFE107:
 	.size	__cmovw, .-__cmovw
@@ -4112,15 +4118,8 @@ __modi:
 __uitod:
 .LFB109:
 	.cfi_startproc
-	fcvt.d.wu	fa5,a0
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	fsd	fa5,8(sp)
-	lw	a0,8(sp)
-	lw	a1,12(sp)
-	addi	sp,sp,16
-	.cfi_def_cfa_offset 0
-	jr	ra
+	fcvt.d.wu	fa0,a0
+	ret
 	.cfi_endproc
 .LFE109:
 	.size	__uitod, .-__uitod
@@ -4624,20 +4623,26 @@ __mspabi_cmpf:
 __mspabi_cmpd:
 .LFB123:
 	.cfi_startproc
-	addi	sp,sp,-16
-	.cfi_def_cfa_offset 16
-	sw	a0,0(sp)
-	sw	a2,8(sp)
-	sw	a1,4(sp)
-	sw	a3,12(sp)
-	fld	fa4,0(sp)
-	fld	fa5,8(sp)
+	addi	sp,sp,-32
+	.cfi_def_cfa_offset 32
+	fsd	fa0,0(sp)
+	fsd	fa1,16(sp)
+	lw	a4,0(sp)
+	lw	a5,16(sp)
+	lw	t0,4(sp)
+	lw	t1,20(sp)
+	sw	a4,8(sp)
+	sw	a5,24(sp)
+	sw	t0,12(sp)
+	sw	t1,28(sp)
+	fld	fa4,8(sp)
+	fld	fa5,24(sp)
 	li	a0,-1
-	flt.d	a5,fa4,fa5
-	bne	a5,zero,.L1067
+	flt.d	t2,fa4,fa5
+	bne	t2,zero,.L1067
 	fgt.d	a0,fa4,fa5
 .L1067:
-	addi	sp,sp,16
+	addi	sp,sp,32
 	.cfi_def_cfa_offset 0
 	jr	ra
 	.cfi_endproc
@@ -4694,16 +4699,16 @@ __mulhi3:
 .LFB126:
 	.cfi_startproc
 	mv	a3,a0
-	blt	a1,zero,.L1089
-	beq	a1,zero,.L1081
+	blt	a1,zero,.L1091
+	beq	a1,zero,.L1083
 	li	a2,0
-.L1077:
+.L1079:
 	li	t2,32
 	li	a0,0
-	j	.L1080
-.L1090:
-	beq	t2,zero,.L1079
-.L1080:
+	j	.L1082
+.L1092:
+	beq	t2,zero,.L1081
+.L1082:
 	andi	a5,a1,1
 	neg	t0,a5
 	and	t1,t0,a3
@@ -4712,19 +4717,19 @@ __mulhi3:
 	andi	t2,a4,0xff
 	add	a0,a0,t1
 	slli	a3,a3,1
-	bne	a1,zero,.L1090
-.L1079:
-	beq	a2,zero,.L1075
+	bne	a1,zero,.L1092
+.L1081:
+	beq	a2,zero,.L1077
 	neg	a0,a0
 	ret
-.L1081:
+.L1083:
 	li	a0,0
-.L1075:
+.L1077:
 	ret
-.L1089:
+.L1091:
 	neg	a1,a1
 	li	a2,1
-	j	.L1077
+	j	.L1079
 	.cfi_endproc
 .LFE126:
 	.size	__mulhi3, .-__mulhi3
@@ -4736,56 +4741,56 @@ __divsi3:
 	.cfi_startproc
 	li	a5,1
 	li	a7,0
-	blt	a0,zero,.L1122
-.L1092:
-	bge	a1,zero,.L1093
+	blt	a0,zero,.L1124
+.L1094:
+	bge	a1,zero,.L1095
 	neg	a1,a1
 	mv	a7,a5
-.L1093:
+.L1095:
 	mv	a3,a0
 	mv	t3,a1
 	li	a2,32
 	li	a4,1
-	bgtu	a0,a1,.L1094
-	j	.L1120
-.L1098:
-	beq	a2,zero,.L1099
-.L1094:
+	bgtu	a0,a1,.L1096
+	j	.L1122
+.L1100:
+	beq	a2,zero,.L1101
+.L1096:
 	slli	t3,t3,1
 	addi	a2,a2,-1
 	slli	a4,a4,1
-	bgtu	a0,t3,.L1098
-.L1099:
+	bgtu	a0,t3,.L1100
+.L1101:
 	li	a0,0
-	beq	a4,zero,.L1097
-.L1096:
+	beq	a4,zero,.L1099
+.L1098:
 	sltu	a1,a3,t3
 	xori	t0,a1,1
 	neg	t1,t0
 	and	t2,a4,t1
 	sub	a6,a3,t3
 	srli	a4,a4,1
-	bne	a1,zero,.L1101
+	bne	a1,zero,.L1103
 	mv	a3,a6
-.L1101:
+.L1103:
 	or	a0,a0,t2
 	srli	t3,t3,1
-	bne	a4,zero,.L1096
-.L1097:
-	beq	a7,zero,.L1091
+	bne	a4,zero,.L1098
+.L1099:
+	beq	a7,zero,.L1093
 	neg	a0,a0
 	ret
-.L1091:
+.L1093:
 	ret
-.L1122:
+.L1124:
 	neg	a0,a0
 	li	a5,0
 	li	a7,1
-	j	.L1092
-.L1120:
+	j	.L1094
+.L1122:
 	sltu	a0,a0,a1
 	seqz	a0,a0
-	j	.L1097
+	j	.L1099
 	.cfi_endproc
 .LFE127:
 	.size	__divsi3, .-__divsi3
@@ -4797,49 +4802,49 @@ __modsi3:
 	.cfi_startproc
 	mv	a2,a0
 	li	a6,0
-	bge	a0,zero,.L1124
+	bge	a0,zero,.L1126
 	neg	a2,a0
 	li	a6,1
-.L1124:
+.L1126:
 	srai	a5,a1,31
 	xor	a1,a5,a1
 	sub	t2,a1,a5
 	mv	a0,a2
 	li	a3,32
 	li	t0,1
-	bgtu	a2,t2,.L1125
-	j	.L1151
-.L1129:
-	beq	a3,zero,.L1130
-.L1125:
+	bgtu	a2,t2,.L1127
+	j	.L1153
+.L1131:
+	beq	a3,zero,.L1132
+.L1127:
 	slli	t2,t2,1
 	addi	a3,a3,-1
 	slli	t0,t0,1
-	bgtu	a2,t2,.L1129
-.L1130:
-	beq	t0,zero,.L1153
-.L1127:
+	bgtu	a2,t2,.L1131
+.L1132:
+	beq	t0,zero,.L1155
+.L1129:
 	srli	t0,t0,1
 	sub	t1,a0,t2
-	bltu	a0,t2,.L1132
+	bltu	a0,t2,.L1134
 	mv	a0,t1
-.L1132:
+.L1134:
 	srli	t2,t2,1
-	bne	t0,zero,.L1127
-.L1128:
-	beq	a6,zero,.L1123
+	bne	t0,zero,.L1129
+.L1130:
+	beq	a6,zero,.L1125
 	neg	a0,a0
 	ret
-.L1123:
+.L1125:
 	ret
-.L1153:
+.L1155:
 	mv	a0,a2
-	j	.L1128
-.L1151:
+	j	.L1130
+.L1153:
 	sub	a4,a2,t2
-	bltu	a2,t2,.L1128
+	bltu	a2,t2,.L1130
 	mv	a0,a4
-	j	.L1128
+	j	.L1130
 	.cfi_endproc
 .LFE128:
 	.size	__modsi3, .-__modsi3
@@ -4850,138 +4855,138 @@ __udivmodhi4:
 .LFB129:
 	.cfi_startproc
 	mv	a4,a0
-	bgeu	a1,a0,.L1338
+	bgeu	a1,a0,.L1340
 	slli	t2,a1,16
 	srai	a6,t2,16
-	blt	a6,zero,.L1159
+	blt	a6,zero,.L1161
 	slli	t4,a1,1
 	slli	t5,t4,16
 	srli	a5,t5,16
-	bleu	a0,a5,.L1232
+	bleu	a0,a5,.L1234
 	slli	t6,a5,16
 	srai	t0,t6,16
-	blt	t0,zero,.L1232
+	blt	t0,zero,.L1234
 	slli	t1,a1,2
 	slli	a3,t1,16
 	srli	a5,a3,16
-	bleu	a0,a5,.L1234
+	bleu	a0,a5,.L1236
 	slli	a0,a5,16
 	srai	t2,a0,16
-	blt	t2,zero,.L1234
+	blt	t2,zero,.L1236
 	slli	a5,a1,3
 	slli	a6,a5,16
 	srli	a5,a6,16
-	bleu	a4,a5,.L1236
+	bleu	a4,a5,.L1238
 	slli	a7,a5,16
 	srai	t3,a7,16
-	blt	t3,zero,.L1236
+	blt	t3,zero,.L1238
 	slli	t4,a1,4
 	slli	t5,t4,16
 	srli	a5,t5,16
-	bleu	a4,a5,.L1238
+	bleu	a4,a5,.L1240
 	slli	t6,a5,16
 	srai	t0,t6,16
-	blt	t0,zero,.L1238
+	blt	t0,zero,.L1240
 	slli	t1,a1,5
 	slli	a3,t1,16
 	srli	a5,a3,16
-	bleu	a4,a5,.L1240
+	bleu	a4,a5,.L1242
 	slli	a0,a5,16
 	srai	t2,a0,16
-	blt	t2,zero,.L1240
+	blt	t2,zero,.L1242
 	slli	a5,a1,6
 	slli	a6,a5,16
 	srli	a5,a6,16
-	bleu	a4,a5,.L1242
+	bleu	a4,a5,.L1244
 	slli	a7,a5,16
 	srai	t3,a7,16
-	blt	t3,zero,.L1242
+	blt	t3,zero,.L1244
 	slli	t4,a1,7
 	slli	t5,t4,16
 	srli	a5,t5,16
-	bleu	a4,a5,.L1244
+	bleu	a4,a5,.L1246
 	slli	t6,a5,16
 	srai	t0,t6,16
-	blt	t0,zero,.L1244
+	blt	t0,zero,.L1246
 	slli	t1,a1,8
 	slli	a3,t1,16
 	srli	a5,a3,16
-	bleu	a4,a5,.L1246
+	bleu	a4,a5,.L1248
 	slli	a0,a5,16
 	srai	t2,a0,16
-	blt	t2,zero,.L1246
+	blt	t2,zero,.L1248
 	slli	a5,a1,9
 	slli	a6,a5,16
 	srli	a5,a6,16
-	bleu	a4,a5,.L1248
+	bleu	a4,a5,.L1250
 	slli	a7,a5,16
 	srai	t3,a7,16
-	blt	t3,zero,.L1248
+	blt	t3,zero,.L1250
 	slli	t4,a1,10
 	slli	t5,t4,16
 	srli	a5,t5,16
-	bleu	a4,a5,.L1250
+	bleu	a4,a5,.L1252
 	slli	t6,a5,16
 	srai	t0,t6,16
-	blt	t0,zero,.L1250
+	blt	t0,zero,.L1252
 	slli	t1,a1,11
 	slli	a3,t1,16
 	srli	a5,a3,16
-	bleu	a4,a5,.L1252
+	bleu	a4,a5,.L1254
 	slli	a0,a5,16
 	srai	t2,a0,16
-	blt	t2,zero,.L1252
+	blt	t2,zero,.L1254
 	slli	a5,a1,12
 	slli	a6,a5,16
 	srli	a5,a6,16
-	bleu	a4,a5,.L1254
+	bleu	a4,a5,.L1256
 	slli	a7,a5,16
 	srai	t3,a7,16
-	blt	t3,zero,.L1254
+	blt	t3,zero,.L1256
 	slli	t4,a1,13
 	slli	t5,t4,16
 	srli	a5,t5,16
-	bleu	a4,a5,.L1256
+	bleu	a4,a5,.L1258
 	slli	t6,a5,16
 	srai	t0,t6,16
-	blt	t0,zero,.L1256
+	blt	t0,zero,.L1258
 	slli	t1,a1,14
 	slli	a3,t1,16
 	srli	a5,a3,16
-	bleu	a4,a5,.L1258
+	bleu	a4,a5,.L1260
 	slli	a0,a5,16
 	srai	t2,a0,16
-	blt	t2,zero,.L1258
+	blt	t2,zero,.L1260
 	slli	a1,a1,15
 	slli	a7,a1,16
 	srli	t3,a7,16
-	bleu	a4,t3,.L1259
+	bleu	a4,t3,.L1261
 	li	a6,32768
 	mv	a0,a4
 	mv	a5,a6
-	bne	t3,zero,.L1161
-.L1162:
-	bne	a2,zero,.L1261
-.L1351:
+	bne	t3,zero,.L1163
+.L1164:
+	bne	a2,zero,.L1263
+.L1353:
 	mv	a0,t3
 	ret
-.L1232:
+.L1234:
 	li	a6,2
-.L1161:
+.L1163:
 	sub	t3,a4,a5
 	slli	t4,t3,16
 	srli	t5,t4,16
 	sltu	t6,a4,a5
 	mv	a1,a4
-	bltu	a4,a5,.L1228
+	bltu	a4,a5,.L1230
 	mv	a1,t5
-.L1228:
+.L1230:
 	slli	a4,a1,16
 	srli	t0,a4,16
 	li	t1,0
-	bne	t6,zero,.L1230
+	bne	t6,zero,.L1232
 	mv	t1,a6
-.L1230:
+.L1232:
 	srli	t4,a5,1
 	sub	a0,t0,t4
 	slli	a7,a0,16
@@ -4991,206 +4996,189 @@ __udivmodhi4:
 	srli	t5,a7,16
 	sltu	t6,t0,t4
 	mv	a0,t0
-	bltu	t0,t4,.L1164
+	bltu	t0,t4,.L1166
 	mv	a0,t5
-.L1164:
+.L1166:
 	slli	a1,a0,16
 	srli	a0,a1,16
 	li	a4,0
-	bne	t6,zero,.L1166
+	bne	t6,zero,.L1168
 	mv	a4,t3
-.L1166:
+.L1168:
 	or	t0,t2,a4
 	slli	t1,t0,16
 	srli	t2,a6,2
 	srli	t3,t1,16
 	srli	t4,a5,2
-	beq	t2,zero,.L1162
+	beq	t2,zero,.L1164
 	sub	a3,a0,t4
 	sltu	a7,a0,t4
 	slli	t5,a3,16
 	srli	t6,t5,16
 	xori	a1,a7,1
-	bne	a7,zero,.L1168
+	bne	a7,zero,.L1170
 	mv	a0,t6
-.L1168:
+.L1170:
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	a1,zero,.L1170
+	beq	a1,zero,.L1172
 	mv	a7,t2
-.L1170:
+.L1172:
 	or	t3,t3,a7
 	slli	a4,t3,16
 	srli	t0,a6,3
 	srli	t3,a4,16
 	srli	t2,a5,3
-	beq	t0,zero,.L1162
+	beq	t0,zero,.L1164
 	sub	t1,a0,t2
 	sltu	t4,a0,t2
 	slli	a3,t1,16
 	srli	t5,a3,16
 	xori	t6,t4,1
-	bne	t4,zero,.L1172
+	bne	t4,zero,.L1174
 	mv	a0,t5
-.L1172:
+.L1174:
 	slli	a1,a0,16
 	srli	a0,a1,16
 	li	a7,0
-	beq	t6,zero,.L1174
+	beq	t6,zero,.L1176
 	mv	a7,t0
-.L1174:
+.L1176:
 	or	t3,t3,a7
 	slli	a4,t3,16
 	srli	t0,a6,4
 	srli	t3,a4,16
 	srli	t2,a5,4
-	beq	t0,zero,.L1162
+	beq	t0,zero,.L1164
 	sub	t1,a0,t2
 	sltu	t4,a0,t2
 	slli	a3,t1,16
 	srli	t5,a3,16
 	xori	t6,t4,1
-	bne	t4,zero,.L1176
+	bne	t4,zero,.L1178
 	mv	a0,t5
-.L1176:
+.L1178:
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	t6,zero,.L1178
+	beq	t6,zero,.L1180
 	mv	a7,t0
-.L1178:
+.L1180:
 	or	a1,t3,a7
 	slli	t3,a1,16
 	srli	t0,a6,5
 	srli	t3,t3,16
 	srli	a4,a5,5
-	beq	t0,zero,.L1162
+	beq	t0,zero,.L1164
 	sub	t2,a0,a4
 	sltu	t4,a0,a4
 	slli	t1,t2,16
 	srli	a3,t1,16
 	xori	t5,t4,1
-	bne	t4,zero,.L1180
+	bne	t4,zero,.L1182
 	mv	a0,a3
-.L1180:
+.L1182:
 	slli	t6,a0,16
 	srli	a0,t6,16
 	li	a7,0
-	beq	t5,zero,.L1182
+	beq	t5,zero,.L1184
 	mv	a7,t0
-.L1182:
+.L1184:
 	or	a1,t3,a7
 	slli	t3,a1,16
 	srli	t0,a6,6
 	srli	t3,t3,16
 	srli	a4,a5,6
-	beq	t0,zero,.L1162
+	beq	t0,zero,.L1164
 	sub	t2,a0,a4
 	sltu	t4,a0,a4
 	slli	t1,t2,16
 	srli	a3,t1,16
 	xori	t5,t4,1
-	bne	t4,zero,.L1184
+	bne	t4,zero,.L1186
 	mv	a0,a3
-.L1184:
+.L1186:
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	t5,zero,.L1186
+	beq	t5,zero,.L1188
 	mv	a7,t0
-.L1186:
+.L1188:
 	or	t6,t3,a7
 	slli	a1,t6,16
 	srli	t0,a6,7
 	srli	t3,a1,16
 	srli	a4,a5,7
-	beq	t0,zero,.L1162
+	beq	t0,zero,.L1164
 	sub	t2,a0,a4
 	sltu	t4,a0,a4
 	slli	t1,t2,16
 	srli	a3,t1,16
 	xori	t5,t4,1
-	beq	t4,zero,.L1339
+	beq	t4,zero,.L1341
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	bne	t5,zero,.L1340
-.L1190:
+	bne	t5,zero,.L1342
+.L1192:
 	or	t3,t3,a7
 	slli	t0,t3,16
 	srli	t6,a6,8
 	srli	t3,t0,16
 	srli	a1,a5,8
-	beq	t6,zero,.L1162
-	sub	t2,a0,a1
-	sltu	a4,a0,a1
-	slli	t4,t2,16
-	srli	a3,t4,16
-	xori	t1,a4,1
-	beq	a4,zero,.L1341
-	slli	t5,a0,16
-	srli	a0,t5,16
-	li	a7,0
-	bne	t1,zero,.L1342
-.L1194:
-	or	t3,t3,a7
-	slli	t0,t3,16
-	srli	t6,a6,9
-	srli	t3,t0,16
-	srli	a1,a5,9
-	beq	t6,zero,.L1162
+	beq	t6,zero,.L1164
 	sub	t2,a0,a1
 	sltu	a4,a0,a1
 	slli	t4,t2,16
 	srli	a3,t4,16
 	xori	t1,a4,1
 	beq	a4,zero,.L1343
+	slli	t5,a0,16
+	srli	a0,t5,16
+	li	a7,0
+	bne	t1,zero,.L1344
+.L1196:
+	or	t3,t3,a7
+	slli	t0,t3,16
+	srli	t6,a6,9
+	srli	t3,t0,16
+	srli	a1,a5,9
+	beq	t6,zero,.L1164
+	sub	t2,a0,a1
+	sltu	a4,a0,a1
+	slli	t4,t2,16
+	srli	a3,t4,16
+	xori	t1,a4,1
+	beq	a4,zero,.L1345
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	bne	t1,zero,.L1344
-.L1198:
+	bne	t1,zero,.L1346
+.L1200:
 	or	t5,t3,a7
 	slli	t3,t5,16
 	srli	t6,a6,10
 	srli	t3,t3,16
 	srli	t0,a5,10
-	beq	t6,zero,.L1162
-	sub	a1,a0,t0
-	sltu	t2,a0,t0
-	slli	a4,a1,16
-	srli	t4,a4,16
-	xori	a3,t2,1
-	beq	t2,zero,.L1345
-	slli	t1,a0,16
-	srli	a0,t1,16
-	li	a7,0
-	bne	a3,zero,.L1346
-.L1202:
-	or	t5,t3,a7
-	slli	t3,t5,16
-	srli	t6,a6,11
-	srli	t3,t3,16
-	srli	t0,a5,11
-	beq	t6,zero,.L1162
+	beq	t6,zero,.L1164
 	sub	a1,a0,t0
 	sltu	t2,a0,t0
 	slli	a4,a1,16
 	srli	t4,a4,16
 	xori	a3,t2,1
 	beq	t2,zero,.L1347
-	slli	a0,a0,16
-	srli	a0,a0,16
+	slli	t1,a0,16
+	srli	a0,t1,16
 	li	a7,0
 	bne	a3,zero,.L1348
-.L1206:
-	or	t1,t3,a7
-	slli	t6,t1,16
-	srli	t5,a6,12
-	srli	t3,t6,16
-	srli	t0,a5,12
-	beq	t5,zero,.L1162
+.L1204:
+	or	t5,t3,a7
+	slli	t3,t5,16
+	srli	t6,a6,11
+	srli	t3,t3,16
+	srli	t0,a5,11
+	beq	t6,zero,.L1164
 	sub	a1,a0,t0
 	sltu	t2,a0,t0
 	slli	a4,a1,16
@@ -5201,197 +5189,214 @@ __udivmodhi4:
 	srli	a0,a0,16
 	li	a7,0
 	bne	a3,zero,.L1350
-.L1210:
+.L1208:
+	or	t1,t3,a7
+	slli	t6,t1,16
+	srli	t5,a6,12
+	srli	t3,t6,16
+	srli	t0,a5,12
+	beq	t5,zero,.L1164
+	sub	a1,a0,t0
+	sltu	t2,a0,t0
+	slli	a4,a1,16
+	srli	t4,a4,16
+	xori	a3,t2,1
+	beq	t2,zero,.L1351
+	slli	a0,a0,16
+	srli	a0,a0,16
+	li	a7,0
+	bne	a3,zero,.L1352
+.L1212:
 	or	t3,t3,a7
 	slli	t1,t3,16
 	srli	t5,a6,13
 	srli	t3,t1,16
 	srli	t6,a5,13
-	beq	t5,zero,.L1162
-.L1352:
+	beq	t5,zero,.L1164
+.L1354:
 	sub	t0,a0,t6
 	sltu	a1,a0,t6
 	slli	t2,t0,16
 	srli	a4,t2,16
 	xori	t4,a1,1
-	bne	a1,zero,.L1212
+	bne	a1,zero,.L1214
 	mv	a0,a4
-.L1212:
+.L1214:
 	slli	a3,a0,16
 	srli	a0,a3,16
 	li	a7,0
-	beq	t4,zero,.L1214
+	beq	t4,zero,.L1216
 	mv	a7,t5
-.L1214:
+.L1216:
 	or	t3,t3,a7
 	slli	t1,t3,16
 	srli	t5,a6,14
 	srli	t3,t1,16
 	srli	t6,a5,14
-	beq	t5,zero,.L1162
+	beq	t5,zero,.L1164
 	sub	t0,a0,t6
 	sltu	a1,a0,t6
 	slli	t2,t0,16
 	srli	a4,t2,16
 	xori	t4,a1,1
-	bne	a1,zero,.L1216
+	bne	a1,zero,.L1218
 	mv	a0,a4
-.L1216:
+.L1218:
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	t4,zero,.L1218
+	beq	t4,zero,.L1220
 	mv	a7,t5
-.L1218:
+.L1220:
 	or	t3,t3,a7
 	slli	t5,t3,16
 	li	a3,16384
 	srli	t3,t5,16
 	srli	a5,a5,15
-	beq	a6,a3,.L1162
+	beq	a6,a3,.L1164
 	sub	a6,a0,a5
 	sltu	t1,a0,a5
 	slli	t6,a6,16
 	srli	t0,t6,16
 	xori	a1,t1,1
-	bne	t1,zero,.L1220
+	bne	t1,zero,.L1222
 	mv	a0,t0
-.L1220:
+.L1222:
 	slli	t2,a0,16
 	srli	a0,t2,16
 	or	t3,a1,t3
-	beq	a2,zero,.L1351
-.L1261:
+	beq	a2,zero,.L1353
+.L1263:
 	ret
-.L1340:
+.L1342:
 	mv	a7,t0
-	j	.L1190
-.L1339:
+	j	.L1192
+.L1341:
 	mv	a0,a3
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	t5,zero,.L1190
-	j	.L1340
-.L1342:
+	beq	t5,zero,.L1192
+	j	.L1342
+.L1344:
 	mv	a7,t6
-	j	.L1194
-.L1341:
+	j	.L1196
+.L1343:
 	mv	a0,a3
 	slli	t5,a0,16
 	srli	a0,t5,16
 	li	a7,0
-	beq	t1,zero,.L1194
-	j	.L1342
-.L1344:
+	beq	t1,zero,.L1196
+	j	.L1344
+.L1346:
 	mv	a7,t6
-	j	.L1198
-.L1343:
+	j	.L1200
+.L1345:
 	mv	a0,a3
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	t1,zero,.L1198
-	j	.L1344
-.L1346:
+	beq	t1,zero,.L1200
+	j	.L1346
+.L1348:
 	mv	a7,t6
-	j	.L1202
-.L1345:
+	j	.L1204
+.L1347:
 	mv	a0,t4
 	slli	t1,a0,16
 	srli	a0,t1,16
 	li	a7,0
-	beq	a3,zero,.L1202
-	j	.L1346
-.L1348:
+	beq	a3,zero,.L1204
+	j	.L1348
+.L1350:
 	mv	a7,t6
-	j	.L1206
-.L1347:
+	j	.L1208
+.L1349:
 	mv	a0,t4
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	a3,zero,.L1206
-	j	.L1348
-.L1350:
+	beq	a3,zero,.L1208
+	j	.L1350
+.L1352:
 	mv	a7,t5
 	or	t3,t3,a7
 	slli	t1,t3,16
 	srli	t5,a6,13
 	srli	t3,t1,16
 	srli	t6,a5,13
-	bne	t5,zero,.L1352
-	j	.L1162
-.L1349:
+	bne	t5,zero,.L1354
+	j	.L1164
+.L1351:
 	mv	a0,t4
 	slli	a0,a0,16
 	srli	a0,a0,16
 	li	a7,0
-	beq	a3,zero,.L1210
-	j	.L1350
-.L1234:
-	li	a6,4
-	j	.L1161
+	beq	a3,zero,.L1212
+	j	.L1352
 .L1236:
-	li	a6,8
-	j	.L1161
+	li	a6,4
+	j	.L1163
 .L1238:
-	li	a6,16
-	j	.L1161
-.L1248:
-	li	a6,512
-	j	.L1161
+	li	a6,8
+	j	.L1163
 .L1240:
-	li	a6,32
-	j	.L1161
+	li	a6,16
+	j	.L1163
+.L1250:
+	li	a6,512
+	j	.L1163
 .L1242:
-	li	a6,64
-	j	.L1161
+	li	a6,32
+	j	.L1163
 .L1244:
-	li	a6,128
-	j	.L1161
+	li	a6,64
+	j	.L1163
 .L1246:
+	li	a6,128
+	j	.L1163
+.L1248:
 	li	a6,256
-	j	.L1161
-.L1338:
+	j	.L1163
+.L1340:
 	sub	a5,a0,a1
 	slli	t0,a5,16
 	srli	t1,t0,16
 	sub	a3,a1,a0
 	mv	a5,a0
-	bne	a1,a0,.L1157
+	bne	a1,a0,.L1159
 	mv	a5,t1
-.L1157:
+.L1159:
 	slli	a0,a5,16
 	srli	a0,a0,16
 	seqz	t3,a3
-	j	.L1162
-.L1250:
-	li	a6,1024
-	j	.L1161
+	j	.L1164
 .L1252:
+	li	a6,1024
+	j	.L1163
+.L1254:
 	li	a1,4096
 	addi	a6,a1,-2048
-	j	.L1161
-.L1254:
-	li	a6,4096
-	j	.L1161
+	j	.L1163
 .L1256:
-	li	a6,8192
-	j	.L1161
+	li	a6,4096
+	j	.L1163
 .L1258:
+	li	a6,8192
+	j	.L1163
+.L1260:
 	li	a6,16384
-	j	.L1161
-.L1259:
+	j	.L1163
+.L1261:
 	li	a5,32768
 	mv	a6,a5
-	j	.L1161
-.L1159:
+	j	.L1163
+.L1161:
 	sub	a1,a0,a1
 	slli	a7,a1,16
 	srli	a0,a7,16
 	li	t3,1
-	j	.L1162
+	j	.L1164
 	.cfi_endproc
 .LFE129:
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -5404,49 +5409,49 @@ __udivmodsi4_libgcc:
 	mv	a5,a0
 	li	t2,1
 	li	a0,32
-	bgtu	a5,a1,.L1354
-	j	.L1380
-.L1358:
+	bgtu	a5,a1,.L1356
+	j	.L1382
+.L1360:
 	slli	a1,a1,1
 	slli	t2,t2,1
-	bleu	a5,a1,.L1356
-	beq	a0,zero,.L1357
-.L1354:
+	bleu	a5,a1,.L1358
+	beq	a0,zero,.L1359
+.L1356:
 	addi	a0,a0,-1
-	bge	a1,zero,.L1358
-.L1359:
+	bge	a1,zero,.L1360
+.L1361:
 	li	a0,0
-.L1364:
+.L1366:
 	sltu	a6,a5,a1
 	xori	a3,a6,1
 	neg	t0,a3
 	and	t1,t2,t0
 	sub	a7,a5,a1
 	srli	t2,t2,1
-	bne	a6,zero,.L1361
+	bne	a6,zero,.L1363
 	mv	a5,a7
-.L1361:
+.L1363:
 	or	a0,a0,t1
 	srli	a1,a1,1
-	bne	t2,zero,.L1364
-.L1357:
-	bne	a2,zero,.L1381
-.L1353:
+	bne	t2,zero,.L1366
+.L1359:
+	bne	a2,zero,.L1383
+.L1355:
 	ret
-.L1356:
-	bne	t2,zero,.L1359
+.L1358:
+	bne	t2,zero,.L1361
 	li	a0,0
-	beq	a2,zero,.L1353
-.L1381:
+	beq	a2,zero,.L1355
+.L1383:
 	mv	a0,a5
 	ret
-.L1380:
+.L1382:
 	sltu	a4,a5,a1
 	xori	a0,a4,1
 	sub	a1,a5,a1
-	bne	a4,zero,.L1357
+	bne	a4,zero,.L1359
 	mv	a5,a1
-	j	.L1357
+	j	.L1359
 	.cfi_endproc
 .LFE164:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -5457,20 +5462,20 @@ __ashldi3:
 .LFB131:
 	.cfi_startproc
 	andi	a5,a2,32
-	beq	a5,zero,.L1383
+	beq	a5,zero,.L1385
 	addi	a2,a2,-32
 	sll	a1,a0,a2
 	li	a0,0
 	ret
-.L1383:
-	beq	a2,zero,.L1385
+.L1385:
+	beq	a2,zero,.L1387
 	li	t0,32
 	sub	t1,t0,a2
 	srl	t2,a0,t1
 	sll	a1,a1,a2
 	or	a1,t2,a1
 	sll	a0,a0,a2
-.L1385:
+.L1387:
 	ret
 	.cfi_endproc
 .LFE131:
@@ -5482,20 +5487,20 @@ __ashrdi3:
 .LFB132:
 	.cfi_startproc
 	andi	a5,a2,32
-	beq	a5,zero,.L1388
+	beq	a5,zero,.L1390
 	addi	a2,a2,-32
 	sra	a0,a1,a2
 	srai	a1,a1,31
 	ret
-.L1388:
-	beq	a2,zero,.L1390
+.L1390:
+	beq	a2,zero,.L1392
 	li	t0,32
 	sub	t1,t0,a2
 	sll	t2,a1,t1
 	srl	a0,a0,a2
 	or	a0,t2,a0
 	sra	a1,a1,a2
-.L1390:
+.L1392:
 	ret
 	.cfi_endproc
 .LFE132:
@@ -5593,9 +5598,9 @@ __clzsi2:
 	andi	a7,t5,1
 	add	t6,t0,t1
 	sub	a1,t3,t4
-	beq	a7,zero,.L1396
+	beq	a7,zero,.L1398
 	li	a1,0
-.L1396:
+.L1398:
 	add	t0,a3,t6
 	add	a0,a1,t0
 	ret
@@ -5609,17 +5614,17 @@ __cmpdi2:
 .LFB136:
 	.cfi_startproc
 	mv	a5,a0
-	blt	a1,a3,.L1399
+	blt	a1,a3,.L1401
 	li	a0,2
-	bgt	a1,a3,.L1397
+	bgt	a1,a3,.L1399
 	li	a0,0
-	bltu	a5,a2,.L1397
+	bltu	a5,a2,.L1399
 	sgtu	a0,a5,a2
 	addi	a0,a0,1
 	ret
-.L1399:
+.L1401:
 	li	a0,0
-.L1397:
+.L1399:
 	ret
 	.cfi_endproc
 .LFE136:
@@ -5631,16 +5636,16 @@ __aeabi_lcmp:
 .LFB137:
 	.cfi_startproc
 	mv	a5,a0
-	blt	a1,a3,.L1405
+	blt	a1,a3,.L1407
 	li	a0,1
-	bgt	a1,a3,.L1403
+	bgt	a1,a3,.L1405
 	li	a0,-1
-	bltu	a5,a2,.L1403
+	bltu	a5,a2,.L1405
 	sgtu	a0,a5,a2
 	ret
-.L1405:
+.L1407:
 	li	a0,-1
-.L1403:
+.L1405:
 	ret
 	.cfi_endproc
 .LFE137:
@@ -5691,20 +5696,20 @@ __lshrdi3:
 .LFB139:
 	.cfi_startproc
 	andi	a5,a2,32
-	beq	a5,zero,.L1410
+	beq	a5,zero,.L1412
 	addi	a2,a2,-32
 	srl	a0,a1,a2
 	li	a1,0
 	ret
-.L1410:
-	beq	a2,zero,.L1412
+.L1412:
+	beq	a2,zero,.L1414
 	li	t0,32
 	sub	t1,t0,a2
 	sll	t2,a1,t1
 	srl	a0,a0,a2
 	or	a0,t2,a0
 	srl	a1,a1,a2
-.L1412:
+.L1414:
 	ret
 	.cfi_endproc
 .LFE139:
@@ -6043,50 +6048,50 @@ __powidf2:
 	.cfi_startproc
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
-	sw	a1,12(sp)
-	sw	a0,8(sp)
-	lui	a1,%hi(.LC15)
-	andi	a5,a2,1
+	fsd	fa0,0(sp)
+	lw	a5,0(sp)
+	lw	t0,4(sp)
+	lui	a2,%hi(.LC15)
+	sw	a5,8(sp)
+	sw	t0,12(sp)
+	andi	t1,a0,1
 	fld	fa5,8(sp)
-	fld	fa4,%lo(.LC15)(a1)
-	beq	a5,zero,.L1429
-	mv	a0,a2
+	fld	fa0,%lo(.LC15)(a2)
+	beq	t1,zero,.L1431
+	mv	a7,a0
+.L1428:
+	fmul.d	fa0,fa0,fa5
 .L1426:
-	fmul.d	fa4,fa4,fa5
-.L1424:
-	srli	a4,a0,31
-	add	t0,a4,a0
-	srai	a0,t0,1
-	beq	a0,zero,.L1425
-	srli	t1,a0,31
-	andi	a3,a0,1
+	srli	a4,a7,31
+	add	t2,a4,a7
+	srai	a7,t2,1
+	beq	a7,zero,.L1427
+	srli	a1,a7,31
+	andi	a3,a7,1
 	fmul.d	fa5,fa5,fa5
-	add	t2,t1,a0
-	bne	a3,zero,.L1426
-.L1431:
-	srai	a0,t2,1
-	srli	t1,a0,31
-	andi	a3,a0,1
+	add	a6,a1,a7
+	bne	a3,zero,.L1428
+.L1433:
+	srai	a7,a6,1
+	srli	a1,a7,31
+	andi	a3,a7,1
 	fmul.d	fa5,fa5,fa5
-	add	t2,t1,a0
-	bne	a3,zero,.L1426
-	j	.L1431
+	add	a6,a1,a7
+	bne	a3,zero,.L1428
+	j	.L1433
+.L1427:
+	bge	a0,zero,.L1425
+	fld	ft0,%lo(.LC15)(a2)
+	fdiv.d	fa0,ft0,fa0
 .L1425:
-	bge	a2,zero,.L1423
-	fld	ft0,%lo(.LC15)(a1)
-	fdiv.d	fa4,ft0,fa4
-.L1423:
-	fsd	fa4,8(sp)
-	lw	a0,8(sp)
-	lw	a1,12(sp)
 	addi	sp,sp,16
 	.cfi_remember_state
 	.cfi_def_cfa_offset 0
 	jr	ra
-.L1429:
+.L1431:
 	.cfi_restore_state
-	mv	a0,a2
-	j	.L1424
+	mv	a7,a0
+	j	.L1426
 	.cfi_endproc
 .LFE147:
 	.size	__powidf2, .-__powidf2
@@ -6100,35 +6105,35 @@ __powisf2:
 	andi	a5,a0,1
 	fmv.s	fa5,fa0
 	flw	fa0,%lo(.LC17)(a2)
-	beq	a5,zero,.L1438
+	beq	a5,zero,.L1440
 	mv	a1,a0
-.L1435:
+.L1437:
 	fmul.s	fa0,fa0,fa5
-.L1433:
+.L1435:
 	srli	a4,a1,31
 	add	t0,a4,a1
 	srai	a1,t0,1
-	beq	a1,zero,.L1434
+	beq	a1,zero,.L1436
 	srli	t1,a1,31
 	andi	a3,a1,1
 	fmul.s	fa5,fa5,fa5
 	add	t2,t1,a1
-	bne	a3,zero,.L1435
-.L1439:
+	bne	a3,zero,.L1437
+.L1441:
 	srai	a1,t2,1
 	srli	t1,a1,31
 	andi	a3,a1,1
 	fmul.s	fa5,fa5,fa5
 	add	t2,t1,a1
-	bne	a3,zero,.L1435
-	j	.L1439
-.L1434:
-	blt	a0,zero,.L1440
+	bne	a3,zero,.L1437
+	j	.L1441
+.L1436:
+	blt	a0,zero,.L1442
 	ret
-.L1438:
-	mv	a1,a0
-	j	.L1433
 .L1440:
+	mv	a1,a0
+	j	.L1435
+.L1442:
 	flw	ft0,%lo(.LC17)(a2)
 	fdiv.s	fa0,ft0,fa0
 	ret
@@ -6142,17 +6147,17 @@ __ucmpdi2:
 .LFB149:
 	.cfi_startproc
 	mv	a5,a0
-	bltu	a1,a3,.L1443
+	bltu	a1,a3,.L1445
 	li	a0,2
-	bgtu	a1,a3,.L1441
+	bgtu	a1,a3,.L1443
 	li	a0,0
-	bltu	a5,a2,.L1441
+	bltu	a5,a2,.L1443
 	sgtu	a0,a5,a2
 	addi	a0,a0,1
 	ret
-.L1443:
+.L1445:
 	li	a0,0
-.L1441:
+.L1443:
 	ret
 	.cfi_endproc
 .LFE149:
@@ -6164,16 +6169,16 @@ __aeabi_ulcmp:
 .LFB150:
 	.cfi_startproc
 	mv	a5,a0
-	bltu	a1,a3,.L1449
+	bltu	a1,a3,.L1451
 	li	a0,1
-	bgtu	a1,a3,.L1447
+	bgtu	a1,a3,.L1449
 	li	a0,-1
-	bltu	a5,a2,.L1447
+	bltu	a5,a2,.L1449
 	sgtu	a0,a5,a2
 	ret
-.L1449:
+.L1451:
 	li	a0,-1
-.L1447:
+.L1449:
 	ret
 	.cfi_endproc
 .LFE150:
