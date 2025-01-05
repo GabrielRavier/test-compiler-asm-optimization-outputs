@@ -113,7 +113,7 @@ gcc-nios2.s: mini-libc.c
 gcc-openrisc.s: mini-libc.c
 > openrisc-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mhard-div -mhard-mul -mhard-float -mdouble-float -munordered-float -mcmov -mror -mrori -msext -msfimm -mshftimm
 
-GCC_POWERPC_OPTIONS = -mpowerpc-gpopt -mpowerpc-gfxopt -mpowerpc64 -mmfcrf -mpopcntb -mpopcntd -mfprnd -mcmpb -mhard-float -mhard-dfp -maltivec
+GCC_POWERPC_OPTIONS = -mpowerpc-gpopt -mpowerpc-gfxopt -mpowerpc64 -mmfcrf -mpopcntb -mpopcntd -mfprnd -mcmpb -mhard-float -mhard-dfp -maltivec -mvrsave
 
 gcc-powerpc64le.s: mini-libc.c
 > powerpc64le-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mcpu=power3 $(GCC_POWERPC_OPTIONS) -mtune=powerpc64le
