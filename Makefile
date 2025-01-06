@@ -155,7 +155,7 @@ gcc-sparc32.s: mini-libc.c
 > sparc64-linux-gnu-gcc -m32 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_SPARC_OPTIONS)
 
 gcc-xtensa.s: mini-libc.c
-> xtensa-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS)
+> xtensa-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) -mno-serialize-volatile -mno-strict-align
 
 clean:
 > rm --force ./*.s

@@ -1446,7 +1446,7 @@ bsearch_r:
 	.global	div
 	.type	div, @function
 div:
-	entry	sp, 48
+	entry	sp, 32
 	mov.n	a8, a2
 	quos	a2, a2, a3
 	rems	a3, a8, a3
@@ -1507,7 +1507,7 @@ labs:
 	.global	ldiv
 	.type	ldiv, @function
 ldiv:
-	entry	sp, 48
+	entry	sp, 32
 	mov.n	a8, a2
 	quos	a2, a2, a3
 	rems	a3, a8, a3
