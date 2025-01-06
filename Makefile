@@ -146,7 +146,7 @@ gcc-s390x.s: mini-libc.c
 gcc-s390.s: mini-libc.c
 > s390x-linux-gnu-gcc -m31 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS)
 
-GCC_SPARC_OPTIONS = -mapp-regs -mno-flat -mhard-float -mhard-quad-float -mlra -mv8plus -mvis -mvis2 -mvis3 -mtune=niagara3
+GCC_SPARC_OPTIONS = -mapp-regs -mno-flat -mhard-float -mhard-quad-float -mlra -mv8plus -mvis -mvis2 -mvis3 -mvis4 -mcbcond -mtune=niagara3
 
 gcc-sparc64.s: mini-libc.c
 > sparc64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_SPARC_OPTIONS)
