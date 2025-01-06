@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zcf1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0_xtheadbs1p0_xtheadcmo1p0_xtheadcondmov1p0"
+	.attribute arch, "rv32i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zcf1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0_xtheadbs1p0_xtheadcmo1p0_xtheadcondmov1p0_xtheadfmemidx1p0_xtheadfmv1p0_xtheadint1p0_xtheadmac1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -1210,19 +1210,19 @@ rand:
 	addi	t0,a4,%lo(seed)
 	lw	a3,0(t0)
 	li	a5,1481764864
-	li	a2,1284866048
-	addi	t2,a2,-211
 	addi	t1,a5,1069
-	mul	a0,a3,t2
+	mul	t2,a3,t1
 	lw	a1,4(t0)
-	mul	a6,a3,t1
-	addi	t3,a0,1
-	sltu	t4,t3,a0
-	sw	t3,0(t0)
-	mulhu	a7,a3,t2
-	cv.mac	a6,a1,t2
-	add	t5,a6,a7
-	add	t6,t4,t5
+	li	a2,1284866048
+	addi	a6,a2,-211
+	mul	a0,a3,a6
+	th.mula	t2,a1,a6
+	addi	a7,a0,1
+	sltu	t3,a7,a0
+	sw	a7,0(t0)
+	mulhu	t4,a3,a6
+	add	t5,t2,t4
+	add	t6,t3,t5
 	sw	t6,4(t0)
 	srli	a0,t6,1
 	ret
@@ -1367,7 +1367,7 @@ lsearch:
 	addi	a5,s5,1
 	mv	s6,s8
 	sw	a5,0(s7)
-	cv.mac	s6,s2,s5
+	th.mula	s6,s2,s5
 	beq	s2,zero,.L337
 	mv	a2,s2
 	mv	a1,s3
@@ -1713,11 +1713,11 @@ bsearch:
 .L426:
 	srli	s1,s0,1
 	mv	s2,s3
-	cv.mac	s2,s1,s4
-	mv	a1,s2
+	th.mula	s2,s1,s4
 	mv	a0,s5
-	jalr	s6
 	addi	s0,s0,-1
+	mv	a1,s2
+	jalr	s6
 	blt	a0,zero,.L427
 	beq	a0,zero,.L437
 	sub	s0,s0,s1
@@ -1819,13 +1819,13 @@ bsearch_r:
 .L453:
 	srai	s1,s0,1
 	mv	s2,s3
-	cv.mac	s2,s1,s4
-	mv	a1,s2
+	th.mula	s2,s1,s4
 	mv	a2,s7
 	mv	a0,s5
 	addi	s0,s0,-1
-	jalr	s6
 	srai	s0,s0,1
+	mv	a1,s2
+	jalr	s6
 	beq	a0,zero,.L457
 	ble	a0,zero,.L442
 	add	s3,s2,s4
@@ -5441,16 +5441,16 @@ __muldsi3:
 	srli	a0,a0,16
 	srli	a4,a1,16
 	srli	a5,a3,16
-	cv.mac	a5,a6,a0
+	th.mula	a5,a6,a0
+	zext.h	t0,a3
 	zext.h	a1,a5
-	cv.mac	a1,a2,a4
-	srli	t0,a5,16
-	cv.mac	t0,a0,a4
+	th.mula	a1,a2,a4
+	srli	t1,a5,16
+	th.mula	t1,a0,a4
 	slli	t2,a1,16
-	zext.h	t1,a3
 	srli	a7,a1,16
-	add	a0,t1,t2
-	add	a1,t0,a7
+	add	a0,t0,t2
+	add	a1,t1,a7
 	ret
 	.cfi_endproc
 .LFE140:
@@ -5463,23 +5463,24 @@ __muldi3_compiler_rt:
 	.cfi_startproc
 	zext.h	t3,a0
 	zext.h	a4,a2
-	mul	a6,t3,a4
-	srli	t1,a0,16
+	mv	a6,a0
+	mul	a0,t3,a4
+	srli	t1,a6,16
 	srli	a7,a2,16
-	srli	a5,a6,16
-	cv.mac	a5,a4,t1
-	zext.h	t0,a5
-	cv.mac	t0,t3,a7
-	srli	t2,a5,16
-	cv.mac	t2,t1,a7
-	srli	t4,t0,16
-	add	t5,t2,t4
-	cv.mac	t5,a0,a3
-	zext.h	t6,a6
-	slli	a0,t0,16
-	cv.mac	t5,a2,a1
-	mv	a1,t5
-	add	a0,t6,a0
+	srli	a5,a0,16
+	th.mula	a5,a4,t1
+	zext.h	t0,a0
+	zext.h	t2,a5
+	th.mula	t2,t3,a7
+	srli	t4,a5,16
+	th.mula	t4,t1,a7
+	srli	t5,t2,16
+	slli	t6,t2,16
+	add	a0,t0,t6
+	add	t3,t4,t5
+	th.mula	t3,a6,a3
+	th.mula	t3,a2,a1
+	mv	a1,t3
 	ret
 	.cfi_endproc
 .LFE141:
