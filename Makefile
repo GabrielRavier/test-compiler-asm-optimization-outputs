@@ -142,7 +142,7 @@ gcc-riscv32.s: mini-libc.c
 # See about -mhard-dfp later
 # Remove -mno-vx when we reach -march=z13
 # Add -mzvector when we reach -march=z13
-GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mno-vx -mmvcle -march=z196 -mno-hard-dfp
+GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mno-vx -mmvcle -march=zEC12 -mno-hard-dfp
 
 gcc-s390x.s: mini-libc.c
 > s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS)
