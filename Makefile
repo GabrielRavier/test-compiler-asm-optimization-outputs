@@ -138,11 +138,10 @@ gcc-riscv64.s: mini-libc.c
 gcc-riscv32.s: mini-libc.c
 > riscv64-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_RISCV_OPTIONS) -mabi=ilp32d -march=rv32$(GCC_RISCV_ARCH_EXTENSIONS)_zcf1p0
 
-# See about -mhard-dfp on S/390 later after we add -mzarch
-GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mmvcle -march=z16 -mzvector -mzarch
+GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mmvcle -march=z16 -mzvector -mzarch -mhard-dfp
 
 gcc-s390x.s: mini-libc.c
-> s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS) -mhard-dfp
+> s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS)
 
 gcc-s390.s: mini-libc.c
 > s390x-linux-gnu-gcc -m31 -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS)
