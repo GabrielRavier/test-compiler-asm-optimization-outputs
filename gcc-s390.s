@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode esa
-	.machine "arch12+novx"
+	.machine "arch13+novx"
 .text
 	.align	8
 	.align	16
@@ -4065,8 +4065,8 @@ gl_isinff:
 .LFB83:
 	.cfi_startproc
 	larl	%r5,.L1112
-	lhi	%r2,1
 	keb	%f0,.L1113-.L1112(%r5)
+	lhi	%r2,1
 	blr	%r14
 	keb	%f0,.L1114-.L1112(%r5)
 	bhr	%r14
@@ -5116,8 +5116,8 @@ frexp:
 .L1457:
 	lhi	%r0,0
 .L1463:
-	ahi	%r0,1
 	mdb	%f0,.L1484-.L1481(%r5)
+	ahi	%r0,1
 	kdb	%f0,.L1483-.L1481(%r5)
 	jhe	.L1463
 	st	%r0,0(%r2)
