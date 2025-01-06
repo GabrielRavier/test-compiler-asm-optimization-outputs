@@ -433,19 +433,19 @@ memcmp:
 memcpy:
 .LFB6:
 	.cfi_startproc
-	stmg	%r12,%r15,96(%r15)
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r12,%r15,128(%r15)
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-32(%r15)
+	.cfi_def_cfa_offset 192
 	lgr	%r12,%r2
 	cgije	%r4,0,.L221
 	brasl	%r14,memcpy@PLT
 .L221:
 	lgr	%r2,%r12
-	lmg	%r12,%r15,256(%r15)
+	lmg	%r12,%r15,160(%r15)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -1238,8 +1238,8 @@ fmaxl:
 	.cfi_register 12, 22
 	ldgr	%f3,%r13
 	.cfi_register 13, 21
-	lay	%r15,-176(%r15)
-	.cfi_def_cfa_offset 336
+	lay	%r15,-24(%r15)
+	.cfi_def_cfa_offset 184
 	locrl	%r0,%r4
 	tmll	%r0,1
 	je	.L442
@@ -1270,7 +1270,7 @@ fmaxl:
 	std	%f2,8(%r2)
 	br	%r14
 .L442:
-	.cfi_def_cfa_offset 336
+	.cfi_def_cfa_offset 184
 	.cfi_register 12, 22
 	.cfi_register 13, 21
 	.cfi_register 15, 20
@@ -1377,8 +1377,8 @@ fminl:
 	.cfi_register 12, 22
 	ldgr	%f3,%r13
 	.cfi_register 13, 21
-	lay	%r15,-176(%r15)
-	.cfi_def_cfa_offset 336
+	lay	%r15,-24(%r15)
+	.cfi_def_cfa_offset 184
 	locrl	%r0,%r4
 	tmll	%r0,1
 	je	.L478
@@ -1409,7 +1409,7 @@ fminl:
 	std	%f2,8(%r2)
 	br	%r14
 .L478:
-	.cfi_def_cfa_offset 336
+	.cfi_def_cfa_offset 184
 	.cfi_register 12, 22
 	.cfi_register 13, 21
 	.cfi_register 15, 20
@@ -1529,18 +1529,18 @@ remque:
 lsearch:
 .LFB44:
 	.cfi_startproc
-	stmg	%r7,%r15,56(%r15)
-	.cfi_offset 7, -104
-	.cfi_offset 8, -96
-	.cfi_offset 9, -88
-	.cfi_offset 10, -80
-	.cfi_offset 11, -72
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-168(%r15)
-	.cfi_def_cfa_offset 328
+	stmg	%r7,%r15,88(%r15)
+	.cfi_offset 7, -72
+	.cfi_offset 8, -64
+	.cfi_offset 9, -56
+	.cfi_offset 10, -48
+	.cfi_offset 11, -40
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-88(%r15)
+	.cfi_def_cfa_offset 248
 	stg	%r4,160(%r15)
 	lgr	%r9,%r5
 	lgr	%r7,%r2
@@ -1581,7 +1581,7 @@ lsearch:
 	brasl	%r14,memmove@PLT
 .L519:
 	lgr	%r2,%r12
-	lmg	%r7,%r15,224(%r15)
+	lmg	%r7,%r15,176(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
 	.cfi_restore 14
@@ -1611,18 +1611,18 @@ lsearch:
 lfind:
 .LFB45:
 	.cfi_startproc
-	stmg	%r7,%r15,56(%r15)
-	.cfi_offset 7, -104
-	.cfi_offset 8, -96
-	.cfi_offset 9, -88
-	.cfi_offset 10, -80
-	.cfi_offset 11, -72
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r7,%r15,88(%r15)
+	.cfi_offset 7, -72
+	.cfi_offset 8, -64
+	.cfi_offset 9, -56
+	.cfi_offset 10, -48
+	.cfi_offset 11, -40
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-80(%r15)
+	.cfi_def_cfa_offset 240
 	ltg	%r7,0(%r4)
 	je	.L543
 	lgr	%r10,%r5
@@ -1652,7 +1652,7 @@ lfind:
 	lghi	%r8,0
 .L542:
 	lgr	%r2,%r8
-	lmg	%r7,%r15,216(%r15)
+	lmg	%r7,%r15,168(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
 	.cfi_restore 14
@@ -1914,18 +1914,18 @@ atoll:
 bsearch:
 .LFB50:
 	.cfi_startproc
-	stmg	%r7,%r15,56(%r15)
-	.cfi_offset 7, -104
-	.cfi_offset 8, -96
-	.cfi_offset 9, -88
-	.cfi_offset 10, -80
-	.cfi_offset 11, -72
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r7,%r15,88(%r15)
+	.cfi_offset 7, -72
+	.cfi_offset 8, -64
+	.cfi_offset 9, -56
+	.cfi_offset 10, -48
+	.cfi_offset 11, -40
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-80(%r15)
+	.cfi_def_cfa_offset 240
 	cgije	%r4,0,.L639
 	lgr	%r7,%r2
 	lgr	%r9,%r3
@@ -1954,7 +1954,7 @@ bsearch:
 	lghi	%r11,0
 .L638:
 	lgr	%r2,%r11
-	lmg	%r7,%r15,216(%r15)
+	lmg	%r7,%r15,168(%r15)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -1976,18 +1976,18 @@ bsearch:
 bsearch_r:
 .LFB51:
 	.cfi_startproc
-	stmg	%r7,%r15,56(%r15)
-	.cfi_offset 7, -104
-	.cfi_offset 8, -96
-	.cfi_offset 9, -88
-	.cfi_offset 10, -80
-	.cfi_offset 11, -72
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r7,%r15,88(%r15)
+	.cfi_offset 7, -72
+	.cfi_offset 8, -64
+	.cfi_offset 9, -56
+	.cfi_offset 10, -48
+	.cfi_offset 11, -40
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-80(%r15)
+	.cfi_def_cfa_offset 240
 	lgr	%r7,%r2
 	lgr	%r9,%r3
 	lgr	%r8,%r5
@@ -1997,7 +1997,7 @@ bsearch_r:
 	srak	%r10,%r11,1
 	lgr	%r12,%r8
 	msgfr	%r12,%r10
-	lg	%r4,320(%r15)
+	lg	%r4,240(%r15)
 	lgr	%r2,%r7
 	agr	%r12,%r9
 	lgr	%r3,%r12
@@ -2013,7 +2013,7 @@ bsearch_r:
 	lghi	%r12,0
 .L651:
 	lgr	%r2,%r12
-	lmg	%r7,%r15,216(%r15)
+	lmg	%r7,%r15,168(%r15)
 	.cfi_remember_state
 	.cfi_restore 15
 	.cfi_restore 14
@@ -2402,20 +2402,20 @@ wmemcmp:
 wmemcpy:
 .LFB66:
 	.cfi_startproc
-	stmg	%r12,%r15,96(%r15)
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r12,%r15,128(%r15)
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-32(%r15)
+	.cfi_def_cfa_offset 192
 	lgr	%r12,%r2
 	cgije	%r4,0,.L815
 	sllg	%r4,%r4,2
 	brasl	%r14,memcpy@PLT
 .L815:
 	lgr	%r2,%r12
-	lmg	%r12,%r15,256(%r15)
+	lmg	%r12,%r15,160(%r15)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
@@ -4248,21 +4248,21 @@ memmem:
 mempcpy:
 .LFB100:
 	.cfi_startproc
-	stmg	%r11,%r15,88(%r15)
-	.cfi_offset 11, -72
-	.cfi_offset 12, -64
-	.cfi_offset 13, -56
-	.cfi_offset 14, -48
-	.cfi_offset 15, -40
-	lay	%r15,-160(%r15)
-	.cfi_def_cfa_offset 320
+	stmg	%r11,%r15,120(%r15)
+	.cfi_offset 11, -40
+	.cfi_offset 12, -32
+	.cfi_offset 13, -24
+	.cfi_offset 14, -16
+	.cfi_offset 15, -8
+	lay	%r15,-40(%r15)
+	.cfi_def_cfa_offset 200
 	lgr	%r11,%r2
 	lgr	%r12,%r4
 	cgije	%r4,0,.L1483
 	brasl	%r14,memmove@PLT
 .L1483:
 	agrk	%r2,%r11,%r12
-	lmg	%r11,%r15,248(%r15)
+	lmg	%r11,%r15,160(%r15)
 	.cfi_restore 15
 	.cfi_restore 14
 	.cfi_restore 13
