@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode esa
-	.machine "arch13+novx"
+	.machine "arch14+novx"
 .text
 	.align	8
 	.align	16

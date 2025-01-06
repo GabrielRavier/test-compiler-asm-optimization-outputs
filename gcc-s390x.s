@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode zarch
-	.machine "arch13"
+	.machine "arch14"
 .text
 	.align	8
 	.align	16
@@ -874,12 +874,12 @@ swab:
 .LFB15:
 	.cfi_startproc
 	cgijle	%r4,1,.L424
-	ldgr	%f1,%r10
-	.cfi_register 10, 20
-	ldgr	%f6,%r11
-	.cfi_register 11, 19
-	ldgr	%f4,%r12
-	.cfi_register 12, 18
+	ldgr	%f5,%r10
+	.cfi_register 10, 22
+	ldgr	%f3,%r11
+	.cfi_register 11, 21
+	ldgr	%f1,%r12
+	.cfi_register 12, 20
 	srlg	%r10,%r4,1
 	aghik	%r1,%r4,-2
 	clgijle	%r1,29,.L401
@@ -894,25 +894,25 @@ swab:
 	cgije	%r11,1,.L414
 	cgije	%r11,2,.L415
 	vlbrh	%v0,0(%r2)
-	vst	%v0,0(%r3)
 	lghi	%r1,16
+	vst	%v0,0(%r3)
 .L415:
 	vlbrh	%v2,0(%r1,%r2)
 	vst	%v2,0(%r1,%r3)
 	aghi	%r1,16
 .L414:
-	vlbrh	%v3,0(%r1,%r2)
-	vst	%v3,0(%r1,%r3)
+	vlbrh	%v4,0(%r1,%r2)
+	vst	%v4,0(%r1,%r3)
 	aghi	%r1,16
 	cgrje	%r1,%r12,.L420
 .L410:
 	srlg	%r5,%r5,2
 .L402:
-	vlbrh	%v5,0(%r1,%r2)
+	vlbrh	%v6,0(%r1,%r2)
 	vlbrh	%v7,16(%r1,%r2)
 	vlbrh	%v16,32(%r1,%r2)
 	vlbrh	%v18,48(%r1,%r2)
-	vst	%v5,0(%r1,%r3)
+	vst	%v6,0(%r1,%r3)
 	vst	%v7,16(%r1,%r3)
 	vst	%v16,32(%r1,%r3)
 	vst	%v18,48(%r1,%r3)
@@ -971,11 +971,11 @@ swab:
 	lrvh	%r2,28(%r2)
 	sth	%r2,28(%r3)
 .L399:
-	lgdr	%r12,%f4
+	lgdr	%r12,%f1
 	.cfi_restore 12
-	lgdr	%r11,%f6
+	lgdr	%r11,%f3
 	.cfi_restore 11
-	lgdr	%r10,%f1
+	lgdr	%r10,%f5
 	.cfi_restore 10
 	br	%r14
 .L424:
@@ -1394,16 +1394,16 @@ fmaxl:
 .LFB35:
 	.cfi_startproc
 	vl	%v0,0(%r3),3
-	vl	%v2,0(%r4),3
 	ldgr	%f4,%r15
 	.cfi_register 15, 18
 	lay	%r15,-40(%r15)
 	.cfi_def_cfa_offset 200
 	vst	%v0,160(%r15),3
-	vst	%v2,176(%r15),3
+	vl	%v2,0(%r4),3
 	vl	%v3,160(%r15),3
-	vl	%v5,176(%r15),3
+	vst	%v2,176(%r15),3
 	wfcxb	%v3,%v3
+	vl	%v5,176(%r15),3
 	jo	.L523
 	wfcxb	%v5,%v5
 	jo	.L517
@@ -1530,14 +1530,14 @@ fminl:
 .LFB38:
 	.cfi_startproc
 	vl	%v0,0(%r3),3
-	vl	%v2,0(%r4),3
 	ldgr	%f4,%r15
 	.cfi_register 15, 18
 	lay	%r15,-40(%r15)
 	.cfi_def_cfa_offset 200
 	vst	%v0,176(%r15),3
-	vst	%v2,160(%r15),3
+	vl	%v2,0(%r4),3
 	vl	%v3,176(%r15),3
+	vst	%v2,160(%r15),3
 	wfcxb	%v3,%v3
 	jo	.L555
 	vl	%v5,160(%r15),3
@@ -1547,9 +1547,9 @@ fminl:
 	wftcixb	%v0,%v7,1365
 	vl	%v0,160(%r15),3
 	lhi	%r1,0
-	lhi	%r3,0
 	lochie	%r1,1
 	wftcixb	%v0,%v0,1365
+	lhi	%r3,0
 	lochie	%r3,1
 	crjlh	%r1,%r3,.L566
 	vl	%v3,176(%r15),3
@@ -4960,8 +4960,8 @@ udivmodsi4:
 	lochie	%r5,0
 	llgtr	%r10,%r3
 	llgtr	%r11,%r12
-	lgr	%r3,%r1
 	llgfr	%r2,%r2
+	lgr	%r3,%r1
 	lr	%r12,%r0
 .L1815:
 	srk	%r1,%r2,%r10
@@ -4970,299 +4970,299 @@ udivmodsi4:
 	alcr	%r0,%r0
 	srlk	%r10,%r12,2
 	ltr	%r0,%r0
-	lochie	%r11,0
 	locre	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r11,0
 	or	%r5,%r11
+	llgfr	%r2,%r1
 	srlk	%r11,%r3,2
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,3
+	srlk	%r11,%r3,3
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,3
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,3
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,4
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,4
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,4
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,5
+	srlk	%r11,%r3,5
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,5
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,5
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,6
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,6
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,6
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,7
+	srlk	%r11,%r3,7
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,7
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,7
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,8
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,8
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,8
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,9
+	srlk	%r11,%r3,9
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,9
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,9
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,10
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,10
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,10
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,11
+	srlk	%r11,%r3,11
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,11
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,11
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,12
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,12
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,12
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,13
+	srlk	%r11,%r3,13
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,13
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,13
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,14
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,14
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,14
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,15
+	srlk	%r11,%r3,15
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,15
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,15
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,16
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,16
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,16
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,17
+	srlk	%r11,%r3,17
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,17
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,17
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,18
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,18
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,18
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,19
+	srlk	%r11,%r3,19
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,19
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,19
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,20
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,20
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,20
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,21
+	srlk	%r11,%r3,21
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,21
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,21
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,22
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,22
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,22
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,23
+	srlk	%r11,%r3,23
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,23
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,23
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,24
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,24
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,24
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,25
+	srlk	%r11,%r3,25
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,25
-	cije	%r11,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,25
+	cije	%r10,0,.L1811
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,26
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,26
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,26
 	cije	%r10,0,.L1811
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
@@ -5270,57 +5270,57 @@ udivmodsi4:
 	alcr	%r0,%r0
 	srlk	%r11,%r12,27
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
+	llgfr	%r2,%r1
 	srlk	%r10,%r3,27
 	cije	%r11,0,.L1811
 	srk	%r0,%r1,%r10
 	slrk	%r10,%r1,%r10
 	lhi	%r2,0
 	alcr	%r2,%r2
-	srlk	%r10,%r12,28
+	srlk	%r10,%r3,28
 	ltr	%r2,%r2
-	lochie	%r11,0
 	locre	%r0,%r1
-	llgfr	%r2,%r0
+	lochie	%r11,0
 	or	%r5,%r11
-	srlk	%r11,%r3,28
-	cije	%r10,0,.L1811
-	srk	%r1,%r0,%r11
-	slrk	%r11,%r0,%r11
+	llgfr	%r2,%r0
+	srlk	%r11,%r12,28
+	cije	%r11,0,.L1811
+	srk	%r1,%r0,%r10
+	slrk	%r10,%r0,%r10
 	lhi	%r2,0
 	alcr	%r2,%r2
 	ltr	%r2,%r2
 	locre	%r1,%r0
-	lochie	%r10,0
-	or	%r5,%r10
+	lochie	%r11,0
+	or	%r5,%r11
+	llgfr	%r2,%r1
 	srlk	%r0,%r12,29
-	llgfr	%r2,%r1
-	srlk	%r10,%r3,29
+	srlk	%r11,%r3,29
 	cije	%r0,0,.L1811
-	srk	%r2,%r1,%r10
-	slrk	%r11,%r1,%r10
-	lhi	%r11,0
-	alcr	%r11,%r11
-	srlk	%r10,%r12,30
-	ltr	%r11,%r11
+	srk	%r10,%r1,%r11
+	slrk	%r11,%r1,%r11
+	lhi	%r2,0
+	alcr	%r2,%r2
+	srlk	%r11,%r3,30
+	ltr	%r2,%r2
+	locrne	%r1,%r10
 	lochie	%r0,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
 	or	%r5,%r0
-	srlk	%r0,%r3,30
-	cije	%r10,0,.L1811
-	srk	%r2,%r1,%r0
-	slrk	%r0,%r1,%r0
-	lhi	%r11,0
-	alcr	%r11,%r11
+	llgfr	%r2,%r1
+	srlk	%r0,%r12,30
+	cije	%r0,0,.L1811
+	srk	%r10,%r1,%r11
+	slrk	%r11,%r1,%r11
+	lhi	%r2,0
+	alcr	%r2,%r2
 	srl	%r3,31
-	ltr	%r11,%r11
-	locrne	%r1,%r2
-	lochie	%r10,0
-	or	%r5,%r10
+	ltr	%r2,%r2
+	locrne	%r1,%r10
+	lochie	%r0,0
+	or	%r5,%r0
 	llgfr	%r2,%r1
 	cijhe	%r12,0,.L1811
 	srk	%r12,%r1,%r3
@@ -8311,8 +8311,8 @@ __udivmodsi4:
 	lochie	%r5,0
 	llgtr	%r10,%r3
 	llgtr	%r11,%r12
-	lgr	%r3,%r1
 	llgfr	%r2,%r2
+	lgr	%r3,%r1
 	lr	%r12,%r0
 .L2888:
 	srk	%r1,%r2,%r10
@@ -8321,299 +8321,299 @@ __udivmodsi4:
 	alcr	%r0,%r0
 	srlk	%r10,%r12,2
 	ltr	%r0,%r0
-	lochie	%r11,0
 	locre	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r11,0
 	or	%r5,%r11
+	llgfr	%r2,%r1
 	srlk	%r11,%r3,2
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,3
+	srlk	%r11,%r3,3
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,3
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,3
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,4
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,4
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,4
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,5
+	srlk	%r11,%r3,5
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,5
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,5
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,6
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,6
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,6
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,7
+	srlk	%r11,%r3,7
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,7
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,7
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,8
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,8
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,8
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,9
+	srlk	%r11,%r3,9
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,9
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,9
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,10
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,10
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,10
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,11
+	srlk	%r11,%r3,11
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,11
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,11
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,12
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,12
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,12
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,13
+	srlk	%r11,%r3,13
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,13
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,13
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,14
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,14
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,14
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,15
+	srlk	%r11,%r3,15
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,15
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,15
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,16
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,16
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,16
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,17
+	srlk	%r11,%r3,17
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,17
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,17
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,18
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,18
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,18
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,19
+	srlk	%r11,%r3,19
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,19
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,19
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,20
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,20
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,20
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,21
+	srlk	%r11,%r3,21
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,21
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,21
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,22
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,22
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,22
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,23
+	srlk	%r11,%r3,23
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,23
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,23
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,24
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,24
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,24
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r11,%r12,25
+	srlk	%r11,%r3,25
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
-	srlk	%r10,%r3,25
-	cije	%r11,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r0,%r1,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,25
+	cije	%r10,0,.L2884
+	srk	%r2,%r1,%r11
+	slrk	%r11,%r1,%r11
 	lhi	%r0,0
 	alcr	%r0,%r0
-	srlk	%r10,%r12,26
-	ltr	%r0,%r0
-	lochie	%r11,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
-	or	%r5,%r11
 	srlk	%r11,%r3,26
+	ltr	%r0,%r0
+	locrne	%r1,%r2
+	lochie	%r10,0
+	or	%r5,%r10
+	llgfr	%r2,%r1
+	srlk	%r10,%r12,26
 	cije	%r10,0,.L2884
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
@@ -8621,57 +8621,57 @@ __udivmodsi4:
 	alcr	%r0,%r0
 	srlk	%r11,%r12,27
 	ltr	%r0,%r0
-	lochie	%r10,0
 	locrne	%r1,%r2
-	llgfr	%r2,%r1
+	lochie	%r10,0
 	or	%r5,%r10
+	llgfr	%r2,%r1
 	srlk	%r10,%r3,27
 	cije	%r11,0,.L2884
 	srk	%r0,%r1,%r10
 	slrk	%r10,%r1,%r10
 	lhi	%r2,0
 	alcr	%r2,%r2
-	srlk	%r10,%r12,28
+	srlk	%r10,%r3,28
 	ltr	%r2,%r2
-	lochie	%r11,0
 	locre	%r0,%r1
-	llgfr	%r2,%r0
+	lochie	%r11,0
 	or	%r5,%r11
-	srlk	%r11,%r3,28
-	cije	%r10,0,.L2884
-	srk	%r1,%r0,%r11
-	slrk	%r11,%r0,%r11
+	llgfr	%r2,%r0
+	srlk	%r11,%r12,28
+	cije	%r11,0,.L2884
+	srk	%r1,%r0,%r10
+	slrk	%r10,%r0,%r10
 	lhi	%r2,0
 	alcr	%r2,%r2
 	ltr	%r2,%r2
 	locre	%r1,%r0
-	lochie	%r10,0
-	or	%r5,%r10
+	lochie	%r11,0
+	or	%r5,%r11
+	llgfr	%r2,%r1
 	srlk	%r0,%r12,29
-	llgfr	%r2,%r1
-	srlk	%r10,%r3,29
+	srlk	%r11,%r3,29
 	cije	%r0,0,.L2884
-	srk	%r2,%r1,%r10
-	slrk	%r11,%r1,%r10
-	lhi	%r11,0
-	alcr	%r11,%r11
-	srlk	%r10,%r12,30
-	ltr	%r11,%r11
+	srk	%r10,%r1,%r11
+	slrk	%r11,%r1,%r11
+	lhi	%r2,0
+	alcr	%r2,%r2
+	srlk	%r11,%r3,30
+	ltr	%r2,%r2
+	locrne	%r1,%r10
 	lochie	%r0,0
-	locrne	%r1,%r2
-	llgfr	%r2,%r1
 	or	%r5,%r0
-	srlk	%r0,%r3,30
-	cije	%r10,0,.L2884
-	srk	%r2,%r1,%r0
-	slrk	%r0,%r1,%r0
-	lhi	%r11,0
-	alcr	%r11,%r11
+	llgfr	%r2,%r1
+	srlk	%r0,%r12,30
+	cije	%r0,0,.L2884
+	srk	%r10,%r1,%r11
+	slrk	%r11,%r1,%r11
+	lhi	%r2,0
+	alcr	%r2,%r2
 	srl	%r3,31
-	ltr	%r11,%r11
-	locrne	%r1,%r2
-	lochie	%r10,0
-	or	%r5,%r10
+	ltr	%r2,%r2
+	locrne	%r1,%r10
+	lochie	%r0,0
+	or	%r5,%r0
 	llgfr	%r2,%r1
 	cijhe	%r12,0,.L2884
 	srk	%r12,%r1,%r3
@@ -9705,8 +9705,6 @@ __udivmodhi4:
 	clrjhe	%r3,%r2,.L3455
 	tmll	%r3,32768
 	jne	.L3369
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	ldgr	%f0,%r12
@@ -9767,10 +9765,10 @@ __udivmodhi4:
 	clrjle	%r2,%r1,.L3402
 	tmll	%r1,32768
 	jne	.L3402
-	risbgn	%r10,%r3,48,128+48,15
-	clrjle	%r2,%r10,.L3403
+	risbgn	%r11,%r3,48,128+48,15
+	clrjle	%r2,%r11,.L3403
 	lhi	%r3,0
-	cgijlh	%r10,0,.L3456
+	cgijlh	%r11,0,.L3456
 .L3372:
 	ltgr	%r4,%r4
 	locrne	%r3,%r2
@@ -9780,296 +9778,289 @@ __udivmodhi4:
 	.cfi_restore 12
 	lgdr	%r11,%f2
 	.cfi_restore 11
-	lgdr	%r10,%f4
-	.cfi_restore 10
 	br	%r14
 .L3376:
 	.cfi_restore_state
-	lhi	%r3,2
+	lhi	%r0,2
 .L3371:
-	srk	%r11,%r2,%r1
+	srk	%r12,%r2,%r1
 	clr	%r2,%r1
-	llghr	%r5,%r11
-	locrnhe	%r5,%r2
-	llghr	%r10,%r5
-	risbgn	%r12,%r3,64-15,128+63,48+15
-	llhr	%r0,%r3
-	srlg	%r11,%r1,1
+	llghr	%r3,%r12
+	locrnhe	%r3,%r2
+	llghr	%r5,%r3
+	srlg	%r12,%r1,1
+	lr	%r11,%r0
+	lochinhe	%r11,0
+	srk	%r2,%r5,%r12
+	clr	%r5,%r12
+	risbgn	%r3,%r0,64-15,128+63,48+15
+	llghr	%r12,%r2
 	lochinhe	%r3,0
-	srk	%r2,%r10,%r11
-	clr	%r10,%r11
-	llghr	%r5,%r2
-	lochinhe	%r12,0
-	locrnhe	%r5,%r10
-	llghr	%r2,%r5
-	or	%r3,%r12
-	srlg	%r10,%r1,2
+	locrnhe	%r12,%r5
+	llghr	%r2,%r12
+	or	%r3,%r11
 	srlk	%r12,%r0,2
+	srlg	%r11,%r1,2
 	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r11,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,3
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,3
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,4
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,4
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,5
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,5
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,6
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,6
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,7
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,7
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,8
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,8
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,9
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,9
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,10
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,10
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,11
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,11
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,12
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,12
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r11,%r0,13
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r12,0
-	srlg	%r10,%r1,13
-	llghr	%r2,%r2
-	or	%r3,%r12
-	cije	%r11,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	llghr	%r5,%r5
-	srlk	%r12,%r0,14
-	ltr	%r10,%r10
-	locrne	%r2,%r5
-	lochie	%r11,0
-	srlg	%r10,%r1,14
-	llghr	%r2,%r2
-	or	%r3,%r11
-	cije	%r12,0,.L3372
-	srk	%r5,%r2,%r10
-	slrk	%r10,%r2,%r10
-	lhi	%r10,0
-	alcr	%r10,%r10
-	srlg	%r11,%r1,15
-	llghr	%r1,%r5
-	ltr	%r10,%r10
-	lochie	%r12,0
-	locrne	%r2,%r1
-	llghr	%r2,%r2
-	or	%r3,%r12
-	lhi	%r12,16384
-	crje	%r0,%r12,.L3372
-	srk	%r0,%r2,%r11
+	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
-	lhi	%r5,0
-	alcr	%r5,%r5
-	llghr	%r10,%r0
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,3
+	srlg	%r11,%r1,3
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,4
+	srlg	%r11,%r1,4
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,5
+	srlg	%r11,%r1,5
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,6
+	srlg	%r11,%r1,6
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,7
+	srlg	%r11,%r1,7
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,8
+	srlg	%r11,%r1,8
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,9
+	srlg	%r11,%r1,9
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,10
+	srlg	%r11,%r1,10
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,11
+	srlg	%r11,%r1,11
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,12
+	srlg	%r11,%r1,12
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,13
+	srlg	%r11,%r1,13
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	or	%r3,%r12
+	llghr	%r2,%r2
+	srlk	%r12,%r0,14
+	srlg	%r11,%r1,14
+	cije	%r12,0,.L3372
+	srk	%r5,%r2,%r11
+	slrk	%r11,%r2,%r11
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r5,%r5
+	ltr	%r11,%r11
+	locrne	%r2,%r5
+	lochie	%r12,0
+	srlg	%r5,%r1,15
+	llghr	%r2,%r2
+	or	%r3,%r12
+	lhi	%r1,16384
+	crje	%r0,%r1,.L3372
+	srk	%r0,%r2,%r5
+	slrk	%r5,%r2,%r5
+	lhi	%r11,0
+	alcr	%r11,%r11
+	llghr	%r12,%r0
+	ltr	%r11,%r11
+	locre	%r12,%r2
+	or	%r3,%r11
+	llghr	%r2,%r12
+	ltgr	%r4,%r4
+	locrne	%r3,%r2
+	llghr	%r2,%r3
 	lgdr	%r12,%f0
 	.cfi_remember_state
 	.cfi_restore 12
 	lgdr	%r11,%f2
 	.cfi_restore 11
-	ltr	%r5,%r5
-	locre	%r10,%r2
-	or	%r3,%r5
-	llghr	%r2,%r10
-	ltgr	%r4,%r4
-	locrne	%r3,%r2
-	llghr	%r2,%r3
-	lgdr	%r10,%f4
-	.cfi_restore 10
 	br	%r14
 .L3378:
 	.cfi_restore_state
-	lhi	%r3,4
+	lhi	%r0,4
 	j	.L3371
 .L3380:
-	lhi	%r3,8
+	lhi	%r0,8
 	j	.L3371
 .L3382:
-	lhi	%r3,16
+	lhi	%r0,16
 	j	.L3371
 .L3392:
-	lhi	%r3,512
+	lhi	%r0,512
 	j	.L3371
 .L3384:
-	lhi	%r3,32
+	lhi	%r0,32
 	j	.L3371
 .L3386:
-	lhi	%r3,64
+	lhi	%r0,64
 	j	.L3371
 .L3388:
-	lhi	%r3,128
+	lhi	%r0,128
 	j	.L3371
 .L3390:
-	lhi	%r3,256
+	lhi	%r0,256
 	j	.L3371
 .L3455:
-	.cfi_restore 10
 	.cfi_restore 11
 	.cfi_restore 12
-	srk	%r1,%r2,%r3
 	xgrk	%r5,%r3,%r2
-	llghr	%r0,%r1
+	srk	%r1,%r2,%r3
 	aghi	%r5,-1
+	llghr	%r1,%r1
 	ltgr	%r5,%r5
-	locrnl	%r0,%r2
+	locrnl	%r1,%r2
 	risbgn	%r3,%r5,64-1,128+63,0+1
-	llghr	%r1,%r0
+	llghr	%r5,%r1
 .L3452:
 	ltgr	%r4,%r4
-	locrne	%r3,%r1
+	locrne	%r3,%r5
 	llghr	%r2,%r3
 	br	%r14
 .L3394:
-	.cfi_register 10, 18
 	.cfi_register 11, 17
 	.cfi_register 12, 16
-	lhi	%r3,1024
+	lhi	%r0,1024
 	j	.L3371
 .L3396:
-	lhi	%r3,2048
+	lhi	%r0,2048
 	j	.L3371
 .L3398:
-	lhi	%r3,4096
+	lhi	%r0,4096
 	j	.L3371
 .L3400:
-	lhi	%r3,8192
+	lhi	%r0,8192
 	j	.L3371
 .L3402:
-	lhi	%r3,16384
+	lhi	%r0,16384
 	j	.L3371
 .L3456:
-	lhi	%r3,-32768
+	llill	%r0,32768
 	llill	%r1,32768
 	j	.L3371
 .L3403:
 	llill	%r1,32768
-	lhi	%r3,-32768
+	llill	%r0,32768
 	j	.L3371
 .L3369:
-	.cfi_restore 10
 	.cfi_restore 11
 	.cfi_restore 12
 	sr	%r2,%r3
 	lhi	%r3,1
-	llghr	%r1,%r2
+	llghr	%r5,%r2
 	j	.L3452
 	.cfi_endproc
 .LFE131:

@@ -140,7 +140,7 @@ gcc-riscv32.s: mini-libc.c
 
 # See about -mzarch later (perhaps after doing architectures/CPU models to make sure it doesn't unnecessarily jump forward in those)
 # See about -mhard-dfp on S/390 later after we add -mzarch
-GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mmvcle -march=z15 -mzvector
+GCC_S390_OPTIONS = -mhard-float -mno-backchain -mpacked-stack -mhtm -mmvcle -march=z16 -mzvector
 
 gcc-s390x.s: mini-libc.c
 > s390x-linux-gnu-gcc -S $< -o $@ $(GCC_OPT_FLAGS) $(GCC_S390_OPTIONS) -mhard-dfp
