@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.option nopic
-	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0_xtheadbs1p0_xtheadcmo1p0_xtheadcondmov1p0_xtheadfmemidx1p0_xtheadfmv1p0_xtheadint1p0_xtheadmac1p0_xtheadmemidx1p0"
+	.attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_v1p0_h1p0_zic64b1p0_zicbom1p0_zicbop1p0_zicboz1p0_ziccamoa1p0_ziccif1p0_zicclsm1p0_ziccrse1p0_zicntr1p0_zicond1p0_zicsr2p0_zifencei2p0_zihintntl1p0_zihintpause1p0_zihpm1p0_zmmul1p0_za128rs1p0_za64rs1p0_zawrs1p0_zfa1p0_zfh1p0_zfhmin1p0_zca1p0_zcb1p0_zcd1p0_zba1p0_zbb1p0_zbc1p0_zbkb1p0_zbkc1p0_zbkx1p0_zbs1p0_zk1p0_zkn1p0_zknd1p0_zkne1p0_zknh1p0_zkr1p0_zks1p0_zksed1p0_zksh1p0_zkt1p0_ztso1p0_zvbb1p0_zvbc1p0_zve32f1p0_zve32x1p0_zve64d1p0_zve64f1p0_zve64x1p0_zvfbfmin1p0_zvfh1p0_zvfhmin1p0_zvkb1p0_zvkg1p0_zvkn1p0_zvknc1p0_zvkned1p0_zvkng1p0_zvknha1p0_zvknhb1p0_zvks1p0_zvksc1p0_zvksed1p0_zvksg1p0_zvksh1p0_zvkt1p0_zvl1024b1p0_zvl128b1p0_zvl2048b1p0_zvl256b1p0_zvl32b1p0_zvl4096b1p0_zvl512b1p0_zvl64b1p0_smaia1p0_smepmp1p0_smstateen1p0_ssaia1p0_sscofpmf1p0_ssstateen1p0_sstc1p0_svinval1p0_svnapot1p0_svpbmt1p0_xcvalu1p0_xcvelw1p0_xcvmac1p0_xtheadba1p0_xtheadbb1p0_xtheadbs1p0_xtheadcmo1p0_xtheadcondmov1p0_xtheadfmemidx1p0_xtheadfmv1p0_xtheadint1p0_xtheadmac1p0_xtheadmemidx1p0_xtheadmempair1p0"
 	.attribute unaligned_access, 1
 	.attribute stack_align, 16
 	.text
@@ -1169,8 +1169,7 @@ insque:
 	.cfi_startproc
 	beq	a1,zero,.L316
 	ld	a5,0(a1)
-	sd	a1,8(a0)
-	sd	a5,0(a0)
+	th.sdd	a5, a1, (a0), 0, 4
 	sd	a0,0(a1)
 	ld	t0,0(a0)
 	beq	t0,zero,.L315
@@ -2622,8 +2621,7 @@ gl_isinfl:
 	.cfi_startproc
 	lui	a5,%hi(.LC5)
 	addi	t0,a5,%lo(.LC5)
-	ld	a2,0(t0)
-	ld	a3,8(t0)
+	th.ldd	a2, a3, (t0), 0, 4
 	addi	sp,sp,-32
 	.cfi_def_cfa_offset 32
 	sd	s0,16(sp)
@@ -2638,8 +2636,7 @@ gl_isinfl:
 	blt	a0,zero,.L698
 	lui	t1,%hi(.LC6)
 	addi	t2,t1,%lo(.LC6)
-	ld	a2,0(t2)
-	ld	a3,8(t2)
+	th.ldd	a2, a3, (t2), 0, 4
 	mv	a0,s1
 	mv	a1,s0
 	call	__gttf2
@@ -2686,8 +2683,7 @@ _Qp_itoq:
 	call	__extenddftf2
 	ld	ra,8(sp)
 	.cfi_restore 1
-	sd	a0,0(s0)
-	sd	a1,8(s0)
+	th.sdd	a0, a1, (s0), 0, 4
 	ld	s0,0(sp)
 	.cfi_restore 8
 	addi	sp,sp,16
@@ -2819,8 +2815,7 @@ ldexpl:
 	blt	s0,zero,.L753
 	lui	a5,%hi(.LC7)
 	addi	t0,a5,%lo(.LC7)
-	ld	s1,0(t0)
-	ld	s2,8(t0)
+	th.ldd	s1, s2, (t0), 0, 4
 .L738:
 	andi	a0,s0,1
 	beq	a0,zero,.L739
@@ -2880,8 +2875,7 @@ ldexpl:
 	.cfi_offset 20, -48
 	lui	t1,%hi(.LC8)
 	addi	t2,t1,%lo(.LC8)
-	ld	s1,0(t2)
-	ld	s2,8(t2)
+	th.ldd	s1, s2, (t2), 0, 4
 	j	.L738
 	.cfi_endproc
 .LFE91:
