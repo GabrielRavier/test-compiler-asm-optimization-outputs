@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode esa
-	.machine "z13+novx"
+	.machine "arch12+novx"
 .text
 	.align	8
 	.align	16
@@ -10960,8 +10960,8 @@ __modsi3:
 	br	%r14
 .L3145:
 	.cfi_restore_state
-	lpr	%r2,%r3
 	lcr	%r1,%r1
+	lpr	%r2,%r3
 	lhi	%r5,1
 	clr	%r2,%r1
 	jl	.L3146
