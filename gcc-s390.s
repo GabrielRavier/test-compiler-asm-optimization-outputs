@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode esa
-	.machine "z990+htm"
+	.machine "z9-ec+htm"
 .text
 	.align	8
 .globl memmove
