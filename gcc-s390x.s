@@ -1,6 +1,6 @@
 	.file	"mini-libc.c"
 	.machinemode zarch
-	.machine "z13+novx"
+	.machine "z13"
 .text
 	.align	8
 	.align	16
@@ -22,8 +22,8 @@ make_ti:
 make_tu:
 .LFB1:
 	.cfi_startproc
-	stg	%r3,0(%r2)
-	stg	%r4,8(%r2)
+	vlvgp	%v0,%r3,%r4
+	vst	%v0,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE1:
@@ -35,190 +35,325 @@ make_tu:
 memmove:
 .LFB2:
 	.cfi_startproc
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
 	clgr	%r2,%r3
 	jle	.L7
-	cgije	%r4,0,.L115
-	aghik	%r0,%r4,-1
-	lgr	%r1,%r4
-	risbg	%r5,%r4,62,128+63,0
-	je	.L46
-	cgije	%r5,1,.L68
-	cgijlh	%r5,2,.L118
-.L69:
-	icy	%r0,-1(%r4,%r3)
-	stcy	%r0,-1(%r4,%r2)
-	aghi	%r4,-1
-.L68:
-	icy	%r5,-1(%r4,%r3)
-	stcy	%r5,-1(%r4,%r2)
-	brctg	%r4,.L46
+	cgije	%r4,0,.L8
+	aghik	%r1,%r4,-1
+	clgijle	%r1,30,.L124
+	lay	%r5,-2(%r4,%r3)
+	sgrk	%r8,%r2,%r5
+	la	%r9,14(%r8,%r1)
+	clgijle	%r9,14,.L124
+	risbg	%r1,%r4,0,128+59,0
+	aghik	%r12,%r4,-16
+	aghik	%r10,%r1,-16
+	lcgr	%r0,%r1
+	agrk	%r11,%r3,%r12
+	agr	%r12,%r2
+	srlg	%r5,%r10,4
+	lghi	%r1,0
+	aghi	%r5,1
+	risbg	%r8,%r5,62,128+63,0
+	je	.L102
+	cgije	%r8,1,.L125
+	cgije	%r8,2,.L126
+	vl	%v17,0(%r11)
+	lghi	%r1,-16
+	vst	%v17,0(%r12)
+.L126:
+	vl	%v19,0(%r1,%r11)
+	vst	%v19,0(%r1,%r12)
+	aghi	%r1,-16
+.L125:
+	vl	%v21,0(%r1,%r11)
+	vst	%v21,0(%r1,%r12)
+	aghi	%r1,-16
+	cgrje	%r1,%r0,.L180
+.L102:
+	srlg	%r5,%r5,2
+	cghi	%r5,2
+	jle	.L194
+	aghi	%r5,-1
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r12)
+.L10:
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	aghi	%r1,-64
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r12)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r12)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r12)
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r12)
+	brctg	%r5,.L10
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	aghi	%r1,-64
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r12)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r12)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r12)
+.L180:
+	agr	%r1,%r4
+	risbg	%r12,%r4,60,128+63,0
+	agr	%r3,%r1
+	agr	%r1,%r2
+	tmll	%r4,15
+	je	.L8
+	icy	%r4,-1(%r3)
+	stcy	%r4,-1(%r1)
+	cgije	%r12,1,.L8
+	icy	%r11,-2(%r3)
+	stcy	%r11,-2(%r1)
+	cgije	%r12,2,.L8
+	icy	%r0,-3(%r3)
+	stcy	%r0,-3(%r1)
+	cgije	%r12,3,.L8
+	icy	%r5,-4(%r3)
+	stcy	%r5,-4(%r1)
+	cgije	%r12,4,.L8
+	icy	%r9,-5(%r3)
+	stcy	%r9,-5(%r1)
+	cgije	%r12,5,.L8
+	icy	%r10,-6(%r3)
+	stcy	%r10,-6(%r1)
+	cgije	%r12,6,.L8
+	icy	%r8,-7(%r3)
+	stcy	%r8,-7(%r1)
+	cgije	%r12,7,.L8
+	icy	%r4,-8(%r3)
+	stcy	%r4,-8(%r1)
+	cgije	%r12,8,.L8
+	icy	%r11,-9(%r3)
+	stcy	%r11,-9(%r1)
+	cgije	%r12,9,.L8
+	icy	%r0,-10(%r3)
+	stcy	%r0,-10(%r1)
+	cgije	%r12,10,.L8
+	icy	%r5,-11(%r3)
+	stcy	%r5,-11(%r1)
+	cgije	%r12,11,.L8
+	icy	%r9,-12(%r3)
+	stcy	%r9,-12(%r1)
+	cgije	%r12,12,.L8
+	icy	%r10,-13(%r3)
+	stcy	%r10,-13(%r1)
+	cgije	%r12,13,.L8
+	icy	%r8,-14(%r3)
+	stcy	%r8,-14(%r1)
+	cgije	%r12,14,.L8
+	icy	%r3,-15(%r3)
+	stcy	%r3,-15(%r1)
+.L8:
+	lgdr	%r12,%f2
+	.cfi_remember_state
+	.cfi_restore 12
+	lgdr	%r11,%f4
+	.cfi_restore 11
+	lgdr	%r10,%f6
+	.cfi_restore 10
+	lgdr	%r9,%f1
+	.cfi_restore 9
+	lgdr	%r8,%f3
+	.cfi_restore 8
 	br	%r14
 .L7:
-	ber	%r14
-	cgije	%r4,0,.L115
+	.cfi_restore_state
+	je	.L8
+	cgije	%r4,0,.L8
 	aghik	%r1,%r4,-1
-	clgijle	%r1,14,.L17
-	ogrk	%r0,%r3,%r2
-	risbg	%r5,%r0,61,128+63,0
-	aghi	%r5,-1
-	cgijhe	%r5,0,.L17
-	la	%r1,1(%r3)
-	sgrk	%r0,%r2,%r1
-	clgijle	%r0,6,.L17
-	risbg	%r0,%r4,0,128+60,0
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
-	aghik	%r12,%r0,-8
+	clgijle	%r1,30,.L21
+	la	%r0,1(%r3)
+	sgrk	%r5,%r2,%r0
+	clgijle	%r5,14,.L21
+	risbg	%r8,%r4,0,128+59,0
+	aghik	%r9,%r8,-16
 	lghi	%r1,0
-	srlg	%r5,%r12,3
-	aghi	%r5,1
-	risbg	%r12,%r5,62,128+63,0
-	je	.L64
-	cgije	%r12,1,.L70
-	cgije	%r12,2,.L71
-	lg	%r1,0(%r3)
-	stg	%r1,0(%r2)
-	lghi	%r1,8
-.L71:
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	aghi	%r1,8
-.L70:
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r1,%r0,.L97
-.L64:
-	srlg	%r5,%r5,2
+	srlg	%r10,%r9,4
+	aghi	%r10,1
+	risbg	%r12,%r10,62,128+63,0
+	je	.L120
+	cgije	%r12,1,.L127
+	cgije	%r12,2,.L128
+	vl	%v0,0(%r3)
+	lghi	%r1,16
+	vst	%v0,0(%r2)
+.L128:
+	vl	%v5,0(%r1,%r3)
+	vst	%v5,0(%r1,%r2)
+	aghi	%r1,16
+.L127:
+	vl	%v7,0(%r1,%r3)
+	vst	%v7,0(%r1,%r2)
+	aghi	%r1,16
+	cgrje	%r1,%r8,.L181
+.L120:
+	srlg	%r5,%r10,2
 	cghi	%r5,2
-	jle	.L112
+	jle	.L196
 	aghi	%r5,-1
-	lg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-.L11:
-	lg	%r0,8(%r1,%r3)
-	stg	%r0,8(%r1,%r2)
-	lg	%r0,16(%r1,%r3)
-	stg	%r0,16(%r1,%r2)
-	lg	%r0,24(%r1,%r3)
-	stg	%r0,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-	brctg	%r5,.L11
-	lg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-	aghi	%r1,32
-.L97:
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+.L15:
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+	brctg	%r5,.L15
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+	aghi	%r1,64
+.L181:
 	agr	%r3,%r1
-	agrk	%r5,%r2,%r1
+	agrk	%r11,%r2,%r1
 	sgrk	%r0,%r4,%r1
 	cgrje	%r4,%r1,.L8
-	mvc	0(1,%r5),0(%r3)
+	mvc	0(1,%r11),0(%r3)
 	cgije	%r0,1,.L8
-	mvc	1(1,%r5),1(%r3)
+	mvc	1(1,%r11),1(%r3)
 	cgije	%r0,2,.L8
-	mvc	2(1,%r5),2(%r3)
+	mvc	2(1,%r11),2(%r3)
 	cgije	%r0,3,.L8
-	mvc	3(1,%r5),3(%r3)
+	mvc	3(1,%r11),3(%r3)
 	cgije	%r0,4,.L8
-	mvc	4(1,%r5),4(%r3)
+	mvc	4(1,%r11),4(%r3)
 	cgije	%r0,5,.L8
-	mvc	5(1,%r5),5(%r3)
+	mvc	5(1,%r11),5(%r3)
 	cgije	%r0,6,.L8
-	mvc	6(1,%r5),6(%r3)
-.L8:
-	lgdr	%r12,%f0
-	.cfi_restore 12
-	br	%r14
-.L46:
-	srlg	%r1,%r1,2
-	cghi	%r1,2
-	jle	.L110
-	aghi	%r1,-1
+	mvc	6(1,%r11),6(%r3)
+	cgije	%r0,7,.L8
+	mvc	7(1,%r11),7(%r3)
+	cgije	%r0,8,.L8
+	mvc	8(1,%r11),8(%r3)
+	cgije	%r0,9,.L8
+	mvc	9(1,%r11),9(%r3)
+	cgije	%r0,10,.L8
+	mvc	10(1,%r11),10(%r3)
+	cgije	%r0,11,.L8
+	mvc	11(1,%r11),11(%r3)
+	cgije	%r0,12,.L8
+	mvc	12(1,%r11),12(%r3)
+	cgije	%r0,13,.L8
+	mvc	13(1,%r11),13(%r3)
+	cgije	%r0,14,.L8
+	mvc	14(1,%r11),14(%r3)
+	j	.L8
+.L194:
+	vl	%v23,0(%r1,%r11)
+	aghik	%r9,%r1,-16
+	aghik	%r10,%r1,-32
+	vst	%v23,0(%r1,%r12)
+	aghik	%r8,%r1,-48
+	aghi	%r1,-64
+	vl	%v24,0(%r9,%r11)
+	vst	%v24,0(%r9,%r12)
+	vl	%v26,0(%r10,%r11)
+	vst	%v26,0(%r10,%r12)
+	vl	%v28,0(%r8,%r11)
+	vst	%v28,0(%r8,%r12)
+	brctg	%r5,.L194
+	j	.L180
+.L196:
+	vl	%v16,0(%r1,%r3)
+	vst	%v16,0(%r1,%r2)
+	vl	%v18,16(%r1,%r3)
+	vst	%v18,16(%r1,%r2)
+	vl	%v20,32(%r1,%r3)
+	vst	%v20,32(%r1,%r2)
+	vl	%v22,48(%r1,%r3)
+	vst	%v22,48(%r1,%r2)
+	aghi	%r1,64
+	brctg	%r5,.L196
+	j	.L181
+.L124:
+	lgr	%r11,%r1
+	risbg	%r0,%r1,62,128+63,0
+	je	.L93
+	icy	%r12,-1(%r4,%r3)
+	stcy	%r12,-1(%r4,%r2)
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+	cgije	%r0,1,.L93
+	cgije	%r0,2,.L131
+	icy	%r4,-1(%r11,%r3)
+	stcy	%r4,-1(%r11,%r2)
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+.L131:
 	icy	%r5,-1(%r4,%r3)
 	stcy	%r5,-1(%r4,%r2)
-.L9:
-	icy	%r5,-2(%r4,%r3)
-	stcy	%r5,-2(%r4,%r2)
-	icy	%r5,-3(%r4,%r3)
-	stcy	%r5,-3(%r4,%r2)
-	icy	%r5,-4(%r4,%r3)
-	stcy	%r5,-4(%r4,%r2)
-	aghi	%r4,-4
-	icy	%r5,-1(%r4,%r3)
-	stcy	%r5,-1(%r4,%r2)
-	brctg	%r1,.L9
-	icy	%r1,-2(%r4,%r3)
-	stcy	%r1,-2(%r4,%r2)
-	icy	%r1,-3(%r4,%r3)
-	stcy	%r1,-3(%r4,%r2)
-	icy	%r1,-4(%r4,%r3)
-	stcy	%r1,-4(%r4,%r2)
-	br	%r14
-.L110:
-	icy	%r0,-1(%r4,%r3)
-	stcy	%r0,-1(%r4,%r2)
-	icy	%r5,-2(%r4,%r3)
-	stcy	%r5,-2(%r4,%r2)
-	icy	%r0,-3(%r4,%r3)
-	stcy	%r0,-3(%r4,%r2)
-	icy	%r5,-4(%r4,%r3)
-	stcy	%r5,-4(%r4,%r2)
-	aghi	%r4,-4
-	brctg	%r1,.L110
-	br	%r14
-.L118:
-	icy	%r5,-1(%r4,%r3)
-	stcy	%r5,-1(%r4,%r2)
-	lgr	%r4,%r0
-	j	.L69
-.L112:
-	.cfi_register 12, 16
-	lg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-	lg	%r12,8(%r1,%r3)
-	stg	%r12,8(%r1,%r2)
-	lg	%r0,16(%r1,%r3)
-	stg	%r0,16(%r1,%r2)
-	lg	%r12,24(%r1,%r3)
-	stg	%r12,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L112
-	j	.L97
-.L17:
-	.cfi_restore 12
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+.L93:
+	srlg	%r9,%r11,2
+	aghi	%r9,1
+.L12:
+	icy	%r10,-1(%r4,%r3)
+	stcy	%r10,-1(%r4,%r2)
+	brctg	%r9,.L53
+	j	.L8
+.L53:
+	icy	%r8,-1(%r1,%r3)
+	stcy	%r8,-1(%r1,%r2)
+	icy	%r11,-2(%r1,%r3)
+	stcy	%r11,-2(%r1,%r2)
+	icy	%r0,-3(%r1,%r3)
+	lay	%r4,-3(%r1)
+	stcy	%r0,-3(%r1,%r2)
+	lay	%r1,-4(%r1)
+	j	.L12
+.L21:
 	lghi	%r1,0
 	lgr	%r5,%r4
-	risbg	%r0,%r4,62,128+63,0
-	je	.L55
-	cgije	%r0,1,.L72
-	cgije	%r0,2,.L73
+	risbg	%r8,%r4,62,128+63,0
+	je	.L111
+	cgije	%r8,1,.L129
+	cgije	%r8,2,.L130
 	mvc	0(1,%r2),0(%r3)
 	lghi	%r1,1
-.L73:
-	ic	%r0,0(%r1,%r3)
-	stc	%r0,0(%r1,%r2)
+.L130:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
 	aghi	%r1,1
-.L72:
-	ic	%r0,0(%r1,%r3)
-	stc	%r0,0(%r1,%r2)
+.L129:
+	ic	%r10,0(%r1,%r3)
+	stc	%r10,0(%r1,%r2)
 	aghi	%r1,1
-	cgrjlh	%r4,%r1,.L55
-.L115:
-	br	%r14
-.L55:
+	cgrje	%r4,%r1,.L8
+.L111:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L111
+	jle	.L195
 	aghi	%r5,-1
 	ic	%r4,0(%r1,%r3)
 	stc	%r4,0(%r1,%r2)
-.L14:
+.L18:
 	ic	%r4,1(%r1,%r3)
 	stc	%r4,1(%r1,%r2)
 	ic	%r4,2(%r1,%r3)
@@ -228,26 +363,26 @@ memmove:
 	aghi	%r1,4
 	ic	%r4,0(%r1,%r3)
 	stc	%r4,0(%r1,%r2)
-	brctg	%r5,.L14
+	brctg	%r5,.L18
 	ic	%r4,1(%r1,%r3)
 	stc	%r4,1(%r1,%r2)
 	ic	%r4,2(%r1,%r3)
 	stc	%r4,2(%r1,%r2)
 	ic	%r3,3(%r1,%r3)
 	stc	%r3,3(%r1,%r2)
-	br	%r14
-.L111:
+	j	.L8
+.L195:
 	ic	%r4,0(%r1,%r3)
 	stc	%r4,0(%r1,%r2)
-	ic	%r0,1(%r1,%r3)
-	stc	%r0,1(%r1,%r2)
-	ic	%r4,2(%r1,%r3)
-	stc	%r4,2(%r1,%r2)
+	ic	%r12,1(%r1,%r3)
+	stc	%r12,1(%r1,%r2)
+	ic	%r11,2(%r1,%r3)
+	stc	%r11,2(%r1,%r2)
 	ic	%r0,3(%r1,%r3)
 	stc	%r0,3(%r1,%r2)
 	aghi	%r1,4
-	brctg	%r5,.L111
-	br	%r14
+	brctg	%r5,.L195
+	j	.L8
 	.cfi_endproc
 .LFE2:
 	.size	memmove, .-memmove
@@ -259,36 +394,36 @@ memccpy:
 .LFB3:
 	.cfi_startproc
 	llcr	%r4,%r4
-	cgije	%r5,0,.L123
+	cgije	%r5,0,.L202
 	aghik	%r0,%r5,-1
 	tmll	%r5,1
-	jne	.L141
-.L130:
+	jne	.L220
+.L209:
 	srlg	%r1,%r5,1
-.L121:
+.L200:
 	llgc	%r5,0(%r3)
 	la	%r0,1(%r2)
 	stc	%r5,0(%r2)
-	crje	%r4,%r5,.L138
+	crje	%r4,%r5,.L217
 	llgc	%r5,1(%r3)
 	lgr	%r2,%r0
 	stc	%r5,0(%r2)
-	crje	%r4,%r5,.L138
+	crje	%r4,%r5,.L217
 	la	%r3,2(%r3)
 	la	%r2,1(%r2)
-	brctg	%r1,.L121
-.L123:
+	brctg	%r1,.L200
+.L202:
 	lghi	%r2,0
 	br	%r14
-.L141:
+.L220:
 	llgc	%r1,0(%r3)
 	stc	%r1,0(%r2)
-	crje	%r4,%r1,.L138
+	crje	%r4,%r1,.L217
 	la	%r3,1(%r3)
 	la	%r2,1(%r2)
-	cgijlh	%r0,0,.L130
-	j	.L123
-.L138:
+	cgijlh	%r0,0,.L209
+	j	.L202
+.L217:
 	la	%r2,1(%r2)
 	br	%r14
 	.cfi_endproc
@@ -302,51 +437,51 @@ memchr:
 .LFB4:
 	.cfi_startproc
 	llcr	%r3,%r3
-	cgije	%r4,0,.L147
+	cgije	%r4,0,.L226
 	aghik	%r0,%r4,-1
 	lgr	%r1,%r4
 	risbg	%r5,%r4,62,128+63,0
-	je	.L154
-	cgije	%r5,1,.L165
-	cgije	%r5,2,.L166
+	je	.L233
+	cgije	%r5,1,.L244
+	cgije	%r5,2,.L245
 	llc	%r4,0(%r2)
-	crje	%r4,%r3,.L143
+	crje	%r4,%r3,.L222
 	la	%r2,1(%r2)
 	lgr	%r4,%r0
-.L166:
+.L245:
 	llc	%r0,0(%r2)
-	crje	%r0,%r3,.L143
+	crje	%r0,%r3,.L222
 	la	%r2,1(%r2)
 	aghi	%r4,-1
-.L165:
+.L244:
 	llc	%r5,0(%r2)
-	crje	%r5,%r3,.L143
+	crje	%r5,%r3,.L222
 	la	%r2,1(%r2)
-	cgije	%r4,1,.L147
-.L154:
+	cgije	%r4,1,.L226
+.L233:
 	srlg	%r4,%r1,2
-.L144:
+.L223:
 	llc	%r0,0(%r2)
 	la	%r1,1(%r2)
-	crje	%r0,%r3,.L176
+	crje	%r0,%r3,.L255
 	llc	%r5,0(%r1)
 	lgr	%r2,%r1
-	crje	%r5,%r3,.L177
+	crje	%r5,%r3,.L256
 	llc	%r0,1(%r1)
 	la	%r2,1(%r1)
-	crje	%r0,%r3,.L143
+	crje	%r0,%r3,.L222
 	llc	%r5,2(%r1)
 	la	%r2,2(%r1)
-	crje	%r5,%r3,.L143
+	crje	%r5,%r3,.L222
 	la	%r2,3(%r1)
-	brctg	%r4,.L144
-.L147:
+	brctg	%r4,.L223
+.L226:
 	lghi	%r2,0
-.L143:
+.L222:
 	br	%r14
-.L176:
+.L255:
 	br	%r14
-.L177:
+.L256:
 	br	%r14
 	.cfi_endproc
 .LFE4:
@@ -358,68 +493,68 @@ memchr:
 memcmp:
 .LFB5:
 	.cfi_startproc
-	cgije	%r4,0,.L208
+	cgije	%r4,0,.L287
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	aghik	%r12,%r4,-1
 	lgr	%r0,%r4
 	risbg	%r1,%r4,62,128+63,0
-	je	.L191
-	cgije	%r1,1,.L202
-	cgije	%r1,2,.L203
+	je	.L270
+	cgije	%r1,1,.L281
+	cgije	%r1,2,.L282
 	llc	%r1,0(%r2)
 	llc	%r5,0(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	lgr	%r4,%r12
 	la	%r2,1(%r2)
 	la	%r3,1(%r3)
-.L203:
+.L282:
 	llc	%r1,0(%r2)
 	llc	%r5,0(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	aghi	%r4,-1
 	la	%r2,1(%r2)
 	la	%r3,1(%r3)
-.L202:
+.L281:
 	llc	%r1,0(%r2)
 	llc	%r5,0(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	la	%r2,1(%r2)
 	la	%r3,1(%r3)
-	cgije	%r4,1,.L184
-.L191:
+	cgije	%r4,1,.L263
+.L270:
 	srlg	%r4,%r0,2
-.L180:
+.L259:
 	llc	%r1,0(%r2)
 	llc	%r5,0(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	llc	%r1,1(%r2)
 	llc	%r5,1(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	llc	%r1,2(%r2)
 	llc	%r5,2(%r3)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	llc	%r1,3(%r2)
 	llc	%r5,3(%r3)
 	la	%r2,4(%r2)
-	crjlh	%r1,%r5,.L210
+	crjlh	%r1,%r5,.L289
 	la	%r3,4(%r3)
-	brctg	%r4,.L180
-.L184:
+	brctg	%r4,.L259
+.L263:
 	lhi	%r3,0
 	lgdr	%r12,%f0
 	.cfi_remember_state
 	.cfi_restore 12
 	lgfr	%r2,%r3
 	br	%r14
-.L210:
+.L289:
 	.cfi_restore_state
 	srk	%r3,%r1,%r5
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	lgfr	%r2,%r3
 	br	%r14
-.L208:
+.L287:
 	lhi	%r2,0
 	lgfr	%r2,%r2
 	br	%r14
@@ -441,9 +576,9 @@ memcpy:
 	lay	%r15,-32(%r15)
 	.cfi_def_cfa_offset 192
 	lgr	%r12,%r2
-	cgije	%r4,0,.L221
+	cgije	%r4,0,.L300
 	brasl	%r14,memcpy@PLT
-.L221:
+.L300:
 	lgr	%r2,%r12
 	lmg	%r12,%r15,160(%r15)
 	.cfi_restore 15
@@ -465,71 +600,71 @@ memrchr:
 	llcr	%r3,%r3
 	lay	%r1,-1(%r2,%r4)
 	risbg	%r5,%r4,62,128+63,0
-	je	.L236
+	je	.L315
 	llc	%r0,0(%r1)
 	lgr	%r2,%r1
 	aghi	%r1,-1
-	crje	%r0,%r3,.L249
-	cgije	%r5,1,.L236
-	cgije	%r5,2,.L240
+	crje	%r0,%r3,.L328
+	cgije	%r5,1,.L315
+	cgije	%r5,2,.L319
 	llc	%r5,0(%r1)
 	lgr	%r2,%r1
 	aghi	%r1,-1
-	crje	%r5,%r3,.L249
-.L240:
+	crje	%r5,%r3,.L328
+.L319:
 	llc	%r0,0(%r1)
 	lgr	%r2,%r1
 	aghi	%r1,-1
-	crje	%r0,%r3,.L249
-.L236:
+	crje	%r0,%r3,.L328
+.L315:
 	srlg	%r4,%r4,2
 	aghi	%r4,1
-	brctg	%r4,.L250
+	brctg	%r4,.L329
 	lghi	%r2,0
 	br	%r14
-.L250:
+.L329:
 	llc	%r5,0(%r1)
 	lgr	%r2,%r1
 	aghik	%r0,%r1,-1
-	crje	%r5,%r3,.L255
+	crje	%r5,%r3,.L334
 	llc	%r5,-1(%r1)
 	lgr	%r2,%r0
 	aghik	%r0,%r1,-2
-	crje	%r5,%r3,.L249
+	crje	%r5,%r3,.L328
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-.L253:
+.L332:
 	llc	%r12,-2(%r1)
 	lgr	%r2,%r0
 	aghik	%r5,%r1,-3
-	crje	%r12,%r3,.L227
+	crje	%r12,%r3,.L306
 	llc	%r0,-3(%r1)
 	lgr	%r2,%r5
 	aghi	%r1,-4
-	crje	%r0,%r3,.L227
-	brctg	%r4,.L230
+	crje	%r0,%r3,.L306
+	brctg	%r4,.L309
 	lghi	%r2,0
-.L227:
+.L306:
 	lgdr	%r12,%f0
 	.cfi_remember_state
 	.cfi_restore 12
 	br	%r14
-.L230:
+.L309:
 	.cfi_restore_state
 	llc	%r12,0(%r1)
 	lgr	%r2,%r1
 	aghik	%r0,%r1,-1
-	crje	%r12,%r3,.L227
+	crje	%r12,%r3,.L306
 	llc	%r5,-1(%r1)
 	lgr	%r2,%r0
 	aghik	%r0,%r1,-2
-	crjlh	%r5,%r3,.L253
+	crjlh	%r5,%r3,.L332
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	br	%r14
-.L249:
+.L328:
 	br	%r14
-.L255:
+.L334:
 	br	%r14
 	.cfi_endproc
 .LFE7:
@@ -541,7 +676,7 @@ memrchr:
 memset:
 .LFB8:
 	.cfi_startproc
-	cgije	%r4,0,.L262
+	cgije	%r4,0,.L341
 	ldgr	%f2,%r12
 	.cfi_register 12, 17
 	ldgr	%f0,%r13
@@ -557,7 +692,7 @@ memset:
 	lgdr	%r12,%f2
 	.cfi_restore 12
 	br	%r14
-.L262:
+.L341:
 	br	%r14
 	.cfi_endproc
 .LFE8:
@@ -571,14 +706,14 @@ stpcpy:
 	.cfi_startproc
 	llgc	%r1,0(%r3)
 	stc	%r1,0(%r2)
-	cgije	%r1,0,.L267
-.L268:
+	cgije	%r1,0,.L346
+.L347:
 	llgc	%r0,1(%r3)
 	la	%r3,1(%r3)
 	stc	%r0,1(%r2)
 	la	%r2,1(%r2)
-	cgijlh	%r0,0,.L268
-.L267:
+	cgijlh	%r0,0,.L347
+.L346:
 	br	%r14
 	.cfi_endproc
 .LFE9:
@@ -593,15 +728,15 @@ strchrnul:
 	cli	0(%r2),0
 	llcr	%r3,%r3
 	llc	%r1,0(%r2)
-	jne	.L275
+	jne	.L354
 	br	%r14
-.L277:
+.L356:
 	la	%r2,1(%r2)
 	cli	0(%r2),0
 	llc	%r1,0(%r2)
 	ber	%r14
-.L275:
-	crjlh	%r1,%r3,.L277
+.L354:
+	crjlh	%r1,%r3,.L356
 	br	%r14
 	.cfi_endproc
 .LFE10:
@@ -613,13 +748,13 @@ strchrnul:
 strchr:
 .LFB11:
 	.cfi_startproc
-.L285:
+.L364:
 	llc	%r1,0(%r2)
-	crje	%r1,%r3,.L284
+	crje	%r1,%r3,.L363
 	la	%r2,1(%r2)
-	cijlh	%r1,0,.L285
+	cijlh	%r1,0,.L364
 	lghi	%r2,0
-.L284:
+.L363:
 	br	%r14
 	.cfi_endproc
 .LFE11:
@@ -634,16 +769,16 @@ strcmp:
 	llc	%r1,0(%r2)
 	llc	%r5,0(%r3)
 	lghi	%r4,1
-	crje	%r1,%r5,.L289
-	j	.L290
-.L291:
+	crje	%r1,%r5,.L368
+	j	.L369
+.L370:
 	llc	%r1,0(%r4,%r2)
 	aghi	%r4,1
 	llc	%r5,-1(%r4,%r3)
-	crjlh	%r1,%r5,.L290
-.L289:
-	cijlh	%r1,0,.L291
-.L290:
+	crjlh	%r1,%r5,.L369
+.L368:
+	cijlh	%r1,0,.L370
+.L369:
 	srk	%r2,%r1,%r5
 	lgfr	%r2,%r2
 	br	%r14
@@ -658,15 +793,30 @@ strlen:
 .LFB13:
 	.cfi_startproc
 	cli	0(%r2),0
-	je	.L301
-	lgr	%r1,%r2
-.L300:
-	la	%r1,1(%r1)
-	cli	0(%r1),0
-	jne	.L300
+	je	.L381
+	vlbb	%v0,1(%r2),6
+	la	%r1,1(%r2)
+	lcbb	%r3,0(%r1),6
+	vzero	%v2
+	vfeebs	%v1,%v0,%v2
+	vlgvf	%r4,%v1,1
+	clrjl	%r4,%r3,.L380
+	la	%r1,17(%r2)
+	nill	%r1,65520
+	vl	%v4,0(%r1),4
+	vfeebs	%v1,%v4,%v2
+	jl	.L380
+.L379:
+	vl	%v6,16(%r1),4
+	la	%r1,16(%r1)
+	vfeebs	%v1,%v6,%v2
+	jnl	.L379
+.L380:
+	vlgvg	%r0,%v1,0
+	agr	%r1,%r0
 	sgrk	%r2,%r1,%r2
 	br	%r14
-.L301:
+.L381:
 	lghi	%r2,0
 	br	%r14
 	.cfi_endproc
@@ -679,40 +829,40 @@ strlen:
 strncmp:
 .LFB14:
 	.cfi_startproc
-	cgije	%r4,0,.L312
+	cgije	%r4,0,.L392
 	llc	%r1,0(%r2)
 	cli	0(%r2),0
-	je	.L316
-.L308:
+	je	.L396
+.L388:
 	llc	%r5,0(%r3)
 	cli	0(%r3),0
-	je	.L307
+	je	.L387
 	la	%r0,1(%r3)
-	brctg	%r4,.L310
-.L307:
+	brctg	%r4,.L390
+.L387:
 	srk	%r2,%r1,%r5
 	lgfr	%r2,%r2
 	br	%r14
-.L310:
-	crjlh	%r5,%r1,.L307
+.L390:
+	crjlh	%r5,%r1,.L387
 	la	%r2,1(%r2)
 	llc	%r1,0(%r2)
 	cli	0(%r2),0
-	je	.L317
+	je	.L397
 	lgr	%r3,%r0
-	j	.L308
-.L312:
+	j	.L388
+.L392:
 	lhi	%r2,0
 	lgfr	%r2,%r2
 	br	%r14
-.L317:
+.L397:
 	llc	%r5,1(%r3)
 	lhi	%r1,0
-	j	.L307
-.L316:
+	j	.L387
+.L396:
 	llc	%r5,0(%r3)
 	lhi	%r1,0
-	j	.L307
+	j	.L387
 	.cfi_endproc
 .LFE14:
 	.size	strncmp, .-strncmp
@@ -723,71 +873,140 @@ strncmp:
 swab:
 .LFB15:
 	.cfi_startproc
-	cgijle	%r4,1,.L319
-	nill	%r4,65534
+	stmg	%r10,%r13,128(%r15)
+	.cfi_offset 10, -32
+	.cfi_offset 11, -24
+	.cfi_offset 12, -16
+	.cfi_offset 13, -8
+	larl	%r13,.L424
+	cgijle	%r4,1,.L399
+	srlg	%r10,%r4,1
 	aghik	%r1,%r4,-2
-	la	%r5,0(%r4,%r2)
-	srlg	%r0,%r1,1
-	aghi	%r0,1
-	risbg	%r4,%r0,62,128+63,0
-	je	.L328
-	cgije	%r4,1,.L332
-	cgije	%r4,2,.L333
-	mvc	0(1,%r3),1(%r2)
-	mvc	1(1,%r3),0(%r2)
-	la	%r3,2(%r3)
-	la	%r2,2(%r2)
-.L333:
-	mvc	0(1,%r3),1(%r2)
-	mvc	1(1,%r3),0(%r2)
-	la	%r3,2(%r3)
-	la	%r2,2(%r2)
-.L332:
-	mvc	0(1,%r3),1(%r2)
-	mvc	1(1,%r3),0(%r2)
-	la	%r3,2(%r3)
-	la	%r2,2(%r2)
-	cgrje	%r2,%r5,.L319
-.L328:
-	srlg	%r1,%r0,2
-	cghi	%r1,2
-	jle	.L342
-	aghi	%r1,-1
-	mvc	0(1,%r3),1(%r2)
-.L321:
-	mvc	1(1,%r3),0(%r2)
-	mvc	2(1,%r3),3(%r2)
-	mvc	3(1,%r3),2(%r2)
-	mvc	4(1,%r3),5(%r2)
-	mvc	5(1,%r3),4(%r2)
-	mvc	6(1,%r3),7(%r2)
-	mvc	7(1,%r3),6(%r2)
-	la	%r2,8(%r2)
-	la	%r3,8(%r3)
-	mvc	0(1,%r3),1(%r2)
-	brctg	%r1,.L321
-	mvc	1(1,%r3),0(%r2)
-	mvc	2(1,%r3),3(%r2)
-	mvc	3(1,%r3),2(%r2)
-	mvc	4(1,%r3),5(%r2)
-	mvc	5(1,%r3),4(%r2)
-	mvc	6(1,%r3),7(%r2)
-	mvc	7(1,%r3),6(%r2)
-.L319:
+	clgijle	%r1,29,.L401
+	risbg	%r12,%r4,0,128+59,0
+	aghik	%r5,%r12,-16
+	vl	%v0,.L425-.L424(%r13),3
+	srlg	%r5,%r5,4
+	srlg	%r0,%r4,4
+	aghi	%r5,1
+	lghi	%r1,0
+	risbg	%r11,%r5,62,128+63,0
+	je	.L410
+	cgije	%r11,1,.L414
+	cgije	%r11,2,.L415
+	vl	%v2,0(%r2)
+	lghi	%r1,16
+	vperm	%v4,%v2,%v2,%v0
+	vst	%v4,0(%r3)
+.L415:
+	vl	%v6,0(%r1,%r2)
+	vperm	%v1,%v6,%v6,%v0
+	vst	%v1,0(%r1,%r3)
+	aghi	%r1,16
+.L414:
+	vl	%v3,0(%r1,%r2)
+	vperm	%v5,%v3,%v3,%v0
+	vst	%v5,0(%r1,%r3)
+	aghi	%r1,16
+	cgrje	%r1,%r12,.L420
+.L410:
+	srlg	%r5,%r5,2
+.L402:
+	vl	%v7,0(%r1,%r2)
+	vl	%v16,16(%r1,%r2)
+	vl	%v18,32(%r1,%r2)
+	vl	%v20,48(%r1,%r2)
+	vperm	%v22,%v7,%v7,%v0
+	vperm	%v17,%v16,%v16,%v0
+	vperm	%v19,%v18,%v18,%v0
+	vperm	%v21,%v20,%v20,%v0
+	vst	%v22,0(%r1,%r3)
+	vst	%v17,16(%r1,%r3)
+	vst	%v19,32(%r1,%r3)
+	vst	%v21,48(%r1,%r3)
+	aghi	%r1,64
+	brctg	%r5,.L402
+.L420:
+	agr	%r3,%r12
+	agr	%r2,%r12
+	sllg	%r12,%r0,4
+	sllg	%r0,%r0,3
+	sgr	%r4,%r12
+	cgrje	%r10,%r0,.L399
+.L401:
+	lrvh	%r10,0(%r2)
+	sth	%r10,0(%r3)
+	cgijle	%r4,3,.L399
+	lrvh	%r11,2(%r2)
+	sth	%r11,2(%r3)
+	cgijle	%r4,5,.L399
+	lrvh	%r1,4(%r2)
+	sth	%r1,4(%r3)
+	cgijle	%r4,7,.L399
+	lrvh	%r5,6(%r2)
+	sth	%r5,6(%r3)
+	cgijle	%r4,9,.L399
+	lrvh	%r12,8(%r2)
+	sth	%r12,8(%r3)
+	cgijle	%r4,11,.L399
+	lrvh	%r0,10(%r2)
+	sth	%r0,10(%r3)
+	cgijle	%r4,13,.L399
+	lrvh	%r10,12(%r2)
+	sth	%r10,12(%r3)
+	cgijle	%r4,15,.L399
+	lrvh	%r11,14(%r2)
+	sth	%r11,14(%r3)
+	cgijle	%r4,17,.L399
+	lrvh	%r1,16(%r2)
+	sth	%r1,16(%r3)
+	cgijle	%r4,19,.L399
+	lrvh	%r5,18(%r2)
+	sth	%r5,18(%r3)
+	cgijle	%r4,21,.L399
+	lrvh	%r12,20(%r2)
+	sth	%r12,20(%r3)
+	cgijle	%r4,23,.L399
+	lrvh	%r0,22(%r2)
+	sth	%r0,22(%r3)
+	cgijle	%r4,25,.L399
+	lrvh	%r10,24(%r2)
+	sth	%r10,24(%r3)
+	cgijle	%r4,27,.L399
+	lrvh	%r11,26(%r2)
+	sth	%r11,26(%r3)
+	cgijle	%r4,29,.L399
+	lrvh	%r2,28(%r2)
+	sth	%r2,28(%r3)
+.L399:
+	lmg	%r10,%r13,128(%r15)
+	.cfi_restore 13
+	.cfi_restore 12
+	.cfi_restore 11
+	.cfi_restore 10
 	br	%r14
-.L342:
-	mvc	0(1,%r3),1(%r2)
-	mvc	1(1,%r3),0(%r2)
-	mvc	2(1,%r3),3(%r2)
-	mvc	3(1,%r3),2(%r2)
-	mvc	4(1,%r3),5(%r2)
-	mvc	5(1,%r3),4(%r2)
-	mvc	6(1,%r3),7(%r2)
-	mvc	7(1,%r3),6(%r2)
-	la	%r3,8(%r3)
-	la	%r2,8(%r2)
-	brctg	%r1,.L342
-	br	%r14
+	.section	.rodata
+	.align	8
+.L424:
+.L425:
+	.byte	1
+	.byte	0
+	.byte	3
+	.byte	2
+	.byte	5
+	.byte	4
+	.byte	7
+	.byte	6
+	.byte	9
+	.byte	8
+	.byte	11
+	.byte	10
+	.byte	13
+	.byte	12
+	.byte	15
+	.byte	14
+	.align	2
+.text
 	.cfi_endproc
 .LFE15:
 	.size	swab, .-swab
@@ -932,7 +1151,7 @@ isprint:
 isspace:
 .LFB24:
 	.cfi_startproc
-	cije	%r2,32,.L366
+	cije	%r2,32,.L448
 	ahi	%r2,-9
 	clfi	%r2,4
 	lhi	%r2,0
@@ -940,7 +1159,7 @@ isspace:
 	lcr	%r0,%r2
 	risbg	%r2,%r0,63,128+63,0
 	br	%r14
-.L366:
+.L448:
 	lhi	%r0,1
 	risbg	%r2,%r0,63,128+63,0
 	br	%r14
@@ -970,16 +1189,16 @@ isupper:
 iswcntrl:
 .LFB26:
 	.cfi_startproc
-	clijle	%r2,31,.L374
+	clijle	%r2,31,.L456
 	ahik	%r1,%r2,-127
-	clijh	%r1,32,.L375
-.L374:
+	clijh	%r1,32,.L457
+.L456:
 	lhi	%r3,1
 	risbg	%r2,%r3,63,128+63,0
 	br	%r14
-.L375:
+.L457:
 	ahik	%r0,%r2,-8232
-	clijle	%r0,1,.L374
+	clijle	%r0,1,.L456
 	slfi	%r2,65529
 	clfi	%r2,2
 	lhi	%r2,0
@@ -1013,15 +1232,15 @@ iswdigit:
 iswprint:
 .LFB28:
 	.cfi_startproc
-	clijle	%r2,254,.L386
+	clijle	%r2,254,.L468
 	lhi	%r1,8231
-	clrjle	%r2,%r1,.L384
+	clrjle	%r2,%r1,.L466
 	ahik	%r0,%r2,-8234
 	llill	%r3,47061
-	clrjle	%r0,%r3,.L384
+	clrjle	%r0,%r3,.L466
 	slfi	%r0,49110
 	lhi	%r4,8184
-	clrjle	%r0,%r4,.L384
+	clrjle	%r0,%r4,.L466
 	risbg	%r5,%r2,48,128+62,0
 	xilf	%r5,65534
 	lcr	%r1,%r5
@@ -1031,11 +1250,11 @@ iswprint:
 	lochinl	%r1,0
 	risbg	%r2,%r1,63,128+63,0
 	br	%r14
-.L384:
+.L466:
 	lhi	%r1,1
 	risbg	%r2,%r1,63,128+63,0
 	br	%r14
-.L386:
+.L468:
 	ahi	%r2,1
 	lhi	%r1,0
 	nilf	%r2,127
@@ -1054,7 +1273,7 @@ iswxdigit:
 .LFB29:
 	.cfi_startproc
 	ahik	%r1,%r2,-48
-	clijle	%r1,9,.L390
+	clijle	%r1,9,.L472
 	oill	%r2,32
 	ahi	%r2,-97
 	clfi	%r2,5
@@ -1063,7 +1282,7 @@ iswxdigit:
 	lcr	%r0,%r2
 	risbg	%r2,%r0,63,128+63,0
 	br	%r14
-.L390:
+.L472:
 	lhi	%r0,1
 	risbg	%r2,%r0,63,128+63,0
 	br	%r14
@@ -1092,15 +1311,15 @@ fdim:
 	cdbr	%f0,%f0
 	bor	%r14
 	cdbr	%f2,%f2
-	jo	.L398
+	jo	.L480
 	kdbr	%f0,%f2
-	jnh	.L401
+	jnh	.L483
 	sdbr	%f0,%f2
 	br	%r14
-.L401:
+.L483:
 	lzdr	%f0
 	br	%r14
-.L398:
+.L480:
 	ldr	%f0,%f2
 	br	%r14
 	.cfi_endproc
@@ -1116,16 +1335,16 @@ fdimf:
 	cebr	%f0,%f0
 	bor	%r14
 	cebr	%f2,%f2
-	jo	.L407
+	jo	.L489
 	kebr	%f0,%f2
-	jnh	.L410
+	jnh	.L492
 	sebr	%f0,%f2
 	br	%r14
-.L410:
+.L492:
 	lzer	%f0
 	br	%r14
-.L407:
-	ler	%f0,%f2
+.L489:
+	ldr	%f0,%f2
 	br	%r14
 	.cfi_endproc
 .LFE32:
@@ -1138,7 +1357,7 @@ fmax:
 .LFB33:
 	.cfi_startproc
 	cdbr	%f0,%f0
-	jo	.L420
+	jo	.L502
 	cdbr	%f2,%f2
 	bor	%r14
 	tcdb	%f0,1365
@@ -1147,16 +1366,16 @@ fmax:
 	srl	%r1,28
 	ipm	%r2
 	srl	%r2,28
-	crje	%r1,%r2,.L414
-	cijlh	%r1,0,.L420
+	crje	%r1,%r2,.L496
+	cijlh	%r1,0,.L502
 	br	%r14
-.L414:
+.L496:
 	kdbr	%f0,%f2
 	lhi	%r0,0
 	lochil	%r0,1
-	cijlh	%r0,0,.L420
+	cijlh	%r0,0,.L502
 	ldr	%f2,%f0
-.L420:
+.L502:
 	ldr	%f0,%f2
 	br	%r14
 	.cfi_endproc
@@ -1170,7 +1389,7 @@ fmaxf:
 .LFB34:
 	.cfi_startproc
 	cebr	%f0,%f0
-	jo	.L430
+	jo	.L512
 	cebr	%f2,%f2
 	bor	%r14
 	tceb	%f0,1365
@@ -1179,17 +1398,17 @@ fmaxf:
 	srl	%r1,28
 	ipm	%r2
 	srl	%r2,28
-	crje	%r1,%r2,.L424
-	cijlh	%r1,0,.L430
+	crje	%r1,%r2,.L506
+	cijlh	%r1,0,.L512
 	br	%r14
-.L424:
+.L506:
 	kebr	%f0,%f2
 	lhi	%r0,0
 	lochil	%r0,1
-	cijlh	%r0,0,.L430
-	ler	%f2,%f0
-.L430:
-	ler	%f0,%f2
+	cijlh	%r0,0,.L512
+	ldr	%f2,%f0
+.L512:
+	ldr	%f0,%f2
 	br	%r14
 	.cfi_endproc
 .LFE34:
@@ -1206,16 +1425,16 @@ fmaxl:
 	ld	%f4,0(%r4)
 	cxbr	%f0,%f0
 	ld	%f6,8(%r4)
-	jo	.L439
+	jo	.L521
 	cxbr	%f4,%f4
-	jo	.L444
+	jo	.L526
 	tcxb	%f0,1365
 	ipm	%r1
 	tcxb	%f4,1365
 	srl	%r1,28
 	ipm	%r3
 	srl	%r3,28
-	crjlh	%r1,%r3,.L446
+	crjlh	%r1,%r3,.L528
 	kxbr	%f0,%f4
 	lhi	%r0,0
 	ldgr	%f1,%r15
@@ -1227,10 +1446,10 @@ fmaxl:
 	lay	%r15,-24(%r15)
 	.cfi_def_cfa_offset 184
 	lochil	%r0,1
-	cije	%r0,0,.L436
+	cije	%r0,0,.L518
 	lgdr	%r4,%f4
 	lgdr	%r5,%f6
-.L437:
+.L519:
 	lgr	%r12,%r4
 	lgr	%r13,%r5
 	stmg	%r12,%r13,160(%r15)
@@ -1246,22 +1465,22 @@ fmaxl:
 	.cfi_restore 15
 	.cfi_def_cfa_offset 160
 	br	%r14
-.L446:
-	cije	%r1,0,.L444
-.L439:
+.L528:
+	cije	%r1,0,.L526
+.L521:
 	lxr	%f0,%f4
-.L444:
+.L526:
 	std	%f0,0(%r2)
 	std	%f2,8(%r2)
 	br	%r14
-.L436:
+.L518:
 	.cfi_def_cfa_offset 184
 	.cfi_register 12, 22
 	.cfi_register 13, 21
 	.cfi_register 15, 20
 	lgdr	%r4,%f0
 	lgdr	%r5,%f2
-	j	.L437
+	j	.L519
 	.cfi_endproc
 .LFE35:
 	.size	fmaxl, .-fmaxl
@@ -1273,7 +1492,7 @@ fmin:
 .LFB36:
 	.cfi_startproc
 	cdbr	%f0,%f0
-	jo	.L454
+	jo	.L536
 	cdbr	%f2,%f2
 	bor	%r14
 	tcdb	%f0,1365
@@ -1282,18 +1501,18 @@ fmin:
 	srl	%r1,28
 	ipm	%r2
 	srl	%r2,28
-	crje	%r1,%r2,.L450
-	cijlh	%r1,0,.L448
-.L454:
+	crje	%r1,%r2,.L532
+	cijlh	%r1,0,.L530
+.L536:
 	ldr	%f0,%f2
-.L448:
+.L530:
 	br	%r14
-.L450:
+.L532:
 	kdbr	%f0,%f2
 	lhi	%r1,0
 	lochil	%r1,1
-	cijlh	%r1,0,.L448
-	j	.L454
+	cijlh	%r1,0,.L530
+	j	.L536
 	.cfi_endproc
 .LFE36:
 	.size	fmin, .-fmin
@@ -1305,7 +1524,7 @@ fminf:
 .LFB37:
 	.cfi_startproc
 	cebr	%f0,%f0
-	jo	.L466
+	jo	.L548
 	cebr	%f2,%f2
 	bor	%r14
 	tceb	%f0,1365
@@ -1314,18 +1533,18 @@ fminf:
 	srl	%r1,28
 	ipm	%r2
 	srl	%r2,28
-	crje	%r1,%r2,.L462
-	cijlh	%r1,0,.L460
-.L466:
-	ler	%f0,%f2
-.L460:
+	crje	%r1,%r2,.L544
+	cijlh	%r1,0,.L542
+.L548:
+	ldr	%f0,%f2
+.L542:
 	br	%r14
-.L462:
+.L544:
 	kebr	%f0,%f2
 	lhi	%r1,0
 	lochil	%r1,1
-	cijlh	%r1,0,.L460
-	j	.L466
+	cijlh	%r1,0,.L542
+	j	.L548
 	.cfi_endproc
 .LFE37:
 	.size	fminf, .-fminf
@@ -1341,16 +1560,16 @@ fminl:
 	ld	%f0,0(%r4)
 	cxbr	%f4,%f4
 	ld	%f2,8(%r4)
-	jo	.L484
+	jo	.L566
 	cxbr	%f0,%f0
-	jo	.L479
+	jo	.L561
 	tcxb	%f4,1365
 	ipm	%r1
 	tcxb	%f0,1365
 	srl	%r1,28
 	ipm	%r3
 	srl	%r3,28
-	crjlh	%r1,%r3,.L486
+	crjlh	%r1,%r3,.L568
 	kxbr	%f4,%f0
 	lhi	%r0,0
 	ldgr	%f1,%r15
@@ -1362,10 +1581,10 @@ fminl:
 	lay	%r15,-24(%r15)
 	.cfi_def_cfa_offset 184
 	lochil	%r0,1
-	cije	%r0,0,.L476
+	cije	%r0,0,.L558
 	lgdr	%r4,%f4
 	lgdr	%r5,%f6
-.L477:
+.L559:
 	lgr	%r12,%r4
 	lgr	%r13,%r5
 	stmg	%r12,%r13,160(%r15)
@@ -1381,22 +1600,22 @@ fminl:
 	.cfi_restore 15
 	.cfi_def_cfa_offset 160
 	br	%r14
-.L486:
-	cije	%r1,0,.L484
-.L479:
+.L568:
+	cije	%r1,0,.L566
+.L561:
 	lxr	%f0,%f4
-.L484:
+.L566:
 	std	%f0,0(%r2)
 	std	%f2,8(%r2)
 	br	%r14
-.L476:
+.L558:
 	.cfi_def_cfa_offset 184
 	.cfi_register 12, 22
 	.cfi_register 13, 21
 	.cfi_register 15, 20
 	lgdr	%r4,%f0
 	lgdr	%r5,%f2
-	j	.L477
+	j	.L559
 	.cfi_endproc
 .LFE38:
 	.size	fminl, .-fminl
@@ -1408,20 +1627,20 @@ l64a:
 .LFB39:
 	.cfi_startproc
 	lr	%r1,%r2
-	cije	%r2,0,.L491
+	cije	%r2,0,.L573
 	larl	%r2,.LANCHOR0
 	larl	%r4,.LANCHOR1
-.L490:
+.L572:
 	risbg	%r3,%r1,58,128+63,0
 	la	%r5,0(%r3,%r4)
 	srl	%r1,6
 	mvc	0(1,%r2),0(%r5)
 	la	%r2,1(%r2)
-	cijlh	%r1,0,.L490
+	cijlh	%r1,0,.L572
 	mvi	0(%r2),0
 	larl	%r2,.LANCHOR0
 	br	%r14
-.L491:
+.L573:
 	larl	%r2,.LANCHOR0
 	mvi	0(%r2),0
 	larl	%r2,.LANCHOR0
@@ -1468,18 +1687,18 @@ rand:
 insque:
 .LFB42:
 	.cfi_startproc
-	cgije	%r3,0,.L505
-	lg	%r1,0(%r3)
-	stg	%r3,8(%r2)
-	stg	%r1,0(%r2)
+	vzero	%v0
+	cgije	%r3,0,.L587
+	vleg	%v0,0(%r3),0
+	vlvgg	%v0,%r3,1
+	vst	%v0,0(%r2),3
 	stg	%r2,0(%r3)
-	ltg	%r3,0(%r2)
+	ltg	%r1,0(%r2)
 	ber	%r14
-	stg	%r2,8(%r3)
+	stg	%r2,8(%r1)
 	br	%r14
-.L505:
-	mvghi	8(%r2),0
-	mvghi	0(%r2),0
+.L587:
+	vst	%v0,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE42:
@@ -1492,10 +1711,10 @@ remque:
 .LFB43:
 	.cfi_startproc
 	ltg	%r1,0(%r2)
-	je	.L508
+	je	.L590
 	lg	%r3,8(%r2)
 	stg	%r3,8(%r1)
-.L508:
+.L590:
 	ltg	%r2,8(%r2)
 	ber	%r14
 	stg	%r1,0(%r2)
@@ -1527,14 +1746,14 @@ lsearch:
 	lgr	%r7,%r2
 	lgr	%r13,%r3
 	ltg	%r8,0(%r4)
-	je	.L518
+	je	.L600
 	lgr	%r12,%r3
 	lgr	%r10,%r8
 	tmll	%r8,1
-	jne	.L538
-.L528:
+	jne	.L620
+.L610:
 	srlg	%r10,%r10,1
-.L520:
+.L602:
 	lgr	%r3,%r12
 	lgr	%r2,%r7
 	agrk	%r11,%r12,%r9
@@ -1542,25 +1761,25 @@ lsearch:
 	lgr	%r3,%r11
 	lgr	%r1,%r2
 	lgr	%r2,%r7
-	cije	%r1,0,.L517
+	cije	%r1,0,.L599
 	lgr	%r12,%r11
 	basr	%r14,%r6
-	cije	%r2,0,.L517
+	cije	%r2,0,.L599
 	agrk	%r12,%r11,%r9
-	brctg	%r10,.L520
-.L518:
+	brctg	%r10,.L602
+.L600:
 	lgr	%r12,%r9
 	msgr	%r12,%r8
 	lg	%r3,160(%r15)
 	aghik	%r2,%r8,1
 	stg	%r2,0(%r3)
 	agr	%r12,%r13
-	cgije	%r9,0,.L517
+	cgije	%r9,0,.L599
 	lgr	%r4,%r9
 	lgr	%r3,%r7
 	lgr	%r2,%r12
 	brasl	%r14,memmove@PLT
-.L517:
+.L599:
 	lgr	%r2,%r12
 	lmg	%r7,%r15,176(%r15)
 	.cfi_remember_state
@@ -1575,13 +1794,13 @@ lsearch:
 	.cfi_restore 7
 	.cfi_def_cfa_offset 160
 	br	%r14
-.L538:
+.L620:
 	.cfi_restore_state
 	basr	%r14,%r6
-	cije	%r2,0,.L517
+	cije	%r2,0,.L599
 	agrk	%r12,%r13,%r9
-	cgijlh	%r8,1,.L528
-	j	.L518
+	cgijlh	%r8,1,.L610
+	j	.L600
 	.cfi_endproc
 .LFE44:
 	.size	lsearch, .-lsearch
@@ -1605,16 +1824,16 @@ lfind:
 	lay	%r15,-80(%r15)
 	.cfi_def_cfa_offset 240
 	ltg	%r7,0(%r4)
-	je	.L541
+	je	.L623
 	lgr	%r10,%r5
 	lgr	%r9,%r2
 	lgr	%r12,%r3
 	lgr	%r11,%r7
 	tmll	%r7,1
-	jne	.L557
-.L548:
+	jne	.L639
+.L630:
 	srlg	%r7,%r11,1
-.L543:
+.L625:
 	lgr	%r3,%r12
 	lgr	%r2,%r9
 	lgr	%r8,%r12
@@ -1623,15 +1842,15 @@ lfind:
 	lgr	%r1,%r2
 	lgr	%r3,%r12
 	lgr	%r2,%r9
-	cije	%r1,0,.L540
+	cije	%r1,0,.L622
 	lgr	%r8,%r12
 	basr	%r14,%r6
-	cije	%r2,0,.L540
+	cije	%r2,0,.L622
 	agr	%r12,%r10
-	brctg	%r7,.L543
-.L541:
+	brctg	%r7,.L625
+.L623:
 	lghi	%r8,0
-.L540:
+.L622:
 	lgr	%r2,%r8
 	lmg	%r7,%r15,168(%r15)
 	.cfi_remember_state
@@ -1646,14 +1865,14 @@ lfind:
 	.cfi_restore 7
 	.cfi_def_cfa_offset 160
 	br	%r14
-.L557:
+.L639:
 	.cfi_restore_state
 	lgr	%r8,%r3
 	basr	%r14,%r6
-	cije	%r2,0,.L540
+	cije	%r2,0,.L622
 	agr	%r12,%r10
-	cgijlh	%r7,1,.L548
-	j	.L541
+	cgijlh	%r7,1,.L630
+	j	.L623
 	.cfi_endproc
 .LFE45:
 	.size	lfind, .-lfind
@@ -1679,22 +1898,22 @@ atoi:
 	.cfi_startproc
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-.L568:
+.L650:
 	llc	%r3,0(%r2)
 	cli	0(%r2),32
-	je	.L562
+	je	.L644
 	ahik	%r1,%r3,-9
-	clijle	%r1,4,.L562
-	cije	%r3,43,.L563
-	cijlh	%r3,45,.L584
+	clijle	%r1,4,.L644
+	cije	%r3,43,.L645
+	cijlh	%r3,45,.L666
 	llc	%r3,1(%r2)
 	la	%r2,1(%r2)
 	ahik	%r4,%r3,-48
-	clijh	%r4,9,.L573
+	clijh	%r4,9,.L655
 	lhi	%r12,1
-.L566:
+.L648:
 	lhi	%r4,0
-.L570:
+.L652:
 	ahik	%r5,%r3,-48
 	llc	%r3,1(%r2)
 	sllk	%r1,%r4,2
@@ -1703,7 +1922,7 @@ atoi:
 	ahik	%r0,%r3,-48
 	sll	%r1,1
 	srk	%r4,%r1,%r5
-	clijle	%r0,9,.L570
+	clijle	%r0,9,.L652
 	sr	%r5,%r1
 	ltr	%r12,%r12
 	locrne	%r5,%r4
@@ -1712,31 +1931,31 @@ atoi:
 	.cfi_remember_state
 	.cfi_restore 12
 	br	%r14
-.L562:
+.L644:
 	.cfi_restore_state
 	la	%r2,1(%r2)
-	j	.L568
-.L584:
+	j	.L650
+.L666:
 	ahik	%r5,%r3,-48
 	lhi	%r12,0
-	clijle	%r5,9,.L566
-.L573:
+	clijle	%r5,9,.L648
+.L655:
 	lhi	%r5,0
-.L585:
+.L667:
 	lgfr	%r2,%r5
 	lgdr	%r12,%f0
 	.cfi_remember_state
 	.cfi_restore 12
 	br	%r14
-.L563:
+.L645:
 	.cfi_restore_state
 	llc	%r3,1(%r2)
 	lhi	%r12,0
 	la	%r2,1(%r2)
 	ahik	%r0,%r3,-48
-	clijle	%r0,9,.L566
+	clijle	%r0,9,.L648
 	lhi	%r5,0
-	j	.L585
+	j	.L667
 	.cfi_endproc
 .LFE47:
 	.size	atoi, .-atoi
@@ -1751,21 +1970,21 @@ atol:
 	.cfi_register 11, 17
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-.L594:
+.L676:
 	llc	%r4,0(%r2)
 	cli	0(%r2),32
-	je	.L588
+	je	.L670
 	ahik	%r1,%r4,-9
-	clijle	%r1,4,.L588
-	cije	%r4,43,.L589
-	cije	%r4,45,.L590
+	clijle	%r1,4,.L670
+	cije	%r4,43,.L671
+	cije	%r4,45,.L672
 	ahik	%r3,%r4,-48
-	clijh	%r3,9,.L599
+	clijh	%r3,9,.L681
 	lgr	%r3,%r2
 	lhi	%r11,0
-.L592:
+.L674:
 	lghi	%r5,0
-.L596:
+.L678:
 	ahik	%r0,%r4,-48
 	llc	%r4,1(%r3)
 	sllg	%r1,%r5,2
@@ -1776,7 +1995,7 @@ atol:
 	ahik	%r12,%r4,-48
 	lgr	%r5,%r1
 	sgfr	%r5,%r0
-	clijle	%r12,9,.L596
+	clijle	%r12,9,.L678
 	sgr	%r2,%r1
 	ltr	%r11,%r11
 	lgdr	%r12,%f0
@@ -1786,24 +2005,24 @@ atol:
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L588:
+.L670:
 	.cfi_restore_state
 	la	%r2,1(%r2)
-	j	.L594
-.L590:
+	j	.L676
+.L672:
 	llc	%r4,1(%r2)
 	la	%r3,1(%r2)
 	ahik	%r2,%r4,-48
-	clijh	%r2,9,.L599
+	clijh	%r2,9,.L681
 	lhi	%r11,1
-	j	.L592
-.L589:
+	j	.L674
+.L671:
 	llc	%r4,1(%r2)
 	la	%r3,1(%r2)
 	ahik	%r0,%r4,-48
 	lhi	%r11,0
-	clijle	%r0,9,.L592
-.L599:
+	clijle	%r0,9,.L674
+.L681:
 	lghi	%r2,0
 	lgdr	%r12,%f0
 	.cfi_restore 12
@@ -1824,21 +2043,21 @@ atoll:
 	.cfi_register 11, 17
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-.L616:
+.L698:
 	llc	%r4,0(%r2)
 	cli	0(%r2),32
-	je	.L612
+	je	.L694
 	ahik	%r1,%r4,-9
-	clijle	%r1,4,.L612
-	cije	%r4,43,.L613
-	cije	%r4,45,.L614
+	clijle	%r1,4,.L694
+	cije	%r4,43,.L695
+	cije	%r4,45,.L696
 	ahik	%r5,%r4,-48
 	lgr	%r3,%r2
-	clijh	%r5,9,.L623
+	clijh	%r5,9,.L705
 	lhi	%r11,0
-.L617:
+.L699:
 	lghi	%r5,0
-.L620:
+.L702:
 	ahik	%r0,%r4,-48
 	llc	%r4,1(%r3)
 	sllg	%r1,%r5,2
@@ -1849,7 +2068,7 @@ atoll:
 	ahik	%r12,%r4,-48
 	lgr	%r5,%r1
 	sgfr	%r5,%r0
-	clijle	%r12,9,.L620
+	clijle	%r12,9,.L702
 	sgr	%r2,%r1
 	ltr	%r11,%r11
 	lgdr	%r12,%f0
@@ -1859,17 +2078,17 @@ atoll:
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L612:
+.L694:
 	.cfi_restore_state
 	la	%r2,1(%r2)
-	j	.L616
-.L614:
+	j	.L698
+.L696:
 	llc	%r4,1(%r2)
 	la	%r3,1(%r2)
 	lhi	%r11,1
 	ahik	%r2,%r4,-48
-	clijle	%r2,9,.L617
-.L623:
+	clijle	%r2,9,.L699
+.L705:
 	lghi	%r2,0
 	lgdr	%r12,%f0
 	.cfi_remember_state
@@ -1877,14 +2096,14 @@ atoll:
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L613:
+.L695:
 	.cfi_restore_state
 	llc	%r4,1(%r2)
 	la	%r3,1(%r2)
 	ahik	%r0,%r4,-48
-	clijh	%r0,9,.L623
+	clijh	%r0,9,.L705
 	lhi	%r11,0
-	j	.L617
+	j	.L699
 	.cfi_endproc
 .LFE171:
 	.size	atoll, .-atoll
@@ -1907,19 +2126,19 @@ bsearch:
 	.cfi_offset 15, -8
 	lay	%r15,-80(%r15)
 	.cfi_def_cfa_offset 240
-	cgije	%r4,0,.L637
+	cgije	%r4,0,.L719
 	lgr	%r7,%r2
 	lgr	%r9,%r3
 	lgr	%r8,%r5
 	lgr	%r12,%r4
-	j	.L640
-.L647:
-	je	.L636
+	j	.L722
+.L729:
+	je	.L718
 	aghi	%r12,-1
 	agrk	%r9,%r11,%r8
 	sgr	%r12,%r10
-	cgije	%r12,0,.L637
-.L640:
+	cgije	%r12,0,.L719
+.L722:
 	srlg	%r10,%r12,1
 	lgr	%r11,%r10
 	msgr	%r11,%r8
@@ -1928,12 +2147,12 @@ bsearch:
 	lgr	%r3,%r11
 	basr	%r14,%r6
 	ltr	%r2,%r2
-	jhe	.L647
+	jhe	.L729
 	lgr	%r12,%r10
-	cgijlh	%r12,0,.L640
-.L637:
+	cgijlh	%r12,0,.L722
+.L719:
 	lghi	%r11,0
-.L636:
+.L718:
 	lgr	%r2,%r11
 	lmg	%r7,%r15,168(%r15)
 	.cfi_restore 15
@@ -1973,8 +2192,8 @@ bsearch_r:
 	lgr	%r9,%r3
 	lgr	%r8,%r5
 	lr	%r11,%r4
-	cije	%r4,0,.L654
-.L659:
+	cije	%r4,0,.L736
+.L741:
 	srak	%r10,%r11,1
 	lgr	%r12,%r8
 	msgfr	%r12,%r10
@@ -1984,15 +2203,15 @@ bsearch_r:
 	lgr	%r3,%r12
 	basr	%r14,%r6
 	ltr	%r2,%r2
-	je	.L649
-	jle	.L652
+	je	.L731
+	jle	.L734
 	agrk	%r9,%r12,%r8
 	ahi	%r11,-1
 	sra	%r11,1
-	jne	.L659
-.L654:
+	jne	.L741
+.L736:
 	lghi	%r12,0
-.L649:
+.L731:
 	lgr	%r2,%r12
 	lmg	%r7,%r15,168(%r15)
 	.cfi_remember_state
@@ -2007,11 +2226,11 @@ bsearch_r:
 	.cfi_restore 7
 	.cfi_def_cfa_offset 160
 	br	%r14
-.L652:
+.L734:
 	.cfi_restore_state
-	cije	%r10,0,.L654
+	cije	%r10,0,.L736
 	lr	%r11,%r10
-	j	.L659
+	j	.L741
 	.cfi_endproc
 .LFE51:
 	.size	bsearch_r, .-bsearch_r
@@ -2022,11 +2241,22 @@ bsearch_r:
 div:
 .LFB52:
 	.cfi_startproc
+	larl	%r5,.L747
 	lgr	%r1,%r3
 	dsgr	%r0,%r4
-	st	%r1,0(%r2)
-	st	%r0,4(%r2)
+	ld	%v0,.L748-.L747(%r5)
+	vlvgf	%v0,%r1,0
+	vlvgf	%v0,%r0,1
+	std	%v0,0(%r2)
 	br	%r14
+	.section	.rodata
+	.align	8
+.L747:
+.L748:
+	.long	0
+	.long	0
+	.align	2
+.text
 	.cfi_endproc
 .LFE52:
 	.size	div, .-div
@@ -2051,8 +2281,8 @@ imaxdiv:
 	.cfi_startproc
 	lgr	%r1,%r3
 	dsgr	%r0,%r4
-	stg	%r1,0(%r2)
-	stg	%r0,8(%r2)
+	vlvgp	%v0,%r1,%r0
+	vst	%v0,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE54:
@@ -2078,8 +2308,8 @@ ldiv:
 	.cfi_startproc
 	lgr	%r1,%r3
 	dsgr	%r0,%r4
-	stg	%r1,0(%r2)
-	stg	%r0,8(%r2)
+	vlvgp	%v0,%r1,%r0
+	vst	%v0,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE56:
@@ -2105,8 +2335,8 @@ lldiv:
 	.cfi_startproc
 	lgr	%r1,%r3
 	dsgr	%r0,%r4
-	stg	%r1,0(%r2)
-	stg	%r0,8(%r2)
+	vlvgp	%v0,%r1,%r0
+	vst	%v0,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE58:
@@ -2118,16 +2348,16 @@ lldiv:
 wcschr:
 .LFB59:
 	.cfi_startproc
-	j	.L686
-.L688:
-	crje	%r1,%r3,.L687
+	j	.L770
+.L772:
+	crje	%r1,%r3,.L771
 	la	%r2,4(%r2)
-.L686:
+.L770:
 	lt	%r1,0(%r2)
-	jne	.L688
+	jne	.L772
 	lghi	%r2,0
 	br	%r14
-.L687:
+.L771:
 	br	%r14
 	.cfi_endproc
 .LFE59:
@@ -2142,16 +2372,16 @@ wcscmp:
 	l	%r4,0(%r2)
 	l	%r5,0(%r3)
 	lghi	%r1,4
-	crje	%r4,%r5,.L691
-	j	.L692
-.L693:
+	crje	%r4,%r5,.L775
+	j	.L776
+.L777:
 	l	%r4,0(%r1,%r2)
 	aghi	%r1,4
 	ly	%r5,-4(%r1,%r3)
-	crjlh	%r4,%r5,.L692
-.L691:
-	cijlh	%r4,0,.L693
-.L692:
+	crjlh	%r4,%r5,.L776
+.L775:
+	cijlh	%r4,0,.L777
+.L776:
 	cr	%r4,%r5
 	lhi	%r2,0
 	lochih	%r2,1
@@ -2169,11 +2399,11 @@ wcscpy:
 .LFB61:
 	.cfi_startproc
 	lghi	%r1,0
-.L702:
+.L786:
 	l	%r4,0(%r1,%r3)
 	st	%r4,0(%r1,%r2)
 	aghi	%r1,4
-	cijlh	%r4,0,.L702
+	cijlh	%r4,0,.L786
 	br	%r14
 	.cfi_endproc
 .LFE61:
@@ -2186,16 +2416,31 @@ wcslen:
 .LFB62:
 	.cfi_startproc
 	lt	%r1,0(%r2)
-	je	.L708
-	lgr	%r1,%r2
-.L707:
-	la	%r1,4(%r1)
-	lt	%r3,0(%r1)
-	jne	.L707
+	je	.L793
+	vlbb	%v0,4(%r2),6
+	la	%r1,4(%r2)
+	lcbb	%r3,0(%r1),6
+	vzero	%v2
+	vfeefs	%v1,%v0,%v2
+	vlgvf	%r4,%v1,1
+	clrjl	%r4,%r3,.L792
+	la	%r1,20(%r2)
+	nill	%r1,65520
+	vl	%v4,0(%r1),4
+	vfeefs	%v1,%v4,%v2
+	jl	.L792
+.L791:
+	vl	%v6,16(%r1),4
+	la	%r1,16(%r1)
+	vfeefs	%v1,%v6,%v2
+	jnl	.L791
+.L792:
+	vlgvg	%r0,%v1,0
+	agr	%r1,%r0
 	sgrk	%r2,%r1,%r2
 	srag	%r2,%r2,2
 	br	%r14
-.L708:
+.L793:
 	lghi	%r2,0
 	br	%r14
 	.cfi_endproc
@@ -2208,34 +2453,34 @@ wcslen:
 wcsncmp:
 .LFB63:
 	.cfi_startproc
-	cgije	%r4,0,.L718
+	cgije	%r4,0,.L803
 	aghik	%r5,%r4,-1
 	lgr	%r1,%r4
 	tmll	%r4,1
-	jne	.L736
-.L721:
+	jne	.L821
+.L806:
 	srlg	%r0,%r1,1
-.L712:
+.L797:
 	l	%r1,0(%r2)
 	c	%r1,0(%r3)
-	jne	.L714
+	jne	.L799
 	la	%r5,4(%r2)
-	cije	%r1,0,.L714
+	cije	%r1,0,.L799
 	l	%r4,0(%r5)
 	la	%r3,4(%r3)
 	lgr	%r2,%r5
 	c	%r4,0(%r3)
-	jne	.L714
-	cije	%r4,0,.L714
+	jne	.L799
+	cije	%r4,0,.L799
 	la	%r2,4(%r5)
 	la	%r3,4(%r3)
-	brctg	%r0,.L712
-.L718:
+	brctg	%r0,.L797
+.L803:
 	lhi	%r3,0
-.L737:
+.L822:
 	lgfr	%r2,%r3
 	br	%r14
-.L714:
+.L799:
 	l	%r2,0(%r2)
 	c	%r2,0(%r3)
 	lhi	%r3,0
@@ -2243,16 +2488,16 @@ wcsncmp:
 	lochil	%r3,-1
 	lgfr	%r2,%r3
 	br	%r14
-.L736:
+.L821:
 	l	%r4,0(%r2)
 	c	%r4,0(%r3)
-	jne	.L714
-	cije	%r4,0,.L714
+	jne	.L799
+	cije	%r4,0,.L799
 	la	%r2,4(%r2)
 	la	%r3,4(%r3)
-	cgijlh	%r5,0,.L721
+	cgijlh	%r5,0,.L806
 	lhi	%r3,0
-	j	.L737
+	j	.L822
 	.cfi_endproc
 .LFE63:
 	.size	wcsncmp, .-wcsncmp
@@ -2263,30 +2508,30 @@ wcsncmp:
 wmemchr:
 .LFB64:
 	.cfi_startproc
-	cgije	%r4,0,.L743
+	cgije	%r4,0,.L828
 	aghik	%r0,%r4,-1
 	lgr	%r1,%r4
 	risbg	%r5,%r4,62,128+63,0
-	je	.L750
-	cgije	%r5,1,.L761
-	cgije	%r5,2,.L762
+	je	.L835
+	cgije	%r5,1,.L846
+	cgije	%r5,2,.L847
 	c	%r3,0(%r2)
 	ber	%r14
 	lgr	%r4,%r0
 	la	%r2,4(%r2)
-.L762:
+.L847:
 	c	%r3,0(%r2)
 	ber	%r14
 	aghi	%r4,-1
 	la	%r2,4(%r2)
-.L761:
+.L846:
 	c	%r3,0(%r2)
 	ber	%r14
 	la	%r2,4(%r2)
-	cgije	%r4,1,.L743
-.L750:
+	cgije	%r4,1,.L828
+.L835:
 	srlg	%r4,%r1,2
-.L740:
+.L825:
 	c	%r3,0(%r2)
 	ber	%r14
 	la	%r1,4(%r2)
@@ -2300,8 +2545,8 @@ wmemchr:
 	la	%r2,8(%r1)
 	ber	%r14
 	la	%r2,12(%r1)
-	brctg	%r4,.L740
-.L743:
+	brctg	%r4,.L825
+.L828:
 	lghi	%r2,0
 	br	%r14
 	.cfi_endproc
@@ -2314,60 +2559,60 @@ wmemchr:
 wmemcmp:
 .LFB65:
 	.cfi_startproc
-	cgije	%r4,0,.L782
+	cgije	%r4,0,.L867
 	aghik	%r0,%r4,-1
 	lgr	%r5,%r4
 	risbg	%r1,%r4,62,128+63,0
-	je	.L789
-	cgije	%r1,1,.L800
-	cgije	%r1,2,.L801
+	je	.L874
+	cgije	%r1,1,.L885
+	cgije	%r1,2,.L886
 	l	%r1,0(%r2)
 	c	%r1,0(%r3)
-	jne	.L808
+	jne	.L893
 	lgr	%r4,%r0
 	la	%r2,4(%r2)
 	la	%r3,4(%r3)
-.L801:
+.L886:
 	l	%r1,0(%r2)
 	c	%r1,0(%r3)
-	jne	.L808
+	jne	.L893
 	aghi	%r4,-1
 	la	%r2,4(%r2)
 	la	%r3,4(%r3)
-.L800:
+.L885:
 	l	%r1,0(%r2)
 	c	%r1,0(%r3)
-	jne	.L808
+	jne	.L893
 	la	%r2,4(%r2)
 	la	%r3,4(%r3)
-	cgije	%r4,1,.L782
-.L789:
+	cgije	%r4,1,.L867
+.L874:
 	srlg	%r0,%r5,2
-.L776:
+.L861:
 	l	%r1,0(%r2)
 	c	%r1,0(%r3)
-	jne	.L808
+	jne	.L893
 	l	%r1,4(%r2)
 	la	%r4,4(%r3)
 	lgr	%r3,%r4
 	c	%r1,0(%r4)
-	jne	.L808
+	jne	.L893
 	l	%r1,8(%r2)
 	la	%r3,4(%r4)
 	c	%r1,0(%r3)
-	jne	.L808
+	jne	.L893
 	l	%r1,12(%r2)
 	la	%r3,8(%r4)
 	c	%r1,8(%r4)
-	jne	.L808
+	jne	.L893
 	la	%r2,16(%r2)
 	la	%r3,12(%r4)
-	brctg	%r0,.L776
-.L782:
+	brctg	%r0,.L861
+.L867:
 	lhi	%r2,0
 	lgfr	%r2,%r2
 	br	%r14
-.L808:
+.L893:
 	c	%r1,0(%r3)
 	lhi	%r2,0
 	lochih	%r2,1
@@ -2392,10 +2637,10 @@ wmemcpy:
 	lay	%r15,-32(%r15)
 	.cfi_def_cfa_offset 192
 	lgr	%r12,%r2
-	cgije	%r4,0,.L815
+	cgije	%r4,0,.L900
 	sllg	%r4,%r4,2
 	brasl	%r14,memcpy@PLT
-.L815:
+.L900:
 	lgr	%r2,%r12
 	lmg	%r12,%r15,160(%r15)
 	.cfi_restore 15
@@ -2414,218 +2659,335 @@ wmemcpy:
 wmemmove:
 .LFB67:
 	.cfi_startproc
-	cgrje	%r2,%r3,.L914
-	aghik	%r1,%r4,-1
-	sgrk	%r0,%r2,%r3
+	cgrje	%r2,%r3,.L1035
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
 	sllg	%r5,%r4,2
-	clgrjl	%r0,%r5,.L823
-	cgije	%r4,0,.L917
-	clgijle	%r1,8,.L834
-	ogrk	%r0,%r3,%r2
-	risbg	%r5,%r0,61,128+63,0
-	aghi	%r5,-1
-	cgijhe	%r5,0,.L834
-	la	%r0,4(%r3)
-	cgrje	%r2,%r0,.L834
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	aghik	%r12,%r4,-1
+	sgrk	%r1,%r2,%r3
+	clgrjhe	%r1,%r5,.L1038
+	cgije	%r4,0,.L932
+	clgijle	%r12,7,.L911
+	sgrk	%r1,%r2,%r3
+	aghi	%r1,12
+	clgijle	%r1,8,.L911
+	aghi	%r5,-16
+	risbgn	%r10,%r4,0,128+59,2
+	agrk	%r11,%r3,%r5
+	aghik	%r9,%r10,-16
+	lcgr	%r8,%r10
+	agr	%r5,%r2
+	srlg	%r0,%r9,4
 	lghi	%r1,0
-	srlg	%r12,%r4,1
-	lghi	%r0,0
-	lgr	%r5,%r12
-	risbg	%r11,%r12,62,128+63,0
-	je	.L870
-	cgije	%r11,1,.L876
-	cgije	%r11,2,.L877
-	lg	%r1,0(%r3)
-	lghi	%r0,1
-	stg	%r1,0(%r2)
-	lghi	%r1,8
-.L877:
-	lg	%r11,0(%r1,%r3)
 	aghi	%r0,1
-	stg	%r11,0(%r1,%r2)
-	aghi	%r1,8
-.L876:
-	lg	%r11,0(%r1,%r3)
-	aghi	%r0,1
-	stg	%r11,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r12,%r0,.L897
-.L870:
-	srlg	%r5,%r5,2
-	cghi	%r5,2
-	jle	.L912
-	aghi	%r5,-1
-	lg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-.L828:
-	lg	%r0,8(%r1,%r3)
-	stg	%r0,8(%r1,%r2)
-	lg	%r0,16(%r1,%r3)
-	stg	%r0,16(%r1,%r2)
-	lg	%r0,24(%r1,%r3)
-	stg	%r0,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-	brctg	%r5,.L828
-	lg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-.L897:
-	tmll	%r4,1
-	je	.L839
-	risbgn	%r4,%r4,0,128+60,2
-	l	%r3,0(%r4,%r3)
-	st	%r3,0(%r4,%r2)
-.L839:
-	lgdr	%r12,%f0
+	risbg	%r10,%r0,62,128+63,0
+	je	.L958
+	cgije	%r10,1,.L980
+	cgije	%r10,2,.L981
+	vl	%v17,0(%r11)
+	lghi	%r1,-16
+	vst	%v17,0(%r5)
+.L981:
+	vl	%v19,0(%r1,%r11)
+	vst	%v19,0(%r1,%r5)
+	aghi	%r1,-16
+.L980:
+	vl	%v21,0(%r1,%r11)
+	vst	%v21,0(%r1,%r5)
+	aghi	%r1,-16
+	cgrje	%r1,%r8,.L1012
+.L958:
+	srlg	%r0,%r0,2
+	cghi	%r0,2
+	jle	.L1031
+	aghi	%r0,-1
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r5)
+.L912:
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	aghi	%r1,-64
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r5)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r5)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r5)
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r5)
+	brctg	%r0,.L912
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r5)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r5)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r5)
+.L1012:
+	risbg	%r5,%r4,0,128+61,0
+	sgr	%r12,%r5
+	tmll	%r4,3
+	je	.L932
+	sllg	%r4,%r12,2
+	l	%r11,0(%r4,%r3)
+	st	%r11,0(%r4,%r2)
+	cgije	%r12,0,.L932
+	aghi	%r12,-1
+	sllg	%r9,%r12,2
+	l	%r1,0(%r9,%r3)
+	st	%r1,0(%r9,%r2)
+	cgije	%r12,0,.L932
+	ly	%r3,-4(%r9,%r3)
+	sty	%r3,-4(%r9,%r2)
+.L932:
+	lgdr	%r12,%f2
+	.cfi_remember_state
 	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f4
 	.cfi_restore 11
+	lgdr	%r10,%f6
+	.cfi_restore 10
+	lgdr	%r9,%f1
+	.cfi_restore 9
+	lgdr	%r8,%f3
+	.cfi_restore 8
 	br	%r14
-.L823:
-	cgije	%r4,0,.L914
-	risbg	%r4,%r1,2,128+63,0
-	sllg	%r1,%r1,2
-	aghi	%r4,1
-	risbg	%r5,%r4,62,128+63,0
-	je	.L852
-	cgije	%r5,1,.L874
-	cgije	%r5,2,.L875
-	l	%r0,0(%r1,%r3)
-	st	%r0,0(%r1,%r2)
-	aghi	%r1,-4
-.L875:
+.L1038:
+	.cfi_restore_state
+	cgije	%r4,0,.L932
+	clgijle	%r12,6,.L924
+	la	%r0,4(%r3)
+	sgrk	%r5,%r2,%r0
+	clgijle	%r5,8,.L924
+	srlg	%r11,%r4,2
+	lghi	%r1,0
+	lgr	%r8,%r11
+	lghi	%r9,0
+	risbg	%r10,%r11,62,128+63,0
+	je	.L976
+	cgije	%r10,1,.L984
+	cgije	%r10,2,.L985
+	vl	%v0,0(%r3)
+	lghi	%r9,1
+	lghi	%r1,16
+	vst	%v0,0(%r2)
+.L985:
+	vl	%v5,0(%r1,%r3)
+	aghi	%r9,1
+	vst	%v5,0(%r1,%r2)
+	aghi	%r1,16
+.L984:
+	vl	%v7,0(%r1,%r3)
+	aghi	%r9,1
+	vst	%v7,0(%r1,%r2)
+	aghi	%r1,16
+	cgrje	%r11,%r9,.L1013
+.L976:
+	srlg	%r5,%r8,2
+	cghi	%r5,2
+	jle	.L1033
+	aghi	%r5,-1
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+.L918:
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+	brctg	%r5,.L918
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+.L1013:
+	risbg	%r1,%r4,0,128+61,0
+	sllg	%r5,%r1,2
+	sgr	%r12,%r1
+	agr	%r3,%r5
+	agr	%r5,%r2
+	tmll	%r4,3
+	je	.L932
+	l	%r4,0(%r3)
+	st	%r4,0(%r5)
+	cgije	%r12,0,.L932
+	l	%r0,4(%r3)
+	st	%r0,4(%r5)
+	cgije	%r12,1,.L932
+	l	%r3,8(%r3)
+	st	%r3,8(%r5)
+	j	.L932
+.L1031:
+	vl	%v23,0(%r1,%r11)
+	aghik	%r9,%r1,-16
+	aghik	%r8,%r1,-32
+	vst	%v23,0(%r1,%r5)
+	aghik	%r10,%r1,-48
+	aghi	%r1,-64
+	vl	%v24,0(%r9,%r11)
+	vst	%v24,0(%r9,%r5)
+	vl	%v26,0(%r8,%r11)
+	vst	%v26,0(%r8,%r5)
+	vl	%v28,0(%r10,%r11)
+	vst	%v28,0(%r10,%r5)
+	brctg	%r0,.L1031
+	j	.L1012
+.L1033:
+	vl	%v16,0(%r1,%r3)
+	vst	%v16,0(%r1,%r2)
+	vl	%v18,16(%r1,%r3)
+	vst	%v18,16(%r1,%r2)
+	vl	%v20,32(%r1,%r3)
+	vst	%v20,32(%r1,%r2)
+	vl	%v22,48(%r1,%r3)
+	vst	%v22,48(%r1,%r2)
+	aghi	%r1,64
+	brctg	%r5,.L1033
+	j	.L1013
+.L1035:
+	.cfi_restore 8
+	.cfi_restore 9
+	.cfi_restore 10
+	.cfi_restore 11
+	.cfi_restore 12
+	br	%r14
+.L911:
+	.cfi_register 8, 21
+	.cfi_register 9, 20
+	.cfi_register 10, 19
+	.cfi_register 11, 18
+	.cfi_register 12, 17
+	risbg	%r0,%r12,2,128+63,0
+	sllg	%r12,%r12,2
+	aghi	%r0,1
+	risbg	%r8,%r0,62,128+63,0
+	je	.L949
+	cgije	%r8,1,.L982
+	cgije	%r8,2,.L983
+	l	%r10,0(%r12,%r3)
+	st	%r10,0(%r12,%r2)
+	aghi	%r12,-4
+.L983:
+	l	%r5,0(%r12,%r3)
+	st	%r5,0(%r12,%r2)
+	aghi	%r12,-4
+.L982:
+	l	%r4,0(%r12,%r3)
+	st	%r4,0(%r12,%r2)
+	aghi	%r12,-4
+	cgije	%r12,-4,.L932
+.L949:
+	srlg	%r1,%r0,2
+	cghi	%r1,2
+	jle	.L1030
+	aghi	%r1,-1
+	l	%r4,0(%r12,%r3)
+	st	%r4,0(%r12,%r2)
+	ly	%r4,-4(%r12,%r3)
+	sty	%r4,-4(%r12,%r2)
+	ly	%r4,-8(%r12,%r3)
+	sty	%r4,-8(%r12,%r2)
+	ly	%r4,-12(%r12,%r3)
+	sty	%r4,-12(%r12,%r2)
+.L915:
+	aghi	%r12,-16
+	l	%r4,0(%r12,%r3)
+	st	%r4,0(%r12,%r2)
+	ly	%r4,-4(%r12,%r3)
+	sty	%r4,-4(%r12,%r2)
+	ly	%r4,-8(%r12,%r3)
+	sty	%r4,-8(%r12,%r2)
+	ly	%r4,-12(%r12,%r3)
+	sty	%r4,-12(%r12,%r2)
+	brctg	%r1,.L915
+	j	.L932
+.L924:
+	aghik	%r11,%r12,1
+	lghi	%r1,0
+	risbg	%r8,%r11,62,128+63,0
+	je	.L967
+	cgije	%r8,1,.L986
+	cgije	%r8,2,.L987
+	l	%r10,0(%r3)
+	aghi	%r12,-1
+	st	%r10,0(%r2)
+	lghi	%r1,4
+.L987:
+	l	%r9,0(%r1,%r3)
+	aghi	%r12,-1
+	st	%r9,0(%r1,%r2)
+	aghi	%r1,4
+.L986:
 	l	%r5,0(%r1,%r3)
 	st	%r5,0(%r1,%r2)
-	aghi	%r1,-4
-.L874:
-	l	%r0,0(%r1,%r3)
-	st	%r0,0(%r1,%r2)
-	aghi	%r1,-4
-	cgije	%r1,-4,.L914
-.L852:
-	srlg	%r4,%r4,2
+	aghi	%r1,4
+	cgije	%r12,0,.L932
+.L967:
+	srlg	%r4,%r11,2
 	cghi	%r4,2
-	jle	.L910
+	jle	.L1032
 	aghi	%r4,-1
 	l	%r5,0(%r1,%r3)
 	st	%r5,0(%r1,%r2)
-	ly	%r5,-4(%r1,%r3)
-	sty	%r5,-4(%r1,%r2)
-	ly	%r5,-8(%r1,%r3)
-	sty	%r5,-8(%r1,%r2)
-	ly	%r5,-12(%r1,%r3)
-	sty	%r5,-12(%r1,%r2)
-.L826:
-	aghi	%r1,-16
+	l	%r5,4(%r1,%r3)
+	st	%r5,4(%r1,%r2)
+	l	%r5,8(%r1,%r3)
+	st	%r5,8(%r1,%r2)
+	l	%r5,12(%r1,%r3)
+	st	%r5,12(%r1,%r2)
+.L921:
+	aghi	%r1,16
 	l	%r5,0(%r1,%r3)
 	st	%r5,0(%r1,%r2)
-	ly	%r5,-4(%r1,%r3)
-	sty	%r5,-4(%r1,%r2)
-	ly	%r5,-8(%r1,%r3)
-	sty	%r5,-8(%r1,%r2)
-	ly	%r5,-12(%r1,%r3)
-	sty	%r5,-12(%r1,%r2)
-	brctg	%r4,.L826
-	br	%r14
-.L910:
-	l	%r5,0(%r1,%r3)
-	st	%r5,0(%r1,%r2)
-	ly	%r0,-4(%r1,%r3)
-	sty	%r0,-4(%r1,%r2)
-	ly	%r5,-8(%r1,%r3)
-	sty	%r5,-8(%r1,%r2)
-	ly	%r0,-12(%r1,%r3)
-	sty	%r0,-12(%r1,%r2)
-	aghi	%r1,-16
-	brctg	%r4,.L910
-	br	%r14
-.L912:
-	.cfi_register 11, 17
-	.cfi_register 12, 16
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	lg	%r0,8(%r1,%r3)
-	stg	%r0,8(%r1,%r2)
-	lg	%r11,16(%r1,%r3)
-	stg	%r11,16(%r1,%r2)
-	lg	%r12,24(%r1,%r3)
-	stg	%r12,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L912
-	j	.L897
-.L834:
-	.cfi_restore 11
-	.cfi_restore 12
-	aghik	%r5,%r1,1
-	lghi	%r4,0
-	risbg	%r0,%r5,62,128+63,0
-	je	.L861
-	cgije	%r0,1,.L878
-	cgije	%r0,2,.L879
-	l	%r4,0(%r3)
-	aghi	%r1,-1
-	st	%r4,0(%r2)
-	lghi	%r4,4
-.L879:
-	l	%r0,0(%r4,%r3)
-	aghi	%r1,-1
-	st	%r0,0(%r4,%r2)
-	aghi	%r4,4
-.L878:
-	l	%r0,0(%r4,%r3)
-	st	%r0,0(%r4,%r2)
-	aghi	%r4,4
-	cgije	%r1,0,.L914
-.L861:
-	srlg	%r5,%r5,2
-	cghi	%r5,2
-	jle	.L911
-	aghi	%r5,-1
-	l	%r1,0(%r4,%r3)
-	st	%r1,0(%r4,%r2)
-	l	%r1,4(%r4,%r3)
-	st	%r1,4(%r4,%r2)
-	l	%r1,8(%r4,%r3)
-	st	%r1,8(%r4,%r2)
-	l	%r1,12(%r4,%r3)
-	st	%r1,12(%r4,%r2)
-.L831:
-	aghi	%r4,16
-	l	%r1,0(%r4,%r3)
-	st	%r1,0(%r4,%r2)
-	l	%r1,4(%r4,%r3)
-	st	%r1,4(%r4,%r2)
-	l	%r1,8(%r4,%r3)
-	st	%r1,8(%r4,%r2)
-	l	%r1,12(%r4,%r3)
-	st	%r1,12(%r4,%r2)
-	brctg	%r5,.L831
-	br	%r14
-.L914:
-	br	%r14
-.L911:
-	l	%r1,0(%r4,%r3)
-	st	%r1,0(%r4,%r2)
-	l	%r0,4(%r4,%r3)
-	st	%r0,4(%r4,%r2)
-	l	%r1,8(%r4,%r3)
-	st	%r1,8(%r4,%r2)
-	l	%r0,12(%r4,%r3)
-	st	%r0,12(%r4,%r2)
-	aghi	%r4,16
-	brctg	%r5,.L911
-	br	%r14
-.L917:
-	br	%r14
+	l	%r5,4(%r1,%r3)
+	st	%r5,4(%r1,%r2)
+	l	%r5,8(%r1,%r3)
+	st	%r5,8(%r1,%r2)
+	l	%r5,12(%r1,%r3)
+	st	%r5,12(%r1,%r2)
+	brctg	%r4,.L921
+	j	.L932
+.L1030:
+	l	%r11,0(%r12,%r3)
+	st	%r11,0(%r12,%r2)
+	ly	%r9,-4(%r12,%r3)
+	sty	%r9,-4(%r12,%r2)
+	ly	%r0,-8(%r12,%r3)
+	sty	%r0,-8(%r12,%r2)
+	ly	%r8,-12(%r12,%r3)
+	sty	%r8,-12(%r12,%r2)
+	aghi	%r12,-16
+	brctg	%r1,.L1030
+	j	.L932
+.L1032:
+	l	%r12,0(%r1,%r3)
+	st	%r12,0(%r1,%r2)
+	l	%r0,4(%r1,%r3)
+	st	%r0,4(%r1,%r2)
+	l	%r11,8(%r1,%r3)
+	st	%r11,8(%r1,%r2)
+	l	%r8,12(%r1,%r3)
+	st	%r8,12(%r1,%r2)
+	aghi	%r1,16
+	brctg	%r4,.L1032
+	j	.L932
 	.cfi_endproc
 .LFE67:
 	.size	wmemmove, .-wmemmove
@@ -2636,123 +2998,119 @@ wmemmove:
 wmemset:
 .LFB68:
 	.cfi_startproc
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f5,%r6
-	.cfi_register 6, 22
-	ldgr	%f3,%r7
-	.cfi_register 7, 21
-	ldgr	%f1,%r8
-	.cfi_register 8, 20
-	ldgr	%f6,%r9
-	.cfi_register 9, 19
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
 	aghik	%r11,%r4,-1
-	cgije	%r4,0,.L920
-	risbgn	%r1,%r2,64-1,128+63,61+1
-	clgijle	%r11,5,.L925
-	cgije	%r1,0,.L926
-	st	%r3,0(%r2)
-	la	%r10,4(%r2)
-	aghik	%r11,%r4,-2
-.L922:
-	sgrk	%r12,%r4,%r1
-	sllg	%r4,%r1,2
-	agr	%r4,%r2
-	srlg	%r9,%r12,1
-	lghi	%r0,0
-	lgr	%r5,%r9
-	risbgn	%r0,%r3,0,0+32-1,64-0-32
-	lghi	%r1,0
-	lr	%r0,%r3
-	risbg	%r8,%r9,62,128+63,0
-	je	.L947
-	cgije	%r8,1,.L951
-	cgije	%r8,2,.L952
-	stg	%r0,0(%r1,%r4)
-	lghi	%r1,1
-.L952:
-	sllg	%r6,%r1,3
-	stg	%r0,0(%r6,%r4)
-	aghi	%r1,1
-.L951:
-	sllg	%r7,%r1,3
-	stg	%r0,0(%r7,%r4)
-	aghi	%r1,1
-	cgrje	%r9,%r1,.L964
-.L947:
-	srlg	%r5,%r5,2
-	cghi	%r5,2
-	jle	.L969
-	aghi	%r5,-1
-	sllg	%r9,%r1,3
-	stg	%r0,0(%r9,%r4)
-	stg	%r0,8(%r9,%r4)
-	stg	%r0,16(%r9,%r4)
-	stg	%r0,24(%r9,%r4)
-.L923:
-	aghi	%r1,4
-	sllg	%r9,%r1,3
-	stg	%r0,0(%r9,%r4)
-	stg	%r0,8(%r9,%r4)
-	stg	%r0,16(%r9,%r4)
-	stg	%r0,24(%r9,%r4)
-	brctg	%r5,.L923
-.L964:
-	tmll	%r12,1
-	je	.L920
-	risbg	%r0,%r12,0,128+62,0
-	sllg	%r4,%r0,2
-	sgr	%r11,%r0
-	agr	%r4,%r10
-.L921:
-	st	%r3,0(%r4)
-	cgije	%r11,0,.L920
-	st	%r3,4(%r4)
-	cgije	%r11,1,.L920
-	st	%r3,8(%r4)
-	cgije	%r11,2,.L920
-	st	%r3,12(%r4)
-	cgije	%r11,3,.L920
-	st	%r3,16(%r4)
-	cgije	%r11,4,.L920
-	st	%r3,20(%r4)
-.L920:
-	lgdr	%r12,%f0
+	cgije	%r4,0,.L1041
+	clgijle	%r11,6,.L1047
+	vlvgf	%v0,%r3,3
+	srlg	%r9,%r4,2
+	vrepf	%v0,%v0,3
+	clgijle	%r4,67,.L1048
+	aghik	%r12,%r9,-17
+	lgr	%r1,%r2
+	nill	%r12,65520
+	srlg	%r5,%r12,4
+	aghi	%r12,16
+	aghi	%r5,1
+.L1044:
+	vst	%v0,0(%r1)
+	vst	%v0,16(%r1)
+	vst	%v0,32(%r1)
+	vst	%v0,48(%r1)
+	vst	%v0,64(%r1)
+	vst	%v0,80(%r1)
+	vst	%v0,96(%r1)
+	vst	%v0,112(%r1)
+	vst	%v0,128(%r1)
+	vst	%v0,144(%r1)
+	vst	%v0,160(%r1)
+	vst	%v0,176(%r1)
+	vst	%v0,192(%r1)
+	vst	%v0,208(%r1)
+	vst	%v0,224(%r1)
+	vst	%v0,240(%r1)
+	pfd	2,640(%r1)
+	la	%r1,256(%r1)
+	brctg	%r5,.L1044
+.L1043:
+	vst	%v0,0(%r1)
+	lghi	%r0,-1
+	la	%r5,16(%r1)
+	xgrk	%r10,%r12,%r0
+	aghik	%r0,%r12,1
+	agr	%r10,%r9
+	risbg	%r10,%r10,62,128+63,0
+	clgrjle	%r9,%r0,.L1091
+	cgije	%r10,0,.L1092
+	cgije	%r10,1,.L1078
+	cgije	%r10,2,.L1079
+	vst	%v0,0(%r5)
+	aghik	%r0,%r12,2
+	la	%r5,32(%r1)
+.L1079:
+	vst	%v0,0(%r5)
+	aghi	%r0,1
+	aghi	%r5,16
+.L1078:
+	vst	%v0,0(%r5)
+	aghi	%r0,1
+	aghi	%r5,16
+	clgrjle	%r9,%r0,.L1091
+.L1092:
+	vst	%v0,0(%r5)
+	vst	%v0,16(%r5)
+	vst	%v0,32(%r5)
+	vst	%v0,48(%r5)
+	aghi	%r0,4
+	aghi	%r5,64
+	clgrjh	%r9,%r0,.L1092
+.L1091:
+	tmll	%r4,3
+	je	.L1041
+	nill	%r4,65532
+	sllg	%r1,%r4,2
+	sgr	%r11,%r4
+	agr	%r1,%r2
+.L1042:
+	st	%r3,0(%r1)
+	cgije	%r11,0,.L1041
+	st	%r3,4(%r1)
+	cgije	%r11,1,.L1041
+	st	%r3,8(%r1)
+	cgije	%r11,2,.L1041
+	st	%r3,12(%r1)
+	cgije	%r11,3,.L1041
+	st	%r3,16(%r1)
+	cgije	%r11,4,.L1041
+	st	%r3,20(%r1)
+	cgije	%r11,5,.L1041
+	st	%r3,24(%r1)
+.L1041:
+	lgdr	%r12,%f2
 	.cfi_remember_state
 	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f4
 	.cfi_restore 11
-	lgdr	%r10,%f4
+	lgdr	%r10,%f6
 	.cfi_restore 10
-	lgdr	%r9,%f6
+	lgdr	%r9,%f1
 	.cfi_restore 9
-	lgdr	%r8,%f1
-	.cfi_restore 8
-	lgdr	%r7,%f3
-	.cfi_restore 7
-	lgdr	%r6,%f5
-	.cfi_restore 6
 	br	%r14
-.L969:
+.L1047:
 	.cfi_restore_state
-	sllg	%r7,%r1,3
-	stg	%r0,0(%r7,%r4)
-	stg	%r0,8(%r7,%r4)
-	stg	%r0,16(%r7,%r4)
-	stg	%r0,24(%r7,%r4)
-	aghi	%r1,4
-	brctg	%r5,.L969
-	j	.L964
-.L926:
-	lgr	%r10,%r2
-	j	.L922
-.L925:
-	lgr	%r4,%r2
-	j	.L921
+	lgr	%r1,%r2
+	j	.L1042
+.L1048:
+	lgr	%r1,%r2
+	lghi	%r12,0
+	j	.L1043
 	.cfi_endproc
 .LFE68:
 	.size	wmemset, .-wmemset
@@ -2763,190 +3121,325 @@ wmemset:
 bcopy:
 .LFB69:
 	.cfi_startproc
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
 	clgr	%r2,%r3
-	jhe	.L973
-	cgije	%r4,0,.L1081
-	aghik	%r0,%r4,-1
-	lgr	%r1,%r4
-	risbg	%r5,%r4,62,128+63,0
-	je	.L1012
-	cgije	%r5,1,.L1034
-	cgijlh	%r5,2,.L1084
-.L1035:
-	icy	%r0,-1(%r4,%r2)
-	stcy	%r0,-1(%r4,%r3)
-	aghi	%r4,-1
-.L1034:
-	icy	%r5,-1(%r4,%r2)
-	stcy	%r5,-1(%r4,%r3)
-	brctg	%r4,.L1012
-	br	%r14
-.L973:
-	ber	%r14
-	cgije	%r4,0,.L1081
+	jhe	.L1097
+	cgije	%r4,0,.L1096
 	aghik	%r1,%r4,-1
-	clgijle	%r1,14,.L983
-	ogrk	%r0,%r3,%r2
-	risbg	%r5,%r0,61,128+63,0
-	aghi	%r5,-1
-	cgijhe	%r5,0,.L983
-	la	%r1,1(%r2)
-	sgrk	%r0,%r3,%r1
-	clgijle	%r0,6,.L983
-	risbg	%r0,%r4,0,128+60,0
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
-	aghik	%r12,%r0,-8
+	clgijle	%r1,30,.L1214
+	lay	%r5,-2(%r4,%r2)
+	sgrk	%r8,%r3,%r5
+	la	%r0,14(%r8,%r1)
+	clgijle	%r0,14,.L1214
+	risbg	%r1,%r4,0,128+59,0
+	aghik	%r12,%r4,-16
+	aghik	%r9,%r1,-16
+	lcgr	%r8,%r1
+	agrk	%r11,%r2,%r12
+	agr	%r12,%r3
+	srlg	%r5,%r9,4
 	lghi	%r1,0
-	srlg	%r5,%r12,3
 	aghi	%r5,1
-	risbg	%r12,%r5,62,128+63,0
-	je	.L1030
-	cgije	%r12,1,.L1036
-	cgije	%r12,2,.L1037
-	lg	%r1,0(%r2)
-	stg	%r1,0(%r3)
-	lghi	%r1,8
-.L1037:
-	lg	%r12,0(%r1,%r2)
-	stg	%r12,0(%r1,%r3)
-	aghi	%r1,8
-.L1036:
-	lg	%r12,0(%r1,%r2)
-	stg	%r12,0(%r1,%r3)
-	aghi	%r1,8
-	cgrje	%r1,%r0,.L1063
-.L1030:
+	risbg	%r10,%r5,62,128+63,0
+	je	.L1192
+	cgije	%r10,1,.L1215
+	cgije	%r10,2,.L1216
+	vl	%v17,0(%r11)
+	lghi	%r1,-16
+	vst	%v17,0(%r12)
+.L1216:
+	vl	%v19,0(%r1,%r11)
+	vst	%v19,0(%r1,%r12)
+	aghi	%r1,-16
+.L1215:
+	vl	%v21,0(%r1,%r11)
+	vst	%v21,0(%r1,%r12)
+	aghi	%r1,-16
+	cgrje	%r1,%r8,.L1270
+.L1192:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L1078
+	jle	.L1284
 	aghi	%r5,-1
-	lg	%r0,0(%r1,%r2)
-	stg	%r0,0(%r1,%r3)
-.L977:
-	lg	%r0,8(%r1,%r2)
-	stg	%r0,8(%r1,%r3)
-	lg	%r0,16(%r1,%r2)
-	stg	%r0,16(%r1,%r3)
-	lg	%r0,24(%r1,%r2)
-	stg	%r0,24(%r1,%r3)
-	aghi	%r1,32
-	lg	%r0,0(%r1,%r2)
-	stg	%r0,0(%r1,%r3)
-	brctg	%r5,.L977
-	lg	%r5,8(%r1,%r2)
-	stg	%r5,8(%r1,%r3)
-	lg	%r5,16(%r1,%r2)
-	stg	%r5,16(%r1,%r3)
-	lg	%r5,24(%r1,%r2)
-	stg	%r5,24(%r1,%r3)
-	aghi	%r1,32
-.L1063:
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r12)
+.L1100:
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	aghi	%r1,-64
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r12)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r12)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r12)
+	vl	%v0,0(%r1,%r11)
+	vst	%v0,0(%r1,%r12)
+	brctg	%r5,.L1100
+	aghik	%r10,%r1,-48
+	aghik	%r9,%r1,-32
+	aghik	%r8,%r1,-16
+	aghi	%r1,-64
+	vl	%v0,0(%r8,%r11)
+	vst	%v0,0(%r8,%r12)
+	vl	%v0,0(%r9,%r11)
+	vst	%v0,0(%r9,%r12)
+	vl	%v0,0(%r10,%r11)
+	vst	%v0,0(%r10,%r12)
+.L1270:
+	agr	%r1,%r4
+	risbg	%r12,%r4,60,128+63,0
 	agr	%r3,%r1
 	agr	%r2,%r1
-	sgrk	%r5,%r4,%r1
-	cgrje	%r4,%r1,.L972
-	mvc	0(1,%r3),0(%r2)
-	cgije	%r5,1,.L972
-	mvc	1(1,%r3),1(%r2)
-	cgije	%r5,2,.L972
-	mvc	2(1,%r3),2(%r2)
-	cgije	%r5,3,.L972
-	mvc	3(1,%r3),3(%r2)
-	cgije	%r5,4,.L972
-	mvc	4(1,%r3),4(%r2)
-	cgije	%r5,5,.L972
-	mvc	5(1,%r3),5(%r2)
-	cgije	%r5,6,.L972
-	mvc	6(1,%r3),6(%r2)
-.L972:
-	lgdr	%r12,%f0
+	tmll	%r4,15
+	je	.L1096
+	icy	%r4,-1(%r2)
+	stcy	%r4,-1(%r3)
+	cgije	%r12,1,.L1096
+	icy	%r11,-2(%r2)
+	stcy	%r11,-2(%r3)
+	cgije	%r12,2,.L1096
+	icy	%r0,-3(%r2)
+	stcy	%r0,-3(%r3)
+	cgije	%r12,3,.L1096
+	icy	%r1,-4(%r2)
+	stcy	%r1,-4(%r3)
+	cgije	%r12,4,.L1096
+	icy	%r5,-5(%r2)
+	stcy	%r5,-5(%r3)
+	cgije	%r12,5,.L1096
+	icy	%r9,-6(%r2)
+	stcy	%r9,-6(%r3)
+	cgije	%r12,6,.L1096
+	icy	%r8,-7(%r2)
+	stcy	%r8,-7(%r3)
+	cgije	%r12,7,.L1096
+	icy	%r10,-8(%r2)
+	stcy	%r10,-8(%r3)
+	cgije	%r12,8,.L1096
+	icy	%r4,-9(%r2)
+	stcy	%r4,-9(%r3)
+	cgije	%r12,9,.L1096
+	icy	%r11,-10(%r2)
+	stcy	%r11,-10(%r3)
+	cgije	%r12,10,.L1096
+	icy	%r0,-11(%r2)
+	stcy	%r0,-11(%r3)
+	cgije	%r12,11,.L1096
+	icy	%r1,-12(%r2)
+	stcy	%r1,-12(%r3)
+	cgije	%r12,12,.L1096
+	icy	%r5,-13(%r2)
+	stcy	%r5,-13(%r3)
+	cgije	%r12,13,.L1096
+	icy	%r9,-14(%r2)
+	stcy	%r9,-14(%r3)
+	cgije	%r12,14,.L1096
+	icy	%r2,-15(%r2)
+	stcy	%r2,-15(%r3)
+.L1096:
+	lgdr	%r12,%f2
+	.cfi_remember_state
 	.cfi_restore 12
+	lgdr	%r11,%f4
+	.cfi_restore 11
+	lgdr	%r10,%f6
+	.cfi_restore 10
+	lgdr	%r9,%f1
+	.cfi_restore 9
+	lgdr	%r8,%f3
+	.cfi_restore 8
 	br	%r14
-.L1012:
-	srlg	%r1,%r1,2
-	cghi	%r1,2
-	jle	.L1076
-	aghi	%r1,-1
-	icy	%r5,-1(%r4,%r2)
-	stcy	%r5,-1(%r4,%r3)
-.L975:
-	icy	%r5,-2(%r4,%r2)
-	stcy	%r5,-2(%r4,%r3)
-	icy	%r5,-3(%r4,%r2)
-	stcy	%r5,-3(%r4,%r3)
-	icy	%r5,-4(%r4,%r2)
-	stcy	%r5,-4(%r4,%r3)
-	aghi	%r4,-4
-	icy	%r5,-1(%r4,%r2)
-	stcy	%r5,-1(%r4,%r3)
-	brctg	%r1,.L975
-	icy	%r1,-2(%r4,%r2)
-	stcy	%r1,-2(%r4,%r3)
-	icy	%r1,-3(%r4,%r2)
-	stcy	%r1,-3(%r4,%r3)
-	icy	%r1,-4(%r4,%r2)
-	stcy	%r1,-4(%r4,%r3)
-	br	%r14
-.L1076:
+.L1097:
+	.cfi_restore_state
+	je	.L1096
+	cgije	%r4,0,.L1096
+	aghik	%r1,%r4,-1
+	clgijle	%r1,30,.L1111
+	la	%r0,1(%r2)
+	sgrk	%r5,%r3,%r0
+	clgijle	%r5,14,.L1111
+	risbg	%r8,%r4,0,128+59,0
+	aghik	%r9,%r8,-16
+	lghi	%r1,0
+	srlg	%r10,%r9,4
+	aghi	%r10,1
+	risbg	%r12,%r10,62,128+63,0
+	je	.L1210
+	cgije	%r12,1,.L1217
+	cgije	%r12,2,.L1218
+	vl	%v0,0(%r2)
+	lghi	%r1,16
+	vst	%v0,0(%r3)
+.L1218:
+	vl	%v5,0(%r1,%r2)
+	vst	%v5,0(%r1,%r3)
+	aghi	%r1,16
+.L1217:
+	vl	%v7,0(%r1,%r2)
+	vst	%v7,0(%r1,%r3)
+	aghi	%r1,16
+	cgrje	%r1,%r8,.L1271
+.L1210:
+	srlg	%r5,%r10,2
+	cghi	%r5,2
+	jle	.L1286
+	aghi	%r5,-1
+	vl	%v0,0(%r1,%r2)
+	vst	%v0,0(%r1,%r3)
+.L1105:
+	vl	%v0,16(%r1,%r2)
+	vst	%v0,16(%r1,%r3)
+	vl	%v0,32(%r1,%r2)
+	vst	%v0,32(%r1,%r3)
+	vl	%v0,48(%r1,%r2)
+	vst	%v0,48(%r1,%r3)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r2)
+	vst	%v0,0(%r1,%r3)
+	brctg	%r5,.L1105
+	vl	%v0,16(%r1,%r2)
+	vst	%v0,16(%r1,%r3)
+	vl	%v0,32(%r1,%r2)
+	vst	%v0,32(%r1,%r3)
+	vl	%v0,48(%r1,%r2)
+	vst	%v0,48(%r1,%r3)
+	aghi	%r1,64
+.L1271:
+	agr	%r3,%r1
+	agr	%r2,%r1
+	sgrk	%r11,%r4,%r1
+	cgrje	%r4,%r1,.L1096
+	mvc	0(1,%r3),0(%r2)
+	cgije	%r11,1,.L1096
+	mvc	1(1,%r3),1(%r2)
+	cgije	%r11,2,.L1096
+	mvc	2(1,%r3),2(%r2)
+	cgije	%r11,3,.L1096
+	mvc	3(1,%r3),3(%r2)
+	cgije	%r11,4,.L1096
+	mvc	4(1,%r3),4(%r2)
+	cgije	%r11,5,.L1096
+	mvc	5(1,%r3),5(%r2)
+	cgije	%r11,6,.L1096
+	mvc	6(1,%r3),6(%r2)
+	cgije	%r11,7,.L1096
+	mvc	7(1,%r3),7(%r2)
+	cgije	%r11,8,.L1096
+	mvc	8(1,%r3),8(%r2)
+	cgije	%r11,9,.L1096
+	mvc	9(1,%r3),9(%r2)
+	cgije	%r11,10,.L1096
+	mvc	10(1,%r3),10(%r2)
+	cgije	%r11,11,.L1096
+	mvc	11(1,%r3),11(%r2)
+	cgije	%r11,12,.L1096
+	mvc	12(1,%r3),12(%r2)
+	cgije	%r11,13,.L1096
+	mvc	13(1,%r3),13(%r2)
+	cgije	%r11,14,.L1096
+	mvc	14(1,%r3),14(%r2)
+	j	.L1096
+.L1284:
+	vl	%v23,0(%r1,%r11)
+	aghik	%r9,%r1,-16
+	aghik	%r8,%r1,-32
+	vst	%v23,0(%r1,%r12)
+	aghik	%r10,%r1,-48
+	aghi	%r1,-64
+	vl	%v24,0(%r9,%r11)
+	vst	%v24,0(%r9,%r12)
+	vl	%v26,0(%r8,%r11)
+	vst	%v26,0(%r8,%r12)
+	vl	%v28,0(%r10,%r11)
+	vst	%v28,0(%r10,%r12)
+	brctg	%r5,.L1284
+	j	.L1270
+.L1286:
+	vl	%v16,0(%r1,%r2)
+	vst	%v16,0(%r1,%r3)
+	vl	%v18,16(%r1,%r2)
+	vst	%v18,16(%r1,%r3)
+	vl	%v20,32(%r1,%r2)
+	vst	%v20,32(%r1,%r3)
+	vl	%v22,48(%r1,%r2)
+	vst	%v22,48(%r1,%r3)
+	aghi	%r1,64
+	brctg	%r5,.L1286
+	j	.L1271
+.L1214:
+	lgr	%r8,%r1
+	risbg	%r10,%r1,62,128+63,0
+	je	.L1183
+	icy	%r12,-1(%r4,%r2)
+	stcy	%r12,-1(%r4,%r3)
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+	cgije	%r10,1,.L1183
+	cgije	%r10,2,.L1221
+	icy	%r4,-1(%r8,%r2)
+	stcy	%r4,-1(%r8,%r3)
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+.L1221:
+	icy	%r11,-1(%r4,%r2)
+	stcy	%r11,-1(%r4,%r3)
+	lgr	%r4,%r1
+	lay	%r1,-1(%r1)
+.L1183:
+	srlg	%r5,%r8,2
+	aghi	%r5,1
+.L1102:
 	icy	%r0,-1(%r4,%r2)
 	stcy	%r0,-1(%r4,%r3)
-	icy	%r5,-2(%r4,%r2)
-	stcy	%r5,-2(%r4,%r3)
-	icy	%r0,-3(%r4,%r2)
-	stcy	%r0,-3(%r4,%r3)
-	icy	%r5,-4(%r4,%r2)
-	stcy	%r5,-4(%r4,%r3)
-	aghi	%r4,-4
-	brctg	%r1,.L1076
-	br	%r14
-.L1084:
-	icy	%r5,-1(%r4,%r2)
-	stcy	%r5,-1(%r4,%r3)
-	lgr	%r4,%r0
-	j	.L1035
-.L1078:
-	.cfi_register 12, 16
-	lg	%r0,0(%r1,%r2)
-	stg	%r0,0(%r1,%r3)
-	lg	%r12,8(%r1,%r2)
-	stg	%r12,8(%r1,%r3)
-	lg	%r0,16(%r1,%r2)
-	stg	%r0,16(%r1,%r3)
-	lg	%r12,24(%r1,%r2)
-	stg	%r12,24(%r1,%r3)
-	aghi	%r1,32
-	brctg	%r5,.L1078
-	j	.L1063
-.L983:
-	.cfi_restore 12
+	brctg	%r5,.L1143
+	j	.L1096
+.L1143:
+	icy	%r9,-1(%r1,%r2)
+	stcy	%r9,-1(%r1,%r3)
+	icy	%r8,-2(%r1,%r2)
+	stcy	%r8,-2(%r1,%r3)
+	icy	%r10,-3(%r1,%r2)
+	lay	%r4,-3(%r1)
+	stcy	%r10,-3(%r1,%r3)
+	lay	%r1,-4(%r1)
+	j	.L1102
+.L1111:
 	lghi	%r1,0
 	lgr	%r5,%r4
 	risbg	%r0,%r4,62,128+63,0
-	je	.L1021
-	cgije	%r0,1,.L1038
-	cgije	%r0,2,.L1039
+	je	.L1201
+	cgije	%r0,1,.L1219
+	cgije	%r0,2,.L1220
 	mvc	0(1,%r3),0(%r2)
 	lghi	%r1,1
-.L1039:
-	ic	%r0,0(%r1,%r2)
-	stc	%r0,0(%r1,%r3)
+.L1220:
+	ic	%r8,0(%r1,%r2)
+	stc	%r8,0(%r1,%r3)
 	aghi	%r1,1
-.L1038:
-	ic	%r0,0(%r1,%r2)
-	stc	%r0,0(%r1,%r3)
+.L1219:
+	ic	%r9,0(%r1,%r2)
+	stc	%r9,0(%r1,%r3)
 	aghi	%r1,1
-	cgrjlh	%r4,%r1,.L1021
-.L1081:
-	br	%r14
-.L1021:
+	cgrje	%r4,%r1,.L1096
+.L1201:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L1077
+	jle	.L1285
 	aghi	%r5,-1
 	ic	%r4,0(%r1,%r2)
 	stc	%r4,0(%r1,%r3)
-.L980:
+.L1108:
 	ic	%r4,1(%r1,%r2)
 	stc	%r4,1(%r1,%r3)
 	ic	%r4,2(%r1,%r2)
@@ -2956,26 +3449,26 @@ bcopy:
 	aghi	%r1,4
 	ic	%r4,0(%r1,%r2)
 	stc	%r4,0(%r1,%r3)
-	brctg	%r5,.L980
+	brctg	%r5,.L1108
 	ic	%r4,1(%r1,%r2)
 	stc	%r4,1(%r1,%r3)
 	ic	%r4,2(%r1,%r2)
 	stc	%r4,2(%r1,%r3)
 	ic	%r2,3(%r1,%r2)
 	stc	%r2,3(%r1,%r3)
-	br	%r14
-.L1077:
+	j	.L1096
+.L1285:
 	ic	%r4,0(%r1,%r2)
 	stc	%r4,0(%r1,%r3)
-	ic	%r0,1(%r1,%r2)
-	stc	%r0,1(%r1,%r3)
-	ic	%r4,2(%r1,%r2)
-	stc	%r4,2(%r1,%r3)
-	ic	%r0,3(%r1,%r2)
-	stc	%r0,3(%r1,%r3)
+	ic	%r10,1(%r1,%r2)
+	stc	%r10,1(%r1,%r3)
+	ic	%r12,2(%r1,%r2)
+	stc	%r12,2(%r1,%r3)
+	ic	%r11,3(%r1,%r2)
+	stc	%r11,3(%r1,%r3)
 	aghi	%r1,4
-	brctg	%r5,.L1077
-	br	%r14
+	brctg	%r5,.L1285
+	j	.L1096
 	.cfi_endproc
 .LFE69:
 	.size	bcopy, .-bcopy
@@ -3176,167 +3669,167 @@ ffs:
 .LFB83:
 	.cfi_startproc
 	tmll	%r2,1
-	jne	.L1115
+	jne	.L1318
 	tmll	%r2,2
-	jne	.L1116
+	jne	.L1319
 	tmll	%r2,4
-	jne	.L1117
+	jne	.L1320
 	tmll	%r2,8
-	jne	.L1118
+	jne	.L1321
 	tmll	%r2,16
-	jne	.L1119
+	jne	.L1322
 	tmll	%r2,32
-	jne	.L1120
+	jne	.L1323
 	tmll	%r2,64
-	jne	.L1121
+	jne	.L1324
 	tmll	%r2,128
-	jne	.L1122
+	jne	.L1325
 	tmll	%r2,256
-	jne	.L1123
+	jne	.L1326
 	tmll	%r2,512
-	jne	.L1124
+	jne	.L1327
 	tmll	%r2,1024
-	jne	.L1125
+	jne	.L1328
 	tmll	%r2,2048
-	jne	.L1126
+	jne	.L1329
 	tmll	%r2,4096
-	jne	.L1127
+	jne	.L1330
 	tmll	%r2,8192
-	jne	.L1128
+	jne	.L1331
 	tmll	%r2,16384
-	jne	.L1129
+	jne	.L1332
 	tmll	%r2,32768
-	jne	.L1130
+	jne	.L1333
 	tmlh	%r2,1
-	jne	.L1131
+	jne	.L1334
 	tmlh	%r2,2
-	jne	.L1132
+	jne	.L1335
 	tmlh	%r2,4
-	jne	.L1133
+	jne	.L1336
 	tmlh	%r2,8
-	jne	.L1134
+	jne	.L1337
 	tmlh	%r2,16
-	jne	.L1135
+	jne	.L1338
 	tmlh	%r2,32
-	jne	.L1136
+	jne	.L1339
 	tmlh	%r2,64
-	jne	.L1137
+	jne	.L1340
 	tmlh	%r2,128
-	jne	.L1138
+	jne	.L1341
 	tmlh	%r2,256
-	jne	.L1139
+	jne	.L1342
 	tmlh	%r2,512
-	jne	.L1140
+	jne	.L1343
 	tmlh	%r2,1024
-	jne	.L1141
+	jne	.L1344
 	tmlh	%r2,2048
-	jne	.L1142
+	jne	.L1345
 	tmlh	%r2,4096
-	jne	.L1143
+	jne	.L1346
 	tmlh	%r2,8192
-	jne	.L1144
+	jne	.L1347
 	risbg	%r1,%r2,33,128+33,0
-	jne	.L1145
-	cgijlh	%r2,0,.L1149
-.L1114:
+	jne	.L1348
+	cgijlh	%r2,0,.L1352
+.L1317:
 	lgfr	%r2,%r1
 	br	%r14
-.L1115:
+.L1318:
 	lhi	%r1,1
-	j	.L1114
-.L1116:
+	j	.L1317
+.L1319:
 	lhi	%r1,2
-	j	.L1114
-.L1127:
+	j	.L1317
+.L1330:
 	lhi	%r1,13
-	j	.L1114
-.L1143:
+	j	.L1317
+.L1346:
 	lhi	%r1,29
-	j	.L1114
-.L1117:
+	j	.L1317
+.L1320:
 	lhi	%r1,3
-	j	.L1114
-.L1118:
+	j	.L1317
+.L1321:
 	lhi	%r1,4
-	j	.L1114
-.L1119:
+	j	.L1317
+.L1322:
 	lhi	%r1,5
-	j	.L1114
-.L1120:
+	j	.L1317
+.L1323:
 	lhi	%r1,6
-	j	.L1114
-.L1121:
+	j	.L1317
+.L1324:
 	lhi	%r1,7
-	j	.L1114
-.L1122:
+	j	.L1317
+.L1325:
 	lhi	%r1,8
-	j	.L1114
-.L1123:
+	j	.L1317
+.L1326:
 	lhi	%r1,9
-	j	.L1114
-.L1124:
+	j	.L1317
+.L1327:
 	lhi	%r1,10
-	j	.L1114
-.L1125:
+	j	.L1317
+.L1328:
 	lhi	%r1,11
-	j	.L1114
-.L1126:
+	j	.L1317
+.L1329:
 	lhi	%r1,12
-	j	.L1114
-.L1128:
+	j	.L1317
+.L1331:
 	lhi	%r1,14
-	j	.L1114
-.L1129:
+	j	.L1317
+.L1332:
 	lhi	%r1,15
-	j	.L1114
-.L1130:
+	j	.L1317
+.L1333:
 	lhi	%r1,16
-	j	.L1114
-.L1131:
+	j	.L1317
+.L1334:
 	lhi	%r1,17
-	j	.L1114
-.L1132:
+	j	.L1317
+.L1335:
 	lhi	%r1,18
-	j	.L1114
-.L1133:
+	j	.L1317
+.L1336:
 	lhi	%r1,19
-	j	.L1114
-.L1134:
+	j	.L1317
+.L1337:
 	lhi	%r1,20
-	j	.L1114
-.L1135:
+	j	.L1317
+.L1338:
 	lhi	%r1,21
-	j	.L1114
-.L1136:
+	j	.L1317
+.L1339:
 	lhi	%r1,22
-	j	.L1114
-.L1137:
+	j	.L1317
+.L1340:
 	lhi	%r1,23
-	j	.L1114
-.L1138:
+	j	.L1317
+.L1341:
 	lhi	%r1,24
-	j	.L1114
-.L1139:
+	j	.L1317
+.L1342:
 	lhi	%r1,25
-	j	.L1114
-.L1140:
+	j	.L1317
+.L1343:
 	lhi	%r1,26
-	j	.L1114
-.L1141:
+	j	.L1317
+.L1344:
 	lhi	%r1,27
-	j	.L1114
-.L1142:
+	j	.L1317
+.L1345:
 	lhi	%r1,28
-	j	.L1114
-.L1144:
+	j	.L1317
+.L1347:
 	lhi	%r1,30
-	j	.L1114
-.L1149:
+	j	.L1317
+.L1352:
 	lhi	%r1,32
-	j	.L1114
-.L1145:
+	j	.L1317
+.L1348:
 	lhi	%r1,31
-	j	.L1114
+	j	.L1317
 	.cfi_endproc
 .LFE83:
 	.size	ffs, .-ffs
@@ -3347,20 +3840,20 @@ ffs:
 libiberty_ffs:
 .LFB84:
 	.cfi_startproc
-	cgije	%r2,0,.L1154
+	cgije	%r2,0,.L1357
 	risbg	%r3,%r2,63,128+63,0
-	jne	.L1152
+	jne	.L1355
 	lhi	%r3,1
-.L1153:
+.L1356:
 	ahi	%r3,1
 	srak	%r1,%r2,1
 	lgfr	%r2,%r1
 	tmll	%r1,1
-	je	.L1153
-.L1152:
+	je	.L1356
+.L1355:
 	lgfr	%r2,%r3
 	br	%r14
-.L1154:
+.L1357:
 	lhi	%r3,0
 	lgfr	%r2,%r3
 	br	%r14
@@ -3374,24 +3867,24 @@ libiberty_ffs:
 gl_isinff:
 .LFB85:
 	.cfi_startproc
-	larl	%r5,.L1163
-	keb	%f0,.L1164-.L1163(%r5)
-	jl	.L1161
-	keb	%f0,.L1165-.L1163(%r5)
+	larl	%r5,.L1366
+	keb	%f0,.L1367-.L1366(%r5)
+	jl	.L1364
+	keb	%f0,.L1368-.L1366(%r5)
 	lhi	%r2,0
 	lochih	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
-.L1161:
+.L1364:
 	lhi	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
 	.section	.rodata
 	.align	8
-.L1163:
-.L1165:
+.L1366:
+.L1368:
 	.long	2139095039
-.L1164:
+.L1367:
 	.long	-8388609
 	.align	2
 .text
@@ -3405,25 +3898,25 @@ gl_isinff:
 gl_isinfd:
 .LFB86:
 	.cfi_startproc
-	larl	%r5,.L1171
-	kdb	%f0,.L1172-.L1171(%r5)
-	jl	.L1169
-	kdb	%f0,.L1173-.L1171(%r5)
+	larl	%r5,.L1374
+	kdb	%f0,.L1375-.L1374(%r5)
+	jl	.L1372
+	kdb	%f0,.L1376-.L1374(%r5)
 	lhi	%r2,0
 	lochih	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
-.L1169:
+.L1372:
 	lhi	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
 	.section	.rodata
 	.align	8
-.L1171:
-.L1173:
+.L1374:
+.L1376:
 	.long	2146435071
 	.long	-1
-.L1172:
+.L1375:
 	.long	-1048577
 	.long	-1
 	.align	2
@@ -3438,33 +3931,33 @@ gl_isinfd:
 gl_isinfl:
 .LFB87:
 	.cfi_startproc
-	larl	%r5,.L1179
+	larl	%r5,.L1382
 	ld	%f0,0(%r2)
 	ld	%f2,8(%r2)
-	ld	%f4,.L1180-.L1179(%r5)
-	ld	%f6,.L1180-.L1179+8(%r5)
+	ld	%f4,.L1383-.L1382(%r5)
+	ld	%f6,.L1383-.L1382+8(%r5)
 	kxbr	%f0,%f4
-	jl	.L1177
-	ld	%f4,.L1181-.L1179(%r5)
-	ld	%f6,.L1181-.L1179+8(%r5)
+	jl	.L1380
+	ld	%f4,.L1384-.L1382(%r5)
+	ld	%f6,.L1384-.L1382+8(%r5)
 	lhi	%r2,0
 	kxbr	%f0,%f4
 	lochih	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
-.L1177:
+.L1380:
 	lhi	%r2,1
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
 	.section	.rodata
 	.align	8
-.L1179:
-.L1181:
+.L1382:
+.L1384:
 	.long	2147418111
 	.long	-1
 	.long	-1
 	.long	-1
-.L1180:
+.L1383:
 	.long	-65537
 	.long	-1
 	.long	-1
@@ -3495,49 +3988,49 @@ _Qp_itoq:
 ldexpf:
 .LFB89:
 	.cfi_startproc
-	larl	%r5,.L1200
+	larl	%r5,.L1403
 	cebr	%f0,%f0
 	bor	%r14
-	ler	%f2,%f0
+	ldr	%f2,%f0
 	aebr	%f2,%f0
 	cebr	%f2,%f0
 	ber	%r14
-	cijl	%r2,0,.L1198
-	le	%f4,.L1201-.L1200(%r5)
-.L1186:
+	cijl	%r2,0,.L1401
+	lde	%f4,.L1404-.L1403(%r5)
+.L1389:
 	tmll	%r2,1
-	je	.L1187
-.L1188:
+	je	.L1390
+.L1391:
 	meebr	%f0,%f4
-.L1187:
+.L1390:
 	srlk	%r1,%r2,31
 	ar	%r1,%r2
 	sra	%r1,1
 	lgfr	%r2,%r1
-	cije	%r1,0,.L1185
+	cije	%r1,0,.L1388
 	meebr	%f4,%f4
 	tmll	%r2,1
-	jne	.L1188
-.L1199:
+	jne	.L1391
+.L1402:
 	srlk	%r0,%r2,31
 	ar	%r0,%r2
 	sra	%r0,1
 	meebr	%f4,%f4
 	lgfr	%r2,%r0
 	tmll	%r2,1
-	jne	.L1188
-	j	.L1199
-.L1185:
+	jne	.L1391
+	j	.L1402
+.L1388:
 	br	%r14
-.L1198:
-	le	%f4,.L1202-.L1200(%r5)
-	j	.L1186
+.L1401:
+	lde	%f4,.L1405-.L1403(%r5)
+	j	.L1389
 	.section	.rodata
 	.align	8
-.L1200:
-.L1202:
+.L1403:
+.L1405:
 	.long	1056964608
-.L1201:
+.L1404:
 	.long	1073741824
 	.align	2
 .text
@@ -3551,50 +4044,49 @@ ldexpf:
 ldexp:
 .LFB90:
 	.cfi_startproc
-	larl	%r5,.L1219
+	larl	%r5,.L1422
 	cdbr	%f0,%f0
 	bor	%r14
-	ldr	%f2,%f0
-	adbr	%f2,%f0
+	wfadb	%v2,%v0,%v0
 	cdbr	%f2,%f0
 	ber	%r14
-	cijl	%r2,0,.L1217
-	ld	%f4,.L1220-.L1219(%r5)
-.L1205:
+	cijl	%r2,0,.L1420
+	ld	%f4,.L1423-.L1422(%r5)
+.L1408:
 	tmll	%r2,1
-	je	.L1206
-.L1207:
+	je	.L1409
+.L1410:
 	mdbr	%f0,%f4
-.L1206:
+.L1409:
 	srlk	%r1,%r2,31
 	ar	%r1,%r2
 	sra	%r1,1
 	lgfr	%r2,%r1
-	cije	%r1,0,.L1204
+	cije	%r1,0,.L1407
 	mdbr	%f4,%f4
 	tmll	%r2,1
-	jne	.L1207
-.L1218:
+	jne	.L1410
+.L1421:
 	srlk	%r0,%r2,31
 	ar	%r0,%r2
 	sra	%r0,1
 	mdbr	%f4,%f4
 	lgfr	%r2,%r0
 	tmll	%r2,1
-	jne	.L1207
-	j	.L1218
-.L1204:
+	jne	.L1410
+	j	.L1421
+.L1407:
 	br	%r14
-.L1217:
-	ld	%f4,.L1221-.L1219(%r5)
-	j	.L1205
+.L1420:
+	ld	%f4,.L1424-.L1422(%r5)
+	j	.L1408
 	.section	.rodata
 	.align	8
-.L1219:
-.L1221:
+.L1422:
+.L1424:
 	.long	1071644672
 	.long	0
-.L1220:
+.L1423:
 	.long	1073741824
 	.long	0
 	.align	2
@@ -3609,58 +4101,58 @@ ldexp:
 ldexpl:
 .LFB91:
 	.cfi_startproc
-	larl	%r5,.L1238
+	larl	%r5,.L1441
 	ld	%f4,0(%r3)
 	ld	%f6,8(%r3)
 	cxbr	%f4,%f4
-	jo	.L1223
+	jo	.L1426
 	lxr	%f0,%f4
 	axbr	%f0,%f4
 	cxbr	%f0,%f4
-	je	.L1223
-	cijl	%r4,0,.L1236
-	ld	%f0,.L1239-.L1238(%r5)
-	ld	%f2,.L1239-.L1238+8(%r5)
-.L1224:
+	je	.L1426
+	cijl	%r4,0,.L1439
+	ld	%f0,.L1442-.L1441(%r5)
+	ld	%f2,.L1442-.L1441+8(%r5)
+.L1427:
 	tmll	%r4,1
-	je	.L1225
-.L1226:
+	je	.L1428
+.L1429:
 	mxbr	%f4,%f0
-.L1225:
+.L1428:
 	srlk	%r1,%r4,31
 	ar	%r1,%r4
 	sra	%r1,1
 	lgfr	%r4,%r1
-	cije	%r1,0,.L1223
+	cije	%r1,0,.L1426
 	mxbr	%f0,%f0
 	tmll	%r4,1
-	jne	.L1226
-.L1237:
+	jne	.L1429
+.L1440:
 	mxbr	%f0,%f0
 	srlk	%r0,%r4,31
 	ar	%r0,%r4
 	sra	%r0,1
 	lgfr	%r4,%r0
 	tmll	%r4,1
-	jne	.L1226
-	j	.L1237
-.L1223:
+	jne	.L1429
+	j	.L1440
+.L1426:
 	std	%f4,0(%r2)
 	std	%f6,8(%r2)
 	br	%r14
-.L1236:
-	ld	%f0,.L1240-.L1238(%r5)
-	ld	%f2,.L1240-.L1238+8(%r5)
-	j	.L1224
+.L1439:
+	ld	%f0,.L1443-.L1441(%r5)
+	ld	%f2,.L1443-.L1441+8(%r5)
+	j	.L1427
 	.section	.rodata
 	.align	8
-.L1238:
-.L1240:
+.L1441:
+.L1443:
 	.long	1073610752
 	.long	0
 	.long	0
 	.long	0
-.L1239:
+.L1442:
 	.long	1073741824
 	.long	0
 	.long	0
@@ -3677,173 +4169,196 @@ ldexpl:
 memxor:
 .LFB92:
 	.cfi_startproc
-	cgije	%r4,0,.L1313
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	cgije	%r4,0,.L1563
 	aghik	%r1,%r4,-1
-	clgijle	%r1,14,.L1243
-	ogrk	%r0,%r2,%r3
-	tmll	%r0,7
-	jne	.L1243
-	risbg	%r0,%r4,0,128+60,0
-	aghik	%r5,%r0,-8
+	clgijle	%r1,30,.L1449
+	stg	%r12,152(%r15)
+	.cfi_offset 12, -8
+	risbg	%r0,%r4,0,128+59,0
+	aghik	%r12,%r0,-16
 	lghi	%r1,0
-	srlg	%r5,%r5,3
+	srlg	%r5,%r12,4
 	aghi	%r5,1
 	risbg	%r12,%r5,62,128+63,0
-	je	.L1278
-	cgije	%r12,1,.L1282
-	cgije	%r12,2,.L1283
-	xc	0(8,%r2),0(%r3)
-	lghi	%r1,8
-.L1283:
-	lg	%r12,0(%r1,%r2)
-	xg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	aghi	%r1,8
-.L1282:
-	lg	%r12,0(%r1,%r2)
-	xg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r1,%r0,.L1301
-.L1278:
-	srlg	%r5,%r5,2
-	cghi	%r5,2
-	jle	.L1311
-	aghi	%r5,-1
-	lg	%r0,0(%r1,%r2)
-	xg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-.L1244:
-	lg	%r0,8(%r1,%r2)
-	xg	%r0,8(%r1,%r3)
-	stg	%r0,8(%r1,%r2)
-	lg	%r0,16(%r1,%r2)
-	xg	%r0,16(%r1,%r3)
-	stg	%r0,16(%r1,%r2)
-	lg	%r0,24(%r1,%r2)
-	xg	%r0,24(%r1,%r3)
-	stg	%r0,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r0,0(%r1,%r2)
-	xg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-	brctg	%r5,.L1244
-	lg	%r5,8(%r1,%r2)
-	xg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r2)
-	xg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r2)
-	xg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-	aghi	%r1,32
-.L1301:
+	je	.L1518
+	cgije	%r12,1,.L1522
+	cgije	%r12,2,.L1523
+	vl	%v0,0(%r2)
+	vl	%v2,0(%r3)
+	lghi	%r1,16
+	vx	%v4,%v0,%v2
+	vst	%v4,0(%r2)
+.L1523:
+	vl	%v6,0(%r1,%r2)
+	vl	%v1,0(%r1,%r3)
+	vx	%v3,%v6,%v1
+	vst	%v3,0(%r1,%r2)
+	aghi	%r1,16
+.L1522:
+	vl	%v5,0(%r1,%r2)
+	vl	%v7,0(%r1,%r3)
+	vx	%v16,%v5,%v7
+	vst	%v16,0(%r1,%r2)
+	aghi	%r1,16
+	cgrje	%r1,%r0,.L1559
+.L1518:
+	srlg	%r0,%r5,2
+.L1447:
+	vl	%v18,0(%r1,%r2)
+	vl	%v22,16(%r1,%r2)
+	vl	%v19,32(%r1,%r2)
+	vl	%v23,48(%r1,%r2)
+	vl	%v20,0(%r1,%r3)
+	vl	%v17,16(%r1,%r3)
+	vl	%v21,32(%r1,%r3)
+	vl	%v24,48(%r1,%r3)
+	vx	%v26,%v18,%v20
+	vx	%v28,%v22,%v17
+	vx	%v30,%v19,%v21
+	vx	%v25,%v23,%v24
+	vst	%v26,0(%r1,%r2)
+	vst	%v28,16(%r1,%r2)
+	vst	%v30,32(%r1,%r2)
+	vst	%v25,48(%r1,%r2)
+	aghi	%r1,64
+	bcr	7,%r0
+	brctg	%r0,.L1447
+.L1559:
 	agr	%r3,%r1
 	agrk	%r5,%r2,%r1
-	sgrk	%r0,%r4,%r1
-	cgrje	%r4,%r1,.L1242
+	sgrk	%r12,%r4,%r1
+	cgrje	%r4,%r1,.L1445
 	xc	0(1,%r5),0(%r3)
-	cgije	%r0,1,.L1242
+	cgije	%r12,1,.L1445
 	xc	1(1,%r5),1(%r3)
-	cgije	%r0,2,.L1242
+	cgije	%r12,2,.L1445
 	xc	2(1,%r5),2(%r3)
-	cgije	%r0,3,.L1242
+	cgije	%r12,3,.L1445
 	xc	3(1,%r5),3(%r3)
-	cgije	%r0,4,.L1242
+	cgije	%r12,4,.L1445
 	xc	4(1,%r5),4(%r3)
-	cgije	%r0,5,.L1242
+	cgije	%r12,5,.L1445
 	xc	5(1,%r5),5(%r3)
-	cgije	%r0,6,.L1242
+	cgije	%r12,6,.L1445
 	xc	6(1,%r5),6(%r3)
-.L1242:
-	lgdr	%r12,%f0
-	.cfi_remember_state
+	cgije	%r12,7,.L1445
+	xc	7(1,%r5),7(%r3)
+	cgije	%r12,8,.L1445
+	xc	8(1,%r5),8(%r3)
+	cgije	%r12,9,.L1445
+	xc	9(1,%r5),9(%r3)
+	cgije	%r12,10,.L1445
+	xc	10(1,%r5),10(%r3)
+	cgije	%r12,11,.L1445
+	xc	11(1,%r5),11(%r3)
+	cgije	%r12,12,.L1445
+	xc	12(1,%r5),12(%r3)
+	cgije	%r12,13,.L1445
+	xc	13(1,%r5),13(%r3)
+	cgije	%r12,14,.L1445
+	xc	14(1,%r5),14(%r3)
+	cgije	%r12,15,.L1445
+	xc	15(1,%r5),15(%r3)
+	cgije	%r12,16,.L1445
+	xc	16(1,%r5),16(%r3)
+	cgije	%r12,17,.L1445
+	xc	17(1,%r5),17(%r3)
+	cgije	%r12,18,.L1445
+	xc	18(1,%r5),18(%r3)
+	cgije	%r12,19,.L1445
+	xc	19(1,%r5),19(%r3)
+	cgije	%r12,20,.L1445
+	xc	20(1,%r5),20(%r3)
+	cgije	%r12,21,.L1445
+	xc	21(1,%r5),21(%r3)
+	cgije	%r12,22,.L1445
+	xc	22(1,%r5),22(%r3)
+	cgije	%r12,23,.L1445
+	xc	23(1,%r5),23(%r3)
+	cgije	%r12,24,.L1445
+	xc	24(1,%r5),24(%r3)
+	cgije	%r12,25,.L1445
+	xc	25(1,%r5),25(%r3)
+	cgije	%r12,26,.L1445
+	xc	26(1,%r5),26(%r3)
+	cgije	%r12,27,.L1445
+	xc	27(1,%r5),27(%r3)
+	cgije	%r12,28,.L1445
+	xc	28(1,%r5),28(%r3)
+	cgije	%r12,29,.L1445
+	xc	29(1,%r5),29(%r3)
+	cgije	%r12,30,.L1445
+	xc	30(1,%r5),30(%r3)
+.L1445:
+	lg	%r12,152(%r15)
 	.cfi_restore 12
 	br	%r14
-.L1311:
-	.cfi_restore_state
-	lg	%r0,0(%r1,%r2)
-	lg	%r12,8(%r1,%r2)
-	xg	%r0,0(%r1,%r3)
-	stg	%r0,0(%r1,%r2)
-	xg	%r12,8(%r1,%r3)
-	stg	%r12,8(%r1,%r2)
-	lg	%r0,16(%r1,%r2)
-	lg	%r12,24(%r1,%r2)
-	xg	%r0,16(%r1,%r3)
-	stg	%r0,16(%r1,%r2)
-	xg	%r12,24(%r1,%r3)
-	stg	%r12,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L1311
-	j	.L1301
-.L1243:
-	la	%r0,0(%r4,%r3)
-	lgr	%r1,%r2
-	risbg	%r12,%r4,62,128+63,0
-	je	.L1269
-	cgije	%r12,1,.L1284
-	cgijlh	%r12,2,.L1316
-.L1285:
-	llgc	%r5,0(%r1)
-	llgc	%r12,0(%r3)
-	la	%r1,1(%r1)
-	xr	%r5,%r12
-	stcy	%r5,-1(%r1)
-	la	%r3,1(%r3)
-.L1284:
-	llgc	%r5,0(%r1)
-	llgc	%r12,0(%r3)
-	la	%r1,1(%r1)
-	xr	%r5,%r12
-	stcy	%r5,-1(%r1)
-	la	%r3,1(%r3)
-	cgrje	%r0,%r3,.L1242
-.L1269:
-	srlg	%r4,%r4,2
-	cghi	%r4,2
-	jle	.L1310
-	aghi	%r4,-1
-	xc	0(1,%r1),0(%r3)
-.L1246:
-	xc	1(2,%r1),1(%r3)
-	la	%r1,4(%r1)
-	la	%r3,4(%r3)
-	llgc	%r5,-1(%r1)
-	llgc	%r0,-1(%r3)
-	xr	%r5,%r0
-	stcy	%r5,-1(%r1)
-	xc	0(1,%r1),0(%r3)
-	brctg	%r4,.L1246
-	xc	1(2,%r1),1(%r3)
-	llgc	%r4,3(%r1)
-	llgc	%r3,3(%r3)
-	xr	%r4,%r3
-	stc	%r4,3(%r1)
-	j	.L1242
-.L1310:
-	xc	0(3,%r1),0(%r3)
-	la	%r1,4(%r1)
-	la	%r3,4(%r3)
-	llgc	%r5,-1(%r1)
-	llgc	%r0,-1(%r3)
-	xr	%r5,%r0
-	stcy	%r5,-1(%r1)
-	brctg	%r4,.L1310
-	j	.L1242
-.L1313:
-	.cfi_restore 12
+.L1449:
+	xc	0(1,%r2),0(%r3)
+	cgije	%r4,1,.L1563
+	xc	1(1,%r2),1(%r3)
+	cgije	%r4,2,.L1563
+	xc	2(1,%r2),2(%r3)
+	cgije	%r4,3,.L1563
+	xc	3(1,%r2),3(%r3)
+	cgije	%r4,4,.L1563
+	xc	4(1,%r2),4(%r3)
+	cgijlh	%r4,5,.L1597
+.L1563:
 	br	%r14
-.L1316:
-	.cfi_register 12, 16
-	lgr	%r5,%r3
-	la	%r1,1(%r2)
-	la	%r3,1(%r3)
-	xc	0(1,%r2),0(%r5)
-	j	.L1285
+.L1597:
+	xc	5(1,%r2),5(%r3)
+	cgije	%r4,6,.L1563
+	xc	6(1,%r2),6(%r3)
+	cgije	%r4,7,.L1563
+	xc	7(1,%r2),7(%r3)
+	cgije	%r4,8,.L1563
+	xc	8(1,%r2),8(%r3)
+	cgije	%r4,9,.L1563
+	xc	9(1,%r2),9(%r3)
+	cgije	%r4,10,.L1563
+	xc	10(1,%r2),10(%r3)
+	cgije	%r4,11,.L1563
+	xc	11(1,%r2),11(%r3)
+	cgije	%r4,12,.L1563
+	xc	12(1,%r2),12(%r3)
+	cgije	%r4,13,.L1563
+	xc	13(1,%r2),13(%r3)
+	cgije	%r4,14,.L1563
+	xc	14(1,%r2),14(%r3)
+	cgije	%r4,15,.L1563
+	xc	15(1,%r2),15(%r3)
+	cgije	%r4,16,.L1563
+	xc	16(1,%r2),16(%r3)
+	cgije	%r4,17,.L1563
+	xc	17(1,%r2),17(%r3)
+	cgije	%r4,18,.L1563
+	xc	18(1,%r2),18(%r3)
+	cgije	%r4,19,.L1563
+	xc	19(1,%r2),19(%r3)
+	cgije	%r4,20,.L1563
+	xc	20(1,%r2),20(%r3)
+	cgije	%r4,21,.L1563
+	xc	21(1,%r2),21(%r3)
+	cgije	%r4,22,.L1563
+	xc	22(1,%r2),22(%r3)
+	cgije	%r4,23,.L1563
+	xc	23(1,%r2),23(%r3)
+	cgije	%r4,24,.L1563
+	xc	24(1,%r2),24(%r3)
+	cgije	%r4,25,.L1563
+	xc	25(1,%r2),25(%r3)
+	cgije	%r4,26,.L1563
+	xc	26(1,%r2),26(%r3)
+	cgije	%r4,27,.L1563
+	xc	27(1,%r2),27(%r3)
+	cgije	%r4,28,.L1563
+	xc	28(1,%r2),28(%r3)
+	cgije	%r4,29,.L1563
+	xc	29(1,%r2),29(%r3)
+	cgije	%r4,30,.L1563
+	xc	30(1,%r2),30(%r3)
+	br	%r14
 	.cfi_endproc
 .LFE92:
 	.size	memxor, .-memxor
@@ -3854,47 +4369,64 @@ memxor:
 strncat:
 .LFB93:
 	.cfi_startproc
-	lgr	%r1,%r2
 	cli	0(%r2),0
-	je	.L1319
-.L1320:
-	la	%r1,1(%r1)
-	cli	0(%r1),0
-	jne	.L1320
-.L1319:
-	cgije	%r4,0,.L1322
+	je	.L1607
+	vlbb	%v0,1(%r2),6
+	la	%r1,1(%r2)
+	lcbb	%r5,0(%r1),6
+	vzero	%v2
+	vfeebs	%v1,%v0,%v2
+	vlgvf	%r0,%v1,1
+	clrjhe	%r0,%r5,.L1623
+.L1602:
+	vlgvg	%r5,%v1,0
+	agr	%r1,%r5
+.L1600:
+	cgije	%r4,0,.L1604
 	aghik	%r0,%r4,-1
 	tmll	%r4,1
-	jne	.L1342
-.L1331:
+	je	.L1613
+	llgc	%r5,0(%r3)
+	stc	%r5,0(%r1)
+	cgije	%r5,0,.L1606
+	la	%r3,1(%r3)
+	la	%r1,1(%r1)
+	cgije	%r0,0,.L1604
+.L1613:
 	srlg	%r4,%r4,1
-.L1321:
+.L1603:
 	llgc	%r0,0(%r3)
 	stc	%r0,0(%r1)
-	cgije	%r0,0,.L1343
+	cgije	%r0,0,.L1624
 	llgc	%r5,1(%r3)
 	la	%r3,2(%r3)
 	stc	%r5,1(%r1)
-	cgije	%r5,0,.L1344
+	cgije	%r5,0,.L1625
 	la	%r1,2(%r1)
-	brctg	%r4,.L1321
-.L1322:
+	brctg	%r4,.L1603
+.L1604:
 	mvi	0(%r1),0
-.L1324:
+.L1606:
 	br	%r14
-.L1342:
-	llgc	%r5,0(%r3)
-	stc	%r5,0(%r1)
-	cgije	%r5,0,.L1324
-	la	%r3,1(%r3)
-	la	%r1,1(%r1)
-	cgijlh	%r0,0,.L1331
-	mvi	0(%r1),0
+.L1623:
+	la	%r1,17(%r2)
+	nill	%r1,65520
+	vl	%v4,0(%r1),4
+	vfeebs	%v1,%v4,%v2
+	jl	.L1602
+.L1601:
+	vl	%v6,16(%r1),4
+	la	%r1,16(%r1)
+	vfeebs	%v1,%v6,%v2
+	jnl	.L1601
+	j	.L1602
+.L1624:
 	br	%r14
-.L1343:
+.L1625:
 	br	%r14
-.L1344:
-	br	%r14
+.L1607:
+	lgr	%r1,%r2
+	j	.L1600
 	.cfi_endproc
 .LFE93:
 	.size	strncat, .-strncat
@@ -3907,29 +4439,29 @@ strnlen:
 	.cfi_startproc
 	lgr	%r1,%r2
 	lghi	%r2,0
-	cgije	%r3,0,.L1346
+	cgije	%r3,0,.L1627
 	lgr	%r4,%r3
 	risbg	%r5,%r3,62,128+63,0
-	je	.L1358
-	cgije	%r5,1,.L1369
-	cgije	%r5,2,.L1370
+	je	.L1639
+	cgije	%r5,1,.L1650
+	cgije	%r5,2,.L1651
 	cli	0(%r1),0
 	ber	%r14
 	lghi	%r2,1
-.L1370:
+.L1651:
 	la	%r5,0(%r2,%r1)
 	cli	0(%r5),0
 	ber	%r14
 	aghi	%r2,1
-.L1369:
+.L1650:
 	la	%r5,0(%r2,%r1)
 	cli	0(%r5),0
 	ber	%r14
 	aghi	%r2,1
-	cgrje	%r3,%r2,.L1346
-.L1358:
+	cgrje	%r3,%r2,.L1627
+.L1639:
 	srlg	%r0,%r4,2
-.L1347:
+.L1628:
 	la	%r3,0(%r2,%r1)
 	cli	0(%r3),0
 	ber	%r14
@@ -3947,9 +4479,9 @@ strnlen:
 	cli	0(%r5),0
 	ber	%r14
 	aghik	%r2,%r4,3
-	brctg	%r0,.L1347
+	brctg	%r0,.L1628
 	br	%r14
-.L1346:
+.L1627:
 	br	%r14
 	.cfi_endproc
 .LFE94:
@@ -3963,23 +4495,23 @@ strpbrk:
 	.cfi_startproc
 	llc	%r5,0(%r2)
 	cli	0(%r2),0
-	je	.L1384
-.L1390:
+	je	.L1665
+.L1671:
 	lgr	%r1,%r3
-	j	.L1383
-.L1382:
-	crje	%r4,%r5,.L1381
-.L1383:
+	j	.L1664
+.L1663:
+	crje	%r4,%r5,.L1662
+.L1664:
 	llc	%r4,0(%r1)
 	la	%r1,1(%r1)
-	cijlh	%r4,0,.L1382
+	cijlh	%r4,0,.L1663
 	la	%r2,1(%r2)
 	llc	%r5,0(%r2)
 	cli	0(%r2),0
-	jne	.L1390
-.L1384:
+	jne	.L1671
+.L1665:
 	lghi	%r2,0
-.L1381:
+.L1662:
 	br	%r14
 	.cfi_endproc
 .LFE95:
@@ -3993,12 +4525,12 @@ strrchr:
 	.cfi_startproc
 	lgr	%r1,%r2
 	lghi	%r2,0
-.L1393:
+.L1674:
 	llc	%r4,0(%r1)
 	cr	%r4,%r3
 	locgre	%r2,%r1
 	la	%r1,1(%r1)
-	cijlh	%r4,0,.L1393
+	cijlh	%r4,0,.L1674
 	br	%r14
 	.cfi_endproc
 .LFE96:
@@ -4010,72 +4542,92 @@ strrchr:
 strstr:
 .LFB97:
 	.cfi_startproc
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
+	ldgr	%f1,%r10
+	.cfi_register 10, 20
 	llc	%r10,0(%r3)
-	ldgr	%f1,%r8
-	.cfi_register 8, 20
-	ldgr	%f6,%r9
-	.cfi_register 9, 19
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
+	ldgr	%f5,%r8
+	.cfi_register 8, 22
+	ldgr	%f3,%r9
+	.cfi_register 9, 21
+	ldgr	%f6,%r11
+	.cfi_register 11, 19
+	ldgr	%f4,%r12
+	.cfi_register 12, 18
 	tml	%r10,255
-	je	.L1396
+	je	.L1677
+	vlbb	%v0,1(%r3),6
+	la	%r1,1(%r3)
+	lcbb	%r4,0(%r1),6
+	vzero	%v2
+	vfeebs	%v18,%v0,%v2
 	lr	%r8,%r10
-	lgr	%r9,%r3
-.L1398:
-	la	%r9,1(%r9)
-	cli	0(%r9),0
-	jne	.L1398
-	slgr	%r9,%r3
-	jhe	.L1396
-	aghi	%r9,-1
-	j	.L1416
-.L1419:
+	vlgvf	%r5,%v18,1
+	clrjhe	%r5,%r4,.L1700
+.L1680:
+	vlgvg	%r0,%v18,0
+	agr	%r1,%r0
+	slgr	%r1,%r3
+	jhe	.L1677
+	aghik	%r9,%r1,-1
+	llcr	%r8,%r8
+	j	.L1698
+.L1702:
 	la	%r2,1(%r2)
-	cije	%r1,0,.L1418
-.L1416:
+	cije	%r1,0,.L1701
+.L1698:
 	llc	%r1,0(%r2)
-	crjlh	%r1,%r10,.L1419
+	crjlh	%r1,%r10,.L1702
 	lgr	%r5,%r3
 	lgr	%r4,%r2
 	lr	%r12,%r8
 	aghik	%r0,%r9,1
-.L1400:
+.L1682:
 	la	%r11,1(%r5)
-	brctg	%r0,.L1414
-.L1402:
-	crje	%r1,%r12,.L1396
-.L1403:
+	brctg	%r0,.L1696
+.L1684:
+	crje	%r1,%r12,.L1677
+.L1685:
 	la	%r2,1(%r2)
-	j	.L1416
-.L1414:
-	crjlh	%r1,%r12,.L1403
+	j	.L1698
+.L1701:
+	lghi	%r2,0
+.L1677:
+	lgdr	%r12,%f4
+	.cfi_remember_state
+	.cfi_restore 12
+	lgdr	%r11,%f6
+	.cfi_restore 11
+	lgdr	%r10,%f1
+	.cfi_restore 10
+	lgdr	%r9,%f3
+	.cfi_restore 9
+	lgdr	%r8,%f5
+	.cfi_restore 8
+	br	%r14
+.L1700:
+	.cfi_restore_state
+	la	%r1,17(%r3)
+	nill	%r1,65520
+	vl	%v7,0(%r1),4
+	vfeebs	%v18,%v7,%v2
+	jl	.L1680
+.L1679:
+	vl	%v16,16(%r1),4
+	la	%r1,16(%r1)
+	vfeebs	%v18,%v16,%v2
+	jnl	.L1679
+	j	.L1680
+.L1696:
+	crjlh	%r12,%r1,.L1685
 	la	%r4,1(%r4)
 	llc	%r12,1(%r5)
 	llc	%r1,0(%r4)
 	cli	0(%r4),0
-	je	.L1402
+	je	.L1684
 	cli	1(%r5),0
-	je	.L1403
+	je	.L1685
 	lgr	%r5,%r11
-	j	.L1400
-.L1418:
-	lghi	%r2,0
-.L1396:
-	lgdr	%r12,%f0
-	.cfi_restore 12
-	lgdr	%r11,%f2
-	.cfi_restore 11
-	lgdr	%r10,%f4
-	.cfi_restore 10
-	lgdr	%r9,%f6
-	.cfi_restore 9
-	lgdr	%r8,%f1
-	.cfi_restore 8
-	br	%r14
+	j	.L1682
 	.cfi_endproc
 .LFE97:
 	.size	strstr, .-strstr
@@ -4088,17 +4640,17 @@ copysign:
 	.cfi_startproc
 	lzdr	%f4
 	kdbr	%f0,%f4
-	jl	.L1431
-	jnh	.L1425
+	jl	.L1714
+	jnh	.L1708
 	lzdr	%f6
 	kdbr	%f2,%f6
-	jl	.L1424
-.L1425:
+	jl	.L1707
+.L1708:
 	br	%r14
-.L1431:
+.L1714:
 	kdbr	%f2,%f4
-	jnh	.L1425
-.L1424:
+	jnh	.L1708
+.L1707:
 	lcdbr	%f0,%f0
 	br	%r14
 	.cfi_endproc
@@ -4111,11 +4663,11 @@ copysign:
 memmem:
 .LFB99:
 	.cfi_startproc
-	cgije	%r5,0,.L1477
-	clgrjl	%r3,%r5,.L1442
+	cgije	%r5,0,.L1760
+	clgrjl	%r3,%r5,.L1725
 	sgr	%r3,%r5
 	algr	%r3,%r2
-	jnle	.L1442
+	jnle	.L1725
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	ldgr	%f6,%r9
@@ -4125,58 +4677,58 @@ memmem:
 	.cfi_register 10, 18
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-	j	.L1439
-.L1443:
+	j	.L1722
+.L1726:
 	lgr	%r2,%r12
-.L1435:
-	clgrjl	%r3,%r2,.L1444
-.L1439:
+.L1718:
+	clgrjl	%r3,%r2,.L1727
+.L1722:
 	llc	%r1,0(%r2)
 	la	%r12,1(%r2)
-	crjlh	%r1,%r11,.L1443
-	cgije	%r5,1,.L1433
-.L1438:
+	crjlh	%r1,%r11,.L1726
+	cgije	%r5,1,.L1716
+.L1721:
 	aghik	%r0,%r5,-1
 	lghi	%r1,1
 	risbg	%r10,%r0,62,128+63,0
-	je	.L1454
-	cgije	%r10,1,.L1464
-	cgijlh	%r10,2,.L1480
-.L1465:
+	je	.L1737
+	cgije	%r10,1,.L1747
+	cgijlh	%r10,2,.L1763
+.L1748:
 	llgc	%r9,0(%r1,%r4)
 	la	%r10,0(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	aghi	%r1,1
-.L1464:
+.L1747:
 	llgc	%r9,0(%r1,%r4)
 	la	%r10,0(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	aghi	%r1,1
-	cgrje	%r1,%r5,.L1433
-.L1454:
+	cgrje	%r1,%r5,.L1716
+.L1737:
 	srlg	%r0,%r0,2
-.L1436:
+.L1719:
 	llgc	%r9,0(%r1,%r4)
 	la	%r10,0(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	llgc	%r9,1(%r1,%r4)
 	la	%r10,1(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	llgc	%r9,2(%r1,%r4)
 	la	%r10,2(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	llgc	%r9,3(%r1,%r4)
 	la	%r10,3(%r1,%r2)
 	clm	%r9,1,0(%r10)
-	jne	.L1471
+	jne	.L1754
 	aghi	%r1,4
-	brctg	%r0,.L1436
-.L1433:
+	brctg	%r0,.L1719
+.L1716:
 	lgdr	%r12,%f0
 	.cfi_remember_state
 	.cfi_restore 12
@@ -4187,21 +4739,21 @@ memmem:
 	lgdr	%r9,%f6
 	.cfi_restore 9
 	br	%r14
-.L1480:
+.L1763:
 	.cfi_restore_state
 	clc	1(1,%r4),1(%r2)
 	lghi	%r1,2
-	je	.L1465
-.L1471:
-	clgrjl	%r3,%r12,.L1444
+	je	.L1748
+.L1754:
+	clgrjl	%r3,%r12,.L1727
 	llc	%r1,0(%r12)
 	la	%r2,1(%r12)
-	crjlh	%r11,%r1,.L1435
+	crjlh	%r11,%r1,.L1718
 	lgr	%r0,%r12
 	lgr	%r12,%r2
 	lgr	%r2,%r0
-	j	.L1438
-.L1444:
+	j	.L1721
+.L1727:
 	lghi	%r2,0
 	lgdr	%r12,%f0
 	.cfi_restore 12
@@ -4212,10 +4764,10 @@ memmem:
 	lgdr	%r9,%f6
 	.cfi_restore 9
 	br	%r14
-.L1442:
+.L1725:
 	lghi	%r2,0
 	br	%r14
-.L1477:
+.L1760:
 	br	%r14
 	.cfi_endproc
 .LFE99:
@@ -4237,9 +4789,9 @@ mempcpy:
 	.cfi_def_cfa_offset 200
 	lgr	%r11,%r2
 	lgr	%r12,%r4
-	cgije	%r4,0,.L1483
+	cgije	%r4,0,.L1766
 	brasl	%r14,memmove@PLT
-.L1483:
+.L1766:
 	agrk	%r2,%r11,%r12
 	lmg	%r11,%r15,160(%r15)
 	.cfi_restore 15
@@ -4259,72 +4811,72 @@ mempcpy:
 frexp:
 .LFB101:
 	.cfi_startproc
-	larl	%r5,.L1515
+	larl	%r5,.L1798
 	lzdr	%f2
 	kdbr	%f0,%f2
-	jl	.L1512
-	kdb	%f0,.L1516-.L1515(%r5)
-	jnhe	.L1513
+	jl	.L1795
+	kdb	%f0,.L1799-.L1798(%r5)
+	jnhe	.L1796
 	lhi	%r3,0
-.L1492:
+.L1775:
 	lhi	%r1,0
-.L1498:
+.L1781:
 	ahi	%r1,1
-	mdb	%f0,.L1517-.L1515(%r5)
-	kdb	%f0,.L1516-.L1515(%r5)
-	jhe	.L1498
-.L1499:
+	mdb	%f0,.L1800-.L1798(%r5)
+	kdb	%f0,.L1799-.L1798(%r5)
+	jhe	.L1781
+.L1782:
 	st	%r1,0(%r2)
-	cije	%r3,0,.L1489
+	cije	%r3,0,.L1772
 	lcdbr	%f0,%f0
-.L1489:
+.L1772:
 	br	%r14
-.L1513:
-	kdb	%f0,.L1517-.L1515(%r5)
-	jnl	.L1495
+.L1796:
+	kdb	%f0,.L1800-.L1798(%r5)
+	jnl	.L1778
 	lzdr	%f4
 	cdbr	%f0,%f4
-	jne	.L1504
-.L1495:
+	jne	.L1787
+.L1778:
 	mvhi	0(%r2),0
 	br	%r14
-.L1512:
+.L1795:
 	lcdbr	%f6,%f0
-	kdb	%f0,.L1518-.L1515(%r5)
-	jnle	.L1514
+	kdb	%f0,.L1801-.L1798(%r5)
+	jnle	.L1797
 	ldr	%f0,%f6
 	lhi	%r3,1
-	j	.L1492
-.L1514:
-	kdb	%f0,.L1519-.L1515(%r5)
-	jnh	.L1495
+	j	.L1775
+.L1797:
+	kdb	%f0,.L1802-.L1798(%r5)
+	jnh	.L1778
 	lhi	%r3,1
-.L1493:
+.L1776:
 	ldr	%f0,%f6
 	lhi	%r1,0
-.L1500:
+.L1783:
 	adbr	%f0,%f0
 	ahi	%r1,-1
-	kdb	%f0,.L1517-.L1515(%r5)
-	jl	.L1500
-	j	.L1499
-.L1504:
+	kdb	%f0,.L1800-.L1798(%r5)
+	jl	.L1783
+	j	.L1782
+.L1787:
 	ldr	%f6,%f0
 	lhi	%r3,0
-	j	.L1493
+	j	.L1776
 	.section	.rodata
 	.align	8
-.L1515:
-.L1519:
+.L1798:
+.L1802:
 	.long	-1075838976
 	.long	0
-.L1518:
+.L1801:
 	.long	-1074790400
 	.long	0
-.L1517:
+.L1800:
 	.long	1071644672
 	.long	0
-.L1516:
+.L1799:
 	.long	1072693248
 	.long	0
 	.align	2
@@ -4341,17 +4893,17 @@ __muldi3:
 	.cfi_startproc
 	lgr	%r4,%r2
 	lghi	%r2,0
-	cgije	%r4,0,.L1523
-.L1522:
+	cgije	%r4,0,.L1806
+.L1805:
 	risbg	%r1,%r4,63,128+63,0
 	srlg	%r4,%r4,1
 	lcgr	%r0,%r1
 	ngr	%r0,%r3
 	sllg	%r3,%r3,1
 	agr	%r2,%r0
-	cgijlh	%r4,0,.L1522
+	cgijlh	%r4,0,.L1805
 	br	%r14
-.L1523:
+.L1806:
 	br	%r14
 	.cfi_endproc
 .LFE102:
@@ -4363,7 +4915,7 @@ __muldi3:
 udivmodsi4:
 .LFB103:
 	.cfi_startproc
-	clrjhe	%r3,%r2,.L1643
+	clrjhe	%r3,%r2,.L1926
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	ldgr	%f4,%r10
@@ -4371,24 +4923,24 @@ udivmodsi4:
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	lhi	%r12,1
-	cijl	%r3,0,.L1637
+	cijl	%r3,0,.L1920
 	sllk	%r5,%r3,1
 	lhi	%r0,2
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L1529
+	clrjhe	%r5,%r2,.L1812
 	lhi	%r10,31
 	lhi	%r12,2
 	lgr	%r3,%r1
 	lhi	%r11,11
-	cijl	%r1,0,.L1637
-.L1531:
+	cijl	%r1,0,.L1920
+.L1814:
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L1529
+	clrjhe	%r5,%r2,.L1812
 	ahik	%r5,%r10,-1
-	brct	%r11,.L1606
-.L1530:
+	brct	%r11,.L1889
+.L1813:
 	ltgr	%r4,%r4
 	locrne	%r5,%r2
 	llgfr	%r2,%r5
@@ -4400,27 +4952,27 @@ udivmodsi4:
 	lgdr	%r10,%f4
 	.cfi_restore 10
 	br	%r14
-.L1606:
+.L1889:
 	.cfi_restore_state
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijl	%r1,0,.L1637
+	cijl	%r1,0,.L1920
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L1529
+	clrjhe	%r5,%r2,.L1812
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijl	%r1,0,.L1637
+	cijl	%r1,0,.L1920
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L1529
+	clrjhe	%r5,%r2,.L1812
 	ahi	%r10,-3
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijhe	%r1,0,.L1531
-.L1637:
+	cijhe	%r1,0,.L1814
+.L1920:
 	srk	%r1,%r2,%r3
 	slrk	%r5,%r2,%r3
 	lhi	%r5,0
@@ -4432,10 +4984,10 @@ udivmodsi4:
 	lr	%r5,%r12
 	llgfr	%r2,%r1
 	lochie	%r5,0
-	cijlh	%r11,0,.L1534
-	j	.L1530
-.L1529:
-	cije	%r0,0,.L1536
+	cijlh	%r11,0,.L1817
+	j	.L1813
+.L1812:
+	cije	%r0,0,.L1819
 	srk	%r11,%r2,%r5
 	slrk	%r5,%r2,%r5
 	lhi	%r10,0
@@ -4449,7 +5001,7 @@ udivmodsi4:
 	llgfr	%r2,%r2
 	lgr	%r3,%r1
 	lr	%r12,%r0
-.L1534:
+.L1817:
 	srk	%r1,%r2,%r10
 	slrk	%r10,%r2,%r10
 	lhi	%r0,0
@@ -4461,7 +5013,7 @@ udivmodsi4:
 	or	%r5,%r11
 	llgfr	%r2,%r1
 	srlk	%r11,%r3,2
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4473,7 +5025,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,3
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4485,7 +5037,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,4
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4497,7 +5049,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,5
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4509,7 +5061,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,6
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4521,7 +5073,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,7
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4533,7 +5085,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,8
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4545,7 +5097,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,9
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4557,7 +5109,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,10
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4569,7 +5121,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,11
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4581,7 +5133,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,12
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4593,7 +5145,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,13
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4605,7 +5157,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,14
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4617,7 +5169,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,15
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4629,7 +5181,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,16
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4641,7 +5193,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,17
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4653,7 +5205,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,18
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4665,7 +5217,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,19
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4677,7 +5229,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,20
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4689,7 +5241,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,21
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4701,7 +5253,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,22
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4713,7 +5265,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,23
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4725,7 +5277,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,24
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4737,7 +5289,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,25
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4749,7 +5301,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,26
-	cije	%r10,0,.L1530
+	cije	%r10,0,.L1813
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -4761,7 +5313,7 @@ udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r3,27
-	cije	%r11,0,.L1530
+	cije	%r11,0,.L1813
 	srk	%r0,%r1,%r10
 	slrk	%r10,%r1,%r10
 	lhi	%r2,0
@@ -4773,7 +5325,7 @@ udivmodsi4:
 	or	%r5,%r11
 	llgfr	%r2,%r0
 	srlk	%r11,%r12,28
-	cije	%r11,0,.L1530
+	cije	%r11,0,.L1813
 	srk	%r1,%r0,%r10
 	slrk	%r10,%r0,%r10
 	lhi	%r2,0
@@ -4785,7 +5337,7 @@ udivmodsi4:
 	llgfr	%r2,%r1
 	srlk	%r0,%r12,29
 	srlk	%r11,%r3,29
-	cije	%r0,0,.L1530
+	cije	%r0,0,.L1813
 	srk	%r10,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r2,0
@@ -4797,7 +5349,7 @@ udivmodsi4:
 	or	%r5,%r0
 	llgfr	%r2,%r1
 	srlk	%r0,%r12,30
-	cije	%r0,0,.L1530
+	cije	%r0,0,.L1813
 	srk	%r10,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r2,0
@@ -4808,7 +5360,7 @@ udivmodsi4:
 	lochie	%r0,0
 	or	%r5,%r0
 	llgfr	%r2,%r1
-	cijhe	%r12,0,.L1530
+	cijhe	%r12,0,.L1813
 	srk	%r12,%r1,%r3
 	slrk	%r3,%r1,%r3
 	lhi	%r3,0
@@ -4817,8 +5369,8 @@ udivmodsi4:
 	locre	%r12,%r1
 	llgfr	%r2,%r12
 	or	%r5,%r3
-	j	.L1530
-.L1643:
+	j	.L1813
+.L1926:
 	.cfi_restore 10
 	.cfi_restore 11
 	.cfi_restore 12
@@ -4834,12 +5386,12 @@ udivmodsi4:
 	locrne	%r0,%r2
 	llgfr	%r2,%r0
 	br	%r14
-.L1536:
+.L1819:
 	.cfi_register 10, 18
 	.cfi_register 11, 17
 	.cfi_register 12, 16
 	lhi	%r5,0
-	j	.L1530
+	j	.L1813
 	.cfi_endproc
 .LFE103:
 	.size	udivmodsi4, .-udivmodsi4
@@ -4885,14 +5437,14 @@ __clrsbdi2:
 __mulsi3:
 .LFB106:
 	.cfi_startproc
-	cgije	%r2,0,.L1656
+	cgije	%r2,0,.L1939
 	risbg	%r0,%r2,63,128+63,0
 	srlk	%r4,%r2,1
 	lcr	%r1,%r0
 	srlg	%r5,%r2,1
 	nr	%r1,%r3
 	sllk	%r0,%r3,1
-	cgije	%r5,0,.L1747
+	cgije	%r5,0,.L2030
 	nilf	%r4,1
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
@@ -4902,7 +5454,7 @@ __mulsi3:
 	nr	%r12,%r0
 	sllk	%r0,%r3,2
 	ar	%r1,%r12
-	cgije	%r4,0,.L1654
+	cgije	%r4,0,.L1937
 	risbg	%r12,%r5,63,128+63,0
 	srlk	%r5,%r2,3
 	lcr	%r4,%r12
@@ -4910,7 +5462,7 @@ __mulsi3:
 	nr	%r4,%r0
 	srlg	%r0,%r2,3
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,4
 	lcr	%r4,%r4
@@ -4918,7 +5470,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,4
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,5
 	lcr	%r4,%r4
@@ -4926,7 +5478,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,5
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,6
 	lcr	%r4,%r4
@@ -4934,7 +5486,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,6
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,7
 	lcr	%r4,%r4
@@ -4942,7 +5494,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,7
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,8
 	lcr	%r4,%r4
@@ -4950,7 +5502,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,8
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,9
 	lcr	%r4,%r4
@@ -4958,7 +5510,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,9
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,10
 	lcr	%r4,%r4
@@ -4966,7 +5518,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,10
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,11
 	lcr	%r4,%r4
@@ -4974,7 +5526,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,11
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,12
 	lcr	%r4,%r4
@@ -4982,7 +5534,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,12
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,13
 	lcr	%r4,%r4
@@ -4990,7 +5542,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,13
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,14
 	lcr	%r4,%r4
@@ -4998,7 +5550,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,14
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,15
 	lcr	%r4,%r4
@@ -5006,7 +5558,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,15
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,16
 	lcr	%r4,%r4
@@ -5014,7 +5566,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,16
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,17
 	lcr	%r4,%r4
@@ -5022,7 +5574,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,17
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,18
 	lcr	%r4,%r4
@@ -5030,7 +5582,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,18
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,19
 	lcr	%r4,%r4
@@ -5038,7 +5590,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,19
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,20
 	lcr	%r4,%r4
@@ -5046,7 +5598,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,20
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,21
 	lcr	%r4,%r4
@@ -5054,7 +5606,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,21
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,22
 	lcr	%r4,%r4
@@ -5062,7 +5614,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,22
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,23
 	lcr	%r4,%r4
@@ -5070,7 +5622,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,23
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,24
 	lcr	%r4,%r4
@@ -5078,7 +5630,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,24
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,25
 	lcr	%r4,%r4
@@ -5086,7 +5638,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,25
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,26
 	lcr	%r4,%r4
@@ -5094,7 +5646,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,26
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,27
 	lcr	%r4,%r4
@@ -5102,7 +5654,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,27
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	risbg	%r4,%r5,63,128+63,0
 	srlg	%r0,%r2,28
 	lcr	%r4,%r4
@@ -5110,7 +5662,7 @@ __mulsi3:
 	nr	%r4,%r12
 	sllk	%r12,%r3,28
 	ar	%r1,%r4
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	nilf	%r5,1
 	srlk	%r4,%r2,29
 	lcr	%r5,%r5
@@ -5118,7 +5670,7 @@ __mulsi3:
 	nr	%r5,%r12
 	sllk	%r12,%r3,29
 	ar	%r1,%r5
-	cgije	%r0,0,.L1654
+	cgije	%r0,0,.L1937
 	nilf	%r4,1
 	lcr	%r4,%r4
 	nr	%r4,%r12
@@ -5136,14 +5688,14 @@ __mulsi3:
 	srlg	%r2,%r2,30
 	ltgr	%r2,%r2
 	locre	%r1,%r4
-.L1654:
+.L1937:
 	llgfr	%r2,%r1
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	br	%r14
-.L1656:
+.L1939:
 	lhi	%r1,0
-.L1747:
+.L2030:
 	llgfr	%r2,%r1
 	br	%r14
 	.cfi_endproc
@@ -5156,312 +5708,442 @@ __mulsi3:
 __cmovd:
 .LFB107:
 	.cfi_startproc
-	srlk	%r1,%r4,3
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
+	srlk	%r11,%r4,3
 	risbg	%r0,%r4,32,128+60,0
-	clgrjl	%r2,%r3,.L1755
-	agrk	%r5,%r3,%r4
-	clgrjle	%r2,%r5,.L1872
-.L1755:
-	ldgr	%f1,%r8
-	.cfi_register 8, 20
-	ldgr	%f6,%r9
-	.cfi_register 9, 19
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
-	cije	%r1,0,.L1873
-	risbgn	%r12,%r1,32,128+60,3
-	aghik	%r8,%r12,-8
+	clgrjl	%r2,%r3,.L2039
+	agrk	%r1,%r3,%r4
+	clgrjle	%r2,%r1,.L2237
+.L2039:
+	cije	%r11,0,.L2238
+	ahik	%r1,%r11,-1
+	clijle	%r1,6,.L2041
+	la	%r8,8(%r3)
+	cgrje	%r2,%r8,.L2041
+	risbg	%r10,%r4,32,128+59,0
+	aghik	%r9,%r10,-16
+	srlk	%r12,%r4,4
+	srlg	%r5,%r9,4
 	lghi	%r1,0
-	srlg	%r9,%r8,3
-	aghi	%r9,1
-	risbg	%r11,%r9,62,128+63,0
-	je	.L1803
-	cgije	%r11,1,.L1819
-	cgije	%r11,2,.L1820
-	lg	%r10,0(%r3)
-	lghi	%r1,8
-	stg	%r10,0(%r2)
-.L1820:
-	lg	%r5,0(%r1,%r3)
-	stg	%r5,0(%r1,%r2)
-	aghi	%r1,8
-.L1819:
-	lg	%r8,0(%r1,%r3)
-	stg	%r8,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r12,%r1,.L1848
-.L1803:
-	srlg	%r5,%r9,2
-	cghi	%r5,2
-	jle	.L1867
-	aghi	%r5,-1
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-.L1758:
-	lg	%r12,8(%r1,%r3)
-	stg	%r12,8(%r1,%r2)
-	lg	%r12,16(%r1,%r3)
-	stg	%r12,16(%r1,%r2)
-	lg	%r12,24(%r1,%r3)
-	stg	%r12,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	brctg	%r5,.L1758
-	lg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-.L1848:
-	clrjhe	%r0,%r4,.L1751
-	srk	%r10,%r4,%r0
-	llgfr	%r5,%r0
-	ahik	%r1,%r10,-1
-	clijle	%r1,14,.L1760
-	lgr	%r12,%r2
-	la	%r8,1(%r5,%r3)
-	algfr	%r12,%r0
-	lgr	%r11,%r3
-	sgrk	%r9,%r12,%r8
-	algfr	%r11,%r0
-	clgijle	%r9,6,.L1760
-	ogrk	%r1,%r11,%r12
-	risbg	%r8,%r1,61,128+63,0
-	aghi	%r8,-1
-	cgijhe	%r8,0,.L1760
-	risbg	%r9,%r10,32,128+60,0
-	aghik	%r5,%r9,-8
-	lghi	%r1,0
-	srlg	%r5,%r5,3
 	aghi	%r5,1
 	risbg	%r8,%r5,62,128+63,0
-	je	.L1794
-	cgije	%r8,1,.L1821
-	cgijlh	%r8,2,.L1874
-.L1822:
-	lg	%r8,0(%r1,%r11)
-	stg	%r8,0(%r1,%r12)
-	aghi	%r1,8
-.L1821:
-	lg	%r8,0(%r1,%r11)
-	stg	%r8,0(%r1,%r12)
-	aghi	%r1,8
-	cgrje	%r1,%r9,.L1847
-.L1794:
+	je	.L2129
+	cgije	%r8,1,.L2151
+	cgijlh	%r8,2,.L2239
+.L2152:
+	vl	%v19,0(%r1,%r3),3
+	vst	%v19,0(%r1,%r2),3
+	aghi	%r1,16
+.L2151:
+	vl	%v21,0(%r1,%r3),3
+	vst	%v21,0(%r1,%r2),3
+	aghi	%r1,16
+	cgrje	%r1,%r10,.L2205
+.L2129:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L1866
+	jle	.L2233
 	aghi	%r5,-1
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-.L1761:
-	lg	%r9,8(%r1,%r11)
-	stg	%r9,8(%r1,%r12)
-	lg	%r9,16(%r1,%r11)
-	stg	%r9,16(%r1,%r12)
-	lg	%r9,24(%r1,%r11)
-	stg	%r9,24(%r1,%r12)
-	aghi	%r1,32
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-	brctg	%r5,.L1761
-	lg	%r5,8(%r1,%r11)
-	stg	%r5,8(%r1,%r12)
-	lg	%r5,16(%r1,%r11)
-	stg	%r5,16(%r1,%r12)
-	lg	%r5,24(%r1,%r11)
-	stg	%r5,24(%r1,%r12)
-.L1847:
-	risbg	%r12,%r10,32,128+60,0
+	vl	%v0,0(%r1,%r3),3
+	vst	%v0,0(%r1,%r2),3
+.L2042:
+	vl	%v0,16(%r1,%r3),3
+	vst	%v0,16(%r1,%r2),3
+	vl	%v0,32(%r1,%r3),3
+	vst	%v0,32(%r1,%r2),3
+	vl	%v0,48(%r1,%r3),3
+	vst	%v0,48(%r1,%r2),3
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r3),3
+	vst	%v0,0(%r1,%r2),3
+	brctg	%r5,.L2042
+	vl	%v0,16(%r1,%r3),3
+	vst	%v0,16(%r1,%r2),3
+	vl	%v0,32(%r1,%r3),3
+	vst	%v0,32(%r1,%r2),3
+	vl	%v0,48(%r1,%r3),3
+	vst	%v0,48(%r1,%r2),3
+.L2205:
+	sll	%r12,1
+	crje	%r11,%r12,.L2045
+	risbgn	%r11,%r12,32,128+59,3
+	lg	%r1,0(%r11,%r3)
+	stg	%r1,0(%r11,%r2)
+.L2045:
+	clrjhe	%r0,%r4,.L2034
+	srk	%r10,%r4,%r0
+	llgfr	%r12,%r0
+	ahik	%r1,%r10,-1
+	clijle	%r1,30,.L2037
+	lgr	%r11,%r2
+	la	%r5,1(%r12,%r3)
+	algfr	%r11,%r0
+	sgrk	%r9,%r11,%r5
+	clgijle	%r9,14,.L2037
+	risbg	%r9,%r10,32,128+59,0
+	agr	%r12,%r3
+	aghik	%r8,%r9,-16
+	lghi	%r1,0
+	srlg	%r5,%r8,4
+	aghi	%r5,1
+	risbg	%r8,%r5,62,128+63,0
+	je	.L2111
+	cgije	%r8,1,.L2155
+	cgijlh	%r8,2,.L2240
+.L2156:
+	vl	%v25,0(%r1,%r12)
+	vst	%v25,0(%r1,%r11)
+	aghi	%r1,16
+.L2155:
+	vl	%v27,0(%r1,%r12)
+	vst	%v27,0(%r1,%r11)
+	aghi	%r1,16
+	cgrje	%r1,%r9,.L2204
+.L2111:
+	srlg	%r5,%r5,2
+	cghi	%r5,2
+	jle	.L2231
+	aghi	%r5,-1
+	vl	%v0,0(%r1,%r12)
+	vst	%v0,0(%r1,%r11)
+.L2046:
+	vl	%v0,16(%r1,%r12)
+	vst	%v0,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v0,48(%r1,%r12)
+	vst	%v0,48(%r1,%r11)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r12)
+	vst	%v0,0(%r1,%r11)
+	brctg	%r5,.L2046
+	vl	%v0,16(%r1,%r12)
+	vst	%v0,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v0,48(%r1,%r12)
+	vst	%v0,48(%r1,%r11)
+.L2204:
+	risbg	%r12,%r10,32,128+59,0
 	ar	%r12,%r0
-	tmll	%r10,7
-	je	.L1751
-	llgfr	%r11,%r12
-	ic	%r0,0(%r11,%r3)
-	stc	%r0,0(%r11,%r2)
-	ahik	%r10,%r12,1
-	clrjhe	%r10,%r4,.L1751
-	llgfr	%r5,%r10
-	ic	%r1,0(%r5,%r3)
-	stc	%r1,0(%r5,%r2)
-	ahik	%r9,%r12,2
-	clrjhe	%r9,%r4,.L1751
-	llgfr	%r8,%r9
-	ic	%r11,0(%r8,%r3)
-	stc	%r11,0(%r8,%r2)
-	ahik	%r0,%r12,3
-	clrjhe	%r0,%r4,.L1751
-	llgfr	%r10,%r0
-	ic	%r5,0(%r10,%r3)
-	stc	%r5,0(%r10,%r2)
-	ahik	%r1,%r12,4
-	clrjhe	%r1,%r4,.L1751
-	llgfr	%r9,%r1
-	ic	%r8,0(%r9,%r3)
-	stc	%r8,0(%r9,%r2)
-	ahik	%r11,%r12,5
-	clrjhe	%r11,%r4,.L1751
-	llgfr	%r10,%r11
+	tmll	%r10,15
+	je	.L2034
+	llgfr	%r10,%r12
 	ic	%r0,0(%r10,%r3)
 	stc	%r0,0(%r10,%r2)
-	ahi	%r12,6
-	clrjhe	%r12,%r4,.L1751
+	ahik	%r11,%r12,1
+	clrjhe	%r11,%r4,.L2034
+	llgfr	%r1,%r11
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	ahik	%r5,%r12,2
+	clrjhe	%r5,%r4,.L2034
+	llgfr	%r8,%r5
+	ic	%r10,0(%r8,%r3)
+	stc	%r10,0(%r8,%r2)
+	ahik	%r0,%r12,3
+	clrjhe	%r0,%r4,.L2034
+	llgfr	%r11,%r0
+	ic	%r1,0(%r11,%r3)
+	stc	%r1,0(%r11,%r2)
+	ahik	%r9,%r12,4
+	clrjhe	%r9,%r4,.L2034
+	llgfr	%r5,%r9
+	ic	%r8,0(%r5,%r3)
+	stc	%r8,0(%r5,%r2)
+	ahik	%r10,%r12,5
+	clrjhe	%r10,%r4,.L2034
+	llgfr	%r11,%r10
+	ic	%r0,0(%r11,%r3)
+	stc	%r0,0(%r11,%r2)
+	ahik	%r1,%r12,6
+	clrjhe	%r1,%r4,.L2034
+	llgfr	%r9,%r1
+	ic	%r5,0(%r9,%r3)
+	stc	%r5,0(%r9,%r2)
+	ahik	%r8,%r12,7
+	clrjhe	%r8,%r4,.L2034
+	llgfr	%r10,%r8
+	ic	%r11,0(%r10,%r3)
+	stc	%r11,0(%r10,%r2)
+	ahik	%r0,%r12,8
+	clrjhe	%r0,%r4,.L2034
+	llgfr	%r1,%r0
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	ahik	%r5,%r12,9
+	clrjhe	%r5,%r4,.L2034
+	llgfr	%r8,%r5
+	ic	%r10,0(%r8,%r3)
+	stc	%r10,0(%r8,%r2)
+	ahik	%r11,%r12,10
+	clrjhe	%r11,%r4,.L2034
+	llgfr	%r1,%r11
+	ic	%r0,0(%r1,%r3)
+	stc	%r0,0(%r1,%r2)
+	ahik	%r9,%r12,11
+	clrjhe	%r9,%r4,.L2034
+	llgfr	%r5,%r9
+	ic	%r8,0(%r5,%r3)
+	stc	%r8,0(%r5,%r2)
+	ahik	%r10,%r12,12
+	clrjhe	%r10,%r4,.L2034
+	llgfr	%r11,%r10
+	ic	%r1,0(%r11,%r3)
+	stc	%r1,0(%r11,%r2)
+	ahik	%r0,%r12,13
+	clrjhe	%r0,%r4,.L2034
+	llgfr	%r9,%r0
+	ic	%r5,0(%r9,%r3)
+	stc	%r5,0(%r9,%r2)
+	ahi	%r12,14
+	clrjhe	%r12,%r4,.L2034
 	llgfr	%r4,%r12
 	ic	%r3,0(%r4,%r3)
 	stc	%r3,0(%r4,%r2)
-.L1751:
-	lgdr	%r12,%f0
+.L2034:
+	lgdr	%r12,%f2
+	.cfi_remember_state
 	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f4
 	.cfi_restore 11
-	lgdr	%r10,%f4
+	lgdr	%r10,%f6
 	.cfi_restore 10
-	lgdr	%r9,%f6
+	lgdr	%r9,%f1
 	.cfi_restore 9
-	lgdr	%r8,%f1
+	lgdr	%r8,%f3
 	.cfi_restore 8
 	br	%r14
-.L1872:
-	ahik	%r0,%r4,-1
-	llgfr	%r1,%r0
-	cgije	%r4,0,.L1870
-	aghik	%r4,%r1,1
-	risbg	%r5,%r4,62,128+63,0
-	je	.L1812
-	cgije	%r5,1,.L1817
-	cgije	%r5,2,.L1818
-	ic	%r0,0(%r1,%r3)
-	stc	%r0,0(%r1,%r2)
-	aghi	%r1,-1
-.L1818:
+.L2237:
+	.cfi_restore_state
+	ahik	%r10,%r4,-1
+	llgfr	%r1,%r10
+	cgije	%r4,0,.L2034
+	clijle	%r10,30,.L2050
+	sgrk	%r5,%r2,%r3
+	aghi	%r5,15
+	clgijle	%r5,14,.L2050
+	risbg	%r8,%r4,32,128+59,0
+	aghi	%r1,-15
+	aghik	%r0,%r8,-16
+	agrk	%r12,%r3,%r1
+	lcgr	%r11,%r8
+	agr	%r1,%r2
+	srlg	%r8,%r0,4
+	lghi	%r5,0
+	aghi	%r8,1
+	risbg	%r9,%r8,62,128+63,0
+	je	.L2147
+	cgije	%r9,1,.L2158
+	cgijlh	%r9,2,.L2241
+.L2159:
+	vl	%v5,0(%r5,%r12)
+	vst	%v5,0(%r5,%r1)
+	aghi	%r5,-16
+.L2158:
+	vl	%v7,0(%r5,%r12)
+	vst	%v7,0(%r5,%r1)
+	aghi	%r5,-16
+	cgrje	%r5,%r11,.L2206
+.L2147:
+	srlg	%r0,%r8,2
+	cghi	%r0,2
+	jle	.L2235
+	aghi	%r0,-1
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+.L2051:
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	aghi	%r5,-64
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+	brctg	%r0,.L2051
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+.L2206:
+	risbg	%r12,%r4,32,128+59,0
+	sr	%r10,%r12
+	tmll	%r4,15
+	je	.L2034
+	llgfr	%r4,%r10
+	ic	%r1,0(%r4,%r3)
+	stc	%r1,0(%r4,%r2)
+	ahik	%r5,%r10,-1
+	llgfr	%r11,%r5
+	cije	%r10,0,.L2034
+	ic	%r0,0(%r11,%r3)
+	stc	%r0,0(%r11,%r2)
+	ahik	%r8,%r10,-2
+	llgfr	%r9,%r8
+	cgije	%r11,0,.L2034
+	ic	%r12,0(%r9,%r3)
+	stc	%r12,0(%r9,%r2)
+	ahik	%r4,%r10,-3
+	llgfr	%r1,%r4
+	cgije	%r9,0,.L2034
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-	aghi	%r1,-1
-.L1817:
-	ic	%r0,0(%r1,%r3)
-	stc	%r0,0(%r1,%r2)
-	aghi	%r1,-1
-	cgije	%r1,-1,.L1870
-.L1812:
-	srlg	%r4,%r4,2
-	cghi	%r4,2
-	jle	.L1868
-	aghi	%r4,-1
-	ic	%r5,0(%r1,%r3)
-	stc	%r5,0(%r1,%r2)
-.L1765:
-	icy	%r5,-1(%r1,%r3)
-	stcy	%r5,-1(%r1,%r2)
-	icy	%r5,-2(%r1,%r3)
-	stcy	%r5,-2(%r1,%r2)
-	icy	%r5,-3(%r1,%r3)
-	stcy	%r5,-3(%r1,%r2)
-	aghi	%r1,-4
-	ic	%r5,0(%r1,%r3)
-	stc	%r5,0(%r1,%r2)
-	brctg	%r4,.L1765
-	icy	%r4,-1(%r1,%r3)
-	stcy	%r4,-1(%r1,%r2)
-	icy	%r4,-2(%r1,%r3)
-	stcy	%r4,-2(%r1,%r2)
-	icy	%r3,-3(%r1,%r3)
-	stcy	%r3,-3(%r1,%r2)
-	br	%r14
-.L1867:
-	.cfi_register 8, 20
-	.cfi_register 9, 19
-	.cfi_register 10, 18
-	.cfi_register 11, 17
-	.cfi_register 12, 16
-	lg	%r12,0(%r1,%r3)
-	stg	%r12,0(%r1,%r2)
-	lg	%r9,8(%r1,%r3)
-	stg	%r9,8(%r1,%r2)
-	lg	%r11,16(%r1,%r3)
-	stg	%r11,16(%r1,%r2)
-	lg	%r10,24(%r1,%r3)
-	stg	%r10,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L1867
-	j	.L1848
-.L1866:
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-	lg	%r8,8(%r1,%r11)
-	stg	%r8,8(%r1,%r12)
-	lg	%r9,16(%r1,%r11)
-	stg	%r9,16(%r1,%r12)
-	lg	%r8,24(%r1,%r11)
-	stg	%r8,24(%r1,%r12)
-	aghi	%r1,32
-	brctg	%r5,.L1866
-	j	.L1847
-.L1868:
-	.cfi_restore 8
-	.cfi_restore 9
-	.cfi_restore 10
-	.cfi_restore 11
-	.cfi_restore 12
-	ic	%r5,0(%r1,%r3)
-	stc	%r5,0(%r1,%r2)
-	icy	%r0,-1(%r1,%r3)
-	stcy	%r0,-1(%r1,%r2)
-	icy	%r5,-2(%r1,%r3)
-	stcy	%r5,-2(%r1,%r2)
-	icy	%r0,-3(%r1,%r3)
-	stcy	%r0,-3(%r1,%r2)
-	aghi	%r1,-4
-	brctg	%r4,.L1868
-.L1870:
-	br	%r14
-.L1874:
-	.cfi_register 8, 20
-	.cfi_register 9, 19
-	.cfi_register 10, 18
-	.cfi_register 11, 17
-	.cfi_register 12, 16
-	lg	%r1,0(%r11)
-	stg	%r1,0(%r12)
-	lghi	%r1,8
-	j	.L1822
-.L1873:
-	llgfr	%r5,%r0
-	cgije	%r4,0,.L1751
-.L1760:
-	lghi	%r1,-1
-	ic	%r12,0(%r5,%r3)
-	stc	%r12,0(%r5,%r2)
-	xgrk	%r9,%r5,%r1
-	aghik	%r1,%r5,1
-	ar	%r9,%r4
-	risbg	%r8,%r9,62,128+63,0
-	clrjhe	%r1,%r4,.L1751
-	cije	%r8,0,.L1785
-	cije	%r8,1,.L1824
-	cijlh	%r8,2,.L1875
-.L1825:
+	ahik	%r11,%r10,-4
+	llgfr	%r8,%r11
+	cgije	%r1,0,.L2034
+	ic	%r0,0(%r8,%r3)
+	stc	%r0,0(%r8,%r2)
+	ahik	%r9,%r10,-5
+	llgfr	%r12,%r9
+	cgije	%r8,0,.L2034
+	ic	%r4,0(%r12,%r3)
+	stc	%r4,0(%r12,%r2)
+	ahik	%r1,%r10,-6
+	llgfr	%r5,%r1
+	cgije	%r12,0,.L2034
+	ic	%r11,0(%r5,%r3)
+	stc	%r11,0(%r5,%r2)
+	ahik	%r8,%r10,-7
+	llgfr	%r9,%r8
+	cgije	%r5,0,.L2034
+	ic	%r0,0(%r9,%r3)
+	stc	%r0,0(%r9,%r2)
+	ahik	%r12,%r10,-8
+	llgfr	%r1,%r12
+	cgije	%r9,0,.L2034
+	ic	%r4,0(%r1,%r3)
+	stc	%r4,0(%r1,%r2)
+	ahik	%r5,%r10,-9
+	llgfr	%r11,%r5
+	cgije	%r1,0,.L2034
+	ic	%r8,0(%r11,%r3)
+	stc	%r8,0(%r11,%r2)
+	ahik	%r9,%r10,-10
+	llgfr	%r12,%r9
+	cgije	%r11,0,.L2034
+	ic	%r0,0(%r12,%r3)
+	stc	%r0,0(%r12,%r2)
+	ahik	%r1,%r10,-11
+	llgfr	%r4,%r1
+	cgije	%r12,0,.L2034
+	ic	%r5,0(%r4,%r3)
+	stc	%r5,0(%r4,%r2)
+	ahik	%r11,%r10,-12
+	llgfr	%r8,%r11
+	cgije	%r4,0,.L2034
+	ic	%r9,0(%r8,%r3)
+	stc	%r9,0(%r8,%r2)
+	ahik	%r12,%r10,-13
+	llgfr	%r4,%r12
+	cgije	%r8,0,.L2034
+	ic	%r0,0(%r4,%r3)
+	stc	%r0,0(%r4,%r2)
+	ahi	%r10,-14
+	llgfr	%r10,%r10
+	cgije	%r4,0,.L2034
+	ic	%r3,0(%r10,%r3)
+	stc	%r3,0(%r10,%r2)
+	j	.L2034
+.L2233:
+	vl	%v23,0(%r1,%r3),3
+	vst	%v23,0(%r1,%r2),3
+	vl	%v24,16(%r1,%r3),3
+	vst	%v24,16(%r1,%r2),3
+	vl	%v26,32(%r1,%r3),3
+	vst	%v26,32(%r1,%r2),3
+	vl	%v28,48(%r1,%r3),3
+	vst	%v28,48(%r1,%r2),3
+	aghi	%r1,64
+	brctg	%r5,.L2233
+	j	.L2205
+.L2231:
+	vl	%v29,0(%r1,%r12)
+	vst	%v29,0(%r1,%r11)
+	vl	%v31,16(%r1,%r12)
+	vst	%v31,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v5,48(%r1,%r12)
+	vst	%v5,48(%r1,%r11)
+	aghi	%r1,64
+	brctg	%r5,.L2231
+	j	.L2204
+.L2239:
+	vl	%v17,0(%r3),3
+	lghi	%r1,16
+	vst	%v17,0(%r2),3
+	j	.L2152
+.L2240:
+	vl	%v30,0(%r12)
+	lghi	%r1,16
+	vst	%v30,0(%r11)
+	j	.L2156
+.L2235:
+	vl	%v16,0(%r5,%r12)
+	aghik	%r11,%r5,-16
+	aghik	%r8,%r5,-32
+	vst	%v16,0(%r5,%r1)
+	aghik	%r9,%r5,-48
+	aghi	%r5,-64
+	vl	%v18,0(%r11,%r12)
+	vst	%v18,0(%r11,%r1)
+	vl	%v20,0(%r8,%r12)
+	vst	%v20,0(%r8,%r1)
+	vl	%v22,0(%r9,%r12)
+	vst	%v22,0(%r9,%r1)
+	brctg	%r0,.L2235
+	j	.L2206
+.L2238:
+	llgfr	%r12,%r0
+	cgije	%r4,0,.L2034
+.L2037:
+	ic	%r8,0(%r12,%r3)
+	stc	%r8,0(%r12,%r2)
+	lghi	%r10,-1
+	aghik	%r1,%r12,1
+	xgrk	%r11,%r12,%r10
+	ar	%r11,%r4
+	risbg	%r0,%r11,62,128+63,0
+	clrjle	%r4,%r1,.L2034
+	cije	%r0,0,.L2102
+	cije	%r0,1,.L2162
+	cijlh	%r0,2,.L2242
+.L2163:
+	ic	%r12,0(%r1,%r3)
+	stc	%r12,0(%r1,%r2)
+	aghi	%r1,1
+.L2162:
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
 	aghi	%r1,1
-.L1824:
-	ic	%r10,0(%r1,%r3)
-	stc	%r10,0(%r1,%r2)
-	aghi	%r1,1
-	clrjhe	%r1,%r4,.L1751
-.L1785:
-	srlk	%r4,%r9,2
+	clrjle	%r4,%r1,.L2034
+.L2102:
+	srlk	%r4,%r11,2
 	chi	%r4,2
-	jle	.L1865
+	jle	.L2230
 	ahi	%r4,-1
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-.L1763:
+.L2048:
 	ic	%r5,1(%r1,%r3)
 	stc	%r5,1(%r1,%r2)
 	ic	%r5,2(%r1,%r3)
@@ -5471,31 +6153,152 @@ __cmovd:
 	aghi	%r1,4
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-	brct	%r4,.L1763
+	brct	%r4,.L2048
 	ic	%r4,1(%r1,%r3)
 	stc	%r4,1(%r1,%r2)
 	ic	%r4,2(%r1,%r3)
 	stc	%r4,2(%r1,%r2)
 	ic	%r3,3(%r1,%r3)
 	stc	%r3,3(%r1,%r2)
-	j	.L1751
-.L1865:
+	j	.L2034
+.L2041:
+	risbgn	%r10,%r11,32,128+60,3
+	aghik	%r9,%r10,-8
+	lghi	%r1,0
+	srlg	%r5,%r9,3
+	aghi	%r5,1
+	risbg	%r8,%r5,62,128+63,0
+	je	.L2120
+	cgije	%r8,1,.L2153
+	cgijlh	%r8,2,.L2243
+.L2154:
+	lg	%r11,0(%r1,%r3)
+	stg	%r11,0(%r1,%r2)
+	aghi	%r1,8
+.L2153:
+	lg	%r9,0(%r1,%r3)
+	stg	%r9,0(%r1,%r2)
+	aghi	%r1,8
+	cgrje	%r1,%r10,.L2045
+.L2120:
+	srlg	%r5,%r5,2
+	cghi	%r5,2
+	jle	.L2232
+	aghi	%r5,-1
+	lg	%r12,0(%r1,%r3)
+	stg	%r12,0(%r1,%r2)
+.L2044:
+	lg	%r12,8(%r1,%r3)
+	stg	%r12,8(%r1,%r2)
+	lg	%r12,16(%r1,%r3)
+	stg	%r12,16(%r1,%r2)
+	lg	%r12,24(%r1,%r3)
+	stg	%r12,24(%r1,%r2)
+	aghi	%r1,32
+	lg	%r12,0(%r1,%r3)
+	stg	%r12,0(%r1,%r2)
+	brctg	%r5,.L2044
+	lg	%r5,8(%r1,%r3)
+	stg	%r5,8(%r1,%r2)
+	lg	%r5,16(%r1,%r3)
+	stg	%r5,16(%r1,%r2)
+	lg	%r5,24(%r1,%r3)
+	stg	%r5,24(%r1,%r2)
+	j	.L2045
+.L2232:
+	lg	%r10,0(%r1,%r3)
+	stg	%r10,0(%r1,%r2)
+	lg	%r8,8(%r1,%r3)
+	stg	%r8,8(%r1,%r2)
+	lg	%r12,16(%r1,%r3)
+	stg	%r12,16(%r1,%r2)
+	lg	%r11,24(%r1,%r3)
+	stg	%r11,24(%r1,%r2)
+	aghi	%r1,32
+	brctg	%r5,.L2232
+	j	.L2045
+.L2241:
+	vl	%v0,0(%r12)
+	lghi	%r5,-16
+	vst	%v0,0(%r1)
+	j	.L2159
+.L2230:
+	ic	%r8,0(%r1,%r3)
+	stc	%r8,0(%r1,%r2)
+	ic	%r10,1(%r1,%r3)
+	stc	%r10,1(%r1,%r2)
+	ic	%r11,2(%r1,%r3)
+	stc	%r11,2(%r1,%r2)
+	ic	%r0,3(%r1,%r3)
+	stc	%r0,3(%r1,%r2)
+	aghi	%r1,4
+	brct	%r4,.L2230
+	j	.L2034
+.L2243:
+	lg	%r12,0(%r3)
+	lghi	%r1,8
+	stg	%r12,0(%r2)
+	j	.L2154
+.L2242:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	aghik	%r1,%r12,2
+	j	.L2163
+.L2050:
+	aghik	%r11,%r1,1
+	risbg	%r5,%r11,62,128+63,0
+	je	.L2138
+	cgije	%r5,1,.L2160
+	cgije	%r5,2,.L2161
+	ic	%r8,0(%r1,%r3)
+	stc	%r8,0(%r1,%r2)
+	aghi	%r1,-1
+.L2161:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	aghi	%r1,-1
+.L2160:
+	ic	%r12,0(%r1,%r3)
+	stc	%r12,0(%r1,%r2)
+	aghi	%r1,-1
+	cgije	%r1,-1,.L2034
+.L2138:
+	srlg	%r4,%r11,2
+	cghi	%r4,2
+	jle	.L2234
+	aghi	%r4,-1
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+.L2054:
+	icy	%r5,-1(%r1,%r3)
+	stcy	%r5,-1(%r1,%r2)
+	icy	%r5,-2(%r1,%r3)
+	stcy	%r5,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+	brctg	%r4,.L2054
+	icy	%r4,-1(%r1,%r3)
+	stcy	%r4,-1(%r1,%r2)
+	icy	%r4,-2(%r1,%r3)
+	stcy	%r4,-2(%r1,%r2)
+	icy	%r3,-3(%r1,%r3)
+	stcy	%r3,-3(%r1,%r2)
+	j	.L2034
+.L2234:
 	ic	%r0,0(%r1,%r3)
 	stc	%r0,0(%r1,%r2)
-	ic	%r12,1(%r1,%r3)
-	stc	%r12,1(%r1,%r2)
-	ic	%r9,2(%r1,%r3)
-	stc	%r9,2(%r1,%r2)
-	ic	%r8,3(%r1,%r3)
-	stc	%r8,3(%r1,%r2)
-	aghi	%r1,4
-	brct	%r4,.L1865
-	j	.L1751
-.L1875:
-	ic	%r11,0(%r1,%r3)
-	stc	%r11,0(%r1,%r2)
-	aghik	%r1,%r5,2
-	j	.L1825
+	icy	%r10,-1(%r1,%r3)
+	stcy	%r10,-1(%r1,%r2)
+	icy	%r11,-2(%r1,%r3)
+	stcy	%r11,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	brctg	%r4,.L2234
+	j	.L2034
 	.cfi_endproc
 .LFE107:
 	.size	__cmovd, .-__cmovd
@@ -5506,205 +6309,325 @@ __cmovd:
 __cmovh:
 .LFB108:
 	.cfi_startproc
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
 	srlk	%r12,%r4,1
-	clgrjl	%r2,%r3,.L1881
+	clgrjl	%r2,%r3,.L2249
 	agrk	%r1,%r3,%r4
-	clgrjle	%r2,%r1,.L1967
-.L1881:
-	cije	%r12,0,.L1880
+	clgrjle	%r2,%r1,.L2398
+.L2249:
+	cije	%r12,0,.L2248
 	ahik	%r1,%r12,-1
-	clijle	%r1,6,.L1884
-	ogrk	%r0,%r3,%r2
-	risbg	%r5,%r0,61,128+63,0
-	aghi	%r5,-1
-	cgijhe	%r5,0,.L1884
-	la	%r10,2(%r3)
-	sgrk	%r11,%r2,%r10
-	clgijle	%r11,4,.L1884
-	risbg	%r11,%r4,32,128+60,0
-	aghik	%r1,%r11,-8
-	srlk	%r0,%r4,3
-	srlg	%r5,%r1,3
+	clijle	%r1,14,.L2252
+	la	%r8,2(%r3)
+	sgrk	%r9,%r2,%r8
+	clgijle	%r9,12,.L2252
+	risbg	%r11,%r4,32,128+59,0
+	aghik	%r10,%r11,-16
+	srlk	%r0,%r4,4
+	srlg	%r5,%r10,4
 	lghi	%r1,0
 	aghi	%r5,1
-	risbg	%r10,%r5,62,128+63,0
-	je	.L1915
-	cgije	%r10,1,.L1931
-	cgijlh	%r10,2,.L1968
-.L1932:
-	lg	%r10,0(%r1,%r3)
-	stg	%r10,0(%r1,%r2)
-	aghi	%r1,8
-.L1931:
-	lg	%r10,0(%r1,%r3)
-	stg	%r10,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r1,%r11,.L1950
-.L1915:
+	risbg	%r8,%r5,62,128+63,0
+	je	.L2313
+	cgije	%r8,1,.L2335
+	cgijlh	%r8,2,.L2399
+.L2336:
+	vl	%v19,0(%r1,%r3)
+	vst	%v19,0(%r1,%r2)
+	aghi	%r1,16
+.L2335:
+	vl	%v21,0(%r1,%r3)
+	vst	%v21,0(%r1,%r2)
+	aghi	%r1,16
+	cgrje	%r11,%r1,.L2375
+.L2313:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L1964
+	jle	.L2394
 	aghi	%r5,-1
-	lg	%r11,0(%r1,%r3)
-	stg	%r11,0(%r1,%r2)
-.L1885:
-	lg	%r11,8(%r1,%r3)
-	stg	%r11,8(%r1,%r2)
-	lg	%r11,16(%r1,%r3)
-	stg	%r11,16(%r1,%r2)
-	lg	%r11,24(%r1,%r3)
-	stg	%r11,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r11,0(%r1,%r3)
-	stg	%r11,0(%r1,%r2)
-	brctg	%r5,.L1885
-	lg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-.L1950:
-	sllk	%r1,%r0,2
-	crje	%r12,%r1,.L1880
-	risbgn	%r5,%r1,32,128+60,1
-	lh	%r0,0(%r5,%r3)
-	sth	%r0,0(%r5,%r2)
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+.L2253:
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+	brctg	%r5,.L2253
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+.L2375:
+	sllk	%r1,%r0,3
+	crje	%r12,%r1,.L2248
+	risbgn	%r9,%r1,32,128+59,1
+	lh	%r0,0(%r9,%r3)
+	sth	%r0,0(%r9,%r2)
 	ahik	%r11,%r1,1
-	clrjle	%r12,%r11,.L1880
+	clrjle	%r12,%r11,.L2248
 	risbgn	%r10,%r11,31,128+62,1
 	lh	%r5,0(%r10,%r3)
 	sth	%r5,0(%r10,%r2)
-	ahi	%r1,2
-	clrjle	%r12,%r1,.L1880
+	ahik	%r8,%r1,2
+	clrjle	%r12,%r8,.L2248
+	risbgn	%r9,%r8,31,128+61,1
+	lh	%r0,0(%r9,%r3)
+	sth	%r0,0(%r9,%r2)
+	ahik	%r11,%r1,3
+	clrjle	%r12,%r11,.L2248
+	risbgn	%r10,%r11,31,128+62,1
+	lh	%r5,0(%r10,%r3)
+	sth	%r5,0(%r10,%r2)
+	ahik	%r8,%r1,4
+	clrjle	%r12,%r8,.L2248
+	risbgn	%r9,%r8,31,128+60,1
+	lh	%r0,0(%r9,%r3)
+	sth	%r0,0(%r9,%r2)
+	ahik	%r11,%r1,5
+	clrjle	%r12,%r11,.L2248
+	risbgn	%r10,%r11,31,128+62,1
+	lh	%r5,0(%r10,%r3)
+	sth	%r5,0(%r10,%r2)
+	ahi	%r1,6
+	clrjle	%r12,%r1,.L2248
 	risbgn	%r12,%r1,31,128+61,1
 	lh	%r1,0(%r12,%r3)
 	sth	%r1,0(%r12,%r2)
-.L1880:
+.L2248:
 	tmll	%r4,1
-	je	.L1877
+	je	.L2245
 	ahi	%r4,-1
 	llgfr	%r4,%r4
 	ic	%r3,0(%r4,%r3)
 	stc	%r3,0(%r4,%r2)
-.L1877:
-	lgdr	%r12,%f0
+.L2245:
+	lgdr	%r12,%f2
 	.cfi_remember_state
 	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f4
 	.cfi_restore 11
-	lgdr	%r10,%f4
+	lgdr	%r10,%f6
 	.cfi_restore 10
+	lgdr	%r9,%f1
+	.cfi_restore 9
+	lgdr	%r8,%f3
+	.cfi_restore 8
 	br	%r14
-.L1967:
+.L2398:
 	.cfi_restore_state
-	ahik	%r0,%r4,-1
-	llgfr	%r1,%r0
-	cgije	%r4,0,.L1877
-	aghik	%r4,%r1,1
-	risbg	%r5,%r4,62,128+63,0
-	je	.L1924
-	cgije	%r5,1,.L1929
-	cgije	%r5,2,.L1930
-	ic	%r10,0(%r1,%r3)
-	stc	%r10,0(%r1,%r2)
-	aghi	%r1,-1
-.L1930:
-	ic	%r11,0(%r1,%r3)
-	stc	%r11,0(%r1,%r2)
-	aghi	%r1,-1
-.L1929:
-	ic	%r12,0(%r1,%r3)
-	stc	%r12,0(%r1,%r2)
-	aghi	%r1,-1
-	cgije	%r1,-1,.L1877
-.L1924:
-	srlg	%r4,%r4,2
-	cghi	%r4,2
-	jle	.L1965
-	aghi	%r4,-1
+	ahik	%r10,%r4,-1
+	llgfr	%r1,%r10
+	cgije	%r4,0,.L2245
+	clijle	%r10,30,.L2258
+	sgrk	%r5,%r2,%r3
+	aghi	%r5,15
+	clgijle	%r5,14,.L2258
+	risbg	%r8,%r4,32,128+59,0
+	aghi	%r1,-15
+	aghik	%r0,%r8,-16
+	agrk	%r12,%r3,%r1
+	lcgr	%r11,%r8
+	agr	%r1,%r2
+	srlg	%r8,%r0,4
+	lghi	%r5,0
+	aghi	%r8,1
+	risbg	%r9,%r8,62,128+63,0
+	je	.L2331
+	cgije	%r9,1,.L2339
+	cgijlh	%r9,2,.L2400
+.L2340:
+	vl	%v5,0(%r5,%r12)
+	vst	%v5,0(%r5,%r1)
+	aghi	%r5,-16
+.L2339:
+	vl	%v7,0(%r5,%r12)
+	vst	%v7,0(%r5,%r1)
+	aghi	%r5,-16
+	cgrje	%r5,%r11,.L2376
+.L2331:
+	srlg	%r0,%r8,2
+	cghi	%r0,2
+	jle	.L2396
+	aghi	%r0,-1
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+.L2259:
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	aghi	%r5,-64
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+	brctg	%r0,.L2259
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+.L2376:
+	risbg	%r12,%r4,32,128+59,0
+	sr	%r10,%r12
+	tmll	%r4,15
+	je	.L2245
+	llgfr	%r4,%r10
+	ic	%r1,0(%r4,%r3)
+	stc	%r1,0(%r4,%r2)
+	ahik	%r5,%r10,-1
+	llgfr	%r11,%r5
+	cije	%r10,0,.L2245
+	ic	%r0,0(%r11,%r3)
+	stc	%r0,0(%r11,%r2)
+	ahik	%r8,%r10,-2
+	llgfr	%r9,%r8
+	cgije	%r11,0,.L2245
+	ic	%r12,0(%r9,%r3)
+	stc	%r12,0(%r9,%r2)
+	ahik	%r4,%r10,-3
+	llgfr	%r1,%r4
+	cgije	%r9,0,.L2245
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-.L1890:
-	icy	%r5,-1(%r1,%r3)
-	stcy	%r5,-1(%r1,%r2)
-	icy	%r5,-2(%r1,%r3)
-	stcy	%r5,-2(%r1,%r2)
-	icy	%r5,-3(%r1,%r3)
-	stcy	%r5,-3(%r1,%r2)
-	aghi	%r1,-4
-	ic	%r5,0(%r1,%r3)
-	stc	%r5,0(%r1,%r2)
-	brctg	%r4,.L1890
-	icy	%r4,-1(%r1,%r3)
-	stcy	%r4,-1(%r1,%r2)
-	icy	%r4,-2(%r1,%r3)
-	stcy	%r4,-2(%r1,%r2)
-	icy	%r3,-3(%r1,%r3)
-	stcy	%r3,-3(%r1,%r2)
-	j	.L1877
-.L1964:
-	lg	%r11,0(%r1,%r3)
-	stg	%r11,0(%r1,%r2)
-	lg	%r10,8(%r1,%r3)
-	stg	%r10,8(%r1,%r2)
-	lg	%r11,16(%r1,%r3)
-	stg	%r11,16(%r1,%r2)
-	lg	%r10,24(%r1,%r3)
-	stg	%r10,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L1964
-	j	.L1950
-.L1968:
-	lg	%r1,0(%r3)
-	stg	%r1,0(%r2)
-	lghi	%r1,8
-	j	.L1932
-.L1965:
-	ic	%r0,0(%r1,%r3)
-	stc	%r0,0(%r1,%r2)
-	icy	%r5,-1(%r1,%r3)
-	stcy	%r5,-1(%r1,%r2)
-	icy	%r10,-2(%r1,%r3)
-	stcy	%r10,-2(%r1,%r2)
-	icy	%r11,-3(%r1,%r3)
-	stcy	%r11,-3(%r1,%r2)
-	aghi	%r1,-4
-	brctg	%r4,.L1965
-	j	.L1877
-.L1884:
-	risbgn	%r11,%r12,32,128+62,1
-	aghik	%r0,%r11,-2
+	ahik	%r11,%r10,-4
+	llgfr	%r8,%r11
+	cgije	%r1,0,.L2245
+	ic	%r0,0(%r8,%r3)
+	stc	%r0,0(%r8,%r2)
+	ahik	%r9,%r10,-5
+	llgfr	%r12,%r9
+	cgije	%r8,0,.L2245
+	ic	%r4,0(%r12,%r3)
+	stc	%r4,0(%r12,%r2)
+	ahik	%r1,%r10,-6
+	llgfr	%r5,%r1
+	cgije	%r12,0,.L2245
+	ic	%r11,0(%r5,%r3)
+	stc	%r11,0(%r5,%r2)
+	ahik	%r8,%r10,-7
+	llgfr	%r9,%r8
+	cgije	%r5,0,.L2245
+	ic	%r0,0(%r9,%r3)
+	stc	%r0,0(%r9,%r2)
+	ahik	%r12,%r10,-8
+	llgfr	%r1,%r12
+	cgije	%r9,0,.L2245
+	ic	%r4,0(%r1,%r3)
+	stc	%r4,0(%r1,%r2)
+	ahik	%r5,%r10,-9
+	llgfr	%r11,%r5
+	cgije	%r1,0,.L2245
+	ic	%r8,0(%r11,%r3)
+	stc	%r8,0(%r11,%r2)
+	ahik	%r9,%r10,-10
+	llgfr	%r12,%r9
+	cgije	%r11,0,.L2245
+	ic	%r0,0(%r12,%r3)
+	stc	%r0,0(%r12,%r2)
+	ahik	%r1,%r10,-11
+	llgfr	%r4,%r1
+	cgije	%r12,0,.L2245
+	ic	%r5,0(%r4,%r3)
+	stc	%r5,0(%r4,%r2)
+	ahik	%r11,%r10,-12
+	llgfr	%r8,%r11
+	cgije	%r4,0,.L2245
+	ic	%r9,0(%r8,%r3)
+	stc	%r9,0(%r8,%r2)
+	ahik	%r12,%r10,-13
+	llgfr	%r4,%r12
+	cgije	%r8,0,.L2245
+	ic	%r0,0(%r4,%r3)
+	stc	%r0,0(%r4,%r2)
+	ahi	%r10,-14
+	llgfr	%r10,%r10
+	cgije	%r4,0,.L2245
+	ic	%r3,0(%r10,%r3)
+	stc	%r3,0(%r10,%r2)
+	j	.L2245
+.L2394:
+	vl	%v23,0(%r1,%r3)
+	vst	%v23,0(%r1,%r2)
+	vl	%v24,16(%r1,%r3)
+	vst	%v24,16(%r1,%r2)
+	vl	%v26,32(%r1,%r3)
+	vst	%v26,32(%r1,%r2)
+	vl	%v28,48(%r1,%r3)
+	vst	%v28,48(%r1,%r2)
+	aghi	%r1,64
+	brctg	%r5,.L2394
+	j	.L2375
+.L2399:
+	vl	%v17,0(%r3)
+	lghi	%r1,16
+	vst	%v17,0(%r2)
+	j	.L2336
+.L2396:
+	vl	%v16,0(%r5,%r12)
+	aghik	%r11,%r5,-16
+	aghik	%r8,%r5,-32
+	vst	%v16,0(%r5,%r1)
+	aghik	%r9,%r5,-48
+	aghi	%r5,-64
+	vl	%v18,0(%r11,%r12)
+	vst	%v18,0(%r11,%r1)
+	vl	%v20,0(%r8,%r12)
+	vst	%v20,0(%r8,%r1)
+	vl	%v22,0(%r9,%r12)
+	vst	%v22,0(%r9,%r1)
+	brctg	%r0,.L2396
+	j	.L2376
+.L2252:
+	risbgn	%r8,%r12,32,128+62,1
+	aghik	%r9,%r8,-2
 	lghi	%r1,0
-	srlg	%r10,%r0,1
-	aghi	%r10,1
-	risbg	%r5,%r10,62,128+63,0
-	je	.L1906
-	cgije	%r5,1,.L1933
-	cgijlh	%r5,2,.L1969
-.L1934:
-	lh	%r0,0(%r1,%r3)
-	sth	%r0,0(%r1,%r2)
-	aghi	%r1,2
-.L1933:
+	srlg	%r11,%r9,1
+	aghi	%r11,1
+	risbg	%r0,%r11,62,128+63,0
+	je	.L2304
+	cgije	%r0,1,.L2337
+	cgijlh	%r0,2,.L2401
+.L2338:
 	lh	%r5,0(%r1,%r3)
 	sth	%r5,0(%r1,%r2)
 	aghi	%r1,2
-	cgrje	%r11,%r1,.L1880
-.L1906:
-	srlg	%r5,%r10,2
+.L2337:
+	lh	%r12,0(%r1,%r3)
+	sth	%r12,0(%r1,%r2)
+	aghi	%r1,2
+	cgrje	%r8,%r1,.L2248
+.L2304:
+	srlg	%r5,%r11,2
 	cghi	%r5,2
-	jle	.L1963
+	jle	.L2393
 	aghi	%r5,-1
 	lh	%r0,0(%r1,%r3)
 	sth	%r0,0(%r1,%r2)
-.L1887:
+.L2255:
 	lh	%r0,2(%r1,%r3)
 	sth	%r0,2(%r1,%r2)
 	lh	%r0,4(%r1,%r3)
@@ -5714,31 +6637,91 @@ __cmovh:
 	aghi	%r1,8
 	lh	%r0,0(%r1,%r3)
 	sth	%r0,0(%r1,%r2)
-	brctg	%r5,.L1887
+	brctg	%r5,.L2255
 	lh	%r5,2(%r1,%r3)
 	sth	%r5,2(%r1,%r2)
 	lh	%r5,4(%r1,%r3)
 	sth	%r5,4(%r1,%r2)
 	lh	%r5,6(%r1,%r3)
 	sth	%r5,6(%r1,%r2)
-	j	.L1880
-.L1963:
-	lh	%r11,0(%r1,%r3)
-	sth	%r11,0(%r1,%r2)
-	lh	%r10,2(%r1,%r3)
-	sth	%r10,2(%r1,%r2)
-	lh	%r12,4(%r1,%r3)
-	sth	%r12,4(%r1,%r2)
+	j	.L2248
+.L2393:
+	lh	%r8,0(%r1,%r3)
+	sth	%r8,0(%r1,%r2)
+	lh	%r9,2(%r1,%r3)
+	sth	%r9,2(%r1,%r2)
+	lh	%r11,4(%r1,%r3)
+	sth	%r11,4(%r1,%r2)
 	lh	%r0,6(%r1,%r3)
 	sth	%r0,6(%r1,%r2)
 	aghi	%r1,8
-	brctg	%r5,.L1963
-	j	.L1880
-.L1969:
-	lh	%r12,0(%r3)
+	brctg	%r5,.L2393
+	j	.L2248
+.L2400:
+	vl	%v0,0(%r12)
+	lghi	%r5,-16
+	vst	%v0,0(%r1)
+	j	.L2340
+.L2401:
+	lh	%r10,0(%r3)
 	lghi	%r1,2
-	sth	%r12,0(%r2)
-	j	.L1934
+	sth	%r10,0(%r2)
+	j	.L2338
+.L2258:
+	aghik	%r11,%r1,1
+	risbg	%r5,%r11,62,128+63,0
+	je	.L2322
+	cgije	%r5,1,.L2341
+	cgije	%r5,2,.L2342
+	ic	%r8,0(%r1,%r3)
+	stc	%r8,0(%r1,%r2)
+	aghi	%r1,-1
+.L2342:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	aghi	%r1,-1
+.L2341:
+	ic	%r12,0(%r1,%r3)
+	stc	%r12,0(%r1,%r2)
+	aghi	%r1,-1
+	cgije	%r1,-1,.L2245
+.L2322:
+	srlg	%r4,%r11,2
+	cghi	%r4,2
+	jle	.L2395
+	aghi	%r4,-1
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+.L2261:
+	icy	%r5,-1(%r1,%r3)
+	stcy	%r5,-1(%r1,%r2)
+	icy	%r5,-2(%r1,%r3)
+	stcy	%r5,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+	brctg	%r4,.L2261
+	icy	%r4,-1(%r1,%r3)
+	stcy	%r4,-1(%r1,%r2)
+	icy	%r4,-2(%r1,%r3)
+	stcy	%r4,-2(%r1,%r2)
+	icy	%r3,-3(%r1,%r3)
+	stcy	%r3,-3(%r1,%r2)
+	j	.L2245
+.L2395:
+	ic	%r0,0(%r1,%r3)
+	stc	%r0,0(%r1,%r2)
+	icy	%r10,-1(%r1,%r3)
+	stcy	%r10,-1(%r1,%r2)
+	icy	%r11,-2(%r1,%r3)
+	stcy	%r11,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	brctg	%r4,.L2395
+	j	.L2245
 	.cfi_endproc
 .LFE108:
 	.size	__cmovh, .-__cmovh
@@ -5749,315 +6732,509 @@ __cmovh:
 __cmovw:
 .LFB109:
 	.cfi_startproc
-	ldgr	%f0,%r12
-	.cfi_register 12, 16
-	ldgr	%f1,%r8
-	.cfi_register 8, 20
-	ldgr	%f6,%r9
-	.cfi_register 9, 19
-	ldgr	%f4,%r10
-	.cfi_register 10, 18
-	ldgr	%f2,%r11
-	.cfi_register 11, 17
-	srlk	%r12,%r4,2
+	ldgr	%f4,%r11
+	.cfi_register 11, 18
+	ldgr	%f3,%r8
+	.cfi_register 8, 21
+	ldgr	%f1,%r9
+	.cfi_register 9, 20
+	ldgr	%f6,%r10
+	.cfi_register 10, 19
+	ldgr	%f2,%r12
+	.cfi_register 12, 17
+	srlk	%r11,%r4,2
 	risbg	%r0,%r4,32,128+61,0
-	clgrjl	%r2,%r3,.L1976
+	clgrjl	%r2,%r3,.L2408
 	agrk	%r1,%r3,%r4
-	clgrjle	%r2,%r1,.L2116
-.L1976:
-	cije	%r12,0,.L2117
-	ahik	%r1,%r12,-1
-	clijle	%r1,8,.L1978
-	ogrk	%r8,%r2,%r3
-	risbg	%r9,%r8,61,128+63,0
-	aghi	%r9,-1
-	cgijhe	%r9,0,.L1978
-	la	%r10,4(%r3)
-	cgrje	%r2,%r10,.L1978
-	risbg	%r8,%r4,32,128+60,0
-	aghik	%r5,%r8,-8
-	srlk	%r11,%r4,3
-	srlg	%r10,%r5,3
+	clgrjle	%r2,%r1,.L2606
+.L2408:
+	cije	%r11,0,.L2607
+	ahik	%r1,%r11,-1
+	clijle	%r1,6,.L2410
+	la	%r8,4(%r3)
+	sgrk	%r9,%r2,%r8
+	clgijle	%r9,8,.L2410
+	risbg	%r10,%r4,32,128+59,0
+	aghik	%r5,%r10,-16
+	srlk	%r12,%r4,4
+	srlg	%r8,%r5,4
 	lghi	%r1,0
-	aghi	%r10,1
-	risbg	%r9,%r10,62,128+63,0
-	je	.L2039
-	cgije	%r9,1,.L2055
-	cgijlh	%r9,2,.L2118
-.L2056:
-	lg	%r5,0(%r1,%r3)
-	stg	%r5,0(%r1,%r2)
-	aghi	%r1,8
-.L2055:
-	lg	%r9,0(%r1,%r3)
-	stg	%r9,0(%r1,%r2)
-	aghi	%r1,8
-	cgrje	%r8,%r1,.L2090
-.L2039:
-	srlg	%r5,%r10,2
+	aghi	%r8,1
+	risbg	%r9,%r8,62,128+63,0
+	je	.L2498
+	cgije	%r9,1,.L2520
+	cgijlh	%r9,2,.L2608
+.L2521:
+	vl	%v19,0(%r1,%r3)
+	vst	%v19,0(%r1,%r2)
+	aghi	%r1,16
+.L2520:
+	vl	%v21,0(%r1,%r3)
+	vst	%v21,0(%r1,%r2)
+	aghi	%r1,16
+	cgrje	%r1,%r10,.L2574
+.L2498:
+	srlg	%r5,%r8,2
 	cghi	%r5,2
-	jle	.L2113
+	jle	.L2602
 	aghi	%r5,-1
-	lg	%r10,0(%r1,%r3)
-	stg	%r10,0(%r1,%r2)
-.L1979:
-	lg	%r10,8(%r1,%r3)
-	stg	%r10,8(%r1,%r2)
-	lg	%r10,16(%r1,%r3)
-	stg	%r10,16(%r1,%r2)
-	lg	%r10,24(%r1,%r3)
-	stg	%r10,24(%r1,%r2)
-	aghi	%r1,32
-	lg	%r10,0(%r1,%r3)
-	stg	%r10,0(%r1,%r2)
-	brctg	%r5,.L1979
-	lg	%r5,8(%r1,%r3)
-	stg	%r5,8(%r1,%r2)
-	lg	%r5,16(%r1,%r3)
-	stg	%r5,16(%r1,%r2)
-	lg	%r5,24(%r1,%r3)
-	stg	%r5,24(%r1,%r2)
-.L2090:
-	sll	%r11,1
-	crje	%r12,%r11,.L1982
-	risbgn	%r12,%r11,32,128+60,2
-	l	%r1,0(%r12,%r3)
-	st	%r1,0(%r12,%r2)
-.L1982:
-	clrjhe	%r0,%r4,.L1971
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+.L2411:
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r3)
+	vst	%v0,0(%r1,%r2)
+	brctg	%r5,.L2411
+	vl	%v0,16(%r1,%r3)
+	vst	%v0,16(%r1,%r2)
+	vl	%v0,32(%r1,%r3)
+	vst	%v0,32(%r1,%r2)
+	vl	%v0,48(%r1,%r3)
+	vst	%v0,48(%r1,%r2)
+.L2574:
+	sllk	%r1,%r12,2
+	crje	%r11,%r1,.L2414
+	risbgn	%r10,%r1,32,128+59,2
+	l	%r12,0(%r10,%r3)
+	ahik	%r5,%r1,1
+	st	%r12,0(%r10,%r2)
+	clrjle	%r11,%r5,.L2414
+	risbgn	%r8,%r5,31,128+61,2
+	l	%r9,0(%r8,%r3)
+	ahi	%r1,2
+	st	%r9,0(%r8,%r2)
+	clrjle	%r11,%r1,.L2414
+	risbgn	%r11,%r1,31,128+60,2
+	l	%r1,0(%r11,%r3)
+	st	%r1,0(%r11,%r2)
+.L2414:
+	clrjhe	%r0,%r4,.L2403
 	srk	%r10,%r4,%r0
-	llgfr	%r5,%r0
+	llgfr	%r12,%r0
 	ahik	%r1,%r10,-1
-	clijle	%r1,14,.L1974
-	lgr	%r12,%r2
-	la	%r9,1(%r5,%r3)
-	algfr	%r12,%r0
-	lgr	%r11,%r3
-	sgrk	%r8,%r12,%r9
+	clijle	%r1,30,.L2406
+	lgr	%r11,%r2
+	la	%r5,1(%r12,%r3)
 	algfr	%r11,%r0
-	clgijle	%r8,6,.L1974
-	ogrk	%r1,%r11,%r12
-	risbg	%r9,%r1,61,128+63,0
-	aghi	%r9,-1
-	cgijhe	%r9,0,.L1974
-	risbg	%r9,%r10,32,128+60,0
-	aghik	%r5,%r9,-8
+	sgrk	%r8,%r11,%r5
+	clgijle	%r8,14,.L2406
+	risbg	%r9,%r10,32,128+59,0
+	agr	%r12,%r3
+	aghik	%r5,%r9,-16
 	lghi	%r1,0
-	srlg	%r5,%r5,3
+	srlg	%r5,%r5,4
 	aghi	%r5,1
 	risbg	%r8,%r5,62,128+63,0
-	je	.L2021
-	cgije	%r8,1,.L2059
-	cgijlh	%r8,2,.L2119
-.L2060:
-	lg	%r8,0(%r1,%r11)
-	stg	%r8,0(%r1,%r12)
-	aghi	%r1,8
-.L2059:
-	lg	%r8,0(%r1,%r11)
-	stg	%r8,0(%r1,%r12)
-	aghi	%r1,8
-	cgrje	%r9,%r1,.L2089
-.L2021:
+	je	.L2480
+	cgije	%r8,1,.L2524
+	cgijlh	%r8,2,.L2609
+.L2525:
+	vl	%v25,0(%r1,%r12)
+	vst	%v25,0(%r1,%r11)
+	aghi	%r1,16
+.L2524:
+	vl	%v27,0(%r1,%r12)
+	vst	%v27,0(%r1,%r11)
+	aghi	%r1,16
+	cgrje	%r1,%r9,.L2573
+.L2480:
 	srlg	%r5,%r5,2
 	cghi	%r5,2
-	jle	.L2111
+	jle	.L2600
 	aghi	%r5,-1
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-.L1983:
-	lg	%r9,8(%r1,%r11)
-	stg	%r9,8(%r1,%r12)
-	lg	%r9,16(%r1,%r11)
-	stg	%r9,16(%r1,%r12)
-	lg	%r9,24(%r1,%r11)
-	stg	%r9,24(%r1,%r12)
-	aghi	%r1,32
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-	brctg	%r5,.L1983
-	lg	%r5,8(%r1,%r11)
-	stg	%r5,8(%r1,%r12)
-	lg	%r5,16(%r1,%r11)
-	stg	%r5,16(%r1,%r12)
-	lg	%r5,24(%r1,%r11)
-	stg	%r5,24(%r1,%r12)
-.L2089:
-	risbg	%r12,%r10,32,128+60,0
+	vl	%v0,0(%r1,%r12)
+	vst	%v0,0(%r1,%r11)
+.L2415:
+	vl	%v0,16(%r1,%r12)
+	vst	%v0,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v0,48(%r1,%r12)
+	vst	%v0,48(%r1,%r11)
+	aghi	%r1,64
+	vl	%v0,0(%r1,%r12)
+	vst	%v0,0(%r1,%r11)
+	brctg	%r5,.L2415
+	vl	%v0,16(%r1,%r12)
+	vst	%v0,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v0,48(%r1,%r12)
+	vst	%v0,48(%r1,%r11)
+.L2573:
+	risbg	%r12,%r10,32,128+59,0
 	ar	%r12,%r0
-	tmll	%r10,7
-	je	.L1971
+	tmll	%r10,15
+	je	.L2403
 	llgfr	%r10,%r12
 	ic	%r0,0(%r10,%r3)
 	stc	%r0,0(%r10,%r2)
 	ahik	%r11,%r12,1
-	clrjhe	%r11,%r4,.L1971
-	llgfr	%r5,%r11
-	ic	%r1,0(%r5,%r3)
-	stc	%r1,0(%r5,%r2)
-	ahik	%r9,%r12,2
-	clrjhe	%r9,%r4,.L1971
-	llgfr	%r8,%r9
+	clrjhe	%r11,%r4,.L2403
+	llgfr	%r1,%r11
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	ahik	%r5,%r12,2
+	clrjhe	%r5,%r4,.L2403
+	llgfr	%r8,%r5
 	ic	%r10,0(%r8,%r3)
 	stc	%r10,0(%r8,%r2)
 	ahik	%r0,%r12,3
-	clrjhe	%r0,%r4,.L1971
+	clrjhe	%r0,%r4,.L2403
 	llgfr	%r11,%r0
-	ic	%r5,0(%r11,%r3)
-	stc	%r5,0(%r11,%r2)
-	ahik	%r1,%r12,4
-	clrjhe	%r1,%r4,.L1971
-	llgfr	%r9,%r1
-	ic	%r8,0(%r9,%r3)
-	stc	%r8,0(%r9,%r2)
+	ic	%r1,0(%r11,%r3)
+	stc	%r1,0(%r11,%r2)
+	ahik	%r9,%r12,4
+	clrjhe	%r9,%r4,.L2403
+	llgfr	%r5,%r9
+	ic	%r8,0(%r5,%r3)
+	stc	%r8,0(%r5,%r2)
 	ahik	%r10,%r12,5
-	clrjhe	%r10,%r4,.L1971
+	clrjhe	%r10,%r4,.L2403
 	llgfr	%r11,%r10
 	ic	%r0,0(%r11,%r3)
 	stc	%r0,0(%r11,%r2)
-	ahi	%r12,6
-	clrjhe	%r12,%r4,.L1971
+	ahik	%r1,%r12,6
+	clrjhe	%r1,%r4,.L2403
+	llgfr	%r9,%r1
+	ic	%r5,0(%r9,%r3)
+	stc	%r5,0(%r9,%r2)
+	ahik	%r8,%r12,7
+	clrjhe	%r8,%r4,.L2403
+	llgfr	%r10,%r8
+	ic	%r11,0(%r10,%r3)
+	stc	%r11,0(%r10,%r2)
+	ahik	%r0,%r12,8
+	clrjhe	%r0,%r4,.L2403
+	llgfr	%r1,%r0
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	ahik	%r5,%r12,9
+	clrjhe	%r5,%r4,.L2403
+	llgfr	%r8,%r5
+	ic	%r10,0(%r8,%r3)
+	stc	%r10,0(%r8,%r2)
+	ahik	%r11,%r12,10
+	clrjhe	%r11,%r4,.L2403
+	llgfr	%r1,%r11
+	ic	%r0,0(%r1,%r3)
+	stc	%r0,0(%r1,%r2)
+	ahik	%r9,%r12,11
+	clrjhe	%r9,%r4,.L2403
+	llgfr	%r5,%r9
+	ic	%r8,0(%r5,%r3)
+	stc	%r8,0(%r5,%r2)
+	ahik	%r10,%r12,12
+	clrjhe	%r10,%r4,.L2403
+	llgfr	%r11,%r10
+	ic	%r1,0(%r11,%r3)
+	stc	%r1,0(%r11,%r2)
+	ahik	%r0,%r12,13
+	clrjhe	%r0,%r4,.L2403
+	llgfr	%r9,%r0
+	ic	%r5,0(%r9,%r3)
+	stc	%r5,0(%r9,%r2)
+	ahi	%r12,14
+	clrjhe	%r12,%r4,.L2403
 	llgfr	%r4,%r12
 	ic	%r3,0(%r4,%r3)
 	stc	%r3,0(%r4,%r2)
-.L1971:
-	lgdr	%r12,%f0
+.L2403:
+	lgdr	%r12,%f2
 	.cfi_remember_state
 	.cfi_restore 12
-	lgdr	%r11,%f2
+	lgdr	%r11,%f4
 	.cfi_restore 11
-	lgdr	%r10,%f4
+	lgdr	%r10,%f6
 	.cfi_restore 10
-	lgdr	%r9,%f6
+	lgdr	%r9,%f1
 	.cfi_restore 9
-	lgdr	%r8,%f1
+	lgdr	%r8,%f3
 	.cfi_restore 8
 	br	%r14
-.L2116:
+.L2606:
 	.cfi_restore_state
-	ahik	%r0,%r4,-1
-	llgfr	%r1,%r0
-	cgije	%r4,0,.L1971
-	aghik	%r4,%r1,1
-	risbg	%r5,%r4,62,128+63,0
-	je	.L2048
-	cgije	%r5,1,.L2053
-	cgije	%r5,2,.L2054
-	ic	%r8,0(%r1,%r3)
-	stc	%r8,0(%r1,%r2)
-	aghi	%r1,-1
-.L2054:
-	ic	%r9,0(%r1,%r3)
-	stc	%r9,0(%r1,%r2)
-	aghi	%r1,-1
-.L2053:
-	ic	%r10,0(%r1,%r3)
-	stc	%r10,0(%r1,%r2)
-	aghi	%r1,-1
-	cgije	%r1,-1,.L1971
-.L2048:
-	srlg	%r4,%r4,2
-	cghi	%r4,2
-	jle	.L2114
-	aghi	%r4,-1
+	ahik	%r10,%r4,-1
+	llgfr	%r1,%r10
+	cgije	%r4,0,.L2403
+	clijle	%r10,30,.L2419
+	sgrk	%r5,%r2,%r3
+	aghi	%r5,15
+	clgijle	%r5,14,.L2419
+	risbg	%r8,%r4,32,128+59,0
+	aghi	%r1,-15
+	aghik	%r0,%r8,-16
+	agrk	%r12,%r3,%r1
+	lcgr	%r11,%r8
+	agr	%r1,%r2
+	srlg	%r8,%r0,4
+	lghi	%r5,0
+	aghi	%r8,1
+	risbg	%r9,%r8,62,128+63,0
+	je	.L2516
+	cgije	%r9,1,.L2527
+	cgijlh	%r9,2,.L2610
+.L2528:
+	vl	%v5,0(%r5,%r12)
+	vst	%v5,0(%r5,%r1)
+	aghi	%r5,-16
+.L2527:
+	vl	%v7,0(%r5,%r12)
+	vst	%v7,0(%r5,%r1)
+	aghi	%r5,-16
+	cgrje	%r5,%r11,.L2575
+.L2516:
+	srlg	%r0,%r8,2
+	cghi	%r0,2
+	jle	.L2604
+	aghi	%r0,-1
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+.L2420:
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	aghi	%r5,-64
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+	vl	%v0,0(%r5,%r12)
+	vst	%v0,0(%r5,%r1)
+	brctg	%r0,.L2420
+	aghik	%r11,%r5,-48
+	aghik	%r9,%r5,-32
+	aghik	%r8,%r5,-16
+	vl	%v0,0(%r8,%r12)
+	vst	%v0,0(%r8,%r1)
+	vl	%v0,0(%r9,%r12)
+	vst	%v0,0(%r9,%r1)
+	vl	%v0,0(%r11,%r12)
+	vst	%v0,0(%r11,%r1)
+.L2575:
+	risbg	%r12,%r4,32,128+59,0
+	sr	%r10,%r12
+	tmll	%r4,15
+	je	.L2403
+	llgfr	%r4,%r10
+	ic	%r1,0(%r4,%r3)
+	stc	%r1,0(%r4,%r2)
+	ahik	%r5,%r10,-1
+	llgfr	%r11,%r5
+	cije	%r10,0,.L2403
+	ic	%r0,0(%r11,%r3)
+	stc	%r0,0(%r11,%r2)
+	ahik	%r8,%r10,-2
+	llgfr	%r9,%r8
+	cgije	%r11,0,.L2403
+	ic	%r12,0(%r9,%r3)
+	stc	%r12,0(%r9,%r2)
+	ahik	%r4,%r10,-3
+	llgfr	%r1,%r4
+	cgije	%r9,0,.L2403
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-.L1987:
-	icy	%r5,-1(%r1,%r3)
-	stcy	%r5,-1(%r1,%r2)
-	icy	%r5,-2(%r1,%r3)
-	stcy	%r5,-2(%r1,%r2)
-	icy	%r5,-3(%r1,%r3)
-	stcy	%r5,-3(%r1,%r2)
-	aghi	%r1,-4
-	ic	%r5,0(%r1,%r3)
-	stc	%r5,0(%r1,%r2)
-	brctg	%r4,.L1987
-	icy	%r4,-1(%r1,%r3)
-	stcy	%r4,-1(%r1,%r2)
-	icy	%r4,-2(%r1,%r3)
-	stcy	%r4,-2(%r1,%r2)
-	icy	%r3,-3(%r1,%r3)
-	stcy	%r3,-3(%r1,%r2)
-	j	.L1971
-.L2113:
-	lg	%r8,0(%r1,%r3)
-	stg	%r8,0(%r1,%r2)
-	lg	%r10,8(%r1,%r3)
-	stg	%r10,8(%r1,%r2)
-	lg	%r9,16(%r1,%r3)
-	stg	%r9,16(%r1,%r2)
-	lg	%r8,24(%r1,%r3)
-	stg	%r8,24(%r1,%r2)
-	aghi	%r1,32
-	brctg	%r5,.L2113
-	j	.L2090
-.L2111:
-	lg	%r9,0(%r1,%r11)
-	stg	%r9,0(%r1,%r12)
-	lg	%r8,8(%r1,%r11)
-	stg	%r8,8(%r1,%r12)
-	lg	%r9,16(%r1,%r11)
-	stg	%r9,16(%r1,%r12)
-	lg	%r8,24(%r1,%r11)
-	stg	%r8,24(%r1,%r12)
-	aghi	%r1,32
-	brctg	%r5,.L2111
-	j	.L2089
-.L2118:
-	lg	%r1,0(%r3)
-	stg	%r1,0(%r2)
-	lghi	%r1,8
-	j	.L2056
-.L2119:
-	lg	%r1,0(%r11)
-	stg	%r1,0(%r12)
-	lghi	%r1,8
-	j	.L2060
-.L2114:
-	ic	%r11,0(%r1,%r3)
-	stc	%r11,0(%r1,%r2)
-	icy	%r12,-1(%r1,%r3)
-	stcy	%r12,-1(%r1,%r2)
-	icy	%r0,-2(%r1,%r3)
-	stcy	%r0,-2(%r1,%r2)
-	icy	%r5,-3(%r1,%r3)
-	stcy	%r5,-3(%r1,%r2)
-	aghi	%r1,-4
-	brctg	%r4,.L2114
-	j	.L1971
-.L2117:
-	llgfr	%r5,%r0
-	cgije	%r4,0,.L1971
-.L1974:
-	lghi	%r1,-1
-	ic	%r12,0(%r5,%r3)
-	stc	%r12,0(%r5,%r2)
-	xgrk	%r9,%r5,%r1
-	aghik	%r1,%r5,1
-	ar	%r9,%r4
-	risbg	%r8,%r9,62,128+63,0
-	clrjle	%r4,%r1,.L1971
-	cije	%r8,0,.L2012
-	cije	%r8,1,.L2062
-	cijlh	%r8,2,.L2120
-.L2063:
+	ahik	%r11,%r10,-4
+	llgfr	%r8,%r11
+	cgije	%r1,0,.L2403
+	ic	%r0,0(%r8,%r3)
+	stc	%r0,0(%r8,%r2)
+	ahik	%r9,%r10,-5
+	llgfr	%r12,%r9
+	cgije	%r8,0,.L2403
+	ic	%r4,0(%r12,%r3)
+	stc	%r4,0(%r12,%r2)
+	ahik	%r1,%r10,-6
+	llgfr	%r5,%r1
+	cgije	%r12,0,.L2403
+	ic	%r11,0(%r5,%r3)
+	stc	%r11,0(%r5,%r2)
+	ahik	%r8,%r10,-7
+	llgfr	%r9,%r8
+	cgije	%r5,0,.L2403
+	ic	%r0,0(%r9,%r3)
+	stc	%r0,0(%r9,%r2)
+	ahik	%r12,%r10,-8
+	llgfr	%r1,%r12
+	cgije	%r9,0,.L2403
+	ic	%r4,0(%r1,%r3)
+	stc	%r4,0(%r1,%r2)
+	ahik	%r5,%r10,-9
+	llgfr	%r11,%r5
+	cgije	%r1,0,.L2403
+	ic	%r8,0(%r11,%r3)
+	stc	%r8,0(%r11,%r2)
+	ahik	%r9,%r10,-10
+	llgfr	%r12,%r9
+	cgije	%r11,0,.L2403
+	ic	%r0,0(%r12,%r3)
+	stc	%r0,0(%r12,%r2)
+	ahik	%r1,%r10,-11
+	llgfr	%r4,%r1
+	cgije	%r12,0,.L2403
+	ic	%r5,0(%r4,%r3)
+	stc	%r5,0(%r4,%r2)
+	ahik	%r11,%r10,-12
+	llgfr	%r8,%r11
+	cgije	%r4,0,.L2403
+	ic	%r9,0(%r8,%r3)
+	stc	%r9,0(%r8,%r2)
+	ahik	%r12,%r10,-13
+	llgfr	%r4,%r12
+	cgije	%r8,0,.L2403
+	ic	%r0,0(%r4,%r3)
+	stc	%r0,0(%r4,%r2)
+	ahi	%r10,-14
+	llgfr	%r10,%r10
+	cgije	%r4,0,.L2403
+	ic	%r3,0(%r10,%r3)
+	stc	%r3,0(%r10,%r2)
+	j	.L2403
+.L2602:
+	vl	%v23,0(%r1,%r3)
+	vst	%v23,0(%r1,%r2)
+	vl	%v24,16(%r1,%r3)
+	vst	%v24,16(%r1,%r2)
+	vl	%v26,32(%r1,%r3)
+	vst	%v26,32(%r1,%r2)
+	vl	%v28,48(%r1,%r3)
+	vst	%v28,48(%r1,%r2)
+	aghi	%r1,64
+	brctg	%r5,.L2602
+	j	.L2574
+.L2600:
+	vl	%v29,0(%r1,%r12)
+	vst	%v29,0(%r1,%r11)
+	vl	%v31,16(%r1,%r12)
+	vst	%v31,16(%r1,%r11)
+	vl	%v0,32(%r1,%r12)
+	vst	%v0,32(%r1,%r11)
+	vl	%v5,48(%r1,%r12)
+	vst	%v5,48(%r1,%r11)
+	aghi	%r1,64
+	brctg	%r5,.L2600
+	j	.L2573
+.L2608:
+	vl	%v17,0(%r3)
+	lghi	%r1,16
+	vst	%v17,0(%r2)
+	j	.L2521
+.L2609:
+	vl	%v30,0(%r12)
+	lghi	%r1,16
+	vst	%v30,0(%r11)
+	j	.L2525
+.L2604:
+	vl	%v16,0(%r5,%r12)
+	aghik	%r11,%r5,-16
+	aghik	%r8,%r5,-32
+	vst	%v16,0(%r5,%r1)
+	aghik	%r9,%r5,-48
+	aghi	%r5,-64
+	vl	%v18,0(%r11,%r12)
+	vst	%v18,0(%r11,%r1)
+	vl	%v20,0(%r8,%r12)
+	vst	%v20,0(%r8,%r1)
+	vl	%v22,0(%r9,%r12)
+	vst	%v22,0(%r9,%r1)
+	brctg	%r0,.L2604
+	j	.L2575
+.L2410:
+	risbgn	%r10,%r11,32,128+61,2
+	aghik	%r12,%r10,-4
+	lghi	%r1,0
+	srlg	%r5,%r12,2
+	aghi	%r5,1
+	risbg	%r8,%r5,62,128+63,0
+	je	.L2489
+	cgije	%r8,1,.L2522
+	cgijlh	%r8,2,.L2611
+.L2523:
+	l	%r11,0(%r1,%r3)
+	st	%r11,0(%r1,%r2)
+	aghi	%r1,4
+.L2522:
+	l	%r12,0(%r1,%r3)
+	st	%r12,0(%r1,%r2)
+	aghi	%r1,4
+	cgrje	%r1,%r10,.L2414
+.L2489:
+	srlg	%r5,%r5,2
+	cghi	%r5,2
+	jle	.L2601
+	aghi	%r5,-1
+	l	%r12,0(%r1,%r3)
+	st	%r12,0(%r1,%r2)
+	l	%r12,4(%r1,%r3)
+	st	%r12,4(%r1,%r2)
+	l	%r12,8(%r1,%r3)
+	st	%r12,8(%r1,%r2)
+	l	%r12,12(%r1,%r3)
+	st	%r12,12(%r1,%r2)
+.L2413:
+	aghi	%r1,16
+	l	%r12,0(%r1,%r3)
+	st	%r12,0(%r1,%r2)
+	l	%r12,4(%r1,%r3)
+	st	%r12,4(%r1,%r2)
+	l	%r12,8(%r1,%r3)
+	st	%r12,8(%r1,%r2)
+	l	%r12,12(%r1,%r3)
+	st	%r12,12(%r1,%r2)
+	brctg	%r5,.L2413
+	j	.L2414
+.L2601:
+	l	%r10,0(%r1,%r3)
+	st	%r10,0(%r1,%r2)
+	l	%r8,4(%r1,%r3)
+	st	%r8,4(%r1,%r2)
+	l	%r9,8(%r1,%r3)
+	st	%r9,8(%r1,%r2)
+	l	%r11,12(%r1,%r3)
+	st	%r11,12(%r1,%r2)
+	aghi	%r1,16
+	brctg	%r5,.L2601
+	j	.L2414
+.L2607:
+	llgfr	%r12,%r0
+	cgije	%r4,0,.L2403
+.L2406:
+	ic	%r8,0(%r12,%r3)
+	stc	%r8,0(%r12,%r2)
+	lghi	%r10,-1
+	aghik	%r1,%r12,1
+	xgrk	%r11,%r12,%r10
+	ar	%r11,%r4
+	risbg	%r0,%r11,62,128+63,0
+	clrjle	%r4,%r1,.L2403
+	cije	%r0,0,.L2471
+	cije	%r0,1,.L2531
+	cijlh	%r0,2,.L2612
+.L2532:
+	ic	%r12,0(%r1,%r3)
+	stc	%r12,0(%r1,%r2)
+	aghi	%r1,1
+.L2531:
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
 	aghi	%r1,1
-.L2062:
-	ic	%r11,0(%r1,%r3)
-	stc	%r11,0(%r1,%r2)
-	aghi	%r1,1
-	clrjle	%r4,%r1,.L1971
-.L2012:
-	srlk	%r4,%r9,2
+	clrjle	%r4,%r1,.L2403
+.L2471:
+	srlk	%r4,%r11,2
 	chi	%r4,2
-	jle	.L2110
+	jle	.L2599
 	ahi	%r4,-1
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-.L1985:
+.L2417:
 	ic	%r5,1(%r1,%r3)
 	stc	%r5,1(%r1,%r2)
 	ic	%r5,2(%r1,%r3)
@@ -6067,92 +7244,96 @@ __cmovw:
 	aghi	%r1,4
 	ic	%r5,0(%r1,%r3)
 	stc	%r5,0(%r1,%r2)
-	brct	%r4,.L1985
+	brct	%r4,.L2417
 	ic	%r4,1(%r1,%r3)
 	stc	%r4,1(%r1,%r2)
 	ic	%r4,2(%r1,%r3)
 	stc	%r4,2(%r1,%r2)
 	ic	%r3,3(%r1,%r3)
 	stc	%r3,3(%r1,%r2)
-	j	.L1971
-.L1978:
-	risbgn	%r10,%r12,32,128+61,2
-	aghik	%r5,%r10,-4
-	lghi	%r1,0
-	srlg	%r9,%r5,2
-	aghi	%r9,1
-	risbg	%r8,%r9,62,128+63,0
-	je	.L2030
-	cgije	%r8,1,.L2057
-	cgijlh	%r8,2,.L2121
-.L2058:
-	l	%r12,0(%r1,%r3)
-	st	%r12,0(%r1,%r2)
+	j	.L2403
+.L2610:
+	vl	%v0,0(%r12)
+	lghi	%r5,-16
+	vst	%v0,0(%r1)
+	j	.L2528
+.L2599:
+	ic	%r8,0(%r1,%r3)
+	stc	%r8,0(%r1,%r2)
+	ic	%r10,1(%r1,%r3)
+	stc	%r10,1(%r1,%r2)
+	ic	%r11,2(%r1,%r3)
+	stc	%r11,2(%r1,%r2)
+	ic	%r0,3(%r1,%r3)
+	stc	%r0,3(%r1,%r2)
 	aghi	%r1,4
-.L2057:
-	l	%r5,0(%r1,%r3)
-	st	%r5,0(%r1,%r2)
-	aghi	%r1,4
-	cgrje	%r1,%r10,.L1982
-.L2030:
-	srlg	%r5,%r9,2
-	cghi	%r5,2
-	jle	.L2112
-	aghi	%r5,-1
-	l	%r12,0(%r1,%r3)
-	st	%r12,0(%r1,%r2)
-	l	%r12,4(%r1,%r3)
-	st	%r12,4(%r1,%r2)
-	l	%r12,8(%r1,%r3)
-	st	%r12,8(%r1,%r2)
-	l	%r12,12(%r1,%r3)
-	st	%r12,12(%r1,%r2)
-.L1981:
-	aghi	%r1,16
-	l	%r12,0(%r1,%r3)
-	st	%r12,0(%r1,%r2)
-	l	%r12,4(%r1,%r3)
-	st	%r12,4(%r1,%r2)
-	l	%r12,8(%r1,%r3)
-	st	%r12,8(%r1,%r2)
-	l	%r12,12(%r1,%r3)
-	st	%r12,12(%r1,%r2)
-	brctg	%r5,.L1981
-	j	.L1982
-.L2112:
-	l	%r10,0(%r1,%r3)
-	st	%r10,0(%r1,%r2)
-	l	%r9,4(%r1,%r3)
-	st	%r9,4(%r1,%r2)
-	l	%r8,8(%r1,%r3)
-	st	%r8,8(%r1,%r2)
-	l	%r11,12(%r1,%r3)
-	st	%r11,12(%r1,%r2)
-	aghi	%r1,16
-	brctg	%r5,.L2112
-	j	.L1982
-.L2110:
+	brct	%r4,.L2599
+	j	.L2403
+.L2611:
+	l	%r9,0(%r3)
+	lghi	%r1,4
+	st	%r9,0(%r2)
+	j	.L2523
+.L2612:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	aghik	%r1,%r12,2
+	j	.L2532
+.L2419:
+	aghik	%r11,%r1,1
+	risbg	%r5,%r11,62,128+63,0
+	je	.L2507
+	cgije	%r5,1,.L2529
+	cgije	%r5,2,.L2530
+	ic	%r8,0(%r1,%r3)
+	stc	%r8,0(%r1,%r2)
+	aghi	%r1,-1
+.L2530:
+	ic	%r9,0(%r1,%r3)
+	stc	%r9,0(%r1,%r2)
+	aghi	%r1,-1
+.L2529:
+	ic	%r12,0(%r1,%r3)
+	stc	%r12,0(%r1,%r2)
+	aghi	%r1,-1
+	cgije	%r1,-1,.L2403
+.L2507:
+	srlg	%r4,%r11,2
+	cghi	%r4,2
+	jle	.L2603
+	aghi	%r4,-1
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+.L2423:
+	icy	%r5,-1(%r1,%r3)
+	stcy	%r5,-1(%r1,%r2)
+	icy	%r5,-2(%r1,%r3)
+	stcy	%r5,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	ic	%r5,0(%r1,%r3)
+	stc	%r5,0(%r1,%r2)
+	brctg	%r4,.L2423
+	icy	%r4,-1(%r1,%r3)
+	stcy	%r4,-1(%r1,%r2)
+	icy	%r4,-2(%r1,%r3)
+	stcy	%r4,-2(%r1,%r2)
+	icy	%r3,-3(%r1,%r3)
+	stcy	%r3,-3(%r1,%r2)
+	j	.L2403
+.L2603:
 	ic	%r0,0(%r1,%r3)
 	stc	%r0,0(%r1,%r2)
-	ic	%r12,1(%r1,%r3)
-	stc	%r12,1(%r1,%r2)
-	ic	%r9,2(%r1,%r3)
-	stc	%r9,2(%r1,%r2)
-	ic	%r8,3(%r1,%r3)
-	stc	%r8,3(%r1,%r2)
-	aghi	%r1,4
-	brct	%r4,.L2110
-	j	.L1971
-.L2121:
-	l	%r11,0(%r3)
-	lghi	%r1,4
-	st	%r11,0(%r2)
-	j	.L2058
-.L2120:
-	ic	%r10,0(%r1,%r3)
-	stc	%r10,0(%r1,%r2)
-	aghik	%r1,%r5,2
-	j	.L2063
+	icy	%r10,-1(%r1,%r3)
+	stcy	%r10,-1(%r1,%r2)
+	icy	%r11,-2(%r1,%r3)
+	stcy	%r11,-2(%r1,%r2)
+	icy	%r5,-3(%r1,%r3)
+	stcy	%r5,-3(%r1,%r2)
+	aghi	%r1,-4
+	brctg	%r4,.L2603
+	j	.L2403
 	.cfi_endproc
 .LFE109:
 	.size	__cmovw, .-__cmovw
@@ -6242,83 +7423,83 @@ __clzhi2:
 .LFB116:
 	.cfi_startproc
 	srak	%r1,%r2,15
-	cijlh	%r1,0,.L2138
+	cijlh	%r1,0,.L2629
 	srak	%r5,%r2,14
-	jne	.L2137
+	jne	.L2628
 	srak	%r0,%r2,13
-	cijlh	%r0,0,.L2139
+	cijlh	%r0,0,.L2630
 	srak	%r3,%r2,12
-	cijlh	%r3,0,.L2140
+	cijlh	%r3,0,.L2631
 	srak	%r4,%r2,11
-	cijlh	%r4,0,.L2141
+	cijlh	%r4,0,.L2632
 	srak	%r5,%r2,10
-	cijlh	%r5,0,.L2142
+	cijlh	%r5,0,.L2633
 	srak	%r1,%r2,9
-	cijlh	%r1,0,.L2143
+	cijlh	%r1,0,.L2634
 	srak	%r0,%r2,8
-	cijlh	%r0,0,.L2144
+	cijlh	%r0,0,.L2635
 	srak	%r3,%r2,7
-	cijlh	%r3,0,.L2145
+	cijlh	%r3,0,.L2636
 	srak	%r4,%r2,6
-	cijlh	%r4,0,.L2146
+	cijlh	%r4,0,.L2637
 	srak	%r5,%r2,5
-	cijlh	%r5,0,.L2147
+	cijlh	%r5,0,.L2638
 	srak	%r1,%r2,4
-	cijlh	%r1,0,.L2148
+	cijlh	%r1,0,.L2639
 	srak	%r0,%r2,3
-	cijlh	%r0,0,.L2149
+	cijlh	%r0,0,.L2640
 	srak	%r3,%r2,2
-	cijlh	%r3,0,.L2150
+	cijlh	%r3,0,.L2641
 	srak	%r4,%r2,1
-	cijlh	%r4,0,.L2151
+	cijlh	%r4,0,.L2642
 	ltgr	%r2,%r2
 	lhi	%r5,15
 	lochie	%r5,16
-.L2137:
+.L2628:
 	risbg	%r2,%r5,59,128+63,0
 	br	%r14
-.L2138:
+.L2629:
 	lhi	%r5,0
-	j	.L2137
-.L2149:
+	j	.L2628
+.L2640:
 	lhi	%r5,12
-	j	.L2137
-.L2139:
+	j	.L2628
+.L2630:
 	lhi	%r5,2
-	j	.L2137
-.L2140:
+	j	.L2628
+.L2631:
 	lhi	%r5,3
-	j	.L2137
-.L2141:
+	j	.L2628
+.L2632:
 	lhi	%r5,4
-	j	.L2137
-.L2142:
+	j	.L2628
+.L2633:
 	lhi	%r5,5
-	j	.L2137
-.L2143:
+	j	.L2628
+.L2634:
 	lhi	%r5,6
-	j	.L2137
-.L2144:
+	j	.L2628
+.L2635:
 	lhi	%r5,7
-	j	.L2137
-.L2145:
+	j	.L2628
+.L2636:
 	lhi	%r5,8
-	j	.L2137
-.L2146:
+	j	.L2628
+.L2637:
 	lhi	%r5,9
-	j	.L2137
-.L2147:
+	j	.L2628
+.L2638:
 	lhi	%r5,10
-	j	.L2137
-.L2148:
+	j	.L2628
+.L2639:
 	lhi	%r5,11
-	j	.L2137
-.L2150:
+	j	.L2628
+.L2641:
 	lhi	%r5,13
-	j	.L2137
-.L2151:
+	j	.L2628
+.L2642:
 	lhi	%r5,14
-	j	.L2137
+	j	.L2628
 	.cfi_endproc
 .LFE116:
 	.size	__clzhi2, .-__clzhi2
@@ -6330,87 +7511,87 @@ __ctzhi2:
 .LFB117:
 	.cfi_startproc
 	tmll	%r2,1
-	jne	.L2157
+	jne	.L2648
 	tmll	%r2,2
-	jne	.L2158
+	jne	.L2649
 	tmll	%r2,4
-	jne	.L2159
+	jne	.L2650
 	tmll	%r2,8
-	jne	.L2160
+	jne	.L2651
 	tmll	%r2,16
-	jne	.L2161
+	jne	.L2652
 	tmll	%r2,32
-	jne	.L2162
+	jne	.L2653
 	tmll	%r2,64
-	jne	.L2163
+	jne	.L2654
 	tmll	%r2,128
-	jne	.L2164
+	jne	.L2655
 	tmll	%r2,256
-	jne	.L2165
+	jne	.L2656
 	tmll	%r2,512
-	jne	.L2166
+	jne	.L2657
 	tmll	%r2,1024
-	jne	.L2167
+	jne	.L2658
 	tmll	%r2,2048
-	jne	.L2168
+	jne	.L2659
 	tmll	%r2,4096
-	jne	.L2169
+	jne	.L2660
 	tmll	%r2,8192
-	jne	.L2170
+	jne	.L2661
 	tmll	%r2,16384
-	jne	.L2171
+	jne	.L2662
 	sra	%r2,15
 	ltr	%r2,%r2
 	lhi	%r2,15
 	lochie	%r2,16
-.L2156:
+.L2647:
 	risbg	%r2,%r2,59,128+63,0
 	br	%r14
-.L2157:
+.L2648:
 	lhi	%r2,0
-	j	.L2156
-.L2158:
+	j	.L2647
+.L2649:
 	lhi	%r2,1
-	j	.L2156
-.L2169:
+	j	.L2647
+.L2660:
 	lhi	%r2,12
-	j	.L2156
-.L2159:
+	j	.L2647
+.L2650:
 	lhi	%r2,2
-	j	.L2156
-.L2160:
+	j	.L2647
+.L2651:
 	lhi	%r2,3
-	j	.L2156
-.L2161:
+	j	.L2647
+.L2652:
 	lhi	%r2,4
-	j	.L2156
-.L2162:
+	j	.L2647
+.L2653:
 	lhi	%r2,5
-	j	.L2156
-.L2163:
+	j	.L2647
+.L2654:
 	lhi	%r2,6
-	j	.L2156
-.L2164:
+	j	.L2647
+.L2655:
 	lhi	%r2,7
-	j	.L2156
-.L2165:
+	j	.L2647
+.L2656:
 	lhi	%r2,8
-	j	.L2156
-.L2166:
+	j	.L2647
+.L2657:
 	lhi	%r2,9
-	j	.L2156
-.L2167:
+	j	.L2647
+.L2658:
 	lhi	%r2,10
-	j	.L2156
-.L2168:
+	j	.L2647
+.L2659:
 	lhi	%r2,11
-	j	.L2156
-.L2170:
+	j	.L2647
+.L2661:
 	lhi	%r2,13
-	j	.L2156
-.L2171:
+	j	.L2647
+.L2662:
 	lhi	%r2,14
-	j	.L2156
+	j	.L2647
 	.cfi_endproc
 .LFE117:
 	.size	__ctzhi2, .-__ctzhi2
@@ -6421,20 +7602,20 @@ __ctzhi2:
 __fixunssfsi:
 .LFB118:
 	.cfi_startproc
-	larl	%r5,.L2182
-	keb	%f0,.L2183-.L2182(%r5)
-	jhe	.L2181
+	larl	%r5,.L2673
+	keb	%f0,.L2674-.L2673(%r5)
+	jhe	.L2672
 	cgebr	%r2,5,%f0
 	br	%r14
-.L2181:
-	seb	%f0,.L2183-.L2182(%r5)
+.L2672:
+	seb	%f0,.L2674-.L2673(%r5)
 	cgebr	%r2,5,%f0
 	algfi	%r2,32768
 	br	%r14
 	.section	.rodata
 	.align	8
-.L2182:
-.L2183:
+.L2673:
+.L2674:
 	.long	1191182336
 	.align	2
 .text
@@ -6448,39 +7629,61 @@ __fixunssfsi:
 __parityhi2:
 .LFB119:
 	.cfi_startproc
-	risbg	%r3,%r2,63,128+63,0
-	risbgn	%r4,%r2,64-1,128+63,32+29+1
-	risbgn	%r0,%r2,64-1,128+63,32+28+1
-	risbgn	%r5,%r2,64-1,128+63,32+27+1
-	risbgn	%r1,%r2,64-1,128+63,32+30+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+26+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+25+1
-	ar	%r1,%r0
-	risbgn	%r0,%r2,64-1,128+63,32+24+1
-	ar	%r1,%r5
-	risbgn	%r5,%r2,64-1,128+63,32+23+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+22+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+21+1
-	ar	%r1,%r0
-	risbgn	%r0,%r2,64-1,128+63,32+20+1
-	ar	%r1,%r5
-	risbgn	%r5,%r2,64-1,128+63,32+19+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+18+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+17+1
-	ar	%r1,%r0
-	srak	%r0,%r2,15
-	ar	%r1,%r5
-	ar	%r1,%r3
-	ark	%r2,%r1,%r4
-	ar	%r2,%r0
+	larl	%r5,.L2677
+	vl	%v4,.L2678-.L2677(%r5),3
+	vl	%v6,.L2679-.L2677(%r5),3
+	vl	%v2,.L2680-.L2677(%r5),3
+	vl	%v3,.L2681-.L2677(%r5),3
+	vlvgf	%v0,%r2,3
+	vrepf	%v0,%v0,3
+	vgmf	%v1,31,31
+	vesravf	%v5,%v0,%v4
+	vesravf	%v7,%v0,%v6
+	vesravf	%v20,%v0,%v2
+	vn	%v16,%v5,%v1
+	vn	%v18,%v7,%v1
+	vaf	%v22,%v16,%v18
+	vn	%v17,%v20,%v1
+	vesravf	%v19,%v0,%v3
+	vaf	%v21,%v17,%v22
+	vn	%v23,%v19,%v1
+	vzero	%v26
+	vaf	%v24,%v23,%v21
+	vleib	%v26,64,7
+	vslb	%v28,%v24,%v26
+	vzero	%v2
+	vaf	%v30,%v28,%v24
+	vleib	%v2,32,7
+	vslb	%v25,%v30,%v2
+	vaf	%v27,%v25,%v30
+	vlgvf	%r2,%v27,0
 	risbg	%r2,%r2,63,128+63,0
 	br	%r14
+	.section	.rodata
+	.align	8
+.L2677:
+.L2681:
+	.long	12
+	.long	13
+	.long	14
+	.long	15
+.L2680:
+	.long	8
+	.long	9
+	.long	10
+	.long	11
+.L2679:
+	.long	4
+	.long	5
+	.long	6
+	.long	7
+.L2678:
+	.long	0
+	.long	1
+	.long	2
+	.long	3
+	.align	2
+.text
 	.cfi_endproc
 .LFE119:
 	.size	__parityhi2, .-__parityhi2
@@ -6491,39 +7694,61 @@ __parityhi2:
 __popcounthi2:
 .LFB120:
 	.cfi_startproc
-	risbg	%r3,%r2,63,128+63,0
-	risbgn	%r4,%r2,64-1,128+63,32+29+1
-	risbgn	%r0,%r2,64-1,128+63,32+28+1
-	risbgn	%r5,%r2,64-1,128+63,32+27+1
-	risbgn	%r1,%r2,64-1,128+63,32+30+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+26+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+25+1
-	ar	%r1,%r0
-	risbgn	%r0,%r2,64-1,128+63,32+24+1
-	ar	%r1,%r5
-	risbgn	%r5,%r2,64-1,128+63,32+23+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+22+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+21+1
-	ar	%r1,%r0
-	risbgn	%r0,%r2,64-1,128+63,32+20+1
-	ar	%r1,%r5
-	risbgn	%r5,%r2,64-1,128+63,32+19+1
-	ar	%r1,%r3
-	risbgn	%r3,%r2,64-1,128+63,32+18+1
-	ar	%r1,%r4
-	risbgn	%r4,%r2,64-1,128+63,32+17+1
-	ar	%r1,%r0
-	srak	%r0,%r2,15
-	ar	%r1,%r5
-	ar	%r1,%r3
-	ark	%r2,%r1,%r4
-	ar	%r2,%r0
-	llgfr	%r2,%r2
+	larl	%r5,.L2684
+	vl	%v4,.L2685-.L2684(%r5),3
+	vl	%v6,.L2686-.L2684(%r5),3
+	vl	%v2,.L2687-.L2684(%r5),3
+	vl	%v3,.L2688-.L2684(%r5),3
+	vlvgf	%v0,%r2,3
+	vrepf	%v0,%v0,3
+	vgmf	%v1,31,31
+	vesravf	%v5,%v0,%v4
+	vesravf	%v7,%v0,%v6
+	vesravf	%v20,%v0,%v2
+	vn	%v16,%v5,%v1
+	vn	%v18,%v7,%v1
+	vaf	%v22,%v16,%v18
+	vn	%v17,%v20,%v1
+	vesravf	%v19,%v0,%v3
+	vaf	%v21,%v17,%v22
+	vn	%v23,%v19,%v1
+	vzero	%v26
+	vaf	%v24,%v23,%v21
+	vleib	%v26,64,7
+	vslb	%v28,%v24,%v26
+	vzero	%v2
+	vaf	%v30,%v28,%v24
+	vleib	%v2,32,7
+	vslb	%v25,%v30,%v2
+	vaf	%v27,%v25,%v30
+	vlgvf	%r2,%v27,0
+	lgfr	%r2,%r2
 	br	%r14
+	.section	.rodata
+	.align	8
+.L2684:
+.L2688:
+	.long	12
+	.long	13
+	.long	14
+	.long	15
+.L2687:
+	.long	8
+	.long	9
+	.long	10
+	.long	11
+.L2686:
+	.long	4
+	.long	5
+	.long	6
+	.long	7
+.L2685:
+	.long	0
+	.long	1
+	.long	2
+	.long	3
+	.align	2
+.text
 	.cfi_endproc
 .LFE120:
 	.size	__popcounthi2, .-__popcounthi2
@@ -6534,209 +7759,209 @@ __popcounthi2:
 __mulsi3_iq2000:
 .LFB177:
 	.cfi_startproc
-	cgije	%r2,0,.L2191
+	cgije	%r2,0,.L2692
 	risbg	%r0,%r2,63,128+63,0
 	srlk	%r4,%r2,1
 	lcr	%r1,%r0
 	sllk	%r5,%r3,1
 	nr	%r1,%r3
-	cije	%r4,0,.L2189
+	cije	%r4,0,.L2690
 	nilf	%r4,1
 	lcr	%r0,%r4
 	srlk	%r4,%r2,2
 	nr	%r0,%r5
 	sllk	%r5,%r3,2
 	ar	%r1,%r0
-	cije	%r4,0,.L2189
+	cije	%r4,0,.L2690
 	risbg	%r0,%r4,63,128+63,0
 	lcr	%r4,%r0
 	sllk	%r0,%r3,3
 	nr	%r4,%r5
 	srlk	%r5,%r2,3
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,4
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,4
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,5
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,5
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,6
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,6
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,7
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,7
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,8
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,8
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,9
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,9
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,10
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,10
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,11
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,11
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,12
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,12
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,13
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,13
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,14
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,14
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,15
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,15
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,16
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,16
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,17
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,17
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,18
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,18
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,19
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,19
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,20
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,20
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,21
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,21
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,22
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,22
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,23
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,23
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,24
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,24
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,25
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,25
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,26
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,26
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,27
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,27
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	risbg	%r4,%r5,63,128+63,0
 	srlk	%r5,%r2,28
 	lcr	%r4,%r4
 	nr	%r4,%r0
 	sllk	%r0,%r3,28
 	ar	%r1,%r4
-	cije	%r5,0,.L2189
+	cije	%r5,0,.L2690
 	nilf	%r5,1
 	srlk	%r4,%r2,29
 	lcr	%r5,%r5
 	nr	%r5,%r0
 	sllk	%r0,%r3,29
 	ar	%r1,%r5
-	cije	%r4,0,.L2189
+	cije	%r4,0,.L2690
 	risbgn	%r5,%r2,64-1,128+63,32+1+1
 	nilf	%r4,1
 	lcr	%r4,%r4
@@ -6754,10 +7979,10 @@ __mulsi3_iq2000:
 	srl	%r2,30
 	ltr	%r2,%r2
 	locre	%r1,%r4
-.L2189:
+.L2690:
 	llgfr	%r2,%r1
 	br	%r14
-.L2191:
+.L2692:
 	lhi	%r1,0
 	llgfr	%r2,%r1
 	br	%r14
@@ -6771,15 +7996,15 @@ __mulsi3_iq2000:
 __mulsi3_lm32:
 .LFB122:
 	.cfi_startproc
-	cgije	%r2,0,.L2286
-	cgije	%r3,0,.L2286
+	cgije	%r2,0,.L2787
+	cgije	%r3,0,.L2787
 	risbg	%r1,%r3,63,128+63,0
 	sllk	%r0,%r2,1
 	lcr	%r1,%r1
 	srlk	%r4,%r3,1
 	nr	%r1,%r2
 	srlg	%r5,%r3,1
-	cgije	%r5,0,.L2377
+	cgije	%r5,0,.L2878
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	nilf	%r4,1
@@ -6789,7 +8014,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,2
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,3
 	lcr	%r4,%r4
@@ -6797,7 +8022,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,3
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,4
 	lcr	%r4,%r4
@@ -6805,7 +8030,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,4
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,5
 	lcr	%r4,%r4
@@ -6813,7 +8038,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,5
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,6
 	lcr	%r4,%r4
@@ -6821,7 +8046,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,6
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,7
 	lcr	%r4,%r4
@@ -6829,7 +8054,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,7
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,8
 	lcr	%r4,%r4
@@ -6837,7 +8062,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,8
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,9
 	lcr	%r4,%r4
@@ -6845,7 +8070,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,9
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,10
 	lcr	%r4,%r4
@@ -6853,7 +8078,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,10
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,11
 	lcr	%r4,%r4
@@ -6861,7 +8086,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,11
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,12
 	lcr	%r4,%r4
@@ -6869,7 +8094,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,12
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,13
 	lcr	%r4,%r4
@@ -6877,7 +8102,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,13
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,14
 	lcr	%r4,%r4
@@ -6885,7 +8110,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,14
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,15
 	lcr	%r4,%r4
@@ -6893,7 +8118,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,15
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,16
 	lcr	%r4,%r4
@@ -6901,7 +8126,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,16
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,17
 	lcr	%r4,%r4
@@ -6909,7 +8134,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,17
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,18
 	lcr	%r4,%r4
@@ -6917,7 +8142,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,18
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,19
 	lcr	%r4,%r4
@@ -6925,7 +8150,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,19
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,20
 	lcr	%r4,%r4
@@ -6933,7 +8158,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,20
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,21
 	lcr	%r4,%r4
@@ -6941,7 +8166,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,21
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,22
 	lcr	%r4,%r4
@@ -6949,7 +8174,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,22
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,23
 	lcr	%r4,%r4
@@ -6957,7 +8182,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,23
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,24
 	lcr	%r4,%r4
@@ -6965,7 +8190,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,24
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,25
 	lcr	%r4,%r4
@@ -6973,7 +8198,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,25
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlg	%r5,%r3,26
 	lcr	%r4,%r4
@@ -6981,7 +8206,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlk	%r0,%r3,26
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r0,63,128+63,0
 	srlg	%r5,%r3,27
 	lcr	%r4,%r4
@@ -6989,7 +8214,7 @@ __mulsi3_lm32:
 	nr	%r4,%r12
 	srlk	%r12,%r3,27
 	ar	%r1,%r4
-	cgije	%r5,0,.L2283
+	cgije	%r5,0,.L2784
 	risbg	%r4,%r12,63,128+63,0
 	srlk	%r5,%r3,28
 	lcr	%r4,%r4
@@ -6997,7 +8222,7 @@ __mulsi3_lm32:
 	nr	%r4,%r0
 	srlg	%r0,%r3,28
 	ar	%r1,%r4
-	cgije	%r0,0,.L2283
+	cgije	%r0,0,.L2784
 	nilf	%r5,1
 	sllk	%r0,%r2,29
 	lcr	%r5,%r5
@@ -7005,7 +8230,7 @@ __mulsi3_lm32:
 	nr	%r5,%r12
 	srlk	%r12,%r3,29
 	ar	%r1,%r5
-	cgije	%r4,0,.L2283
+	cgije	%r4,0,.L2784
 	nilf	%r12,1
 	lcr	%r12,%r12
 	nr	%r12,%r0
@@ -7023,14 +8248,14 @@ __mulsi3_lm32:
 	srlg	%r3,%r3,30
 	ltgr	%r3,%r3
 	locre	%r1,%r12
-.L2283:
+.L2784:
 	llgfr	%r2,%r1
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	br	%r14
-.L2286:
+.L2787:
 	lhi	%r1,0
-.L2377:
+.L2878:
 	llgfr	%r2,%r1
 	br	%r14
 	.cfi_endproc
@@ -7043,7 +8268,7 @@ __mulsi3_lm32:
 __udivmodsi4:
 .LFB123:
 	.cfi_startproc
-	clrjhe	%r3,%r2,.L2498
+	clrjhe	%r3,%r2,.L2999
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	ldgr	%f4,%r10
@@ -7051,24 +8276,24 @@ __udivmodsi4:
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	lhi	%r12,1
-	cijl	%r3,0,.L2492
+	cijl	%r3,0,.L2993
 	sllk	%r5,%r3,1
 	lhi	%r0,2
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L2384
+	clrjhe	%r5,%r2,.L2885
 	lhi	%r10,31
 	lhi	%r12,2
 	lgr	%r3,%r1
 	lhi	%r11,11
-	cijl	%r1,0,.L2492
-.L2386:
+	cijl	%r1,0,.L2993
+.L2887:
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L2384
+	clrjhe	%r5,%r2,.L2885
 	ahik	%r5,%r10,-1
-	brct	%r11,.L2461
-.L2385:
+	brct	%r11,.L2962
+.L2886:
 	ltgr	%r4,%r4
 	locrne	%r5,%r2
 	llgfr	%r2,%r5
@@ -7080,27 +8305,27 @@ __udivmodsi4:
 	lgdr	%r10,%f4
 	.cfi_restore 10
 	br	%r14
-.L2461:
+.L2962:
 	.cfi_restore_state
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijl	%r1,0,.L2492
+	cijl	%r1,0,.L2993
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L2384
+	clrjhe	%r5,%r2,.L2885
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijl	%r1,0,.L2492
+	cijl	%r1,0,.L2993
 	sllk	%r5,%r1,1
 	sll	%r0,1
 	llgfr	%r1,%r5
-	clrjhe	%r5,%r2,.L2384
+	clrjhe	%r5,%r2,.L2885
 	ahi	%r10,-3
 	lr	%r12,%r0
 	lgr	%r3,%r1
-	cijhe	%r1,0,.L2386
-.L2492:
+	cijhe	%r1,0,.L2887
+.L2993:
 	srk	%r1,%r2,%r3
 	slrk	%r5,%r2,%r3
 	lhi	%r5,0
@@ -7112,10 +8337,10 @@ __udivmodsi4:
 	lr	%r5,%r12
 	llgfr	%r2,%r1
 	lochie	%r5,0
-	cijlh	%r11,0,.L2389
-	j	.L2385
-.L2384:
-	cije	%r0,0,.L2391
+	cijlh	%r11,0,.L2890
+	j	.L2886
+.L2885:
+	cije	%r0,0,.L2892
 	srk	%r11,%r2,%r5
 	slrk	%r5,%r2,%r5
 	lhi	%r10,0
@@ -7129,7 +8354,7 @@ __udivmodsi4:
 	llgfr	%r2,%r2
 	lgr	%r3,%r1
 	lr	%r12,%r0
-.L2389:
+.L2890:
 	srk	%r1,%r2,%r10
 	slrk	%r10,%r2,%r10
 	lhi	%r0,0
@@ -7141,7 +8366,7 @@ __udivmodsi4:
 	or	%r5,%r11
 	llgfr	%r2,%r1
 	srlk	%r11,%r3,2
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7153,7 +8378,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,3
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7165,7 +8390,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,4
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7177,7 +8402,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,5
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7189,7 +8414,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,6
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7201,7 +8426,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,7
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7213,7 +8438,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,8
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7225,7 +8450,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,9
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7237,7 +8462,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,10
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7249,7 +8474,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,11
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7261,7 +8486,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,12
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7273,7 +8498,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,13
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7285,7 +8510,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,14
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7297,7 +8522,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,15
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7309,7 +8534,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,16
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7321,7 +8546,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,17
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7333,7 +8558,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,18
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7345,7 +8570,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,19
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7357,7 +8582,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,20
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7369,7 +8594,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,21
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7381,7 +8606,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,22
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7393,7 +8618,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,23
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7405,7 +8630,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,24
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7417,7 +8642,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,25
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7429,7 +8654,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r12,26
-	cije	%r10,0,.L2385
+	cije	%r10,0,.L2886
 	srk	%r2,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r0,0
@@ -7441,7 +8666,7 @@ __udivmodsi4:
 	or	%r5,%r10
 	llgfr	%r2,%r1
 	srlk	%r10,%r3,27
-	cije	%r11,0,.L2385
+	cije	%r11,0,.L2886
 	srk	%r0,%r1,%r10
 	slrk	%r10,%r1,%r10
 	lhi	%r2,0
@@ -7453,7 +8678,7 @@ __udivmodsi4:
 	or	%r5,%r11
 	llgfr	%r2,%r0
 	srlk	%r11,%r12,28
-	cije	%r11,0,.L2385
+	cije	%r11,0,.L2886
 	srk	%r1,%r0,%r10
 	slrk	%r10,%r0,%r10
 	lhi	%r2,0
@@ -7465,7 +8690,7 @@ __udivmodsi4:
 	llgfr	%r2,%r1
 	srlk	%r0,%r12,29
 	srlk	%r11,%r3,29
-	cije	%r0,0,.L2385
+	cije	%r0,0,.L2886
 	srk	%r10,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r2,0
@@ -7477,7 +8702,7 @@ __udivmodsi4:
 	or	%r5,%r0
 	llgfr	%r2,%r1
 	srlk	%r0,%r12,30
-	cije	%r0,0,.L2385
+	cije	%r0,0,.L2886
 	srk	%r10,%r1,%r11
 	slrk	%r11,%r1,%r11
 	lhi	%r2,0
@@ -7488,7 +8713,7 @@ __udivmodsi4:
 	lochie	%r0,0
 	or	%r5,%r0
 	llgfr	%r2,%r1
-	cijhe	%r12,0,.L2385
+	cijhe	%r12,0,.L2886
 	srk	%r12,%r1,%r3
 	slrk	%r3,%r1,%r3
 	lhi	%r3,0
@@ -7497,8 +8722,8 @@ __udivmodsi4:
 	locre	%r12,%r1
 	llgfr	%r2,%r12
 	or	%r5,%r3
-	j	.L2385
-.L2498:
+	j	.L2886
+.L2999:
 	.cfi_restore 10
 	.cfi_restore 11
 	.cfi_restore 12
@@ -7514,12 +8739,12 @@ __udivmodsi4:
 	locrne	%r0,%r2
 	llgfr	%r2,%r0
 	br	%r14
-.L2391:
+.L2892:
 	.cfi_register 10, 18
 	.cfi_register 11, 17
 	.cfi_register 12, 16
 	lhi	%r5,0
-	j	.L2385
+	j	.L2886
 	.cfi_endproc
 .LFE123:
 	.size	__udivmodsi4, .-__udivmodsi4
@@ -7586,15 +8811,15 @@ __mspabi_mpyull:
 __mulhi3:
 .LFB128:
 	.cfi_startproc
-	cijl	%r3,0,.L2614
-	cgije	%r3,0,.L2522
+	cijl	%r3,0,.L3115
+	cgije	%r3,0,.L3023
 	risbg	%r1,%r3,63,128+63,0
 	sllk	%r0,%r2,1
 	lcr	%r1,%r1
 	srak	%r4,%r3,1
 	nr	%r1,%r2
 	srag	%r5,%r3,1
-	cgije	%r5,0,.L2612
+	cgije	%r5,0,.L3113
 	nilf	%r4,1
 	lcr	%r4,%r4
 	nr	%r4,%r0
@@ -7602,9 +8827,9 @@ __mulhi3:
 	sll	%r2,2
 	srag	%r3,%r3,2
 	lgfr	%r2,%r2
-	je	.L2612
+	je	.L3113
 	lhi	%r0,0
-.L2520:
+.L3021:
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	risbg	%r11,%r3,63,128+63,0
@@ -7616,7 +8841,7 @@ __mulhi3:
 	srak	%r4,%r3,1
 	ar	%r1,%r5
 	srag	%r11,%r3,1
-	cgije	%r11,0,.L2521
+	cgije	%r11,0,.L3022
 	nilf	%r4,1
 	sllk	%r11,%r2,2
 	lcr	%r4,%r4
@@ -7624,7 +8849,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,2
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,3
 	lcr	%r4,%r4
@@ -7632,7 +8857,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,3
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,4
 	lcr	%r4,%r4
@@ -7640,7 +8865,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,4
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,5
 	lcr	%r4,%r4
@@ -7648,7 +8873,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,5
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,6
 	lcr	%r4,%r4
@@ -7656,7 +8881,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,6
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,7
 	lcr	%r4,%r4
@@ -7664,7 +8889,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,7
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,8
 	lcr	%r4,%r4
@@ -7672,7 +8897,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,8
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,9
 	lcr	%r4,%r4
@@ -7680,7 +8905,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,9
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,10
 	lcr	%r4,%r4
@@ -7688,7 +8913,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,10
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,11
 	lcr	%r4,%r4
@@ -7696,7 +8921,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,11
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,12
 	lcr	%r4,%r4
@@ -7704,7 +8929,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,12
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,13
 	lcr	%r4,%r4
@@ -7712,7 +8937,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,13
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,14
 	lcr	%r4,%r4
@@ -7720,7 +8945,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,14
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,15
 	lcr	%r4,%r4
@@ -7728,7 +8953,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,15
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,16
 	lcr	%r4,%r4
@@ -7736,7 +8961,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,16
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,17
 	lcr	%r4,%r4
@@ -7744,7 +8969,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,17
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,18
 	lcr	%r4,%r4
@@ -7752,7 +8977,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,18
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,19
 	lcr	%r4,%r4
@@ -7760,7 +8985,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,19
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,20
 	lcr	%r4,%r4
@@ -7768,7 +8993,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,20
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,21
 	lcr	%r4,%r4
@@ -7776,7 +9001,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,21
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,22
 	lcr	%r4,%r4
@@ -7784,7 +9009,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,22
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,23
 	lcr	%r4,%r4
@@ -7792,7 +9017,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,23
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,24
 	lcr	%r4,%r4
@@ -7800,7 +9025,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,24
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	srag	%r5,%r3,25
 	lcr	%r4,%r4
@@ -7808,7 +9033,7 @@ __mulhi3:
 	nr	%r4,%r11
 	srak	%r11,%r3,25
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r11,63,128+63,0
 	srag	%r5,%r3,26
 	lcr	%r4,%r4
@@ -7816,7 +9041,7 @@ __mulhi3:
 	nr	%r4,%r12
 	srak	%r12,%r3,26
 	ar	%r1,%r4
-	cgije	%r5,0,.L2521
+	cgije	%r5,0,.L3022
 	risbg	%r4,%r12,63,128+63,0
 	lcr	%r4,%r4
 	nr	%r4,%r11
@@ -7834,24 +9059,24 @@ __mulhi3:
 	srag	%r3,%r3,27
 	ltgr	%r3,%r3
 	locre	%r1,%r4
-.L2521:
-	cije	%r0,0,.L2518
+.L3022:
+	cije	%r0,0,.L3019
 	lcr	%r1,%r1
-.L2518:
+.L3019:
 	lgfr	%r2,%r1
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L2614:
+.L3115:
 	risbg	%r1,%r3,63,128+63,0
 	sllk	%r4,%r2,1
 	lcr	%r3,%r3
 	lcr	%r1,%r1
 	srak	%r5,%r3,1
 	nr	%r1,%r2
-	cije	%r5,0,.L2611
+	cije	%r5,0,.L3112
 	risbg	%r0,%r5,63,128+63,0
 	sll	%r2,2
 	lcr	%r5,%r0
@@ -7861,13 +9086,13 @@ __mulhi3:
 	srak	%r4,%r3,2
 	ar	%r1,%r5
 	lgfr	%r3,%r4
-	cijlh	%r4,0,.L2520
-.L2611:
+	cijlh	%r4,0,.L3021
+.L3112:
 	lcr	%r1,%r1
-	j	.L2612
-.L2522:
+	j	.L3113
+.L3023:
 	lhi	%r1,0
-.L2612:
+.L3113:
 	lgfr	%r2,%r1
 	br	%r14
 	.cfi_endproc
@@ -7886,32 +9111,32 @@ __divsi3:
 	.cfi_register 11, 17
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
-	cgijl	%r2,0,.L2736
+	cgijl	%r2,0,.L3237
 	lhi	%r1,1
 	lhi	%r12,0
-.L2617:
-	cgijhe	%r3,0,.L2618
+.L3118:
+	cgijhe	%r3,0,.L3119
 	lcgr	%r3,%r3
 	lr	%r12,%r1
-.L2618:
+.L3119:
 	lr	%r0,%r2
 	lr	%r4,%r3
-	clrjle	%r2,%r3,.L2737
+	clrjle	%r2,%r3,.L3238
 	lhi	%r5,1
-	cijl	%r3,0,.L2731
+	cijl	%r3,0,.L3232
 	sllk	%r1,%r3,1
 	lhi	%r3,2
-	clrjle	%r2,%r1,.L2621
+	clrjle	%r2,%r1,.L3122
 	lhi	%r5,2
 	lr	%r4,%r1
 	lhi	%r2,11
-	cijl	%r1,0,.L2731
-.L2623:
+	cijl	%r1,0,.L3232
+.L3124:
 	sll	%r1,1
 	sll	%r3,1
-	clrjle	%r0,%r1,.L2621
-	brct	%r2,.L2699
-.L2630:
+	clrjle	%r0,%r1,.L3122
+	brct	%r2,.L3200
+.L3131:
 	lghi	%r4,0
 	lcgr	%r2,%r4
 	ltr	%r12,%r12
@@ -7924,24 +9149,24 @@ __divsi3:
 	lgdr	%r10,%f4
 	.cfi_restore 10
 	br	%r14
-.L2699:
+.L3200:
 	.cfi_restore_state
 	lr	%r5,%r3
 	lr	%r4,%r1
-	cijl	%r1,0,.L2731
+	cijl	%r1,0,.L3232
 	sll	%r1,1
 	sll	%r3,1
-	clrjle	%r0,%r1,.L2621
+	clrjle	%r0,%r1,.L3122
 	lr	%r5,%r3
 	lr	%r4,%r1
-	cijl	%r1,0,.L2731
+	cijl	%r1,0,.L3232
 	sll	%r1,1
 	sll	%r3,1
-	clrjle	%r0,%r1,.L2621
+	clrjle	%r0,%r1,.L3122
 	lr	%r5,%r3
 	lr	%r4,%r1
-	cijhe	%r1,0,.L2623
-.L2731:
+	cijhe	%r1,0,.L3124
+.L3232:
 	srk	%r10,%r0,%r4
 	clr	%r0,%r4
 	lr	%r2,%r5
@@ -7949,8 +9174,8 @@ __divsi3:
 	lochinhe	%r2,0
 	srlk	%r11,%r5,1
 	srlk	%r10,%r4,1
-	cijlh	%r11,0,.L2626
-.L2620:
+	cijlh	%r11,0,.L3127
+.L3121:
 	llgfr	%r4,%r2
 	lcgr	%r2,%r4
 	ltr	%r12,%r12
@@ -7963,9 +9188,9 @@ __divsi3:
 	lgdr	%r10,%f4
 	.cfi_restore 10
 	br	%r14
-.L2621:
+.L3122:
 	.cfi_restore_state
-	cije	%r3,0,.L2630
+	cije	%r3,0,.L3131
 	srk	%r11,%r0,%r1
 	clr	%r0,%r1
 	lr	%r2,%r3
@@ -7975,16 +9200,15 @@ __divsi3:
 	llgtr	%r11,%r5
 	lr	%r4,%r1
 	lr	%r5,%r3
-.L2626:
+.L3127:
 	srk	%r1,%r0,%r10
 	clr	%r0,%r10
+	lochinhe	%r11,0
 	locrnhe	%r1,%r0
-	clr	%r10,%r0
-	lochinle	%r11,0
+	srlk	%r10,%r4,2
 	or	%r2,%r11
 	srlk	%r0,%r5,2
-	srlk	%r10,%r4,2
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -7992,7 +9216,7 @@ __divsi3:
 	srlk	%r11,%r4,3
 	or	%r2,%r0
 	srlk	%r0,%r5,3
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8000,7 +9224,7 @@ __divsi3:
 	srlk	%r10,%r5,4
 	or	%r2,%r0
 	srlk	%r0,%r4,4
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8008,7 +9232,7 @@ __divsi3:
 	srlk	%r11,%r4,5
 	or	%r2,%r10
 	srlk	%r10,%r5,5
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8016,7 +9240,7 @@ __divsi3:
 	srlk	%r0,%r5,6
 	or	%r2,%r10
 	srlk	%r10,%r4,6
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8024,7 +9248,7 @@ __divsi3:
 	srlk	%r11,%r4,7
 	or	%r2,%r0
 	srlk	%r0,%r5,7
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8032,7 +9256,7 @@ __divsi3:
 	srlk	%r10,%r5,8
 	or	%r2,%r0
 	srlk	%r0,%r4,8
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8040,7 +9264,7 @@ __divsi3:
 	srlk	%r11,%r4,9
 	or	%r2,%r10
 	srlk	%r10,%r5,9
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8048,7 +9272,7 @@ __divsi3:
 	srlk	%r0,%r5,10
 	or	%r2,%r10
 	srlk	%r10,%r4,10
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8056,7 +9280,7 @@ __divsi3:
 	srlk	%r11,%r4,11
 	or	%r2,%r0
 	srlk	%r0,%r5,11
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8064,7 +9288,7 @@ __divsi3:
 	srlk	%r10,%r5,12
 	or	%r2,%r0
 	srlk	%r0,%r4,12
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8072,7 +9296,7 @@ __divsi3:
 	srlk	%r11,%r4,13
 	or	%r2,%r10
 	srlk	%r10,%r5,13
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8080,7 +9304,7 @@ __divsi3:
 	srlk	%r0,%r5,14
 	or	%r2,%r10
 	srlk	%r10,%r4,14
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8088,7 +9312,7 @@ __divsi3:
 	srlk	%r11,%r4,15
 	or	%r2,%r0
 	srlk	%r0,%r5,15
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8096,7 +9320,7 @@ __divsi3:
 	srlk	%r10,%r5,16
 	or	%r2,%r0
 	srlk	%r0,%r4,16
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8104,7 +9328,7 @@ __divsi3:
 	srlk	%r11,%r4,17
 	or	%r2,%r10
 	srlk	%r10,%r5,17
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8112,7 +9336,7 @@ __divsi3:
 	srlk	%r0,%r5,18
 	or	%r2,%r10
 	srlk	%r10,%r4,18
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8120,7 +9344,7 @@ __divsi3:
 	srlk	%r11,%r4,19
 	or	%r2,%r0
 	srlk	%r0,%r5,19
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8128,7 +9352,7 @@ __divsi3:
 	srlk	%r10,%r5,20
 	or	%r2,%r0
 	srlk	%r0,%r4,20
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8136,7 +9360,7 @@ __divsi3:
 	srlk	%r11,%r4,21
 	or	%r2,%r10
 	srlk	%r10,%r5,21
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8144,7 +9368,7 @@ __divsi3:
 	srlk	%r0,%r5,22
 	or	%r2,%r10
 	srlk	%r10,%r4,22
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8152,7 +9376,7 @@ __divsi3:
 	srlk	%r11,%r4,23
 	or	%r2,%r0
 	srlk	%r0,%r5,23
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r0,0
@@ -8160,7 +9384,7 @@ __divsi3:
 	srlk	%r10,%r5,24
 	or	%r2,%r0
 	srlk	%r0,%r4,24
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r3,%r1,%r0
 	clr	%r1,%r0
 	lochinhe	%r10,0
@@ -8168,7 +9392,7 @@ __divsi3:
 	srlk	%r11,%r4,25
 	or	%r2,%r10
 	srlk	%r10,%r5,25
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r10,0
@@ -8176,7 +9400,7 @@ __divsi3:
 	srlk	%r0,%r5,26
 	or	%r2,%r10
 	srlk	%r10,%r4,26
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r3,%r1,%r10
 	clr	%r1,%r10
 	lochinhe	%r0,0
@@ -8184,7 +9408,7 @@ __divsi3:
 	srlk	%r11,%r4,27
 	or	%r2,%r0
 	srlk	%r1,%r5,27
-	cije	%r1,0,.L2620
+	cije	%r1,0,.L3121
 	srk	%r0,%r3,%r11
 	clr	%r3,%r11
 	lochinhe	%r1,0
@@ -8192,7 +9416,7 @@ __divsi3:
 	srlk	%r10,%r5,28
 	or	%r2,%r1
 	srlk	%r3,%r4,28
-	cije	%r10,0,.L2620
+	cije	%r10,0,.L3121
 	srk	%r1,%r0,%r3
 	clr	%r0,%r3
 	lochinhe	%r10,0
@@ -8200,7 +9424,7 @@ __divsi3:
 	srlk	%r11,%r4,29
 	or	%r2,%r10
 	srlk	%r0,%r5,29
-	cije	%r0,0,.L2620
+	cije	%r0,0,.L3121
 	srk	%r10,%r1,%r11
 	clr	%r1,%r11
 	lochinhe	%r0,0
@@ -8208,30 +9432,30 @@ __divsi3:
 	srlk	%r3,%r5,30
 	or	%r2,%r0
 	srlk	%r1,%r4,30
-	cije	%r3,0,.L2620
+	cije	%r3,0,.L3121
 	srk	%r0,%r10,%r1
 	clr	%r10,%r1
 	lochinhe	%r3,0
 	locrnhe	%r0,%r10
 	srl	%r4,31
 	or	%r2,%r3
-	cijhe	%r5,0,.L2620
+	cijhe	%r5,0,.L3121
 	slr	%r0,%r4
 	lhi	%r5,0
 	alcr	%r5,%r5
 	or	%r2,%r5
-	j	.L2620
-.L2736:
+	j	.L3121
+.L3237:
 	lcgr	%r2,%r2
 	lhi	%r1,0
 	lhi	%r12,1
-	j	.L2617
-.L2737:
+	j	.L3118
+.L3238:
 	xr	%r2,%r3
 	lpr	%r2,%r2
 	ahi	%r2,-1
 	srl	%r2,31
-	j	.L2620
+	j	.L3121
 	.cfi_endproc
 .LFE129:
 	.size	__divsi3, .-__divsi3
@@ -8243,60 +9467,60 @@ __modsi3:
 .LFB130:
 	.cfi_startproc
 	lpgr	%r1,%r3
-	cgijl	%r2,0,.L2864
+	cgijl	%r2,0,.L3365
 	lr	%r4,%r1
 	lr	%r3,%r2
 	lhi	%r0,0
-	clrjle	%r2,%r1,.L2865
-.L2741:
+	clrjle	%r2,%r1,.L3366
+.L3242:
 	lhi	%r2,1
-	cijl	%r4,0,.L2858
+	cijl	%r4,0,.L3359
 	sllk	%r1,%r4,1
 	lhi	%r2,2
-	clrjhe	%r1,%r3,.L2745
+	clrjhe	%r1,%r3,.L3246
 	lr	%r4,%r1
 	lhi	%r5,11
-	cijl	%r1,0,.L2858
-.L2747:
+	cijl	%r1,0,.L3359
+.L3248:
 	sll	%r1,1
 	sll	%r2,1
-	clrjhe	%r1,%r3,.L2745
-	brct	%r5,.L2825
-.L2862:
+	clrjhe	%r1,%r3,.L3246
+	brct	%r5,.L3326
+.L3363:
 	llgfr	%r2,%r3
-	cije	%r0,0,.L2861
+	cije	%r0,0,.L3362
 	lcgr	%r2,%r2
-.L2861:
+.L3362:
 	br	%r14
-.L2825:
+.L3326:
 	lr	%r4,%r1
-	cijl	%r1,0,.L2858
+	cijl	%r1,0,.L3359
 	sll	%r1,1
 	sll	%r2,1
-	clrjhe	%r1,%r3,.L2745
+	clrjhe	%r1,%r3,.L3246
 	lr	%r4,%r1
-	cijl	%r1,0,.L2858
+	cijl	%r1,0,.L3359
 	sll	%r1,1
 	sll	%r2,1
-	clrjhe	%r1,%r3,.L2745
+	clrjhe	%r1,%r3,.L3246
 	lr	%r4,%r1
-	cijhe	%r1,0,.L2747
-.L2858:
+	cijhe	%r1,0,.L3248
+.L3359:
 	srk	%r1,%r3,%r4
 	clr	%r4,%r3
 	srlk	%r5,%r4,1
 	locrle	%r3,%r1
 	srlk	%r1,%r2,1
-	cijlh	%r1,0,.L2750
-	j	.L2862
-.L2745:
-	cije	%r2,0,.L2862
+	cijlh	%r1,0,.L3251
+	j	.L3363
+.L3246:
+	cije	%r2,0,.L3363
 	srk	%r5,%r3,%r1
 	clr	%r1,%r3
 	locrle	%r3,%r5
 	llgtr	%r5,%r4
 	lr	%r4,%r1
-.L2750:
+.L3251:
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	srk	%r12,%r3,%r5
@@ -8304,204 +9528,204 @@ __modsi3:
 	srlk	%r1,%r4,2
 	locrhe	%r3,%r12
 	srlk	%r5,%r2,2
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,3
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,3
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,4
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,4
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,5
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,5
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,6
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,6
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,7
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,7
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,8
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,8
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,9
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,9
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,10
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,10
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,11
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,11
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,12
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,12
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,13
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,13
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,14
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,14
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,15
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,15
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,16
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,16
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,17
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,17
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,18
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,18
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,19
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,19
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,20
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,20
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,21
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,21
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,22
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,22
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,23
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,23
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,24
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,24
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,25
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,25
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,26
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,26
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,27
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,27
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,28
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,28
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,29
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,29
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srlk	%r5,%r2,30
 	locrhe	%r3,%r12
 	srlk	%r1,%r4,30
-	cije	%r5,0,.L2746
+	cije	%r5,0,.L3247
 	srk	%r12,%r3,%r1
 	clr	%r3,%r1
 	srl	%r4,31
 	locrhe	%r3,%r12
-	cijhe	%r2,0,.L2746
+	cijhe	%r2,0,.L3247
 	srk	%r2,%r3,%r4
 	clr	%r3,%r4
 	locrhe	%r3,%r2
-.L2746:
+.L3247:
 	llgfr	%r2,%r3
-	cije	%r0,0,.L2739
+	cije	%r0,0,.L3240
 	lcgr	%r2,%r2
-.L2739:
+.L3240:
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	br	%r14
-.L2864:
+.L3365:
 	lcgr	%r2,%r2
 	lr	%r4,%r1
 	lr	%r3,%r2
 	lhi	%r0,1
-	clrjh	%r2,%r1,.L2741
+	clrjh	%r2,%r1,.L3242
 	srk	%r0,%r2,%r1
 	cr	%r2,%r1
 	locre	%r2,%r0
 	llgfr	%r2,%r2
 	lcgr	%r2,%r2
 	br	%r14
-.L2865:
+.L3366:
 	srk	%r3,%r2,%r1
 	cr	%r2,%r1
 	locre	%r2,%r3
@@ -8517,74 +9741,74 @@ __modsi3:
 __udivmodhi4:
 .LFB131:
 	.cfi_startproc
-	clrjhe	%r3,%r2,.L2956
+	clrjhe	%r3,%r2,.L3457
 	tmll	%r3,32768
-	jne	.L2870
+	jne	.L3371
 	ldgr	%f2,%r11
 	.cfi_register 11, 17
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	risbgn	%r1,%r3,48,128+62,1
-	clrjle	%r2,%r1,.L2877
+	clrjle	%r2,%r1,.L3378
 	tmll	%r1,32768
-	jne	.L2877
+	jne	.L3378
 	risbgn	%r1,%r3,48,128+61,2
-	clrjle	%r2,%r1,.L2879
+	clrjle	%r2,%r1,.L3380
 	tmll	%r1,32768
-	jne	.L2879
+	jne	.L3380
 	risbgn	%r1,%r3,48,128+60,3
-	clrjle	%r2,%r1,.L2881
+	clrjle	%r2,%r1,.L3382
 	tmll	%r1,32768
-	jne	.L2881
+	jne	.L3382
 	risbgn	%r1,%r3,48,128+59,4
-	clrjle	%r2,%r1,.L2883
+	clrjle	%r2,%r1,.L3384
 	tmll	%r1,32768
-	jne	.L2883
+	jne	.L3384
 	risbgn	%r1,%r3,48,128+58,5
-	clrjle	%r2,%r1,.L2885
+	clrjle	%r2,%r1,.L3386
 	tmll	%r1,32768
-	jne	.L2885
+	jne	.L3386
 	risbgn	%r1,%r3,48,128+57,6
-	clrjle	%r2,%r1,.L2887
+	clrjle	%r2,%r1,.L3388
 	tmll	%r1,32768
-	jne	.L2887
+	jne	.L3388
 	risbgn	%r1,%r3,48,128+56,7
-	clrjle	%r2,%r1,.L2889
+	clrjle	%r2,%r1,.L3390
 	tmll	%r1,32768
-	jne	.L2889
+	jne	.L3390
 	risbgn	%r1,%r3,48,128+55,8
-	clrjle	%r2,%r1,.L2891
+	clrjle	%r2,%r1,.L3392
 	tmll	%r1,32768
-	jne	.L2891
+	jne	.L3392
 	risbgn	%r1,%r3,48,128+54,9
-	clrjle	%r2,%r1,.L2893
+	clrjle	%r2,%r1,.L3394
 	tmll	%r1,32768
-	jne	.L2893
+	jne	.L3394
 	risbgn	%r1,%r3,48,128+53,10
-	clrjle	%r2,%r1,.L2895
+	clrjle	%r2,%r1,.L3396
 	tmll	%r1,32768
-	jne	.L2895
+	jne	.L3396
 	risbgn	%r1,%r3,48,128+52,11
-	clrjle	%r2,%r1,.L2897
+	clrjle	%r2,%r1,.L3398
 	tmll	%r1,32768
-	jne	.L2897
+	jne	.L3398
 	risbgn	%r1,%r3,48,128+51,12
-	clrjle	%r2,%r1,.L2899
+	clrjle	%r2,%r1,.L3400
 	tmll	%r1,32768
-	jne	.L2899
+	jne	.L3400
 	risbgn	%r1,%r3,48,128+50,13
-	clrjle	%r2,%r1,.L2901
+	clrjle	%r2,%r1,.L3402
 	tmll	%r1,32768
-	jne	.L2901
+	jne	.L3402
 	risbgn	%r1,%r3,48,128+49,14
-	clrjle	%r2,%r1,.L2903
+	clrjle	%r2,%r1,.L3404
 	tmll	%r1,32768
-	jne	.L2903
+	jne	.L3404
 	risbgn	%r11,%r3,48,128+48,15
-	clrjle	%r2,%r11,.L2904
+	clrjle	%r2,%r11,.L3405
 	lhi	%r3,0
-	cgijlh	%r11,0,.L2957
-.L2873:
+	cgijlh	%r11,0,.L3458
+.L3374:
 	ltgr	%r4,%r4
 	locrne	%r3,%r2
 	llghr	%r2,%r3
@@ -8594,10 +9818,10 @@ __udivmodhi4:
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L2877:
+.L3378:
 	.cfi_restore_state
 	lhi	%r0,2
-.L2872:
+.L3373:
 	srk	%r12,%r2,%r1
 	clr	%r2,%r1
 	llghr	%r3,%r12
@@ -8616,7 +9840,7 @@ __udivmodhi4:
 	or	%r3,%r11
 	srlk	%r12,%r0,2
 	srlg	%r11,%r1,2
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8629,7 +9853,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,3
 	srlg	%r11,%r1,3
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8642,7 +9866,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,4
 	srlg	%r11,%r1,4
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8655,7 +9879,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,5
 	srlg	%r11,%r1,5
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8668,7 +9892,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,6
 	srlg	%r11,%r1,6
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8681,7 +9905,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,7
 	srlg	%r11,%r1,7
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8694,7 +9918,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,8
 	srlg	%r11,%r1,8
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8707,7 +9931,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,9
 	srlg	%r11,%r1,9
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8720,7 +9944,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,10
 	srlg	%r11,%r1,10
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8733,7 +9957,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,11
 	srlg	%r11,%r1,11
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8746,7 +9970,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,12
 	srlg	%r11,%r1,12
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8759,7 +9983,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,13
 	srlg	%r11,%r1,13
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8772,7 +9996,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	srlk	%r12,%r0,14
 	srlg	%r11,%r1,14
-	cije	%r12,0,.L2873
+	cije	%r12,0,.L3374
 	srk	%r5,%r2,%r11
 	slrk	%r11,%r2,%r11
 	lhi	%r11,0
@@ -8785,7 +10009,7 @@ __udivmodhi4:
 	llghr	%r2,%r2
 	or	%r3,%r12
 	lhi	%r1,16384
-	crje	%r0,%r1,.L2873
+	crje	%r0,%r1,.L3374
 	srk	%r0,%r2,%r5
 	slrk	%r5,%r2,%r5
 	lhi	%r11,0
@@ -8804,32 +10028,32 @@ __udivmodhi4:
 	lgdr	%r11,%f2
 	.cfi_restore 11
 	br	%r14
-.L2879:
+.L3380:
 	.cfi_restore_state
 	lhi	%r0,4
-	j	.L2872
-.L2881:
+	j	.L3373
+.L3382:
 	lhi	%r0,8
-	j	.L2872
-.L2883:
+	j	.L3373
+.L3384:
 	lhi	%r0,16
-	j	.L2872
-.L2893:
+	j	.L3373
+.L3394:
 	lhi	%r0,512
-	j	.L2872
-.L2885:
+	j	.L3373
+.L3386:
 	lhi	%r0,32
-	j	.L2872
-.L2887:
+	j	.L3373
+.L3388:
 	lhi	%r0,64
-	j	.L2872
-.L2889:
+	j	.L3373
+.L3390:
 	lhi	%r0,128
-	j	.L2872
-.L2891:
+	j	.L3373
+.L3392:
 	lhi	%r0,256
-	j	.L2872
-.L2956:
+	j	.L3373
+.L3457:
 	.cfi_restore 11
 	.cfi_restore 12
 	xgrk	%r5,%r3,%r2
@@ -8840,43 +10064,43 @@ __udivmodhi4:
 	locrnl	%r1,%r2
 	risbgn	%r3,%r5,64-1,128+63,0+1
 	llghr	%r5,%r1
-.L2953:
+.L3454:
 	ltgr	%r4,%r4
 	locrne	%r3,%r5
 	llghr	%r2,%r3
 	br	%r14
-.L2895:
+.L3396:
 	.cfi_register 11, 17
 	.cfi_register 12, 16
 	lhi	%r0,1024
-	j	.L2872
-.L2897:
+	j	.L3373
+.L3398:
 	lhi	%r0,2048
-	j	.L2872
-.L2899:
+	j	.L3373
+.L3400:
 	lhi	%r0,4096
-	j	.L2872
-.L2901:
+	j	.L3373
+.L3402:
 	lhi	%r0,8192
-	j	.L2872
-.L2903:
+	j	.L3373
+.L3404:
 	lhi	%r0,16384
-	j	.L2872
-.L2957:
+	j	.L3373
+.L3458:
 	llill	%r0,32768
 	llill	%r1,32768
-	j	.L2872
-.L2904:
+	j	.L3373
+.L3405:
 	llill	%r1,32768
 	llill	%r0,32768
-	j	.L2872
-.L2870:
+	j	.L3373
+.L3371:
 	.cfi_restore 11
 	.cfi_restore 12
 	sr	%r2,%r3
 	lhi	%r3,1
 	llghr	%r5,%r2
-	j	.L2953
+	j	.L3454
 	.cfi_endproc
 .LFE131:
 	.size	__udivmodhi4, .-__udivmodhi4
@@ -8887,42 +10111,42 @@ __udivmodhi4:
 __udivmodsi4_libgcc:
 .LFB132:
 	.cfi_startproc
-	clgrjhe	%r3,%r2,.L2992
+	clgrjhe	%r3,%r2,.L3493
 	lghi	%r1,1
 	lhi	%r0,16
-.L2960:
+.L3461:
 	risbg	%r5,%r3,32,128+32,0
-	jne	.L2965
+	jne	.L3466
 	sllg	%r3,%r3,1
 	sllg	%r1,%r1,1
-	clgrjle	%r2,%r3,.L2962
+	clgrjle	%r2,%r3,.L3463
 	risbg	%r5,%r3,32,128+32,0
-	jne	.L2965
+	jne	.L3466
 	sllg	%r3,%r3,1
 	sllg	%r1,%r1,1
-	clgrjle	%r2,%r3,.L2962
+	clgrjle	%r2,%r3,.L3463
 	risbg	%r5,%r3,32,128+32,0
-	jne	.L2965
+	jne	.L3466
 	sllg	%r3,%r3,1
 	sllg	%r1,%r1,1
-	clgrjle	%r2,%r3,.L2962
+	clgrjle	%r2,%r3,.L3463
 	risbg	%r5,%r3,32,128+32,0
-	jne	.L2965
+	jne	.L3466
 	sllg	%r3,%r3,1
 	sllg	%r1,%r1,1
-	clgrjle	%r2,%r3,.L2962
-	brct	%r0,.L2960
-.L2990:
+	clgrjle	%r2,%r3,.L3463
+	brct	%r0,.L3461
+.L3491:
 	ltgr	%r4,%r4
 	locgre	%r2,%r5
 	br	%r14
-.L2962:
-	cgije	%r1,0,.L2990
-.L2965:
+.L3463:
+	cgije	%r1,0,.L3491
+.L3466:
 	ldgr	%f0,%r12
 	.cfi_register 12, 16
 	lghi	%r5,0
-.L2966:
+.L3467:
 	sgrk	%r12,%r2,%r3
 	slgrk	%r0,%r2,%r3
 	lhi	%r0,0
@@ -8934,13 +10158,13 @@ __udivmodsi4_libgcc:
 	locgrne	%r2,%r12
 	srlg	%r1,%r1,1
 	ogr	%r5,%r0
-	cgijlh	%r1,0,.L2966
+	cgijlh	%r1,0,.L3467
 	ltgr	%r4,%r4
 	lgdr	%r12,%f0
 	.cfi_restore 12
 	locgre	%r2,%r5
 	br	%r14
-.L2992:
+.L3493:
 	sgrk	%r1,%r2,%r3
 	slgrk	%r3,%r2,%r3
 	lhi	%r5,0
@@ -8948,7 +10172,7 @@ __udivmodsi4_libgcc:
 	ltr	%r5,%r5
 	llgcr	%r5,%r5
 	locgrne	%r2,%r1
-	j	.L2990
+	j	.L3491
 	.cfi_endproc
 .LFE132:
 	.size	__udivmodsi4_libgcc, .-__udivmodsi4_libgcc
@@ -8960,16 +10184,16 @@ __ashldi3:
 .LFB133:
 	.cfi_startproc
 	tmll	%r3,32
-	je	.L2995
+	je	.L3496
 	sllk	%r0,%r2,4064(%r3)
 	lhi	%r2,0
-.L2996:
+.L3497:
 	llgfr	%r2,%r2
 	rosbg	%r2,%r0,0,31,32
-.L2994:
+.L3495:
 	br	%r14
-.L2995:
-	cgije	%r3,0,.L2994
+.L3496:
+	cgije	%r3,0,.L3495
 	srag	%r4,%r2,32
 	lhi	%r1,32
 	sll	%r4,0(%r3)
@@ -8977,7 +10201,7 @@ __ashldi3:
 	srlk	%r0,%r2,0(%r1)
 	sll	%r2,0(%r3)
 	or	%r0,%r4
-	j	.L2996
+	j	.L3497
 	.cfi_endproc
 .LFE133:
 	.size	__ashldi3, .-__ashldi3
@@ -8991,24 +10215,24 @@ __ashlti3:
 	lg	%r1,0(%r3)
 	lg	%r0,8(%r3)
 	tmll	%r4,64
-	je	.L3001
+	je	.L3502
 	sllg	%r1,%r0,4032(%r4)
 	lghi	%r4,0
-.L3002:
+.L3503:
 	lgr	%r0,%r4
-.L3003:
+.L3504:
 	stg	%r1,0(%r2)
 	stg	%r0,8(%r2)
 	br	%r14
-.L3001:
-	cgije	%r4,0,.L3003
+.L3502:
+	cgije	%r4,0,.L3504
 	sllg	%r1,%r1,0(%r4)
 	lhi	%r5,64
 	sr	%r5,%r4
 	sllg	%r4,%r0,0(%r4)
 	srlg	%r3,%r0,0(%r5)
 	ogr	%r1,%r3
-	j	.L3002
+	j	.L3503
 	.cfi_endproc
 .LFE134:
 	.size	__ashlti3, .-__ashlti3
@@ -9020,17 +10244,17 @@ __ashrdi3:
 .LFB135:
 	.cfi_startproc
 	tmll	%r3,32
-	je	.L3009
+	je	.L3510
 	srag	%r1,%r2,32
 	srak	%r2,%r1,4064(%r3)
 	sra	%r1,31
-.L3010:
+.L3511:
 	llgfr	%r2,%r2
 	rosbg	%r2,%r1,0,31,32
-.L3008:
+.L3509:
 	br	%r14
-.L3009:
-	cgije	%r3,0,.L3008
+.L3510:
+	cgije	%r3,0,.L3509
 	srag	%r1,%r2,32
 	lhi	%r4,32
 	srl	%r2,0(%r3)
@@ -9038,7 +10262,7 @@ __ashrdi3:
 	sllk	%r0,%r1,0(%r4)
 	sra	%r1,0(%r3)
 	or	%r2,%r0
-	j	.L3010
+	j	.L3511
 	.cfi_endproc
 .LFE135:
 	.size	__ashrdi3, .-__ashrdi3
@@ -9052,24 +10276,24 @@ __ashrti3:
 	lg	%r0,0(%r3)
 	lg	%r1,8(%r3)
 	tmll	%r4,64
-	je	.L3015
+	je	.L3516
 	srag	%r1,%r0,4032(%r4)
 	srag	%r4,%r0,63
-.L3016:
+.L3517:
 	lgr	%r0,%r4
-.L3017:
+.L3518:
 	stg	%r0,0(%r2)
 	stg	%r1,8(%r2)
 	br	%r14
-.L3015:
-	cgije	%r4,0,.L3017
+.L3516:
+	cgije	%r4,0,.L3518
 	srlg	%r1,%r1,0(%r4)
 	lhi	%r3,64
 	sr	%r3,%r4
 	srag	%r4,%r0,0(%r4)
 	sllg	%r5,%r0,0(%r3)
 	ogr	%r1,%r5
-	j	.L3016
+	j	.L3517
 	.cfi_endproc
 .LFE136:
 	.size	__ashrti3, .-__ashrti3
@@ -9178,19 +10402,19 @@ __cmpdi2:
 	srag	%r4,%r2,32
 	srag	%r1,%r3,32
 	cr	%r4,%r1
-	jl	.L3032
-	jh	.L3033
+	jl	.L3533
+	jh	.L3534
 	clr	%r2,%r3
 	lhi	%r2,1
 	lochih	%r2,2
 	lochinhe	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3032:
+.L3533:
 	lhi	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3033:
+.L3534:
 	lhi	%r2,2
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
@@ -9207,8 +10431,8 @@ __aeabi_lcmp:
 	srag	%r4,%r2,32
 	srag	%r1,%r3,32
 	cr	%r4,%r1
-	jl	.L3039
-	jh	.L3040
+	jl	.L3540
+	jh	.L3541
 	clr	%r2,%r3
 	lhi	%r0,0
 	alcr	%r0,%r0
@@ -9216,11 +10440,11 @@ __aeabi_lcmp:
 	lochinhe	%r0,-1
 	lgfr	%r2,%r0
 	br	%r14
-.L3039:
+.L3540:
 	lhi	%r0,-1
 	lgfr	%r2,%r0
 	br	%r14
-.L3040:
+.L3541:
 	lhi	%r0,1
 	lgfr	%r2,%r0
 	br	%r14
@@ -9238,19 +10462,19 @@ __cmpti2:
 	lg	%r2,0(%r2)
 	lg	%r1,8(%r3)
 	cg	%r2,0(%r3)
-	jl	.L3045
-	jh	.L3046
+	jl	.L3546
+	jh	.L3547
 	clgr	%r4,%r1
 	lhi	%r0,1
 	lochih	%r0,2
 	lochinhe	%r0,0
 	risbg	%r2,%r0,62,128+63,0
 	br	%r14
-.L3045:
+.L3546:
 	lhi	%r0,0
 	risbg	%r2,%r0,62,128+63,0
 	br	%r14
-.L3046:
+.L3547:
 	lhi	%r0,2
 	risbg	%r2,%r0,62,128+63,0
 	br	%r14
@@ -9334,7 +10558,7 @@ __ffsti2:
 	.cfi_startproc
 	lg	%r1,0(%r2)
 	ltg	%r4,8(%r2)
-	jne	.L3055
+	jne	.L3556
 	lcgr	%r3,%r1
 	ngr	%r3,%r1
 	lghi	%r2,63
@@ -9345,7 +10569,7 @@ __ffsti2:
 	lochie	%r2,0
 	lgfr	%r2,%r2
 	br	%r14
-.L3055:
+.L3556:
 	lcgr	%r0,%r4
 	ngr	%r4,%r0
 	lghi	%r2,63
@@ -9364,26 +10588,37 @@ __ffsti2:
 __lshrdi3:
 .LFB147:
 	.cfi_startproc
+	larl	%r5,.L3566
 	tmll	%r3,32
-	je	.L3060
+	je	.L3561
 	risbgn	%r2,%r2,64-32,128+63,0+32
-	lhi	%r1,0
-	srl	%r2,4064(%r3)
-.L3061:
-	llgfr	%r2,%r2
-	rosbg	%r2,%r1,0,31,32
-.L3059:
+	lhi	%r4,0
+	srlk	%r0,%r2,4064(%r3)
+.L3562:
+	ld	%v0,.L3567-.L3566(%r5)
+	vlvgf	%v0,%r4,0
+	vlvgf	%v0,%r0,1
+	vlgvg	%r2,%v0,0
+.L3560:
 	br	%r14
-.L3060:
-	cgije	%r3,0,.L3059
-	risbgn	%r1,%r2,64-32,128+63,0+32
-	lhi	%r4,32
+.L3561:
+	cgije	%r3,0,.L3560
+	risbgn	%r4,%r2,64-32,128+63,0+32
+	lhi	%r1,32
 	srl	%r2,0(%r3)
-	sr	%r4,%r3
-	sllk	%r0,%r1,0(%r4)
-	srl	%r1,0(%r3)
-	or	%r2,%r0
-	j	.L3061
+	sr	%r1,%r3
+	sllk	%r0,%r4,0(%r1)
+	srl	%r4,0(%r3)
+	or	%r0,%r2
+	j	.L3562
+	.section	.rodata
+	.align	8
+.L3566:
+.L3567:
+	.long	0
+	.long	0
+	.align	2
+.text
 	.cfi_endproc
 .LFE147:
 	.size	__lshrdi3, .-__lshrdi3
@@ -9397,24 +10632,24 @@ __lshrti3:
 	lg	%r0,0(%r3)
 	lg	%r1,8(%r3)
 	tmll	%r4,64
-	je	.L3066
+	je	.L3569
 	srlg	%r1,%r0,4032(%r4)
 	lghi	%r4,0
-.L3067:
+.L3570:
 	lgr	%r0,%r4
-.L3068:
+.L3571:
 	stg	%r0,0(%r2)
 	stg	%r1,8(%r2)
 	br	%r14
-.L3066:
-	cgije	%r4,0,.L3068
+.L3569:
+	cgije	%r4,0,.L3571
 	srlg	%r1,%r1,0(%r4)
 	lhi	%r3,64
 	sr	%r3,%r4
 	srlg	%r4,%r0,0(%r4)
 	sllg	%r5,%r0,0(%r3)
 	ogr	%r1,%r5
-	j	.L3067
+	j	.L3570
 	.cfi_endproc
 .LFE148:
 	.size	__lshrti3, .-__lshrti3
@@ -9605,12 +10840,10 @@ __negdi2:
 __negti2:
 .LFB154:
 	.cfi_startproc
-	lghi	%r4,0
-	lghi	%r5,0
-	slg	%r5,8(%r3)
-	slbg	%r4,0(%r3)
-	stg	%r5,8(%r2)
-	stg	%r4,0(%r2)
+	vl	%v2,0(%r3),3
+	vzero	%v0
+	vsq	%v4,%v0,%v2
+	vst	%v4,0(%r2),3
 	br	%r14
 	.cfi_endproc
 .LFE154:
@@ -9682,17 +10915,17 @@ __paritysi2:
 __popcountdi2:
 .LFB158:
 	.cfi_startproc
-	larl	%r5,.L3096
+	larl	%r5,.L3599
 	srlg	%r1,%r2,1
-	ng	%r1,.L3097-.L3096(%r5)
+	ng	%r1,.L3600-.L3599(%r5)
 	sgr	%r2,%r1
 	srlg	%r0,%r2,2
-	ng	%r2,.L3098-.L3096(%r5)
-	ng	%r0,.L3098-.L3096(%r5)
+	ng	%r2,.L3601-.L3599(%r5)
+	ng	%r0,.L3601-.L3599(%r5)
 	agr	%r2,%r0
 	srlg	%r3,%r2,4
 	agr	%r3,%r2
-	ng	%r3,.L3099-.L3096(%r5)
+	ng	%r3,.L3602-.L3599(%r5)
 	srlg	%r2,%r3,32
 	ar	%r2,%r3
 	srlk	%r4,%r2,16
@@ -9703,12 +10936,12 @@ __popcountdi2:
 	br	%r14
 	.section	.rodata
 	.align	8
-.L3096:
-.L3099:
+.L3599:
+.L3602:
 	.quad	1085102592571150095
-.L3098:
+.L3601:
 	.quad	3689348814741910323
-.L3097:
+.L3600:
 	.quad	6148914691236517205
 	.align	2
 .text
@@ -9748,60 +10981,78 @@ __popcountsi2:
 __popcountti2:
 .LFB160:
 	.cfi_startproc
-	ldgr	%f6,%r10
-	.cfi_register 10, 19
-	ldgr	%f4,%r11
-	.cfi_register 11, 18
-	ldgr	%f2,%r12
-	.cfi_register 12, 17
-	lg	%r10,0(%r2)
-	lg	%r11,8(%r2)
-	srlg	%r5,%r10,1
-	llihf	%r12,1431655765
-	oilf	%r12,1431655765
-	ngrk	%r0,%r5,%r12
-	srlg	%r4,%r11,1
-	ngrk	%r1,%r4,%r12
-	slgr	%r11,%r1
-	slbgr	%r10,%r0
-	llihf	%r2,858993459
-	llihf	%r12,858993459
-	oilf	%r2,858993459
-	oilf	%r12,858993459
-	ngrk	%r0,%r10,%r2
-	srlg	%r3,%r10,2
-	ngrk	%r4,%r3,%r2
-	ngrk	%r1,%r11,%r12
-	srlg	%r5,%r11,2
-	ngrk	%r10,%r5,%r12
-	algr	%r10,%r1
-	srlg	%r11,%r10,4
-	alcgr	%r4,%r0
-	llihf	%r2,252645135
-	rosbg	%r11,%r4,0,3,60
-	srlg	%r3,%r4,4
-	algr	%r11,%r10
-	alcgr	%r3,%r4
-	oilf	%r2,252645135
-	llihf	%r4,252645135
-	oilf	%r4,252645135
-	ngrk	%r5,%r11,%r4
-	ngrk	%r0,%r3,%r2
-	agr	%r0,%r5
-	srlg	%r12,%r0,32
-	ar	%r12,%r0
-	srlk	%r1,%r12,16
-	ar	%r1,%r12
-	srlk	%r10,%r1,8
-	ar	%r10,%r1
-	lgdr	%r12,%f2
-	.cfi_restore 12
-	llgcr	%r2,%r10
-	lgdr	%r11,%f4
-	.cfi_restore 11
-	lgdr	%r10,%f6
-	.cfi_restore 10
+	ldgr	%f1,%r13
+	.cfi_register 13, 20
+	ldgr	%f6,%r15
+	.cfi_register 15, 19
+	larl	%r13,.L3607
+	lay	%r15,-40(%r15)
+	.cfi_def_cfa_offset 200
+	lg	%r4,0(%r2)
+	lg	%r5,8(%r2)
+	vl	%v0,.L3608-.L3607(%r13),3
+	srlg	%r2,%r4,1
+	srlg	%r3,%r5,1
+	rosbg	%r3,%r4,0,0,63
+	vlvgp	%v4,%r2,%r3
+	vlvgp	%v5,%r4,%r5
+	vn	%v3,%v4,%v0
+	vsq	%v7,%v5,%v3
+	vst	%v7,160(%r15),3
+	vl	%v2,.L3609-.L3607(%r13),3
+	vl	%v17,.L3610-.L3607(%r13),3
+	lgdr	%r13,%f1
+	.cfi_restore 13
+	lg	%r0,160(%r15)
+	lg	%r1,168(%r15)
+	srlg	%r2,%r0,2
+	srlg	%r3,%r1,2
+	rosbg	%r3,%r0,0,1,62
+	vlvgp	%v18,%r2,%r3
+	vn	%v16,%v7,%v2
+	vn	%v20,%v18,%v2
+	vaq	%v22,%v20,%v16
+	vst	%v22,160(%r15),3
+	lg	%r2,160(%r15)
+	lg	%r4,168(%r15)
+	lg	%r1,160(%r15)
+	srlg	%r3,%r2,4
+	stg	%r3,176(%r15)
+	srlg	%r5,%r4,4
+	rosbg	%r5,%r1,0,3,60
+	stg	%r5,184(%r15)
+	vl	%v21,160(%r15),3
+	vl	%v19,176(%r15),3
+	vaq	%v23,%v19,%v21
+	vn	%v24,%v23,%v17
+	vst	%v24,160(%r15),3
+	lg	%r0,160(%r15)
+	ag	%r0,168(%r15)
+	srlg	%r2,%r0,32
+	ar	%r2,%r0
+	lgdr	%r15,%f6
+	.cfi_restore 15
+	.cfi_def_cfa_offset 160
+	srlk	%r3,%r2,16
+	ar	%r3,%r2
+	srlk	%r4,%r3,8
+	ar	%r4,%r3
+	llgcr	%r2,%r4
 	br	%r14
+	.section	.rodata
+	.align	8
+.L3607:
+.L3610:
+	.quad	1085102592571150095
+	.quad	1085102592571150095
+.L3609:
+	.quad	3689348814741910323
+	.quad	3689348814741910323
+.L3608:
+	.quad	6148914691236517205
+	.quad	6148914691236517205
+	.align	2
+.text
 	.cfi_endproc
 .LFE160:
 	.size	__popcountti2, .-__popcountti2
@@ -9812,44 +11063,43 @@ __popcountti2:
 __powidf2:
 .LFB161:
 	.cfi_startproc
-	larl	%r5,.L3115
+	larl	%r5,.L3621
 	ldr	%f2,%f0
 	lgr	%r1,%r2
-	ld	%f0,.L3116-.L3115(%r5)
+	ld	%f0,.L3622-.L3621(%r5)
 	tmll	%r2,1
-	je	.L3106
-.L3108:
+	je	.L3612
+.L3614:
 	mdbr	%f0,%f2
-.L3106:
+.L3612:
 	srlk	%r3,%r1,31
 	ar	%r3,%r1
 	sra	%r3,1
 	lgfr	%r1,%r3
-	cije	%r3,0,.L3107
+	cije	%r3,0,.L3613
 	mdbr	%f2,%f2
 	tmll	%r1,1
-	jne	.L3108
-.L3113:
+	jne	.L3614
+.L3619:
 	srlk	%r0,%r1,31
 	ar	%r1,%r0
 	sra	%r1,1
 	mdbr	%f2,%f2
 	lgfr	%r1,%r1
 	tmll	%r1,1
-	jne	.L3108
-	j	.L3113
-.L3107:
-	cijl	%r2,0,.L3114
+	jne	.L3614
+	j	.L3619
+.L3613:
+	cijl	%r2,0,.L3620
 	br	%r14
-.L3114:
-	ld	%f4,.L3116-.L3115(%r5)
-	ddbr	%f4,%f0
-	ldr	%f0,%f4
+.L3620:
+	ld	%f4,.L3622-.L3621(%r5)
+	wfddb	%v0,%v4,%v0
 	br	%r14
 	.section	.rodata
 	.align	8
-.L3115:
-.L3116:
+.L3621:
+.L3622:
 	.long	1072693248
 	.long	0
 	.align	2
@@ -9864,44 +11114,44 @@ __powidf2:
 __powisf2:
 .LFB162:
 	.cfi_startproc
-	larl	%r5,.L3127
-	ler	%f2,%f0
+	larl	%r5,.L3633
+	ldr	%f2,%f0
 	lgr	%r1,%r2
-	le	%f0,.L3128-.L3127(%r5)
+	lde	%f0,.L3634-.L3633(%r5)
 	tmll	%r2,1
-	je	.L3118
-.L3120:
+	je	.L3624
+.L3626:
 	meebr	%f0,%f2
-.L3118:
+.L3624:
 	srlk	%r3,%r1,31
 	ar	%r3,%r1
 	sra	%r3,1
 	lgfr	%r1,%r3
-	cije	%r3,0,.L3119
+	cije	%r3,0,.L3625
 	meebr	%f2,%f2
 	tmll	%r1,1
-	jne	.L3120
-.L3125:
+	jne	.L3626
+.L3631:
 	srlk	%r0,%r1,31
 	ar	%r1,%r0
 	sra	%r1,1
 	meebr	%f2,%f2
 	lgfr	%r1,%r1
 	tmll	%r1,1
-	jne	.L3120
-	j	.L3125
-.L3119:
-	cijl	%r2,0,.L3126
+	jne	.L3626
+	j	.L3631
+.L3625:
+	cijl	%r2,0,.L3632
 	br	%r14
-.L3126:
-	le	%f4,.L3128-.L3127(%r5)
+.L3632:
+	lde	%f4,.L3634-.L3633(%r5)
 	debr	%f4,%f0
-	ler	%f0,%f4
+	ldr	%f0,%f4
 	br	%r14
 	.section	.rodata
 	.align	8
-.L3127:
-.L3128:
+.L3633:
+.L3634:
 	.long	1065353216
 	.align	2
 .text
@@ -9918,19 +11168,19 @@ __ucmpdi2:
 	risbgn	%r4,%r2,64-32,128+63,0+32
 	risbgn	%r1,%r3,64-32,128+63,0+32
 	clr	%r4,%r1
-	jl	.L3131
-	jh	.L3132
+	jl	.L3637
+	jh	.L3638
 	clr	%r2,%r3
 	lhi	%r2,1
 	lochih	%r2,2
 	lochinhe	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3131:
+.L3637:
 	lhi	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3132:
+.L3638:
 	lhi	%r2,2
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
@@ -9947,8 +11197,8 @@ __aeabi_ulcmp:
 	risbgn	%r4,%r2,64-32,128+63,0+32
 	risbgn	%r1,%r3,64-32,128+63,0+32
 	clr	%r4,%r1
-	jl	.L3138
-	jh	.L3139
+	jl	.L3644
+	jh	.L3645
 	clr	%r2,%r3
 	lhi	%r0,0
 	alcr	%r0,%r0
@@ -9956,11 +11206,11 @@ __aeabi_ulcmp:
 	lochinhe	%r0,-1
 	lgfr	%r2,%r0
 	br	%r14
-.L3138:
+.L3644:
 	lhi	%r0,-1
 	lgfr	%r2,%r0
 	br	%r14
-.L3139:
+.L3645:
 	lhi	%r0,1
 	lgfr	%r2,%r0
 	br	%r14
@@ -9977,19 +11227,19 @@ __ucmpti2:
 	clc	0(8,%r2),0(%r3)
 	lg	%r4,8(%r2)
 	lg	%r1,8(%r3)
-	jl	.L3144
-	jh	.L3145
+	jl	.L3650
+	jh	.L3651
 	clgr	%r4,%r1
 	lhi	%r2,1
 	lochih	%r2,2
 	lochinhe	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3144:
+.L3650:
 	lhi	%r2,0
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
-.L3145:
+.L3651:
 	lhi	%r2,2
 	risbg	%r2,%r2,62,128+63,0
 	br	%r14
