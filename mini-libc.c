@@ -57,9 +57,6 @@ typedef unsigned int UTItype    __attribute__ ((mode (TI)));
 #endif
 #endif
 
-typedef int cmp_return_type __attribute__((mode (__libgcc_cmp_return__)));
-typedef int shift_count_type __attribute__((mode (__libgcc_shift_count__)));
-
 typedef int64_t di_int;
 typedef uint64_t du_int;
 
@@ -139,6 +136,8 @@ typedef union {
   } s;
 } utwords;
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 ti_int make_ti(di_int h, di_int l) {
   twords r;
   r.s.high = (du_int)h;
@@ -152,6 +151,8 @@ tu_int make_tu(du_int h, du_int l) {
   r.s.low = l;
   return r.all;
 }
+
+#endif
 
 #endif // CRT_HAS_128BIT
 
@@ -398,6 +399,8 @@ int toascii(int c)
     return c & 0x7f;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 double fdim(double x, double y)
 {
     if (isnan(x))
@@ -488,6 +491,8 @@ long double fminl(long double x, long double y)
     return x < y ? x : y;
 }
 
+#endif
+
 static const char digits[] =
     "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -520,6 +525,8 @@ struct node {
     struct node *prev;
 };
 
+#if !defined(__AVR__) || !defined(__clang__)
+
 void insque(void *element, void *pred)
 {
     struct node *e = element;
@@ -546,7 +553,9 @@ void remque(void *element)
         e->prev->next = e->next;
 }
 
-#ifndef __BPF__
+#endif
+
+#if !defined(__BPF__) && !defined(__NVPTX__)
 
 void *lsearch(const void *key, void *base, size_t *nelp, size_t width,
     int (*compar)(const void *, const void *))
@@ -689,40 +698,56 @@ bsearch_r (const void *key, const void *base0,
 
 #endif
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 div_t div(int num, int den)
 {
     return (div_t){ num/den, num%den };
 }
+
+#endif
 
 intmax_t imaxabs(intmax_t a)
 {
     return a>0 ? a : -a;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 imaxdiv_t imaxdiv(intmax_t num, intmax_t den)
 {
     return (imaxdiv_t){ num/den, num%den };
 }
+
+#endif
 
 long labs(long a)
 {
     return a>0 ? a : -a;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 ldiv_t ldiv(long num, long den)
 {
     return (ldiv_t){ num/den, num%den };
 }
+
+#endif
 
 long long llabs(long long a)
 {
     return a>0 ? a : -a;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 lldiv_t lldiv(long long num, long long den)
 {
     return (lldiv_t){ num/den, num%den };
 }
+
+#endif
 
 wchar_t *wcschr(const wchar_t *s, wchar_t c)
 {
@@ -743,12 +768,16 @@ wchar_t *wcscpy(wchar_t *restrict d, const wchar_t *restrict s)
     return a;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 size_t wcslen(const wchar_t *s)
 {
     const wchar_t *a;
     for (a=s; *s; s++);
     return s-a;
 }
+
+#endif
 
 int wcsncmp(const wchar_t *l, const wchar_t *r, size_t n)
 {
@@ -971,6 +1000,8 @@ libiberty_ffs (register int valu)
 }
 
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 int
 gl_isinff (float x)
 {
@@ -1060,6 +1091,7 @@ ldexpl (long double x, int exponent)
 }
 
 #endif
+#endif
 
 void *
 memxor (void *restrict dest, const void *restrict src, size_t n)
@@ -1145,6 +1177,8 @@ strstr (const char *s1, const char *s2)
   return (0);
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 double
 copysign (double x, double y)
 {
@@ -1152,6 +1186,8 @@ copysign (double x, double y)
     return -x;
   return x;
 }
+
+#endif
 
 /* Return the first occurrence of NEEDLE in HAYSTACK.  */
 void *
@@ -1192,7 +1228,8 @@ mempcpy (void *dst, const void *src, size_t len)
 
 #endif
 
-#ifndef __TMS320C6X__
+#ifndef __TMS320C6X__ 
+#if !defined(__BPF__) || !defined(__clang__)
 
 double
 frexp(double x, int *i)
@@ -1220,6 +1257,7 @@ frexp(double x, int *i)
     return(x);
     }
 
+#endif
 #endif
 
 /* Generic multiplication procedure. No mpy operation involved.  */
@@ -1388,10 +1426,13 @@ __cmovw (int *dest, const int *src, unsigned len)
     }
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 int __modi (int a, int b)
 {
   return a % b;
 }
+
 
 double __uitod (unsigned int a)
 {
@@ -1412,6 +1453,8 @@ float __ulltof (unsigned long long a)
 {
   return a;
 }
+
+#endif
 
 unsigned int __umodi (unsigned int a, unsigned int b)
 {
@@ -1438,6 +1481,8 @@ __ctzhi2 (unsigned short x)
   return i;
 }
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 long
 __fixunssfsi (float a)
 {
@@ -1445,6 +1490,8 @@ __fixunssfsi (float a)
     return (long) (a - 32768L) + 32768L;
   return (long) a;
 }
+
+#endif
 
 int
 __parityhi2 (unsigned short x)
@@ -1534,6 +1581,8 @@ __udivmodsi4 (USItype num, USItype den, int modwanted)
 }
 
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 int
 __mspabi_cmpf (float x, float y)
 {
@@ -1553,6 +1602,8 @@ __mspabi_cmpd (double x, double y)
     return 1;
   return 0;
 }
+
+#endif
 
 
 /* The 16-bit multiply library needs a software version of SI->DI widening
@@ -1717,6 +1768,8 @@ di_int __ashldi3(di_int a, int b) {
 
 // Precondition:  0 <= b < bits_in_tword
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 ti_int __ashlti3(ti_int a, int b) {
   const int bits_in_dword = (int)(sizeof(di_int) * CHAR_BIT);
   twords input;
@@ -1734,6 +1787,8 @@ ti_int __ashlti3(ti_int a, int b) {
   }
   return result.all;
 }
+
+#endif
 
 #endif // CRT_HAS_128BIT
 
@@ -1762,6 +1817,8 @@ di_int __ashrdi3(di_int a, int b) {
 
 // Precondition:  0 <= b < bits_in_tword
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 COMPILER_RT_ABI ti_int __ashrti3(ti_int a, int b) {
   const int bits_in_dword = (int)(sizeof(di_int) * CHAR_BIT);
   twords input;
@@ -1780,6 +1837,8 @@ COMPILER_RT_ABI ti_int __ashrti3(ti_int a, int b) {
   }
   return result.all;
 }
+
+#endif
 
 #endif // CRT_HAS_128BIT
 
@@ -1990,6 +2049,8 @@ COMPILER_RT_ABI di_int __lshrdi3(di_int a, int b) {
 
 // Precondition:  0 <= b < bits_in_tword
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 COMPILER_RT_ABI ti_int __lshrti3(ti_int a, int b) {
   const int bits_in_dword = (int)(sizeof(di_int) * CHAR_BIT);
   utwords input;
@@ -2007,6 +2068,7 @@ COMPILER_RT_ABI ti_int __lshrti3(ti_int a, int b) {
   return result.all;
 }
 
+#endif
 #endif // CRT_HAS_128BIT
 
 
@@ -2043,6 +2105,7 @@ COMPILER_RT_ABI di_int __muldi3_compiler_rt(di_int a, di_int b) {
 }
 
 #ifdef CRT_HAS_128BIT
+#if !defined(__BPF__) || !defined(__clang__)
 
 ti_int __mulddi3(du_int a, du_int b) {
   twords r;
@@ -2077,6 +2140,7 @@ COMPILER_RT_ABI ti_int __multi3(ti_int a, ti_int b) {
 }
 
 #endif
+#endif
 
 COMPILER_RT_ABI di_int __negdi2(di_int a) {
   // Note: this routine is here for API compatibility; any sane compiler
@@ -2085,6 +2149,7 @@ COMPILER_RT_ABI di_int __negdi2(di_int a) {
 }
 
 #ifdef CRT_HAS_128BIT
+#if !defined(__BPF__) || !defined(__clang__)
 
 COMPILER_RT_ABI ti_int __negti2(ti_int a) {
   // Note: this routine is here for API compatibility; any sane compiler
@@ -2092,6 +2157,7 @@ COMPILER_RT_ABI ti_int __negti2(ti_int a) {
   return -(tu_int)a;
 }
 
+#endif
 #endif
 
 COMPILER_RT_ABI int __paritydi2(di_int a) {
@@ -2190,6 +2256,8 @@ COMPILER_RT_ABI int __popcountti2(ti_int a) {
 
 #endif // CRT_HAS_128BIT
 
+#if !defined(__BPF__) || !defined(__clang__)
+
 COMPILER_RT_ABI double __powidf2(double a, int b) {
   const int recip = b < 0;
   double r = 1;
@@ -2217,6 +2285,8 @@ COMPILER_RT_ABI float __powisf2(float a, int b) {
   }
   return recip ? 1 / r : r;
 }
+
+#endif
 
 COMPILER_RT_ABI si_int __ucmpdi2(du_int a, du_int b) {
   udwords x;
